@@ -1,8 +1,8 @@
-PROJECT_NAME := xyz Package
+PROJECT_NAME := UpCloud Package
 
 SHELL            := /bin/bash
-PACK             := xyz
-PROJECT          := github.com/pulumi/pulumi-xyz
+PACK             := upcloud
+PROJECT          := github.com/UpCloudLtd/pulumi-upcloud
 NODE_MODULE_NAME := @abc/${PACK}
 TF_NAME          := ${PACK}
 PROVIDER_PATH    := provider
