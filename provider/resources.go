@@ -183,6 +183,10 @@ func Provider() tfbridge.ProviderInfo {
 				"Pulumi": "3.*",
 			},
 		},
+
+		Resources: map[string]*tfbridge.ResourceInfo{
+			"upcloud_firewall_rules": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ServerFirewallRules")},
+		},
 	}
 
 	// MustComputeTokens maps all resources and datasources from the upstream provider into Pulumi.
