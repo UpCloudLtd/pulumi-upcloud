@@ -2,7 +2,7 @@
     "auto-aliasing": {
         "resources": {
             "upcloud_firewall_rules": {
-                "current": "upcloud:index/firewallRules:FirewallRules",
+                "current": "upcloud:index/serverFirewallRules:ServerFirewallRules",
                 "fields": {
                     "firewall_rule": {
                         "maxItemsOne": false
@@ -778,7 +778,6 @@
     "auto-settings": {},
     "mux": {
         "resources": {
-            "upcloud:index/firewallRules:FirewallRules": 0,
             "upcloud:index/floatingIpAddress:FloatingIpAddress": 0,
             "upcloud:index/gateway:Gateway": 0,
             "upcloud:index/gatewayConnection:GatewayConnection": 0,
@@ -812,6 +811,7 @@
             "upcloud:index/objectStorage:ObjectStorage": 0,
             "upcloud:index/router:Router": 0,
             "upcloud:index/server:Server": 0,
+            "upcloud:index/serverFirewallRules:ServerFirewallRules": 0,
             "upcloud:index/serverGroup:ServerGroup": 0,
             "upcloud:index/storage:Storage": 0,
             "upcloud:index/tag:Tag": 0

@@ -76,85 +76,6 @@
         }
     },
     "types": {
-        "upcloud:index/FirewallRulesFirewallRule:FirewallRulesFirewallRule": {
-            "properties": {
-                "action": {
-                    "type": "string",
-                    "description": "Action to take if the rule conditions are met\n",
-                    "willReplaceOnChanges": true
-                },
-                "comment": {
-                    "type": "string",
-                    "description": "Freeform comment string for the rule\n",
-                    "willReplaceOnChanges": true
-                },
-                "destinationAddressEnd": {
-                    "type": "string",
-                    "description": "The destination address range ends from this address\n",
-                    "willReplaceOnChanges": true
-                },
-                "destinationAddressStart": {
-                    "type": "string",
-                    "description": "The destination address range starts from this address\n",
-                    "willReplaceOnChanges": true
-                },
-                "destinationPortEnd": {
-                    "type": "string",
-                    "description": "The destination port range ends from this port number\n",
-                    "willReplaceOnChanges": true
-                },
-                "destinationPortStart": {
-                    "type": "string",
-                    "description": "The destination port range starts from this port number\n",
-                    "willReplaceOnChanges": true
-                },
-                "direction": {
-                    "type": "string",
-                    "description": "The direction of network traffic this rule will be applied to\n",
-                    "willReplaceOnChanges": true
-                },
-                "family": {
-                    "type": "string",
-                    "description": "The address family of new firewall rule\n",
-                    "willReplaceOnChanges": true
-                },
-                "icmpType": {
-                    "type": "string",
-                    "description": "The ICMP type\n",
-                    "willReplaceOnChanges": true
-                },
-                "protocol": {
-                    "type": "string",
-                    "description": "The protocol this rule will be applied to\n",
-                    "willReplaceOnChanges": true
-                },
-                "sourceAddressEnd": {
-                    "type": "string",
-                    "description": "The source address range ends from this address\n",
-                    "willReplaceOnChanges": true
-                },
-                "sourceAddressStart": {
-                    "type": "string",
-                    "description": "The source address range starts from this address\n",
-                    "willReplaceOnChanges": true
-                },
-                "sourcePortEnd": {
-                    "type": "string",
-                    "description": "The source port range ends from this port number\n",
-                    "willReplaceOnChanges": true
-                },
-                "sourcePortStart": {
-                    "type": "string",
-                    "description": "The source port range starts from this port number\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "type": "object",
-            "required": [
-                "action",
-                "direction"
-            ]
-        },
         "upcloud:index/GatewayAddress:GatewayAddress": {
             "properties": {
                 "address": {
@@ -3391,6 +3312,85 @@
                 }
             }
         },
+        "upcloud:index/ServerFirewallRulesFirewallRule:ServerFirewallRulesFirewallRule": {
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "description": "Action to take if the rule conditions are met\n",
+                    "willReplaceOnChanges": true
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "Freeform comment string for the rule\n",
+                    "willReplaceOnChanges": true
+                },
+                "destinationAddressEnd": {
+                    "type": "string",
+                    "description": "The destination address range ends from this address\n",
+                    "willReplaceOnChanges": true
+                },
+                "destinationAddressStart": {
+                    "type": "string",
+                    "description": "The destination address range starts from this address\n",
+                    "willReplaceOnChanges": true
+                },
+                "destinationPortEnd": {
+                    "type": "string",
+                    "description": "The destination port range ends from this port number\n",
+                    "willReplaceOnChanges": true
+                },
+                "destinationPortStart": {
+                    "type": "string",
+                    "description": "The destination port range starts from this port number\n",
+                    "willReplaceOnChanges": true
+                },
+                "direction": {
+                    "type": "string",
+                    "description": "The direction of network traffic this rule will be applied to\n",
+                    "willReplaceOnChanges": true
+                },
+                "family": {
+                    "type": "string",
+                    "description": "The address family of new firewall rule\n",
+                    "willReplaceOnChanges": true
+                },
+                "icmpType": {
+                    "type": "string",
+                    "description": "The ICMP type\n",
+                    "willReplaceOnChanges": true
+                },
+                "protocol": {
+                    "type": "string",
+                    "description": "The protocol this rule will be applied to\n",
+                    "willReplaceOnChanges": true
+                },
+                "sourceAddressEnd": {
+                    "type": "string",
+                    "description": "The source address range ends from this address\n",
+                    "willReplaceOnChanges": true
+                },
+                "sourceAddressStart": {
+                    "type": "string",
+                    "description": "The source address range starts from this address\n",
+                    "willReplaceOnChanges": true
+                },
+                "sourcePortEnd": {
+                    "type": "string",
+                    "description": "The source port range ends from this port number\n",
+                    "willReplaceOnChanges": true
+                },
+                "sourcePortStart": {
+                    "type": "string",
+                    "description": "The source port range starts from this port number\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "type": "object",
+            "required": [
+                "action",
+                "direction"
+            ]
+        },
         "upcloud:index/ServerLogin:ServerLogin": {
             "properties": {
                 "createPassword": {
@@ -4424,62 +4424,6 @@
         }
     },
     "resources": {
-        "upcloud:index/firewallRules:FirewallRules": {
-            "description": "This resource represents a generated list of UpCloud firewall rules. \n\t\tFirewall rules are used in conjunction with UpCloud servers. \n\t\tEach server has its own firewall rules. \n\t\tThe firewall is enabled on all network interfaces except ones attached to private virtual networks. \n\t\tThe maximum number of firewall rules per server is 1000.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@pulumi/upcloud\";\n\n// The following example defines a server and then links the server to a single firewall rule. \n// The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.\nconst exampleServer = new upcloud.Server(\"exampleServer\", {\n    firewall: true,\n    hostname: \"terraform.example.tld\",\n    zone: \"de-fra1\",\n    plan: \"1xCPU-1GB\",\n    template: {\n        storage: \"Ubuntu Server 20.04 LTS (Focal Fossa)\",\n        size: 25,\n    },\n    networkInterfaces: [{\n        type: \"utility\",\n    }],\n});\nconst exampleFirewallRules = new upcloud.FirewallRules(\"exampleFirewallRules\", {\n    serverId: exampleServer.id,\n    firewallRules: [{\n        action: \"accept\",\n        comment: \"Allow SSH from this network\",\n        destinationPortEnd: \"22\",\n        destinationPortStart: \"22\",\n        direction: \"in\",\n        family: \"IPv4\",\n        protocol: \"tcp\",\n        sourceAddressEnd: \"192.168.1.255\",\n        sourceAddressStart: \"192.168.1.1\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# The following example defines a server and then links the server to a single firewall rule. \n# The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.\nexample_server = upcloud.Server(\"exampleServer\",\n    firewall=True,\n    hostname=\"terraform.example.tld\",\n    zone=\"de-fra1\",\n    plan=\"1xCPU-1GB\",\n    template=upcloud.ServerTemplateArgs(\n        storage=\"Ubuntu Server 20.04 LTS (Focal Fossa)\",\n        size=25,\n    ),\n    network_interfaces=[upcloud.ServerNetworkInterfaceArgs(\n        type=\"utility\",\n    )])\nexample_firewall_rules = upcloud.FirewallRules(\"exampleFirewallRules\",\n    server_id=example_server.id,\n    firewall_rules=[upcloud.FirewallRulesFirewallRuleArgs(\n        action=\"accept\",\n        comment=\"Allow SSH from this network\",\n        destination_port_end=\"22\",\n        destination_port_start=\"22\",\n        direction=\"in\",\n        family=\"IPv4\",\n        protocol=\"tcp\",\n        source_address_end=\"192.168.1.255\",\n        source_address_start=\"192.168.1.1\",\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Upcloud = Pulumi.Upcloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // The following example defines a server and then links the server to a single firewall rule. \n    // The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.\n    var exampleServer = new Upcloud.Server(\"exampleServer\", new()\n    {\n        Firewall = true,\n        Hostname = \"terraform.example.tld\",\n        Zone = \"de-fra1\",\n        Plan = \"1xCPU-1GB\",\n        Template = new Upcloud.Inputs.ServerTemplateArgs\n        {\n            Storage = \"Ubuntu Server 20.04 LTS (Focal Fossa)\",\n            Size = 25,\n        },\n        NetworkInterfaces = new[]\n        {\n            new Upcloud.Inputs.ServerNetworkInterfaceArgs\n            {\n                Type = \"utility\",\n            },\n        },\n    });\n\n    var exampleFirewallRules = new Upcloud.FirewallRules(\"exampleFirewallRules\", new()\n    {\n        ServerId = exampleServer.Id,\n        FirewallRules = new[]\n        {\n            new Upcloud.Inputs.FirewallRulesFirewallRuleArgs\n            {\n                Action = \"accept\",\n                Comment = \"Allow SSH from this network\",\n                DestinationPortEnd = \"22\",\n                DestinationPortStart = \"22\",\n                Direction = \"in\",\n                Family = \"IPv4\",\n                Protocol = \"tcp\",\n                SourceAddressEnd = \"192.168.1.255\",\n                SourceAddressStart = \"192.168.1.1\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// The following example defines a server and then links the server to a single firewall rule.\n\t\t// The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.\n\t\texampleServer, err := upcloud.NewServer(ctx, \"exampleServer\", \u0026upcloud.ServerArgs{\n\t\t\tFirewall: pulumi.Bool(true),\n\t\t\tHostname: pulumi.String(\"terraform.example.tld\"),\n\t\t\tZone:     pulumi.String(\"de-fra1\"),\n\t\t\tPlan:     pulumi.String(\"1xCPU-1GB\"),\n\t\t\tTemplate: \u0026upcloud.ServerTemplateArgs{\n\t\t\t\tStorage: pulumi.String(\"Ubuntu Server 20.04 LTS (Focal Fossa)\"),\n\t\t\t\tSize:    pulumi.Int(25),\n\t\t\t},\n\t\t\tNetworkInterfaces: upcloud.ServerNetworkInterfaceArray{\n\t\t\t\t\u0026upcloud.ServerNetworkInterfaceArgs{\n\t\t\t\t\tType: pulumi.String(\"utility\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewFirewallRules(ctx, \"exampleFirewallRules\", \u0026upcloud.FirewallRulesArgs{\n\t\t\tServerId: exampleServer.ID(),\n\t\t\tFirewallRules: upcloud.FirewallRulesFirewallRuleArray{\n\t\t\t\t\u0026upcloud.FirewallRulesFirewallRuleArgs{\n\t\t\t\t\tAction:               pulumi.String(\"accept\"),\n\t\t\t\t\tComment:              pulumi.String(\"Allow SSH from this network\"),\n\t\t\t\t\tDestinationPortEnd:   pulumi.String(\"22\"),\n\t\t\t\t\tDestinationPortStart: pulumi.String(\"22\"),\n\t\t\t\t\tDirection:            pulumi.String(\"in\"),\n\t\t\t\t\tFamily:               pulumi.String(\"IPv4\"),\n\t\t\t\t\tProtocol:             pulumi.String(\"tcp\"),\n\t\t\t\t\tSourceAddressEnd:     pulumi.String(\"192.168.1.255\"),\n\t\t\t\t\tSourceAddressStart:   pulumi.String(\"192.168.1.1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.Server;\nimport com.pulumi.upcloud.ServerArgs;\nimport com.pulumi.upcloud.inputs.ServerTemplateArgs;\nimport com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;\nimport com.pulumi.upcloud.FirewallRules;\nimport com.pulumi.upcloud.FirewallRulesArgs;\nimport com.pulumi.upcloud.inputs.FirewallRulesFirewallRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // The following example defines a server and then links the server to a single firewall rule. \n        // The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.\n        var exampleServer = new Server(\"exampleServer\", ServerArgs.builder()\n            .firewall(true)\n            .hostname(\"terraform.example.tld\")\n            .zone(\"de-fra1\")\n            .plan(\"1xCPU-1GB\")\n            .template(ServerTemplateArgs.builder()\n                .storage(\"Ubuntu Server 20.04 LTS (Focal Fossa)\")\n                .size(25)\n                .build())\n            .networkInterfaces(ServerNetworkInterfaceArgs.builder()\n                .type(\"utility\")\n                .build())\n            .build());\n\n        var exampleFirewallRules = new FirewallRules(\"exampleFirewallRules\", FirewallRulesArgs.builder()\n            .serverId(exampleServer.id())\n            .firewallRules(FirewallRulesFirewallRuleArgs.builder()\n                .action(\"accept\")\n                .comment(\"Allow SSH from this network\")\n                .destinationPortEnd(\"22\")\n                .destinationPortStart(\"22\")\n                .direction(\"in\")\n                .family(\"IPv4\")\n                .protocol(\"tcp\")\n                .sourceAddressEnd(\"192.168.1.255\")\n                .sourceAddressStart(\"192.168.1.1\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # The following example defines a server and then links the server to a single firewall rule. \n  # The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.\n  exampleServer:\n    type: upcloud:Server\n    properties:\n      firewall: true\n      hostname: terraform.example.tld\n      zone: de-fra1\n      plan: 1xCPU-1GB\n      template:\n        storage: Ubuntu Server 20.04 LTS (Focal Fossa)\n        size: 25\n      networkInterfaces:\n        - type: utility\n  exampleFirewallRules:\n    type: upcloud:FirewallRules\n    properties:\n      serverId: ${exampleServer.id}\n      firewallRules:\n        - action: accept\n          comment: Allow SSH from this network\n          destinationPortEnd: '22'\n          destinationPortStart: '22'\n          direction: in\n          family: IPv4\n          protocol: tcp\n          sourceAddressEnd: 192.168.1.255\n          sourceAddressStart: 192.168.1.1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import upcloud:index/firewallRules:FirewallRules my_example_rules 049d7ca2-757e-4fb1-a833-f87ee056547a\n```\n\n",
-            "properties": {
-                "firewallRules": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/upcloud:index/FirewallRulesFirewallRule:FirewallRulesFirewallRule"
-                    },
-                    "description": "A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be\nthe same value if only one IP address or port number is specified. Source and destination port numbers can only be set\nif the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have\n\"action\", \"direction\", \"protocol\", \"family\" and at least one destination/source-address/port range. The default rule can\nbe created by providing only \"action\" and \"direction\" attributes. Default rule should be defined last.\n"
-                },
-                "serverId": {
-                    "type": "string",
-                    "description": "The unique id of the server to be protected the firewall rules\n"
-                }
-            },
-            "required": [
-                "firewallRules",
-                "serverId"
-            ],
-            "inputProperties": {
-                "firewallRules": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/upcloud:index/FirewallRulesFirewallRule:FirewallRulesFirewallRule"
-                    },
-                    "description": "A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be\nthe same value if only one IP address or port number is specified. Source and destination port numbers can only be set\nif the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have\n\"action\", \"direction\", \"protocol\", \"family\" and at least one destination/source-address/port range. The default rule can\nbe created by providing only \"action\" and \"direction\" attributes. Default rule should be defined last.\n"
-                },
-                "serverId": {
-                    "type": "string",
-                    "description": "The unique id of the server to be protected the firewall rules\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "requiredInputs": [
-                "firewallRules",
-                "serverId"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering FirewallRules resources.\n",
-                "properties": {
-                    "firewallRules": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/upcloud:index/FirewallRulesFirewallRule:FirewallRulesFirewallRule"
-                        },
-                        "description": "A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be\nthe same value if only one IP address or port number is specified. Source and destination port numbers can only be set\nif the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have\n\"action\", \"direction\", \"protocol\", \"family\" and at least one destination/source-address/port range. The default rule can\nbe created by providing only \"action\" and \"direction\" attributes. Default rule should be defined last.\n"
-                    },
-                    "serverId": {
-                        "type": "string",
-                        "description": "The unique id of the server to be protected the firewall rules\n",
-                        "willReplaceOnChanges": true
-                    }
-                },
-                "type": "object"
-            }
-        },
         "upcloud:index/floatingIpAddress:FloatingIpAddress": {
             "description": "This resource represents a UpCloud floating IP address resource.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@pulumi/upcloud\";\n\n// Create a detached floating IP address.\nconst myFloatingAddress = new upcloud.FloatingIpAddress(\"myFloatingAddress\", {zone: \"de-fra1\"});\n// Floating IP address assigned to a server resource.\nconst example = new upcloud.Server(\"example\", {\n    hostname: \"terraform.example.tld\",\n    zone: \"de-fra1\",\n    plan: \"1xCPU-1GB\",\n    template: {\n        storage: \"Ubuntu Server 20.04 LTS (Focal Fossa)\",\n        size: 25,\n    },\n    networkInterfaces: [{\n        type: \"public\",\n    }],\n});\nconst myNewFloatingAddress = new upcloud.FloatingIpAddress(\"myNewFloatingAddress\", {macAddress: example.networkInterfaces.apply(networkInterfaces =\u003e networkInterfaces[0].macAddress)});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# Create a detached floating IP address.\nmy_floating_address = upcloud.FloatingIpAddress(\"myFloatingAddress\", zone=\"de-fra1\")\n# Floating IP address assigned to a server resource.\nexample = upcloud.Server(\"example\",\n    hostname=\"terraform.example.tld\",\n    zone=\"de-fra1\",\n    plan=\"1xCPU-1GB\",\n    template=upcloud.ServerTemplateArgs(\n        storage=\"Ubuntu Server 20.04 LTS (Focal Fossa)\",\n        size=25,\n    ),\n    network_interfaces=[upcloud.ServerNetworkInterfaceArgs(\n        type=\"public\",\n    )])\nmy_new_floating_address = upcloud.FloatingIpAddress(\"myNewFloatingAddress\", mac_address=example.network_interfaces[0].mac_address)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Upcloud = Pulumi.Upcloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a detached floating IP address.\n    var myFloatingAddress = new Upcloud.FloatingIpAddress(\"myFloatingAddress\", new()\n    {\n        Zone = \"de-fra1\",\n    });\n\n    // Floating IP address assigned to a server resource.\n    var example = new Upcloud.Server(\"example\", new()\n    {\n        Hostname = \"terraform.example.tld\",\n        Zone = \"de-fra1\",\n        Plan = \"1xCPU-1GB\",\n        Template = new Upcloud.Inputs.ServerTemplateArgs\n        {\n            Storage = \"Ubuntu Server 20.04 LTS (Focal Fossa)\",\n            Size = 25,\n        },\n        NetworkInterfaces = new[]\n        {\n            new Upcloud.Inputs.ServerNetworkInterfaceArgs\n            {\n                Type = \"public\",\n            },\n        },\n    });\n\n    var myNewFloatingAddress = new Upcloud.FloatingIpAddress(\"myNewFloatingAddress\", new()\n    {\n        MacAddress = example.NetworkInterfaces.Apply(networkInterfaces =\u003e networkInterfaces[0].MacAddress),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a detached floating IP address.\n\t\t_, err := upcloud.NewFloatingIpAddress(ctx, \"myFloatingAddress\", \u0026upcloud.FloatingIpAddressArgs{\n\t\t\tZone: pulumi.String(\"de-fra1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Floating IP address assigned to a server resource.\n\t\texample, err := upcloud.NewServer(ctx, \"example\", \u0026upcloud.ServerArgs{\n\t\t\tHostname: pulumi.String(\"terraform.example.tld\"),\n\t\t\tZone:     pulumi.String(\"de-fra1\"),\n\t\t\tPlan:     pulumi.String(\"1xCPU-1GB\"),\n\t\t\tTemplate: \u0026upcloud.ServerTemplateArgs{\n\t\t\t\tStorage: pulumi.String(\"Ubuntu Server 20.04 LTS (Focal Fossa)\"),\n\t\t\t\tSize:    pulumi.Int(25),\n\t\t\t},\n\t\t\tNetworkInterfaces: upcloud.ServerNetworkInterfaceArray{\n\t\t\t\t\u0026upcloud.ServerNetworkInterfaceArgs{\n\t\t\t\t\tType: pulumi.String(\"public\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewFloatingIpAddress(ctx, \"myNewFloatingAddress\", \u0026upcloud.FloatingIpAddressArgs{\n\t\t\tMacAddress: example.NetworkInterfaces.ApplyT(func(networkInterfaces []upcloud.ServerNetworkInterface) (*string, error) {\n\t\t\t\treturn \u0026networkInterfaces[0].MacAddress, nil\n\t\t\t}).(pulumi.StringPtrOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.FloatingIpAddress;\nimport com.pulumi.upcloud.FloatingIpAddressArgs;\nimport com.pulumi.upcloud.Server;\nimport com.pulumi.upcloud.ServerArgs;\nimport com.pulumi.upcloud.inputs.ServerTemplateArgs;\nimport com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a detached floating IP address.\n        var myFloatingAddress = new FloatingIpAddress(\"myFloatingAddress\", FloatingIpAddressArgs.builder()\n            .zone(\"de-fra1\")\n            .build());\n\n        // Floating IP address assigned to a server resource.\n        var example = new Server(\"example\", ServerArgs.builder()\n            .hostname(\"terraform.example.tld\")\n            .zone(\"de-fra1\")\n            .plan(\"1xCPU-1GB\")\n            .template(ServerTemplateArgs.builder()\n                .storage(\"Ubuntu Server 20.04 LTS (Focal Fossa)\")\n                .size(25)\n                .build())\n            .networkInterfaces(ServerNetworkInterfaceArgs.builder()\n                .type(\"public\")\n                .build())\n            .build());\n\n        var myNewFloatingAddress = new FloatingIpAddress(\"myNewFloatingAddress\", FloatingIpAddressArgs.builder()\n            .macAddress(example.networkInterfaces().applyValue(networkInterfaces -\u003e networkInterfaces[0].macAddress()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a detached floating IP address.\n  myFloatingAddress:\n    type: upcloud:FloatingIpAddress\n    properties:\n      zone: de-fra1\n  # Floating IP address assigned to a server resource.\n  example:\n    type: upcloud:Server\n    properties:\n      hostname: terraform.example.tld\n      zone: de-fra1\n      plan: 1xCPU-1GB\n      template:\n        storage: Ubuntu Server 20.04 LTS (Focal Fossa)\n        size: 25\n      networkInterfaces:\n        - type: public\n  myNewFloatingAddress:\n    type: upcloud:FloatingIpAddress\n    properties:\n      macAddress: ${example.networkInterfaces[0].macAddress}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import upcloud:index/floatingIpAddress:FloatingIpAddress my_new_floating_address 94.237.114.205\n```\n\n",
             "properties": {
@@ -9166,6 +9110,62 @@
                     "zone": {
                         "type": "string",
                         "description": "The zone in which the server will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "upcloud:index/serverFirewallRules:ServerFirewallRules": {
+            "description": "This resource represents a generated list of UpCloud firewall rules. \n\t\tFirewall rules are used in conjunction with UpCloud servers. \n\t\tEach server has its own firewall rules. \n\t\tThe firewall is enabled on all network interfaces except ones attached to private virtual networks. \n\t\tThe maximum number of firewall rules per server is 1000.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@pulumi/upcloud\";\n\n// The following example defines a server and then links the server to a single firewall rule. \n// The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.\nconst exampleServer = new upcloud.Server(\"exampleServer\", {\n    firewall: true,\n    hostname: \"terraform.example.tld\",\n    zone: \"de-fra1\",\n    plan: \"1xCPU-1GB\",\n    template: {\n        storage: \"Ubuntu Server 20.04 LTS (Focal Fossa)\",\n        size: 25,\n    },\n    networkInterfaces: [{\n        type: \"utility\",\n    }],\n});\nconst exampleServerFirewallRules = new upcloud.ServerFirewallRules(\"exampleServerFirewallRules\", {\n    serverId: exampleServer.id,\n    firewallRules: [{\n        action: \"accept\",\n        comment: \"Allow SSH from this network\",\n        destinationPortEnd: \"22\",\n        destinationPortStart: \"22\",\n        direction: \"in\",\n        family: \"IPv4\",\n        protocol: \"tcp\",\n        sourceAddressEnd: \"192.168.1.255\",\n        sourceAddressStart: \"192.168.1.1\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# The following example defines a server and then links the server to a single firewall rule. \n# The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.\nexample_server = upcloud.Server(\"exampleServer\",\n    firewall=True,\n    hostname=\"terraform.example.tld\",\n    zone=\"de-fra1\",\n    plan=\"1xCPU-1GB\",\n    template=upcloud.ServerTemplateArgs(\n        storage=\"Ubuntu Server 20.04 LTS (Focal Fossa)\",\n        size=25,\n    ),\n    network_interfaces=[upcloud.ServerNetworkInterfaceArgs(\n        type=\"utility\",\n    )])\nexample_server_firewall_rules = upcloud.ServerFirewallRules(\"exampleServerFirewallRules\",\n    server_id=example_server.id,\n    firewall_rules=[upcloud.ServerFirewallRulesFirewallRuleArgs(\n        action=\"accept\",\n        comment=\"Allow SSH from this network\",\n        destination_port_end=\"22\",\n        destination_port_start=\"22\",\n        direction=\"in\",\n        family=\"IPv4\",\n        protocol=\"tcp\",\n        source_address_end=\"192.168.1.255\",\n        source_address_start=\"192.168.1.1\",\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Upcloud = Pulumi.Upcloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // The following example defines a server and then links the server to a single firewall rule. \n    // The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.\n    var exampleServer = new Upcloud.Server(\"exampleServer\", new()\n    {\n        Firewall = true,\n        Hostname = \"terraform.example.tld\",\n        Zone = \"de-fra1\",\n        Plan = \"1xCPU-1GB\",\n        Template = new Upcloud.Inputs.ServerTemplateArgs\n        {\n            Storage = \"Ubuntu Server 20.04 LTS (Focal Fossa)\",\n            Size = 25,\n        },\n        NetworkInterfaces = new[]\n        {\n            new Upcloud.Inputs.ServerNetworkInterfaceArgs\n            {\n                Type = \"utility\",\n            },\n        },\n    });\n\n    var exampleServerFirewallRules = new Upcloud.ServerFirewallRules(\"exampleServerFirewallRules\", new()\n    {\n        ServerId = exampleServer.Id,\n        FirewallRules = new[]\n        {\n            new Upcloud.Inputs.ServerFirewallRulesFirewallRuleArgs\n            {\n                Action = \"accept\",\n                Comment = \"Allow SSH from this network\",\n                DestinationPortEnd = \"22\",\n                DestinationPortStart = \"22\",\n                Direction = \"in\",\n                Family = \"IPv4\",\n                Protocol = \"tcp\",\n                SourceAddressEnd = \"192.168.1.255\",\n                SourceAddressStart = \"192.168.1.1\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// The following example defines a server and then links the server to a single firewall rule.\n\t\t// The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.\n\t\texampleServer, err := upcloud.NewServer(ctx, \"exampleServer\", \u0026upcloud.ServerArgs{\n\t\t\tFirewall: pulumi.Bool(true),\n\t\t\tHostname: pulumi.String(\"terraform.example.tld\"),\n\t\t\tZone:     pulumi.String(\"de-fra1\"),\n\t\t\tPlan:     pulumi.String(\"1xCPU-1GB\"),\n\t\t\tTemplate: \u0026upcloud.ServerTemplateArgs{\n\t\t\t\tStorage: pulumi.String(\"Ubuntu Server 20.04 LTS (Focal Fossa)\"),\n\t\t\t\tSize:    pulumi.Int(25),\n\t\t\t},\n\t\t\tNetworkInterfaces: upcloud.ServerNetworkInterfaceArray{\n\t\t\t\t\u0026upcloud.ServerNetworkInterfaceArgs{\n\t\t\t\t\tType: pulumi.String(\"utility\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewServerFirewallRules(ctx, \"exampleServerFirewallRules\", \u0026upcloud.ServerFirewallRulesArgs{\n\t\t\tServerId: exampleServer.ID(),\n\t\t\tFirewallRules: upcloud.ServerFirewallRulesFirewallRuleArray{\n\t\t\t\t\u0026upcloud.ServerFirewallRulesFirewallRuleArgs{\n\t\t\t\t\tAction:               pulumi.String(\"accept\"),\n\t\t\t\t\tComment:              pulumi.String(\"Allow SSH from this network\"),\n\t\t\t\t\tDestinationPortEnd:   pulumi.String(\"22\"),\n\t\t\t\t\tDestinationPortStart: pulumi.String(\"22\"),\n\t\t\t\t\tDirection:            pulumi.String(\"in\"),\n\t\t\t\t\tFamily:               pulumi.String(\"IPv4\"),\n\t\t\t\t\tProtocol:             pulumi.String(\"tcp\"),\n\t\t\t\t\tSourceAddressEnd:     pulumi.String(\"192.168.1.255\"),\n\t\t\t\t\tSourceAddressStart:   pulumi.String(\"192.168.1.1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.Server;\nimport com.pulumi.upcloud.ServerArgs;\nimport com.pulumi.upcloud.inputs.ServerTemplateArgs;\nimport com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;\nimport com.pulumi.upcloud.ServerFirewallRules;\nimport com.pulumi.upcloud.ServerFirewallRulesArgs;\nimport com.pulumi.upcloud.inputs.ServerFirewallRulesFirewallRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // The following example defines a server and then links the server to a single firewall rule. \n        // The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.\n        var exampleServer = new Server(\"exampleServer\", ServerArgs.builder()\n            .firewall(true)\n            .hostname(\"terraform.example.tld\")\n            .zone(\"de-fra1\")\n            .plan(\"1xCPU-1GB\")\n            .template(ServerTemplateArgs.builder()\n                .storage(\"Ubuntu Server 20.04 LTS (Focal Fossa)\")\n                .size(25)\n                .build())\n            .networkInterfaces(ServerNetworkInterfaceArgs.builder()\n                .type(\"utility\")\n                .build())\n            .build());\n\n        var exampleServerFirewallRules = new ServerFirewallRules(\"exampleServerFirewallRules\", ServerFirewallRulesArgs.builder()\n            .serverId(exampleServer.id())\n            .firewallRules(ServerFirewallRulesFirewallRuleArgs.builder()\n                .action(\"accept\")\n                .comment(\"Allow SSH from this network\")\n                .destinationPortEnd(\"22\")\n                .destinationPortStart(\"22\")\n                .direction(\"in\")\n                .family(\"IPv4\")\n                .protocol(\"tcp\")\n                .sourceAddressEnd(\"192.168.1.255\")\n                .sourceAddressStart(\"192.168.1.1\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # The following example defines a server and then links the server to a single firewall rule. \n  # The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.\n  exampleServer:\n    type: upcloud:Server\n    properties:\n      firewall: true\n      hostname: terraform.example.tld\n      zone: de-fra1\n      plan: 1xCPU-1GB\n      template:\n        storage: Ubuntu Server 20.04 LTS (Focal Fossa)\n        size: 25\n      networkInterfaces:\n        - type: utility\n  exampleServerFirewallRules:\n    type: upcloud:ServerFirewallRules\n    properties:\n      serverId: ${exampleServer.id}\n      firewallRules:\n        - action: accept\n          comment: Allow SSH from this network\n          destinationPortEnd: '22'\n          destinationPortStart: '22'\n          direction: in\n          family: IPv4\n          protocol: tcp\n          sourceAddressEnd: 192.168.1.255\n          sourceAddressStart: 192.168.1.1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import upcloud:index/serverFirewallRules:ServerFirewallRules my_example_rules 049d7ca2-757e-4fb1-a833-f87ee056547a\n```\n\n",
+            "properties": {
+                "firewallRules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/upcloud:index/ServerFirewallRulesFirewallRule:ServerFirewallRulesFirewallRule"
+                    },
+                    "description": "A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be\nthe same value if only one IP address or port number is specified. Source and destination port numbers can only be set\nif the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have\n\"action\", \"direction\", \"protocol\", \"family\" and at least one destination/source-address/port range. The default rule can\nbe created by providing only \"action\" and \"direction\" attributes. Default rule should be defined last.\n"
+                },
+                "serverId": {
+                    "type": "string",
+                    "description": "The unique id of the server to be protected the firewall rules\n"
+                }
+            },
+            "required": [
+                "firewallRules",
+                "serverId"
+            ],
+            "inputProperties": {
+                "firewallRules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/upcloud:index/ServerFirewallRulesFirewallRule:ServerFirewallRulesFirewallRule"
+                    },
+                    "description": "A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be\nthe same value if only one IP address or port number is specified. Source and destination port numbers can only be set\nif the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have\n\"action\", \"direction\", \"protocol\", \"family\" and at least one destination/source-address/port range. The default rule can\nbe created by providing only \"action\" and \"direction\" attributes. Default rule should be defined last.\n"
+                },
+                "serverId": {
+                    "type": "string",
+                    "description": "The unique id of the server to be protected the firewall rules\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "firewallRules",
+                "serverId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ServerFirewallRules resources.\n",
+                "properties": {
+                    "firewallRules": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/upcloud:index/ServerFirewallRulesFirewallRule:ServerFirewallRulesFirewallRule"
+                        },
+                        "description": "A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be\nthe same value if only one IP address or port number is specified. Source and destination port numbers can only be set\nif the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have\n\"action\", \"direction\", \"protocol\", \"family\" and at least one destination/source-address/port range. The default rule can\nbe created by providing only \"action\" and \"direction\" attributes. Default rule should be defined last.\n"
+                    },
+                    "serverId": {
+                        "type": "string",
+                        "description": "The unique id of the server to be protected the firewall rules\n",
                         "willReplaceOnChanges": true
                     }
                 },
