@@ -1,5 +1,5 @@
 > [!WARNING]
-> This project is in development. Package names and URLs have not been updated.
+> This project is in development. Suitable for testing usage at the moment. Instructions, package names and URLs have not been updated.
 
 # UpCloud Resource Provider
 
