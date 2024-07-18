@@ -31,8 +31,8 @@ namespace Pulumi.Upcloud
         /// });
         /// ```
         /// </summary>
-        public static Task<GetHostsResult> InvokeAsync(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetHostsResult>("upcloud:index/getHosts:getHosts", InvokeArgs.Empty, options.WithDefaults());
+        public static Task<GetHostsResult> InvokeAsync(GetHostsArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetHostsResult>("upcloud:index/getHosts:getHosts", args ?? new GetHostsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Returns a list of available UpCloud hosts. 
@@ -54,8 +54,41 @@ namespace Pulumi.Upcloud
         /// });
         /// ```
         /// </summary>
-        public static Output<GetHostsResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetHostsResult>("upcloud:index/getHosts:getHosts", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetHostsResult> Invoke(GetHostsInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetHostsResult>("upcloud:index/getHosts:getHosts", args ?? new GetHostsInvokeArgs(), options.WithDefaults());
+    }
+
+
+    public sealed class GetHostsArgs : global::Pulumi.InvokeArgs
+    {
+        [Input("hosts")]
+        private List<Inputs.GetHostsHostArgs>? _hosts;
+        public List<Inputs.GetHostsHostArgs> Hosts
+        {
+            get => _hosts ?? (_hosts = new List<Inputs.GetHostsHostArgs>());
+            set => _hosts = value;
+        }
+
+        public GetHostsArgs()
+        {
+        }
+        public static new GetHostsArgs Empty => new GetHostsArgs();
+    }
+
+    public sealed class GetHostsInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        [Input("hosts")]
+        private InputList<Inputs.GetHostsHostInputArgs>? _hosts;
+        public InputList<Inputs.GetHostsHostInputArgs> Hosts
+        {
+            get => _hosts ?? (_hosts = new InputList<Inputs.GetHostsHostInputArgs>());
+            set => _hosts = value;
+        }
+
+        public GetHostsInvokeArgs()
+        {
+        }
+        public static new GetHostsInvokeArgs Empty => new GetHostsInvokeArgs();
     }
 
 
@@ -64,7 +97,7 @@ namespace Pulumi.Upcloud
     {
         public readonly ImmutableArray<Outputs.GetHostsHostResult> Hosts;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this resource.
         /// </summary>
         public readonly string Id;
 

@@ -40,9 +40,6 @@ class GetZonesResult:
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
         return pulumi.get(self, "id")
 
     @property
@@ -65,7 +62,7 @@ class AwaitableGetZonesResult(GetZonesResult):
 def get_zones(filter_type: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetZonesResult:
     """
-    Data-source is deprecated.
+    Returns a list of available UpCloud zones.
     """
     __args__ = dict()
     __args__['filterType'] = filter_type
@@ -82,6 +79,6 @@ def get_zones(filter_type: Optional[str] = None,
 def get_zones_output(filter_type: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetZonesResult]:
     """
-    Data-source is deprecated.
+    Returns a list of available UpCloud zones.
     """
     ...

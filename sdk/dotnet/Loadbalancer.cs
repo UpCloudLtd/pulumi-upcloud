@@ -99,7 +99,7 @@ namespace Pulumi.Upcloud
         /// Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
         /// </summary>
         [Output("maintenanceDow")]
-        public Output<string?> MaintenanceDow { get; private set; } = null!;
+        public Output<string> MaintenanceDow { get; private set; } = null!;
 
         /// <summary>
         /// The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this
@@ -108,7 +108,7 @@ namespace Pulumi.Upcloud
         /// HH:MM:SSZ, for example `20:01:01Z`.
         /// </summary>
         [Output("maintenanceTime")]
-        public Output<string?> MaintenanceTime { get; private set; } = null!;
+        public Output<string> MaintenanceTime { get; private set; } = null!;
 
         /// <summary>
         /// The name of the service must be unique within customer account.

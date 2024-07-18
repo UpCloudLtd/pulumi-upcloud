@@ -114,7 +114,7 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly string? LogErrorVerbosity;
         /// <summary>
-        /// Choose from one of the available log-formats. These can support popular log analyzers like pgbadger, pganalyze etc.
+        /// Choose from one of the available log formats.
         /// </summary>
         public readonly string? LogLinePrefix;
         /// <summary>
@@ -209,10 +209,6 @@ namespace Pulumi.Upcloud.Outputs
         /// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
         /// </summary>
         public readonly string? PgStatStatementsTrack;
-        /// <summary>
-        /// PGAudit settings. System-wide settings for the pgaudit extension.
-        /// </summary>
-        public readonly Outputs.ManagedDatabasePostgresqlPropertiesPgaudit? Pgaudit;
         /// <summary>
         /// PGBouncer connection pooling settings. System-wide settings for pgbouncer.
         /// </summary>
@@ -386,8 +382,6 @@ namespace Pulumi.Upcloud.Outputs
 
             string? pgStatStatementsTrack,
 
-            Outputs.ManagedDatabasePostgresqlPropertiesPgaudit? pgaudit,
-
             Outputs.ManagedDatabasePostgresqlPropertiesPgbouncer? pgbouncer,
 
             Outputs.ManagedDatabasePostgresqlPropertiesPglookout? pglookout,
@@ -473,7 +467,6 @@ namespace Pulumi.Upcloud.Outputs
             PgStatMonitorPgsmEnableQueryPlan = pgStatMonitorPgsmEnableQueryPlan;
             PgStatMonitorPgsmMaxBuckets = pgStatMonitorPgsmMaxBuckets;
             PgStatStatementsTrack = pgStatStatementsTrack;
-            Pgaudit = pgaudit;
             Pgbouncer = pgbouncer;
             Pglookout = pglookout;
             PublicAccess = publicAccess;

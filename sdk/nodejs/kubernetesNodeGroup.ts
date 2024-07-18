@@ -80,7 +80,7 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
      */
     public readonly antiAffinity!: pulumi.Output<boolean | undefined>;
     /**
-     * Cluster ID.
+     * UUID of the cluster.
      */
     public readonly cluster!: pulumi.Output<string>;
     /**
@@ -191,7 +191,7 @@ export interface KubernetesNodeGroupState {
      */
     antiAffinity?: pulumi.Input<boolean>;
     /**
-     * Cluster ID.
+     * UUID of the cluster.
      */
     cluster?: pulumi.Input<string>;
     /**
@@ -249,7 +249,7 @@ export interface KubernetesNodeGroupArgs {
      */
     antiAffinity?: pulumi.Input<boolean>;
     /**
-     * Cluster ID.
+     * UUID of the cluster.
      */
     cluster: pulumi.Input<string>;
     /**

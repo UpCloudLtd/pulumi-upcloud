@@ -69,7 +69,6 @@ __all__ = [
     'ManagedDatabasePostgresqlNodeState',
     'ManagedDatabasePostgresqlProperties',
     'ManagedDatabasePostgresqlPropertiesMigration',
-    'ManagedDatabasePostgresqlPropertiesPgaudit',
     'ManagedDatabasePostgresqlPropertiesPgbouncer',
     'ManagedDatabasePostgresqlPropertiesPglookout',
     'ManagedDatabasePostgresqlPropertiesTimescaledb',
@@ -864,7 +863,7 @@ class LoadbalancerFrontendNetwork(dict):
     def __init__(__self__, *,
                  name: str):
         """
-        :param str name: Name of the load balancer network
+        :param str name: Name of the load balancer network.
         """
         pulumi.set(__self__, "name", name)
 
@@ -872,7 +871,7 @@ class LoadbalancerFrontendNetwork(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        Name of the load balancer network
+        Name of the load balancer network.
         """
         return pulumi.get(self, "name")
 
@@ -3537,6 +3536,10 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "ism_history_rollover_retention_period"
         elif key == "keepIndexRefreshInterval":
             suggest = "keep_index_refresh_interval"
+        elif key == "knnMemoryCircuitBreakerEnabled":
+            suggest = "knn_memory_circuit_breaker_enabled"
+        elif key == "knnMemoryCircuitBreakerLimit":
+            suggest = "knn_memory_circuit_breaker_limit"
         elif key == "opensearchDashboards":
             suggest = "opensearch_dashboards"
         elif key == "overrideMainResponseVersion":
@@ -3620,6 +3623,8 @@ class ManagedDatabaseOpensearchProperties(dict):
                  ism_history_rollover_check_period: Optional[int] = None,
                  ism_history_rollover_retention_period: Optional[int] = None,
                  keep_index_refresh_interval: Optional[bool] = None,
+                 knn_memory_circuit_breaker_enabled: Optional[bool] = None,
+                 knn_memory_circuit_breaker_limit: Optional[int] = None,
                  openid: Optional['outputs.ManagedDatabaseOpensearchPropertiesOpenid'] = None,
                  opensearch_dashboards: Optional['outputs.ManagedDatabaseOpensearchPropertiesOpensearchDashboards'] = None,
                  override_main_response_version: Optional[bool] = None,
@@ -3675,6 +3680,8 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param int ism_history_rollover_check_period: The time between rollover checks for the audit history index in hours.
         :param int ism_history_rollover_retention_period: How long audit history indices are kept in days.
         :param bool keep_index_refresh_interval: Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
+        :param bool knn_memory_circuit_breaker_enabled: Enable or disable KNN memory circuit breaker. Defaults to true.
+        :param int knn_memory_circuit_breaker_limit: Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
         :param 'ManagedDatabaseOpensearchPropertiesOpenidArgs' openid: OpenSearch OpenID Connect Configuration.
         :param 'ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs' opensearch_dashboards: OpenSearch Dashboards settings.
         :param bool override_main_response_version: Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false.
@@ -3762,6 +3769,10 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "ism_history_rollover_retention_period", ism_history_rollover_retention_period)
         if keep_index_refresh_interval is not None:
             pulumi.set(__self__, "keep_index_refresh_interval", keep_index_refresh_interval)
+        if knn_memory_circuit_breaker_enabled is not None:
+            pulumi.set(__self__, "knn_memory_circuit_breaker_enabled", knn_memory_circuit_breaker_enabled)
+        if knn_memory_circuit_breaker_limit is not None:
+            pulumi.set(__self__, "knn_memory_circuit_breaker_limit", knn_memory_circuit_breaker_limit)
         if openid is not None:
             pulumi.set(__self__, "openid", openid)
         if opensearch_dashboards is not None:
@@ -4062,6 +4073,22 @@ class ManagedDatabaseOpensearchProperties(dict):
         Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
         """
         return pulumi.get(self, "keep_index_refresh_interval")
+
+    @property
+    @pulumi.getter(name="knnMemoryCircuitBreakerEnabled")
+    def knn_memory_circuit_breaker_enabled(self) -> Optional[bool]:
+        """
+        Enable or disable KNN memory circuit breaker. Defaults to true.
+        """
+        return pulumi.get(self, "knn_memory_circuit_breaker_enabled")
+
+    @property
+    @pulumi.getter(name="knnMemoryCircuitBreakerLimit")
+    def knn_memory_circuit_breaker_limit(self) -> Optional[int]:
+        """
+        Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+        """
+        return pulumi.get(self, "knn_memory_circuit_breaker_limit")
 
     @property
     @pulumi.getter
@@ -5282,7 +5309,6 @@ class ManagedDatabasePostgresqlProperties(dict):
                  pg_stat_monitor_pgsm_enable_query_plan: Optional[bool] = None,
                  pg_stat_monitor_pgsm_max_buckets: Optional[int] = None,
                  pg_stat_statements_track: Optional[str] = None,
-                 pgaudit: Optional['outputs.ManagedDatabasePostgresqlPropertiesPgaudit'] = None,
                  pgbouncer: Optional['outputs.ManagedDatabasePostgresqlPropertiesPgbouncer'] = None,
                  pglookout: Optional['outputs.ManagedDatabasePostgresqlPropertiesPglookout'] = None,
                  public_access: Optional[bool] = None,
@@ -5327,7 +5353,7 @@ class ManagedDatabasePostgresqlProperties(dict):
         :param bool jit: Controls system-wide use of Just-in-Time Compilation (JIT).
         :param int log_autovacuum_min_duration: Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
         :param str log_error_verbosity: Controls the amount of detail written in the server log for each message that is logged.
-        :param str log_line_prefix: Choose from one of the available log-formats. These can support popular log analyzers like pgbadger, pganalyze etc.
+        :param str log_line_prefix: Choose from one of the available log formats.
         :param int log_min_duration_statement: Log statements that take more than this number of milliseconds to run, -1 disables.
         :param int log_temp_files: Log statements for each temporary file created larger than this number of kilobytes, -1 disables.
         :param int max_files_per_process: PostgreSQL maximum number of files that can be open per process.
@@ -5351,7 +5377,6 @@ class ManagedDatabasePostgresqlProperties(dict):
         :param bool pg_stat_monitor_pgsm_enable_query_plan: Enables or disables query plan monitoring.
         :param int pg_stat_monitor_pgsm_max_buckets: Sets the maximum number of buckets.
         :param str pg_stat_statements_track: Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
-        :param 'ManagedDatabasePostgresqlPropertiesPgauditArgs' pgaudit: PGAudit settings. System-wide settings for the pgaudit extension.
         :param 'ManagedDatabasePostgresqlPropertiesPgbouncerArgs' pgbouncer: PGBouncer connection pooling settings. System-wide settings for pgbouncer.
         :param 'ManagedDatabasePostgresqlPropertiesPglookoutArgs' pglookout: PGLookout settings. System-wide settings for pglookout.
         :param bool public_access: Public Access. Allow access to the service from the public Internet.
@@ -5469,8 +5494,6 @@ class ManagedDatabasePostgresqlProperties(dict):
             pulumi.set(__self__, "pg_stat_monitor_pgsm_max_buckets", pg_stat_monitor_pgsm_max_buckets)
         if pg_stat_statements_track is not None:
             pulumi.set(__self__, "pg_stat_statements_track", pg_stat_statements_track)
-        if pgaudit is not None:
-            pulumi.set(__self__, "pgaudit", pgaudit)
         if pgbouncer is not None:
             pulumi.set(__self__, "pgbouncer", pgbouncer)
         if pglookout is not None:
@@ -5712,7 +5735,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="logLinePrefix")
     def log_line_prefix(self) -> Optional[str]:
         """
-        Choose from one of the available log-formats. These can support popular log analyzers like pgbadger, pganalyze etc.
+        Choose from one of the available log formats.
         """
         return pulumi.get(self, "log_line_prefix")
 
@@ -5899,14 +5922,6 @@ class ManagedDatabasePostgresqlProperties(dict):
         Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
         """
         return pulumi.get(self, "pg_stat_statements_track")
-
-    @property
-    @pulumi.getter
-    def pgaudit(self) -> Optional['outputs.ManagedDatabasePostgresqlPropertiesPgaudit']:
-        """
-        PGAudit settings. System-wide settings for the pgaudit extension.
-        """
-        return pulumi.get(self, "pgaudit")
 
     @property
     @pulumi.getter
@@ -6171,220 +6186,6 @@ class ManagedDatabasePostgresqlPropertiesMigration(dict):
         User name for authentication with the server where to migrate data from.
         """
         return pulumi.get(self, "username")
-
-
-@pulumi.output_type
-class ManagedDatabasePostgresqlPropertiesPgaudit(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "featureEnabled":
-            suggest = "feature_enabled"
-        elif key == "logCatalog":
-            suggest = "log_catalog"
-        elif key == "logClient":
-            suggest = "log_client"
-        elif key == "logLevel":
-            suggest = "log_level"
-        elif key == "logMaxStringLength":
-            suggest = "log_max_string_length"
-        elif key == "logNestedStatements":
-            suggest = "log_nested_statements"
-        elif key == "logParameter":
-            suggest = "log_parameter"
-        elif key == "logParameterMaxSize":
-            suggest = "log_parameter_max_size"
-        elif key == "logRelation":
-            suggest = "log_relation"
-        elif key == "logRows":
-            suggest = "log_rows"
-        elif key == "logStatement":
-            suggest = "log_statement"
-        elif key == "logStatementOnce":
-            suggest = "log_statement_once"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabasePostgresqlPropertiesPgaudit. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ManagedDatabasePostgresqlPropertiesPgaudit.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ManagedDatabasePostgresqlPropertiesPgaudit.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 feature_enabled: Optional[bool] = None,
-                 log_catalog: Optional[bool] = None,
-                 log_client: Optional[bool] = None,
-                 log_level: Optional[str] = None,
-                 log_max_string_length: Optional[int] = None,
-                 log_nested_statements: Optional[bool] = None,
-                 log_parameter: Optional[bool] = None,
-                 log_parameter_max_size: Optional[int] = None,
-                 log_relation: Optional[bool] = None,
-                 log_rows: Optional[bool] = None,
-                 log_statement: Optional[bool] = None,
-                 log_statement_once: Optional[bool] = None,
-                 logs: Optional[Sequence[str]] = None,
-                 role: Optional[str] = None):
-        """
-        :param bool feature_enabled: Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
-        :param bool log_catalog: Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
-        :param bool log_client: Specifies whether log messages will be visible to a client process such as psql.
-        :param str log_level: Specifies the log level that will be used for log entries.
-        :param int log_max_string_length: Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
-        :param bool log_nested_statements: This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
-        :param bool log_parameter: Specifies that audit logging should include the parameters that were passed with the statement.
-        :param int log_parameter_max_size: Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
-        :param bool log_relation: Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
-        :param bool log_rows: Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
-        :param bool log_statement: Specifies whether logging will include the statement text and parameters (if enabled).
-        :param bool log_statement_once: Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
-        :param Sequence[str] logs: Specifies which classes of statements will be logged by session audit logging.
-        :param str role: Specifies the master role to use for object audit logging.
-        """
-        if feature_enabled is not None:
-            pulumi.set(__self__, "feature_enabled", feature_enabled)
-        if log_catalog is not None:
-            pulumi.set(__self__, "log_catalog", log_catalog)
-        if log_client is not None:
-            pulumi.set(__self__, "log_client", log_client)
-        if log_level is not None:
-            pulumi.set(__self__, "log_level", log_level)
-        if log_max_string_length is not None:
-            pulumi.set(__self__, "log_max_string_length", log_max_string_length)
-        if log_nested_statements is not None:
-            pulumi.set(__self__, "log_nested_statements", log_nested_statements)
-        if log_parameter is not None:
-            pulumi.set(__self__, "log_parameter", log_parameter)
-        if log_parameter_max_size is not None:
-            pulumi.set(__self__, "log_parameter_max_size", log_parameter_max_size)
-        if log_relation is not None:
-            pulumi.set(__self__, "log_relation", log_relation)
-        if log_rows is not None:
-            pulumi.set(__self__, "log_rows", log_rows)
-        if log_statement is not None:
-            pulumi.set(__self__, "log_statement", log_statement)
-        if log_statement_once is not None:
-            pulumi.set(__self__, "log_statement_once", log_statement_once)
-        if logs is not None:
-            pulumi.set(__self__, "logs", logs)
-        if role is not None:
-            pulumi.set(__self__, "role", role)
-
-    @property
-    @pulumi.getter(name="featureEnabled")
-    def feature_enabled(self) -> Optional[bool]:
-        """
-        Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
-        """
-        return pulumi.get(self, "feature_enabled")
-
-    @property
-    @pulumi.getter(name="logCatalog")
-    def log_catalog(self) -> Optional[bool]:
-        """
-        Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
-        """
-        return pulumi.get(self, "log_catalog")
-
-    @property
-    @pulumi.getter(name="logClient")
-    def log_client(self) -> Optional[bool]:
-        """
-        Specifies whether log messages will be visible to a client process such as psql.
-        """
-        return pulumi.get(self, "log_client")
-
-    @property
-    @pulumi.getter(name="logLevel")
-    def log_level(self) -> Optional[str]:
-        """
-        Specifies the log level that will be used for log entries.
-        """
-        return pulumi.get(self, "log_level")
-
-    @property
-    @pulumi.getter(name="logMaxStringLength")
-    def log_max_string_length(self) -> Optional[int]:
-        """
-        Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
-        """
-        return pulumi.get(self, "log_max_string_length")
-
-    @property
-    @pulumi.getter(name="logNestedStatements")
-    def log_nested_statements(self) -> Optional[bool]:
-        """
-        This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
-        """
-        return pulumi.get(self, "log_nested_statements")
-
-    @property
-    @pulumi.getter(name="logParameter")
-    def log_parameter(self) -> Optional[bool]:
-        """
-        Specifies that audit logging should include the parameters that were passed with the statement.
-        """
-        return pulumi.get(self, "log_parameter")
-
-    @property
-    @pulumi.getter(name="logParameterMaxSize")
-    def log_parameter_max_size(self) -> Optional[int]:
-        """
-        Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
-        """
-        return pulumi.get(self, "log_parameter_max_size")
-
-    @property
-    @pulumi.getter(name="logRelation")
-    def log_relation(self) -> Optional[bool]:
-        """
-        Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
-        """
-        return pulumi.get(self, "log_relation")
-
-    @property
-    @pulumi.getter(name="logRows")
-    def log_rows(self) -> Optional[bool]:
-        """
-        Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
-        """
-        return pulumi.get(self, "log_rows")
-
-    @property
-    @pulumi.getter(name="logStatement")
-    def log_statement(self) -> Optional[bool]:
-        """
-        Specifies whether logging will include the statement text and parameters (if enabled).
-        """
-        return pulumi.get(self, "log_statement")
-
-    @property
-    @pulumi.getter(name="logStatementOnce")
-    def log_statement_once(self) -> Optional[bool]:
-        """
-        Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
-        """
-        return pulumi.get(self, "log_statement_once")
-
-    @property
-    @pulumi.getter
-    def logs(self) -> Optional[Sequence[str]]:
-        """
-        Specifies which classes of statements will be logged by session audit logging.
-        """
-        return pulumi.get(self, "logs")
-
-    @property
-    @pulumi.getter
-    def role(self) -> Optional[str]:
-        """
-        Specifies the master role to use for object audit logging.
-        """
-        return pulumi.get(self, "role")
 
 
 @pulumi.output_type
@@ -6847,7 +6648,7 @@ class ManagedDatabaseRedisProperties(dict):
         :param str redis_maxmemory_policy: Redis maxmemory-policy.
         :param str redis_notify_keyspace_events: Set notify-keyspace-events option.
         :param int redis_number_of_databases: Number of Redis databases. Set number of Redis databases. Changing this will cause a restart of the Redis service.
-        :param str redis_persistence: Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+        :param str redis_persistence: Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.
         :param int redis_pubsub_client_output_buffer_limit: Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
         :param bool redis_ssl: Require SSL to access Redis.
         :param int redis_timeout: Redis idle connection timeout in seconds.
@@ -6981,7 +6782,7 @@ class ManagedDatabaseRedisProperties(dict):
     @pulumi.getter(name="redisPersistence")
     def redis_persistence(self) -> Optional[str]:
         """
-        Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+        Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.
         """
         return pulumi.get(self, "redis_persistence")
 

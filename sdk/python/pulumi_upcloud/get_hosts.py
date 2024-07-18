@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetHostsResult',
@@ -32,14 +33,14 @@ class GetHostsResult:
 
     @property
     @pulumi.getter
-    def hosts(self) -> Sequence['outputs.GetHostsHostResult']:
+    def hosts(self) -> Optional[Sequence['outputs.GetHostsHostResult']]:
         return pulumi.get(self, "hosts")
 
     @property
     @pulumi.getter
     def id(self) -> str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this resource.
         """
         return pulumi.get(self, "id")
 
@@ -54,7 +55,8 @@ class AwaitableGetHostsResult(GetHostsResult):
             id=self.id)
 
 
-def get_hosts(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHostsResult:
+def get_hosts(hosts: Optional[Sequence[pulumi.InputType['GetHostsHostArgs']]] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHostsResult:
     """
     Returns a list of available UpCloud hosts.
     		A host identifies the host server that virtual machines are run on.
@@ -70,6 +72,7 @@ def get_hosts(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHostsR
     ```
     """
     __args__ = dict()
+    __args__['hosts'] = hosts
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('upcloud:index/getHosts:getHosts', __args__, opts=opts, typ=GetHostsResult).value
 
@@ -79,7 +82,8 @@ def get_hosts(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHostsR
 
 
 @_utilities.lift_output_func(get_hosts)
-def get_hosts_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetHostsResult]:
+def get_hosts_output(hosts: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetHostsHostArgs']]]]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetHostsResult]:
     """
     Returns a list of available UpCloud hosts.
     		A host identifies the host server that virtual machines are run on.

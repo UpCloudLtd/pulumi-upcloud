@@ -227,6 +227,18 @@ namespace Pulumi.Upcloud.Inputs
         public Input<bool>? KeepIndexRefreshInterval { get; set; }
 
         /// <summary>
+        /// Enable or disable KNN memory circuit breaker. Defaults to true.
+        /// </summary>
+        [Input("knnMemoryCircuitBreakerEnabled")]
+        public Input<bool>? KnnMemoryCircuitBreakerEnabled { get; set; }
+
+        /// <summary>
+        /// Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+        /// </summary>
+        [Input("knnMemoryCircuitBreakerLimit")]
+        public Input<int>? KnnMemoryCircuitBreakerLimit { get; set; }
+
+        /// <summary>
         /// OpenSearch OpenID Connect Configuration.
         /// </summary>
         [Input("openid")]

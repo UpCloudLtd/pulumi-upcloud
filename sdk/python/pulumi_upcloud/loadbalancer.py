@@ -730,7 +730,7 @@ class Loadbalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maintenanceDow")
-    def maintenance_dow(self) -> pulumi.Output[Optional[str]]:
+    def maintenance_dow(self) -> pulumi.Output[str]:
         """
         The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
         Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
@@ -739,7 +739,7 @@ class Loadbalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maintenanceTime")
-    def maintenance_time(self) -> pulumi.Output[Optional[str]]:
+    def maintenance_time(self) -> pulumi.Output[str]:
         """
         The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this
         period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime

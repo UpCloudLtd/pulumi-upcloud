@@ -10,9 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Upcloud
 {
     /// <summary>
-    /// This resource represents a generated UpCloud router resource.
-    /// 		Routers can be used to connect multiple Private Networks.
-    /// 		UpCloud Servers on any attached network can communicate directly with each other.
+    /// Routers can be used to connect multiple Private Networks. UpCloud Servers on any attached network can communicate directly with each other.
     /// 
     /// ## Example Usage
     /// 
@@ -39,25 +37,31 @@ namespace Pulumi.Upcloud
     public partial class Router : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// A collection of UUID representing networks attached to this router
+        /// List of UUIDs representing networks attached to this router.
         /// </summary>
         [Output("attachedNetworks")]
         public Output<ImmutableArray<string>> AttachedNetworks { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the router
+        /// Key-value pairs to classify the router.
+        /// </summary>
+        [Output("labels")]
+        public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
+
+        /// <summary>
+        /// Name of the router.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// A collection of static routes for this router
+        /// A collection of static routes for this router.
         /// </summary>
         [Output("staticRoutes")]
         public Output<ImmutableArray<Outputs.RouterStaticRoute>> StaticRoutes { get; private set; } = null!;
 
         /// <summary>
-        /// The type of router
+        /// Type of the router
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -108,8 +112,20 @@ namespace Pulumi.Upcloud
 
     public sealed class RouterArgs : global::Pulumi.ResourceArgs
     {
+        [Input("labels")]
+        private InputMap<string>? _labels;
+
         /// <summary>
-        /// Name of the router
+        /// Key-value pairs to classify the router.
+        /// </summary>
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
+        /// <summary>
+        /// Name of the router.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -118,7 +134,7 @@ namespace Pulumi.Upcloud
         private InputList<Inputs.RouterStaticRouteArgs>? _staticRoutes;
 
         /// <summary>
-        /// A collection of static routes for this router
+        /// A collection of static routes for this router.
         /// </summary>
         public InputList<Inputs.RouterStaticRouteArgs> StaticRoutes
         {
@@ -138,7 +154,7 @@ namespace Pulumi.Upcloud
         private InputList<string>? _attachedNetworks;
 
         /// <summary>
-        /// A collection of UUID representing networks attached to this router
+        /// List of UUIDs representing networks attached to this router.
         /// </summary>
         public InputList<string> AttachedNetworks
         {
@@ -146,8 +162,20 @@ namespace Pulumi.Upcloud
             set => _attachedNetworks = value;
         }
 
+        [Input("labels")]
+        private InputMap<string>? _labels;
+
         /// <summary>
-        /// Name of the router
+        /// Key-value pairs to classify the router.
+        /// </summary>
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
+        /// <summary>
+        /// Name of the router.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -156,7 +184,7 @@ namespace Pulumi.Upcloud
         private InputList<Inputs.RouterStaticRouteGetArgs>? _staticRoutes;
 
         /// <summary>
-        /// A collection of static routes for this router
+        /// A collection of static routes for this router.
         /// </summary>
         public InputList<Inputs.RouterStaticRouteGetArgs> StaticRoutes
         {
@@ -165,7 +193,7 @@ namespace Pulumi.Upcloud
         }
 
         /// <summary>
-        /// The type of router
+        /// Type of the router
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

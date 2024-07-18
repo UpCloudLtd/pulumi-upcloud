@@ -107,6 +107,36 @@ export interface GatewayRouter {
     id: pulumi.Input<string>;
 }
 
+export interface GetHostsHost {
+    /**
+     * Free form text describing the host
+     */
+    description?: string;
+    /**
+     * The unique id of the host
+     */
+    hostId?: number;
+    /**
+     * The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+     */
+    zone?: string;
+}
+
+export interface GetHostsHostArgs {
+    /**
+     * Free form text describing the host
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * The unique id of the host
+     */
+    hostId?: pulumi.Input<number>;
+    /**
+     * The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+     */
+    zone?: pulumi.Input<string>;
+}
+
 export interface GetManagedDatabaseMysqlSessionsSession {
     /**
      * Name of the application that is connected to this service.
@@ -715,7 +745,7 @@ export interface LoadbalancerBackendProperties {
 
 export interface LoadbalancerFrontendNetwork {
     /**
-     * Name of the load balancer network
+     * Name of the load balancer network.
      */
     name: pulumi.Input<string>;
 }
@@ -1600,6 +1630,14 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     keepIndexRefreshInterval?: pulumi.Input<boolean>;
     /**
+     * Enable or disable KNN memory circuit breaker. Defaults to true.
+     */
+    knnMemoryCircuitBreakerEnabled?: pulumi.Input<boolean>;
+    /**
+     * Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+     */
+    knnMemoryCircuitBreakerLimit?: pulumi.Input<number>;
+    /**
      * OpenSearch OpenID Connect Configuration.
      */
     openid?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesOpenid>;
@@ -2026,7 +2064,7 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     logErrorVerbosity?: pulumi.Input<string>;
     /**
-     * Choose from one of the available log-formats. These can support popular log analyzers like pgbadger, pganalyze etc.
+     * Choose from one of the available log formats.
      */
     logLinePrefix?: pulumi.Input<string>;
     /**
@@ -2121,10 +2159,6 @@ export interface ManagedDatabasePostgresqlProperties {
      * Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
      */
     pgStatStatementsTrack?: pulumi.Input<string>;
-    /**
-     * PGAudit settings. System-wide settings for the pgaudit extension.
-     */
-    pgaudit?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesPgaudit>;
     /**
      * PGBouncer connection pooling settings. System-wide settings for pgbouncer.
      */
@@ -2232,65 +2266,6 @@ export interface ManagedDatabasePostgresqlPropertiesMigration {
      * User name for authentication with the server where to migrate data from.
      */
     username?: pulumi.Input<string>;
-}
-
-export interface ManagedDatabasePostgresqlPropertiesPgaudit {
-    /**
-     * Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
-     */
-    featureEnabled?: pulumi.Input<boolean>;
-    /**
-     * Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
-     */
-    logCatalog?: pulumi.Input<boolean>;
-    /**
-     * Specifies whether log messages will be visible to a client process such as psql.
-     */
-    logClient?: pulumi.Input<boolean>;
-    /**
-     * Specifies the log level that will be used for log entries.
-     */
-    logLevel?: pulumi.Input<string>;
-    /**
-     * Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
-     */
-    logMaxStringLength?: pulumi.Input<number>;
-    /**
-     * This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
-     */
-    logNestedStatements?: pulumi.Input<boolean>;
-    /**
-     * Specifies that audit logging should include the parameters that were passed with the statement.
-     */
-    logParameter?: pulumi.Input<boolean>;
-    /**
-     * Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
-     */
-    logParameterMaxSize?: pulumi.Input<number>;
-    /**
-     * Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
-     */
-    logRelation?: pulumi.Input<boolean>;
-    /**
-     * Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
-     */
-    logRows?: pulumi.Input<boolean>;
-    /**
-     * Specifies whether logging will include the statement text and parameters (if enabled).
-     */
-    logStatement?: pulumi.Input<boolean>;
-    /**
-     * Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
-     */
-    logStatementOnce?: pulumi.Input<boolean>;
-    /**
-     * Specifies which classes of statements will be logged by session audit logging.
-     */
-    logs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Specifies the master role to use for object audit logging.
-     */
-    role?: pulumi.Input<string>;
 }
 
 export interface ManagedDatabasePostgresqlPropertiesPgbouncer {
@@ -2449,7 +2424,7 @@ export interface ManagedDatabaseRedisProperties {
      */
     redisNumberOfDatabases?: pulumi.Input<number>;
     /**
-     * Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+     * Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.
      */
     redisPersistence?: pulumi.Input<string>;
     /**

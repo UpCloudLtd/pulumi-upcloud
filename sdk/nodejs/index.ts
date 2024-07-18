@@ -25,7 +25,7 @@ export type GatewayConnectionTunnel = import("./gatewayConnectionTunnel").Gatewa
 export const GatewayConnectionTunnel: typeof import("./gatewayConnectionTunnel").GatewayConnectionTunnel = null as any;
 utilities.lazyLoad(exports, ["GatewayConnectionTunnel"], () => require("./gatewayConnectionTunnel"));
 
-export { GetHostsResult } from "./getHosts";
+export { GetHostsArgs, GetHostsResult, GetHostsOutputArgs } from "./getHosts";
 export const getHosts: typeof import("./getHosts").getHosts = null as any;
 export const getHostsOutput: typeof import("./getHosts").getHostsOutput = null as any;
 utilities.lazyLoad(exports, ["getHosts","getHostsOutput"], () => require("./getHosts"));

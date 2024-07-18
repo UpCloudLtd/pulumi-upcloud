@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * This resource represents load balancer frontend service
+ * This resource represents load balancer frontend service.
  *
  * ## Example Usage
  *
@@ -89,7 +89,7 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
      */
     public readonly defaultBackendName!: pulumi.Output<string>;
     /**
-     * ID of the load balancer to which the frontend is connected.
+     * UUID of the load balancer to which the frontend is connected.
      */
     public readonly loadbalancer!: pulumi.Output<string>;
     /**
@@ -97,7 +97,7 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
      */
     public readonly mode!: pulumi.Output<string>;
     /**
-     * The name of the frontend must be unique within the load balancer service.
+     * The name of the frontend. Must be unique within the load balancer service.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -106,19 +106,19 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
      */
     public readonly networks!: pulumi.Output<outputs.LoadbalancerFrontendNetwork[] | undefined>;
     /**
-     * Port to listen incoming requests
+     * Port to listen for incoming requests.
      */
     public readonly port!: pulumi.Output<number>;
     /**
      * Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
      */
-    public readonly properties!: pulumi.Output<outputs.LoadbalancerFrontendProperties>;
+    public readonly properties!: pulumi.Output<outputs.LoadbalancerFrontendProperties | undefined>;
     /**
-     * Set of frontend rule names
+     * Set of frontend rule names.
      */
     public /*out*/ readonly rules!: pulumi.Output<string[]>;
     /**
-     * Set of TLS config names
+     * Set of TLS config names.
      */
     public /*out*/ readonly tlsConfigs!: pulumi.Output<string[]>;
 
@@ -183,7 +183,7 @@ export interface LoadbalancerFrontendState {
      */
     defaultBackendName?: pulumi.Input<string>;
     /**
-     * ID of the load balancer to which the frontend is connected.
+     * UUID of the load balancer to which the frontend is connected.
      */
     loadbalancer?: pulumi.Input<string>;
     /**
@@ -191,7 +191,7 @@ export interface LoadbalancerFrontendState {
      */
     mode?: pulumi.Input<string>;
     /**
-     * The name of the frontend must be unique within the load balancer service.
+     * The name of the frontend. Must be unique within the load balancer service.
      */
     name?: pulumi.Input<string>;
     /**
@@ -200,7 +200,7 @@ export interface LoadbalancerFrontendState {
      */
     networks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendNetwork>[]>;
     /**
-     * Port to listen incoming requests
+     * Port to listen for incoming requests.
      */
     port?: pulumi.Input<number>;
     /**
@@ -208,11 +208,11 @@ export interface LoadbalancerFrontendState {
      */
     properties?: pulumi.Input<inputs.LoadbalancerFrontendProperties>;
     /**
-     * Set of frontend rule names
+     * Set of frontend rule names.
      */
     rules?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Set of TLS config names
+     * Set of TLS config names.
      */
     tlsConfigs?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -227,7 +227,7 @@ export interface LoadbalancerFrontendArgs {
      */
     defaultBackendName: pulumi.Input<string>;
     /**
-     * ID of the load balancer to which the frontend is connected.
+     * UUID of the load balancer to which the frontend is connected.
      */
     loadbalancer: pulumi.Input<string>;
     /**
@@ -235,7 +235,7 @@ export interface LoadbalancerFrontendArgs {
      */
     mode: pulumi.Input<string>;
     /**
-     * The name of the frontend must be unique within the load balancer service.
+     * The name of the frontend. Must be unique within the load balancer service.
      */
     name?: pulumi.Input<string>;
     /**
@@ -244,7 +244,7 @@ export interface LoadbalancerFrontendArgs {
      */
     networks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendNetwork>[]>;
     /**
-     * Port to listen incoming requests
+     * Port to listen for incoming requests.
      */
     port: pulumi.Input<number>;
     /**

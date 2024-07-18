@@ -80,7 +80,7 @@ namespace Pulumi.Upcloud
         public Output<bool?> AntiAffinity { get; private set; } = null!;
 
         /// <summary>
-        /// Cluster ID.
+        /// UUID of the cluster.
         /// </summary>
         [Output("cluster")]
         public Output<string> Cluster { get; private set; } = null!;
@@ -202,7 +202,7 @@ namespace Pulumi.Upcloud
         public Input<bool>? AntiAffinity { get; set; }
 
         /// <summary>
-        /// Cluster ID.
+        /// UUID of the cluster.
         /// </summary>
         [Input("cluster", required: true)]
         public Input<string> Cluster { get; set; } = null!;
@@ -310,7 +310,7 @@ namespace Pulumi.Upcloud
         public Input<bool>? AntiAffinity { get; set; }
 
         /// <summary>
-        /// Cluster ID.
+        /// UUID of the cluster.
         /// </summary>
         [Input("cluster")]
         public Input<string>? Cluster { get; set; }

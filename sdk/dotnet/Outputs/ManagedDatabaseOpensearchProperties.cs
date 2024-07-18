@@ -142,6 +142,14 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly bool? KeepIndexRefreshInterval;
         /// <summary>
+        /// Enable or disable KNN memory circuit breaker. Defaults to true.
+        /// </summary>
+        public readonly bool? KnnMemoryCircuitBreakerEnabled;
+        /// <summary>
+        /// Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+        /// </summary>
+        public readonly int? KnnMemoryCircuitBreakerLimit;
+        /// <summary>
         /// OpenSearch OpenID Connect Configuration.
         /// </summary>
         public readonly Outputs.ManagedDatabaseOpensearchPropertiesOpenid? Openid;
@@ -296,6 +304,10 @@ namespace Pulumi.Upcloud.Outputs
 
             bool? keepIndexRefreshInterval,
 
+            bool? knnMemoryCircuitBreakerEnabled,
+
+            int? knnMemoryCircuitBreakerLimit,
+
             Outputs.ManagedDatabaseOpensearchPropertiesOpenid? openid,
 
             Outputs.ManagedDatabaseOpensearchPropertiesOpensearchDashboards? opensearchDashboards,
@@ -372,6 +384,8 @@ namespace Pulumi.Upcloud.Outputs
             IsmHistoryRolloverCheckPeriod = ismHistoryRolloverCheckPeriod;
             IsmHistoryRolloverRetentionPeriod = ismHistoryRolloverRetentionPeriod;
             KeepIndexRefreshInterval = keepIndexRefreshInterval;
+            KnnMemoryCircuitBreakerEnabled = knnMemoryCircuitBreakerEnabled;
+            KnnMemoryCircuitBreakerLimit = knnMemoryCircuitBreakerLimit;
             Openid = openid;
             OpensearchDashboards = opensearchDashboards;
             OverrideMainResponseVersion = overrideMainResponseVersion;

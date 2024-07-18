@@ -7,9 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * This resource represents a generated UpCloud router resource.
- * 		Routers can be used to connect multiple Private Networks.
- * 		UpCloud Servers on any attached network can communicate directly with each other.
+ * Routers can be used to connect multiple Private Networks. UpCloud Servers on any attached network can communicate directly with each other.
  *
  * ## Example Usage
  *
@@ -55,19 +53,23 @@ export class Router extends pulumi.CustomResource {
     }
 
     /**
-     * A collection of UUID representing networks attached to this router
+     * List of UUIDs representing networks attached to this router.
      */
     public /*out*/ readonly attachedNetworks!: pulumi.Output<string[]>;
     /**
-     * Name of the router
+     * Key-value pairs to classify the router.
+     */
+    public readonly labels!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * Name of the router.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * A collection of static routes for this router
+     * A collection of static routes for this router.
      */
     public readonly staticRoutes!: pulumi.Output<outputs.RouterStaticRoute[] | undefined>;
     /**
-     * The type of router
+     * Type of the router
      */
     public /*out*/ readonly type!: pulumi.Output<string>;
 
@@ -85,11 +87,13 @@ export class Router extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as RouterState | undefined;
             resourceInputs["attachedNetworks"] = state ? state.attachedNetworks : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["staticRoutes"] = state ? state.staticRoutes : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as RouterArgs | undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["staticRoutes"] = args ? args.staticRoutes : undefined;
             resourceInputs["attachedNetworks"] = undefined /*out*/;
@@ -105,19 +109,23 @@ export class Router extends pulumi.CustomResource {
  */
 export interface RouterState {
     /**
-     * A collection of UUID representing networks attached to this router
+     * List of UUIDs representing networks attached to this router.
      */
     attachedNetworks?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Name of the router
+     * Key-value pairs to classify the router.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the router.
      */
     name?: pulumi.Input<string>;
     /**
-     * A collection of static routes for this router
+     * A collection of static routes for this router.
      */
     staticRoutes?: pulumi.Input<pulumi.Input<inputs.RouterStaticRoute>[]>;
     /**
-     * The type of router
+     * Type of the router
      */
     type?: pulumi.Input<string>;
 }
@@ -127,11 +135,15 @@ export interface RouterState {
  */
 export interface RouterArgs {
     /**
-     * Name of the router
+     * Key-value pairs to classify the router.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the router.
      */
     name?: pulumi.Input<string>;
     /**
-     * A collection of static routes for this router
+     * A collection of static routes for this router.
      */
     staticRoutes?: pulumi.Input<pulumi.Input<inputs.RouterStaticRoute>[]>;
 }

@@ -11,10 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource represents a generated UpCloud router resource.
-//
-//	Routers can be used to connect multiple Private Networks.
-//	UpCloud Servers on any attached network can communicate directly with each other.
+// Routers can be used to connect multiple Private Networks. UpCloud Servers on any attached network can communicate directly with each other.
 //
 // ## Example Usage
 //
@@ -48,13 +45,15 @@ import (
 type Router struct {
 	pulumi.CustomResourceState
 
-	// A collection of UUID representing networks attached to this router
+	// List of UUIDs representing networks attached to this router.
 	AttachedNetworks pulumi.StringArrayOutput `pulumi:"attachedNetworks"`
-	// Name of the router
+	// Key-value pairs to classify the router.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the router.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// A collection of static routes for this router
+	// A collection of static routes for this router.
 	StaticRoutes RouterStaticRouteArrayOutput `pulumi:"staticRoutes"`
-	// The type of router
+	// Type of the router
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -88,24 +87,28 @@ func GetRouter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Router resources.
 type routerState struct {
-	// A collection of UUID representing networks attached to this router
+	// List of UUIDs representing networks attached to this router.
 	AttachedNetworks []string `pulumi:"attachedNetworks"`
-	// Name of the router
+	// Key-value pairs to classify the router.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the router.
 	Name *string `pulumi:"name"`
-	// A collection of static routes for this router
+	// A collection of static routes for this router.
 	StaticRoutes []RouterStaticRoute `pulumi:"staticRoutes"`
-	// The type of router
+	// Type of the router
 	Type *string `pulumi:"type"`
 }
 
 type RouterState struct {
-	// A collection of UUID representing networks attached to this router
+	// List of UUIDs representing networks attached to this router.
 	AttachedNetworks pulumi.StringArrayInput
-	// Name of the router
+	// Key-value pairs to classify the router.
+	Labels pulumi.StringMapInput
+	// Name of the router.
 	Name pulumi.StringPtrInput
-	// A collection of static routes for this router
+	// A collection of static routes for this router.
 	StaticRoutes RouterStaticRouteArrayInput
-	// The type of router
+	// Type of the router
 	Type pulumi.StringPtrInput
 }
 
@@ -114,17 +117,21 @@ func (RouterState) ElementType() reflect.Type {
 }
 
 type routerArgs struct {
-	// Name of the router
+	// Key-value pairs to classify the router.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the router.
 	Name *string `pulumi:"name"`
-	// A collection of static routes for this router
+	// A collection of static routes for this router.
 	StaticRoutes []RouterStaticRoute `pulumi:"staticRoutes"`
 }
 
 // The set of arguments for constructing a Router resource.
 type RouterArgs struct {
-	// Name of the router
+	// Key-value pairs to classify the router.
+	Labels pulumi.StringMapInput
+	// Name of the router.
 	Name pulumi.StringPtrInput
-	// A collection of static routes for this router
+	// A collection of static routes for this router.
 	StaticRoutes RouterStaticRouteArrayInput
 }
 
@@ -215,22 +222,27 @@ func (o RouterOutput) ToRouterOutputWithContext(ctx context.Context) RouterOutpu
 	return o
 }
 
-// A collection of UUID representing networks attached to this router
+// List of UUIDs representing networks attached to this router.
 func (o RouterOutput) AttachedNetworks() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Router) pulumi.StringArrayOutput { return v.AttachedNetworks }).(pulumi.StringArrayOutput)
 }
 
-// Name of the router
+// Key-value pairs to classify the router.
+func (o RouterOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Router) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// Name of the router.
 func (o RouterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Router) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// A collection of static routes for this router
+// A collection of static routes for this router.
 func (o RouterOutput) StaticRoutes() RouterStaticRouteArrayOutput {
 	return o.ApplyT(func(v *Router) RouterStaticRouteArrayOutput { return v.StaticRoutes }).(RouterStaticRouteArrayOutput)
 }
 
-// The type of router
+// Type of the router
 func (o RouterOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Router) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

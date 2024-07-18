@@ -100,7 +100,7 @@ namespace Pulumi.Upcloud
         /// Key-value pairs to classify the cluster.
         /// </summary>
         [Output("labels")]
-        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
         /// <summary>
         /// Cluster name. Needs to be unique within the account.
@@ -131,13 +131,13 @@ namespace Pulumi.Upcloud
         /// kubernetes plans`.
         /// </summary>
         [Output("plan")]
-        public Output<string?> Plan { get; private set; } = null!;
+        public Output<string> Plan { get; private set; } = null!;
 
         /// <summary>
         /// Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         /// </summary>
         [Output("privateNodeGroups")]
-        public Output<bool?> PrivateNodeGroups { get; private set; } = null!;
+        public Output<bool> PrivateNodeGroups { get; private set; } = null!;
 
         /// <summary>
         /// Operational state of the cluster.
@@ -152,7 +152,7 @@ namespace Pulumi.Upcloud
         public Output<string?> StorageEncryption { get; private set; } = null!;
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+        /// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -268,7 +268,7 @@ namespace Pulumi.Upcloud
         public Input<string>? StorageEncryption { get; set; }
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+        /// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
@@ -370,7 +370,7 @@ namespace Pulumi.Upcloud
         public Input<string>? StorageEncryption { get; set; }
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+        /// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

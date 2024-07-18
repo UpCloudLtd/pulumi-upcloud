@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Data-source is deprecated.
+// Returns a list of available UpCloud zones.
 func GetZones(ctx *pulumi.Context, args *GetZonesArgs, opts ...pulumi.InvokeOption) (*GetZonesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetZonesResult
@@ -29,10 +29,9 @@ type GetZonesArgs struct {
 
 // A collection of values returned by getZones.
 type GetZonesResult struct {
-	FilterType *string `pulumi:"filterType"`
-	// The provider-assigned unique ID for this managed resource.
-	Id      string   `pulumi:"id"`
-	ZoneIds []string `pulumi:"zoneIds"`
+	FilterType *string  `pulumi:"filterType"`
+	Id         string   `pulumi:"id"`
+	ZoneIds    []string `pulumi:"zoneIds"`
 }
 
 func GetZonesOutput(ctx *pulumi.Context, args GetZonesOutputArgs, opts ...pulumi.InvokeOption) GetZonesResultOutput {
@@ -76,7 +75,6 @@ func (o GetZonesResultOutput) FilterType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetZonesResult) *string { return v.FilterType }).(pulumi.StringPtrOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
 func (o GetZonesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetZonesResult) string { return v.Id }).(pulumi.StringOutput)
 }

@@ -14,7 +14,7 @@ namespace Pulumi.Upcloud.Outputs
     public sealed class LoadbalancerFrontendNetwork
     {
         /// <summary>
-        /// Name of the load balancer network
+        /// Name of the load balancer network.
         /// </summary>
         public readonly string Name;
 

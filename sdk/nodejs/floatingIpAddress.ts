@@ -66,24 +66,24 @@ export class FloatingIpAddress extends pulumi.CustomResource {
     }
 
     /**
-     * Network access for the floating IP address. Supported value: `public`
+     * Network access for the floating IP address. Supported value: `public`.
      */
-    public readonly access!: pulumi.Output<string | undefined>;
+    public readonly access!: pulumi.Output<string>;
     /**
-     * The address family of new IP address
+     * The address family of the floating IP address.
      */
-    public readonly family!: pulumi.Output<string | undefined>;
+    public readonly family!: pulumi.Output<string>;
     /**
-     * An UpCloud assigned IP Address
+     * An UpCloud assigned IP Address.
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
-     * MAC address of server interface to assign address to
+     * MAC address of a server interface to assign address to.
      */
     public readonly macAddress!: pulumi.Output<string | undefined>;
     /**
-     * Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-     * with `upctl zone list`.
+     * Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+     * zones with `upctl zone list`.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -123,24 +123,24 @@ export class FloatingIpAddress extends pulumi.CustomResource {
  */
 export interface FloatingIpAddressState {
     /**
-     * Network access for the floating IP address. Supported value: `public`
+     * Network access for the floating IP address. Supported value: `public`.
      */
     access?: pulumi.Input<string>;
     /**
-     * The address family of new IP address
+     * The address family of the floating IP address.
      */
     family?: pulumi.Input<string>;
     /**
-     * An UpCloud assigned IP Address
+     * An UpCloud assigned IP Address.
      */
     ipAddress?: pulumi.Input<string>;
     /**
-     * MAC address of server interface to assign address to
+     * MAC address of a server interface to assign address to.
      */
     macAddress?: pulumi.Input<string>;
     /**
-     * Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-     * with `upctl zone list`.
+     * Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+     * zones with `upctl zone list`.
      */
     zone?: pulumi.Input<string>;
 }
@@ -150,20 +150,20 @@ export interface FloatingIpAddressState {
  */
 export interface FloatingIpAddressArgs {
     /**
-     * Network access for the floating IP address. Supported value: `public`
+     * Network access for the floating IP address. Supported value: `public`.
      */
     access?: pulumi.Input<string>;
     /**
-     * The address family of new IP address
+     * The address family of the floating IP address.
      */
     family?: pulumi.Input<string>;
     /**
-     * MAC address of server interface to assign address to
+     * MAC address of a server interface to assign address to.
      */
     macAddress?: pulumi.Input<string>;
     /**
-     * Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-     * with `upctl zone list`.
+     * Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+     * zones with `upctl zone list`.
      */
     zone?: pulumi.Input<string>;
 }
