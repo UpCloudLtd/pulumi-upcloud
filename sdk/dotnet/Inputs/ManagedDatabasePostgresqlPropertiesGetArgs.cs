@@ -179,7 +179,7 @@ namespace Pulumi.Upcloud.Inputs
         public Input<string>? LogErrorVerbosity { get; set; }
 
         /// <summary>
-        /// Choose from one of the available log-formats. These can support popular log analyzers like pgbadger, pganalyze etc.
+        /// Choose from one of the available log formats.
         /// </summary>
         [Input("logLinePrefix")]
         public Input<string>? LogLinePrefix { get; set; }
@@ -321,12 +321,6 @@ namespace Pulumi.Upcloud.Inputs
         /// </summary>
         [Input("pgStatStatementsTrack")]
         public Input<string>? PgStatStatementsTrack { get; set; }
-
-        /// <summary>
-        /// PGAudit settings. System-wide settings for the pgaudit extension.
-        /// </summary>
-        [Input("pgaudit")]
-        public Input<Inputs.ManagedDatabasePostgresqlPropertiesPgauditGetArgs>? Pgaudit { get; set; }
 
         /// <summary>
         /// PGBouncer connection pooling settings. System-wide settings for pgbouncer.

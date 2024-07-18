@@ -393,16 +393,6 @@
                                 "migration": {
                                     "maxItemsOne": true
                                 },
-                                "pgaudit": {
-                                    "maxItemsOne": true,
-                                    "elem": {
-                                        "fields": {
-                                            "log": {
-                                                "maxItemsOne": false
-                                            }
-                                        }
-                                    }
-                                },
                                 "pgbouncer": {
                                     "maxItemsOne": true,
                                     "elem": {
@@ -778,18 +768,18 @@
     "auto-settings": {},
     "mux": {
         "resources": {
-            "upcloud:index/floatingIpAddress:FloatingIpAddress": 0,
+            "upcloud:index/floatingIpAddress:FloatingIpAddress": 1,
             "upcloud:index/gateway:Gateway": 0,
             "upcloud:index/gatewayConnection:GatewayConnection": 0,
             "upcloud:index/gatewayConnectionTunnel:GatewayConnectionTunnel": 0,
-            "upcloud:index/kubernetesCluster:KubernetesCluster": 0,
+            "upcloud:index/kubernetesCluster:KubernetesCluster": 1,
             "upcloud:index/kubernetesNodeGroup:KubernetesNodeGroup": 0,
             "upcloud:index/loadbalancer:Loadbalancer": 0,
             "upcloud:index/loadbalancerBackend:LoadbalancerBackend": 0,
             "upcloud:index/loadbalancerBackendTlsConfig:LoadbalancerBackendTlsConfig": 0,
             "upcloud:index/loadbalancerDynamicBackendMember:LoadbalancerDynamicBackendMember": 0,
             "upcloud:index/loadbalancerDynamicCertificateBundle:LoadbalancerDynamicCertificateBundle": 0,
-            "upcloud:index/loadbalancerFrontend:LoadbalancerFrontend": 0,
+            "upcloud:index/loadbalancerFrontend:LoadbalancerFrontend": 1,
             "upcloud:index/loadbalancerFrontendRule:LoadbalancerFrontendRule": 0,
             "upcloud:index/loadbalancerFrontendTlsConfig:LoadbalancerFrontendTlsConfig": 0,
             "upcloud:index/loadbalancerManualCertificateBundle:LoadbalancerManualCertificateBundle": 0,
@@ -809,7 +799,7 @@
             "upcloud:index/network:Network": 1,
             "upcloud:index/networkPeering:NetworkPeering": 1,
             "upcloud:index/objectStorage:ObjectStorage": 0,
-            "upcloud:index/router:Router": 0,
+            "upcloud:index/router:Router": 1,
             "upcloud:index/server:Server": 0,
             "upcloud:index/serverFirewallRules:ServerFirewallRules": 0,
             "upcloud:index/serverGroup:ServerGroup": 0,
@@ -817,9 +807,9 @@
             "upcloud:index/tag:Tag": 0
         },
         "functions": {
-            "upcloud:index/getHosts:getHosts": 0,
+            "upcloud:index/getHosts:getHosts": 1,
             "upcloud:index/getIpAddresses:getIpAddresses": 0,
-            "upcloud:index/getKubernetesCluster:getKubernetesCluster": 0,
+            "upcloud:index/getKubernetesCluster:getKubernetesCluster": 1,
             "upcloud:index/getManagedDatabaseMysqlSessions:getManagedDatabaseMysqlSessions": 0,
             "upcloud:index/getManagedDatabaseOpensearchIndices:getManagedDatabaseOpensearchIndices": 0,
             "upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions": 0,
@@ -830,7 +820,7 @@
             "upcloud:index/getStorage:getStorage": 0,
             "upcloud:index/getTags:getTags": 0,
             "upcloud:index/getZone:getZone": 1,
-            "upcloud:index/getZones:getZones": 0
+            "upcloud:index/getZones:getZones": 1
         }
     }
 }

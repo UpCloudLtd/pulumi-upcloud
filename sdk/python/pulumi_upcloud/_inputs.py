@@ -68,7 +68,6 @@ __all__ = [
     'ManagedDatabasePostgresqlNodeStateArgs',
     'ManagedDatabasePostgresqlPropertiesArgs',
     'ManagedDatabasePostgresqlPropertiesMigrationArgs',
-    'ManagedDatabasePostgresqlPropertiesPgauditArgs',
     'ManagedDatabasePostgresqlPropertiesPgbouncerArgs',
     'ManagedDatabasePostgresqlPropertiesPglookoutArgs',
     'ManagedDatabasePostgresqlPropertiesTimescaledbArgs',
@@ -99,6 +98,7 @@ __all__ = [
     'StorageBackupRuleArgs',
     'StorageCloneArgs',
     'StorageImportArgs',
+    'GetHostsHostArgs',
     'GetManagedDatabaseMysqlSessionsSessionArgs',
     'GetManagedDatabaseOpensearchIndicesIndexArgs',
     'GetManagedDatabasePostgresqlSessionsSessionArgs',
@@ -903,7 +903,7 @@ class LoadbalancerFrontendNetworkArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] name: Name of the load balancer network
+        :param pulumi.Input[str] name: Name of the load balancer network.
         """
         pulumi.set(__self__, "name", name)
 
@@ -911,7 +911,7 @@ class LoadbalancerFrontendNetworkArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        Name of the load balancer network
+        Name of the load balancer network.
         """
         return pulumi.get(self, "name")
 
@@ -3775,6 +3775,8 @@ class ManagedDatabaseOpensearchPropertiesArgs:
                  ism_history_rollover_check_period: Optional[pulumi.Input[int]] = None,
                  ism_history_rollover_retention_period: Optional[pulumi.Input[int]] = None,
                  keep_index_refresh_interval: Optional[pulumi.Input[bool]] = None,
+                 knn_memory_circuit_breaker_enabled: Optional[pulumi.Input[bool]] = None,
+                 knn_memory_circuit_breaker_limit: Optional[pulumi.Input[int]] = None,
                  openid: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesOpenidArgs']] = None,
                  opensearch_dashboards: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs']] = None,
                  override_main_response_version: Optional[pulumi.Input[bool]] = None,
@@ -3830,6 +3832,8 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         :param pulumi.Input[int] ism_history_rollover_check_period: The time between rollover checks for the audit history index in hours.
         :param pulumi.Input[int] ism_history_rollover_retention_period: How long audit history indices are kept in days.
         :param pulumi.Input[bool] keep_index_refresh_interval: Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
+        :param pulumi.Input[bool] knn_memory_circuit_breaker_enabled: Enable or disable KNN memory circuit breaker. Defaults to true.
+        :param pulumi.Input[int] knn_memory_circuit_breaker_limit: Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
         :param pulumi.Input['ManagedDatabaseOpensearchPropertiesOpenidArgs'] openid: OpenSearch OpenID Connect Configuration.
         :param pulumi.Input['ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs'] opensearch_dashboards: OpenSearch Dashboards settings.
         :param pulumi.Input[bool] override_main_response_version: Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false.
@@ -3917,6 +3921,10 @@ class ManagedDatabaseOpensearchPropertiesArgs:
             pulumi.set(__self__, "ism_history_rollover_retention_period", ism_history_rollover_retention_period)
         if keep_index_refresh_interval is not None:
             pulumi.set(__self__, "keep_index_refresh_interval", keep_index_refresh_interval)
+        if knn_memory_circuit_breaker_enabled is not None:
+            pulumi.set(__self__, "knn_memory_circuit_breaker_enabled", knn_memory_circuit_breaker_enabled)
+        if knn_memory_circuit_breaker_limit is not None:
+            pulumi.set(__self__, "knn_memory_circuit_breaker_limit", knn_memory_circuit_breaker_limit)
         if openid is not None:
             pulumi.set(__self__, "openid", openid)
         if opensearch_dashboards is not None:
@@ -4345,6 +4353,30 @@ class ManagedDatabaseOpensearchPropertiesArgs:
     @keep_index_refresh_interval.setter
     def keep_index_refresh_interval(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "keep_index_refresh_interval", value)
+
+    @property
+    @pulumi.getter(name="knnMemoryCircuitBreakerEnabled")
+    def knn_memory_circuit_breaker_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable KNN memory circuit breaker. Defaults to true.
+        """
+        return pulumi.get(self, "knn_memory_circuit_breaker_enabled")
+
+    @knn_memory_circuit_breaker_enabled.setter
+    def knn_memory_circuit_breaker_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "knn_memory_circuit_breaker_enabled", value)
+
+    @property
+    @pulumi.getter(name="knnMemoryCircuitBreakerLimit")
+    def knn_memory_circuit_breaker_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+        """
+        return pulumi.get(self, "knn_memory_circuit_breaker_limit")
+
+    @knn_memory_circuit_breaker_limit.setter
+    def knn_memory_circuit_breaker_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "knn_memory_circuit_breaker_limit", value)
 
     @property
     @pulumi.getter
@@ -5557,7 +5589,6 @@ class ManagedDatabasePostgresqlPropertiesArgs:
                  pg_stat_monitor_pgsm_enable_query_plan: Optional[pulumi.Input[bool]] = None,
                  pg_stat_monitor_pgsm_max_buckets: Optional[pulumi.Input[int]] = None,
                  pg_stat_statements_track: Optional[pulumi.Input[str]] = None,
-                 pgaudit: Optional[pulumi.Input['ManagedDatabasePostgresqlPropertiesPgauditArgs']] = None,
                  pgbouncer: Optional[pulumi.Input['ManagedDatabasePostgresqlPropertiesPgbouncerArgs']] = None,
                  pglookout: Optional[pulumi.Input['ManagedDatabasePostgresqlPropertiesPglookoutArgs']] = None,
                  public_access: Optional[pulumi.Input[bool]] = None,
@@ -5602,7 +5633,7 @@ class ManagedDatabasePostgresqlPropertiesArgs:
         :param pulumi.Input[bool] jit: Controls system-wide use of Just-in-Time Compilation (JIT).
         :param pulumi.Input[int] log_autovacuum_min_duration: Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
         :param pulumi.Input[str] log_error_verbosity: Controls the amount of detail written in the server log for each message that is logged.
-        :param pulumi.Input[str] log_line_prefix: Choose from one of the available log-formats. These can support popular log analyzers like pgbadger, pganalyze etc.
+        :param pulumi.Input[str] log_line_prefix: Choose from one of the available log formats.
         :param pulumi.Input[int] log_min_duration_statement: Log statements that take more than this number of milliseconds to run, -1 disables.
         :param pulumi.Input[int] log_temp_files: Log statements for each temporary file created larger than this number of kilobytes, -1 disables.
         :param pulumi.Input[int] max_files_per_process: PostgreSQL maximum number of files that can be open per process.
@@ -5626,7 +5657,6 @@ class ManagedDatabasePostgresqlPropertiesArgs:
         :param pulumi.Input[bool] pg_stat_monitor_pgsm_enable_query_plan: Enables or disables query plan monitoring.
         :param pulumi.Input[int] pg_stat_monitor_pgsm_max_buckets: Sets the maximum number of buckets.
         :param pulumi.Input[str] pg_stat_statements_track: Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
-        :param pulumi.Input['ManagedDatabasePostgresqlPropertiesPgauditArgs'] pgaudit: PGAudit settings. System-wide settings for the pgaudit extension.
         :param pulumi.Input['ManagedDatabasePostgresqlPropertiesPgbouncerArgs'] pgbouncer: PGBouncer connection pooling settings. System-wide settings for pgbouncer.
         :param pulumi.Input['ManagedDatabasePostgresqlPropertiesPglookoutArgs'] pglookout: PGLookout settings. System-wide settings for pglookout.
         :param pulumi.Input[bool] public_access: Public Access. Allow access to the service from the public Internet.
@@ -5744,8 +5774,6 @@ class ManagedDatabasePostgresqlPropertiesArgs:
             pulumi.set(__self__, "pg_stat_monitor_pgsm_max_buckets", pg_stat_monitor_pgsm_max_buckets)
         if pg_stat_statements_track is not None:
             pulumi.set(__self__, "pg_stat_statements_track", pg_stat_statements_track)
-        if pgaudit is not None:
-            pulumi.set(__self__, "pgaudit", pgaudit)
         if pgbouncer is not None:
             pulumi.set(__self__, "pgbouncer", pgbouncer)
         if pglookout is not None:
@@ -6087,7 +6115,7 @@ class ManagedDatabasePostgresqlPropertiesArgs:
     @pulumi.getter(name="logLinePrefix")
     def log_line_prefix(self) -> Optional[pulumi.Input[str]]:
         """
-        Choose from one of the available log-formats. These can support popular log analyzers like pgbadger, pganalyze etc.
+        Choose from one of the available log formats.
         """
         return pulumi.get(self, "log_line_prefix")
 
@@ -6370,18 +6398,6 @@ class ManagedDatabasePostgresqlPropertiesArgs:
     @pg_stat_statements_track.setter
     def pg_stat_statements_track(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "pg_stat_statements_track", value)
-
-    @property
-    @pulumi.getter
-    def pgaudit(self) -> Optional[pulumi.Input['ManagedDatabasePostgresqlPropertiesPgauditArgs']]:
-        """
-        PGAudit settings. System-wide settings for the pgaudit extension.
-        """
-        return pulumi.get(self, "pgaudit")
-
-    @pgaudit.setter
-    def pgaudit(self, value: Optional[pulumi.Input['ManagedDatabasePostgresqlPropertiesPgauditArgs']]):
-        pulumi.set(self, "pgaudit", value)
 
     @property
     @pulumi.getter
@@ -6733,237 +6749,6 @@ class ManagedDatabasePostgresqlPropertiesMigrationArgs:
     @username.setter
     def username(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username", value)
-
-
-@pulumi.input_type
-class ManagedDatabasePostgresqlPropertiesPgauditArgs:
-    def __init__(__self__, *,
-                 feature_enabled: Optional[pulumi.Input[bool]] = None,
-                 log_catalog: Optional[pulumi.Input[bool]] = None,
-                 log_client: Optional[pulumi.Input[bool]] = None,
-                 log_level: Optional[pulumi.Input[str]] = None,
-                 log_max_string_length: Optional[pulumi.Input[int]] = None,
-                 log_nested_statements: Optional[pulumi.Input[bool]] = None,
-                 log_parameter: Optional[pulumi.Input[bool]] = None,
-                 log_parameter_max_size: Optional[pulumi.Input[int]] = None,
-                 log_relation: Optional[pulumi.Input[bool]] = None,
-                 log_rows: Optional[pulumi.Input[bool]] = None,
-                 log_statement: Optional[pulumi.Input[bool]] = None,
-                 log_statement_once: Optional[pulumi.Input[bool]] = None,
-                 logs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 role: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[bool] feature_enabled: Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
-        :param pulumi.Input[bool] log_catalog: Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
-        :param pulumi.Input[bool] log_client: Specifies whether log messages will be visible to a client process such as psql.
-        :param pulumi.Input[str] log_level: Specifies the log level that will be used for log entries.
-        :param pulumi.Input[int] log_max_string_length: Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
-        :param pulumi.Input[bool] log_nested_statements: This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
-        :param pulumi.Input[bool] log_parameter: Specifies that audit logging should include the parameters that were passed with the statement.
-        :param pulumi.Input[int] log_parameter_max_size: Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
-        :param pulumi.Input[bool] log_relation: Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
-        :param pulumi.Input[bool] log_rows: Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
-        :param pulumi.Input[bool] log_statement: Specifies whether logging will include the statement text and parameters (if enabled).
-        :param pulumi.Input[bool] log_statement_once: Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] logs: Specifies which classes of statements will be logged by session audit logging.
-        :param pulumi.Input[str] role: Specifies the master role to use for object audit logging.
-        """
-        if feature_enabled is not None:
-            pulumi.set(__self__, "feature_enabled", feature_enabled)
-        if log_catalog is not None:
-            pulumi.set(__self__, "log_catalog", log_catalog)
-        if log_client is not None:
-            pulumi.set(__self__, "log_client", log_client)
-        if log_level is not None:
-            pulumi.set(__self__, "log_level", log_level)
-        if log_max_string_length is not None:
-            pulumi.set(__self__, "log_max_string_length", log_max_string_length)
-        if log_nested_statements is not None:
-            pulumi.set(__self__, "log_nested_statements", log_nested_statements)
-        if log_parameter is not None:
-            pulumi.set(__self__, "log_parameter", log_parameter)
-        if log_parameter_max_size is not None:
-            pulumi.set(__self__, "log_parameter_max_size", log_parameter_max_size)
-        if log_relation is not None:
-            pulumi.set(__self__, "log_relation", log_relation)
-        if log_rows is not None:
-            pulumi.set(__self__, "log_rows", log_rows)
-        if log_statement is not None:
-            pulumi.set(__self__, "log_statement", log_statement)
-        if log_statement_once is not None:
-            pulumi.set(__self__, "log_statement_once", log_statement_once)
-        if logs is not None:
-            pulumi.set(__self__, "logs", logs)
-        if role is not None:
-            pulumi.set(__self__, "role", role)
-
-    @property
-    @pulumi.getter(name="featureEnabled")
-    def feature_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
-        """
-        return pulumi.get(self, "feature_enabled")
-
-    @feature_enabled.setter
-    def feature_enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "feature_enabled", value)
-
-    @property
-    @pulumi.getter(name="logCatalog")
-    def log_catalog(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
-        """
-        return pulumi.get(self, "log_catalog")
-
-    @log_catalog.setter
-    def log_catalog(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "log_catalog", value)
-
-    @property
-    @pulumi.getter(name="logClient")
-    def log_client(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specifies whether log messages will be visible to a client process such as psql.
-        """
-        return pulumi.get(self, "log_client")
-
-    @log_client.setter
-    def log_client(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "log_client", value)
-
-    @property
-    @pulumi.getter(name="logLevel")
-    def log_level(self) -> Optional[pulumi.Input[str]]:
-        """
-        Specifies the log level that will be used for log entries.
-        """
-        return pulumi.get(self, "log_level")
-
-    @log_level.setter
-    def log_level(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "log_level", value)
-
-    @property
-    @pulumi.getter(name="logMaxStringLength")
-    def log_max_string_length(self) -> Optional[pulumi.Input[int]]:
-        """
-        Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
-        """
-        return pulumi.get(self, "log_max_string_length")
-
-    @log_max_string_length.setter
-    def log_max_string_length(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "log_max_string_length", value)
-
-    @property
-    @pulumi.getter(name="logNestedStatements")
-    def log_nested_statements(self) -> Optional[pulumi.Input[bool]]:
-        """
-        This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
-        """
-        return pulumi.get(self, "log_nested_statements")
-
-    @log_nested_statements.setter
-    def log_nested_statements(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "log_nested_statements", value)
-
-    @property
-    @pulumi.getter(name="logParameter")
-    def log_parameter(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specifies that audit logging should include the parameters that were passed with the statement.
-        """
-        return pulumi.get(self, "log_parameter")
-
-    @log_parameter.setter
-    def log_parameter(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "log_parameter", value)
-
-    @property
-    @pulumi.getter(name="logParameterMaxSize")
-    def log_parameter_max_size(self) -> Optional[pulumi.Input[int]]:
-        """
-        Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
-        """
-        return pulumi.get(self, "log_parameter_max_size")
-
-    @log_parameter_max_size.setter
-    def log_parameter_max_size(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "log_parameter_max_size", value)
-
-    @property
-    @pulumi.getter(name="logRelation")
-    def log_relation(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
-        """
-        return pulumi.get(self, "log_relation")
-
-    @log_relation.setter
-    def log_relation(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "log_relation", value)
-
-    @property
-    @pulumi.getter(name="logRows")
-    def log_rows(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
-        """
-        return pulumi.get(self, "log_rows")
-
-    @log_rows.setter
-    def log_rows(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "log_rows", value)
-
-    @property
-    @pulumi.getter(name="logStatement")
-    def log_statement(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specifies whether logging will include the statement text and parameters (if enabled).
-        """
-        return pulumi.get(self, "log_statement")
-
-    @log_statement.setter
-    def log_statement(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "log_statement", value)
-
-    @property
-    @pulumi.getter(name="logStatementOnce")
-    def log_statement_once(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
-        """
-        return pulumi.get(self, "log_statement_once")
-
-    @log_statement_once.setter
-    def log_statement_once(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "log_statement_once", value)
-
-    @property
-    @pulumi.getter
-    def logs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Specifies which classes of statements will be logged by session audit logging.
-        """
-        return pulumi.get(self, "logs")
-
-    @logs.setter
-    def logs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "logs", value)
-
-    @property
-    @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[str]]:
-        """
-        Specifies the master role to use for object audit logging.
-        """
-        return pulumi.get(self, "role")
-
-    @role.setter
-    def role(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "role", value)
 
 
 @pulumi.input_type
@@ -7404,7 +7189,7 @@ class ManagedDatabaseRedisPropertiesArgs:
         :param pulumi.Input[str] redis_maxmemory_policy: Redis maxmemory-policy.
         :param pulumi.Input[str] redis_notify_keyspace_events: Set notify-keyspace-events option.
         :param pulumi.Input[int] redis_number_of_databases: Number of Redis databases. Set number of Redis databases. Changing this will cause a restart of the Redis service.
-        :param pulumi.Input[str] redis_persistence: Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+        :param pulumi.Input[str] redis_persistence: Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.
         :param pulumi.Input[int] redis_pubsub_client_output_buffer_limit: Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
         :param pulumi.Input[bool] redis_ssl: Require SSL to access Redis.
         :param pulumi.Input[int] redis_timeout: Redis idle connection timeout in seconds.
@@ -7582,7 +7367,7 @@ class ManagedDatabaseRedisPropertiesArgs:
     @pulumi.getter(name="redisPersistence")
     def redis_persistence(self) -> Optional[pulumi.Input[str]]:
         """
-        Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+        Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.
         """
         return pulumi.get(self, "redis_persistence")
 
@@ -9318,6 +9103,58 @@ class StorageImportArgs:
     @written_bytes.setter
     def written_bytes(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "written_bytes", value)
+
+
+@pulumi.input_type
+class GetHostsHostArgs:
+    def __init__(__self__, *,
+                 description: str,
+                 host_id: int,
+                 zone: str):
+        """
+        :param str description: Free form text describing the host
+        :param int host_id: The unique id of the host
+        :param str zone: The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Free form text describing the host
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: str):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> int:
+        """
+        The unique id of the host
+        """
+        return pulumi.get(self, "host_id")
+
+    @host_id.setter
+    def host_id(self, value: int):
+        pulumi.set(self, "host_id", value)
+
+    @property
+    @pulumi.getter
+    def zone(self) -> str:
+        """
+        The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        """
+        return pulumi.get(self, "zone")
+
+    @zone.setter
+    def zone(self, value: str):
+        pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type

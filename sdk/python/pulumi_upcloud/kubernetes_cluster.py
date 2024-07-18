@@ -37,7 +37,7 @@ class KubernetesClusterArgs:
                kubernetes plans`.
         :param pulumi.Input[bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         :param pulumi.Input[str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
-        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
         """
         pulumi.set(__self__, "control_plane_ip_filters", control_plane_ip_filters)
         pulumi.set(__self__, "network", network)
@@ -159,7 +159,7 @@ class KubernetesClusterArgs:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+        Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
         """
         return pulumi.get(self, "version")
 
@@ -198,7 +198,7 @@ class _KubernetesClusterState:
         :param pulumi.Input[bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         :param pulumi.Input[str] state: Operational state of the cluster.
         :param pulumi.Input[str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
-        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
         :param pulumi.Input[str] zone: Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
                list`.
         """
@@ -354,7 +354,7 @@ class _KubernetesClusterState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+        Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
         """
         return pulumi.get(self, "version")
 
@@ -449,7 +449,7 @@ class KubernetesCluster(pulumi.CustomResource):
                kubernetes plans`.
         :param pulumi.Input[bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         :param pulumi.Input[str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
-        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
         :param pulumi.Input[str] zone: Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
                list`.
         """
@@ -598,7 +598,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         :param pulumi.Input[str] state: Operational state of the cluster.
         :param pulumi.Input[str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
-        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
         :param pulumi.Input[str] zone: Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
                list`.
         """
@@ -632,7 +632,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+    def labels(self) -> pulumi.Output[Mapping[str, str]]:
         """
         Key-value pairs to classify the cluster.
         """
@@ -672,7 +672,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def plan(self) -> pulumi.Output[Optional[str]]:
+    def plan(self) -> pulumi.Output[str]:
         """
         The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
         kubernetes plans`.
@@ -681,7 +681,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="privateNodeGroups")
-    def private_node_groups(self) -> pulumi.Output[Optional[bool]]:
+    def private_node_groups(self) -> pulumi.Output[bool]:
         """
         Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         """
@@ -707,7 +707,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
         """
-        Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+        Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
         """
         return pulumi.get(self, "version")
 

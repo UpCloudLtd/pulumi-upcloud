@@ -20,20 +20,29 @@ import * as utilities from "./utilities";
  * const allHosts = upcloud.getHosts({});
  * ```
  */
-export function getHosts(opts?: pulumi.InvokeOptions): Promise<GetHostsResult> {
+export function getHosts(args?: GetHostsArgs, opts?: pulumi.InvokeOptions): Promise<GetHostsResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("upcloud:index/getHosts:getHosts", {
+        "hosts": args.hosts,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getHosts.
+ */
+export interface GetHostsArgs {
+    hosts?: inputs.GetHostsHost[];
 }
 
 /**
  * A collection of values returned by getHosts.
  */
 export interface GetHostsResult {
-    readonly hosts: outputs.GetHostsHost[];
+    readonly hosts?: outputs.GetHostsHost[];
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this resource.
      */
     readonly id: string;
 }
@@ -51,6 +60,13 @@ export interface GetHostsResult {
  * const allHosts = upcloud.getHosts({});
  * ```
  */
-export function getHostsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetHostsResult> {
-    return pulumi.output(getHosts(opts))
+export function getHostsOutput(args?: GetHostsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetHostsResult> {
+    return pulumi.output(args).apply((a: any) => getHosts(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getHosts.
+ */
+export interface GetHostsOutputArgs {
+    hosts?: pulumi.Input<pulumi.Input<inputs.GetHostsHostArgs>[]>;
 }

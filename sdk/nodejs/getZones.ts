@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Data-source is deprecated.
+ * Returns a list of available UpCloud zones.
  */
 export function getZones(args?: GetZonesArgs, opts?: pulumi.InvokeOptions): Promise<GetZonesResult> {
     args = args || {};
@@ -28,14 +28,11 @@ export interface GetZonesArgs {
  */
 export interface GetZonesResult {
     readonly filterType?: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
     readonly id: string;
     readonly zoneIds: string[];
 }
 /**
- * Data-source is deprecated.
+ * Returns a list of available UpCloud zones.
  */
 export function getZonesOutput(args?: GetZonesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetZonesResult> {
     return pulumi.output(args).apply((a: any) => getZones(a, opts))

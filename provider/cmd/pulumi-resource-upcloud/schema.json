@@ -410,7 +410,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "Name of the load balancer network\n"
+                    "description": "Name of the load balancer network.\n"
                 }
             },
             "type": "object",
@@ -433,7 +433,16 @@
                     "description": "Client request timeout in seconds.\n"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "http2Enabled",
+                        "inboundProxyProtocol",
+                        "timeoutClient"
+                    ]
+                }
+            }
         },
         "upcloud:index/LoadbalancerFrontendRuleActions:LoadbalancerFrontendRuleActions": {
             "properties": {
@@ -1740,6 +1749,14 @@
                     "type": "boolean",
                     "description": "Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.\n"
                 },
+                "knnMemoryCircuitBreakerEnabled": {
+                    "type": "boolean",
+                    "description": "Enable or disable KNN memory circuit breaker. Defaults to true.\n"
+                },
+                "knnMemoryCircuitBreakerLimit": {
+                    "type": "integer",
+                    "description": "Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.\n"
+                },
                 "openid": {
                     "$ref": "#/types/upcloud:index/ManagedDatabaseOpensearchPropertiesOpenid:ManagedDatabaseOpensearchPropertiesOpenid",
                     "description": "OpenSearch OpenID Connect Configuration.\n"
@@ -1864,6 +1881,7 @@
                         "ismHistoryRolloverCheckPeriod",
                         "ismHistoryRolloverRetentionPeriod",
                         "keepIndexRefreshInterval",
+                        "knnMemoryCircuitBreakerLimit",
                         "openid",
                         "opensearchDashboards",
                         "overrideMainResponseVersion",
@@ -2364,7 +2382,7 @@
                 },
                 "logLinePrefix": {
                     "type": "string",
-                    "description": "Choose from one of the available log-formats. These can support popular log analyzers like pgbadger, pganalyze etc.\n"
+                    "description": "Choose from one of the available log formats.\n"
                 },
                 "logMinDurationStatement": {
                     "type": "integer",
@@ -2457,10 +2475,6 @@
                 "pgStatStatementsTrack": {
                     "type": "string",
                     "description": "Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.\n"
-                },
-                "pgaudit": {
-                    "$ref": "#/types/upcloud:index/ManagedDatabasePostgresqlPropertiesPgaudit:ManagedDatabasePostgresqlPropertiesPgaudit",
-                    "description": "PGAudit settings. System-wide settings for the pgaudit extension.\n"
                 },
                 "pgbouncer": {
                     "$ref": "#/types/upcloud:index/ManagedDatabasePostgresqlPropertiesPgbouncer:ManagedDatabasePostgresqlPropertiesPgbouncer",
@@ -2586,7 +2600,6 @@
                         "pgStatMonitorPgsmEnableQueryPlan",
                         "pgStatMonitorPgsmMaxBuckets",
                         "pgStatStatementsTrack",
-                        "pgaudit",
                         "pgbouncer",
                         "pglookout",
                         "serviceLog",
@@ -2655,90 +2668,6 @@
                         "port",
                         "ssl",
                         "username"
-                    ]
-                }
-            }
-        },
-        "upcloud:index/ManagedDatabasePostgresqlPropertiesPgaudit:ManagedDatabasePostgresqlPropertiesPgaudit": {
-            "properties": {
-                "featureEnabled": {
-                    "type": "boolean",
-                    "description": "Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.\n"
-                },
-                "logCatalog": {
-                    "type": "boolean",
-                    "description": "Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.\n"
-                },
-                "logClient": {
-                    "type": "boolean",
-                    "description": "Specifies whether log messages will be visible to a client process such as psql.\n"
-                },
-                "logLevel": {
-                    "type": "string",
-                    "description": "Specifies the log level that will be used for log entries.\n"
-                },
-                "logMaxStringLength": {
-                    "type": "integer",
-                    "description": "Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.\n"
-                },
-                "logNestedStatements": {
-                    "type": "boolean",
-                    "description": "This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.\n"
-                },
-                "logParameter": {
-                    "type": "boolean",
-                    "description": "Specifies that audit logging should include the parameters that were passed with the statement.\n"
-                },
-                "logParameterMaxSize": {
-                    "type": "integer",
-                    "description": "Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with \u003clong param suppressed\u003e.\n"
-                },
-                "logRelation": {
-                    "type": "boolean",
-                    "description": "Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.\n"
-                },
-                "logRows": {
-                    "type": "boolean",
-                    "description": "Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.\n"
-                },
-                "logStatement": {
-                    "type": "boolean",
-                    "description": "Specifies whether logging will include the statement text and parameters (if enabled).\n"
-                },
-                "logStatementOnce": {
-                    "type": "boolean",
-                    "description": "Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.\n"
-                },
-                "logs": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Specifies which classes of statements will be logged by session audit logging.\n"
-                },
-                "role": {
-                    "type": "string",
-                    "description": "Specifies the master role to use for object audit logging.\n"
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "featureEnabled",
-                        "logCatalog",
-                        "logClient",
-                        "logLevel",
-                        "logMaxStringLength",
-                        "logNestedStatements",
-                        "logParameter",
-                        "logParameterMaxSize",
-                        "logRelation",
-                        "logRows",
-                        "logStatement",
-                        "logStatementOnce",
-                        "logs",
-                        "role"
                     ]
                 }
             }
@@ -2974,7 +2903,7 @@
                 },
                 "redisPersistence": {
                     "type": "string",
-                    "description": "Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.\n"
+                    "description": "Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.\n"
                 },
                 "redisPubsubClientOutputBufferLimit": {
                     "type": "integer",
@@ -4429,45 +4358,47 @@
             "properties": {
                 "access": {
                     "type": "string",
-                    "description": "Network access for the floating IP address. Supported value: `public`\n"
+                    "description": "Network access for the floating IP address. Supported value: `public`.\n"
                 },
                 "family": {
                     "type": "string",
-                    "description": "The address family of new IP address\n"
+                    "description": "The address family of the floating IP address.\n"
                 },
                 "ipAddress": {
                     "type": "string",
-                    "description": "An UpCloud assigned IP Address\n"
+                    "description": "An UpCloud assigned IP Address.\n"
                 },
                 "macAddress": {
                     "type": "string",
-                    "description": "MAC address of server interface to assign address to\n"
+                    "description": "MAC address of a server interface to assign address to.\n"
                 },
                 "zone": {
                     "type": "string",
-                    "description": "Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones\nwith `upctl zone list`.\n"
+                    "description": "Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available\nzones with `upctl zone list`.\n"
                 }
             },
             "required": [
+                "access",
+                "family",
                 "ipAddress",
                 "zone"
             ],
             "inputProperties": {
                 "access": {
                     "type": "string",
-                    "description": "Network access for the floating IP address. Supported value: `public`\n"
+                    "description": "Network access for the floating IP address. Supported value: `public`.\n"
                 },
                 "family": {
                     "type": "string",
-                    "description": "The address family of new IP address\n"
+                    "description": "The address family of the floating IP address.\n"
                 },
                 "macAddress": {
                     "type": "string",
-                    "description": "MAC address of server interface to assign address to\n"
+                    "description": "MAC address of a server interface to assign address to.\n"
                 },
                 "zone": {
                     "type": "string",
-                    "description": "Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones\nwith `upctl zone list`.\n"
+                    "description": "Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available\nzones with `upctl zone list`.\n"
                 }
             },
             "stateInputs": {
@@ -4475,23 +4406,23 @@
                 "properties": {
                     "access": {
                         "type": "string",
-                        "description": "Network access for the floating IP address. Supported value: `public`\n"
+                        "description": "Network access for the floating IP address. Supported value: `public`.\n"
                     },
                     "family": {
                         "type": "string",
-                        "description": "The address family of new IP address\n"
+                        "description": "The address family of the floating IP address.\n"
                     },
                     "ipAddress": {
                         "type": "string",
-                        "description": "An UpCloud assigned IP Address\n"
+                        "description": "An UpCloud assigned IP Address.\n"
                     },
                     "macAddress": {
                         "type": "string",
-                        "description": "MAC address of server interface to assign address to\n"
+                        "description": "MAC address of a server interface to assign address to.\n"
                     },
                     "zone": {
                         "type": "string",
-                        "description": "Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones\nwith `upctl zone list`.\n"
+                        "description": "Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available\nzones with `upctl zone list`.\n"
                     }
                 },
                 "type": "object"
@@ -4989,7 +4920,7 @@
                 },
                 "version": {
                     "type": "string",
-                    "description": "Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.\n"
+                    "description": "Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.\n"
                 },
                 "zone": {
                     "type": "string",
@@ -4998,10 +4929,13 @@
             },
             "required": [
                 "controlPlaneIpFilters",
+                "labels",
                 "name",
                 "network",
                 "networkCidr",
                 "nodeGroups",
+                "plan",
+                "privateNodeGroups",
                 "state",
                 "version",
                 "zone"
@@ -5023,38 +4957,31 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Cluster name. Needs to be unique within the account.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Cluster name. Needs to be unique within the account.\n"
                 },
                 "network": {
                     "type": "string",
-                    "description": "Network ID for the cluster to run in.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Network ID for the cluster to run in.\n"
                 },
                 "plan": {
                     "type": "string",
-                    "description": "The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl\nkubernetes plans`.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl\nkubernetes plans`.\n"
                 },
                 "privateNodeGroups": {
                     "type": "boolean",
-                    "description": "Enable private node groups. Private node groups requires a network that is routed through NAT gateway.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Enable private node groups. Private node groups requires a network that is routed through NAT gateway.\n"
                 },
                 "storageEncryption": {
                     "type": "string",
-                    "description": "Set default storage encryption strategy for all nodes in the cluster.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Set default storage encryption strategy for all nodes in the cluster.\n"
                 },
                 "version": {
                     "type": "string",
-                    "description": "Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.\n"
                 },
                 "zone": {
                     "type": "string",
-                    "description": "Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone\nlist`.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone\nlist`.\n"
                 }
             },
             "requiredInputs": [
@@ -5081,13 +5008,11 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "Cluster name. Needs to be unique within the account.\n",
-                        "willReplaceOnChanges": true
+                        "description": "Cluster name. Needs to be unique within the account.\n"
                     },
                     "network": {
                         "type": "string",
-                        "description": "Network ID for the cluster to run in.\n",
-                        "willReplaceOnChanges": true
+                        "description": "Network ID for the cluster to run in.\n"
                     },
                     "networkCidr": {
                         "type": "string",
@@ -5102,13 +5027,11 @@
                     },
                     "plan": {
                         "type": "string",
-                        "description": "The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl\nkubernetes plans`.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl\nkubernetes plans`.\n"
                     },
                     "privateNodeGroups": {
                         "type": "boolean",
-                        "description": "Enable private node groups. Private node groups requires a network that is routed through NAT gateway.\n",
-                        "willReplaceOnChanges": true
+                        "description": "Enable private node groups. Private node groups requires a network that is routed through NAT gateway.\n"
                     },
                     "state": {
                         "type": "string",
@@ -5116,18 +5039,15 @@
                     },
                     "storageEncryption": {
                         "type": "string",
-                        "description": "Set default storage encryption strategy for all nodes in the cluster.\n",
-                        "willReplaceOnChanges": true
+                        "description": "Set default storage encryption strategy for all nodes in the cluster.\n"
                     },
                     "version": {
                         "type": "string",
-                        "description": "Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.\n",
-                        "willReplaceOnChanges": true
+                        "description": "Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.\n"
                     },
                     "zone": {
                         "type": "string",
-                        "description": "Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone\nlist`.\n",
-                        "willReplaceOnChanges": true
+                        "description": "Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone\nlist`.\n"
                     }
                 },
                 "type": "object"
@@ -5142,7 +5062,7 @@
                 },
                 "cluster": {
                     "type": "string",
-                    "description": "Cluster ID.\n"
+                    "description": "UUID of the cluster.\n"
                 },
                 "customPlan": {
                     "$ref": "#/types/upcloud:index/KubernetesNodeGroupCustomPlan:KubernetesNodeGroupCustomPlan",
@@ -5212,7 +5132,7 @@
                 },
                 "cluster": {
                     "type": "string",
-                    "description": "Cluster ID.\n",
+                    "description": "UUID of the cluster.\n",
                     "willReplaceOnChanges": true
                 },
                 "customPlan": {
@@ -5292,7 +5212,7 @@
                     },
                     "cluster": {
                         "type": "string",
-                        "description": "Cluster ID.\n",
+                        "description": "UUID of the cluster.\n",
                         "willReplaceOnChanges": true
                     },
                     "customPlan": {
@@ -5448,6 +5368,8 @@
                 "backends",
                 "dnsName",
                 "frontends",
+                "maintenanceDow",
+                "maintenanceTime",
                 "name",
                 "nodes",
                 "operationalState",
@@ -5963,7 +5885,7 @@
             }
         },
         "upcloud:index/loadbalancerFrontend:LoadbalancerFrontend": {
-            "description": "This resource represents load balancer frontend service\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@pulumi/upcloud\";\n\nconst config = new pulumi.Config();\nconst lbZone = config.get(\"lbZone\") || \"fi-hel2\";\nconst lbNetwork = new upcloud.Network(\"lbNetwork\", {\n    zone: lbZone,\n    ipNetwork: {\n        address: \"10.0.0.0/24\",\n        dhcp: true,\n        family: \"IPv4\",\n    },\n});\nconst lbFe1 = new upcloud.LoadbalancerFrontend(\"lbFe1\", {\n    loadbalancer: resource.upcloud_loadbalancer.lb.id,\n    mode: \"http\",\n    port: 8080,\n    defaultBackendName: resource.upcloud_loadbalancer_backend.lb_be_1.name,\n    networks: [{\n        name: resource.upcloud_loadbalancer.lb.networks[1].name,\n    }],\n});\nconst lb = new upcloud.Loadbalancer(\"lb\", {\n    configuredStatus: \"started\",\n    plan: \"development\",\n    zone: lbZone,\n    networks: [\n        {\n            name: \"Private-Net\",\n            type: \"private\",\n            family: \"IPv4\",\n            network: resource.upcloud_network.lb_network.id,\n        },\n        {\n            name: \"Public-Net\",\n            type: \"public\",\n            family: \"IPv4\",\n        },\n    ],\n});\nconst lbBe1 = new upcloud.LoadbalancerBackend(\"lbBe1\", {loadbalancer: resource.upcloud_loadbalancer.lb.id});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\nconfig = pulumi.Config()\nlb_zone = config.get(\"lbZone\")\nif lb_zone is None:\n    lb_zone = \"fi-hel2\"\nlb_network = upcloud.Network(\"lbNetwork\",\n    zone=lb_zone,\n    ip_network=upcloud.NetworkIpNetworkArgs(\n        address=\"10.0.0.0/24\",\n        dhcp=True,\n        family=\"IPv4\",\n    ))\nlb_fe1 = upcloud.LoadbalancerFrontend(\"lbFe1\",\n    loadbalancer=resource[\"upcloud_loadbalancer\"][\"lb\"][\"id\"],\n    mode=\"http\",\n    port=8080,\n    default_backend_name=resource[\"upcloud_loadbalancer_backend\"][\"lb_be_1\"][\"name\"],\n    networks=[upcloud.LoadbalancerFrontendNetworkArgs(\n        name=resource[\"upcloud_loadbalancer\"][\"lb\"][\"networks\"][1][\"name\"],\n    )])\nlb = upcloud.Loadbalancer(\"lb\",\n    configured_status=\"started\",\n    plan=\"development\",\n    zone=lb_zone,\n    networks=[\n        upcloud.LoadbalancerNetworkArgs(\n            name=\"Private-Net\",\n            type=\"private\",\n            family=\"IPv4\",\n            network=resource[\"upcloud_network\"][\"lb_network\"][\"id\"],\n        ),\n        upcloud.LoadbalancerNetworkArgs(\n            name=\"Public-Net\",\n            type=\"public\",\n            family=\"IPv4\",\n        ),\n    ])\nlb_be1 = upcloud.LoadbalancerBackend(\"lbBe1\", loadbalancer=resource[\"upcloud_loadbalancer\"][\"lb\"][\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Upcloud = Pulumi.Upcloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var lbZone = config.Get(\"lbZone\") ?? \"fi-hel2\";\n    var lbNetwork = new Upcloud.Network(\"lbNetwork\", new()\n    {\n        Zone = lbZone,\n        IpNetwork = new Upcloud.Inputs.NetworkIpNetworkArgs\n        {\n            Address = \"10.0.0.0/24\",\n            Dhcp = true,\n            Family = \"IPv4\",\n        },\n    });\n\n    var lbFe1 = new Upcloud.LoadbalancerFrontend(\"lbFe1\", new()\n    {\n        Loadbalancer = resource.Upcloud_loadbalancer.Lb.Id,\n        Mode = \"http\",\n        Port = 8080,\n        DefaultBackendName = resource.Upcloud_loadbalancer_backend.Lb_be_1.Name,\n        Networks = new[]\n        {\n            new Upcloud.Inputs.LoadbalancerFrontendNetworkArgs\n            {\n                Name = resource.Upcloud_loadbalancer.Lb.Networks[1].Name,\n            },\n        },\n    });\n\n    var lb = new Upcloud.Loadbalancer(\"lb\", new()\n    {\n        ConfiguredStatus = \"started\",\n        Plan = \"development\",\n        Zone = lbZone,\n        Networks = new[]\n        {\n            new Upcloud.Inputs.LoadbalancerNetworkArgs\n            {\n                Name = \"Private-Net\",\n                Type = \"private\",\n                Family = \"IPv4\",\n                Network = resource.Upcloud_network.Lb_network.Id,\n            },\n            new Upcloud.Inputs.LoadbalancerNetworkArgs\n            {\n                Name = \"Public-Net\",\n                Type = \"public\",\n                Family = \"IPv4\",\n            },\n        },\n    });\n\n    var lbBe1 = new Upcloud.LoadbalancerBackend(\"lbBe1\", new()\n    {\n        Loadbalancer = resource.Upcloud_loadbalancer.Lb.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tlbZone := \"fi-hel2\"\n\t\tif param := cfg.Get(\"lbZone\"); param != \"\" {\n\t\t\tlbZone = param\n\t\t}\n\t\t_, err := upcloud.NewNetwork(ctx, \"lbNetwork\", \u0026upcloud.NetworkArgs{\n\t\t\tZone: pulumi.String(lbZone),\n\t\t\tIpNetwork: \u0026upcloud.NetworkIpNetworkArgs{\n\t\t\t\tAddress: pulumi.String(\"10.0.0.0/24\"),\n\t\t\t\tDhcp:    pulumi.Bool(true),\n\t\t\t\tFamily:  pulumi.String(\"IPv4\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewLoadbalancerFrontend(ctx, \"lbFe1\", \u0026upcloud.LoadbalancerFrontendArgs{\n\t\t\tLoadbalancer:       pulumi.Any(resource.Upcloud_loadbalancer.Lb.Id),\n\t\t\tMode:               pulumi.String(\"http\"),\n\t\t\tPort:               pulumi.Int(8080),\n\t\t\tDefaultBackendName: pulumi.Any(resource.Upcloud_loadbalancer_backend.Lb_be_1.Name),\n\t\t\tNetworks: upcloud.LoadbalancerFrontendNetworkArray{\n\t\t\t\t\u0026upcloud.LoadbalancerFrontendNetworkArgs{\n\t\t\t\t\tName: pulumi.Any(resource.Upcloud_loadbalancer.Lb.Networks[1].Name),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewLoadbalancer(ctx, \"lb\", \u0026upcloud.LoadbalancerArgs{\n\t\t\tConfiguredStatus: pulumi.String(\"started\"),\n\t\t\tPlan:             pulumi.String(\"development\"),\n\t\t\tZone:             pulumi.String(lbZone),\n\t\t\tNetworks: upcloud.LoadbalancerNetworkArray{\n\t\t\t\t\u0026upcloud.LoadbalancerNetworkArgs{\n\t\t\t\t\tName:    pulumi.String(\"Private-Net\"),\n\t\t\t\t\tType:    pulumi.String(\"private\"),\n\t\t\t\t\tFamily:  pulumi.String(\"IPv4\"),\n\t\t\t\t\tNetwork: pulumi.Any(resource.Upcloud_network.Lb_network.Id),\n\t\t\t\t},\n\t\t\t\t\u0026upcloud.LoadbalancerNetworkArgs{\n\t\t\t\t\tName:   pulumi.String(\"Public-Net\"),\n\t\t\t\t\tType:   pulumi.String(\"public\"),\n\t\t\t\t\tFamily: pulumi.String(\"IPv4\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewLoadbalancerBackend(ctx, \"lbBe1\", \u0026upcloud.LoadbalancerBackendArgs{\n\t\t\tLoadbalancer: pulumi.Any(resource.Upcloud_loadbalancer.Lb.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.Network;\nimport com.pulumi.upcloud.NetworkArgs;\nimport com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;\nimport com.pulumi.upcloud.LoadbalancerFrontend;\nimport com.pulumi.upcloud.LoadbalancerFrontendArgs;\nimport com.pulumi.upcloud.inputs.LoadbalancerFrontendNetworkArgs;\nimport com.pulumi.upcloud.Loadbalancer;\nimport com.pulumi.upcloud.LoadbalancerArgs;\nimport com.pulumi.upcloud.inputs.LoadbalancerNetworkArgs;\nimport com.pulumi.upcloud.LoadbalancerBackend;\nimport com.pulumi.upcloud.LoadbalancerBackendArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var lbZone = config.get(\"lbZone\").orElse(\"fi-hel2\");\n        var lbNetwork = new Network(\"lbNetwork\", NetworkArgs.builder()\n            .zone(lbZone)\n            .ipNetwork(NetworkIpNetworkArgs.builder()\n                .address(\"10.0.0.0/24\")\n                .dhcp(true)\n                .family(\"IPv4\")\n                .build())\n            .build());\n\n        var lbFe1 = new LoadbalancerFrontend(\"lbFe1\", LoadbalancerFrontendArgs.builder()\n            .loadbalancer(resource.upcloud_loadbalancer().lb().id())\n            .mode(\"http\")\n            .port(8080)\n            .defaultBackendName(resource.upcloud_loadbalancer_backend().lb_be_1().name())\n            .networks(LoadbalancerFrontendNetworkArgs.builder()\n                .name(resource.upcloud_loadbalancer().lb().networks()[1].name())\n                .build())\n            .build());\n\n        var lb = new Loadbalancer(\"lb\", LoadbalancerArgs.builder()\n            .configuredStatus(\"started\")\n            .plan(\"development\")\n            .zone(lbZone)\n            .networks(            \n                LoadbalancerNetworkArgs.builder()\n                    .name(\"Private-Net\")\n                    .type(\"private\")\n                    .family(\"IPv4\")\n                    .network(resource.upcloud_network().lb_network().id())\n                    .build(),\n                LoadbalancerNetworkArgs.builder()\n                    .name(\"Public-Net\")\n                    .type(\"public\")\n                    .family(\"IPv4\")\n                    .build())\n            .build());\n\n        var lbBe1 = new LoadbalancerBackend(\"lbBe1\", LoadbalancerBackendArgs.builder()\n            .loadbalancer(resource.upcloud_loadbalancer().lb().id())\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  lbZone:\n    type: string\n    default: fi-hel2\nresources:\n  lbNetwork:\n    type: upcloud:Network\n    properties:\n      zone: ${lbZone}\n      ipNetwork:\n        address: 10.0.0.0/24\n        dhcp: true\n        family: IPv4\n  lbFe1:\n    type: upcloud:LoadbalancerFrontend\n    properties:\n      loadbalancer: ${resource.upcloud_loadbalancer.lb.id}\n      mode: http\n      port: 8080\n      defaultBackendName: ${resource.upcloud_loadbalancer_backend.lb_be_1.name}\n      networks:\n        - name: ${resource.upcloud_loadbalancer.lb.networks[1].name}\n  lb:\n    type: upcloud:Loadbalancer\n    properties:\n      configuredStatus: started\n      plan: development\n      zone: ${lbZone}\n      networks:\n        - name: Private-Net\n          type: private\n          family: IPv4\n          network: ${resource.upcloud_network.lb_network.id}\n        - name: Public-Net\n          type: public\n          family: IPv4\n  lbBe1:\n    type: upcloud:LoadbalancerBackend\n    properties:\n      loadbalancer: ${resource.upcloud_loadbalancer.lb.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "This resource represents load balancer frontend service.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@pulumi/upcloud\";\n\nconst config = new pulumi.Config();\nconst lbZone = config.get(\"lbZone\") || \"fi-hel2\";\nconst lbNetwork = new upcloud.Network(\"lbNetwork\", {\n    zone: lbZone,\n    ipNetwork: {\n        address: \"10.0.0.0/24\",\n        dhcp: true,\n        family: \"IPv4\",\n    },\n});\nconst lbFe1 = new upcloud.LoadbalancerFrontend(\"lbFe1\", {\n    loadbalancer: resource.upcloud_loadbalancer.lb.id,\n    mode: \"http\",\n    port: 8080,\n    defaultBackendName: resource.upcloud_loadbalancer_backend.lb_be_1.name,\n    networks: [{\n        name: resource.upcloud_loadbalancer.lb.networks[1].name,\n    }],\n});\nconst lb = new upcloud.Loadbalancer(\"lb\", {\n    configuredStatus: \"started\",\n    plan: \"development\",\n    zone: lbZone,\n    networks: [\n        {\n            name: \"Private-Net\",\n            type: \"private\",\n            family: \"IPv4\",\n            network: resource.upcloud_network.lb_network.id,\n        },\n        {\n            name: \"Public-Net\",\n            type: \"public\",\n            family: \"IPv4\",\n        },\n    ],\n});\nconst lbBe1 = new upcloud.LoadbalancerBackend(\"lbBe1\", {loadbalancer: resource.upcloud_loadbalancer.lb.id});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\nconfig = pulumi.Config()\nlb_zone = config.get(\"lbZone\")\nif lb_zone is None:\n    lb_zone = \"fi-hel2\"\nlb_network = upcloud.Network(\"lbNetwork\",\n    zone=lb_zone,\n    ip_network=upcloud.NetworkIpNetworkArgs(\n        address=\"10.0.0.0/24\",\n        dhcp=True,\n        family=\"IPv4\",\n    ))\nlb_fe1 = upcloud.LoadbalancerFrontend(\"lbFe1\",\n    loadbalancer=resource[\"upcloud_loadbalancer\"][\"lb\"][\"id\"],\n    mode=\"http\",\n    port=8080,\n    default_backend_name=resource[\"upcloud_loadbalancer_backend\"][\"lb_be_1\"][\"name\"],\n    networks=[upcloud.LoadbalancerFrontendNetworkArgs(\n        name=resource[\"upcloud_loadbalancer\"][\"lb\"][\"networks\"][1][\"name\"],\n    )])\nlb = upcloud.Loadbalancer(\"lb\",\n    configured_status=\"started\",\n    plan=\"development\",\n    zone=lb_zone,\n    networks=[\n        upcloud.LoadbalancerNetworkArgs(\n            name=\"Private-Net\",\n            type=\"private\",\n            family=\"IPv4\",\n            network=resource[\"upcloud_network\"][\"lb_network\"][\"id\"],\n        ),\n        upcloud.LoadbalancerNetworkArgs(\n            name=\"Public-Net\",\n            type=\"public\",\n            family=\"IPv4\",\n        ),\n    ])\nlb_be1 = upcloud.LoadbalancerBackend(\"lbBe1\", loadbalancer=resource[\"upcloud_loadbalancer\"][\"lb\"][\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Upcloud = Pulumi.Upcloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var lbZone = config.Get(\"lbZone\") ?? \"fi-hel2\";\n    var lbNetwork = new Upcloud.Network(\"lbNetwork\", new()\n    {\n        Zone = lbZone,\n        IpNetwork = new Upcloud.Inputs.NetworkIpNetworkArgs\n        {\n            Address = \"10.0.0.0/24\",\n            Dhcp = true,\n            Family = \"IPv4\",\n        },\n    });\n\n    var lbFe1 = new Upcloud.LoadbalancerFrontend(\"lbFe1\", new()\n    {\n        Loadbalancer = resource.Upcloud_loadbalancer.Lb.Id,\n        Mode = \"http\",\n        Port = 8080,\n        DefaultBackendName = resource.Upcloud_loadbalancer_backend.Lb_be_1.Name,\n        Networks = new[]\n        {\n            new Upcloud.Inputs.LoadbalancerFrontendNetworkArgs\n            {\n                Name = resource.Upcloud_loadbalancer.Lb.Networks[1].Name,\n            },\n        },\n    });\n\n    var lb = new Upcloud.Loadbalancer(\"lb\", new()\n    {\n        ConfiguredStatus = \"started\",\n        Plan = \"development\",\n        Zone = lbZone,\n        Networks = new[]\n        {\n            new Upcloud.Inputs.LoadbalancerNetworkArgs\n            {\n                Name = \"Private-Net\",\n                Type = \"private\",\n                Family = \"IPv4\",\n                Network = resource.Upcloud_network.Lb_network.Id,\n            },\n            new Upcloud.Inputs.LoadbalancerNetworkArgs\n            {\n                Name = \"Public-Net\",\n                Type = \"public\",\n                Family = \"IPv4\",\n            },\n        },\n    });\n\n    var lbBe1 = new Upcloud.LoadbalancerBackend(\"lbBe1\", new()\n    {\n        Loadbalancer = resource.Upcloud_loadbalancer.Lb.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tlbZone := \"fi-hel2\"\n\t\tif param := cfg.Get(\"lbZone\"); param != \"\" {\n\t\t\tlbZone = param\n\t\t}\n\t\t_, err := upcloud.NewNetwork(ctx, \"lbNetwork\", \u0026upcloud.NetworkArgs{\n\t\t\tZone: pulumi.String(lbZone),\n\t\t\tIpNetwork: \u0026upcloud.NetworkIpNetworkArgs{\n\t\t\t\tAddress: pulumi.String(\"10.0.0.0/24\"),\n\t\t\t\tDhcp:    pulumi.Bool(true),\n\t\t\t\tFamily:  pulumi.String(\"IPv4\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewLoadbalancerFrontend(ctx, \"lbFe1\", \u0026upcloud.LoadbalancerFrontendArgs{\n\t\t\tLoadbalancer:       pulumi.Any(resource.Upcloud_loadbalancer.Lb.Id),\n\t\t\tMode:               pulumi.String(\"http\"),\n\t\t\tPort:               pulumi.Int(8080),\n\t\t\tDefaultBackendName: pulumi.Any(resource.Upcloud_loadbalancer_backend.Lb_be_1.Name),\n\t\t\tNetworks: upcloud.LoadbalancerFrontendNetworkArray{\n\t\t\t\t\u0026upcloud.LoadbalancerFrontendNetworkArgs{\n\t\t\t\t\tName: pulumi.Any(resource.Upcloud_loadbalancer.Lb.Networks[1].Name),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewLoadbalancer(ctx, \"lb\", \u0026upcloud.LoadbalancerArgs{\n\t\t\tConfiguredStatus: pulumi.String(\"started\"),\n\t\t\tPlan:             pulumi.String(\"development\"),\n\t\t\tZone:             pulumi.String(lbZone),\n\t\t\tNetworks: upcloud.LoadbalancerNetworkArray{\n\t\t\t\t\u0026upcloud.LoadbalancerNetworkArgs{\n\t\t\t\t\tName:    pulumi.String(\"Private-Net\"),\n\t\t\t\t\tType:    pulumi.String(\"private\"),\n\t\t\t\t\tFamily:  pulumi.String(\"IPv4\"),\n\t\t\t\t\tNetwork: pulumi.Any(resource.Upcloud_network.Lb_network.Id),\n\t\t\t\t},\n\t\t\t\t\u0026upcloud.LoadbalancerNetworkArgs{\n\t\t\t\t\tName:   pulumi.String(\"Public-Net\"),\n\t\t\t\t\tType:   pulumi.String(\"public\"),\n\t\t\t\t\tFamily: pulumi.String(\"IPv4\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewLoadbalancerBackend(ctx, \"lbBe1\", \u0026upcloud.LoadbalancerBackendArgs{\n\t\t\tLoadbalancer: pulumi.Any(resource.Upcloud_loadbalancer.Lb.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.Network;\nimport com.pulumi.upcloud.NetworkArgs;\nimport com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;\nimport com.pulumi.upcloud.LoadbalancerFrontend;\nimport com.pulumi.upcloud.LoadbalancerFrontendArgs;\nimport com.pulumi.upcloud.inputs.LoadbalancerFrontendNetworkArgs;\nimport com.pulumi.upcloud.Loadbalancer;\nimport com.pulumi.upcloud.LoadbalancerArgs;\nimport com.pulumi.upcloud.inputs.LoadbalancerNetworkArgs;\nimport com.pulumi.upcloud.LoadbalancerBackend;\nimport com.pulumi.upcloud.LoadbalancerBackendArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var lbZone = config.get(\"lbZone\").orElse(\"fi-hel2\");\n        var lbNetwork = new Network(\"lbNetwork\", NetworkArgs.builder()\n            .zone(lbZone)\n            .ipNetwork(NetworkIpNetworkArgs.builder()\n                .address(\"10.0.0.0/24\")\n                .dhcp(true)\n                .family(\"IPv4\")\n                .build())\n            .build());\n\n        var lbFe1 = new LoadbalancerFrontend(\"lbFe1\", LoadbalancerFrontendArgs.builder()\n            .loadbalancer(resource.upcloud_loadbalancer().lb().id())\n            .mode(\"http\")\n            .port(8080)\n            .defaultBackendName(resource.upcloud_loadbalancer_backend().lb_be_1().name())\n            .networks(LoadbalancerFrontendNetworkArgs.builder()\n                .name(resource.upcloud_loadbalancer().lb().networks()[1].name())\n                .build())\n            .build());\n\n        var lb = new Loadbalancer(\"lb\", LoadbalancerArgs.builder()\n            .configuredStatus(\"started\")\n            .plan(\"development\")\n            .zone(lbZone)\n            .networks(            \n                LoadbalancerNetworkArgs.builder()\n                    .name(\"Private-Net\")\n                    .type(\"private\")\n                    .family(\"IPv4\")\n                    .network(resource.upcloud_network().lb_network().id())\n                    .build(),\n                LoadbalancerNetworkArgs.builder()\n                    .name(\"Public-Net\")\n                    .type(\"public\")\n                    .family(\"IPv4\")\n                    .build())\n            .build());\n\n        var lbBe1 = new LoadbalancerBackend(\"lbBe1\", LoadbalancerBackendArgs.builder()\n            .loadbalancer(resource.upcloud_loadbalancer().lb().id())\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  lbZone:\n    type: string\n    default: fi-hel2\nresources:\n  lbNetwork:\n    type: upcloud:Network\n    properties:\n      zone: ${lbZone}\n      ipNetwork:\n        address: 10.0.0.0/24\n        dhcp: true\n        family: IPv4\n  lbFe1:\n    type: upcloud:LoadbalancerFrontend\n    properties:\n      loadbalancer: ${resource.upcloud_loadbalancer.lb.id}\n      mode: http\n      port: 8080\n      defaultBackendName: ${resource.upcloud_loadbalancer_backend.lb_be_1.name}\n      networks:\n        - name: ${resource.upcloud_loadbalancer.lb.networks[1].name}\n  lb:\n    type: upcloud:Loadbalancer\n    properties:\n      configuredStatus: started\n      plan: development\n      zone: ${lbZone}\n      networks:\n        - name: Private-Net\n          type: private\n          family: IPv4\n          network: ${resource.upcloud_network.lb_network.id}\n        - name: Public-Net\n          type: public\n          family: IPv4\n  lbBe1:\n    type: upcloud:LoadbalancerBackend\n    properties:\n      loadbalancer: ${resource.upcloud_loadbalancer.lb.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "defaultBackendName": {
                     "type": "string",
@@ -5971,7 +5893,7 @@
                 },
                 "loadbalancer": {
                     "type": "string",
-                    "description": "ID of the load balancer to which the frontend is connected.\n"
+                    "description": "UUID of the load balancer to which the frontend is connected.\n"
                 },
                 "mode": {
                     "type": "string",
@@ -5979,7 +5901,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the frontend must be unique within the load balancer service.\n"
+                    "description": "The name of the frontend. Must be unique within the load balancer service.\n"
                 },
                 "networks": {
                     "type": "array",
@@ -5990,7 +5912,7 @@
                 },
                 "port": {
                     "type": "integer",
-                    "description": "Port to listen incoming requests\n"
+                    "description": "Port to listen for incoming requests.\n"
                 },
                 "properties": {
                     "$ref": "#/types/upcloud:index/LoadbalancerFrontendProperties:LoadbalancerFrontendProperties",
@@ -6001,14 +5923,14 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Set of frontend rule names\n"
+                    "description": "Set of frontend rule names.\n"
                 },
                 "tlsConfigs": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Set of TLS config names\n"
+                    "description": "Set of TLS config names.\n"
                 }
             },
             "required": [
@@ -6017,20 +5939,17 @@
                 "mode",
                 "name",
                 "port",
-                "properties",
                 "rules",
                 "tlsConfigs"
             ],
             "inputProperties": {
                 "defaultBackendName": {
                     "type": "string",
-                    "description": "The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend\nrules.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend\nrules.\n"
                 },
                 "loadbalancer": {
                     "type": "string",
-                    "description": "ID of the load balancer to which the frontend is connected.\n",
-                    "willReplaceOnChanges": true
+                    "description": "UUID of the load balancer to which the frontend is connected.\n"
                 },
                 "mode": {
                     "type": "string",
@@ -6038,8 +5957,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the frontend must be unique within the load balancer service.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The name of the frontend. Must be unique within the load balancer service.\n"
                 },
                 "networks": {
                     "type": "array",
@@ -6050,7 +5968,7 @@
                 },
                 "port": {
                     "type": "integer",
-                    "description": "Port to listen incoming requests\n"
+                    "description": "Port to listen for incoming requests.\n"
                 },
                 "properties": {
                     "$ref": "#/types/upcloud:index/LoadbalancerFrontendProperties:LoadbalancerFrontendProperties",
@@ -6068,13 +5986,11 @@
                 "properties": {
                     "defaultBackendName": {
                         "type": "string",
-                        "description": "The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend\nrules.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend\nrules.\n"
                     },
                     "loadbalancer": {
                         "type": "string",
-                        "description": "ID of the load balancer to which the frontend is connected.\n",
-                        "willReplaceOnChanges": true
+                        "description": "UUID of the load balancer to which the frontend is connected.\n"
                     },
                     "mode": {
                         "type": "string",
@@ -6082,8 +5998,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the frontend must be unique within the load balancer service.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The name of the frontend. Must be unique within the load balancer service.\n"
                     },
                     "networks": {
                         "type": "array",
@@ -6094,7 +6009,7 @@
                     },
                     "port": {
                         "type": "integer",
-                        "description": "Port to listen incoming requests\n"
+                        "description": "Port to listen for incoming requests.\n"
                     },
                     "properties": {
                         "$ref": "#/types/upcloud:index/LoadbalancerFrontendProperties:LoadbalancerFrontendProperties",
@@ -6105,14 +6020,14 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "Set of frontend rule names\n"
+                        "description": "Set of frontend rule names.\n"
                     },
                     "tlsConfigs": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "Set of TLS config names\n"
+                        "description": "Set of TLS config names.\n"
                     }
                 },
                 "type": "object"
@@ -8711,47 +8626,62 @@
             }
         },
         "upcloud:index/router:Router": {
-            "description": "This resource represents a generated UpCloud router resource. \n\t\tRouters can be used to connect multiple Private Networks. \n\t\tUpCloud Servers on any attached network can communicate directly with each other.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@pulumi/upcloud\";\n\nconst myExampleRouter = new upcloud.Router(\"myExampleRouter\", {});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\nmy_example_router = upcloud.Router(\"myExampleRouter\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Upcloud = Pulumi.Upcloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myExampleRouter = new Upcloud.Router(\"myExampleRouter\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upcloud.NewRouter(ctx, \"myExampleRouter\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.Router;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myExampleRouter = new Router(\"myExampleRouter\");\n\n    }\n}\n```\n```yaml\nresources:\n  myExampleRouter:\n    type: upcloud:Router\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import upcloud:index/router:Router my_example_router 049d7ca2-757e-4fb1-a833-f87ee056547a\n```\n\n",
+            "description": "Routers can be used to connect multiple Private Networks. UpCloud Servers on any attached network can communicate directly with each other.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@pulumi/upcloud\";\n\nconst myExampleRouter = new upcloud.Router(\"myExampleRouter\", {});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\nmy_example_router = upcloud.Router(\"myExampleRouter\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Upcloud = Pulumi.Upcloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myExampleRouter = new Upcloud.Router(\"myExampleRouter\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upcloud.NewRouter(ctx, \"myExampleRouter\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.Router;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myExampleRouter = new Router(\"myExampleRouter\");\n\n    }\n}\n```\n```yaml\nresources:\n  myExampleRouter:\n    type: upcloud:Router\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import upcloud:index/router:Router my_example_router 049d7ca2-757e-4fb1-a833-f87ee056547a\n```\n\n",
             "properties": {
                 "attachedNetworks": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "A collection of UUID representing networks attached to this router\n"
+                    "description": "List of UUIDs representing networks attached to this router.\n"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Key-value pairs to classify the router.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the router\n"
+                    "description": "Name of the router.\n"
                 },
                 "staticRoutes": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/upcloud:index/RouterStaticRoute:RouterStaticRoute"
                     },
-                    "description": "A collection of static routes for this router\n"
+                    "description": "A collection of static routes for this router.\n"
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of router\n"
+                    "description": "Type of the router\n"
                 }
             },
             "required": [
                 "attachedNetworks",
+                "labels",
                 "name",
                 "type"
             ],
             "inputProperties": {
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Key-value pairs to classify the router.\n"
+                },
                 "name": {
                     "type": "string",
-                    "description": "Name of the router\n"
+                    "description": "Name of the router.\n"
                 },
                 "staticRoutes": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/upcloud:index/RouterStaticRoute:RouterStaticRoute"
                     },
-                    "description": "A collection of static routes for this router\n"
+                    "description": "A collection of static routes for this router.\n"
                 }
             },
             "stateInputs": {
@@ -8762,22 +8692,29 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "A collection of UUID representing networks attached to this router\n"
+                        "description": "List of UUIDs representing networks attached to this router.\n"
+                    },
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Key-value pairs to classify the router.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "Name of the router\n"
+                        "description": "Name of the router.\n"
                     },
                     "staticRoutes": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/upcloud:index/RouterStaticRoute:RouterStaticRoute"
                         },
-                        "description": "A collection of static routes for this router\n"
+                        "description": "A collection of static routes for this router.\n"
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of router\n"
+                        "description": "Type of the router\n"
                     }
                 },
                 "type": "object"
@@ -9486,7 +9423,19 @@
     },
     "functions": {
         "upcloud:index/getHosts:getHosts": {
-            "description": "Returns a list of available UpCloud hosts. \n\t\tA host identifies the host server that virtual machines are run on. \n\t\tOnly hosts on private cloud to which the calling account has access to are available through this resource.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@pulumi/upcloud\";\n\nconst allHosts = upcloud.getHosts({});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\nall_hosts = upcloud.get_hosts()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Upcloud = Pulumi.Upcloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var allHosts = Upcloud.GetHosts.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upcloud.GetHosts(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.UpcloudFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var allHosts = UpcloudFunctions.getHosts();\n\n    }\n}\n```\n```yaml\nvariables:\n  allHosts:\n    fn::invoke:\n      Function: upcloud:getHosts\n      Arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Returns a list of available UpCloud hosts. \n\t\tA host identifies the host server that virtual machines are run on. \n\t\tOnly hosts on private cloud to which the calling account has access to are available through this resource.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@pulumi/upcloud\";\n\nconst allHosts = upcloud.getHosts({});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\nall_hosts = upcloud.get_hosts()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Upcloud = Pulumi.Upcloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var allHosts = Upcloud.GetHosts.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upcloud.GetHosts(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.UpcloudFunctions;\nimport com.pulumi.upcloud.inputs.GetHostsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var allHosts = UpcloudFunctions.getHosts();\n\n    }\n}\n```\n```yaml\nvariables:\n  allHosts:\n    fn::invoke:\n      Function: upcloud:getHosts\n      Arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getHosts.\n",
+                "properties": {
+                    "hosts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/upcloud:index/getHostsHost:getHostsHost"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "outputs": {
                 "description": "A collection of values returned by getHosts.\n",
                 "properties": {
@@ -9498,12 +9447,11 @@
                     },
                     "id": {
                         "type": "string",
-                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                        "description": "The ID of this resource.\n"
                     }
                 },
                 "type": "object",
                 "required": [
-                    "hosts",
                     "id"
                 ]
             }
@@ -9565,7 +9513,8 @@
                         "type": "string"
                     },
                     "kubeconfig": {
-                        "type": "string"
+                        "type": "string",
+                        "secret": true
                     },
                     "name": {
                         "type": "string"
@@ -10080,7 +10029,7 @@
             }
         },
         "upcloud:index/getZones:getZones": {
-            "description": "Data-source is deprecated.\n",
+            "description": "Returns a list of available UpCloud zones.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getZones.\n",
                 "properties": {
@@ -10097,8 +10046,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "type": "string",
-                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                        "type": "string"
                     },
                     "zoneIds": {
                         "type": "array",
@@ -10109,8 +10057,8 @@
                 },
                 "type": "object",
                 "required": [
-                    "zoneIds",
-                    "id"
+                    "id",
+                    "zoneIds"
                 ]
             }
         }

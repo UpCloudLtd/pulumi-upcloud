@@ -81,7 +81,7 @@ type KubernetesNodeGroup struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
 	// considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity pulumi.BoolPtrOutput `pulumi:"antiAffinity"`
-	// Cluster ID.
+	// UUID of the cluster.
 	Cluster pulumi.StringOutput `pulumi:"cluster"`
 	// Resource properties for custom plan
 	CustomPlan KubernetesNodeGroupCustomPlanPtrOutput `pulumi:"customPlan"`
@@ -150,7 +150,7 @@ type kubernetesNodeGroupState struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
 	// considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity *bool `pulumi:"antiAffinity"`
-	// Cluster ID.
+	// UUID of the cluster.
 	Cluster *string `pulumi:"cluster"`
 	// Resource properties for custom plan
 	CustomPlan *KubernetesNodeGroupCustomPlan `pulumi:"customPlan"`
@@ -181,7 +181,7 @@ type KubernetesNodeGroupState struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
 	// considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity pulumi.BoolPtrInput
-	// Cluster ID.
+	// UUID of the cluster.
 	Cluster pulumi.StringPtrInput
 	// Resource properties for custom plan
 	CustomPlan KubernetesNodeGroupCustomPlanPtrInput
@@ -216,7 +216,7 @@ type kubernetesNodeGroupArgs struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
 	// considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity *bool `pulumi:"antiAffinity"`
-	// Cluster ID.
+	// UUID of the cluster.
 	Cluster string `pulumi:"cluster"`
 	// Resource properties for custom plan
 	CustomPlan *KubernetesNodeGroupCustomPlan `pulumi:"customPlan"`
@@ -248,7 +248,7 @@ type KubernetesNodeGroupArgs struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
 	// considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity pulumi.BoolPtrInput
-	// Cluster ID.
+	// UUID of the cluster.
 	Cluster pulumi.StringInput
 	// Resource properties for custom plan
 	CustomPlan KubernetesNodeGroupCustomPlanPtrInput
@@ -368,7 +368,7 @@ func (o KubernetesNodeGroupOutput) AntiAffinity() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.BoolPtrOutput { return v.AntiAffinity }).(pulumi.BoolPtrOutput)
 }
 
-// Cluster ID.
+// UUID of the cluster.
 func (o KubernetesNodeGroupOutput) Cluster() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.StringOutput { return v.Cluster }).(pulumi.StringOutput)
 }

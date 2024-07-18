@@ -12,13 +12,13 @@ namespace Pulumi.Upcloud
     public static class GetZones
     {
         /// <summary>
-        /// Data-source is deprecated.
+        /// Returns a list of available UpCloud zones.
         /// </summary>
         public static Task<GetZonesResult> InvokeAsync(GetZonesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetZonesResult>("upcloud:index/getZones:getZones", args ?? new GetZonesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Data-source is deprecated.
+        /// Returns a list of available UpCloud zones.
         /// </summary>
         public static Output<GetZonesResult> Invoke(GetZonesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetZonesResult>("upcloud:index/getZones:getZones", args ?? new GetZonesInvokeArgs(), options.WithDefaults());
@@ -52,9 +52,6 @@ namespace Pulumi.Upcloud
     public sealed class GetZonesResult
     {
         public readonly string? FilterType;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<string> ZoneIds;
 

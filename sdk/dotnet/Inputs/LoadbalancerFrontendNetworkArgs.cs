@@ -13,7 +13,7 @@ namespace Pulumi.Upcloud.Inputs
     public sealed class LoadbalancerFrontendNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the load balancer network
+        /// Name of the load balancer network.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

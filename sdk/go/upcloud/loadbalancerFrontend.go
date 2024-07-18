@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource represents load balancer frontend service
+// This resource represents load balancer frontend service.
 //
 // ## Example Usage
 //
@@ -97,22 +97,22 @@ type LoadbalancerFrontend struct {
 	// The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
 	// rules.
 	DefaultBackendName pulumi.StringOutput `pulumi:"defaultBackendName"`
-	// ID of the load balancer to which the frontend is connected.
+	// UUID of the load balancer to which the frontend is connected.
 	Loadbalancer pulumi.StringOutput `pulumi:"loadbalancer"`
 	// When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
 	Mode pulumi.StringOutput `pulumi:"mode"`
-	// The name of the frontend must be unique within the load balancer service.
+	// The name of the frontend. Must be unique within the load balancer service.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
 	// be required when deprecated field `network` is removed from load balancer resource.
 	Networks LoadbalancerFrontendNetworkArrayOutput `pulumi:"networks"`
-	// Port to listen incoming requests
+	// Port to listen for incoming requests.
 	Port pulumi.IntOutput `pulumi:"port"`
 	// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
-	Properties LoadbalancerFrontendPropertiesOutput `pulumi:"properties"`
-	// Set of frontend rule names
+	Properties LoadbalancerFrontendPropertiesPtrOutput `pulumi:"properties"`
+	// Set of frontend rule names.
 	Rules pulumi.StringArrayOutput `pulumi:"rules"`
-	// Set of TLS config names
+	// Set of TLS config names.
 	TlsConfigs pulumi.StringArrayOutput `pulumi:"tlsConfigs"`
 }
 
@@ -161,22 +161,22 @@ type loadbalancerFrontendState struct {
 	// The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
 	// rules.
 	DefaultBackendName *string `pulumi:"defaultBackendName"`
-	// ID of the load balancer to which the frontend is connected.
+	// UUID of the load balancer to which the frontend is connected.
 	Loadbalancer *string `pulumi:"loadbalancer"`
 	// When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
 	Mode *string `pulumi:"mode"`
-	// The name of the frontend must be unique within the load balancer service.
+	// The name of the frontend. Must be unique within the load balancer service.
 	Name *string `pulumi:"name"`
 	// Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
 	// be required when deprecated field `network` is removed from load balancer resource.
 	Networks []LoadbalancerFrontendNetwork `pulumi:"networks"`
-	// Port to listen incoming requests
+	// Port to listen for incoming requests.
 	Port *int `pulumi:"port"`
 	// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
 	Properties *LoadbalancerFrontendProperties `pulumi:"properties"`
-	// Set of frontend rule names
+	// Set of frontend rule names.
 	Rules []string `pulumi:"rules"`
-	// Set of TLS config names
+	// Set of TLS config names.
 	TlsConfigs []string `pulumi:"tlsConfigs"`
 }
 
@@ -184,22 +184,22 @@ type LoadbalancerFrontendState struct {
 	// The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
 	// rules.
 	DefaultBackendName pulumi.StringPtrInput
-	// ID of the load balancer to which the frontend is connected.
+	// UUID of the load balancer to which the frontend is connected.
 	Loadbalancer pulumi.StringPtrInput
 	// When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
 	Mode pulumi.StringPtrInput
-	// The name of the frontend must be unique within the load balancer service.
+	// The name of the frontend. Must be unique within the load balancer service.
 	Name pulumi.StringPtrInput
 	// Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
 	// be required when deprecated field `network` is removed from load balancer resource.
 	Networks LoadbalancerFrontendNetworkArrayInput
-	// Port to listen incoming requests
+	// Port to listen for incoming requests.
 	Port pulumi.IntPtrInput
 	// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
 	Properties LoadbalancerFrontendPropertiesPtrInput
-	// Set of frontend rule names
+	// Set of frontend rule names.
 	Rules pulumi.StringArrayInput
-	// Set of TLS config names
+	// Set of TLS config names.
 	TlsConfigs pulumi.StringArrayInput
 }
 
@@ -211,16 +211,16 @@ type loadbalancerFrontendArgs struct {
 	// The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
 	// rules.
 	DefaultBackendName string `pulumi:"defaultBackendName"`
-	// ID of the load balancer to which the frontend is connected.
+	// UUID of the load balancer to which the frontend is connected.
 	Loadbalancer string `pulumi:"loadbalancer"`
 	// When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
 	Mode string `pulumi:"mode"`
-	// The name of the frontend must be unique within the load balancer service.
+	// The name of the frontend. Must be unique within the load balancer service.
 	Name *string `pulumi:"name"`
 	// Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
 	// be required when deprecated field `network` is removed from load balancer resource.
 	Networks []LoadbalancerFrontendNetwork `pulumi:"networks"`
-	// Port to listen incoming requests
+	// Port to listen for incoming requests.
 	Port int `pulumi:"port"`
 	// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
 	Properties *LoadbalancerFrontendProperties `pulumi:"properties"`
@@ -231,16 +231,16 @@ type LoadbalancerFrontendArgs struct {
 	// The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
 	// rules.
 	DefaultBackendName pulumi.StringInput
-	// ID of the load balancer to which the frontend is connected.
+	// UUID of the load balancer to which the frontend is connected.
 	Loadbalancer pulumi.StringInput
 	// When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
 	Mode pulumi.StringInput
-	// The name of the frontend must be unique within the load balancer service.
+	// The name of the frontend. Must be unique within the load balancer service.
 	Name pulumi.StringPtrInput
 	// Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
 	// be required when deprecated field `network` is removed from load balancer resource.
 	Networks LoadbalancerFrontendNetworkArrayInput
-	// Port to listen incoming requests
+	// Port to listen for incoming requests.
 	Port pulumi.IntInput
 	// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
 	Properties LoadbalancerFrontendPropertiesPtrInput
@@ -339,7 +339,7 @@ func (o LoadbalancerFrontendOutput) DefaultBackendName() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringOutput { return v.DefaultBackendName }).(pulumi.StringOutput)
 }
 
-// ID of the load balancer to which the frontend is connected.
+// UUID of the load balancer to which the frontend is connected.
 func (o LoadbalancerFrontendOutput) Loadbalancer() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringOutput { return v.Loadbalancer }).(pulumi.StringOutput)
 }
@@ -349,7 +349,7 @@ func (o LoadbalancerFrontendOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
 }
 
-// The name of the frontend must be unique within the load balancer service.
+// The name of the frontend. Must be unique within the load balancer service.
 func (o LoadbalancerFrontendOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -360,22 +360,22 @@ func (o LoadbalancerFrontendOutput) Networks() LoadbalancerFrontendNetworkArrayO
 	return o.ApplyT(func(v *LoadbalancerFrontend) LoadbalancerFrontendNetworkArrayOutput { return v.Networks }).(LoadbalancerFrontendNetworkArrayOutput)
 }
 
-// Port to listen incoming requests
+// Port to listen for incoming requests.
 func (o LoadbalancerFrontendOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
 
 // Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
-func (o LoadbalancerFrontendOutput) Properties() LoadbalancerFrontendPropertiesOutput {
-	return o.ApplyT(func(v *LoadbalancerFrontend) LoadbalancerFrontendPropertiesOutput { return v.Properties }).(LoadbalancerFrontendPropertiesOutput)
+func (o LoadbalancerFrontendOutput) Properties() LoadbalancerFrontendPropertiesPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontend) LoadbalancerFrontendPropertiesPtrOutput { return v.Properties }).(LoadbalancerFrontendPropertiesPtrOutput)
 }
 
-// Set of frontend rule names
+// Set of frontend rule names.
 func (o LoadbalancerFrontendOutput) Rules() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringArrayOutput { return v.Rules }).(pulumi.StringArrayOutput)
 }
 
-// Set of TLS config names
+// Set of TLS config names.
 func (o LoadbalancerFrontendOutput) TlsConfigs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringArrayOutput { return v.TlsConfigs }).(pulumi.StringArrayOutput)
 }

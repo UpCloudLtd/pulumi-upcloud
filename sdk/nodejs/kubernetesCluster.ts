@@ -92,7 +92,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
     /**
      * Key-value pairs to classify the cluster.
      */
-    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    public readonly labels!: pulumi.Output<{[key: string]: string}>;
     /**
      * Cluster name. Needs to be unique within the account.
      */
@@ -113,11 +113,11 @@ export class KubernetesCluster extends pulumi.CustomResource {
      * The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
      * kubernetes plans`.
      */
-    public readonly plan!: pulumi.Output<string | undefined>;
+    public readonly plan!: pulumi.Output<string>;
     /**
      * Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
      */
-    public readonly privateNodeGroups!: pulumi.Output<boolean | undefined>;
+    public readonly privateNodeGroups!: pulumi.Output<boolean>;
     /**
      * Operational state of the cluster.
      */
@@ -127,7 +127,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly storageEncryption!: pulumi.Output<string | undefined>;
     /**
-     * Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
      */
     public readonly version!: pulumi.Output<string>;
     /**
@@ -238,7 +238,7 @@ export interface KubernetesClusterState {
      */
     storageEncryption?: pulumi.Input<string>;
     /**
-     * Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
      */
     version?: pulumi.Input<string>;
     /**
@@ -284,7 +284,7 @@ export interface KubernetesClusterArgs {
      */
     storageEncryption?: pulumi.Input<string>;
     /**
-     * Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
      */
     version?: pulumi.Input<string>;
     /**

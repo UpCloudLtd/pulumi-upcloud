@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Upcloud
 {
     /// <summary>
-    /// This resource represents load balancer frontend service
+    /// This resource represents load balancer frontend service.
     /// 
     /// ## Example Usage
     /// 
@@ -92,7 +92,7 @@ namespace Pulumi.Upcloud
         public Output<string> DefaultBackendName { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the load balancer to which the frontend is connected.
+        /// UUID of the load balancer to which the frontend is connected.
         /// </summary>
         [Output("loadbalancer")]
         public Output<string> Loadbalancer { get; private set; } = null!;
@@ -104,7 +104,7 @@ namespace Pulumi.Upcloud
         public Output<string> Mode { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the frontend must be unique within the load balancer service.
+        /// The name of the frontend. Must be unique within the load balancer service.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -117,7 +117,7 @@ namespace Pulumi.Upcloud
         public Output<ImmutableArray<Outputs.LoadbalancerFrontendNetwork>> Networks { get; private set; } = null!;
 
         /// <summary>
-        /// Port to listen incoming requests
+        /// Port to listen for incoming requests.
         /// </summary>
         [Output("port")]
         public Output<int> Port { get; private set; } = null!;
@@ -126,16 +126,16 @@ namespace Pulumi.Upcloud
         /// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
         /// </summary>
         [Output("properties")]
-        public Output<Outputs.LoadbalancerFrontendProperties> Properties { get; private set; } = null!;
+        public Output<Outputs.LoadbalancerFrontendProperties?> Properties { get; private set; } = null!;
 
         /// <summary>
-        /// Set of frontend rule names
+        /// Set of frontend rule names.
         /// </summary>
         [Output("rules")]
         public Output<ImmutableArray<string>> Rules { get; private set; } = null!;
 
         /// <summary>
-        /// Set of TLS config names
+        /// Set of TLS config names.
         /// </summary>
         [Output("tlsConfigs")]
         public Output<ImmutableArray<string>> TlsConfigs { get; private set; } = null!;
@@ -194,7 +194,7 @@ namespace Pulumi.Upcloud
         public Input<string> DefaultBackendName { get; set; } = null!;
 
         /// <summary>
-        /// ID of the load balancer to which the frontend is connected.
+        /// UUID of the load balancer to which the frontend is connected.
         /// </summary>
         [Input("loadbalancer", required: true)]
         public Input<string> Loadbalancer { get; set; } = null!;
@@ -206,7 +206,7 @@ namespace Pulumi.Upcloud
         public Input<string> Mode { get; set; } = null!;
 
         /// <summary>
-        /// The name of the frontend must be unique within the load balancer service.
+        /// The name of the frontend. Must be unique within the load balancer service.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -225,7 +225,7 @@ namespace Pulumi.Upcloud
         }
 
         /// <summary>
-        /// Port to listen incoming requests
+        /// Port to listen for incoming requests.
         /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
@@ -252,7 +252,7 @@ namespace Pulumi.Upcloud
         public Input<string>? DefaultBackendName { get; set; }
 
         /// <summary>
-        /// ID of the load balancer to which the frontend is connected.
+        /// UUID of the load balancer to which the frontend is connected.
         /// </summary>
         [Input("loadbalancer")]
         public Input<string>? Loadbalancer { get; set; }
@@ -264,7 +264,7 @@ namespace Pulumi.Upcloud
         public Input<string>? Mode { get; set; }
 
         /// <summary>
-        /// The name of the frontend must be unique within the load balancer service.
+        /// The name of the frontend. Must be unique within the load balancer service.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -283,7 +283,7 @@ namespace Pulumi.Upcloud
         }
 
         /// <summary>
-        /// Port to listen incoming requests
+        /// Port to listen for incoming requests.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
@@ -298,7 +298,7 @@ namespace Pulumi.Upcloud
         private InputList<string>? _rules;
 
         /// <summary>
-        /// Set of frontend rule names
+        /// Set of frontend rule names.
         /// </summary>
         public InputList<string> Rules
         {
@@ -310,7 +310,7 @@ namespace Pulumi.Upcloud
         private InputList<string>? _tlsConfigs;
 
         /// <summary>
-        /// Set of TLS config names
+        /// Set of TLS config names.
         /// </summary>
         public InputList<string> TlsConfigs
         {

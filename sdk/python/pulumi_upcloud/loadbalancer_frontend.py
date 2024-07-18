@@ -27,10 +27,10 @@ class LoadbalancerFrontendArgs:
         The set of arguments for constructing a LoadbalancerFrontend resource.
         :param pulumi.Input[str] default_backend_name: The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
                rules.
-        :param pulumi.Input[str] loadbalancer: ID of the load balancer to which the frontend is connected.
+        :param pulumi.Input[str] loadbalancer: UUID of the load balancer to which the frontend is connected.
         :param pulumi.Input[str] mode: When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
-        :param pulumi.Input[int] port: Port to listen incoming requests
-        :param pulumi.Input[str] name: The name of the frontend must be unique within the load balancer service.
+        :param pulumi.Input[int] port: Port to listen for incoming requests.
+        :param pulumi.Input[str] name: The name of the frontend. Must be unique within the load balancer service.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendNetworkArgs']]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
                be required when deprecated field `network` is removed from load balancer resource.
         :param pulumi.Input['LoadbalancerFrontendPropertiesArgs'] properties: Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
@@ -63,7 +63,7 @@ class LoadbalancerFrontendArgs:
     @pulumi.getter
     def loadbalancer(self) -> pulumi.Input[str]:
         """
-        ID of the load balancer to which the frontend is connected.
+        UUID of the load balancer to which the frontend is connected.
         """
         return pulumi.get(self, "loadbalancer")
 
@@ -87,7 +87,7 @@ class LoadbalancerFrontendArgs:
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
         """
-        Port to listen incoming requests
+        Port to listen for incoming requests.
         """
         return pulumi.get(self, "port")
 
@@ -99,7 +99,7 @@ class LoadbalancerFrontendArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the frontend must be unique within the load balancer service.
+        The name of the frontend. Must be unique within the load balancer service.
         """
         return pulumi.get(self, "name")
 
@@ -149,15 +149,15 @@ class _LoadbalancerFrontendState:
         Input properties used for looking up and filtering LoadbalancerFrontend resources.
         :param pulumi.Input[str] default_backend_name: The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
                rules.
-        :param pulumi.Input[str] loadbalancer: ID of the load balancer to which the frontend is connected.
+        :param pulumi.Input[str] loadbalancer: UUID of the load balancer to which the frontend is connected.
         :param pulumi.Input[str] mode: When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
-        :param pulumi.Input[str] name: The name of the frontend must be unique within the load balancer service.
+        :param pulumi.Input[str] name: The name of the frontend. Must be unique within the load balancer service.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendNetworkArgs']]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
                be required when deprecated field `network` is removed from load balancer resource.
-        :param pulumi.Input[int] port: Port to listen incoming requests
+        :param pulumi.Input[int] port: Port to listen for incoming requests.
         :param pulumi.Input['LoadbalancerFrontendPropertiesArgs'] properties: Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] rules: Set of frontend rule names
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_configs: Set of TLS config names
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] rules: Set of frontend rule names.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_configs: Set of TLS config names.
         """
         if default_backend_name is not None:
             pulumi.set(__self__, "default_backend_name", default_backend_name)
@@ -195,7 +195,7 @@ class _LoadbalancerFrontendState:
     @pulumi.getter
     def loadbalancer(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the load balancer to which the frontend is connected.
+        UUID of the load balancer to which the frontend is connected.
         """
         return pulumi.get(self, "loadbalancer")
 
@@ -219,7 +219,7 @@ class _LoadbalancerFrontendState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the frontend must be unique within the load balancer service.
+        The name of the frontend. Must be unique within the load balancer service.
         """
         return pulumi.get(self, "name")
 
@@ -244,7 +244,7 @@ class _LoadbalancerFrontendState:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        Port to listen incoming requests
+        Port to listen for incoming requests.
         """
         return pulumi.get(self, "port")
 
@@ -268,7 +268,7 @@ class _LoadbalancerFrontendState:
     @pulumi.getter
     def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Set of frontend rule names
+        Set of frontend rule names.
         """
         return pulumi.get(self, "rules")
 
@@ -280,7 +280,7 @@ class _LoadbalancerFrontendState:
     @pulumi.getter(name="tlsConfigs")
     def tls_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Set of TLS config names
+        Set of TLS config names.
         """
         return pulumi.get(self, "tls_configs")
 
@@ -303,7 +303,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                  properties: Optional[pulumi.Input[pulumi.InputType['LoadbalancerFrontendPropertiesArgs']]] = None,
                  __props__=None):
         """
-        This resource represents load balancer frontend service
+        This resource represents load balancer frontend service.
 
         ## Example Usage
 
@@ -354,12 +354,12 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] default_backend_name: The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
                rules.
-        :param pulumi.Input[str] loadbalancer: ID of the load balancer to which the frontend is connected.
+        :param pulumi.Input[str] loadbalancer: UUID of the load balancer to which the frontend is connected.
         :param pulumi.Input[str] mode: When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
-        :param pulumi.Input[str] name: The name of the frontend must be unique within the load balancer service.
+        :param pulumi.Input[str] name: The name of the frontend. Must be unique within the load balancer service.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerFrontendNetworkArgs']]]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
                be required when deprecated field `network` is removed from load balancer resource.
-        :param pulumi.Input[int] port: Port to listen incoming requests
+        :param pulumi.Input[int] port: Port to listen for incoming requests.
         :param pulumi.Input[pulumi.InputType['LoadbalancerFrontendPropertiesArgs']] properties: Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
         """
         ...
@@ -369,7 +369,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                  args: LoadbalancerFrontendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource represents load balancer frontend service
+        This resource represents load balancer frontend service.
 
         ## Example Usage
 
@@ -492,15 +492,15 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] default_backend_name: The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
                rules.
-        :param pulumi.Input[str] loadbalancer: ID of the load balancer to which the frontend is connected.
+        :param pulumi.Input[str] loadbalancer: UUID of the load balancer to which the frontend is connected.
         :param pulumi.Input[str] mode: When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
-        :param pulumi.Input[str] name: The name of the frontend must be unique within the load balancer service.
+        :param pulumi.Input[str] name: The name of the frontend. Must be unique within the load balancer service.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerFrontendNetworkArgs']]]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
                be required when deprecated field `network` is removed from load balancer resource.
-        :param pulumi.Input[int] port: Port to listen incoming requests
+        :param pulumi.Input[int] port: Port to listen for incoming requests.
         :param pulumi.Input[pulumi.InputType['LoadbalancerFrontendPropertiesArgs']] properties: Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] rules: Set of frontend rule names
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_configs: Set of TLS config names
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] rules: Set of frontend rule names.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_configs: Set of TLS config names.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -530,7 +530,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter
     def loadbalancer(self) -> pulumi.Output[str]:
         """
-        ID of the load balancer to which the frontend is connected.
+        UUID of the load balancer to which the frontend is connected.
         """
         return pulumi.get(self, "loadbalancer")
 
@@ -546,7 +546,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the frontend must be unique within the load balancer service.
+        The name of the frontend. Must be unique within the load balancer service.
         """
         return pulumi.get(self, "name")
 
@@ -563,13 +563,13 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter
     def port(self) -> pulumi.Output[int]:
         """
-        Port to listen incoming requests
+        Port to listen for incoming requests.
         """
         return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
-    def properties(self) -> pulumi.Output['outputs.LoadbalancerFrontendProperties']:
+    def properties(self) -> pulumi.Output[Optional['outputs.LoadbalancerFrontendProperties']]:
         """
         Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
         """
@@ -579,7 +579,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter
     def rules(self) -> pulumi.Output[Sequence[str]]:
         """
-        Set of frontend rule names
+        Set of frontend rule names.
         """
         return pulumi.get(self, "rules")
 
@@ -587,7 +587,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter(name="tlsConfigs")
     def tls_configs(self) -> pulumi.Output[Sequence[str]]:
         """
-        Set of TLS config names
+        Set of TLS config names.
         """
         return pulumi.get(self, "tls_configs")
 

@@ -114,14 +114,14 @@ type KubernetesCluster struct {
 	NodeGroups pulumi.StringArrayOutput `pulumi:"nodeGroups"`
 	// The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
 	// kubernetes plans`.
-	Plan pulumi.StringPtrOutput `pulumi:"plan"`
+	Plan pulumi.StringOutput `pulumi:"plan"`
 	// Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
-	PrivateNodeGroups pulumi.BoolPtrOutput `pulumi:"privateNodeGroups"`
+	PrivateNodeGroups pulumi.BoolOutput `pulumi:"privateNodeGroups"`
 	// Operational state of the cluster.
 	State pulumi.StringOutput `pulumi:"state"`
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption pulumi.StringPtrOutput `pulumi:"storageEncryption"`
-	// Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
 	Version pulumi.StringOutput `pulumi:"version"`
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -190,7 +190,7 @@ type kubernetesClusterState struct {
 	State *string `pulumi:"state"`
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption *string `pulumi:"storageEncryption"`
-	// Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
 	Version *string `pulumi:"version"`
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -221,7 +221,7 @@ type KubernetesClusterState struct {
 	State pulumi.StringPtrInput
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption pulumi.StringPtrInput
-	// Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
 	Version pulumi.StringPtrInput
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -250,7 +250,7 @@ type kubernetesClusterArgs struct {
 	PrivateNodeGroups *bool `pulumi:"privateNodeGroups"`
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption *string `pulumi:"storageEncryption"`
-	// Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
 	Version *string `pulumi:"version"`
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -276,7 +276,7 @@ type KubernetesClusterArgs struct {
 	PrivateNodeGroups pulumi.BoolPtrInput
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption pulumi.StringPtrInput
-	// Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
 	Version pulumi.StringPtrInput
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -404,13 +404,13 @@ func (o KubernetesClusterOutput) NodeGroups() pulumi.StringArrayOutput {
 
 // The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
 // kubernetes plans`.
-func (o KubernetesClusterOutput) Plan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringPtrOutput { return v.Plan }).(pulumi.StringPtrOutput)
+func (o KubernetesClusterOutput) Plan() pulumi.StringOutput {
+	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Plan }).(pulumi.StringOutput)
 }
 
 // Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
-func (o KubernetesClusterOutput) PrivateNodeGroups() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *KubernetesCluster) pulumi.BoolPtrOutput { return v.PrivateNodeGroups }).(pulumi.BoolPtrOutput)
+func (o KubernetesClusterOutput) PrivateNodeGroups() pulumi.BoolOutput {
+	return o.ApplyT(func(v *KubernetesCluster) pulumi.BoolOutput { return v.PrivateNodeGroups }).(pulumi.BoolOutput)
 }
 
 // Operational state of the cluster.
@@ -423,7 +423,7 @@ func (o KubernetesClusterOutput) StorageEncryption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringPtrOutput { return v.StorageEncryption }).(pulumi.StringPtrOutput)
 }
 
-// Kubernetes version ID, e.g. `1.27`. You can list available version IDs with `upctl kubernetes versions`.
+// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
 func (o KubernetesClusterOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

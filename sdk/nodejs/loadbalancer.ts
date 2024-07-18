@@ -99,14 +99,14 @@ export class Loadbalancer extends pulumi.CustomResource {
      * The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
      * Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
      */
-    public readonly maintenanceDow!: pulumi.Output<string | undefined>;
+    public readonly maintenanceDow!: pulumi.Output<string>;
     /**
      * The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this
      * period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime
      * of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
      * HH:MM:SSZ, for example `20:01:01Z`.
      */
-    public readonly maintenanceTime!: pulumi.Output<string | undefined>;
+    public readonly maintenanceTime!: pulumi.Output<string>;
     /**
      * The name of the service must be unique within customer account.
      */

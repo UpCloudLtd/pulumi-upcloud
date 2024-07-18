@@ -66,32 +66,32 @@ namespace Pulumi.Upcloud
     public partial class FloatingIpAddress : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Network access for the floating IP address. Supported value: `public`
+        /// Network access for the floating IP address. Supported value: `public`.
         /// </summary>
         [Output("access")]
-        public Output<string?> Access { get; private set; } = null!;
+        public Output<string> Access { get; private set; } = null!;
 
         /// <summary>
-        /// The address family of new IP address
+        /// The address family of the floating IP address.
         /// </summary>
         [Output("family")]
-        public Output<string?> Family { get; private set; } = null!;
+        public Output<string> Family { get; private set; } = null!;
 
         /// <summary>
-        /// An UpCloud assigned IP Address
+        /// An UpCloud assigned IP Address.
         /// </summary>
         [Output("ipAddress")]
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// MAC address of server interface to assign address to
+        /// MAC address of a server interface to assign address to.
         /// </summary>
         [Output("macAddress")]
         public Output<string?> MacAddress { get; private set; } = null!;
 
         /// <summary>
-        /// Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-        /// with `upctl zone list`.
+        /// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+        /// zones with `upctl zone list`.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -143,26 +143,26 @@ namespace Pulumi.Upcloud
     public sealed class FloatingIpAddressArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Network access for the floating IP address. Supported value: `public`
+        /// Network access for the floating IP address. Supported value: `public`.
         /// </summary>
         [Input("access")]
         public Input<string>? Access { get; set; }
 
         /// <summary>
-        /// The address family of new IP address
+        /// The address family of the floating IP address.
         /// </summary>
         [Input("family")]
         public Input<string>? Family { get; set; }
 
         /// <summary>
-        /// MAC address of server interface to assign address to
+        /// MAC address of a server interface to assign address to.
         /// </summary>
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
 
         /// <summary>
-        /// Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-        /// with `upctl zone list`.
+        /// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+        /// zones with `upctl zone list`.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -176,32 +176,32 @@ namespace Pulumi.Upcloud
     public sealed class FloatingIpAddressState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Network access for the floating IP address. Supported value: `public`
+        /// Network access for the floating IP address. Supported value: `public`.
         /// </summary>
         [Input("access")]
         public Input<string>? Access { get; set; }
 
         /// <summary>
-        /// The address family of new IP address
+        /// The address family of the floating IP address.
         /// </summary>
         [Input("family")]
         public Input<string>? Family { get; set; }
 
         /// <summary>
-        /// An UpCloud assigned IP Address
+        /// An UpCloud assigned IP Address.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// MAC address of server interface to assign address to
+        /// MAC address of a server interface to assign address to.
         /// </summary>
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
 
         /// <summary>
-        /// Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-        /// with `upctl zone list`.
+        /// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+        /// zones with `upctl zone list`.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

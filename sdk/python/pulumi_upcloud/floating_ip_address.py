@@ -20,11 +20,11 @@ class FloatingIpAddressArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FloatingIpAddress resource.
-        :param pulumi.Input[str] access: Network access for the floating IP address. Supported value: `public`
-        :param pulumi.Input[str] family: The address family of new IP address
-        :param pulumi.Input[str] mac_address: MAC address of server interface to assign address to
-        :param pulumi.Input[str] zone: Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-               with `upctl zone list`.
+        :param pulumi.Input[str] access: Network access for the floating IP address. Supported value: `public`.
+        :param pulumi.Input[str] family: The address family of the floating IP address.
+        :param pulumi.Input[str] mac_address: MAC address of a server interface to assign address to.
+        :param pulumi.Input[str] zone: Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+               zones with `upctl zone list`.
         """
         if access is not None:
             pulumi.set(__self__, "access", access)
@@ -39,7 +39,7 @@ class FloatingIpAddressArgs:
     @pulumi.getter
     def access(self) -> Optional[pulumi.Input[str]]:
         """
-        Network access for the floating IP address. Supported value: `public`
+        Network access for the floating IP address. Supported value: `public`.
         """
         return pulumi.get(self, "access")
 
@@ -51,7 +51,7 @@ class FloatingIpAddressArgs:
     @pulumi.getter
     def family(self) -> Optional[pulumi.Input[str]]:
         """
-        The address family of new IP address
+        The address family of the floating IP address.
         """
         return pulumi.get(self, "family")
 
@@ -63,7 +63,7 @@ class FloatingIpAddressArgs:
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> Optional[pulumi.Input[str]]:
         """
-        MAC address of server interface to assign address to
+        MAC address of a server interface to assign address to.
         """
         return pulumi.get(self, "mac_address")
 
@@ -75,8 +75,8 @@ class FloatingIpAddressArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-        with `upctl zone list`.
+        Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+        zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 
@@ -95,12 +95,12 @@ class _FloatingIpAddressState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FloatingIpAddress resources.
-        :param pulumi.Input[str] access: Network access for the floating IP address. Supported value: `public`
-        :param pulumi.Input[str] family: The address family of new IP address
-        :param pulumi.Input[str] ip_address: An UpCloud assigned IP Address
-        :param pulumi.Input[str] mac_address: MAC address of server interface to assign address to
-        :param pulumi.Input[str] zone: Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-               with `upctl zone list`.
+        :param pulumi.Input[str] access: Network access for the floating IP address. Supported value: `public`.
+        :param pulumi.Input[str] family: The address family of the floating IP address.
+        :param pulumi.Input[str] ip_address: An UpCloud assigned IP Address.
+        :param pulumi.Input[str] mac_address: MAC address of a server interface to assign address to.
+        :param pulumi.Input[str] zone: Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+               zones with `upctl zone list`.
         """
         if access is not None:
             pulumi.set(__self__, "access", access)
@@ -117,7 +117,7 @@ class _FloatingIpAddressState:
     @pulumi.getter
     def access(self) -> Optional[pulumi.Input[str]]:
         """
-        Network access for the floating IP address. Supported value: `public`
+        Network access for the floating IP address. Supported value: `public`.
         """
         return pulumi.get(self, "access")
 
@@ -129,7 +129,7 @@ class _FloatingIpAddressState:
     @pulumi.getter
     def family(self) -> Optional[pulumi.Input[str]]:
         """
-        The address family of new IP address
+        The address family of the floating IP address.
         """
         return pulumi.get(self, "family")
 
@@ -141,7 +141,7 @@ class _FloatingIpAddressState:
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[pulumi.Input[str]]:
         """
-        An UpCloud assigned IP Address
+        An UpCloud assigned IP Address.
         """
         return pulumi.get(self, "ip_address")
 
@@ -153,7 +153,7 @@ class _FloatingIpAddressState:
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> Optional[pulumi.Input[str]]:
         """
-        MAC address of server interface to assign address to
+        MAC address of a server interface to assign address to.
         """
         return pulumi.get(self, "mac_address")
 
@@ -165,8 +165,8 @@ class _FloatingIpAddressState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-        with `upctl zone list`.
+        Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+        zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 
@@ -219,11 +219,11 @@ class FloatingIpAddress(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] access: Network access for the floating IP address. Supported value: `public`
-        :param pulumi.Input[str] family: The address family of new IP address
-        :param pulumi.Input[str] mac_address: MAC address of server interface to assign address to
-        :param pulumi.Input[str] zone: Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-               with `upctl zone list`.
+        :param pulumi.Input[str] access: Network access for the floating IP address. Supported value: `public`.
+        :param pulumi.Input[str] family: The address family of the floating IP address.
+        :param pulumi.Input[str] mac_address: MAC address of a server interface to assign address to.
+        :param pulumi.Input[str] zone: Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+               zones with `upctl zone list`.
         """
         ...
     @overload
@@ -318,12 +318,12 @@ class FloatingIpAddress(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] access: Network access for the floating IP address. Supported value: `public`
-        :param pulumi.Input[str] family: The address family of new IP address
-        :param pulumi.Input[str] ip_address: An UpCloud assigned IP Address
-        :param pulumi.Input[str] mac_address: MAC address of server interface to assign address to
-        :param pulumi.Input[str] zone: Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-               with `upctl zone list`.
+        :param pulumi.Input[str] access: Network access for the floating IP address. Supported value: `public`.
+        :param pulumi.Input[str] family: The address family of the floating IP address.
+        :param pulumi.Input[str] ip_address: An UpCloud assigned IP Address.
+        :param pulumi.Input[str] mac_address: MAC address of a server interface to assign address to.
+        :param pulumi.Input[str] zone: Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+               zones with `upctl zone list`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -338,17 +338,17 @@ class FloatingIpAddress(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def access(self) -> pulumi.Output[Optional[str]]:
+    def access(self) -> pulumi.Output[str]:
         """
-        Network access for the floating IP address. Supported value: `public`
+        Network access for the floating IP address. Supported value: `public`.
         """
         return pulumi.get(self, "access")
 
     @property
     @pulumi.getter
-    def family(self) -> pulumi.Output[Optional[str]]:
+    def family(self) -> pulumi.Output[str]:
         """
-        The address family of new IP address
+        The address family of the floating IP address.
         """
         return pulumi.get(self, "family")
 
@@ -356,7 +356,7 @@ class FloatingIpAddress(pulumi.CustomResource):
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> pulumi.Output[str]:
         """
-        An UpCloud assigned IP Address
+        An UpCloud assigned IP Address.
         """
         return pulumi.get(self, "ip_address")
 
@@ -364,7 +364,7 @@ class FloatingIpAddress(pulumi.CustomResource):
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> pulumi.Output[Optional[str]]:
         """
-        MAC address of server interface to assign address to
+        MAC address of a server interface to assign address to.
         """
         return pulumi.get(self, "mac_address")
 
@@ -372,8 +372,8 @@ class FloatingIpAddress(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-        with `upctl zone list`.
+        Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+        zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 

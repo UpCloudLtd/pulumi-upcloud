@@ -30,7 +30,7 @@ class KubernetesNodeGroupArgs:
                  utility_network_access: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a KubernetesNodeGroup resource.
-        :param pulumi.Input[str] cluster: Cluster ID.
+        :param pulumi.Input[str] cluster: UUID of the cluster.
         :param pulumi.Input[int] node_count: Amount of nodes to provision in the node group.
         :param pulumi.Input[str] plan: The server plan used for the node group. You can list available plans with `upctl server plans`
         :param pulumi.Input[bool] anti_affinity: If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
@@ -73,7 +73,7 @@ class KubernetesNodeGroupArgs:
     @pulumi.getter
     def cluster(self) -> pulumi.Input[str]:
         """
-        Cluster ID.
+        UUID of the cluster.
         """
         return pulumi.get(self, "cluster")
 
@@ -237,7 +237,7 @@ class _KubernetesNodeGroupState:
         Input properties used for looking up and filtering KubernetesNodeGroup resources.
         :param pulumi.Input[bool] anti_affinity: If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
                considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
-        :param pulumi.Input[str] cluster: Cluster ID.
+        :param pulumi.Input[str] cluster: UUID of the cluster.
         :param pulumi.Input['KubernetesNodeGroupCustomPlanArgs'] custom_plan: Resource properties for custom plan
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]] kubelet_args: Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
                kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
@@ -294,7 +294,7 @@ class _KubernetesNodeGroupState:
     @pulumi.getter
     def cluster(self) -> Optional[pulumi.Input[str]]:
         """
-        Cluster ID.
+        UUID of the cluster.
         """
         return pulumi.get(self, "cluster")
 
@@ -485,7 +485,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] anti_affinity: If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
                considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
-        :param pulumi.Input[str] cluster: Cluster ID.
+        :param pulumi.Input[str] cluster: UUID of the cluster.
         :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupCustomPlanArgs']] custom_plan: Resource properties for custom plan
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodeGroupKubeletArgArgs']]]] kubelet_args: Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
                kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
@@ -628,7 +628,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] anti_affinity: If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
                considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
-        :param pulumi.Input[str] cluster: Cluster ID.
+        :param pulumi.Input[str] cluster: UUID of the cluster.
         :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupCustomPlanArgs']] custom_plan: Resource properties for custom plan
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodeGroupKubeletArgArgs']]]] kubelet_args: Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
                kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
@@ -674,7 +674,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
     @pulumi.getter
     def cluster(self) -> pulumi.Output[str]:
         """
-        Cluster ID.
+        UUID of the cluster.
         """
         return pulumi.get(self, "cluster")
 

@@ -88,12 +88,12 @@ type Loadbalancer struct {
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
 	// Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
-	MaintenanceDow pulumi.StringPtrOutput `pulumi:"maintenanceDow"`
+	MaintenanceDow pulumi.StringOutput `pulumi:"maintenanceDow"`
 	// The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this
 	// period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime
 	// of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
 	// HH:MM:SSZ, for example `20:01:01Z`.
-	MaintenanceTime pulumi.StringPtrOutput `pulumi:"maintenanceTime"`
+	MaintenanceTime pulumi.StringOutput `pulumi:"maintenanceTime"`
 	// The name of the service must be unique within customer account.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Private network UUID where traffic will be routed. Must reside in load balancer zone.
@@ -406,16 +406,16 @@ func (o LoadbalancerOutput) Labels() pulumi.StringMapOutput {
 
 // The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
 // Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
-func (o LoadbalancerOutput) MaintenanceDow() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Loadbalancer) pulumi.StringPtrOutput { return v.MaintenanceDow }).(pulumi.StringPtrOutput)
+func (o LoadbalancerOutput) MaintenanceDow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.MaintenanceDow }).(pulumi.StringOutput)
 }
 
 // The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this
 // period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime
 // of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
 // HH:MM:SSZ, for example `20:01:01Z`.
-func (o LoadbalancerOutput) MaintenanceTime() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Loadbalancer) pulumi.StringPtrOutput { return v.MaintenanceTime }).(pulumi.StringPtrOutput)
+func (o LoadbalancerOutput) MaintenanceTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.MaintenanceTime }).(pulumi.StringOutput)
 }
 
 // The name of the service must be unique within customer account.

@@ -74,16 +74,16 @@ import (
 type FloatingIpAddress struct {
 	pulumi.CustomResourceState
 
-	// Network access for the floating IP address. Supported value: `public`
-	Access pulumi.StringPtrOutput `pulumi:"access"`
-	// The address family of new IP address
-	Family pulumi.StringPtrOutput `pulumi:"family"`
-	// An UpCloud assigned IP Address
+	// Network access for the floating IP address. Supported value: `public`.
+	Access pulumi.StringOutput `pulumi:"access"`
+	// The address family of the floating IP address.
+	Family pulumi.StringOutput `pulumi:"family"`
+	// An UpCloud assigned IP Address.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
-	// MAC address of server interface to assign address to
+	// MAC address of a server interface to assign address to.
 	MacAddress pulumi.StringPtrOutput `pulumi:"macAddress"`
-	// Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-	// with `upctl zone list`.
+	// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+	// zones with `upctl zone list`.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -117,30 +117,30 @@ func GetFloatingIpAddress(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FloatingIpAddress resources.
 type floatingIpAddressState struct {
-	// Network access for the floating IP address. Supported value: `public`
+	// Network access for the floating IP address. Supported value: `public`.
 	Access *string `pulumi:"access"`
-	// The address family of new IP address
+	// The address family of the floating IP address.
 	Family *string `pulumi:"family"`
-	// An UpCloud assigned IP Address
+	// An UpCloud assigned IP Address.
 	IpAddress *string `pulumi:"ipAddress"`
-	// MAC address of server interface to assign address to
+	// MAC address of a server interface to assign address to.
 	MacAddress *string `pulumi:"macAddress"`
-	// Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-	// with `upctl zone list`.
+	// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+	// zones with `upctl zone list`.
 	Zone *string `pulumi:"zone"`
 }
 
 type FloatingIpAddressState struct {
-	// Network access for the floating IP address. Supported value: `public`
+	// Network access for the floating IP address. Supported value: `public`.
 	Access pulumi.StringPtrInput
-	// The address family of new IP address
+	// The address family of the floating IP address.
 	Family pulumi.StringPtrInput
-	// An UpCloud assigned IP Address
+	// An UpCloud assigned IP Address.
 	IpAddress pulumi.StringPtrInput
-	// MAC address of server interface to assign address to
+	// MAC address of a server interface to assign address to.
 	MacAddress pulumi.StringPtrInput
-	// Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-	// with `upctl zone list`.
+	// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+	// zones with `upctl zone list`.
 	Zone pulumi.StringPtrInput
 }
 
@@ -149,27 +149,27 @@ func (FloatingIpAddressState) ElementType() reflect.Type {
 }
 
 type floatingIpAddressArgs struct {
-	// Network access for the floating IP address. Supported value: `public`
+	// Network access for the floating IP address. Supported value: `public`.
 	Access *string `pulumi:"access"`
-	// The address family of new IP address
+	// The address family of the floating IP address.
 	Family *string `pulumi:"family"`
-	// MAC address of server interface to assign address to
+	// MAC address of a server interface to assign address to.
 	MacAddress *string `pulumi:"macAddress"`
-	// Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-	// with `upctl zone list`.
+	// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+	// zones with `upctl zone list`.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a FloatingIpAddress resource.
 type FloatingIpAddressArgs struct {
-	// Network access for the floating IP address. Supported value: `public`
+	// Network access for the floating IP address. Supported value: `public`.
 	Access pulumi.StringPtrInput
-	// The address family of new IP address
+	// The address family of the floating IP address.
 	Family pulumi.StringPtrInput
-	// MAC address of server interface to assign address to
+	// MAC address of a server interface to assign address to.
 	MacAddress pulumi.StringPtrInput
-	// Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-	// with `upctl zone list`.
+	// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+	// zones with `upctl zone list`.
 	Zone pulumi.StringPtrInput
 }
 
@@ -260,28 +260,28 @@ func (o FloatingIpAddressOutput) ToFloatingIpAddressOutputWithContext(ctx contex
 	return o
 }
 
-// Network access for the floating IP address. Supported value: `public`
-func (o FloatingIpAddressOutput) Access() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FloatingIpAddress) pulumi.StringPtrOutput { return v.Access }).(pulumi.StringPtrOutput)
+// Network access for the floating IP address. Supported value: `public`.
+func (o FloatingIpAddressOutput) Access() pulumi.StringOutput {
+	return o.ApplyT(func(v *FloatingIpAddress) pulumi.StringOutput { return v.Access }).(pulumi.StringOutput)
 }
 
-// The address family of new IP address
-func (o FloatingIpAddressOutput) Family() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FloatingIpAddress) pulumi.StringPtrOutput { return v.Family }).(pulumi.StringPtrOutput)
+// The address family of the floating IP address.
+func (o FloatingIpAddressOutput) Family() pulumi.StringOutput {
+	return o.ApplyT(func(v *FloatingIpAddress) pulumi.StringOutput { return v.Family }).(pulumi.StringOutput)
 }
 
-// An UpCloud assigned IP Address
+// An UpCloud assigned IP Address.
 func (o FloatingIpAddressOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *FloatingIpAddress) pulumi.StringOutput { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// MAC address of server interface to assign address to
+// MAC address of a server interface to assign address to.
 func (o FloatingIpAddressOutput) MacAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FloatingIpAddress) pulumi.StringPtrOutput { return v.MacAddress }).(pulumi.StringPtrOutput)
 }
 
-// Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones
-// with `upctl zone list`.
+// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
+// zones with `upctl zone list`.
 func (o FloatingIpAddressOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *FloatingIpAddress) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
