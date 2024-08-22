@@ -69,7 +69,7 @@ export class Network extends pulumi.CustomResource {
      */
     public readonly ipNetwork!: pulumi.Output<outputs.NetworkIpNetwork>;
     /**
-     * Key-value pairs to classify the network.
+     * User defined key-value pairs to classify the network.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
     /**
@@ -137,7 +137,7 @@ export interface NetworkState {
      */
     ipNetwork?: pulumi.Input<inputs.NetworkIpNetwork>;
     /**
-     * Key-value pairs to classify the network.
+     * User defined key-value pairs to classify the network.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -167,7 +167,7 @@ export interface NetworkArgs {
      */
     ipNetwork: pulumi.Input<inputs.NetworkIpNetwork>;
     /**
-     * Key-value pairs to classify the network.
+     * User defined key-value pairs to classify the network.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

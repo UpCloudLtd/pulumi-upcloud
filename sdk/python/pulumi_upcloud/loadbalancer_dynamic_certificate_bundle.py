@@ -21,7 +21,7 @@ class LoadbalancerDynamicCertificateBundleArgs:
         The set of arguments for constructing a LoadbalancerDynamicCertificateBundle resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] hostnames: Certificate hostnames.
         :param pulumi.Input[str] key_type: Private key type (`rsa` / `ecdsa`).
-        :param pulumi.Input[str] name: The name of the bundle must be unique within customer account.
+        :param pulumi.Input[str] name: The name of the certificate bundle. Must be unique within customer account.
         """
         pulumi.set(__self__, "hostnames", hostnames)
         pulumi.set(__self__, "key_type", key_type)
@@ -56,7 +56,7 @@ class LoadbalancerDynamicCertificateBundleArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the bundle must be unique within customer account.
+        The name of the certificate bundle. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 
@@ -78,7 +78,7 @@ class _LoadbalancerDynamicCertificateBundleState:
         Input properties used for looking up and filtering LoadbalancerDynamicCertificateBundle resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] hostnames: Certificate hostnames.
         :param pulumi.Input[str] key_type: Private key type (`rsa` / `ecdsa`).
-        :param pulumi.Input[str] name: The name of the bundle must be unique within customer account.
+        :param pulumi.Input[str] name: The name of the certificate bundle. Must be unique within customer account.
         :param pulumi.Input[str] not_after: The time after which a certificate is no longer valid.
         :param pulumi.Input[str] not_before: The time on which a certificate becomes valid.
         :param pulumi.Input[str] operational_state: The service operational state indicates the service's current operational, effective state. Managed by the system.
@@ -124,7 +124,7 @@ class _LoadbalancerDynamicCertificateBundleState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the bundle must be unique within customer account.
+        The name of the certificate bundle. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 
@@ -199,7 +199,7 @@ class LoadbalancerDynamicCertificateBundle(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] hostnames: Certificate hostnames.
         :param pulumi.Input[str] key_type: Private key type (`rsa` / `ecdsa`).
-        :param pulumi.Input[str] name: The name of the bundle must be unique within customer account.
+        :param pulumi.Input[str] name: The name of the certificate bundle. Must be unique within customer account.
         """
         ...
     @overload
@@ -286,7 +286,7 @@ class LoadbalancerDynamicCertificateBundle(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] hostnames: Certificate hostnames.
         :param pulumi.Input[str] key_type: Private key type (`rsa` / `ecdsa`).
-        :param pulumi.Input[str] name: The name of the bundle must be unique within customer account.
+        :param pulumi.Input[str] name: The name of the certificate bundle. Must be unique within customer account.
         :param pulumi.Input[str] not_after: The time after which a certificate is no longer valid.
         :param pulumi.Input[str] not_before: The time on which a certificate becomes valid.
         :param pulumi.Input[str] operational_state: The service operational state indicates the service's current operational, effective state. Managed by the system.
@@ -323,7 +323,7 @@ class LoadbalancerDynamicCertificateBundle(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the bundle must be unique within customer account.
+        The name of the certificate bundle. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 

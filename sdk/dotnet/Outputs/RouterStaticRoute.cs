@@ -13,30 +13,25 @@ namespace Pulumi.Upcloud.Outputs
     [OutputType]
     public sealed class RouterStaticRoute
     {
-        /// <summary>
-        /// Name or description of the route.
-        /// </summary>
-        public readonly string? Name;
-        /// <summary>
-        /// Next hop address. NOTE: For static route to be active the next hop has to be an address of a reachable running Cloud Server in one of the Private Networks attached to the router.
-        /// </summary>
+        public readonly string Name;
         public readonly string Nexthop;
-        /// <summary>
-        /// Destination prefix of the route.
-        /// </summary>
         public readonly string Route;
+        public readonly string Type;
 
         [OutputConstructor]
         private RouterStaticRoute(
-            string? name,
+            string name,
 
             string nexthop,
 
-            string route)
+            string route,
+
+            string type)
         {
             Name = name;
             Nexthop = nexthop;
             Route = route;
+            Type = type;
         }
     }
 }

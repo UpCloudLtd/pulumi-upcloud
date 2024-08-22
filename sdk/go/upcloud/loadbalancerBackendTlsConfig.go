@@ -20,7 +20,7 @@ type LoadbalancerBackendTlsConfig struct {
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// Reference to certificate bundle ID.
 	CertificateBundle pulumi.StringOutput `pulumi:"certificateBundle"`
-	// The name of the TLS config must be unique within service backend.
+	// The name of the TLS config. Must be unique within customer account.
 	Name pulumi.StringOutput `pulumi:"name"`
 }
 
@@ -64,7 +64,7 @@ type loadbalancerBackendTlsConfigState struct {
 	Backend *string `pulumi:"backend"`
 	// Reference to certificate bundle ID.
 	CertificateBundle *string `pulumi:"certificateBundle"`
-	// The name of the TLS config must be unique within service backend.
+	// The name of the TLS config. Must be unique within customer account.
 	Name *string `pulumi:"name"`
 }
 
@@ -73,7 +73,7 @@ type LoadbalancerBackendTlsConfigState struct {
 	Backend pulumi.StringPtrInput
 	// Reference to certificate bundle ID.
 	CertificateBundle pulumi.StringPtrInput
-	// The name of the TLS config must be unique within service backend.
+	// The name of the TLS config. Must be unique within customer account.
 	Name pulumi.StringPtrInput
 }
 
@@ -86,7 +86,7 @@ type loadbalancerBackendTlsConfigArgs struct {
 	Backend string `pulumi:"backend"`
 	// Reference to certificate bundle ID.
 	CertificateBundle string `pulumi:"certificateBundle"`
-	// The name of the TLS config must be unique within service backend.
+	// The name of the TLS config. Must be unique within customer account.
 	Name *string `pulumi:"name"`
 }
 
@@ -96,7 +96,7 @@ type LoadbalancerBackendTlsConfigArgs struct {
 	Backend pulumi.StringInput
 	// Reference to certificate bundle ID.
 	CertificateBundle pulumi.StringInput
-	// The name of the TLS config must be unique within service backend.
+	// The name of the TLS config. Must be unique within customer account.
 	Name pulumi.StringPtrInput
 }
 
@@ -197,7 +197,7 @@ func (o LoadbalancerBackendTlsConfigOutput) CertificateBundle() pulumi.StringOut
 	return o.ApplyT(func(v *LoadbalancerBackendTlsConfig) pulumi.StringOutput { return v.CertificateBundle }).(pulumi.StringOutput)
 }
 
-// The name of the TLS config must be unique within service backend.
+// The name of the TLS config. Must be unique within customer account.
 func (o LoadbalancerBackendTlsConfigOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendTlsConfig) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

@@ -75,6 +75,8 @@ type ManagedDatabaseMysql struct {
 
 	// Service component information
 	Components ManagedDatabaseMysqlComponentArrayOutput `pulumi:"components"`
+	// User defined key-value pairs to classify the managed database.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringOutput `pulumi:"maintenanceWindowDow"`
 	// Maintenance window UTC time in hh:mm:ss format
@@ -160,6 +162,8 @@ func GetManagedDatabaseMysql(ctx *pulumi.Context,
 type managedDatabaseMysqlState struct {
 	// Service component information
 	Components []ManagedDatabaseMysqlComponent `pulumi:"components"`
+	// User defined key-value pairs to classify the managed database.
+	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow *string `pulumi:"maintenanceWindowDow"`
 	// Maintenance window UTC time in hh:mm:ss format
@@ -202,6 +206,8 @@ type managedDatabaseMysqlState struct {
 type ManagedDatabaseMysqlState struct {
 	// Service component information
 	Components ManagedDatabaseMysqlComponentArrayInput
+	// User defined key-value pairs to classify the managed database.
+	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringPtrInput
 	// Maintenance window UTC time in hh:mm:ss format
@@ -246,6 +252,8 @@ func (ManagedDatabaseMysqlState) ElementType() reflect.Type {
 }
 
 type managedDatabaseMysqlArgs struct {
+	// User defined key-value pairs to classify the managed database.
+	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow *string `pulumi:"maintenanceWindowDow"`
 	// Maintenance window UTC time in hh:mm:ss format
@@ -269,6 +277,8 @@ type managedDatabaseMysqlArgs struct {
 
 // The set of arguments for constructing a ManagedDatabaseMysql resource.
 type ManagedDatabaseMysqlArgs struct {
+	// User defined key-value pairs to classify the managed database.
+	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringPtrInput
 	// Maintenance window UTC time in hh:mm:ss format
@@ -380,6 +390,11 @@ func (o ManagedDatabaseMysqlOutput) ToManagedDatabaseMysqlOutputWithContext(ctx 
 // Service component information
 func (o ManagedDatabaseMysqlOutput) Components() ManagedDatabaseMysqlComponentArrayOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysql) ManagedDatabaseMysqlComponentArrayOutput { return v.Components }).(ManagedDatabaseMysqlComponentArrayOutput)
+}
+
+// User defined key-value pairs to classify the managed database.
+func (o ManagedDatabaseMysqlOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysql) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
 // Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)

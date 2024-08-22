@@ -90,7 +90,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly controlPlaneIpFilters!: pulumi.Output<string[]>;
     /**
-     * Key-value pairs to classify the cluster.
+     * User defined key-value pairs to classify the cluster.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
     /**
@@ -201,7 +201,7 @@ export interface KubernetesClusterState {
      */
     controlPlaneIpFilters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Key-value pairs to classify the cluster.
+     * User defined key-value pairs to classify the cluster.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -259,7 +259,7 @@ export interface KubernetesClusterArgs {
      */
     controlPlaneIpFilters: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Key-value pairs to classify the cluster.
+     * User defined key-value pairs to classify the cluster.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

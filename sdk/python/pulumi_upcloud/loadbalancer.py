@@ -30,7 +30,7 @@ class LoadbalancerArgs:
         :param pulumi.Input[str] plan: Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
         :param pulumi.Input[str] zone: Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
         :param pulumi.Input[str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the load balancer.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the load balancer.
         :param pulumi.Input[str] maintenance_dow: The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
                Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
         :param pulumi.Input[str] maintenance_time: The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this
@@ -101,7 +101,7 @@ class LoadbalancerArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs to classify the load balancer.
+        User defined key-value pairs to classify the load balancer.
         """
         return pulumi.get(self, "labels")
 
@@ -151,13 +151,11 @@ class LoadbalancerArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Use 'networks' to define networks attached to load balancer""")
     def network(self) -> Optional[pulumi.Input[str]]:
         """
         Private network UUID where traffic will be routed. Must reside in load balancer zone.
         """
-        warnings.warn("""Use 'networks' to define networks attached to load balancer""", DeprecationWarning)
-        pulumi.log.warn("""network is deprecated: Use 'networks' to define networks attached to load balancer""")
-
         return pulumi.get(self, "network")
 
     @network.setter
@@ -201,7 +199,7 @@ class _LoadbalancerState:
         :param pulumi.Input[str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
         :param pulumi.Input[str] dns_name: DNS name of the load balancer
         :param pulumi.Input[Sequence[pulumi.Input[str]]] frontends: Frontends receive the traffic before dispatching it to the backends.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the load balancer.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the load balancer.
         :param pulumi.Input[str] maintenance_dow: The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
                Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
         :param pulumi.Input[str] maintenance_time: The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this
@@ -280,13 +278,11 @@ class _LoadbalancerState:
 
     @property
     @pulumi.getter(name="dnsName")
+    @_utilities.deprecated("""Use 'networks' to get network DNS name""")
     def dns_name(self) -> Optional[pulumi.Input[str]]:
         """
         DNS name of the load balancer
         """
-        warnings.warn("""Use 'networks' to get network DNS name""", DeprecationWarning)
-        pulumi.log.warn("""dns_name is deprecated: Use 'networks' to get network DNS name""")
-
         return pulumi.get(self, "dns_name")
 
     @dns_name.setter
@@ -309,7 +305,7 @@ class _LoadbalancerState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs to classify the load balancer.
+        User defined key-value pairs to classify the load balancer.
         """
         return pulumi.get(self, "labels")
 
@@ -359,13 +355,11 @@ class _LoadbalancerState:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Use 'networks' to define networks attached to load balancer""")
     def network(self) -> Optional[pulumi.Input[str]]:
         """
         Private network UUID where traffic will be routed. Must reside in load balancer zone.
         """
-        warnings.warn("""Use 'networks' to define networks attached to load balancer""", DeprecationWarning)
-        pulumi.log.warn("""network is deprecated: Use 'networks' to define networks attached to load balancer""")
-
         return pulumi.get(self, "network")
 
     @network.setter
@@ -456,7 +450,7 @@ class Loadbalancer(pulumi.CustomResource):
                  maintenance_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict']]]]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -475,34 +469,34 @@ class Loadbalancer(pulumi.CustomResource):
             lb_zone = "fi-hel2"
         lb_network = upcloud.Network("lbNetwork",
             zone=lb_zone,
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
             plan="development",
             zone=lb_zone,
             networks=[
-                upcloud.LoadbalancerNetworkArgs(
-                    name="Private-Net",
-                    type="private",
-                    family="IPv4",
-                    network=resource["upcloud_network"]["lb_network"]["id"],
-                ),
-                upcloud.LoadbalancerNetworkArgs(
-                    name="Public-Net",
-                    type="public",
-                    family="IPv4",
-                ),
+                {
+                    "name": "Private-Net",
+                    "type": "private",
+                    "family": "IPv4",
+                    "network": resource["upcloud_network"]["lb_network"]["id"],
+                },
+                {
+                    "name": "Public-Net",
+                    "type": "public",
+                    "family": "IPv4",
+                },
             ])
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the load balancer.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the load balancer.
         :param pulumi.Input[str] maintenance_dow: The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
                Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
         :param pulumi.Input[str] maintenance_time: The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this
@@ -511,7 +505,7 @@ class Loadbalancer(pulumi.CustomResource):
                HH:MM:SSZ, for example `20:01:01Z`.
         :param pulumi.Input[str] name: The name of the service must be unique within customer account.
         :param pulumi.Input[str] network: Private network UUID where traffic will be routed. Must reside in load balancer zone.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerNetworkArgs']]]] networks: Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict']]]] networks: Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
         :param pulumi.Input[str] plan: Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
         :param pulumi.Input[str] zone: Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
         """
@@ -536,27 +530,27 @@ class Loadbalancer(pulumi.CustomResource):
             lb_zone = "fi-hel2"
         lb_network = upcloud.Network("lbNetwork",
             zone=lb_zone,
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
             plan="development",
             zone=lb_zone,
             networks=[
-                upcloud.LoadbalancerNetworkArgs(
-                    name="Private-Net",
-                    type="private",
-                    family="IPv4",
-                    network=resource["upcloud_network"]["lb_network"]["id"],
-                ),
-                upcloud.LoadbalancerNetworkArgs(
-                    name="Public-Net",
-                    type="public",
-                    family="IPv4",
-                ),
+                {
+                    "name": "Private-Net",
+                    "type": "private",
+                    "family": "IPv4",
+                    "network": resource["upcloud_network"]["lb_network"]["id"],
+                },
+                {
+                    "name": "Public-Net",
+                    "type": "public",
+                    "family": "IPv4",
+                },
             ])
         ```
 
@@ -581,7 +575,7 @@ class Loadbalancer(pulumi.CustomResource):
                  maintenance_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict']]]]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -631,8 +625,8 @@ class Loadbalancer(pulumi.CustomResource):
             maintenance_time: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             network: Optional[pulumi.Input[str]] = None,
-            networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerNetworkArgs']]]]] = None,
-            nodes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerNodeArgs']]]]] = None,
+            networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict']]]]] = None,
+            nodes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNodeArgs', 'LoadbalancerNodeArgsDict']]]]] = None,
             operational_state: Optional[pulumi.Input[str]] = None,
             plan: Optional[pulumi.Input[str]] = None,
             resolvers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -648,7 +642,7 @@ class Loadbalancer(pulumi.CustomResource):
         :param pulumi.Input[str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
         :param pulumi.Input[str] dns_name: DNS name of the load balancer
         :param pulumi.Input[Sequence[pulumi.Input[str]]] frontends: Frontends receive the traffic before dispatching it to the backends.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the load balancer.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the load balancer.
         :param pulumi.Input[str] maintenance_dow: The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
                Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
         :param pulumi.Input[str] maintenance_time: The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this
@@ -657,8 +651,8 @@ class Loadbalancer(pulumi.CustomResource):
                HH:MM:SSZ, for example `20:01:01Z`.
         :param pulumi.Input[str] name: The name of the service must be unique within customer account.
         :param pulumi.Input[str] network: Private network UUID where traffic will be routed. Must reside in load balancer zone.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerNetworkArgs']]]] networks: Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerNodeArgs']]]] nodes: Nodes are instances running load balancer service
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict']]]] networks: Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNodeArgs', 'LoadbalancerNodeArgsDict']]]] nodes: Nodes are instances running load balancer service
         :param pulumi.Input[str] operational_state: The service operational state indicates the service's current operational, effective state. Managed by the system.
         :param pulumi.Input[str] plan: Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
         :param pulumi.Input[Sequence[pulumi.Input[str]]] resolvers: Domain Name Resolvers must be configured in case of customer uses dynamic type members
@@ -703,13 +697,11 @@ class Loadbalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="dnsName")
+    @_utilities.deprecated("""Use 'networks' to get network DNS name""")
     def dns_name(self) -> pulumi.Output[str]:
         """
         DNS name of the load balancer
         """
-        warnings.warn("""Use 'networks' to get network DNS name""", DeprecationWarning)
-        pulumi.log.warn("""dns_name is deprecated: Use 'networks' to get network DNS name""")
-
         return pulumi.get(self, "dns_name")
 
     @property
@@ -724,7 +716,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        Key-value pairs to classify the load balancer.
+        User defined key-value pairs to classify the load balancer.
         """
         return pulumi.get(self, "labels")
 
@@ -758,13 +750,11 @@ class Loadbalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Use 'networks' to define networks attached to load balancer""")
     def network(self) -> pulumi.Output[Optional[str]]:
         """
         Private network UUID where traffic will be routed. Must reside in load balancer zone.
         """
-        warnings.warn("""Use 'networks' to define networks attached to load balancer""", DeprecationWarning)
-        pulumi.log.warn("""network is deprecated: Use 'networks' to define networks attached to load balancer""")
-
         return pulumi.get(self, "network")
 
     @property

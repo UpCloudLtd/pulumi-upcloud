@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource represents a node group in a Managed Kubernetes cluster.
+// This resource represents a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster.
 //
 // ## Example Usage
 //
@@ -79,8 +79,8 @@ type KubernetesNodeGroup struct {
 	pulumi.CustomResourceState
 
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-	// considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
-	AntiAffinity pulumi.BoolPtrOutput `pulumi:"antiAffinity"`
+	// considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
+	AntiAffinity pulumi.BoolOutput `pulumi:"antiAffinity"`
 	// UUID of the cluster.
 	Cluster pulumi.StringOutput `pulumi:"cluster"`
 	// Resource properties for custom plan
@@ -89,7 +89,7 @@ type KubernetesNodeGroup struct {
 	// kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
 	// careful when adding kubelet args.
 	KubeletArgs KubernetesNodeGroupKubeletArgArrayOutput `pulumi:"kubeletArgs"`
-	// Key-value pairs to classify the node group.
+	// User defined key-value pairs to classify the node_group.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// The name of the node group. Needs to be unique within a cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -100,12 +100,13 @@ type KubernetesNodeGroup struct {
 	// You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
 	// connect to the nodes via SSH once they are running.
 	SshKeys pulumi.StringArrayOutput `pulumi:"sshKeys"`
-	// Storage encryption strategy for the nodes in this group.
+	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption
+	// strategy will be used, if applicable.
 	StorageEncryption pulumi.StringOutput `pulumi:"storageEncryption"`
 	// Taints for the nodes in this group.
 	Taints KubernetesNodeGroupTaintArrayOutput `pulumi:"taints"`
 	// If set to false, nodes in this group will not have access to utility network.
-	UtilityNetworkAccess pulumi.BoolPtrOutput `pulumi:"utilityNetworkAccess"`
+	UtilityNetworkAccess pulumi.BoolOutput `pulumi:"utilityNetworkAccess"`
 }
 
 // NewKubernetesNodeGroup registers a new resource with the given unique name, arguments, and options.
@@ -148,7 +149,7 @@ func GetKubernetesNodeGroup(ctx *pulumi.Context,
 // Input properties used for looking up and filtering KubernetesNodeGroup resources.
 type kubernetesNodeGroupState struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-	// considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
+	// considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity *bool `pulumi:"antiAffinity"`
 	// UUID of the cluster.
 	Cluster *string `pulumi:"cluster"`
@@ -158,7 +159,7 @@ type kubernetesNodeGroupState struct {
 	// kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
 	// careful when adding kubelet args.
 	KubeletArgs []KubernetesNodeGroupKubeletArg `pulumi:"kubeletArgs"`
-	// Key-value pairs to classify the node group.
+	// User defined key-value pairs to classify the node_group.
 	Labels map[string]string `pulumi:"labels"`
 	// The name of the node group. Needs to be unique within a cluster.
 	Name *string `pulumi:"name"`
@@ -169,7 +170,8 @@ type kubernetesNodeGroupState struct {
 	// You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
 	// connect to the nodes via SSH once they are running.
 	SshKeys []string `pulumi:"sshKeys"`
-	// Storage encryption strategy for the nodes in this group.
+	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption
+	// strategy will be used, if applicable.
 	StorageEncryption *string `pulumi:"storageEncryption"`
 	// Taints for the nodes in this group.
 	Taints []KubernetesNodeGroupTaint `pulumi:"taints"`
@@ -179,7 +181,7 @@ type kubernetesNodeGroupState struct {
 
 type KubernetesNodeGroupState struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-	// considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
+	// considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity pulumi.BoolPtrInput
 	// UUID of the cluster.
 	Cluster pulumi.StringPtrInput
@@ -189,7 +191,7 @@ type KubernetesNodeGroupState struct {
 	// kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
 	// careful when adding kubelet args.
 	KubeletArgs KubernetesNodeGroupKubeletArgArrayInput
-	// Key-value pairs to classify the node group.
+	// User defined key-value pairs to classify the node_group.
 	Labels pulumi.StringMapInput
 	// The name of the node group. Needs to be unique within a cluster.
 	Name pulumi.StringPtrInput
@@ -200,7 +202,8 @@ type KubernetesNodeGroupState struct {
 	// You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
 	// connect to the nodes via SSH once they are running.
 	SshKeys pulumi.StringArrayInput
-	// Storage encryption strategy for the nodes in this group.
+	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption
+	// strategy will be used, if applicable.
 	StorageEncryption pulumi.StringPtrInput
 	// Taints for the nodes in this group.
 	Taints KubernetesNodeGroupTaintArrayInput
@@ -214,7 +217,7 @@ func (KubernetesNodeGroupState) ElementType() reflect.Type {
 
 type kubernetesNodeGroupArgs struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-	// considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
+	// considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity *bool `pulumi:"antiAffinity"`
 	// UUID of the cluster.
 	Cluster string `pulumi:"cluster"`
@@ -224,7 +227,7 @@ type kubernetesNodeGroupArgs struct {
 	// kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
 	// careful when adding kubelet args.
 	KubeletArgs []KubernetesNodeGroupKubeletArg `pulumi:"kubeletArgs"`
-	// Key-value pairs to classify the node group.
+	// User defined key-value pairs to classify the node_group.
 	Labels map[string]string `pulumi:"labels"`
 	// The name of the node group. Needs to be unique within a cluster.
 	Name *string `pulumi:"name"`
@@ -235,7 +238,8 @@ type kubernetesNodeGroupArgs struct {
 	// You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
 	// connect to the nodes via SSH once they are running.
 	SshKeys []string `pulumi:"sshKeys"`
-	// Storage encryption strategy for the nodes in this group.
+	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption
+	// strategy will be used, if applicable.
 	StorageEncryption *string `pulumi:"storageEncryption"`
 	// Taints for the nodes in this group.
 	Taints []KubernetesNodeGroupTaint `pulumi:"taints"`
@@ -246,7 +250,7 @@ type kubernetesNodeGroupArgs struct {
 // The set of arguments for constructing a KubernetesNodeGroup resource.
 type KubernetesNodeGroupArgs struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-	// considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
+	// considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity pulumi.BoolPtrInput
 	// UUID of the cluster.
 	Cluster pulumi.StringInput
@@ -256,7 +260,7 @@ type KubernetesNodeGroupArgs struct {
 	// kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
 	// careful when adding kubelet args.
 	KubeletArgs KubernetesNodeGroupKubeletArgArrayInput
-	// Key-value pairs to classify the node group.
+	// User defined key-value pairs to classify the node_group.
 	Labels pulumi.StringMapInput
 	// The name of the node group. Needs to be unique within a cluster.
 	Name pulumi.StringPtrInput
@@ -267,7 +271,8 @@ type KubernetesNodeGroupArgs struct {
 	// You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
 	// connect to the nodes via SSH once they are running.
 	SshKeys pulumi.StringArrayInput
-	// Storage encryption strategy for the nodes in this group.
+	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption
+	// strategy will be used, if applicable.
 	StorageEncryption pulumi.StringPtrInput
 	// Taints for the nodes in this group.
 	Taints KubernetesNodeGroupTaintArrayInput
@@ -363,9 +368,9 @@ func (o KubernetesNodeGroupOutput) ToKubernetesNodeGroupOutputWithContext(ctx co
 }
 
 // If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-// considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
-func (o KubernetesNodeGroupOutput) AntiAffinity() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.BoolPtrOutput { return v.AntiAffinity }).(pulumi.BoolPtrOutput)
+// considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
+func (o KubernetesNodeGroupOutput) AntiAffinity() pulumi.BoolOutput {
+	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.BoolOutput { return v.AntiAffinity }).(pulumi.BoolOutput)
 }
 
 // UUID of the cluster.
@@ -385,7 +390,7 @@ func (o KubernetesNodeGroupOutput) KubeletArgs() KubernetesNodeGroupKubeletArgAr
 	return o.ApplyT(func(v *KubernetesNodeGroup) KubernetesNodeGroupKubeletArgArrayOutput { return v.KubeletArgs }).(KubernetesNodeGroupKubeletArgArrayOutput)
 }
 
-// Key-value pairs to classify the node group.
+// User defined key-value pairs to classify the node_group.
 func (o KubernetesNodeGroupOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -411,7 +416,8 @@ func (o KubernetesNodeGroupOutput) SshKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.StringArrayOutput { return v.SshKeys }).(pulumi.StringArrayOutput)
 }
 
-// Storage encryption strategy for the nodes in this group.
+// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption
+// strategy will be used, if applicable.
 func (o KubernetesNodeGroupOutput) StorageEncryption() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.StringOutput { return v.StorageEncryption }).(pulumi.StringOutput)
 }
@@ -422,8 +428,8 @@ func (o KubernetesNodeGroupOutput) Taints() KubernetesNodeGroupTaintArrayOutput 
 }
 
 // If set to false, nodes in this group will not have access to utility network.
-func (o KubernetesNodeGroupOutput) UtilityNetworkAccess() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.BoolPtrOutput { return v.UtilityNetworkAccess }).(pulumi.BoolPtrOutput)
+func (o KubernetesNodeGroupOutput) UtilityNetworkAccess() pulumi.BoolOutput {
+	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.BoolOutput { return v.UtilityNetworkAccess }).(pulumi.BoolOutput)
 }
 
 type KubernetesNodeGroupArrayOutput struct{ *pulumi.OutputState }

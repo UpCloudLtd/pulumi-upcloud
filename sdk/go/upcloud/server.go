@@ -85,7 +85,7 @@ type Server struct {
 	Host pulumi.IntPtrOutput `pulumi:"host"`
 	// A valid domain name
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// Key-value pairs to classify the server.
+	// User defined key-value pairs to classify the server.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Configure access credentials to the server
 	Login ServerLoginPtrOutput `pulumi:"login"`
@@ -172,7 +172,7 @@ type serverState struct {
 	Host *int `pulumi:"host"`
 	// A valid domain name
 	Hostname *string `pulumi:"hostname"`
-	// Key-value pairs to classify the server.
+	// User defined key-value pairs to classify the server.
 	Labels map[string]string `pulumi:"labels"`
 	// Configure access credentials to the server
 	Login *ServerLogin `pulumi:"login"`
@@ -221,7 +221,7 @@ type ServerState struct {
 	Host pulumi.IntPtrInput
 	// A valid domain name
 	Hostname pulumi.StringPtrInput
-	// Key-value pairs to classify the server.
+	// User defined key-value pairs to classify the server.
 	Labels pulumi.StringMapInput
 	// Configure access credentials to the server
 	Login ServerLoginPtrInput
@@ -274,7 +274,7 @@ type serverArgs struct {
 	Host *int `pulumi:"host"`
 	// A valid domain name
 	Hostname string `pulumi:"hostname"`
-	// Key-value pairs to classify the server.
+	// User defined key-value pairs to classify the server.
 	Labels map[string]string `pulumi:"labels"`
 	// Configure access credentials to the server
 	Login *ServerLogin `pulumi:"login"`
@@ -324,7 +324,7 @@ type ServerArgs struct {
 	Host pulumi.IntPtrInput
 	// A valid domain name
 	Hostname pulumi.StringInput
-	// Key-value pairs to classify the server.
+	// User defined key-value pairs to classify the server.
 	Labels pulumi.StringMapInput
 	// Configure access credentials to the server
 	Login ServerLoginPtrInput
@@ -474,7 +474,7 @@ func (o ServerOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
 }
 
-// Key-value pairs to classify the server.
+// User defined key-value pairs to classify the server.
 func (o ServerOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }

@@ -36,15 +36,15 @@ export class LoadbalancerManualCertificateBundle extends pulumi.CustomResource {
     }
 
     /**
-     * Certificate within base64 string must be in PEM format.
+     * Certificate as base64 encoded string. Must be in PEM format.
      */
     public readonly certificate!: pulumi.Output<string>;
     /**
-     * Intermediate certificates within base64 string must be in PEM format.
+     * Intermediate certificates as base64 encoded string. Must be in PEM format.
      */
-    public readonly intermediates!: pulumi.Output<string | undefined>;
+    public readonly intermediates!: pulumi.Output<string>;
     /**
-     * The name of the bundle must be unique within customer account.
+     * The name of the certificate bundle. Must be unique within customer account.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -60,7 +60,7 @@ export class LoadbalancerManualCertificateBundle extends pulumi.CustomResource {
      */
     public /*out*/ readonly operationalState!: pulumi.Output<string>;
     /**
-     * Private key within base64 string must be in PEM format.
+     * Private key as base64 encoded string. Must be in PEM format.
      */
     public readonly privateKey!: pulumi.Output<string>;
 
@@ -112,15 +112,15 @@ export class LoadbalancerManualCertificateBundle extends pulumi.CustomResource {
  */
 export interface LoadbalancerManualCertificateBundleState {
     /**
-     * Certificate within base64 string must be in PEM format.
+     * Certificate as base64 encoded string. Must be in PEM format.
      */
     certificate?: pulumi.Input<string>;
     /**
-     * Intermediate certificates within base64 string must be in PEM format.
+     * Intermediate certificates as base64 encoded string. Must be in PEM format.
      */
     intermediates?: pulumi.Input<string>;
     /**
-     * The name of the bundle must be unique within customer account.
+     * The name of the certificate bundle. Must be unique within customer account.
      */
     name?: pulumi.Input<string>;
     /**
@@ -136,7 +136,7 @@ export interface LoadbalancerManualCertificateBundleState {
      */
     operationalState?: pulumi.Input<string>;
     /**
-     * Private key within base64 string must be in PEM format.
+     * Private key as base64 encoded string. Must be in PEM format.
      */
     privateKey?: pulumi.Input<string>;
 }
@@ -146,19 +146,19 @@ export interface LoadbalancerManualCertificateBundleState {
  */
 export interface LoadbalancerManualCertificateBundleArgs {
     /**
-     * Certificate within base64 string must be in PEM format.
+     * Certificate as base64 encoded string. Must be in PEM format.
      */
     certificate: pulumi.Input<string>;
     /**
-     * Intermediate certificates within base64 string must be in PEM format.
+     * Intermediate certificates as base64 encoded string. Must be in PEM format.
      */
     intermediates?: pulumi.Input<string>;
     /**
-     * The name of the bundle must be unique within customer account.
+     * The name of the certificate bundle. Must be unique within customer account.
      */
     name?: pulumi.Input<string>;
     /**
-     * Private key within base64 string must be in PEM format.
+     * Private key as base64 encoded string. Must be in PEM format.
      */
     privateKey: pulumi.Input<string>;
 }

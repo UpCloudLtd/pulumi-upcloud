@@ -159,24 +159,24 @@ def get_storage(access_type: Optional[str] = None,
     example = upcloud.Server("example",
         hostname="debian.example.tld",
         zone="fi-hel1",
-        network_interfaces=[upcloud.ServerNetworkInterfaceArgs(
-            type="public",
-        )],
-        template=upcloud.ServerTemplateArgs(
-            storage=app_image.id,
-        ))
+        network_interfaces=[{
+            "type": "public",
+        }],
+        template={
+            "storage": app_image.id,
+        })
     # Build only new servers with your latest custom image 
     #
     # Use the lifecycle meta-argument to ignore changes in server's template triggered by new image version
     example2 = upcloud.Server("example2",
         hostname="debian.example2.tld",
         zone="fi-hel1",
-        network_interfaces=[upcloud.ServerNetworkInterfaceArgs(
-            type="public",
-        )],
-        template=upcloud.ServerTemplateArgs(
-            storage=app_image.id,
-        ))
+        network_interfaces=[{
+            "type": "public",
+        }],
+        template={
+            "storage": app_image.id,
+        })
     ```
     """
     __args__ = dict()
@@ -229,24 +229,24 @@ def get_storage_output(access_type: Optional[pulumi.Input[Optional[str]]] = None
     example = upcloud.Server("example",
         hostname="debian.example.tld",
         zone="fi-hel1",
-        network_interfaces=[upcloud.ServerNetworkInterfaceArgs(
-            type="public",
-        )],
-        template=upcloud.ServerTemplateArgs(
-            storage=app_image.id,
-        ))
+        network_interfaces=[{
+            "type": "public",
+        }],
+        template={
+            "storage": app_image.id,
+        })
     # Build only new servers with your latest custom image 
     #
     # Use the lifecycle meta-argument to ignore changes in server's template triggered by new image version
     example2 = upcloud.Server("example2",
         hostname="debian.example2.tld",
         zone="fi-hel1",
-        network_interfaces=[upcloud.ServerNetworkInterfaceArgs(
-            type="public",
-        )],
-        template=upcloud.ServerTemplateArgs(
-            storage=app_image.id,
-        ))
+        network_interfaces=[{
+            "type": "public",
+        }],
+        template={
+            "storage": app_image.id,
+        })
     ```
     """
     ...

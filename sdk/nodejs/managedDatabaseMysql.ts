@@ -78,6 +78,10 @@ export class ManagedDatabaseMysql extends pulumi.CustomResource {
      */
     public /*out*/ readonly components!: pulumi.Output<outputs.ManagedDatabaseMysqlComponent[]>;
     /**
+     * User defined key-value pairs to classify the managed database.
+     */
+    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
      */
     public readonly maintenanceWindowDow!: pulumi.Output<string>;
@@ -165,6 +169,7 @@ export class ManagedDatabaseMysql extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ManagedDatabaseMysqlState | undefined;
             resourceInputs["components"] = state ? state.components : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["maintenanceWindowDow"] = state ? state.maintenanceWindowDow : undefined;
             resourceInputs["maintenanceWindowTime"] = state ? state.maintenanceWindowTime : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -194,6 +199,7 @@ export class ManagedDatabaseMysql extends pulumi.CustomResource {
             if ((!args || args.zone === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'zone'");
             }
+            resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["maintenanceWindowDow"] = args ? args.maintenanceWindowDow : undefined;
             resourceInputs["maintenanceWindowTime"] = args ? args.maintenanceWindowTime : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -229,6 +235,10 @@ export interface ManagedDatabaseMysqlState {
      * Service component information
      */
     components?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseMysqlComponent>[]>;
+    /**
+     * User defined key-value pairs to classify the managed database.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
      */
@@ -308,6 +318,10 @@ export interface ManagedDatabaseMysqlState {
  * The set of arguments for constructing a ManagedDatabaseMysql resource.
  */
 export interface ManagedDatabaseMysqlArgs {
+    /**
+     * User defined key-value pairs to classify the managed database.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
      */

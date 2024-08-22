@@ -32,7 +32,7 @@ class GatewayArgs:
         :param pulumi.Input[str] zone: Zone in which the gateway will be hosted, e.g. `de-fra1`.
         :param pulumi.Input['GatewayAddressArgs'] address: IP addresses assigned to the gateway.
         :param pulumi.Input[str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the network gateway.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the network gateway.
         :param pulumi.Input[str] name: Gateway name. Needs to be unique within the account.
         :param pulumi.Input[str] plan: Gateway pricing plan.
         """
@@ -115,7 +115,7 @@ class GatewayArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs to classify the network gateway.
+        User defined key-value pairs to classify the network gateway.
         """
         return pulumi.get(self, "labels")
 
@@ -171,7 +171,7 @@ class _GatewayState:
                created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] features: Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
                https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the network gateway.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the network gateway.
         :param pulumi.Input[str] name: Gateway name. Needs to be unique within the account.
         :param pulumi.Input[str] operational_state: The service operational state indicates the service's current operational, effective state. Managed by the system.
         :param pulumi.Input[str] plan: Gateway pricing plan.
@@ -218,13 +218,11 @@ class _GatewayState:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Use 'address' attribute instead. This attribute will be removed in the next major version of the provider""")
     def addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GatewayAddressArgs']]]]:
         """
         IP addresses assigned to the gateway.
         """
-        warnings.warn("""Use 'address' attribute instead. This attribute will be removed in the next major version of the provider""", DeprecationWarning)
-        pulumi.log.warn("""addresses is deprecated: Use 'address' attribute instead. This attribute will be removed in the next major version of the provider""")
-
         return pulumi.get(self, "addresses")
 
     @addresses.setter
@@ -273,7 +271,7 @@ class _GatewayState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs to classify the network gateway.
+        User defined key-value pairs to classify the network gateway.
         """
         return pulumi.get(self, "labels")
 
@@ -347,13 +345,13 @@ class Gateway(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 address: Optional[pulumi.Input[pulumi.InputType['GatewayAddressArgs']]] = None,
+                 address: Optional[pulumi.Input[Union['GatewayAddressArgs', 'GatewayAddressArgsDict']]] = None,
                  configured_status: Optional[pulumi.Input[str]] = None,
                  features: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
-                 router: Optional[pulumi.Input[pulumi.InputType['GatewayRouterArgs']]] = None,
+                 router: Optional[pulumi.Input[Union['GatewayRouterArgs', 'GatewayRouterArgsDict']]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -370,18 +368,18 @@ class Gateway(pulumi.CustomResource):
         # Create network for the gateway
         this_network = upcloud.Network("thisNetwork",
             zone="pl-waw1",
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="172.16.2.0/24",
-                dhcp=True,
-                family="IPv4",
-            ),
+            ip_network={
+                "address": "172.16.2.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            },
             router=this_router.id)
         this_gateway = upcloud.Gateway("thisGateway",
             zone="pl-waw1",
             features=["nat"],
-            router=upcloud.GatewayRouterArgs(
-                id=this_router.id,
-            ),
+            router={
+                "id": this_router.id,
+            },
             labels={
                 "managed-by": "terraform",
             })
@@ -389,14 +387,14 @@ class Gateway(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['GatewayAddressArgs']] address: IP addresses assigned to the gateway.
+        :param pulumi.Input[Union['GatewayAddressArgs', 'GatewayAddressArgsDict']] address: IP addresses assigned to the gateway.
         :param pulumi.Input[str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] features: Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
                https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the network gateway.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the network gateway.
         :param pulumi.Input[str] name: Gateway name. Needs to be unique within the account.
         :param pulumi.Input[str] plan: Gateway pricing plan.
-        :param pulumi.Input[pulumi.InputType['GatewayRouterArgs']] router: Attached Router from where traffic is routed towards the network gateway service.
+        :param pulumi.Input[Union['GatewayRouterArgs', 'GatewayRouterArgsDict']] router: Attached Router from where traffic is routed towards the network gateway service.
         :param pulumi.Input[str] zone: Zone in which the gateway will be hosted, e.g. `de-fra1`.
         """
         ...
@@ -419,18 +417,18 @@ class Gateway(pulumi.CustomResource):
         # Create network for the gateway
         this_network = upcloud.Network("thisNetwork",
             zone="pl-waw1",
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="172.16.2.0/24",
-                dhcp=True,
-                family="IPv4",
-            ),
+            ip_network={
+                "address": "172.16.2.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            },
             router=this_router.id)
         this_gateway = upcloud.Gateway("thisGateway",
             zone="pl-waw1",
             features=["nat"],
-            router=upcloud.GatewayRouterArgs(
-                id=this_router.id,
-            ),
+            router={
+                "id": this_router.id,
+            },
             labels={
                 "managed-by": "terraform",
             })
@@ -451,13 +449,13 @@ class Gateway(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 address: Optional[pulumi.Input[pulumi.InputType['GatewayAddressArgs']]] = None,
+                 address: Optional[pulumi.Input[Union['GatewayAddressArgs', 'GatewayAddressArgsDict']]] = None,
                  configured_status: Optional[pulumi.Input[str]] = None,
                  features: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
-                 router: Optional[pulumi.Input[pulumi.InputType['GatewayRouterArgs']]] = None,
+                 router: Optional[pulumi.Input[Union['GatewayRouterArgs', 'GatewayRouterArgsDict']]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -495,8 +493,8 @@ class Gateway(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            address: Optional[pulumi.Input[pulumi.InputType['GatewayAddressArgs']]] = None,
-            addresses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayAddressArgs']]]]] = None,
+            address: Optional[pulumi.Input[Union['GatewayAddressArgs', 'GatewayAddressArgsDict']]] = None,
+            addresses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayAddressArgs', 'GatewayAddressArgsDict']]]]] = None,
             configured_status: Optional[pulumi.Input[str]] = None,
             connections: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             features: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -504,7 +502,7 @@ class Gateway(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             operational_state: Optional[pulumi.Input[str]] = None,
             plan: Optional[pulumi.Input[str]] = None,
-            router: Optional[pulumi.Input[pulumi.InputType['GatewayRouterArgs']]] = None,
+            router: Optional[pulumi.Input[Union['GatewayRouterArgs', 'GatewayRouterArgsDict']]] = None,
             zone: Optional[pulumi.Input[str]] = None) -> 'Gateway':
         """
         Get an existing Gateway resource's state with the given name, id, and optional extra
@@ -513,18 +511,18 @@ class Gateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['GatewayAddressArgs']] address: IP addresses assigned to the gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayAddressArgs']]]] addresses: IP addresses assigned to the gateway.
+        :param pulumi.Input[Union['GatewayAddressArgs', 'GatewayAddressArgsDict']] address: IP addresses assigned to the gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayAddressArgs', 'GatewayAddressArgsDict']]]] addresses: IP addresses assigned to the gateway.
         :param pulumi.Input[str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] connections: Names of connections attached to the gateway. Note that this field can have outdated information as connections are
                created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] features: Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
                https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the network gateway.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the network gateway.
         :param pulumi.Input[str] name: Gateway name. Needs to be unique within the account.
         :param pulumi.Input[str] operational_state: The service operational state indicates the service's current operational, effective state. Managed by the system.
         :param pulumi.Input[str] plan: Gateway pricing plan.
-        :param pulumi.Input[pulumi.InputType['GatewayRouterArgs']] router: Attached Router from where traffic is routed towards the network gateway service.
+        :param pulumi.Input[Union['GatewayRouterArgs', 'GatewayRouterArgsDict']] router: Attached Router from where traffic is routed towards the network gateway service.
         :param pulumi.Input[str] zone: Zone in which the gateway will be hosted, e.g. `de-fra1`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -554,13 +552,11 @@ class Gateway(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Use 'address' attribute instead. This attribute will be removed in the next major version of the provider""")
     def addresses(self) -> pulumi.Output[Sequence['outputs.GatewayAddress']]:
         """
         IP addresses assigned to the gateway.
         """
-        warnings.warn("""Use 'address' attribute instead. This attribute will be removed in the next major version of the provider""", DeprecationWarning)
-        pulumi.log.warn("""addresses is deprecated: Use 'address' attribute instead. This attribute will be removed in the next major version of the provider""")
-
         return pulumi.get(self, "addresses")
 
     @property
@@ -593,7 +589,7 @@ class Gateway(pulumi.CustomResource):
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        Key-value pairs to classify the network gateway.
+        User defined key-value pairs to classify the network gateway.
         """
         return pulumi.get(self, "labels")
 

@@ -104,7 +104,7 @@ namespace Pulumi.Upcloud
         public Output<string> Hostname { get; private set; } = null!;
 
         /// <summary>
-        /// Key-value pairs to classify the server.
+        /// User defined key-value pairs to classify the server.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
@@ -285,7 +285,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the server.
+        /// User defined key-value pairs to classify the server.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -449,7 +449,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the server.
+        /// User defined key-value pairs to classify the server.
         /// </summary>
         public InputMap<string> Labels
         {

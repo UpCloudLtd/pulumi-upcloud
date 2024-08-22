@@ -20,10 +20,10 @@ class LoadbalancerManualCertificateBundleArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LoadbalancerManualCertificateBundle resource.
-        :param pulumi.Input[str] certificate: Certificate within base64 string must be in PEM format.
-        :param pulumi.Input[str] private_key: Private key within base64 string must be in PEM format.
-        :param pulumi.Input[str] intermediates: Intermediate certificates within base64 string must be in PEM format.
-        :param pulumi.Input[str] name: The name of the bundle must be unique within customer account.
+        :param pulumi.Input[str] certificate: Certificate as base64 encoded string. Must be in PEM format.
+        :param pulumi.Input[str] private_key: Private key as base64 encoded string. Must be in PEM format.
+        :param pulumi.Input[str] intermediates: Intermediate certificates as base64 encoded string. Must be in PEM format.
+        :param pulumi.Input[str] name: The name of the certificate bundle. Must be unique within customer account.
         """
         pulumi.set(__self__, "certificate", certificate)
         pulumi.set(__self__, "private_key", private_key)
@@ -36,7 +36,7 @@ class LoadbalancerManualCertificateBundleArgs:
     @pulumi.getter
     def certificate(self) -> pulumi.Input[str]:
         """
-        Certificate within base64 string must be in PEM format.
+        Certificate as base64 encoded string. Must be in PEM format.
         """
         return pulumi.get(self, "certificate")
 
@@ -48,7 +48,7 @@ class LoadbalancerManualCertificateBundleArgs:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Input[str]:
         """
-        Private key within base64 string must be in PEM format.
+        Private key as base64 encoded string. Must be in PEM format.
         """
         return pulumi.get(self, "private_key")
 
@@ -60,7 +60,7 @@ class LoadbalancerManualCertificateBundleArgs:
     @pulumi.getter
     def intermediates(self) -> Optional[pulumi.Input[str]]:
         """
-        Intermediate certificates within base64 string must be in PEM format.
+        Intermediate certificates as base64 encoded string. Must be in PEM format.
         """
         return pulumi.get(self, "intermediates")
 
@@ -72,7 +72,7 @@ class LoadbalancerManualCertificateBundleArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the bundle must be unique within customer account.
+        The name of the certificate bundle. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 
@@ -93,13 +93,13 @@ class _LoadbalancerManualCertificateBundleState:
                  private_key: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerManualCertificateBundle resources.
-        :param pulumi.Input[str] certificate: Certificate within base64 string must be in PEM format.
-        :param pulumi.Input[str] intermediates: Intermediate certificates within base64 string must be in PEM format.
-        :param pulumi.Input[str] name: The name of the bundle must be unique within customer account.
+        :param pulumi.Input[str] certificate: Certificate as base64 encoded string. Must be in PEM format.
+        :param pulumi.Input[str] intermediates: Intermediate certificates as base64 encoded string. Must be in PEM format.
+        :param pulumi.Input[str] name: The name of the certificate bundle. Must be unique within customer account.
         :param pulumi.Input[str] not_after: The time after which a certificate is no longer valid.
         :param pulumi.Input[str] not_before: The time on which a certificate becomes valid.
         :param pulumi.Input[str] operational_state: The service operational state indicates the service's current operational, effective state. Managed by the system.
-        :param pulumi.Input[str] private_key: Private key within base64 string must be in PEM format.
+        :param pulumi.Input[str] private_key: Private key as base64 encoded string. Must be in PEM format.
         """
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
@@ -120,7 +120,7 @@ class _LoadbalancerManualCertificateBundleState:
     @pulumi.getter
     def certificate(self) -> Optional[pulumi.Input[str]]:
         """
-        Certificate within base64 string must be in PEM format.
+        Certificate as base64 encoded string. Must be in PEM format.
         """
         return pulumi.get(self, "certificate")
 
@@ -132,7 +132,7 @@ class _LoadbalancerManualCertificateBundleState:
     @pulumi.getter
     def intermediates(self) -> Optional[pulumi.Input[str]]:
         """
-        Intermediate certificates within base64 string must be in PEM format.
+        Intermediate certificates as base64 encoded string. Must be in PEM format.
         """
         return pulumi.get(self, "intermediates")
 
@@ -144,7 +144,7 @@ class _LoadbalancerManualCertificateBundleState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the bundle must be unique within customer account.
+        The name of the certificate bundle. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 
@@ -192,7 +192,7 @@ class _LoadbalancerManualCertificateBundleState:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[str]]:
         """
-        Private key within base64 string must be in PEM format.
+        Private key as base64 encoded string. Must be in PEM format.
         """
         return pulumi.get(self, "private_key")
 
@@ -216,10 +216,10 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] certificate: Certificate within base64 string must be in PEM format.
-        :param pulumi.Input[str] intermediates: Intermediate certificates within base64 string must be in PEM format.
-        :param pulumi.Input[str] name: The name of the bundle must be unique within customer account.
-        :param pulumi.Input[str] private_key: Private key within base64 string must be in PEM format.
+        :param pulumi.Input[str] certificate: Certificate as base64 encoded string. Must be in PEM format.
+        :param pulumi.Input[str] intermediates: Intermediate certificates as base64 encoded string. Must be in PEM format.
+        :param pulumi.Input[str] name: The name of the certificate bundle. Must be unique within customer account.
+        :param pulumi.Input[str] private_key: Private key as base64 encoded string. Must be in PEM format.
         """
         ...
     @overload
@@ -295,13 +295,13 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] certificate: Certificate within base64 string must be in PEM format.
-        :param pulumi.Input[str] intermediates: Intermediate certificates within base64 string must be in PEM format.
-        :param pulumi.Input[str] name: The name of the bundle must be unique within customer account.
+        :param pulumi.Input[str] certificate: Certificate as base64 encoded string. Must be in PEM format.
+        :param pulumi.Input[str] intermediates: Intermediate certificates as base64 encoded string. Must be in PEM format.
+        :param pulumi.Input[str] name: The name of the certificate bundle. Must be unique within customer account.
         :param pulumi.Input[str] not_after: The time after which a certificate is no longer valid.
         :param pulumi.Input[str] not_before: The time on which a certificate becomes valid.
         :param pulumi.Input[str] operational_state: The service operational state indicates the service's current operational, effective state. Managed by the system.
-        :param pulumi.Input[str] private_key: Private key within base64 string must be in PEM format.
+        :param pulumi.Input[str] private_key: Private key as base64 encoded string. Must be in PEM format.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -320,15 +320,15 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
     @pulumi.getter
     def certificate(self) -> pulumi.Output[str]:
         """
-        Certificate within base64 string must be in PEM format.
+        Certificate as base64 encoded string. Must be in PEM format.
         """
         return pulumi.get(self, "certificate")
 
     @property
     @pulumi.getter
-    def intermediates(self) -> pulumi.Output[Optional[str]]:
+    def intermediates(self) -> pulumi.Output[str]:
         """
-        Intermediate certificates within base64 string must be in PEM format.
+        Intermediate certificates as base64 encoded string. Must be in PEM format.
         """
         return pulumi.get(self, "intermediates")
 
@@ -336,7 +336,7 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the bundle must be unique within customer account.
+        The name of the certificate bundle. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 
@@ -368,7 +368,7 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Output[str]:
         """
-        Private key within base64 string must be in PEM format.
+        Private key as base64 encoded string. Must be in PEM format.
         """
         return pulumi.get(self, "private_key")
 

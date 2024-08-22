@@ -50,7 +50,7 @@ type LoadbalancerDynamicCertificateBundle struct {
 	Hostnames pulumi.StringArrayOutput `pulumi:"hostnames"`
 	// Private key type (`rsa` / `ecdsa`).
 	KeyType pulumi.StringOutput `pulumi:"keyType"`
-	// The name of the bundle must be unique within customer account.
+	// The name of the certificate bundle. Must be unique within customer account.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The time after which a certificate is no longer valid.
 	NotAfter pulumi.StringOutput `pulumi:"notAfter"`
@@ -100,7 +100,7 @@ type loadbalancerDynamicCertificateBundleState struct {
 	Hostnames []string `pulumi:"hostnames"`
 	// Private key type (`rsa` / `ecdsa`).
 	KeyType *string `pulumi:"keyType"`
-	// The name of the bundle must be unique within customer account.
+	// The name of the certificate bundle. Must be unique within customer account.
 	Name *string `pulumi:"name"`
 	// The time after which a certificate is no longer valid.
 	NotAfter *string `pulumi:"notAfter"`
@@ -115,7 +115,7 @@ type LoadbalancerDynamicCertificateBundleState struct {
 	Hostnames pulumi.StringArrayInput
 	// Private key type (`rsa` / `ecdsa`).
 	KeyType pulumi.StringPtrInput
-	// The name of the bundle must be unique within customer account.
+	// The name of the certificate bundle. Must be unique within customer account.
 	Name pulumi.StringPtrInput
 	// The time after which a certificate is no longer valid.
 	NotAfter pulumi.StringPtrInput
@@ -134,7 +134,7 @@ type loadbalancerDynamicCertificateBundleArgs struct {
 	Hostnames []string `pulumi:"hostnames"`
 	// Private key type (`rsa` / `ecdsa`).
 	KeyType string `pulumi:"keyType"`
-	// The name of the bundle must be unique within customer account.
+	// The name of the certificate bundle. Must be unique within customer account.
 	Name *string `pulumi:"name"`
 }
 
@@ -144,7 +144,7 @@ type LoadbalancerDynamicCertificateBundleArgs struct {
 	Hostnames pulumi.StringArrayInput
 	// Private key type (`rsa` / `ecdsa`).
 	KeyType pulumi.StringInput
-	// The name of the bundle must be unique within customer account.
+	// The name of the certificate bundle. Must be unique within customer account.
 	Name pulumi.StringPtrInput
 }
 
@@ -245,7 +245,7 @@ func (o LoadbalancerDynamicCertificateBundleOutput) KeyType() pulumi.StringOutpu
 	return o.ApplyT(func(v *LoadbalancerDynamicCertificateBundle) pulumi.StringOutput { return v.KeyType }).(pulumi.StringOutput)
 }
 
-// The name of the bundle must be unique within customer account.
+// The name of the certificate bundle. Must be unique within customer account.
 func (o LoadbalancerDynamicCertificateBundleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerDynamicCertificateBundle) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

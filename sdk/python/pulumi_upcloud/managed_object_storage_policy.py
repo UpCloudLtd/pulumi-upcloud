@@ -20,7 +20,8 @@ class ManagedObjectStoragePolicyArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ManagedObjectStoragePolicy resource.
-        :param pulumi.Input[str] document: Policy document, URL-encoded compliant with RFC 3986.
+        :param pulumi.Input[str] document: Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+               document has changed.
         :param pulumi.Input[str] service_uuid: Managed Object Storage service UUID.
         :param pulumi.Input[str] description: Description of the policy.
         :param pulumi.Input[str] name: Policy name.
@@ -36,7 +37,8 @@ class ManagedObjectStoragePolicyArgs:
     @pulumi.getter
     def document(self) -> pulumi.Input[str]:
         """
-        Policy document, URL-encoded compliant with RFC 3986.
+        Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+        document has changed.
         """
         return pulumi.get(self, "document")
 
@@ -101,7 +103,8 @@ class _ManagedObjectStoragePolicyState:
         :param pulumi.Input[str] created_at: Creation time.
         :param pulumi.Input[str] default_version_id: Default version id.
         :param pulumi.Input[str] description: Description of the policy.
-        :param pulumi.Input[str] document: Policy document, URL-encoded compliant with RFC 3986.
+        :param pulumi.Input[str] document: Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+               document has changed.
         :param pulumi.Input[str] name: Policy name.
         :param pulumi.Input[str] service_uuid: Managed Object Storage service UUID.
         :param pulumi.Input[bool] system: Defines whether the policy was set up by the system.
@@ -192,7 +195,8 @@ class _ManagedObjectStoragePolicyState:
     @pulumi.getter
     def document(self) -> Optional[pulumi.Input[str]]:
         """
-        Policy document, URL-encoded compliant with RFC 3986.
+        Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+        document has changed.
         """
         return pulumi.get(self, "document")
 
@@ -280,7 +284,8 @@ class ManagedObjectStoragePolicy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description of the policy.
-        :param pulumi.Input[str] document: Policy document, URL-encoded compliant with RFC 3986.
+        :param pulumi.Input[str] document: Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+               document has changed.
         :param pulumi.Input[str] name: Policy name.
         :param pulumi.Input[str] service_uuid: Managed Object Storage service UUID.
         """
@@ -382,7 +387,8 @@ class ManagedObjectStoragePolicy(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: Creation time.
         :param pulumi.Input[str] default_version_id: Default version id.
         :param pulumi.Input[str] description: Description of the policy.
-        :param pulumi.Input[str] document: Policy document, URL-encoded compliant with RFC 3986.
+        :param pulumi.Input[str] document: Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+               document has changed.
         :param pulumi.Input[str] name: Policy name.
         :param pulumi.Input[str] service_uuid: Managed Object Storage service UUID.
         :param pulumi.Input[bool] system: Defines whether the policy was set up by the system.
@@ -448,7 +454,8 @@ class ManagedObjectStoragePolicy(pulumi.CustomResource):
     @pulumi.getter
     def document(self) -> pulumi.Output[str]:
         """
-        Policy document, URL-encoded compliant with RFC 3986.
+        Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+        document has changed.
         """
         return pulumi.get(self, "document")
 

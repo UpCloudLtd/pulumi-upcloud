@@ -57,7 +57,7 @@ export class Router extends pulumi.CustomResource {
      */
     public /*out*/ readonly attachedNetworks!: pulumi.Output<string[]>;
     /**
-     * Key-value pairs to classify the router.
+     * User defined key-value pairs to classify the router.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
     /**
@@ -65,9 +65,14 @@ export class Router extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * A collection of static routes for this router.
+     * A collection of user managed static routes for this router.
      */
-    public readonly staticRoutes!: pulumi.Output<outputs.RouterStaticRoute[] | undefined>;
+    public readonly staticRoute!: pulumi.Output<outputs.RouterStaticRoute[] | undefined>;
+    /**
+     * A collection of static routes for this router. This set includes both user and service defined static routes. The
+     * objects in this set use the same schema as `staticRoute` blocks.
+     */
+    public /*out*/ readonly staticRoutes!: pulumi.Output<outputs.RouterStaticRoute[]>;
     /**
      * Type of the router
      */
@@ -89,14 +94,16 @@ export class Router extends pulumi.CustomResource {
             resourceInputs["attachedNetworks"] = state ? state.attachedNetworks : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["staticRoute"] = state ? state.staticRoute : undefined;
             resourceInputs["staticRoutes"] = state ? state.staticRoutes : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as RouterArgs | undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["staticRoutes"] = args ? args.staticRoutes : undefined;
+            resourceInputs["staticRoute"] = args ? args.staticRoute : undefined;
             resourceInputs["attachedNetworks"] = undefined /*out*/;
+            resourceInputs["staticRoutes"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -113,7 +120,7 @@ export interface RouterState {
      */
     attachedNetworks?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Key-value pairs to classify the router.
+     * User defined key-value pairs to classify the router.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -121,7 +128,12 @@ export interface RouterState {
      */
     name?: pulumi.Input<string>;
     /**
-     * A collection of static routes for this router.
+     * A collection of user managed static routes for this router.
+     */
+    staticRoute?: pulumi.Input<pulumi.Input<inputs.RouterStaticRoute>[]>;
+    /**
+     * A collection of static routes for this router. This set includes both user and service defined static routes. The
+     * objects in this set use the same schema as `staticRoute` blocks.
      */
     staticRoutes?: pulumi.Input<pulumi.Input<inputs.RouterStaticRoute>[]>;
     /**
@@ -135,7 +147,7 @@ export interface RouterState {
  */
 export interface RouterArgs {
     /**
-     * Key-value pairs to classify the router.
+     * User defined key-value pairs to classify the router.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -143,7 +155,7 @@ export interface RouterArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * A collection of static routes for this router.
+     * A collection of user managed static routes for this router.
      */
-    staticRoutes?: pulumi.Input<pulumi.Input<inputs.RouterStaticRoute>[]>;
+    staticRoute?: pulumi.Input<pulumi.Input<inputs.RouterStaticRoute>[]>;
 }

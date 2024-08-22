@@ -26,6 +26,10 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly string? IgnoreDbs;
         /// <summary>
+        /// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+        /// </summary>
+        public readonly string? IgnoreRoles;
+        /// <summary>
         /// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
         /// </summary>
         public readonly string? Method;
@@ -54,6 +58,8 @@ namespace Pulumi.Upcloud.Outputs
 
             string? ignoreDbs,
 
+            string? ignoreRoles,
+
             string? method,
 
             string? password,
@@ -67,6 +73,7 @@ namespace Pulumi.Upcloud.Outputs
             Dbname = dbname;
             Host = host;
             IgnoreDbs = ignoreDbs;
+            IgnoreRoles = ignoreRoles;
             Method = method;
             Password = password;
             Port = port;

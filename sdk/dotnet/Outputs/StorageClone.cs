@@ -14,7 +14,7 @@ namespace Pulumi.Upcloud.Outputs
     public sealed class StorageClone
     {
         /// <summary>
-        /// The unique identifier of the storage/template to clone
+        /// The unique identifier of the storage/template to clone.
         /// </summary>
         public readonly string Id;
 

@@ -59,6 +59,8 @@ type ManagedDatabaseRedis struct {
 
 	// Service component information
 	Components ManagedDatabaseRedisComponentArrayOutput `pulumi:"components"`
+	// User defined key-value pairs to classify the managed database.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringOutput `pulumi:"maintenanceWindowDow"`
 	// Maintenance window UTC time in hh:mm:ss format
@@ -144,6 +146,8 @@ func GetManagedDatabaseRedis(ctx *pulumi.Context,
 type managedDatabaseRedisState struct {
 	// Service component information
 	Components []ManagedDatabaseRedisComponent `pulumi:"components"`
+	// User defined key-value pairs to classify the managed database.
+	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow *string `pulumi:"maintenanceWindowDow"`
 	// Maintenance window UTC time in hh:mm:ss format
@@ -186,6 +190,8 @@ type managedDatabaseRedisState struct {
 type ManagedDatabaseRedisState struct {
 	// Service component information
 	Components ManagedDatabaseRedisComponentArrayInput
+	// User defined key-value pairs to classify the managed database.
+	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringPtrInput
 	// Maintenance window UTC time in hh:mm:ss format
@@ -230,6 +236,8 @@ func (ManagedDatabaseRedisState) ElementType() reflect.Type {
 }
 
 type managedDatabaseRedisArgs struct {
+	// User defined key-value pairs to classify the managed database.
+	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow *string `pulumi:"maintenanceWindowDow"`
 	// Maintenance window UTC time in hh:mm:ss format
@@ -253,6 +261,8 @@ type managedDatabaseRedisArgs struct {
 
 // The set of arguments for constructing a ManagedDatabaseRedis resource.
 type ManagedDatabaseRedisArgs struct {
+	// User defined key-value pairs to classify the managed database.
+	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringPtrInput
 	// Maintenance window UTC time in hh:mm:ss format
@@ -364,6 +374,11 @@ func (o ManagedDatabaseRedisOutput) ToManagedDatabaseRedisOutputWithContext(ctx 
 // Service component information
 func (o ManagedDatabaseRedisOutput) Components() ManagedDatabaseRedisComponentArrayOutput {
 	return o.ApplyT(func(v *ManagedDatabaseRedis) ManagedDatabaseRedisComponentArrayOutput { return v.Components }).(ManagedDatabaseRedisComponentArrayOutput)
+}
+
+// User defined key-value pairs to classify the managed database.
+func (o ManagedDatabaseRedisOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ManagedDatabaseRedis) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
 // Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)

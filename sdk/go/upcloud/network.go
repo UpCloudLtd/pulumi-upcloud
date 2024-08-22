@@ -63,7 +63,7 @@ type Network struct {
 
 	// IP subnet within the network. Network must have exactly one IP subnet.
 	IpNetwork NetworkIpNetworkOutput `pulumi:"ipNetwork"`
-	// Key-value pairs to classify the network.
+	// User defined key-value pairs to classify the network.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Name of the network.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -113,7 +113,7 @@ func GetNetwork(ctx *pulumi.Context,
 type networkState struct {
 	// IP subnet within the network. Network must have exactly one IP subnet.
 	IpNetwork *NetworkIpNetwork `pulumi:"ipNetwork"`
-	// Key-value pairs to classify the network.
+	// User defined key-value pairs to classify the network.
 	Labels map[string]string `pulumi:"labels"`
 	// Name of the network.
 	Name *string `pulumi:"name"`
@@ -128,7 +128,7 @@ type networkState struct {
 type NetworkState struct {
 	// IP subnet within the network. Network must have exactly one IP subnet.
 	IpNetwork NetworkIpNetworkPtrInput
-	// Key-value pairs to classify the network.
+	// User defined key-value pairs to classify the network.
 	Labels pulumi.StringMapInput
 	// Name of the network.
 	Name pulumi.StringPtrInput
@@ -147,7 +147,7 @@ func (NetworkState) ElementType() reflect.Type {
 type networkArgs struct {
 	// IP subnet within the network. Network must have exactly one IP subnet.
 	IpNetwork NetworkIpNetwork `pulumi:"ipNetwork"`
-	// Key-value pairs to classify the network.
+	// User defined key-value pairs to classify the network.
 	Labels map[string]string `pulumi:"labels"`
 	// Name of the network.
 	Name *string `pulumi:"name"`
@@ -161,7 +161,7 @@ type networkArgs struct {
 type NetworkArgs struct {
 	// IP subnet within the network. Network must have exactly one IP subnet.
 	IpNetwork NetworkIpNetworkInput
-	// Key-value pairs to classify the network.
+	// User defined key-value pairs to classify the network.
 	Labels pulumi.StringMapInput
 	// Name of the network.
 	Name pulumi.StringPtrInput
@@ -263,7 +263,7 @@ func (o NetworkOutput) IpNetwork() NetworkIpNetworkOutput {
 	return o.ApplyT(func(v *Network) NetworkIpNetworkOutput { return v.IpNetwork }).(NetworkIpNetworkOutput)
 }
 
-// Key-value pairs to classify the network.
+// User defined key-value pairs to classify the network.
 func (o NetworkOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Network) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }

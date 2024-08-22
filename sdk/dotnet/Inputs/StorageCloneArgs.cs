@@ -13,7 +13,7 @@ namespace Pulumi.Upcloud.Inputs
     public sealed class StorageCloneArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique identifier of the storage/template to clone
+        /// The unique identifier of the storage/template to clone.
         /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;

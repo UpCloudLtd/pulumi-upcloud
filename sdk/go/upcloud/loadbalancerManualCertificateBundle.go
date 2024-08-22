@@ -16,11 +16,11 @@ import (
 type LoadbalancerManualCertificateBundle struct {
 	pulumi.CustomResourceState
 
-	// Certificate within base64 string must be in PEM format.
+	// Certificate as base64 encoded string. Must be in PEM format.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
-	// Intermediate certificates within base64 string must be in PEM format.
-	Intermediates pulumi.StringPtrOutput `pulumi:"intermediates"`
-	// The name of the bundle must be unique within customer account.
+	// Intermediate certificates as base64 encoded string. Must be in PEM format.
+	Intermediates pulumi.StringOutput `pulumi:"intermediates"`
+	// The name of the certificate bundle. Must be unique within customer account.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The time after which a certificate is no longer valid.
 	NotAfter pulumi.StringOutput `pulumi:"notAfter"`
@@ -28,7 +28,7 @@ type LoadbalancerManualCertificateBundle struct {
 	NotBefore pulumi.StringOutput `pulumi:"notBefore"`
 	// The service operational state indicates the service's current operational, effective state. Managed by the system.
 	OperationalState pulumi.StringOutput `pulumi:"operationalState"`
-	// Private key within base64 string must be in PEM format.
+	// Private key as base64 encoded string. Must be in PEM format.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 }
 
@@ -75,11 +75,11 @@ func GetLoadbalancerManualCertificateBundle(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoadbalancerManualCertificateBundle resources.
 type loadbalancerManualCertificateBundleState struct {
-	// Certificate within base64 string must be in PEM format.
+	// Certificate as base64 encoded string. Must be in PEM format.
 	Certificate *string `pulumi:"certificate"`
-	// Intermediate certificates within base64 string must be in PEM format.
+	// Intermediate certificates as base64 encoded string. Must be in PEM format.
 	Intermediates *string `pulumi:"intermediates"`
-	// The name of the bundle must be unique within customer account.
+	// The name of the certificate bundle. Must be unique within customer account.
 	Name *string `pulumi:"name"`
 	// The time after which a certificate is no longer valid.
 	NotAfter *string `pulumi:"notAfter"`
@@ -87,16 +87,16 @@ type loadbalancerManualCertificateBundleState struct {
 	NotBefore *string `pulumi:"notBefore"`
 	// The service operational state indicates the service's current operational, effective state. Managed by the system.
 	OperationalState *string `pulumi:"operationalState"`
-	// Private key within base64 string must be in PEM format.
+	// Private key as base64 encoded string. Must be in PEM format.
 	PrivateKey *string `pulumi:"privateKey"`
 }
 
 type LoadbalancerManualCertificateBundleState struct {
-	// Certificate within base64 string must be in PEM format.
+	// Certificate as base64 encoded string. Must be in PEM format.
 	Certificate pulumi.StringPtrInput
-	// Intermediate certificates within base64 string must be in PEM format.
+	// Intermediate certificates as base64 encoded string. Must be in PEM format.
 	Intermediates pulumi.StringPtrInput
-	// The name of the bundle must be unique within customer account.
+	// The name of the certificate bundle. Must be unique within customer account.
 	Name pulumi.StringPtrInput
 	// The time after which a certificate is no longer valid.
 	NotAfter pulumi.StringPtrInput
@@ -104,7 +104,7 @@ type LoadbalancerManualCertificateBundleState struct {
 	NotBefore pulumi.StringPtrInput
 	// The service operational state indicates the service's current operational, effective state. Managed by the system.
 	OperationalState pulumi.StringPtrInput
-	// Private key within base64 string must be in PEM format.
+	// Private key as base64 encoded string. Must be in PEM format.
 	PrivateKey pulumi.StringPtrInput
 }
 
@@ -113,25 +113,25 @@ func (LoadbalancerManualCertificateBundleState) ElementType() reflect.Type {
 }
 
 type loadbalancerManualCertificateBundleArgs struct {
-	// Certificate within base64 string must be in PEM format.
+	// Certificate as base64 encoded string. Must be in PEM format.
 	Certificate string `pulumi:"certificate"`
-	// Intermediate certificates within base64 string must be in PEM format.
+	// Intermediate certificates as base64 encoded string. Must be in PEM format.
 	Intermediates *string `pulumi:"intermediates"`
-	// The name of the bundle must be unique within customer account.
+	// The name of the certificate bundle. Must be unique within customer account.
 	Name *string `pulumi:"name"`
-	// Private key within base64 string must be in PEM format.
+	// Private key as base64 encoded string. Must be in PEM format.
 	PrivateKey string `pulumi:"privateKey"`
 }
 
 // The set of arguments for constructing a LoadbalancerManualCertificateBundle resource.
 type LoadbalancerManualCertificateBundleArgs struct {
-	// Certificate within base64 string must be in PEM format.
+	// Certificate as base64 encoded string. Must be in PEM format.
 	Certificate pulumi.StringInput
-	// Intermediate certificates within base64 string must be in PEM format.
+	// Intermediate certificates as base64 encoded string. Must be in PEM format.
 	Intermediates pulumi.StringPtrInput
-	// The name of the bundle must be unique within customer account.
+	// The name of the certificate bundle. Must be unique within customer account.
 	Name pulumi.StringPtrInput
-	// Private key within base64 string must be in PEM format.
+	// Private key as base64 encoded string. Must be in PEM format.
 	PrivateKey pulumi.StringInput
 }
 
@@ -222,17 +222,17 @@ func (o LoadbalancerManualCertificateBundleOutput) ToLoadbalancerManualCertifica
 	return o
 }
 
-// Certificate within base64 string must be in PEM format.
+// Certificate as base64 encoded string. Must be in PEM format.
 func (o LoadbalancerManualCertificateBundleOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerManualCertificateBundle) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
 }
 
-// Intermediate certificates within base64 string must be in PEM format.
-func (o LoadbalancerManualCertificateBundleOutput) Intermediates() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LoadbalancerManualCertificateBundle) pulumi.StringPtrOutput { return v.Intermediates }).(pulumi.StringPtrOutput)
+// Intermediate certificates as base64 encoded string. Must be in PEM format.
+func (o LoadbalancerManualCertificateBundleOutput) Intermediates() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadbalancerManualCertificateBundle) pulumi.StringOutput { return v.Intermediates }).(pulumi.StringOutput)
 }
 
-// The name of the bundle must be unique within customer account.
+// The name of the certificate bundle. Must be unique within customer account.
 func (o LoadbalancerManualCertificateBundleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerManualCertificateBundle) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -252,7 +252,7 @@ func (o LoadbalancerManualCertificateBundleOutput) OperationalState() pulumi.Str
 	return o.ApplyT(func(v *LoadbalancerManualCertificateBundle) pulumi.StringOutput { return v.OperationalState }).(pulumi.StringOutput)
 }
 
-// Private key within base64 string must be in PEM format.
+// Private key as base64 encoded string. Must be in PEM format.
 func (o LoadbalancerManualCertificateBundleOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerManualCertificateBundle) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
 }

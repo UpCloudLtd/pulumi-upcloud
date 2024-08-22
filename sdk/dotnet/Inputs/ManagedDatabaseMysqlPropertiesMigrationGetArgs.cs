@@ -31,6 +31,12 @@ namespace Pulumi.Upcloud.Inputs
         public Input<string>? IgnoreDbs { get; set; }
 
         /// <summary>
+        /// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+        /// </summary>
+        [Input("ignoreRoles")]
+        public Input<string>? IgnoreRoles { get; set; }
+
+        /// <summary>
         /// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
         /// </summary>
         [Input("method")]

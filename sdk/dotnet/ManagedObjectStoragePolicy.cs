@@ -72,7 +72,8 @@ namespace Pulumi.Upcloud
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Policy document, URL-encoded compliant with RFC 3986.
+        /// Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+        /// document has changed.
         /// </summary>
         [Output("document")]
         public Output<string> Document { get; private set; } = null!;
@@ -154,7 +155,8 @@ namespace Pulumi.Upcloud
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Policy document, URL-encoded compliant with RFC 3986.
+        /// Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+        /// document has changed.
         /// </summary>
         [Input("document", required: true)]
         public Input<string> Document { get; set; } = null!;
@@ -210,7 +212,8 @@ namespace Pulumi.Upcloud
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Policy document, URL-encoded compliant with RFC 3986.
+        /// Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+        /// document has changed.
         /// </summary>
         [Input("document")]
         public Input<string>? Document { get; set; }

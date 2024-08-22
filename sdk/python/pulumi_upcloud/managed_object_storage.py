@@ -25,7 +25,7 @@ class ManagedObjectStorageArgs:
         The set of arguments for constructing a ManagedObjectStorage resource.
         :param pulumi.Input[str] configured_status: Service status managed by the end user.
         :param pulumi.Input[str] region: Region in which the service will be hosted, see `get_managed_object_storage_regions` data source.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the managed object storage.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the managed object storage.
         :param pulumi.Input[str] name: Name of the Managed Object Storage service. Must be unique within account.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]] networks: Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain
                access from multiple private networks that might reside in different zones, create the networks and a corresponding
@@ -68,7 +68,7 @@ class ManagedObjectStorageArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs to classify the managed object storage.
+        User defined key-value pairs to classify the managed object storage.
         """
         return pulumi.get(self, "labels")
 
@@ -120,7 +120,7 @@ class _ManagedObjectStorageState:
         :param pulumi.Input[str] configured_status: Service status managed by the end user.
         :param pulumi.Input[str] created_at: Creation time.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageEndpointArgs']]] endpoints: Endpoints for accessing the Managed Object Storage service.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the managed object storage.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the managed object storage.
         :param pulumi.Input[str] name: Name of the Managed Object Storage service. Must be unique within account.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]] networks: Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain
                access from multiple private networks that might reside in different zones, create the networks and a corresponding
@@ -188,7 +188,7 @@ class _ManagedObjectStorageState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs to classify the managed object storage.
+        User defined key-value pairs to classify the managed object storage.
         """
         return pulumi.get(self, "labels")
 
@@ -267,7 +267,7 @@ class ManagedObjectStorage(pulumi.CustomResource):
                  configured_status: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedObjectStorageNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict']]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -284,21 +284,21 @@ class ManagedObjectStorage(pulumi.CustomResource):
         # Create network for the Managed Object Storage
         this_network = upcloud.Network("thisNetwork",
             zone="fi-hel1",
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="172.16.2.0/24",
-                dhcp=True,
-                family="IPv4",
-            ),
+            ip_network={
+                "address": "172.16.2.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            },
             router=this_router.id)
         this_managed_object_storage = upcloud.ManagedObjectStorage("thisManagedObjectStorage",
             region="europe-1",
             configured_status="started",
-            networks=[upcloud.ManagedObjectStorageNetworkArgs(
-                family="IPv4",
-                name="example-private-net",
-                type="private",
-                uuid=this_network.id,
-            )],
+            networks=[{
+                "family": "IPv4",
+                "name": "example-private-net",
+                "type": "private",
+                "uuid": this_network.id,
+            }],
             labels={
                 "managed-by": "terraform",
             })
@@ -307,9 +307,9 @@ class ManagedObjectStorage(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] configured_status: Service status managed by the end user.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the managed object storage.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the managed object storage.
         :param pulumi.Input[str] name: Name of the Managed Object Storage service. Must be unique within account.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedObjectStorageNetworkArgs']]]] networks: Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict']]]] networks: Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain
                access from multiple private networks that might reside in different zones, create the networks and a corresponding
                router for each network.
         :param pulumi.Input[str] region: Region in which the service will be hosted, see `get_managed_object_storage_regions` data source.
@@ -334,21 +334,21 @@ class ManagedObjectStorage(pulumi.CustomResource):
         # Create network for the Managed Object Storage
         this_network = upcloud.Network("thisNetwork",
             zone="fi-hel1",
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="172.16.2.0/24",
-                dhcp=True,
-                family="IPv4",
-            ),
+            ip_network={
+                "address": "172.16.2.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            },
             router=this_router.id)
         this_managed_object_storage = upcloud.ManagedObjectStorage("thisManagedObjectStorage",
             region="europe-1",
             configured_status="started",
-            networks=[upcloud.ManagedObjectStorageNetworkArgs(
-                family="IPv4",
-                name="example-private-net",
-                type="private",
-                uuid=this_network.id,
-            )],
+            networks=[{
+                "family": "IPv4",
+                "name": "example-private-net",
+                "type": "private",
+                "uuid": this_network.id,
+            }],
             labels={
                 "managed-by": "terraform",
             })
@@ -372,7 +372,7 @@ class ManagedObjectStorage(pulumi.CustomResource):
                  configured_status: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedObjectStorageNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict']]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -408,10 +408,10 @@ class ManagedObjectStorage(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             configured_status: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
-            endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedObjectStorageEndpointArgs']]]]] = None,
+            endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageEndpointArgs', 'ManagedObjectStorageEndpointArgsDict']]]]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedObjectStorageNetworkArgs']]]]] = None,
+            networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict']]]]] = None,
             operational_state: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None) -> 'ManagedObjectStorage':
@@ -424,10 +424,10 @@ class ManagedObjectStorage(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] configured_status: Service status managed by the end user.
         :param pulumi.Input[str] created_at: Creation time.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedObjectStorageEndpointArgs']]]] endpoints: Endpoints for accessing the Managed Object Storage service.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the managed object storage.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageEndpointArgs', 'ManagedObjectStorageEndpointArgsDict']]]] endpoints: Endpoints for accessing the Managed Object Storage service.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the managed object storage.
         :param pulumi.Input[str] name: Name of the Managed Object Storage service. Must be unique within account.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedObjectStorageNetworkArgs']]]] networks: Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict']]]] networks: Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain
                access from multiple private networks that might reside in different zones, create the networks and a corresponding
                router for each network.
         :param pulumi.Input[str] operational_state: Operational state of the Managed Object Storage service.
@@ -477,7 +477,7 @@ class ManagedObjectStorage(pulumi.CustomResource):
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        Key-value pairs to classify the managed object storage.
+        User defined key-value pairs to classify the managed object storage.
         """
         return pulumi.get(self, "labels")
 

@@ -36,6 +36,9 @@ namespace Pulumi.Upcloud.Inputs
         [Input("automaticUtilityNetworkIpFilter")]
         public Input<bool>? AutomaticUtilityNetworkIpFilter { get; set; }
 
+        [Input("azureMigration")]
+        public Input<Inputs.ManagedDatabaseOpensearchPropertiesAzureMigrationArgs>? AzureMigration { get; set; }
+
         /// <summary>
         /// Controls the number of shards allowed in the cluster per data node.
         /// </summary>
@@ -88,6 +91,9 @@ namespace Pulumi.Upcloud.Inputs
         [Input("enableSecurityAudit")]
         public Input<bool>? EnableSecurityAudit { get; set; }
 
+        [Input("gcsMigration")]
+        public Input<Inputs.ManagedDatabaseOpensearchPropertiesGcsMigrationArgs>? GcsMigration { get; set; }
+
         /// <summary>
         /// Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
         /// </summary>
@@ -117,6 +123,12 @@ namespace Pulumi.Upcloud.Inputs
             get => _indexPatterns ?? (_indexPatterns = new InputList<string>());
             set => _indexPatterns = value;
         }
+
+        /// <summary>
+        /// Index rollup settings.
+        /// </summary>
+        [Input("indexRollup")]
+        public Input<Inputs.ManagedDatabaseOpensearchPropertiesIndexRollupArgs>? IndexRollup { get; set; }
 
         /// <summary>
         /// Template settings for all new indexes.
@@ -279,6 +291,9 @@ namespace Pulumi.Upcloud.Inputs
             get => _reindexRemoteWhitelists ?? (_reindexRemoteWhitelists = new InputList<string>());
             set => _reindexRemoteWhitelists = value;
         }
+
+        [Input("s3Migration")]
+        public Input<Inputs.ManagedDatabaseOpensearchPropertiesS3MigrationArgs>? S3Migration { get; set; }
 
         /// <summary>
         /// OpenSearch SAML configuration.

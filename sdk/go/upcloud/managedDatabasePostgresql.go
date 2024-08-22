@@ -61,6 +61,8 @@ type ManagedDatabasePostgresql struct {
 
 	// Service component information
 	Components ManagedDatabasePostgresqlComponentArrayOutput `pulumi:"components"`
+	// User defined key-value pairs to classify the managed database.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringOutput `pulumi:"maintenanceWindowDow"`
 	// Maintenance window UTC time in hh:mm:ss format
@@ -148,6 +150,8 @@ func GetManagedDatabasePostgresql(ctx *pulumi.Context,
 type managedDatabasePostgresqlState struct {
 	// Service component information
 	Components []ManagedDatabasePostgresqlComponent `pulumi:"components"`
+	// User defined key-value pairs to classify the managed database.
+	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow *string `pulumi:"maintenanceWindowDow"`
 	// Maintenance window UTC time in hh:mm:ss format
@@ -192,6 +196,8 @@ type managedDatabasePostgresqlState struct {
 type ManagedDatabasePostgresqlState struct {
 	// Service component information
 	Components ManagedDatabasePostgresqlComponentArrayInput
+	// User defined key-value pairs to classify the managed database.
+	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringPtrInput
 	// Maintenance window UTC time in hh:mm:ss format
@@ -238,6 +244,8 @@ func (ManagedDatabasePostgresqlState) ElementType() reflect.Type {
 }
 
 type managedDatabasePostgresqlArgs struct {
+	// User defined key-value pairs to classify the managed database.
+	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow *string `pulumi:"maintenanceWindowDow"`
 	// Maintenance window UTC time in hh:mm:ss format
@@ -261,6 +269,8 @@ type managedDatabasePostgresqlArgs struct {
 
 // The set of arguments for constructing a ManagedDatabasePostgresql resource.
 type ManagedDatabasePostgresqlArgs struct {
+	// User defined key-value pairs to classify the managed database.
+	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringPtrInput
 	// Maintenance window UTC time in hh:mm:ss format
@@ -372,6 +382,11 @@ func (o ManagedDatabasePostgresqlOutput) ToManagedDatabasePostgresqlOutputWithCo
 // Service component information
 func (o ManagedDatabasePostgresqlOutput) Components() ManagedDatabasePostgresqlComponentArrayOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresql) ManagedDatabasePostgresqlComponentArrayOutput { return v.Components }).(ManagedDatabasePostgresqlComponentArrayOutput)
+}
+
+// User defined key-value pairs to classify the managed database.
+func (o ManagedDatabasePostgresqlOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
 // Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)

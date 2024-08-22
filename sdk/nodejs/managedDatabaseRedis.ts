@@ -65,6 +65,10 @@ export class ManagedDatabaseRedis extends pulumi.CustomResource {
      */
     public /*out*/ readonly components!: pulumi.Output<outputs.ManagedDatabaseRedisComponent[]>;
     /**
+     * User defined key-value pairs to classify the managed database.
+     */
+    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
      */
     public readonly maintenanceWindowDow!: pulumi.Output<string>;
@@ -152,6 +156,7 @@ export class ManagedDatabaseRedis extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ManagedDatabaseRedisState | undefined;
             resourceInputs["components"] = state ? state.components : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["maintenanceWindowDow"] = state ? state.maintenanceWindowDow : undefined;
             resourceInputs["maintenanceWindowTime"] = state ? state.maintenanceWindowTime : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -181,6 +186,7 @@ export class ManagedDatabaseRedis extends pulumi.CustomResource {
             if ((!args || args.zone === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'zone'");
             }
+            resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["maintenanceWindowDow"] = args ? args.maintenanceWindowDow : undefined;
             resourceInputs["maintenanceWindowTime"] = args ? args.maintenanceWindowTime : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -216,6 +222,10 @@ export interface ManagedDatabaseRedisState {
      * Service component information
      */
     components?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseRedisComponent>[]>;
+    /**
+     * User defined key-value pairs to classify the managed database.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
      */
@@ -295,6 +305,10 @@ export interface ManagedDatabaseRedisState {
  * The set of arguments for constructing a ManagedDatabaseRedis resource.
  */
 export interface ManagedDatabaseRedisArgs {
+    /**
+     * User defined key-value pairs to classify the managed database.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
      */

@@ -98,7 +98,7 @@ export class Server extends pulumi.CustomResource {
      */
     public readonly hostname!: pulumi.Output<string>;
     /**
-     * Key-value pairs to classify the server.
+     * User defined key-value pairs to classify the server.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -265,7 +265,7 @@ export interface ServerState {
      */
     hostname?: pulumi.Input<string>;
     /**
-     * Key-value pairs to classify the server.
+     * User defined key-value pairs to classify the server.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -359,7 +359,7 @@ export interface ServerArgs {
      */
     hostname: pulumi.Input<string>;
     /**
-     * Key-value pairs to classify the server.
+     * User defined key-value pairs to classify the server.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

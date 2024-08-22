@@ -44,7 +44,7 @@ export class LoadbalancerBackendTlsConfig extends pulumi.CustomResource {
      */
     public readonly certificateBundle!: pulumi.Output<string>;
     /**
-     * The name of the TLS config must be unique within service backend.
+     * The name of the TLS config. Must be unique within customer account.
      */
     public readonly name!: pulumi.Output<string>;
 
@@ -94,7 +94,7 @@ export interface LoadbalancerBackendTlsConfigState {
      */
     certificateBundle?: pulumi.Input<string>;
     /**
-     * The name of the TLS config must be unique within service backend.
+     * The name of the TLS config. Must be unique within customer account.
      */
     name?: pulumi.Input<string>;
 }
@@ -112,7 +112,7 @@ export interface LoadbalancerBackendTlsConfigArgs {
      */
     certificateBundle: pulumi.Input<string>;
     /**
-     * The name of the TLS config must be unique within service backend.
+     * The name of the TLS config. Must be unique within customer account.
      */
     name?: pulumi.Input<string>;
 }

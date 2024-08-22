@@ -83,7 +83,7 @@ export class LoadbalancerFrontendTlsConfig extends pulumi.CustomResource {
      */
     public readonly frontend!: pulumi.Output<string>;
     /**
-     * The name of the TLS config must be unique within service frontend.
+     * The name of the TLS config. Must be unique within customer account.
      */
     public readonly name!: pulumi.Output<string>;
 
@@ -133,7 +133,7 @@ export interface LoadbalancerFrontendTlsConfigState {
      */
     frontend?: pulumi.Input<string>;
     /**
-     * The name of the TLS config must be unique within service frontend.
+     * The name of the TLS config. Must be unique within customer account.
      */
     name?: pulumi.Input<string>;
 }
@@ -151,7 +151,7 @@ export interface LoadbalancerFrontendTlsConfigArgs {
      */
     frontend: pulumi.Input<string>;
     /**
-     * The name of the TLS config must be unique within service frontend.
+     * The name of the TLS config. Must be unique within customer account.
      */
     name?: pulumi.Input<string>;
 }

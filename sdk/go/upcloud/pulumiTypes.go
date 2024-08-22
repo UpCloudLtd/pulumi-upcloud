@@ -6693,6 +6693,8 @@ type ManagedDatabaseMysqlPropertiesMigration struct {
 	Host *string `pulumi:"host"`
 	// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
 	IgnoreDbs *string `pulumi:"ignoreDbs"`
+	// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+	IgnoreRoles *string `pulumi:"ignoreRoles"`
 	// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
 	Method *string `pulumi:"method"`
 	// Password for authentication with the server where to migrate data from.
@@ -6723,6 +6725,8 @@ type ManagedDatabaseMysqlPropertiesMigrationArgs struct {
 	Host pulumi.StringPtrInput `pulumi:"host"`
 	// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
 	IgnoreDbs pulumi.StringPtrInput `pulumi:"ignoreDbs"`
+	// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+	IgnoreRoles pulumi.StringPtrInput `pulumi:"ignoreRoles"`
 	// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
 	Method pulumi.StringPtrInput `pulumi:"method"`
 	// Password for authentication with the server where to migrate data from.
@@ -6827,6 +6831,11 @@ func (o ManagedDatabaseMysqlPropertiesMigrationOutput) IgnoreDbs() pulumi.String
 	return o.ApplyT(func(v ManagedDatabaseMysqlPropertiesMigration) *string { return v.IgnoreDbs }).(pulumi.StringPtrOutput)
 }
 
+// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+func (o ManagedDatabaseMysqlPropertiesMigrationOutput) IgnoreRoles() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlPropertiesMigration) *string { return v.IgnoreRoles }).(pulumi.StringPtrOutput)
+}
+
 // The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
 func (o ManagedDatabaseMysqlPropertiesMigrationOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlPropertiesMigration) *string { return v.Method }).(pulumi.StringPtrOutput)
@@ -6903,6 +6912,16 @@ func (o ManagedDatabaseMysqlPropertiesMigrationPtrOutput) IgnoreDbs() pulumi.Str
 			return nil
 		}
 		return v.IgnoreDbs
+	}).(pulumi.StringPtrOutput)
+}
+
+// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+func (o ManagedDatabaseMysqlPropertiesMigrationPtrOutput) IgnoreRoles() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlPropertiesMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IgnoreRoles
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -7336,7 +7355,8 @@ type ManagedDatabaseOpensearchProperties struct {
 	// Opensearch Security Plugin Settings.
 	AuthFailureListeners *ManagedDatabaseOpensearchPropertiesAuthFailureListeners `pulumi:"authFailureListeners"`
 	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
-	AutomaticUtilityNetworkIpFilter *bool `pulumi:"automaticUtilityNetworkIpFilter"`
+	AutomaticUtilityNetworkIpFilter *bool                                              `pulumi:"automaticUtilityNetworkIpFilter"`
+	AzureMigration                  *ManagedDatabaseOpensearchPropertiesAzureMigration `pulumi:"azureMigration"`
 	// Controls the number of shards allowed in the cluster per data node.
 	ClusterMaxShardsPerNode *int `pulumi:"clusterMaxShardsPerNode"`
 	// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
@@ -7350,7 +7370,8 @@ type ManagedDatabaseOpensearchProperties struct {
 	// Sender username for Opensearch alerts.
 	EmailSenderUsername *string `pulumi:"emailSenderUsername"`
 	// Enable/Disable security audit.
-	EnableSecurityAudit *bool `pulumi:"enableSecurityAudit"`
+	EnableSecurityAudit *bool                                            `pulumi:"enableSecurityAudit"`
+	GcsMigration        *ManagedDatabaseOpensearchPropertiesGcsMigration `pulumi:"gcsMigration"`
 	// Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
 	HttpMaxContentLength *int `pulumi:"httpMaxContentLength"`
 	// The max size of allowed headers, in bytes.
@@ -7359,6 +7380,8 @@ type ManagedDatabaseOpensearchProperties struct {
 	HttpMaxInitialLineLength *int `pulumi:"httpMaxInitialLineLength"`
 	// Index patterns.
 	IndexPatterns []string `pulumi:"indexPatterns"`
+	// Index rollup settings.
+	IndexRollup *ManagedDatabaseOpensearchPropertiesIndexRollup `pulumi:"indexRollup"`
 	// Template settings for all new indexes.
 	IndexTemplate *ManagedDatabaseOpensearchPropertiesIndexTemplate `pulumi:"indexTemplate"`
 	// Relative amount. Maximum amount of heap memory used for field data cache. This is an expert setting; decreasing the value too much will increase overhead of loading field data; too much memory used for field data cache will decrease amount of heap available for other operations.
@@ -7408,7 +7431,8 @@ type ManagedDatabaseOpensearchProperties struct {
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess *bool `pulumi:"publicAccess"`
 	// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
-	ReindexRemoteWhitelists []string `pulumi:"reindexRemoteWhitelists"`
+	ReindexRemoteWhitelists []string                                        `pulumi:"reindexRemoteWhitelists"`
+	S3Migration             *ManagedDatabaseOpensearchPropertiesS3Migration `pulumi:"s3Migration"`
 	// OpenSearch SAML configuration.
 	Saml *ManagedDatabaseOpensearchPropertiesSaml `pulumi:"saml"`
 	// Script max compilation rate - circuit breaker to prevent/minimize OOMs. Script compilation circuit breaker limits the number of inline script compilations within a period of time. Default is use-context.
@@ -7462,7 +7486,8 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	// Opensearch Security Plugin Settings.
 	AuthFailureListeners ManagedDatabaseOpensearchPropertiesAuthFailureListenersPtrInput `pulumi:"authFailureListeners"`
 	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
-	AutomaticUtilityNetworkIpFilter pulumi.BoolPtrInput `pulumi:"automaticUtilityNetworkIpFilter"`
+	AutomaticUtilityNetworkIpFilter pulumi.BoolPtrInput                                       `pulumi:"automaticUtilityNetworkIpFilter"`
+	AzureMigration                  ManagedDatabaseOpensearchPropertiesAzureMigrationPtrInput `pulumi:"azureMigration"`
 	// Controls the number of shards allowed in the cluster per data node.
 	ClusterMaxShardsPerNode pulumi.IntPtrInput `pulumi:"clusterMaxShardsPerNode"`
 	// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
@@ -7476,7 +7501,8 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	// Sender username for Opensearch alerts.
 	EmailSenderUsername pulumi.StringPtrInput `pulumi:"emailSenderUsername"`
 	// Enable/Disable security audit.
-	EnableSecurityAudit pulumi.BoolPtrInput `pulumi:"enableSecurityAudit"`
+	EnableSecurityAudit pulumi.BoolPtrInput                                     `pulumi:"enableSecurityAudit"`
+	GcsMigration        ManagedDatabaseOpensearchPropertiesGcsMigrationPtrInput `pulumi:"gcsMigration"`
 	// Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
 	HttpMaxContentLength pulumi.IntPtrInput `pulumi:"httpMaxContentLength"`
 	// The max size of allowed headers, in bytes.
@@ -7485,6 +7511,8 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	HttpMaxInitialLineLength pulumi.IntPtrInput `pulumi:"httpMaxInitialLineLength"`
 	// Index patterns.
 	IndexPatterns pulumi.StringArrayInput `pulumi:"indexPatterns"`
+	// Index rollup settings.
+	IndexRollup ManagedDatabaseOpensearchPropertiesIndexRollupPtrInput `pulumi:"indexRollup"`
 	// Template settings for all new indexes.
 	IndexTemplate ManagedDatabaseOpensearchPropertiesIndexTemplatePtrInput `pulumi:"indexTemplate"`
 	// Relative amount. Maximum amount of heap memory used for field data cache. This is an expert setting; decreasing the value too much will increase overhead of loading field data; too much memory used for field data cache will decrease amount of heap available for other operations.
@@ -7534,7 +7562,8 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess pulumi.BoolPtrInput `pulumi:"publicAccess"`
 	// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
-	ReindexRemoteWhitelists pulumi.StringArrayInput `pulumi:"reindexRemoteWhitelists"`
+	ReindexRemoteWhitelists pulumi.StringArrayInput                                `pulumi:"reindexRemoteWhitelists"`
+	S3Migration             ManagedDatabaseOpensearchPropertiesS3MigrationPtrInput `pulumi:"s3Migration"`
 	// OpenSearch SAML configuration.
 	Saml ManagedDatabaseOpensearchPropertiesSamlPtrInput `pulumi:"saml"`
 	// Script max compilation rate - circuit breaker to prevent/minimize OOMs. Script compilation circuit breaker limits the number of inline script compilations within a period of time. Default is use-context.
@@ -7668,6 +7697,12 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) AutomaticUtilityNetworkIpFilt
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.AutomaticUtilityNetworkIpFilter }).(pulumi.BoolPtrOutput)
 }
 
+func (o ManagedDatabaseOpensearchPropertiesOutput) AzureMigration() ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesAzureMigration {
+		return v.AzureMigration
+	}).(ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput)
+}
+
 // Controls the number of shards allowed in the cluster per data node.
 func (o ManagedDatabaseOpensearchPropertiesOutput) ClusterMaxShardsPerNode() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.ClusterMaxShardsPerNode }).(pulumi.IntPtrOutput)
@@ -7705,6 +7740,12 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) EnableSecurityAudit() pulumi.
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.EnableSecurityAudit }).(pulumi.BoolPtrOutput)
 }
 
+func (o ManagedDatabaseOpensearchPropertiesOutput) GcsMigration() ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesGcsMigration {
+		return v.GcsMigration
+	}).(ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput)
+}
+
 // Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
 func (o ManagedDatabaseOpensearchPropertiesOutput) HttpMaxContentLength() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.HttpMaxContentLength }).(pulumi.IntPtrOutput)
@@ -7723,6 +7764,13 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) HttpMaxInitialLineLength() pu
 // Index patterns.
 func (o ManagedDatabaseOpensearchPropertiesOutput) IndexPatterns() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) []string { return v.IndexPatterns }).(pulumi.StringArrayOutput)
+}
+
+// Index rollup settings.
+func (o ManagedDatabaseOpensearchPropertiesOutput) IndexRollup() ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesIndexRollup {
+		return v.IndexRollup
+	}).(ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput)
 }
 
 // Template settings for all new indexes.
@@ -7854,6 +7902,12 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) PublicAccess() pulumi.BoolPtr
 // Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
 func (o ManagedDatabaseOpensearchPropertiesOutput) ReindexRemoteWhitelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) []string { return v.ReindexRemoteWhitelists }).(pulumi.StringArrayOutput)
+}
+
+func (o ManagedDatabaseOpensearchPropertiesOutput) S3Migration() ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesS3Migration {
+		return v.S3Migration
+	}).(ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput)
 }
 
 // OpenSearch SAML configuration.
@@ -8000,6 +8054,15 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) AutomaticUtilityNetworkIpF
 	}).(pulumi.BoolPtrOutput)
 }
 
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) AzureMigration() ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesAzureMigration {
+		if v == nil {
+			return nil
+		}
+		return v.AzureMigration
+	}).(ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput)
+}
+
 // Controls the number of shards allowed in the cluster per data node.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ClusterMaxShardsPerNode() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *int {
@@ -8070,6 +8133,15 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) EnableSecurityAudit() pulu
 	}).(pulumi.BoolPtrOutput)
 }
 
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) GcsMigration() ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesGcsMigration {
+		if v == nil {
+			return nil
+		}
+		return v.GcsMigration
+	}).(ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput)
+}
+
 // Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) HttpMaxContentLength() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *int {
@@ -8108,6 +8180,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) IndexPatterns() pulumi.Str
 		}
 		return v.IndexPatterns
 	}).(pulumi.StringArrayOutput)
+}
+
+// Index rollup settings.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) IndexRollup() ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesIndexRollup {
+		if v == nil {
+			return nil
+		}
+		return v.IndexRollup
+	}).(ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput)
 }
 
 // Template settings for all new indexes.
@@ -8358,6 +8440,15 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ReindexRemoteWhitelists() 
 		}
 		return v.ReindexRemoteWhitelists
 	}).(pulumi.StringArrayOutput)
+}
+
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) S3Migration() ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesS3Migration {
+		if v == nil {
+			return nil
+		}
+		return v.S3Migration
+	}).(ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput)
 }
 
 // OpenSearch SAML configuration.
@@ -9183,6 +9274,740 @@ func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+type ManagedDatabaseOpensearchPropertiesAzureMigration struct {
+	// Account name. Azure account name.
+	Account *string `pulumi:"account"`
+	// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+	BasePath *string `pulumi:"basePath"`
+	// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+	ChunkSize *string `pulumi:"chunkSize"`
+	// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+	Compress *bool `pulumi:"compress"`
+	// Azure container name. Azure container name.
+	Container *string `pulumi:"container"`
+	// Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
+	EndpointSuffix *string `pulumi:"endpointSuffix"`
+	// Account secret key. Azure account secret key. One of key or sasToken should be specified.
+	Key *string `pulumi:"key"`
+	// SAS token. A shared access signatures (SAS) token. One of key or sasToken should be specified.
+	SasToken *string `pulumi:"sasToken"`
+	// The snapshot name to restore from. The snapshot name to restore from.
+	SnapshotName *string `pulumi:"snapshotName"`
+}
+
+// ManagedDatabaseOpensearchPropertiesAzureMigrationInput is an input type that accepts ManagedDatabaseOpensearchPropertiesAzureMigrationArgs and ManagedDatabaseOpensearchPropertiesAzureMigrationOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesAzureMigrationInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesAzureMigrationArgs{...}
+type ManagedDatabaseOpensearchPropertiesAzureMigrationInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesAzureMigrationOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationOutput
+	ToManagedDatabaseOpensearchPropertiesAzureMigrationOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesAzureMigrationArgs struct {
+	// Account name. Azure account name.
+	Account pulumi.StringPtrInput `pulumi:"account"`
+	// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+	BasePath pulumi.StringPtrInput `pulumi:"basePath"`
+	// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+	ChunkSize pulumi.StringPtrInput `pulumi:"chunkSize"`
+	// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+	Compress pulumi.BoolPtrInput `pulumi:"compress"`
+	// Azure container name. Azure container name.
+	Container pulumi.StringPtrInput `pulumi:"container"`
+	// Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
+	EndpointSuffix pulumi.StringPtrInput `pulumi:"endpointSuffix"`
+	// Account secret key. Azure account secret key. One of key or sasToken should be specified.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// SAS token. A shared access signatures (SAS) token. One of key or sasToken should be specified.
+	SasToken pulumi.StringPtrInput `pulumi:"sasToken"`
+	// The snapshot name to restore from. The snapshot name to restore from.
+	SnapshotName pulumi.StringPtrInput `pulumi:"snapshotName"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesAzureMigrationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAzureMigration)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesAzureMigrationArgs) ToManagedDatabaseOpensearchPropertiesAzureMigrationOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesAzureMigrationOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesAzureMigrationArgs) ToManagedDatabaseOpensearchPropertiesAzureMigrationOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesAzureMigrationOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesAzureMigrationArgs) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesAzureMigrationArgs) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesAzureMigrationOutput).ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesAzureMigrationPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesAzureMigrationArgs, ManagedDatabaseOpensearchPropertiesAzureMigrationPtr and ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesAzureMigrationPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesAzureMigrationArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesAzureMigrationPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput
+	ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesAzureMigrationPtrType ManagedDatabaseOpensearchPropertiesAzureMigrationArgs
+
+func ManagedDatabaseOpensearchPropertiesAzureMigrationPtr(v *ManagedDatabaseOpensearchPropertiesAzureMigrationArgs) ManagedDatabaseOpensearchPropertiesAzureMigrationPtrInput {
+	return (*managedDatabaseOpensearchPropertiesAzureMigrationPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesAzureMigrationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesAzureMigration)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesAzureMigrationPtrType) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesAzureMigrationPtrType) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesAzureMigrationOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAzureMigration)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) ToManagedDatabaseOpensearchPropertiesAzureMigrationOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) ToManagedDatabaseOpensearchPropertiesAzureMigrationOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesAzureMigration) *ManagedDatabaseOpensearchPropertiesAzureMigration {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput)
+}
+
+// Account name. Azure account name.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) Account() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.Account }).(pulumi.StringPtrOutput)
+}
+
+// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) BasePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.BasePath }).(pulumi.StringPtrOutput)
+}
+
+// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) ChunkSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.ChunkSize }).(pulumi.StringPtrOutput)
+}
+
+// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) Compress() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *bool { return v.Compress }).(pulumi.BoolPtrOutput)
+}
+
+// Azure container name. Azure container name.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) Container() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.Container }).(pulumi.StringPtrOutput)
+}
+
+// Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) EndpointSuffix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.EndpointSuffix }).(pulumi.StringPtrOutput)
+}
+
+// Account secret key. Azure account secret key. One of key or sasToken should be specified.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// SAS token. A shared access signatures (SAS) token. One of key or sasToken should be specified.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) SasToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.SasToken }).(pulumi.StringPtrOutput)
+}
+
+// The snapshot name to restore from. The snapshot name to restore from.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) SnapshotName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.SnapshotName }).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesAzureMigration)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesAzureMigrationOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) ManagedDatabaseOpensearchPropertiesAzureMigration {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesAzureMigration
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesAzureMigrationOutput)
+}
+
+// Account name. Azure account name.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) Account() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Account
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) BasePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BasePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) ChunkSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ChunkSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) Compress() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Compress
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Azure container name. Azure container name.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) Container() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Container
+	}).(pulumi.StringPtrOutput)
+}
+
+// Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) EndpointSuffix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EndpointSuffix
+	}).(pulumi.StringPtrOutput)
+}
+
+// Account secret key. Azure account secret key. One of key or sasToken should be specified.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Key
+	}).(pulumi.StringPtrOutput)
+}
+
+// SAS token. A shared access signatures (SAS) token. One of key or sasToken should be specified.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) SasToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SasToken
+	}).(pulumi.StringPtrOutput)
+}
+
+// The snapshot name to restore from. The snapshot name to restore from.
+func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) SnapshotName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SnapshotName
+	}).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesGcsMigration struct {
+	// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+	BasePath *string `pulumi:"basePath"`
+	// The path to the repository data within its container. Google Cloud Storage bucket name.
+	Bucket *string `pulumi:"bucket"`
+	// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+	ChunkSize *string `pulumi:"chunkSize"`
+	// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+	Compress *bool `pulumi:"compress"`
+	// Credentials. Google Cloud Storage credentials file content.
+	Credentials *string `pulumi:"credentials"`
+	// The snapshot name to restore from. The snapshot name to restore from.
+	SnapshotName *string `pulumi:"snapshotName"`
+}
+
+// ManagedDatabaseOpensearchPropertiesGcsMigrationInput is an input type that accepts ManagedDatabaseOpensearchPropertiesGcsMigrationArgs and ManagedDatabaseOpensearchPropertiesGcsMigrationOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesGcsMigrationInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesGcsMigrationArgs{...}
+type ManagedDatabaseOpensearchPropertiesGcsMigrationInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesGcsMigrationOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationOutput
+	ToManagedDatabaseOpensearchPropertiesGcsMigrationOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesGcsMigrationArgs struct {
+	// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+	BasePath pulumi.StringPtrInput `pulumi:"basePath"`
+	// The path to the repository data within its container. Google Cloud Storage bucket name.
+	Bucket pulumi.StringPtrInput `pulumi:"bucket"`
+	// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+	ChunkSize pulumi.StringPtrInput `pulumi:"chunkSize"`
+	// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+	Compress pulumi.BoolPtrInput `pulumi:"compress"`
+	// Credentials. Google Cloud Storage credentials file content.
+	Credentials pulumi.StringPtrInput `pulumi:"credentials"`
+	// The snapshot name to restore from. The snapshot name to restore from.
+	SnapshotName pulumi.StringPtrInput `pulumi:"snapshotName"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesGcsMigrationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesGcsMigration)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesGcsMigrationArgs) ToManagedDatabaseOpensearchPropertiesGcsMigrationOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesGcsMigrationOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesGcsMigrationArgs) ToManagedDatabaseOpensearchPropertiesGcsMigrationOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesGcsMigrationOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesGcsMigrationArgs) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesGcsMigrationArgs) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesGcsMigrationOutput).ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesGcsMigrationPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesGcsMigrationArgs, ManagedDatabaseOpensearchPropertiesGcsMigrationPtr and ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesGcsMigrationPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesGcsMigrationArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesGcsMigrationPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput
+	ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesGcsMigrationPtrType ManagedDatabaseOpensearchPropertiesGcsMigrationArgs
+
+func ManagedDatabaseOpensearchPropertiesGcsMigrationPtr(v *ManagedDatabaseOpensearchPropertiesGcsMigrationArgs) ManagedDatabaseOpensearchPropertiesGcsMigrationPtrInput {
+	return (*managedDatabaseOpensearchPropertiesGcsMigrationPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesGcsMigrationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesGcsMigration)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesGcsMigrationPtrType) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesGcsMigrationPtrType) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesGcsMigrationOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesGcsMigration)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) ToManagedDatabaseOpensearchPropertiesGcsMigrationOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) ToManagedDatabaseOpensearchPropertiesGcsMigrationOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesGcsMigration) *ManagedDatabaseOpensearchPropertiesGcsMigration {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput)
+}
+
+// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) BasePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesGcsMigration) *string { return v.BasePath }).(pulumi.StringPtrOutput)
+}
+
+// The path to the repository data within its container. Google Cloud Storage bucket name.
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesGcsMigration) *string { return v.Bucket }).(pulumi.StringPtrOutput)
+}
+
+// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) ChunkSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesGcsMigration) *string { return v.ChunkSize }).(pulumi.StringPtrOutput)
+}
+
+// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) Compress() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesGcsMigration) *bool { return v.Compress }).(pulumi.BoolPtrOutput)
+}
+
+// Credentials. Google Cloud Storage credentials file content.
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) Credentials() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesGcsMigration) *string { return v.Credentials }).(pulumi.StringPtrOutput)
+}
+
+// The snapshot name to restore from. The snapshot name to restore from.
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) SnapshotName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesGcsMigration) *string { return v.SnapshotName }).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesGcsMigration)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesGcsMigrationOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesGcsMigration) ManagedDatabaseOpensearchPropertiesGcsMigration {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesGcsMigration
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesGcsMigrationOutput)
+}
+
+// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) BasePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesGcsMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BasePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path to the repository data within its container. Google Cloud Storage bucket name.
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesGcsMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Bucket
+	}).(pulumi.StringPtrOutput)
+}
+
+// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) ChunkSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesGcsMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ChunkSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) Compress() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesGcsMigration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Compress
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Credentials. Google Cloud Storage credentials file content.
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) Credentials() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesGcsMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Credentials
+	}).(pulumi.StringPtrOutput)
+}
+
+// The snapshot name to restore from. The snapshot name to restore from.
+func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) SnapshotName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesGcsMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SnapshotName
+	}).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesIndexRollup struct {
+	// plugins.rollup.dashboards.enabled. Whether rollups are enabled in OpenSearch Dashboards. Defaults to true.
+	RollupDashboardsEnabled *bool `pulumi:"rollupDashboardsEnabled"`
+	// plugins.rollup.enabled. Whether the rollup plugin is enabled. Defaults to true.
+	RollupEnabled *bool `pulumi:"rollupEnabled"`
+	// plugins.rollup.search.backoff_count. How many retries the plugin should attempt for failed rollup jobs. Defaults to 5.
+	RollupSearchBackoffCount *int `pulumi:"rollupSearchBackoffCount"`
+	// plugins.rollup.search.backoff_millis. The backoff time between retries for failed rollup jobs. Defaults to 1000ms.
+	RollupSearchBackoffMillis *int `pulumi:"rollupSearchBackoffMillis"`
+	// plugins.rollup.search.all_jobs. Whether OpenSearch should return all jobs that match all specified search terms. If disabled, OpenSearch returns just one, as opposed to all, of the jobs that matches the search terms. Defaults to false.
+	RollupSearchSearchAllJobs *bool `pulumi:"rollupSearchSearchAllJobs"`
+}
+
+// ManagedDatabaseOpensearchPropertiesIndexRollupInput is an input type that accepts ManagedDatabaseOpensearchPropertiesIndexRollupArgs and ManagedDatabaseOpensearchPropertiesIndexRollupOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesIndexRollupInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesIndexRollupArgs{...}
+type ManagedDatabaseOpensearchPropertiesIndexRollupInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesIndexRollupOutput() ManagedDatabaseOpensearchPropertiesIndexRollupOutput
+	ToManagedDatabaseOpensearchPropertiesIndexRollupOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesIndexRollupOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesIndexRollupArgs struct {
+	// plugins.rollup.dashboards.enabled. Whether rollups are enabled in OpenSearch Dashboards. Defaults to true.
+	RollupDashboardsEnabled pulumi.BoolPtrInput `pulumi:"rollupDashboardsEnabled"`
+	// plugins.rollup.enabled. Whether the rollup plugin is enabled. Defaults to true.
+	RollupEnabled pulumi.BoolPtrInput `pulumi:"rollupEnabled"`
+	// plugins.rollup.search.backoff_count. How many retries the plugin should attempt for failed rollup jobs. Defaults to 5.
+	RollupSearchBackoffCount pulumi.IntPtrInput `pulumi:"rollupSearchBackoffCount"`
+	// plugins.rollup.search.backoff_millis. The backoff time between retries for failed rollup jobs. Defaults to 1000ms.
+	RollupSearchBackoffMillis pulumi.IntPtrInput `pulumi:"rollupSearchBackoffMillis"`
+	// plugins.rollup.search.all_jobs. Whether OpenSearch should return all jobs that match all specified search terms. If disabled, OpenSearch returns just one, as opposed to all, of the jobs that matches the search terms. Defaults to false.
+	RollupSearchSearchAllJobs pulumi.BoolPtrInput `pulumi:"rollupSearchSearchAllJobs"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesIndexRollupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexRollup)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesIndexRollupArgs) ToManagedDatabaseOpensearchPropertiesIndexRollupOutput() ManagedDatabaseOpensearchPropertiesIndexRollupOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesIndexRollupOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesIndexRollupArgs) ToManagedDatabaseOpensearchPropertiesIndexRollupOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesIndexRollupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesIndexRollupOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesIndexRollupArgs) ToManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput() ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesIndexRollupPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesIndexRollupArgs) ToManagedDatabaseOpensearchPropertiesIndexRollupPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesIndexRollupOutput).ToManagedDatabaseOpensearchPropertiesIndexRollupPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesIndexRollupPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesIndexRollupArgs, ManagedDatabaseOpensearchPropertiesIndexRollupPtr and ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesIndexRollupPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesIndexRollupArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesIndexRollupPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput() ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput
+	ToManagedDatabaseOpensearchPropertiesIndexRollupPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesIndexRollupPtrType ManagedDatabaseOpensearchPropertiesIndexRollupArgs
+
+func ManagedDatabaseOpensearchPropertiesIndexRollupPtr(v *ManagedDatabaseOpensearchPropertiesIndexRollupArgs) ManagedDatabaseOpensearchPropertiesIndexRollupPtrInput {
+	return (*managedDatabaseOpensearchPropertiesIndexRollupPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesIndexRollupPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesIndexRollup)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesIndexRollupPtrType) ToManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput() ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesIndexRollupPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesIndexRollupPtrType) ToManagedDatabaseOpensearchPropertiesIndexRollupPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesIndexRollupOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesIndexRollupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexRollup)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupOutput) ToManagedDatabaseOpensearchPropertiesIndexRollupOutput() ManagedDatabaseOpensearchPropertiesIndexRollupOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupOutput) ToManagedDatabaseOpensearchPropertiesIndexRollupOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesIndexRollupOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupOutput) ToManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput() ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesIndexRollupPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupOutput) ToManagedDatabaseOpensearchPropertiesIndexRollupPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesIndexRollup) *ManagedDatabaseOpensearchPropertiesIndexRollup {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput)
+}
+
+// plugins.rollup.dashboards.enabled. Whether rollups are enabled in OpenSearch Dashboards. Defaults to true.
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupOutput) RollupDashboardsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesIndexRollup) *bool { return v.RollupDashboardsEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// plugins.rollup.enabled. Whether the rollup plugin is enabled. Defaults to true.
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupOutput) RollupEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesIndexRollup) *bool { return v.RollupEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// plugins.rollup.search.backoff_count. How many retries the plugin should attempt for failed rollup jobs. Defaults to 5.
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupOutput) RollupSearchBackoffCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesIndexRollup) *int { return v.RollupSearchBackoffCount }).(pulumi.IntPtrOutput)
+}
+
+// plugins.rollup.search.backoff_millis. The backoff time between retries for failed rollup jobs. Defaults to 1000ms.
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupOutput) RollupSearchBackoffMillis() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesIndexRollup) *int { return v.RollupSearchBackoffMillis }).(pulumi.IntPtrOutput)
+}
+
+// plugins.rollup.search.all_jobs. Whether OpenSearch should return all jobs that match all specified search terms. If disabled, OpenSearch returns just one, as opposed to all, of the jobs that matches the search terms. Defaults to false.
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupOutput) RollupSearchSearchAllJobs() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesIndexRollup) *bool { return v.RollupSearchSearchAllJobs }).(pulumi.BoolPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesIndexRollup)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput) ToManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput() ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput) ToManagedDatabaseOpensearchPropertiesIndexRollupPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesIndexRollupOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesIndexRollup) ManagedDatabaseOpensearchPropertiesIndexRollup {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesIndexRollup
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesIndexRollupOutput)
+}
+
+// plugins.rollup.dashboards.enabled. Whether rollups are enabled in OpenSearch Dashboards. Defaults to true.
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput) RollupDashboardsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesIndexRollup) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.RollupDashboardsEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// plugins.rollup.enabled. Whether the rollup plugin is enabled. Defaults to true.
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput) RollupEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesIndexRollup) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.RollupEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// plugins.rollup.search.backoff_count. How many retries the plugin should attempt for failed rollup jobs. Defaults to 5.
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput) RollupSearchBackoffCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesIndexRollup) *int {
+		if v == nil {
+			return nil
+		}
+		return v.RollupSearchBackoffCount
+	}).(pulumi.IntPtrOutput)
+}
+
+// plugins.rollup.search.backoff_millis. The backoff time between retries for failed rollup jobs. Defaults to 1000ms.
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput) RollupSearchBackoffMillis() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesIndexRollup) *int {
+		if v == nil {
+			return nil
+		}
+		return v.RollupSearchBackoffMillis
+	}).(pulumi.IntPtrOutput)
+}
+
+// plugins.rollup.search.all_jobs. Whether OpenSearch should return all jobs that match all specified search terms. If disabled, OpenSearch returns just one, as opposed to all, of the jobs that matches the search terms. Defaults to false.
+func (o ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput) RollupSearchSearchAllJobs() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesIndexRollup) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.RollupSearchSearchAllJobs
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ManagedDatabaseOpensearchPropertiesIndexTemplate struct {
 	// index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
 	MappingNestedObjectsLimit *int `pulumi:"mappingNestedObjectsLimit"`
@@ -9879,6 +10704,314 @@ func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput) Opense
 		}
 		return v.OpensearchRequestTimeout
 	}).(pulumi.IntPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesS3Migration struct {
+	// AWS Access key. AWS Access key.
+	AccessKey *string `pulumi:"accessKey"`
+	// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+	BasePath *string `pulumi:"basePath"`
+	// S3 bucket name. S3 bucket name.
+	Bucket *string `pulumi:"bucket"`
+	// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+	ChunkSize *string `pulumi:"chunkSize"`
+	// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+	Compress *bool `pulumi:"compress"`
+	// The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+	Endpoint *string `pulumi:"endpoint"`
+	// S3 region. S3 region.
+	Region *string `pulumi:"region"`
+	// AWS secret key. AWS secret key.
+	SecretKey *string `pulumi:"secretKey"`
+	// Server side encryption. When set to true files are encrypted on server side.
+	ServerSideEncryption *bool `pulumi:"serverSideEncryption"`
+	// The snapshot name to restore from. The snapshot name to restore from.
+	SnapshotName *string `pulumi:"snapshotName"`
+}
+
+// ManagedDatabaseOpensearchPropertiesS3MigrationInput is an input type that accepts ManagedDatabaseOpensearchPropertiesS3MigrationArgs and ManagedDatabaseOpensearchPropertiesS3MigrationOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesS3MigrationInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesS3MigrationArgs{...}
+type ManagedDatabaseOpensearchPropertiesS3MigrationInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesS3MigrationOutput() ManagedDatabaseOpensearchPropertiesS3MigrationOutput
+	ToManagedDatabaseOpensearchPropertiesS3MigrationOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesS3MigrationArgs struct {
+	// AWS Access key. AWS Access key.
+	AccessKey pulumi.StringPtrInput `pulumi:"accessKey"`
+	// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+	BasePath pulumi.StringPtrInput `pulumi:"basePath"`
+	// S3 bucket name. S3 bucket name.
+	Bucket pulumi.StringPtrInput `pulumi:"bucket"`
+	// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+	ChunkSize pulumi.StringPtrInput `pulumi:"chunkSize"`
+	// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+	Compress pulumi.BoolPtrInput `pulumi:"compress"`
+	// The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+	Endpoint pulumi.StringPtrInput `pulumi:"endpoint"`
+	// S3 region. S3 region.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// AWS secret key. AWS secret key.
+	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
+	// Server side encryption. When set to true files are encrypted on server side.
+	ServerSideEncryption pulumi.BoolPtrInput `pulumi:"serverSideEncryption"`
+	// The snapshot name to restore from. The snapshot name to restore from.
+	SnapshotName pulumi.StringPtrInput `pulumi:"snapshotName"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesS3MigrationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesS3Migration)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesS3MigrationArgs) ToManagedDatabaseOpensearchPropertiesS3MigrationOutput() ManagedDatabaseOpensearchPropertiesS3MigrationOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesS3MigrationOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesS3MigrationArgs) ToManagedDatabaseOpensearchPropertiesS3MigrationOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesS3MigrationOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesS3MigrationArgs) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput() ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesS3MigrationArgs) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesS3MigrationOutput).ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesS3MigrationPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesS3MigrationArgs, ManagedDatabaseOpensearchPropertiesS3MigrationPtr and ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesS3MigrationPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesS3MigrationArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesS3MigrationPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput() ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput
+	ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesS3MigrationPtrType ManagedDatabaseOpensearchPropertiesS3MigrationArgs
+
+func ManagedDatabaseOpensearchPropertiesS3MigrationPtr(v *ManagedDatabaseOpensearchPropertiesS3MigrationArgs) ManagedDatabaseOpensearchPropertiesS3MigrationPtrInput {
+	return (*managedDatabaseOpensearchPropertiesS3MigrationPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesS3MigrationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesS3Migration)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesS3MigrationPtrType) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput() ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesS3MigrationPtrType) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesS3MigrationOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesS3MigrationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesS3Migration)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) ToManagedDatabaseOpensearchPropertiesS3MigrationOutput() ManagedDatabaseOpensearchPropertiesS3MigrationOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) ToManagedDatabaseOpensearchPropertiesS3MigrationOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput() ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesS3Migration) *ManagedDatabaseOpensearchPropertiesS3Migration {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput)
+}
+
+// AWS Access key. AWS Access key.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) AccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.AccessKey }).(pulumi.StringPtrOutput)
+}
+
+// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) BasePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.BasePath }).(pulumi.StringPtrOutput)
+}
+
+// S3 bucket name. S3 bucket name.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.Bucket }).(pulumi.StringPtrOutput)
+}
+
+// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) ChunkSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.ChunkSize }).(pulumi.StringPtrOutput)
+}
+
+// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) Compress() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *bool { return v.Compress }).(pulumi.BoolPtrOutput)
+}
+
+// The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.Endpoint }).(pulumi.StringPtrOutput)
+}
+
+// S3 region. S3 region.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// AWS secret key. AWS secret key.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) SecretKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
+}
+
+// Server side encryption. When set to true files are encrypted on server side.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) ServerSideEncryption() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *bool { return v.ServerSideEncryption }).(pulumi.BoolPtrOutput)
+}
+
+// The snapshot name to restore from. The snapshot name to restore from.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) SnapshotName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.SnapshotName }).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesS3Migration)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput() ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesS3MigrationOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) ManagedDatabaseOpensearchPropertiesS3Migration {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesS3Migration
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesS3MigrationOutput)
+}
+
+// AWS Access key. AWS Access key.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) AccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AccessKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) BasePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BasePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// S3 bucket name. S3 bucket name.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Bucket
+	}).(pulumi.StringPtrOutput)
+}
+
+// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) ChunkSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ChunkSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) Compress() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Compress
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Endpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// S3 region. S3 region.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+// AWS secret key. AWS secret key.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) SecretKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SecretKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Server side encryption. When set to true files are encrypted on server side.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) ServerSideEncryption() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ServerSideEncryption
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The snapshot name to restore from. The snapshot name to restore from.
+func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) SnapshotName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SnapshotName
+	}).(pulumi.StringPtrOutput)
 }
 
 type ManagedDatabaseOpensearchPropertiesSaml struct {
@@ -11910,6 +13043,8 @@ type ManagedDatabasePostgresqlPropertiesMigration struct {
 	Host *string `pulumi:"host"`
 	// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
 	IgnoreDbs *string `pulumi:"ignoreDbs"`
+	// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+	IgnoreRoles *string `pulumi:"ignoreRoles"`
 	// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
 	Method *string `pulumi:"method"`
 	// Password for authentication with the server where to migrate data from.
@@ -11940,6 +13075,8 @@ type ManagedDatabasePostgresqlPropertiesMigrationArgs struct {
 	Host pulumi.StringPtrInput `pulumi:"host"`
 	// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
 	IgnoreDbs pulumi.StringPtrInput `pulumi:"ignoreDbs"`
+	// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+	IgnoreRoles pulumi.StringPtrInput `pulumi:"ignoreRoles"`
 	// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
 	Method pulumi.StringPtrInput `pulumi:"method"`
 	// Password for authentication with the server where to migrate data from.
@@ -12044,6 +13181,11 @@ func (o ManagedDatabasePostgresqlPropertiesMigrationOutput) IgnoreDbs() pulumi.S
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesMigration) *string { return v.IgnoreDbs }).(pulumi.StringPtrOutput)
 }
 
+// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+func (o ManagedDatabasePostgresqlPropertiesMigrationOutput) IgnoreRoles() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesMigration) *string { return v.IgnoreRoles }).(pulumi.StringPtrOutput)
+}
+
 // The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
 func (o ManagedDatabasePostgresqlPropertiesMigrationOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesMigration) *string { return v.Method }).(pulumi.StringPtrOutput)
@@ -12123,6 +13265,16 @@ func (o ManagedDatabasePostgresqlPropertiesMigrationPtrOutput) IgnoreDbs() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
+// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+func (o ManagedDatabasePostgresqlPropertiesMigrationPtrOutput) IgnoreRoles() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IgnoreRoles
+	}).(pulumi.StringPtrOutput)
+}
+
 // The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
 func (o ManagedDatabasePostgresqlPropertiesMigrationPtrOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesMigration) *string {
@@ -12184,6 +13336,8 @@ type ManagedDatabasePostgresqlPropertiesPgbouncer struct {
 	AutodbPoolSize *int `pulumi:"autodbPoolSize"`
 	// List of parameters to ignore when given in startup packet.
 	IgnoreStartupParameters []string `pulumi:"ignoreStartupParameters"`
+	// PgBouncer tracks protocol-level named prepared statements related commands sent by the client in transaction and statement pooling modes when maxPreparedStatements is set to a non-zero value. Setting it to 0 disables prepared statements. maxPreparedStatements defaults to 100, and its maximum is 3000.
+	MaxPreparedStatements *int `pulumi:"maxPreparedStatements"`
 	// Add more server connections to pool if below this number. Improves behavior when usual load comes suddenly back after period of total inactivity. The value is effectively capped at the pool size.
 	MinPoolSize *int `pulumi:"minPoolSize"`
 	// If a server connection has been idle more than this many seconds it will be dropped. If 0 then timeout is disabled. [seconds].
@@ -12216,6 +13370,8 @@ type ManagedDatabasePostgresqlPropertiesPgbouncerArgs struct {
 	AutodbPoolSize pulumi.IntPtrInput `pulumi:"autodbPoolSize"`
 	// List of parameters to ignore when given in startup packet.
 	IgnoreStartupParameters pulumi.StringArrayInput `pulumi:"ignoreStartupParameters"`
+	// PgBouncer tracks protocol-level named prepared statements related commands sent by the client in transaction and statement pooling modes when maxPreparedStatements is set to a non-zero value. Setting it to 0 disables prepared statements. maxPreparedStatements defaults to 100, and its maximum is 3000.
+	MaxPreparedStatements pulumi.IntPtrInput `pulumi:"maxPreparedStatements"`
 	// Add more server connections to pool if below this number. Improves behavior when usual load comes suddenly back after period of total inactivity. The value is effectively capped at the pool size.
 	MinPoolSize pulumi.IntPtrInput `pulumi:"minPoolSize"`
 	// If a server connection has been idle more than this many seconds it will be dropped. If 0 then timeout is disabled. [seconds].
@@ -12328,6 +13484,11 @@ func (o ManagedDatabasePostgresqlPropertiesPgbouncerOutput) IgnoreStartupParamet
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgbouncer) []string { return v.IgnoreStartupParameters }).(pulumi.StringArrayOutput)
 }
 
+// PgBouncer tracks protocol-level named prepared statements related commands sent by the client in transaction and statement pooling modes when maxPreparedStatements is set to a non-zero value. Setting it to 0 disables prepared statements. maxPreparedStatements defaults to 100, and its maximum is 3000.
+func (o ManagedDatabasePostgresqlPropertiesPgbouncerOutput) MaxPreparedStatements() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgbouncer) *int { return v.MaxPreparedStatements }).(pulumi.IntPtrOutput)
+}
+
 // Add more server connections to pool if below this number. Improves behavior when usual load comes suddenly back after period of total inactivity. The value is effectively capped at the pool size.
 func (o ManagedDatabasePostgresqlPropertiesPgbouncerOutput) MinPoolSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgbouncer) *int { return v.MinPoolSize }).(pulumi.IntPtrOutput)
@@ -12420,6 +13581,16 @@ func (o ManagedDatabasePostgresqlPropertiesPgbouncerPtrOutput) IgnoreStartupPara
 		}
 		return v.IgnoreStartupParameters
 	}).(pulumi.StringArrayOutput)
+}
+
+// PgBouncer tracks protocol-level named prepared statements related commands sent by the client in transaction and statement pooling modes when maxPreparedStatements is set to a non-zero value. Setting it to 0 disables prepared statements. maxPreparedStatements defaults to 100, and its maximum is 3000.
+func (o ManagedDatabasePostgresqlPropertiesPgbouncerPtrOutput) MaxPreparedStatements() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgbouncer) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxPreparedStatements
+	}).(pulumi.IntPtrOutput)
 }
 
 // Add more server connections to pool if below this number. Improves behavior when usual load comes suddenly back after period of total inactivity. The value is effectively capped at the pool size.
@@ -13556,6 +14727,8 @@ type ManagedDatabaseRedisPropertiesMigration struct {
 	Host *string `pulumi:"host"`
 	// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
 	IgnoreDbs *string `pulumi:"ignoreDbs"`
+	// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+	IgnoreRoles *string `pulumi:"ignoreRoles"`
 	// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
 	Method *string `pulumi:"method"`
 	// Password for authentication with the server where to migrate data from.
@@ -13586,6 +14759,8 @@ type ManagedDatabaseRedisPropertiesMigrationArgs struct {
 	Host pulumi.StringPtrInput `pulumi:"host"`
 	// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
 	IgnoreDbs pulumi.StringPtrInput `pulumi:"ignoreDbs"`
+	// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+	IgnoreRoles pulumi.StringPtrInput `pulumi:"ignoreRoles"`
 	// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
 	Method pulumi.StringPtrInput `pulumi:"method"`
 	// Password for authentication with the server where to migrate data from.
@@ -13690,6 +14865,11 @@ func (o ManagedDatabaseRedisPropertiesMigrationOutput) IgnoreDbs() pulumi.String
 	return o.ApplyT(func(v ManagedDatabaseRedisPropertiesMigration) *string { return v.IgnoreDbs }).(pulumi.StringPtrOutput)
 }
 
+// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+func (o ManagedDatabaseRedisPropertiesMigrationOutput) IgnoreRoles() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseRedisPropertiesMigration) *string { return v.IgnoreRoles }).(pulumi.StringPtrOutput)
+}
+
 // The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
 func (o ManagedDatabaseRedisPropertiesMigrationOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseRedisPropertiesMigration) *string { return v.Method }).(pulumi.StringPtrOutput)
@@ -13766,6 +14946,16 @@ func (o ManagedDatabaseRedisPropertiesMigrationPtrOutput) IgnoreDbs() pulumi.Str
 			return nil
 		}
 		return v.IgnoreDbs
+	}).(pulumi.StringPtrOutput)
+}
+
+// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+func (o ManagedDatabaseRedisPropertiesMigrationPtrOutput) IgnoreRoles() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseRedisPropertiesMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IgnoreRoles
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -15266,12 +16456,10 @@ func (o ObjectStorageBucketArrayOutput) Index(i pulumi.IntInput) ObjectStorageBu
 }
 
 type RouterStaticRoute struct {
-	// Name or description of the route.
-	Name *string `pulumi:"name"`
-	// Next hop address. NOTE: For static route to be active the next hop has to be an address of a reachable running Cloud Server in one of the Private Networks attached to the router.
+	Name    string `pulumi:"name"`
 	Nexthop string `pulumi:"nexthop"`
-	// Destination prefix of the route.
-	Route string `pulumi:"route"`
+	Route   string `pulumi:"route"`
+	Type    string `pulumi:"type"`
 }
 
 // RouterStaticRouteInput is an input type that accepts RouterStaticRouteArgs and RouterStaticRouteOutput values.
@@ -15286,12 +16474,10 @@ type RouterStaticRouteInput interface {
 }
 
 type RouterStaticRouteArgs struct {
-	// Name or description of the route.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Next hop address. NOTE: For static route to be active the next hop has to be an address of a reachable running Cloud Server in one of the Private Networks attached to the router.
+	Name    pulumi.StringInput `pulumi:"name"`
 	Nexthop pulumi.StringInput `pulumi:"nexthop"`
-	// Destination prefix of the route.
-	Route pulumi.StringInput `pulumi:"route"`
+	Route   pulumi.StringInput `pulumi:"route"`
+	Type    pulumi.StringInput `pulumi:"type"`
 }
 
 func (RouterStaticRouteArgs) ElementType() reflect.Type {
@@ -15345,19 +16531,20 @@ func (o RouterStaticRouteOutput) ToRouterStaticRouteOutputWithContext(ctx contex
 	return o
 }
 
-// Name or description of the route.
-func (o RouterStaticRouteOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v RouterStaticRoute) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o RouterStaticRouteOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v RouterStaticRoute) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Next hop address. NOTE: For static route to be active the next hop has to be an address of a reachable running Cloud Server in one of the Private Networks attached to the router.
 func (o RouterStaticRouteOutput) Nexthop() pulumi.StringOutput {
 	return o.ApplyT(func(v RouterStaticRoute) string { return v.Nexthop }).(pulumi.StringOutput)
 }
 
-// Destination prefix of the route.
 func (o RouterStaticRouteOutput) Route() pulumi.StringOutput {
 	return o.ApplyT(func(v RouterStaticRoute) string { return v.Route }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticRouteOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v RouterStaticRoute) string { return v.Type }).(pulumi.StringOutput)
 }
 
 type RouterStaticRouteArrayOutput struct{ *pulumi.OutputState }
@@ -17042,7 +18229,7 @@ func (o StorageBackupRulePtrOutput) Time() pulumi.StringPtrOutput {
 }
 
 type StorageClone struct {
-	// The unique identifier of the storage/template to clone
+	// The unique identifier of the storage/template to clone.
 	Id string `pulumi:"id"`
 }
 
@@ -17058,7 +18245,7 @@ type StorageCloneInput interface {
 }
 
 type StorageCloneArgs struct {
-	// The unique identifier of the storage/template to clone
+	// The unique identifier of the storage/template to clone.
 	Id pulumi.StringInput `pulumi:"id"`
 }
 
@@ -17139,7 +18326,7 @@ func (o StorageCloneOutput) ToStorageClonePtrOutputWithContext(ctx context.Conte
 	}).(StorageClonePtrOutput)
 }
 
-// The unique identifier of the storage/template to clone
+// The unique identifier of the storage/template to clone.
 func (o StorageCloneOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v StorageClone) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -17168,7 +18355,7 @@ func (o StorageClonePtrOutput) Elem() StorageCloneOutput {
 	}).(StorageCloneOutput)
 }
 
-// The unique identifier of the storage/template to clone
+// The unique identifier of the storage/template to clone.
 func (o StorageClonePtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageClone) *string {
 		if v == nil {
@@ -17183,7 +18370,7 @@ type StorageImport struct {
 	Sha256sum *string `pulumi:"sha256sum"`
 	// The mode of the import task. One of `httpImport` or `directUpload`.
 	Source string `pulumi:"source"`
-	// For `directUpload`; an optional hash of the file to upload.
+	// SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
 	SourceHash *string `pulumi:"sourceHash"`
 	// The location of the file to import. For `httpImport` an accessible URL for `directUpload` a local file.
 	SourceLocation string `pulumi:"sourceLocation"`
@@ -17207,7 +18394,7 @@ type StorageImportArgs struct {
 	Sha256sum pulumi.StringPtrInput `pulumi:"sha256sum"`
 	// The mode of the import task. One of `httpImport` or `directUpload`.
 	Source pulumi.StringInput `pulumi:"source"`
-	// For `directUpload`; an optional hash of the file to upload.
+	// SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
 	SourceHash pulumi.StringPtrInput `pulumi:"sourceHash"`
 	// The location of the file to import. For `httpImport` an accessible URL for `directUpload` a local file.
 	SourceLocation pulumi.StringInput `pulumi:"sourceLocation"`
@@ -17302,7 +18489,7 @@ func (o StorageImportOutput) Source() pulumi.StringOutput {
 	return o.ApplyT(func(v StorageImport) string { return v.Source }).(pulumi.StringOutput)
 }
 
-// For `directUpload`; an optional hash of the file to upload.
+// SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
 func (o StorageImportOutput) SourceHash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StorageImport) *string { return v.SourceHash }).(pulumi.StringPtrOutput)
 }
@@ -17361,7 +18548,7 @@ func (o StorageImportPtrOutput) Source() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// For `directUpload`; an optional hash of the file to upload.
+// SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
 func (o StorageImportPtrOutput) SourceHash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageImport) *string {
 		if v == nil {
@@ -19429,12 +20616,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAzureMigrationInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAzureMigrationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAzureMigrationPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAzureMigrationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesGcsMigrationInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesGcsMigrationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesGcsMigrationPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesGcsMigrationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexRollupInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesIndexRollupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexRollupPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesIndexRollupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexTemplateInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesIndexTemplateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexTemplatePtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesIndexTemplateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesOpenidInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesOpenidArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesOpenidPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesOpenidArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesOpensearchDashboardsInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesS3MigrationInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesS3MigrationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesS3MigrationPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesS3MigrationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSamlInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSamlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSamlPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSamlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlComponentInput)(nil)).Elem(), ManagedDatabasePostgresqlComponentArgs{})
@@ -19630,12 +20825,20 @@ func init() {
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAzureMigrationOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesGcsMigrationOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesIndexRollupOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesIndexTemplateOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesIndexTemplatePtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesOpenidOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesOpenidPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesOpensearchDashboardsOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesS3MigrationOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSamlOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSamlPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabasePostgresqlComponentOutput{})

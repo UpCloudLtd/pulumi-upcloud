@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Upcloud
 {
     /// <summary>
-    /// This resource represents a node group in a Managed Kubernetes cluster.
+    /// This resource represents a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster.
     /// 
     /// ## Example Usage
     /// 
@@ -74,10 +74,10 @@ namespace Pulumi.Upcloud
     {
         /// <summary>
         /// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-        /// considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
+        /// considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
         /// </summary>
         [Output("antiAffinity")]
-        public Output<bool?> AntiAffinity { get; private set; } = null!;
+        public Output<bool> AntiAffinity { get; private set; } = null!;
 
         /// <summary>
         /// UUID of the cluster.
@@ -100,10 +100,10 @@ namespace Pulumi.Upcloud
         public Output<ImmutableArray<Outputs.KubernetesNodeGroupKubeletArg>> KubeletArgs { get; private set; } = null!;
 
         /// <summary>
-        /// Key-value pairs to classify the node group.
+        /// User defined key-value pairs to classify the node_group.
         /// </summary>
         [Output("labels")]
-        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
         /// <summary>
         /// The name of the node group. Needs to be unique within a cluster.
@@ -131,7 +131,8 @@ namespace Pulumi.Upcloud
         public Output<ImmutableArray<string>> SshKeys { get; private set; } = null!;
 
         /// <summary>
-        /// Storage encryption strategy for the nodes in this group.
+        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption
+        /// strategy will be used, if applicable.
         /// </summary>
         [Output("storageEncryption")]
         public Output<string> StorageEncryption { get; private set; } = null!;
@@ -146,7 +147,7 @@ namespace Pulumi.Upcloud
         /// If set to false, nodes in this group will not have access to utility network.
         /// </summary>
         [Output("utilityNetworkAccess")]
-        public Output<bool?> UtilityNetworkAccess { get; private set; } = null!;
+        public Output<bool> UtilityNetworkAccess { get; private set; } = null!;
 
 
         /// <summary>
@@ -196,7 +197,7 @@ namespace Pulumi.Upcloud
     {
         /// <summary>
         /// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-        /// considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
+        /// considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
         /// </summary>
         [Input("antiAffinity")]
         public Input<bool>? AntiAffinity { get; set; }
@@ -231,7 +232,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the node group.
+        /// User defined key-value pairs to classify the node_group.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -271,7 +272,8 @@ namespace Pulumi.Upcloud
         }
 
         /// <summary>
-        /// Storage encryption strategy for the nodes in this group.
+        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption
+        /// strategy will be used, if applicable.
         /// </summary>
         [Input("storageEncryption")]
         public Input<string>? StorageEncryption { get; set; }
@@ -304,7 +306,7 @@ namespace Pulumi.Upcloud
     {
         /// <summary>
         /// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-        /// considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
+        /// considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
         /// </summary>
         [Input("antiAffinity")]
         public Input<bool>? AntiAffinity { get; set; }
@@ -339,7 +341,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the node group.
+        /// User defined key-value pairs to classify the node_group.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -379,7 +381,8 @@ namespace Pulumi.Upcloud
         }
 
         /// <summary>
-        /// Storage encryption strategy for the nodes in this group.
+        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption
+        /// strategy will be used, if applicable.
         /// </summary>
         [Input("storageEncryption")]
         public Input<string>? StorageEncryption { get; set; }

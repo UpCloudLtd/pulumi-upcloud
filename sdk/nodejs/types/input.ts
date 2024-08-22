@@ -1422,6 +1422,10 @@ export interface ManagedDatabaseMysqlPropertiesMigration {
      */
     ignoreDbs?: pulumi.Input<string>;
     /**
+     * Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+     */
+    ignoreRoles?: pulumi.Input<string>;
+    /**
      * The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
      */
     method?: pulumi.Input<string>;
@@ -1517,6 +1521,7 @@ export interface ManagedDatabaseOpensearchProperties {
      * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
      */
     automaticUtilityNetworkIpFilter?: pulumi.Input<boolean>;
+    azureMigration?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesAzureMigration>;
     /**
      * Controls the number of shards allowed in the cluster per data node.
      */
@@ -1545,6 +1550,7 @@ export interface ManagedDatabaseOpensearchProperties {
      * Enable/Disable security audit.
      */
     enableSecurityAudit?: pulumi.Input<boolean>;
+    gcsMigration?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesGcsMigration>;
     /**
      * Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
      */
@@ -1561,6 +1567,10 @@ export interface ManagedDatabaseOpensearchProperties {
      * Index patterns.
      */
     indexPatterns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Index rollup settings.
+     */
+    indexRollup?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesIndexRollup>;
     /**
      * Template settings for all new indexes.
      */
@@ -1661,6 +1671,7 @@ export interface ManagedDatabaseOpensearchProperties {
      * Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
      */
     reindexRemoteWhitelists?: pulumi.Input<pulumi.Input<string>[]>;
+    s3Migration?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesS3Migration>;
     /**
      * OpenSearch SAML configuration.
      */
@@ -1793,6 +1804,95 @@ export interface ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLi
     type?: pulumi.Input<string>;
 }
 
+export interface ManagedDatabaseOpensearchPropertiesAzureMigration {
+    /**
+     * Account name. Azure account name.
+     */
+    account?: pulumi.Input<string>;
+    /**
+     * The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+     */
+    basePath?: pulumi.Input<string>;
+    /**
+     * Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+     */
+    chunkSize?: pulumi.Input<string>;
+    /**
+     * Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+     */
+    compress?: pulumi.Input<boolean>;
+    /**
+     * Azure container name. Azure container name.
+     */
+    container?: pulumi.Input<string>;
+    /**
+     * Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
+     */
+    endpointSuffix?: pulumi.Input<string>;
+    /**
+     * Account secret key. Azure account secret key. One of key or sasToken should be specified.
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * SAS token. A shared access signatures (SAS) token. One of key or sasToken should be specified.
+     */
+    sasToken?: pulumi.Input<string>;
+    /**
+     * The snapshot name to restore from. The snapshot name to restore from.
+     */
+    snapshotName?: pulumi.Input<string>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesGcsMigration {
+    /**
+     * The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+     */
+    basePath?: pulumi.Input<string>;
+    /**
+     * The path to the repository data within its container. Google Cloud Storage bucket name.
+     */
+    bucket?: pulumi.Input<string>;
+    /**
+     * Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+     */
+    chunkSize?: pulumi.Input<string>;
+    /**
+     * Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+     */
+    compress?: pulumi.Input<boolean>;
+    /**
+     * Credentials. Google Cloud Storage credentials file content.
+     */
+    credentials?: pulumi.Input<string>;
+    /**
+     * The snapshot name to restore from. The snapshot name to restore from.
+     */
+    snapshotName?: pulumi.Input<string>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesIndexRollup {
+    /**
+     * plugins.rollup.dashboards.enabled. Whether rollups are enabled in OpenSearch Dashboards. Defaults to true.
+     */
+    rollupDashboardsEnabled?: pulumi.Input<boolean>;
+    /**
+     * plugins.rollup.enabled. Whether the rollup plugin is enabled. Defaults to true.
+     */
+    rollupEnabled?: pulumi.Input<boolean>;
+    /**
+     * plugins.rollup.search.backoff_count. How many retries the plugin should attempt for failed rollup jobs. Defaults to 5.
+     */
+    rollupSearchBackoffCount?: pulumi.Input<number>;
+    /**
+     * plugins.rollup.search.backoff_millis. The backoff time between retries for failed rollup jobs. Defaults to 1000ms.
+     */
+    rollupSearchBackoffMillis?: pulumi.Input<number>;
+    /**
+     * plugins.rollup.search.all_jobs. Whether OpenSearch should return all jobs that match all specified search terms. If disabled, OpenSearch returns just one, as opposed to all, of the jobs that matches the search terms. Defaults to false.
+     */
+    rollupSearchSearchAllJobs?: pulumi.Input<boolean>;
+}
+
 export interface ManagedDatabaseOpensearchPropertiesIndexTemplate {
     /**
      * index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
@@ -1872,6 +1972,49 @@ export interface ManagedDatabaseOpensearchPropertiesOpensearchDashboards {
      * Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
      */
     opensearchRequestTimeout?: pulumi.Input<number>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesS3Migration {
+    /**
+     * AWS Access key. AWS Access key.
+     */
+    accessKey?: pulumi.Input<string>;
+    /**
+     * The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+     */
+    basePath?: pulumi.Input<string>;
+    /**
+     * S3 bucket name. S3 bucket name.
+     */
+    bucket?: pulumi.Input<string>;
+    /**
+     * Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+     */
+    chunkSize?: pulumi.Input<string>;
+    /**
+     * Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+     */
+    compress?: pulumi.Input<boolean>;
+    /**
+     * The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+     */
+    endpoint?: pulumi.Input<string>;
+    /**
+     * S3 region. S3 region.
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * AWS secret key. AWS secret key.
+     */
+    secretKey?: pulumi.Input<string>;
+    /**
+     * Server side encryption. When set to true files are encrypted on server side.
+     */
+    serverSideEncryption?: pulumi.Input<boolean>;
+    /**
+     * The snapshot name to restore from. The snapshot name to restore from.
+     */
+    snapshotName?: pulumi.Input<string>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSaml {
@@ -2247,6 +2390,10 @@ export interface ManagedDatabasePostgresqlPropertiesMigration {
      */
     ignoreDbs?: pulumi.Input<string>;
     /**
+     * Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+     */
+    ignoreRoles?: pulumi.Input<string>;
+    /**
      * The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
      */
     method?: pulumi.Input<string>;
@@ -2289,6 +2436,10 @@ export interface ManagedDatabasePostgresqlPropertiesPgbouncer {
      * List of parameters to ignore when given in startup packet.
      */
     ignoreStartupParameters?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * PgBouncer tracks protocol-level named prepared statements related commands sent by the client in transaction and statement pooling modes when maxPreparedStatements is set to a non-zero value. Setting it to 0 disables prepared statements. maxPreparedStatements defaults to 100, and its maximum is 3000.
+     */
+    maxPreparedStatements?: pulumi.Input<number>;
     /**
      * Add more server connections to pool if below this number. Improves behavior when usual load comes suddenly back after period of total inactivity. The value is effectively capped at the pool size.
      */
@@ -2463,6 +2614,10 @@ export interface ManagedDatabaseRedisPropertiesMigration {
      */
     ignoreDbs?: pulumi.Input<string>;
     /**
+     * Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+     */
+    ignoreRoles?: pulumi.Input<string>;
+    /**
      * The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
      */
     method?: pulumi.Input<string>;
@@ -2619,18 +2774,10 @@ export interface ObjectStorageBucket {
 }
 
 export interface RouterStaticRoute {
-    /**
-     * Name or description of the route.
-     */
-    name?: pulumi.Input<string>;
-    /**
-     * Next hop address. NOTE: For static route to be active the next hop has to be an address of a reachable running Cloud Server in one of the Private Networks attached to the router.
-     */
+    name: pulumi.Input<string>;
     nexthop: pulumi.Input<string>;
-    /**
-     * Destination prefix of the route.
-     */
     route: pulumi.Input<string>;
+    type: pulumi.Input<string>;
 }
 
 export interface ServerFirewallRulesFirewallRule {
@@ -2874,7 +3021,7 @@ export interface StorageBackupRule {
 
 export interface StorageClone {
     /**
-     * The unique identifier of the storage/template to clone
+     * The unique identifier of the storage/template to clone.
      */
     id: pulumi.Input<string>;
 }
@@ -2889,7 +3036,7 @@ export interface StorageImport {
      */
     source: pulumi.Input<string>;
     /**
-     * For `directUpload`; an optional hash of the file to upload.
+     * SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
      */
     sourceHash?: pulumi.Input<string>;
     /**

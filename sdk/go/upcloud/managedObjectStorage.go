@@ -78,7 +78,7 @@ type ManagedObjectStorage struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Endpoints for accessing the Managed Object Storage service.
 	Endpoints ManagedObjectStorageEndpointArrayOutput `pulumi:"endpoints"`
-	// Key-value pairs to classify the managed object storage.
+	// User defined key-value pairs to classify the managed object storage.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Name of the Managed Object Storage service. Must be unique within account.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -136,7 +136,7 @@ type managedObjectStorageState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Endpoints for accessing the Managed Object Storage service.
 	Endpoints []ManagedObjectStorageEndpoint `pulumi:"endpoints"`
-	// Key-value pairs to classify the managed object storage.
+	// User defined key-value pairs to classify the managed object storage.
 	Labels map[string]string `pulumi:"labels"`
 	// Name of the Managed Object Storage service. Must be unique within account.
 	Name *string `pulumi:"name"`
@@ -159,7 +159,7 @@ type ManagedObjectStorageState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Endpoints for accessing the Managed Object Storage service.
 	Endpoints ManagedObjectStorageEndpointArrayInput
-	// Key-value pairs to classify the managed object storage.
+	// User defined key-value pairs to classify the managed object storage.
 	Labels pulumi.StringMapInput
 	// Name of the Managed Object Storage service. Must be unique within account.
 	Name pulumi.StringPtrInput
@@ -182,7 +182,7 @@ func (ManagedObjectStorageState) ElementType() reflect.Type {
 type managedObjectStorageArgs struct {
 	// Service status managed by the end user.
 	ConfiguredStatus string `pulumi:"configuredStatus"`
-	// Key-value pairs to classify the managed object storage.
+	// User defined key-value pairs to classify the managed object storage.
 	Labels map[string]string `pulumi:"labels"`
 	// Name of the Managed Object Storage service. Must be unique within account.
 	Name *string `pulumi:"name"`
@@ -198,7 +198,7 @@ type managedObjectStorageArgs struct {
 type ManagedObjectStorageArgs struct {
 	// Service status managed by the end user.
 	ConfiguredStatus pulumi.StringInput
-	// Key-value pairs to classify the managed object storage.
+	// User defined key-value pairs to classify the managed object storage.
 	Labels pulumi.StringMapInput
 	// Name of the Managed Object Storage service. Must be unique within account.
 	Name pulumi.StringPtrInput
@@ -312,7 +312,7 @@ func (o ManagedObjectStorageOutput) Endpoints() ManagedObjectStorageEndpointArra
 	return o.ApplyT(func(v *ManagedObjectStorage) ManagedObjectStorageEndpointArrayOutput { return v.Endpoints }).(ManagedObjectStorageEndpointArrayOutput)
 }
 
-// Key-value pairs to classify the managed object storage.
+// User defined key-value pairs to classify the managed object storage.
 func (o ManagedObjectStorageOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ManagedObjectStorage) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }

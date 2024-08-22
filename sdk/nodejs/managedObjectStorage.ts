@@ -83,7 +83,7 @@ export class ManagedObjectStorage extends pulumi.CustomResource {
      */
     public /*out*/ readonly endpoints!: pulumi.Output<outputs.ManagedObjectStorageEndpoint[]>;
     /**
-     * Key-value pairs to classify the managed object storage.
+     * User defined key-value pairs to classify the managed object storage.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -171,7 +171,7 @@ export interface ManagedObjectStorageState {
      */
     endpoints?: pulumi.Input<pulumi.Input<inputs.ManagedObjectStorageEndpoint>[]>;
     /**
-     * Key-value pairs to classify the managed object storage.
+     * User defined key-value pairs to classify the managed object storage.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -207,7 +207,7 @@ export interface ManagedObjectStorageArgs {
      */
     configuredStatus: pulumi.Input<string>;
     /**
-     * Key-value pairs to classify the managed object storage.
+     * User defined key-value pairs to classify the managed object storage.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

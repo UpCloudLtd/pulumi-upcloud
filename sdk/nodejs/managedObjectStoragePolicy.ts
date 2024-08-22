@@ -73,7 +73,8 @@ export class ManagedObjectStoragePolicy extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Policy document, URL-encoded compliant with RFC 3986.
+     * Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+     * document has changed.
      */
     public readonly document!: pulumi.Output<string>;
     /**
@@ -165,7 +166,8 @@ export interface ManagedObjectStoragePolicyState {
      */
     description?: pulumi.Input<string>;
     /**
-     * Policy document, URL-encoded compliant with RFC 3986.
+     * Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+     * document has changed.
      */
     document?: pulumi.Input<string>;
     /**
@@ -195,7 +197,8 @@ export interface ManagedObjectStoragePolicyArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * Policy document, URL-encoded compliant with RFC 3986.
+     * Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+     * document has changed.
      */
     document: pulumi.Input<string>;
     /**

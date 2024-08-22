@@ -43,7 +43,7 @@ namespace Pulumi.Upcloud
         public Output<ImmutableArray<string>> AttachedNetworks { get; private set; } = null!;
 
         /// <summary>
-        /// Key-value pairs to classify the router.
+        /// User defined key-value pairs to classify the router.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
@@ -55,7 +55,14 @@ namespace Pulumi.Upcloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// A collection of static routes for this router.
+        /// A collection of user managed static routes for this router.
+        /// </summary>
+        [Output("staticRoute")]
+        public Output<ImmutableArray<Outputs.RouterStaticRoute>> StaticRoute { get; private set; } = null!;
+
+        /// <summary>
+        /// A collection of static routes for this router. This set includes both user and service defined static routes. The
+        /// objects in this set use the same schema as `static_route` blocks.
         /// </summary>
         [Output("staticRoutes")]
         public Output<ImmutableArray<Outputs.RouterStaticRoute>> StaticRoutes { get; private set; } = null!;
@@ -116,7 +123,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the router.
+        /// User defined key-value pairs to classify the router.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -130,16 +137,16 @@ namespace Pulumi.Upcloud
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("staticRoutes")]
-        private InputList<Inputs.RouterStaticRouteArgs>? _staticRoutes;
+        [Input("staticRoute")]
+        private InputList<Inputs.RouterStaticRouteArgs>? _staticRoute;
 
         /// <summary>
-        /// A collection of static routes for this router.
+        /// A collection of user managed static routes for this router.
         /// </summary>
-        public InputList<Inputs.RouterStaticRouteArgs> StaticRoutes
+        public InputList<Inputs.RouterStaticRouteArgs> StaticRoute
         {
-            get => _staticRoutes ?? (_staticRoutes = new InputList<Inputs.RouterStaticRouteArgs>());
-            set => _staticRoutes = value;
+            get => _staticRoute ?? (_staticRoute = new InputList<Inputs.RouterStaticRouteArgs>());
+            set => _staticRoute = value;
         }
 
         public RouterArgs()
@@ -166,7 +173,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the router.
+        /// User defined key-value pairs to classify the router.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -180,11 +187,24 @@ namespace Pulumi.Upcloud
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("staticRoute")]
+        private InputList<Inputs.RouterStaticRouteGetArgs>? _staticRoute;
+
+        /// <summary>
+        /// A collection of user managed static routes for this router.
+        /// </summary>
+        public InputList<Inputs.RouterStaticRouteGetArgs> StaticRoute
+        {
+            get => _staticRoute ?? (_staticRoute = new InputList<Inputs.RouterStaticRouteGetArgs>());
+            set => _staticRoute = value;
+        }
+
         [Input("staticRoutes")]
         private InputList<Inputs.RouterStaticRouteGetArgs>? _staticRoutes;
 
         /// <summary>
-        /// A collection of static routes for this router.
+        /// A collection of static routes for this router. This set includes both user and service defined static routes. The
+        /// objects in this set use the same schema as `static_route` blocks.
         /// </summary>
         public InputList<Inputs.RouterStaticRouteGetArgs> StaticRoutes
         {
