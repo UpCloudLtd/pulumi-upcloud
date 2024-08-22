@@ -30,7 +30,7 @@ class ServerGroupArgs:
                please see UpCloud API documentation on server groups. Plese also note that anti-affinity policies are only applied on
                server start. This means that if anti-affinity policies in server group are not met, you need to manually restart the
                servers in said group, for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the server group.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the server group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] members: UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group`
                property of `Server`. See also `track_members` property.
         :param pulumi.Input[bool] track_members: Controls if members of the server group are being tracked in this resource. Set to `false` when using `server_group`
@@ -81,7 +81,7 @@ class ServerGroupArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs to classify the server group.
+        User defined key-value pairs to classify the server group.
         """
         return pulumi.get(self, "labels")
 
@@ -134,7 +134,7 @@ class _ServerGroupState:
                please see UpCloud API documentation on server groups. Plese also note that anti-affinity policies are only applied on
                server start. This means that if anti-affinity policies in server group are not met, you need to manually restart the
                servers in said group, for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the server group.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the server group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] members: UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group`
                property of `Server`. See also `track_members` property.
         :param pulumi.Input[str] title: Title of your server group
@@ -175,7 +175,7 @@ class _ServerGroupState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs to classify the server group.
+        User defined key-value pairs to classify the server group.
         """
         return pulumi.get(self, "labels")
 
@@ -234,6 +234,8 @@ class ServerGroup(pulumi.CustomResource):
                  track_members: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
+        Server groups allow grouping servers and defining anti-affinity for the servers.
+
         ## Example Usage
 
         ```python
@@ -271,7 +273,7 @@ class ServerGroup(pulumi.CustomResource):
                please see UpCloud API documentation on server groups. Plese also note that anti-affinity policies are only applied on
                server start. This means that if anti-affinity policies in server group are not met, you need to manually restart the
                servers in said group, for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the server group.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the server group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] members: UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group`
                property of `Server`. See also `track_members` property.
         :param pulumi.Input[str] title: Title of your server group
@@ -285,6 +287,8 @@ class ServerGroup(pulumi.CustomResource):
                  args: ServerGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Server groups allow grouping servers and defining anti-affinity for the servers.
+
         ## Example Usage
 
         ```python
@@ -378,7 +382,7 @@ class ServerGroup(pulumi.CustomResource):
                please see UpCloud API documentation on server groups. Plese also note that anti-affinity policies are only applied on
                server start. This means that if anti-affinity policies in server group are not met, you need to manually restart the
                servers in said group, for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the server group.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the server group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] members: UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group`
                property of `Server`. See also `track_members` property.
         :param pulumi.Input[str] title: Title of your server group
@@ -398,7 +402,7 @@ class ServerGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="antiAffinityPolicy")
-    def anti_affinity_policy(self) -> pulumi.Output[Optional[str]]:
+    def anti_affinity_policy(self) -> pulumi.Output[str]:
         """
         Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will result in all servers in the
         group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`. * `strict` policy doesn't allow
@@ -413,9 +417,9 @@ class ServerGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+    def labels(self) -> pulumi.Output[Mapping[str, str]]:
         """
-        Key-value pairs to classify the server group.
+        User defined key-value pairs to classify the server group.
         """
         return pulumi.get(self, "labels")
 
@@ -438,7 +442,7 @@ class ServerGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="trackMembers")
-    def track_members(self) -> pulumi.Output[Optional[bool]]:
+    def track_members(self) -> pulumi.Output[bool]:
         """
         Controls if members of the server group are being tracked in this resource. Set to `false` when using `server_group`
         property of `Server` to attach servers to the server group to avoid delayed state updates.

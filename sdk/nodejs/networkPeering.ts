@@ -72,7 +72,7 @@ export class NetworkPeering extends pulumi.CustomResource {
      */
     public readonly configuredStatus!: pulumi.Output<string>;
     /**
-     * Key-value pairs to classify the network peering.
+     * User defined key-value pairs to classify the network peering.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
     /**
@@ -134,7 +134,7 @@ export interface NetworkPeeringState {
      */
     configuredStatus?: pulumi.Input<string>;
     /**
-     * Key-value pairs to classify the network peering.
+     * User defined key-value pairs to classify the network peering.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -160,7 +160,7 @@ export interface NetworkPeeringArgs {
      */
     configuredStatus?: pulumi.Input<string>;
     /**
-     * Key-value pairs to classify the network peering.
+     * User defined key-value pairs to classify the network peering.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

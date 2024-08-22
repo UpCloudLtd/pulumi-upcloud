@@ -282,11 +282,11 @@ class LoadbalancerStaticBackendMember(pulumi.CustomResource):
             lb_zone = "fi-hel2"
         lb_network = upcloud.Network("lbNetwork",
             zone=lb_zone,
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
             plan="development",
@@ -335,11 +335,11 @@ class LoadbalancerStaticBackendMember(pulumi.CustomResource):
             lb_zone = "fi-hel2"
         lb_network = upcloud.Network("lbNetwork",
             zone=lb_zone,
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
             plan="development",

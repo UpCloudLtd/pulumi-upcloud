@@ -57,6 +57,12 @@ namespace Pulumi.Upcloud
         public Output<ImmutableArray<Outputs.ManagedDatabasePostgresqlComponent>> Components { get; private set; } = null!;
 
         /// <summary>
+        /// User defined key-value pairs to classify the managed database.
+        /// </summary>
+        [Output("labels")]
+        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
+
+        /// <summary>
         /// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         /// </summary>
         [Output("maintenanceWindowDow")]
@@ -222,6 +228,18 @@ namespace Pulumi.Upcloud
 
     public sealed class ManagedDatabasePostgresqlArgs : global::Pulumi.ResourceArgs
     {
+        [Input("labels")]
+        private InputMap<string>? _labels;
+
+        /// <summary>
+        /// User defined key-value pairs to classify the managed database.
+        /// </summary>
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
         /// <summary>
         /// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         /// </summary>
@@ -301,6 +319,18 @@ namespace Pulumi.Upcloud
         {
             get => _components ?? (_components = new InputList<Inputs.ManagedDatabasePostgresqlComponentGetArgs>());
             set => _components = value;
+        }
+
+        [Input("labels")]
+        private InputMap<string>? _labels;
+
+        /// <summary>
+        /// User defined key-value pairs to classify the managed database.
+        /// </summary>
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
         }
 
         /// <summary>

@@ -22,7 +22,7 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly string Source;
         /// <summary>
-        /// For `direct_upload`; an optional hash of the file to upload.
+        /// SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
         /// </summary>
         public readonly string? SourceHash;
         /// <summary>

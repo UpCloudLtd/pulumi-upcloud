@@ -92,7 +92,7 @@ export class Gateway extends pulumi.CustomResource {
      */
     public readonly features!: pulumi.Output<string[]>;
     /**
-     * Key-value pairs to classify the network gateway.
+     * User defined key-value pairs to classify the network gateway.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -197,7 +197,7 @@ export interface GatewayState {
      */
     features?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Key-value pairs to classify the network gateway.
+     * User defined key-value pairs to classify the network gateway.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -240,7 +240,7 @@ export interface GatewayArgs {
      */
     features: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Key-value pairs to classify the network gateway.
+     * User defined key-value pairs to classify the network gateway.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

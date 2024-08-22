@@ -23,27 +23,34 @@ type Storage struct {
 	pulumi.CustomResourceState
 
 	BackupRule StorageBackupRulePtrOutput `pulumi:"backupRule"`
-	// Block defining another storage/template to clone to storage
+	// Block defining another storage/template to clone to storage.
 	Clone StorageClonePtrOutput `pulumi:"clone"`
 	// If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
 	// success.
-	DeleteAutoresizeBackup pulumi.BoolPtrOutput `pulumi:"deleteAutoresizeBackup"`
-	// Sets if the storage is encrypted at rest
-	Encrypt pulumi.BoolPtrOutput `pulumi:"encrypt"`
+	DeleteAutoresizeBackup pulumi.BoolOutput `pulumi:"deleteAutoresizeBackup"`
+	// Sets if the storage is encrypted at rest.
+	Encrypt pulumi.BoolOutput `pulumi:"encrypt"`
 	// If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
 	// note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
 	// backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-	// deleteAutoresizeBackup option is set to true). Taking and keeping backups incure costs.
-	FilesystemAutoresize pulumi.BoolPtrOutput `pulumi:"filesystemAutoresize"`
+	// `deleteAutoresizeBackup` option is set to true). Taking and keeping backups incure costs.
+	FilesystemAutoresize pulumi.BoolOutput `pulumi:"filesystemAutoresize"`
 	// Block defining external data to import to storage
 	Import StorageImportPtrOutput `pulumi:"import"`
-	// The size of the storage in gigabytes
+	// User defined key-value pairs to classify the storage.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// The size of the storage in gigabytes.
 	Size pulumi.IntOutput `pulumi:"size"`
-	// The storage tier to use
+	// System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
+	// and can not be modified by the user.
+	SystemLabels pulumi.StringMapOutput `pulumi:"systemLabels"`
+	// The tier of the storage.
 	Tier pulumi.StringOutput `pulumi:"tier"`
-	// A short, informative description
+	// The title of the storage.
 	Title pulumi.StringOutput `pulumi:"title"`
-	// The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+	// The type of the storage.
+	Type pulumi.StringOutput `pulumi:"type"`
+	// The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -87,53 +94,67 @@ func GetStorage(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Storage resources.
 type storageState struct {
 	BackupRule *StorageBackupRule `pulumi:"backupRule"`
-	// Block defining another storage/template to clone to storage
+	// Block defining another storage/template to clone to storage.
 	Clone *StorageClone `pulumi:"clone"`
 	// If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
 	// success.
 	DeleteAutoresizeBackup *bool `pulumi:"deleteAutoresizeBackup"`
-	// Sets if the storage is encrypted at rest
+	// Sets if the storage is encrypted at rest.
 	Encrypt *bool `pulumi:"encrypt"`
 	// If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
 	// note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
 	// backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-	// deleteAutoresizeBackup option is set to true). Taking and keeping backups incure costs.
+	// `deleteAutoresizeBackup` option is set to true). Taking and keeping backups incure costs.
 	FilesystemAutoresize *bool `pulumi:"filesystemAutoresize"`
 	// Block defining external data to import to storage
 	Import *StorageImport `pulumi:"import"`
-	// The size of the storage in gigabytes
+	// User defined key-value pairs to classify the storage.
+	Labels map[string]string `pulumi:"labels"`
+	// The size of the storage in gigabytes.
 	Size *int `pulumi:"size"`
-	// The storage tier to use
+	// System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
+	// and can not be modified by the user.
+	SystemLabels map[string]string `pulumi:"systemLabels"`
+	// The tier of the storage.
 	Tier *string `pulumi:"tier"`
-	// A short, informative description
+	// The title of the storage.
 	Title *string `pulumi:"title"`
-	// The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+	// The type of the storage.
+	Type *string `pulumi:"type"`
+	// The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone *string `pulumi:"zone"`
 }
 
 type StorageState struct {
 	BackupRule StorageBackupRulePtrInput
-	// Block defining another storage/template to clone to storage
+	// Block defining another storage/template to clone to storage.
 	Clone StorageClonePtrInput
 	// If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
 	// success.
 	DeleteAutoresizeBackup pulumi.BoolPtrInput
-	// Sets if the storage is encrypted at rest
+	// Sets if the storage is encrypted at rest.
 	Encrypt pulumi.BoolPtrInput
 	// If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
 	// note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
 	// backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-	// deleteAutoresizeBackup option is set to true). Taking and keeping backups incure costs.
+	// `deleteAutoresizeBackup` option is set to true). Taking and keeping backups incure costs.
 	FilesystemAutoresize pulumi.BoolPtrInput
 	// Block defining external data to import to storage
 	Import StorageImportPtrInput
-	// The size of the storage in gigabytes
+	// User defined key-value pairs to classify the storage.
+	Labels pulumi.StringMapInput
+	// The size of the storage in gigabytes.
 	Size pulumi.IntPtrInput
-	// The storage tier to use
+	// System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
+	// and can not be modified by the user.
+	SystemLabels pulumi.StringMapInput
+	// The tier of the storage.
 	Tier pulumi.StringPtrInput
-	// A short, informative description
+	// The title of the storage.
 	Title pulumi.StringPtrInput
-	// The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+	// The type of the storage.
+	Type pulumi.StringPtrInput
+	// The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringPtrInput
 }
 
@@ -143,54 +164,58 @@ func (StorageState) ElementType() reflect.Type {
 
 type storageArgs struct {
 	BackupRule *StorageBackupRule `pulumi:"backupRule"`
-	// Block defining another storage/template to clone to storage
+	// Block defining another storage/template to clone to storage.
 	Clone *StorageClone `pulumi:"clone"`
 	// If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
 	// success.
 	DeleteAutoresizeBackup *bool `pulumi:"deleteAutoresizeBackup"`
-	// Sets if the storage is encrypted at rest
+	// Sets if the storage is encrypted at rest.
 	Encrypt *bool `pulumi:"encrypt"`
 	// If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
 	// note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
 	// backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-	// deleteAutoresizeBackup option is set to true). Taking and keeping backups incure costs.
+	// `deleteAutoresizeBackup` option is set to true). Taking and keeping backups incure costs.
 	FilesystemAutoresize *bool `pulumi:"filesystemAutoresize"`
 	// Block defining external data to import to storage
 	Import *StorageImport `pulumi:"import"`
-	// The size of the storage in gigabytes
+	// User defined key-value pairs to classify the storage.
+	Labels map[string]string `pulumi:"labels"`
+	// The size of the storage in gigabytes.
 	Size int `pulumi:"size"`
-	// The storage tier to use
+	// The tier of the storage.
 	Tier *string `pulumi:"tier"`
-	// A short, informative description
+	// The title of the storage.
 	Title string `pulumi:"title"`
-	// The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+	// The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a Storage resource.
 type StorageArgs struct {
 	BackupRule StorageBackupRulePtrInput
-	// Block defining another storage/template to clone to storage
+	// Block defining another storage/template to clone to storage.
 	Clone StorageClonePtrInput
 	// If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
 	// success.
 	DeleteAutoresizeBackup pulumi.BoolPtrInput
-	// Sets if the storage is encrypted at rest
+	// Sets if the storage is encrypted at rest.
 	Encrypt pulumi.BoolPtrInput
 	// If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
 	// note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
 	// backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-	// deleteAutoresizeBackup option is set to true). Taking and keeping backups incure costs.
+	// `deleteAutoresizeBackup` option is set to true). Taking and keeping backups incure costs.
 	FilesystemAutoresize pulumi.BoolPtrInput
 	// Block defining external data to import to storage
 	Import StorageImportPtrInput
-	// The size of the storage in gigabytes
+	// User defined key-value pairs to classify the storage.
+	Labels pulumi.StringMapInput
+	// The size of the storage in gigabytes.
 	Size pulumi.IntInput
-	// The storage tier to use
+	// The tier of the storage.
 	Tier pulumi.StringPtrInput
-	// A short, informative description
+	// The title of the storage.
 	Title pulumi.StringInput
-	// The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+	// The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringInput
 }
 
@@ -285,28 +310,28 @@ func (o StorageOutput) BackupRule() StorageBackupRulePtrOutput {
 	return o.ApplyT(func(v *Storage) StorageBackupRulePtrOutput { return v.BackupRule }).(StorageBackupRulePtrOutput)
 }
 
-// Block defining another storage/template to clone to storage
+// Block defining another storage/template to clone to storage.
 func (o StorageOutput) Clone() StorageClonePtrOutput {
 	return o.ApplyT(func(v *Storage) StorageClonePtrOutput { return v.Clone }).(StorageClonePtrOutput)
 }
 
 // If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
 // success.
-func (o StorageOutput) DeleteAutoresizeBackup() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Storage) pulumi.BoolPtrOutput { return v.DeleteAutoresizeBackup }).(pulumi.BoolPtrOutput)
+func (o StorageOutput) DeleteAutoresizeBackup() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Storage) pulumi.BoolOutput { return v.DeleteAutoresizeBackup }).(pulumi.BoolOutput)
 }
 
-// Sets if the storage is encrypted at rest
-func (o StorageOutput) Encrypt() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Storage) pulumi.BoolPtrOutput { return v.Encrypt }).(pulumi.BoolPtrOutput)
+// Sets if the storage is encrypted at rest.
+func (o StorageOutput) Encrypt() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Storage) pulumi.BoolOutput { return v.Encrypt }).(pulumi.BoolOutput)
 }
 
 // If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
 // note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
 // backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-// deleteAutoresizeBackup option is set to true). Taking and keeping backups incure costs.
-func (o StorageOutput) FilesystemAutoresize() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Storage) pulumi.BoolPtrOutput { return v.FilesystemAutoresize }).(pulumi.BoolPtrOutput)
+// `deleteAutoresizeBackup` option is set to true). Taking and keeping backups incure costs.
+func (o StorageOutput) FilesystemAutoresize() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Storage) pulumi.BoolOutput { return v.FilesystemAutoresize }).(pulumi.BoolOutput)
 }
 
 // Block defining external data to import to storage
@@ -314,22 +339,38 @@ func (o StorageOutput) Import() StorageImportPtrOutput {
 	return o.ApplyT(func(v *Storage) StorageImportPtrOutput { return v.Import }).(StorageImportPtrOutput)
 }
 
-// The size of the storage in gigabytes
+// User defined key-value pairs to classify the storage.
+func (o StorageOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Storage) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// The size of the storage in gigabytes.
 func (o StorageOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *Storage) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
 }
 
-// The storage tier to use
+// System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
+// and can not be modified by the user.
+func (o StorageOutput) SystemLabels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Storage) pulumi.StringMapOutput { return v.SystemLabels }).(pulumi.StringMapOutput)
+}
+
+// The tier of the storage.
 func (o StorageOutput) Tier() pulumi.StringOutput {
 	return o.ApplyT(func(v *Storage) pulumi.StringOutput { return v.Tier }).(pulumi.StringOutput)
 }
 
-// A short, informative description
+// The title of the storage.
 func (o StorageOutput) Title() pulumi.StringOutput {
 	return o.ApplyT(func(v *Storage) pulumi.StringOutput { return v.Title }).(pulumi.StringOutput)
 }
 
-// The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+// The type of the storage.
+func (o StorageOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *Storage) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+// The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 func (o StorageOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *Storage) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

@@ -61,7 +61,8 @@ type ManagedObjectStoragePolicy struct {
 	DefaultVersionId pulumi.StringOutput `pulumi:"defaultVersionId"`
 	// Description of the policy.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Policy document, URL-encoded compliant with RFC 3986.
+	// Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+	// document has changed.
 	Document pulumi.StringOutput `pulumi:"document"`
 	// Policy name.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -119,7 +120,8 @@ type managedObjectStoragePolicyState struct {
 	DefaultVersionId *string `pulumi:"defaultVersionId"`
 	// Description of the policy.
 	Description *string `pulumi:"description"`
-	// Policy document, URL-encoded compliant with RFC 3986.
+	// Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+	// document has changed.
 	Document *string `pulumi:"document"`
 	// Policy name.
 	Name *string `pulumi:"name"`
@@ -142,7 +144,8 @@ type ManagedObjectStoragePolicyState struct {
 	DefaultVersionId pulumi.StringPtrInput
 	// Description of the policy.
 	Description pulumi.StringPtrInput
-	// Policy document, URL-encoded compliant with RFC 3986.
+	// Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+	// document has changed.
 	Document pulumi.StringPtrInput
 	// Policy name.
 	Name pulumi.StringPtrInput
@@ -161,7 +164,8 @@ func (ManagedObjectStoragePolicyState) ElementType() reflect.Type {
 type managedObjectStoragePolicyArgs struct {
 	// Description of the policy.
 	Description *string `pulumi:"description"`
-	// Policy document, URL-encoded compliant with RFC 3986.
+	// Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+	// document has changed.
 	Document string `pulumi:"document"`
 	// Policy name.
 	Name *string `pulumi:"name"`
@@ -173,7 +177,8 @@ type managedObjectStoragePolicyArgs struct {
 type ManagedObjectStoragePolicyArgs struct {
 	// Description of the policy.
 	Description pulumi.StringPtrInput
-	// Policy document, URL-encoded compliant with RFC 3986.
+	// Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+	// document has changed.
 	Document pulumi.StringInput
 	// Policy name.
 	Name pulumi.StringPtrInput
@@ -293,7 +298,8 @@ func (o ManagedObjectStoragePolicyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedObjectStoragePolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// Policy document, URL-encoded compliant with RFC 3986.
+// Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
+// document has changed.
 func (o ManagedObjectStoragePolicyOutput) Document() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedObjectStoragePolicy) pulumi.StringOutput { return v.Document }).(pulumi.StringOutput)
 }

@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Server groups allow grouping servers and defining anti-affinity for the servers.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -71,11 +73,11 @@ export class ServerGroup extends pulumi.CustomResource {
      * server start. This means that if anti-affinity policies in server group are not met, you need to manually restart the
      * servers in said group, for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
      */
-    public readonly antiAffinityPolicy!: pulumi.Output<string | undefined>;
+    public readonly antiAffinityPolicy!: pulumi.Output<string>;
     /**
-     * Key-value pairs to classify the server group.
+     * User defined key-value pairs to classify the server group.
      */
-    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    public readonly labels!: pulumi.Output<{[key: string]: string}>;
     /**
      * UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `serverGroup`
      * property of `upcloud.Server`. See also `trackMembers` property.
@@ -89,7 +91,7 @@ export class ServerGroup extends pulumi.CustomResource {
      * Controls if members of the server group are being tracked in this resource. Set to `false` when using `serverGroup`
      * property of `upcloud.Server` to attach servers to the server group to avoid delayed state updates.
      */
-    public readonly trackMembers!: pulumi.Output<boolean | undefined>;
+    public readonly trackMembers!: pulumi.Output<boolean>;
 
     /**
      * Create a ServerGroup resource with the given unique name, arguments, and options.
@@ -141,7 +143,7 @@ export interface ServerGroupState {
      */
     antiAffinityPolicy?: pulumi.Input<string>;
     /**
-     * Key-value pairs to classify the server group.
+     * User defined key-value pairs to classify the server group.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -176,7 +178,7 @@ export interface ServerGroupArgs {
      */
     antiAffinityPolicy?: pulumi.Input<string>;
     /**
-     * Key-value pairs to classify the server group.
+     * User defined key-value pairs to classify the server group.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

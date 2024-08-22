@@ -31,7 +31,7 @@ class KubernetesClusterArgs:
         :param pulumi.Input[str] network: Network ID for the cluster to run in.
         :param pulumi.Input[str] zone: Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
                list`.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the cluster.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[str] name: Cluster name. Needs to be unique within the account.
         :param pulumi.Input[str] plan: The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
                kubernetes plans`.
@@ -98,7 +98,7 @@ class KubernetesClusterArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs to classify the cluster.
+        User defined key-value pairs to classify the cluster.
         """
         return pulumi.get(self, "labels")
 
@@ -188,7 +188,7 @@ class _KubernetesClusterState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] control_plane_ip_filters: IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any
                source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
                groups or exposed Kubernetes services.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the cluster.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[str] name: Cluster name. Needs to be unique within the account.
         :param pulumi.Input[str] network: Network ID for the cluster to run in.
         :param pulumi.Input[str] network_cidr: Network CIDR for the given network. Computed automatically.
@@ -245,7 +245,7 @@ class _KubernetesClusterState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs to classify the cluster.
+        User defined key-value pairs to classify the cluster.
         """
         return pulumi.get(self, "labels")
 
@@ -403,11 +403,11 @@ class KubernetesCluster(pulumi.CustomResource):
         # Create a network for the Kubernetes cluster
         example_network = upcloud.Network("exampleNetwork",
             zone="de-fra1",
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="172.16.1.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "172.16.1.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         # Create a Kubernetes cluster
         example_kubernetes_cluster = upcloud.KubernetesCluster("exampleKubernetesCluster",
             control_plane_ip_filters=["0.0.0.0/0"],
@@ -418,17 +418,17 @@ class KubernetesCluster(pulumi.CustomResource):
         example2_gateway = upcloud.Gateway("example2Gateway",
             zone="de-fra1",
             features=["nat"],
-            router=upcloud.GatewayRouterArgs(
-                id=example2_router.id,
-            ))
+            router={
+                "id": example2_router.id,
+            })
         example2_network = upcloud.Network("example2Network",
             zone="de-fra1",
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.10.0.0/24",
-                dhcp=True,
-                family="IPv4",
-                dhcp_default_route=True,
-            ),
+            ip_network={
+                "address": "10.10.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+                "dhcp_default_route": True,
+            },
             router=example2_router.id)
         example2_kubernetes_cluster = upcloud.KubernetesCluster("example2KubernetesCluster",
             network=example2_network.id,
@@ -442,7 +442,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] control_plane_ip_filters: IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any
                source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
                groups or exposed Kubernetes services.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the cluster.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[str] name: Cluster name. Needs to be unique within the account.
         :param pulumi.Input[str] network: Network ID for the cluster to run in.
         :param pulumi.Input[str] plan: The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
@@ -471,11 +471,11 @@ class KubernetesCluster(pulumi.CustomResource):
         # Create a network for the Kubernetes cluster
         example_network = upcloud.Network("exampleNetwork",
             zone="de-fra1",
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="172.16.1.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "172.16.1.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         # Create a Kubernetes cluster
         example_kubernetes_cluster = upcloud.KubernetesCluster("exampleKubernetesCluster",
             control_plane_ip_filters=["0.0.0.0/0"],
@@ -486,17 +486,17 @@ class KubernetesCluster(pulumi.CustomResource):
         example2_gateway = upcloud.Gateway("example2Gateway",
             zone="de-fra1",
             features=["nat"],
-            router=upcloud.GatewayRouterArgs(
-                id=example2_router.id,
-            ))
+            router={
+                "id": example2_router.id,
+            })
         example2_network = upcloud.Network("example2Network",
             zone="de-fra1",
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.10.0.0/24",
-                dhcp=True,
-                family="IPv4",
-                dhcp_default_route=True,
-            ),
+            ip_network={
+                "address": "10.10.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+                "dhcp_default_route": True,
+            },
             router=example2_router.id)
         example2_kubernetes_cluster = upcloud.KubernetesCluster("example2KubernetesCluster",
             network=example2_network.id,
@@ -588,7 +588,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] control_plane_ip_filters: IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any
                source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
                groups or exposed Kubernetes services.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the cluster.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[str] name: Cluster name. Needs to be unique within the account.
         :param pulumi.Input[str] network: Network ID for the cluster to run in.
         :param pulumi.Input[str] network_cidr: Network CIDR for the given network. Computed automatically.
@@ -634,7 +634,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
         """
-        Key-value pairs to classify the cluster.
+        User defined key-value pairs to classify the cluster.
         """
         return pulumi.get(self, "labels")
 

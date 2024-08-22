@@ -83,7 +83,7 @@ type Gateway struct {
 	// Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
 	// https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
 	Features pulumi.StringArrayOutput `pulumi:"features"`
-	// Key-value pairs to classify the network gateway.
+	// User defined key-value pairs to classify the network gateway.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Gateway name. Needs to be unique within the account.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -150,7 +150,7 @@ type gatewayState struct {
 	// Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
 	// https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
 	Features []string `pulumi:"features"`
-	// Key-value pairs to classify the network gateway.
+	// User defined key-value pairs to classify the network gateway.
 	Labels map[string]string `pulumi:"labels"`
 	// Gateway name. Needs to be unique within the account.
 	Name *string `pulumi:"name"`
@@ -179,7 +179,7 @@ type GatewayState struct {
 	// Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
 	// https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
 	Features pulumi.StringArrayInput
-	// Key-value pairs to classify the network gateway.
+	// User defined key-value pairs to classify the network gateway.
 	Labels pulumi.StringMapInput
 	// Gateway name. Needs to be unique within the account.
 	Name pulumi.StringPtrInput
@@ -205,7 +205,7 @@ type gatewayArgs struct {
 	// Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
 	// https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
 	Features []string `pulumi:"features"`
-	// Key-value pairs to classify the network gateway.
+	// User defined key-value pairs to classify the network gateway.
 	Labels map[string]string `pulumi:"labels"`
 	// Gateway name. Needs to be unique within the account.
 	Name *string `pulumi:"name"`
@@ -226,7 +226,7 @@ type GatewayArgs struct {
 	// Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
 	// https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
 	Features pulumi.StringArrayInput
-	// Key-value pairs to classify the network gateway.
+	// User defined key-value pairs to classify the network gateway.
 	Labels pulumi.StringMapInput
 	// Gateway name. Needs to be unique within the account.
 	Name pulumi.StringPtrInput
@@ -354,7 +354,7 @@ func (o GatewayOutput) Features() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringArrayOutput { return v.Features }).(pulumi.StringArrayOutput)
 }
 
-// Key-value pairs to classify the network gateway.
+// User defined key-value pairs to classify the network gateway.
 func (o GatewayOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }

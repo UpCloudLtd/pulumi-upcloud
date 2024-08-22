@@ -330,7 +330,7 @@ class ObjectStorage(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
-                 buckets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectStorageBucketArgs']]]]] = None,
+                 buckets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ObjectStorageBucketArgs', 'ObjectStorageBucketArgsDict']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
@@ -352,12 +352,12 @@ class ObjectStorage(pulumi.CustomResource):
         my_object_storage = upcloud.ObjectStorage("myObjectStorage",
             access_key="admin",
             buckets=[
-                upcloud.ObjectStorageBucketArgs(
-                    name="products",
-                ),
-                upcloud.ObjectStorageBucketArgs(
-                    name="images",
-                ),
+                {
+                    "name": "products",
+                },
+                {
+                    "name": "images",
+                },
             ],
             description="catalogue",
             secret_key="changeme",
@@ -423,12 +423,12 @@ class ObjectStorage(pulumi.CustomResource):
         my_object_storage = upcloud.ObjectStorage("myObjectStorage",
             access_key="admin",
             buckets=[
-                upcloud.ObjectStorageBucketArgs(
-                    name="products",
-                ),
-                upcloud.ObjectStorageBucketArgs(
-                    name="images",
-                ),
+                {
+                    "name": "products",
+                },
+                {
+                    "name": "images",
+                },
             ],
             description="catalogue",
             secret_key="changeme",
@@ -471,7 +471,7 @@ class ObjectStorage(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
-                 buckets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectStorageBucketArgs']]]]] = None,
+                 buckets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ObjectStorageBucketArgs', 'ObjectStorageBucketArgsDict']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
@@ -518,7 +518,7 @@ class ObjectStorage(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             access_key: Optional[pulumi.Input[str]] = None,
-            buckets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectStorageBucketArgs']]]]] = None,
+            buckets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ObjectStorageBucketArgs', 'ObjectStorageBucketArgsDict']]]]] = None,
             created: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,

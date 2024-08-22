@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Upcloud
 {
     /// <summary>
+    /// Server groups allow grouping servers and defining anti-affinity for the servers.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -61,13 +63,13 @@ namespace Pulumi.Upcloud
         /// servers in said group, for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
         /// </summary>
         [Output("antiAffinityPolicy")]
-        public Output<string?> AntiAffinityPolicy { get; private set; } = null!;
+        public Output<string> AntiAffinityPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// Key-value pairs to classify the server group.
+        /// User defined key-value pairs to classify the server group.
         /// </summary>
         [Output("labels")]
-        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
         /// <summary>
         /// UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group`
@@ -87,7 +89,7 @@ namespace Pulumi.Upcloud
         /// property of `upcloud.Server` to attach servers to the server group to avoid delayed state updates.
         /// </summary>
         [Output("trackMembers")]
-        public Output<bool?> TrackMembers { get; private set; } = null!;
+        public Output<bool> TrackMembers { get; private set; } = null!;
 
 
         /// <summary>
@@ -152,7 +154,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the server group.
+        /// User defined key-value pairs to classify the server group.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -211,7 +213,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the server group.
+        /// User defined key-value pairs to classify the server group.
         /// </summary>
         public InputMap<string> Labels
         {

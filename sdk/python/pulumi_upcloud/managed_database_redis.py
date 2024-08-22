@@ -19,6 +19,7 @@ class ManagedDatabaseRedisArgs:
                  plan: pulumi.Input[str],
                  title: pulumi.Input[str],
                  zone: pulumi.Input[str],
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -31,6 +32,7 @@ class ManagedDatabaseRedisArgs:
                database plans <type>`.
         :param pulumi.Input[str] title: Title of a managed database instance
         :param pulumi.Input[str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
@@ -41,6 +43,8 @@ class ManagedDatabaseRedisArgs:
         pulumi.set(__self__, "plan", plan)
         pulumi.set(__self__, "title", title)
         pulumi.set(__self__, "zone", zone)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if maintenance_window_dow is not None:
             pulumi.set(__self__, "maintenance_window_dow", maintenance_window_dow)
         if maintenance_window_time is not None:
@@ -90,6 +94,18 @@ class ManagedDatabaseRedisArgs:
     @zone.setter
     def zone(self, value: pulumi.Input[str]):
         pulumi.set(self, "zone", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        User defined key-value pairs to classify the managed database.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "labels", value)
 
     @property
     @pulumi.getter(name="maintenanceWindowDow")
@@ -168,6 +184,7 @@ class ManagedDatabaseRedisArgs:
 class _ManagedDatabaseRedisState:
     def __init__(__self__, *,
                  components: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseRedisComponentArgs']]]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -189,6 +206,7 @@ class _ManagedDatabaseRedisState:
         """
         Input properties used for looking up and filtering ManagedDatabaseRedis resources.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseRedisComponentArgs']]] components: Service component information
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
@@ -211,6 +229,8 @@ class _ManagedDatabaseRedisState:
         """
         if components is not None:
             pulumi.set(__self__, "components", components)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if maintenance_window_dow is not None:
             pulumi.set(__self__, "maintenance_window_dow", maintenance_window_dow)
         if maintenance_window_time is not None:
@@ -259,6 +279,18 @@ class _ManagedDatabaseRedisState:
     @components.setter
     def components(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseRedisComponentArgs']]]]):
         pulumi.set(self, "components", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        User defined key-value pairs to classify the managed database.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "labels", value)
 
     @property
     @pulumi.getter(name="maintenanceWindowDow")
@@ -483,13 +515,14 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseRedisNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseRedisNetworkArgs', 'ManagedDatabaseRedisNetworkArgsDict']]]]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  powered: Optional[pulumi.Input[bool]] = None,
-                 properties: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseRedisPropertiesArgs']]] = None,
+                 properties: Optional[pulumi.Input[Union['ManagedDatabaseRedisPropertiesArgs', 'ManagedDatabaseRedisPropertiesArgsDict']]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -510,23 +543,24 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
         # Service with custom properties
         example2 = upcloud.ManagedDatabaseRedis("example2",
             plan="1x1xCPU-2GB",
-            properties=upcloud.ManagedDatabaseRedisPropertiesArgs(
-                public_access=False,
-            ),
+            properties={
+                "public_access": False,
+            },
             title="redis-2-example-2",
             zone="fi-hel1")
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseRedisNetworkArgs']]]] networks: Private networks attached to the managed database
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseRedisNetworkArgs', 'ManagedDatabaseRedisNetworkArgsDict']]]] networks: Private networks attached to the managed database
         :param pulumi.Input[str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
                database plans <type>`.
         :param pulumi.Input[bool] powered: The administrative power state of the service
-        :param pulumi.Input[pulumi.InputType['ManagedDatabaseRedisPropertiesArgs']] properties: Database Engine properties for Redis
+        :param pulumi.Input[Union['ManagedDatabaseRedisPropertiesArgs', 'ManagedDatabaseRedisPropertiesArgsDict']] properties: Database Engine properties for Redis
         :param pulumi.Input[str] title: Title of a managed database instance
         :param pulumi.Input[str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
@@ -553,9 +587,9 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
         # Service with custom properties
         example2 = upcloud.ManagedDatabaseRedis("example2",
             plan="1x1xCPU-2GB",
-            properties=upcloud.ManagedDatabaseRedisPropertiesArgs(
-                public_access=False,
-            ),
+            properties={
+                "public_access": False,
+            },
             title="redis-2-example-2",
             zone="fi-hel1")
         ```
@@ -575,13 +609,14 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseRedisNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseRedisNetworkArgs', 'ManagedDatabaseRedisNetworkArgsDict']]]]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  powered: Optional[pulumi.Input[bool]] = None,
-                 properties: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseRedisPropertiesArgs']]] = None,
+                 properties: Optional[pulumi.Input[Union['ManagedDatabaseRedisPropertiesArgs', 'ManagedDatabaseRedisPropertiesArgsDict']]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -593,6 +628,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ManagedDatabaseRedisArgs.__new__(ManagedDatabaseRedisArgs)
 
+            __props__.__dict__["labels"] = labels
             __props__.__dict__["maintenance_window_dow"] = maintenance_window_dow
             __props__.__dict__["maintenance_window_time"] = maintenance_window_time
             __props__.__dict__["name"] = name
@@ -630,16 +666,17 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            components: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseRedisComponentArgs']]]]] = None,
+            components: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseRedisComponentArgs', 'ManagedDatabaseRedisComponentArgsDict']]]]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             maintenance_window_dow: Optional[pulumi.Input[str]] = None,
             maintenance_window_time: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseRedisNetworkArgs']]]]] = None,
-            node_states: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseRedisNodeStateArgs']]]]] = None,
+            networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseRedisNetworkArgs', 'ManagedDatabaseRedisNetworkArgsDict']]]]] = None,
+            node_states: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseRedisNodeStateArgs', 'ManagedDatabaseRedisNodeStateArgsDict']]]]] = None,
             plan: Optional[pulumi.Input[str]] = None,
             powered: Optional[pulumi.Input[bool]] = None,
             primary_database: Optional[pulumi.Input[str]] = None,
-            properties: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseRedisPropertiesArgs']]] = None,
+            properties: Optional[pulumi.Input[Union['ManagedDatabaseRedisPropertiesArgs', 'ManagedDatabaseRedisPropertiesArgsDict']]] = None,
             service_host: Optional[pulumi.Input[str]] = None,
             service_password: Optional[pulumi.Input[str]] = None,
             service_port: Optional[pulumi.Input[str]] = None,
@@ -656,17 +693,18 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseRedisComponentArgs']]]] components: Service component information
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseRedisComponentArgs', 'ManagedDatabaseRedisComponentArgsDict']]]] components: Service component information
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseRedisNetworkArgs']]]] networks: Private networks attached to the managed database
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseRedisNodeStateArgs']]]] node_states: Information about nodes providing the managed service
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseRedisNetworkArgs', 'ManagedDatabaseRedisNetworkArgsDict']]]] networks: Private networks attached to the managed database
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseRedisNodeStateArgs', 'ManagedDatabaseRedisNodeStateArgsDict']]]] node_states: Information about nodes providing the managed service
         :param pulumi.Input[str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
                database plans <type>`.
         :param pulumi.Input[bool] powered: The administrative power state of the service
         :param pulumi.Input[str] primary_database: Primary database name
-        :param pulumi.Input[pulumi.InputType['ManagedDatabaseRedisPropertiesArgs']] properties: Database Engine properties for Redis
+        :param pulumi.Input[Union['ManagedDatabaseRedisPropertiesArgs', 'ManagedDatabaseRedisPropertiesArgsDict']] properties: Database Engine properties for Redis
         :param pulumi.Input[str] service_host: Hostname to the service instance
         :param pulumi.Input[str] service_password: Primary username's password to the service instance
         :param pulumi.Input[str] service_port: Port to the service instance
@@ -682,6 +720,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
         __props__ = _ManagedDatabaseRedisState.__new__(_ManagedDatabaseRedisState)
 
         __props__.__dict__["components"] = components
+        __props__.__dict__["labels"] = labels
         __props__.__dict__["maintenance_window_dow"] = maintenance_window_dow
         __props__.__dict__["maintenance_window_time"] = maintenance_window_time
         __props__.__dict__["name"] = name
@@ -709,6 +748,14 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
         Service component information
         """
         return pulumi.get(self, "components")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        User defined key-value pairs to classify the managed database.
+        """
+        return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="maintenanceWindowDow")

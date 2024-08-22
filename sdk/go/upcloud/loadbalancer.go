@@ -84,7 +84,7 @@ type Loadbalancer struct {
 	DnsName pulumi.StringOutput `pulumi:"dnsName"`
 	// Frontends receive the traffic before dispatching it to the backends.
 	Frontends pulumi.StringArrayOutput `pulumi:"frontends"`
-	// Key-value pairs to classify the load balancer.
+	// User defined key-value pairs to classify the load balancer.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
 	// Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
@@ -160,7 +160,7 @@ type loadbalancerState struct {
 	DnsName *string `pulumi:"dnsName"`
 	// Frontends receive the traffic before dispatching it to the backends.
 	Frontends []string `pulumi:"frontends"`
-	// Key-value pairs to classify the load balancer.
+	// User defined key-value pairs to classify the load balancer.
 	Labels map[string]string `pulumi:"labels"`
 	// The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
 	// Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
@@ -201,7 +201,7 @@ type LoadbalancerState struct {
 	DnsName pulumi.StringPtrInput
 	// Frontends receive the traffic before dispatching it to the backends.
 	Frontends pulumi.StringArrayInput
-	// Key-value pairs to classify the load balancer.
+	// User defined key-value pairs to classify the load balancer.
 	Labels pulumi.StringMapInput
 	// The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
 	// Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
@@ -238,7 +238,7 @@ func (LoadbalancerState) ElementType() reflect.Type {
 type loadbalancerArgs struct {
 	// The service configured status indicates the service's current intended status. Managed by the customer.
 	ConfiguredStatus *string `pulumi:"configuredStatus"`
-	// Key-value pairs to classify the load balancer.
+	// User defined key-value pairs to classify the load balancer.
 	Labels map[string]string `pulumi:"labels"`
 	// The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
 	// Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
@@ -266,7 +266,7 @@ type loadbalancerArgs struct {
 type LoadbalancerArgs struct {
 	// The service configured status indicates the service's current intended status. Managed by the customer.
 	ConfiguredStatus pulumi.StringPtrInput
-	// Key-value pairs to classify the load balancer.
+	// User defined key-value pairs to classify the load balancer.
 	Labels pulumi.StringMapInput
 	// The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
 	// Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
@@ -399,7 +399,7 @@ func (o LoadbalancerOutput) Frontends() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringArrayOutput { return v.Frontends }).(pulumi.StringArrayOutput)
 }
 
-// Key-value pairs to classify the load balancer.
+// User defined key-value pairs to classify the load balancer.
 func (o LoadbalancerOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }

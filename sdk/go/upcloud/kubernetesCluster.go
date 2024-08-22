@@ -102,7 +102,7 @@ type KubernetesCluster struct {
 	// source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
 	// groups or exposed Kubernetes services.
 	ControlPlaneIpFilters pulumi.StringArrayOutput `pulumi:"controlPlaneIpFilters"`
-	// Key-value pairs to classify the cluster.
+	// User defined key-value pairs to classify the cluster.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Cluster name. Needs to be unique within the account.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -171,7 +171,7 @@ type kubernetesClusterState struct {
 	// source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
 	// groups or exposed Kubernetes services.
 	ControlPlaneIpFilters []string `pulumi:"controlPlaneIpFilters"`
-	// Key-value pairs to classify the cluster.
+	// User defined key-value pairs to classify the cluster.
 	Labels map[string]string `pulumi:"labels"`
 	// Cluster name. Needs to be unique within the account.
 	Name *string `pulumi:"name"`
@@ -202,7 +202,7 @@ type KubernetesClusterState struct {
 	// source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
 	// groups or exposed Kubernetes services.
 	ControlPlaneIpFilters pulumi.StringArrayInput
-	// Key-value pairs to classify the cluster.
+	// User defined key-value pairs to classify the cluster.
 	Labels pulumi.StringMapInput
 	// Cluster name. Needs to be unique within the account.
 	Name pulumi.StringPtrInput
@@ -237,7 +237,7 @@ type kubernetesClusterArgs struct {
 	// source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
 	// groups or exposed Kubernetes services.
 	ControlPlaneIpFilters []string `pulumi:"controlPlaneIpFilters"`
-	// Key-value pairs to classify the cluster.
+	// User defined key-value pairs to classify the cluster.
 	Labels map[string]string `pulumi:"labels"`
 	// Cluster name. Needs to be unique within the account.
 	Name *string `pulumi:"name"`
@@ -263,7 +263,7 @@ type KubernetesClusterArgs struct {
 	// source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
 	// groups or exposed Kubernetes services.
 	ControlPlaneIpFilters pulumi.StringArrayInput
-	// Key-value pairs to classify the cluster.
+	// User defined key-value pairs to classify the cluster.
 	Labels pulumi.StringMapInput
 	// Cluster name. Needs to be unique within the account.
 	Name pulumi.StringPtrInput
@@ -377,7 +377,7 @@ func (o KubernetesClusterOutput) ControlPlaneIpFilters() pulumi.StringArrayOutpu
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringArrayOutput { return v.ControlPlaneIpFilters }).(pulumi.StringArrayOutput)
 }
 
-// Key-value pairs to classify the cluster.
+// User defined key-value pairs to classify the cluster.
 func (o KubernetesClusterOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }

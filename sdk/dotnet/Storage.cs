@@ -25,7 +25,7 @@ namespace Pulumi.Upcloud
         public Output<Outputs.StorageBackupRule?> BackupRule { get; private set; } = null!;
 
         /// <summary>
-        /// Block defining another storage/template to clone to storage
+        /// Block defining another storage/template to clone to storage.
         /// </summary>
         [Output("clone")]
         public Output<Outputs.StorageClone?> Clone { get; private set; } = null!;
@@ -35,22 +35,22 @@ namespace Pulumi.Upcloud
         /// success.
         /// </summary>
         [Output("deleteAutoresizeBackup")]
-        public Output<bool?> DeleteAutoresizeBackup { get; private set; } = null!;
+        public Output<bool> DeleteAutoresizeBackup { get; private set; } = null!;
 
         /// <summary>
-        /// Sets if the storage is encrypted at rest
+        /// Sets if the storage is encrypted at rest.
         /// </summary>
         [Output("encrypt")]
-        public Output<bool?> Encrypt { get; private set; } = null!;
+        public Output<bool> Encrypt { get; private set; } = null!;
 
         /// <summary>
         /// If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
         /// note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
         /// backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-        /// delete_autoresize_backup option is set to true). Taking and keeping backups incure costs.
+        /// `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
         /// </summary>
         [Output("filesystemAutoresize")]
-        public Output<bool?> FilesystemAutoresize { get; private set; } = null!;
+        public Output<bool> FilesystemAutoresize { get; private set; } = null!;
 
         /// <summary>
         /// Block defining external data to import to storage
@@ -59,25 +59,44 @@ namespace Pulumi.Upcloud
         public Output<Outputs.StorageImport?> Import { get; private set; } = null!;
 
         /// <summary>
-        /// The size of the storage in gigabytes
+        /// User defined key-value pairs to classify the storage.
+        /// </summary>
+        [Output("labels")]
+        public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
+
+        /// <summary>
+        /// The size of the storage in gigabytes.
         /// </summary>
         [Output("size")]
         public Output<int> Size { get; private set; } = null!;
 
         /// <summary>
-        /// The storage tier to use
+        /// System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
+        /// and can not be modified by the user.
+        /// </summary>
+        [Output("systemLabels")]
+        public Output<ImmutableDictionary<string, string>> SystemLabels { get; private set; } = null!;
+
+        /// <summary>
+        /// The tier of the storage.
         /// </summary>
         [Output("tier")]
         public Output<string> Tier { get; private set; } = null!;
 
         /// <summary>
-        /// A short, informative description
+        /// The title of the storage.
         /// </summary>
         [Output("title")]
         public Output<string> Title { get; private set; } = null!;
 
         /// <summary>
-        /// The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        /// The type of the storage.
+        /// </summary>
+        [Output("type")]
+        public Output<string> Type { get; private set; } = null!;
+
+        /// <summary>
+        /// The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -132,7 +151,7 @@ namespace Pulumi.Upcloud
         public Input<Inputs.StorageBackupRuleArgs>? BackupRule { get; set; }
 
         /// <summary>
-        /// Block defining another storage/template to clone to storage
+        /// Block defining another storage/template to clone to storage.
         /// </summary>
         [Input("clone")]
         public Input<Inputs.StorageCloneArgs>? Clone { get; set; }
@@ -145,7 +164,7 @@ namespace Pulumi.Upcloud
         public Input<bool>? DeleteAutoresizeBackup { get; set; }
 
         /// <summary>
-        /// Sets if the storage is encrypted at rest
+        /// Sets if the storage is encrypted at rest.
         /// </summary>
         [Input("encrypt")]
         public Input<bool>? Encrypt { get; set; }
@@ -154,7 +173,7 @@ namespace Pulumi.Upcloud
         /// If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
         /// note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
         /// backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-        /// delete_autoresize_backup option is set to true). Taking and keeping backups incure costs.
+        /// `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
         /// </summary>
         [Input("filesystemAutoresize")]
         public Input<bool>? FilesystemAutoresize { get; set; }
@@ -165,26 +184,38 @@ namespace Pulumi.Upcloud
         [Input("import")]
         public Input<Inputs.StorageImportArgs>? Import { get; set; }
 
+        [Input("labels")]
+        private InputMap<string>? _labels;
+
         /// <summary>
-        /// The size of the storage in gigabytes
+        /// User defined key-value pairs to classify the storage.
+        /// </summary>
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
+        /// <summary>
+        /// The size of the storage in gigabytes.
         /// </summary>
         [Input("size", required: true)]
         public Input<int> Size { get; set; } = null!;
 
         /// <summary>
-        /// The storage tier to use
+        /// The tier of the storage.
         /// </summary>
         [Input("tier")]
         public Input<string>? Tier { get; set; }
 
         /// <summary>
-        /// A short, informative description
+        /// The title of the storage.
         /// </summary>
         [Input("title", required: true)]
         public Input<string> Title { get; set; } = null!;
 
         /// <summary>
-        /// The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        /// The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         /// </summary>
         [Input("zone", required: true)]
         public Input<string> Zone { get; set; } = null!;
@@ -201,7 +232,7 @@ namespace Pulumi.Upcloud
         public Input<Inputs.StorageBackupRuleGetArgs>? BackupRule { get; set; }
 
         /// <summary>
-        /// Block defining another storage/template to clone to storage
+        /// Block defining another storage/template to clone to storage.
         /// </summary>
         [Input("clone")]
         public Input<Inputs.StorageCloneGetArgs>? Clone { get; set; }
@@ -214,7 +245,7 @@ namespace Pulumi.Upcloud
         public Input<bool>? DeleteAutoresizeBackup { get; set; }
 
         /// <summary>
-        /// Sets if the storage is encrypted at rest
+        /// Sets if the storage is encrypted at rest.
         /// </summary>
         [Input("encrypt")]
         public Input<bool>? Encrypt { get; set; }
@@ -223,7 +254,7 @@ namespace Pulumi.Upcloud
         /// If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
         /// note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
         /// backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-        /// delete_autoresize_backup option is set to true). Taking and keeping backups incure costs.
+        /// `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
         /// </summary>
         [Input("filesystemAutoresize")]
         public Input<bool>? FilesystemAutoresize { get; set; }
@@ -234,26 +265,57 @@ namespace Pulumi.Upcloud
         [Input("import")]
         public Input<Inputs.StorageImportGetArgs>? Import { get; set; }
 
+        [Input("labels")]
+        private InputMap<string>? _labels;
+
         /// <summary>
-        /// The size of the storage in gigabytes
+        /// User defined key-value pairs to classify the storage.
+        /// </summary>
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
+        /// <summary>
+        /// The size of the storage in gigabytes.
         /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
 
+        [Input("systemLabels")]
+        private InputMap<string>? _systemLabels;
+
         /// <summary>
-        /// The storage tier to use
+        /// System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
+        /// and can not be modified by the user.
+        /// </summary>
+        public InputMap<string> SystemLabels
+        {
+            get => _systemLabels ?? (_systemLabels = new InputMap<string>());
+            set => _systemLabels = value;
+        }
+
+        /// <summary>
+        /// The tier of the storage.
         /// </summary>
         [Input("tier")]
         public Input<string>? Tier { get; set; }
 
         /// <summary>
-        /// A short, informative description
+        /// The title of the storage.
         /// </summary>
         [Input("title")]
         public Input<string>? Title { get; set; }
 
         /// <summary>
-        /// The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        /// The type of the storage.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
+        /// <summary>
+        /// The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

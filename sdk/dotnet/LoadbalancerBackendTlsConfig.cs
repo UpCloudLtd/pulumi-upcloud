@@ -28,7 +28,7 @@ namespace Pulumi.Upcloud
         public Output<string> CertificateBundle { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the TLS config must be unique within service backend.
+        /// The name of the TLS config. Must be unique within customer account.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -92,7 +92,7 @@ namespace Pulumi.Upcloud
         public Input<string> CertificateBundle { get; set; } = null!;
 
         /// <summary>
-        /// The name of the TLS config must be unique within service backend.
+        /// The name of the TLS config. Must be unique within customer account.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -118,7 +118,7 @@ namespace Pulumi.Upcloud
         public Input<string>? CertificateBundle { get; set; }
 
         /// <summary>
-        /// The name of the TLS config must be unique within service backend.
+        /// The name of the TLS config. Must be unique within customer account.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

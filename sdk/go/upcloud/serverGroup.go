@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Server groups allow grouping servers and defining anti-affinity for the servers.
+//
 // ## Example Usage
 //
 // ```go
@@ -65,8 +67,8 @@ type ServerGroup struct {
 	// please see UpCloud API documentation on server groups. Plese also note that anti-affinity policies are only applied on
 	// server start. This means that if anti-affinity policies in server group are not met, you need to manually restart the
 	// servers in said group, for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
-	AntiAffinityPolicy pulumi.StringPtrOutput `pulumi:"antiAffinityPolicy"`
-	// Key-value pairs to classify the server group.
+	AntiAffinityPolicy pulumi.StringOutput `pulumi:"antiAffinityPolicy"`
+	// User defined key-value pairs to classify the server group.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `serverGroup`
 	// property of `Server`. See also `trackMembers` property.
@@ -75,7 +77,7 @@ type ServerGroup struct {
 	Title pulumi.StringOutput `pulumi:"title"`
 	// Controls if members of the server group are being tracked in this resource. Set to `false` when using `serverGroup`
 	// property of `Server` to attach servers to the server group to avoid delayed state updates.
-	TrackMembers pulumi.BoolPtrOutput `pulumi:"trackMembers"`
+	TrackMembers pulumi.BoolOutput `pulumi:"trackMembers"`
 }
 
 // NewServerGroup registers a new resource with the given unique name, arguments, and options.
@@ -120,7 +122,7 @@ type serverGroupState struct {
 	// server start. This means that if anti-affinity policies in server group are not met, you need to manually restart the
 	// servers in said group, for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
 	AntiAffinityPolicy *string `pulumi:"antiAffinityPolicy"`
-	// Key-value pairs to classify the server group.
+	// User defined key-value pairs to classify the server group.
 	Labels map[string]string `pulumi:"labels"`
 	// UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `serverGroup`
 	// property of `Server`. See also `trackMembers` property.
@@ -142,7 +144,7 @@ type ServerGroupState struct {
 	// server start. This means that if anti-affinity policies in server group are not met, you need to manually restart the
 	// servers in said group, for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
 	AntiAffinityPolicy pulumi.StringPtrInput
-	// Key-value pairs to classify the server group.
+	// User defined key-value pairs to classify the server group.
 	Labels pulumi.StringMapInput
 	// UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `serverGroup`
 	// property of `Server`. See also `trackMembers` property.
@@ -168,7 +170,7 @@ type serverGroupArgs struct {
 	// server start. This means that if anti-affinity policies in server group are not met, you need to manually restart the
 	// servers in said group, for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
 	AntiAffinityPolicy *string `pulumi:"antiAffinityPolicy"`
-	// Key-value pairs to classify the server group.
+	// User defined key-value pairs to classify the server group.
 	Labels map[string]string `pulumi:"labels"`
 	// UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `serverGroup`
 	// property of `Server`. See also `trackMembers` property.
@@ -191,7 +193,7 @@ type ServerGroupArgs struct {
 	// server start. This means that if anti-affinity policies in server group are not met, you need to manually restart the
 	// servers in said group, for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
 	AntiAffinityPolicy pulumi.StringPtrInput
-	// Key-value pairs to classify the server group.
+	// User defined key-value pairs to classify the server group.
 	Labels pulumi.StringMapInput
 	// UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `serverGroup`
 	// property of `Server`. See also `trackMembers` property.
@@ -298,11 +300,11 @@ func (o ServerGroupOutput) ToServerGroupOutputWithContext(ctx context.Context) S
 // please see UpCloud API documentation on server groups. Plese also note that anti-affinity policies are only applied on
 // server start. This means that if anti-affinity policies in server group are not met, you need to manually restart the
 // servers in said group, for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
-func (o ServerGroupOutput) AntiAffinityPolicy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServerGroup) pulumi.StringPtrOutput { return v.AntiAffinityPolicy }).(pulumi.StringPtrOutput)
+func (o ServerGroupOutput) AntiAffinityPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerGroup) pulumi.StringOutput { return v.AntiAffinityPolicy }).(pulumi.StringOutput)
 }
 
-// Key-value pairs to classify the server group.
+// User defined key-value pairs to classify the server group.
 func (o ServerGroupOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ServerGroup) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -320,8 +322,8 @@ func (o ServerGroupOutput) Title() pulumi.StringOutput {
 
 // Controls if members of the server group are being tracked in this resource. Set to `false` when using `serverGroup`
 // property of `Server` to attach servers to the server group to avoid delayed state updates.
-func (o ServerGroupOutput) TrackMembers() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ServerGroup) pulumi.BoolPtrOutput { return v.TrackMembers }).(pulumi.BoolPtrOutput)
+func (o ServerGroupOutput) TrackMembers() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ServerGroup) pulumi.BoolOutput { return v.TrackMembers }).(pulumi.BoolOutput)
 }
 
 type ServerGroupArrayOutput struct{ *pulumi.OutputState }

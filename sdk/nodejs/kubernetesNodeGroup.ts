@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * This resource represents a node group in a Managed Kubernetes cluster.
+ * This resource represents a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster.
  *
  * ## Example Usage
  *
@@ -76,9 +76,9 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
 
     /**
      * If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-     * considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
+     * considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
      */
-    public readonly antiAffinity!: pulumi.Output<boolean | undefined>;
+    public readonly antiAffinity!: pulumi.Output<boolean>;
     /**
      * UUID of the cluster.
      */
@@ -94,9 +94,9 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
      */
     public readonly kubeletArgs!: pulumi.Output<outputs.KubernetesNodeGroupKubeletArg[] | undefined>;
     /**
-     * Key-value pairs to classify the node group.
+     * User defined key-value pairs to classify the node_group.
      */
-    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    public readonly labels!: pulumi.Output<{[key: string]: string}>;
     /**
      * The name of the node group. Needs to be unique within a cluster.
      */
@@ -113,9 +113,10 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
      * You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
      * connect to the nodes via SSH once they are running.
      */
-    public readonly sshKeys!: pulumi.Output<string[] | undefined>;
+    public readonly sshKeys!: pulumi.Output<string[]>;
     /**
-     * Storage encryption strategy for the nodes in this group.
+     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption
+     * strategy will be used, if applicable.
      */
     public readonly storageEncryption!: pulumi.Output<string>;
     /**
@@ -125,7 +126,7 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
     /**
      * If set to false, nodes in this group will not have access to utility network.
      */
-    public readonly utilityNetworkAccess!: pulumi.Output<boolean | undefined>;
+    public readonly utilityNetworkAccess!: pulumi.Output<boolean>;
 
     /**
      * Create a KubernetesNodeGroup resource with the given unique name, arguments, and options.
@@ -187,7 +188,7 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
 export interface KubernetesNodeGroupState {
     /**
      * If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-     * considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
+     * considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
      */
     antiAffinity?: pulumi.Input<boolean>;
     /**
@@ -205,7 +206,7 @@ export interface KubernetesNodeGroupState {
      */
     kubeletArgs?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupKubeletArg>[]>;
     /**
-     * Key-value pairs to classify the node group.
+     * User defined key-value pairs to classify the node_group.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -226,7 +227,8 @@ export interface KubernetesNodeGroupState {
      */
     sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Storage encryption strategy for the nodes in this group.
+     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption
+     * strategy will be used, if applicable.
      */
     storageEncryption?: pulumi.Input<string>;
     /**
@@ -245,7 +247,7 @@ export interface KubernetesNodeGroupState {
 export interface KubernetesNodeGroupArgs {
     /**
      * If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-     * considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
+     * considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
      */
     antiAffinity?: pulumi.Input<boolean>;
     /**
@@ -263,7 +265,7 @@ export interface KubernetesNodeGroupArgs {
      */
     kubeletArgs?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupKubeletArg>[]>;
     /**
-     * Key-value pairs to classify the node group.
+     * User defined key-value pairs to classify the node_group.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -284,7 +286,8 @@ export interface KubernetesNodeGroupArgs {
      */
     sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Storage encryption strategy for the nodes in this group.
+     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption
+     * strategy will be used, if applicable.
      */
     storageEncryption?: pulumi.Input<string>;
     /**

@@ -21,6 +21,7 @@ class ManagedDatabaseOpensearchArgs:
                  zone: pulumi.Input[str],
                  access_control: Optional[pulumi.Input[bool]] = None,
                  extended_access_control: Optional[pulumi.Input[bool]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -37,6 +38,7 @@ class ManagedDatabaseOpensearchArgs:
                is enabled.
         :param pulumi.Input[bool] extended_access_control: Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
                on the user-specific access control rules.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
@@ -51,6 +53,8 @@ class ManagedDatabaseOpensearchArgs:
             pulumi.set(__self__, "access_control", access_control)
         if extended_access_control is not None:
             pulumi.set(__self__, "extended_access_control", extended_access_control)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if maintenance_window_dow is not None:
             pulumi.set(__self__, "maintenance_window_dow", maintenance_window_dow)
         if maintenance_window_time is not None:
@@ -126,6 +130,18 @@ class ManagedDatabaseOpensearchArgs:
     @extended_access_control.setter
     def extended_access_control(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "extended_access_control", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        User defined key-value pairs to classify the managed database.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "labels", value)
 
     @property
     @pulumi.getter(name="maintenanceWindowDow")
@@ -206,6 +222,7 @@ class _ManagedDatabaseOpensearchState:
                  access_control: Optional[pulumi.Input[bool]] = None,
                  components: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseOpensearchComponentArgs']]]] = None,
                  extended_access_control: Optional[pulumi.Input[bool]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -231,6 +248,7 @@ class _ManagedDatabaseOpensearchState:
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseOpensearchComponentArgs']]] components: Service component information
         :param pulumi.Input[bool] extended_access_control: Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
                on the user-specific access control rules.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
@@ -257,6 +275,8 @@ class _ManagedDatabaseOpensearchState:
             pulumi.set(__self__, "components", components)
         if extended_access_control is not None:
             pulumi.set(__self__, "extended_access_control", extended_access_control)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if maintenance_window_dow is not None:
             pulumi.set(__self__, "maintenance_window_dow", maintenance_window_dow)
         if maintenance_window_time is not None:
@@ -331,6 +351,18 @@ class _ManagedDatabaseOpensearchState:
     @extended_access_control.setter
     def extended_access_control(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "extended_access_control", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        User defined key-value pairs to classify the managed database.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "labels", value)
 
     @property
     @pulumi.getter(name="maintenanceWindowDow")
@@ -557,13 +589,14 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_control: Optional[pulumi.Input[bool]] = None,
                  extended_access_control: Optional[pulumi.Input[bool]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseOpensearchNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchNetworkArgs', 'ManagedDatabaseOpensearchNetworkArgsDict']]]]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  powered: Optional[pulumi.Input[bool]] = None,
-                 properties: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseOpensearchPropertiesArgs']]] = None,
+                 properties: Optional[pulumi.Input[Union['ManagedDatabaseOpensearchPropertiesArgs', 'ManagedDatabaseOpensearchPropertiesArgsDict']]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -586,9 +619,9 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
             access_control=True,
             extended_access_control=True,
             plan="1x2xCPU-4GB-80GB-1D",
-            properties=upcloud.ManagedDatabaseOpensearchPropertiesArgs(
-                public_access=False,
-            ),
+            properties={
+                "public_access": False,
+            },
             title="opensearch-2-example-2",
             zone="fi-hel1")
         ```
@@ -599,14 +632,15 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
                is enabled.
         :param pulumi.Input[bool] extended_access_control: Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
                on the user-specific access control rules.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseOpensearchNetworkArgs']]]] networks: Private networks attached to the managed database
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchNetworkArgs', 'ManagedDatabaseOpensearchNetworkArgsDict']]]] networks: Private networks attached to the managed database
         :param pulumi.Input[str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
                database plans <type>`.
         :param pulumi.Input[bool] powered: The administrative power state of the service
-        :param pulumi.Input[pulumi.InputType['ManagedDatabaseOpensearchPropertiesArgs']] properties: Database Engine properties for OpenSearch
+        :param pulumi.Input[Union['ManagedDatabaseOpensearchPropertiesArgs', 'ManagedDatabaseOpensearchPropertiesArgsDict']] properties: Database Engine properties for OpenSearch
         :param pulumi.Input[str] title: Title of a managed database instance
         :param pulumi.Input[str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
@@ -635,9 +669,9 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
             access_control=True,
             extended_access_control=True,
             plan="1x2xCPU-4GB-80GB-1D",
-            properties=upcloud.ManagedDatabaseOpensearchPropertiesArgs(
-                public_access=False,
-            ),
+            properties={
+                "public_access": False,
+            },
             title="opensearch-2-example-2",
             zone="fi-hel1")
         ```
@@ -659,13 +693,14 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_control: Optional[pulumi.Input[bool]] = None,
                  extended_access_control: Optional[pulumi.Input[bool]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseOpensearchNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchNetworkArgs', 'ManagedDatabaseOpensearchNetworkArgsDict']]]]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  powered: Optional[pulumi.Input[bool]] = None,
-                 properties: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseOpensearchPropertiesArgs']]] = None,
+                 properties: Optional[pulumi.Input[Union['ManagedDatabaseOpensearchPropertiesArgs', 'ManagedDatabaseOpensearchPropertiesArgsDict']]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -679,6 +714,7 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
 
             __props__.__dict__["access_control"] = access_control
             __props__.__dict__["extended_access_control"] = extended_access_control
+            __props__.__dict__["labels"] = labels
             __props__.__dict__["maintenance_window_dow"] = maintenance_window_dow
             __props__.__dict__["maintenance_window_time"] = maintenance_window_time
             __props__.__dict__["name"] = name
@@ -717,17 +753,18 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             access_control: Optional[pulumi.Input[bool]] = None,
-            components: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseOpensearchComponentArgs']]]]] = None,
+            components: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchComponentArgs', 'ManagedDatabaseOpensearchComponentArgsDict']]]]] = None,
             extended_access_control: Optional[pulumi.Input[bool]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             maintenance_window_dow: Optional[pulumi.Input[str]] = None,
             maintenance_window_time: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseOpensearchNetworkArgs']]]]] = None,
-            node_states: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseOpensearchNodeStateArgs']]]]] = None,
+            networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchNetworkArgs', 'ManagedDatabaseOpensearchNetworkArgsDict']]]]] = None,
+            node_states: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchNodeStateArgs', 'ManagedDatabaseOpensearchNodeStateArgsDict']]]]] = None,
             plan: Optional[pulumi.Input[str]] = None,
             powered: Optional[pulumi.Input[bool]] = None,
             primary_database: Optional[pulumi.Input[str]] = None,
-            properties: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseOpensearchPropertiesArgs']]] = None,
+            properties: Optional[pulumi.Input[Union['ManagedDatabaseOpensearchPropertiesArgs', 'ManagedDatabaseOpensearchPropertiesArgsDict']]] = None,
             service_host: Optional[pulumi.Input[str]] = None,
             service_password: Optional[pulumi.Input[str]] = None,
             service_port: Optional[pulumi.Input[str]] = None,
@@ -746,19 +783,20 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] access_control: Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute
                is enabled.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseOpensearchComponentArgs']]]] components: Service component information
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchComponentArgs', 'ManagedDatabaseOpensearchComponentArgsDict']]]] components: Service component information
         :param pulumi.Input[bool] extended_access_control: Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
                on the user-specific access control rules.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseOpensearchNetworkArgs']]]] networks: Private networks attached to the managed database
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseOpensearchNodeStateArgs']]]] node_states: Information about nodes providing the managed service
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchNetworkArgs', 'ManagedDatabaseOpensearchNetworkArgsDict']]]] networks: Private networks attached to the managed database
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchNodeStateArgs', 'ManagedDatabaseOpensearchNodeStateArgsDict']]]] node_states: Information about nodes providing the managed service
         :param pulumi.Input[str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
                database plans <type>`.
         :param pulumi.Input[bool] powered: The administrative power state of the service
         :param pulumi.Input[str] primary_database: Primary database name
-        :param pulumi.Input[pulumi.InputType['ManagedDatabaseOpensearchPropertiesArgs']] properties: Database Engine properties for OpenSearch
+        :param pulumi.Input[Union['ManagedDatabaseOpensearchPropertiesArgs', 'ManagedDatabaseOpensearchPropertiesArgsDict']] properties: Database Engine properties for OpenSearch
         :param pulumi.Input[str] service_host: Hostname to the service instance
         :param pulumi.Input[str] service_password: Primary username's password to the service instance
         :param pulumi.Input[str] service_port: Port to the service instance
@@ -776,6 +814,7 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
         __props__.__dict__["access_control"] = access_control
         __props__.__dict__["components"] = components
         __props__.__dict__["extended_access_control"] = extended_access_control
+        __props__.__dict__["labels"] = labels
         __props__.__dict__["maintenance_window_dow"] = maintenance_window_dow
         __props__.__dict__["maintenance_window_time"] = maintenance_window_time
         __props__.__dict__["name"] = name
@@ -821,6 +860,14 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
         on the user-specific access control rules.
         """
         return pulumi.get(self, "extended_access_control")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        User defined key-value pairs to classify the managed database.
+        """
+        return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="maintenanceWindowDow")

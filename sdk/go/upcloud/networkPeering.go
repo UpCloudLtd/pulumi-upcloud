@@ -72,7 +72,7 @@ type NetworkPeering struct {
 
 	// Configured status of the network peering.
 	ConfiguredStatus pulumi.StringOutput `pulumi:"configuredStatus"`
-	// Key-value pairs to classify the network peering.
+	// User defined key-value pairs to classify the network peering.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Name of the network peering.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -120,7 +120,7 @@ func GetNetworkPeering(ctx *pulumi.Context,
 type networkPeeringState struct {
 	// Configured status of the network peering.
 	ConfiguredStatus *string `pulumi:"configuredStatus"`
-	// Key-value pairs to classify the network peering.
+	// User defined key-value pairs to classify the network peering.
 	Labels map[string]string `pulumi:"labels"`
 	// Name of the network peering.
 	Name *string `pulumi:"name"`
@@ -133,7 +133,7 @@ type networkPeeringState struct {
 type NetworkPeeringState struct {
 	// Configured status of the network peering.
 	ConfiguredStatus pulumi.StringPtrInput
-	// Key-value pairs to classify the network peering.
+	// User defined key-value pairs to classify the network peering.
 	Labels pulumi.StringMapInput
 	// Name of the network peering.
 	Name pulumi.StringPtrInput
@@ -150,7 +150,7 @@ func (NetworkPeeringState) ElementType() reflect.Type {
 type networkPeeringArgs struct {
 	// Configured status of the network peering.
 	ConfiguredStatus *string `pulumi:"configuredStatus"`
-	// Key-value pairs to classify the network peering.
+	// User defined key-value pairs to classify the network peering.
 	Labels map[string]string `pulumi:"labels"`
 	// Name of the network peering.
 	Name *string `pulumi:"name"`
@@ -164,7 +164,7 @@ type networkPeeringArgs struct {
 type NetworkPeeringArgs struct {
 	// Configured status of the network peering.
 	ConfiguredStatus pulumi.StringPtrInput
-	// Key-value pairs to classify the network peering.
+	// User defined key-value pairs to classify the network peering.
 	Labels pulumi.StringMapInput
 	// Name of the network peering.
 	Name pulumi.StringPtrInput
@@ -266,7 +266,7 @@ func (o NetworkPeeringOutput) ConfiguredStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringOutput { return v.ConfiguredStatus }).(pulumi.StringOutput)
 }
 
-// Key-value pairs to classify the network peering.
+// User defined key-value pairs to classify the network peering.
 func (o NetworkPeeringOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }

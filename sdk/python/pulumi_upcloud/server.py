@@ -48,7 +48,7 @@ class ServerArgs:
         :param pulumi.Input[bool] firewall: Are firewall rules active for the server
         :param pulumi.Input[int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
                hosts
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the server.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the server.
         :param pulumi.Input['ServerLoginArgs'] login: Configure access credentials to the server
         :param pulumi.Input[int] mem: The size of memory for the server (in megabytes)
         :param pulumi.Input[bool] metadata: Is the metadata service active for the server
@@ -196,7 +196,7 @@ class ServerArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs to classify the server.
+        User defined key-value pairs to classify the server.
         """
         return pulumi.get(self, "labels")
 
@@ -405,7 +405,7 @@ class _ServerState:
         :param pulumi.Input[int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
                hosts
         :param pulumi.Input[str] hostname: A valid domain name
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the server.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the server.
         :param pulumi.Input['ServerLoginArgs'] login: Configure access credentials to the server
         :param pulumi.Input[int] mem: The size of memory for the server (in megabytes)
         :param pulumi.Input[bool] metadata: Is the metadata service active for the server
@@ -534,7 +534,7 @@ class _ServerState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs to classify the server.
+        User defined key-value pairs to classify the server.
         """
         return pulumi.get(self, "labels")
 
@@ -745,17 +745,17 @@ class Server(pulumi.CustomResource):
                  host: Optional[pulumi.Input[int]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 login: Optional[pulumi.Input[pulumi.InputType['ServerLoginArgs']]] = None,
+                 login: Optional[pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']]] = None,
                  mem: Optional[pulumi.Input[int]] = None,
                  metadata: Optional[pulumi.Input[bool]] = None,
-                 network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerNetworkInterfaceArgs']]]]] = None,
+                 network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]]] = None,
                  nic_model: Optional[pulumi.Input[str]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  server_group: Optional[pulumi.Input[str]] = None,
-                 simple_backup: Optional[pulumi.Input[pulumi.InputType['ServerSimpleBackupArgs']]] = None,
-                 storage_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerStorageDeviceArgs']]]]] = None,
+                 simple_backup: Optional[pulumi.Input[Union['ServerSimpleBackupArgs', 'ServerSimpleBackupArgsDict']]] = None,
+                 storage_devices: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 template: Optional[pulumi.Input[pulumi.InputType['ServerTemplateArgs']]] = None,
+                 template: Optional[pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict']]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  user_data: Optional[pulumi.Input[str]] = None,
@@ -777,23 +777,23 @@ class Server(pulumi.CustomResource):
                 "env": "dev",
                 "production": "false",
             },
-            login=upcloud.ServerLoginArgs(
-                keys=["<YOUR SSH PUBLIC KEY>"],
-                user="myusername",
-            ),
-            network_interfaces=[upcloud.ServerNetworkInterfaceArgs(
-                type="public",
-            )],
+            login={
+                "keys": ["<YOUR SSH PUBLIC KEY>"],
+                "user": "myusername",
+            },
+            network_interfaces=[{
+                "type": "public",
+            }],
             plan="1xCPU-1GB",
-            template=upcloud.ServerTemplateArgs(
-                backup_rule=upcloud.ServerTemplateBackupRuleArgs(
-                    interval="daily",
-                    retention=8,
-                    time="0100",
-                ),
-                size=25,
-                storage="Ubuntu Server 20.04 LTS (Focal Fossa)",
-            ),
+            template={
+                "backup_rule": {
+                    "interval": "daily",
+                    "retention": 8,
+                    "time": "0100",
+                },
+                "size": 25,
+                "storage": "Ubuntu Server 20.04 LTS (Focal Fossa)",
+            },
             zone="de-fra1")
         ```
 
@@ -811,19 +811,19 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
                hosts
         :param pulumi.Input[str] hostname: A valid domain name
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the server.
-        :param pulumi.Input[pulumi.InputType['ServerLoginArgs']] login: Configure access credentials to the server
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the server.
+        :param pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']] login: Configure access credentials to the server
         :param pulumi.Input[int] mem: The size of memory for the server (in megabytes)
         :param pulumi.Input[bool] metadata: Is the metadata service active for the server
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerNetworkInterfaceArgs']]]] network_interfaces: One or more blocks describing the network interfaces of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]] network_interfaces: One or more blocks describing the network interfaces of the server.
         :param pulumi.Input[str] nic_model: The model of the server's network interfaces
         :param pulumi.Input[str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the
                `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it
                has been set to non-zero value.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerStorageDeviceArgs']]]] storage_devices: A list of storage devices associated with the server
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]] storage_devices: A list of storage devices associated with the server
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The server related tags
-        :param pulumi.Input[pulumi.InputType['ServerTemplateArgs']] template: Block describing the preconfigured operating system
+        :param pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict']] template: Block describing the preconfigured operating system
         :param pulumi.Input[str] timezone: A timezone identifier, e.g. `Europe/Helsinki`
         :param pulumi.Input[str] title: A short, informational description
         :param pulumi.Input[str] user_data: Defines URL for a server setup script, or the script body itself
@@ -851,23 +851,23 @@ class Server(pulumi.CustomResource):
                 "env": "dev",
                 "production": "false",
             },
-            login=upcloud.ServerLoginArgs(
-                keys=["<YOUR SSH PUBLIC KEY>"],
-                user="myusername",
-            ),
-            network_interfaces=[upcloud.ServerNetworkInterfaceArgs(
-                type="public",
-            )],
+            login={
+                "keys": ["<YOUR SSH PUBLIC KEY>"],
+                "user": "myusername",
+            },
+            network_interfaces=[{
+                "type": "public",
+            }],
             plan="1xCPU-1GB",
-            template=upcloud.ServerTemplateArgs(
-                backup_rule=upcloud.ServerTemplateBackupRuleArgs(
-                    interval="daily",
-                    retention=8,
-                    time="0100",
-                ),
-                size=25,
-                storage="Ubuntu Server 20.04 LTS (Focal Fossa)",
-            ),
+            template={
+                "backup_rule": {
+                    "interval": "daily",
+                    "retention": 8,
+                    "time": "0100",
+                },
+                "size": 25,
+                "storage": "Ubuntu Server 20.04 LTS (Focal Fossa)",
+            },
             zone="de-fra1")
         ```
 
@@ -898,17 +898,17 @@ class Server(pulumi.CustomResource):
                  host: Optional[pulumi.Input[int]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 login: Optional[pulumi.Input[pulumi.InputType['ServerLoginArgs']]] = None,
+                 login: Optional[pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']]] = None,
                  mem: Optional[pulumi.Input[int]] = None,
                  metadata: Optional[pulumi.Input[bool]] = None,
-                 network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerNetworkInterfaceArgs']]]]] = None,
+                 network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]]] = None,
                  nic_model: Optional[pulumi.Input[str]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  server_group: Optional[pulumi.Input[str]] = None,
-                 simple_backup: Optional[pulumi.Input[pulumi.InputType['ServerSimpleBackupArgs']]] = None,
-                 storage_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerStorageDeviceArgs']]]]] = None,
+                 simple_backup: Optional[pulumi.Input[Union['ServerSimpleBackupArgs', 'ServerSimpleBackupArgsDict']]] = None,
+                 storage_devices: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 template: Optional[pulumi.Input[pulumi.InputType['ServerTemplateArgs']]] = None,
+                 template: Optional[pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict']]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  user_data: Optional[pulumi.Input[str]] = None,
@@ -967,17 +967,17 @@ class Server(pulumi.CustomResource):
             host: Optional[pulumi.Input[int]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-            login: Optional[pulumi.Input[pulumi.InputType['ServerLoginArgs']]] = None,
+            login: Optional[pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']]] = None,
             mem: Optional[pulumi.Input[int]] = None,
             metadata: Optional[pulumi.Input[bool]] = None,
-            network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerNetworkInterfaceArgs']]]]] = None,
+            network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]]] = None,
             nic_model: Optional[pulumi.Input[str]] = None,
             plan: Optional[pulumi.Input[str]] = None,
             server_group: Optional[pulumi.Input[str]] = None,
-            simple_backup: Optional[pulumi.Input[pulumi.InputType['ServerSimpleBackupArgs']]] = None,
-            storage_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerStorageDeviceArgs']]]]] = None,
+            simple_backup: Optional[pulumi.Input[Union['ServerSimpleBackupArgs', 'ServerSimpleBackupArgsDict']]] = None,
+            storage_devices: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            template: Optional[pulumi.Input[pulumi.InputType['ServerTemplateArgs']]] = None,
+            template: Optional[pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict']]] = None,
             timezone: Optional[pulumi.Input[str]] = None,
             title: Optional[pulumi.Input[str]] = None,
             user_data: Optional[pulumi.Input[str]] = None,
@@ -996,19 +996,19 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
                hosts
         :param pulumi.Input[str] hostname: A valid domain name
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the server.
-        :param pulumi.Input[pulumi.InputType['ServerLoginArgs']] login: Configure access credentials to the server
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the server.
+        :param pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']] login: Configure access credentials to the server
         :param pulumi.Input[int] mem: The size of memory for the server (in megabytes)
         :param pulumi.Input[bool] metadata: Is the metadata service active for the server
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerNetworkInterfaceArgs']]]] network_interfaces: One or more blocks describing the network interfaces of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]] network_interfaces: One or more blocks describing the network interfaces of the server.
         :param pulumi.Input[str] nic_model: The model of the server's network interfaces
         :param pulumi.Input[str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the
                `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it
                has been set to non-zero value.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerStorageDeviceArgs']]]] storage_devices: A list of storage devices associated with the server
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]] storage_devices: A list of storage devices associated with the server
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The server related tags
-        :param pulumi.Input[pulumi.InputType['ServerTemplateArgs']] template: Block describing the preconfigured operating system
+        :param pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict']] template: Block describing the preconfigured operating system
         :param pulumi.Input[str] timezone: A timezone identifier, e.g. `Europe/Helsinki`
         :param pulumi.Input[str] title: A short, informational description
         :param pulumi.Input[str] user_data: Defines URL for a server setup script, or the script body itself
@@ -1088,7 +1088,7 @@ class Server(pulumi.CustomResource):
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        Key-value pairs to classify the server.
+        User defined key-value pairs to classify the server.
         """
         return pulumi.get(self, "labels")
 

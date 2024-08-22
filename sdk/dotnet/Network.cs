@@ -58,7 +58,7 @@ namespace Pulumi.Upcloud
         public Output<Outputs.NetworkIpNetwork> IpNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// Key-value pairs to classify the network.
+        /// User defined key-value pairs to classify the network.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
@@ -143,7 +143,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the network.
+        /// User defined key-value pairs to classify the network.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -187,7 +187,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the network.
+        /// User defined key-value pairs to classify the network.
         /// </summary>
         public InputMap<string> Labels
         {

@@ -1326,6 +1326,10 @@ export interface ManagedDatabaseMysqlPropertiesMigration {
      */
     ignoreDbs: string;
     /**
+     * Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+     */
+    ignoreRoles: string;
+    /**
      * The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
      */
     method: string;
@@ -1421,6 +1425,7 @@ export interface ManagedDatabaseOpensearchProperties {
      * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
      */
     automaticUtilityNetworkIpFilter?: boolean;
+    azureMigration: outputs.ManagedDatabaseOpensearchPropertiesAzureMigration;
     /**
      * Controls the number of shards allowed in the cluster per data node.
      */
@@ -1448,7 +1453,8 @@ export interface ManagedDatabaseOpensearchProperties {
     /**
      * Enable/Disable security audit.
      */
-    enableSecurityAudit?: boolean;
+    enableSecurityAudit: boolean;
+    gcsMigration: outputs.ManagedDatabaseOpensearchPropertiesGcsMigration;
     /**
      * Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
      */
@@ -1465,6 +1471,10 @@ export interface ManagedDatabaseOpensearchProperties {
      * Index patterns.
      */
     indexPatterns: string[];
+    /**
+     * Index rollup settings.
+     */
+    indexRollup: outputs.ManagedDatabaseOpensearchPropertiesIndexRollup;
     /**
      * Template settings for all new indexes.
      */
@@ -1508,11 +1518,11 @@ export interface ManagedDatabaseOpensearchProperties {
     /**
      * Specifies whether ISM is enabled or not.
      */
-    ismEnabled?: boolean;
+    ismEnabled: boolean;
     /**
      * Specifies whether audit history is enabled or not. The logs from ISM are automatically indexed to a logs document.
      */
-    ismHistoryEnabled?: boolean;
+    ismHistoryEnabled: boolean;
     /**
      * The maximum age before rolling over the audit history index in hours.
      */
@@ -1536,7 +1546,7 @@ export interface ManagedDatabaseOpensearchProperties {
     /**
      * Enable or disable KNN memory circuit breaker. Defaults to true.
      */
-    knnMemoryCircuitBreakerEnabled?: boolean;
+    knnMemoryCircuitBreakerEnabled: boolean;
     /**
      * Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
      */
@@ -1565,6 +1575,7 @@ export interface ManagedDatabaseOpensearchProperties {
      * Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
      */
     reindexRemoteWhitelists: string[];
+    s3Migration: outputs.ManagedDatabaseOpensearchPropertiesS3Migration;
     /**
      * OpenSearch SAML configuration.
      */
@@ -1572,7 +1583,7 @@ export interface ManagedDatabaseOpensearchProperties {
     /**
      * Script max compilation rate - circuit breaker to prevent/minimize OOMs. Script compilation circuit breaker limits the number of inline script compilations within a period of time. Default is use-context.
      */
-    scriptMaxCompilationsRate: string;
+    scriptMaxCompilationsRate?: string;
     /**
      * Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
      */
@@ -1697,6 +1708,95 @@ export interface ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLi
     type: string;
 }
 
+export interface ManagedDatabaseOpensearchPropertiesAzureMigration {
+    /**
+     * Account name. Azure account name.
+     */
+    account?: string;
+    /**
+     * The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+     */
+    basePath?: string;
+    /**
+     * Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+     */
+    chunkSize?: string;
+    /**
+     * Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+     */
+    compress: boolean;
+    /**
+     * Azure container name. Azure container name.
+     */
+    container?: string;
+    /**
+     * Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
+     */
+    endpointSuffix?: string;
+    /**
+     * Account secret key. Azure account secret key. One of key or sasToken should be specified.
+     */
+    key?: string;
+    /**
+     * SAS token. A shared access signatures (SAS) token. One of key or sasToken should be specified.
+     */
+    sasToken?: string;
+    /**
+     * The snapshot name to restore from. The snapshot name to restore from.
+     */
+    snapshotName?: string;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesGcsMigration {
+    /**
+     * The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+     */
+    basePath?: string;
+    /**
+     * The path to the repository data within its container. Google Cloud Storage bucket name.
+     */
+    bucket?: string;
+    /**
+     * Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+     */
+    chunkSize?: string;
+    /**
+     * Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+     */
+    compress: boolean;
+    /**
+     * Credentials. Google Cloud Storage credentials file content.
+     */
+    credentials?: string;
+    /**
+     * The snapshot name to restore from. The snapshot name to restore from.
+     */
+    snapshotName?: string;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesIndexRollup {
+    /**
+     * plugins.rollup.dashboards.enabled. Whether rollups are enabled in OpenSearch Dashboards. Defaults to true.
+     */
+    rollupDashboardsEnabled: boolean;
+    /**
+     * plugins.rollup.enabled. Whether the rollup plugin is enabled. Defaults to true.
+     */
+    rollupEnabled: boolean;
+    /**
+     * plugins.rollup.search.backoff_count. How many retries the plugin should attempt for failed rollup jobs. Defaults to 5.
+     */
+    rollupSearchBackoffCount: number;
+    /**
+     * plugins.rollup.search.backoff_millis. The backoff time between retries for failed rollup jobs. Defaults to 1000ms.
+     */
+    rollupSearchBackoffMillis: number;
+    /**
+     * plugins.rollup.search.all_jobs. Whether OpenSearch should return all jobs that match all specified search terms. If disabled, OpenSearch returns just one, as opposed to all, of the jobs that matches the search terms. Defaults to false.
+     */
+    rollupSearchSearchAllJobs: boolean;
+}
+
 export interface ManagedDatabaseOpensearchPropertiesIndexTemplate {
     /**
      * index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
@@ -1724,7 +1824,7 @@ export interface ManagedDatabaseOpensearchPropertiesOpenid {
     /**
      * OpenID Connect metadata/configuration URL. The URL of your IdP where the Security plugin can find the OpenID Connect metadata/configuration settings.
      */
-    connectUrl: string;
+    connectUrl?: string;
     /**
      * Enable or disable OpenSearch OpenID Connect authentication. Enables or disables OpenID Connect authentication for OpenSearch. When enabled, users can authenticate using OpenID Connect with an Identity Provider.
      */
@@ -1776,6 +1876,49 @@ export interface ManagedDatabaseOpensearchPropertiesOpensearchDashboards {
      * Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
      */
     opensearchRequestTimeout: number;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesS3Migration {
+    /**
+     * AWS Access key. AWS Access key.
+     */
+    accessKey?: string;
+    /**
+     * The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+     */
+    basePath?: string;
+    /**
+     * S3 bucket name. S3 bucket name.
+     */
+    bucket?: string;
+    /**
+     * Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+     */
+    chunkSize?: string;
+    /**
+     * Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+     */
+    compress: boolean;
+    /**
+     * The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+     */
+    endpoint?: string;
+    /**
+     * S3 region. S3 region.
+     */
+    region?: string;
+    /**
+     * AWS secret key. AWS secret key.
+     */
+    secretKey?: string;
+    /**
+     * Server side encryption. When set to true files are encrypted on server side.
+     */
+    serverSideEncryption: boolean;
+    /**
+     * The snapshot name to restore from. The snapshot name to restore from.
+     */
+    snapshotName?: string;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSaml {
@@ -2151,6 +2294,10 @@ export interface ManagedDatabasePostgresqlPropertiesMigration {
      */
     ignoreDbs: string;
     /**
+     * Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+     */
+    ignoreRoles: string;
+    /**
      * The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
      */
     method: string;
@@ -2193,6 +2340,10 @@ export interface ManagedDatabasePostgresqlPropertiesPgbouncer {
      * List of parameters to ignore when given in startup packet.
      */
     ignoreStartupParameters: string[];
+    /**
+     * PgBouncer tracks protocol-level named prepared statements related commands sent by the client in transaction and statement pooling modes when maxPreparedStatements is set to a non-zero value. Setting it to 0 disables prepared statements. maxPreparedStatements defaults to 100, and its maximum is 3000.
+     */
+    maxPreparedStatements: number;
     /**
      * Add more server connections to pool if below this number. Improves behavior when usual load comes suddenly back after period of total inactivity. The value is effectively capped at the pool size.
      */
@@ -2367,6 +2518,10 @@ export interface ManagedDatabaseRedisPropertiesMigration {
      */
     ignoreDbs: string;
     /**
+     * Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+     */
+    ignoreRoles: string;
+    /**
      * The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
      */
     method: string;
@@ -2523,18 +2678,10 @@ export interface ObjectStorageBucket {
 }
 
 export interface RouterStaticRoute {
-    /**
-     * Name or description of the route.
-     */
     name: string;
-    /**
-     * Next hop address. NOTE: For static route to be active the next hop has to be an address of a reachable running Cloud Server in one of the Private Networks attached to the router.
-     */
     nexthop: string;
-    /**
-     * Destination prefix of the route.
-     */
     route: string;
+    type: string;
 }
 
 export interface ServerFirewallRulesFirewallRule {
@@ -2778,7 +2925,7 @@ export interface StorageBackupRule {
 
 export interface StorageClone {
     /**
-     * The unique identifier of the storage/template to clone
+     * The unique identifier of the storage/template to clone.
      */
     id: string;
 }
@@ -2793,7 +2940,7 @@ export interface StorageImport {
      */
     source: string;
     /**
-     * For `directUpload`; an optional hash of the file to upload.
+     * SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
      */
     sourceHash?: string;
     /**

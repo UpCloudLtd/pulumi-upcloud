@@ -201,13 +201,13 @@ class FloatingIpAddress(pulumi.CustomResource):
             hostname="terraform.example.tld",
             zone="de-fra1",
             plan="1xCPU-1GB",
-            template=upcloud.ServerTemplateArgs(
-                storage="Ubuntu Server 20.04 LTS (Focal Fossa)",
-                size=25,
-            ),
-            network_interfaces=[upcloud.ServerNetworkInterfaceArgs(
-                type="public",
-            )])
+            template={
+                "storage": "Ubuntu Server 20.04 LTS (Focal Fossa)",
+                "size": 25,
+            },
+            network_interfaces=[{
+                "type": "public",
+            }])
         my_new_floating_address = upcloud.FloatingIpAddress("myNewFloatingAddress", mac_address=example.network_interfaces[0].mac_address)
         ```
 
@@ -247,13 +247,13 @@ class FloatingIpAddress(pulumi.CustomResource):
             hostname="terraform.example.tld",
             zone="de-fra1",
             plan="1xCPU-1GB",
-            template=upcloud.ServerTemplateArgs(
-                storage="Ubuntu Server 20.04 LTS (Focal Fossa)",
-                size=25,
-            ),
-            network_interfaces=[upcloud.ServerNetworkInterfaceArgs(
-                type="public",
-            )])
+            template={
+                "storage": "Ubuntu Server 20.04 LTS (Focal Fossa)",
+                "size": 25,
+            },
+            network_interfaces=[{
+                "type": "public",
+            }])
         my_new_floating_address = upcloud.FloatingIpAddress("myNewFloatingAddress", mac_address=example.network_interfaces[0].mac_address)
         ```
 

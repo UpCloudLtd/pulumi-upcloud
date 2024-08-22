@@ -92,7 +92,7 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public /*out*/ readonly frontends!: pulumi.Output<string[]>;
     /**
-     * Key-value pairs to classify the load balancer.
+     * User defined key-value pairs to classify the load balancer.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -222,7 +222,7 @@ export interface LoadbalancerState {
      */
     frontends?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Key-value pairs to classify the load balancer.
+     * User defined key-value pairs to classify the load balancer.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -282,7 +282,7 @@ export interface LoadbalancerArgs {
      */
     configuredStatus?: pulumi.Input<string>;
     /**
-     * Key-value pairs to classify the load balancer.
+     * User defined key-value pairs to classify the load balancer.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

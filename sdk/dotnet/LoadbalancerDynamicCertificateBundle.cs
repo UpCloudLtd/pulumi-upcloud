@@ -51,7 +51,7 @@ namespace Pulumi.Upcloud
         public Output<string> KeyType { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the bundle must be unique within customer account.
+        /// The name of the certificate bundle. Must be unique within customer account.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -139,7 +139,7 @@ namespace Pulumi.Upcloud
         public Input<string> KeyType { get; set; } = null!;
 
         /// <summary>
-        /// The name of the bundle must be unique within customer account.
+        /// The name of the certificate bundle. Must be unique within customer account.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -171,7 +171,7 @@ namespace Pulumi.Upcloud
         public Input<string>? KeyType { get; set; }
 
         /// <summary>
-        /// The name of the bundle must be unique within customer account.
+        /// The name of the certificate bundle. Must be unique within customer account.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

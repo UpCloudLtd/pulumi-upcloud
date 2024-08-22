@@ -25,22 +25,24 @@ class StorageArgs:
                  encrypt: Optional[pulumi.Input[bool]] = None,
                  filesystem_autoresize: Optional[pulumi.Input[bool]] = None,
                  import_: Optional[pulumi.Input['StorageImportArgs']] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tier: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Storage resource.
-        :param pulumi.Input[int] size: The size of the storage in gigabytes
-        :param pulumi.Input[str] title: A short, informative description
-        :param pulumi.Input[str] zone: The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
-        :param pulumi.Input['StorageCloneArgs'] clone: Block defining another storage/template to clone to storage
+        :param pulumi.Input[int] size: The size of the storage in gigabytes.
+        :param pulumi.Input[str] title: The title of the storage.
+        :param pulumi.Input[str] zone: The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        :param pulumi.Input['StorageCloneArgs'] clone: Block defining another storage/template to clone to storage.
         :param pulumi.Input[bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
                success.
-        :param pulumi.Input[bool] encrypt: Sets if the storage is encrypted at rest
+        :param pulumi.Input[bool] encrypt: Sets if the storage is encrypted at rest.
         :param pulumi.Input[bool] filesystem_autoresize: If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
                note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
                backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-               delete_autoresize_backup option is set to true). Taking and keeping backups incure costs.
+               `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
         :param pulumi.Input['StorageImportArgs'] import_: Block defining external data to import to storage
-        :param pulumi.Input[str] tier: The storage tier to use
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the storage.
+        :param pulumi.Input[str] tier: The tier of the storage.
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "title", title)
@@ -57,6 +59,8 @@ class StorageArgs:
             pulumi.set(__self__, "filesystem_autoresize", filesystem_autoresize)
         if import_ is not None:
             pulumi.set(__self__, "import_", import_)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if tier is not None:
             pulumi.set(__self__, "tier", tier)
 
@@ -64,7 +68,7 @@ class StorageArgs:
     @pulumi.getter
     def size(self) -> pulumi.Input[int]:
         """
-        The size of the storage in gigabytes
+        The size of the storage in gigabytes.
         """
         return pulumi.get(self, "size")
 
@@ -76,7 +80,7 @@ class StorageArgs:
     @pulumi.getter
     def title(self) -> pulumi.Input[str]:
         """
-        A short, informative description
+        The title of the storage.
         """
         return pulumi.get(self, "title")
 
@@ -88,7 +92,7 @@ class StorageArgs:
     @pulumi.getter
     def zone(self) -> pulumi.Input[str]:
         """
-        The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 
@@ -109,7 +113,7 @@ class StorageArgs:
     @pulumi.getter
     def clone(self) -> Optional[pulumi.Input['StorageCloneArgs']]:
         """
-        Block defining another storage/template to clone to storage
+        Block defining another storage/template to clone to storage.
         """
         return pulumi.get(self, "clone")
 
@@ -134,7 +138,7 @@ class StorageArgs:
     @pulumi.getter
     def encrypt(self) -> Optional[pulumi.Input[bool]]:
         """
-        Sets if the storage is encrypted at rest
+        Sets if the storage is encrypted at rest.
         """
         return pulumi.get(self, "encrypt")
 
@@ -149,7 +153,7 @@ class StorageArgs:
         If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
         note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
         backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-        delete_autoresize_backup option is set to true). Taking and keeping backups incure costs.
+        `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
         """
         return pulumi.get(self, "filesystem_autoresize")
 
@@ -171,9 +175,21 @@ class StorageArgs:
 
     @property
     @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        User defined key-value pairs to classify the storage.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "labels", value)
+
+    @property
+    @pulumi.getter
     def tier(self) -> Optional[pulumi.Input[str]]:
         """
-        The storage tier to use
+        The tier of the storage.
         """
         return pulumi.get(self, "tier")
 
@@ -191,25 +207,32 @@ class _StorageState:
                  encrypt: Optional[pulumi.Input[bool]] = None,
                  filesystem_autoresize: Optional[pulumi.Input[bool]] = None,
                  import_: Optional[pulumi.Input['StorageImportArgs']] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  size: Optional[pulumi.Input[int]] = None,
+                 system_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tier: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Storage resources.
-        :param pulumi.Input['StorageCloneArgs'] clone: Block defining another storage/template to clone to storage
+        :param pulumi.Input['StorageCloneArgs'] clone: Block defining another storage/template to clone to storage.
         :param pulumi.Input[bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
                success.
-        :param pulumi.Input[bool] encrypt: Sets if the storage is encrypted at rest
+        :param pulumi.Input[bool] encrypt: Sets if the storage is encrypted at rest.
         :param pulumi.Input[bool] filesystem_autoresize: If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
                note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
                backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-               delete_autoresize_backup option is set to true). Taking and keeping backups incure costs.
+               `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
         :param pulumi.Input['StorageImportArgs'] import_: Block defining external data to import to storage
-        :param pulumi.Input[int] size: The size of the storage in gigabytes
-        :param pulumi.Input[str] tier: The storage tier to use
-        :param pulumi.Input[str] title: A short, informative description
-        :param pulumi.Input[str] zone: The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the storage.
+        :param pulumi.Input[int] size: The size of the storage in gigabytes.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] system_labels: System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
+               and can not be modified by the user.
+        :param pulumi.Input[str] tier: The tier of the storage.
+        :param pulumi.Input[str] title: The title of the storage.
+        :param pulumi.Input[str] type: The type of the storage.
+        :param pulumi.Input[str] zone: The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         if backup_rule is not None:
             pulumi.set(__self__, "backup_rule", backup_rule)
@@ -223,12 +246,18 @@ class _StorageState:
             pulumi.set(__self__, "filesystem_autoresize", filesystem_autoresize)
         if import_ is not None:
             pulumi.set(__self__, "import_", import_)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if size is not None:
             pulumi.set(__self__, "size", size)
+        if system_labels is not None:
+            pulumi.set(__self__, "system_labels", system_labels)
         if tier is not None:
             pulumi.set(__self__, "tier", tier)
         if title is not None:
             pulumi.set(__self__, "title", title)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
@@ -245,7 +274,7 @@ class _StorageState:
     @pulumi.getter
     def clone(self) -> Optional[pulumi.Input['StorageCloneArgs']]:
         """
-        Block defining another storage/template to clone to storage
+        Block defining another storage/template to clone to storage.
         """
         return pulumi.get(self, "clone")
 
@@ -270,7 +299,7 @@ class _StorageState:
     @pulumi.getter
     def encrypt(self) -> Optional[pulumi.Input[bool]]:
         """
-        Sets if the storage is encrypted at rest
+        Sets if the storage is encrypted at rest.
         """
         return pulumi.get(self, "encrypt")
 
@@ -285,7 +314,7 @@ class _StorageState:
         If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
         note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
         backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-        delete_autoresize_backup option is set to true). Taking and keeping backups incure costs.
+        `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
         """
         return pulumi.get(self, "filesystem_autoresize")
 
@@ -307,9 +336,21 @@ class _StorageState:
 
     @property
     @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        User defined key-value pairs to classify the storage.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "labels", value)
+
+    @property
+    @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
         """
-        The size of the storage in gigabytes
+        The size of the storage in gigabytes.
         """
         return pulumi.get(self, "size")
 
@@ -318,10 +359,23 @@ class _StorageState:
         pulumi.set(self, "size", value)
 
     @property
+    @pulumi.getter(name="systemLabels")
+    def system_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
+        and can not be modified by the user.
+        """
+        return pulumi.get(self, "system_labels")
+
+    @system_labels.setter
+    def system_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "system_labels", value)
+
+    @property
     @pulumi.getter
     def tier(self) -> Optional[pulumi.Input[str]]:
         """
-        The storage tier to use
+        The tier of the storage.
         """
         return pulumi.get(self, "tier")
 
@@ -333,7 +387,7 @@ class _StorageState:
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[str]]:
         """
-        A short, informative description
+        The title of the storage.
         """
         return pulumi.get(self, "title")
 
@@ -343,9 +397,21 @@ class _StorageState:
 
     @property
     @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of the storage.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 
@@ -359,12 +425,13 @@ class Storage(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup_rule: Optional[pulumi.Input[pulumi.InputType['StorageBackupRuleArgs']]] = None,
-                 clone: Optional[pulumi.Input[pulumi.InputType['StorageCloneArgs']]] = None,
+                 backup_rule: Optional[pulumi.Input[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict']]] = None,
+                 clone: Optional[pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']]] = None,
                  delete_autoresize_backup: Optional[pulumi.Input[bool]] = None,
                  encrypt: Optional[pulumi.Input[bool]] = None,
                  filesystem_autoresize: Optional[pulumi.Input[bool]] = None,
-                 import_: Optional[pulumi.Input[pulumi.InputType['StorageImportArgs']]] = None,
+                 import_: Optional[pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  tier: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None,
@@ -381,19 +448,20 @@ class Storage(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['StorageCloneArgs']] clone: Block defining another storage/template to clone to storage
+        :param pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']] clone: Block defining another storage/template to clone to storage.
         :param pulumi.Input[bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
                success.
-        :param pulumi.Input[bool] encrypt: Sets if the storage is encrypted at rest
+        :param pulumi.Input[bool] encrypt: Sets if the storage is encrypted at rest.
         :param pulumi.Input[bool] filesystem_autoresize: If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
                note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
                backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-               delete_autoresize_backup option is set to true). Taking and keeping backups incure costs.
-        :param pulumi.Input[pulumi.InputType['StorageImportArgs']] import_: Block defining external data to import to storage
-        :param pulumi.Input[int] size: The size of the storage in gigabytes
-        :param pulumi.Input[str] tier: The storage tier to use
-        :param pulumi.Input[str] title: A short, informative description
-        :param pulumi.Input[str] zone: The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+               `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
+        :param pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']] import_: Block defining external data to import to storage
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the storage.
+        :param pulumi.Input[int] size: The size of the storage in gigabytes.
+        :param pulumi.Input[str] tier: The tier of the storage.
+        :param pulumi.Input[str] title: The title of the storage.
+        :param pulumi.Input[str] zone: The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         ...
     @overload
@@ -425,12 +493,13 @@ class Storage(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup_rule: Optional[pulumi.Input[pulumi.InputType['StorageBackupRuleArgs']]] = None,
-                 clone: Optional[pulumi.Input[pulumi.InputType['StorageCloneArgs']]] = None,
+                 backup_rule: Optional[pulumi.Input[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict']]] = None,
+                 clone: Optional[pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']]] = None,
                  delete_autoresize_backup: Optional[pulumi.Input[bool]] = None,
                  encrypt: Optional[pulumi.Input[bool]] = None,
                  filesystem_autoresize: Optional[pulumi.Input[bool]] = None,
-                 import_: Optional[pulumi.Input[pulumi.InputType['StorageImportArgs']]] = None,
+                 import_: Optional[pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  tier: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None,
@@ -450,6 +519,7 @@ class Storage(pulumi.CustomResource):
             __props__.__dict__["encrypt"] = encrypt
             __props__.__dict__["filesystem_autoresize"] = filesystem_autoresize
             __props__.__dict__["import_"] = import_
+            __props__.__dict__["labels"] = labels
             if size is None and not opts.urn:
                 raise TypeError("Missing required property 'size'")
             __props__.__dict__["size"] = size
@@ -460,6 +530,8 @@ class Storage(pulumi.CustomResource):
             if zone is None and not opts.urn:
                 raise TypeError("Missing required property 'zone'")
             __props__.__dict__["zone"] = zone
+            __props__.__dict__["system_labels"] = None
+            __props__.__dict__["type"] = None
         super(Storage, __self__).__init__(
             'upcloud:index/storage:Storage',
             resource_name,
@@ -470,15 +542,18 @@ class Storage(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backup_rule: Optional[pulumi.Input[pulumi.InputType['StorageBackupRuleArgs']]] = None,
-            clone: Optional[pulumi.Input[pulumi.InputType['StorageCloneArgs']]] = None,
+            backup_rule: Optional[pulumi.Input[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict']]] = None,
+            clone: Optional[pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']]] = None,
             delete_autoresize_backup: Optional[pulumi.Input[bool]] = None,
             encrypt: Optional[pulumi.Input[bool]] = None,
             filesystem_autoresize: Optional[pulumi.Input[bool]] = None,
-            import_: Optional[pulumi.Input[pulumi.InputType['StorageImportArgs']]] = None,
+            import_: Optional[pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             size: Optional[pulumi.Input[int]] = None,
+            system_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             tier: Optional[pulumi.Input[str]] = None,
             title: Optional[pulumi.Input[str]] = None,
+            type: Optional[pulumi.Input[str]] = None,
             zone: Optional[pulumi.Input[str]] = None) -> 'Storage':
         """
         Get an existing Storage resource's state with the given name, id, and optional extra
@@ -487,19 +562,23 @@ class Storage(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['StorageCloneArgs']] clone: Block defining another storage/template to clone to storage
+        :param pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']] clone: Block defining another storage/template to clone to storage.
         :param pulumi.Input[bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
                success.
-        :param pulumi.Input[bool] encrypt: Sets if the storage is encrypted at rest
+        :param pulumi.Input[bool] encrypt: Sets if the storage is encrypted at rest.
         :param pulumi.Input[bool] filesystem_autoresize: If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
                note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
                backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-               delete_autoresize_backup option is set to true). Taking and keeping backups incure costs.
-        :param pulumi.Input[pulumi.InputType['StorageImportArgs']] import_: Block defining external data to import to storage
-        :param pulumi.Input[int] size: The size of the storage in gigabytes
-        :param pulumi.Input[str] tier: The storage tier to use
-        :param pulumi.Input[str] title: A short, informative description
-        :param pulumi.Input[str] zone: The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+               `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
+        :param pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']] import_: Block defining external data to import to storage
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the storage.
+        :param pulumi.Input[int] size: The size of the storage in gigabytes.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] system_labels: System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
+               and can not be modified by the user.
+        :param pulumi.Input[str] tier: The tier of the storage.
+        :param pulumi.Input[str] title: The title of the storage.
+        :param pulumi.Input[str] type: The type of the storage.
+        :param pulumi.Input[str] zone: The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -511,9 +590,12 @@ class Storage(pulumi.CustomResource):
         __props__.__dict__["encrypt"] = encrypt
         __props__.__dict__["filesystem_autoresize"] = filesystem_autoresize
         __props__.__dict__["import_"] = import_
+        __props__.__dict__["labels"] = labels
         __props__.__dict__["size"] = size
+        __props__.__dict__["system_labels"] = system_labels
         __props__.__dict__["tier"] = tier
         __props__.__dict__["title"] = title
+        __props__.__dict__["type"] = type
         __props__.__dict__["zone"] = zone
         return Storage(resource_name, opts=opts, __props__=__props__)
 
@@ -526,13 +608,13 @@ class Storage(pulumi.CustomResource):
     @pulumi.getter
     def clone(self) -> pulumi.Output[Optional['outputs.StorageClone']]:
         """
-        Block defining another storage/template to clone to storage
+        Block defining another storage/template to clone to storage.
         """
         return pulumi.get(self, "clone")
 
     @property
     @pulumi.getter(name="deleteAutoresizeBackup")
-    def delete_autoresize_backup(self) -> pulumi.Output[Optional[bool]]:
+    def delete_autoresize_backup(self) -> pulumi.Output[bool]:
         """
         If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
         success.
@@ -541,20 +623,20 @@ class Storage(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def encrypt(self) -> pulumi.Output[Optional[bool]]:
+    def encrypt(self) -> pulumi.Output[bool]:
         """
-        Sets if the storage is encrypted at rest
+        Sets if the storage is encrypted at rest.
         """
         return pulumi.get(self, "encrypt")
 
     @property
     @pulumi.getter(name="filesystemAutoresize")
-    def filesystem_autoresize(self) -> pulumi.Output[Optional[bool]]:
+    def filesystem_autoresize(self) -> pulumi.Output[bool]:
         """
         If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
         note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
         backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-        delete_autoresize_backup option is set to true). Taking and keeping backups incure costs.
+        `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
         """
         return pulumi.get(self, "filesystem_autoresize")
 
@@ -568,17 +650,34 @@ class Storage(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def labels(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        User defined key-value pairs to classify the storage.
+        """
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter
     def size(self) -> pulumi.Output[int]:
         """
-        The size of the storage in gigabytes
+        The size of the storage in gigabytes.
         """
         return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="systemLabels")
+    def system_labels(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
+        and can not be modified by the user.
+        """
+        return pulumi.get(self, "system_labels")
 
     @property
     @pulumi.getter
     def tier(self) -> pulumi.Output[str]:
         """
-        The storage tier to use
+        The tier of the storage.
         """
         return pulumi.get(self, "tier")
 
@@ -586,15 +685,23 @@ class Storage(pulumi.CustomResource):
     @pulumi.getter
     def title(self) -> pulumi.Output[str]:
         """
-        A short, informative description
+        The title of the storage.
         """
         return pulumi.get(self, "title")
 
     @property
     @pulumi.getter
+    def type(self) -> pulumi.Output[str]:
+        """
+        The type of the storage.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        The zone in which the storage will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 

@@ -59,9 +59,13 @@ __all__ = [
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs',
+    'ManagedDatabaseOpensearchPropertiesAzureMigrationArgs',
+    'ManagedDatabaseOpensearchPropertiesGcsMigrationArgs',
+    'ManagedDatabaseOpensearchPropertiesIndexRollupArgs',
     'ManagedDatabaseOpensearchPropertiesIndexTemplateArgs',
     'ManagedDatabaseOpensearchPropertiesOpenidArgs',
     'ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs',
+    'ManagedDatabaseOpensearchPropertiesS3MigrationArgs',
     'ManagedDatabaseOpensearchPropertiesSamlArgs',
     'ManagedDatabasePostgresqlComponentArgs',
     'ManagedDatabasePostgresqlNetworkArgs',
@@ -3402,6 +3406,7 @@ class ManagedDatabaseMysqlPropertiesMigrationArgs:
                  dbname: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  ignore_dbs: Optional[pulumi.Input[str]] = None,
+                 ignore_roles: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -3411,6 +3416,7 @@ class ManagedDatabaseMysqlPropertiesMigrationArgs:
         :param pulumi.Input[str] dbname: Database name for bootstrapping the initial connection.
         :param pulumi.Input[str] host: Hostname or IP address of the server where to migrate data from.
         :param pulumi.Input[str] ignore_dbs: Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+        :param pulumi.Input[str] ignore_roles: Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
         :param pulumi.Input[str] method: The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
         :param pulumi.Input[str] password: Password for authentication with the server where to migrate data from.
         :param pulumi.Input[int] port: Port number of the server where to migrate data from.
@@ -3423,6 +3429,8 @@ class ManagedDatabaseMysqlPropertiesMigrationArgs:
             pulumi.set(__self__, "host", host)
         if ignore_dbs is not None:
             pulumi.set(__self__, "ignore_dbs", ignore_dbs)
+        if ignore_roles is not None:
+            pulumi.set(__self__, "ignore_roles", ignore_roles)
         if method is not None:
             pulumi.set(__self__, "method", method)
         if password is not None:
@@ -3469,6 +3477,18 @@ class ManagedDatabaseMysqlPropertiesMigrationArgs:
     @ignore_dbs.setter
     def ignore_dbs(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ignore_dbs", value)
+
+    @property
+    @pulumi.getter(name="ignoreRoles")
+    def ignore_roles(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+        """
+        return pulumi.get(self, "ignore_roles")
+
+    @ignore_roles.setter
+    def ignore_roles(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ignore_roles", value)
 
     @property
     @pulumi.getter
@@ -3747,6 +3767,7 @@ class ManagedDatabaseOpensearchPropertiesArgs:
                  action_destructive_requires_name: Optional[pulumi.Input[bool]] = None,
                  auth_failure_listeners: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs']] = None,
                  automatic_utility_network_ip_filter: Optional[pulumi.Input[bool]] = None,
+                 azure_migration: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAzureMigrationArgs']] = None,
                  cluster_max_shards_per_node: Optional[pulumi.Input[int]] = None,
                  cluster_routing_allocation_node_concurrent_recoveries: Optional[pulumi.Input[int]] = None,
                  custom_domain: Optional[pulumi.Input[str]] = None,
@@ -3754,10 +3775,12 @@ class ManagedDatabaseOpensearchPropertiesArgs:
                  email_sender_password: Optional[pulumi.Input[str]] = None,
                  email_sender_username: Optional[pulumi.Input[str]] = None,
                  enable_security_audit: Optional[pulumi.Input[bool]] = None,
+                 gcs_migration: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesGcsMigrationArgs']] = None,
                  http_max_content_length: Optional[pulumi.Input[int]] = None,
                  http_max_header_size: Optional[pulumi.Input[int]] = None,
                  http_max_initial_line_length: Optional[pulumi.Input[int]] = None,
                  index_patterns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 index_rollup: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesIndexRollupArgs']] = None,
                  index_template: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesIndexTemplateArgs']] = None,
                  indices_fielddata_cache_size: Optional[pulumi.Input[int]] = None,
                  indices_memory_index_buffer_size: Optional[pulumi.Input[int]] = None,
@@ -3783,6 +3806,7 @@ class ManagedDatabaseOpensearchPropertiesArgs:
                  plugins_alerting_filter_by_backend_roles: Optional[pulumi.Input[bool]] = None,
                  public_access: Optional[pulumi.Input[bool]] = None,
                  reindex_remote_whitelists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 s3_migration: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesS3MigrationArgs']] = None,
                  saml: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSamlArgs']] = None,
                  script_max_compilations_rate: Optional[pulumi.Input[str]] = None,
                  search_max_buckets: Optional[pulumi.Input[int]] = None,
@@ -3815,6 +3839,7 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         :param pulumi.Input[int] http_max_header_size: The max size of allowed headers, in bytes.
         :param pulumi.Input[int] http_max_initial_line_length: The max length of an HTTP URL, in bytes.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] index_patterns: Index patterns.
+        :param pulumi.Input['ManagedDatabaseOpensearchPropertiesIndexRollupArgs'] index_rollup: Index rollup settings.
         :param pulumi.Input['ManagedDatabaseOpensearchPropertiesIndexTemplateArgs'] index_template: Template settings for all new indexes.
         :param pulumi.Input[int] indices_fielddata_cache_size: Relative amount. Maximum amount of heap memory used for field data cache. This is an expert setting; decreasing the value too much will increase overhead of loading field data; too much memory used for field data cache will decrease amount of heap available for other operations.
         :param pulumi.Input[int] indices_memory_index_buffer_size: Percentage value. Default is 10%. Total amount of heap used for indexing buffer, before writing segments to disk. This is an expert setting. Too low value will slow down indexing; too high value will increase indexing performance but causes performance issues for query performance.
@@ -3865,6 +3890,8 @@ class ManagedDatabaseOpensearchPropertiesArgs:
             pulumi.set(__self__, "auth_failure_listeners", auth_failure_listeners)
         if automatic_utility_network_ip_filter is not None:
             pulumi.set(__self__, "automatic_utility_network_ip_filter", automatic_utility_network_ip_filter)
+        if azure_migration is not None:
+            pulumi.set(__self__, "azure_migration", azure_migration)
         if cluster_max_shards_per_node is not None:
             pulumi.set(__self__, "cluster_max_shards_per_node", cluster_max_shards_per_node)
         if cluster_routing_allocation_node_concurrent_recoveries is not None:
@@ -3879,6 +3906,8 @@ class ManagedDatabaseOpensearchPropertiesArgs:
             pulumi.set(__self__, "email_sender_username", email_sender_username)
         if enable_security_audit is not None:
             pulumi.set(__self__, "enable_security_audit", enable_security_audit)
+        if gcs_migration is not None:
+            pulumi.set(__self__, "gcs_migration", gcs_migration)
         if http_max_content_length is not None:
             pulumi.set(__self__, "http_max_content_length", http_max_content_length)
         if http_max_header_size is not None:
@@ -3887,6 +3916,8 @@ class ManagedDatabaseOpensearchPropertiesArgs:
             pulumi.set(__self__, "http_max_initial_line_length", http_max_initial_line_length)
         if index_patterns is not None:
             pulumi.set(__self__, "index_patterns", index_patterns)
+        if index_rollup is not None:
+            pulumi.set(__self__, "index_rollup", index_rollup)
         if index_template is not None:
             pulumi.set(__self__, "index_template", index_template)
         if indices_fielddata_cache_size is not None:
@@ -3937,6 +3968,8 @@ class ManagedDatabaseOpensearchPropertiesArgs:
             pulumi.set(__self__, "public_access", public_access)
         if reindex_remote_whitelists is not None:
             pulumi.set(__self__, "reindex_remote_whitelists", reindex_remote_whitelists)
+        if s3_migration is not None:
+            pulumi.set(__self__, "s3_migration", s3_migration)
         if saml is not None:
             pulumi.set(__self__, "saml", saml)
         if script_max_compilations_rate is not None:
@@ -4017,6 +4050,15 @@ class ManagedDatabaseOpensearchPropertiesArgs:
     @automatic_utility_network_ip_filter.setter
     def automatic_utility_network_ip_filter(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "automatic_utility_network_ip_filter", value)
+
+    @property
+    @pulumi.getter(name="azureMigration")
+    def azure_migration(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAzureMigrationArgs']]:
+        return pulumi.get(self, "azure_migration")
+
+    @azure_migration.setter
+    def azure_migration(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAzureMigrationArgs']]):
+        pulumi.set(self, "azure_migration", value)
 
     @property
     @pulumi.getter(name="clusterMaxShardsPerNode")
@@ -4103,6 +4145,15 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         pulumi.set(self, "enable_security_audit", value)
 
     @property
+    @pulumi.getter(name="gcsMigration")
+    def gcs_migration(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesGcsMigrationArgs']]:
+        return pulumi.get(self, "gcs_migration")
+
+    @gcs_migration.setter
+    def gcs_migration(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesGcsMigrationArgs']]):
+        pulumi.set(self, "gcs_migration", value)
+
+    @property
     @pulumi.getter(name="httpMaxContentLength")
     def http_max_content_length(self) -> Optional[pulumi.Input[int]]:
         """
@@ -4149,6 +4200,18 @@ class ManagedDatabaseOpensearchPropertiesArgs:
     @index_patterns.setter
     def index_patterns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "index_patterns", value)
+
+    @property
+    @pulumi.getter(name="indexRollup")
+    def index_rollup(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesIndexRollupArgs']]:
+        """
+        Index rollup settings.
+        """
+        return pulumi.get(self, "index_rollup")
+
+    @index_rollup.setter
+    def index_rollup(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesIndexRollupArgs']]):
+        pulumi.set(self, "index_rollup", value)
 
     @property
     @pulumi.getter(name="indexTemplate")
@@ -4449,6 +4512,15 @@ class ManagedDatabaseOpensearchPropertiesArgs:
     @reindex_remote_whitelists.setter
     def reindex_remote_whitelists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "reindex_remote_whitelists", value)
+
+    @property
+    @pulumi.getter(name="s3Migration")
+    def s3_migration(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesS3MigrationArgs']]:
+        return pulumi.get(self, "s3_migration")
+
+    @s3_migration.setter
+    def s3_migration(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesS3MigrationArgs']]):
+        pulumi.set(self, "s3_migration", value)
 
     @property
     @pulumi.getter
@@ -4901,6 +4973,347 @@ class ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs:
 
 
 @pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesAzureMigrationArgs:
+    def __init__(__self__, *,
+                 account: Optional[pulumi.Input[str]] = None,
+                 base_path: Optional[pulumi.Input[str]] = None,
+                 chunk_size: Optional[pulumi.Input[str]] = None,
+                 compress: Optional[pulumi.Input[bool]] = None,
+                 container: Optional[pulumi.Input[str]] = None,
+                 endpoint_suffix: Optional[pulumi.Input[str]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 sas_token: Optional[pulumi.Input[str]] = None,
+                 snapshot_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] account: Account name. Azure account name.
+        :param pulumi.Input[str] base_path: The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+        :param pulumi.Input[str] chunk_size: Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+        :param pulumi.Input[bool] compress: Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+        :param pulumi.Input[str] container: Azure container name. Azure container name.
+        :param pulumi.Input[str] endpoint_suffix: Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
+        :param pulumi.Input[str] key: Account secret key. Azure account secret key. One of key or sas_token should be specified.
+        :param pulumi.Input[str] sas_token: SAS token. A shared access signatures (SAS) token. One of key or sas_token should be specified.
+        :param pulumi.Input[str] snapshot_name: The snapshot name to restore from. The snapshot name to restore from.
+        """
+        if account is not None:
+            pulumi.set(__self__, "account", account)
+        if base_path is not None:
+            pulumi.set(__self__, "base_path", base_path)
+        if chunk_size is not None:
+            pulumi.set(__self__, "chunk_size", chunk_size)
+        if compress is not None:
+            pulumi.set(__self__, "compress", compress)
+        if container is not None:
+            pulumi.set(__self__, "container", container)
+        if endpoint_suffix is not None:
+            pulumi.set(__self__, "endpoint_suffix", endpoint_suffix)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if sas_token is not None:
+            pulumi.set(__self__, "sas_token", sas_token)
+        if snapshot_name is not None:
+            pulumi.set(__self__, "snapshot_name", snapshot_name)
+
+    @property
+    @pulumi.getter
+    def account(self) -> Optional[pulumi.Input[str]]:
+        """
+        Account name. Azure account name.
+        """
+        return pulumi.get(self, "account")
+
+    @account.setter
+    def account(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account", value)
+
+    @property
+    @pulumi.getter(name="basePath")
+    def base_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+        """
+        return pulumi.get(self, "base_path")
+
+    @base_path.setter
+    def base_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "base_path", value)
+
+    @property
+    @pulumi.getter(name="chunkSize")
+    def chunk_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+        """
+        return pulumi.get(self, "chunk_size")
+
+    @chunk_size.setter
+    def chunk_size(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "chunk_size", value)
+
+    @property
+    @pulumi.getter
+    def compress(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+        """
+        return pulumi.get(self, "compress")
+
+    @compress.setter
+    def compress(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "compress", value)
+
+    @property
+    @pulumi.getter
+    def container(self) -> Optional[pulumi.Input[str]]:
+        """
+        Azure container name. Azure container name.
+        """
+        return pulumi.get(self, "container")
+
+    @container.setter
+    def container(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "container", value)
+
+    @property
+    @pulumi.getter(name="endpointSuffix")
+    def endpoint_suffix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
+        """
+        return pulumi.get(self, "endpoint_suffix")
+
+    @endpoint_suffix.setter
+    def endpoint_suffix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint_suffix", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Account secret key. Azure account secret key. One of key or sas_token should be specified.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="sasToken")
+    def sas_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        SAS token. A shared access signatures (SAS) token. One of key or sas_token should be specified.
+        """
+        return pulumi.get(self, "sas_token")
+
+    @sas_token.setter
+    def sas_token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sas_token", value)
+
+    @property
+    @pulumi.getter(name="snapshotName")
+    def snapshot_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The snapshot name to restore from. The snapshot name to restore from.
+        """
+        return pulumi.get(self, "snapshot_name")
+
+    @snapshot_name.setter
+    def snapshot_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "snapshot_name", value)
+
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesGcsMigrationArgs:
+    def __init__(__self__, *,
+                 base_path: Optional[pulumi.Input[str]] = None,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 chunk_size: Optional[pulumi.Input[str]] = None,
+                 compress: Optional[pulumi.Input[bool]] = None,
+                 credentials: Optional[pulumi.Input[str]] = None,
+                 snapshot_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] base_path: The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+        :param pulumi.Input[str] bucket: The path to the repository data within its container. Google Cloud Storage bucket name.
+        :param pulumi.Input[str] chunk_size: Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+        :param pulumi.Input[bool] compress: Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+        :param pulumi.Input[str] credentials: Credentials. Google Cloud Storage credentials file content.
+        :param pulumi.Input[str] snapshot_name: The snapshot name to restore from. The snapshot name to restore from.
+        """
+        if base_path is not None:
+            pulumi.set(__self__, "base_path", base_path)
+        if bucket is not None:
+            pulumi.set(__self__, "bucket", bucket)
+        if chunk_size is not None:
+            pulumi.set(__self__, "chunk_size", chunk_size)
+        if compress is not None:
+            pulumi.set(__self__, "compress", compress)
+        if credentials is not None:
+            pulumi.set(__self__, "credentials", credentials)
+        if snapshot_name is not None:
+            pulumi.set(__self__, "snapshot_name", snapshot_name)
+
+    @property
+    @pulumi.getter(name="basePath")
+    def base_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+        """
+        return pulumi.get(self, "base_path")
+
+    @base_path.setter
+    def base_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "base_path", value)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path to the repository data within its container. Google Cloud Storage bucket name.
+        """
+        return pulumi.get(self, "bucket")
+
+    @bucket.setter
+    def bucket(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bucket", value)
+
+    @property
+    @pulumi.getter(name="chunkSize")
+    def chunk_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+        """
+        return pulumi.get(self, "chunk_size")
+
+    @chunk_size.setter
+    def chunk_size(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "chunk_size", value)
+
+    @property
+    @pulumi.getter
+    def compress(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+        """
+        return pulumi.get(self, "compress")
+
+    @compress.setter
+    def compress(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "compress", value)
+
+    @property
+    @pulumi.getter
+    def credentials(self) -> Optional[pulumi.Input[str]]:
+        """
+        Credentials. Google Cloud Storage credentials file content.
+        """
+        return pulumi.get(self, "credentials")
+
+    @credentials.setter
+    def credentials(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "credentials", value)
+
+    @property
+    @pulumi.getter(name="snapshotName")
+    def snapshot_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The snapshot name to restore from. The snapshot name to restore from.
+        """
+        return pulumi.get(self, "snapshot_name")
+
+    @snapshot_name.setter
+    def snapshot_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "snapshot_name", value)
+
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesIndexRollupArgs:
+    def __init__(__self__, *,
+                 rollup_dashboards_enabled: Optional[pulumi.Input[bool]] = None,
+                 rollup_enabled: Optional[pulumi.Input[bool]] = None,
+                 rollup_search_backoff_count: Optional[pulumi.Input[int]] = None,
+                 rollup_search_backoff_millis: Optional[pulumi.Input[int]] = None,
+                 rollup_search_search_all_jobs: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] rollup_dashboards_enabled: plugins.rollup.dashboards.enabled. Whether rollups are enabled in OpenSearch Dashboards. Defaults to true.
+        :param pulumi.Input[bool] rollup_enabled: plugins.rollup.enabled. Whether the rollup plugin is enabled. Defaults to true.
+        :param pulumi.Input[int] rollup_search_backoff_count: plugins.rollup.search.backoff_count. How many retries the plugin should attempt for failed rollup jobs. Defaults to 5.
+        :param pulumi.Input[int] rollup_search_backoff_millis: plugins.rollup.search.backoff_millis. The backoff time between retries for failed rollup jobs. Defaults to 1000ms.
+        :param pulumi.Input[bool] rollup_search_search_all_jobs: plugins.rollup.search.all_jobs. Whether OpenSearch should return all jobs that match all specified search terms. If disabled, OpenSearch returns just one, as opposed to all, of the jobs that matches the search terms. Defaults to false.
+        """
+        if rollup_dashboards_enabled is not None:
+            pulumi.set(__self__, "rollup_dashboards_enabled", rollup_dashboards_enabled)
+        if rollup_enabled is not None:
+            pulumi.set(__self__, "rollup_enabled", rollup_enabled)
+        if rollup_search_backoff_count is not None:
+            pulumi.set(__self__, "rollup_search_backoff_count", rollup_search_backoff_count)
+        if rollup_search_backoff_millis is not None:
+            pulumi.set(__self__, "rollup_search_backoff_millis", rollup_search_backoff_millis)
+        if rollup_search_search_all_jobs is not None:
+            pulumi.set(__self__, "rollup_search_search_all_jobs", rollup_search_search_all_jobs)
+
+    @property
+    @pulumi.getter(name="rollupDashboardsEnabled")
+    def rollup_dashboards_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        plugins.rollup.dashboards.enabled. Whether rollups are enabled in OpenSearch Dashboards. Defaults to true.
+        """
+        return pulumi.get(self, "rollup_dashboards_enabled")
+
+    @rollup_dashboards_enabled.setter
+    def rollup_dashboards_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "rollup_dashboards_enabled", value)
+
+    @property
+    @pulumi.getter(name="rollupEnabled")
+    def rollup_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        plugins.rollup.enabled. Whether the rollup plugin is enabled. Defaults to true.
+        """
+        return pulumi.get(self, "rollup_enabled")
+
+    @rollup_enabled.setter
+    def rollup_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "rollup_enabled", value)
+
+    @property
+    @pulumi.getter(name="rollupSearchBackoffCount")
+    def rollup_search_backoff_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        plugins.rollup.search.backoff_count. How many retries the plugin should attempt for failed rollup jobs. Defaults to 5.
+        """
+        return pulumi.get(self, "rollup_search_backoff_count")
+
+    @rollup_search_backoff_count.setter
+    def rollup_search_backoff_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rollup_search_backoff_count", value)
+
+    @property
+    @pulumi.getter(name="rollupSearchBackoffMillis")
+    def rollup_search_backoff_millis(self) -> Optional[pulumi.Input[int]]:
+        """
+        plugins.rollup.search.backoff_millis. The backoff time between retries for failed rollup jobs. Defaults to 1000ms.
+        """
+        return pulumi.get(self, "rollup_search_backoff_millis")
+
+    @rollup_search_backoff_millis.setter
+    def rollup_search_backoff_millis(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rollup_search_backoff_millis", value)
+
+    @property
+    @pulumi.getter(name="rollupSearchSearchAllJobs")
+    def rollup_search_search_all_jobs(self) -> Optional[pulumi.Input[bool]]:
+        """
+        plugins.rollup.search.all_jobs. Whether OpenSearch should return all jobs that match all specified search terms. If disabled, OpenSearch returns just one, as opposed to all, of the jobs that matches the search terms. Defaults to false.
+        """
+        return pulumi.get(self, "rollup_search_search_all_jobs")
+
+    @rollup_search_search_all_jobs.setter
+    def rollup_search_search_all_jobs(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "rollup_search_search_all_jobs", value)
+
+
+@pulumi.input_type
 class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs:
     def __init__(__self__, *,
                  mapping_nested_objects_limit: Optional[pulumi.Input[int]] = None,
@@ -5207,6 +5620,173 @@ class ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs:
     @opensearch_request_timeout.setter
     def opensearch_request_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "opensearch_request_timeout", value)
+
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesS3MigrationArgs:
+    def __init__(__self__, *,
+                 access_key: Optional[pulumi.Input[str]] = None,
+                 base_path: Optional[pulumi.Input[str]] = None,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 chunk_size: Optional[pulumi.Input[str]] = None,
+                 compress: Optional[pulumi.Input[bool]] = None,
+                 endpoint: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 secret_key: Optional[pulumi.Input[str]] = None,
+                 server_side_encryption: Optional[pulumi.Input[bool]] = None,
+                 snapshot_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] access_key: AWS Access key. AWS Access key.
+        :param pulumi.Input[str] base_path: The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+        :param pulumi.Input[str] bucket: S3 bucket name. S3 bucket name.
+        :param pulumi.Input[str] chunk_size: Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+        :param pulumi.Input[bool] compress: Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+        :param pulumi.Input[str] endpoint: The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+        :param pulumi.Input[str] region: S3 region. S3 region.
+        :param pulumi.Input[str] secret_key: AWS secret key. AWS secret key.
+        :param pulumi.Input[bool] server_side_encryption: Server side encryption. When set to true files are encrypted on server side.
+        :param pulumi.Input[str] snapshot_name: The snapshot name to restore from. The snapshot name to restore from.
+        """
+        if access_key is not None:
+            pulumi.set(__self__, "access_key", access_key)
+        if base_path is not None:
+            pulumi.set(__self__, "base_path", base_path)
+        if bucket is not None:
+            pulumi.set(__self__, "bucket", bucket)
+        if chunk_size is not None:
+            pulumi.set(__self__, "chunk_size", chunk_size)
+        if compress is not None:
+            pulumi.set(__self__, "compress", compress)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if secret_key is not None:
+            pulumi.set(__self__, "secret_key", secret_key)
+        if server_side_encryption is not None:
+            pulumi.set(__self__, "server_side_encryption", server_side_encryption)
+        if snapshot_name is not None:
+            pulumi.set(__self__, "snapshot_name", snapshot_name)
+
+    @property
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        AWS Access key. AWS Access key.
+        """
+        return pulumi.get(self, "access_key")
+
+    @access_key.setter
+    def access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "access_key", value)
+
+    @property
+    @pulumi.getter(name="basePath")
+    def base_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+        """
+        return pulumi.get(self, "base_path")
+
+    @base_path.setter
+    def base_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "base_path", value)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> Optional[pulumi.Input[str]]:
+        """
+        S3 bucket name. S3 bucket name.
+        """
+        return pulumi.get(self, "bucket")
+
+    @bucket.setter
+    def bucket(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bucket", value)
+
+    @property
+    @pulumi.getter(name="chunkSize")
+    def chunk_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+        """
+        return pulumi.get(self, "chunk_size")
+
+    @chunk_size.setter
+    def chunk_size(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "chunk_size", value)
+
+    @property
+    @pulumi.getter
+    def compress(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+        """
+        return pulumi.get(self, "compress")
+
+    @compress.setter
+    def compress(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "compress", value)
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        S3 region. S3 region.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        AWS secret key. AWS secret key.
+        """
+        return pulumi.get(self, "secret_key")
+
+    @secret_key.setter
+    def secret_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_key", value)
+
+    @property
+    @pulumi.getter(name="serverSideEncryption")
+    def server_side_encryption(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Server side encryption. When set to true files are encrypted on server side.
+        """
+        return pulumi.get(self, "server_side_encryption")
+
+    @server_side_encryption.setter
+    def server_side_encryption(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "server_side_encryption", value)
+
+    @property
+    @pulumi.getter(name="snapshotName")
+    def snapshot_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The snapshot name to restore from. The snapshot name to restore from.
+        """
+        return pulumi.get(self, "snapshot_name")
+
+    @snapshot_name.setter
+    def snapshot_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "snapshot_name", value)
 
 
 @pulumi.input_type
@@ -6622,6 +7202,7 @@ class ManagedDatabasePostgresqlPropertiesMigrationArgs:
                  dbname: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  ignore_dbs: Optional[pulumi.Input[str]] = None,
+                 ignore_roles: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -6631,6 +7212,7 @@ class ManagedDatabasePostgresqlPropertiesMigrationArgs:
         :param pulumi.Input[str] dbname: Database name for bootstrapping the initial connection.
         :param pulumi.Input[str] host: Hostname or IP address of the server where to migrate data from.
         :param pulumi.Input[str] ignore_dbs: Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+        :param pulumi.Input[str] ignore_roles: Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
         :param pulumi.Input[str] method: The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
         :param pulumi.Input[str] password: Password for authentication with the server where to migrate data from.
         :param pulumi.Input[int] port: Port number of the server where to migrate data from.
@@ -6643,6 +7225,8 @@ class ManagedDatabasePostgresqlPropertiesMigrationArgs:
             pulumi.set(__self__, "host", host)
         if ignore_dbs is not None:
             pulumi.set(__self__, "ignore_dbs", ignore_dbs)
+        if ignore_roles is not None:
+            pulumi.set(__self__, "ignore_roles", ignore_roles)
         if method is not None:
             pulumi.set(__self__, "method", method)
         if password is not None:
@@ -6689,6 +7273,18 @@ class ManagedDatabasePostgresqlPropertiesMigrationArgs:
     @ignore_dbs.setter
     def ignore_dbs(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ignore_dbs", value)
+
+    @property
+    @pulumi.getter(name="ignoreRoles")
+    def ignore_roles(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+        """
+        return pulumi.get(self, "ignore_roles")
+
+    @ignore_roles.setter
+    def ignore_roles(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ignore_roles", value)
 
     @property
     @pulumi.getter
@@ -6759,6 +7355,7 @@ class ManagedDatabasePostgresqlPropertiesPgbouncerArgs:
                  autodb_pool_mode: Optional[pulumi.Input[str]] = None,
                  autodb_pool_size: Optional[pulumi.Input[int]] = None,
                  ignore_startup_parameters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 max_prepared_statements: Optional[pulumi.Input[int]] = None,
                  min_pool_size: Optional[pulumi.Input[int]] = None,
                  server_idle_timeout: Optional[pulumi.Input[int]] = None,
                  server_lifetime: Optional[pulumi.Input[int]] = None,
@@ -6769,6 +7366,7 @@ class ManagedDatabasePostgresqlPropertiesPgbouncerArgs:
         :param pulumi.Input[str] autodb_pool_mode: PGBouncer pool mode.
         :param pulumi.Input[int] autodb_pool_size: If non-zero then create automatically a pool of that size per user when a pool doesn't exist.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ignore_startup_parameters: List of parameters to ignore when given in startup packet.
+        :param pulumi.Input[int] max_prepared_statements: PgBouncer tracks protocol-level named prepared statements related commands sent by the client in transaction and statement pooling modes when max_prepared_statements is set to a non-zero value. Setting it to 0 disables prepared statements. max_prepared_statements defaults to 100, and its maximum is 3000.
         :param pulumi.Input[int] min_pool_size: Add more server connections to pool if below this number. Improves behavior when usual load comes suddenly back after period of total inactivity. The value is effectively capped at the pool size.
         :param pulumi.Input[int] server_idle_timeout: If a server connection has been idle more than this many seconds it will be dropped. If 0 then timeout is disabled. [seconds].
         :param pulumi.Input[int] server_lifetime: The pooler will close an unused server connection that has been connected longer than this. [seconds].
@@ -6784,6 +7382,8 @@ class ManagedDatabasePostgresqlPropertiesPgbouncerArgs:
             pulumi.set(__self__, "autodb_pool_size", autodb_pool_size)
         if ignore_startup_parameters is not None:
             pulumi.set(__self__, "ignore_startup_parameters", ignore_startup_parameters)
+        if max_prepared_statements is not None:
+            pulumi.set(__self__, "max_prepared_statements", max_prepared_statements)
         if min_pool_size is not None:
             pulumi.set(__self__, "min_pool_size", min_pool_size)
         if server_idle_timeout is not None:
@@ -6852,6 +7452,18 @@ class ManagedDatabasePostgresqlPropertiesPgbouncerArgs:
     @ignore_startup_parameters.setter
     def ignore_startup_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ignore_startup_parameters", value)
+
+    @property
+    @pulumi.getter(name="maxPreparedStatements")
+    def max_prepared_statements(self) -> Optional[pulumi.Input[int]]:
+        """
+        PgBouncer tracks protocol-level named prepared statements related commands sent by the client in transaction and statement pooling modes when max_prepared_statements is set to a non-zero value. Setting it to 0 disables prepared statements. max_prepared_statements defaults to 100, and its maximum is 3000.
+        """
+        return pulumi.get(self, "max_prepared_statements")
+
+    @max_prepared_statements.setter
+    def max_prepared_statements(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_prepared_statements", value)
 
     @property
     @pulumi.getter(name="minPoolSize")
@@ -7442,6 +8054,7 @@ class ManagedDatabaseRedisPropertiesMigrationArgs:
                  dbname: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  ignore_dbs: Optional[pulumi.Input[str]] = None,
+                 ignore_roles: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -7451,6 +8064,7 @@ class ManagedDatabaseRedisPropertiesMigrationArgs:
         :param pulumi.Input[str] dbname: Database name for bootstrapping the initial connection.
         :param pulumi.Input[str] host: Hostname or IP address of the server where to migrate data from.
         :param pulumi.Input[str] ignore_dbs: Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+        :param pulumi.Input[str] ignore_roles: Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
         :param pulumi.Input[str] method: The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
         :param pulumi.Input[str] password: Password for authentication with the server where to migrate data from.
         :param pulumi.Input[int] port: Port number of the server where to migrate data from.
@@ -7463,6 +8077,8 @@ class ManagedDatabaseRedisPropertiesMigrationArgs:
             pulumi.set(__self__, "host", host)
         if ignore_dbs is not None:
             pulumi.set(__self__, "ignore_dbs", ignore_dbs)
+        if ignore_roles is not None:
+            pulumi.set(__self__, "ignore_roles", ignore_roles)
         if method is not None:
             pulumi.set(__self__, "method", method)
         if password is not None:
@@ -7509,6 +8125,18 @@ class ManagedDatabaseRedisPropertiesMigrationArgs:
     @ignore_dbs.setter
     def ignore_dbs(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ignore_dbs", value)
+
+    @property
+    @pulumi.getter(name="ignoreRoles")
+    def ignore_roles(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+        """
+        return pulumi.get(self, "ignore_roles")
+
+    @ignore_roles.setter
+    def ignore_roles(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ignore_roles", value)
 
     @property
     @pulumi.getter
@@ -8048,25 +8676,27 @@ class ObjectStorageBucketArgs:
 @pulumi.input_type
 class RouterStaticRouteArgs:
     def __init__(__self__, *,
+                 name: pulumi.Input[str],
                  nexthop: pulumi.Input[str],
                  route: pulumi.Input[str],
-                 name: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] nexthop: Next hop address. NOTE: For static route to be active the next hop has to be an address of a reachable running Cloud Server in one of the Private Networks attached to the router.
-        :param pulumi.Input[str] route: Destination prefix of the route.
-        :param pulumi.Input[str] name: Name or description of the route.
-        """
+                 type: pulumi.Input[str]):
+        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "nexthop", nexthop)
         pulumi.set(__self__, "route", route)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
     def nexthop(self) -> pulumi.Input[str]:
-        """
-        Next hop address. NOTE: For static route to be active the next hop has to be an address of a reachable running Cloud Server in one of the Private Networks attached to the router.
-        """
         return pulumi.get(self, "nexthop")
 
     @nexthop.setter
@@ -8076,9 +8706,6 @@ class RouterStaticRouteArgs:
     @property
     @pulumi.getter
     def route(self) -> pulumi.Input[str]:
-        """
-        Destination prefix of the route.
-        """
         return pulumi.get(self, "route")
 
     @route.setter
@@ -8087,15 +8714,12 @@ class RouterStaticRouteArgs:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name or description of the route.
-        """
-        return pulumi.get(self, "name")
+    def type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "type")
 
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
@@ -9003,7 +9627,7 @@ class StorageCloneArgs:
     def __init__(__self__, *,
                  id: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] id: The unique identifier of the storage/template to clone
+        :param pulumi.Input[str] id: The unique identifier of the storage/template to clone.
         """
         pulumi.set(__self__, "id", id)
 
@@ -9011,7 +9635,7 @@ class StorageCloneArgs:
     @pulumi.getter
     def id(self) -> pulumi.Input[str]:
         """
-        The unique identifier of the storage/template to clone
+        The unique identifier of the storage/template to clone.
         """
         return pulumi.get(self, "id")
 
@@ -9032,7 +9656,7 @@ class StorageImportArgs:
         :param pulumi.Input[str] source: The mode of the import task. One of `http_import` or `direct_upload`.
         :param pulumi.Input[str] source_location: The location of the file to import. For `http_import` an accessible URL for `direct_upload` a local file.
         :param pulumi.Input[str] sha256sum: sha256 sum of the imported data
-        :param pulumi.Input[str] source_hash: For `direct_upload`; an optional hash of the file to upload.
+        :param pulumi.Input[str] source_hash: SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
         :param pulumi.Input[int] written_bytes: Number of bytes imported
         """
         pulumi.set(__self__, "source", source)
@@ -9084,7 +9708,7 @@ class StorageImportArgs:
     @pulumi.getter(name="sourceHash")
     def source_hash(self) -> Optional[pulumi.Input[str]]:
         """
-        For `direct_upload`; an optional hash of the file to upload.
+        SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
         """
         return pulumi.get(self, "source_hash")
 

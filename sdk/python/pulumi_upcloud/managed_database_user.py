@@ -273,10 +273,10 @@ class ManagedDatabaseUser(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authentication: Optional[pulumi.Input[str]] = None,
-                 opensearch_access_control: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseUserOpensearchAccessControlArgs']]] = None,
+                 opensearch_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict']]] = None,
                  password: Optional[pulumi.Input[str]] = None,
-                 pg_access_control: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseUserPgAccessControlArgs']]] = None,
-                 redis_access_control: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseUserRedisAccessControlArgs']]] = None,
+                 pg_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict']]] = None,
+                 redis_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserRedisAccessControlArgs', 'ManagedDatabaseUserRedisAccessControlArgsDict']]] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -302,10 +302,10 @@ class ManagedDatabaseUser(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] authentication: MySQL only, authentication type.
-        :param pulumi.Input[pulumi.InputType['ManagedDatabaseUserOpensearchAccessControlArgs']] opensearch_access_control: OpenSearch access control object.
+        :param pulumi.Input[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict']] opensearch_access_control: OpenSearch access control object.
         :param pulumi.Input[str] password: Password for the database user. Defaults to a random value
-        :param pulumi.Input[pulumi.InputType['ManagedDatabaseUserPgAccessControlArgs']] pg_access_control: PostgreSQL access control object.
-        :param pulumi.Input[pulumi.InputType['ManagedDatabaseUserRedisAccessControlArgs']] redis_access_control: Redis access control object.
+        :param pulumi.Input[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict']] pg_access_control: PostgreSQL access control object.
+        :param pulumi.Input[Union['ManagedDatabaseUserRedisAccessControlArgs', 'ManagedDatabaseUserRedisAccessControlArgsDict']] redis_access_control: Redis access control object.
         :param pulumi.Input[str] service: Service's UUID for which this user belongs to
         :param pulumi.Input[str] username: Name of the database user
         """
@@ -350,10 +350,10 @@ class ManagedDatabaseUser(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authentication: Optional[pulumi.Input[str]] = None,
-                 opensearch_access_control: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseUserOpensearchAccessControlArgs']]] = None,
+                 opensearch_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict']]] = None,
                  password: Optional[pulumi.Input[str]] = None,
-                 pg_access_control: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseUserPgAccessControlArgs']]] = None,
-                 redis_access_control: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseUserRedisAccessControlArgs']]] = None,
+                 pg_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict']]] = None,
+                 redis_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserRedisAccessControlArgs', 'ManagedDatabaseUserRedisAccessControlArgsDict']]] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -390,10 +390,10 @@ class ManagedDatabaseUser(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             authentication: Optional[pulumi.Input[str]] = None,
-            opensearch_access_control: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseUserOpensearchAccessControlArgs']]] = None,
+            opensearch_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict']]] = None,
             password: Optional[pulumi.Input[str]] = None,
-            pg_access_control: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseUserPgAccessControlArgs']]] = None,
-            redis_access_control: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseUserRedisAccessControlArgs']]] = None,
+            pg_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict']]] = None,
+            redis_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserRedisAccessControlArgs', 'ManagedDatabaseUserRedisAccessControlArgsDict']]] = None,
             service: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             username: Optional[pulumi.Input[str]] = None) -> 'ManagedDatabaseUser':
@@ -405,10 +405,10 @@ class ManagedDatabaseUser(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] authentication: MySQL only, authentication type.
-        :param pulumi.Input[pulumi.InputType['ManagedDatabaseUserOpensearchAccessControlArgs']] opensearch_access_control: OpenSearch access control object.
+        :param pulumi.Input[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict']] opensearch_access_control: OpenSearch access control object.
         :param pulumi.Input[str] password: Password for the database user. Defaults to a random value
-        :param pulumi.Input[pulumi.InputType['ManagedDatabaseUserPgAccessControlArgs']] pg_access_control: PostgreSQL access control object.
-        :param pulumi.Input[pulumi.InputType['ManagedDatabaseUserRedisAccessControlArgs']] redis_access_control: Redis access control object.
+        :param pulumi.Input[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict']] pg_access_control: PostgreSQL access control object.
+        :param pulumi.Input[Union['ManagedDatabaseUserRedisAccessControlArgs', 'ManagedDatabaseUserRedisAccessControlArgsDict']] redis_access_control: Redis access control object.
         :param pulumi.Input[str] service: Service's UUID for which this user belongs to
         :param pulumi.Input[str] type: Type of the user. Only normal type users can be created
         :param pulumi.Input[str] username: Name of the database user

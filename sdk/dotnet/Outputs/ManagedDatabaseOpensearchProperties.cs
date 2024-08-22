@@ -29,6 +29,7 @@ namespace Pulumi.Upcloud.Outputs
         /// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
         /// </summary>
         public readonly bool? AutomaticUtilityNetworkIpFilter;
+        public readonly Outputs.ManagedDatabaseOpensearchPropertiesAzureMigration? AzureMigration;
         /// <summary>
         /// Controls the number of shards allowed in the cluster per data node.
         /// </summary>
@@ -57,6 +58,7 @@ namespace Pulumi.Upcloud.Outputs
         /// Enable/Disable security audit.
         /// </summary>
         public readonly bool? EnableSecurityAudit;
+        public readonly Outputs.ManagedDatabaseOpensearchPropertiesGcsMigration? GcsMigration;
         /// <summary>
         /// Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
         /// </summary>
@@ -73,6 +75,10 @@ namespace Pulumi.Upcloud.Outputs
         /// Index patterns.
         /// </summary>
         public readonly ImmutableArray<string> IndexPatterns;
+        /// <summary>
+        /// Index rollup settings.
+        /// </summary>
+        public readonly Outputs.ManagedDatabaseOpensearchPropertiesIndexRollup? IndexRollup;
         /// <summary>
         /// Template settings for all new indexes.
         /// </summary>
@@ -173,6 +179,7 @@ namespace Pulumi.Upcloud.Outputs
         /// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
         /// </summary>
         public readonly ImmutableArray<string> ReindexRemoteWhitelists;
+        public readonly Outputs.ManagedDatabaseOpensearchPropertiesS3Migration? S3Migration;
         /// <summary>
         /// OpenSearch SAML configuration.
         /// </summary>
@@ -248,6 +255,8 @@ namespace Pulumi.Upcloud.Outputs
 
             bool? automaticUtilityNetworkIpFilter,
 
+            Outputs.ManagedDatabaseOpensearchPropertiesAzureMigration? azureMigration,
+
             int? clusterMaxShardsPerNode,
 
             int? clusterRoutingAllocationNodeConcurrentRecoveries,
@@ -262,6 +271,8 @@ namespace Pulumi.Upcloud.Outputs
 
             bool? enableSecurityAudit,
 
+            Outputs.ManagedDatabaseOpensearchPropertiesGcsMigration? gcsMigration,
+
             int? httpMaxContentLength,
 
             int? httpMaxHeaderSize,
@@ -269,6 +280,8 @@ namespace Pulumi.Upcloud.Outputs
             int? httpMaxInitialLineLength,
 
             ImmutableArray<string> indexPatterns,
+
+            Outputs.ManagedDatabaseOpensearchPropertiesIndexRollup? indexRollup,
 
             Outputs.ManagedDatabaseOpensearchPropertiesIndexTemplate? indexTemplate,
 
@@ -320,6 +333,8 @@ namespace Pulumi.Upcloud.Outputs
 
             ImmutableArray<string> reindexRemoteWhitelists,
 
+            Outputs.ManagedDatabaseOpensearchPropertiesS3Migration? s3Migration,
+
             Outputs.ManagedDatabaseOpensearchPropertiesSaml? saml,
 
             string? scriptMaxCompilationsRate,
@@ -356,6 +371,7 @@ namespace Pulumi.Upcloud.Outputs
             ActionDestructiveRequiresName = actionDestructiveRequiresName;
             AuthFailureListeners = authFailureListeners;
             AutomaticUtilityNetworkIpFilter = automaticUtilityNetworkIpFilter;
+            AzureMigration = azureMigration;
             ClusterMaxShardsPerNode = clusterMaxShardsPerNode;
             ClusterRoutingAllocationNodeConcurrentRecoveries = clusterRoutingAllocationNodeConcurrentRecoveries;
             CustomDomain = customDomain;
@@ -363,10 +379,12 @@ namespace Pulumi.Upcloud.Outputs
             EmailSenderPassword = emailSenderPassword;
             EmailSenderUsername = emailSenderUsername;
             EnableSecurityAudit = enableSecurityAudit;
+            GcsMigration = gcsMigration;
             HttpMaxContentLength = httpMaxContentLength;
             HttpMaxHeaderSize = httpMaxHeaderSize;
             HttpMaxInitialLineLength = httpMaxInitialLineLength;
             IndexPatterns = indexPatterns;
+            IndexRollup = indexRollup;
             IndexTemplate = indexTemplate;
             IndicesFielddataCacheSize = indicesFielddataCacheSize;
             IndicesMemoryIndexBufferSize = indicesMemoryIndexBufferSize;
@@ -392,6 +410,7 @@ namespace Pulumi.Upcloud.Outputs
             PluginsAlertingFilterByBackendRoles = pluginsAlertingFilterByBackendRoles;
             PublicAccess = publicAccess;
             ReindexRemoteWhitelists = reindexRemoteWhitelists;
+            S3Migration = s3Migration;
             Saml = saml;
             ScriptMaxCompilationsRate = scriptMaxCompilationsRate;
             SearchMaxBuckets = searchMaxBuckets;

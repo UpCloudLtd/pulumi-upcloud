@@ -77,6 +77,10 @@ export class ManagedDatabaseOpensearch extends pulumi.CustomResource {
      */
     public readonly extendedAccessControl!: pulumi.Output<boolean>;
     /**
+     * User defined key-value pairs to classify the managed database.
+     */
+    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
      */
     public readonly maintenanceWindowDow!: pulumi.Output<string>;
@@ -166,6 +170,7 @@ export class ManagedDatabaseOpensearch extends pulumi.CustomResource {
             resourceInputs["accessControl"] = state ? state.accessControl : undefined;
             resourceInputs["components"] = state ? state.components : undefined;
             resourceInputs["extendedAccessControl"] = state ? state.extendedAccessControl : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["maintenanceWindowDow"] = state ? state.maintenanceWindowDow : undefined;
             resourceInputs["maintenanceWindowTime"] = state ? state.maintenanceWindowTime : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -197,6 +202,7 @@ export class ManagedDatabaseOpensearch extends pulumi.CustomResource {
             }
             resourceInputs["accessControl"] = args ? args.accessControl : undefined;
             resourceInputs["extendedAccessControl"] = args ? args.extendedAccessControl : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["maintenanceWindowDow"] = args ? args.maintenanceWindowDow : undefined;
             resourceInputs["maintenanceWindowTime"] = args ? args.maintenanceWindowTime : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -242,6 +248,10 @@ export interface ManagedDatabaseOpensearchState {
      * on the user-specific access control rules.
      */
     extendedAccessControl?: pulumi.Input<boolean>;
+    /**
+     * User defined key-value pairs to classify the managed database.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
      */
@@ -331,6 +341,10 @@ export interface ManagedDatabaseOpensearchArgs {
      * on the user-specific access control rules.
      */
     extendedAccessControl?: pulumi.Input<boolean>;
+    /**
+     * User defined key-value pairs to classify the managed database.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
      */

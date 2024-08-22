@@ -67,6 +67,8 @@ type ManagedDatabaseOpensearch struct {
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
 	// on the user-specific access control rules.
 	ExtendedAccessControl pulumi.BoolOutput `pulumi:"extendedAccessControl"`
+	// User defined key-value pairs to classify the managed database.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringOutput `pulumi:"maintenanceWindowDow"`
 	// Maintenance window UTC time in hh:mm:ss format
@@ -158,6 +160,8 @@ type managedDatabaseOpensearchState struct {
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
 	// on the user-specific access control rules.
 	ExtendedAccessControl *bool `pulumi:"extendedAccessControl"`
+	// User defined key-value pairs to classify the managed database.
+	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow *string `pulumi:"maintenanceWindowDow"`
 	// Maintenance window UTC time in hh:mm:ss format
@@ -206,6 +210,8 @@ type ManagedDatabaseOpensearchState struct {
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
 	// on the user-specific access control rules.
 	ExtendedAccessControl pulumi.BoolPtrInput
+	// User defined key-value pairs to classify the managed database.
+	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringPtrInput
 	// Maintenance window UTC time in hh:mm:ss format
@@ -256,6 +262,8 @@ type managedDatabaseOpensearchArgs struct {
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
 	// on the user-specific access control rules.
 	ExtendedAccessControl *bool `pulumi:"extendedAccessControl"`
+	// User defined key-value pairs to classify the managed database.
+	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow *string `pulumi:"maintenanceWindowDow"`
 	// Maintenance window UTC time in hh:mm:ss format
@@ -285,6 +293,8 @@ type ManagedDatabaseOpensearchArgs struct {
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
 	// on the user-specific access control rules.
 	ExtendedAccessControl pulumi.BoolPtrInput
+	// User defined key-value pairs to classify the managed database.
+	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringPtrInput
 	// Maintenance window UTC time in hh:mm:ss format
@@ -408,6 +418,11 @@ func (o ManagedDatabaseOpensearchOutput) Components() ManagedDatabaseOpensearchC
 // on the user-specific access control rules.
 func (o ManagedDatabaseOpensearchOutput) ExtendedAccessControl() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.BoolOutput { return v.ExtendedAccessControl }).(pulumi.BoolOutput)
+}
+
+// User defined key-value pairs to classify the managed database.
+func (o ManagedDatabaseOpensearchOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
 // Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)

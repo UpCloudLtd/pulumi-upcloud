@@ -16,19 +16,19 @@ namespace Pulumi.Upcloud
     public partial class LoadbalancerManualCertificateBundle : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Certificate within base64 string must be in PEM format.
+        /// Certificate as base64 encoded string. Must be in PEM format.
         /// </summary>
         [Output("certificate")]
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
-        /// Intermediate certificates within base64 string must be in PEM format.
+        /// Intermediate certificates as base64 encoded string. Must be in PEM format.
         /// </summary>
         [Output("intermediates")]
-        public Output<string?> Intermediates { get; private set; } = null!;
+        public Output<string> Intermediates { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the bundle must be unique within customer account.
+        /// The name of the certificate bundle. Must be unique within customer account.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -52,7 +52,7 @@ namespace Pulumi.Upcloud
         public Output<string> OperationalState { get; private set; } = null!;
 
         /// <summary>
-        /// Private key within base64 string must be in PEM format.
+        /// Private key as base64 encoded string. Must be in PEM format.
         /// </summary>
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
@@ -108,19 +108,19 @@ namespace Pulumi.Upcloud
     public sealed class LoadbalancerManualCertificateBundleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Certificate within base64 string must be in PEM format.
+        /// Certificate as base64 encoded string. Must be in PEM format.
         /// </summary>
         [Input("certificate", required: true)]
         public Input<string> Certificate { get; set; } = null!;
 
         /// <summary>
-        /// Intermediate certificates within base64 string must be in PEM format.
+        /// Intermediate certificates as base64 encoded string. Must be in PEM format.
         /// </summary>
         [Input("intermediates")]
         public Input<string>? Intermediates { get; set; }
 
         /// <summary>
-        /// The name of the bundle must be unique within customer account.
+        /// The name of the certificate bundle. Must be unique within customer account.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -129,7 +129,7 @@ namespace Pulumi.Upcloud
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// Private key within base64 string must be in PEM format.
+        /// Private key as base64 encoded string. Must be in PEM format.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -150,19 +150,19 @@ namespace Pulumi.Upcloud
     public sealed class LoadbalancerManualCertificateBundleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Certificate within base64 string must be in PEM format.
+        /// Certificate as base64 encoded string. Must be in PEM format.
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
 
         /// <summary>
-        /// Intermediate certificates within base64 string must be in PEM format.
+        /// Intermediate certificates as base64 encoded string. Must be in PEM format.
         /// </summary>
         [Input("intermediates")]
         public Input<string>? Intermediates { get; set; }
 
         /// <summary>
-        /// The name of the bundle must be unique within customer account.
+        /// The name of the certificate bundle. Must be unique within customer account.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -189,7 +189,7 @@ namespace Pulumi.Upcloud
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// Private key within base64 string must be in PEM format.
+        /// Private key as base64 encoded string. Must be in PEM format.
         /// </summary>
         public Input<string>? PrivateKey
         {

@@ -12,23 +12,17 @@ namespace Pulumi.Upcloud.Inputs
 
     public sealed class RouterStaticRouteArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Name or description of the route.
-        /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
-        /// <summary>
-        /// Next hop address. NOTE: For static route to be active the next hop has to be an address of a reachable running Cloud Server in one of the Private Networks attached to the router.
-        /// </summary>
         [Input("nexthop", required: true)]
         public Input<string> Nexthop { get; set; } = null!;
 
-        /// <summary>
-        /// Destination prefix of the route.
-        /// </summary>
         [Input("route", required: true)]
         public Input<string> Route { get; set; } = null!;
+
+        [Input("type", required: true)]
+        public Input<string> Type { get; set; } = null!;
 
         public RouterStaticRouteArgs()
         {

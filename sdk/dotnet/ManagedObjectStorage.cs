@@ -83,7 +83,7 @@ namespace Pulumi.Upcloud
         public Output<ImmutableArray<Outputs.ManagedObjectStorageEndpoint>> Endpoints { get; private set; } = null!;
 
         /// <summary>
-        /// Key-value pairs to classify the managed object storage.
+        /// User defined key-value pairs to classify the managed object storage.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
@@ -176,7 +176,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the managed object storage.
+        /// User defined key-value pairs to classify the managed object storage.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -246,7 +246,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the managed object storage.
+        /// User defined key-value pairs to classify the managed object storage.
         /// </summary>
         public InputMap<string> Labels
         {

@@ -26,7 +26,7 @@ class NetworkPeeringArgs:
         :param pulumi.Input['NetworkPeeringNetworkArgs'] network: Local network of the network peering.
         :param pulumi.Input['NetworkPeeringPeerNetworkArgs'] peer_network: Peer network of the network peering.
         :param pulumi.Input[str] configured_status: Configured status of the network peering.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the network peering.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the network peering.
         :param pulumi.Input[str] name: Name of the network peering.
         """
         pulumi.set(__self__, "network", network)
@@ -78,7 +78,7 @@ class NetworkPeeringArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs to classify the network peering.
+        User defined key-value pairs to classify the network peering.
         """
         return pulumi.get(self, "labels")
 
@@ -110,7 +110,7 @@ class _NetworkPeeringState:
         """
         Input properties used for looking up and filtering NetworkPeering resources.
         :param pulumi.Input[str] configured_status: Configured status of the network peering.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the network peering.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the network peering.
         :param pulumi.Input[str] name: Name of the network peering.
         :param pulumi.Input['NetworkPeeringNetworkArgs'] network: Local network of the network peering.
         :param pulumi.Input['NetworkPeeringPeerNetworkArgs'] peer_network: Peer network of the network peering.
@@ -142,7 +142,7 @@ class _NetworkPeeringState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs to classify the network peering.
+        User defined key-value pairs to classify the network peering.
         """
         return pulumi.get(self, "labels")
 
@@ -195,8 +195,8 @@ class NetworkPeering(pulumi.CustomResource):
                  configured_status: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 network: Optional[pulumi.Input[pulumi.InputType['NetworkPeeringNetworkArgs']]] = None,
-                 peer_network: Optional[pulumi.Input[pulumi.InputType['NetworkPeeringPeerNetworkArgs']]] = None,
+                 network: Optional[pulumi.Input[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict']]] = None,
+                 peer_network: Optional[pulumi.Input[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict']]] = None,
                  __props__=None):
         """
         Network peerings can be used to connect networks across accounts. For the network peering to become active, the peering must be made from both directions.
@@ -212,29 +212,29 @@ class NetworkPeering(pulumi.CustomResource):
         example = upcloud.Network("example",
             zone="nl-ams1",
             router=upcloud_router["example"]["id"],
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         this_network_peering = None
         if 1 == True:
             this_network_peering = upcloud.NetworkPeering("thisNetworkPeering",
-                network=upcloud.NetworkPeeringNetworkArgs(
-                    uuid=example.id,
-                ),
-                peer_network=upcloud.NetworkPeeringPeerNetworkArgs(
-                    uuid="0305723a-e5cb-4ef6-985d-e36ed44d133a",
-                ))
+                network={
+                    "uuid": example.id,
+                },
+                peer_network={
+                    "uuid": "0305723a-e5cb-4ef6-985d-e36ed44d133a",
+                })
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] configured_status: Configured status of the network peering.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the network peering.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the network peering.
         :param pulumi.Input[str] name: Name of the network peering.
-        :param pulumi.Input[pulumi.InputType['NetworkPeeringNetworkArgs']] network: Local network of the network peering.
-        :param pulumi.Input[pulumi.InputType['NetworkPeeringPeerNetworkArgs']] peer_network: Peer network of the network peering.
+        :param pulumi.Input[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict']] network: Local network of the network peering.
+        :param pulumi.Input[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict']] peer_network: Peer network of the network peering.
         """
         ...
     @overload
@@ -256,20 +256,20 @@ class NetworkPeering(pulumi.CustomResource):
         example = upcloud.Network("example",
             zone="nl-ams1",
             router=upcloud_router["example"]["id"],
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         this_network_peering = None
         if 1 == True:
             this_network_peering = upcloud.NetworkPeering("thisNetworkPeering",
-                network=upcloud.NetworkPeeringNetworkArgs(
-                    uuid=example.id,
-                ),
-                peer_network=upcloud.NetworkPeeringPeerNetworkArgs(
-                    uuid="0305723a-e5cb-4ef6-985d-e36ed44d133a",
-                ))
+                network={
+                    "uuid": example.id,
+                },
+                peer_network={
+                    "uuid": "0305723a-e5cb-4ef6-985d-e36ed44d133a",
+                })
         ```
 
         :param str resource_name: The name of the resource.
@@ -290,8 +290,8 @@ class NetworkPeering(pulumi.CustomResource):
                  configured_status: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 network: Optional[pulumi.Input[pulumi.InputType['NetworkPeeringNetworkArgs']]] = None,
-                 peer_network: Optional[pulumi.Input[pulumi.InputType['NetworkPeeringPeerNetworkArgs']]] = None,
+                 network: Optional[pulumi.Input[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict']]] = None,
+                 peer_network: Optional[pulumi.Input[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -323,8 +323,8 @@ class NetworkPeering(pulumi.CustomResource):
             configured_status: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            network: Optional[pulumi.Input[pulumi.InputType['NetworkPeeringNetworkArgs']]] = None,
-            peer_network: Optional[pulumi.Input[pulumi.InputType['NetworkPeeringPeerNetworkArgs']]] = None) -> 'NetworkPeering':
+            network: Optional[pulumi.Input[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict']]] = None,
+            peer_network: Optional[pulumi.Input[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict']]] = None) -> 'NetworkPeering':
         """
         Get an existing NetworkPeering resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -333,10 +333,10 @@ class NetworkPeering(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] configured_status: Configured status of the network peering.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the network peering.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the network peering.
         :param pulumi.Input[str] name: Name of the network peering.
-        :param pulumi.Input[pulumi.InputType['NetworkPeeringNetworkArgs']] network: Local network of the network peering.
-        :param pulumi.Input[pulumi.InputType['NetworkPeeringPeerNetworkArgs']] peer_network: Peer network of the network peering.
+        :param pulumi.Input[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict']] network: Local network of the network peering.
+        :param pulumi.Input[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict']] peer_network: Peer network of the network peering.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -361,7 +361,7 @@ class NetworkPeering(pulumi.CustomResource):
     @pulumi.getter
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
         """
-        Key-value pairs to classify the network peering.
+        User defined key-value pairs to classify the network peering.
         """
         return pulumi.get(self, "labels")
 

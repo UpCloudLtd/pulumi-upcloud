@@ -59,7 +59,7 @@ export class LoadbalancerDynamicCertificateBundle extends pulumi.CustomResource 
      */
     public readonly keyType!: pulumi.Output<string>;
     /**
-     * The name of the bundle must be unique within customer account.
+     * The name of the certificate bundle. Must be unique within customer account.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -127,7 +127,7 @@ export interface LoadbalancerDynamicCertificateBundleState {
      */
     keyType?: pulumi.Input<string>;
     /**
-     * The name of the bundle must be unique within customer account.
+     * The name of the certificate bundle. Must be unique within customer account.
      */
     name?: pulumi.Input<string>;
     /**
@@ -157,7 +157,7 @@ export interface LoadbalancerDynamicCertificateBundleArgs {
      */
     keyType: pulumi.Input<string>;
     /**
-     * The name of the bundle must be unique within customer account.
+     * The name of the certificate bundle. Must be unique within customer account.
      */
     name?: pulumi.Input<string>;
 }

@@ -95,7 +95,7 @@ type LoadbalancerFrontendTlsConfig struct {
 	CertificateBundle pulumi.StringOutput `pulumi:"certificateBundle"`
 	// ID of the load balancer frontend to which the TLS config is connected.
 	Frontend pulumi.StringOutput `pulumi:"frontend"`
-	// The name of the TLS config must be unique within service frontend.
+	// The name of the TLS config. Must be unique within customer account.
 	Name pulumi.StringOutput `pulumi:"name"`
 }
 
@@ -139,7 +139,7 @@ type loadbalancerFrontendTlsConfigState struct {
 	CertificateBundle *string `pulumi:"certificateBundle"`
 	// ID of the load balancer frontend to which the TLS config is connected.
 	Frontend *string `pulumi:"frontend"`
-	// The name of the TLS config must be unique within service frontend.
+	// The name of the TLS config. Must be unique within customer account.
 	Name *string `pulumi:"name"`
 }
 
@@ -148,7 +148,7 @@ type LoadbalancerFrontendTlsConfigState struct {
 	CertificateBundle pulumi.StringPtrInput
 	// ID of the load balancer frontend to which the TLS config is connected.
 	Frontend pulumi.StringPtrInput
-	// The name of the TLS config must be unique within service frontend.
+	// The name of the TLS config. Must be unique within customer account.
 	Name pulumi.StringPtrInput
 }
 
@@ -161,7 +161,7 @@ type loadbalancerFrontendTlsConfigArgs struct {
 	CertificateBundle string `pulumi:"certificateBundle"`
 	// ID of the load balancer frontend to which the TLS config is connected.
 	Frontend string `pulumi:"frontend"`
-	// The name of the TLS config must be unique within service frontend.
+	// The name of the TLS config. Must be unique within customer account.
 	Name *string `pulumi:"name"`
 }
 
@@ -171,7 +171,7 @@ type LoadbalancerFrontendTlsConfigArgs struct {
 	CertificateBundle pulumi.StringInput
 	// ID of the load balancer frontend to which the TLS config is connected.
 	Frontend pulumi.StringInput
-	// The name of the TLS config must be unique within service frontend.
+	// The name of the TLS config. Must be unique within customer account.
 	Name pulumi.StringPtrInput
 }
 
@@ -272,7 +272,7 @@ func (o LoadbalancerFrontendTlsConfigOutput) Frontend() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontendTlsConfig) pulumi.StringOutput { return v.Frontend }).(pulumi.StringOutput)
 }
 
-// The name of the TLS config must be unique within service frontend.
+// The name of the TLS config. Must be unique within customer account.
 func (o LoadbalancerFrontendTlsConfigOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontendTlsConfig) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

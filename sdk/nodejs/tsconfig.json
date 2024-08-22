@@ -67,6 +67,7 @@
         "serverFirewallRules.ts",
         "serverGroup.ts",
         "storage.ts",
+        "storageTemplate.ts",
         "tag.ts",
         "types/index.ts",
         "types/input.ts",

@@ -21,7 +21,7 @@ class LoadbalancerBackendTlsConfigArgs:
         The set of arguments for constructing a LoadbalancerBackendTlsConfig resource.
         :param pulumi.Input[str] backend: ID of the load balancer backend to which the TLS config is connected.
         :param pulumi.Input[str] certificate_bundle: Reference to certificate bundle ID.
-        :param pulumi.Input[str] name: The name of the TLS config must be unique within service backend.
+        :param pulumi.Input[str] name: The name of the TLS config. Must be unique within customer account.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "certificate_bundle", certificate_bundle)
@@ -56,7 +56,7 @@ class LoadbalancerBackendTlsConfigArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the TLS config must be unique within service backend.
+        The name of the TLS config. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 
@@ -75,7 +75,7 @@ class _LoadbalancerBackendTlsConfigState:
         Input properties used for looking up and filtering LoadbalancerBackendTlsConfig resources.
         :param pulumi.Input[str] backend: ID of the load balancer backend to which the TLS config is connected.
         :param pulumi.Input[str] certificate_bundle: Reference to certificate bundle ID.
-        :param pulumi.Input[str] name: The name of the TLS config must be unique within service backend.
+        :param pulumi.Input[str] name: The name of the TLS config. Must be unique within customer account.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -112,7 +112,7 @@ class _LoadbalancerBackendTlsConfigState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the TLS config must be unique within service backend.
+        The name of the TLS config. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 
@@ -137,7 +137,7 @@ class LoadbalancerBackendTlsConfig(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: ID of the load balancer backend to which the TLS config is connected.
         :param pulumi.Input[str] certificate_bundle: Reference to certificate bundle ID.
-        :param pulumi.Input[str] name: The name of the TLS config must be unique within service backend.
+        :param pulumi.Input[str] name: The name of the TLS config. Must be unique within customer account.
         """
         ...
     @overload
@@ -204,7 +204,7 @@ class LoadbalancerBackendTlsConfig(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: ID of the load balancer backend to which the TLS config is connected.
         :param pulumi.Input[str] certificate_bundle: Reference to certificate bundle ID.
-        :param pulumi.Input[str] name: The name of the TLS config must be unique within service backend.
+        :param pulumi.Input[str] name: The name of the TLS config. Must be unique within customer account.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -235,7 +235,7 @@ class LoadbalancerBackendTlsConfig(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the TLS config must be unique within service backend.
+        The name of the TLS config. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 

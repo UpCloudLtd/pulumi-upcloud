@@ -66,7 +66,7 @@ namespace Pulumi.Upcloud
         public Output<string> ConfiguredStatus { get; private set; } = null!;
 
         /// <summary>
-        /// Key-value pairs to classify the network peering.
+        /// User defined key-value pairs to classify the network peering.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
@@ -145,7 +145,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the network peering.
+        /// User defined key-value pairs to classify the network peering.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -189,7 +189,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the network peering.
+        /// User defined key-value pairs to classify the network peering.
         /// </summary>
         public InputMap<string> Labels
         {

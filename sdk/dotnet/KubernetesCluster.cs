@@ -97,7 +97,7 @@ namespace Pulumi.Upcloud
         public Output<ImmutableArray<string>> ControlPlaneIpFilters { get; private set; } = null!;
 
         /// <summary>
-        /// Key-value pairs to classify the cluster.
+        /// User defined key-value pairs to classify the cluster.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
@@ -228,7 +228,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the cluster.
+        /// User defined key-value pairs to classify the cluster.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -306,7 +306,7 @@ namespace Pulumi.Upcloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Key-value pairs to classify the cluster.
+        /// User defined key-value pairs to classify the cluster.
         /// </summary>
         public InputMap<string> Labels
         {

@@ -95,7 +95,7 @@ def get_managed_database_postgresql_sessions(limit: Optional[int] = None,
                                              offset: Optional[int] = None,
                                              order: Optional[str] = None,
                                              service: Optional[str] = None,
-                                             sessions: Optional[Sequence[pulumi.InputType['GetManagedDatabasePostgresqlSessionsSessionArgs']]] = None,
+                                             sessions: Optional[Sequence[Union['GetManagedDatabasePostgresqlSessionsSessionArgs', 'GetManagedDatabasePostgresqlSessionsSessionArgsDict']]] = None,
                                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetManagedDatabasePostgresqlSessionsResult:
     """
     Current sessions of a PostgreSQL managed database
@@ -138,7 +138,7 @@ def get_managed_database_postgresql_sessions_output(limit: Optional[pulumi.Input
                                                     offset: Optional[pulumi.Input[Optional[int]]] = None,
                                                     order: Optional[pulumi.Input[Optional[str]]] = None,
                                                     service: Optional[pulumi.Input[str]] = None,
-                                                    sessions: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetManagedDatabasePostgresqlSessionsSessionArgs']]]]] = None,
+                                                    sessions: Optional[pulumi.Input[Optional[Sequence[Union['GetManagedDatabasePostgresqlSessionsSessionArgs', 'GetManagedDatabasePostgresqlSessionsSessionArgsDict']]]]] = None,
                                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetManagedDatabasePostgresqlSessionsResult]:
     """
     Current sessions of a PostgreSQL managed database

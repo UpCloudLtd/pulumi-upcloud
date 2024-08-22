@@ -345,8 +345,17 @@
                                         }
                                     }
                                 },
+                                "azure_migration": {
+                                    "maxItemsOne": true
+                                },
+                                "gcs_migration": {
+                                    "maxItemsOne": true
+                                },
                                 "index_patterns": {
                                     "maxItemsOne": false
+                                },
+                                "index_rollup": {
+                                    "maxItemsOne": true
                                 },
                                 "index_template": {
                                     "maxItemsOne": true
@@ -362,6 +371,9 @@
                                 },
                                 "reindex_remote_whitelist": {
                                     "maxItemsOne": false
+                                },
+                                "s3_migration": {
+                                    "maxItemsOne": true
                                 },
                                 "saml": {
                                     "maxItemsOne": true
@@ -546,6 +558,9 @@
                     },
                     "static_route": {
                         "maxItemsOne": false
+                    },
+                    "static_routes": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -614,6 +629,9 @@
                         "maxItemsOne": true
                     }
                 }
+            },
+            "upcloud_storage_template": {
+                "current": "upcloud:index/storageTemplate:StorageTemplate"
             },
             "upcloud_tag": {
                 "current": "upcloud:index/tag:Tag",
@@ -765,7 +783,17 @@
             }
         }
     },
-    "auto-settings": {},
+    "auto-settings": {
+        "resources": {
+            "upcloud_storage": {
+                "maxItemsOneOverrides": {
+                    "backup_rule": true,
+                    "clone": true,
+                    "import": true
+                }
+            }
+        }
+    },
     "mux": {
         "resources": {
             "upcloud:index/floatingIpAddress:FloatingIpAddress": 1,
@@ -773,16 +801,16 @@
             "upcloud:index/gatewayConnection:GatewayConnection": 0,
             "upcloud:index/gatewayConnectionTunnel:GatewayConnectionTunnel": 0,
             "upcloud:index/kubernetesCluster:KubernetesCluster": 1,
-            "upcloud:index/kubernetesNodeGroup:KubernetesNodeGroup": 0,
+            "upcloud:index/kubernetesNodeGroup:KubernetesNodeGroup": 1,
             "upcloud:index/loadbalancer:Loadbalancer": 0,
             "upcloud:index/loadbalancerBackend:LoadbalancerBackend": 0,
-            "upcloud:index/loadbalancerBackendTlsConfig:LoadbalancerBackendTlsConfig": 0,
+            "upcloud:index/loadbalancerBackendTlsConfig:LoadbalancerBackendTlsConfig": 1,
             "upcloud:index/loadbalancerDynamicBackendMember:LoadbalancerDynamicBackendMember": 0,
-            "upcloud:index/loadbalancerDynamicCertificateBundle:LoadbalancerDynamicCertificateBundle": 0,
+            "upcloud:index/loadbalancerDynamicCertificateBundle:LoadbalancerDynamicCertificateBundle": 1,
             "upcloud:index/loadbalancerFrontend:LoadbalancerFrontend": 1,
             "upcloud:index/loadbalancerFrontendRule:LoadbalancerFrontendRule": 0,
-            "upcloud:index/loadbalancerFrontendTlsConfig:LoadbalancerFrontendTlsConfig": 0,
-            "upcloud:index/loadbalancerManualCertificateBundle:LoadbalancerManualCertificateBundle": 0,
+            "upcloud:index/loadbalancerFrontendTlsConfig:LoadbalancerFrontendTlsConfig": 1,
+            "upcloud:index/loadbalancerManualCertificateBundle:LoadbalancerManualCertificateBundle": 1,
             "upcloud:index/loadbalancerResolver:LoadbalancerResolver": 0,
             "upcloud:index/loadbalancerStaticBackendMember:LoadbalancerStaticBackendMember": 0,
             "upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase": 0,
@@ -792,7 +820,7 @@
             "upcloud:index/managedDatabaseRedis:ManagedDatabaseRedis": 0,
             "upcloud:index/managedDatabaseUser:ManagedDatabaseUser": 0,
             "upcloud:index/managedObjectStorage:ManagedObjectStorage": 0,
-            "upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy": 0,
+            "upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy": 1,
             "upcloud:index/managedObjectStorageUser:ManagedObjectStorageUser": 0,
             "upcloud:index/managedObjectStorageUserAccessKey:ManagedObjectStorageUserAccessKey": 0,
             "upcloud:index/managedObjectStorageUserPolicy:ManagedObjectStorageUserPolicy": 0,
@@ -802,8 +830,9 @@
             "upcloud:index/router:Router": 1,
             "upcloud:index/server:Server": 0,
             "upcloud:index/serverFirewallRules:ServerFirewallRules": 0,
-            "upcloud:index/serverGroup:ServerGroup": 0,
-            "upcloud:index/storage:Storage": 0,
+            "upcloud:index/serverGroup:ServerGroup": 1,
+            "upcloud:index/storage:Storage": 1,
+            "upcloud:index/storageTemplate:StorageTemplate": 1,
             "upcloud:index/tag:Tag": 0
         },
         "functions": {
