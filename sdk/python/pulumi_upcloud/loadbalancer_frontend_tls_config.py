@@ -148,11 +148,11 @@ class LoadbalancerFrontendTlsConfig(pulumi.CustomResource):
             lb_zone = "fi-hel2"
         lb_network = upcloud.Network("lbNetwork",
             zone=lb_zone,
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         lb_cb_m1 = upcloud.LoadbalancerManualCertificateBundle("lb-cb-m1",
             certificate="LS0tLS1CRUdJTiBDRVJ...",
             private_key="LS0tLS1CRUdJTiBQUkl...")
@@ -199,11 +199,11 @@ class LoadbalancerFrontendTlsConfig(pulumi.CustomResource):
             lb_zone = "fi-hel2"
         lb_network = upcloud.Network("lbNetwork",
             zone=lb_zone,
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         lb_cb_m1 = upcloud.LoadbalancerManualCertificateBundle("lb-cb-m1",
             certificate="LS0tLS1CRUdJTiBDRVJ...",
             private_key="LS0tLS1CRUdJTiBQUkl...")

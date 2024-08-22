@@ -195,7 +195,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  loadbalancer: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 properties: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendPropertiesArgs']]] = None,
+                 properties: Optional[pulumi.Input[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict']]] = None,
                  resolver_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -213,11 +213,11 @@ class LoadbalancerBackend(pulumi.CustomResource):
             lb_zone = "fi-hel2"
         lb_network = upcloud.Network("lbNetwork",
             zone=lb_zone,
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
             plan="development",
@@ -230,7 +230,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] loadbalancer: ID of the load balancer to which the backend is connected.
         :param pulumi.Input[str] name: The name of the backend must be unique within the load balancer service.
-        :param pulumi.Input[pulumi.InputType['LoadbalancerBackendPropertiesArgs']] properties: Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
+        :param pulumi.Input[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict']] properties: Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
         :param pulumi.Input[str] resolver_name: Domain Name Resolver used with dynamic type members.
         """
         ...
@@ -254,11 +254,11 @@ class LoadbalancerBackend(pulumi.CustomResource):
             lb_zone = "fi-hel2"
         lb_network = upcloud.Network("lbNetwork",
             zone=lb_zone,
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
             plan="development",
@@ -284,7 +284,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  loadbalancer: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 properties: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendPropertiesArgs']]] = None,
+                 properties: Optional[pulumi.Input[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict']]] = None,
                  resolver_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -316,7 +316,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
             loadbalancer: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            properties: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendPropertiesArgs']]] = None,
+            properties: Optional[pulumi.Input[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict']]] = None,
             resolver_name: Optional[pulumi.Input[str]] = None,
             tls_configs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'LoadbalancerBackend':
         """
@@ -329,7 +329,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param pulumi.Input[str] loadbalancer: ID of the load balancer to which the backend is connected.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] members: Backend members receive traffic dispatched from the frontends
         :param pulumi.Input[str] name: The name of the backend must be unique within the load balancer service.
-        :param pulumi.Input[pulumi.InputType['LoadbalancerBackendPropertiesArgs']] properties: Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
+        :param pulumi.Input[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict']] properties: Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
         :param pulumi.Input[str] resolver_name: Domain Name Resolver used with dynamic type members.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_configs: Set of TLS config names
         """

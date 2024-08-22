@@ -502,10 +502,10 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
                  maintenance_window_dow: Optional[pulumi.Input[str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabasePostgresqlNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabasePostgresqlNetworkArgs', 'ManagedDatabasePostgresqlNetworkArgsDict']]]]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  powered: Optional[pulumi.Input[bool]] = None,
-                 properties: Optional[pulumi.Input[pulumi.InputType['ManagedDatabasePostgresqlPropertiesArgs']]] = None,
+                 properties: Optional[pulumi.Input[Union['ManagedDatabasePostgresqlPropertiesArgs', 'ManagedDatabasePostgresqlPropertiesArgsDict']]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -526,11 +526,11 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
         # Service with custom properties
         example2 = upcloud.ManagedDatabasePostgresql("example2",
             plan="1x1xCPU-2GB-25GB",
-            properties=upcloud.ManagedDatabasePostgresqlPropertiesArgs(
-                admin_password="<ADMIN_PASSWORD>",
-                admin_username="admin",
-                timezone="Europe/Helsinki",
-            ),
+            properties={
+                "admin_password": "<ADMIN_PASSWORD>",
+                "admin_username": "admin",
+                "timezone": "Europe/Helsinki",
+            },
             title="postgres",
             zone="fi-hel1")
         ```
@@ -540,11 +540,11 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
         :param pulumi.Input[str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabasePostgresqlNetworkArgs']]]] networks: Private networks attached to the managed database
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabasePostgresqlNetworkArgs', 'ManagedDatabasePostgresqlNetworkArgsDict']]]] networks: Private networks attached to the managed database
         :param pulumi.Input[str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
                database plans <type>`.
         :param pulumi.Input[bool] powered: The administrative power state of the service
-        :param pulumi.Input[pulumi.InputType['ManagedDatabasePostgresqlPropertiesArgs']] properties: Database Engine properties for PostgreSQL
+        :param pulumi.Input[Union['ManagedDatabasePostgresqlPropertiesArgs', 'ManagedDatabasePostgresqlPropertiesArgsDict']] properties: Database Engine properties for PostgreSQL
         :param pulumi.Input[str] title: Title of a managed database instance
         :param pulumi.Input[str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
@@ -571,11 +571,11 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
         # Service with custom properties
         example2 = upcloud.ManagedDatabasePostgresql("example2",
             plan="1x1xCPU-2GB-25GB",
-            properties=upcloud.ManagedDatabasePostgresqlPropertiesArgs(
-                admin_password="<ADMIN_PASSWORD>",
-                admin_username="admin",
-                timezone="Europe/Helsinki",
-            ),
+            properties={
+                "admin_password": "<ADMIN_PASSWORD>",
+                "admin_username": "admin",
+                "timezone": "Europe/Helsinki",
+            },
             title="postgres",
             zone="fi-hel1")
         ```
@@ -598,10 +598,10 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
                  maintenance_window_dow: Optional[pulumi.Input[str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabasePostgresqlNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabasePostgresqlNetworkArgs', 'ManagedDatabasePostgresqlNetworkArgsDict']]]]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  powered: Optional[pulumi.Input[bool]] = None,
-                 properties: Optional[pulumi.Input[pulumi.InputType['ManagedDatabasePostgresqlPropertiesArgs']]] = None,
+                 properties: Optional[pulumi.Input[Union['ManagedDatabasePostgresqlPropertiesArgs', 'ManagedDatabasePostgresqlPropertiesArgsDict']]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -651,16 +651,16 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            components: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabasePostgresqlComponentArgs']]]]] = None,
+            components: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabasePostgresqlComponentArgs', 'ManagedDatabasePostgresqlComponentArgsDict']]]]] = None,
             maintenance_window_dow: Optional[pulumi.Input[str]] = None,
             maintenance_window_time: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabasePostgresqlNetworkArgs']]]]] = None,
-            node_states: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabasePostgresqlNodeStateArgs']]]]] = None,
+            networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabasePostgresqlNetworkArgs', 'ManagedDatabasePostgresqlNetworkArgsDict']]]]] = None,
+            node_states: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabasePostgresqlNodeStateArgs', 'ManagedDatabasePostgresqlNodeStateArgsDict']]]]] = None,
             plan: Optional[pulumi.Input[str]] = None,
             powered: Optional[pulumi.Input[bool]] = None,
             primary_database: Optional[pulumi.Input[str]] = None,
-            properties: Optional[pulumi.Input[pulumi.InputType['ManagedDatabasePostgresqlPropertiesArgs']]] = None,
+            properties: Optional[pulumi.Input[Union['ManagedDatabasePostgresqlPropertiesArgs', 'ManagedDatabasePostgresqlPropertiesArgsDict']]] = None,
             service_host: Optional[pulumi.Input[str]] = None,
             service_password: Optional[pulumi.Input[str]] = None,
             service_port: Optional[pulumi.Input[str]] = None,
@@ -678,17 +678,17 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabasePostgresqlComponentArgs']]]] components: Service component information
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabasePostgresqlComponentArgs', 'ManagedDatabasePostgresqlComponentArgsDict']]]] components: Service component information
         :param pulumi.Input[str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabasePostgresqlNetworkArgs']]]] networks: Private networks attached to the managed database
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabasePostgresqlNodeStateArgs']]]] node_states: Information about nodes providing the managed service
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabasePostgresqlNetworkArgs', 'ManagedDatabasePostgresqlNetworkArgsDict']]]] networks: Private networks attached to the managed database
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabasePostgresqlNodeStateArgs', 'ManagedDatabasePostgresqlNodeStateArgsDict']]]] node_states: Information about nodes providing the managed service
         :param pulumi.Input[str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
                database plans <type>`.
         :param pulumi.Input[bool] powered: The administrative power state of the service
         :param pulumi.Input[str] primary_database: Primary database name
-        :param pulumi.Input[pulumi.InputType['ManagedDatabasePostgresqlPropertiesArgs']] properties: Database Engine properties for PostgreSQL
+        :param pulumi.Input[Union['ManagedDatabasePostgresqlPropertiesArgs', 'ManagedDatabasePostgresqlPropertiesArgsDict']] properties: Database Engine properties for PostgreSQL
         :param pulumi.Input[str] service_host: Hostname to the service instance
         :param pulumi.Input[str] service_password: Primary username's password to the service instance
         :param pulumi.Input[str] service_port: Port to the service instance

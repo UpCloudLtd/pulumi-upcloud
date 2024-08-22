@@ -64,7 +64,7 @@ class AwaitableGetManagedDatabaseOpensearchIndicesResult(GetManagedDatabaseOpens
             service=self.service)
 
 
-def get_managed_database_opensearch_indices(indices: Optional[Sequence[pulumi.InputType['GetManagedDatabaseOpensearchIndicesIndexArgs']]] = None,
+def get_managed_database_opensearch_indices(indices: Optional[Sequence[Union['GetManagedDatabaseOpensearchIndicesIndexArgs', 'GetManagedDatabaseOpensearchIndicesIndexArgsDict']]] = None,
                                             service: Optional[str] = None,
                                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetManagedDatabaseOpensearchIndicesResult:
     """
@@ -82,10 +82,10 @@ def get_managed_database_opensearch_indices(indices: Optional[Sequence[pulumi.In
         title="opensearch-example",
         plan="1x2xCPU-4GB-80GB-1D",
         zone="fi-hel1",
-        properties=upcloud.ManagedDatabaseOpensearchPropertiesArgs(
-            automatic_utility_network_ip_filter=False,
-            public_access=False,
-        ))
+        properties={
+            "automatic_utility_network_ip_filter": False,
+            "public_access": False,
+        })
     example_managed_database_opensearch_indices = upcloud.get_managed_database_opensearch_indices_output(service=example_managed_database_opensearch.id)
     ```
     """
@@ -102,7 +102,7 @@ def get_managed_database_opensearch_indices(indices: Optional[Sequence[pulumi.In
 
 
 @_utilities.lift_output_func(get_managed_database_opensearch_indices)
-def get_managed_database_opensearch_indices_output(indices: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetManagedDatabaseOpensearchIndicesIndexArgs']]]]] = None,
+def get_managed_database_opensearch_indices_output(indices: Optional[pulumi.Input[Optional[Sequence[Union['GetManagedDatabaseOpensearchIndicesIndexArgs', 'GetManagedDatabaseOpensearchIndicesIndexArgsDict']]]]] = None,
                                                    service: Optional[pulumi.Input[str]] = None,
                                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetManagedDatabaseOpensearchIndicesResult]:
     """
@@ -120,10 +120,10 @@ def get_managed_database_opensearch_indices_output(indices: Optional[pulumi.Inpu
         title="opensearch-example",
         plan="1x2xCPU-4GB-80GB-1D",
         zone="fi-hel1",
-        properties=upcloud.ManagedDatabaseOpensearchPropertiesArgs(
-            automatic_utility_network_ip_filter=False,
-            public_access=False,
-        ))
+        properties={
+            "automatic_utility_network_ip_filter": False,
+            "public_access": False,
+        })
     example_managed_database_opensearch_indices = upcloud.get_managed_database_opensearch_indices_output(service=example_managed_database_opensearch.id)
     ```
     """

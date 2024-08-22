@@ -164,7 +164,7 @@ class Router(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 static_routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStaticRouteArgs']]]]] = None,
+                 static_routes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict']]]]] = None,
                  __props__=None):
         """
         Routers can be used to connect multiple Private Networks. UpCloud Servers on any attached network can communicate directly with each other.
@@ -188,7 +188,7 @@ class Router(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the router.
         :param pulumi.Input[str] name: Name of the router.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStaticRouteArgs']]]] static_routes: A collection of static routes for this router.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict']]]] static_routes: A collection of static routes for this router.
         """
         ...
     @overload
@@ -231,7 +231,7 @@ class Router(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 static_routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStaticRouteArgs']]]]] = None,
+                 static_routes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -259,7 +259,7 @@ class Router(pulumi.CustomResource):
             attached_networks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            static_routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStaticRouteArgs']]]]] = None,
+            static_routes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict']]]]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'Router':
         """
         Get an existing Router resource's state with the given name, id, and optional extra
@@ -271,7 +271,7 @@ class Router(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] attached_networks: List of UUIDs representing networks attached to this router.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the router.
         :param pulumi.Input[str] name: Name of the router.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStaticRouteArgs']]]] static_routes: A collection of static routes for this router.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict']]]] static_routes: A collection of static routes for this router.
         :param pulumi.Input[str] type: Type of the router
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

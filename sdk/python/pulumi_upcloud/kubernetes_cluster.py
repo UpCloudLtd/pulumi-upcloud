@@ -403,11 +403,11 @@ class KubernetesCluster(pulumi.CustomResource):
         # Create a network for the Kubernetes cluster
         example_network = upcloud.Network("exampleNetwork",
             zone="de-fra1",
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="172.16.1.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "172.16.1.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         # Create a Kubernetes cluster
         example_kubernetes_cluster = upcloud.KubernetesCluster("exampleKubernetesCluster",
             control_plane_ip_filters=["0.0.0.0/0"],
@@ -418,17 +418,17 @@ class KubernetesCluster(pulumi.CustomResource):
         example2_gateway = upcloud.Gateway("example2Gateway",
             zone="de-fra1",
             features=["nat"],
-            router=upcloud.GatewayRouterArgs(
-                id=example2_router.id,
-            ))
+            router={
+                "id": example2_router.id,
+            })
         example2_network = upcloud.Network("example2Network",
             zone="de-fra1",
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.10.0.0/24",
-                dhcp=True,
-                family="IPv4",
-                dhcp_default_route=True,
-            ),
+            ip_network={
+                "address": "10.10.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+                "dhcp_default_route": True,
+            },
             router=example2_router.id)
         example2_kubernetes_cluster = upcloud.KubernetesCluster("example2KubernetesCluster",
             network=example2_network.id,
@@ -471,11 +471,11 @@ class KubernetesCluster(pulumi.CustomResource):
         # Create a network for the Kubernetes cluster
         example_network = upcloud.Network("exampleNetwork",
             zone="de-fra1",
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="172.16.1.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "172.16.1.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         # Create a Kubernetes cluster
         example_kubernetes_cluster = upcloud.KubernetesCluster("exampleKubernetesCluster",
             control_plane_ip_filters=["0.0.0.0/0"],
@@ -486,17 +486,17 @@ class KubernetesCluster(pulumi.CustomResource):
         example2_gateway = upcloud.Gateway("example2Gateway",
             zone="de-fra1",
             features=["nat"],
-            router=upcloud.GatewayRouterArgs(
-                id=example2_router.id,
-            ))
+            router={
+                "id": example2_router.id,
+            })
         example2_network = upcloud.Network("example2Network",
             zone="de-fra1",
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.10.0.0/24",
-                dhcp=True,
-                family="IPv4",
-                dhcp_default_route=True,
-            ),
+            ip_network={
+                "address": "10.10.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+                "dhcp_default_route": True,
+            },
             router=example2_router.id)
         example2_kubernetes_cluster = upcloud.KubernetesCluster("example2KubernetesCluster",
             network=example2_network.id,

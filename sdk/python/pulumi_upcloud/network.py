@@ -208,7 +208,7 @@ class Network(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ip_network: Optional[pulumi.Input[pulumi.InputType['NetworkIpNetworkArgs']]] = None,
+                 ip_network: Optional[pulumi.Input[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict']]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  router: Optional[pulumi.Input[str]] = None,
@@ -228,13 +228,13 @@ class Network(pulumi.CustomResource):
         example_network = upcloud.Network("exampleNetwork",
             zone="nl-ams1",
             router=example_router.id,
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                dhcp_default_route=False,
-                family="IPv4",
-                gateway="10.0.0.1",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "dhcp_default_route": False,
+                "family": "IPv4",
+                "gateway": "10.0.0.1",
+            })
         ```
 
         ## Import
@@ -245,7 +245,7 @@ class Network(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['NetworkIpNetworkArgs']] ip_network: IP subnet within the network. Network must have exactly one IP subnet.
+        :param pulumi.Input[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict']] ip_network: IP subnet within the network. Network must have exactly one IP subnet.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the network.
         :param pulumi.Input[str] name: Name of the network.
         :param pulumi.Input[str] router: UUID of a router to attach to this network.
@@ -271,13 +271,13 @@ class Network(pulumi.CustomResource):
         example_network = upcloud.Network("exampleNetwork",
             zone="nl-ams1",
             router=example_router.id,
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                dhcp_default_route=False,
-                family="IPv4",
-                gateway="10.0.0.1",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "dhcp_default_route": False,
+                "family": "IPv4",
+                "gateway": "10.0.0.1",
+            })
         ```
 
         ## Import
@@ -301,7 +301,7 @@ class Network(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ip_network: Optional[pulumi.Input[pulumi.InputType['NetworkIpNetworkArgs']]] = None,
+                 ip_network: Optional[pulumi.Input[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict']]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  router: Optional[pulumi.Input[str]] = None,
@@ -335,7 +335,7 @@ class Network(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            ip_network: Optional[pulumi.Input[pulumi.InputType['NetworkIpNetworkArgs']]] = None,
+            ip_network: Optional[pulumi.Input[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict']]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             router: Optional[pulumi.Input[str]] = None,
@@ -348,7 +348,7 @@ class Network(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['NetworkIpNetworkArgs']] ip_network: IP subnet within the network. Network must have exactly one IP subnet.
+        :param pulumi.Input[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict']] ip_network: IP subnet within the network. Network must have exactly one IP subnet.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the network.
         :param pulumi.Input[str] name: Name of the network.
         :param pulumi.Input[str] router: UUID of a router to attach to this network.

@@ -112,7 +112,7 @@ class ServerFirewallRules(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 firewall_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerFirewallRulesFirewallRuleArgs']]]]] = None,
+                 firewall_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerFirewallRulesFirewallRuleArgs', 'ServerFirewallRulesFirewallRuleArgsDict']]]]] = None,
                  server_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -135,26 +135,26 @@ class ServerFirewallRules(pulumi.CustomResource):
             hostname="terraform.example.tld",
             zone="de-fra1",
             plan="1xCPU-1GB",
-            template=upcloud.ServerTemplateArgs(
-                storage="Ubuntu Server 20.04 LTS (Focal Fossa)",
-                size=25,
-            ),
-            network_interfaces=[upcloud.ServerNetworkInterfaceArgs(
-                type="utility",
-            )])
+            template={
+                "storage": "Ubuntu Server 20.04 LTS (Focal Fossa)",
+                "size": 25,
+            },
+            network_interfaces=[{
+                "type": "utility",
+            }])
         example_server_firewall_rules = upcloud.ServerFirewallRules("exampleServerFirewallRules",
             server_id=example_server.id,
-            firewall_rules=[upcloud.ServerFirewallRulesFirewallRuleArgs(
-                action="accept",
-                comment="Allow SSH from this network",
-                destination_port_end="22",
-                destination_port_start="22",
-                direction="in",
-                family="IPv4",
-                protocol="tcp",
-                source_address_end="192.168.1.255",
-                source_address_start="192.168.1.1",
-            )])
+            firewall_rules=[{
+                "action": "accept",
+                "comment": "Allow SSH from this network",
+                "destination_port_end": "22",
+                "destination_port_start": "22",
+                "direction": "in",
+                "family": "IPv4",
+                "protocol": "tcp",
+                "source_address_end": "192.168.1.255",
+                "source_address_start": "192.168.1.1",
+            }])
         ```
 
         ## Import
@@ -165,7 +165,7 @@ class ServerFirewallRules(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerFirewallRulesFirewallRuleArgs']]]] firewall_rules: A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerFirewallRulesFirewallRuleArgs', 'ServerFirewallRulesFirewallRuleArgsDict']]]] firewall_rules: A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
                the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
                if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
                "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can
@@ -198,26 +198,26 @@ class ServerFirewallRules(pulumi.CustomResource):
             hostname="terraform.example.tld",
             zone="de-fra1",
             plan="1xCPU-1GB",
-            template=upcloud.ServerTemplateArgs(
-                storage="Ubuntu Server 20.04 LTS (Focal Fossa)",
-                size=25,
-            ),
-            network_interfaces=[upcloud.ServerNetworkInterfaceArgs(
-                type="utility",
-            )])
+            template={
+                "storage": "Ubuntu Server 20.04 LTS (Focal Fossa)",
+                "size": 25,
+            },
+            network_interfaces=[{
+                "type": "utility",
+            }])
         example_server_firewall_rules = upcloud.ServerFirewallRules("exampleServerFirewallRules",
             server_id=example_server.id,
-            firewall_rules=[upcloud.ServerFirewallRulesFirewallRuleArgs(
-                action="accept",
-                comment="Allow SSH from this network",
-                destination_port_end="22",
-                destination_port_start="22",
-                direction="in",
-                family="IPv4",
-                protocol="tcp",
-                source_address_end="192.168.1.255",
-                source_address_start="192.168.1.1",
-            )])
+            firewall_rules=[{
+                "action": "accept",
+                "comment": "Allow SSH from this network",
+                "destination_port_end": "22",
+                "destination_port_start": "22",
+                "direction": "in",
+                "family": "IPv4",
+                "protocol": "tcp",
+                "source_address_end": "192.168.1.255",
+                "source_address_start": "192.168.1.1",
+            }])
         ```
 
         ## Import
@@ -241,7 +241,7 @@ class ServerFirewallRules(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 firewall_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerFirewallRulesFirewallRuleArgs']]]]] = None,
+                 firewall_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerFirewallRulesFirewallRuleArgs', 'ServerFirewallRulesFirewallRuleArgsDict']]]]] = None,
                  server_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -268,7 +268,7 @@ class ServerFirewallRules(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            firewall_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerFirewallRulesFirewallRuleArgs']]]]] = None,
+            firewall_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerFirewallRulesFirewallRuleArgs', 'ServerFirewallRulesFirewallRuleArgsDict']]]]] = None,
             server_id: Optional[pulumi.Input[str]] = None) -> 'ServerFirewallRules':
         """
         Get an existing ServerFirewallRules resource's state with the given name, id, and optional extra
@@ -277,7 +277,7 @@ class ServerFirewallRules(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerFirewallRulesFirewallRuleArgs']]]] firewall_rules: A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerFirewallRulesFirewallRuleArgs', 'ServerFirewallRulesFirewallRuleArgsDict']]]] firewall_rules: A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
                the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
                if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
                "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can

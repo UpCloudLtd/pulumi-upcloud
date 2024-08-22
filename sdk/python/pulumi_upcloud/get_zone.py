@@ -50,10 +50,8 @@ class GetZoneResult:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Contains the same value as `id`. Use `id` instead.""")
     def name(self) -> str:
-        warnings.warn("""Contains the same value as `id`. Use `id` instead.""", DeprecationWarning)
-        pulumi.log.warn("""name is deprecated: Contains the same value as `id`. Use `id` instead.""")
-
         return pulumi.get(self, "name")
 
     @property

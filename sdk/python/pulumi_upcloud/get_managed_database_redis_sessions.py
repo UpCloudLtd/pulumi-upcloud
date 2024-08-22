@@ -95,7 +95,7 @@ def get_managed_database_redis_sessions(limit: Optional[int] = None,
                                         offset: Optional[int] = None,
                                         order: Optional[str] = None,
                                         service: Optional[str] = None,
-                                        sessions: Optional[Sequence[pulumi.InputType['GetManagedDatabaseRedisSessionsSessionArgs']]] = None,
+                                        sessions: Optional[Sequence[Union['GetManagedDatabaseRedisSessionsSessionArgs', 'GetManagedDatabaseRedisSessionsSessionArgsDict']]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetManagedDatabaseRedisSessionsResult:
     """
     Current sessions of a Redis managed database
@@ -138,7 +138,7 @@ def get_managed_database_redis_sessions_output(limit: Optional[pulumi.Input[Opti
                                                offset: Optional[pulumi.Input[Optional[int]]] = None,
                                                order: Optional[pulumi.Input[Optional[str]]] = None,
                                                service: Optional[pulumi.Input[str]] = None,
-                                               sessions: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetManagedDatabaseRedisSessionsSessionArgs']]]]] = None,
+                                               sessions: Optional[pulumi.Input[Optional[Sequence[Union['GetManagedDatabaseRedisSessionsSessionArgs', 'GetManagedDatabaseRedisSessionsSessionArgsDict']]]]] = None,
                                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetManagedDatabaseRedisSessionsResult]:
     """
     Current sessions of a Redis managed database

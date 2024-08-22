@@ -486,10 +486,10 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
                  maintenance_window_dow: Optional[pulumi.Input[str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseMysqlNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNetworkArgs', 'ManagedDatabaseMysqlNetworkArgsDict']]]]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  powered: Optional[pulumi.Input[bool]] = None,
-                 properties: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseMysqlPropertiesArgs']]] = None,
+                 properties: Optional[pulumi.Input[Union['ManagedDatabaseMysqlPropertiesArgs', 'ManagedDatabaseMysqlPropertiesArgsDict']]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -517,14 +517,14 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         # Note that this basically sets strict mode off which is not normally recommended
         example3 = upcloud.ManagedDatabaseMysql("example3",
             plan="1x1xCPU-2GB-25GB",
-            properties=upcloud.ManagedDatabaseMysqlPropertiesArgs(
-                admin_password="<ADMIN_PASSWORD>",
-                admin_username="admin",
-                max_allowed_packet=16000000,
-                sort_buffer_size=4000000,
-                sql_mode="NO_ENGINE_SUBSTITUTION",
-                wait_timeout=300,
-            ),
+            properties={
+                "admin_password": "<ADMIN_PASSWORD>",
+                "admin_username": "admin",
+                "max_allowed_packet": 16000000,
+                "sort_buffer_size": 4000000,
+                "sql_mode": "NO_ENGINE_SUBSTITUTION",
+                "wait_timeout": 300,
+            },
             title="mysql-3-example-3",
             zone="fi-hel1")
         ```
@@ -534,11 +534,11 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         :param pulumi.Input[str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseMysqlNetworkArgs']]]] networks: Private networks attached to the managed database
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNetworkArgs', 'ManagedDatabaseMysqlNetworkArgsDict']]]] networks: Private networks attached to the managed database
         :param pulumi.Input[str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
                database plans <type>`.
         :param pulumi.Input[bool] powered: The administrative power state of the service
-        :param pulumi.Input[pulumi.InputType['ManagedDatabaseMysqlPropertiesArgs']] properties: Database Engine properties for MySQL
+        :param pulumi.Input[Union['ManagedDatabaseMysqlPropertiesArgs', 'ManagedDatabaseMysqlPropertiesArgsDict']] properties: Database Engine properties for MySQL
         :param pulumi.Input[str] title: Title of a managed database instance
         :param pulumi.Input[str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
@@ -572,14 +572,14 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         # Note that this basically sets strict mode off which is not normally recommended
         example3 = upcloud.ManagedDatabaseMysql("example3",
             plan="1x1xCPU-2GB-25GB",
-            properties=upcloud.ManagedDatabaseMysqlPropertiesArgs(
-                admin_password="<ADMIN_PASSWORD>",
-                admin_username="admin",
-                max_allowed_packet=16000000,
-                sort_buffer_size=4000000,
-                sql_mode="NO_ENGINE_SUBSTITUTION",
-                wait_timeout=300,
-            ),
+            properties={
+                "admin_password": "<ADMIN_PASSWORD>",
+                "admin_username": "admin",
+                "max_allowed_packet": 16000000,
+                "sort_buffer_size": 4000000,
+                "sql_mode": "NO_ENGINE_SUBSTITUTION",
+                "wait_timeout": 300,
+            },
             title="mysql-3-example-3",
             zone="fi-hel1")
         ```
@@ -602,10 +602,10 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
                  maintenance_window_dow: Optional[pulumi.Input[str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseMysqlNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNetworkArgs', 'ManagedDatabaseMysqlNetworkArgsDict']]]]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  powered: Optional[pulumi.Input[bool]] = None,
-                 properties: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseMysqlPropertiesArgs']]] = None,
+                 properties: Optional[pulumi.Input[Union['ManagedDatabaseMysqlPropertiesArgs', 'ManagedDatabaseMysqlPropertiesArgsDict']]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -654,16 +654,16 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            components: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseMysqlComponentArgs']]]]] = None,
+            components: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlComponentArgs', 'ManagedDatabaseMysqlComponentArgsDict']]]]] = None,
             maintenance_window_dow: Optional[pulumi.Input[str]] = None,
             maintenance_window_time: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseMysqlNetworkArgs']]]]] = None,
-            node_states: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseMysqlNodeStateArgs']]]]] = None,
+            networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNetworkArgs', 'ManagedDatabaseMysqlNetworkArgsDict']]]]] = None,
+            node_states: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNodeStateArgs', 'ManagedDatabaseMysqlNodeStateArgsDict']]]]] = None,
             plan: Optional[pulumi.Input[str]] = None,
             powered: Optional[pulumi.Input[bool]] = None,
             primary_database: Optional[pulumi.Input[str]] = None,
-            properties: Optional[pulumi.Input[pulumi.InputType['ManagedDatabaseMysqlPropertiesArgs']]] = None,
+            properties: Optional[pulumi.Input[Union['ManagedDatabaseMysqlPropertiesArgs', 'ManagedDatabaseMysqlPropertiesArgsDict']]] = None,
             service_host: Optional[pulumi.Input[str]] = None,
             service_password: Optional[pulumi.Input[str]] = None,
             service_port: Optional[pulumi.Input[str]] = None,
@@ -680,17 +680,17 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseMysqlComponentArgs']]]] components: Service component information
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlComponentArgs', 'ManagedDatabaseMysqlComponentArgsDict']]]] components: Service component information
         :param pulumi.Input[str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseMysqlNetworkArgs']]]] networks: Private networks attached to the managed database
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedDatabaseMysqlNodeStateArgs']]]] node_states: Information about nodes providing the managed service
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNetworkArgs', 'ManagedDatabaseMysqlNetworkArgsDict']]]] networks: Private networks attached to the managed database
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNodeStateArgs', 'ManagedDatabaseMysqlNodeStateArgsDict']]]] node_states: Information about nodes providing the managed service
         :param pulumi.Input[str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
                database plans <type>`.
         :param pulumi.Input[bool] powered: The administrative power state of the service
         :param pulumi.Input[str] primary_database: Primary database name
-        :param pulumi.Input[pulumi.InputType['ManagedDatabaseMysqlPropertiesArgs']] properties: Database Engine properties for MySQL
+        :param pulumi.Input[Union['ManagedDatabaseMysqlPropertiesArgs', 'ManagedDatabaseMysqlPropertiesArgsDict']] properties: Database Engine properties for MySQL
         :param pulumi.Input[str] service_host: Hostname to the service instance
         :param pulumi.Input[str] service_password: Primary username's password to the service instance
         :param pulumi.Input[str] service_port: Port to the service instance

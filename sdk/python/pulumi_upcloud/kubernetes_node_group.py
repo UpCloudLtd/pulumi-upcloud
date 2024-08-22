@@ -433,15 +433,15 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  anti_affinity: Optional[pulumi.Input[bool]] = None,
                  cluster: Optional[pulumi.Input[str]] = None,
-                 custom_plan: Optional[pulumi.Input[pulumi.InputType['KubernetesNodeGroupCustomPlanArgs']]] = None,
-                 kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodeGroupKubeletArgArgs']]]]] = None,
+                 custom_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']]] = None,
+                 kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_count: Optional[pulumi.Input[int]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  storage_encryption: Optional[pulumi.Input[str]] = None,
-                 taints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodeGroupTaintArgs']]]]] = None,
+                 taints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict']]]]] = None,
                  utility_network_access: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
@@ -456,11 +456,11 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         # Create a network for the Kubernetes cluster
         example_network = upcloud.Network("exampleNetwork",
             zone="de-fra1",
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="172.16.1.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "172.16.1.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         # Create a Kubernetes cluster
         example_kubernetes_cluster = upcloud.KubernetesCluster("exampleKubernetesCluster",
             control_plane_ip_filters=["0.0.0.0/0"],
@@ -474,11 +474,11 @@ class KubernetesNodeGroup(pulumi.CustomResource):
             labels={
                 "managedBy": "terraform",
             },
-            taints=[upcloud.KubernetesNodeGroupTaintArgs(
-                effect="NoExecute",
-                key="taintKey",
-                value="taintValue",
-            )])
+            taints=[{
+                "effect": "NoExecute",
+                "key": "taintKey",
+                "value": "taintValue",
+            }])
         ```
 
         :param str resource_name: The name of the resource.
@@ -486,8 +486,8 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.Input[bool] anti_affinity: If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
                considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
         :param pulumi.Input[str] cluster: UUID of the cluster.
-        :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupCustomPlanArgs']] custom_plan: Resource properties for custom plan
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodeGroupKubeletArgArgs']]]] kubelet_args: Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
+        :param pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']] custom_plan: Resource properties for custom plan
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]] kubelet_args: Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
                kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
                careful when adding kubelet args.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the node group.
@@ -497,7 +497,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
                connect to the nodes via SSH once they are running.
         :param pulumi.Input[str] storage_encryption: Storage encryption strategy for the nodes in this group.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodeGroupTaintArgs']]]] taints: Taints for the nodes in this group.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict']]]] taints: Taints for the nodes in this group.
         :param pulumi.Input[bool] utility_network_access: If set to false, nodes in this group will not have access to utility network.
         """
         ...
@@ -518,11 +518,11 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         # Create a network for the Kubernetes cluster
         example_network = upcloud.Network("exampleNetwork",
             zone="de-fra1",
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="172.16.1.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "172.16.1.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         # Create a Kubernetes cluster
         example_kubernetes_cluster = upcloud.KubernetesCluster("exampleKubernetesCluster",
             control_plane_ip_filters=["0.0.0.0/0"],
@@ -536,11 +536,11 @@ class KubernetesNodeGroup(pulumi.CustomResource):
             labels={
                 "managedBy": "terraform",
             },
-            taints=[upcloud.KubernetesNodeGroupTaintArgs(
-                effect="NoExecute",
-                key="taintKey",
-                value="taintValue",
-            )])
+            taints=[{
+                "effect": "NoExecute",
+                "key": "taintKey",
+                "value": "taintValue",
+            }])
         ```
 
         :param str resource_name: The name of the resource.
@@ -560,15 +560,15 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  anti_affinity: Optional[pulumi.Input[bool]] = None,
                  cluster: Optional[pulumi.Input[str]] = None,
-                 custom_plan: Optional[pulumi.Input[pulumi.InputType['KubernetesNodeGroupCustomPlanArgs']]] = None,
-                 kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodeGroupKubeletArgArgs']]]]] = None,
+                 custom_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']]] = None,
+                 kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_count: Optional[pulumi.Input[int]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  storage_encryption: Optional[pulumi.Input[str]] = None,
-                 taints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodeGroupTaintArgs']]]]] = None,
+                 taints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict']]]]] = None,
                  utility_network_access: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -609,15 +609,15 @@ class KubernetesNodeGroup(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             anti_affinity: Optional[pulumi.Input[bool]] = None,
             cluster: Optional[pulumi.Input[str]] = None,
-            custom_plan: Optional[pulumi.Input[pulumi.InputType['KubernetesNodeGroupCustomPlanArgs']]] = None,
-            kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodeGroupKubeletArgArgs']]]]] = None,
+            custom_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']]] = None,
+            kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_count: Optional[pulumi.Input[int]] = None,
             plan: Optional[pulumi.Input[str]] = None,
             ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             storage_encryption: Optional[pulumi.Input[str]] = None,
-            taints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodeGroupTaintArgs']]]]] = None,
+            taints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict']]]]] = None,
             utility_network_access: Optional[pulumi.Input[bool]] = None) -> 'KubernetesNodeGroup':
         """
         Get an existing KubernetesNodeGroup resource's state with the given name, id, and optional extra
@@ -629,8 +629,8 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.Input[bool] anti_affinity: If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
                considered "best effort" and enabling it does not fully guarantee that the nodes will end up on different hardware.
         :param pulumi.Input[str] cluster: UUID of the cluster.
-        :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupCustomPlanArgs']] custom_plan: Resource properties for custom plan
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodeGroupKubeletArgArgs']]]] kubelet_args: Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
+        :param pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']] custom_plan: Resource properties for custom plan
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]] kubelet_args: Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
                kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
                careful when adding kubelet args.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to classify the node group.
@@ -640,7 +640,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
                connect to the nodes via SSH once they are running.
         :param pulumi.Input[str] storage_encryption: Storage encryption strategy for the nodes in this group.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodeGroupTaintArgs']]]] taints: Taints for the nodes in this group.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict']]]] taints: Taints for the nodes in this group.
         :param pulumi.Input[bool] utility_network_access: If set to false, nodes in this group will not have access to utility network.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

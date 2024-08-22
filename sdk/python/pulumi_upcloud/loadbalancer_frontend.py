@@ -298,9 +298,9 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                  loadbalancer: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerFrontendNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendNetworkArgs', 'LoadbalancerFrontendNetworkArgsDict']]]]] = None,
                  port: Optional[pulumi.Input[int]] = None,
-                 properties: Optional[pulumi.Input[pulumi.InputType['LoadbalancerFrontendPropertiesArgs']]] = None,
+                 properties: Optional[pulumi.Input[Union['LoadbalancerFrontendPropertiesArgs', 'LoadbalancerFrontendPropertiesArgsDict']]] = None,
                  __props__=None):
         """
         This resource represents load balancer frontend service.
@@ -317,35 +317,35 @@ class LoadbalancerFrontend(pulumi.CustomResource):
             lb_zone = "fi-hel2"
         lb_network = upcloud.Network("lbNetwork",
             zone=lb_zone,
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         lb_fe1 = upcloud.LoadbalancerFrontend("lbFe1",
             loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"],
             mode="http",
             port=8080,
             default_backend_name=resource["upcloud_loadbalancer_backend"]["lb_be_1"]["name"],
-            networks=[upcloud.LoadbalancerFrontendNetworkArgs(
-                name=resource["upcloud_loadbalancer"]["lb"]["networks"][1]["name"],
-            )])
+            networks=[{
+                "name": resource["upcloud_loadbalancer"]["lb"]["networks"][1]["name"],
+            }])
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
             plan="development",
             zone=lb_zone,
             networks=[
-                upcloud.LoadbalancerNetworkArgs(
-                    name="Private-Net",
-                    type="private",
-                    family="IPv4",
-                    network=resource["upcloud_network"]["lb_network"]["id"],
-                ),
-                upcloud.LoadbalancerNetworkArgs(
-                    name="Public-Net",
-                    type="public",
-                    family="IPv4",
-                ),
+                {
+                    "name": "Private-Net",
+                    "type": "private",
+                    "family": "IPv4",
+                    "network": resource["upcloud_network"]["lb_network"]["id"],
+                },
+                {
+                    "name": "Public-Net",
+                    "type": "public",
+                    "family": "IPv4",
+                },
             ])
         lb_be1 = upcloud.LoadbalancerBackend("lbBe1", loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"])
         ```
@@ -357,10 +357,10 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param pulumi.Input[str] loadbalancer: UUID of the load balancer to which the frontend is connected.
         :param pulumi.Input[str] mode: When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
         :param pulumi.Input[str] name: The name of the frontend. Must be unique within the load balancer service.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerFrontendNetworkArgs']]]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendNetworkArgs', 'LoadbalancerFrontendNetworkArgsDict']]]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
                be required when deprecated field `network` is removed from load balancer resource.
         :param pulumi.Input[int] port: Port to listen for incoming requests.
-        :param pulumi.Input[pulumi.InputType['LoadbalancerFrontendPropertiesArgs']] properties: Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
+        :param pulumi.Input[Union['LoadbalancerFrontendPropertiesArgs', 'LoadbalancerFrontendPropertiesArgsDict']] properties: Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
         """
         ...
     @overload
@@ -383,35 +383,35 @@ class LoadbalancerFrontend(pulumi.CustomResource):
             lb_zone = "fi-hel2"
         lb_network = upcloud.Network("lbNetwork",
             zone=lb_zone,
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         lb_fe1 = upcloud.LoadbalancerFrontend("lbFe1",
             loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"],
             mode="http",
             port=8080,
             default_backend_name=resource["upcloud_loadbalancer_backend"]["lb_be_1"]["name"],
-            networks=[upcloud.LoadbalancerFrontendNetworkArgs(
-                name=resource["upcloud_loadbalancer"]["lb"]["networks"][1]["name"],
-            )])
+            networks=[{
+                "name": resource["upcloud_loadbalancer"]["lb"]["networks"][1]["name"],
+            }])
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
             plan="development",
             zone=lb_zone,
             networks=[
-                upcloud.LoadbalancerNetworkArgs(
-                    name="Private-Net",
-                    type="private",
-                    family="IPv4",
-                    network=resource["upcloud_network"]["lb_network"]["id"],
-                ),
-                upcloud.LoadbalancerNetworkArgs(
-                    name="Public-Net",
-                    type="public",
-                    family="IPv4",
-                ),
+                {
+                    "name": "Private-Net",
+                    "type": "private",
+                    "family": "IPv4",
+                    "network": resource["upcloud_network"]["lb_network"]["id"],
+                },
+                {
+                    "name": "Public-Net",
+                    "type": "public",
+                    "family": "IPv4",
+                },
             ])
         lb_be1 = upcloud.LoadbalancerBackend("lbBe1", loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"])
         ```
@@ -435,9 +435,9 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                  loadbalancer: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerFrontendNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendNetworkArgs', 'LoadbalancerFrontendNetworkArgsDict']]]]] = None,
                  port: Optional[pulumi.Input[int]] = None,
-                 properties: Optional[pulumi.Input[pulumi.InputType['LoadbalancerFrontendPropertiesArgs']]] = None,
+                 properties: Optional[pulumi.Input[Union['LoadbalancerFrontendPropertiesArgs', 'LoadbalancerFrontendPropertiesArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -478,9 +478,9 @@ class LoadbalancerFrontend(pulumi.CustomResource):
             loadbalancer: Optional[pulumi.Input[str]] = None,
             mode: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerFrontendNetworkArgs']]]]] = None,
+            networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendNetworkArgs', 'LoadbalancerFrontendNetworkArgsDict']]]]] = None,
             port: Optional[pulumi.Input[int]] = None,
-            properties: Optional[pulumi.Input[pulumi.InputType['LoadbalancerFrontendPropertiesArgs']]] = None,
+            properties: Optional[pulumi.Input[Union['LoadbalancerFrontendPropertiesArgs', 'LoadbalancerFrontendPropertiesArgsDict']]] = None,
             rules: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             tls_configs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'LoadbalancerFrontend':
         """
@@ -495,10 +495,10 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param pulumi.Input[str] loadbalancer: UUID of the load balancer to which the frontend is connected.
         :param pulumi.Input[str] mode: When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
         :param pulumi.Input[str] name: The name of the frontend. Must be unique within the load balancer service.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerFrontendNetworkArgs']]]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendNetworkArgs', 'LoadbalancerFrontendNetworkArgsDict']]]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
                be required when deprecated field `network` is removed from load balancer resource.
         :param pulumi.Input[int] port: Port to listen for incoming requests.
-        :param pulumi.Input[pulumi.InputType['LoadbalancerFrontendPropertiesArgs']] properties: Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
+        :param pulumi.Input[Union['LoadbalancerFrontendPropertiesArgs', 'LoadbalancerFrontendPropertiesArgsDict']] properties: Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rules: Set of frontend rule names.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_configs: Set of TLS config names.
         """

@@ -359,12 +359,12 @@ class Storage(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup_rule: Optional[pulumi.Input[pulumi.InputType['StorageBackupRuleArgs']]] = None,
-                 clone: Optional[pulumi.Input[pulumi.InputType['StorageCloneArgs']]] = None,
+                 backup_rule: Optional[pulumi.Input[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict']]] = None,
+                 clone: Optional[pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']]] = None,
                  delete_autoresize_backup: Optional[pulumi.Input[bool]] = None,
                  encrypt: Optional[pulumi.Input[bool]] = None,
                  filesystem_autoresize: Optional[pulumi.Input[bool]] = None,
-                 import_: Optional[pulumi.Input[pulumi.InputType['StorageImportArgs']]] = None,
+                 import_: Optional[pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  tier: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None,
@@ -381,7 +381,7 @@ class Storage(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['StorageCloneArgs']] clone: Block defining another storage/template to clone to storage
+        :param pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']] clone: Block defining another storage/template to clone to storage
         :param pulumi.Input[bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
                success.
         :param pulumi.Input[bool] encrypt: Sets if the storage is encrypted at rest
@@ -389,7 +389,7 @@ class Storage(pulumi.CustomResource):
                note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
                backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
                delete_autoresize_backup option is set to true). Taking and keeping backups incure costs.
-        :param pulumi.Input[pulumi.InputType['StorageImportArgs']] import_: Block defining external data to import to storage
+        :param pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']] import_: Block defining external data to import to storage
         :param pulumi.Input[int] size: The size of the storage in gigabytes
         :param pulumi.Input[str] tier: The storage tier to use
         :param pulumi.Input[str] title: A short, informative description
@@ -425,12 +425,12 @@ class Storage(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup_rule: Optional[pulumi.Input[pulumi.InputType['StorageBackupRuleArgs']]] = None,
-                 clone: Optional[pulumi.Input[pulumi.InputType['StorageCloneArgs']]] = None,
+                 backup_rule: Optional[pulumi.Input[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict']]] = None,
+                 clone: Optional[pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']]] = None,
                  delete_autoresize_backup: Optional[pulumi.Input[bool]] = None,
                  encrypt: Optional[pulumi.Input[bool]] = None,
                  filesystem_autoresize: Optional[pulumi.Input[bool]] = None,
-                 import_: Optional[pulumi.Input[pulumi.InputType['StorageImportArgs']]] = None,
+                 import_: Optional[pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  tier: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None,
@@ -470,12 +470,12 @@ class Storage(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backup_rule: Optional[pulumi.Input[pulumi.InputType['StorageBackupRuleArgs']]] = None,
-            clone: Optional[pulumi.Input[pulumi.InputType['StorageCloneArgs']]] = None,
+            backup_rule: Optional[pulumi.Input[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict']]] = None,
+            clone: Optional[pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']]] = None,
             delete_autoresize_backup: Optional[pulumi.Input[bool]] = None,
             encrypt: Optional[pulumi.Input[bool]] = None,
             filesystem_autoresize: Optional[pulumi.Input[bool]] = None,
-            import_: Optional[pulumi.Input[pulumi.InputType['StorageImportArgs']]] = None,
+            import_: Optional[pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']]] = None,
             size: Optional[pulumi.Input[int]] = None,
             tier: Optional[pulumi.Input[str]] = None,
             title: Optional[pulumi.Input[str]] = None,
@@ -487,7 +487,7 @@ class Storage(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['StorageCloneArgs']] clone: Block defining another storage/template to clone to storage
+        :param pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']] clone: Block defining another storage/template to clone to storage
         :param pulumi.Input[bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
                success.
         :param pulumi.Input[bool] encrypt: Sets if the storage is encrypted at rest
@@ -495,7 +495,7 @@ class Storage(pulumi.CustomResource):
                note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
                backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
                delete_autoresize_backup option is set to true). Taking and keeping backups incure costs.
-        :param pulumi.Input[pulumi.InputType['StorageImportArgs']] import_: Block defining external data to import to storage
+        :param pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']] import_: Block defining external data to import to storage
         :param pulumi.Input[int] size: The size of the storage in gigabytes
         :param pulumi.Input[str] tier: The storage tier to use
         :param pulumi.Input[str] title: A short, informative description

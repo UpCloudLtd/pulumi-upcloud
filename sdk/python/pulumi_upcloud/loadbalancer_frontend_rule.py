@@ -192,9 +192,9 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 actions: Optional[pulumi.Input[pulumi.InputType['LoadbalancerFrontendRuleActionsArgs']]] = None,
+                 actions: Optional[pulumi.Input[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict']]] = None,
                  frontend: Optional[pulumi.Input[str]] = None,
-                 matchers: Optional[pulumi.Input[pulumi.InputType['LoadbalancerFrontendRuleMatchersArgs']]] = None,
+                 matchers: Optional[pulumi.Input[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -213,24 +213,24 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
             lb_zone = "fi-hel2"
         lb_network = upcloud.Network("lbNetwork",
             zone=lb_zone,
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         lb_fe1_r1 = upcloud.LoadbalancerFrontendRule("lbFe1R1",
             frontend=resource["upcloud_loadbalancer_frontend"]["lb_fe_1"]["id"],
             priority=10,
-            matchers=upcloud.LoadbalancerFrontendRuleMatchersArgs(
-                src_ips=[upcloud.LoadbalancerFrontendRuleMatchersSrcIpArgs(
-                    value="192.168.0.0/24",
-                )],
-            ),
-            actions=upcloud.LoadbalancerFrontendRuleActionsArgs(
-                use_backends=[upcloud.LoadbalancerFrontendRuleActionsUseBackendArgs(
-                    backend_name=resource["upcloud_loadbalancer_backend"]["lb_be_1"]["name"],
-                )],
-            ))
+            matchers={
+                "src_ips": [{
+                    "value": "192.168.0.0/24",
+                }],
+            },
+            actions={
+                "use_backends": [{
+                    "backend_name": resource["upcloud_loadbalancer_backend"]["lb_be_1"]["name"],
+                }],
+            })
         lb_fe1 = upcloud.LoadbalancerFrontend("lbFe1",
             loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"],
             mode="http",
@@ -246,9 +246,9 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['LoadbalancerFrontendRuleActionsArgs']] actions: Set of rule actions.
+        :param pulumi.Input[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict']] actions: Set of rule actions.
         :param pulumi.Input[str] frontend: ID of the load balancer frontend to which the rule is connected.
-        :param pulumi.Input[pulumi.InputType['LoadbalancerFrontendRuleMatchersArgs']] matchers: Set of rule matchers. if rule doesn't have matchers, then action applies to all incoming requests.
+        :param pulumi.Input[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict']] matchers: Set of rule matchers. if rule doesn't have matchers, then action applies to all incoming requests.
         :param pulumi.Input[str] name: The name of the frontend rule must be unique within the load balancer service.
         :param pulumi.Input[int] priority: Rule with the higher priority goes first. Rules with the same priority processed in alphabetical order.
         """
@@ -273,24 +273,24 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
             lb_zone = "fi-hel2"
         lb_network = upcloud.Network("lbNetwork",
             zone=lb_zone,
-            ip_network=upcloud.NetworkIpNetworkArgs(
-                address="10.0.0.0/24",
-                dhcp=True,
-                family="IPv4",
-            ))
+            ip_network={
+                "address": "10.0.0.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            })
         lb_fe1_r1 = upcloud.LoadbalancerFrontendRule("lbFe1R1",
             frontend=resource["upcloud_loadbalancer_frontend"]["lb_fe_1"]["id"],
             priority=10,
-            matchers=upcloud.LoadbalancerFrontendRuleMatchersArgs(
-                src_ips=[upcloud.LoadbalancerFrontendRuleMatchersSrcIpArgs(
-                    value="192.168.0.0/24",
-                )],
-            ),
-            actions=upcloud.LoadbalancerFrontendRuleActionsArgs(
-                use_backends=[upcloud.LoadbalancerFrontendRuleActionsUseBackendArgs(
-                    backend_name=resource["upcloud_loadbalancer_backend"]["lb_be_1"]["name"],
-                )],
-            ))
+            matchers={
+                "src_ips": [{
+                    "value": "192.168.0.0/24",
+                }],
+            },
+            actions={
+                "use_backends": [{
+                    "backend_name": resource["upcloud_loadbalancer_backend"]["lb_be_1"]["name"],
+                }],
+            })
         lb_fe1 = upcloud.LoadbalancerFrontend("lbFe1",
             loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"],
             mode="http",
@@ -319,9 +319,9 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 actions: Optional[pulumi.Input[pulumi.InputType['LoadbalancerFrontendRuleActionsArgs']]] = None,
+                 actions: Optional[pulumi.Input[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict']]] = None,
                  frontend: Optional[pulumi.Input[str]] = None,
-                 matchers: Optional[pulumi.Input[pulumi.InputType['LoadbalancerFrontendRuleMatchersArgs']]] = None,
+                 matchers: Optional[pulumi.Input[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -352,9 +352,9 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            actions: Optional[pulumi.Input[pulumi.InputType['LoadbalancerFrontendRuleActionsArgs']]] = None,
+            actions: Optional[pulumi.Input[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict']]] = None,
             frontend: Optional[pulumi.Input[str]] = None,
-            matchers: Optional[pulumi.Input[pulumi.InputType['LoadbalancerFrontendRuleMatchersArgs']]] = None,
+            matchers: Optional[pulumi.Input[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             priority: Optional[pulumi.Input[int]] = None) -> 'LoadbalancerFrontendRule':
         """
@@ -364,9 +364,9 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['LoadbalancerFrontendRuleActionsArgs']] actions: Set of rule actions.
+        :param pulumi.Input[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict']] actions: Set of rule actions.
         :param pulumi.Input[str] frontend: ID of the load balancer frontend to which the rule is connected.
-        :param pulumi.Input[pulumi.InputType['LoadbalancerFrontendRuleMatchersArgs']] matchers: Set of rule matchers. if rule doesn't have matchers, then action applies to all incoming requests.
+        :param pulumi.Input[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict']] matchers: Set of rule matchers. if rule doesn't have matchers, then action applies to all incoming requests.
         :param pulumi.Input[str] name: The name of the frontend rule must be unique within the load balancer service.
         :param pulumi.Input[int] priority: Rule with the higher priority goes first. Rules with the same priority processed in alphabetical order.
         """
