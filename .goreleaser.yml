@@ -1,3 +1,4 @@
+version: 2
 archives:
   - id: archive
     name_template: '{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}'
@@ -5,7 +6,7 @@ before:
   hooks:
     - make tfgen
 builds:
-  - binary: pulumi-resource-xyz
+  - binary: pulumi-resource-upcloud
     dir: provider
     env:
       - CGO_ENABLED=0
@@ -18,10 +19,10 @@ builds:
       - linux
     ldflags:
       # The line below MUST align with the module in current provider/go.mod
-      - -X github.com/pulumi/pulumi-xyz/provider/pkg/version.Version={{.Tag }}
-    main: ./cmd/pulumi-resource-xyz/
+      - -X github.com/UpCloudLtd/pulumi-upcloud/provider/pkg/version.Version={{.Tag }}
+    main: ./cmd/pulumi-resource-upcloud/
 changelog:
-  skip: true
+  disable: true
 release:
   disable: false
   prerelease: auto
