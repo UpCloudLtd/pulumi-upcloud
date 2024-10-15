@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource represents load balancer's static backend member
+// This resource represents load balancer static backend member
 //
 // ## Example Usage
 //
@@ -82,18 +82,16 @@ type LoadbalancerStaticBackendMember struct {
 	// ID of the load balancer backend to which the member is connected.
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// Indicates if the member is enabled. Disabled members are excluded from load balancing.
-	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
-	// Server IP address in the customer private network.
+	Enabled pulumi.BoolOutput `pulumi:"enabled"`
+	// Optional fallback IP address in case of failure on DNS resolving.
 	Ip pulumi.StringOutput `pulumi:"ip"`
 	// Maximum number of sessions before queueing.
 	MaxSessions pulumi.IntOutput `pulumi:"maxSessions"`
-	// The name of the member must be unique within the load balancer backend service.
+	// The name of the member. Must be unique within within the load balancer backend.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Server port.
+	// Server port. Port is optional and can be specified in DNS SRV record.
 	Port pulumi.IntOutput `pulumi:"port"`
-	// Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-	// weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-	// will not participate in load balancing but will still accept persistent connections.
+	// Weight of the member. The higher the weight, the more traffic the member receives.
 	Weight pulumi.IntOutput `pulumi:"weight"`
 }
 
@@ -107,14 +105,8 @@ func NewLoadbalancerStaticBackendMember(ctx *pulumi.Context,
 	if args.Backend == nil {
 		return nil, errors.New("invalid value for required argument 'Backend'")
 	}
-	if args.Ip == nil {
-		return nil, errors.New("invalid value for required argument 'Ip'")
-	}
 	if args.MaxSessions == nil {
 		return nil, errors.New("invalid value for required argument 'MaxSessions'")
-	}
-	if args.Port == nil {
-		return nil, errors.New("invalid value for required argument 'Port'")
 	}
 	if args.Weight == nil {
 		return nil, errors.New("invalid value for required argument 'Weight'")
@@ -146,17 +138,15 @@ type loadbalancerStaticBackendMemberState struct {
 	Backend *string `pulumi:"backend"`
 	// Indicates if the member is enabled. Disabled members are excluded from load balancing.
 	Enabled *bool `pulumi:"enabled"`
-	// Server IP address in the customer private network.
+	// Optional fallback IP address in case of failure on DNS resolving.
 	Ip *string `pulumi:"ip"`
 	// Maximum number of sessions before queueing.
 	MaxSessions *int `pulumi:"maxSessions"`
-	// The name of the member must be unique within the load balancer backend service.
+	// The name of the member. Must be unique within within the load balancer backend.
 	Name *string `pulumi:"name"`
-	// Server port.
+	// Server port. Port is optional and can be specified in DNS SRV record.
 	Port *int `pulumi:"port"`
-	// Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-	// weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-	// will not participate in load balancing but will still accept persistent connections.
+	// Weight of the member. The higher the weight, the more traffic the member receives.
 	Weight *int `pulumi:"weight"`
 }
 
@@ -165,17 +155,15 @@ type LoadbalancerStaticBackendMemberState struct {
 	Backend pulumi.StringPtrInput
 	// Indicates if the member is enabled. Disabled members are excluded from load balancing.
 	Enabled pulumi.BoolPtrInput
-	// Server IP address in the customer private network.
+	// Optional fallback IP address in case of failure on DNS resolving.
 	Ip pulumi.StringPtrInput
 	// Maximum number of sessions before queueing.
 	MaxSessions pulumi.IntPtrInput
-	// The name of the member must be unique within the load balancer backend service.
+	// The name of the member. Must be unique within within the load balancer backend.
 	Name pulumi.StringPtrInput
-	// Server port.
+	// Server port. Port is optional and can be specified in DNS SRV record.
 	Port pulumi.IntPtrInput
-	// Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-	// weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-	// will not participate in load balancing but will still accept persistent connections.
+	// Weight of the member. The higher the weight, the more traffic the member receives.
 	Weight pulumi.IntPtrInput
 }
 
@@ -188,17 +176,15 @@ type loadbalancerStaticBackendMemberArgs struct {
 	Backend string `pulumi:"backend"`
 	// Indicates if the member is enabled. Disabled members are excluded from load balancing.
 	Enabled *bool `pulumi:"enabled"`
-	// Server IP address in the customer private network.
-	Ip string `pulumi:"ip"`
+	// Optional fallback IP address in case of failure on DNS resolving.
+	Ip *string `pulumi:"ip"`
 	// Maximum number of sessions before queueing.
 	MaxSessions int `pulumi:"maxSessions"`
-	// The name of the member must be unique within the load balancer backend service.
+	// The name of the member. Must be unique within within the load balancer backend.
 	Name *string `pulumi:"name"`
-	// Server port.
-	Port int `pulumi:"port"`
-	// Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-	// weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-	// will not participate in load balancing but will still accept persistent connections.
+	// Server port. Port is optional and can be specified in DNS SRV record.
+	Port *int `pulumi:"port"`
+	// Weight of the member. The higher the weight, the more traffic the member receives.
 	Weight int `pulumi:"weight"`
 }
 
@@ -208,17 +194,15 @@ type LoadbalancerStaticBackendMemberArgs struct {
 	Backend pulumi.StringInput
 	// Indicates if the member is enabled. Disabled members are excluded from load balancing.
 	Enabled pulumi.BoolPtrInput
-	// Server IP address in the customer private network.
-	Ip pulumi.StringInput
+	// Optional fallback IP address in case of failure on DNS resolving.
+	Ip pulumi.StringPtrInput
 	// Maximum number of sessions before queueing.
 	MaxSessions pulumi.IntInput
-	// The name of the member must be unique within the load balancer backend service.
+	// The name of the member. Must be unique within within the load balancer backend.
 	Name pulumi.StringPtrInput
-	// Server port.
-	Port pulumi.IntInput
-	// Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-	// weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-	// will not participate in load balancing but will still accept persistent connections.
+	// Server port. Port is optional and can be specified in DNS SRV record.
+	Port pulumi.IntPtrInput
+	// Weight of the member. The higher the weight, the more traffic the member receives.
 	Weight pulumi.IntInput
 }
 
@@ -315,11 +299,11 @@ func (o LoadbalancerStaticBackendMemberOutput) Backend() pulumi.StringOutput {
 }
 
 // Indicates if the member is enabled. Disabled members are excluded from load balancing.
-func (o LoadbalancerStaticBackendMemberOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *LoadbalancerStaticBackendMember) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+func (o LoadbalancerStaticBackendMemberOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *LoadbalancerStaticBackendMember) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Server IP address in the customer private network.
+// Optional fallback IP address in case of failure on DNS resolving.
 func (o LoadbalancerStaticBackendMemberOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerStaticBackendMember) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
 }
@@ -329,19 +313,17 @@ func (o LoadbalancerStaticBackendMemberOutput) MaxSessions() pulumi.IntOutput {
 	return o.ApplyT(func(v *LoadbalancerStaticBackendMember) pulumi.IntOutput { return v.MaxSessions }).(pulumi.IntOutput)
 }
 
-// The name of the member must be unique within the load balancer backend service.
+// The name of the member. Must be unique within within the load balancer backend.
 func (o LoadbalancerStaticBackendMemberOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerStaticBackendMember) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Server port.
+// Server port. Port is optional and can be specified in DNS SRV record.
 func (o LoadbalancerStaticBackendMemberOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *LoadbalancerStaticBackendMember) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
 
-// Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-// weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-// will not participate in load balancing but will still accept persistent connections.
+// Weight of the member. The higher the weight, the more traffic the member receives.
 func (o LoadbalancerStaticBackendMemberOutput) Weight() pulumi.IntOutput {
 	return o.ApplyT(func(v *LoadbalancerStaticBackendMember) pulumi.IntOutput { return v.Weight }).(pulumi.IntOutput)
 }

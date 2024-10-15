@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * This resource represents load balancer backend service
+ * This resource represents load balancer backend service.
  *
  * ## Example Usage
  *
@@ -63,27 +63,24 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
     }
 
     /**
-     * ID of the load balancer to which the backend is connected.
+     * UUID of the load balancer to which the backend is connected.
      */
     public readonly loadbalancer!: pulumi.Output<string>;
     /**
-     * Backend members receive traffic dispatched from the frontends
+     * Backend member server UUIDs. Members receive traffic dispatched from the frontends.
      */
     public /*out*/ readonly members!: pulumi.Output<string[]>;
     /**
-     * The name of the backend must be unique within the load balancer service.
+     * The name of the backend. Must be unique within the load balancer service.
      */
     public readonly name!: pulumi.Output<string>;
+    public readonly properties!: pulumi.Output<outputs.LoadbalancerBackendProperties | undefined>;
     /**
-     * Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
+     * Domain name resolver used with dynamic type members.
      */
-    public readonly properties!: pulumi.Output<outputs.LoadbalancerBackendProperties>;
+    public readonly resolverName!: pulumi.Output<string>;
     /**
-     * Domain Name Resolver used with dynamic type members.
-     */
-    public readonly resolverName!: pulumi.Output<string | undefined>;
-    /**
-     * Set of TLS config names
+     * Set of TLS config names.
      */
     public /*out*/ readonly tlsConfigs!: pulumi.Output<string[]>;
 
@@ -128,27 +125,24 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
  */
 export interface LoadbalancerBackendState {
     /**
-     * ID of the load balancer to which the backend is connected.
+     * UUID of the load balancer to which the backend is connected.
      */
     loadbalancer?: pulumi.Input<string>;
     /**
-     * Backend members receive traffic dispatched from the frontends
+     * Backend member server UUIDs. Members receive traffic dispatched from the frontends.
      */
     members?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The name of the backend must be unique within the load balancer service.
+     * The name of the backend. Must be unique within the load balancer service.
      */
     name?: pulumi.Input<string>;
-    /**
-     * Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
-     */
     properties?: pulumi.Input<inputs.LoadbalancerBackendProperties>;
     /**
-     * Domain Name Resolver used with dynamic type members.
+     * Domain name resolver used with dynamic type members.
      */
     resolverName?: pulumi.Input<string>;
     /**
-     * Set of TLS config names
+     * Set of TLS config names.
      */
     tlsConfigs?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -158,19 +152,16 @@ export interface LoadbalancerBackendState {
  */
 export interface LoadbalancerBackendArgs {
     /**
-     * ID of the load balancer to which the backend is connected.
+     * UUID of the load balancer to which the backend is connected.
      */
     loadbalancer: pulumi.Input<string>;
     /**
-     * The name of the backend must be unique within the load balancer service.
+     * The name of the backend. Must be unique within the load balancer service.
      */
     name?: pulumi.Input<string>;
-    /**
-     * Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
-     */
     properties?: pulumi.Input<inputs.LoadbalancerBackendProperties>;
     /**
-     * Domain Name Resolver used with dynamic type members.
+     * Domain name resolver used with dynamic type members.
      */
     resolverName?: pulumi.Input<string>;
 }

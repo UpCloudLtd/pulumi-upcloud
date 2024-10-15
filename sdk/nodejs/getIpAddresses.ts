@@ -19,7 +19,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getIpAddresses(opts?: pulumi.InvokeOptions): Promise<GetIpAddressesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("upcloud:index/getIpAddresses:getIpAddresses", {
     }, opts);
@@ -48,5 +47,7 @@ export interface GetIpAddressesResult {
  * ```
  */
 export function getIpAddressesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetIpAddressesResult> {
-    return pulumi.output(getIpAddresses(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("upcloud:index/getIpAddresses:getIpAddresses", {
+    }, opts);
 }

@@ -148,14 +148,7 @@
                         "maxItemsOne": false
                     },
                     "properties": {
-                        "maxItemsOne": true,
-                        "elem": {
-                            "fields": {
-                                "tls_configs": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
+                        "maxItemsOne": true
                     },
                     "tls_configs": {
                         "maxItemsOne": false
@@ -501,6 +494,9 @@
                     }
                 }
             },
+            "upcloud_managed_object_storage_custom_domain": {
+                "current": "upcloud:index/managedObjectStorageCustomDomain:ManagedObjectStorageCustomDomain"
+            },
             "upcloud_managed_object_storage_policy": {
                 "current": "upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy"
             },
@@ -662,6 +658,9 @@
             "upcloud_kubernetes_cluster": {
                 "current": "upcloud:index/getKubernetesCluster:getKubernetesCluster"
             },
+            "upcloud_load_balancer_dns_challenge_domain": {
+                "current": "upcloud:index/getLoadBalancerDnsChallengeDomain:getLoadBalancerDnsChallengeDomain"
+            },
             "upcloud_managed_database_mysql_sessions": {
                 "current": "upcloud:index/getManagedDatabaseMysqlSessions:getManagedDatabaseMysqlSessions",
                 "fields": {
@@ -803,16 +802,16 @@
             "upcloud:index/kubernetesCluster:KubernetesCluster": 1,
             "upcloud:index/kubernetesNodeGroup:KubernetesNodeGroup": 1,
             "upcloud:index/loadbalancer:Loadbalancer": 0,
-            "upcloud:index/loadbalancerBackend:LoadbalancerBackend": 0,
+            "upcloud:index/loadbalancerBackend:LoadbalancerBackend": 1,
             "upcloud:index/loadbalancerBackendTlsConfig:LoadbalancerBackendTlsConfig": 1,
-            "upcloud:index/loadbalancerDynamicBackendMember:LoadbalancerDynamicBackendMember": 0,
+            "upcloud:index/loadbalancerDynamicBackendMember:LoadbalancerDynamicBackendMember": 1,
             "upcloud:index/loadbalancerDynamicCertificateBundle:LoadbalancerDynamicCertificateBundle": 1,
             "upcloud:index/loadbalancerFrontend:LoadbalancerFrontend": 1,
-            "upcloud:index/loadbalancerFrontendRule:LoadbalancerFrontendRule": 0,
+            "upcloud:index/loadbalancerFrontendRule:LoadbalancerFrontendRule": 1,
             "upcloud:index/loadbalancerFrontendTlsConfig:LoadbalancerFrontendTlsConfig": 1,
             "upcloud:index/loadbalancerManualCertificateBundle:LoadbalancerManualCertificateBundle": 1,
-            "upcloud:index/loadbalancerResolver:LoadbalancerResolver": 0,
-            "upcloud:index/loadbalancerStaticBackendMember:LoadbalancerStaticBackendMember": 0,
+            "upcloud:index/loadbalancerResolver:LoadbalancerResolver": 1,
+            "upcloud:index/loadbalancerStaticBackendMember:LoadbalancerStaticBackendMember": 1,
             "upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase": 0,
             "upcloud:index/managedDatabaseMysql:ManagedDatabaseMysql": 0,
             "upcloud:index/managedDatabaseOpensearch:ManagedDatabaseOpensearch": 0,
@@ -820,6 +819,7 @@
             "upcloud:index/managedDatabaseRedis:ManagedDatabaseRedis": 0,
             "upcloud:index/managedDatabaseUser:ManagedDatabaseUser": 0,
             "upcloud:index/managedObjectStorage:ManagedObjectStorage": 0,
+            "upcloud:index/managedObjectStorageCustomDomain:ManagedObjectStorageCustomDomain": 1,
             "upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy": 1,
             "upcloud:index/managedObjectStorageUser:ManagedObjectStorageUser": 0,
             "upcloud:index/managedObjectStorageUserAccessKey:ManagedObjectStorageUserAccessKey": 0,
@@ -839,6 +839,7 @@
             "upcloud:index/getHosts:getHosts": 1,
             "upcloud:index/getIpAddresses:getIpAddresses": 0,
             "upcloud:index/getKubernetesCluster:getKubernetesCluster": 1,
+            "upcloud:index/getLoadBalancerDnsChallengeDomain:getLoadBalancerDnsChallengeDomain": 1,
             "upcloud:index/getManagedDatabaseMysqlSessions:getManagedDatabaseMysqlSessions": 0,
             "upcloud:index/getManagedDatabaseOpensearchIndices:getManagedDatabaseOpensearchIndices": 0,
             "upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions": 0,
@@ -846,7 +847,7 @@
             "upcloud:index/getManagedObjectStoragePolicies:getManagedObjectStoragePolicies": 0,
             "upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions": 1,
             "upcloud:index/getNetworks:getNetworks": 0,
-            "upcloud:index/getStorage:getStorage": 0,
+            "upcloud:index/getStorage:getStorage": 1,
             "upcloud:index/getTags:getTags": 0,
             "upcloud:index/getZone:getZone": 1,
             "upcloud:index/getZones:getZones": 1

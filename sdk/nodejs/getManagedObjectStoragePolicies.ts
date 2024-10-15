@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  * Policies available for a Managed Object Storage resource. See `managedObjectStorageUserPolicy` for attaching to a user.
  */
 export function getManagedObjectStoragePolicies(args: GetManagedObjectStoragePoliciesArgs, opts?: pulumi.InvokeOptions): Promise<GetManagedObjectStoragePoliciesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("upcloud:index/getManagedObjectStoragePolicies:getManagedObjectStoragePolicies", {
         "serviceUuid": args.serviceUuid,
@@ -39,7 +38,10 @@ export interface GetManagedObjectStoragePoliciesResult {
  * Policies available for a Managed Object Storage resource. See `managedObjectStorageUserPolicy` for attaching to a user.
  */
 export function getManagedObjectStoragePoliciesOutput(args: GetManagedObjectStoragePoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetManagedObjectStoragePoliciesResult> {
-    return pulumi.output(args).apply((a: any) => getManagedObjectStoragePolicies(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("upcloud:index/getManagedObjectStoragePolicies:getManagedObjectStoragePolicies", {
+        "serviceUuid": args.serviceUuid,
+    }, opts);
 }
 
 /**

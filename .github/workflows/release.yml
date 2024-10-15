@@ -1,26 +1,11 @@
-name: release
+name: Release
 on:
   push:
     tags:
       - v*.*.*
-env:
-  # THIS GITHUB_TOKEN IS A REQUIREMENT TO BE ABLE TO WRITE TO GH RELEASES
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  # IF YOU NEED TO PUBLISH A NPM PACKAGE THEN ENSURE A NPM_TOKEN SECRET IS SET
-  # AND PUBLISH_NPM: TRUE. IF YOU WANT TO PUBLISH TO A PRIVATE NPM REGISTRY
-  # THEN ENSURE THE NPM_REGISTRY_URL IS CHANGED
-  PUBLISH_NPM: false
-  # IF YOU NEED TO PUBLISH A NUGET PACKAGE THEN ENSURE AN NUGET_PUBLISH_KEY
-  # SECRET IS SET AND PUBLISH_NUGET: TRUE. IF YOU WANT TO PUBLISH TO AN ALTERNATIVE
-  # NPM REGISTRY THEN ENSURE THE NPM_REGISTRY_URL IS CHANGED
-  PUBLISH_NUGET: false
-  # IF YOU NEED TO PUBLISH A PYPI PACKAGE SET PUBLISH_PYPI: TRUE AND CHANGE PYPI_PASSWORD, PYPI_USERNAME TO YOUR CREDENTIALS.
-  # IF YOU WANT TO PUBLISH TO AN ALTERNATIVE PYPI REGISTRY THEN ENSURE THE PYPI_REPOSITORY_URL IS SET. 
-  PYPI_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-  PUBLISH_PYPI: true
 jobs:
   publish_binary:
-    name: publish
+    name: GitHub
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
@@ -42,31 +27,27 @@ jobs:
       with:
         args: -p 3 release --clean
         version: latest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       fail-fast: true
       matrix:
         goversion:
         - 1.22.x
-  publish_sdk:
-    name: Publish SDKs
+  publish_pypi:
+    name: PyPI
     runs-on: ubuntu-latest
     needs: publish_binary
     steps:
-    - name: Publish SDKs
-      uses: pulumi/pulumi-package-publisher@v0.0.20
-    strategy:
-      fail-fast: true
-      matrix:
-        dotnetversion:
-          - 3.1.301
-        goversion:
-          - 1.22.x
-        language:
-          - nodejs
-          - python
-          - dotnet
-          - go
-        nodeversion:
-          - 14.x
-        pythonversion:
-          - "3.11"
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: "3.12"
+    - name: Install dependencies
+      run: pip install build
+    - name: Build Python packages
+      run: python -m build --sdist --wheel --outdir dist/ sdk/python/
+    - name: Publish package
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        password: ${{ secrets.PYPI_API_TOKEN }}

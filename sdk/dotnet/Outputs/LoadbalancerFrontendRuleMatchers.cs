@@ -14,7 +14,7 @@ namespace Pulumi.Upcloud.Outputs
     public sealed class LoadbalancerFrontendRuleMatchers
     {
         /// <summary>
-        /// Matches by range of HTTP request body sizes
+        /// Matches by range of HTTP request body sizes.
         /// </summary>
         public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersBodySizeRange> BodySizeRanges;
         /// <summary>
@@ -50,7 +50,7 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersSrcIp> SrcIps;
         /// <summary>
-        /// Matches by range of source port numbers
+        /// Matches by range of source port numbers.
         /// </summary>
         public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersSrcPortRange> SrcPortRanges;
         /// <summary>

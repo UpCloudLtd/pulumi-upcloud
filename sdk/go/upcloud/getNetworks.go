@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := upcloud.GetNetworks(ctx, nil, nil)
+//			_, err := upcloud.GetNetworks(ctx, &upcloud.GetNetworksArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -69,14 +69,20 @@ type GetNetworksResult struct {
 
 func GetNetworksOutput(ctx *pulumi.Context, args GetNetworksOutputArgs, opts ...pulumi.InvokeOption) GetNetworksResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetNetworksResult, error) {
+		ApplyT(func(v interface{}) (GetNetworksResultOutput, error) {
 			args := v.(GetNetworksArgs)
-			r, err := GetNetworks(ctx, &args, opts...)
-			var s GetNetworksResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetNetworksResult
+			secret, err := ctx.InvokePackageRaw("upcloud:index/getNetworks:getNetworks", args, &rv, "", opts...)
+			if err != nil {
+				return GetNetworksResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetNetworksResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetNetworksResultOutput), nil
+			}
+			return output, nil
 		}).(GetNetworksResultOutput)
 }
 

@@ -12,10 +12,9 @@ namespace Pulumi.Upcloud
     public static class GetStorage
     {
         /// <summary>
-        /// Returns storage resource information based on defined arguments.  
+        /// Provides information on UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.
         /// 
-        /// Data object can be used to map storage to other resource based on the ID or just to read some other storage property like zone information.  
-        /// Storage types are: normal, backup, cdrom, template
+        /// Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `normal`, `backup`, `cdrom`, and `template`.
         /// 
         /// ## Example Usage
         /// 
@@ -74,14 +73,13 @@ namespace Pulumi.Upcloud
         /// });
         /// ```
         /// </summary>
-        public static Task<GetStorageResult> InvokeAsync(GetStorageArgs args, InvokeOptions? options = null)
+        public static Task<GetStorageResult> InvokeAsync(GetStorageArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStorageResult>("upcloud:index/getStorage:getStorage", args ?? new GetStorageArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Returns storage resource information based on defined arguments.  
+        /// Provides information on UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.
         /// 
-        /// Data object can be used to map storage to other resource based on the ID or just to read some other storage property like zone information.  
-        /// Storage types are: normal, backup, cdrom, template
+        /// Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `normal`, `backup`, `cdrom`, and `template`.
         /// 
         /// ## Example Usage
         /// 
@@ -140,7 +138,7 @@ namespace Pulumi.Upcloud
         /// });
         /// ```
         /// </summary>
-        public static Output<GetStorageResult> Invoke(GetStorageInvokeArgs args, InvokeOptions? options = null)
+        public static Output<GetStorageResult> Invoke(GetStorageInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStorageResult>("upcloud:index/getStorage:getStorage", args ?? new GetStorageInvokeArgs(), options.WithDefaults());
     }
 
@@ -149,6 +147,9 @@ namespace Pulumi.Upcloud
     {
         [Input("accessType")]
         public string? AccessType { get; set; }
+
+        [Input("id")]
+        public string? Id { get; set; }
 
         [Input("mostRecent")]
         public bool? MostRecent { get; set; }
@@ -159,8 +160,11 @@ namespace Pulumi.Upcloud
         [Input("nameRegex")]
         public string? NameRegex { get; set; }
 
-        [Input("type", required: true)]
-        public string Type { get; set; } = null!;
+        [Input("title")]
+        public string? Title { get; set; }
+
+        [Input("type")]
+        public string? Type { get; set; }
 
         [Input("zone")]
         public string? Zone { get; set; }
@@ -176,6 +180,9 @@ namespace Pulumi.Upcloud
         [Input("accessType")]
         public Input<string>? AccessType { get; set; }
 
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
         [Input("mostRecent")]
         public Input<bool>? MostRecent { get; set; }
 
@@ -185,8 +192,11 @@ namespace Pulumi.Upcloud
         [Input("nameRegex")]
         public Input<string>? NameRegex { get; set; }
 
-        [Input("type", required: true)]
-        public Input<string> Type { get; set; } = null!;
+        [Input("title")]
+        public Input<string>? Title { get; set; }
+
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -202,15 +212,15 @@ namespace Pulumi.Upcloud
     public sealed class GetStorageResult
     {
         public readonly string AccessType;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
+        public readonly bool Encrypt;
         public readonly string Id;
+        public readonly ImmutableDictionary<string, string> Labels;
         public readonly bool? MostRecent;
         public readonly string? Name;
         public readonly string? NameRegex;
         public readonly int Size;
         public readonly string State;
+        public readonly ImmutableDictionary<string, string> SystemLabels;
         public readonly string Tier;
         public readonly string Title;
         public readonly string Type;
@@ -220,7 +230,11 @@ namespace Pulumi.Upcloud
         private GetStorageResult(
             string accessType,
 
+            bool encrypt,
+
             string id,
+
+            ImmutableDictionary<string, string> labels,
 
             bool? mostRecent,
 
@@ -232,6 +246,8 @@ namespace Pulumi.Upcloud
 
             string state,
 
+            ImmutableDictionary<string, string> systemLabels,
+
             string tier,
 
             string title,
@@ -241,12 +257,15 @@ namespace Pulumi.Upcloud
             string zone)
         {
             AccessType = accessType;
+            Encrypt = encrypt;
             Id = id;
+            Labels = labels;
             MostRecent = mostRecent;
             Name = name;
             NameRegex = nameRegex;
             Size = size;
             State = state;
+            SystemLabels = systemLabels;
             Tier = tier;
             Title = title;
             Type = type;

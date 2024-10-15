@@ -12,6 +12,9 @@ namespace Pulumi.Upcloud.Inputs
 
     public sealed class LoadbalancerFrontendRuleActionsTcpRejectGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Indicates if the rule is active.
+        /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
 

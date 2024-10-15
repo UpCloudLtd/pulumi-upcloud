@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getManagedObjectStorageRegions(args?: GetManagedObjectStorageRegionsArgs, opts?: pulumi.InvokeOptions): Promise<GetManagedObjectStorageRegionsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions", {
         "regions": args.regions,
@@ -39,7 +38,11 @@ export interface GetManagedObjectStorageRegionsResult {
  * Returns a list of available Managed Object Storage regions.
  */
 export function getManagedObjectStorageRegionsOutput(args?: GetManagedObjectStorageRegionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetManagedObjectStorageRegionsResult> {
-    return pulumi.output(args).apply((a: any) => getManagedObjectStorageRegions(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions", {
+        "regions": args.regions,
+    }, opts);
 }
 
 /**

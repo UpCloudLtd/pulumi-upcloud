@@ -1,4 +1,5 @@
 {
   "resource": true,
-  "name": "upcloud"
+  "name": "upcloud",
+  "server": "https://github.com/UpCloudLtd/pulumi-upcloud/releases/"
 }

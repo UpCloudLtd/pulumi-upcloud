@@ -13,6 +13,9 @@ namespace Pulumi.Upcloud.Outputs
     [OutputType]
     public sealed class LoadbalancerFrontendRuleActionsTcpReject
     {
+        /// <summary>
+        /// Indicates if the rule is active.
+        /// </summary>
         public readonly bool? Active;
 
         [OutputConstructor]

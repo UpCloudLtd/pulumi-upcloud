@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := upcloud.GetIpAddresses(ctx, nil, nil)
+//			_, err := upcloud.GetIpAddresses(ctx, map[string]interface{}{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -54,13 +54,19 @@ type GetIpAddressesResult struct {
 }
 
 func GetIpAddressesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetIpAddressesResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetIpAddressesResult, error) {
-		r, err := GetIpAddresses(ctx, opts...)
-		var s GetIpAddressesResult
-		if r != nil {
-			s = *r
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetIpAddressesResultOutput, error) {
+		opts = internal.PkgInvokeDefaultOpts(opts)
+		var rv GetIpAddressesResult
+		secret, err := ctx.InvokePackageRaw("upcloud:index/getIpAddresses:getIpAddresses", nil, &rv, "", opts...)
+		if err != nil {
+			return GetIpAddressesResultOutput{}, err
 		}
-		return s, err
+
+		output := pulumi.ToOutput(rv).(GetIpAddressesResultOutput)
+		if secret {
+			return pulumi.ToSecret(output).(GetIpAddressesResultOutput), nil
+		}
+		return output, nil
 	}).(GetIpAddressesResultOutput)
 }
 

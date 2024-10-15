@@ -152,7 +152,7 @@ namespace Pulumi.Upcloud
         public Output<string?> StorageEncryption { get; private set; } = null!;
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
+        /// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -187,6 +187,7 @@ namespace Pulumi.Upcloud
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "https://github.com/UpCloudLtd/pulumi-upcloud/releases/",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -268,7 +269,7 @@ namespace Pulumi.Upcloud
         public Input<string>? StorageEncryption { get; set; }
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
+        /// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
@@ -370,7 +371,7 @@ namespace Pulumi.Upcloud
         public Input<string>? StorageEncryption { get; set; }
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
+        /// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

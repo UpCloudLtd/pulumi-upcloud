@@ -14,7 +14,7 @@ namespace Pulumi.Upcloud.Outputs
     public sealed class LoadbalancerFrontendRuleMatchersHttpMethod
     {
         /// <summary>
-        /// Sets if the condition should be inverted. Works similar to logical NOT operator.
+        /// Defines if the condition should be inverted. Works similarly to logical NOT operator.
         /// </summary>
         public readonly bool? Inverse;
         /// <summary>

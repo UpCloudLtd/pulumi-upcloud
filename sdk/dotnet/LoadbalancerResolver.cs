@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Upcloud
 {
     /// <summary>
-    /// This resource represents service's domain name resolver
+    /// This resource represents load balancer resolver.
     /// 
     /// ## Example Usage
     /// 
@@ -82,7 +82,7 @@ namespace Pulumi.Upcloud
         public Output<string> Loadbalancer { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the resolver must be unique within the service.
+        /// The name of the resolver. Must be unique within the service.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -135,6 +135,7 @@ namespace Pulumi.Upcloud
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "https://github.com/UpCloudLtd/pulumi-upcloud/releases/",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -177,7 +178,7 @@ namespace Pulumi.Upcloud
         public Input<string> Loadbalancer { get; set; } = null!;
 
         /// <summary>
-        /// The name of the resolver must be unique within the service.
+        /// The name of the resolver. Must be unique within the service.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -240,7 +241,7 @@ namespace Pulumi.Upcloud
         public Input<string>? Loadbalancer { get; set; }
 
         /// <summary>
-        /// The name of the resolver must be unique within the service.
+        /// The name of the resolver. Must be unique within the service.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

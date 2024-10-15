@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['LoadbalancerStaticBackendMemberArgs', 'LoadbalancerStaticBackendMember']
@@ -15,33 +20,33 @@ __all__ = ['LoadbalancerStaticBackendMemberArgs', 'LoadbalancerStaticBackendMemb
 class LoadbalancerStaticBackendMemberArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[str],
-                 ip: pulumi.Input[str],
                  max_sessions: pulumi.Input[int],
-                 port: pulumi.Input[int],
                  weight: pulumi.Input[int],
                  enabled: Optional[pulumi.Input[bool]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 ip: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a LoadbalancerStaticBackendMember resource.
         :param pulumi.Input[str] backend: ID of the load balancer backend to which the member is connected.
-        :param pulumi.Input[str] ip: Server IP address in the customer private network.
         :param pulumi.Input[int] max_sessions: Maximum number of sessions before queueing.
-        :param pulumi.Input[int] port: Server port.
-        :param pulumi.Input[int] weight: Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-               weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-               will not participate in load balancing but will still accept persistent connections.
+        :param pulumi.Input[int] weight: Weight of the member. The higher the weight, the more traffic the member receives.
         :param pulumi.Input[bool] enabled: Indicates if the member is enabled. Disabled members are excluded from load balancing.
-        :param pulumi.Input[str] name: The name of the member must be unique within the load balancer backend service.
+        :param pulumi.Input[str] ip: Optional fallback IP address in case of failure on DNS resolving.
+        :param pulumi.Input[str] name: The name of the member. Must be unique within within the load balancer backend.
+        :param pulumi.Input[int] port: Server port. Port is optional and can be specified in DNS SRV record.
         """
         pulumi.set(__self__, "backend", backend)
-        pulumi.set(__self__, "ip", ip)
         pulumi.set(__self__, "max_sessions", max_sessions)
-        pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "weight", weight)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
 
     @property
     @pulumi.getter
@@ -54,18 +59,6 @@ class LoadbalancerStaticBackendMemberArgs:
     @backend.setter
     def backend(self, value: pulumi.Input[str]):
         pulumi.set(self, "backend", value)
-
-    @property
-    @pulumi.getter
-    def ip(self) -> pulumi.Input[str]:
-        """
-        Server IP address in the customer private network.
-        """
-        return pulumi.get(self, "ip")
-
-    @ip.setter
-    def ip(self, value: pulumi.Input[str]):
-        pulumi.set(self, "ip", value)
 
     @property
     @pulumi.getter(name="maxSessions")
@@ -81,23 +74,9 @@ class LoadbalancerStaticBackendMemberArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> pulumi.Input[int]:
-        """
-        Server port.
-        """
-        return pulumi.get(self, "port")
-
-    @port.setter
-    def port(self, value: pulumi.Input[int]):
-        pulumi.set(self, "port", value)
-
-    @property
-    @pulumi.getter
     def weight(self) -> pulumi.Input[int]:
         """
-        Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-        weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-        will not participate in load balancing but will still accept persistent connections.
+        Weight of the member. The higher the weight, the more traffic the member receives.
         """
         return pulumi.get(self, "weight")
 
@@ -119,15 +98,39 @@ class LoadbalancerStaticBackendMemberArgs:
 
     @property
     @pulumi.getter
+    def ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional fallback IP address in case of failure on DNS resolving.
+        """
+        return pulumi.get(self, "ip")
+
+    @ip.setter
+    def ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip", value)
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the member must be unique within the load balancer backend service.
+        The name of the member. Must be unique within within the load balancer backend.
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Server port. Port is optional and can be specified in DNS SRV record.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
 
 
 @pulumi.input_type
@@ -144,13 +147,11 @@ class _LoadbalancerStaticBackendMemberState:
         Input properties used for looking up and filtering LoadbalancerStaticBackendMember resources.
         :param pulumi.Input[str] backend: ID of the load balancer backend to which the member is connected.
         :param pulumi.Input[bool] enabled: Indicates if the member is enabled. Disabled members are excluded from load balancing.
-        :param pulumi.Input[str] ip: Server IP address in the customer private network.
+        :param pulumi.Input[str] ip: Optional fallback IP address in case of failure on DNS resolving.
         :param pulumi.Input[int] max_sessions: Maximum number of sessions before queueing.
-        :param pulumi.Input[str] name: The name of the member must be unique within the load balancer backend service.
-        :param pulumi.Input[int] port: Server port.
-        :param pulumi.Input[int] weight: Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-               weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-               will not participate in load balancing but will still accept persistent connections.
+        :param pulumi.Input[str] name: The name of the member. Must be unique within within the load balancer backend.
+        :param pulumi.Input[int] port: Server port. Port is optional and can be specified in DNS SRV record.
+        :param pulumi.Input[int] weight: Weight of the member. The higher the weight, the more traffic the member receives.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -195,7 +196,7 @@ class _LoadbalancerStaticBackendMemberState:
     @pulumi.getter
     def ip(self) -> Optional[pulumi.Input[str]]:
         """
-        Server IP address in the customer private network.
+        Optional fallback IP address in case of failure on DNS resolving.
         """
         return pulumi.get(self, "ip")
 
@@ -219,7 +220,7 @@ class _LoadbalancerStaticBackendMemberState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the member must be unique within the load balancer backend service.
+        The name of the member. Must be unique within within the load balancer backend.
         """
         return pulumi.get(self, "name")
 
@@ -231,7 +232,7 @@ class _LoadbalancerStaticBackendMemberState:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        Server port.
+        Server port. Port is optional and can be specified in DNS SRV record.
         """
         return pulumi.get(self, "port")
 
@@ -243,9 +244,7 @@ class _LoadbalancerStaticBackendMemberState:
     @pulumi.getter
     def weight(self) -> Optional[pulumi.Input[int]]:
         """
-        Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-        weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-        will not participate in load balancing but will still accept persistent connections.
+        Weight of the member. The higher the weight, the more traffic the member receives.
         """
         return pulumi.get(self, "weight")
 
@@ -268,7 +267,7 @@ class LoadbalancerStaticBackendMember(pulumi.CustomResource):
                  weight: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        This resource represents load balancer's static backend member
+        This resource represents load balancer static backend member
 
         ## Example Usage
 
@@ -306,13 +305,11 @@ class LoadbalancerStaticBackendMember(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: ID of the load balancer backend to which the member is connected.
         :param pulumi.Input[bool] enabled: Indicates if the member is enabled. Disabled members are excluded from load balancing.
-        :param pulumi.Input[str] ip: Server IP address in the customer private network.
+        :param pulumi.Input[str] ip: Optional fallback IP address in case of failure on DNS resolving.
         :param pulumi.Input[int] max_sessions: Maximum number of sessions before queueing.
-        :param pulumi.Input[str] name: The name of the member must be unique within the load balancer backend service.
-        :param pulumi.Input[int] port: Server port.
-        :param pulumi.Input[int] weight: Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-               weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-               will not participate in load balancing but will still accept persistent connections.
+        :param pulumi.Input[str] name: The name of the member. Must be unique within within the load balancer backend.
+        :param pulumi.Input[int] port: Server port. Port is optional and can be specified in DNS SRV record.
+        :param pulumi.Input[int] weight: Weight of the member. The higher the weight, the more traffic the member receives.
         """
         ...
     @overload
@@ -321,7 +318,7 @@ class LoadbalancerStaticBackendMember(pulumi.CustomResource):
                  args: LoadbalancerStaticBackendMemberArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource represents load balancer's static backend member
+        This resource represents load balancer static backend member
 
         ## Example Usage
 
@@ -390,15 +387,11 @@ class LoadbalancerStaticBackendMember(pulumi.CustomResource):
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
             __props__.__dict__["enabled"] = enabled
-            if ip is None and not opts.urn:
-                raise TypeError("Missing required property 'ip'")
             __props__.__dict__["ip"] = ip
             if max_sessions is None and not opts.urn:
                 raise TypeError("Missing required property 'max_sessions'")
             __props__.__dict__["max_sessions"] = max_sessions
             __props__.__dict__["name"] = name
-            if port is None and not opts.urn:
-                raise TypeError("Missing required property 'port'")
             __props__.__dict__["port"] = port
             if weight is None and not opts.urn:
                 raise TypeError("Missing required property 'weight'")
@@ -429,13 +422,11 @@ class LoadbalancerStaticBackendMember(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: ID of the load balancer backend to which the member is connected.
         :param pulumi.Input[bool] enabled: Indicates if the member is enabled. Disabled members are excluded from load balancing.
-        :param pulumi.Input[str] ip: Server IP address in the customer private network.
+        :param pulumi.Input[str] ip: Optional fallback IP address in case of failure on DNS resolving.
         :param pulumi.Input[int] max_sessions: Maximum number of sessions before queueing.
-        :param pulumi.Input[str] name: The name of the member must be unique within the load balancer backend service.
-        :param pulumi.Input[int] port: Server port.
-        :param pulumi.Input[int] weight: Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-               weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-               will not participate in load balancing but will still accept persistent connections.
+        :param pulumi.Input[str] name: The name of the member. Must be unique within within the load balancer backend.
+        :param pulumi.Input[int] port: Server port. Port is optional and can be specified in DNS SRV record.
+        :param pulumi.Input[int] weight: Weight of the member. The higher the weight, the more traffic the member receives.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -460,7 +451,7 @@ class LoadbalancerStaticBackendMember(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def enabled(self) -> pulumi.Output[Optional[bool]]:
+    def enabled(self) -> pulumi.Output[bool]:
         """
         Indicates if the member is enabled. Disabled members are excluded from load balancing.
         """
@@ -470,7 +461,7 @@ class LoadbalancerStaticBackendMember(pulumi.CustomResource):
     @pulumi.getter
     def ip(self) -> pulumi.Output[str]:
         """
-        Server IP address in the customer private network.
+        Optional fallback IP address in case of failure on DNS resolving.
         """
         return pulumi.get(self, "ip")
 
@@ -486,7 +477,7 @@ class LoadbalancerStaticBackendMember(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the member must be unique within the load balancer backend service.
+        The name of the member. Must be unique within within the load balancer backend.
         """
         return pulumi.get(self, "name")
 
@@ -494,7 +485,7 @@ class LoadbalancerStaticBackendMember(pulumi.CustomResource):
     @pulumi.getter
     def port(self) -> pulumi.Output[int]:
         """
-        Server port.
+        Server port. Port is optional and can be specified in DNS SRV record.
         """
         return pulumi.get(self, "port")
 
@@ -502,9 +493,7 @@ class LoadbalancerStaticBackendMember(pulumi.CustomResource):
     @pulumi.getter
     def weight(self) -> pulumi.Output[int]:
         """
-        Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-        weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-        will not participate in load balancing but will still accept persistent connections.
+        Weight of the member. The higher the weight, the more traffic the member receives.
         """
         return pulumi.get(self, "weight")
 

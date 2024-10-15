@@ -264,7 +264,7 @@ def call_plain(
     output = pulumi.runtime.call(tok, props, res, typ)
 
     # Ingoring deps silently. They are typically non-empty, r.f() calls include r as a dependency.
-    result, known, secret, _ = _sync_await(asyncio.ensure_future(_await_output(output)))
+    result, known, secret, _ = _sync_await(asyncio.create_task(_await_output(output)))
 
     problem = None
     if not known:
@@ -321,7 +321,7 @@ def deprecated(message: str) -> typing.Callable[[C], C]:
     return decorator
 
 def get_plugin_download_url():
-	return None
+	return "https://github.com/UpCloudLtd/pulumi-upcloud/releases/"
 
 def get_version():
      return _version_str

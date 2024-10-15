@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource represents load balancer frontend rule
+// This resource represents load balancer frontend rule.
 //
 // ## Example Usage
 //
@@ -98,13 +98,15 @@ import (
 type LoadbalancerFrontendRule struct {
 	pulumi.CustomResourceState
 
-	// Set of rule actions.
+	// Rule actions.
 	Actions LoadbalancerFrontendRuleActionsPtrOutput `pulumi:"actions"`
-	// ID of the load balancer frontend to which the rule is connected.
+	// ID of the load balancer frontend to which the frontend rule is connected.
 	Frontend pulumi.StringOutput `pulumi:"frontend"`
-	// Set of rule matchers. if rule doesn't have matchers, then action applies to all incoming requests.
+	// Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
 	Matchers LoadbalancerFrontendRuleMatchersPtrOutput `pulumi:"matchers"`
-	// The name of the frontend rule must be unique within the load balancer service.
+	// Defines boolean operator used to combine multiple matchers. Defaults to `and`.
+	MatchingCondition pulumi.StringOutput `pulumi:"matchingCondition"`
+	// The name of the frontend rule. Must be unique within the frontend.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Rule with the higher priority goes first. Rules with the same priority processed in alphabetical order.
 	Priority pulumi.IntOutput `pulumi:"priority"`
@@ -146,26 +148,30 @@ func GetLoadbalancerFrontendRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoadbalancerFrontendRule resources.
 type loadbalancerFrontendRuleState struct {
-	// Set of rule actions.
+	// Rule actions.
 	Actions *LoadbalancerFrontendRuleActions `pulumi:"actions"`
-	// ID of the load balancer frontend to which the rule is connected.
+	// ID of the load balancer frontend to which the frontend rule is connected.
 	Frontend *string `pulumi:"frontend"`
-	// Set of rule matchers. if rule doesn't have matchers, then action applies to all incoming requests.
+	// Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
 	Matchers *LoadbalancerFrontendRuleMatchers `pulumi:"matchers"`
-	// The name of the frontend rule must be unique within the load balancer service.
+	// Defines boolean operator used to combine multiple matchers. Defaults to `and`.
+	MatchingCondition *string `pulumi:"matchingCondition"`
+	// The name of the frontend rule. Must be unique within the frontend.
 	Name *string `pulumi:"name"`
 	// Rule with the higher priority goes first. Rules with the same priority processed in alphabetical order.
 	Priority *int `pulumi:"priority"`
 }
 
 type LoadbalancerFrontendRuleState struct {
-	// Set of rule actions.
+	// Rule actions.
 	Actions LoadbalancerFrontendRuleActionsPtrInput
-	// ID of the load balancer frontend to which the rule is connected.
+	// ID of the load balancer frontend to which the frontend rule is connected.
 	Frontend pulumi.StringPtrInput
-	// Set of rule matchers. if rule doesn't have matchers, then action applies to all incoming requests.
+	// Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
 	Matchers LoadbalancerFrontendRuleMatchersPtrInput
-	// The name of the frontend rule must be unique within the load balancer service.
+	// Defines boolean operator used to combine multiple matchers. Defaults to `and`.
+	MatchingCondition pulumi.StringPtrInput
+	// The name of the frontend rule. Must be unique within the frontend.
 	Name pulumi.StringPtrInput
 	// Rule with the higher priority goes first. Rules with the same priority processed in alphabetical order.
 	Priority pulumi.IntPtrInput
@@ -176,13 +182,15 @@ func (LoadbalancerFrontendRuleState) ElementType() reflect.Type {
 }
 
 type loadbalancerFrontendRuleArgs struct {
-	// Set of rule actions.
+	// Rule actions.
 	Actions *LoadbalancerFrontendRuleActions `pulumi:"actions"`
-	// ID of the load balancer frontend to which the rule is connected.
+	// ID of the load balancer frontend to which the frontend rule is connected.
 	Frontend string `pulumi:"frontend"`
-	// Set of rule matchers. if rule doesn't have matchers, then action applies to all incoming requests.
+	// Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
 	Matchers *LoadbalancerFrontendRuleMatchers `pulumi:"matchers"`
-	// The name of the frontend rule must be unique within the load balancer service.
+	// Defines boolean operator used to combine multiple matchers. Defaults to `and`.
+	MatchingCondition *string `pulumi:"matchingCondition"`
+	// The name of the frontend rule. Must be unique within the frontend.
 	Name *string `pulumi:"name"`
 	// Rule with the higher priority goes first. Rules with the same priority processed in alphabetical order.
 	Priority int `pulumi:"priority"`
@@ -190,13 +198,15 @@ type loadbalancerFrontendRuleArgs struct {
 
 // The set of arguments for constructing a LoadbalancerFrontendRule resource.
 type LoadbalancerFrontendRuleArgs struct {
-	// Set of rule actions.
+	// Rule actions.
 	Actions LoadbalancerFrontendRuleActionsPtrInput
-	// ID of the load balancer frontend to which the rule is connected.
+	// ID of the load balancer frontend to which the frontend rule is connected.
 	Frontend pulumi.StringInput
-	// Set of rule matchers. if rule doesn't have matchers, then action applies to all incoming requests.
+	// Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
 	Matchers LoadbalancerFrontendRuleMatchersPtrInput
-	// The name of the frontend rule must be unique within the load balancer service.
+	// Defines boolean operator used to combine multiple matchers. Defaults to `and`.
+	MatchingCondition pulumi.StringPtrInput
+	// The name of the frontend rule. Must be unique within the frontend.
 	Name pulumi.StringPtrInput
 	// Rule with the higher priority goes first. Rules with the same priority processed in alphabetical order.
 	Priority pulumi.IntInput
@@ -289,22 +299,27 @@ func (o LoadbalancerFrontendRuleOutput) ToLoadbalancerFrontendRuleOutputWithCont
 	return o
 }
 
-// Set of rule actions.
+// Rule actions.
 func (o LoadbalancerFrontendRuleOutput) Actions() LoadbalancerFrontendRuleActionsPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontendRule) LoadbalancerFrontendRuleActionsPtrOutput { return v.Actions }).(LoadbalancerFrontendRuleActionsPtrOutput)
 }
 
-// ID of the load balancer frontend to which the rule is connected.
+// ID of the load balancer frontend to which the frontend rule is connected.
 func (o LoadbalancerFrontendRuleOutput) Frontend() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontendRule) pulumi.StringOutput { return v.Frontend }).(pulumi.StringOutput)
 }
 
-// Set of rule matchers. if rule doesn't have matchers, then action applies to all incoming requests.
+// Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
 func (o LoadbalancerFrontendRuleOutput) Matchers() LoadbalancerFrontendRuleMatchersPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontendRule) LoadbalancerFrontendRuleMatchersPtrOutput { return v.Matchers }).(LoadbalancerFrontendRuleMatchersPtrOutput)
 }
 
-// The name of the frontend rule must be unique within the load balancer service.
+// Defines boolean operator used to combine multiple matchers. Defaults to `and`.
+func (o LoadbalancerFrontendRuleOutput) MatchingCondition() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontendRule) pulumi.StringOutput { return v.MatchingCondition }).(pulumi.StringOutput)
+}
+
+// The name of the frontend rule. Must be unique within the frontend.
 func (o LoadbalancerFrontendRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontendRule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

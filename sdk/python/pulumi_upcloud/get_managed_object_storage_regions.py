@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -68,12 +73,15 @@ def get_managed_object_storage_regions(regions: Optional[Sequence[Union['GetMana
     return AwaitableGetManagedObjectStorageRegionsResult(
         id=pulumi.get(__ret__, 'id'),
         regions=pulumi.get(__ret__, 'regions'))
-
-
-@_utilities.lift_output_func(get_managed_object_storage_regions)
 def get_managed_object_storage_regions_output(regions: Optional[pulumi.Input[Optional[Sequence[Union['GetManagedObjectStorageRegionsRegionArgs', 'GetManagedObjectStorageRegionsRegionArgsDict']]]]] = None,
                                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetManagedObjectStorageRegionsResult]:
     """
     Returns a list of available Managed Object Storage regions.
     """
-    ...
+    __args__ = dict()
+    __args__['regions'] = regions
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions', __args__, opts=opts, typ=GetManagedObjectStorageRegionsResult)
+    return __ret__.apply(lambda __response__: GetManagedObjectStorageRegionsResult(
+        id=pulumi.get(__response__, 'id'),
+        regions=pulumi.get(__response__, 'regions')))

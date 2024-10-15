@@ -28,7 +28,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getManagedDatabaseMysqlSessions(args: GetManagedDatabaseMysqlSessionsArgs, opts?: pulumi.InvokeOptions): Promise<GetManagedDatabaseMysqlSessionsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("upcloud:index/getManagedDatabaseMysqlSessions:getManagedDatabaseMysqlSessions", {
         "limit": args.limit,
@@ -86,7 +85,14 @@ export interface GetManagedDatabaseMysqlSessionsResult {
  * ```
  */
 export function getManagedDatabaseMysqlSessionsOutput(args: GetManagedDatabaseMysqlSessionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetManagedDatabaseMysqlSessionsResult> {
-    return pulumi.output(args).apply((a: any) => getManagedDatabaseMysqlSessions(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("upcloud:index/getManagedDatabaseMysqlSessions:getManagedDatabaseMysqlSessions", {
+        "limit": args.limit,
+        "offset": args.offset,
+        "order": args.order,
+        "service": args.service,
+        "sessions": args.sessions,
+    }, opts);
 }
 
 /**

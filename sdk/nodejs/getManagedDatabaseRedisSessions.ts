@@ -28,7 +28,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getManagedDatabaseRedisSessions(args: GetManagedDatabaseRedisSessionsArgs, opts?: pulumi.InvokeOptions): Promise<GetManagedDatabaseRedisSessionsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("upcloud:index/getManagedDatabaseRedisSessions:getManagedDatabaseRedisSessions", {
         "limit": args.limit,
@@ -86,7 +85,14 @@ export interface GetManagedDatabaseRedisSessionsResult {
  * ```
  */
 export function getManagedDatabaseRedisSessionsOutput(args: GetManagedDatabaseRedisSessionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetManagedDatabaseRedisSessionsResult> {
-    return pulumi.output(args).apply((a: any) => getManagedDatabaseRedisSessions(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("upcloud:index/getManagedDatabaseRedisSessions:getManagedDatabaseRedisSessions", {
+        "limit": args.limit,
+        "offset": args.offset,
+        "order": args.order,
+        "service": args.service,
+        "sessions": args.sessions,
+    }, opts);
 }
 
 /**

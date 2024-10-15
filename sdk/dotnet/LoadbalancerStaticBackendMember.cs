@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Upcloud
 {
     /// <summary>
-    /// This resource represents load balancer's static backend member
+    /// This resource represents load balancer static backend member
     /// 
     /// ## Example Usage
     /// 
@@ -74,10 +74,10 @@ namespace Pulumi.Upcloud
         /// Indicates if the member is enabled. Disabled members are excluded from load balancing.
         /// </summary>
         [Output("enabled")]
-        public Output<bool?> Enabled { get; private set; } = null!;
+        public Output<bool> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// Server IP address in the customer private network.
+        /// Optional fallback IP address in case of failure on DNS resolving.
         /// </summary>
         [Output("ip")]
         public Output<string> Ip { get; private set; } = null!;
@@ -89,21 +89,19 @@ namespace Pulumi.Upcloud
         public Output<int> MaxSessions { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the member must be unique within the load balancer backend service.
+        /// The name of the member. Must be unique within within the load balancer backend.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Server port.
+        /// Server port. Port is optional and can be specified in DNS SRV record.
         /// </summary>
         [Output("port")]
         public Output<int> Port { get; private set; } = null!;
 
         /// <summary>
-        /// Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-        /// weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-        /// will not participate in load balancing but will still accept persistent connections.
+        /// Weight of the member. The higher the weight, the more traffic the member receives.
         /// </summary>
         [Output("weight")]
         public Output<int> Weight { get; private set; } = null!;
@@ -131,6 +129,7 @@ namespace Pulumi.Upcloud
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "https://github.com/UpCloudLtd/pulumi-upcloud/releases/",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -167,10 +166,10 @@ namespace Pulumi.Upcloud
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// Server IP address in the customer private network.
+        /// Optional fallback IP address in case of failure on DNS resolving.
         /// </summary>
-        [Input("ip", required: true)]
-        public Input<string> Ip { get; set; } = null!;
+        [Input("ip")]
+        public Input<string>? Ip { get; set; }
 
         /// <summary>
         /// Maximum number of sessions before queueing.
@@ -179,21 +178,19 @@ namespace Pulumi.Upcloud
         public Input<int> MaxSessions { get; set; } = null!;
 
         /// <summary>
-        /// The name of the member must be unique within the load balancer backend service.
+        /// The name of the member. Must be unique within within the load balancer backend.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Server port.
+        /// Server port. Port is optional and can be specified in DNS SRV record.
         /// </summary>
-        [Input("port", required: true)]
-        public Input<int> Port { get; set; } = null!;
+        [Input("port")]
+        public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-        /// weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-        /// will not participate in load balancing but will still accept persistent connections.
+        /// Weight of the member. The higher the weight, the more traffic the member receives.
         /// </summary>
         [Input("weight", required: true)]
         public Input<int> Weight { get; set; } = null!;
@@ -219,7 +216,7 @@ namespace Pulumi.Upcloud
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// Server IP address in the customer private network.
+        /// Optional fallback IP address in case of failure on DNS resolving.
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
@@ -231,21 +228,19 @@ namespace Pulumi.Upcloud
         public Input<int>? MaxSessions { get; set; }
 
         /// <summary>
-        /// The name of the member must be unique within the load balancer backend service.
+        /// The name of the member. Must be unique within within the load balancer backend.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Server port.
+        /// Server port. Port is optional and can be specified in DNS SRV record.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-        /// weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-        /// will not participate in load balancing but will still accept persistent connections.
+        /// Weight of the member. The higher the weight, the more traffic the member receives.
         /// </summary>
         [Input("weight")]
         public Input<int>? Weight { get; set; }

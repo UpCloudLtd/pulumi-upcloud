@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource represents service's domain name resolver
+// This resource represents load balancer resolver.
 //
 // ## Example Usage
 //
@@ -82,7 +82,7 @@ type LoadbalancerResolver struct {
 	CacheValid pulumi.IntOutput `pulumi:"cacheValid"`
 	// ID of the load balancer to which the resolver is connected.
 	Loadbalancer pulumi.StringOutput `pulumi:"loadbalancer"`
-	// The name of the resolver must be unique within the service.
+	// The name of the resolver. Must be unique within the service.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
 	// optional, if missing then default 53 will be used.
@@ -152,7 +152,7 @@ type loadbalancerResolverState struct {
 	CacheValid *int `pulumi:"cacheValid"`
 	// ID of the load balancer to which the resolver is connected.
 	Loadbalancer *string `pulumi:"loadbalancer"`
-	// The name of the resolver must be unique within the service.
+	// The name of the resolver. Must be unique within the service.
 	Name *string `pulumi:"name"`
 	// List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
 	// optional, if missing then default 53 will be used.
@@ -172,7 +172,7 @@ type LoadbalancerResolverState struct {
 	CacheValid pulumi.IntPtrInput
 	// ID of the load balancer to which the resolver is connected.
 	Loadbalancer pulumi.StringPtrInput
-	// The name of the resolver must be unique within the service.
+	// The name of the resolver. Must be unique within the service.
 	Name pulumi.StringPtrInput
 	// List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
 	// optional, if missing then default 53 will be used.
@@ -196,7 +196,7 @@ type loadbalancerResolverArgs struct {
 	CacheValid int `pulumi:"cacheValid"`
 	// ID of the load balancer to which the resolver is connected.
 	Loadbalancer string `pulumi:"loadbalancer"`
-	// The name of the resolver must be unique within the service.
+	// The name of the resolver. Must be unique within the service.
 	Name *string `pulumi:"name"`
 	// List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
 	// optional, if missing then default 53 will be used.
@@ -217,7 +217,7 @@ type LoadbalancerResolverArgs struct {
 	CacheValid pulumi.IntInput
 	// ID of the load balancer to which the resolver is connected.
 	Loadbalancer pulumi.StringInput
-	// The name of the resolver must be unique within the service.
+	// The name of the resolver. Must be unique within the service.
 	Name pulumi.StringPtrInput
 	// List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
 	// optional, if missing then default 53 will be used.
@@ -332,7 +332,7 @@ func (o LoadbalancerResolverOutput) Loadbalancer() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerResolver) pulumi.StringOutput { return v.Loadbalancer }).(pulumi.StringOutput)
 }
 
-// The name of the resolver must be unique within the service.
+// The name of the resolver. Must be unique within the service.
 func (o LoadbalancerResolverOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerResolver) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
