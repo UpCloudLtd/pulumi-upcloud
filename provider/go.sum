@@ -1188,10 +1188,10 @@ github.com/ProtonMail/go-crypto v0.0.0-20230828082145-3c4c8a2d2371/go.mod h1:EjA
 github.com/ProtonMail/go-crypto v1.1.0-alpha.0/go.mod h1:rA3QumHc/FZ8pAHreoekgiAbzpNsfQAosU5td4SnOrE=
 github.com/ProtonMail/go-crypto v1.1.0-alpha.2 h1:bkyFVUP+ROOARdgCiJzNQo2V2kiB97LyUpzH9P6Hrlg=
 github.com/ProtonMail/go-crypto v1.1.0-alpha.2/go.mod h1:rA3QumHc/FZ8pAHreoekgiAbzpNsfQAosU5td4SnOrE=
-github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20240821080234-b12c4f98f28a h1:5bjyxpU1q8mJ51Ywq9Sp1CSi7J9r1DFJ0o8yOzdE98Q=
-github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20240821080234-b12c4f98f28a/go.mod h1:gIOshnBJtt1DVVmkijDz0hE9oi2iKhWpTPFYWmZpLG4=
-github.com/UpCloudLtd/upcloud-go-api/v8 v8.7.1 h1:KcJX6Hwt9D/0DK0A05wtqJmfFtQynBslnG/kH91QQEk=
-github.com/UpCloudLtd/upcloud-go-api/v8 v8.7.1/go.mod h1:/BL9bYxio0GCdotzBvZjkpm1fSDtD0+0z6PtNMew9HU=
+github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20241010110310-46b0473e325f h1:WwR5qRBEcuwXiLAB8zQ4tE1iBDI4ZrTccGilsLkqXN0=
+github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20241010110310-46b0473e325f/go.mod h1:tsr/p2qxpeF2feSp+DppbQ6h3Wv2cZOoxAjbkJ41lX8=
+github.com/UpCloudLtd/upcloud-go-api/v8 v8.9.0 h1:n//LxvoDdIgjS9mb6OeQ5jyj7Uyjeevz/fu6qS8ATBI=
+github.com/UpCloudLtd/upcloud-go-api/v8 v8.9.0/go.mod h1:bFnrOkfsDDmsb94nnBV5eSQjjsfDnwAzLnCt9+b4t/4=
 github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da h1:KjTM2ks9d14ZYCvmHS9iAKVt9AyzRSqNU1qabPih5BY=
 github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da/go.mod h1:eHEWzANqSiWQsof+nXEI9bUVUyV6F53Fp89EuCh2EAA=
 github.com/agext/levenshtein v1.2.1/go.mod h1:JEDfjyjHDjOF/1e4FlBE/PkbqA9OfWu2ki2W0IB5558=

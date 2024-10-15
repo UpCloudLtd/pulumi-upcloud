@@ -1,11 +1,14 @@
 module github.com/UpCloudLtd/pulumi-upcloud/provider
 
-go 1.21.12
+go 1.22
+
+toolchain go1.23.2
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240229143312-4f60ee4e2975
 
 require (
-	github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20240821080234-b12c4f98f28a
+	github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20241010110310-46b0473e325f
+	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0
 	github.com/pulumi/pulumi-terraform-bridge/pf v0.42.1
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.89.1
 )
@@ -32,7 +35,7 @@ require (
 	github.com/Masterminds/sprig/v3 v3.2.3 // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
 	github.com/ProtonMail/go-crypto v1.1.0-alpha.2 // indirect
-	github.com/UpCloudLtd/upcloud-go-api/v8 v8.7.1 // indirect
+	github.com/UpCloudLtd/upcloud-go-api/v8 v8.9.0 // indirect
 	github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apparentlymart/go-cidr v1.1.0 // indirect
@@ -123,7 +126,6 @@ require (
 	github.com/hashicorp/terraform-plugin-go v0.23.0 // indirect
 	github.com/hashicorp/terraform-plugin-log v0.9.0 // indirect
 	github.com/hashicorp/terraform-plugin-mux v0.16.0 // indirect
-	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0 // indirect
 	github.com/hashicorp/terraform-registry-address v0.2.3 // indirect
 	github.com/hashicorp/terraform-svchost v0.1.1 // indirect
 	github.com/hashicorp/vault/api v1.12.0 // indirect

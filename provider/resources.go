@@ -12,15 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package xyz
+package upcloud
 
 import (
 	"context"
+	"fmt"
 	"path"
 
 	// Allow embedding bridge-metadata.json in the provider.
 	_ "embed"
 
+	sdkv2_diag "github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	pfbridge "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
@@ -43,11 +46,20 @@ const (
 //go:embed cmd/pulumi-resource-upcloud/bridge-metadata.json
 var metadata []byte
 
+func defaultUserAgent() string {
+	return fmt.Sprintf("pulumi-upcloud/%s", version.Version)
+}
+
 // Provider returns additional overlaid schema and metadata associated with the provider.
 func Provider() tfbridge.ProviderInfo {
+	sdkv2 := upcloud.Provider()
+	sdkv2.ConfigureContextFunc = func(ctx context.Context, d *schema.ResourceData) (interface{}, sdkv2_diag.Diagnostics) {
+		return upcloud.ProviderConfigure(ctx, d, defaultUserAgent())
+	}
+
 	p := pfbridge.MuxShimWithPF(context.Background(),
-		shimv2.NewProvider(upcloud.Provider()),
-		upcloud.New(),
+		shimv2.NewProvider(sdkv2),
+		upcloud.NewWithUserAgent(defaultUserAgent()),
 	)
 
 	prov := tfbridge.ProviderInfo{
@@ -130,7 +142,7 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "",
+		PluginDownloadURL: "https://github.com/UpCloudLtd/pulumi-upcloud/releases/",
 		Description:       "A Pulumi package for creating and managing UpCloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
