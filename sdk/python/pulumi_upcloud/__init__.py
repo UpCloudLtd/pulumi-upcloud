@@ -12,6 +12,7 @@ from .gateway_connection_tunnel import *
 from .get_hosts import *
 from .get_ip_addresses import *
 from .get_kubernetes_cluster import *
+from .get_load_balancer_dns_challenge_domain import *
 from .get_managed_database_mysql_sessions import *
 from .get_managed_database_opensearch_indices import *
 from .get_managed_database_postgresql_sessions import *
@@ -43,6 +44,7 @@ from .managed_database_postgresql import *
 from .managed_database_redis import *
 from .managed_database_user import *
 from .managed_object_storage import *
+from .managed_object_storage_custom_domain import *
 from .managed_object_storage_policy import *
 from .managed_object_storage_user import *
 from .managed_object_storage_user_access_key import *
@@ -261,6 +263,14 @@ _utilities.register(
   "fqn": "pulumi_upcloud",
   "classes": {
    "upcloud:index/managedObjectStorage:ManagedObjectStorage": "ManagedObjectStorage"
+  }
+ },
+ {
+  "pkg": "upcloud",
+  "mod": "index/managedObjectStorageCustomDomain",
+  "fqn": "pulumi_upcloud",
+  "classes": {
+   "upcloud:index/managedObjectStorageCustomDomain:ManagedObjectStorageCustomDomain": "ManagedObjectStorageCustomDomain"
   }
  },
  {

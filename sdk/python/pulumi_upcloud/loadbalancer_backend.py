@@ -22,10 +22,9 @@ class LoadbalancerBackendArgs:
                  resolver_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LoadbalancerBackend resource.
-        :param pulumi.Input[str] loadbalancer: ID of the load balancer to which the backend is connected.
-        :param pulumi.Input[str] name: The name of the backend must be unique within the load balancer service.
-        :param pulumi.Input['LoadbalancerBackendPropertiesArgs'] properties: Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        :param pulumi.Input[str] resolver_name: Domain Name Resolver used with dynamic type members.
+        :param pulumi.Input[str] loadbalancer: UUID of the load balancer to which the backend is connected.
+        :param pulumi.Input[str] name: The name of the backend. Must be unique within the load balancer service.
+        :param pulumi.Input[str] resolver_name: Domain name resolver used with dynamic type members.
         """
         pulumi.set(__self__, "loadbalancer", loadbalancer)
         if name is not None:
@@ -39,7 +38,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter
     def loadbalancer(self) -> pulumi.Input[str]:
         """
-        ID of the load balancer to which the backend is connected.
+        UUID of the load balancer to which the backend is connected.
         """
         return pulumi.get(self, "loadbalancer")
 
@@ -51,7 +50,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the backend must be unique within the load balancer service.
+        The name of the backend. Must be unique within the load balancer service.
         """
         return pulumi.get(self, "name")
 
@@ -62,9 +61,6 @@ class LoadbalancerBackendArgs:
     @property
     @pulumi.getter
     def properties(self) -> Optional[pulumi.Input['LoadbalancerBackendPropertiesArgs']]:
-        """
-        Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        """
         return pulumi.get(self, "properties")
 
     @properties.setter
@@ -75,7 +71,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="resolverName")
     def resolver_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Domain Name Resolver used with dynamic type members.
+        Domain name resolver used with dynamic type members.
         """
         return pulumi.get(self, "resolver_name")
 
@@ -95,12 +91,11 @@ class _LoadbalancerBackendState:
                  tls_configs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerBackend resources.
-        :param pulumi.Input[str] loadbalancer: ID of the load balancer to which the backend is connected.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: Backend members receive traffic dispatched from the frontends
-        :param pulumi.Input[str] name: The name of the backend must be unique within the load balancer service.
-        :param pulumi.Input['LoadbalancerBackendPropertiesArgs'] properties: Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        :param pulumi.Input[str] resolver_name: Domain Name Resolver used with dynamic type members.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_configs: Set of TLS config names
+        :param pulumi.Input[str] loadbalancer: UUID of the load balancer to which the backend is connected.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: Backend member server UUIDs. Members receive traffic dispatched from the frontends.
+        :param pulumi.Input[str] name: The name of the backend. Must be unique within the load balancer service.
+        :param pulumi.Input[str] resolver_name: Domain name resolver used with dynamic type members.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_configs: Set of TLS config names.
         """
         if loadbalancer is not None:
             pulumi.set(__self__, "loadbalancer", loadbalancer)
@@ -119,7 +114,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter
     def loadbalancer(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the load balancer to which the backend is connected.
+        UUID of the load balancer to which the backend is connected.
         """
         return pulumi.get(self, "loadbalancer")
 
@@ -131,7 +126,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter
     def members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Backend members receive traffic dispatched from the frontends
+        Backend member server UUIDs. Members receive traffic dispatched from the frontends.
         """
         return pulumi.get(self, "members")
 
@@ -143,7 +138,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the backend must be unique within the load balancer service.
+        The name of the backend. Must be unique within the load balancer service.
         """
         return pulumi.get(self, "name")
 
@@ -154,9 +149,6 @@ class _LoadbalancerBackendState:
     @property
     @pulumi.getter
     def properties(self) -> Optional[pulumi.Input['LoadbalancerBackendPropertiesArgs']]:
-        """
-        Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        """
         return pulumi.get(self, "properties")
 
     @properties.setter
@@ -167,7 +159,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="resolverName")
     def resolver_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Domain Name Resolver used with dynamic type members.
+        Domain name resolver used with dynamic type members.
         """
         return pulumi.get(self, "resolver_name")
 
@@ -179,7 +171,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="tlsConfigs")
     def tls_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Set of TLS config names
+        Set of TLS config names.
         """
         return pulumi.get(self, "tls_configs")
 
@@ -199,7 +191,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  resolver_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        This resource represents load balancer backend service
+        This resource represents load balancer backend service.
 
         ## Example Usage
 
@@ -228,10 +220,9 @@ class LoadbalancerBackend(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] loadbalancer: ID of the load balancer to which the backend is connected.
-        :param pulumi.Input[str] name: The name of the backend must be unique within the load balancer service.
-        :param pulumi.Input[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict']] properties: Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        :param pulumi.Input[str] resolver_name: Domain Name Resolver used with dynamic type members.
+        :param pulumi.Input[str] loadbalancer: UUID of the load balancer to which the backend is connected.
+        :param pulumi.Input[str] name: The name of the backend. Must be unique within the load balancer service.
+        :param pulumi.Input[str] resolver_name: Domain name resolver used with dynamic type members.
         """
         ...
     @overload
@@ -240,7 +231,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  args: LoadbalancerBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource represents load balancer backend service
+        This resource represents load balancer backend service.
 
         ## Example Usage
 
@@ -326,12 +317,11 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] loadbalancer: ID of the load balancer to which the backend is connected.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: Backend members receive traffic dispatched from the frontends
-        :param pulumi.Input[str] name: The name of the backend must be unique within the load balancer service.
-        :param pulumi.Input[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict']] properties: Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        :param pulumi.Input[str] resolver_name: Domain Name Resolver used with dynamic type members.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_configs: Set of TLS config names
+        :param pulumi.Input[str] loadbalancer: UUID of the load balancer to which the backend is connected.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: Backend member server UUIDs. Members receive traffic dispatched from the frontends.
+        :param pulumi.Input[str] name: The name of the backend. Must be unique within the load balancer service.
+        :param pulumi.Input[str] resolver_name: Domain name resolver used with dynamic type members.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_configs: Set of TLS config names.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -349,7 +339,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter
     def loadbalancer(self) -> pulumi.Output[str]:
         """
-        ID of the load balancer to which the backend is connected.
+        UUID of the load balancer to which the backend is connected.
         """
         return pulumi.get(self, "loadbalancer")
 
@@ -357,7 +347,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter
     def members(self) -> pulumi.Output[Sequence[str]]:
         """
-        Backend members receive traffic dispatched from the frontends
+        Backend member server UUIDs. Members receive traffic dispatched from the frontends.
         """
         return pulumi.get(self, "members")
 
@@ -365,23 +355,20 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the backend must be unique within the load balancer service.
+        The name of the backend. Must be unique within the load balancer service.
         """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
-    def properties(self) -> pulumi.Output['outputs.LoadbalancerBackendProperties']:
-        """
-        Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        """
+    def properties(self) -> pulumi.Output[Optional['outputs.LoadbalancerBackendProperties']]:
         return pulumi.get(self, "properties")
 
     @property
     @pulumi.getter(name="resolverName")
-    def resolver_name(self) -> pulumi.Output[Optional[str]]:
+    def resolver_name(self) -> pulumi.Output[str]:
         """
-        Domain Name Resolver used with dynamic type members.
+        Domain name resolver used with dynamic type members.
         """
         return pulumi.get(self, "resolver_name")
 
@@ -389,7 +376,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="tlsConfigs")
     def tls_configs(self) -> pulumi.Output[Sequence[str]]:
         """
-        Set of TLS config names
+        Set of TLS config names.
         """
         return pulumi.get(self, "tls_configs")
 

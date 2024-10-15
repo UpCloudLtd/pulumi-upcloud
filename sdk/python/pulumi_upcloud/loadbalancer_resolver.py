@@ -32,7 +32,7 @@ class LoadbalancerResolverArgs:
         :param pulumi.Input[int] retries: Number of retries on failure.
         :param pulumi.Input[int] timeout: Timeout for the query in seconds.
         :param pulumi.Input[int] timeout_retry: Timeout for the query retries in seconds.
-        :param pulumi.Input[str] name: The name of the resolver must be unique within the service.
+        :param pulumi.Input[str] name: The name of the resolver. Must be unique within the service.
         """
         pulumi.set(__self__, "cache_invalid", cache_invalid)
         pulumi.set(__self__, "cache_valid", cache_valid)
@@ -133,7 +133,7 @@ class LoadbalancerResolverArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the resolver must be unique within the service.
+        The name of the resolver. Must be unique within the service.
         """
         return pulumi.get(self, "name")
 
@@ -158,7 +158,7 @@ class _LoadbalancerResolverState:
         :param pulumi.Input[int] cache_invalid: Time in seconds to cache invalid results.
         :param pulumi.Input[int] cache_valid: Time in seconds to cache valid results.
         :param pulumi.Input[str] loadbalancer: ID of the load balancer to which the resolver is connected.
-        :param pulumi.Input[str] name: The name of the resolver must be unique within the service.
+        :param pulumi.Input[str] name: The name of the resolver. Must be unique within the service.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
                optional, if missing then default 53 will be used.
         :param pulumi.Input[int] retries: Number of retries on failure.
@@ -222,7 +222,7 @@ class _LoadbalancerResolverState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the resolver must be unique within the service.
+        The name of the resolver. Must be unique within the service.
         """
         return pulumi.get(self, "name")
 
@@ -295,7 +295,7 @@ class LoadbalancerResolver(pulumi.CustomResource):
                  timeout_retry: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        This resource represents service's domain name resolver
+        This resource represents load balancer resolver.
 
         ## Example Usage
 
@@ -334,7 +334,7 @@ class LoadbalancerResolver(pulumi.CustomResource):
         :param pulumi.Input[int] cache_invalid: Time in seconds to cache invalid results.
         :param pulumi.Input[int] cache_valid: Time in seconds to cache valid results.
         :param pulumi.Input[str] loadbalancer: ID of the load balancer to which the resolver is connected.
-        :param pulumi.Input[str] name: The name of the resolver must be unique within the service.
+        :param pulumi.Input[str] name: The name of the resolver. Must be unique within the service.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
                optional, if missing then default 53 will be used.
         :param pulumi.Input[int] retries: Number of retries on failure.
@@ -348,7 +348,7 @@ class LoadbalancerResolver(pulumi.CustomResource):
                  args: LoadbalancerResolverArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource represents service's domain name resolver
+        This resource represents load balancer resolver.
 
         ## Example Usage
 
@@ -464,7 +464,7 @@ class LoadbalancerResolver(pulumi.CustomResource):
         :param pulumi.Input[int] cache_invalid: Time in seconds to cache invalid results.
         :param pulumi.Input[int] cache_valid: Time in seconds to cache valid results.
         :param pulumi.Input[str] loadbalancer: ID of the load balancer to which the resolver is connected.
-        :param pulumi.Input[str] name: The name of the resolver must be unique within the service.
+        :param pulumi.Input[str] name: The name of the resolver. Must be unique within the service.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
                optional, if missing then default 53 will be used.
         :param pulumi.Input[int] retries: Number of retries on failure.
@@ -513,7 +513,7 @@ class LoadbalancerResolver(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the resolver must be unique within the service.
+        The name of the resolver. Must be unique within the service.
         """
         return pulumi.get(self, "name")
 

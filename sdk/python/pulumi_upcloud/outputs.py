@@ -645,8 +645,6 @@ class LoadbalancerBackendProperties(dict):
             suggest = "timeout_server"
         elif key == "timeoutTunnel":
             suggest = "timeout_tunnel"
-        elif key == "tlsConfigs":
-            suggest = "tls_configs"
         elif key == "tlsEnabled":
             suggest = "tls_enabled"
         elif key == "tlsUseSystemCa":
@@ -678,24 +676,22 @@ class LoadbalancerBackendProperties(dict):
                  sticky_session_cookie_name: Optional[str] = None,
                  timeout_server: Optional[int] = None,
                  timeout_tunnel: Optional[int] = None,
-                 tls_configs: Optional[Sequence[str]] = None,
                  tls_enabled: Optional[bool] = None,
                  tls_use_system_ca: Optional[bool] = None,
                  tls_verify: Optional[bool] = None):
         """
-        :param int health_check_expected_status: Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for tcp type.
+        :param int health_check_expected_status: Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `tcp` `health_check_type`.
         :param int health_check_fall: Sets how many failed health checks are allowed until the backend member is taken off from the rotation.
-        :param int health_check_interval: Interval between health checks.
-        :param int health_check_rise: Sets how many passing checks there must be before returning the backend member to the rotation.
+        :param int health_check_interval: Interval between health checks in seconds.
+        :param int health_check_rise: Sets how many successful health checks are required to put the backend member back into rotation.
         :param bool health_check_tls_verify: Enables certificate verification with the system CA certificate bundle. Works with https scheme in health_check_url, otherwise ignored.
         :param str health_check_type: Health check type.
-        :param str health_check_url: Target path for health check HTTP GET requests. Ignored for tcp type.
+        :param str health_check_url: Target path for health check HTTP GET requests. Ignored for `tcp` `health_check_type`.
         :param bool http2_enabled: Allow HTTP/2 connections to backend members by utilizing ALPN extension of TLS protocol, therefore it can only be enabled when tls_enabled is set to true. Note: members should support HTTP/2 for this setting to work.
-        :param str outbound_proxy_protocol: Enable outbound proxy protocol by setting the desired version. Empty string disables proxy protocol.
+        :param str outbound_proxy_protocol: Enable outbound proxy protocol by setting the desired version. Defaults to empty string. Empty string disables proxy protocol.
         :param str sticky_session_cookie_name: Sets sticky session cookie name. Empty string disables sticky session.
         :param int timeout_server: Backend server timeout in seconds.
         :param int timeout_tunnel: Maximum inactivity time on the client and server side for tunnels in seconds.
-        :param Sequence[str] tls_configs: Set of TLS config names
         :param bool tls_enabled: Enables TLS connection from the load balancer to backend servers.
         :param bool tls_use_system_ca: If enabled, then the system CA certificate bundle will be used for the certificate verification.
         :param bool tls_verify: Enables backend servers certificate verification. Please make sure that TLS config with the certificate bundle of type authority attached to the backend or `tls_use_system_ca` enabled. Note: `tls_verify` has preference over `health_check_tls_verify` when `tls_enabled` in true.
@@ -724,8 +720,6 @@ class LoadbalancerBackendProperties(dict):
             pulumi.set(__self__, "timeout_server", timeout_server)
         if timeout_tunnel is not None:
             pulumi.set(__self__, "timeout_tunnel", timeout_tunnel)
-        if tls_configs is not None:
-            pulumi.set(__self__, "tls_configs", tls_configs)
         if tls_enabled is not None:
             pulumi.set(__self__, "tls_enabled", tls_enabled)
         if tls_use_system_ca is not None:
@@ -737,7 +731,7 @@ class LoadbalancerBackendProperties(dict):
     @pulumi.getter(name="healthCheckExpectedStatus")
     def health_check_expected_status(self) -> Optional[int]:
         """
-        Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for tcp type.
+        Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `tcp` `health_check_type`.
         """
         return pulumi.get(self, "health_check_expected_status")
 
@@ -753,7 +747,7 @@ class LoadbalancerBackendProperties(dict):
     @pulumi.getter(name="healthCheckInterval")
     def health_check_interval(self) -> Optional[int]:
         """
-        Interval between health checks.
+        Interval between health checks in seconds.
         """
         return pulumi.get(self, "health_check_interval")
 
@@ -761,7 +755,7 @@ class LoadbalancerBackendProperties(dict):
     @pulumi.getter(name="healthCheckRise")
     def health_check_rise(self) -> Optional[int]:
         """
-        Sets how many passing checks there must be before returning the backend member to the rotation.
+        Sets how many successful health checks are required to put the backend member back into rotation.
         """
         return pulumi.get(self, "health_check_rise")
 
@@ -785,7 +779,7 @@ class LoadbalancerBackendProperties(dict):
     @pulumi.getter(name="healthCheckUrl")
     def health_check_url(self) -> Optional[str]:
         """
-        Target path for health check HTTP GET requests. Ignored for tcp type.
+        Target path for health check HTTP GET requests. Ignored for `tcp` `health_check_type`.
         """
         return pulumi.get(self, "health_check_url")
 
@@ -801,7 +795,7 @@ class LoadbalancerBackendProperties(dict):
     @pulumi.getter(name="outboundProxyProtocol")
     def outbound_proxy_protocol(self) -> Optional[str]:
         """
-        Enable outbound proxy protocol by setting the desired version. Empty string disables proxy protocol.
+        Enable outbound proxy protocol by setting the desired version. Defaults to empty string. Empty string disables proxy protocol.
         """
         return pulumi.get(self, "outbound_proxy_protocol")
 
@@ -828,14 +822,6 @@ class LoadbalancerBackendProperties(dict):
         Maximum inactivity time on the client and server side for tunnels in seconds.
         """
         return pulumi.get(self, "timeout_tunnel")
-
-    @property
-    @pulumi.getter(name="tlsConfigs")
-    def tls_configs(self) -> Optional[Sequence[str]]:
-        """
-        Set of TLS config names
-        """
-        return pulumi.get(self, "tls_configs")
 
     @property
     @pulumi.getter(name="tlsEnabled")
@@ -1141,12 +1127,18 @@ class LoadbalancerFrontendRuleActionsSetForwardedHeader(dict):
 class LoadbalancerFrontendRuleActionsTcpReject(dict):
     def __init__(__self__, *,
                  active: Optional[bool] = None):
+        """
+        :param bool active: Indicates if the rule is active.
+        """
         if active is not None:
             pulumi.set(__self__, "active", active)
 
     @property
     @pulumi.getter
     def active(self) -> Optional[bool]:
+        """
+        Indicates if the rule is active.
+        """
         return pulumi.get(self, "active")
 
 
@@ -1236,7 +1228,7 @@ class LoadbalancerFrontendRuleMatchers(dict):
                  url_queries: Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersUrlQuery']] = None,
                  urls: Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersUrl']] = None):
         """
-        :param Sequence['LoadbalancerFrontendRuleMatchersBodySizeRangeArgs'] body_size_ranges: Matches by range of HTTP request body sizes
+        :param Sequence['LoadbalancerFrontendRuleMatchersBodySizeRangeArgs'] body_size_ranges: Matches by range of HTTP request body sizes.
         :param Sequence['LoadbalancerFrontendRuleMatchersBodySizeArgs'] body_sizes: Matches by HTTP request body size.
         :param Sequence['LoadbalancerFrontendRuleMatchersCookieArgs'] cookies: Matches by HTTP cookie value. Cookie name must be provided.
         :param Sequence['LoadbalancerFrontendRuleMatchersHeaderArgs'] headers: Matches by HTTP header value. Header name must be provided.
@@ -1245,7 +1237,7 @@ class LoadbalancerFrontendRuleMatchers(dict):
         :param Sequence['LoadbalancerFrontendRuleMatchersNumMembersUpArgs'] num_members_ups: Matches by number of healthy backend members.
         :param Sequence['LoadbalancerFrontendRuleMatchersPathArgs'] paths: Matches by URL path.
         :param Sequence['LoadbalancerFrontendRuleMatchersSrcIpArgs'] src_ips: Matches by source IP address.
-        :param Sequence['LoadbalancerFrontendRuleMatchersSrcPortRangeArgs'] src_port_ranges: Matches by range of source port numbers
+        :param Sequence['LoadbalancerFrontendRuleMatchersSrcPortRangeArgs'] src_port_ranges: Matches by range of source port numbers.
         :param Sequence['LoadbalancerFrontendRuleMatchersSrcPortArgs'] src_ports: Matches by source port number.
         :param Sequence['LoadbalancerFrontendRuleMatchersUrlParamArgs'] url_params: Matches by URL query parameter value. Query parameter name must be provided
         :param Sequence['LoadbalancerFrontendRuleMatchersUrlQueryArgs'] url_queries: Matches by URL query string.
@@ -1284,7 +1276,7 @@ class LoadbalancerFrontendRuleMatchers(dict):
     @pulumi.getter(name="bodySizeRanges")
     def body_size_ranges(self) -> Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersBodySizeRange']]:
         """
-        Matches by range of HTTP request body sizes
+        Matches by range of HTTP request body sizes.
         """
         return pulumi.get(self, "body_size_ranges")
 
@@ -1356,7 +1348,7 @@ class LoadbalancerFrontendRuleMatchers(dict):
     @pulumi.getter(name="srcPortRanges")
     def src_port_ranges(self) -> Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersSrcPortRange']]:
         """
-        Matches by range of source port numbers
+        Matches by range of source port numbers.
         """
         return pulumi.get(self, "src_port_ranges")
 
@@ -1402,7 +1394,7 @@ class LoadbalancerFrontendRuleMatchersBodySize(dict):
         """
         :param str method: Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
         :param int value: Integer value.
-        :param bool inverse: Sets if the condition should be inverted. Works similar to logical NOT operator.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         pulumi.set(__self__, "method", method)
         pulumi.set(__self__, "value", value)
@@ -1429,7 +1421,7 @@ class LoadbalancerFrontendRuleMatchersBodySize(dict):
     @pulumi.getter
     def inverse(self) -> Optional[bool]:
         """
-        Sets if the condition should be inverted. Works similar to logical NOT operator.
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         return pulumi.get(self, "inverse")
 
@@ -1462,7 +1454,7 @@ class LoadbalancerFrontendRuleMatchersBodySizeRange(dict):
         """
         :param int range_end: Integer value.
         :param int range_start: Integer value.
-        :param bool inverse: Sets if the condition should be inverted. Works similar to logical NOT operator.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         pulumi.set(__self__, "range_end", range_end)
         pulumi.set(__self__, "range_start", range_start)
@@ -1489,7 +1481,7 @@ class LoadbalancerFrontendRuleMatchersBodySizeRange(dict):
     @pulumi.getter
     def inverse(self) -> Optional[bool]:
         """
-        Sets if the condition should be inverted. Works similar to logical NOT operator.
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         return pulumi.get(self, "inverse")
 
@@ -1522,8 +1514,8 @@ class LoadbalancerFrontendRuleMatchersCookie(dict):
         """
         :param str method: Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
         :param str name: Name of the argument.
-        :param bool ignore_case: Ignore case, default `false`.
-        :param bool inverse: Sets if the condition should be inverted. Works similar to logical NOT operator.
+        :param bool ignore_case: Defines if case should be ignored. Defaults to `false`.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
         :param str value: String value.
         """
         pulumi.set(__self__, "method", method)
@@ -1555,7 +1547,7 @@ class LoadbalancerFrontendRuleMatchersCookie(dict):
     @pulumi.getter(name="ignoreCase")
     def ignore_case(self) -> Optional[bool]:
         """
-        Ignore case, default `false`.
+        Defines if case should be ignored. Defaults to `false`.
         """
         return pulumi.get(self, "ignore_case")
 
@@ -1563,7 +1555,7 @@ class LoadbalancerFrontendRuleMatchersCookie(dict):
     @pulumi.getter
     def inverse(self) -> Optional[bool]:
         """
-        Sets if the condition should be inverted. Works similar to logical NOT operator.
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         return pulumi.get(self, "inverse")
 
@@ -1604,8 +1596,8 @@ class LoadbalancerFrontendRuleMatchersHeader(dict):
         """
         :param str method: Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
         :param str name: Name of the argument.
-        :param bool ignore_case: Ignore case, default `false`.
-        :param bool inverse: Sets if the condition should be inverted. Works similar to logical NOT operator.
+        :param bool ignore_case: Defines if case should be ignored. Defaults to `false`.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
         :param str value: String value.
         """
         pulumi.set(__self__, "method", method)
@@ -1637,7 +1629,7 @@ class LoadbalancerFrontendRuleMatchersHeader(dict):
     @pulumi.getter(name="ignoreCase")
     def ignore_case(self) -> Optional[bool]:
         """
-        Ignore case, default `false`.
+        Defines if case should be ignored. Defaults to `false`.
         """
         return pulumi.get(self, "ignore_case")
 
@@ -1645,7 +1637,7 @@ class LoadbalancerFrontendRuleMatchersHeader(dict):
     @pulumi.getter
     def inverse(self) -> Optional[bool]:
         """
-        Sets if the condition should be inverted. Works similar to logical NOT operator.
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         return pulumi.get(self, "inverse")
 
@@ -1665,7 +1657,7 @@ class LoadbalancerFrontendRuleMatchersHost(dict):
                  inverse: Optional[bool] = None):
         """
         :param str value: String value.
-        :param bool inverse: Sets if the condition should be inverted. Works similar to logical NOT operator.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         pulumi.set(__self__, "value", value)
         if inverse is not None:
@@ -1683,7 +1675,7 @@ class LoadbalancerFrontendRuleMatchersHost(dict):
     @pulumi.getter
     def inverse(self) -> Optional[bool]:
         """
-        Sets if the condition should be inverted. Works similar to logical NOT operator.
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         return pulumi.get(self, "inverse")
 
@@ -1695,7 +1687,7 @@ class LoadbalancerFrontendRuleMatchersHttpMethod(dict):
                  inverse: Optional[bool] = None):
         """
         :param str value: String value (`GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`).
-        :param bool inverse: Sets if the condition should be inverted. Works similar to logical NOT operator.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         pulumi.set(__self__, "value", value)
         if inverse is not None:
@@ -1713,7 +1705,7 @@ class LoadbalancerFrontendRuleMatchersHttpMethod(dict):
     @pulumi.getter
     def inverse(self) -> Optional[bool]:
         """
-        Sets if the condition should be inverted. Works similar to logical NOT operator.
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         return pulumi.get(self, "inverse")
 
@@ -1743,10 +1735,10 @@ class LoadbalancerFrontendRuleMatchersNumMembersUp(dict):
                  value: int,
                  inverse: Optional[bool] = None):
         """
-        :param str backend_name: The name of the `backend` which members will be monitored.
+        :param str backend_name: The name of the `backend`.
         :param str method: Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
         :param int value: Integer value.
-        :param bool inverse: Sets if the condition should be inverted. Works similar to logical NOT operator.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         pulumi.set(__self__, "backend_name", backend_name)
         pulumi.set(__self__, "method", method)
@@ -1758,7 +1750,7 @@ class LoadbalancerFrontendRuleMatchersNumMembersUp(dict):
     @pulumi.getter(name="backendName")
     def backend_name(self) -> str:
         """
-        The name of the `backend` which members will be monitored.
+        The name of the `backend`.
         """
         return pulumi.get(self, "backend_name")
 
@@ -1782,7 +1774,7 @@ class LoadbalancerFrontendRuleMatchersNumMembersUp(dict):
     @pulumi.getter
     def inverse(self) -> Optional[bool]:
         """
-        Sets if the condition should be inverted. Works similar to logical NOT operator.
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         return pulumi.get(self, "inverse")
 
@@ -1813,8 +1805,8 @@ class LoadbalancerFrontendRuleMatchersPath(dict):
                  value: Optional[str] = None):
         """
         :param str method: Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
-        :param bool ignore_case: Ignore case, default `false`.
-        :param bool inverse: Sets if the condition should be inverted. Works similar to logical NOT operator.
+        :param bool ignore_case: Defines if case should be ignored. Defaults to `false`.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
         :param str value: String value.
         """
         pulumi.set(__self__, "method", method)
@@ -1837,7 +1829,7 @@ class LoadbalancerFrontendRuleMatchersPath(dict):
     @pulumi.getter(name="ignoreCase")
     def ignore_case(self) -> Optional[bool]:
         """
-        Ignore case, default `false`.
+        Defines if case should be ignored. Defaults to `false`.
         """
         return pulumi.get(self, "ignore_case")
 
@@ -1845,7 +1837,7 @@ class LoadbalancerFrontendRuleMatchersPath(dict):
     @pulumi.getter
     def inverse(self) -> Optional[bool]:
         """
-        Sets if the condition should be inverted. Works similar to logical NOT operator.
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         return pulumi.get(self, "inverse")
 
@@ -1865,7 +1857,7 @@ class LoadbalancerFrontendRuleMatchersSrcIp(dict):
                  inverse: Optional[bool] = None):
         """
         :param str value: IP address. CIDR masks are supported, e.g. `192.168.0.0/24`.
-        :param bool inverse: Sets if the condition should be inverted. Works similar to logical NOT operator.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         pulumi.set(__self__, "value", value)
         if inverse is not None:
@@ -1883,7 +1875,7 @@ class LoadbalancerFrontendRuleMatchersSrcIp(dict):
     @pulumi.getter
     def inverse(self) -> Optional[bool]:
         """
-        Sets if the condition should be inverted. Works similar to logical NOT operator.
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         return pulumi.get(self, "inverse")
 
@@ -1897,7 +1889,7 @@ class LoadbalancerFrontendRuleMatchersSrcPort(dict):
         """
         :param str method: Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
         :param int value: Integer value.
-        :param bool inverse: Sets if the condition should be inverted. Works similar to logical NOT operator.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         pulumi.set(__self__, "method", method)
         pulumi.set(__self__, "value", value)
@@ -1924,7 +1916,7 @@ class LoadbalancerFrontendRuleMatchersSrcPort(dict):
     @pulumi.getter
     def inverse(self) -> Optional[bool]:
         """
-        Sets if the condition should be inverted. Works similar to logical NOT operator.
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         return pulumi.get(self, "inverse")
 
@@ -1957,7 +1949,7 @@ class LoadbalancerFrontendRuleMatchersSrcPortRange(dict):
         """
         :param int range_end: Integer value.
         :param int range_start: Integer value.
-        :param bool inverse: Sets if the condition should be inverted. Works similar to logical NOT operator.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         pulumi.set(__self__, "range_end", range_end)
         pulumi.set(__self__, "range_start", range_start)
@@ -1984,7 +1976,7 @@ class LoadbalancerFrontendRuleMatchersSrcPortRange(dict):
     @pulumi.getter
     def inverse(self) -> Optional[bool]:
         """
-        Sets if the condition should be inverted. Works similar to logical NOT operator.
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         return pulumi.get(self, "inverse")
 
@@ -2015,8 +2007,8 @@ class LoadbalancerFrontendRuleMatchersUrl(dict):
                  value: Optional[str] = None):
         """
         :param str method: Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
-        :param bool ignore_case: Ignore case, default `false`.
-        :param bool inverse: Sets if the condition should be inverted. Works similar to logical NOT operator.
+        :param bool ignore_case: Defines if case should be ignored. Defaults to `false`.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
         :param str value: String value.
         """
         pulumi.set(__self__, "method", method)
@@ -2039,7 +2031,7 @@ class LoadbalancerFrontendRuleMatchersUrl(dict):
     @pulumi.getter(name="ignoreCase")
     def ignore_case(self) -> Optional[bool]:
         """
-        Ignore case, default `false`.
+        Defines if case should be ignored. Defaults to `false`.
         """
         return pulumi.get(self, "ignore_case")
 
@@ -2047,7 +2039,7 @@ class LoadbalancerFrontendRuleMatchersUrl(dict):
     @pulumi.getter
     def inverse(self) -> Optional[bool]:
         """
-        Sets if the condition should be inverted. Works similar to logical NOT operator.
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         return pulumi.get(self, "inverse")
 
@@ -2088,8 +2080,8 @@ class LoadbalancerFrontendRuleMatchersUrlParam(dict):
         """
         :param str method: Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
         :param str name: Name of the argument.
-        :param bool ignore_case: Ignore case, default `false`.
-        :param bool inverse: Sets if the condition should be inverted. Works similar to logical NOT operator.
+        :param bool ignore_case: Defines if case should be ignored. Defaults to `false`.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
         :param str value: String value.
         """
         pulumi.set(__self__, "method", method)
@@ -2121,7 +2113,7 @@ class LoadbalancerFrontendRuleMatchersUrlParam(dict):
     @pulumi.getter(name="ignoreCase")
     def ignore_case(self) -> Optional[bool]:
         """
-        Ignore case, default `false`.
+        Defines if case should be ignored. Defaults to `false`.
         """
         return pulumi.get(self, "ignore_case")
 
@@ -2129,7 +2121,7 @@ class LoadbalancerFrontendRuleMatchersUrlParam(dict):
     @pulumi.getter
     def inverse(self) -> Optional[bool]:
         """
-        Sets if the condition should be inverted. Works similar to logical NOT operator.
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         return pulumi.get(self, "inverse")
 
@@ -2168,8 +2160,8 @@ class LoadbalancerFrontendRuleMatchersUrlQuery(dict):
                  value: Optional[str] = None):
         """
         :param str method: Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
-        :param bool ignore_case: Ignore case, default `false`.
-        :param bool inverse: Sets if the condition should be inverted. Works similar to logical NOT operator.
+        :param bool ignore_case: Defines if case should be ignored. Defaults to `false`.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
         :param str value: String value.
         """
         pulumi.set(__self__, "method", method)
@@ -2192,7 +2184,7 @@ class LoadbalancerFrontendRuleMatchersUrlQuery(dict):
     @pulumi.getter(name="ignoreCase")
     def ignore_case(self) -> Optional[bool]:
         """
-        Ignore case, default `false`.
+        Defines if case should be ignored. Defaults to `false`.
         """
         return pulumi.get(self, "ignore_case")
 
@@ -2200,7 +2192,7 @@ class LoadbalancerFrontendRuleMatchersUrlQuery(dict):
     @pulumi.getter
     def inverse(self) -> Optional[bool]:
         """
-        Sets if the condition should be inverted. Works similar to logical NOT operator.
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
         """
         return pulumi.get(self, "inverse")
 
@@ -8876,7 +8868,7 @@ class StorageImport(dict):
                  written_bytes: Optional[int] = None):
         """
         :param str source: The mode of the import task. One of `http_import` or `direct_upload`.
-        :param str source_location: The location of the file to import. For `http_import` an accessible URL for `direct_upload` a local file.
+        :param str source_location: The location of the file to import. For `http_import` an accessible URL. For `direct_upload` a local file. When direct uploading a compressed image, `Content-Type` header of the PUT request is set automatically based on the file extension (`.gz` or `.xz`, case-insensitive).
         :param str sha256sum: sha256 sum of the imported data
         :param str source_hash: SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
         :param int written_bytes: Number of bytes imported
@@ -8902,7 +8894,7 @@ class StorageImport(dict):
     @pulumi.getter(name="sourceLocation")
     def source_location(self) -> str:
         """
-        The location of the file to import. For `http_import` an accessible URL for `direct_upload` a local file.
+        The location of the file to import. For `http_import` an accessible URL. For `direct_upload` a local file. When direct uploading a compressed image, `Content-Type` header of the PUT request is set automatically based on the file extension (`.gz` or `.xz`, case-insensitive).
         """
         return pulumi.get(self, "source_location")
 

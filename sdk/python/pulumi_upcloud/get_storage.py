@@ -21,13 +21,19 @@ class GetStorageResult:
     """
     A collection of values returned by getStorage.
     """
-    def __init__(__self__, access_type=None, id=None, most_recent=None, name=None, name_regex=None, size=None, state=None, tier=None, title=None, type=None, zone=None):
+    def __init__(__self__, access_type=None, encrypt=None, id=None, labels=None, most_recent=None, name=None, name_regex=None, size=None, state=None, system_labels=None, tier=None, title=None, type=None, zone=None):
         if access_type and not isinstance(access_type, str):
             raise TypeError("Expected argument 'access_type' to be a str")
         pulumi.set(__self__, "access_type", access_type)
+        if encrypt and not isinstance(encrypt, bool):
+            raise TypeError("Expected argument 'encrypt' to be a bool")
+        pulumi.set(__self__, "encrypt", encrypt)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if labels and not isinstance(labels, dict):
+            raise TypeError("Expected argument 'labels' to be a dict")
+        pulumi.set(__self__, "labels", labels)
         if most_recent and not isinstance(most_recent, bool):
             raise TypeError("Expected argument 'most_recent' to be a bool")
         pulumi.set(__self__, "most_recent", most_recent)
@@ -43,6 +49,9 @@ class GetStorageResult:
         if state and not isinstance(state, str):
             raise TypeError("Expected argument 'state' to be a str")
         pulumi.set(__self__, "state", state)
+        if system_labels and not isinstance(system_labels, dict):
+            raise TypeError("Expected argument 'system_labels' to be a dict")
+        pulumi.set(__self__, "system_labels", system_labels)
         if tier and not isinstance(tier, str):
             raise TypeError("Expected argument 'tier' to be a str")
         pulumi.set(__self__, "tier", tier)
@@ -63,24 +72,34 @@ class GetStorageResult:
 
     @property
     @pulumi.getter
+    def encrypt(self) -> bool:
+        return pulumi.get(self, "encrypt")
+
+    @property
+    @pulumi.getter
     def id(self) -> str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter
+    def labels(self) -> Mapping[str, str]:
+        return pulumi.get(self, "labels")
+
+    @property
     @pulumi.getter(name="mostRecent")
+    @_utilities.deprecated("""Use exact title or UUID to limit the number of matching storages. Note that if you have multiple storages with the same title, you should use UUID to select the storage.""")
     def most_recent(self) -> Optional[bool]:
         return pulumi.get(self, "most_recent")
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Contains the same value as `title`. Use `title` instead.""")
     def name(self) -> Optional[str]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nameRegex")
+    @_utilities.deprecated("""Use exact title or UUID instead.""")
     def name_regex(self) -> Optional[str]:
         return pulumi.get(self, "name_regex")
 
@@ -93,6 +112,11 @@ class GetStorageResult:
     @pulumi.getter
     def state(self) -> str:
         return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter(name="systemLabels")
+    def system_labels(self) -> Mapping[str, str]:
+        return pulumi.get(self, "system_labels")
 
     @property
     @pulumi.getter
@@ -122,12 +146,15 @@ class AwaitableGetStorageResult(GetStorageResult):
             yield self
         return GetStorageResult(
             access_type=self.access_type,
+            encrypt=self.encrypt,
             id=self.id,
+            labels=self.labels,
             most_recent=self.most_recent,
             name=self.name,
             name_regex=self.name_regex,
             size=self.size,
             state=self.state,
+            system_labels=self.system_labels,
             tier=self.tier,
             title=self.title,
             type=self.type,
@@ -135,17 +162,18 @@ class AwaitableGetStorageResult(GetStorageResult):
 
 
 def get_storage(access_type: Optional[str] = None,
+                id: Optional[str] = None,
                 most_recent: Optional[bool] = None,
                 name: Optional[str] = None,
                 name_regex: Optional[str] = None,
+                title: Optional[str] = None,
                 type: Optional[str] = None,
                 zone: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStorageResult:
     """
-    Returns storage resource information based on defined arguments.
+    Provides information on UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.
 
-    Data object can be used to map storage to other resource based on the ID or just to read some other storage property like zone information.\\
-    Storage types are: normal, backup, cdrom, template
+    Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `normal`, `backup`, `cdrom`, and `template`.
 
     ## Example Usage
 
@@ -181,9 +209,11 @@ def get_storage(access_type: Optional[str] = None,
     """
     __args__ = dict()
     __args__['accessType'] = access_type
+    __args__['id'] = id
     __args__['mostRecent'] = most_recent
     __args__['name'] = name
     __args__['nameRegex'] = name_regex
+    __args__['title'] = title
     __args__['type'] = type
     __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -191,12 +221,15 @@ def get_storage(access_type: Optional[str] = None,
 
     return AwaitableGetStorageResult(
         access_type=pulumi.get(__ret__, 'access_type'),
+        encrypt=pulumi.get(__ret__, 'encrypt'),
         id=pulumi.get(__ret__, 'id'),
+        labels=pulumi.get(__ret__, 'labels'),
         most_recent=pulumi.get(__ret__, 'most_recent'),
         name=pulumi.get(__ret__, 'name'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         size=pulumi.get(__ret__, 'size'),
         state=pulumi.get(__ret__, 'state'),
+        system_labels=pulumi.get(__ret__, 'system_labels'),
         tier=pulumi.get(__ret__, 'tier'),
         title=pulumi.get(__ret__, 'title'),
         type=pulumi.get(__ret__, 'type'),
@@ -205,17 +238,18 @@ def get_storage(access_type: Optional[str] = None,
 
 @_utilities.lift_output_func(get_storage)
 def get_storage_output(access_type: Optional[pulumi.Input[Optional[str]]] = None,
+                       id: Optional[pulumi.Input[Optional[str]]] = None,
                        most_recent: Optional[pulumi.Input[Optional[bool]]] = None,
                        name: Optional[pulumi.Input[Optional[str]]] = None,
                        name_regex: Optional[pulumi.Input[Optional[str]]] = None,
-                       type: Optional[pulumi.Input[str]] = None,
+                       title: Optional[pulumi.Input[Optional[str]]] = None,
+                       type: Optional[pulumi.Input[Optional[str]]] = None,
                        zone: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStorageResult]:
     """
-    Returns storage resource information based on defined arguments.
+    Provides information on UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.
 
-    Data object can be used to map storage to other resource based on the ID or just to read some other storage property like zone information.\\
-    Storage types are: normal, backup, cdrom, template
+    Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `normal`, `backup`, `cdrom`, and `template`.
 
     ## Example Usage
 

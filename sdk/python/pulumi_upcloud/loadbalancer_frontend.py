@@ -33,7 +33,6 @@ class LoadbalancerFrontendArgs:
         :param pulumi.Input[str] name: The name of the frontend. Must be unique within the load balancer service.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendNetworkArgs']]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
                be required when deprecated field `network` is removed from load balancer resource.
-        :param pulumi.Input['LoadbalancerFrontendPropertiesArgs'] properties: Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
         """
         pulumi.set(__self__, "default_backend_name", default_backend_name)
         pulumi.set(__self__, "loadbalancer", loadbalancer)
@@ -123,9 +122,6 @@ class LoadbalancerFrontendArgs:
     @property
     @pulumi.getter
     def properties(self) -> Optional[pulumi.Input['LoadbalancerFrontendPropertiesArgs']]:
-        """
-        Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        """
         return pulumi.get(self, "properties")
 
     @properties.setter
@@ -155,7 +151,6 @@ class _LoadbalancerFrontendState:
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendNetworkArgs']]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
                be required when deprecated field `network` is removed from load balancer resource.
         :param pulumi.Input[int] port: Port to listen for incoming requests.
-        :param pulumi.Input['LoadbalancerFrontendPropertiesArgs'] properties: Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rules: Set of frontend rule names.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_configs: Set of TLS config names.
         """
@@ -255,9 +250,6 @@ class _LoadbalancerFrontendState:
     @property
     @pulumi.getter
     def properties(self) -> Optional[pulumi.Input['LoadbalancerFrontendPropertiesArgs']]:
-        """
-        Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        """
         return pulumi.get(self, "properties")
 
     @properties.setter
@@ -360,7 +352,6 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendNetworkArgs', 'LoadbalancerFrontendNetworkArgsDict']]]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
                be required when deprecated field `network` is removed from load balancer resource.
         :param pulumi.Input[int] port: Port to listen for incoming requests.
-        :param pulumi.Input[Union['LoadbalancerFrontendPropertiesArgs', 'LoadbalancerFrontendPropertiesArgsDict']] properties: Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
         """
         ...
     @overload
@@ -498,7 +489,6 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendNetworkArgs', 'LoadbalancerFrontendNetworkArgsDict']]]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
                be required when deprecated field `network` is removed from load balancer resource.
         :param pulumi.Input[int] port: Port to listen for incoming requests.
-        :param pulumi.Input[Union['LoadbalancerFrontendPropertiesArgs', 'LoadbalancerFrontendPropertiesArgsDict']] properties: Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rules: Set of frontend rule names.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_configs: Set of TLS config names.
         """
@@ -570,9 +560,6 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @property
     @pulumi.getter
     def properties(self) -> pulumi.Output[Optional['outputs.LoadbalancerFrontendProperties']]:
-        """
-        Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        """
         return pulumi.get(self, "properties")
 
     @property
