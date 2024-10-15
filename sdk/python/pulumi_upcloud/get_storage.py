@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -234,9 +239,6 @@ def get_storage(access_type: Optional[str] = None,
         title=pulumi.get(__ret__, 'title'),
         type=pulumi.get(__ret__, 'type'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_storage)
 def get_storage_output(access_type: Optional[pulumi.Input[Optional[str]]] = None,
                        id: Optional[pulumi.Input[Optional[str]]] = None,
                        most_recent: Optional[pulumi.Input[Optional[bool]]] = None,
@@ -283,4 +285,29 @@ def get_storage_output(access_type: Optional[pulumi.Input[Optional[str]]] = None
         })
     ```
     """
-    ...
+    __args__ = dict()
+    __args__['accessType'] = access_type
+    __args__['id'] = id
+    __args__['mostRecent'] = most_recent
+    __args__['name'] = name
+    __args__['nameRegex'] = name_regex
+    __args__['title'] = title
+    __args__['type'] = type
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('upcloud:index/getStorage:getStorage', __args__, opts=opts, typ=GetStorageResult)
+    return __ret__.apply(lambda __response__: GetStorageResult(
+        access_type=pulumi.get(__response__, 'access_type'),
+        encrypt=pulumi.get(__response__, 'encrypt'),
+        id=pulumi.get(__response__, 'id'),
+        labels=pulumi.get(__response__, 'labels'),
+        most_recent=pulumi.get(__response__, 'most_recent'),
+        name=pulumi.get(__response__, 'name'),
+        name_regex=pulumi.get(__response__, 'name_regex'),
+        size=pulumi.get(__response__, 'size'),
+        state=pulumi.get(__response__, 'state'),
+        system_labels=pulumi.get(__response__, 'system_labels'),
+        tier=pulumi.get(__response__, 'tier'),
+        title=pulumi.get(__response__, 'title'),
+        type=pulumi.get(__response__, 'type'),
+        zone=pulumi.get(__response__, 'zone')))

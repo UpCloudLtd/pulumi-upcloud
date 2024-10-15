@@ -121,7 +121,7 @@ type KubernetesCluster struct {
 	State pulumi.StringOutput `pulumi:"state"`
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption pulumi.StringPtrOutput `pulumi:"storageEncryption"`
-	// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
 	Version pulumi.StringOutput `pulumi:"version"`
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -190,7 +190,7 @@ type kubernetesClusterState struct {
 	State *string `pulumi:"state"`
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption *string `pulumi:"storageEncryption"`
-	// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
 	Version *string `pulumi:"version"`
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -221,7 +221,7 @@ type KubernetesClusterState struct {
 	State pulumi.StringPtrInput
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption pulumi.StringPtrInput
-	// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
 	Version pulumi.StringPtrInput
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -250,7 +250,7 @@ type kubernetesClusterArgs struct {
 	PrivateNodeGroups *bool `pulumi:"privateNodeGroups"`
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption *string `pulumi:"storageEncryption"`
-	// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
 	Version *string `pulumi:"version"`
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -276,7 +276,7 @@ type KubernetesClusterArgs struct {
 	PrivateNodeGroups pulumi.BoolPtrInput
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption pulumi.StringPtrInput
-	// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
 	Version pulumi.StringPtrInput
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -423,7 +423,7 @@ func (o KubernetesClusterOutput) StorageEncryption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringPtrOutput { return v.StorageEncryption }).(pulumi.StringPtrOutput)
 }
 
-// Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
+// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
 func (o KubernetesClusterOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

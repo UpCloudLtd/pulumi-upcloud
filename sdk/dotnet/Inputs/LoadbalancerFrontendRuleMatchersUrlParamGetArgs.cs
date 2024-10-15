@@ -13,13 +13,13 @@ namespace Pulumi.Upcloud.Inputs
     public sealed class LoadbalancerFrontendRuleMatchersUrlParamGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Ignore case, default `false`.
+        /// Defines if case should be ignored. Defaults to `false`.
         /// </summary>
         [Input("ignoreCase")]
         public Input<bool>? IgnoreCase { get; set; }
 
         /// <summary>
-        /// Sets if the condition should be inverted. Works similar to logical NOT operator.
+        /// Defines if the condition should be inverted. Works similarly to logical NOT operator.
         /// </summary>
         [Input("inverse")]
         public Input<bool>? Inverse { get; set; }

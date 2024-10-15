@@ -8,7 +8,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getKubernetesCluster(args: GetKubernetesClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetKubernetesClusterResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("upcloud:index/getKubernetesCluster:getKubernetesCluster", {
         "id": args.id,
@@ -38,7 +37,10 @@ export interface GetKubernetesClusterResult {
  * ## Example Usage
  */
 export function getKubernetesClusterOutput(args: GetKubernetesClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubernetesClusterResult> {
-    return pulumi.output(args).apply((a: any) => getKubernetesCluster(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("upcloud:index/getKubernetesCluster:getKubernetesCluster", {
+        "id": args.id,
+    }, opts);
 }
 
 /**

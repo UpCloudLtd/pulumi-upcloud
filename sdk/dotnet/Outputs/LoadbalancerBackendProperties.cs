@@ -14,7 +14,7 @@ namespace Pulumi.Upcloud.Outputs
     public sealed class LoadbalancerBackendProperties
     {
         /// <summary>
-        /// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for tcp type.
+        /// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `tcp` `health_check_type`.
         /// </summary>
         public readonly int? HealthCheckExpectedStatus;
         /// <summary>
@@ -22,11 +22,11 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly int? HealthCheckFall;
         /// <summary>
-        /// Interval between health checks.
+        /// Interval between health checks in seconds.
         /// </summary>
         public readonly int? HealthCheckInterval;
         /// <summary>
-        /// Sets how many passing checks there must be before returning the backend member to the rotation.
+        /// Sets how many successful health checks are required to put the backend member back into rotation.
         /// </summary>
         public readonly int? HealthCheckRise;
         /// <summary>
@@ -38,7 +38,7 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly string? HealthCheckType;
         /// <summary>
-        /// Target path for health check HTTP GET requests. Ignored for tcp type.
+        /// Target path for health check HTTP GET requests. Ignored for `tcp` `health_check_type`.
         /// </summary>
         public readonly string? HealthCheckUrl;
         /// <summary>
@@ -46,7 +46,7 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly bool? Http2Enabled;
         /// <summary>
-        /// Enable outbound proxy protocol by setting the desired version. Empty string disables proxy protocol.
+        /// Enable outbound proxy protocol by setting the desired version. Defaults to empty string. Empty string disables proxy protocol.
         /// </summary>
         public readonly string? OutboundProxyProtocol;
         /// <summary>
@@ -61,10 +61,6 @@ namespace Pulumi.Upcloud.Outputs
         /// Maximum inactivity time on the client and server side for tunnels in seconds.
         /// </summary>
         public readonly int? TimeoutTunnel;
-        /// <summary>
-        /// Set of TLS config names
-        /// </summary>
-        public readonly ImmutableArray<string> TlsConfigs;
         /// <summary>
         /// Enables TLS connection from the load balancer to backend servers.
         /// </summary>
@@ -104,8 +100,6 @@ namespace Pulumi.Upcloud.Outputs
 
             int? timeoutTunnel,
 
-            ImmutableArray<string> tlsConfigs,
-
             bool? tlsEnabled,
 
             bool? tlsUseSystemCa,
@@ -124,7 +118,6 @@ namespace Pulumi.Upcloud.Outputs
             StickySessionCookieName = stickySessionCookieName;
             TimeoutServer = timeoutServer;
             TimeoutTunnel = timeoutTunnel;
-            TlsConfigs = tlsConfigs;
             TlsEnabled = tlsEnabled;
             TlsUseSystemCa = tlsUseSystemCa;
             TlsVerify = tlsVerify;

@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource represents load balancer backend service
+// This resource represents load balancer backend service.
 //
 // ## Example Usage
 //
@@ -68,17 +68,16 @@ import (
 type LoadbalancerBackend struct {
 	pulumi.CustomResourceState
 
-	// ID of the load balancer to which the backend is connected.
+	// UUID of the load balancer to which the backend is connected.
 	Loadbalancer pulumi.StringOutput `pulumi:"loadbalancer"`
-	// Backend members receive traffic dispatched from the frontends
+	// Backend member server UUIDs. Members receive traffic dispatched from the frontends.
 	Members pulumi.StringArrayOutput `pulumi:"members"`
-	// The name of the backend must be unique within the load balancer service.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
-	Properties LoadbalancerBackendPropertiesOutput `pulumi:"properties"`
-	// Domain Name Resolver used with dynamic type members.
-	ResolverName pulumi.StringPtrOutput `pulumi:"resolverName"`
-	// Set of TLS config names
+	// The name of the backend. Must be unique within the load balancer service.
+	Name       pulumi.StringOutput                    `pulumi:"name"`
+	Properties LoadbalancerBackendPropertiesPtrOutput `pulumi:"properties"`
+	// Domain name resolver used with dynamic type members.
+	ResolverName pulumi.StringOutput `pulumi:"resolverName"`
+	// Set of TLS config names.
 	TlsConfigs pulumi.StringArrayOutput `pulumi:"tlsConfigs"`
 }
 
@@ -115,32 +114,30 @@ func GetLoadbalancerBackend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoadbalancerBackend resources.
 type loadbalancerBackendState struct {
-	// ID of the load balancer to which the backend is connected.
+	// UUID of the load balancer to which the backend is connected.
 	Loadbalancer *string `pulumi:"loadbalancer"`
-	// Backend members receive traffic dispatched from the frontends
+	// Backend member server UUIDs. Members receive traffic dispatched from the frontends.
 	Members []string `pulumi:"members"`
-	// The name of the backend must be unique within the load balancer service.
-	Name *string `pulumi:"name"`
-	// Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
+	// The name of the backend. Must be unique within the load balancer service.
+	Name       *string                        `pulumi:"name"`
 	Properties *LoadbalancerBackendProperties `pulumi:"properties"`
-	// Domain Name Resolver used with dynamic type members.
+	// Domain name resolver used with dynamic type members.
 	ResolverName *string `pulumi:"resolverName"`
-	// Set of TLS config names
+	// Set of TLS config names.
 	TlsConfigs []string `pulumi:"tlsConfigs"`
 }
 
 type LoadbalancerBackendState struct {
-	// ID of the load balancer to which the backend is connected.
+	// UUID of the load balancer to which the backend is connected.
 	Loadbalancer pulumi.StringPtrInput
-	// Backend members receive traffic dispatched from the frontends
+	// Backend member server UUIDs. Members receive traffic dispatched from the frontends.
 	Members pulumi.StringArrayInput
-	// The name of the backend must be unique within the load balancer service.
-	Name pulumi.StringPtrInput
-	// Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
+	// The name of the backend. Must be unique within the load balancer service.
+	Name       pulumi.StringPtrInput
 	Properties LoadbalancerBackendPropertiesPtrInput
-	// Domain Name Resolver used with dynamic type members.
+	// Domain name resolver used with dynamic type members.
 	ResolverName pulumi.StringPtrInput
-	// Set of TLS config names
+	// Set of TLS config names.
 	TlsConfigs pulumi.StringArrayInput
 }
 
@@ -149,25 +146,23 @@ func (LoadbalancerBackendState) ElementType() reflect.Type {
 }
 
 type loadbalancerBackendArgs struct {
-	// ID of the load balancer to which the backend is connected.
+	// UUID of the load balancer to which the backend is connected.
 	Loadbalancer string `pulumi:"loadbalancer"`
-	// The name of the backend must be unique within the load balancer service.
-	Name *string `pulumi:"name"`
-	// Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
+	// The name of the backend. Must be unique within the load balancer service.
+	Name       *string                        `pulumi:"name"`
 	Properties *LoadbalancerBackendProperties `pulumi:"properties"`
-	// Domain Name Resolver used with dynamic type members.
+	// Domain name resolver used with dynamic type members.
 	ResolverName *string `pulumi:"resolverName"`
 }
 
 // The set of arguments for constructing a LoadbalancerBackend resource.
 type LoadbalancerBackendArgs struct {
-	// ID of the load balancer to which the backend is connected.
+	// UUID of the load balancer to which the backend is connected.
 	Loadbalancer pulumi.StringInput
-	// The name of the backend must be unique within the load balancer service.
-	Name pulumi.StringPtrInput
-	// Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
+	// The name of the backend. Must be unique within the load balancer service.
+	Name       pulumi.StringPtrInput
 	Properties LoadbalancerBackendPropertiesPtrInput
-	// Domain Name Resolver used with dynamic type members.
+	// Domain name resolver used with dynamic type members.
 	ResolverName pulumi.StringPtrInput
 }
 
@@ -258,32 +253,31 @@ func (o LoadbalancerBackendOutput) ToLoadbalancerBackendOutputWithContext(ctx co
 	return o
 }
 
-// ID of the load balancer to which the backend is connected.
+// UUID of the load balancer to which the backend is connected.
 func (o LoadbalancerBackendOutput) Loadbalancer() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringOutput { return v.Loadbalancer }).(pulumi.StringOutput)
 }
 
-// Backend members receive traffic dispatched from the frontends
+// Backend member server UUIDs. Members receive traffic dispatched from the frontends.
 func (o LoadbalancerBackendOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
 }
 
-// The name of the backend must be unique within the load balancer service.
+// The name of the backend. Must be unique within the load balancer service.
 func (o LoadbalancerBackendOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
-func (o LoadbalancerBackendOutput) Properties() LoadbalancerBackendPropertiesOutput {
-	return o.ApplyT(func(v *LoadbalancerBackend) LoadbalancerBackendPropertiesOutput { return v.Properties }).(LoadbalancerBackendPropertiesOutput)
+func (o LoadbalancerBackendOutput) Properties() LoadbalancerBackendPropertiesPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackend) LoadbalancerBackendPropertiesPtrOutput { return v.Properties }).(LoadbalancerBackendPropertiesPtrOutput)
 }
 
-// Domain Name Resolver used with dynamic type members.
-func (o LoadbalancerBackendOutput) ResolverName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.ResolverName }).(pulumi.StringPtrOutput)
+// Domain name resolver used with dynamic type members.
+func (o LoadbalancerBackendOutput) ResolverName() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringOutput { return v.ResolverName }).(pulumi.StringOutput)
 }
 
-// Set of TLS config names
+// Set of TLS config names.
 func (o LoadbalancerBackendOutput) TlsConfigs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringArrayOutput { return v.TlsConfigs }).(pulumi.StringArrayOutput)
 }

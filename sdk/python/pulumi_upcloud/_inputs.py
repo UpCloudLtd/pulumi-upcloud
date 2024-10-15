@@ -4,111 +4,229 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'GatewayAddressArgs',
+    'GatewayAddressArgsDict',
     'GatewayConnectionLocalRouteArgs',
+    'GatewayConnectionLocalRouteArgsDict',
     'GatewayConnectionRemoteRouteArgs',
+    'GatewayConnectionRemoteRouteArgsDict',
     'GatewayConnectionTunnelIpsecAuthPskArgs',
+    'GatewayConnectionTunnelIpsecAuthPskArgsDict',
     'GatewayConnectionTunnelIpsecPropertiesArgs',
+    'GatewayConnectionTunnelIpsecPropertiesArgsDict',
     'GatewayRouterArgs',
+    'GatewayRouterArgsDict',
     'KubernetesNodeGroupCustomPlanArgs',
+    'KubernetesNodeGroupCustomPlanArgsDict',
     'KubernetesNodeGroupKubeletArgArgs',
+    'KubernetesNodeGroupKubeletArgArgsDict',
     'KubernetesNodeGroupTaintArgs',
+    'KubernetesNodeGroupTaintArgsDict',
     'LoadbalancerBackendPropertiesArgs',
+    'LoadbalancerBackendPropertiesArgsDict',
     'LoadbalancerFrontendNetworkArgs',
+    'LoadbalancerFrontendNetworkArgsDict',
     'LoadbalancerFrontendPropertiesArgs',
+    'LoadbalancerFrontendPropertiesArgsDict',
     'LoadbalancerFrontendRuleActionsArgs',
+    'LoadbalancerFrontendRuleActionsArgsDict',
     'LoadbalancerFrontendRuleActionsHttpRedirectArgs',
+    'LoadbalancerFrontendRuleActionsHttpRedirectArgsDict',
     'LoadbalancerFrontendRuleActionsHttpReturnArgs',
+    'LoadbalancerFrontendRuleActionsHttpReturnArgsDict',
     'LoadbalancerFrontendRuleActionsSetForwardedHeaderArgs',
+    'LoadbalancerFrontendRuleActionsSetForwardedHeaderArgsDict',
     'LoadbalancerFrontendRuleActionsTcpRejectArgs',
+    'LoadbalancerFrontendRuleActionsTcpRejectArgsDict',
     'LoadbalancerFrontendRuleActionsUseBackendArgs',
+    'LoadbalancerFrontendRuleActionsUseBackendArgsDict',
     'LoadbalancerFrontendRuleMatchersArgs',
+    'LoadbalancerFrontendRuleMatchersArgsDict',
     'LoadbalancerFrontendRuleMatchersBodySizeArgs',
+    'LoadbalancerFrontendRuleMatchersBodySizeArgsDict',
     'LoadbalancerFrontendRuleMatchersBodySizeRangeArgs',
+    'LoadbalancerFrontendRuleMatchersBodySizeRangeArgsDict',
     'LoadbalancerFrontendRuleMatchersCookieArgs',
+    'LoadbalancerFrontendRuleMatchersCookieArgsDict',
     'LoadbalancerFrontendRuleMatchersHeaderArgs',
+    'LoadbalancerFrontendRuleMatchersHeaderArgsDict',
     'LoadbalancerFrontendRuleMatchersHostArgs',
+    'LoadbalancerFrontendRuleMatchersHostArgsDict',
     'LoadbalancerFrontendRuleMatchersHttpMethodArgs',
+    'LoadbalancerFrontendRuleMatchersHttpMethodArgsDict',
     'LoadbalancerFrontendRuleMatchersNumMembersUpArgs',
+    'LoadbalancerFrontendRuleMatchersNumMembersUpArgsDict',
     'LoadbalancerFrontendRuleMatchersPathArgs',
+    'LoadbalancerFrontendRuleMatchersPathArgsDict',
     'LoadbalancerFrontendRuleMatchersSrcIpArgs',
+    'LoadbalancerFrontendRuleMatchersSrcIpArgsDict',
     'LoadbalancerFrontendRuleMatchersSrcPortArgs',
+    'LoadbalancerFrontendRuleMatchersSrcPortArgsDict',
     'LoadbalancerFrontendRuleMatchersSrcPortRangeArgs',
+    'LoadbalancerFrontendRuleMatchersSrcPortRangeArgsDict',
     'LoadbalancerFrontendRuleMatchersUrlArgs',
+    'LoadbalancerFrontendRuleMatchersUrlArgsDict',
     'LoadbalancerFrontendRuleMatchersUrlParamArgs',
+    'LoadbalancerFrontendRuleMatchersUrlParamArgsDict',
     'LoadbalancerFrontendRuleMatchersUrlQueryArgs',
+    'LoadbalancerFrontendRuleMatchersUrlQueryArgsDict',
     'LoadbalancerNetworkArgs',
+    'LoadbalancerNetworkArgsDict',
     'LoadbalancerNodeArgs',
+    'LoadbalancerNodeArgsDict',
     'LoadbalancerNodeNetworkArgs',
+    'LoadbalancerNodeNetworkArgsDict',
     'LoadbalancerNodeNetworkIpAddressArgs',
+    'LoadbalancerNodeNetworkIpAddressArgsDict',
     'ManagedDatabaseMysqlComponentArgs',
+    'ManagedDatabaseMysqlComponentArgsDict',
     'ManagedDatabaseMysqlNetworkArgs',
+    'ManagedDatabaseMysqlNetworkArgsDict',
     'ManagedDatabaseMysqlNodeStateArgs',
+    'ManagedDatabaseMysqlNodeStateArgsDict',
     'ManagedDatabaseMysqlPropertiesArgs',
+    'ManagedDatabaseMysqlPropertiesArgsDict',
     'ManagedDatabaseMysqlPropertiesMigrationArgs',
+    'ManagedDatabaseMysqlPropertiesMigrationArgsDict',
     'ManagedDatabaseOpensearchComponentArgs',
+    'ManagedDatabaseOpensearchComponentArgsDict',
     'ManagedDatabaseOpensearchNetworkArgs',
+    'ManagedDatabaseOpensearchNetworkArgsDict',
     'ManagedDatabaseOpensearchNodeStateArgs',
+    'ManagedDatabaseOpensearchNodeStateArgsDict',
     'ManagedDatabaseOpensearchPropertiesArgs',
+    'ManagedDatabaseOpensearchPropertiesArgsDict',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs',
+    'ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgsDict',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs',
+    'ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgsDict',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs',
+    'ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgsDict',
     'ManagedDatabaseOpensearchPropertiesAzureMigrationArgs',
+    'ManagedDatabaseOpensearchPropertiesAzureMigrationArgsDict',
     'ManagedDatabaseOpensearchPropertiesGcsMigrationArgs',
+    'ManagedDatabaseOpensearchPropertiesGcsMigrationArgsDict',
     'ManagedDatabaseOpensearchPropertiesIndexRollupArgs',
+    'ManagedDatabaseOpensearchPropertiesIndexRollupArgsDict',
     'ManagedDatabaseOpensearchPropertiesIndexTemplateArgs',
+    'ManagedDatabaseOpensearchPropertiesIndexTemplateArgsDict',
     'ManagedDatabaseOpensearchPropertiesOpenidArgs',
+    'ManagedDatabaseOpensearchPropertiesOpenidArgsDict',
     'ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs',
+    'ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgsDict',
     'ManagedDatabaseOpensearchPropertiesS3MigrationArgs',
+    'ManagedDatabaseOpensearchPropertiesS3MigrationArgsDict',
     'ManagedDatabaseOpensearchPropertiesSamlArgs',
+    'ManagedDatabaseOpensearchPropertiesSamlArgsDict',
     'ManagedDatabasePostgresqlComponentArgs',
+    'ManagedDatabasePostgresqlComponentArgsDict',
     'ManagedDatabasePostgresqlNetworkArgs',
+    'ManagedDatabasePostgresqlNetworkArgsDict',
     'ManagedDatabasePostgresqlNodeStateArgs',
+    'ManagedDatabasePostgresqlNodeStateArgsDict',
     'ManagedDatabasePostgresqlPropertiesArgs',
+    'ManagedDatabasePostgresqlPropertiesArgsDict',
     'ManagedDatabasePostgresqlPropertiesMigrationArgs',
+    'ManagedDatabasePostgresqlPropertiesMigrationArgsDict',
     'ManagedDatabasePostgresqlPropertiesPgbouncerArgs',
+    'ManagedDatabasePostgresqlPropertiesPgbouncerArgsDict',
     'ManagedDatabasePostgresqlPropertiesPglookoutArgs',
+    'ManagedDatabasePostgresqlPropertiesPglookoutArgsDict',
     'ManagedDatabasePostgresqlPropertiesTimescaledbArgs',
+    'ManagedDatabasePostgresqlPropertiesTimescaledbArgsDict',
     'ManagedDatabaseRedisComponentArgs',
+    'ManagedDatabaseRedisComponentArgsDict',
     'ManagedDatabaseRedisNetworkArgs',
+    'ManagedDatabaseRedisNetworkArgsDict',
     'ManagedDatabaseRedisNodeStateArgs',
+    'ManagedDatabaseRedisNodeStateArgsDict',
     'ManagedDatabaseRedisPropertiesArgs',
+    'ManagedDatabaseRedisPropertiesArgsDict',
     'ManagedDatabaseRedisPropertiesMigrationArgs',
+    'ManagedDatabaseRedisPropertiesMigrationArgsDict',
     'ManagedDatabaseUserOpensearchAccessControlArgs',
+    'ManagedDatabaseUserOpensearchAccessControlArgsDict',
     'ManagedDatabaseUserOpensearchAccessControlRuleArgs',
+    'ManagedDatabaseUserOpensearchAccessControlRuleArgsDict',
     'ManagedDatabaseUserPgAccessControlArgs',
+    'ManagedDatabaseUserPgAccessControlArgsDict',
     'ManagedDatabaseUserRedisAccessControlArgs',
+    'ManagedDatabaseUserRedisAccessControlArgsDict',
     'ManagedObjectStorageEndpointArgs',
+    'ManagedObjectStorageEndpointArgsDict',
     'ManagedObjectStorageNetworkArgs',
+    'ManagedObjectStorageNetworkArgsDict',
     'NetworkIpNetworkArgs',
+    'NetworkIpNetworkArgsDict',
     'NetworkPeeringNetworkArgs',
+    'NetworkPeeringNetworkArgsDict',
     'NetworkPeeringPeerNetworkArgs',
+    'NetworkPeeringPeerNetworkArgsDict',
     'ObjectStorageBucketArgs',
+    'ObjectStorageBucketArgsDict',
     'RouterStaticRouteArgs',
+    'RouterStaticRouteArgsDict',
     'ServerFirewallRulesFirewallRuleArgs',
+    'ServerFirewallRulesFirewallRuleArgsDict',
     'ServerLoginArgs',
+    'ServerLoginArgsDict',
     'ServerNetworkInterfaceArgs',
+    'ServerNetworkInterfaceArgsDict',
     'ServerNetworkInterfaceAdditionalIpAddressArgs',
+    'ServerNetworkInterfaceAdditionalIpAddressArgsDict',
     'ServerSimpleBackupArgs',
+    'ServerSimpleBackupArgsDict',
     'ServerStorageDeviceArgs',
+    'ServerStorageDeviceArgsDict',
     'ServerTemplateArgs',
+    'ServerTemplateArgsDict',
     'ServerTemplateBackupRuleArgs',
+    'ServerTemplateBackupRuleArgsDict',
     'StorageBackupRuleArgs',
+    'StorageBackupRuleArgsDict',
     'StorageCloneArgs',
+    'StorageCloneArgsDict',
     'StorageImportArgs',
+    'StorageImportArgsDict',
     'GetHostsHostArgs',
+    'GetHostsHostArgsDict',
     'GetManagedDatabaseMysqlSessionsSessionArgs',
+    'GetManagedDatabaseMysqlSessionsSessionArgsDict',
     'GetManagedDatabaseOpensearchIndicesIndexArgs',
+    'GetManagedDatabaseOpensearchIndicesIndexArgsDict',
     'GetManagedDatabasePostgresqlSessionsSessionArgs',
+    'GetManagedDatabasePostgresqlSessionsSessionArgsDict',
     'GetManagedDatabaseRedisSessionsSessionArgs',
+    'GetManagedDatabaseRedisSessionsSessionArgsDict',
     'GetManagedObjectStorageRegionsRegionArgs',
+    'GetManagedObjectStorageRegionsRegionArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class GatewayAddressArgsDict(TypedDict):
+        address: NotRequired[pulumi.Input[str]]
+        """
+        IP addresss
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Name of the IP address
+        """
+elif False:
+    GatewayAddressArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GatewayAddressArgs:
@@ -148,6 +266,23 @@ class GatewayAddressArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+
+if not MYPY:
+    class GatewayConnectionLocalRouteArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the route
+        """
+        static_network: pulumi.Input[str]
+        """
+        Destination prefix of the route; needs to be a valid IPv4 prefix
+        """
+        type: NotRequired[pulumi.Input[str]]
+        """
+        Type of route; currently the only supported type is 'static'
+        """
+elif False:
+    GatewayConnectionLocalRouteArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GatewayConnectionLocalRouteArgs:
@@ -202,6 +337,23 @@ class GatewayConnectionLocalRouteArgs:
         pulumi.set(self, "type", value)
 
 
+if not MYPY:
+    class GatewayConnectionRemoteRouteArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the route
+        """
+        static_network: pulumi.Input[str]
+        """
+        Destination prefix of the route; needs to be a valid IPv4 prefix
+        """
+        type: NotRequired[pulumi.Input[str]]
+        """
+        Type of route; currently the only supported type is 'static'
+        """
+elif False:
+    GatewayConnectionRemoteRouteArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GatewayConnectionRemoteRouteArgs:
     def __init__(__self__, *,
@@ -255,6 +407,15 @@ class GatewayConnectionRemoteRouteArgs:
         pulumi.set(self, "type", value)
 
 
+if not MYPY:
+    class GatewayConnectionTunnelIpsecAuthPskArgsDict(TypedDict):
+        psk: pulumi.Input[str]
+        """
+        The pre-shared key. This value is only used during resource creation and is not returned in the state. It is not possible to update this value. If you need to update it, delete the connection and create a new one.
+        """
+elif False:
+    GatewayConnectionTunnelIpsecAuthPskArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GatewayConnectionTunnelIpsecAuthPskArgs:
     def __init__(__self__, *,
@@ -276,6 +437,55 @@ class GatewayConnectionTunnelIpsecAuthPskArgs:
     def psk(self, value: pulumi.Input[str]):
         pulumi.set(self, "psk", value)
 
+
+if not MYPY:
+    class GatewayConnectionTunnelIpsecPropertiesArgsDict(TypedDict):
+        child_rekey_time: NotRequired[pulumi.Input[int]]
+        """
+        IKE child SA rekey time in seconds.
+        """
+        dpd_delay: NotRequired[pulumi.Input[int]]
+        """
+        Delay before sending Dead Peer Detection packets if no traffic is detected, in seconds.
+        """
+        dpd_timeout: NotRequired[pulumi.Input[int]]
+        """
+        Timeout period for DPD reply before considering the peer to be dead, in seconds.
+        """
+        ike_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum IKE SA lifetime in seconds.
+        """
+        phase1_algorithms: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of Phase 1: Proposal algorithms.
+        """
+        phase1_dh_group_numbers: NotRequired[pulumi.Input[Sequence[pulumi.Input[int]]]]
+        """
+        List of Phase 1 Diffie-Hellman group numbers.
+        """
+        phase1_integrity_algorithms: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of Phase 1 integrity algorithms.
+        """
+        phase2_algorithms: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of Phase 2: Security Association algorithms.
+        """
+        phase2_dh_group_numbers: NotRequired[pulumi.Input[Sequence[pulumi.Input[int]]]]
+        """
+        List of Phase 2 Diffie-Hellman group numbers.
+        """
+        phase2_integrity_algorithms: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of Phase 2 integrity algorithms.
+        """
+        rekey_time: NotRequired[pulumi.Input[int]]
+        """
+        IKE SA rekey time in seconds.
+        """
+elif False:
+    GatewayConnectionTunnelIpsecPropertiesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GatewayConnectionTunnelIpsecPropertiesArgs:
@@ -460,6 +670,15 @@ class GatewayConnectionTunnelIpsecPropertiesArgs:
         pulumi.set(self, "rekey_time", value)
 
 
+if not MYPY:
+    class GatewayRouterArgsDict(TypedDict):
+        id: pulumi.Input[str]
+        """
+        ID of the router attached to the gateway.
+        """
+elif False:
+    GatewayRouterArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GatewayRouterArgs:
     def __init__(__self__, *,
@@ -481,6 +700,27 @@ class GatewayRouterArgs:
     def id(self, value: pulumi.Input[str]):
         pulumi.set(self, "id", value)
 
+
+if not MYPY:
+    class KubernetesNodeGroupCustomPlanArgsDict(TypedDict):
+        cores: pulumi.Input[int]
+        """
+        The number of CPU cores dedicated to individual node group nodes when using custom plan
+        """
+        memory: pulumi.Input[int]
+        """
+        The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+        """
+        storage_size: pulumi.Input[int]
+        """
+        The size of the storage device in gigabytes.
+        """
+        storage_tier: NotRequired[pulumi.Input[str]]
+        """
+        The storage tier to use. Defaults to maxiops
+        """
+elif False:
+    KubernetesNodeGroupCustomPlanArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class KubernetesNodeGroupCustomPlanArgs:
@@ -550,6 +790,19 @@ class KubernetesNodeGroupCustomPlanArgs:
         pulumi.set(self, "storage_tier", value)
 
 
+if not MYPY:
+    class KubernetesNodeGroupKubeletArgArgsDict(TypedDict):
+        key: pulumi.Input[str]
+        """
+        Kubelet argument key.
+        """
+        value: pulumi.Input[str]
+        """
+        Kubelet argument value.
+        """
+elif False:
+    KubernetesNodeGroupKubeletArgArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class KubernetesNodeGroupKubeletArgArgs:
     def __init__(__self__, *,
@@ -586,6 +839,23 @@ class KubernetesNodeGroupKubeletArgArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class KubernetesNodeGroupTaintArgsDict(TypedDict):
+        effect: pulumi.Input[str]
+        """
+        Taint effect.
+        """
+        key: pulumi.Input[str]
+        """
+        Taint key.
+        """
+        value: pulumi.Input[str]
+        """
+        Taint value.
+        """
+elif False:
+    KubernetesNodeGroupTaintArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class KubernetesNodeGroupTaintArgs:
@@ -638,6 +908,71 @@ class KubernetesNodeGroupTaintArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class LoadbalancerBackendPropertiesArgsDict(TypedDict):
+        health_check_expected_status: NotRequired[pulumi.Input[int]]
+        """
+        Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `tcp` `health_check_type`.
+        """
+        health_check_fall: NotRequired[pulumi.Input[int]]
+        """
+        Sets how many failed health checks are allowed until the backend member is taken off from the rotation.
+        """
+        health_check_interval: NotRequired[pulumi.Input[int]]
+        """
+        Interval between health checks in seconds.
+        """
+        health_check_rise: NotRequired[pulumi.Input[int]]
+        """
+        Sets how many successful health checks are required to put the backend member back into rotation.
+        """
+        health_check_tls_verify: NotRequired[pulumi.Input[bool]]
+        """
+        Enables certificate verification with the system CA certificate bundle. Works with https scheme in health_check_url, otherwise ignored.
+        """
+        health_check_type: NotRequired[pulumi.Input[str]]
+        """
+        Health check type.
+        """
+        health_check_url: NotRequired[pulumi.Input[str]]
+        """
+        Target path for health check HTTP GET requests. Ignored for `tcp` `health_check_type`.
+        """
+        http2_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Allow HTTP/2 connections to backend members by utilizing ALPN extension of TLS protocol, therefore it can only be enabled when tls_enabled is set to true. Note: members should support HTTP/2 for this setting to work.
+        """
+        outbound_proxy_protocol: NotRequired[pulumi.Input[str]]
+        """
+        Enable outbound proxy protocol by setting the desired version. Defaults to empty string. Empty string disables proxy protocol.
+        """
+        sticky_session_cookie_name: NotRequired[pulumi.Input[str]]
+        """
+        Sets sticky session cookie name. Empty string disables sticky session.
+        """
+        timeout_server: NotRequired[pulumi.Input[int]]
+        """
+        Backend server timeout in seconds.
+        """
+        timeout_tunnel: NotRequired[pulumi.Input[int]]
+        """
+        Maximum inactivity time on the client and server side for tunnels in seconds.
+        """
+        tls_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enables TLS connection from the load balancer to backend servers.
+        """
+        tls_use_system_ca: NotRequired[pulumi.Input[bool]]
+        """
+        If enabled, then the system CA certificate bundle will be used for the certificate verification.
+        """
+        tls_verify: NotRequired[pulumi.Input[bool]]
+        """
+        Enables backend servers certificate verification. Please make sure that TLS config with the certificate bundle of type authority attached to the backend or `tls_use_system_ca` enabled. Note: `tls_verify` has preference over `health_check_tls_verify` when `tls_enabled` in true.
+        """
+elif False:
+    LoadbalancerBackendPropertiesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class LoadbalancerBackendPropertiesArgs:
@@ -886,6 +1221,15 @@ class LoadbalancerBackendPropertiesArgs:
         pulumi.set(self, "tls_verify", value)
 
 
+if not MYPY:
+    class LoadbalancerFrontendNetworkArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the load balancer network.
+        """
+elif False:
+    LoadbalancerFrontendNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoadbalancerFrontendNetworkArgs:
     def __init__(__self__, *,
@@ -907,6 +1251,23 @@ class LoadbalancerFrontendNetworkArgs:
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
 
+
+if not MYPY:
+    class LoadbalancerFrontendPropertiesArgsDict(TypedDict):
+        http2_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable or disable HTTP/2 support.
+        """
+        inbound_proxy_protocol: NotRequired[pulumi.Input[bool]]
+        """
+        Enable or disable inbound proxy protocol support.
+        """
+        timeout_client: NotRequired[pulumi.Input[int]]
+        """
+        Client request timeout in seconds.
+        """
+elif False:
+    LoadbalancerFrontendPropertiesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class LoadbalancerFrontendPropertiesArgs:
@@ -962,6 +1323,31 @@ class LoadbalancerFrontendPropertiesArgs:
     def timeout_client(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "timeout_client", value)
 
+
+if not MYPY:
+    class LoadbalancerFrontendRuleActionsArgsDict(TypedDict):
+        http_redirects: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsHttpRedirectArgsDict']]]]
+        """
+        Redirects HTTP requests to specified location or URL scheme. Only either location or scheme can be defined at a time.
+        """
+        http_returns: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsHttpReturnArgsDict']]]]
+        """
+        Returns HTTP response with specified HTTP status.
+        """
+        set_forwarded_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsSetForwardedHeaderArgsDict']]]]
+        """
+        Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
+        """
+        tcp_rejects: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsTcpRejectArgsDict']]]]
+        """
+        Terminates a connection.
+        """
+        use_backends: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsUseBackendArgsDict']]]]
+        """
+        Routes traffic to specified `backend`.
+        """
+elif False:
+    LoadbalancerFrontendRuleActionsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class LoadbalancerFrontendRuleActionsArgs:
@@ -1050,6 +1436,19 @@ class LoadbalancerFrontendRuleActionsArgs:
         pulumi.set(self, "use_backends", value)
 
 
+if not MYPY:
+    class LoadbalancerFrontendRuleActionsHttpRedirectArgsDict(TypedDict):
+        location: NotRequired[pulumi.Input[str]]
+        """
+        Target location.
+        """
+        scheme: NotRequired[pulumi.Input[str]]
+        """
+        Target scheme.
+        """
+elif False:
+    LoadbalancerFrontendRuleActionsHttpRedirectArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoadbalancerFrontendRuleActionsHttpRedirectArgs:
     def __init__(__self__, *,
@@ -1088,6 +1487,23 @@ class LoadbalancerFrontendRuleActionsHttpRedirectArgs:
     def scheme(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "scheme", value)
 
+
+if not MYPY:
+    class LoadbalancerFrontendRuleActionsHttpReturnArgsDict(TypedDict):
+        content_type: pulumi.Input[str]
+        """
+        Content type.
+        """
+        payload: pulumi.Input[str]
+        """
+        The payload.
+        """
+        status: pulumi.Input[int]
+        """
+        HTTP status code.
+        """
+elif False:
+    LoadbalancerFrontendRuleActionsHttpReturnArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class LoadbalancerFrontendRuleActionsHttpReturnArgs:
@@ -1141,6 +1557,12 @@ class LoadbalancerFrontendRuleActionsHttpReturnArgs:
         pulumi.set(self, "status", value)
 
 
+if not MYPY:
+    class LoadbalancerFrontendRuleActionsSetForwardedHeaderArgsDict(TypedDict):
+        active: NotRequired[pulumi.Input[bool]]
+elif False:
+    LoadbalancerFrontendRuleActionsSetForwardedHeaderArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoadbalancerFrontendRuleActionsSetForwardedHeaderArgs:
     def __init__(__self__, *,
@@ -1157,6 +1579,15 @@ class LoadbalancerFrontendRuleActionsSetForwardedHeaderArgs:
     def active(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "active", value)
 
+
+if not MYPY:
+    class LoadbalancerFrontendRuleActionsTcpRejectArgsDict(TypedDict):
+        active: NotRequired[pulumi.Input[bool]]
+        """
+        Indicates if the rule is active.
+        """
+elif False:
+    LoadbalancerFrontendRuleActionsTcpRejectArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class LoadbalancerFrontendRuleActionsTcpRejectArgs:
@@ -1181,6 +1612,15 @@ class LoadbalancerFrontendRuleActionsTcpRejectArgs:
         pulumi.set(self, "active", value)
 
 
+if not MYPY:
+    class LoadbalancerFrontendRuleActionsUseBackendArgsDict(TypedDict):
+        backend_name: pulumi.Input[str]
+        """
+        The name of the backend where traffic will be routed.
+        """
+elif False:
+    LoadbalancerFrontendRuleActionsUseBackendArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoadbalancerFrontendRuleActionsUseBackendArgs:
     def __init__(__self__, *,
@@ -1202,6 +1642,67 @@ class LoadbalancerFrontendRuleActionsUseBackendArgs:
     def backend_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "backend_name", value)
 
+
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersArgsDict(TypedDict):
+        body_size_ranges: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersBodySizeRangeArgsDict']]]]
+        """
+        Matches by range of HTTP request body sizes.
+        """
+        body_sizes: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersBodySizeArgsDict']]]]
+        """
+        Matches by HTTP request body size.
+        """
+        cookies: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersCookieArgsDict']]]]
+        """
+        Matches by HTTP cookie value. Cookie name must be provided.
+        """
+        headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHeaderArgsDict']]]]
+        """
+        Matches by HTTP header value. Header name must be provided.
+        """
+        hosts: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHostArgsDict']]]]
+        """
+        Matches by hostname. Header extracted from HTTP Headers or from TLS certificate in case of secured connection.
+        """
+        http_methods: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHttpMethodArgsDict']]]]
+        """
+        Matches by HTTP method.
+        """
+        num_members_ups: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersNumMembersUpArgsDict']]]]
+        """
+        Matches by number of healthy backend members.
+        """
+        paths: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersPathArgsDict']]]]
+        """
+        Matches by URL path.
+        """
+        src_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersSrcIpArgsDict']]]]
+        """
+        Matches by source IP address.
+        """
+        src_port_ranges: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersSrcPortRangeArgsDict']]]]
+        """
+        Matches by range of source port numbers.
+        """
+        src_ports: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersSrcPortArgsDict']]]]
+        """
+        Matches by source port number.
+        """
+        url_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersUrlParamArgsDict']]]]
+        """
+        Matches by URL query parameter value. Query parameter name must be provided
+        """
+        url_queries: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersUrlQueryArgsDict']]]]
+        """
+        Matches by URL query string.
+        """
+        urls: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersUrlArgsDict']]]]
+        """
+        Matches by URL without schema, e.g. `example.com/dashboard`.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersArgs:
@@ -1434,6 +1935,23 @@ class LoadbalancerFrontendRuleMatchersArgs:
         pulumi.set(self, "urls", value)
 
 
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersBodySizeArgsDict(TypedDict):
+        method: pulumi.Input[str]
+        """
+        Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
+        """
+        value: pulumi.Input[int]
+        """
+        Integer value.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersBodySizeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersBodySizeArgs:
     def __init__(__self__, *,
@@ -1487,6 +2005,23 @@ class LoadbalancerFrontendRuleMatchersBodySizeArgs:
         pulumi.set(self, "inverse", value)
 
 
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersBodySizeRangeArgsDict(TypedDict):
+        range_end: pulumi.Input[int]
+        """
+        Integer value.
+        """
+        range_start: pulumi.Input[int]
+        """
+        Integer value.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersBodySizeRangeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersBodySizeRangeArgs:
     def __init__(__self__, *,
@@ -1539,6 +2074,31 @@ class LoadbalancerFrontendRuleMatchersBodySizeRangeArgs:
     def inverse(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "inverse", value)
 
+
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersCookieArgsDict(TypedDict):
+        method: pulumi.Input[str]
+        """
+        Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        """
+        name: pulumi.Input[str]
+        """
+        Name of the argument.
+        """
+        ignore_case: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if case should be ignored. Defaults to `false`.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        String value.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersCookieArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersCookieArgs:
@@ -1625,6 +2185,31 @@ class LoadbalancerFrontendRuleMatchersCookieArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersHeaderArgsDict(TypedDict):
+        method: pulumi.Input[str]
+        """
+        Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        """
+        name: pulumi.Input[str]
+        """
+        Name of the argument.
+        """
+        ignore_case: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if case should be ignored. Defaults to `false`.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        String value.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersHeaderArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersHeaderArgs:
     def __init__(__self__, *,
@@ -1710,6 +2295,19 @@ class LoadbalancerFrontendRuleMatchersHeaderArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersHostArgsDict(TypedDict):
+        value: pulumi.Input[str]
+        """
+        String value.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersHostArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersHostArgs:
     def __init__(__self__, *,
@@ -1748,6 +2346,19 @@ class LoadbalancerFrontendRuleMatchersHostArgs:
         pulumi.set(self, "inverse", value)
 
 
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersHttpMethodArgsDict(TypedDict):
+        value: pulumi.Input[str]
+        """
+        String value (`GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`).
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersHttpMethodArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersHttpMethodArgs:
     def __init__(__self__, *,
@@ -1785,6 +2396,27 @@ class LoadbalancerFrontendRuleMatchersHttpMethodArgs:
     def inverse(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "inverse", value)
 
+
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersNumMembersUpArgsDict(TypedDict):
+        backend_name: pulumi.Input[str]
+        """
+        The name of the `backend`.
+        """
+        method: pulumi.Input[str]
+        """
+        Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
+        """
+        value: pulumi.Input[int]
+        """
+        Integer value.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersNumMembersUpArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersNumMembersUpArgs:
@@ -1853,6 +2485,27 @@ class LoadbalancerFrontendRuleMatchersNumMembersUpArgs:
     def inverse(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "inverse", value)
 
+
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersPathArgsDict(TypedDict):
+        method: pulumi.Input[str]
+        """
+        Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        """
+        ignore_case: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if case should be ignored. Defaults to `false`.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        String value.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersPathArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersPathArgs:
@@ -1924,6 +2577,19 @@ class LoadbalancerFrontendRuleMatchersPathArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersSrcIpArgsDict(TypedDict):
+        value: pulumi.Input[str]
+        """
+        IP address. CIDR masks are supported, e.g. `192.168.0.0/24`.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersSrcIpArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersSrcIpArgs:
     def __init__(__self__, *,
@@ -1961,6 +2627,23 @@ class LoadbalancerFrontendRuleMatchersSrcIpArgs:
     def inverse(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "inverse", value)
 
+
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersSrcPortArgsDict(TypedDict):
+        method: pulumi.Input[str]
+        """
+        Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
+        """
+        value: pulumi.Input[int]
+        """
+        Integer value.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersSrcPortArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersSrcPortArgs:
@@ -2015,6 +2698,23 @@ class LoadbalancerFrontendRuleMatchersSrcPortArgs:
         pulumi.set(self, "inverse", value)
 
 
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersSrcPortRangeArgsDict(TypedDict):
+        range_end: pulumi.Input[int]
+        """
+        Integer value.
+        """
+        range_start: pulumi.Input[int]
+        """
+        Integer value.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersSrcPortRangeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersSrcPortRangeArgs:
     def __init__(__self__, *,
@@ -2067,6 +2767,27 @@ class LoadbalancerFrontendRuleMatchersSrcPortRangeArgs:
     def inverse(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "inverse", value)
 
+
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersUrlArgsDict(TypedDict):
+        method: pulumi.Input[str]
+        """
+        Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        """
+        ignore_case: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if case should be ignored. Defaults to `false`.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        String value.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersUrlArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersUrlArgs:
@@ -2137,6 +2858,31 @@ class LoadbalancerFrontendRuleMatchersUrlArgs:
     def value(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersUrlParamArgsDict(TypedDict):
+        method: pulumi.Input[str]
+        """
+        Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        """
+        name: pulumi.Input[str]
+        """
+        Name of the argument.
+        """
+        ignore_case: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if case should be ignored. Defaults to `false`.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        String value.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersUrlParamArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersUrlParamArgs:
@@ -2223,6 +2969,27 @@ class LoadbalancerFrontendRuleMatchersUrlParamArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersUrlQueryArgsDict(TypedDict):
+        method: pulumi.Input[str]
+        """
+        Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        """
+        ignore_case: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if case should be ignored. Defaults to `false`.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        String value.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersUrlQueryArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoadbalancerFrontendRuleMatchersUrlQueryArgs:
     def __init__(__self__, *,
@@ -2292,6 +3059,35 @@ class LoadbalancerFrontendRuleMatchersUrlQueryArgs:
     def value(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class LoadbalancerNetworkArgsDict(TypedDict):
+        family: pulumi.Input[str]
+        """
+        Network family. Currently only `IPv4` is supported.
+        """
+        name: pulumi.Input[str]
+        """
+        The name of the network must be unique within the service.
+        """
+        type: pulumi.Input[str]
+        """
+        The type of the network. Only one public network can be attached and at least one private network must be attached.
+        """
+        dns_name: NotRequired[pulumi.Input[str]]
+        """
+        DNS name of the load balancer network
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        Network identifier.
+        """
+        network: NotRequired[pulumi.Input[str]]
+        """
+        Private network UUID. Required for private networks and must reside in loadbalancer zone. For public network the field should be omitted.
+        """
+elif False:
+    LoadbalancerNetworkArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class LoadbalancerNetworkArgs:
@@ -2393,6 +3189,16 @@ class LoadbalancerNetworkArgs:
         pulumi.set(self, "network", value)
 
 
+if not MYPY:
+    class LoadbalancerNodeArgsDict(TypedDict):
+        networks: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNodeNetworkArgsDict']]]]
+        operational_state: NotRequired[pulumi.Input[str]]
+        """
+        Node's operational state. Managed by the system.
+        """
+elif False:
+    LoadbalancerNodeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoadbalancerNodeArgs:
     def __init__(__self__, *,
@@ -2427,6 +3233,20 @@ class LoadbalancerNodeArgs:
     def operational_state(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "operational_state", value)
 
+
+if not MYPY:
+    class LoadbalancerNodeNetworkArgsDict(TypedDict):
+        ip_addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNodeNetworkIpAddressArgsDict']]]]
+        name: NotRequired[pulumi.Input[str]]
+        """
+        The name of the network.
+        """
+        type: NotRequired[pulumi.Input[str]]
+        """
+        The type of the network.
+        """
+elif False:
+    LoadbalancerNodeNetworkArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class LoadbalancerNodeNetworkArgs:
@@ -2479,6 +3299,19 @@ class LoadbalancerNodeNetworkArgs:
         pulumi.set(self, "type", value)
 
 
+if not MYPY:
+    class LoadbalancerNodeNetworkIpAddressArgsDict(TypedDict):
+        address: NotRequired[pulumi.Input[str]]
+        """
+        Node's IP address.
+        """
+        listen: NotRequired[pulumi.Input[bool]]
+        """
+        Does IP address listen network connections.
+        """
+elif False:
+    LoadbalancerNodeNetworkIpAddressArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoadbalancerNodeNetworkIpAddressArgs:
     def __init__(__self__, *,
@@ -2517,6 +3350,31 @@ class LoadbalancerNodeNetworkIpAddressArgs:
     def listen(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "listen", value)
 
+
+if not MYPY:
+    class ManagedDatabaseMysqlComponentArgsDict(TypedDict):
+        component: NotRequired[pulumi.Input[str]]
+        """
+        Type of the component
+        """
+        host: NotRequired[pulumi.Input[str]]
+        """
+        Hostname of the component
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        Port number of the component
+        """
+        route: NotRequired[pulumi.Input[str]]
+        """
+        Component network route type
+        """
+        usage: NotRequired[pulumi.Input[str]]
+        """
+        Usage of the component
+        """
+elif False:
+    ManagedDatabaseMysqlComponentArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ManagedDatabaseMysqlComponentArgs:
@@ -2605,6 +3463,27 @@ class ManagedDatabaseMysqlComponentArgs:
         pulumi.set(self, "usage", value)
 
 
+if not MYPY:
+    class ManagedDatabaseMysqlNetworkArgsDict(TypedDict):
+        family: pulumi.Input[str]
+        """
+        Network family. Currently only `IPv4` is supported.
+        """
+        name: pulumi.Input[str]
+        """
+        The name of the network. Must be unique within the service.
+        """
+        type: pulumi.Input[str]
+        """
+        The type of the network. Must be private.
+        """
+        uuid: pulumi.Input[str]
+        """
+        Private network UUID. Must reside in the same zone as the database.
+        """
+elif False:
+    ManagedDatabaseMysqlNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseMysqlNetworkArgs:
     def __init__(__self__, *,
@@ -2672,6 +3551,23 @@ class ManagedDatabaseMysqlNetworkArgs:
         pulumi.set(self, "uuid", value)
 
 
+if not MYPY:
+    class ManagedDatabaseMysqlNodeStateArgsDict(TypedDict):
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Name plus a node iteration
+        """
+        role: NotRequired[pulumi.Input[str]]
+        """
+        Role of the node
+        """
+        state: NotRequired[pulumi.Input[str]]
+        """
+        State of the node
+        """
+elif False:
+    ManagedDatabaseMysqlNodeStateArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseMysqlNodeStateArgs:
     def __init__(__self__, *,
@@ -2726,6 +3622,175 @@ class ManagedDatabaseMysqlNodeStateArgs:
     def state(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "state", value)
 
+
+if not MYPY:
+    class ManagedDatabaseMysqlPropertiesArgsDict(TypedDict):
+        admin_password: NotRequired[pulumi.Input[str]]
+        """
+        Custom password for admin user. Defaults to random string. This must be set only when a new service is being created.
+        """
+        admin_username: NotRequired[pulumi.Input[str]]
+        """
+        Custom username for admin user. This must be set only when a new service is being created.
+        """
+        automatic_utility_network_ip_filter: NotRequired[pulumi.Input[bool]]
+        """
+        Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+        """
+        backup_hour: NotRequired[pulumi.Input[int]]
+        """
+        The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        backup_minute: NotRequired[pulumi.Input[int]]
+        """
+        The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        binlog_retention_period: NotRequired[pulumi.Input[int]]
+        """
+        The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.
+        """
+        connect_timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds that the mysqld server waits for a connect packet before responding with Bad handshake.
+        """
+        default_time_zone: NotRequired[pulumi.Input[str]]
+        """
+        Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or 'SYSTEM' to use the MySQL server default.
+        """
+        group_concat_max_len: NotRequired[pulumi.Input[int]]
+        """
+        The maximum permitted result length in bytes for the GROUP_CONCAT() function.
+        """
+        information_schema_stats_expiry: NotRequired[pulumi.Input[int]]
+        """
+        The time, in seconds, before cached statistics expire.
+        """
+        innodb_change_buffer_max_size: NotRequired[pulumi.Input[int]]
+        """
+        Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
+        """
+        innodb_flush_neighbors: NotRequired[pulumi.Input[int]]
+        """
+        Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
+        """
+        innodb_ft_min_token_size: NotRequired[pulumi.Input[int]]
+        """
+        Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+        """
+        innodb_ft_server_stopword_table: NotRequired[pulumi.Input[str]]
+        """
+        This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
+        """
+        innodb_lock_wait_timeout: NotRequired[pulumi.Input[int]]
+        """
+        The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
+        """
+        innodb_log_buffer_size: NotRequired[pulumi.Input[int]]
+        """
+        The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+        """
+        innodb_online_alter_log_max_size: NotRequired[pulumi.Input[int]]
+        """
+        The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
+        """
+        innodb_print_all_deadlocks: NotRequired[pulumi.Input[bool]]
+        """
+        When enabled, information about all deadlocks in InnoDB user transactions is recorded in the error log. Disabled by default.
+        """
+        innodb_read_io_threads: NotRequired[pulumi.Input[int]]
+        """
+        The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+        """
+        innodb_rollback_on_timeout: NotRequired[pulumi.Input[bool]]
+        """
+        When enabled a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
+        """
+        innodb_thread_concurrency: NotRequired[pulumi.Input[int]]
+        """
+        Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).
+        """
+        innodb_write_io_threads: NotRequired[pulumi.Input[int]]
+        """
+        The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+        """
+        interactive_timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds the server waits for activity on an interactive connection before closing it.
+        """
+        internal_tmp_mem_storage_engine: NotRequired[pulumi.Input[str]]
+        """
+        The storage engine for in-memory internal temporary tables.
+        """
+        ip_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+        """
+        long_query_time: NotRequired[pulumi.Input[float]]
+        """
+        The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute. Default is 10s.
+        """
+        max_allowed_packet: NotRequired[pulumi.Input[int]]
+        """
+        Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+        """
+        max_heap_table_size: NotRequired[pulumi.Input[int]]
+        """
+        Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
+        """
+        migration: NotRequired[pulumi.Input['ManagedDatabaseMysqlPropertiesMigrationArgsDict']]
+        """
+        Migrate data from existing server.
+        """
+        net_buffer_length: NotRequired[pulumi.Input[int]]
+        """
+        Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
+        """
+        net_read_timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds to wait for more data from a connection before aborting the read.
+        """
+        net_write_timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds to wait for a block to be written to a connection before aborting the write.
+        """
+        public_access: NotRequired[pulumi.Input[bool]]
+        """
+        Public Access. Allow access to the service from the public Internet.
+        """
+        service_log: NotRequired[pulumi.Input[bool]]
+        """
+        Service logging. Store logs for the service so that they are available in the HTTP API and console.
+        """
+        slow_query_log: NotRequired[pulumi.Input[bool]]
+        """
+        Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table. Default is off.
+        """
+        sort_buffer_size: NotRequired[pulumi.Input[int]]
+        """
+        Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+        """
+        sql_mode: NotRequired[pulumi.Input[str]]
+        """
+        Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned.
+        """
+        sql_require_primary_key: NotRequired[pulumi.Input[bool]]
+        """
+        Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them.
+        """
+        tmp_table_size: NotRequired[pulumi.Input[int]]
+        """
+        Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
+        """
+        version: NotRequired[pulumi.Input[str]]
+        """
+        MySQL major version.
+        """
+        wait_timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds the server waits for activity on a noninteractive connection before closing it.
+        """
+elif False:
+    ManagedDatabaseMysqlPropertiesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ManagedDatabaseMysqlPropertiesArgs:
@@ -3390,6 +4455,47 @@ class ManagedDatabaseMysqlPropertiesArgs:
         pulumi.set(self, "wait_timeout", value)
 
 
+if not MYPY:
+    class ManagedDatabaseMysqlPropertiesMigrationArgsDict(TypedDict):
+        dbname: NotRequired[pulumi.Input[str]]
+        """
+        Database name for bootstrapping the initial connection.
+        """
+        host: NotRequired[pulumi.Input[str]]
+        """
+        Hostname or IP address of the server where to migrate data from.
+        """
+        ignore_dbs: NotRequired[pulumi.Input[str]]
+        """
+        Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+        """
+        ignore_roles: NotRequired[pulumi.Input[str]]
+        """
+        Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+        """
+        method: NotRequired[pulumi.Input[str]]
+        """
+        The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        Password for authentication with the server where to migrate data from.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        Port number of the server where to migrate data from.
+        """
+        ssl: NotRequired[pulumi.Input[bool]]
+        """
+        The server where to migrate data from is secured with SSL.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        User name for authentication with the server where to migrate data from.
+        """
+elif False:
+    ManagedDatabaseMysqlPropertiesMigrationArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseMysqlPropertiesMigrationArgs:
     def __init__(__self__, *,
@@ -3541,6 +4647,31 @@ class ManagedDatabaseMysqlPropertiesMigrationArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class ManagedDatabaseOpensearchComponentArgsDict(TypedDict):
+        component: NotRequired[pulumi.Input[str]]
+        """
+        Type of the component
+        """
+        host: NotRequired[pulumi.Input[str]]
+        """
+        Hostname of the component
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        Port number of the component
+        """
+        route: NotRequired[pulumi.Input[str]]
+        """
+        Component network route type
+        """
+        usage: NotRequired[pulumi.Input[str]]
+        """
+        Usage of the component
+        """
+elif False:
+    ManagedDatabaseOpensearchComponentArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseOpensearchComponentArgs:
     def __init__(__self__, *,
@@ -3628,6 +4759,27 @@ class ManagedDatabaseOpensearchComponentArgs:
         pulumi.set(self, "usage", value)
 
 
+if not MYPY:
+    class ManagedDatabaseOpensearchNetworkArgsDict(TypedDict):
+        family: pulumi.Input[str]
+        """
+        Network family. Currently only `IPv4` is supported.
+        """
+        name: pulumi.Input[str]
+        """
+        The name of the network. Must be unique within the service.
+        """
+        type: pulumi.Input[str]
+        """
+        The type of the network. Must be private.
+        """
+        uuid: pulumi.Input[str]
+        """
+        Private network UUID. Must reside in the same zone as the database.
+        """
+elif False:
+    ManagedDatabaseOpensearchNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseOpensearchNetworkArgs:
     def __init__(__self__, *,
@@ -3695,6 +4847,23 @@ class ManagedDatabaseOpensearchNetworkArgs:
         pulumi.set(self, "uuid", value)
 
 
+if not MYPY:
+    class ManagedDatabaseOpensearchNodeStateArgsDict(TypedDict):
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Name plus a node iteration
+        """
+        role: NotRequired[pulumi.Input[str]]
+        """
+        Role of the node
+        """
+        state: NotRequired[pulumi.Input[str]]
+        """
+        State of the node
+        """
+elif False:
+    ManagedDatabaseOpensearchNodeStateArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseOpensearchNodeStateArgs:
     def __init__(__self__, *,
@@ -3749,6 +4918,242 @@ class ManagedDatabaseOpensearchNodeStateArgs:
     def state(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "state", value)
 
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesArgsDict(TypedDict):
+        action_auto_create_index_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        action.auto_create_index. Explicitly allow or block automatic creation of indices. Defaults to true.
+        """
+        action_destructive_requires_name: NotRequired[pulumi.Input[bool]]
+        """
+        Require explicit index names when deleting.
+        """
+        auth_failure_listeners: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgsDict']]
+        """
+        Opensearch Security Plugin Settings.
+        """
+        automatic_utility_network_ip_filter: NotRequired[pulumi.Input[bool]]
+        """
+        Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+        """
+        azure_migration: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesAzureMigrationArgsDict']]
+        cluster_max_shards_per_node: NotRequired[pulumi.Input[int]]
+        """
+        Controls the number of shards allowed in the cluster per data node.
+        """
+        cluster_routing_allocation_node_concurrent_recoveries: NotRequired[pulumi.Input[int]]
+        """
+        Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
+        """
+        custom_domain: NotRequired[pulumi.Input[str]]
+        """
+        Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+        """
+        email_sender_name: NotRequired[pulumi.Input[str]]
+        """
+        Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
+        """
+        email_sender_password: NotRequired[pulumi.Input[str]]
+        """
+        Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
+        """
+        email_sender_username: NotRequired[pulumi.Input[str]]
+        """
+        Sender username for Opensearch alerts.
+        """
+        enable_security_audit: NotRequired[pulumi.Input[bool]]
+        """
+        Enable/Disable security audit.
+        """
+        gcs_migration: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesGcsMigrationArgsDict']]
+        http_max_content_length: NotRequired[pulumi.Input[int]]
+        """
+        Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
+        """
+        http_max_header_size: NotRequired[pulumi.Input[int]]
+        """
+        The max size of allowed headers, in bytes.
+        """
+        http_max_initial_line_length: NotRequired[pulumi.Input[int]]
+        """
+        The max length of an HTTP URL, in bytes.
+        """
+        index_patterns: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Index patterns.
+        """
+        index_rollup: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesIndexRollupArgsDict']]
+        """
+        Index rollup settings.
+        """
+        index_template: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesIndexTemplateArgsDict']]
+        """
+        Template settings for all new indexes.
+        """
+        indices_fielddata_cache_size: NotRequired[pulumi.Input[int]]
+        """
+        Relative amount. Maximum amount of heap memory used for field data cache. This is an expert setting; decreasing the value too much will increase overhead of loading field data; too much memory used for field data cache will decrease amount of heap available for other operations.
+        """
+        indices_memory_index_buffer_size: NotRequired[pulumi.Input[int]]
+        """
+        Percentage value. Default is 10%. Total amount of heap used for indexing buffer, before writing segments to disk. This is an expert setting. Too low value will slow down indexing; too high value will increase indexing performance but causes performance issues for query performance.
+        """
+        indices_memory_max_index_buffer_size: NotRequired[pulumi.Input[int]]
+        """
+        Absolute value. Default is unbound. Doesn't work without indices.memory.index_buffer_size. Maximum amount of heap used for query cache, an absolute indices.memory.index_buffer_size maximum hard limit.
+        """
+        indices_memory_min_index_buffer_size: NotRequired[pulumi.Input[int]]
+        """
+        Absolute value. Default is 48mb. Doesn't work without indices.memory.index_buffer_size. Minimum amount of heap used for query cache, an absolute indices.memory.index_buffer_size minimal hard limit.
+        """
+        indices_queries_cache_size: NotRequired[pulumi.Input[int]]
+        """
+        Percentage value. Default is 10%. Maximum amount of heap used for query cache. This is an expert setting. Too low value will decrease query performance and increase performance for other operations; too high value will cause issues with other OpenSearch functionality.
+        """
+        indices_query_bool_max_clause_count: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of clauses Lucene BooleanQuery can have. The default value (1024) is relatively high, and increasing it may cause performance issues. Investigate other approaches first before increasing this value.
+        """
+        indices_recovery_max_bytes_per_sec: NotRequired[pulumi.Input[int]]
+        """
+        Limits total inbound and outbound recovery traffic for each node. Applies to both peer recoveries as well as snapshot recoveries (i.e., restores from a snapshot). Defaults to 40mb.
+        """
+        indices_recovery_max_concurrent_file_chunks: NotRequired[pulumi.Input[int]]
+        """
+        Number of file chunks sent in parallel for each recovery. Defaults to 2.
+        """
+        ip_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+        """
+        ism_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Specifies whether ISM is enabled or not.
+        """
+        ism_history_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Specifies whether audit history is enabled or not. The logs from ISM are automatically indexed to a logs document.
+        """
+        ism_history_max_age: NotRequired[pulumi.Input[int]]
+        """
+        The maximum age before rolling over the audit history index in hours.
+        """
+        ism_history_max_docs: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of documents before rolling over the audit history index.
+        """
+        ism_history_rollover_check_period: NotRequired[pulumi.Input[int]]
+        """
+        The time between rollover checks for the audit history index in hours.
+        """
+        ism_history_rollover_retention_period: NotRequired[pulumi.Input[int]]
+        """
+        How long audit history indices are kept in days.
+        """
+        keep_index_refresh_interval: NotRequired[pulumi.Input[bool]]
+        """
+        Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
+        """
+        knn_memory_circuit_breaker_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable or disable KNN memory circuit breaker. Defaults to true.
+        """
+        knn_memory_circuit_breaker_limit: NotRequired[pulumi.Input[int]]
+        """
+        Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+        """
+        openid: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesOpenidArgsDict']]
+        """
+        OpenSearch OpenID Connect Configuration.
+        """
+        opensearch_dashboards: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgsDict']]
+        """
+        OpenSearch Dashboards settings.
+        """
+        override_main_response_version: NotRequired[pulumi.Input[bool]]
+        """
+        Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false.
+        """
+        plugins_alerting_filter_by_backend_roles: NotRequired[pulumi.Input[bool]]
+        """
+        Enable or disable filtering of alerting by backend roles. Requires Security plugin. Defaults to false.
+        """
+        public_access: NotRequired[pulumi.Input[bool]]
+        """
+        Public Access. Allow access to the service from the public Internet.
+        """
+        reindex_remote_whitelists: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+        """
+        s3_migration: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesS3MigrationArgsDict']]
+        saml: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesSamlArgsDict']]
+        """
+        OpenSearch SAML configuration.
+        """
+        script_max_compilations_rate: NotRequired[pulumi.Input[str]]
+        """
+        Script max compilation rate - circuit breaker to prevent/minimize OOMs. Script compilation circuit breaker limits the number of inline script compilations within a period of time. Default is use-context.
+        """
+        search_max_buckets: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
+        """
+        service_log: NotRequired[pulumi.Input[bool]]
+        """
+        Service logging. Store logs for the service so that they are available in the HTTP API and console.
+        """
+        thread_pool_analyze_queue_size: NotRequired[pulumi.Input[int]]
+        """
+        analyze thread pool queue size. Size for the thread pool queue. See documentation for exact details.
+        """
+        thread_pool_analyze_size: NotRequired[pulumi.Input[int]]
+        """
+        analyze thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
+        """
+        thread_pool_force_merge_size: NotRequired[pulumi.Input[int]]
+        """
+        force_merge thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
+        """
+        thread_pool_get_queue_size: NotRequired[pulumi.Input[int]]
+        """
+        get thread pool queue size. Size for the thread pool queue. See documentation for exact details.
+        """
+        thread_pool_get_size: NotRequired[pulumi.Input[int]]
+        """
+        get thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
+        """
+        thread_pool_search_queue_size: NotRequired[pulumi.Input[int]]
+        """
+        search thread pool queue size. Size for the thread pool queue. See documentation for exact details.
+        """
+        thread_pool_search_size: NotRequired[pulumi.Input[int]]
+        """
+        search thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
+        """
+        thread_pool_search_throttled_queue_size: NotRequired[pulumi.Input[int]]
+        """
+        search_throttled thread pool queue size. Size for the thread pool queue. See documentation for exact details.
+        """
+        thread_pool_search_throttled_size: NotRequired[pulumi.Input[int]]
+        """
+        search_throttled thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
+        """
+        thread_pool_write_queue_size: NotRequired[pulumi.Input[int]]
+        """
+        write thread pool queue size. Size for the thread pool queue. See documentation for exact details.
+        """
+        thread_pool_write_size: NotRequired[pulumi.Input[int]]
+        """
+        write thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
+        """
+        version: NotRequired[pulumi.Input[str]]
+        """
+        OpenSearch major version.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ManagedDatabaseOpensearchPropertiesArgs:
@@ -4705,6 +6110,16 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         pulumi.set(self, "version", value)
 
 
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgsDict(TypedDict):
+        internal_authentication_backend_limiting: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgsDict']]
+        ip_rate_limiting: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgsDict']]
+        """
+        IP address rate limiting settings.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs:
     def __init__(__self__, *,
@@ -4739,6 +6154,39 @@ class ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs:
     def ip_rate_limiting(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs']]):
         pulumi.set(self, "ip_rate_limiting", value)
 
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgsDict(TypedDict):
+        allowed_tries: NotRequired[pulumi.Input[int]]
+        """
+        The number of login attempts allowed before login is blocked.
+        """
+        authentication_backend: NotRequired[pulumi.Input[str]]
+        """
+        The internal backend. Enter `internal`.
+        """
+        block_expiry_seconds: NotRequired[pulumi.Input[int]]
+        """
+        The duration of time that login remains blocked after a failed login.
+        """
+        max_blocked_clients: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of blocked IP addresses.
+        """
+        max_tracked_clients: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of tracked IP addresses that have failed login.
+        """
+        time_window_seconds: NotRequired[pulumi.Input[int]]
+        """
+        The window of time in which the value for `allowed_tries` is enforced.
+        """
+        type: NotRequired[pulumi.Input[str]]
+        """
+        The type of rate limiting.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs:
@@ -4859,6 +6307,35 @@ class ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticat
         pulumi.set(self, "type", value)
 
 
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgsDict(TypedDict):
+        allowed_tries: NotRequired[pulumi.Input[int]]
+        """
+        The number of login attempts allowed before login is blocked.
+        """
+        block_expiry_seconds: NotRequired[pulumi.Input[int]]
+        """
+        The duration of time that login remains blocked after a failed login.
+        """
+        max_blocked_clients: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of blocked IP addresses.
+        """
+        max_tracked_clients: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of tracked IP addresses that have failed login.
+        """
+        time_window_seconds: NotRequired[pulumi.Input[int]]
+        """
+        The window of time in which the value for `allowed_tries` is enforced.
+        """
+        type: NotRequired[pulumi.Input[str]]
+        """
+        The type of rate limiting.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs:
     def __init__(__self__, *,
@@ -4961,6 +6438,47 @@ class ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs:
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
 
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesAzureMigrationArgsDict(TypedDict):
+        account: NotRequired[pulumi.Input[str]]
+        """
+        Account name. Azure account name.
+        """
+        base_path: NotRequired[pulumi.Input[str]]
+        """
+        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+        """
+        chunk_size: NotRequired[pulumi.Input[str]]
+        """
+        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+        """
+        compress: NotRequired[pulumi.Input[bool]]
+        """
+        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+        """
+        container: NotRequired[pulumi.Input[str]]
+        """
+        Azure container name. Azure container name.
+        """
+        endpoint_suffix: NotRequired[pulumi.Input[str]]
+        """
+        Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
+        """
+        key: NotRequired[pulumi.Input[str]]
+        """
+        Account secret key. Azure account secret key. One of key or sas_token should be specified.
+        """
+        sas_token: NotRequired[pulumi.Input[str]]
+        """
+        SAS token. A shared access signatures (SAS) token. One of key or sas_token should be specified.
+        """
+        snapshot_name: NotRequired[pulumi.Input[str]]
+        """
+        The snapshot name to restore from. The snapshot name to restore from.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesAzureMigrationArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ManagedDatabaseOpensearchPropertiesAzureMigrationArgs:
@@ -5113,6 +6631,35 @@ class ManagedDatabaseOpensearchPropertiesAzureMigrationArgs:
         pulumi.set(self, "snapshot_name", value)
 
 
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesGcsMigrationArgsDict(TypedDict):
+        base_path: NotRequired[pulumi.Input[str]]
+        """
+        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+        """
+        bucket: NotRequired[pulumi.Input[str]]
+        """
+        The path to the repository data within its container. Google Cloud Storage bucket name.
+        """
+        chunk_size: NotRequired[pulumi.Input[str]]
+        """
+        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+        """
+        compress: NotRequired[pulumi.Input[bool]]
+        """
+        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+        """
+        credentials: NotRequired[pulumi.Input[str]]
+        """
+        Credentials. Google Cloud Storage credentials file content.
+        """
+        snapshot_name: NotRequired[pulumi.Input[str]]
+        """
+        The snapshot name to restore from. The snapshot name to restore from.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesGcsMigrationArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseOpensearchPropertiesGcsMigrationArgs:
     def __init__(__self__, *,
@@ -5216,6 +6763,31 @@ class ManagedDatabaseOpensearchPropertiesGcsMigrationArgs:
         pulumi.set(self, "snapshot_name", value)
 
 
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesIndexRollupArgsDict(TypedDict):
+        rollup_dashboards_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        plugins.rollup.dashboards.enabled. Whether rollups are enabled in OpenSearch Dashboards. Defaults to true.
+        """
+        rollup_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        plugins.rollup.enabled. Whether the rollup plugin is enabled. Defaults to true.
+        """
+        rollup_search_backoff_count: NotRequired[pulumi.Input[int]]
+        """
+        plugins.rollup.search.backoff_count. How many retries the plugin should attempt for failed rollup jobs. Defaults to 5.
+        """
+        rollup_search_backoff_millis: NotRequired[pulumi.Input[int]]
+        """
+        plugins.rollup.search.backoff_millis. The backoff time between retries for failed rollup jobs. Defaults to 1000ms.
+        """
+        rollup_search_search_all_jobs: NotRequired[pulumi.Input[bool]]
+        """
+        plugins.rollup.search.all_jobs. Whether OpenSearch should return all jobs that match all specified search terms. If disabled, OpenSearch returns just one, as opposed to all, of the jobs that matches the search terms. Defaults to false.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesIndexRollupArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseOpensearchPropertiesIndexRollupArgs:
     def __init__(__self__, *,
@@ -5303,6 +6875,23 @@ class ManagedDatabaseOpensearchPropertiesIndexRollupArgs:
         pulumi.set(self, "rollup_search_search_all_jobs", value)
 
 
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesIndexTemplateArgsDict(TypedDict):
+        mapping_nested_objects_limit: NotRequired[pulumi.Input[int]]
+        """
+        index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+        """
+        number_of_replicas: NotRequired[pulumi.Input[int]]
+        """
+        The number of replicas each primary shard has.
+        """
+        number_of_shards: NotRequired[pulumi.Input[int]]
+        """
+        The number of primary shards that an index should have.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesIndexTemplateArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs:
     def __init__(__self__, *,
@@ -5357,6 +6946,59 @@ class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs:
     def number_of_shards(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "number_of_shards", value)
 
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesOpenidArgsDict(TypedDict):
+        client_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the OpenID Connect client. The ID of the OpenID Connect client configured in your IdP. Required.
+        """
+        client_secret: NotRequired[pulumi.Input[str]]
+        """
+        The client secret of the OpenID Connect. The client secret of the OpenID Connect client configured in your IdP. Required.
+        """
+        connect_url: NotRequired[pulumi.Input[str]]
+        """
+        OpenID Connect metadata/configuration URL. The URL of your IdP where the Security plugin can find the OpenID Connect metadata/configuration settings.
+        """
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable or disable OpenSearch OpenID Connect authentication. Enables or disables OpenID Connect authentication for OpenSearch. When enabled, users can authenticate using OpenID Connect with an Identity Provider.
+        """
+        header: NotRequired[pulumi.Input[str]]
+        """
+        HTTP header name of the JWT token. HTTP header name of the JWT token. Optional. Default is Authorization.
+        """
+        jwt_header: NotRequired[pulumi.Input[str]]
+        """
+        The HTTP header that stores the token. The HTTP header that stores the token. Typically the Authorization header with the Bearer schema: Authorization: Bearer <token>. Optional. Default is Authorization.
+        """
+        jwt_url_parameter: NotRequired[pulumi.Input[str]]
+        """
+        URL JWT token. If the token is not transmitted in the HTTP header, but as an URL parameter, define the name of the parameter here. Optional.
+        """
+        refresh_rate_limit_count: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of unknown key IDs in the time frame. The maximum number of unknown key IDs in the time frame. Default is 10. Optional.
+        """
+        refresh_rate_limit_time_window_ms: NotRequired[pulumi.Input[int]]
+        """
+        The time frame to use when checking the maximum number of unknown key IDs, in milliseconds. The time frame to use when checking the maximum number of unknown key IDs, in milliseconds. Optional.Default is 10000 (10 seconds).
+        """
+        roles_key: NotRequired[pulumi.Input[str]]
+        """
+        The key in the JSON payload that stores the user’s roles. The key in the JSON payload that stores the user’s roles. The value of this key must be a comma-separated list of roles. Required only if you want to use roles in the JWT.
+        """
+        scope: NotRequired[pulumi.Input[str]]
+        """
+        The scope of the identity token issued by the IdP. The scope of the identity token issued by the IdP. Optional. Default is openid profile email address phone.
+        """
+        subject_key: NotRequired[pulumi.Input[str]]
+        """
+        The key in the JSON payload that stores the user’s name. The key in the JSON payload that stores the user’s name. If not defined, the subject registered claim is used. Most IdP providers use the preferred_username claim. Optional.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesOpenidArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ManagedDatabaseOpensearchPropertiesOpenidArgs:
@@ -5557,6 +7199,23 @@ class ManagedDatabaseOpensearchPropertiesOpenidArgs:
         pulumi.set(self, "subject_key", value)
 
 
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable or disable OpenSearch Dashboards.
+        """
+        max_old_space_size: NotRequired[pulumi.Input[int]]
+        """
+        Limits the maximum amount of memory (in MiB) the OpenSearch Dashboards process can use. This sets the max_old_space_size option of the nodejs running the OpenSearch Dashboards. Note: the memory reserved by OpenSearch Dashboards is not available for OpenSearch.
+        """
+        opensearch_request_timeout: NotRequired[pulumi.Input[int]]
+        """
+        Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs:
     def __init__(__self__, *,
@@ -5611,6 +7270,51 @@ class ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs:
     def opensearch_request_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "opensearch_request_timeout", value)
 
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesS3MigrationArgsDict(TypedDict):
+        access_key: NotRequired[pulumi.Input[str]]
+        """
+        AWS Access key. AWS Access key.
+        """
+        base_path: NotRequired[pulumi.Input[str]]
+        """
+        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+        """
+        bucket: NotRequired[pulumi.Input[str]]
+        """
+        S3 bucket name. S3 bucket name.
+        """
+        chunk_size: NotRequired[pulumi.Input[str]]
+        """
+        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+        """
+        compress: NotRequired[pulumi.Input[bool]]
+        """
+        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+        """
+        endpoint: NotRequired[pulumi.Input[str]]
+        """
+        The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        S3 region. S3 region.
+        """
+        secret_key: NotRequired[pulumi.Input[str]]
+        """
+        AWS secret key. AWS secret key.
+        """
+        server_side_encryption: NotRequired[pulumi.Input[bool]]
+        """
+        Server side encryption. When set to true files are encrypted on server side.
+        """
+        snapshot_name: NotRequired[pulumi.Input[str]]
+        """
+        The snapshot name to restore from. The snapshot name to restore from.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesS3MigrationArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ManagedDatabaseOpensearchPropertiesS3MigrationArgs:
@@ -5779,6 +7483,39 @@ class ManagedDatabaseOpensearchPropertiesS3MigrationArgs:
         pulumi.set(self, "snapshot_name", value)
 
 
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesSamlArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable or disable OpenSearch SAML authentication. Enables or disables SAML-based authentication for OpenSearch. When enabled, users can authenticate using SAML with an Identity Provider.
+        """
+        idp_entity_id: NotRequired[pulumi.Input[str]]
+        """
+        Identity Provider Entity ID. The unique identifier for the Identity Provider (IdP) entity that is used for SAML authentication. This value is typically provided by the IdP.
+        """
+        idp_metadata_url: NotRequired[pulumi.Input[str]]
+        """
+        Identity Provider (IdP) SAML metadata URL. The URL of the SAML metadata for the Identity Provider (IdP). This is used to configure SAML-based authentication with the IdP.
+        """
+        idp_pemtrustedcas_content: NotRequired[pulumi.Input[str]]
+        """
+        PEM-encoded root CA Content for SAML IdP server verification. This parameter specifies the PEM-encoded root certificate authority (CA) content for the SAML identity provider (IdP) server verification. The root CA content is used to verify the SSL/TLS certificate presented by the server.
+        """
+        roles_key: NotRequired[pulumi.Input[str]]
+        """
+        SAML response role attribute. Optional. Specifies the attribute in the SAML response where role information is stored, if available. Role attributes are not required for SAML authentication, but can be included in SAML assertions by most Identity Providers (IdPs) to determine user access levels or permissions.
+        """
+        sp_entity_id: NotRequired[pulumi.Input[str]]
+        """
+        Service Provider Entity ID. The unique identifier for the Service Provider (SP) entity that is used for SAML authentication. This value is typically provided by the SP.
+        """
+        subject_key: NotRequired[pulumi.Input[str]]
+        """
+        SAML response subject attribute. Optional. Specifies the attribute in the SAML response where the subject identifier is stored. If not configured, the NameID attribute is used by default.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesSamlArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseOpensearchPropertiesSamlArgs:
     def __init__(__self__, *,
@@ -5898,6 +7635,31 @@ class ManagedDatabaseOpensearchPropertiesSamlArgs:
         pulumi.set(self, "subject_key", value)
 
 
+if not MYPY:
+    class ManagedDatabasePostgresqlComponentArgsDict(TypedDict):
+        component: NotRequired[pulumi.Input[str]]
+        """
+        Type of the component
+        """
+        host: NotRequired[pulumi.Input[str]]
+        """
+        Hostname of the component
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        Port number of the component
+        """
+        route: NotRequired[pulumi.Input[str]]
+        """
+        Component network route type
+        """
+        usage: NotRequired[pulumi.Input[str]]
+        """
+        Usage of the component
+        """
+elif False:
+    ManagedDatabasePostgresqlComponentArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabasePostgresqlComponentArgs:
     def __init__(__self__, *,
@@ -5985,6 +7747,27 @@ class ManagedDatabasePostgresqlComponentArgs:
         pulumi.set(self, "usage", value)
 
 
+if not MYPY:
+    class ManagedDatabasePostgresqlNetworkArgsDict(TypedDict):
+        family: pulumi.Input[str]
+        """
+        Network family. Currently only `IPv4` is supported.
+        """
+        name: pulumi.Input[str]
+        """
+        The name of the network. Must be unique within the service.
+        """
+        type: pulumi.Input[str]
+        """
+        The type of the network. Must be private.
+        """
+        uuid: pulumi.Input[str]
+        """
+        Private network UUID. Must reside in the same zone as the database.
+        """
+elif False:
+    ManagedDatabasePostgresqlNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabasePostgresqlNetworkArgs:
     def __init__(__self__, *,
@@ -6052,6 +7835,23 @@ class ManagedDatabasePostgresqlNetworkArgs:
         pulumi.set(self, "uuid", value)
 
 
+if not MYPY:
+    class ManagedDatabasePostgresqlNodeStateArgsDict(TypedDict):
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Name plus a node iteration
+        """
+        role: NotRequired[pulumi.Input[str]]
+        """
+        Role of the node
+        """
+        state: NotRequired[pulumi.Input[str]]
+        """
+        State of the node
+        """
+elif False:
+    ManagedDatabasePostgresqlNodeStateArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabasePostgresqlNodeStateArgs:
     def __init__(__self__, *,
@@ -6106,6 +7906,279 @@ class ManagedDatabasePostgresqlNodeStateArgs:
     def state(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "state", value)
 
+
+if not MYPY:
+    class ManagedDatabasePostgresqlPropertiesArgsDict(TypedDict):
+        admin_password: NotRequired[pulumi.Input[str]]
+        """
+        Custom password for admin user. Defaults to random string. This must be set only when a new service is being created.
+        """
+        admin_username: NotRequired[pulumi.Input[str]]
+        """
+        Custom username for admin user. This must be set only when a new service is being created.
+        """
+        automatic_utility_network_ip_filter: NotRequired[pulumi.Input[bool]]
+        """
+        Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+        """
+        autovacuum_analyze_scale_factor: NotRequired[pulumi.Input[float]]
+        """
+        Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
+        """
+        autovacuum_analyze_threshold: NotRequired[pulumi.Input[int]]
+        """
+        Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+        """
+        autovacuum_freeze_max_age: NotRequired[pulumi.Input[int]]
+        """
+        Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
+        """
+        autovacuum_max_workers: NotRequired[pulumi.Input[int]]
+        """
+        Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+        """
+        autovacuum_naptime: NotRequired[pulumi.Input[int]]
+        """
+        Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
+        """
+        autovacuum_vacuum_cost_delay: NotRequired[pulumi.Input[int]]
+        """
+        Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds.
+        """
+        autovacuum_vacuum_cost_limit: NotRequired[pulumi.Input[int]]
+        """
+        Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+        """
+        autovacuum_vacuum_scale_factor: NotRequired[pulumi.Input[float]]
+        """
+        Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
+        """
+        autovacuum_vacuum_threshold: NotRequired[pulumi.Input[int]]
+        """
+        Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+        """
+        backup_hour: NotRequired[pulumi.Input[int]]
+        """
+        The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        backup_minute: NotRequired[pulumi.Input[int]]
+        """
+        The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        bgwriter_delay: NotRequired[pulumi.Input[int]]
+        """
+        Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+        """
+        bgwriter_flush_after: NotRequired[pulumi.Input[int]]
+        """
+        Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+        """
+        bgwriter_lru_maxpages: NotRequired[pulumi.Input[int]]
+        """
+        In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+        """
+        bgwriter_lru_multiplier: NotRequired[pulumi.Input[float]]
+        """
+        The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+        """
+        deadlock_timeout: NotRequired[pulumi.Input[int]]
+        """
+        This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+        """
+        default_toast_compression: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+        """
+        idle_in_transaction_session_timeout: NotRequired[pulumi.Input[int]]
+        """
+        Time out sessions with open transactions after this number of milliseconds.
+        """
+        ip_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+        """
+        jit: NotRequired[pulumi.Input[bool]]
+        """
+        Controls system-wide use of Just-in-Time Compilation (JIT).
+        """
+        log_autovacuum_min_duration: NotRequired[pulumi.Input[int]]
+        """
+        Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+        """
+        log_error_verbosity: NotRequired[pulumi.Input[str]]
+        """
+        Controls the amount of detail written in the server log for each message that is logged.
+        """
+        log_line_prefix: NotRequired[pulumi.Input[str]]
+        """
+        Choose from one of the available log formats.
+        """
+        log_min_duration_statement: NotRequired[pulumi.Input[int]]
+        """
+        Log statements that take more than this number of milliseconds to run, -1 disables.
+        """
+        log_temp_files: NotRequired[pulumi.Input[int]]
+        """
+        Log statements for each temporary file created larger than this number of kilobytes, -1 disables.
+        """
+        max_files_per_process: NotRequired[pulumi.Input[int]]
+        """
+        PostgreSQL maximum number of files that can be open per process.
+        """
+        max_locks_per_transaction: NotRequired[pulumi.Input[int]]
+        """
+        PostgreSQL maximum locks per transaction.
+        """
+        max_logical_replication_workers: NotRequired[pulumi.Input[int]]
+        """
+        PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+        """
+        max_parallel_workers: NotRequired[pulumi.Input[int]]
+        """
+        Sets the maximum number of workers that the system can support for parallel queries.
+        """
+        max_parallel_workers_per_gather: NotRequired[pulumi.Input[int]]
+        """
+        Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+        """
+        max_pred_locks_per_transaction: NotRequired[pulumi.Input[int]]
+        """
+        PostgreSQL maximum predicate locks per transaction.
+        """
+        max_prepared_transactions: NotRequired[pulumi.Input[int]]
+        """
+        PostgreSQL maximum prepared transactions.
+        """
+        max_replication_slots: NotRequired[pulumi.Input[int]]
+        """
+        PostgreSQL maximum replication slots.
+        """
+        max_slot_wal_keep_size: NotRequired[pulumi.Input[int]]
+        """
+        PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+        """
+        max_stack_depth: NotRequired[pulumi.Input[int]]
+        """
+        Maximum depth of the stack in bytes.
+        """
+        max_standby_archive_delay: NotRequired[pulumi.Input[int]]
+        """
+        Max standby archive delay in milliseconds.
+        """
+        max_standby_streaming_delay: NotRequired[pulumi.Input[int]]
+        """
+        Max standby streaming delay in milliseconds.
+        """
+        max_wal_senders: NotRequired[pulumi.Input[int]]
+        """
+        PostgreSQL maximum WAL senders.
+        """
+        max_worker_processes: NotRequired[pulumi.Input[int]]
+        """
+        Sets the maximum number of background processes that the system can support.
+        """
+        migration: NotRequired[pulumi.Input['ManagedDatabasePostgresqlPropertiesMigrationArgsDict']]
+        """
+        Migrate data from existing server.
+        """
+        pg_partman_bgw_interval: NotRequired[pulumi.Input[int]]
+        """
+        Sets the time interval to run pg_partman's scheduled tasks.
+        """
+        pg_partman_bgw_role: NotRequired[pulumi.Input[str]]
+        """
+        Controls which role to use for pg_partman's scheduled background tasks.
+        """
+        pg_stat_monitor_enable: NotRequired[pulumi.Input[bool]]
+        """
+        Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
+        """
+        pg_stat_monitor_pgsm_enable_query_plan: NotRequired[pulumi.Input[bool]]
+        """
+        Enables or disables query plan monitoring.
+        """
+        pg_stat_monitor_pgsm_max_buckets: NotRequired[pulumi.Input[int]]
+        """
+        Sets the maximum number of buckets.
+        """
+        pg_stat_statements_track: NotRequired[pulumi.Input[str]]
+        """
+        Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+        """
+        pgbouncer: NotRequired[pulumi.Input['ManagedDatabasePostgresqlPropertiesPgbouncerArgsDict']]
+        """
+        PGBouncer connection pooling settings. System-wide settings for pgbouncer.
+        """
+        pglookout: NotRequired[pulumi.Input['ManagedDatabasePostgresqlPropertiesPglookoutArgsDict']]
+        """
+        PGLookout settings. System-wide settings for pglookout.
+        """
+        public_access: NotRequired[pulumi.Input[bool]]
+        """
+        Public Access. Allow access to the service from the public Internet.
+        """
+        service_log: NotRequired[pulumi.Input[bool]]
+        """
+        Service logging. Store logs for the service so that they are available in the HTTP API and console.
+        """
+        shared_buffers_percentage: NotRequired[pulumi.Input[float]]
+        """
+        Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+        """
+        synchronous_replication: NotRequired[pulumi.Input[str]]
+        """
+        Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+        """
+        temp_file_limit: NotRequired[pulumi.Input[int]]
+        """
+        PostgreSQL temporary file limit in KiB, -1 for unlimited.
+        """
+        timescaledb: NotRequired[pulumi.Input['ManagedDatabasePostgresqlPropertiesTimescaledbArgsDict']]
+        """
+        TimescaleDB extension configuration values. System-wide settings for the timescaledb extension.
+        """
+        timezone: NotRequired[pulumi.Input[str]]
+        """
+        PostgreSQL service timezone.
+        """
+        track_activity_query_size: NotRequired[pulumi.Input[int]]
+        """
+        Specifies the number of bytes reserved to track the currently executing command for each active session.
+        """
+        track_commit_timestamp: NotRequired[pulumi.Input[str]]
+        """
+        Record commit time of transactions.
+        """
+        track_functions: NotRequired[pulumi.Input[str]]
+        """
+        Enables tracking of function call counts and time used.
+        """
+        track_io_timing: NotRequired[pulumi.Input[str]]
+        """
+        Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+        """
+        variant: NotRequired[pulumi.Input[str]]
+        """
+        Variant of the PostgreSQL service, may affect the features that are exposed by default.
+        """
+        version: NotRequired[pulumi.Input[str]]
+        """
+        PostgreSQL major version.
+        """
+        wal_sender_timeout: NotRequired[pulumi.Input[int]]
+        """
+        Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to zero disables the timeout.
+        """
+        wal_writer_delay: NotRequired[pulumi.Input[int]]
+        """
+        WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+        """
+        work_mem: NotRequired[pulumi.Input[int]]
+        """
+        Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+        """
+elif False:
+    ManagedDatabasePostgresqlPropertiesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ManagedDatabasePostgresqlPropertiesArgs:
@@ -7186,6 +9259,47 @@ class ManagedDatabasePostgresqlPropertiesArgs:
         pulumi.set(self, "work_mem", value)
 
 
+if not MYPY:
+    class ManagedDatabasePostgresqlPropertiesMigrationArgsDict(TypedDict):
+        dbname: NotRequired[pulumi.Input[str]]
+        """
+        Database name for bootstrapping the initial connection.
+        """
+        host: NotRequired[pulumi.Input[str]]
+        """
+        Hostname or IP address of the server where to migrate data from.
+        """
+        ignore_dbs: NotRequired[pulumi.Input[str]]
+        """
+        Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+        """
+        ignore_roles: NotRequired[pulumi.Input[str]]
+        """
+        Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+        """
+        method: NotRequired[pulumi.Input[str]]
+        """
+        The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        Password for authentication with the server where to migrate data from.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        Port number of the server where to migrate data from.
+        """
+        ssl: NotRequired[pulumi.Input[bool]]
+        """
+        The server where to migrate data from is secured with SSL.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        User name for authentication with the server where to migrate data from.
+        """
+elif False:
+    ManagedDatabasePostgresqlPropertiesMigrationArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabasePostgresqlPropertiesMigrationArgs:
     def __init__(__self__, *,
@@ -7336,6 +9450,51 @@ class ManagedDatabasePostgresqlPropertiesMigrationArgs:
     def username(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username", value)
 
+
+if not MYPY:
+    class ManagedDatabasePostgresqlPropertiesPgbouncerArgsDict(TypedDict):
+        autodb_idle_timeout: NotRequired[pulumi.Input[int]]
+        """
+        If the automatically created database pools have been unused this many seconds, they are freed. If 0 then timeout is disabled. [seconds].
+        """
+        autodb_max_db_connections: NotRequired[pulumi.Input[int]]
+        """
+        Do not allow more than this many server connections per database (regardless of user). Setting it to 0 means unlimited.
+        """
+        autodb_pool_mode: NotRequired[pulumi.Input[str]]
+        """
+        PGBouncer pool mode.
+        """
+        autodb_pool_size: NotRequired[pulumi.Input[int]]
+        """
+        If non-zero then create automatically a pool of that size per user when a pool doesn't exist.
+        """
+        ignore_startup_parameters: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of parameters to ignore when given in startup packet.
+        """
+        max_prepared_statements: NotRequired[pulumi.Input[int]]
+        """
+        PgBouncer tracks protocol-level named prepared statements related commands sent by the client in transaction and statement pooling modes when max_prepared_statements is set to a non-zero value. Setting it to 0 disables prepared statements. max_prepared_statements defaults to 100, and its maximum is 3000.
+        """
+        min_pool_size: NotRequired[pulumi.Input[int]]
+        """
+        Add more server connections to pool if below this number. Improves behavior when usual load comes suddenly back after period of total inactivity. The value is effectively capped at the pool size.
+        """
+        server_idle_timeout: NotRequired[pulumi.Input[int]]
+        """
+        If a server connection has been idle more than this many seconds it will be dropped. If 0 then timeout is disabled. [seconds].
+        """
+        server_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        The pooler will close an unused server connection that has been connected longer than this. [seconds].
+        """
+        server_reset_query_always: NotRequired[pulumi.Input[bool]]
+        """
+        Run server_reset_query (DISCARD ALL) in all pooling modes.
+        """
+elif False:
+    ManagedDatabasePostgresqlPropertiesPgbouncerArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ManagedDatabasePostgresqlPropertiesPgbouncerArgs:
@@ -7504,6 +9663,15 @@ class ManagedDatabasePostgresqlPropertiesPgbouncerArgs:
         pulumi.set(self, "server_reset_query_always", value)
 
 
+if not MYPY:
+    class ManagedDatabasePostgresqlPropertiesPglookoutArgsDict(TypedDict):
+        max_failover_replication_time_lag: NotRequired[pulumi.Input[int]]
+        """
+        Number of seconds of master unavailability before triggering database failover to standby.
+        """
+elif False:
+    ManagedDatabasePostgresqlPropertiesPglookoutArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabasePostgresqlPropertiesPglookoutArgs:
     def __init__(__self__, *,
@@ -7527,6 +9695,15 @@ class ManagedDatabasePostgresqlPropertiesPglookoutArgs:
         pulumi.set(self, "max_failover_replication_time_lag", value)
 
 
+if not MYPY:
+    class ManagedDatabasePostgresqlPropertiesTimescaledbArgsDict(TypedDict):
+        max_background_workers: NotRequired[pulumi.Input[int]]
+        """
+        The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time.
+        """
+elif False:
+    ManagedDatabasePostgresqlPropertiesTimescaledbArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabasePostgresqlPropertiesTimescaledbArgs:
     def __init__(__self__, *,
@@ -7549,6 +9726,31 @@ class ManagedDatabasePostgresqlPropertiesTimescaledbArgs:
     def max_background_workers(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_background_workers", value)
 
+
+if not MYPY:
+    class ManagedDatabaseRedisComponentArgsDict(TypedDict):
+        component: NotRequired[pulumi.Input[str]]
+        """
+        Type of the component
+        """
+        host: NotRequired[pulumi.Input[str]]
+        """
+        Hostname of the component
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        Port number of the component
+        """
+        route: NotRequired[pulumi.Input[str]]
+        """
+        Component network route type
+        """
+        usage: NotRequired[pulumi.Input[str]]
+        """
+        Usage of the component
+        """
+elif False:
+    ManagedDatabaseRedisComponentArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ManagedDatabaseRedisComponentArgs:
@@ -7637,6 +9839,27 @@ class ManagedDatabaseRedisComponentArgs:
         pulumi.set(self, "usage", value)
 
 
+if not MYPY:
+    class ManagedDatabaseRedisNetworkArgsDict(TypedDict):
+        family: pulumi.Input[str]
+        """
+        Network family. Currently only `IPv4` is supported.
+        """
+        name: pulumi.Input[str]
+        """
+        The name of the network. Must be unique within the service.
+        """
+        type: pulumi.Input[str]
+        """
+        The type of the network. Must be private.
+        """
+        uuid: pulumi.Input[str]
+        """
+        Private network UUID. Must reside in the same zone as the database.
+        """
+elif False:
+    ManagedDatabaseRedisNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseRedisNetworkArgs:
     def __init__(__self__, *,
@@ -7704,6 +9927,23 @@ class ManagedDatabaseRedisNetworkArgs:
         pulumi.set(self, "uuid", value)
 
 
+if not MYPY:
+    class ManagedDatabaseRedisNodeStateArgsDict(TypedDict):
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Name plus a node iteration
+        """
+        role: NotRequired[pulumi.Input[str]]
+        """
+        Role of the node
+        """
+        state: NotRequired[pulumi.Input[str]]
+        """
+        State of the node
+        """
+elif False:
+    ManagedDatabaseRedisNodeStateArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseRedisNodeStateArgs:
     def __init__(__self__, *,
@@ -7758,6 +9998,79 @@ class ManagedDatabaseRedisNodeStateArgs:
     def state(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "state", value)
 
+
+if not MYPY:
+    class ManagedDatabaseRedisPropertiesArgsDict(TypedDict):
+        automatic_utility_network_ip_filter: NotRequired[pulumi.Input[bool]]
+        """
+        Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+        """
+        ip_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+        """
+        migration: NotRequired[pulumi.Input['ManagedDatabaseRedisPropertiesMigrationArgsDict']]
+        """
+        Migrate data from existing server.
+        """
+        public_access: NotRequired[pulumi.Input[bool]]
+        """
+        Public Access. Allow access to the service from the public Internet.
+        """
+        redis_acl_channels_default: NotRequired[pulumi.Input[str]]
+        """
+        Default ACL for pub/sub channels used when Redis user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Redis configuration acl-pubsub-default.
+        """
+        redis_io_threads: NotRequired[pulumi.Input[int]]
+        """
+        Redis IO thread count. Set Redis IO thread count. Changing this will cause a restart of the Redis service.
+        """
+        redis_lfu_decay_time: NotRequired[pulumi.Input[int]]
+        """
+        LFU maxmemory-policy counter decay time in minutes.
+        """
+        redis_lfu_log_factor: NotRequired[pulumi.Input[int]]
+        """
+        Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
+        """
+        redis_maxmemory_policy: NotRequired[pulumi.Input[str]]
+        """
+        Redis maxmemory-policy.
+        """
+        redis_notify_keyspace_events: NotRequired[pulumi.Input[str]]
+        """
+        Set notify-keyspace-events option.
+        """
+        redis_number_of_databases: NotRequired[pulumi.Input[int]]
+        """
+        Number of Redis databases. Set number of Redis databases. Changing this will cause a restart of the Redis service.
+        """
+        redis_persistence: NotRequired[pulumi.Input[str]]
+        """
+        Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.
+        """
+        redis_pubsub_client_output_buffer_limit: NotRequired[pulumi.Input[int]]
+        """
+        Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
+        """
+        redis_ssl: NotRequired[pulumi.Input[bool]]
+        """
+        Require SSL to access Redis.
+        """
+        redis_timeout: NotRequired[pulumi.Input[int]]
+        """
+        Redis idle connection timeout in seconds.
+        """
+        redis_version: NotRequired[pulumi.Input[str]]
+        """
+        Redis major version.
+        """
+        service_log: NotRequired[pulumi.Input[bool]]
+        """
+        Service logging. Store logs for the service so that they are available in the HTTP API and console.
+        """
+elif False:
+    ManagedDatabaseRedisPropertiesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ManagedDatabaseRedisPropertiesArgs:
@@ -8038,6 +10351,47 @@ class ManagedDatabaseRedisPropertiesArgs:
         pulumi.set(self, "service_log", value)
 
 
+if not MYPY:
+    class ManagedDatabaseRedisPropertiesMigrationArgsDict(TypedDict):
+        dbname: NotRequired[pulumi.Input[str]]
+        """
+        Database name for bootstrapping the initial connection.
+        """
+        host: NotRequired[pulumi.Input[str]]
+        """
+        Hostname or IP address of the server where to migrate data from.
+        """
+        ignore_dbs: NotRequired[pulumi.Input[str]]
+        """
+        Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+        """
+        ignore_roles: NotRequired[pulumi.Input[str]]
+        """
+        Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+        """
+        method: NotRequired[pulumi.Input[str]]
+        """
+        The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        Password for authentication with the server where to migrate data from.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        Port number of the server where to migrate data from.
+        """
+        ssl: NotRequired[pulumi.Input[bool]]
+        """
+        The server where to migrate data from is secured with SSL.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        User name for authentication with the server where to migrate data from.
+        """
+elif False:
+    ManagedDatabaseRedisPropertiesMigrationArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseRedisPropertiesMigrationArgs:
     def __init__(__self__, *,
@@ -8189,6 +10543,15 @@ class ManagedDatabaseRedisPropertiesMigrationArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class ManagedDatabaseUserOpensearchAccessControlArgsDict(TypedDict):
+        rules: pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseUserOpensearchAccessControlRuleArgsDict']]]
+        """
+        Set user access control rules.
+        """
+elif False:
+    ManagedDatabaseUserOpensearchAccessControlArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseUserOpensearchAccessControlArgs:
     def __init__(__self__, *,
@@ -8210,6 +10573,19 @@ class ManagedDatabaseUserOpensearchAccessControlArgs:
     def rules(self, value: pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseUserOpensearchAccessControlRuleArgs']]]):
         pulumi.set(self, "rules", value)
 
+
+if not MYPY:
+    class ManagedDatabaseUserOpensearchAccessControlRuleArgsDict(TypedDict):
+        index: pulumi.Input[str]
+        """
+        Set index name, pattern or top level API.
+        """
+        permission: pulumi.Input[str]
+        """
+        Set permission access.
+        """
+elif False:
+    ManagedDatabaseUserOpensearchAccessControlRuleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ManagedDatabaseUserOpensearchAccessControlRuleArgs:
@@ -8248,6 +10624,15 @@ class ManagedDatabaseUserOpensearchAccessControlRuleArgs:
         pulumi.set(self, "permission", value)
 
 
+if not MYPY:
+    class ManagedDatabaseUserPgAccessControlArgsDict(TypedDict):
+        allow_replication: NotRequired[pulumi.Input[bool]]
+        """
+        Grant replication privilege
+        """
+elif False:
+    ManagedDatabaseUserPgAccessControlArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedDatabaseUserPgAccessControlArgs:
     def __init__(__self__, *,
@@ -8270,6 +10655,27 @@ class ManagedDatabaseUserPgAccessControlArgs:
     def allow_replication(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "allow_replication", value)
 
+
+if not MYPY:
+    class ManagedDatabaseUserRedisAccessControlArgsDict(TypedDict):
+        categories: NotRequired[pulumi.Input[str]]
+        """
+        Set access control to all commands in specified categories.
+        """
+        channels: NotRequired[pulumi.Input[str]]
+        """
+        Set access control to Pub/Sub channels.
+        """
+        commands: NotRequired[pulumi.Input[str]]
+        """
+        Set access control to commands.
+        """
+        keys: NotRequired[pulumi.Input[str]]
+        """
+        Set access control to keys.
+        """
+elif False:
+    ManagedDatabaseUserRedisAccessControlArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ManagedDatabaseUserRedisAccessControlArgs:
@@ -8342,6 +10748,27 @@ class ManagedDatabaseUserRedisAccessControlArgs:
         pulumi.set(self, "keys", value)
 
 
+if not MYPY:
+    class ManagedObjectStorageEndpointArgsDict(TypedDict):
+        domain_name: NotRequired[pulumi.Input[str]]
+        """
+        Domain name of the endpoint.
+        """
+        iam_url: NotRequired[pulumi.Input[str]]
+        """
+        URL for IAM.
+        """
+        sts_url: NotRequired[pulumi.Input[str]]
+        """
+        URL for STS.
+        """
+        type: NotRequired[pulumi.Input[str]]
+        """
+        Type of the endpoint (`private` / `public`).
+        """
+elif False:
+    ManagedObjectStorageEndpointArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedObjectStorageEndpointArgs:
     def __init__(__self__, *,
@@ -8413,6 +10840,27 @@ class ManagedObjectStorageEndpointArgs:
         pulumi.set(self, "type", value)
 
 
+if not MYPY:
+    class ManagedObjectStorageNetworkArgsDict(TypedDict):
+        family: pulumi.Input[str]
+        """
+        Network family. IPv6 currently not supported.
+        """
+        name: pulumi.Input[str]
+        """
+        Network name. Must be unique within the service.
+        """
+        type: pulumi.Input[str]
+        """
+        Network type.
+        """
+        uuid: NotRequired[pulumi.Input[str]]
+        """
+        Private network uuid. For public networks the field should be omitted.
+        """
+elif False:
+    ManagedObjectStorageNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ManagedObjectStorageNetworkArgs:
     def __init__(__self__, *,
@@ -8480,6 +10928,39 @@ class ManagedObjectStorageNetworkArgs:
     def uuid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "uuid", value)
 
+
+if not MYPY:
+    class NetworkIpNetworkArgsDict(TypedDict):
+        address: pulumi.Input[str]
+        """
+        The CIDR range of the subnet
+        """
+        dhcp: pulumi.Input[bool]
+        """
+        Is DHCP enabled?
+        """
+        family: pulumi.Input[str]
+        """
+        IP address family
+        """
+        dhcp_default_route: NotRequired[pulumi.Input[bool]]
+        """
+        Is the gateway the DHCP default route?
+        """
+        dhcp_dns: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        The DNS servers given by DHCP
+        """
+        dhcp_routes: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        The additional DHCP classless static routes given by DHCP
+        """
+        gateway: NotRequired[pulumi.Input[str]]
+        """
+        Gateway address given by DHCP
+        """
+elif False:
+    NetworkIpNetworkArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NetworkIpNetworkArgs:
@@ -8597,6 +11078,15 @@ class NetworkIpNetworkArgs:
         pulumi.set(self, "gateway", value)
 
 
+if not MYPY:
+    class NetworkPeeringNetworkArgsDict(TypedDict):
+        uuid: pulumi.Input[str]
+        """
+        The UUID of the network.
+        """
+elif False:
+    NetworkPeeringNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class NetworkPeeringNetworkArgs:
     def __init__(__self__, *,
@@ -8618,6 +11108,15 @@ class NetworkPeeringNetworkArgs:
     def uuid(self, value: pulumi.Input[str]):
         pulumi.set(self, "uuid", value)
 
+
+if not MYPY:
+    class NetworkPeeringPeerNetworkArgsDict(TypedDict):
+        uuid: pulumi.Input[str]
+        """
+        The UUID of the network.
+        """
+elif False:
+    NetworkPeeringPeerNetworkArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NetworkPeeringPeerNetworkArgs:
@@ -8641,6 +11140,15 @@ class NetworkPeeringPeerNetworkArgs:
         pulumi.set(self, "uuid", value)
 
 
+if not MYPY:
+    class ObjectStorageBucketArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The name of the bucket
+        """
+elif False:
+    ObjectStorageBucketArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ObjectStorageBucketArgs:
     def __init__(__self__, *,
@@ -8662,6 +11170,15 @@ class ObjectStorageBucketArgs:
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
 
+
+if not MYPY:
+    class RouterStaticRouteArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        nexthop: pulumi.Input[str]
+        route: pulumi.Input[str]
+        type: pulumi.Input[str]
+elif False:
+    RouterStaticRouteArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RouterStaticRouteArgs:
@@ -8711,6 +11228,67 @@ class RouterStaticRouteArgs:
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
 
+
+if not MYPY:
+    class ServerFirewallRulesFirewallRuleArgsDict(TypedDict):
+        action: pulumi.Input[str]
+        """
+        Action to take if the rule conditions are met
+        """
+        direction: pulumi.Input[str]
+        """
+        The direction of network traffic this rule will be applied to
+        """
+        comment: NotRequired[pulumi.Input[str]]
+        """
+        Freeform comment string for the rule
+        """
+        destination_address_end: NotRequired[pulumi.Input[str]]
+        """
+        The destination address range ends from this address
+        """
+        destination_address_start: NotRequired[pulumi.Input[str]]
+        """
+        The destination address range starts from this address
+        """
+        destination_port_end: NotRequired[pulumi.Input[str]]
+        """
+        The destination port range ends from this port number
+        """
+        destination_port_start: NotRequired[pulumi.Input[str]]
+        """
+        The destination port range starts from this port number
+        """
+        family: NotRequired[pulumi.Input[str]]
+        """
+        The address family of new firewall rule
+        """
+        icmp_type: NotRequired[pulumi.Input[str]]
+        """
+        The ICMP type
+        """
+        protocol: NotRequired[pulumi.Input[str]]
+        """
+        The protocol this rule will be applied to
+        """
+        source_address_end: NotRequired[pulumi.Input[str]]
+        """
+        The source address range ends from this address
+        """
+        source_address_start: NotRequired[pulumi.Input[str]]
+        """
+        The source address range starts from this address
+        """
+        source_port_end: NotRequired[pulumi.Input[str]]
+        """
+        The source port range ends from this port number
+        """
+        source_port_start: NotRequired[pulumi.Input[str]]
+        """
+        The source port range starts from this port number
+        """
+elif False:
+    ServerFirewallRulesFirewallRuleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServerFirewallRulesFirewallRuleArgs:
@@ -8941,6 +11519,27 @@ class ServerFirewallRulesFirewallRuleArgs:
         pulumi.set(self, "source_port_start", value)
 
 
+if not MYPY:
+    class ServerLoginArgsDict(TypedDict):
+        create_password: NotRequired[pulumi.Input[bool]]
+        """
+        Indicates a password should be create to allow access
+        """
+        keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of ssh keys to access the server
+        """
+        password_delivery: NotRequired[pulumi.Input[str]]
+        """
+        The delivery method for the server's root password (one of `none`, `email` or `sms`)
+        """
+        user: NotRequired[pulumi.Input[str]]
+        """
+        Username to be create to access the server
+        """
+elif False:
+    ServerLoginArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServerLoginArgs:
     def __init__(__self__, *,
@@ -9011,6 +11610,47 @@ class ServerLoginArgs:
     def user(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user", value)
 
+
+if not MYPY:
+    class ServerNetworkInterfaceArgsDict(TypedDict):
+        type: pulumi.Input[str]
+        """
+        Network interface type. For private network interfaces, a network must be specified with an existing network id.
+        """
+        additional_ip_addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceAdditionalIpAddressArgsDict']]]]
+        """
+        0-4 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+        """
+        bootable: NotRequired[pulumi.Input[bool]]
+        """
+        `true` if this interface should be used for network booting.
+        """
+        ip_address: NotRequired[pulumi.Input[str]]
+        """
+        The assigned primary IP address.
+        """
+        ip_address_family: NotRequired[pulumi.Input[str]]
+        """
+        The type of the primary IP address of this interface (one of `IPv4` or `IPv6`).
+        """
+        ip_address_floating: NotRequired[pulumi.Input[bool]]
+        """
+        `true` indicates that the primary IP address is a floating IP address.
+        """
+        mac_address: NotRequired[pulumi.Input[str]]
+        """
+        The assigned MAC address.
+        """
+        network: NotRequired[pulumi.Input[str]]
+        """
+        The unique ID of a network to attach this network to.
+        """
+        source_ip_filtering: NotRequired[pulumi.Input[bool]]
+        """
+        `true` if source IP should be filtered.
+        """
+elif False:
+    ServerNetworkInterfaceArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServerNetworkInterfaceArgs:
@@ -9162,6 +11802,23 @@ class ServerNetworkInterfaceArgs:
         pulumi.set(self, "source_ip_filtering", value)
 
 
+if not MYPY:
+    class ServerNetworkInterfaceAdditionalIpAddressArgsDict(TypedDict):
+        ip_address: NotRequired[pulumi.Input[str]]
+        """
+        The assigned additional IP address.
+        """
+        ip_address_family: NotRequired[pulumi.Input[str]]
+        """
+        The type of this additional IP address of this interface (one of `IPv4` or `IPv6`).
+        """
+        ip_address_floating: NotRequired[pulumi.Input[bool]]
+        """
+        `true` indicates that the additional IP address is a floating IP address.
+        """
+elif False:
+    ServerNetworkInterfaceAdditionalIpAddressArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServerNetworkInterfaceAdditionalIpAddressArgs:
     def __init__(__self__, *,
@@ -9217,6 +11874,19 @@ class ServerNetworkInterfaceAdditionalIpAddressArgs:
         pulumi.set(self, "ip_address_floating", value)
 
 
+if not MYPY:
+    class ServerSimpleBackupArgsDict(TypedDict):
+        plan: pulumi.Input[str]
+        """
+        Simple backup plan. Accepted values: daily, dailies, weeklies, monthlies.
+        """
+        time: pulumi.Input[str]
+        """
+        Time of the day at which backup will be taken. Should be provided in a hhmm format (e.g. 2230).
+        """
+elif False:
+    ServerSimpleBackupArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServerSimpleBackupArgs:
     def __init__(__self__, *,
@@ -9253,6 +11923,27 @@ class ServerSimpleBackupArgs:
     def time(self, value: pulumi.Input[str]):
         pulumi.set(self, "time", value)
 
+
+if not MYPY:
+    class ServerStorageDeviceArgsDict(TypedDict):
+        storage: pulumi.Input[str]
+        """
+        A valid storage UUID
+        """
+        address: NotRequired[pulumi.Input[str]]
+        """
+        The device address the storage will be attached to (`scsi`|`virtio`|`ide`). Leave `address_position` field empty to auto-select next available address from that bus.
+        """
+        address_position: NotRequired[pulumi.Input[str]]
+        """
+        The device position in the given bus (defined via field `address`). Valid values for address `virtio` are `0-15` (`0`, for example). Valid values for `scsi` or `ide` are `0-1:0-1` (`0:0`, for example). Leave empty to auto-select next available address in the given bus.
+        """
+        type: NotRequired[pulumi.Input[str]]
+        """
+        The device type the storage will be attached as
+        """
+elif False:
+    ServerStorageDeviceArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServerStorageDeviceArgs:
@@ -9323,6 +12014,55 @@ class ServerStorageDeviceArgs:
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
 
+
+if not MYPY:
+    class ServerTemplateArgsDict(TypedDict):
+        storage: pulumi.Input[str]
+        """
+        A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
+        """
+        address: NotRequired[pulumi.Input[str]]
+        """
+        The device address the storage will be attached to (`scsi`|`virtio`|`ide`). Leave `address_position` field empty to auto-select next available address from that bus.
+        """
+        address_position: NotRequired[pulumi.Input[str]]
+        """
+        The device position in the given bus (defined via field `address`). For example `0:0`, or `0`. Leave empty to auto-select next available address in the given bus.
+        """
+        backup_rule: NotRequired[pulumi.Input['ServerTemplateBackupRuleArgsDict']]
+        delete_autoresize_backup: NotRequired[pulumi.Input[bool]]
+        """
+        If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
+        """
+        encrypt: NotRequired[pulumi.Input[bool]]
+        """
+        Sets if the storage is encrypted at rest
+        """
+        filesystem_autoresize: NotRequired[pulumi.Input[bool]]
+        """
+        If set to true, provider will attempt to resize partition and filesystem when the size of template storage changes.
+        							Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used
+        							to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless delete_autoresize_backup option is set to true).
+        							Taking and keeping backups incure costs.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The unique identifier for the storage
+        """
+        size: NotRequired[pulumi.Input[int]]
+        """
+        The size of the storage in gigabytes
+        """
+        tier: NotRequired[pulumi.Input[str]]
+        """
+        The storage tier to use
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        A short, informative description
+        """
+elif False:
+    ServerTemplateArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServerTemplateArgs:
@@ -9508,6 +12248,23 @@ class ServerTemplateArgs:
         pulumi.set(self, "title", value)
 
 
+if not MYPY:
+    class ServerTemplateBackupRuleArgsDict(TypedDict):
+        interval: pulumi.Input[str]
+        """
+        The weekday when the backup is created
+        """
+        retention: pulumi.Input[int]
+        """
+        The number of days before a backup is automatically deleted
+        """
+        time: pulumi.Input[str]
+        """
+        The time of day when the backup is created
+        """
+elif False:
+    ServerTemplateBackupRuleArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServerTemplateBackupRuleArgs:
     def __init__(__self__, *,
@@ -9559,6 +12316,23 @@ class ServerTemplateBackupRuleArgs:
     def time(self, value: pulumi.Input[str]):
         pulumi.set(self, "time", value)
 
+
+if not MYPY:
+    class StorageBackupRuleArgsDict(TypedDict):
+        interval: pulumi.Input[str]
+        """
+        The weekday when the backup is created
+        """
+        retention: pulumi.Input[int]
+        """
+        The number of days before a backup is automatically deleted
+        """
+        time: pulumi.Input[str]
+        """
+        The time of day when the backup is created
+        """
+elif False:
+    StorageBackupRuleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class StorageBackupRuleArgs:
@@ -9612,6 +12386,15 @@ class StorageBackupRuleArgs:
         pulumi.set(self, "time", value)
 
 
+if not MYPY:
+    class StorageCloneArgsDict(TypedDict):
+        id: pulumi.Input[str]
+        """
+        The unique identifier of the storage/template to clone.
+        """
+elif False:
+    StorageCloneArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class StorageCloneArgs:
     def __init__(__self__, *,
@@ -9633,6 +12416,31 @@ class StorageCloneArgs:
     def id(self, value: pulumi.Input[str]):
         pulumi.set(self, "id", value)
 
+
+if not MYPY:
+    class StorageImportArgsDict(TypedDict):
+        source: pulumi.Input[str]
+        """
+        The mode of the import task. One of `http_import` or `direct_upload`.
+        """
+        source_location: pulumi.Input[str]
+        """
+        The location of the file to import. For `http_import` an accessible URL. For `direct_upload` a local file. When direct uploading a compressed image, `Content-Type` header of the PUT request is set automatically based on the file extension (`.gz` or `.xz`, case-insensitive).
+        """
+        sha256sum: NotRequired[pulumi.Input[str]]
+        """
+        sha256 sum of the imported data
+        """
+        source_hash: NotRequired[pulumi.Input[str]]
+        """
+        SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
+        """
+        written_bytes: NotRequired[pulumi.Input[int]]
+        """
+        Number of bytes imported
+        """
+elif False:
+    StorageImportArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class StorageImportArgs:
@@ -9719,6 +12527,23 @@ class StorageImportArgs:
         pulumi.set(self, "written_bytes", value)
 
 
+if not MYPY:
+    class GetHostsHostArgsDict(TypedDict):
+        description: str
+        """
+        Free form text describing the host
+        """
+        host_id: int
+        """
+        The unique id of the host
+        """
+        zone: str
+        """
+        The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        """
+elif False:
+    GetHostsHostArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GetHostsHostArgs:
     def __init__(__self__, *,
@@ -9770,6 +12595,43 @@ class GetHostsHostArgs:
     def zone(self, value: str):
         pulumi.set(self, "zone", value)
 
+
+if not MYPY:
+    class GetManagedDatabaseMysqlSessionsSessionArgsDict(TypedDict):
+        application_name: str
+        """
+        Name of the application that is connected to this service.
+        """
+        client_addr: str
+        """
+        IP address of the client connected to this service.
+        """
+        datname: str
+        """
+        Name of the database this service is connected to.
+        """
+        id: str
+        """
+        Process ID of this service.
+        """
+        query: str
+        """
+        Text of this service's most recent query. If state is active this field shows the currently executing query. In all other states, it shows an empty string.
+        """
+        query_duration: str
+        """
+        The active query current duration.
+        """
+        state: str
+        """
+        Current overall state of this service: active: The service is executing a query, idle: The service is waiting for a new client command.
+        """
+        usename: str
+        """
+        Name of the user logged into this service.
+        """
+elif False:
+    GetManagedDatabaseMysqlSessionsSessionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetManagedDatabaseMysqlSessionsSessionArgs:
@@ -9897,6 +12759,47 @@ class GetManagedDatabaseMysqlSessionsSessionArgs:
     def usename(self, value: str):
         pulumi.set(self, "usename", value)
 
+
+if not MYPY:
+    class GetManagedDatabaseOpensearchIndicesIndexArgsDict(TypedDict):
+        create_time: str
+        """
+        Timestamp indicating the creation time of the index.
+        """
+        docs: int
+        """
+        Number of documents stored in the index.
+        """
+        health: str
+        """
+        Health status of the index e.g. `green`, `yellow`, or `red`.
+        """
+        index_name: str
+        """
+        Name of the index.
+        """
+        number_of_replicas: int
+        """
+        Number of replicas configured for the index.
+        """
+        number_of_shards: int
+        """
+        Number of shards configured & used by the index.
+        """
+        read_only_allow_delete: bool
+        """
+        Indicates whether the index is in a read-only state that permits deletion of the entire index. This attribute can be automatically set to true in certain scenarios where the node disk space exceeds the flood stage.
+        """
+        size: int
+        """
+        Size of the index in bytes.
+        """
+        status: str
+        """
+        Status of the index e.g. `open` or `closed`.
+        """
+elif False:
+    GetManagedDatabaseOpensearchIndicesIndexArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetManagedDatabaseOpensearchIndicesIndexArgs:
@@ -10039,6 +12942,95 @@ class GetManagedDatabaseOpensearchIndicesIndexArgs:
     def status(self, value: str):
         pulumi.set(self, "status", value)
 
+
+if not MYPY:
+    class GetManagedDatabasePostgresqlSessionsSessionArgsDict(TypedDict):
+        application_name: str
+        """
+        Name of the application that is connected to this service.
+        """
+        backend_start: str
+        """
+        Time when this process was started, i.e., when the client connected to the server.
+        """
+        backend_type: str
+        """
+        Type of current service.
+        """
+        backend_xid: int
+        """
+        Top-level transaction identifier of this service, if any.
+        """
+        backend_xmin: int
+        """
+        The current service's xmin horizon.
+        """
+        client_addr: str
+        """
+        IP address of the client connected to this service. If this field is null, it indicates either that the client is connected via a Unix socket on the server machine or that this is an internal process such as autovacuum.
+        """
+        client_hostname: str
+        """
+        Host name of the connected client, as reported by a reverse DNS lookup of `client_addr`.
+        """
+        client_port: int
+        """
+        TCP port number that the client is using for communication with this service, or -1 if a Unix socket is used.
+        """
+        datid: int
+        """
+        OID of the database this service is connected to.
+        """
+        datname: str
+        """
+        Name of the database this service is connected to.
+        """
+        id: str
+        """
+        Process ID of this service.
+        """
+        query: str
+        """
+        Text of this service's most recent query. If state is active this field shows the currently executing query. In all other states, it shows the last query that was executed.
+        """
+        query_duration: str
+        """
+        The active query current duration.
+        """
+        query_start: str
+        """
+        Time when the currently active query was started, or if state is not active, when the last query was started.
+        """
+        state: str
+        """
+        Current overall state of this service: active: The service is executing a query, idle: The service is waiting for a new client command.
+        """
+        state_change: str
+        """
+        Time when the state was last changed.
+        """
+        usename: str
+        """
+        Name of the user logged into this service.
+        """
+        usesysid: int
+        """
+        OID of the user logged into this service.
+        """
+        wait_event: str
+        """
+        Wait event name if service is currently waiting.
+        """
+        wait_event_type: str
+        """
+        The type of event for which the service is waiting, if any; otherwise NULL.
+        """
+        xact_start: str
+        """
+        Time when this process' current transaction was started, or null if no transaction is active.
+        """
+elif False:
+    GetManagedDatabasePostgresqlSessionsSessionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetManagedDatabasePostgresqlSessionsSessionArgs:
@@ -10362,6 +13354,79 @@ class GetManagedDatabasePostgresqlSessionsSessionArgs:
         pulumi.set(self, "xact_start", value)
 
 
+if not MYPY:
+    class GetManagedDatabaseRedisSessionsSessionArgsDict(TypedDict):
+        active_channel_subscriptions: int
+        """
+        Number of active channel subscriptions
+        """
+        active_database: str
+        """
+        Current database ID
+        """
+        active_pattern_matching_channel_subscriptions: int
+        """
+        Number of pattern matching subscriptions.
+        """
+        application_name: str
+        """
+        Name of the application that is connected to this service.
+        """
+        client_addr: str
+        """
+        Number of pattern matching subscriptions.
+        """
+        connection_age: int
+        """
+        Total duration of the connection in nanoseconds.
+        """
+        connection_idle: int
+        """
+        Idle time of the connection in nanoseconds.
+        """
+        flags: Sequence[str]
+        """
+        A set containing flags' descriptions.
+        """
+        flags_raw: str
+        """
+        Client connection flags in raw string format.
+        """
+        id: str
+        """
+        Process ID of this session.
+        """
+        multi_exec_commands: int
+        """
+        Number of commands in a MULTI/EXEC context.
+        """
+        output_buffer: int
+        """
+        Output buffer length.
+        """
+        output_buffer_memory: int
+        """
+        Output buffer memory usage.
+        """
+        output_list_length: int
+        """
+        Output list length (replies are queued in this list when the buffer is full).
+        """
+        query: str
+        """
+        The last executed command.
+        """
+        query_buffer: int
+        """
+        Query buffer length (0 means no query pending).
+        """
+        query_buffer_free: int
+        """
+        Free space of the query buffer (0 means the buffer is full).
+        """
+elif False:
+    GetManagedDatabaseRedisSessionsSessionArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GetManagedDatabaseRedisSessionsSessionArgs:
     def __init__(__self__, *,
@@ -10623,6 +13688,23 @@ class GetManagedDatabaseRedisSessionsSessionArgs:
     def query_buffer_free(self, value: int):
         pulumi.set(self, "query_buffer_free", value)
 
+
+if not MYPY:
+    class GetManagedObjectStorageRegionsRegionArgsDict(TypedDict):
+        name: str
+        """
+        Name of the region.
+        """
+        primary_zone: str
+        """
+        Primary zone of the region.
+        """
+        zones: Sequence[str]
+        """
+        List of zones in the region.
+        """
+elif False:
+    GetManagedObjectStorageRegionsRegionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetManagedObjectStorageRegionsRegionArgs:

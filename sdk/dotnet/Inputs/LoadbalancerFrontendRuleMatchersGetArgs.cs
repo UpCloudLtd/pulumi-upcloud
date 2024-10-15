@@ -16,7 +16,7 @@ namespace Pulumi.Upcloud.Inputs
         private InputList<Inputs.LoadbalancerFrontendRuleMatchersBodySizeRangeGetArgs>? _bodySizeRanges;
 
         /// <summary>
-        /// Matches by range of HTTP request body sizes
+        /// Matches by range of HTTP request body sizes.
         /// </summary>
         public InputList<Inputs.LoadbalancerFrontendRuleMatchersBodySizeRangeGetArgs> BodySizeRanges
         {
@@ -124,7 +124,7 @@ namespace Pulumi.Upcloud.Inputs
         private InputList<Inputs.LoadbalancerFrontendRuleMatchersSrcPortRangeGetArgs>? _srcPortRanges;
 
         /// <summary>
-        /// Matches by range of source port numbers
+        /// Matches by range of source port numbers.
         /// </summary>
         public InputList<Inputs.LoadbalancerFrontendRuleMatchersSrcPortRangeGetArgs> SrcPortRanges
         {

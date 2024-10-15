@@ -13,7 +13,7 @@ namespace Pulumi.Upcloud.Inputs
     public sealed class LoadbalancerFrontendRuleMatchersBodySizeGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Sets if the condition should be inverted. Works similar to logical NOT operator.
+        /// Defines if the condition should be inverted. Works similarly to logical NOT operator.
         /// </summary>
         [Input("inverse")]
         public Input<bool>? Inverse { get; set; }

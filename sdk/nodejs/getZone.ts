@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  */
 export function getZone(args?: GetZoneArgs, opts?: pulumi.InvokeOptions): Promise<GetZoneResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("upcloud:index/getZone:getZone", {
         "id": args.id,
@@ -45,7 +44,12 @@ export interface GetZoneResult {
  * Provides details on given zone.
  */
 export function getZoneOutput(args?: GetZoneOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetZoneResult> {
-    return pulumi.output(args).apply((a: any) => getZone(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("upcloud:index/getZone:getZone", {
+        "id": args.id,
+        "name": args.name,
+    }, opts);
 }
 
 /**

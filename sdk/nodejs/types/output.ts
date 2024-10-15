@@ -582,69 +582,65 @@ export interface KubernetesNodeGroupTaint {
 
 export interface LoadbalancerBackendProperties {
     /**
-     * Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for tcp type.
+     * Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `tcp` `healthCheckType`.
      */
-    healthCheckExpectedStatus?: number;
+    healthCheckExpectedStatus: number;
     /**
      * Sets how many failed health checks are allowed until the backend member is taken off from the rotation.
      */
-    healthCheckFall?: number;
+    healthCheckFall: number;
     /**
-     * Interval between health checks.
+     * Interval between health checks in seconds.
      */
-    healthCheckInterval?: number;
+    healthCheckInterval: number;
     /**
-     * Sets how many passing checks there must be before returning the backend member to the rotation.
+     * Sets how many successful health checks are required to put the backend member back into rotation.
      */
-    healthCheckRise?: number;
+    healthCheckRise: number;
     /**
      * Enables certificate verification with the system CA certificate bundle. Works with https scheme in health_check_url, otherwise ignored.
      */
-    healthCheckTlsVerify?: boolean;
+    healthCheckTlsVerify: boolean;
     /**
      * Health check type.
      */
-    healthCheckType?: string;
+    healthCheckType: string;
     /**
-     * Target path for health check HTTP GET requests. Ignored for tcp type.
+     * Target path for health check HTTP GET requests. Ignored for `tcp` `healthCheckType`.
      */
-    healthCheckUrl?: string;
+    healthCheckUrl: string;
     /**
      * Allow HTTP/2 connections to backend members by utilizing ALPN extension of TLS protocol, therefore it can only be enabled when tlsEnabled is set to true. Note: members should support HTTP/2 for this setting to work.
      */
-    http2Enabled?: boolean;
+    http2Enabled: boolean;
     /**
-     * Enable outbound proxy protocol by setting the desired version. Empty string disables proxy protocol.
+     * Enable outbound proxy protocol by setting the desired version. Defaults to empty string. Empty string disables proxy protocol.
      */
-    outboundProxyProtocol?: string;
+    outboundProxyProtocol: string;
     /**
      * Sets sticky session cookie name. Empty string disables sticky session.
      */
-    stickySessionCookieName?: string;
+    stickySessionCookieName: string;
     /**
      * Backend server timeout in seconds.
      */
-    timeoutServer?: number;
+    timeoutServer: number;
     /**
      * Maximum inactivity time on the client and server side for tunnels in seconds.
      */
-    timeoutTunnel?: number;
-    /**
-     * Set of TLS config names
-     */
-    tlsConfigs: string[];
+    timeoutTunnel: number;
     /**
      * Enables TLS connection from the load balancer to backend servers.
      */
-    tlsEnabled?: boolean;
+    tlsEnabled: boolean;
     /**
      * If enabled, then the system CA certificate bundle will be used for the certificate verification.
      */
-    tlsUseSystemCa?: boolean;
+    tlsUseSystemCa: boolean;
     /**
      * Enables backend servers certificate verification. Please make sure that TLS config with the certificate bundle of type authority attached to the backend or `tlsUseSystemCa` enabled. Note: `tlsVerify` has preference over `healthCheckTlsVerify` when `tlsEnabled` in true.
      */
-    tlsVerify?: boolean;
+    tlsVerify: boolean;
 }
 
 export interface LoadbalancerFrontendNetwork {
@@ -719,11 +715,14 @@ export interface LoadbalancerFrontendRuleActionsHttpReturn {
 }
 
 export interface LoadbalancerFrontendRuleActionsSetForwardedHeader {
-    active?: boolean;
+    active: boolean;
 }
 
 export interface LoadbalancerFrontendRuleActionsTcpReject {
-    active?: boolean;
+    /**
+     * Indicates if the rule is active.
+     */
+    active: boolean;
 }
 
 export interface LoadbalancerFrontendRuleActionsUseBackend {
@@ -735,7 +734,7 @@ export interface LoadbalancerFrontendRuleActionsUseBackend {
 
 export interface LoadbalancerFrontendRuleMatchers {
     /**
-     * Matches by range of HTTP request body sizes
+     * Matches by range of HTTP request body sizes.
      */
     bodySizeRanges?: outputs.LoadbalancerFrontendRuleMatchersBodySizeRange[];
     /**
@@ -771,7 +770,7 @@ export interface LoadbalancerFrontendRuleMatchers {
      */
     srcIps?: outputs.LoadbalancerFrontendRuleMatchersSrcIp[];
     /**
-     * Matches by range of source port numbers
+     * Matches by range of source port numbers.
      */
     srcPortRanges?: outputs.LoadbalancerFrontendRuleMatchersSrcPortRange[];
     /**
@@ -794,9 +793,9 @@ export interface LoadbalancerFrontendRuleMatchers {
 
 export interface LoadbalancerFrontendRuleMatchersBodySize {
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: boolean;
+    inverse: boolean;
     /**
      * Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
      */
@@ -809,9 +808,9 @@ export interface LoadbalancerFrontendRuleMatchersBodySize {
 
 export interface LoadbalancerFrontendRuleMatchersBodySizeRange {
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: boolean;
+    inverse: boolean;
     /**
      * Integer value.
      */
@@ -824,13 +823,13 @@ export interface LoadbalancerFrontendRuleMatchersBodySizeRange {
 
 export interface LoadbalancerFrontendRuleMatchersCookie {
     /**
-     * Ignore case, default `false`.
+     * Defines if case should be ignored. Defaults to `false`.
      */
-    ignoreCase?: boolean;
+    ignoreCase: boolean;
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: boolean;
+    inverse: boolean;
     /**
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
@@ -847,13 +846,13 @@ export interface LoadbalancerFrontendRuleMatchersCookie {
 
 export interface LoadbalancerFrontendRuleMatchersHeader {
     /**
-     * Ignore case, default `false`.
+     * Defines if case should be ignored. Defaults to `false`.
      */
-    ignoreCase?: boolean;
+    ignoreCase: boolean;
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: boolean;
+    inverse: boolean;
     /**
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
@@ -870,9 +869,9 @@ export interface LoadbalancerFrontendRuleMatchersHeader {
 
 export interface LoadbalancerFrontendRuleMatchersHost {
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: boolean;
+    inverse: boolean;
     /**
      * String value.
      */
@@ -881,9 +880,9 @@ export interface LoadbalancerFrontendRuleMatchersHost {
 
 export interface LoadbalancerFrontendRuleMatchersHttpMethod {
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: boolean;
+    inverse: boolean;
     /**
      * String value (`GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`).
      */
@@ -892,13 +891,13 @@ export interface LoadbalancerFrontendRuleMatchersHttpMethod {
 
 export interface LoadbalancerFrontendRuleMatchersNumMembersUp {
     /**
-     * The name of the `backend` which members will be monitored.
+     * The name of the `backend`.
      */
     backendName: string;
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: boolean;
+    inverse: boolean;
     /**
      * Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
      */
@@ -911,13 +910,13 @@ export interface LoadbalancerFrontendRuleMatchersNumMembersUp {
 
 export interface LoadbalancerFrontendRuleMatchersPath {
     /**
-     * Ignore case, default `false`.
+     * Defines if case should be ignored. Defaults to `false`.
      */
-    ignoreCase?: boolean;
+    ignoreCase: boolean;
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: boolean;
+    inverse: boolean;
     /**
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
@@ -930,9 +929,9 @@ export interface LoadbalancerFrontendRuleMatchersPath {
 
 export interface LoadbalancerFrontendRuleMatchersSrcIp {
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: boolean;
+    inverse: boolean;
     /**
      * IP address. CIDR masks are supported, e.g. `192.168.0.0/24`.
      */
@@ -941,9 +940,9 @@ export interface LoadbalancerFrontendRuleMatchersSrcIp {
 
 export interface LoadbalancerFrontendRuleMatchersSrcPort {
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: boolean;
+    inverse: boolean;
     /**
      * Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
      */
@@ -956,9 +955,9 @@ export interface LoadbalancerFrontendRuleMatchersSrcPort {
 
 export interface LoadbalancerFrontendRuleMatchersSrcPortRange {
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: boolean;
+    inverse: boolean;
     /**
      * Integer value.
      */
@@ -971,13 +970,13 @@ export interface LoadbalancerFrontendRuleMatchersSrcPortRange {
 
 export interface LoadbalancerFrontendRuleMatchersUrl {
     /**
-     * Ignore case, default `false`.
+     * Defines if case should be ignored. Defaults to `false`.
      */
-    ignoreCase?: boolean;
+    ignoreCase: boolean;
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: boolean;
+    inverse: boolean;
     /**
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
@@ -990,13 +989,13 @@ export interface LoadbalancerFrontendRuleMatchersUrl {
 
 export interface LoadbalancerFrontendRuleMatchersUrlParam {
     /**
-     * Ignore case, default `false`.
+     * Defines if case should be ignored. Defaults to `false`.
      */
-    ignoreCase?: boolean;
+    ignoreCase: boolean;
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: boolean;
+    inverse: boolean;
     /**
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
@@ -1013,13 +1012,13 @@ export interface LoadbalancerFrontendRuleMatchersUrlParam {
 
 export interface LoadbalancerFrontendRuleMatchersUrlQuery {
     /**
-     * Ignore case, default `false`.
+     * Defines if case should be ignored. Defaults to `false`.
      */
-    ignoreCase?: boolean;
+    ignoreCase: boolean;
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: boolean;
+    inverse: boolean;
     /**
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
@@ -2944,7 +2943,7 @@ export interface StorageImport {
      */
     sourceHash?: string;
     /**
-     * The location of the file to import. For `httpImport` an accessible URL for `directUpload` a local file.
+     * The location of the file to import. For `httpImport` an accessible URL. For `directUpload` a local file. When direct uploading a compressed image, `Content-Type` header of the PUT request is set automatically based on the file extension (`.gz` or `.xz`, case-insensitive).
      */
     sourceLocation: string;
     /**

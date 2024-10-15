@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -113,12 +118,20 @@ def get_kubernetes_cluster(id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         kubeconfig=pulumi.get(__ret__, 'kubeconfig'),
         name=pulumi.get(__ret__, 'name'))
-
-
-@_utilities.lift_output_func(get_kubernetes_cluster)
 def get_kubernetes_cluster_output(id: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKubernetesClusterResult]:
     """
     ## Example Usage
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('upcloud:index/getKubernetesCluster:getKubernetesCluster', __args__, opts=opts, typ=GetKubernetesClusterResult)
+    return __ret__.apply(lambda __response__: GetKubernetesClusterResult(
+        client_certificate=pulumi.get(__response__, 'client_certificate'),
+        client_key=pulumi.get(__response__, 'client_key'),
+        cluster_ca_certificate=pulumi.get(__response__, 'cluster_ca_certificate'),
+        host=pulumi.get(__response__, 'host'),
+        id=pulumi.get(__response__, 'id'),
+        kubeconfig=pulumi.get(__response__, 'kubeconfig'),
+        name=pulumi.get(__response__, 'name')))

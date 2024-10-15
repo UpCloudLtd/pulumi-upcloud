@@ -77,14 +77,20 @@ type GetManagedDatabaseRedisSessionsResult struct {
 
 func GetManagedDatabaseRedisSessionsOutput(ctx *pulumi.Context, args GetManagedDatabaseRedisSessionsOutputArgs, opts ...pulumi.InvokeOption) GetManagedDatabaseRedisSessionsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetManagedDatabaseRedisSessionsResult, error) {
+		ApplyT(func(v interface{}) (GetManagedDatabaseRedisSessionsResultOutput, error) {
 			args := v.(GetManagedDatabaseRedisSessionsArgs)
-			r, err := GetManagedDatabaseRedisSessions(ctx, &args, opts...)
-			var s GetManagedDatabaseRedisSessionsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetManagedDatabaseRedisSessionsResult
+			secret, err := ctx.InvokePackageRaw("upcloud:index/getManagedDatabaseRedisSessions:getManagedDatabaseRedisSessions", args, &rv, "", opts...)
+			if err != nil {
+				return GetManagedDatabaseRedisSessionsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetManagedDatabaseRedisSessionsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetManagedDatabaseRedisSessionsResultOutput), nil
+			}
+			return output, nil
 		}).(GetManagedDatabaseRedisSessionsResultOutput)
 }
 

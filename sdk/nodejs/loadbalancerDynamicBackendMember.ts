@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resource represents load balancer's dynamic backend member
+ * This resource represents load balancer dynamic backend member
  *
  * ## Example Usage
  *
@@ -88,27 +88,25 @@ export class LoadbalancerDynamicBackendMember extends pulumi.CustomResource {
     /**
      * Indicates if the member is enabled. Disabled members are excluded from load balancing.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    public readonly enabled!: pulumi.Output<boolean>;
     /**
      * Optional fallback IP address in case of failure on DNS resolving.
      */
-    public readonly ip!: pulumi.Output<string | undefined>;
+    public readonly ip!: pulumi.Output<string>;
     /**
      * Maximum number of sessions before queueing.
      */
     public readonly maxSessions!: pulumi.Output<number>;
     /**
-     * The name of the member must be unique within the load balancer backend service.
+     * The name of the member. Must be unique within within the load balancer backend.
      */
     public readonly name!: pulumi.Output<string>;
     /**
      * Server port. Port is optional and can be specified in DNS SRV record.
      */
-    public readonly port!: pulumi.Output<number | undefined>;
+    public readonly port!: pulumi.Output<number>;
     /**
-     * Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-     * weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-     * will not participate in load balancing but will still accept persistent connections.
+     * Weight of the member. The higher the weight, the more traffic the member receives.
      */
     public readonly weight!: pulumi.Output<number>;
 
@@ -177,7 +175,7 @@ export interface LoadbalancerDynamicBackendMemberState {
      */
     maxSessions?: pulumi.Input<number>;
     /**
-     * The name of the member must be unique within the load balancer backend service.
+     * The name of the member. Must be unique within within the load balancer backend.
      */
     name?: pulumi.Input<string>;
     /**
@@ -185,9 +183,7 @@ export interface LoadbalancerDynamicBackendMemberState {
      */
     port?: pulumi.Input<number>;
     /**
-     * Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-     * weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-     * will not participate in load balancing but will still accept persistent connections.
+     * Weight of the member. The higher the weight, the more traffic the member receives.
      */
     weight?: pulumi.Input<number>;
 }
@@ -213,7 +209,7 @@ export interface LoadbalancerDynamicBackendMemberArgs {
      */
     maxSessions: pulumi.Input<number>;
     /**
-     * The name of the member must be unique within the load balancer backend service.
+     * The name of the member. Must be unique within within the load balancer backend.
      */
     name?: pulumi.Input<string>;
     /**
@@ -221,9 +217,7 @@ export interface LoadbalancerDynamicBackendMemberArgs {
      */
     port?: pulumi.Input<number>;
     /**
-     * Used to adjust the server's weight relative to other servers. All servers will receive a load proportional to their
-     * weight relative to the sum of all weights, so the higher the weight, the higher the load. A value of 0 means the server
-     * will not participate in load balancing but will still accept persistent connections.
+     * Weight of the member. The higher the weight, the more traffic the member receives.
      */
     weight: pulumi.Input<number>;
 }

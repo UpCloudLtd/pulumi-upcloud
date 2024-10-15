@@ -107,8 +107,7 @@ type LoadbalancerFrontend struct {
 	// be required when deprecated field `network` is removed from load balancer resource.
 	Networks LoadbalancerFrontendNetworkArrayOutput `pulumi:"networks"`
 	// Port to listen for incoming requests.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
+	Port       pulumi.IntOutput                        `pulumi:"port"`
 	Properties LoadbalancerFrontendPropertiesPtrOutput `pulumi:"properties"`
 	// Set of frontend rule names.
 	Rules pulumi.StringArrayOutput `pulumi:"rules"`
@@ -171,8 +170,7 @@ type loadbalancerFrontendState struct {
 	// be required when deprecated field `network` is removed from load balancer resource.
 	Networks []LoadbalancerFrontendNetwork `pulumi:"networks"`
 	// Port to listen for incoming requests.
-	Port *int `pulumi:"port"`
-	// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
+	Port       *int                            `pulumi:"port"`
 	Properties *LoadbalancerFrontendProperties `pulumi:"properties"`
 	// Set of frontend rule names.
 	Rules []string `pulumi:"rules"`
@@ -194,8 +192,7 @@ type LoadbalancerFrontendState struct {
 	// be required when deprecated field `network` is removed from load balancer resource.
 	Networks LoadbalancerFrontendNetworkArrayInput
 	// Port to listen for incoming requests.
-	Port pulumi.IntPtrInput
-	// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
+	Port       pulumi.IntPtrInput
 	Properties LoadbalancerFrontendPropertiesPtrInput
 	// Set of frontend rule names.
 	Rules pulumi.StringArrayInput
@@ -221,8 +218,7 @@ type loadbalancerFrontendArgs struct {
 	// be required when deprecated field `network` is removed from load balancer resource.
 	Networks []LoadbalancerFrontendNetwork `pulumi:"networks"`
 	// Port to listen for incoming requests.
-	Port int `pulumi:"port"`
-	// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
+	Port       int                             `pulumi:"port"`
 	Properties *LoadbalancerFrontendProperties `pulumi:"properties"`
 }
 
@@ -241,8 +237,7 @@ type LoadbalancerFrontendArgs struct {
 	// be required when deprecated field `network` is removed from load balancer resource.
 	Networks LoadbalancerFrontendNetworkArrayInput
 	// Port to listen for incoming requests.
-	Port pulumi.IntInput
-	// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
+	Port       pulumi.IntInput
 	Properties LoadbalancerFrontendPropertiesPtrInput
 }
 
@@ -365,7 +360,6 @@ func (o LoadbalancerFrontendOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
 
-// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
 func (o LoadbalancerFrontendOutput) Properties() LoadbalancerFrontendPropertiesPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) LoadbalancerFrontendPropertiesPtrOutput { return v.Properties }).(LoadbalancerFrontendPropertiesPtrOutput)
 }

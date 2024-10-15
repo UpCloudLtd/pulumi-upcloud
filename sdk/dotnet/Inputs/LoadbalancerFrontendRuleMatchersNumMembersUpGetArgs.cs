@@ -13,13 +13,13 @@ namespace Pulumi.Upcloud.Inputs
     public sealed class LoadbalancerFrontendRuleMatchersNumMembersUpGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the `backend` which members will be monitored.
+        /// The name of the `backend`.
         /// </summary>
         [Input("backendName", required: true)]
         public Input<string> BackendName { get; set; } = null!;
 
         /// <summary>
-        /// Sets if the condition should be inverted. Works similar to logical NOT operator.
+        /// Defines if the condition should be inverted. Works similarly to logical NOT operator.
         /// </summary>
         [Input("inverse")]
         public Input<bool>? Inverse { get; set; }

@@ -11,10 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Returns storage resource information based on defined arguments.
+// Provides information on UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.
 //
-// Data object can be used to map storage to other resource based on the ID or just to read some other storage property like zone information.\
-// Storage types are: normal, backup, cdrom, template
+// Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `normal`, `backup`, `cdrom`, and `template`.
 //
 // ## Example Usage
 //
@@ -31,7 +30,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			appImage, err := upcloud.LookupStorage(ctx, &upcloud.LookupStorageArgs{
-//				Type:       "template",
+//				Type:       pulumi.StringRef("template"),
 //				NameRegex:  pulumi.StringRef("^app_image.*"),
 //				MostRecent: pulumi.BoolRef(true),
 //			}, nil)
@@ -89,50 +88,71 @@ func LookupStorage(ctx *pulumi.Context, args *LookupStorageArgs, opts ...pulumi.
 // A collection of arguments for invoking getStorage.
 type LookupStorageArgs struct {
 	AccessType *string `pulumi:"accessType"`
-	MostRecent *bool   `pulumi:"mostRecent"`
-	Name       *string `pulumi:"name"`
-	NameRegex  *string `pulumi:"nameRegex"`
-	Type       string  `pulumi:"type"`
-	Zone       *string `pulumi:"zone"`
+	Id         *string `pulumi:"id"`
+	// Deprecated: Use exact title or UUID to limit the number of matching storages. Note that if you have multiple storages with the same title, you should use UUID to select the storage.
+	MostRecent *bool `pulumi:"mostRecent"`
+	// Deprecated: Contains the same value as `title`. Use `title` instead.
+	Name *string `pulumi:"name"`
+	// Deprecated: Use exact title or UUID instead.
+	NameRegex *string `pulumi:"nameRegex"`
+	Title     *string `pulumi:"title"`
+	Type      *string `pulumi:"type"`
+	Zone      *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getStorage.
 type LookupStorageResult struct {
-	AccessType string `pulumi:"accessType"`
-	// The provider-assigned unique ID for this managed resource.
-	Id         string  `pulumi:"id"`
-	MostRecent *bool   `pulumi:"mostRecent"`
-	Name       *string `pulumi:"name"`
-	NameRegex  *string `pulumi:"nameRegex"`
-	Size       int     `pulumi:"size"`
-	State      string  `pulumi:"state"`
-	Tier       string  `pulumi:"tier"`
-	Title      string  `pulumi:"title"`
-	Type       string  `pulumi:"type"`
-	Zone       string  `pulumi:"zone"`
+	AccessType string            `pulumi:"accessType"`
+	Encrypt    bool              `pulumi:"encrypt"`
+	Id         string            `pulumi:"id"`
+	Labels     map[string]string `pulumi:"labels"`
+	// Deprecated: Use exact title or UUID to limit the number of matching storages. Note that if you have multiple storages with the same title, you should use UUID to select the storage.
+	MostRecent *bool `pulumi:"mostRecent"`
+	// Deprecated: Contains the same value as `title`. Use `title` instead.
+	Name *string `pulumi:"name"`
+	// Deprecated: Use exact title or UUID instead.
+	NameRegex    *string           `pulumi:"nameRegex"`
+	Size         int               `pulumi:"size"`
+	State        string            `pulumi:"state"`
+	SystemLabels map[string]string `pulumi:"systemLabels"`
+	Tier         string            `pulumi:"tier"`
+	Title        string            `pulumi:"title"`
+	Type         string            `pulumi:"type"`
+	Zone         string            `pulumi:"zone"`
 }
 
 func LookupStorageOutput(ctx *pulumi.Context, args LookupStorageOutputArgs, opts ...pulumi.InvokeOption) LookupStorageResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupStorageResult, error) {
+		ApplyT(func(v interface{}) (LookupStorageResultOutput, error) {
 			args := v.(LookupStorageArgs)
-			r, err := LookupStorage(ctx, &args, opts...)
-			var s LookupStorageResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupStorageResult
+			secret, err := ctx.InvokePackageRaw("upcloud:index/getStorage:getStorage", args, &rv, "", opts...)
+			if err != nil {
+				return LookupStorageResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupStorageResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupStorageResultOutput), nil
+			}
+			return output, nil
 		}).(LookupStorageResultOutput)
 }
 
 // A collection of arguments for invoking getStorage.
 type LookupStorageOutputArgs struct {
 	AccessType pulumi.StringPtrInput `pulumi:"accessType"`
-	MostRecent pulumi.BoolPtrInput   `pulumi:"mostRecent"`
-	Name       pulumi.StringPtrInput `pulumi:"name"`
-	NameRegex  pulumi.StringPtrInput `pulumi:"nameRegex"`
-	Type       pulumi.StringInput    `pulumi:"type"`
-	Zone       pulumi.StringPtrInput `pulumi:"zone"`
+	Id         pulumi.StringPtrInput `pulumi:"id"`
+	// Deprecated: Use exact title or UUID to limit the number of matching storages. Note that if you have multiple storages with the same title, you should use UUID to select the storage.
+	MostRecent pulumi.BoolPtrInput `pulumi:"mostRecent"`
+	// Deprecated: Contains the same value as `title`. Use `title` instead.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Deprecated: Use exact title or UUID instead.
+	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
+	Title     pulumi.StringPtrInput `pulumi:"title"`
+	Type      pulumi.StringPtrInput `pulumi:"type"`
+	Zone      pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (LookupStorageOutputArgs) ElementType() reflect.Type {
@@ -158,19 +178,29 @@ func (o LookupStorageResultOutput) AccessType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStorageResult) string { return v.AccessType }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+func (o LookupStorageResultOutput) Encrypt() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupStorageResult) bool { return v.Encrypt }).(pulumi.BoolOutput)
+}
+
 func (o LookupStorageResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStorageResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+func (o LookupStorageResultOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupStorageResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// Deprecated: Use exact title or UUID to limit the number of matching storages. Note that if you have multiple storages with the same title, you should use UUID to select the storage.
 func (o LookupStorageResultOutput) MostRecent() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupStorageResult) *bool { return v.MostRecent }).(pulumi.BoolPtrOutput)
 }
 
+// Deprecated: Contains the same value as `title`. Use `title` instead.
 func (o LookupStorageResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupStorageResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Deprecated: Use exact title or UUID instead.
 func (o LookupStorageResultOutput) NameRegex() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupStorageResult) *string { return v.NameRegex }).(pulumi.StringPtrOutput)
 }
@@ -181,6 +211,10 @@ func (o LookupStorageResultOutput) Size() pulumi.IntOutput {
 
 func (o LookupStorageResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStorageResult) string { return v.State }).(pulumi.StringOutput)
+}
+
+func (o LookupStorageResultOutput) SystemLabels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupStorageResult) map[string]string { return v.SystemLabels }).(pulumi.StringMapOutput)
 }
 
 func (o LookupStorageResultOutput) Tier() pulumi.StringOutput {

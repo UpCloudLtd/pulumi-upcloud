@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Upcloud
 {
     /// <summary>
-    /// This resource represents load balancer backend service
+    /// This resource represents load balancer backend service.
     /// 
     /// ## Example Usage
     /// 
@@ -55,37 +55,34 @@ namespace Pulumi.Upcloud
     public partial class LoadbalancerBackend : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// ID of the load balancer to which the backend is connected.
+        /// UUID of the load balancer to which the backend is connected.
         /// </summary>
         [Output("loadbalancer")]
         public Output<string> Loadbalancer { get; private set; } = null!;
 
         /// <summary>
-        /// Backend members receive traffic dispatched from the frontends
+        /// Backend member server UUIDs. Members receive traffic dispatched from the frontends.
         /// </summary>
         [Output("members")]
         public Output<ImmutableArray<string>> Members { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the backend must be unique within the load balancer service.
+        /// The name of the backend. Must be unique within the load balancer service.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        /// </summary>
         [Output("properties")]
-        public Output<Outputs.LoadbalancerBackendProperties> Properties { get; private set; } = null!;
+        public Output<Outputs.LoadbalancerBackendProperties?> Properties { get; private set; } = null!;
 
         /// <summary>
-        /// Domain Name Resolver used with dynamic type members.
+        /// Domain name resolver used with dynamic type members.
         /// </summary>
         [Output("resolverName")]
-        public Output<string?> ResolverName { get; private set; } = null!;
+        public Output<string> ResolverName { get; private set; } = null!;
 
         /// <summary>
-        /// Set of TLS config names
+        /// Set of TLS config names.
         /// </summary>
         [Output("tlsConfigs")]
         public Output<ImmutableArray<string>> TlsConfigs { get; private set; } = null!;
@@ -113,6 +110,7 @@ namespace Pulumi.Upcloud
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "https://github.com/UpCloudLtd/pulumi-upcloud/releases/",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -137,25 +135,22 @@ namespace Pulumi.Upcloud
     public sealed class LoadbalancerBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the load balancer to which the backend is connected.
+        /// UUID of the load balancer to which the backend is connected.
         /// </summary>
         [Input("loadbalancer", required: true)]
         public Input<string> Loadbalancer { get; set; } = null!;
 
         /// <summary>
-        /// The name of the backend must be unique within the load balancer service.
+        /// The name of the backend. Must be unique within the load balancer service.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        /// </summary>
         [Input("properties")]
         public Input<Inputs.LoadbalancerBackendPropertiesArgs>? Properties { get; set; }
 
         /// <summary>
-        /// Domain Name Resolver used with dynamic type members.
+        /// Domain name resolver used with dynamic type members.
         /// </summary>
         [Input("resolverName")]
         public Input<string>? ResolverName { get; set; }
@@ -169,7 +164,7 @@ namespace Pulumi.Upcloud
     public sealed class LoadbalancerBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the load balancer to which the backend is connected.
+        /// UUID of the load balancer to which the backend is connected.
         /// </summary>
         [Input("loadbalancer")]
         public Input<string>? Loadbalancer { get; set; }
@@ -178,7 +173,7 @@ namespace Pulumi.Upcloud
         private InputList<string>? _members;
 
         /// <summary>
-        /// Backend members receive traffic dispatched from the frontends
+        /// Backend member server UUIDs. Members receive traffic dispatched from the frontends.
         /// </summary>
         public InputList<string> Members
         {
@@ -187,19 +182,16 @@ namespace Pulumi.Upcloud
         }
 
         /// <summary>
-        /// The name of the backend must be unique within the load balancer service.
+        /// The name of the backend. Must be unique within the load balancer service.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// Backend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        /// </summary>
         [Input("properties")]
         public Input<Inputs.LoadbalancerBackendPropertiesGetArgs>? Properties { get; set; }
 
         /// <summary>
-        /// Domain Name Resolver used with dynamic type members.
+        /// Domain name resolver used with dynamic type members.
         /// </summary>
         [Input("resolverName")]
         public Input<string>? ResolverName { get; set; }
@@ -208,7 +200,7 @@ namespace Pulumi.Upcloud
         private InputList<string>? _tlsConfigs;
 
         /// <summary>
-        /// Set of TLS config names
+        /// Set of TLS config names.
         /// </summary>
         public InputList<string> TlsConfigs
         {

@@ -13,7 +13,7 @@ namespace Pulumi.Upcloud.Inputs
     public sealed class LoadbalancerBackendPropertiesGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for tcp type.
+        /// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `tcp` `health_check_type`.
         /// </summary>
         [Input("healthCheckExpectedStatus")]
         public Input<int>? HealthCheckExpectedStatus { get; set; }
@@ -25,13 +25,13 @@ namespace Pulumi.Upcloud.Inputs
         public Input<int>? HealthCheckFall { get; set; }
 
         /// <summary>
-        /// Interval between health checks.
+        /// Interval between health checks in seconds.
         /// </summary>
         [Input("healthCheckInterval")]
         public Input<int>? HealthCheckInterval { get; set; }
 
         /// <summary>
-        /// Sets how many passing checks there must be before returning the backend member to the rotation.
+        /// Sets how many successful health checks are required to put the backend member back into rotation.
         /// </summary>
         [Input("healthCheckRise")]
         public Input<int>? HealthCheckRise { get; set; }
@@ -49,7 +49,7 @@ namespace Pulumi.Upcloud.Inputs
         public Input<string>? HealthCheckType { get; set; }
 
         /// <summary>
-        /// Target path for health check HTTP GET requests. Ignored for tcp type.
+        /// Target path for health check HTTP GET requests. Ignored for `tcp` `health_check_type`.
         /// </summary>
         [Input("healthCheckUrl")]
         public Input<string>? HealthCheckUrl { get; set; }
@@ -61,7 +61,7 @@ namespace Pulumi.Upcloud.Inputs
         public Input<bool>? Http2Enabled { get; set; }
 
         /// <summary>
-        /// Enable outbound proxy protocol by setting the desired version. Empty string disables proxy protocol.
+        /// Enable outbound proxy protocol by setting the desired version. Defaults to empty string. Empty string disables proxy protocol.
         /// </summary>
         [Input("outboundProxyProtocol")]
         public Input<string>? OutboundProxyProtocol { get; set; }
@@ -83,18 +83,6 @@ namespace Pulumi.Upcloud.Inputs
         /// </summary>
         [Input("timeoutTunnel")]
         public Input<int>? TimeoutTunnel { get; set; }
-
-        [Input("tlsConfigs")]
-        private InputList<string>? _tlsConfigs;
-
-        /// <summary>
-        /// Set of TLS config names
-        /// </summary>
-        public InputList<string> TlsConfigs
-        {
-            get => _tlsConfigs ?? (_tlsConfigs = new InputList<string>());
-            set => _tlsConfigs = value;
-        }
 
         /// <summary>
         /// Enables TLS connection from the load balancer to backend servers.

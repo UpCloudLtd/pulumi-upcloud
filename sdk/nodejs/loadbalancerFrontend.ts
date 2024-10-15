@@ -109,9 +109,6 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
      * Port to listen for incoming requests.
      */
     public readonly port!: pulumi.Output<number>;
-    /**
-     * Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
-     */
     public readonly properties!: pulumi.Output<outputs.LoadbalancerFrontendProperties | undefined>;
     /**
      * Set of frontend rule names.
@@ -203,9 +200,6 @@ export interface LoadbalancerFrontendState {
      * Port to listen for incoming requests.
      */
     port?: pulumi.Input<number>;
-    /**
-     * Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
-     */
     properties?: pulumi.Input<inputs.LoadbalancerFrontendProperties>;
     /**
      * Set of frontend rule names.
@@ -247,8 +241,5 @@ export interface LoadbalancerFrontendArgs {
      * Port to listen for incoming requests.
      */
     port: pulumi.Input<number>;
-    /**
-     * Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
-     */
     properties?: pulumi.Input<inputs.LoadbalancerFrontendProperties>;
 }

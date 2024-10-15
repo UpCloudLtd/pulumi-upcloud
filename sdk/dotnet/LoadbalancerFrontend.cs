@@ -122,9 +122,6 @@ namespace Pulumi.Upcloud
         [Output("port")]
         public Output<int> Port { get; private set; } = null!;
 
-        /// <summary>
-        /// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        /// </summary>
         [Output("properties")]
         public Output<Outputs.LoadbalancerFrontendProperties?> Properties { get; private set; } = null!;
 
@@ -163,6 +160,7 @@ namespace Pulumi.Upcloud
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "https://github.com/UpCloudLtd/pulumi-upcloud/releases/",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -230,9 +228,6 @@ namespace Pulumi.Upcloud
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 
-        /// <summary>
-        /// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        /// </summary>
         [Input("properties")]
         public Input<Inputs.LoadbalancerFrontendPropertiesArgs>? Properties { get; set; }
 
@@ -288,9 +283,6 @@ namespace Pulumi.Upcloud
         [Input("port")]
         public Input<int>? Port { get; set; }
 
-        /// <summary>
-        /// Frontend properties. Properties can set back to defaults by defining empty `properties {}` block.
-        /// </summary>
         [Input("properties")]
         public Input<Inputs.LoadbalancerFrontendPropertiesGetArgs>? Properties { get; set; }
 

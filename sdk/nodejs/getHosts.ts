@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  */
 export function getHosts(args?: GetHostsArgs, opts?: pulumi.InvokeOptions): Promise<GetHostsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("upcloud:index/getHosts:getHosts", {
         "hosts": args.hosts,
@@ -61,7 +60,11 @@ export interface GetHostsResult {
  * ```
  */
 export function getHostsOutput(args?: GetHostsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetHostsResult> {
-    return pulumi.output(args).apply((a: any) => getHosts(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("upcloud:index/getHosts:getHosts", {
+        "hosts": args.hosts,
+    }, opts);
 }
 
 /**

@@ -40,6 +40,11 @@ export const getKubernetesCluster: typeof import("./getKubernetesCluster").getKu
 export const getKubernetesClusterOutput: typeof import("./getKubernetesCluster").getKubernetesClusterOutput = null as any;
 utilities.lazyLoad(exports, ["getKubernetesCluster","getKubernetesClusterOutput"], () => require("./getKubernetesCluster"));
 
+export { GetLoadBalancerDnsChallengeDomainResult } from "./getLoadBalancerDnsChallengeDomain";
+export const getLoadBalancerDnsChallengeDomain: typeof import("./getLoadBalancerDnsChallengeDomain").getLoadBalancerDnsChallengeDomain = null as any;
+export const getLoadBalancerDnsChallengeDomainOutput: typeof import("./getLoadBalancerDnsChallengeDomain").getLoadBalancerDnsChallengeDomainOutput = null as any;
+utilities.lazyLoad(exports, ["getLoadBalancerDnsChallengeDomain","getLoadBalancerDnsChallengeDomainOutput"], () => require("./getLoadBalancerDnsChallengeDomain"));
+
 export { GetManagedDatabaseMysqlSessionsArgs, GetManagedDatabaseMysqlSessionsResult, GetManagedDatabaseMysqlSessionsOutputArgs } from "./getManagedDatabaseMysqlSessions";
 export const getManagedDatabaseMysqlSessions: typeof import("./getManagedDatabaseMysqlSessions").getManagedDatabaseMysqlSessions = null as any;
 export const getManagedDatabaseMysqlSessionsOutput: typeof import("./getManagedDatabaseMysqlSessions").getManagedDatabaseMysqlSessionsOutput = null as any;
@@ -195,6 +200,11 @@ export type ManagedObjectStorage = import("./managedObjectStorage").ManagedObjec
 export const ManagedObjectStorage: typeof import("./managedObjectStorage").ManagedObjectStorage = null as any;
 utilities.lazyLoad(exports, ["ManagedObjectStorage"], () => require("./managedObjectStorage"));
 
+export { ManagedObjectStorageCustomDomainArgs, ManagedObjectStorageCustomDomainState } from "./managedObjectStorageCustomDomain";
+export type ManagedObjectStorageCustomDomain = import("./managedObjectStorageCustomDomain").ManagedObjectStorageCustomDomain;
+export const ManagedObjectStorageCustomDomain: typeof import("./managedObjectStorageCustomDomain").ManagedObjectStorageCustomDomain = null as any;
+utilities.lazyLoad(exports, ["ManagedObjectStorageCustomDomain"], () => require("./managedObjectStorageCustomDomain"));
+
 export { ManagedObjectStoragePolicyArgs, ManagedObjectStoragePolicyState } from "./managedObjectStoragePolicy";
 export type ManagedObjectStoragePolicy = import("./managedObjectStoragePolicy").ManagedObjectStoragePolicy;
 export const ManagedObjectStoragePolicy: typeof import("./managedObjectStoragePolicy").ManagedObjectStoragePolicy = null as any;
@@ -332,6 +342,8 @@ const _module = {
                 return new ManagedDatabaseUser(name, <any>undefined, { urn })
             case "upcloud:index/managedObjectStorage:ManagedObjectStorage":
                 return new ManagedObjectStorage(name, <any>undefined, { urn })
+            case "upcloud:index/managedObjectStorageCustomDomain:ManagedObjectStorageCustomDomain":
+                return new ManagedObjectStorageCustomDomain(name, <any>undefined, { urn })
             case "upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy":
                 return new ManagedObjectStoragePolicy(name, <any>undefined, { urn })
             case "upcloud:index/managedObjectStorageUser:ManagedObjectStorageUser":
@@ -389,6 +401,7 @@ pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabasePostgresq
 pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseRedis", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseUser", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorage", _module)
+pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorageCustomDomain", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStoragePolicy", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorageUser", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorageUserAccessKey", _module)

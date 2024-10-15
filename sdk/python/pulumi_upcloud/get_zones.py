@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -73,12 +78,16 @@ def get_zones(filter_type: Optional[str] = None,
         filter_type=pulumi.get(__ret__, 'filter_type'),
         id=pulumi.get(__ret__, 'id'),
         zone_ids=pulumi.get(__ret__, 'zone_ids'))
-
-
-@_utilities.lift_output_func(get_zones)
 def get_zones_output(filter_type: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetZonesResult]:
     """
     Returns a list of available UpCloud zones.
     """
-    ...
+    __args__ = dict()
+    __args__['filterType'] = filter_type
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('upcloud:index/getZones:getZones', __args__, opts=opts, typ=GetZonesResult)
+    return __ret__.apply(lambda __response__: GetZonesResult(
+        filter_type=pulumi.get(__response__, 'filter_type'),
+        id=pulumi.get(__response__, 'id'),
+        zone_ids=pulumi.get(__response__, 'zone_ids')))

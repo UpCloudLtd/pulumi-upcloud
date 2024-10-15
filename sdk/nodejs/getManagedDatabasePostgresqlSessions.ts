@@ -28,7 +28,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getManagedDatabasePostgresqlSessions(args: GetManagedDatabasePostgresqlSessionsArgs, opts?: pulumi.InvokeOptions): Promise<GetManagedDatabasePostgresqlSessionsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions", {
         "limit": args.limit,
@@ -86,7 +85,14 @@ export interface GetManagedDatabasePostgresqlSessionsResult {
  * ```
  */
 export function getManagedDatabasePostgresqlSessionsOutput(args: GetManagedDatabasePostgresqlSessionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetManagedDatabasePostgresqlSessionsResult> {
-    return pulumi.output(args).apply((a: any) => getManagedDatabasePostgresqlSessions(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions", {
+        "limit": args.limit,
+        "offset": args.offset,
+        "order": args.order,
+        "service": args.service,
+        "sessions": args.sessions,
+    }, opts);
 }
 
 /**

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resource represents service's domain name resolver
+ * This resource represents load balancer resolver.
  *
  * ## Example Usage
  *
@@ -81,7 +81,7 @@ export class LoadbalancerResolver extends pulumi.CustomResource {
      */
     public readonly loadbalancer!: pulumi.Output<string>;
     /**
-     * The name of the resolver must be unique within the service.
+     * The name of the resolver. Must be unique within the service.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -177,7 +177,7 @@ export interface LoadbalancerResolverState {
      */
     loadbalancer?: pulumi.Input<string>;
     /**
-     * The name of the resolver must be unique within the service.
+     * The name of the resolver. Must be unique within the service.
      */
     name?: pulumi.Input<string>;
     /**
@@ -216,7 +216,7 @@ export interface LoadbalancerResolverArgs {
      */
     loadbalancer: pulumi.Input<string>;
     /**
-     * The name of the resolver must be unique within the service.
+     * The name of the resolver. Must be unique within the service.
      */
     name?: pulumi.Input<string>;
     /**

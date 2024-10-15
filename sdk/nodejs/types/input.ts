@@ -678,7 +678,7 @@ export interface KubernetesNodeGroupTaint {
 
 export interface LoadbalancerBackendProperties {
     /**
-     * Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for tcp type.
+     * Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `tcp` `healthCheckType`.
      */
     healthCheckExpectedStatus?: pulumi.Input<number>;
     /**
@@ -686,11 +686,11 @@ export interface LoadbalancerBackendProperties {
      */
     healthCheckFall?: pulumi.Input<number>;
     /**
-     * Interval between health checks.
+     * Interval between health checks in seconds.
      */
     healthCheckInterval?: pulumi.Input<number>;
     /**
-     * Sets how many passing checks there must be before returning the backend member to the rotation.
+     * Sets how many successful health checks are required to put the backend member back into rotation.
      */
     healthCheckRise?: pulumi.Input<number>;
     /**
@@ -702,7 +702,7 @@ export interface LoadbalancerBackendProperties {
      */
     healthCheckType?: pulumi.Input<string>;
     /**
-     * Target path for health check HTTP GET requests. Ignored for tcp type.
+     * Target path for health check HTTP GET requests. Ignored for `tcp` `healthCheckType`.
      */
     healthCheckUrl?: pulumi.Input<string>;
     /**
@@ -710,7 +710,7 @@ export interface LoadbalancerBackendProperties {
      */
     http2Enabled?: pulumi.Input<boolean>;
     /**
-     * Enable outbound proxy protocol by setting the desired version. Empty string disables proxy protocol.
+     * Enable outbound proxy protocol by setting the desired version. Defaults to empty string. Empty string disables proxy protocol.
      */
     outboundProxyProtocol?: pulumi.Input<string>;
     /**
@@ -725,10 +725,6 @@ export interface LoadbalancerBackendProperties {
      * Maximum inactivity time on the client and server side for tunnels in seconds.
      */
     timeoutTunnel?: pulumi.Input<number>;
-    /**
-     * Set of TLS config names
-     */
-    tlsConfigs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Enables TLS connection from the load balancer to backend servers.
      */
@@ -819,6 +815,9 @@ export interface LoadbalancerFrontendRuleActionsSetForwardedHeader {
 }
 
 export interface LoadbalancerFrontendRuleActionsTcpReject {
+    /**
+     * Indicates if the rule is active.
+     */
     active?: pulumi.Input<boolean>;
 }
 
@@ -831,7 +830,7 @@ export interface LoadbalancerFrontendRuleActionsUseBackend {
 
 export interface LoadbalancerFrontendRuleMatchers {
     /**
-     * Matches by range of HTTP request body sizes
+     * Matches by range of HTTP request body sizes.
      */
     bodySizeRanges?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersBodySizeRange>[]>;
     /**
@@ -867,7 +866,7 @@ export interface LoadbalancerFrontendRuleMatchers {
      */
     srcIps?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersSrcIp>[]>;
     /**
-     * Matches by range of source port numbers
+     * Matches by range of source port numbers.
      */
     srcPortRanges?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersSrcPortRange>[]>;
     /**
@@ -890,7 +889,7 @@ export interface LoadbalancerFrontendRuleMatchers {
 
 export interface LoadbalancerFrontendRuleMatchersBodySize {
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
     inverse?: pulumi.Input<boolean>;
     /**
@@ -905,7 +904,7 @@ export interface LoadbalancerFrontendRuleMatchersBodySize {
 
 export interface LoadbalancerFrontendRuleMatchersBodySizeRange {
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
     inverse?: pulumi.Input<boolean>;
     /**
@@ -920,11 +919,11 @@ export interface LoadbalancerFrontendRuleMatchersBodySizeRange {
 
 export interface LoadbalancerFrontendRuleMatchersCookie {
     /**
-     * Ignore case, default `false`.
+     * Defines if case should be ignored. Defaults to `false`.
      */
     ignoreCase?: pulumi.Input<boolean>;
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
     inverse?: pulumi.Input<boolean>;
     /**
@@ -943,11 +942,11 @@ export interface LoadbalancerFrontendRuleMatchersCookie {
 
 export interface LoadbalancerFrontendRuleMatchersHeader {
     /**
-     * Ignore case, default `false`.
+     * Defines if case should be ignored. Defaults to `false`.
      */
     ignoreCase?: pulumi.Input<boolean>;
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
     inverse?: pulumi.Input<boolean>;
     /**
@@ -966,7 +965,7 @@ export interface LoadbalancerFrontendRuleMatchersHeader {
 
 export interface LoadbalancerFrontendRuleMatchersHost {
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
     inverse?: pulumi.Input<boolean>;
     /**
@@ -977,7 +976,7 @@ export interface LoadbalancerFrontendRuleMatchersHost {
 
 export interface LoadbalancerFrontendRuleMatchersHttpMethod {
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
     inverse?: pulumi.Input<boolean>;
     /**
@@ -988,11 +987,11 @@ export interface LoadbalancerFrontendRuleMatchersHttpMethod {
 
 export interface LoadbalancerFrontendRuleMatchersNumMembersUp {
     /**
-     * The name of the `backend` which members will be monitored.
+     * The name of the `backend`.
      */
     backendName: pulumi.Input<string>;
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
     inverse?: pulumi.Input<boolean>;
     /**
@@ -1007,11 +1006,11 @@ export interface LoadbalancerFrontendRuleMatchersNumMembersUp {
 
 export interface LoadbalancerFrontendRuleMatchersPath {
     /**
-     * Ignore case, default `false`.
+     * Defines if case should be ignored. Defaults to `false`.
      */
     ignoreCase?: pulumi.Input<boolean>;
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
     inverse?: pulumi.Input<boolean>;
     /**
@@ -1026,7 +1025,7 @@ export interface LoadbalancerFrontendRuleMatchersPath {
 
 export interface LoadbalancerFrontendRuleMatchersSrcIp {
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
     inverse?: pulumi.Input<boolean>;
     /**
@@ -1037,7 +1036,7 @@ export interface LoadbalancerFrontendRuleMatchersSrcIp {
 
 export interface LoadbalancerFrontendRuleMatchersSrcPort {
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
     inverse?: pulumi.Input<boolean>;
     /**
@@ -1052,7 +1051,7 @@ export interface LoadbalancerFrontendRuleMatchersSrcPort {
 
 export interface LoadbalancerFrontendRuleMatchersSrcPortRange {
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
     inverse?: pulumi.Input<boolean>;
     /**
@@ -1067,11 +1066,11 @@ export interface LoadbalancerFrontendRuleMatchersSrcPortRange {
 
 export interface LoadbalancerFrontendRuleMatchersUrl {
     /**
-     * Ignore case, default `false`.
+     * Defines if case should be ignored. Defaults to `false`.
      */
     ignoreCase?: pulumi.Input<boolean>;
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
     inverse?: pulumi.Input<boolean>;
     /**
@@ -1086,11 +1085,11 @@ export interface LoadbalancerFrontendRuleMatchersUrl {
 
 export interface LoadbalancerFrontendRuleMatchersUrlParam {
     /**
-     * Ignore case, default `false`.
+     * Defines if case should be ignored. Defaults to `false`.
      */
     ignoreCase?: pulumi.Input<boolean>;
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
     inverse?: pulumi.Input<boolean>;
     /**
@@ -1109,11 +1108,11 @@ export interface LoadbalancerFrontendRuleMatchersUrlParam {
 
 export interface LoadbalancerFrontendRuleMatchersUrlQuery {
     /**
-     * Ignore case, default `false`.
+     * Defines if case should be ignored. Defaults to `false`.
      */
     ignoreCase?: pulumi.Input<boolean>;
     /**
-     * Sets if the condition should be inverted. Works similar to logical NOT operator.
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
     inverse?: pulumi.Input<boolean>;
     /**
@@ -3040,7 +3039,7 @@ export interface StorageImport {
      */
     sourceHash?: pulumi.Input<string>;
     /**
-     * The location of the file to import. For `httpImport` an accessible URL for `directUpload` a local file.
+     * The location of the file to import. For `httpImport` an accessible URL. For `directUpload` a local file. When direct uploading a compressed image, `Content-Type` header of the PUT request is set automatically based on the file extension (`.gz` or `.xz`, case-insensitive).
      */
     sourceLocation: pulumi.Input<string>;
     /**

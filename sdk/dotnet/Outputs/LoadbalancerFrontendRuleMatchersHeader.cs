@@ -14,11 +14,11 @@ namespace Pulumi.Upcloud.Outputs
     public sealed class LoadbalancerFrontendRuleMatchersHeader
     {
         /// <summary>
-        /// Ignore case, default `false`.
+        /// Defines if case should be ignored. Defaults to `false`.
         /// </summary>
         public readonly bool? IgnoreCase;
         /// <summary>
-        /// Sets if the condition should be inverted. Works similar to logical NOT operator.
+        /// Defines if the condition should be inverted. Works similarly to logical NOT operator.
         /// </summary>
         public readonly bool? Inverse;
         /// <summary>

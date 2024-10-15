@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Upcloud
 {
     /// <summary>
-    /// This resource represents load balancer frontend rule
+    /// This resource represents load balancer frontend rule.
     /// 
     /// ## Example Usage
     /// 
@@ -89,25 +89,31 @@ namespace Pulumi.Upcloud
     public partial class LoadbalancerFrontendRule : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Set of rule actions.
+        /// Rule actions.
         /// </summary>
         [Output("actions")]
         public Output<Outputs.LoadbalancerFrontendRuleActions?> Actions { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the load balancer frontend to which the rule is connected.
+        /// ID of the load balancer frontend to which the frontend rule is connected.
         /// </summary>
         [Output("frontend")]
         public Output<string> Frontend { get; private set; } = null!;
 
         /// <summary>
-        /// Set of rule matchers. if rule doesn't have matchers, then action applies to all incoming requests.
+        /// Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
         /// </summary>
         [Output("matchers")]
         public Output<Outputs.LoadbalancerFrontendRuleMatchers?> Matchers { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the frontend rule must be unique within the load balancer service.
+        /// Defines boolean operator used to combine multiple matchers. Defaults to `and`.
+        /// </summary>
+        [Output("matchingCondition")]
+        public Output<string> MatchingCondition { get; private set; } = null!;
+
+        /// <summary>
+        /// The name of the frontend rule. Must be unique within the frontend.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -141,6 +147,7 @@ namespace Pulumi.Upcloud
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "https://github.com/UpCloudLtd/pulumi-upcloud/releases/",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -165,25 +172,31 @@ namespace Pulumi.Upcloud
     public sealed class LoadbalancerFrontendRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Set of rule actions.
+        /// Rule actions.
         /// </summary>
         [Input("actions")]
         public Input<Inputs.LoadbalancerFrontendRuleActionsArgs>? Actions { get; set; }
 
         /// <summary>
-        /// ID of the load balancer frontend to which the rule is connected.
+        /// ID of the load balancer frontend to which the frontend rule is connected.
         /// </summary>
         [Input("frontend", required: true)]
         public Input<string> Frontend { get; set; } = null!;
 
         /// <summary>
-        /// Set of rule matchers. if rule doesn't have matchers, then action applies to all incoming requests.
+        /// Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
         /// </summary>
         [Input("matchers")]
         public Input<Inputs.LoadbalancerFrontendRuleMatchersArgs>? Matchers { get; set; }
 
         /// <summary>
-        /// The name of the frontend rule must be unique within the load balancer service.
+        /// Defines boolean operator used to combine multiple matchers. Defaults to `and`.
+        /// </summary>
+        [Input("matchingCondition")]
+        public Input<string>? MatchingCondition { get; set; }
+
+        /// <summary>
+        /// The name of the frontend rule. Must be unique within the frontend.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -203,25 +216,31 @@ namespace Pulumi.Upcloud
     public sealed class LoadbalancerFrontendRuleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Set of rule actions.
+        /// Rule actions.
         /// </summary>
         [Input("actions")]
         public Input<Inputs.LoadbalancerFrontendRuleActionsGetArgs>? Actions { get; set; }
 
         /// <summary>
-        /// ID of the load balancer frontend to which the rule is connected.
+        /// ID of the load balancer frontend to which the frontend rule is connected.
         /// </summary>
         [Input("frontend")]
         public Input<string>? Frontend { get; set; }
 
         /// <summary>
-        /// Set of rule matchers. if rule doesn't have matchers, then action applies to all incoming requests.
+        /// Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
         /// </summary>
         [Input("matchers")]
         public Input<Inputs.LoadbalancerFrontendRuleMatchersGetArgs>? Matchers { get; set; }
 
         /// <summary>
-        /// The name of the frontend rule must be unique within the load balancer service.
+        /// Defines boolean operator used to combine multiple matchers. Defaults to `and`.
+        /// </summary>
+        [Input("matchingCondition")]
+        public Input<string>? MatchingCondition { get; set; }
+
+        /// <summary>
+        /// The name of the frontend rule. Must be unique within the frontend.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

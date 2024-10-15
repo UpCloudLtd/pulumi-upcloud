@@ -36,14 +36,20 @@ type GetManagedObjectStorageRegionsResult struct {
 
 func GetManagedObjectStorageRegionsOutput(ctx *pulumi.Context, args GetManagedObjectStorageRegionsOutputArgs, opts ...pulumi.InvokeOption) GetManagedObjectStorageRegionsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetManagedObjectStorageRegionsResult, error) {
+		ApplyT(func(v interface{}) (GetManagedObjectStorageRegionsResultOutput, error) {
 			args := v.(GetManagedObjectStorageRegionsArgs)
-			r, err := GetManagedObjectStorageRegions(ctx, &args, opts...)
-			var s GetManagedObjectStorageRegionsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetManagedObjectStorageRegionsResult
+			secret, err := ctx.InvokePackageRaw("upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions", args, &rv, "", opts...)
+			if err != nil {
+				return GetManagedObjectStorageRegionsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetManagedObjectStorageRegionsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetManagedObjectStorageRegionsResultOutput), nil
+			}
+			return output, nil
 		}).(GetManagedObjectStorageRegionsResultOutput)
 }
 

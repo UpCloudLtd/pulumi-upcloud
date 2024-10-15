@@ -1461,23 +1461,23 @@ func (o KubernetesNodeGroupTaintArrayOutput) Index(i pulumi.IntInput) Kubernetes
 }
 
 type LoadbalancerBackendProperties struct {
-	// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for tcp type.
+	// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `tcp` `healthCheckType`.
 	HealthCheckExpectedStatus *int `pulumi:"healthCheckExpectedStatus"`
 	// Sets how many failed health checks are allowed until the backend member is taken off from the rotation.
 	HealthCheckFall *int `pulumi:"healthCheckFall"`
-	// Interval between health checks.
+	// Interval between health checks in seconds.
 	HealthCheckInterval *int `pulumi:"healthCheckInterval"`
-	// Sets how many passing checks there must be before returning the backend member to the rotation.
+	// Sets how many successful health checks are required to put the backend member back into rotation.
 	HealthCheckRise *int `pulumi:"healthCheckRise"`
 	// Enables certificate verification with the system CA certificate bundle. Works with https scheme in health_check_url, otherwise ignored.
 	HealthCheckTlsVerify *bool `pulumi:"healthCheckTlsVerify"`
 	// Health check type.
 	HealthCheckType *string `pulumi:"healthCheckType"`
-	// Target path for health check HTTP GET requests. Ignored for tcp type.
+	// Target path for health check HTTP GET requests. Ignored for `tcp` `healthCheckType`.
 	HealthCheckUrl *string `pulumi:"healthCheckUrl"`
 	// Allow HTTP/2 connections to backend members by utilizing ALPN extension of TLS protocol, therefore it can only be enabled when tlsEnabled is set to true. Note: members should support HTTP/2 for this setting to work.
 	Http2Enabled *bool `pulumi:"http2Enabled"`
-	// Enable outbound proxy protocol by setting the desired version. Empty string disables proxy protocol.
+	// Enable outbound proxy protocol by setting the desired version. Defaults to empty string. Empty string disables proxy protocol.
 	OutboundProxyProtocol *string `pulumi:"outboundProxyProtocol"`
 	// Sets sticky session cookie name. Empty string disables sticky session.
 	StickySessionCookieName *string `pulumi:"stickySessionCookieName"`
@@ -1485,8 +1485,6 @@ type LoadbalancerBackendProperties struct {
 	TimeoutServer *int `pulumi:"timeoutServer"`
 	// Maximum inactivity time on the client and server side for tunnels in seconds.
 	TimeoutTunnel *int `pulumi:"timeoutTunnel"`
-	// Set of TLS config names
-	TlsConfigs []string `pulumi:"tlsConfigs"`
 	// Enables TLS connection from the load balancer to backend servers.
 	TlsEnabled *bool `pulumi:"tlsEnabled"`
 	// If enabled, then the system CA certificate bundle will be used for the certificate verification.
@@ -1507,23 +1505,23 @@ type LoadbalancerBackendPropertiesInput interface {
 }
 
 type LoadbalancerBackendPropertiesArgs struct {
-	// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for tcp type.
+	// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `tcp` `healthCheckType`.
 	HealthCheckExpectedStatus pulumi.IntPtrInput `pulumi:"healthCheckExpectedStatus"`
 	// Sets how many failed health checks are allowed until the backend member is taken off from the rotation.
 	HealthCheckFall pulumi.IntPtrInput `pulumi:"healthCheckFall"`
-	// Interval between health checks.
+	// Interval between health checks in seconds.
 	HealthCheckInterval pulumi.IntPtrInput `pulumi:"healthCheckInterval"`
-	// Sets how many passing checks there must be before returning the backend member to the rotation.
+	// Sets how many successful health checks are required to put the backend member back into rotation.
 	HealthCheckRise pulumi.IntPtrInput `pulumi:"healthCheckRise"`
 	// Enables certificate verification with the system CA certificate bundle. Works with https scheme in health_check_url, otherwise ignored.
 	HealthCheckTlsVerify pulumi.BoolPtrInput `pulumi:"healthCheckTlsVerify"`
 	// Health check type.
 	HealthCheckType pulumi.StringPtrInput `pulumi:"healthCheckType"`
-	// Target path for health check HTTP GET requests. Ignored for tcp type.
+	// Target path for health check HTTP GET requests. Ignored for `tcp` `healthCheckType`.
 	HealthCheckUrl pulumi.StringPtrInput `pulumi:"healthCheckUrl"`
 	// Allow HTTP/2 connections to backend members by utilizing ALPN extension of TLS protocol, therefore it can only be enabled when tlsEnabled is set to true. Note: members should support HTTP/2 for this setting to work.
 	Http2Enabled pulumi.BoolPtrInput `pulumi:"http2Enabled"`
-	// Enable outbound proxy protocol by setting the desired version. Empty string disables proxy protocol.
+	// Enable outbound proxy protocol by setting the desired version. Defaults to empty string. Empty string disables proxy protocol.
 	OutboundProxyProtocol pulumi.StringPtrInput `pulumi:"outboundProxyProtocol"`
 	// Sets sticky session cookie name. Empty string disables sticky session.
 	StickySessionCookieName pulumi.StringPtrInput `pulumi:"stickySessionCookieName"`
@@ -1531,8 +1529,6 @@ type LoadbalancerBackendPropertiesArgs struct {
 	TimeoutServer pulumi.IntPtrInput `pulumi:"timeoutServer"`
 	// Maximum inactivity time on the client and server side for tunnels in seconds.
 	TimeoutTunnel pulumi.IntPtrInput `pulumi:"timeoutTunnel"`
-	// Set of TLS config names
-	TlsConfigs pulumi.StringArrayInput `pulumi:"tlsConfigs"`
 	// Enables TLS connection from the load balancer to backend servers.
 	TlsEnabled pulumi.BoolPtrInput `pulumi:"tlsEnabled"`
 	// If enabled, then the system CA certificate bundle will be used for the certificate verification.
@@ -1618,7 +1614,7 @@ func (o LoadbalancerBackendPropertiesOutput) ToLoadbalancerBackendPropertiesPtrO
 	}).(LoadbalancerBackendPropertiesPtrOutput)
 }
 
-// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for tcp type.
+// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `tcp` `healthCheckType`.
 func (o LoadbalancerBackendPropertiesOutput) HealthCheckExpectedStatus() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendProperties) *int { return v.HealthCheckExpectedStatus }).(pulumi.IntPtrOutput)
 }
@@ -1628,12 +1624,12 @@ func (o LoadbalancerBackendPropertiesOutput) HealthCheckFall() pulumi.IntPtrOutp
 	return o.ApplyT(func(v LoadbalancerBackendProperties) *int { return v.HealthCheckFall }).(pulumi.IntPtrOutput)
 }
 
-// Interval between health checks.
+// Interval between health checks in seconds.
 func (o LoadbalancerBackendPropertiesOutput) HealthCheckInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendProperties) *int { return v.HealthCheckInterval }).(pulumi.IntPtrOutput)
 }
 
-// Sets how many passing checks there must be before returning the backend member to the rotation.
+// Sets how many successful health checks are required to put the backend member back into rotation.
 func (o LoadbalancerBackendPropertiesOutput) HealthCheckRise() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendProperties) *int { return v.HealthCheckRise }).(pulumi.IntPtrOutput)
 }
@@ -1648,7 +1644,7 @@ func (o LoadbalancerBackendPropertiesOutput) HealthCheckType() pulumi.StringPtrO
 	return o.ApplyT(func(v LoadbalancerBackendProperties) *string { return v.HealthCheckType }).(pulumi.StringPtrOutput)
 }
 
-// Target path for health check HTTP GET requests. Ignored for tcp type.
+// Target path for health check HTTP GET requests. Ignored for `tcp` `healthCheckType`.
 func (o LoadbalancerBackendPropertiesOutput) HealthCheckUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendProperties) *string { return v.HealthCheckUrl }).(pulumi.StringPtrOutput)
 }
@@ -1658,7 +1654,7 @@ func (o LoadbalancerBackendPropertiesOutput) Http2Enabled() pulumi.BoolPtrOutput
 	return o.ApplyT(func(v LoadbalancerBackendProperties) *bool { return v.Http2Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// Enable outbound proxy protocol by setting the desired version. Empty string disables proxy protocol.
+// Enable outbound proxy protocol by setting the desired version. Defaults to empty string. Empty string disables proxy protocol.
 func (o LoadbalancerBackendPropertiesOutput) OutboundProxyProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendProperties) *string { return v.OutboundProxyProtocol }).(pulumi.StringPtrOutput)
 }
@@ -1676,11 +1672,6 @@ func (o LoadbalancerBackendPropertiesOutput) TimeoutServer() pulumi.IntPtrOutput
 // Maximum inactivity time on the client and server side for tunnels in seconds.
 func (o LoadbalancerBackendPropertiesOutput) TimeoutTunnel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendProperties) *int { return v.TimeoutTunnel }).(pulumi.IntPtrOutput)
-}
-
-// Set of TLS config names
-func (o LoadbalancerBackendPropertiesOutput) TlsConfigs() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LoadbalancerBackendProperties) []string { return v.TlsConfigs }).(pulumi.StringArrayOutput)
 }
 
 // Enables TLS connection from the load balancer to backend servers.
@@ -1722,7 +1713,7 @@ func (o LoadbalancerBackendPropertiesPtrOutput) Elem() LoadbalancerBackendProper
 	}).(LoadbalancerBackendPropertiesOutput)
 }
 
-// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for tcp type.
+// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `tcp` `healthCheckType`.
 func (o LoadbalancerBackendPropertiesPtrOutput) HealthCheckExpectedStatus() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendProperties) *int {
 		if v == nil {
@@ -1742,7 +1733,7 @@ func (o LoadbalancerBackendPropertiesPtrOutput) HealthCheckFall() pulumi.IntPtrO
 	}).(pulumi.IntPtrOutput)
 }
 
-// Interval between health checks.
+// Interval between health checks in seconds.
 func (o LoadbalancerBackendPropertiesPtrOutput) HealthCheckInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendProperties) *int {
 		if v == nil {
@@ -1752,7 +1743,7 @@ func (o LoadbalancerBackendPropertiesPtrOutput) HealthCheckInterval() pulumi.Int
 	}).(pulumi.IntPtrOutput)
 }
 
-// Sets how many passing checks there must be before returning the backend member to the rotation.
+// Sets how many successful health checks are required to put the backend member back into rotation.
 func (o LoadbalancerBackendPropertiesPtrOutput) HealthCheckRise() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendProperties) *int {
 		if v == nil {
@@ -1782,7 +1773,7 @@ func (o LoadbalancerBackendPropertiesPtrOutput) HealthCheckType() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
-// Target path for health check HTTP GET requests. Ignored for tcp type.
+// Target path for health check HTTP GET requests. Ignored for `tcp` `healthCheckType`.
 func (o LoadbalancerBackendPropertiesPtrOutput) HealthCheckUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendProperties) *string {
 		if v == nil {
@@ -1802,7 +1793,7 @@ func (o LoadbalancerBackendPropertiesPtrOutput) Http2Enabled() pulumi.BoolPtrOut
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Enable outbound proxy protocol by setting the desired version. Empty string disables proxy protocol.
+// Enable outbound proxy protocol by setting the desired version. Defaults to empty string. Empty string disables proxy protocol.
 func (o LoadbalancerBackendPropertiesPtrOutput) OutboundProxyProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendProperties) *string {
 		if v == nil {
@@ -1840,16 +1831,6 @@ func (o LoadbalancerBackendPropertiesPtrOutput) TimeoutTunnel() pulumi.IntPtrOut
 		}
 		return v.TimeoutTunnel
 	}).(pulumi.IntPtrOutput)
-}
-
-// Set of TLS config names
-func (o LoadbalancerBackendPropertiesPtrOutput) TlsConfigs() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *LoadbalancerBackendProperties) []string {
-		if v == nil {
-			return nil
-		}
-		return v.TlsConfigs
-	}).(pulumi.StringArrayOutput)
 }
 
 // Enables TLS connection from the load balancer to backend servers.
@@ -2693,6 +2674,7 @@ func (o LoadbalancerFrontendRuleActionsSetForwardedHeaderArrayOutput) Index(i pu
 }
 
 type LoadbalancerFrontendRuleActionsTcpReject struct {
+	// Indicates if the rule is active.
 	Active *bool `pulumi:"active"`
 }
 
@@ -2708,6 +2690,7 @@ type LoadbalancerFrontendRuleActionsTcpRejectInput interface {
 }
 
 type LoadbalancerFrontendRuleActionsTcpRejectArgs struct {
+	// Indicates if the rule is active.
 	Active pulumi.BoolPtrInput `pulumi:"active"`
 }
 
@@ -2762,6 +2745,7 @@ func (o LoadbalancerFrontendRuleActionsTcpRejectOutput) ToLoadbalancerFrontendRu
 	return o
 }
 
+// Indicates if the rule is active.
 func (o LoadbalancerFrontendRuleActionsTcpRejectOutput) Active() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleActionsTcpReject) *bool { return v.Active }).(pulumi.BoolPtrOutput)
 }
@@ -2884,7 +2868,7 @@ func (o LoadbalancerFrontendRuleActionsUseBackendArrayOutput) Index(i pulumi.Int
 }
 
 type LoadbalancerFrontendRuleMatchers struct {
-	// Matches by range of HTTP request body sizes
+	// Matches by range of HTTP request body sizes.
 	BodySizeRanges []LoadbalancerFrontendRuleMatchersBodySizeRange `pulumi:"bodySizeRanges"`
 	// Matches by HTTP request body size.
 	BodySizes []LoadbalancerFrontendRuleMatchersBodySize `pulumi:"bodySizes"`
@@ -2902,7 +2886,7 @@ type LoadbalancerFrontendRuleMatchers struct {
 	Paths []LoadbalancerFrontendRuleMatchersPath `pulumi:"paths"`
 	// Matches by source IP address.
 	SrcIps []LoadbalancerFrontendRuleMatchersSrcIp `pulumi:"srcIps"`
-	// Matches by range of source port numbers
+	// Matches by range of source port numbers.
 	SrcPortRanges []LoadbalancerFrontendRuleMatchersSrcPortRange `pulumi:"srcPortRanges"`
 	// Matches by source port number.
 	SrcPorts []LoadbalancerFrontendRuleMatchersSrcPort `pulumi:"srcPorts"`
@@ -2926,7 +2910,7 @@ type LoadbalancerFrontendRuleMatchersInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersArgs struct {
-	// Matches by range of HTTP request body sizes
+	// Matches by range of HTTP request body sizes.
 	BodySizeRanges LoadbalancerFrontendRuleMatchersBodySizeRangeArrayInput `pulumi:"bodySizeRanges"`
 	// Matches by HTTP request body size.
 	BodySizes LoadbalancerFrontendRuleMatchersBodySizeArrayInput `pulumi:"bodySizes"`
@@ -2944,7 +2928,7 @@ type LoadbalancerFrontendRuleMatchersArgs struct {
 	Paths LoadbalancerFrontendRuleMatchersPathArrayInput `pulumi:"paths"`
 	// Matches by source IP address.
 	SrcIps LoadbalancerFrontendRuleMatchersSrcIpArrayInput `pulumi:"srcIps"`
-	// Matches by range of source port numbers
+	// Matches by range of source port numbers.
 	SrcPortRanges LoadbalancerFrontendRuleMatchersSrcPortRangeArrayInput `pulumi:"srcPortRanges"`
 	// Matches by source port number.
 	SrcPorts LoadbalancerFrontendRuleMatchersSrcPortArrayInput `pulumi:"srcPorts"`
@@ -3033,7 +3017,7 @@ func (o LoadbalancerFrontendRuleMatchersOutput) ToLoadbalancerFrontendRuleMatche
 	}).(LoadbalancerFrontendRuleMatchersPtrOutput)
 }
 
-// Matches by range of HTTP request body sizes
+// Matches by range of HTTP request body sizes.
 func (o LoadbalancerFrontendRuleMatchersOutput) BodySizeRanges() LoadbalancerFrontendRuleMatchersBodySizeRangeArrayOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersBodySizeRange {
 		return v.BodySizeRanges
@@ -3086,7 +3070,7 @@ func (o LoadbalancerFrontendRuleMatchersOutput) SrcIps() LoadbalancerFrontendRul
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersSrcIp { return v.SrcIps }).(LoadbalancerFrontendRuleMatchersSrcIpArrayOutput)
 }
 
-// Matches by range of source port numbers
+// Matches by range of source port numbers.
 func (o LoadbalancerFrontendRuleMatchersOutput) SrcPortRanges() LoadbalancerFrontendRuleMatchersSrcPortRangeArrayOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersSrcPortRange {
 		return v.SrcPortRanges
@@ -3141,7 +3125,7 @@ func (o LoadbalancerFrontendRuleMatchersPtrOutput) Elem() LoadbalancerFrontendRu
 	}).(LoadbalancerFrontendRuleMatchersOutput)
 }
 
-// Matches by range of HTTP request body sizes
+// Matches by range of HTTP request body sizes.
 func (o LoadbalancerFrontendRuleMatchersPtrOutput) BodySizeRanges() LoadbalancerFrontendRuleMatchersBodySizeRangeArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersBodySizeRange {
 		if v == nil {
@@ -3231,7 +3215,7 @@ func (o LoadbalancerFrontendRuleMatchersPtrOutput) SrcIps() LoadbalancerFrontend
 	}).(LoadbalancerFrontendRuleMatchersSrcIpArrayOutput)
 }
 
-// Matches by range of source port numbers
+// Matches by range of source port numbers.
 func (o LoadbalancerFrontendRuleMatchersPtrOutput) SrcPortRanges() LoadbalancerFrontendRuleMatchersSrcPortRangeArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersSrcPortRange {
 		if v == nil {
@@ -3282,7 +3266,7 @@ func (o LoadbalancerFrontendRuleMatchersPtrOutput) Urls() LoadbalancerFrontendRu
 }
 
 type LoadbalancerFrontendRuleMatchersBodySize struct {
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse *bool `pulumi:"inverse"`
 	// Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
 	Method string `pulumi:"method"`
@@ -3302,7 +3286,7 @@ type LoadbalancerFrontendRuleMatchersBodySizeInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersBodySizeArgs struct {
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
 	// Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
 	Method pulumi.StringInput `pulumi:"method"`
@@ -3361,7 +3345,7 @@ func (o LoadbalancerFrontendRuleMatchersBodySizeOutput) ToLoadbalancerFrontendRu
 	return o
 }
 
-// Sets if the condition should be inverted. Works similar to logical NOT operator.
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 func (o LoadbalancerFrontendRuleMatchersBodySizeOutput) Inverse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersBodySize) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
 }
@@ -3397,7 +3381,7 @@ func (o LoadbalancerFrontendRuleMatchersBodySizeArrayOutput) Index(i pulumi.IntI
 }
 
 type LoadbalancerFrontendRuleMatchersBodySizeRange struct {
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse *bool `pulumi:"inverse"`
 	// Integer value.
 	RangeEnd int `pulumi:"rangeEnd"`
@@ -3417,7 +3401,7 @@ type LoadbalancerFrontendRuleMatchersBodySizeRangeInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersBodySizeRangeArgs struct {
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
 	// Integer value.
 	RangeEnd pulumi.IntInput `pulumi:"rangeEnd"`
@@ -3476,7 +3460,7 @@ func (o LoadbalancerFrontendRuleMatchersBodySizeRangeOutput) ToLoadbalancerFront
 	return o
 }
 
-// Sets if the condition should be inverted. Works similar to logical NOT operator.
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 func (o LoadbalancerFrontendRuleMatchersBodySizeRangeOutput) Inverse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersBodySizeRange) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
 }
@@ -3512,9 +3496,9 @@ func (o LoadbalancerFrontendRuleMatchersBodySizeRangeArrayOutput) Index(i pulumi
 }
 
 type LoadbalancerFrontendRuleMatchersCookie struct {
-	// Ignore case, default `false`.
+	// Defines if case should be ignored. Defaults to `false`.
 	IgnoreCase *bool `pulumi:"ignoreCase"`
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse *bool `pulumi:"inverse"`
 	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
 	Method string `pulumi:"method"`
@@ -3536,9 +3520,9 @@ type LoadbalancerFrontendRuleMatchersCookieInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersCookieArgs struct {
-	// Ignore case, default `false`.
+	// Defines if case should be ignored. Defaults to `false`.
 	IgnoreCase pulumi.BoolPtrInput `pulumi:"ignoreCase"`
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
 	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
 	Method pulumi.StringInput `pulumi:"method"`
@@ -3599,12 +3583,12 @@ func (o LoadbalancerFrontendRuleMatchersCookieOutput) ToLoadbalancerFrontendRule
 	return o
 }
 
-// Ignore case, default `false`.
+// Defines if case should be ignored. Defaults to `false`.
 func (o LoadbalancerFrontendRuleMatchersCookieOutput) IgnoreCase() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersCookie) *bool { return v.IgnoreCase }).(pulumi.BoolPtrOutput)
 }
 
-// Sets if the condition should be inverted. Works similar to logical NOT operator.
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 func (o LoadbalancerFrontendRuleMatchersCookieOutput) Inverse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersCookie) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
 }
@@ -3645,9 +3629,9 @@ func (o LoadbalancerFrontendRuleMatchersCookieArrayOutput) Index(i pulumi.IntInp
 }
 
 type LoadbalancerFrontendRuleMatchersHeader struct {
-	// Ignore case, default `false`.
+	// Defines if case should be ignored. Defaults to `false`.
 	IgnoreCase *bool `pulumi:"ignoreCase"`
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse *bool `pulumi:"inverse"`
 	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
 	Method string `pulumi:"method"`
@@ -3669,9 +3653,9 @@ type LoadbalancerFrontendRuleMatchersHeaderInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersHeaderArgs struct {
-	// Ignore case, default `false`.
+	// Defines if case should be ignored. Defaults to `false`.
 	IgnoreCase pulumi.BoolPtrInput `pulumi:"ignoreCase"`
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
 	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
 	Method pulumi.StringInput `pulumi:"method"`
@@ -3732,12 +3716,12 @@ func (o LoadbalancerFrontendRuleMatchersHeaderOutput) ToLoadbalancerFrontendRule
 	return o
 }
 
-// Ignore case, default `false`.
+// Defines if case should be ignored. Defaults to `false`.
 func (o LoadbalancerFrontendRuleMatchersHeaderOutput) IgnoreCase() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersHeader) *bool { return v.IgnoreCase }).(pulumi.BoolPtrOutput)
 }
 
-// Sets if the condition should be inverted. Works similar to logical NOT operator.
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 func (o LoadbalancerFrontendRuleMatchersHeaderOutput) Inverse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersHeader) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
 }
@@ -3778,7 +3762,7 @@ func (o LoadbalancerFrontendRuleMatchersHeaderArrayOutput) Index(i pulumi.IntInp
 }
 
 type LoadbalancerFrontendRuleMatchersHost struct {
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse *bool `pulumi:"inverse"`
 	// String value.
 	Value string `pulumi:"value"`
@@ -3796,7 +3780,7 @@ type LoadbalancerFrontendRuleMatchersHostInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersHostArgs struct {
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
 	// String value.
 	Value pulumi.StringInput `pulumi:"value"`
@@ -3853,7 +3837,7 @@ func (o LoadbalancerFrontendRuleMatchersHostOutput) ToLoadbalancerFrontendRuleMa
 	return o
 }
 
-// Sets if the condition should be inverted. Works similar to logical NOT operator.
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 func (o LoadbalancerFrontendRuleMatchersHostOutput) Inverse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersHost) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
 }
@@ -3884,7 +3868,7 @@ func (o LoadbalancerFrontendRuleMatchersHostArrayOutput) Index(i pulumi.IntInput
 }
 
 type LoadbalancerFrontendRuleMatchersHttpMethod struct {
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse *bool `pulumi:"inverse"`
 	// String value (`GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`).
 	Value string `pulumi:"value"`
@@ -3902,7 +3886,7 @@ type LoadbalancerFrontendRuleMatchersHttpMethodInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersHttpMethodArgs struct {
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
 	// String value (`GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`).
 	Value pulumi.StringInput `pulumi:"value"`
@@ -3959,7 +3943,7 @@ func (o LoadbalancerFrontendRuleMatchersHttpMethodOutput) ToLoadbalancerFrontend
 	return o
 }
 
-// Sets if the condition should be inverted. Works similar to logical NOT operator.
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 func (o LoadbalancerFrontendRuleMatchersHttpMethodOutput) Inverse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersHttpMethod) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
 }
@@ -3990,9 +3974,9 @@ func (o LoadbalancerFrontendRuleMatchersHttpMethodArrayOutput) Index(i pulumi.In
 }
 
 type LoadbalancerFrontendRuleMatchersNumMembersUp struct {
-	// The name of the `backend` which members will be monitored.
+	// The name of the `backend`.
 	BackendName string `pulumi:"backendName"`
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse *bool `pulumi:"inverse"`
 	// Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
 	Method string `pulumi:"method"`
@@ -4012,9 +3996,9 @@ type LoadbalancerFrontendRuleMatchersNumMembersUpInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersNumMembersUpArgs struct {
-	// The name of the `backend` which members will be monitored.
+	// The name of the `backend`.
 	BackendName pulumi.StringInput `pulumi:"backendName"`
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
 	// Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
 	Method pulumi.StringInput `pulumi:"method"`
@@ -4073,12 +4057,12 @@ func (o LoadbalancerFrontendRuleMatchersNumMembersUpOutput) ToLoadbalancerFronte
 	return o
 }
 
-// The name of the `backend` which members will be monitored.
+// The name of the `backend`.
 func (o LoadbalancerFrontendRuleMatchersNumMembersUpOutput) BackendName() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersNumMembersUp) string { return v.BackendName }).(pulumi.StringOutput)
 }
 
-// Sets if the condition should be inverted. Works similar to logical NOT operator.
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 func (o LoadbalancerFrontendRuleMatchersNumMembersUpOutput) Inverse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersNumMembersUp) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
 }
@@ -4114,9 +4098,9 @@ func (o LoadbalancerFrontendRuleMatchersNumMembersUpArrayOutput) Index(i pulumi.
 }
 
 type LoadbalancerFrontendRuleMatchersPath struct {
-	// Ignore case, default `false`.
+	// Defines if case should be ignored. Defaults to `false`.
 	IgnoreCase *bool `pulumi:"ignoreCase"`
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse *bool `pulumi:"inverse"`
 	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
 	Method string `pulumi:"method"`
@@ -4136,9 +4120,9 @@ type LoadbalancerFrontendRuleMatchersPathInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersPathArgs struct {
-	// Ignore case, default `false`.
+	// Defines if case should be ignored. Defaults to `false`.
 	IgnoreCase pulumi.BoolPtrInput `pulumi:"ignoreCase"`
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
 	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
 	Method pulumi.StringInput `pulumi:"method"`
@@ -4197,12 +4181,12 @@ func (o LoadbalancerFrontendRuleMatchersPathOutput) ToLoadbalancerFrontendRuleMa
 	return o
 }
 
-// Ignore case, default `false`.
+// Defines if case should be ignored. Defaults to `false`.
 func (o LoadbalancerFrontendRuleMatchersPathOutput) IgnoreCase() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersPath) *bool { return v.IgnoreCase }).(pulumi.BoolPtrOutput)
 }
 
-// Sets if the condition should be inverted. Works similar to logical NOT operator.
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 func (o LoadbalancerFrontendRuleMatchersPathOutput) Inverse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersPath) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
 }
@@ -4238,7 +4222,7 @@ func (o LoadbalancerFrontendRuleMatchersPathArrayOutput) Index(i pulumi.IntInput
 }
 
 type LoadbalancerFrontendRuleMatchersSrcIp struct {
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse *bool `pulumi:"inverse"`
 	// IP address. CIDR masks are supported, e.g. `192.168.0.0/24`.
 	Value string `pulumi:"value"`
@@ -4256,7 +4240,7 @@ type LoadbalancerFrontendRuleMatchersSrcIpInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersSrcIpArgs struct {
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
 	// IP address. CIDR masks are supported, e.g. `192.168.0.0/24`.
 	Value pulumi.StringInput `pulumi:"value"`
@@ -4313,7 +4297,7 @@ func (o LoadbalancerFrontendRuleMatchersSrcIpOutput) ToLoadbalancerFrontendRuleM
 	return o
 }
 
-// Sets if the condition should be inverted. Works similar to logical NOT operator.
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 func (o LoadbalancerFrontendRuleMatchersSrcIpOutput) Inverse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersSrcIp) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
 }
@@ -4344,7 +4328,7 @@ func (o LoadbalancerFrontendRuleMatchersSrcIpArrayOutput) Index(i pulumi.IntInpu
 }
 
 type LoadbalancerFrontendRuleMatchersSrcPort struct {
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse *bool `pulumi:"inverse"`
 	// Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
 	Method string `pulumi:"method"`
@@ -4364,7 +4348,7 @@ type LoadbalancerFrontendRuleMatchersSrcPortInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersSrcPortArgs struct {
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
 	// Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
 	Method pulumi.StringInput `pulumi:"method"`
@@ -4423,7 +4407,7 @@ func (o LoadbalancerFrontendRuleMatchersSrcPortOutput) ToLoadbalancerFrontendRul
 	return o
 }
 
-// Sets if the condition should be inverted. Works similar to logical NOT operator.
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 func (o LoadbalancerFrontendRuleMatchersSrcPortOutput) Inverse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersSrcPort) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
 }
@@ -4459,7 +4443,7 @@ func (o LoadbalancerFrontendRuleMatchersSrcPortArrayOutput) Index(i pulumi.IntIn
 }
 
 type LoadbalancerFrontendRuleMatchersSrcPortRange struct {
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse *bool `pulumi:"inverse"`
 	// Integer value.
 	RangeEnd int `pulumi:"rangeEnd"`
@@ -4479,7 +4463,7 @@ type LoadbalancerFrontendRuleMatchersSrcPortRangeInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersSrcPortRangeArgs struct {
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
 	// Integer value.
 	RangeEnd pulumi.IntInput `pulumi:"rangeEnd"`
@@ -4538,7 +4522,7 @@ func (o LoadbalancerFrontendRuleMatchersSrcPortRangeOutput) ToLoadbalancerFronte
 	return o
 }
 
-// Sets if the condition should be inverted. Works similar to logical NOT operator.
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 func (o LoadbalancerFrontendRuleMatchersSrcPortRangeOutput) Inverse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersSrcPortRange) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
 }
@@ -4574,9 +4558,9 @@ func (o LoadbalancerFrontendRuleMatchersSrcPortRangeArrayOutput) Index(i pulumi.
 }
 
 type LoadbalancerFrontendRuleMatchersUrl struct {
-	// Ignore case, default `false`.
+	// Defines if case should be ignored. Defaults to `false`.
 	IgnoreCase *bool `pulumi:"ignoreCase"`
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse *bool `pulumi:"inverse"`
 	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
 	Method string `pulumi:"method"`
@@ -4596,9 +4580,9 @@ type LoadbalancerFrontendRuleMatchersUrlInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersUrlArgs struct {
-	// Ignore case, default `false`.
+	// Defines if case should be ignored. Defaults to `false`.
 	IgnoreCase pulumi.BoolPtrInput `pulumi:"ignoreCase"`
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
 	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
 	Method pulumi.StringInput `pulumi:"method"`
@@ -4657,12 +4641,12 @@ func (o LoadbalancerFrontendRuleMatchersUrlOutput) ToLoadbalancerFrontendRuleMat
 	return o
 }
 
-// Ignore case, default `false`.
+// Defines if case should be ignored. Defaults to `false`.
 func (o LoadbalancerFrontendRuleMatchersUrlOutput) IgnoreCase() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersUrl) *bool { return v.IgnoreCase }).(pulumi.BoolPtrOutput)
 }
 
-// Sets if the condition should be inverted. Works similar to logical NOT operator.
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 func (o LoadbalancerFrontendRuleMatchersUrlOutput) Inverse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersUrl) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
 }
@@ -4698,9 +4682,9 @@ func (o LoadbalancerFrontendRuleMatchersUrlArrayOutput) Index(i pulumi.IntInput)
 }
 
 type LoadbalancerFrontendRuleMatchersUrlParam struct {
-	// Ignore case, default `false`.
+	// Defines if case should be ignored. Defaults to `false`.
 	IgnoreCase *bool `pulumi:"ignoreCase"`
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse *bool `pulumi:"inverse"`
 	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
 	Method string `pulumi:"method"`
@@ -4722,9 +4706,9 @@ type LoadbalancerFrontendRuleMatchersUrlParamInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersUrlParamArgs struct {
-	// Ignore case, default `false`.
+	// Defines if case should be ignored. Defaults to `false`.
 	IgnoreCase pulumi.BoolPtrInput `pulumi:"ignoreCase"`
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
 	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
 	Method pulumi.StringInput `pulumi:"method"`
@@ -4785,12 +4769,12 @@ func (o LoadbalancerFrontendRuleMatchersUrlParamOutput) ToLoadbalancerFrontendRu
 	return o
 }
 
-// Ignore case, default `false`.
+// Defines if case should be ignored. Defaults to `false`.
 func (o LoadbalancerFrontendRuleMatchersUrlParamOutput) IgnoreCase() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersUrlParam) *bool { return v.IgnoreCase }).(pulumi.BoolPtrOutput)
 }
 
-// Sets if the condition should be inverted. Works similar to logical NOT operator.
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 func (o LoadbalancerFrontendRuleMatchersUrlParamOutput) Inverse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersUrlParam) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
 }
@@ -4831,9 +4815,9 @@ func (o LoadbalancerFrontendRuleMatchersUrlParamArrayOutput) Index(i pulumi.IntI
 }
 
 type LoadbalancerFrontendRuleMatchersUrlQuery struct {
-	// Ignore case, default `false`.
+	// Defines if case should be ignored. Defaults to `false`.
 	IgnoreCase *bool `pulumi:"ignoreCase"`
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse *bool `pulumi:"inverse"`
 	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
 	Method string `pulumi:"method"`
@@ -4853,9 +4837,9 @@ type LoadbalancerFrontendRuleMatchersUrlQueryInput interface {
 }
 
 type LoadbalancerFrontendRuleMatchersUrlQueryArgs struct {
-	// Ignore case, default `false`.
+	// Defines if case should be ignored. Defaults to `false`.
 	IgnoreCase pulumi.BoolPtrInput `pulumi:"ignoreCase"`
-	// Sets if the condition should be inverted. Works similar to logical NOT operator.
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
 	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
 	Method pulumi.StringInput `pulumi:"method"`
@@ -4914,12 +4898,12 @@ func (o LoadbalancerFrontendRuleMatchersUrlQueryOutput) ToLoadbalancerFrontendRu
 	return o
 }
 
-// Ignore case, default `false`.
+// Defines if case should be ignored. Defaults to `false`.
 func (o LoadbalancerFrontendRuleMatchersUrlQueryOutput) IgnoreCase() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersUrlQuery) *bool { return v.IgnoreCase }).(pulumi.BoolPtrOutput)
 }
 
-// Sets if the condition should be inverted. Works similar to logical NOT operator.
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
 func (o LoadbalancerFrontendRuleMatchersUrlQueryOutput) Inverse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersUrlQuery) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
 }
@@ -18372,7 +18356,7 @@ type StorageImport struct {
 	Source string `pulumi:"source"`
 	// SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
 	SourceHash *string `pulumi:"sourceHash"`
-	// The location of the file to import. For `httpImport` an accessible URL for `directUpload` a local file.
+	// The location of the file to import. For `httpImport` an accessible URL. For `directUpload` a local file. When direct uploading a compressed image, `Content-Type` header of the PUT request is set automatically based on the file extension (`.gz` or `.xz`, case-insensitive).
 	SourceLocation string `pulumi:"sourceLocation"`
 	// Number of bytes imported
 	WrittenBytes *int `pulumi:"writtenBytes"`
@@ -18396,7 +18380,7 @@ type StorageImportArgs struct {
 	Source pulumi.StringInput `pulumi:"source"`
 	// SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
 	SourceHash pulumi.StringPtrInput `pulumi:"sourceHash"`
-	// The location of the file to import. For `httpImport` an accessible URL for `directUpload` a local file.
+	// The location of the file to import. For `httpImport` an accessible URL. For `directUpload` a local file. When direct uploading a compressed image, `Content-Type` header of the PUT request is set automatically based on the file extension (`.gz` or `.xz`, case-insensitive).
 	SourceLocation pulumi.StringInput `pulumi:"sourceLocation"`
 	// Number of bytes imported
 	WrittenBytes pulumi.IntPtrInput `pulumi:"writtenBytes"`
@@ -18494,7 +18478,7 @@ func (o StorageImportOutput) SourceHash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StorageImport) *string { return v.SourceHash }).(pulumi.StringPtrOutput)
 }
 
-// The location of the file to import. For `httpImport` an accessible URL for `directUpload` a local file.
+// The location of the file to import. For `httpImport` an accessible URL. For `directUpload` a local file. When direct uploading a compressed image, `Content-Type` header of the PUT request is set automatically based on the file extension (`.gz` or `.xz`, case-insensitive).
 func (o StorageImportOutput) SourceLocation() pulumi.StringOutput {
 	return o.ApplyT(func(v StorageImport) string { return v.SourceLocation }).(pulumi.StringOutput)
 }
@@ -18558,7 +18542,7 @@ func (o StorageImportPtrOutput) SourceHash() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The location of the file to import. For `httpImport` an accessible URL for `directUpload` a local file.
+// The location of the file to import. For `httpImport` an accessible URL. For `directUpload` a local file. When direct uploading a compressed image, `Content-Type` header of the PUT request is set automatically based on the file extension (`.gz` or `.xz`, case-insensitive).
 func (o StorageImportPtrOutput) SourceLocation() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageImport) *string {
 		if v == nil {

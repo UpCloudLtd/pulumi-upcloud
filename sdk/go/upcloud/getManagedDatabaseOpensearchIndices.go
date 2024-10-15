@@ -75,14 +75,20 @@ type GetManagedDatabaseOpensearchIndicesResult struct {
 
 func GetManagedDatabaseOpensearchIndicesOutput(ctx *pulumi.Context, args GetManagedDatabaseOpensearchIndicesOutputArgs, opts ...pulumi.InvokeOption) GetManagedDatabaseOpensearchIndicesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetManagedDatabaseOpensearchIndicesResult, error) {
+		ApplyT(func(v interface{}) (GetManagedDatabaseOpensearchIndicesResultOutput, error) {
 			args := v.(GetManagedDatabaseOpensearchIndicesArgs)
-			r, err := GetManagedDatabaseOpensearchIndices(ctx, &args, opts...)
-			var s GetManagedDatabaseOpensearchIndicesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetManagedDatabaseOpensearchIndicesResult
+			secret, err := ctx.InvokePackageRaw("upcloud:index/getManagedDatabaseOpensearchIndices:getManagedDatabaseOpensearchIndices", args, &rv, "", opts...)
+			if err != nil {
+				return GetManagedDatabaseOpensearchIndicesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetManagedDatabaseOpensearchIndicesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetManagedDatabaseOpensearchIndicesResultOutput), nil
+			}
+			return output, nil
 		}).(GetManagedDatabaseOpensearchIndicesResultOutput)
 }
 

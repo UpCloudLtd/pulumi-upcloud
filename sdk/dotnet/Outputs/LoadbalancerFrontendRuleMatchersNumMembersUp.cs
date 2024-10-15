@@ -14,11 +14,11 @@ namespace Pulumi.Upcloud.Outputs
     public sealed class LoadbalancerFrontendRuleMatchersNumMembersUp
     {
         /// <summary>
-        /// The name of the `backend` which members will be monitored.
+        /// The name of the `backend`.
         /// </summary>
         public readonly string BackendName;
         /// <summary>
-        /// Sets if the condition should be inverted. Works similar to logical NOT operator.
+        /// Defines if the condition should be inverted. Works similarly to logical NOT operator.
         /// </summary>
         public readonly bool? Inverse;
         /// <summary>

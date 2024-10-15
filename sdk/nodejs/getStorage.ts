@@ -5,10 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Returns storage resource information based on defined arguments.
+ * Provides information on UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.
  *
- * Data object can be used to map storage to other resource based on the ID or just to read some other storage property like zone information.\
- * Storage types are: normal, backup, cdrom, template
+ * Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `normal`, `backup`, `cdrom`, and `template`.
  *
  * ## Example Usage
  *
@@ -46,14 +45,16 @@ import * as utilities from "./utilities";
  * });
  * ```
  */
-export function getStorage(args: GetStorageArgs, opts?: pulumi.InvokeOptions): Promise<GetStorageResult> {
-
+export function getStorage(args?: GetStorageArgs, opts?: pulumi.InvokeOptions): Promise<GetStorageResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("upcloud:index/getStorage:getStorage", {
         "accessType": args.accessType,
+        "id": args.id,
         "mostRecent": args.mostRecent,
         "name": args.name,
         "nameRegex": args.nameRegex,
+        "title": args.title,
         "type": args.type,
         "zone": args.zone,
     }, opts);
@@ -64,10 +65,21 @@ export function getStorage(args: GetStorageArgs, opts?: pulumi.InvokeOptions): P
  */
 export interface GetStorageArgs {
     accessType?: string;
+    id?: string;
+    /**
+     * @deprecated Use exact title or UUID to limit the number of matching storages. Note that if you have multiple storages with the same title, you should use UUID to select the storage.
+     */
     mostRecent?: boolean;
+    /**
+     * @deprecated Contains the same value as `title`. Use `title` instead.
+     */
     name?: string;
+    /**
+     * @deprecated Use exact title or UUID instead.
+     */
     nameRegex?: string;
-    type: string;
+    title?: string;
+    type?: string;
     zone?: string;
 }
 
@@ -76,25 +88,33 @@ export interface GetStorageArgs {
  */
 export interface GetStorageResult {
     readonly accessType: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
+    readonly encrypt: boolean;
     readonly id: string;
+    readonly labels: {[key: string]: string};
+    /**
+     * @deprecated Use exact title or UUID to limit the number of matching storages. Note that if you have multiple storages with the same title, you should use UUID to select the storage.
+     */
     readonly mostRecent?: boolean;
+    /**
+     * @deprecated Contains the same value as `title`. Use `title` instead.
+     */
     readonly name?: string;
+    /**
+     * @deprecated Use exact title or UUID instead.
+     */
     readonly nameRegex?: string;
     readonly size: number;
     readonly state: string;
+    readonly systemLabels: {[key: string]: string};
     readonly tier: string;
     readonly title: string;
     readonly type: string;
     readonly zone: string;
 }
 /**
- * Returns storage resource information based on defined arguments.
+ * Provides information on UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.
  *
- * Data object can be used to map storage to other resource based on the ID or just to read some other storage property like zone information.\
- * Storage types are: normal, backup, cdrom, template
+ * Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `normal`, `backup`, `cdrom`, and `template`.
  *
  * ## Example Usage
  *
@@ -132,8 +152,19 @@ export interface GetStorageResult {
  * });
  * ```
  */
-export function getStorageOutput(args: GetStorageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStorageResult> {
-    return pulumi.output(args).apply((a: any) => getStorage(a, opts))
+export function getStorageOutput(args?: GetStorageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStorageResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("upcloud:index/getStorage:getStorage", {
+        "accessType": args.accessType,
+        "id": args.id,
+        "mostRecent": args.mostRecent,
+        "name": args.name,
+        "nameRegex": args.nameRegex,
+        "title": args.title,
+        "type": args.type,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**
@@ -141,9 +172,20 @@ export function getStorageOutput(args: GetStorageOutputArgs, opts?: pulumi.Invok
  */
 export interface GetStorageOutputArgs {
     accessType?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    /**
+     * @deprecated Use exact title or UUID to limit the number of matching storages. Note that if you have multiple storages with the same title, you should use UUID to select the storage.
+     */
     mostRecent?: pulumi.Input<boolean>;
+    /**
+     * @deprecated Contains the same value as `title`. Use `title` instead.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * @deprecated Use exact title or UUID instead.
+     */
     nameRegex?: pulumi.Input<string>;
-    type: pulumi.Input<string>;
+    title?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
     zone?: pulumi.Input<string>;
 }

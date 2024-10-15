@@ -41,14 +41,20 @@ type GetZoneResult struct {
 
 func GetZoneOutput(ctx *pulumi.Context, args GetZoneOutputArgs, opts ...pulumi.InvokeOption) GetZoneResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetZoneResult, error) {
+		ApplyT(func(v interface{}) (GetZoneResultOutput, error) {
 			args := v.(GetZoneArgs)
-			r, err := GetZone(ctx, &args, opts...)
-			var s GetZoneResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetZoneResult
+			secret, err := ctx.InvokePackageRaw("upcloud:index/getZone:getZone", args, &rv, "", opts...)
+			if err != nil {
+				return GetZoneResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetZoneResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetZoneResultOutput), nil
+			}
+			return output, nil
 		}).(GetZoneResultOutput)
 }
 

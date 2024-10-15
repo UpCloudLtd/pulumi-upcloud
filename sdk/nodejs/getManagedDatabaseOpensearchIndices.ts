@@ -32,7 +32,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getManagedDatabaseOpensearchIndices(args: GetManagedDatabaseOpensearchIndicesArgs, opts?: pulumi.InvokeOptions): Promise<GetManagedDatabaseOpensearchIndicesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("upcloud:index/getManagedDatabaseOpensearchIndices:getManagedDatabaseOpensearchIndices", {
         "indices": args.indices,
@@ -85,7 +84,11 @@ export interface GetManagedDatabaseOpensearchIndicesResult {
  * ```
  */
 export function getManagedDatabaseOpensearchIndicesOutput(args: GetManagedDatabaseOpensearchIndicesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetManagedDatabaseOpensearchIndicesResult> {
-    return pulumi.output(args).apply((a: any) => getManagedDatabaseOpensearchIndices(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("upcloud:index/getManagedDatabaseOpensearchIndices:getManagedDatabaseOpensearchIndices", {
+        "indices": args.indices,
+        "service": args.service,
+    }, opts);
 }
 
 /**

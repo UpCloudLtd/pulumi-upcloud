@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -131,9 +136,6 @@ def get_managed_database_postgresql_sessions(limit: Optional[int] = None,
         order=pulumi.get(__ret__, 'order'),
         service=pulumi.get(__ret__, 'service'),
         sessions=pulumi.get(__ret__, 'sessions'))
-
-
-@_utilities.lift_output_func(get_managed_database_postgresql_sessions)
 def get_managed_database_postgresql_sessions_output(limit: Optional[pulumi.Input[Optional[int]]] = None,
                                                     offset: Optional[pulumi.Input[Optional[int]]] = None,
                                                     order: Optional[pulumi.Input[Optional[str]]] = None,
@@ -158,4 +160,18 @@ def get_managed_database_postgresql_sessions_output(limit: Optional[pulumi.Input
     example_managed_database_postgresql_sessions = upcloud.get_managed_database_postgresql_sessions_output(service=example_managed_database_postgresql.id)
     ```
     """
-    ...
+    __args__ = dict()
+    __args__['limit'] = limit
+    __args__['offset'] = offset
+    __args__['order'] = order
+    __args__['service'] = service
+    __args__['sessions'] = sessions
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions', __args__, opts=opts, typ=GetManagedDatabasePostgresqlSessionsResult)
+    return __ret__.apply(lambda __response__: GetManagedDatabasePostgresqlSessionsResult(
+        id=pulumi.get(__response__, 'id'),
+        limit=pulumi.get(__response__, 'limit'),
+        offset=pulumi.get(__response__, 'offset'),
+        order=pulumi.get(__response__, 'order'),
+        service=pulumi.get(__response__, 'service'),
+        sessions=pulumi.get(__response__, 'sessions')))

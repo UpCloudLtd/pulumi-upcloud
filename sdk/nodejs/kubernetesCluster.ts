@@ -127,7 +127,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly storageEncryption!: pulumi.Output<string | undefined>;
     /**
-     * Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
      */
     public readonly version!: pulumi.Output<string>;
     /**
@@ -238,7 +238,7 @@ export interface KubernetesClusterState {
      */
     storageEncryption?: pulumi.Input<string>;
     /**
-     * Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
      */
     version?: pulumi.Input<string>;
     /**
@@ -284,7 +284,7 @@ export interface KubernetesClusterArgs {
      */
     storageEncryption?: pulumi.Input<string>;
     /**
-     * Kubernetes version ID, e.g. `1.28`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
      */
     version?: pulumi.Input<string>;
     /**
