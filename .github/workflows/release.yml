@@ -48,7 +48,7 @@ jobs:
       with:
         python-version: "3.12"
     - name: Install dependencies
-      run: pip install build
+      run: pip install build setuptools
     - name: Build Python packages
       run: make build_python
     - name: Publish package
