@@ -9,7 +9,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`upcloud` Terraform Provider](https://github.com/UpCloudLtd/terraform-provider-upcloud).",
     "repository": "https://github.com/UpCloudLtd/pulumi-upcloud",
-    "pluginDownloadURL": "https://github.com/UpCloudLtd/pulumi-upcloud/releases/download/${VERSION}/",
+    "pluginDownloadURL": "https://github.com/UpCloudLtd/pulumi-upcloud/releases/download/v${VERSION}/",
     "publisher": "UpCloudLtd",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"

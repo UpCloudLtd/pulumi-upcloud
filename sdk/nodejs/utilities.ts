@@ -53,7 +53,7 @@ export function getVersion(): string {
 
 /** @internal */
 export function resourceOptsDefaults(): any {
-    return { version: getVersion(), pluginDownloadURL: "https://github.com/UpCloudLtd/pulumi-upcloud/releases/download/${VERSION}/" };
+    return { version: getVersion(), pluginDownloadURL: "https://github.com/UpCloudLtd/pulumi-upcloud/releases/download/v${VERSION}/" };
 }
 
 /** @internal */

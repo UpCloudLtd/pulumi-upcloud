@@ -113,7 +113,7 @@ namespace Pulumi.Upcloud
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/UpCloudLtd/pulumi-upcloud/releases/download/${VERSION}/",
+                PluginDownloadURL = "https://github.com/UpCloudLtd/pulumi-upcloud/releases/download/v${VERSION}/",
                 AdditionalSecretOutputs =
                 {
                     "password",
