@@ -46,8 +46,9 @@ jobs:
     - name: Install dependencies
       run: pip install build
     - name: Build Python packages
-      run: python -m build --sdist --wheel --outdir dist/ sdk/python/
+      run: make build_python
     - name: Publish package
       uses: pypa/gh-action-pypi-publish@v1.10.3
       with:
+        packages-dir: sdk/python/bin/dist
         password: ${{ secrets.PYPI_API_TOKEN }}
