@@ -227,7 +227,7 @@ namespace Pulumi.Upcloud
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/UpCloudLtd/pulumi-upcloud/releases/",
+                PluginDownloadURL = "https://github.com/UpCloudLtd/pulumi-upcloud/releases/download/${VERSION}/",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
