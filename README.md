@@ -1,5 +1,5 @@
 > [!WARNING]
-> This project is in development. Suitable for testing usage at the moment. Instructions, package names and URLs have not been updated.
+> This project is in development. Suitable for testing usage at the moment. All instructions, package names and URLs might not have been updated.
 
 # UpCloud Resource Provider
 
@@ -9,6 +9,7 @@ The UpCloud Resource Provider lets you manage [UpCloud](https://upcloud.com/) re
 
 This package is available for several languages/platforms:
 
+<!--
 ### Node.js (JavaScript/TypeScript)
 
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
@@ -22,6 +23,7 @@ or `yarn`:
 ```bash
 yarn add @pulumi/foo
 ```
+-->
 
 ### Python
 
@@ -31,6 +33,7 @@ To use from Python, install using `pip`:
 pip install pulumi_foo
 ```
 
+<!--
 ### Go
 
 To use from Go, use `go get` to grab the latest version of the library:
@@ -46,14 +49,17 @@ To use from .NET, install using `dotnet add package`:
 ```bash
 dotnet add package Pulumi.Foo
 ```
+-->
 
 ## Configuration
 
-The following configuration points are available for the `foo` provider:
+The following configuration points are available for the `upcloud` provider:
 
-- `foo:apiKey` (environment: `FOO_API_KEY`) - the API key for `foo`
-- `foo:region` (environment: `FOO_REGION`) - the region in which to deploy resources
+- `UPCLOUD_USERNAME` (environment variable) - the username of the account to use
+- `UPCLOUD_PASSWORD` (environment variable) - the password of the account to use
 
+<!--
 ## Reference
 
 For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/foo/api-docs/).
+-->
