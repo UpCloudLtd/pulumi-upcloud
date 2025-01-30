@@ -30,7 +30,7 @@ export const getHosts: typeof import("./getHosts").getHosts = null as any;
 export const getHostsOutput: typeof import("./getHosts").getHostsOutput = null as any;
 utilities.lazyLoad(exports, ["getHosts","getHostsOutput"], () => require("./getHosts"));
 
-export { GetIpAddressesResult } from "./getIpAddresses";
+export { GetIpAddressesArgs, GetIpAddressesResult, GetIpAddressesOutputArgs } from "./getIpAddresses";
 export const getIpAddresses: typeof import("./getIpAddresses").getIpAddresses = null as any;
 export const getIpAddressesOutput: typeof import("./getIpAddresses").getIpAddressesOutput = null as any;
 utilities.lazyLoad(exports, ["getIpAddresses","getIpAddressesOutput"], () => require("./getIpAddresses"));
@@ -64,6 +64,11 @@ export { GetManagedDatabaseRedisSessionsArgs, GetManagedDatabaseRedisSessionsRes
 export const getManagedDatabaseRedisSessions: typeof import("./getManagedDatabaseRedisSessions").getManagedDatabaseRedisSessions = null as any;
 export const getManagedDatabaseRedisSessionsOutput: typeof import("./getManagedDatabaseRedisSessions").getManagedDatabaseRedisSessionsOutput = null as any;
 utilities.lazyLoad(exports, ["getManagedDatabaseRedisSessions","getManagedDatabaseRedisSessionsOutput"], () => require("./getManagedDatabaseRedisSessions"));
+
+export { GetManagedDatabaseValkeySessionsArgs, GetManagedDatabaseValkeySessionsResult, GetManagedDatabaseValkeySessionsOutputArgs } from "./getManagedDatabaseValkeySessions";
+export const getManagedDatabaseValkeySessions: typeof import("./getManagedDatabaseValkeySessions").getManagedDatabaseValkeySessions = null as any;
+export const getManagedDatabaseValkeySessionsOutput: typeof import("./getManagedDatabaseValkeySessions").getManagedDatabaseValkeySessionsOutput = null as any;
+utilities.lazyLoad(exports, ["getManagedDatabaseValkeySessions","getManagedDatabaseValkeySessionsOutput"], () => require("./getManagedDatabaseValkeySessions"));
 
 export { GetManagedObjectStoragePoliciesArgs, GetManagedObjectStoragePoliciesResult, GetManagedObjectStoragePoliciesOutputArgs } from "./getManagedObjectStoragePolicies";
 export const getManagedObjectStoragePolicies: typeof import("./getManagedObjectStoragePolicies").getManagedObjectStoragePolicies = null as any;
@@ -195,10 +200,20 @@ export type ManagedDatabaseUser = import("./managedDatabaseUser").ManagedDatabas
 export const ManagedDatabaseUser: typeof import("./managedDatabaseUser").ManagedDatabaseUser = null as any;
 utilities.lazyLoad(exports, ["ManagedDatabaseUser"], () => require("./managedDatabaseUser"));
 
+export { ManagedDatabaseValkeyArgs, ManagedDatabaseValkeyState } from "./managedDatabaseValkey";
+export type ManagedDatabaseValkey = import("./managedDatabaseValkey").ManagedDatabaseValkey;
+export const ManagedDatabaseValkey: typeof import("./managedDatabaseValkey").ManagedDatabaseValkey = null as any;
+utilities.lazyLoad(exports, ["ManagedDatabaseValkey"], () => require("./managedDatabaseValkey"));
+
 export { ManagedObjectStorageArgs, ManagedObjectStorageState } from "./managedObjectStorage";
 export type ManagedObjectStorage = import("./managedObjectStorage").ManagedObjectStorage;
 export const ManagedObjectStorage: typeof import("./managedObjectStorage").ManagedObjectStorage = null as any;
 utilities.lazyLoad(exports, ["ManagedObjectStorage"], () => require("./managedObjectStorage"));
+
+export { ManagedObjectStorageBucketArgs, ManagedObjectStorageBucketState } from "./managedObjectStorageBucket";
+export type ManagedObjectStorageBucket = import("./managedObjectStorageBucket").ManagedObjectStorageBucket;
+export const ManagedObjectStorageBucket: typeof import("./managedObjectStorageBucket").ManagedObjectStorageBucket = null as any;
+utilities.lazyLoad(exports, ["ManagedObjectStorageBucket"], () => require("./managedObjectStorageBucket"));
 
 export { ManagedObjectStorageCustomDomainArgs, ManagedObjectStorageCustomDomainState } from "./managedObjectStorageCustomDomain";
 export type ManagedObjectStorageCustomDomain = import("./managedObjectStorageCustomDomain").ManagedObjectStorageCustomDomain;
@@ -340,8 +355,12 @@ const _module = {
                 return new ManagedDatabaseRedis(name, <any>undefined, { urn })
             case "upcloud:index/managedDatabaseUser:ManagedDatabaseUser":
                 return new ManagedDatabaseUser(name, <any>undefined, { urn })
+            case "upcloud:index/managedDatabaseValkey:ManagedDatabaseValkey":
+                return new ManagedDatabaseValkey(name, <any>undefined, { urn })
             case "upcloud:index/managedObjectStorage:ManagedObjectStorage":
                 return new ManagedObjectStorage(name, <any>undefined, { urn })
+            case "upcloud:index/managedObjectStorageBucket:ManagedObjectStorageBucket":
+                return new ManagedObjectStorageBucket(name, <any>undefined, { urn })
             case "upcloud:index/managedObjectStorageCustomDomain:ManagedObjectStorageCustomDomain":
                 return new ManagedObjectStorageCustomDomain(name, <any>undefined, { urn })
             case "upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy":
@@ -400,7 +419,9 @@ pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseOpensearc
 pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabasePostgresql", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseRedis", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseUser", _module)
+pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseValkey", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorage", _module)
+pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorageBucket", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorageCustomDomain", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStoragePolicy", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorageUser", _module)

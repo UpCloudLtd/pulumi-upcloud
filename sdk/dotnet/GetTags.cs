@@ -22,6 +22,12 @@ namespace Pulumi.Upcloud
         /// </summary>
         public static Output<GetTagsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTagsResult>("upcloud:index/getTags:getTags", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Data-source is deprecated.
+        /// </summary>
+        public static Output<GetTagsResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTagsResult>("upcloud:index/getTags:getTags", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

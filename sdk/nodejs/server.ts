@@ -9,39 +9,6 @@ import * as utilities from "./utilities";
 /**
  * The UpCloud server resource allows the creation, update and deletion of a [cloud server](https://upcloud.com/products/cloud-servers).
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as upcloud from "@pulumi/upcloud";
- *
- * const example = new upcloud.Server("example", {
- *     hostname: "terraform.example.tld",
- *     labels: {
- *         env: "dev",
- *         production: "false",
- *     },
- *     login: {
- *         keys: ["<YOUR SSH PUBLIC KEY>"],
- *         user: "myusername",
- *     },
- *     networkInterfaces: [{
- *         type: "public",
- *     }],
- *     plan: "1xCPU-1GB",
- *     template: {
- *         backupRule: {
- *             interval: "daily",
- *             retention: 8,
- *             time: "0100",
- *         },
- *         size: 25,
- *         storage: "Ubuntu Server 20.04 LTS (Focal Fossa)",
- *     },
- *     zone: "de-fra1",
- * });
- * ```
- *
  * ## Import
  *
  * ```sh
@@ -81,42 +48,47 @@ export class Server extends pulumi.CustomResource {
      */
     public readonly bootOrder!: pulumi.Output<string>;
     /**
-     * The number of CPU for the server
+     * The number of CPU cores for the server
      */
     public readonly cpu!: pulumi.Output<number>;
     /**
      * Are firewall rules active for the server
      */
-    public readonly firewall!: pulumi.Output<boolean | undefined>;
+    public readonly firewall!: pulumi.Output<boolean>;
     /**
      * Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
      * hosts
      */
     public readonly host!: pulumi.Output<number | undefined>;
     /**
-     * A valid domain name
+     * The hostname of the server.
      */
     public readonly hostname!: pulumi.Output<string>;
     /**
      * User defined key-value pairs to classify the server.
      */
-    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    public readonly labels!: pulumi.Output<{[key: string]: string}>;
     /**
      * Configure access credentials to the server
      */
     public readonly login!: pulumi.Output<outputs.ServerLogin | undefined>;
     /**
-     * The size of memory for the server (in megabytes)
+     * The amount of memory for the server (in megabytes)
      */
     public readonly mem!: pulumi.Output<number>;
     /**
-     * Is the metadata service active for the server
+     * Is metadata service active for the server
      */
     public readonly metadata!: pulumi.Output<boolean | undefined>;
     /**
-     * One or more blocks describing the network interfaces of the server.
+     * One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+     * interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid
+     * public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+     * diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+     * explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+     * middle of the list.
      */
-    public readonly networkInterfaces!: pulumi.Output<outputs.ServerNetworkInterface[]>;
+    public readonly networkInterfaces!: pulumi.Output<outputs.ServerNetworkInterface[] | undefined>;
     /**
      * The model of the server's network interfaces
      */
@@ -133,25 +105,25 @@ export class Server extends pulumi.CustomResource {
     public readonly serverGroup!: pulumi.Output<string | undefined>;
     public readonly simpleBackup!: pulumi.Output<outputs.ServerSimpleBackup | undefined>;
     /**
-     * A list of storage devices associated with the server
+     * A set of storage devices associated with the server
      */
     public readonly storageDevices!: pulumi.Output<outputs.ServerStorageDevice[] | undefined>;
     /**
      * The server related tags
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    public readonly tags!: pulumi.Output<string[]>;
     /**
      * Block describing the preconfigured operating system
      */
     public readonly template!: pulumi.Output<outputs.ServerTemplate | undefined>;
     /**
-     * A timezone identifier, e.g. `Europe/Helsinki`
+     * The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
      */
     public readonly timezone!: pulumi.Output<string>;
     /**
-     * A short, informational description
+     * A short, informational description of the server.
      */
-    public readonly title!: pulumi.Output<string | undefined>;
+    public readonly title!: pulumi.Output<string>;
     /**
      * Defines URL for a server setup script, or the script body itself
      */
@@ -205,9 +177,6 @@ export class Server extends pulumi.CustomResource {
             if ((!args || args.hostname === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'hostname'");
             }
-            if ((!args || args.networkInterfaces === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'networkInterfaces'");
-            }
             if ((!args || args.zone === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'zone'");
             }
@@ -248,7 +217,7 @@ export interface ServerState {
      */
     bootOrder?: pulumi.Input<string>;
     /**
-     * The number of CPU for the server
+     * The number of CPU cores for the server
      */
     cpu?: pulumi.Input<number>;
     /**
@@ -261,7 +230,7 @@ export interface ServerState {
      */
     host?: pulumi.Input<number>;
     /**
-     * A valid domain name
+     * The hostname of the server.
      */
     hostname?: pulumi.Input<string>;
     /**
@@ -273,15 +242,20 @@ export interface ServerState {
      */
     login?: pulumi.Input<inputs.ServerLogin>;
     /**
-     * The size of memory for the server (in megabytes)
+     * The amount of memory for the server (in megabytes)
      */
     mem?: pulumi.Input<number>;
     /**
-     * Is the metadata service active for the server
+     * Is metadata service active for the server
      */
     metadata?: pulumi.Input<boolean>;
     /**
-     * One or more blocks describing the network interfaces of the server.
+     * One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+     * interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid
+     * public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+     * diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+     * explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+     * middle of the list.
      */
     networkInterfaces?: pulumi.Input<pulumi.Input<inputs.ServerNetworkInterface>[]>;
     /**
@@ -300,7 +274,7 @@ export interface ServerState {
     serverGroup?: pulumi.Input<string>;
     simpleBackup?: pulumi.Input<inputs.ServerSimpleBackup>;
     /**
-     * A list of storage devices associated with the server
+     * A set of storage devices associated with the server
      */
     storageDevices?: pulumi.Input<pulumi.Input<inputs.ServerStorageDevice>[]>;
     /**
@@ -312,11 +286,11 @@ export interface ServerState {
      */
     template?: pulumi.Input<inputs.ServerTemplate>;
     /**
-     * A timezone identifier, e.g. `Europe/Helsinki`
+     * The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
      */
     timezone?: pulumi.Input<string>;
     /**
-     * A short, informational description
+     * A short, informational description of the server.
      */
     title?: pulumi.Input<string>;
     /**
@@ -342,7 +316,7 @@ export interface ServerArgs {
      */
     bootOrder?: pulumi.Input<string>;
     /**
-     * The number of CPU for the server
+     * The number of CPU cores for the server
      */
     cpu?: pulumi.Input<number>;
     /**
@@ -355,7 +329,7 @@ export interface ServerArgs {
      */
     host?: pulumi.Input<number>;
     /**
-     * A valid domain name
+     * The hostname of the server.
      */
     hostname: pulumi.Input<string>;
     /**
@@ -367,17 +341,22 @@ export interface ServerArgs {
      */
     login?: pulumi.Input<inputs.ServerLogin>;
     /**
-     * The size of memory for the server (in megabytes)
+     * The amount of memory for the server (in megabytes)
      */
     mem?: pulumi.Input<number>;
     /**
-     * Is the metadata service active for the server
+     * Is metadata service active for the server
      */
     metadata?: pulumi.Input<boolean>;
     /**
-     * One or more blocks describing the network interfaces of the server.
+     * One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+     * interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid
+     * public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+     * diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+     * explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+     * middle of the list.
      */
-    networkInterfaces: pulumi.Input<pulumi.Input<inputs.ServerNetworkInterface>[]>;
+    networkInterfaces?: pulumi.Input<pulumi.Input<inputs.ServerNetworkInterface>[]>;
     /**
      * The model of the server's network interfaces
      */
@@ -394,7 +373,7 @@ export interface ServerArgs {
     serverGroup?: pulumi.Input<string>;
     simpleBackup?: pulumi.Input<inputs.ServerSimpleBackup>;
     /**
-     * A list of storage devices associated with the server
+     * A set of storage devices associated with the server
      */
     storageDevices?: pulumi.Input<pulumi.Input<inputs.ServerStorageDevice>[]>;
     /**
@@ -406,11 +385,11 @@ export interface ServerArgs {
      */
     template?: pulumi.Input<inputs.ServerTemplate>;
     /**
-     * A timezone identifier, e.g. `Europe/Helsinki`
+     * The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
      */
     timezone?: pulumi.Input<string>;
     /**
-     * A short, informational description
+     * A short, informational description of the server.
      */
     title?: pulumi.Input<string>;
     /**

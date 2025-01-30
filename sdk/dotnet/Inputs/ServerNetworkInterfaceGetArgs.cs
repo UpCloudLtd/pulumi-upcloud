@@ -16,7 +16,7 @@ namespace Pulumi.Upcloud.Inputs
         private InputList<Inputs.ServerNetworkInterfaceAdditionalIpAddressGetArgs>? _additionalIpAddresses;
 
         /// <summary>
-        /// 0-4 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+        /// 0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
         /// </summary>
         public InputList<Inputs.ServerNetworkInterfaceAdditionalIpAddressGetArgs> AdditionalIpAddresses
         {
@@ -31,7 +31,13 @@ namespace Pulumi.Upcloud.Inputs
         public Input<bool>? Bootable { get; set; }
 
         /// <summary>
-        /// The assigned primary IP address.
+        /// The interface index.
+        /// </summary>
+        [Input("index")]
+        public Input<int>? Index { get; set; }
+
+        /// <summary>
+        /// The primary IP address of this interface.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
@@ -49,13 +55,13 @@ namespace Pulumi.Upcloud.Inputs
         public Input<bool>? IpAddressFloating { get; set; }
 
         /// <summary>
-        /// The assigned MAC address.
+        /// The MAC address of the interface.
         /// </summary>
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
 
         /// <summary>
-        /// The unique ID of a network to attach this network to.
+        /// The UUID of the network to attach this interface to. Required for private network interfaces.
         /// </summary>
         [Input("network")]
         public Input<string>? Network { get; set; }

@@ -37,7 +37,7 @@ export interface GetManagedObjectStoragePoliciesResult {
 /**
  * Policies available for a Managed Object Storage resource. See `managedObjectStorageUserPolicy` for attaching to a user.
  */
-export function getManagedObjectStoragePoliciesOutput(args: GetManagedObjectStoragePoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetManagedObjectStoragePoliciesResult> {
+export function getManagedObjectStoragePoliciesOutput(args: GetManagedObjectStoragePoliciesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetManagedObjectStoragePoliciesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("upcloud:index/getManagedObjectStoragePolicies:getManagedObjectStoragePolicies", {
         "serviceUuid": args.serviceUuid,

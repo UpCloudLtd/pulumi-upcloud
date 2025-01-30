@@ -137,6 +137,84 @@ export interface GetHostsHostArgs {
     zone?: pulumi.Input<string>;
 }
 
+export interface GetIpAddressesAddress {
+    /**
+     * Is address for utility or public network
+     */
+    access?: string;
+    /**
+     * An UpCloud assigned IP Address
+     */
+    address?: string;
+    /**
+     * IP address family
+     */
+    family?: string;
+    /**
+     * Does the IP Address represents a floating IP Address
+     */
+    floating?: boolean;
+    /**
+     * MAC address of server interface to assign address to
+     */
+    mac?: string;
+    /**
+     * Is the address a part of a plan
+     */
+    partOfPlan?: boolean;
+    /**
+     * A reverse DNS record entry
+     */
+    ptrRecord?: string;
+    /**
+     * The unique identifier for a server
+     */
+    server?: string;
+    /**
+     * Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+     */
+    zone?: string;
+}
+
+export interface GetIpAddressesAddressArgs {
+    /**
+     * Is address for utility or public network
+     */
+    access?: pulumi.Input<string>;
+    /**
+     * An UpCloud assigned IP Address
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * IP address family
+     */
+    family?: pulumi.Input<string>;
+    /**
+     * Does the IP Address represents a floating IP Address
+     */
+    floating?: pulumi.Input<boolean>;
+    /**
+     * MAC address of server interface to assign address to
+     */
+    mac?: pulumi.Input<string>;
+    /**
+     * Is the address a part of a plan
+     */
+    partOfPlan?: pulumi.Input<boolean>;
+    /**
+     * A reverse DNS record entry
+     */
+    ptrRecord?: pulumi.Input<string>;
+    /**
+     * The unique identifier for a server
+     */
+    server?: pulumi.Input<string>;
+    /**
+     * Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+     */
+    zone?: pulumi.Input<string>;
+}
+
 export interface GetManagedDatabaseMysqlSessionsSession {
     /**
      * Name of the application that is connected to this service.
@@ -601,6 +679,148 @@ export interface GetManagedDatabaseRedisSessionsSessionArgs {
     queryBufferFree?: pulumi.Input<number>;
 }
 
+export interface GetManagedDatabaseValkeySessionsSession {
+    /**
+     * Number of active channel subscriptions
+     */
+    activeChannelSubscriptions?: number;
+    /**
+     * Current database ID
+     */
+    activeDatabase?: string;
+    /**
+     * Number of pattern matching subscriptions.
+     */
+    activePatternMatchingChannelSubscriptions?: number;
+    /**
+     * Name of the application that is connected to this service.
+     */
+    applicationName?: string;
+    /**
+     * Number of pattern matching subscriptions.
+     */
+    clientAddr?: string;
+    /**
+     * Total duration of the connection in nanoseconds.
+     */
+    connectionAge?: number;
+    /**
+     * Idle time of the connection in nanoseconds.
+     */
+    connectionIdle?: number;
+    /**
+     * A set containing flags' descriptions.
+     */
+    flags?: string[];
+    /**
+     * Client connection flags in raw string format.
+     */
+    flagsRaw?: string;
+    /**
+     * Process ID of this session.
+     */
+    id?: string;
+    /**
+     * Number of commands in a MULTI/EXEC context.
+     */
+    multiExecCommands?: number;
+    /**
+     * Output buffer length.
+     */
+    outputBuffer?: number;
+    /**
+     * Output buffer memory usage.
+     */
+    outputBufferMemory?: number;
+    /**
+     * Output list length (replies are queued in this list when the buffer is full).
+     */
+    outputListLength?: number;
+    /**
+     * The last executed command.
+     */
+    query?: string;
+    /**
+     * Query buffer length (0 means no query pending).
+     */
+    queryBuffer?: number;
+    /**
+     * Free space of the query buffer (0 means the buffer is full).
+     */
+    queryBufferFree?: number;
+}
+
+export interface GetManagedDatabaseValkeySessionsSessionArgs {
+    /**
+     * Number of active channel subscriptions
+     */
+    activeChannelSubscriptions?: pulumi.Input<number>;
+    /**
+     * Current database ID
+     */
+    activeDatabase?: pulumi.Input<string>;
+    /**
+     * Number of pattern matching subscriptions.
+     */
+    activePatternMatchingChannelSubscriptions?: pulumi.Input<number>;
+    /**
+     * Name of the application that is connected to this service.
+     */
+    applicationName?: pulumi.Input<string>;
+    /**
+     * Number of pattern matching subscriptions.
+     */
+    clientAddr?: pulumi.Input<string>;
+    /**
+     * Total duration of the connection in nanoseconds.
+     */
+    connectionAge?: pulumi.Input<number>;
+    /**
+     * Idle time of the connection in nanoseconds.
+     */
+    connectionIdle?: pulumi.Input<number>;
+    /**
+     * A set containing flags' descriptions.
+     */
+    flags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Client connection flags in raw string format.
+     */
+    flagsRaw?: pulumi.Input<string>;
+    /**
+     * Process ID of this session.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Number of commands in a MULTI/EXEC context.
+     */
+    multiExecCommands?: pulumi.Input<number>;
+    /**
+     * Output buffer length.
+     */
+    outputBuffer?: pulumi.Input<number>;
+    /**
+     * Output buffer memory usage.
+     */
+    outputBufferMemory?: pulumi.Input<number>;
+    /**
+     * Output list length (replies are queued in this list when the buffer is full).
+     */
+    outputListLength?: pulumi.Input<number>;
+    /**
+     * The last executed command.
+     */
+    query?: pulumi.Input<string>;
+    /**
+     * Query buffer length (0 means no query pending).
+     */
+    queryBuffer?: pulumi.Input<number>;
+    /**
+     * Free space of the query buffer (0 means the buffer is full).
+     */
+    queryBufferFree?: pulumi.Input<number>;
+}
+
 export interface GetManagedObjectStorageRegionsRegion {
     /**
      * Name of the region.
@@ -775,6 +995,14 @@ export interface LoadbalancerFrontendRuleActions {
      */
     setForwardedHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsSetForwardedHeader>[]>;
     /**
+     * Set request header
+     */
+    setRequestHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsSetRequestHeader>[]>;
+    /**
+     * Set response header
+     */
+    setResponseHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsSetResponseHeader>[]>;
+    /**
      * Terminates a connection.
      */
     tcpRejects?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsTcpReject>[]>;
@@ -814,6 +1042,28 @@ export interface LoadbalancerFrontendRuleActionsSetForwardedHeader {
     active?: pulumi.Input<boolean>;
 }
 
+export interface LoadbalancerFrontendRuleActionsSetRequestHeader {
+    /**
+     * Header name.
+     */
+    header: pulumi.Input<string>;
+    /**
+     * Header value.
+     */
+    value?: pulumi.Input<string>;
+}
+
+export interface LoadbalancerFrontendRuleActionsSetResponseHeader {
+    /**
+     * Header name.
+     */
+    header: pulumi.Input<string>;
+    /**
+     * Header value.
+     */
+    value?: pulumi.Input<string>;
+}
+
 export interface LoadbalancerFrontendRuleActionsTcpReject {
     /**
      * Indicates if the rule is active.
@@ -843,6 +1093,8 @@ export interface LoadbalancerFrontendRuleMatchers {
     cookies?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersCookie>[]>;
     /**
      * Matches by HTTP header value. Header name must be provided.
+     *
+     * @deprecated Use `requestHeader` instead.
      */
     headers?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersHeader>[]>;
     /**
@@ -854,6 +1106,14 @@ export interface LoadbalancerFrontendRuleMatchers {
      */
     httpMethods?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersHttpMethod>[]>;
     /**
+     * Matches by range of HTTP statuses.
+     */
+    httpStatusRanges?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersHttpStatusRange>[]>;
+    /**
+     * Matches by HTTP status.
+     */
+    httpStatuses?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersHttpStatus>[]>;
+    /**
      * Matches by number of healthy backend members.
      */
     numMembersUps?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersNumMembersUp>[]>;
@@ -861,6 +1121,14 @@ export interface LoadbalancerFrontendRuleMatchers {
      * Matches by URL path.
      */
     paths?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersPath>[]>;
+    /**
+     * Matches by HTTP request header value. Header name must be provided.
+     */
+    requestHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersRequestHeader>[]>;
+    /**
+     * Matches by HTTP response header value. Header name must be provided.
+     */
+    responseHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersResponseHeader>[]>;
     /**
      * Matches by source IP address.
      */
@@ -985,6 +1253,36 @@ export interface LoadbalancerFrontendRuleMatchersHttpMethod {
     value: pulumi.Input<string>;
 }
 
+export interface LoadbalancerFrontendRuleMatchersHttpStatus {
+    /**
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
+     */
+    inverse?: pulumi.Input<boolean>;
+    /**
+     * Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
+     */
+    method: pulumi.Input<string>;
+    /**
+     * Integer value.
+     */
+    value: pulumi.Input<number>;
+}
+
+export interface LoadbalancerFrontendRuleMatchersHttpStatusRange {
+    /**
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
+     */
+    inverse?: pulumi.Input<boolean>;
+    /**
+     * Integer value.
+     */
+    rangeEnd: pulumi.Input<number>;
+    /**
+     * Integer value.
+     */
+    rangeStart: pulumi.Input<number>;
+}
+
 export interface LoadbalancerFrontendRuleMatchersNumMembersUp {
     /**
      * The name of the `backend`.
@@ -1017,6 +1315,52 @@ export interface LoadbalancerFrontendRuleMatchersPath {
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
     method: pulumi.Input<string>;
+    /**
+     * String value.
+     */
+    value?: pulumi.Input<string>;
+}
+
+export interface LoadbalancerFrontendRuleMatchersRequestHeader {
+    /**
+     * Defines if case should be ignored. Defaults to `false`.
+     */
+    ignoreCase?: pulumi.Input<boolean>;
+    /**
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
+     */
+    inverse?: pulumi.Input<boolean>;
+    /**
+     * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
+     */
+    method: pulumi.Input<string>;
+    /**
+     * Name of the argument.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * String value.
+     */
+    value?: pulumi.Input<string>;
+}
+
+export interface LoadbalancerFrontendRuleMatchersResponseHeader {
+    /**
+     * Defines if case should be ignored. Defaults to `false`.
+     */
+    ignoreCase?: pulumi.Input<boolean>;
+    /**
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
+     */
+    inverse?: pulumi.Input<boolean>;
+    /**
+     * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
+     */
+    method: pulumi.Input<string>;
+    /**
+     * Name of the argument.
+     */
+    name: pulumi.Input<string>;
     /**
      * String value.
      */
@@ -1135,11 +1479,11 @@ export interface LoadbalancerNetwork {
      */
     family: pulumi.Input<string>;
     /**
-     * Network identifier.
+     * The unique identifier of the network.
      */
     id?: pulumi.Input<string>;
     /**
-     * The name of the network must be unique within the service.
+     * The name of the network. Must be unique within the service.
      */
     name: pulumi.Input<string>;
     /**
@@ -1153,6 +1497,9 @@ export interface LoadbalancerNetwork {
 }
 
 export interface LoadbalancerNode {
+    /**
+     * Networks attached to the node
+     */
     networks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerNodeNetwork>[]>;
     /**
      * Node's operational state. Managed by the system.
@@ -1161,24 +1508,27 @@ export interface LoadbalancerNode {
 }
 
 export interface LoadbalancerNodeNetwork {
+    /**
+     * IP addresses attached to the network
+     */
     ipAddresses?: pulumi.Input<pulumi.Input<inputs.LoadbalancerNodeNetworkIpAddress>[]>;
     /**
-     * The name of the network.
+     * The name of the network
      */
     name?: pulumi.Input<string>;
     /**
-     * The type of the network.
+     * The type of the network
      */
     type?: pulumi.Input<string>;
 }
 
 export interface LoadbalancerNodeNetworkIpAddress {
     /**
-     * Node's IP address.
+     * Node's IP address
      */
     address?: pulumi.Input<string>;
     /**
-     * Does IP address listen network connections.
+     * Whether the node listens to the traffic
      */
     listen?: pulumi.Input<boolean>;
 }
@@ -1342,7 +1692,11 @@ export interface ManagedDatabaseMysqlProperties {
      */
     ipFilters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute. Default is 10s.
+     * The slow log output destination when slowQueryLog is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
+     */
+    logOutput?: pulumi.Input<string>;
+    /**
+     * The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute.
      */
     longQueryTime?: pulumi.Input<number>;
     /**
@@ -1378,7 +1732,7 @@ export interface ManagedDatabaseMysqlProperties {
      */
     serviceLog?: pulumi.Input<boolean>;
     /**
-     * Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table. Default is off.
+     * Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table.
      */
     slowQueryLog?: pulumi.Input<boolean>;
     /**
@@ -1520,19 +1874,27 @@ export interface ManagedDatabaseOpensearchProperties {
      * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
      */
     automaticUtilityNetworkIpFilter?: pulumi.Input<boolean>;
-    azureMigration?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesAzureMigration>;
     /**
      * Controls the number of shards allowed in the cluster per data node.
      */
     clusterMaxShardsPerNode?: pulumi.Input<number>;
     /**
-     * Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
+     * When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
+     */
+    clusterRoutingAllocationBalancePreferPrimary?: pulumi.Input<boolean>;
+    /**
+     * Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
      */
     clusterRoutingAllocationNodeConcurrentRecoveries?: pulumi.Input<number>;
+    clusterSearchRequestSlowlog?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog>;
     /**
      * Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
      */
     customDomain?: pulumi.Input<string>;
+    /**
+     * Elasticsearch major version.
+     */
+    elasticsearchVersion?: pulumi.Input<string>;
     /**
      * Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
      */
@@ -1546,10 +1908,13 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     emailSenderUsername?: pulumi.Input<string>;
     /**
+     * Enable remote-backed storage.
+     */
+    enableRemoteBackedStorage?: pulumi.Input<boolean>;
+    /**
      * Enable/Disable security audit.
      */
     enableSecurityAudit?: pulumi.Input<boolean>;
-    gcsMigration?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesGcsMigration>;
     /**
      * Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
      */
@@ -1670,7 +2035,6 @@ export interface ManagedDatabaseOpensearchProperties {
      * Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
      */
     reindexRemoteWhitelists?: pulumi.Input<pulumi.Input<string>[]>;
-    s3Migration?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesS3Migration>;
     /**
      * OpenSearch SAML configuration.
      */
@@ -1680,13 +2044,26 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     scriptMaxCompilationsRate?: pulumi.Input<string>;
     /**
+     * Search Backpressure Settings.
+     */
+    searchBackpressure?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchBackpressure>;
+    searchInsightsTopQueries?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries>;
+    /**
      * Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
      */
     searchMaxBuckets?: pulumi.Input<number>;
     /**
+     * Segment Replication Backpressure Settings.
+     */
+    segrep?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSegrep>;
+    /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      */
     serviceLog?: pulumi.Input<boolean>;
+    /**
+     * Shard indexing back pressure settings.
+     */
+    shardIndexingPressure?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressure>;
     /**
      * analyze thread pool queue size. Size for the thread pool queue. See documentation for exact details.
      */
@@ -1803,70 +2180,31 @@ export interface ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLi
     type?: pulumi.Input<string>;
 }
 
-export interface ManagedDatabaseOpensearchPropertiesAzureMigration {
+export interface ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog {
     /**
-     * Account name. Azure account name.
+     * Log level.
      */
-    account?: pulumi.Input<string>;
-    /**
-     * The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-     */
-    basePath?: pulumi.Input<string>;
-    /**
-     * Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-     */
-    chunkSize?: pulumi.Input<string>;
-    /**
-     * Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-     */
-    compress?: pulumi.Input<boolean>;
-    /**
-     * Azure container name. Azure container name.
-     */
-    container?: pulumi.Input<string>;
-    /**
-     * Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
-     */
-    endpointSuffix?: pulumi.Input<string>;
-    /**
-     * Account secret key. Azure account secret key. One of key or sasToken should be specified.
-     */
-    key?: pulumi.Input<string>;
-    /**
-     * SAS token. A shared access signatures (SAS) token. One of key or sasToken should be specified.
-     */
-    sasToken?: pulumi.Input<string>;
-    /**
-     * The snapshot name to restore from. The snapshot name to restore from.
-     */
-    snapshotName?: pulumi.Input<string>;
+    level?: pulumi.Input<string>;
+    threshold?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold>;
 }
 
-export interface ManagedDatabaseOpensearchPropertiesGcsMigration {
+export interface ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold {
     /**
-     * The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+     * Debug threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    basePath?: pulumi.Input<string>;
+    debug?: pulumi.Input<string>;
     /**
-     * The path to the repository data within its container. Google Cloud Storage bucket name.
+     * Info threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    bucket?: pulumi.Input<string>;
+    info?: pulumi.Input<string>;
     /**
-     * Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+     * Trace threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    chunkSize?: pulumi.Input<string>;
+    trace?: pulumi.Input<string>;
     /**
-     * Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+     * Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    compress?: pulumi.Input<boolean>;
-    /**
-     * Credentials. Google Cloud Storage credentials file content.
-     */
-    credentials?: pulumi.Input<string>;
-    /**
-     * The snapshot name to restore from. The snapshot name to restore from.
-     */
-    snapshotName?: pulumi.Input<string>;
+    warn?: pulumi.Input<string>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesIndexRollup {
@@ -1968,52 +2306,13 @@ export interface ManagedDatabaseOpensearchPropertiesOpensearchDashboards {
      */
     maxOldSpaceSize?: pulumi.Input<number>;
     /**
+     * Enable or disable multiple data sources in OpenSearch Dashboards.
+     */
+    multipleDataSourceEnabled?: pulumi.Input<boolean>;
+    /**
      * Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
      */
     opensearchRequestTimeout?: pulumi.Input<number>;
-}
-
-export interface ManagedDatabaseOpensearchPropertiesS3Migration {
-    /**
-     * AWS Access key. AWS Access key.
-     */
-    accessKey?: pulumi.Input<string>;
-    /**
-     * The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-     */
-    basePath?: pulumi.Input<string>;
-    /**
-     * S3 bucket name. S3 bucket name.
-     */
-    bucket?: pulumi.Input<string>;
-    /**
-     * Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-     */
-    chunkSize?: pulumi.Input<string>;
-    /**
-     * Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-     */
-    compress?: pulumi.Input<boolean>;
-    /**
-     * The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
-     */
-    endpoint?: pulumi.Input<string>;
-    /**
-     * S3 region. S3 region.
-     */
-    region?: pulumi.Input<string>;
-    /**
-     * AWS secret key. AWS secret key.
-     */
-    secretKey?: pulumi.Input<string>;
-    /**
-     * Server side encryption. When set to true files are encrypted on server side.
-     */
-    serverSideEncryption?: pulumi.Input<boolean>;
-    /**
-     * The snapshot name to restore from. The snapshot name to restore from.
-     */
-    snapshotName?: pulumi.Input<string>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSaml {
@@ -2045,6 +2344,268 @@ export interface ManagedDatabaseOpensearchPropertiesSaml {
      * SAML response subject attribute. Optional. Specifies the attribute in the SAML response where the subject identifier is stored. If not configured, the NameID attribute is used by default.
      */
     subjectKey?: pulumi.Input<string>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchBackpressure {
+    /**
+     * The search backpressure mode. The search backpressure mode. Valid values are monitor_only, enforced, or disabled. Default is monitor_only.
+     */
+    mode?: pulumi.Input<string>;
+    /**
+     * Node duress settings.
+     */
+    nodeDuress?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress>;
+    /**
+     * Search shard settings.
+     */
+    searchShardTask?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask>;
+    /**
+     * Search task settings.
+     */
+    searchTask?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress {
+    /**
+     * The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.9.
+     */
+    cpuThreshold?: pulumi.Input<number>;
+    /**
+     * The heap usage threshold (as a percentage) required for a node to be considered to be under duress. The heap usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.7.
+     */
+    heapThreshold?: pulumi.Input<number>;
+    /**
+     * The number of successive limit breaches after which the node is considered to be under duress. The number of successive limit breaches after which the node is considered to be under duress. Default is 3.
+     */
+    numSuccessiveBreaches?: pulumi.Input<number>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask {
+    /**
+     * The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 10.0.
+     */
+    cancellationBurst?: pulumi.Input<number>;
+    /**
+     * The maximum number of tasks to cancel per millisecond of elapsed time. The maximum number of tasks to cancel per millisecond of elapsed time. Default is 0.003.
+     */
+    cancellationRate?: pulumi.Input<number>;
+    /**
+     * The maximum number of tasks to cancel. The maximum number of tasks to cancel, as a percentage of successful task completions. Default is 0.1.
+     */
+    cancellationRatio?: pulumi.Input<number>;
+    /**
+     * The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 15000.
+     */
+    cpuTimeMillisThreshold?: pulumi.Input<number>;
+    /**
+     * The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 30000.
+     */
+    elapsedTimeMillisThreshold?: pulumi.Input<number>;
+    /**
+     * The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. Default is 100.
+     */
+    heapMovingAverageWindowSize?: pulumi.Input<number>;
+    /**
+     * The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. Default is 0.5.
+     */
+    heapPercentThreshold?: pulumi.Input<number>;
+    /**
+     * The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. Default is 2.0.
+     */
+    heapVariance?: pulumi.Input<number>;
+    /**
+     * The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. Default is 0.5.
+     */
+    totalHeapPercentThreshold?: pulumi.Input<number>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask {
+    /**
+     * The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 5.0.
+     */
+    cancellationBurst?: pulumi.Input<number>;
+    /**
+     * The maximum number of search tasks to cancel per millisecond of elapsed time. The maximum number of search tasks to cancel per millisecond of elapsed time. Default is 0.003.
+     */
+    cancellationRate?: pulumi.Input<number>;
+    /**
+     * The maximum number of search tasks to cancel, as a percentage of successful search task completions. The maximum number of search tasks to cancel, as a percentage of successful search task completions. Default is 0.1.
+     */
+    cancellationRatio?: pulumi.Input<number>;
+    /**
+     * The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 30000.
+     */
+    cpuTimeMillisThreshold?: pulumi.Input<number>;
+    /**
+     * The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 45000.
+     */
+    elapsedTimeMillisThreshold?: pulumi.Input<number>;
+    /**
+     * The window size used to calculate the rolling average of the heap usage for the completed parent tasks. The window size used to calculate the rolling average of the heap usage for the completed parent tasks. Default is 10.
+     */
+    heapMovingAverageWindowSize?: pulumi.Input<number>;
+    /**
+     * The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. Default is 0.2.
+     */
+    heapPercentThreshold?: pulumi.Input<number>;
+    /**
+     * The heap usage variance required for an individual parent task before it is considered for cancellation. The heap usage variance required for an individual parent task before it is considered for cancellation. A task is considered for cancellation when taskHeapUsage is greater than or equal to heapUsageMovingAverage * variance. Default is 2.0.
+     */
+    heapVariance?: pulumi.Input<number>;
+    /**
+     * The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. Default is 0.5.
+     */
+    totalHeapPercentThreshold?: pulumi.Input<number>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries {
+    /**
+     * Top N queries monitoring by CPU.
+     */
+    cpu?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu>;
+    /**
+     * Top N queries monitoring by latency.
+     */
+    latency?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency>;
+    /**
+     * Top N queries monitoring by memory.
+     */
+    memory?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu {
+    /**
+     * Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * Specify the value of N for the top N queries by the metric.
+     */
+    topNSize?: pulumi.Input<number>;
+    /**
+     * The window size of the top N queries by the metric. Configure the window size of the top N queries.
+     */
+    windowSize?: pulumi.Input<string>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency {
+    /**
+     * Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * Specify the value of N for the top N queries by the metric.
+     */
+    topNSize?: pulumi.Input<number>;
+    /**
+     * The window size of the top N queries by the metric. Configure the window size of the top N queries.
+     */
+    windowSize?: pulumi.Input<string>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory {
+    /**
+     * Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * Specify the value of N for the top N queries by the metric.
+     */
+    topNSize?: pulumi.Input<number>;
+    /**
+     * The window size of the top N queries by the metric. Configure the window size of the top N queries.
+     */
+    windowSize?: pulumi.Input<string>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSegrep {
+    /**
+     * The maximum number of indexing checkpoints that a replica shard can fall behind when copying from primary. Once `segrep.pressure.checkpoint.limit` is breached along with `segrep.pressure.time.limit`, the segment replication backpressure mechanism is initiated. Default is 4 checkpoints.
+     */
+    pressureCheckpointLimit?: pulumi.Input<number>;
+    /**
+     * Enables the segment replication backpressure mechanism. Default is false.
+     */
+    pressureEnabled?: pulumi.Input<boolean>;
+    /**
+     * The maximum number of stale replica shards that can exist in a replication group. Once `segrep.pressure.replica.stale.limit` is breached, the segment replication backpressure mechanism is initiated. Default is .5, which is 50% of a replication group.
+     */
+    pressureReplicaStaleLimit?: pulumi.Input<number>;
+    /**
+     * The maximum amount of time that a replica shard can take to copy from the primary shard. Once segrep.pressure.time.limit is breached along with segrep.pressure.checkpoint.limit, the segment replication backpressure mechanism is initiated. Default is 5 minutes.
+     */
+    pressureTimeLimit?: pulumi.Input<string>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressure {
+    /**
+     * Enable or disable shard indexing backpressure. Enable or disable shard indexing backpressure. Default is false.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * Run shard indexing backpressure in shadow mode or enforced mode. Run shard indexing backpressure in shadow mode or enforced mode.
+     *             In shadow mode (value set as false), shard indexing backpressure tracks all granular-level metrics,
+     *             but it doesn’t actually reject any indexing requests.
+     *             In enforced mode (value set as true),
+     *             shard indexing backpressure rejects any requests to the cluster that might cause a dip in its performance.
+     *             Default is false.
+     */
+    enforced?: pulumi.Input<boolean>;
+    /**
+     * Operating factor.
+     */
+    operatingFactor?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor>;
+    /**
+     * Primary parameter.
+     */
+    primaryParameter?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor {
+    /**
+     * Lower occupancy limit of the allocated quota of memory for the shard. Specify the lower occupancy limit of the allocated quota of memory for the shard.
+     *                     If the total memory usage of a shard is below this limit,
+     *                     shard indexing backpressure decreases the current allocated memory for that shard.
+     *                     Default is 0.75.
+     */
+    lower?: pulumi.Input<number>;
+    /**
+     * Optimal occupancy of the allocated quota of memory for the shard. Specify the optimal occupancy of the allocated quota of memory for the shard.
+     *                     If the total memory usage of a shard is at this level,
+     *                     shard indexing backpressure doesn’t change the current allocated memory for that shard.
+     *                     Default is 0.85.
+     */
+    optimal?: pulumi.Input<number>;
+    /**
+     * Upper occupancy limit of the allocated quota of memory for the shard. Specify the upper occupancy limit of the allocated quota of memory for the shard.
+     *                     If the total memory usage of a shard is above this limit,
+     *                     shard indexing backpressure increases the current allocated memory for that shard.
+     *                     Default is 0.95.
+     */
+    upper?: pulumi.Input<number>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter {
+    node?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode>;
+    shard?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode {
+    /**
+     * Node soft limit. Define the percentage of the node-level memory
+     *                             threshold that acts as a soft indicator for strain on a node.
+     *                             Default is 0.7.
+     */
+    softLimit?: pulumi.Input<number>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard {
+    /**
+     * Shard min limit. Specify the minimum assigned quota for a new shard in any role (coordinator, primary, or replica).
+     *                             Shard indexing backpressure increases or decreases this allocated quota based on the inflow of traffic for the shard.
+     *                             Default is 0.001.
+     */
+    minLimit?: pulumi.Input<number>;
 }
 
 export interface ManagedDatabasePostgresqlComponent {
@@ -2277,6 +2838,10 @@ export interface ManagedDatabasePostgresqlProperties {
      * Migrate data from existing server.
      */
     migration?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesMigration>;
+    /**
+     * Chooses the algorithm for encrypting passwords.
+     */
+    passwordEncryption?: pulumi.Input<string>;
     /**
      * Sets the time interval to run pg_partman's scheduled tasks.
      */
@@ -2534,6 +3099,14 @@ export interface ManagedDatabaseRedisProperties {
      */
     automaticUtilityNetworkIpFilter?: pulumi.Input<boolean>;
     /**
+     * The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+     */
+    backupHour?: pulumi.Input<number>;
+    /**
+     * The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+     */
+    backupMinute?: pulumi.Input<number>;
+    /**
      * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
      */
     ipFilters?: pulumi.Input<pulumi.Input<string>[]>;
@@ -2682,6 +3255,196 @@ export interface ManagedDatabaseUserRedisAccessControl {
     keys?: pulumi.Input<string>;
 }
 
+export interface ManagedDatabaseUserValkeyAccessControl {
+    /**
+     * Set access control to all commands in specified categories.
+     */
+    categories?: pulumi.Input<string>;
+    /**
+     * Set access control to Pub/Sub channels.
+     */
+    channels?: pulumi.Input<string>;
+    /**
+     * Set access control to commands.
+     */
+    commands?: pulumi.Input<string>;
+    /**
+     * Set access control to keys.
+     */
+    keys?: pulumi.Input<string>;
+}
+
+export interface ManagedDatabaseValkeyComponent {
+    /**
+     * Type of the component
+     */
+    component?: pulumi.Input<string>;
+    /**
+     * Hostname of the component
+     */
+    host?: pulumi.Input<string>;
+    /**
+     * Port number of the component
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * Component network route type
+     */
+    route?: pulumi.Input<string>;
+    /**
+     * Usage of the component
+     */
+    usage?: pulumi.Input<string>;
+}
+
+export interface ManagedDatabaseValkeyNetwork {
+    /**
+     * Network family. Currently only `IPv4` is supported.
+     */
+    family: pulumi.Input<string>;
+    /**
+     * The name of the network. Must be unique within the service.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The type of the network. Must be private.
+     */
+    type: pulumi.Input<string>;
+    /**
+     * Private network UUID. Must reside in the same zone as the database.
+     */
+    uuid: pulumi.Input<string>;
+}
+
+export interface ManagedDatabaseValkeyNodeState {
+    /**
+     * Name plus a node iteration
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Role of the node
+     */
+    role?: pulumi.Input<string>;
+    /**
+     * State of the node
+     */
+    state?: pulumi.Input<string>;
+}
+
+export interface ManagedDatabaseValkeyProperties {
+    /**
+     * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+     */
+    automaticUtilityNetworkIpFilter?: pulumi.Input<boolean>;
+    /**
+     * The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+     */
+    backupHour?: pulumi.Input<number>;
+    /**
+     * The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+     */
+    backupMinute?: pulumi.Input<number>;
+    /**
+     * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+     */
+    ipFilters?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Migrate data from existing server.
+     */
+    migration?: pulumi.Input<inputs.ManagedDatabaseValkeyPropertiesMigration>;
+    /**
+     * Public Access. Allow access to the service from the public Internet.
+     */
+    publicAccess?: pulumi.Input<boolean>;
+    /**
+     * Service logging. Store logs for the service so that they are available in the HTTP API and console.
+     */
+    serviceLog?: pulumi.Input<boolean>;
+    /**
+     * Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+     */
+    valkeyAclChannelsDefault?: pulumi.Input<string>;
+    /**
+     * Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
+     */
+    valkeyIoThreads?: pulumi.Input<number>;
+    /**
+     * LFU maxmemory-policy counter decay time in minutes.
+     */
+    valkeyLfuDecayTime?: pulumi.Input<number>;
+    /**
+     * Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
+     */
+    valkeyLfuLogFactor?: pulumi.Input<number>;
+    /**
+     * Valkey maxmemory-policy.
+     */
+    valkeyMaxmemoryPolicy?: pulumi.Input<string>;
+    /**
+     * Set notify-keyspace-events option.
+     */
+    valkeyNotifyKeyspaceEvents?: pulumi.Input<string>;
+    /**
+     * Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
+     */
+    valkeyNumberOfDatabases?: pulumi.Input<number>;
+    /**
+     * Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+     */
+    valkeyPersistence?: pulumi.Input<string>;
+    /**
+     * Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
+     */
+    valkeyPubsubClientOutputBufferLimit?: pulumi.Input<number>;
+    /**
+     * Require SSL to access Valkey.
+     */
+    valkeySsl?: pulumi.Input<boolean>;
+    /**
+     * Valkey idle connection timeout in seconds.
+     */
+    valkeyTimeout?: pulumi.Input<number>;
+}
+
+export interface ManagedDatabaseValkeyPropertiesMigration {
+    /**
+     * Database name for bootstrapping the initial connection.
+     */
+    dbname?: pulumi.Input<string>;
+    /**
+     * Hostname or IP address of the server where to migrate data from.
+     */
+    host?: pulumi.Input<string>;
+    /**
+     * Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+     */
+    ignoreDbs?: pulumi.Input<string>;
+    /**
+     * Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+     */
+    ignoreRoles?: pulumi.Input<string>;
+    /**
+     * The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
+     */
+    method?: pulumi.Input<string>;
+    /**
+     * Password for authentication with the server where to migrate data from.
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * Port number of the server where to migrate data from.
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * The server where to migrate data from is secured with SSL.
+     */
+    ssl?: pulumi.Input<boolean>;
+    /**
+     * User name for authentication with the server where to migrate data from.
+     */
+    username?: pulumi.Input<string>;
+}
+
 export interface ManagedObjectStorageEndpoint {
     /**
      * Domain name of the endpoint.
@@ -2781,7 +3544,7 @@ export interface RouterStaticRoute {
 
 export interface ServerFirewallRulesFirewallRule {
     /**
-     * Action to take if the rule conditions are met
+     * Action to take if the rule conditions are met. Valid values `accept | drop`
      */
     action: pulumi.Input<string>;
     /**
@@ -2859,7 +3622,7 @@ export interface ServerLogin {
 
 export interface ServerNetworkInterface {
     /**
-     * 0-4 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+     * 0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
      */
     additionalIpAddresses?: pulumi.Input<pulumi.Input<inputs.ServerNetworkInterfaceAdditionalIpAddress>[]>;
     /**
@@ -2867,7 +3630,11 @@ export interface ServerNetworkInterface {
      */
     bootable?: pulumi.Input<boolean>;
     /**
-     * The assigned primary IP address.
+     * The interface index.
+     */
+    index?: pulumi.Input<number>;
+    /**
+     * The primary IP address of this interface.
      */
     ipAddress?: pulumi.Input<string>;
     /**
@@ -2879,11 +3646,11 @@ export interface ServerNetworkInterface {
      */
     ipAddressFloating?: pulumi.Input<boolean>;
     /**
-     * The assigned MAC address.
+     * The MAC address of the interface.
      */
     macAddress?: pulumi.Input<string>;
     /**
-     * The unique ID of a network to attach this network to.
+     * The UUID of the network to attach this interface to. Required for private network interfaces.
      */
     network?: pulumi.Input<string>;
     /**
@@ -2898,11 +3665,11 @@ export interface ServerNetworkInterface {
 
 export interface ServerNetworkInterfaceAdditionalIpAddress {
     /**
-     * The assigned additional IP address.
+     * An additional IP address for this interface.
      */
     ipAddress?: pulumi.Input<string>;
     /**
-     * The type of this additional IP address of this interface (one of `IPv4` or `IPv6`).
+     * The type of the additional IP address of this interface (one of `IPv4` or `IPv6`).
      */
     ipAddressFamily?: pulumi.Input<string>;
     /**
@@ -2915,11 +3682,11 @@ export interface ServerSimpleBackup {
     /**
      * Simple backup plan. Accepted values: daily, dailies, weeklies, monthlies.
      */
-    plan: pulumi.Input<string>;
+    plan?: pulumi.Input<string>;
     /**
      * Time of the day at which backup will be taken. Should be provided in a hhmm format (e.g. 2230).
      */
-    time: pulumi.Input<string>;
+    time?: pulumi.Input<string>;
 }
 
 export interface ServerStorageDevice {
@@ -2932,9 +3699,9 @@ export interface ServerStorageDevice {
      */
     addressPosition?: pulumi.Input<string>;
     /**
-     * A valid storage UUID
+     * The UUID of the storage to attach to the server.
      */
-    storage: pulumi.Input<string>;
+    storage?: pulumi.Input<string>;
     /**
      * The device type the storage will be attached as
      */
@@ -2977,9 +3744,9 @@ export interface ServerTemplate {
     /**
      * A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
      */
-    storage: pulumi.Input<string>;
+    storage?: pulumi.Input<string>;
     /**
-     * The storage tier to use
+     * The storage tier to use.
      */
     tier?: pulumi.Input<string>;
     /**

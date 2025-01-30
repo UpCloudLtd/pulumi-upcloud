@@ -56,18 +56,8 @@ type GetLoadBalancerDnsChallengeDomainResult struct {
 
 func GetLoadBalancerDnsChallengeDomainOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetLoadBalancerDnsChallengeDomainResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetLoadBalancerDnsChallengeDomainResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetLoadBalancerDnsChallengeDomainResult
-		secret, err := ctx.InvokePackageRaw("upcloud:index/getLoadBalancerDnsChallengeDomain:getLoadBalancerDnsChallengeDomain", nil, &rv, "", opts...)
-		if err != nil {
-			return GetLoadBalancerDnsChallengeDomainResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetLoadBalancerDnsChallengeDomainResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetLoadBalancerDnsChallengeDomainResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("upcloud:index/getLoadBalancerDnsChallengeDomain:getLoadBalancerDnsChallengeDomain", nil, GetLoadBalancerDnsChallengeDomainResultOutput{}, options).(GetLoadBalancerDnsChallengeDomainResultOutput), nil
 	}).(GetLoadBalancerDnsChallengeDomainResultOutput)
 }
 

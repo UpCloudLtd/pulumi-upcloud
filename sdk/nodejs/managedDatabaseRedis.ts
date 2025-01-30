@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * > Redis is deprecated in favor of Valkey. Please use Valkey for new key value store instances.
+ *
  * This resource represents Redis managed database. See UpCloud [Managed Databases](https://upcloud.com/products/managed-databases) product page for more details about the service.
  *
  * ## Example Usage
@@ -130,6 +132,10 @@ export class ManagedDatabaseRedis extends pulumi.CustomResource {
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
     /**
+     * If set to true, prevents the managed service from being powered off, or deleted.
+     */
+    public readonly terminationProtection!: pulumi.Output<boolean | undefined>;
+    /**
      * Title of a managed database instance
      */
     public readonly title!: pulumi.Output<string>;
@@ -172,6 +178,7 @@ export class ManagedDatabaseRedis extends pulumi.CustomResource {
             resourceInputs["serviceUri"] = state ? state.serviceUri : undefined;
             resourceInputs["serviceUsername"] = state ? state.serviceUsername : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
+            resourceInputs["terminationProtection"] = state ? state.terminationProtection : undefined;
             resourceInputs["title"] = state ? state.title : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
@@ -194,6 +201,7 @@ export class ManagedDatabaseRedis extends pulumi.CustomResource {
             resourceInputs["plan"] = args ? args.plan : undefined;
             resourceInputs["powered"] = args ? args.powered : undefined;
             resourceInputs["properties"] = args ? args.properties : undefined;
+            resourceInputs["terminationProtection"] = args ? args.terminationProtection : undefined;
             resourceInputs["title"] = args ? args.title : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["components"] = undefined /*out*/;
@@ -288,6 +296,10 @@ export interface ManagedDatabaseRedisState {
      */
     state?: pulumi.Input<string>;
     /**
+     * If set to true, prevents the managed service from being powered off, or deleted.
+     */
+    terminationProtection?: pulumi.Input<boolean>;
+    /**
      * Title of a managed database instance
      */
     title?: pulumi.Input<string>;
@@ -338,6 +350,10 @@ export interface ManagedDatabaseRedisArgs {
      * Database Engine properties for Redis
      */
     properties?: pulumi.Input<inputs.ManagedDatabaseRedisProperties>;
+    /**
+     * If set to true, prevents the managed service from being powered off, or deleted.
+     */
+    terminationProtection?: pulumi.Input<boolean>;
     /**
      * Title of a managed database instance
      */

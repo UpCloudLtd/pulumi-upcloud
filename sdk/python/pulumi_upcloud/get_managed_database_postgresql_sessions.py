@@ -141,7 +141,7 @@ def get_managed_database_postgresql_sessions_output(limit: Optional[pulumi.Input
                                                     order: Optional[pulumi.Input[Optional[str]]] = None,
                                                     service: Optional[pulumi.Input[str]] = None,
                                                     sessions: Optional[pulumi.Input[Optional[Sequence[Union['GetManagedDatabasePostgresqlSessionsSessionArgs', 'GetManagedDatabasePostgresqlSessionsSessionArgsDict']]]]] = None,
-                                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetManagedDatabasePostgresqlSessionsResult]:
+                                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetManagedDatabasePostgresqlSessionsResult]:
     """
     Current sessions of a PostgreSQL managed database
 
@@ -166,7 +166,7 @@ def get_managed_database_postgresql_sessions_output(limit: Optional[pulumi.Input
     __args__['order'] = order
     __args__['service'] = service
     __args__['sessions'] = sessions
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions', __args__, opts=opts, typ=GetManagedDatabasePostgresqlSessionsResult)
     return __ret__.apply(lambda __response__: GetManagedDatabasePostgresqlSessionsResult(
         id=pulumi.get(__response__, 'id'),

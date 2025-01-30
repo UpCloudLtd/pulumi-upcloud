@@ -22,9 +22,9 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly string? AddressPosition;
         /// <summary>
-        /// A valid storage UUID
+        /// The UUID of the storage to attach to the server.
         /// </summary>
-        public readonly string Storage;
+        public readonly string? Storage;
         /// <summary>
         /// The device type the storage will be attached as
         /// </summary>
@@ -36,7 +36,7 @@ namespace Pulumi.Upcloud.Outputs
 
             string? addressPosition,
 
-            string storage,
+            string? storage,
 
             string? type)
         {

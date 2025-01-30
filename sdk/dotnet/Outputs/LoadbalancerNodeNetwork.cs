@@ -13,13 +13,16 @@ namespace Pulumi.Upcloud.Outputs
     [OutputType]
     public sealed class LoadbalancerNodeNetwork
     {
+        /// <summary>
+        /// IP addresses attached to the network
+        /// </summary>
         public readonly ImmutableArray<Outputs.LoadbalancerNodeNetworkIpAddress> IpAddresses;
         /// <summary>
-        /// The name of the network.
+        /// The name of the network
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// The type of the network.
+        /// The type of the network
         /// </summary>
         public readonly string? Type;
 

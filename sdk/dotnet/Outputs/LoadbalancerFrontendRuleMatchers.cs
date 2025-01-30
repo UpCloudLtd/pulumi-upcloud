@@ -38,6 +38,14 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersHttpMethod> HttpMethods;
         /// <summary>
+        /// Matches by range of HTTP statuses.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersHttpStatusRange> HttpStatusRanges;
+        /// <summary>
+        /// Matches by HTTP status.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersHttpStatus> HttpStatuses;
+        /// <summary>
         /// Matches by number of healthy backend members.
         /// </summary>
         public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersNumMembersUp> NumMembersUps;
@@ -45,6 +53,14 @@ namespace Pulumi.Upcloud.Outputs
         /// Matches by URL path.
         /// </summary>
         public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersPath> Paths;
+        /// <summary>
+        /// Matches by HTTP request header value. Header name must be provided.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersRequestHeader> RequestHeaders;
+        /// <summary>
+        /// Matches by HTTP response header value. Header name must be provided.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersResponseHeader> ResponseHeaders;
         /// <summary>
         /// Matches by source IP address.
         /// </summary>
@@ -84,9 +100,17 @@ namespace Pulumi.Upcloud.Outputs
 
             ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersHttpMethod> httpMethods,
 
+            ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersHttpStatusRange> httpStatusRanges,
+
+            ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersHttpStatus> httpStatuses,
+
             ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersNumMembersUp> numMembersUps,
 
             ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersPath> paths,
+
+            ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersRequestHeader> requestHeaders,
+
+            ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersResponseHeader> responseHeaders,
 
             ImmutableArray<Outputs.LoadbalancerFrontendRuleMatchersSrcIp> srcIps,
 
@@ -106,8 +130,12 @@ namespace Pulumi.Upcloud.Outputs
             Headers = headers;
             Hosts = hosts;
             HttpMethods = httpMethods;
+            HttpStatusRanges = httpStatusRanges;
+            HttpStatuses = httpStatuses;
             NumMembersUps = numMembersUps;
             Paths = paths;
+            RequestHeaders = requestHeaders;
+            ResponseHeaders = responseHeaders;
             SrcIps = srcIps;
             SrcPortRanges = srcPortRanges;
             SrcPorts = srcPorts;

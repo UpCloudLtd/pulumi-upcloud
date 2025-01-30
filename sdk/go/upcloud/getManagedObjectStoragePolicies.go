@@ -36,21 +36,11 @@ type GetManagedObjectStoragePoliciesResult struct {
 }
 
 func GetManagedObjectStoragePoliciesOutput(ctx *pulumi.Context, args GetManagedObjectStoragePoliciesOutputArgs, opts ...pulumi.InvokeOption) GetManagedObjectStoragePoliciesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetManagedObjectStoragePoliciesResultOutput, error) {
 			args := v.(GetManagedObjectStoragePoliciesArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetManagedObjectStoragePoliciesResult
-			secret, err := ctx.InvokePackageRaw("upcloud:index/getManagedObjectStoragePolicies:getManagedObjectStoragePolicies", args, &rv, "", opts...)
-			if err != nil {
-				return GetManagedObjectStoragePoliciesResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetManagedObjectStoragePoliciesResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetManagedObjectStoragePoliciesResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("upcloud:index/getManagedObjectStoragePolicies:getManagedObjectStoragePolicies", args, GetManagedObjectStoragePoliciesResultOutput{}, options).(GetManagedObjectStoragePoliciesResultOutput), nil
 		}).(GetManagedObjectStoragePoliciesResultOutput)
 }
 

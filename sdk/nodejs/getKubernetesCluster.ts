@@ -36,7 +36,7 @@ export interface GetKubernetesClusterResult {
 /**
  * ## Example Usage
  */
-export function getKubernetesClusterOutput(args: GetKubernetesClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubernetesClusterResult> {
+export function getKubernetesClusterOutput(args: GetKubernetesClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetKubernetesClusterResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("upcloud:index/getKubernetesCluster:getKubernetesCluster", {
         "id": args.id,

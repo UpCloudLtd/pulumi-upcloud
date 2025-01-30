@@ -14,58 +14,6 @@ import (
 
 // The UpCloud server resource allows the creation, update and deletion of a [cloud server](https://upcloud.com/products/cloud-servers).
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := upcloud.NewServer(ctx, "example", &upcloud.ServerArgs{
-//				Hostname: pulumi.String("terraform.example.tld"),
-//				Labels: pulumi.StringMap{
-//					"env":        pulumi.String("dev"),
-//					"production": pulumi.String("false"),
-//				},
-//				Login: &upcloud.ServerLoginArgs{
-//					Keys: pulumi.StringArray{
-//						pulumi.String("<YOUR SSH PUBLIC KEY>"),
-//					},
-//					User: pulumi.String("myusername"),
-//				},
-//				NetworkInterfaces: upcloud.ServerNetworkInterfaceArray{
-//					&upcloud.ServerNetworkInterfaceArgs{
-//						Type: pulumi.String("public"),
-//					},
-//				},
-//				Plan: pulumi.String("1xCPU-1GB"),
-//				Template: &upcloud.ServerTemplateArgs{
-//					BackupRule: &upcloud.ServerTemplateBackupRuleArgs{
-//						Interval:  pulumi.String("daily"),
-//						Retention: pulumi.Int(8),
-//						Time:      pulumi.String("0100"),
-//					},
-//					Size:    pulumi.Int(25),
-//					Storage: pulumi.String("Ubuntu Server 20.04 LTS (Focal Fossa)"),
-//				},
-//				Zone: pulumi.String("de-fra1"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // ```sh
@@ -76,24 +24,29 @@ type Server struct {
 
 	// The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
 	BootOrder pulumi.StringOutput `pulumi:"bootOrder"`
-	// The number of CPU for the server
+	// The number of CPU cores for the server
 	Cpu pulumi.IntOutput `pulumi:"cpu"`
 	// Are firewall rules active for the server
-	Firewall pulumi.BoolPtrOutput `pulumi:"firewall"`
+	Firewall pulumi.BoolOutput `pulumi:"firewall"`
 	// Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
 	// hosts
 	Host pulumi.IntPtrOutput `pulumi:"host"`
-	// A valid domain name
+	// The hostname of the server.
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// User defined key-value pairs to classify the server.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Configure access credentials to the server
 	Login ServerLoginPtrOutput `pulumi:"login"`
-	// The size of memory for the server (in megabytes)
+	// The amount of memory for the server (in megabytes)
 	Mem pulumi.IntOutput `pulumi:"mem"`
-	// Is the metadata service active for the server
+	// Is metadata service active for the server
 	Metadata pulumi.BoolPtrOutput `pulumi:"metadata"`
-	// One or more blocks describing the network interfaces of the server.
+	// One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+	// interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid
+	// public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+	// diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+	// explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+	// middle of the list.
 	NetworkInterfaces ServerNetworkInterfaceArrayOutput `pulumi:"networkInterfaces"`
 	// The model of the server's network interfaces
 	NicModel pulumi.StringOutput `pulumi:"nicModel"`
@@ -104,16 +57,16 @@ type Server struct {
 	// has been set to non-zero value.
 	ServerGroup  pulumi.StringPtrOutput      `pulumi:"serverGroup"`
 	SimpleBackup ServerSimpleBackupPtrOutput `pulumi:"simpleBackup"`
-	// A list of storage devices associated with the server
+	// A set of storage devices associated with the server
 	StorageDevices ServerStorageDeviceArrayOutput `pulumi:"storageDevices"`
 	// The server related tags
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// Block describing the preconfigured operating system
 	Template ServerTemplatePtrOutput `pulumi:"template"`
-	// A timezone identifier, e.g. `Europe/Helsinki`
+	// The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
 	Timezone pulumi.StringOutput `pulumi:"timezone"`
-	// A short, informational description
-	Title pulumi.StringPtrOutput `pulumi:"title"`
+	// A short, informational description of the server.
+	Title pulumi.StringOutput `pulumi:"title"`
 	// Defines URL for a server setup script, or the script body itself
 	UserData pulumi.StringPtrOutput `pulumi:"userData"`
 	// The model of the server's video interface
@@ -131,9 +84,6 @@ func NewServer(ctx *pulumi.Context,
 
 	if args.Hostname == nil {
 		return nil, errors.New("invalid value for required argument 'Hostname'")
-	}
-	if args.NetworkInterfaces == nil {
-		return nil, errors.New("invalid value for required argument 'NetworkInterfaces'")
 	}
 	if args.Zone == nil {
 		return nil, errors.New("invalid value for required argument 'Zone'")
@@ -163,24 +113,29 @@ func GetServer(ctx *pulumi.Context,
 type serverState struct {
 	// The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
 	BootOrder *string `pulumi:"bootOrder"`
-	// The number of CPU for the server
+	// The number of CPU cores for the server
 	Cpu *int `pulumi:"cpu"`
 	// Are firewall rules active for the server
 	Firewall *bool `pulumi:"firewall"`
 	// Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
 	// hosts
 	Host *int `pulumi:"host"`
-	// A valid domain name
+	// The hostname of the server.
 	Hostname *string `pulumi:"hostname"`
 	// User defined key-value pairs to classify the server.
 	Labels map[string]string `pulumi:"labels"`
 	// Configure access credentials to the server
 	Login *ServerLogin `pulumi:"login"`
-	// The size of memory for the server (in megabytes)
+	// The amount of memory for the server (in megabytes)
 	Mem *int `pulumi:"mem"`
-	// Is the metadata service active for the server
+	// Is metadata service active for the server
 	Metadata *bool `pulumi:"metadata"`
-	// One or more blocks describing the network interfaces of the server.
+	// One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+	// interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid
+	// public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+	// diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+	// explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+	// middle of the list.
 	NetworkInterfaces []ServerNetworkInterface `pulumi:"networkInterfaces"`
 	// The model of the server's network interfaces
 	NicModel *string `pulumi:"nicModel"`
@@ -191,15 +146,15 @@ type serverState struct {
 	// has been set to non-zero value.
 	ServerGroup  *string             `pulumi:"serverGroup"`
 	SimpleBackup *ServerSimpleBackup `pulumi:"simpleBackup"`
-	// A list of storage devices associated with the server
+	// A set of storage devices associated with the server
 	StorageDevices []ServerStorageDevice `pulumi:"storageDevices"`
 	// The server related tags
 	Tags []string `pulumi:"tags"`
 	// Block describing the preconfigured operating system
 	Template *ServerTemplate `pulumi:"template"`
-	// A timezone identifier, e.g. `Europe/Helsinki`
+	// The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
 	Timezone *string `pulumi:"timezone"`
-	// A short, informational description
+	// A short, informational description of the server.
 	Title *string `pulumi:"title"`
 	// Defines URL for a server setup script, or the script body itself
 	UserData *string `pulumi:"userData"`
@@ -212,24 +167,29 @@ type serverState struct {
 type ServerState struct {
 	// The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
 	BootOrder pulumi.StringPtrInput
-	// The number of CPU for the server
+	// The number of CPU cores for the server
 	Cpu pulumi.IntPtrInput
 	// Are firewall rules active for the server
 	Firewall pulumi.BoolPtrInput
 	// Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
 	// hosts
 	Host pulumi.IntPtrInput
-	// A valid domain name
+	// The hostname of the server.
 	Hostname pulumi.StringPtrInput
 	// User defined key-value pairs to classify the server.
 	Labels pulumi.StringMapInput
 	// Configure access credentials to the server
 	Login ServerLoginPtrInput
-	// The size of memory for the server (in megabytes)
+	// The amount of memory for the server (in megabytes)
 	Mem pulumi.IntPtrInput
-	// Is the metadata service active for the server
+	// Is metadata service active for the server
 	Metadata pulumi.BoolPtrInput
-	// One or more blocks describing the network interfaces of the server.
+	// One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+	// interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid
+	// public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+	// diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+	// explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+	// middle of the list.
 	NetworkInterfaces ServerNetworkInterfaceArrayInput
 	// The model of the server's network interfaces
 	NicModel pulumi.StringPtrInput
@@ -240,15 +200,15 @@ type ServerState struct {
 	// has been set to non-zero value.
 	ServerGroup  pulumi.StringPtrInput
 	SimpleBackup ServerSimpleBackupPtrInput
-	// A list of storage devices associated with the server
+	// A set of storage devices associated with the server
 	StorageDevices ServerStorageDeviceArrayInput
 	// The server related tags
 	Tags pulumi.StringArrayInput
 	// Block describing the preconfigured operating system
 	Template ServerTemplatePtrInput
-	// A timezone identifier, e.g. `Europe/Helsinki`
+	// The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
 	Timezone pulumi.StringPtrInput
-	// A short, informational description
+	// A short, informational description of the server.
 	Title pulumi.StringPtrInput
 	// Defines URL for a server setup script, or the script body itself
 	UserData pulumi.StringPtrInput
@@ -265,24 +225,29 @@ func (ServerState) ElementType() reflect.Type {
 type serverArgs struct {
 	// The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
 	BootOrder *string `pulumi:"bootOrder"`
-	// The number of CPU for the server
+	// The number of CPU cores for the server
 	Cpu *int `pulumi:"cpu"`
 	// Are firewall rules active for the server
 	Firewall *bool `pulumi:"firewall"`
 	// Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
 	// hosts
 	Host *int `pulumi:"host"`
-	// A valid domain name
+	// The hostname of the server.
 	Hostname string `pulumi:"hostname"`
 	// User defined key-value pairs to classify the server.
 	Labels map[string]string `pulumi:"labels"`
 	// Configure access credentials to the server
 	Login *ServerLogin `pulumi:"login"`
-	// The size of memory for the server (in megabytes)
+	// The amount of memory for the server (in megabytes)
 	Mem *int `pulumi:"mem"`
-	// Is the metadata service active for the server
+	// Is metadata service active for the server
 	Metadata *bool `pulumi:"metadata"`
-	// One or more blocks describing the network interfaces of the server.
+	// One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+	// interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid
+	// public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+	// diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+	// explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+	// middle of the list.
 	NetworkInterfaces []ServerNetworkInterface `pulumi:"networkInterfaces"`
 	// The model of the server's network interfaces
 	NicModel *string `pulumi:"nicModel"`
@@ -293,15 +258,15 @@ type serverArgs struct {
 	// has been set to non-zero value.
 	ServerGroup  *string             `pulumi:"serverGroup"`
 	SimpleBackup *ServerSimpleBackup `pulumi:"simpleBackup"`
-	// A list of storage devices associated with the server
+	// A set of storage devices associated with the server
 	StorageDevices []ServerStorageDevice `pulumi:"storageDevices"`
 	// The server related tags
 	Tags []string `pulumi:"tags"`
 	// Block describing the preconfigured operating system
 	Template *ServerTemplate `pulumi:"template"`
-	// A timezone identifier, e.g. `Europe/Helsinki`
+	// The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
 	Timezone *string `pulumi:"timezone"`
-	// A short, informational description
+	// A short, informational description of the server.
 	Title *string `pulumi:"title"`
 	// Defines URL for a server setup script, or the script body itself
 	UserData *string `pulumi:"userData"`
@@ -315,24 +280,29 @@ type serverArgs struct {
 type ServerArgs struct {
 	// The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
 	BootOrder pulumi.StringPtrInput
-	// The number of CPU for the server
+	// The number of CPU cores for the server
 	Cpu pulumi.IntPtrInput
 	// Are firewall rules active for the server
 	Firewall pulumi.BoolPtrInput
 	// Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
 	// hosts
 	Host pulumi.IntPtrInput
-	// A valid domain name
+	// The hostname of the server.
 	Hostname pulumi.StringInput
 	// User defined key-value pairs to classify the server.
 	Labels pulumi.StringMapInput
 	// Configure access credentials to the server
 	Login ServerLoginPtrInput
-	// The size of memory for the server (in megabytes)
+	// The amount of memory for the server (in megabytes)
 	Mem pulumi.IntPtrInput
-	// Is the metadata service active for the server
+	// Is metadata service active for the server
 	Metadata pulumi.BoolPtrInput
-	// One or more blocks describing the network interfaces of the server.
+	// One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+	// interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid
+	// public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+	// diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+	// explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+	// middle of the list.
 	NetworkInterfaces ServerNetworkInterfaceArrayInput
 	// The model of the server's network interfaces
 	NicModel pulumi.StringPtrInput
@@ -343,15 +313,15 @@ type ServerArgs struct {
 	// has been set to non-zero value.
 	ServerGroup  pulumi.StringPtrInput
 	SimpleBackup ServerSimpleBackupPtrInput
-	// A list of storage devices associated with the server
+	// A set of storage devices associated with the server
 	StorageDevices ServerStorageDeviceArrayInput
 	// The server related tags
 	Tags pulumi.StringArrayInput
 	// Block describing the preconfigured operating system
 	Template ServerTemplatePtrInput
-	// A timezone identifier, e.g. `Europe/Helsinki`
+	// The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
 	Timezone pulumi.StringPtrInput
-	// A short, informational description
+	// A short, informational description of the server.
 	Title pulumi.StringPtrInput
 	// Defines URL for a server setup script, or the script body itself
 	UserData pulumi.StringPtrInput
@@ -453,14 +423,14 @@ func (o ServerOutput) BootOrder() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.BootOrder }).(pulumi.StringOutput)
 }
 
-// The number of CPU for the server
+// The number of CPU cores for the server
 func (o ServerOutput) Cpu() pulumi.IntOutput {
 	return o.ApplyT(func(v *Server) pulumi.IntOutput { return v.Cpu }).(pulumi.IntOutput)
 }
 
 // Are firewall rules active for the server
-func (o ServerOutput) Firewall() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Server) pulumi.BoolPtrOutput { return v.Firewall }).(pulumi.BoolPtrOutput)
+func (o ServerOutput) Firewall() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Server) pulumi.BoolOutput { return v.Firewall }).(pulumi.BoolOutput)
 }
 
 // Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
@@ -469,7 +439,7 @@ func (o ServerOutput) Host() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Server) pulumi.IntPtrOutput { return v.Host }).(pulumi.IntPtrOutput)
 }
 
-// A valid domain name
+// The hostname of the server.
 func (o ServerOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
 }
@@ -484,17 +454,22 @@ func (o ServerOutput) Login() ServerLoginPtrOutput {
 	return o.ApplyT(func(v *Server) ServerLoginPtrOutput { return v.Login }).(ServerLoginPtrOutput)
 }
 
-// The size of memory for the server (in megabytes)
+// The amount of memory for the server (in megabytes)
 func (o ServerOutput) Mem() pulumi.IntOutput {
 	return o.ApplyT(func(v *Server) pulumi.IntOutput { return v.Mem }).(pulumi.IntOutput)
 }
 
-// Is the metadata service active for the server
+// Is metadata service active for the server
 func (o ServerOutput) Metadata() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Server) pulumi.BoolPtrOutput { return v.Metadata }).(pulumi.BoolPtrOutput)
 }
 
-// One or more blocks describing the network interfaces of the server.
+// One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+// interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid
+// public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+// diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+// explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+// middle of the list.
 func (o ServerOutput) NetworkInterfaces() ServerNetworkInterfaceArrayOutput {
 	return o.ApplyT(func(v *Server) ServerNetworkInterfaceArrayOutput { return v.NetworkInterfaces }).(ServerNetworkInterfaceArrayOutput)
 }
@@ -520,7 +495,7 @@ func (o ServerOutput) SimpleBackup() ServerSimpleBackupPtrOutput {
 	return o.ApplyT(func(v *Server) ServerSimpleBackupPtrOutput { return v.SimpleBackup }).(ServerSimpleBackupPtrOutput)
 }
 
-// A list of storage devices associated with the server
+// A set of storage devices associated with the server
 func (o ServerOutput) StorageDevices() ServerStorageDeviceArrayOutput {
 	return o.ApplyT(func(v *Server) ServerStorageDeviceArrayOutput { return v.StorageDevices }).(ServerStorageDeviceArrayOutput)
 }
@@ -535,14 +510,14 @@ func (o ServerOutput) Template() ServerTemplatePtrOutput {
 	return o.ApplyT(func(v *Server) ServerTemplatePtrOutput { return v.Template }).(ServerTemplatePtrOutput)
 }
 
-// A timezone identifier, e.g. `Europe/Helsinki`
+// The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
 func (o ServerOutput) Timezone() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Timezone }).(pulumi.StringOutput)
 }
 
-// A short, informational description
-func (o ServerOutput) Title() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Server) pulumi.StringPtrOutput { return v.Title }).(pulumi.StringPtrOutput)
+// A short, informational description of the server.
+func (o ServerOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Title }).(pulumi.StringOutput)
 }
 
 // Defines URL for a server setup script, or the script body itself

@@ -22,11 +22,11 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly string Family;
         /// <summary>
-        /// Network identifier.
+        /// The unique identifier of the network.
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// The name of the network must be unique within the service.
+        /// The name of the network. Must be unique within the service.
         /// </summary>
         public readonly string Name;
         /// <summary>

@@ -77,7 +77,7 @@ type Loadbalancer struct {
 	// Backends are groups of customer servers whose traffic should be balanced.
 	Backends pulumi.StringArrayOutput `pulumi:"backends"`
 	// The service configured status indicates the service's current intended status. Managed by the customer.
-	ConfiguredStatus pulumi.StringPtrOutput `pulumi:"configuredStatus"`
+	ConfiguredStatus pulumi.StringOutput `pulumi:"configuredStatus"`
 	// DNS name of the load balancer
 	//
 	// Deprecated: Use 'networks' to get network DNS name
@@ -94,12 +94,12 @@ type Loadbalancer struct {
 	// of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
 	// HH:MM:SSZ, for example `20:01:01Z`.
 	MaintenanceTime pulumi.StringOutput `pulumi:"maintenanceTime"`
-	// The name of the service must be unique within customer account.
+	// The name of the service. Must be unique within customer account.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Private network UUID where traffic will be routed. Must reside in load balancer zone.
 	//
 	// Deprecated: Use 'networks' to define networks attached to load balancer
-	Network pulumi.StringPtrOutput `pulumi:"network"`
+	Network pulumi.StringOutput `pulumi:"network"`
 	// Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
 	Networks LoadbalancerNetworkArrayOutput `pulumi:"networks"`
 	// Nodes are instances running load balancer service
@@ -108,7 +108,7 @@ type Loadbalancer struct {
 	OperationalState pulumi.StringOutput `pulumi:"operationalState"`
 	// Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
 	Plan pulumi.StringOutput `pulumi:"plan"`
-	// Domain Name Resolvers must be configured in case of customer uses dynamic type members
+	// Domain Name Resolvers.
 	Resolvers pulumi.StringArrayOutput `pulumi:"resolvers"`
 	// Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -170,7 +170,7 @@ type loadbalancerState struct {
 	// of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
 	// HH:MM:SSZ, for example `20:01:01Z`.
 	MaintenanceTime *string `pulumi:"maintenanceTime"`
-	// The name of the service must be unique within customer account.
+	// The name of the service. Must be unique within customer account.
 	Name *string `pulumi:"name"`
 	// Private network UUID where traffic will be routed. Must reside in load balancer zone.
 	//
@@ -184,7 +184,7 @@ type loadbalancerState struct {
 	OperationalState *string `pulumi:"operationalState"`
 	// Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
 	Plan *string `pulumi:"plan"`
-	// Domain Name Resolvers must be configured in case of customer uses dynamic type members
+	// Domain Name Resolvers.
 	Resolvers []string `pulumi:"resolvers"`
 	// Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
 	Zone *string `pulumi:"zone"`
@@ -211,7 +211,7 @@ type LoadbalancerState struct {
 	// of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
 	// HH:MM:SSZ, for example `20:01:01Z`.
 	MaintenanceTime pulumi.StringPtrInput
-	// The name of the service must be unique within customer account.
+	// The name of the service. Must be unique within customer account.
 	Name pulumi.StringPtrInput
 	// Private network UUID where traffic will be routed. Must reside in load balancer zone.
 	//
@@ -225,7 +225,7 @@ type LoadbalancerState struct {
 	OperationalState pulumi.StringPtrInput
 	// Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
 	Plan pulumi.StringPtrInput
-	// Domain Name Resolvers must be configured in case of customer uses dynamic type members
+	// Domain Name Resolvers.
 	Resolvers pulumi.StringArrayInput
 	// Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringPtrInput
@@ -248,7 +248,7 @@ type loadbalancerArgs struct {
 	// of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
 	// HH:MM:SSZ, for example `20:01:01Z`.
 	MaintenanceTime *string `pulumi:"maintenanceTime"`
-	// The name of the service must be unique within customer account.
+	// The name of the service. Must be unique within customer account.
 	Name *string `pulumi:"name"`
 	// Private network UUID where traffic will be routed. Must reside in load balancer zone.
 	//
@@ -276,7 +276,7 @@ type LoadbalancerArgs struct {
 	// of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
 	// HH:MM:SSZ, for example `20:01:01Z`.
 	MaintenanceTime pulumi.StringPtrInput
-	// The name of the service must be unique within customer account.
+	// The name of the service. Must be unique within customer account.
 	Name pulumi.StringPtrInput
 	// Private network UUID where traffic will be routed. Must reside in load balancer zone.
 	//
@@ -383,8 +383,8 @@ func (o LoadbalancerOutput) Backends() pulumi.StringArrayOutput {
 }
 
 // The service configured status indicates the service's current intended status. Managed by the customer.
-func (o LoadbalancerOutput) ConfiguredStatus() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Loadbalancer) pulumi.StringPtrOutput { return v.ConfiguredStatus }).(pulumi.StringPtrOutput)
+func (o LoadbalancerOutput) ConfiguredStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.ConfiguredStatus }).(pulumi.StringOutput)
 }
 
 // DNS name of the load balancer
@@ -418,7 +418,7 @@ func (o LoadbalancerOutput) MaintenanceTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.MaintenanceTime }).(pulumi.StringOutput)
 }
 
-// The name of the service must be unique within customer account.
+// The name of the service. Must be unique within customer account.
 func (o LoadbalancerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -426,8 +426,8 @@ func (o LoadbalancerOutput) Name() pulumi.StringOutput {
 // Private network UUID where traffic will be routed. Must reside in load balancer zone.
 //
 // Deprecated: Use 'networks' to define networks attached to load balancer
-func (o LoadbalancerOutput) Network() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Loadbalancer) pulumi.StringPtrOutput { return v.Network }).(pulumi.StringPtrOutput)
+func (o LoadbalancerOutput) Network() pulumi.StringOutput {
+	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Network }).(pulumi.StringOutput)
 }
 
 // Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
@@ -450,7 +450,7 @@ func (o LoadbalancerOutput) Plan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Plan }).(pulumi.StringOutput)
 }
 
-// Domain Name Resolvers must be configured in case of customer uses dynamic type members
+// Domain Name Resolvers.
 func (o LoadbalancerOutput) Resolvers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringArrayOutput { return v.Resolvers }).(pulumi.StringArrayOutput)
 }

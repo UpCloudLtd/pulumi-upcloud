@@ -247,7 +247,7 @@ def get_storage_output(access_type: Optional[pulumi.Input[Optional[str]]] = None
                        title: Optional[pulumi.Input[Optional[str]]] = None,
                        type: Optional[pulumi.Input[Optional[str]]] = None,
                        zone: Optional[pulumi.Input[Optional[str]]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStorageResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStorageResult]:
     """
     Provides information on UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.
 
@@ -294,7 +294,7 @@ def get_storage_output(access_type: Optional[pulumi.Input[Optional[str]]] = None
     __args__['title'] = title
     __args__['type'] = type
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('upcloud:index/getStorage:getStorage', __args__, opts=opts, typ=GetStorageResult)
     return __ret__.apply(lambda __response__: GetStorageResult(
         access_type=pulumi.get(__response__, 'access_type'),

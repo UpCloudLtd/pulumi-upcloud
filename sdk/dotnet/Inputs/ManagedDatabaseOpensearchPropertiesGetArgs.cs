@@ -36,9 +36,6 @@ namespace Pulumi.Upcloud.Inputs
         [Input("automaticUtilityNetworkIpFilter")]
         public Input<bool>? AutomaticUtilityNetworkIpFilter { get; set; }
 
-        [Input("azureMigration")]
-        public Input<Inputs.ManagedDatabaseOpensearchPropertiesAzureMigrationGetArgs>? AzureMigration { get; set; }
-
         /// <summary>
         /// Controls the number of shards allowed in the cluster per data node.
         /// </summary>
@@ -46,16 +43,31 @@ namespace Pulumi.Upcloud.Inputs
         public Input<int>? ClusterMaxShardsPerNode { get; set; }
 
         /// <summary>
-        /// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
+        /// When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
+        /// </summary>
+        [Input("clusterRoutingAllocationBalancePreferPrimary")]
+        public Input<bool>? ClusterRoutingAllocationBalancePreferPrimary { get; set; }
+
+        /// <summary>
+        /// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
         /// </summary>
         [Input("clusterRoutingAllocationNodeConcurrentRecoveries")]
         public Input<int>? ClusterRoutingAllocationNodeConcurrentRecoveries { get; set; }
+
+        [Input("clusterSearchRequestSlowlog")]
+        public Input<Inputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogGetArgs>? ClusterSearchRequestSlowlog { get; set; }
 
         /// <summary>
         /// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
         /// </summary>
         [Input("customDomain")]
         public Input<string>? CustomDomain { get; set; }
+
+        /// <summary>
+        /// Elasticsearch major version.
+        /// </summary>
+        [Input("elasticsearchVersion")]
+        public Input<string>? ElasticsearchVersion { get; set; }
 
         /// <summary>
         /// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
@@ -86,13 +98,16 @@ namespace Pulumi.Upcloud.Inputs
         public Input<string>? EmailSenderUsername { get; set; }
 
         /// <summary>
+        /// Enable remote-backed storage.
+        /// </summary>
+        [Input("enableRemoteBackedStorage")]
+        public Input<bool>? EnableRemoteBackedStorage { get; set; }
+
+        /// <summary>
         /// Enable/Disable security audit.
         /// </summary>
         [Input("enableSecurityAudit")]
         public Input<bool>? EnableSecurityAudit { get; set; }
-
-        [Input("gcsMigration")]
-        public Input<Inputs.ManagedDatabaseOpensearchPropertiesGcsMigrationGetArgs>? GcsMigration { get; set; }
 
         /// <summary>
         /// Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
@@ -292,9 +307,6 @@ namespace Pulumi.Upcloud.Inputs
             set => _reindexRemoteWhitelists = value;
         }
 
-        [Input("s3Migration")]
-        public Input<Inputs.ManagedDatabaseOpensearchPropertiesS3MigrationGetArgs>? S3Migration { get; set; }
-
         /// <summary>
         /// OpenSearch SAML configuration.
         /// </summary>
@@ -308,16 +320,37 @@ namespace Pulumi.Upcloud.Inputs
         public Input<string>? ScriptMaxCompilationsRate { get; set; }
 
         /// <summary>
+        /// Search Backpressure Settings.
+        /// </summary>
+        [Input("searchBackpressure")]
+        public Input<Inputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureGetArgs>? SearchBackpressure { get; set; }
+
+        [Input("searchInsightsTopQueries")]
+        public Input<Inputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesGetArgs>? SearchInsightsTopQueries { get; set; }
+
+        /// <summary>
         /// Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
         /// </summary>
         [Input("searchMaxBuckets")]
         public Input<int>? SearchMaxBuckets { get; set; }
 
         /// <summary>
+        /// Segment Replication Backpressure Settings.
+        /// </summary>
+        [Input("segrep")]
+        public Input<Inputs.ManagedDatabaseOpensearchPropertiesSegrepGetArgs>? Segrep { get; set; }
+
+        /// <summary>
         /// Service logging. Store logs for the service so that they are available in the HTTP API and console.
         /// </summary>
         [Input("serviceLog")]
         public Input<bool>? ServiceLog { get; set; }
+
+        /// <summary>
+        /// Shard indexing back pressure settings.
+        /// </summary>
+        [Input("shardIndexingPressure")]
+        public Input<Inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressureGetArgs>? ShardIndexingPressure { get; set; }
 
         /// <summary>
         /// analyze thread pool queue size. Size for the thread pool queue. See documentation for exact details.

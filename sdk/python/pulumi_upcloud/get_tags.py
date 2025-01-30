@@ -70,12 +70,12 @@ def get_tags(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTagsRes
     return AwaitableGetTagsResult(
         id=pulumi.get(__ret__, 'id'),
         tags=pulumi.get(__ret__, 'tags'))
-def get_tags_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTagsResult]:
+def get_tags_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTagsResult]:
     """
     Data-source is deprecated.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('upcloud:index/getTags:getTags', __args__, opts=opts, typ=GetTagsResult)
     return __ret__.apply(lambda __response__: GetTagsResult(
         id=pulumi.get(__response__, 'id'),

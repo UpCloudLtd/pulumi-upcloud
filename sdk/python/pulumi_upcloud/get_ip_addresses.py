@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetIpAddressesResult',
@@ -37,14 +38,14 @@ class GetIpAddressesResult:
 
     @property
     @pulumi.getter
-    def addresses(self) -> Sequence['outputs.GetIpAddressesAddressResult']:
+    def addresses(self) -> Optional[Sequence['outputs.GetIpAddressesAddressResult']]:
         return pulumi.get(self, "addresses")
 
     @property
     @pulumi.getter
     def id(self) -> str:
         """
-        The provider-assigned unique ID for this managed resource.
+        ID of the resource.
         """
         return pulumi.get(self, "id")
 
@@ -59,7 +60,8 @@ class AwaitableGetIpAddressesResult(GetIpAddressesResult):
             id=self.id)
 
 
-def get_ip_addresses(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpAddressesResult:
+def get_ip_addresses(addresses: Optional[Sequence[Union['GetIpAddressesAddressArgs', 'GetIpAddressesAddressArgsDict']]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpAddressesResult:
     """
     Returns a set of IP Addresses that are associated with the UpCloud account.
 
@@ -73,13 +75,15 @@ def get_ip_addresses(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     ```
     """
     __args__ = dict()
+    __args__['addresses'] = addresses
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('upcloud:index/getIpAddresses:getIpAddresses', __args__, opts=opts, typ=GetIpAddressesResult).value
 
     return AwaitableGetIpAddressesResult(
         addresses=pulumi.get(__ret__, 'addresses'),
         id=pulumi.get(__ret__, 'id'))
-def get_ip_addresses_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIpAddressesResult]:
+def get_ip_addresses_output(addresses: Optional[pulumi.Input[Optional[Sequence[Union['GetIpAddressesAddressArgs', 'GetIpAddressesAddressArgsDict']]]]] = None,
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpAddressesResult]:
     """
     Returns a set of IP Addresses that are associated with the UpCloud account.
 
@@ -93,7 +97,8 @@ def get_ip_addresses_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulu
     ```
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __args__['addresses'] = addresses
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('upcloud:index/getIpAddresses:getIpAddresses', __args__, opts=opts, typ=GetIpAddressesResult)
     return __ret__.apply(lambda __response__: GetIpAddressesResult(
         addresses=pulumi.get(__response__, 'addresses'),

@@ -76,21 +76,11 @@ type GetManagedDatabaseMysqlSessionsResult struct {
 }
 
 func GetManagedDatabaseMysqlSessionsOutput(ctx *pulumi.Context, args GetManagedDatabaseMysqlSessionsOutputArgs, opts ...pulumi.InvokeOption) GetManagedDatabaseMysqlSessionsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetManagedDatabaseMysqlSessionsResultOutput, error) {
 			args := v.(GetManagedDatabaseMysqlSessionsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetManagedDatabaseMysqlSessionsResult
-			secret, err := ctx.InvokePackageRaw("upcloud:index/getManagedDatabaseMysqlSessions:getManagedDatabaseMysqlSessions", args, &rv, "", opts...)
-			if err != nil {
-				return GetManagedDatabaseMysqlSessionsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetManagedDatabaseMysqlSessionsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetManagedDatabaseMysqlSessionsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("upcloud:index/getManagedDatabaseMysqlSessions:getManagedDatabaseMysqlSessions", args, GetManagedDatabaseMysqlSessionsResultOutput{}, options).(GetManagedDatabaseMysqlSessionsResultOutput), nil
 		}).(GetManagedDatabaseMysqlSessionsResultOutput)
 }
 

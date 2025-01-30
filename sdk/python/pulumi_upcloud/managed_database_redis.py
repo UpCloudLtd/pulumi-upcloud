@@ -30,7 +30,8 @@ class ManagedDatabaseRedisArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseRedisNetworkArgs']]]] = None,
                  powered: Optional[pulumi.Input[bool]] = None,
-                 properties: Optional[pulumi.Input['ManagedDatabaseRedisPropertiesArgs']] = None):
+                 properties: Optional[pulumi.Input['ManagedDatabaseRedisPropertiesArgs']] = None,
+                 termination_protection: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a ManagedDatabaseRedis resource.
         :param pulumi.Input[str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
@@ -44,6 +45,7 @@ class ManagedDatabaseRedisArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseRedisNetworkArgs']]] networks: Private networks attached to the managed database
         :param pulumi.Input[bool] powered: The administrative power state of the service
         :param pulumi.Input['ManagedDatabaseRedisPropertiesArgs'] properties: Database Engine properties for Redis
+        :param pulumi.Input[bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
         """
         pulumi.set(__self__, "plan", plan)
         pulumi.set(__self__, "title", title)
@@ -62,6 +64,8 @@ class ManagedDatabaseRedisArgs:
             pulumi.set(__self__, "powered", powered)
         if properties is not None:
             pulumi.set(__self__, "properties", properties)
+        if termination_protection is not None:
+            pulumi.set(__self__, "termination_protection", termination_protection)
 
     @property
     @pulumi.getter
@@ -184,6 +188,18 @@ class ManagedDatabaseRedisArgs:
     def properties(self, value: Optional[pulumi.Input['ManagedDatabaseRedisPropertiesArgs']]):
         pulumi.set(self, "properties", value)
 
+    @property
+    @pulumi.getter(name="terminationProtection")
+    def termination_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, prevents the managed service from being powered off, or deleted.
+        """
+        return pulumi.get(self, "termination_protection")
+
+    @termination_protection.setter
+    def termination_protection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "termination_protection", value)
+
 
 @pulumi.input_type
 class _ManagedDatabaseRedisState:
@@ -205,6 +221,7 @@ class _ManagedDatabaseRedisState:
                  service_uri: Optional[pulumi.Input[str]] = None,
                  service_username: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
+                 termination_protection: Optional[pulumi.Input[bool]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
@@ -228,6 +245,7 @@ class _ManagedDatabaseRedisState:
         :param pulumi.Input[str] service_uri: URI to the service instance
         :param pulumi.Input[str] service_username: Primary username to the service instance
         :param pulumi.Input[str] state: State of the service
+        :param pulumi.Input[bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
         :param pulumi.Input[str] title: Title of a managed database instance
         :param pulumi.Input[str] type: Type of the service
         :param pulumi.Input[str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
@@ -266,6 +284,8 @@ class _ManagedDatabaseRedisState:
             pulumi.set(__self__, "service_username", service_username)
         if state is not None:
             pulumi.set(__self__, "state", state)
+        if termination_protection is not None:
+            pulumi.set(__self__, "termination_protection", termination_protection)
         if title is not None:
             pulumi.set(__self__, "title", title)
         if type is not None:
@@ -479,6 +499,18 @@ class _ManagedDatabaseRedisState:
         pulumi.set(self, "state", value)
 
     @property
+    @pulumi.getter(name="terminationProtection")
+    def termination_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, prevents the managed service from being powered off, or deleted.
+        """
+        return pulumi.get(self, "termination_protection")
+
+    @termination_protection.setter
+    def termination_protection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "termination_protection", value)
+
+    @property
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[str]]:
         """
@@ -528,10 +560,13 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
                  plan: Optional[pulumi.Input[str]] = None,
                  powered: Optional[pulumi.Input[bool]] = None,
                  properties: Optional[pulumi.Input[Union['ManagedDatabaseRedisPropertiesArgs', 'ManagedDatabaseRedisPropertiesArgsDict']]] = None,
+                 termination_protection: Optional[pulumi.Input[bool]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        > Redis is deprecated in favor of Valkey. Please use Valkey for new key value store instances.
+
         This resource represents Redis managed database. See UpCloud [Managed Databases](https://upcloud.com/products/managed-databases) product page for more details about the service.
 
         ## Example Usage
@@ -566,6 +601,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
                database plans <type>`.
         :param pulumi.Input[bool] powered: The administrative power state of the service
         :param pulumi.Input[Union['ManagedDatabaseRedisPropertiesArgs', 'ManagedDatabaseRedisPropertiesArgsDict']] properties: Database Engine properties for Redis
+        :param pulumi.Input[bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
         :param pulumi.Input[str] title: Title of a managed database instance
         :param pulumi.Input[str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
@@ -576,6 +612,8 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
                  args: ManagedDatabaseRedisArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > Redis is deprecated in favor of Valkey. Please use Valkey for new key value store instances.
+
         This resource represents Redis managed database. See UpCloud [Managed Databases](https://upcloud.com/products/managed-databases) product page for more details about the service.
 
         ## Example Usage
@@ -622,6 +660,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
                  plan: Optional[pulumi.Input[str]] = None,
                  powered: Optional[pulumi.Input[bool]] = None,
                  properties: Optional[pulumi.Input[Union['ManagedDatabaseRedisPropertiesArgs', 'ManagedDatabaseRedisPropertiesArgsDict']]] = None,
+                 termination_protection: Optional[pulumi.Input[bool]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -643,6 +682,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
             __props__.__dict__["plan"] = plan
             __props__.__dict__["powered"] = powered
             __props__.__dict__["properties"] = properties
+            __props__.__dict__["termination_protection"] = termination_protection
             if title is None and not opts.urn:
                 raise TypeError("Missing required property 'title'")
             __props__.__dict__["title"] = title
@@ -688,6 +728,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
             service_uri: Optional[pulumi.Input[str]] = None,
             service_username: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
+            termination_protection: Optional[pulumi.Input[bool]] = None,
             title: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             zone: Optional[pulumi.Input[str]] = None) -> 'ManagedDatabaseRedis':
@@ -716,6 +757,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
         :param pulumi.Input[str] service_uri: URI to the service instance
         :param pulumi.Input[str] service_username: Primary username to the service instance
         :param pulumi.Input[str] state: State of the service
+        :param pulumi.Input[bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
         :param pulumi.Input[str] title: Title of a managed database instance
         :param pulumi.Input[str] type: Type of the service
         :param pulumi.Input[str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
@@ -741,6 +783,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
         __props__.__dict__["service_uri"] = service_uri
         __props__.__dict__["service_username"] = service_username
         __props__.__dict__["state"] = state
+        __props__.__dict__["termination_protection"] = termination_protection
         __props__.__dict__["title"] = title
         __props__.__dict__["type"] = type
         __props__.__dict__["zone"] = zone
@@ -882,6 +925,14 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
         State of the service
         """
         return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter(name="terminationProtection")
+    def termination_protection(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set to true, prevents the managed service from being powered off, or deleted.
+        """
+        return pulumi.get(self, "termination_protection")
 
     @property
     @pulumi.getter

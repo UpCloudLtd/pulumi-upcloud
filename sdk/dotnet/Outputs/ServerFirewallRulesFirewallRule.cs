@@ -14,7 +14,7 @@ namespace Pulumi.Upcloud.Outputs
     public sealed class ServerFirewallRulesFirewallRule
     {
         /// <summary>
-        /// Action to take if the rule conditions are met
+        /// Action to take if the rule conditions are met. Valid values `accept | drop`
         /// </summary>
         public readonly string Action;
         /// <summary>

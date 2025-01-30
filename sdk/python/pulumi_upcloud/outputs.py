@@ -32,6 +32,8 @@ __all__ = [
     'LoadbalancerFrontendRuleActionsHttpRedirect',
     'LoadbalancerFrontendRuleActionsHttpReturn',
     'LoadbalancerFrontendRuleActionsSetForwardedHeader',
+    'LoadbalancerFrontendRuleActionsSetRequestHeader',
+    'LoadbalancerFrontendRuleActionsSetResponseHeader',
     'LoadbalancerFrontendRuleActionsTcpReject',
     'LoadbalancerFrontendRuleActionsUseBackend',
     'LoadbalancerFrontendRuleMatchers',
@@ -41,8 +43,12 @@ __all__ = [
     'LoadbalancerFrontendRuleMatchersHeader',
     'LoadbalancerFrontendRuleMatchersHost',
     'LoadbalancerFrontendRuleMatchersHttpMethod',
+    'LoadbalancerFrontendRuleMatchersHttpStatus',
+    'LoadbalancerFrontendRuleMatchersHttpStatusRange',
     'LoadbalancerFrontendRuleMatchersNumMembersUp',
     'LoadbalancerFrontendRuleMatchersPath',
+    'LoadbalancerFrontendRuleMatchersRequestHeader',
+    'LoadbalancerFrontendRuleMatchersResponseHeader',
     'LoadbalancerFrontendRuleMatchersSrcIp',
     'LoadbalancerFrontendRuleMatchersSrcPort',
     'LoadbalancerFrontendRuleMatchersSrcPortRange',
@@ -65,14 +71,27 @@ __all__ = [
     'ManagedDatabaseOpensearchPropertiesAuthFailureListeners',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting',
-    'ManagedDatabaseOpensearchPropertiesAzureMigration',
-    'ManagedDatabaseOpensearchPropertiesGcsMigration',
+    'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog',
+    'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold',
     'ManagedDatabaseOpensearchPropertiesIndexRollup',
     'ManagedDatabaseOpensearchPropertiesIndexTemplate',
     'ManagedDatabaseOpensearchPropertiesOpenid',
     'ManagedDatabaseOpensearchPropertiesOpensearchDashboards',
-    'ManagedDatabaseOpensearchPropertiesS3Migration',
     'ManagedDatabaseOpensearchPropertiesSaml',
+    'ManagedDatabaseOpensearchPropertiesSearchBackpressure',
+    'ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress',
+    'ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask',
+    'ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask',
+    'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries',
+    'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu',
+    'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency',
+    'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory',
+    'ManagedDatabaseOpensearchPropertiesSegrep',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressure',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard',
     'ManagedDatabasePostgresqlComponent',
     'ManagedDatabasePostgresqlNetwork',
     'ManagedDatabasePostgresqlNodeState',
@@ -90,6 +109,12 @@ __all__ = [
     'ManagedDatabaseUserOpensearchAccessControlRule',
     'ManagedDatabaseUserPgAccessControl',
     'ManagedDatabaseUserRedisAccessControl',
+    'ManagedDatabaseUserValkeyAccessControl',
+    'ManagedDatabaseValkeyComponent',
+    'ManagedDatabaseValkeyNetwork',
+    'ManagedDatabaseValkeyNodeState',
+    'ManagedDatabaseValkeyProperties',
+    'ManagedDatabaseValkeyPropertiesMigration',
     'ManagedObjectStorageEndpoint',
     'ManagedObjectStorageNetwork',
     'NetworkIpNetwork',
@@ -114,6 +139,7 @@ __all__ = [
     'GetManagedDatabaseOpensearchIndicesIndexResult',
     'GetManagedDatabasePostgresqlSessionsSessionResult',
     'GetManagedDatabaseRedisSessionsSessionResult',
+    'GetManagedDatabaseValkeySessionsSessionResult',
     'GetManagedObjectStoragePoliciesPolicyResult',
     'GetManagedObjectStorageRegionsRegionResult',
     'GetNetworksNetworkResult',
@@ -946,6 +972,10 @@ class LoadbalancerFrontendRuleActions(dict):
             suggest = "http_returns"
         elif key == "setForwardedHeaders":
             suggest = "set_forwarded_headers"
+        elif key == "setRequestHeaders":
+            suggest = "set_request_headers"
+        elif key == "setResponseHeaders":
+            suggest = "set_response_headers"
         elif key == "tcpRejects":
             suggest = "tcp_rejects"
         elif key == "useBackends":
@@ -966,12 +996,16 @@ class LoadbalancerFrontendRuleActions(dict):
                  http_redirects: Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsHttpRedirect']] = None,
                  http_returns: Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsHttpReturn']] = None,
                  set_forwarded_headers: Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsSetForwardedHeader']] = None,
+                 set_request_headers: Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsSetRequestHeader']] = None,
+                 set_response_headers: Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsSetResponseHeader']] = None,
                  tcp_rejects: Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsTcpReject']] = None,
                  use_backends: Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsUseBackend']] = None):
         """
         :param Sequence['LoadbalancerFrontendRuleActionsHttpRedirectArgs'] http_redirects: Redirects HTTP requests to specified location or URL scheme. Only either location or scheme can be defined at a time.
         :param Sequence['LoadbalancerFrontendRuleActionsHttpReturnArgs'] http_returns: Returns HTTP response with specified HTTP status.
         :param Sequence['LoadbalancerFrontendRuleActionsSetForwardedHeaderArgs'] set_forwarded_headers: Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
+        :param Sequence['LoadbalancerFrontendRuleActionsSetRequestHeaderArgs'] set_request_headers: Set request header
+        :param Sequence['LoadbalancerFrontendRuleActionsSetResponseHeaderArgs'] set_response_headers: Set response header
         :param Sequence['LoadbalancerFrontendRuleActionsTcpRejectArgs'] tcp_rejects: Terminates a connection.
         :param Sequence['LoadbalancerFrontendRuleActionsUseBackendArgs'] use_backends: Routes traffic to specified `backend`.
         """
@@ -981,6 +1015,10 @@ class LoadbalancerFrontendRuleActions(dict):
             pulumi.set(__self__, "http_returns", http_returns)
         if set_forwarded_headers is not None:
             pulumi.set(__self__, "set_forwarded_headers", set_forwarded_headers)
+        if set_request_headers is not None:
+            pulumi.set(__self__, "set_request_headers", set_request_headers)
+        if set_response_headers is not None:
+            pulumi.set(__self__, "set_response_headers", set_response_headers)
         if tcp_rejects is not None:
             pulumi.set(__self__, "tcp_rejects", tcp_rejects)
         if use_backends is not None:
@@ -1009,6 +1047,22 @@ class LoadbalancerFrontendRuleActions(dict):
         Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
         """
         return pulumi.get(self, "set_forwarded_headers")
+
+    @property
+    @pulumi.getter(name="setRequestHeaders")
+    def set_request_headers(self) -> Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsSetRequestHeader']]:
+        """
+        Set request header
+        """
+        return pulumi.get(self, "set_request_headers")
+
+    @property
+    @pulumi.getter(name="setResponseHeaders")
+    def set_response_headers(self) -> Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsSetResponseHeader']]:
+        """
+        Set response header
+        """
+        return pulumi.get(self, "set_response_headers")
 
     @property
     @pulumi.getter(name="tcpRejects")
@@ -1129,6 +1183,66 @@ class LoadbalancerFrontendRuleActionsSetForwardedHeader(dict):
 
 
 @pulumi.output_type
+class LoadbalancerFrontendRuleActionsSetRequestHeader(dict):
+    def __init__(__self__, *,
+                 header: str,
+                 value: Optional[str] = None):
+        """
+        :param str header: Header name.
+        :param str value: Header value.
+        """
+        pulumi.set(__self__, "header", header)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def header(self) -> str:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "header")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        Header value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class LoadbalancerFrontendRuleActionsSetResponseHeader(dict):
+    def __init__(__self__, *,
+                 header: str,
+                 value: Optional[str] = None):
+        """
+        :param str header: Header name.
+        :param str value: Header value.
+        """
+        pulumi.set(__self__, "header", header)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def header(self) -> str:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "header")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        Header value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class LoadbalancerFrontendRuleActionsTcpReject(dict):
     def __init__(__self__, *,
                  active: Optional[bool] = None):
@@ -1193,8 +1307,16 @@ class LoadbalancerFrontendRuleMatchers(dict):
             suggest = "body_sizes"
         elif key == "httpMethods":
             suggest = "http_methods"
+        elif key == "httpStatusRanges":
+            suggest = "http_status_ranges"
+        elif key == "httpStatuses":
+            suggest = "http_statuses"
         elif key == "numMembersUps":
             suggest = "num_members_ups"
+        elif key == "requestHeaders":
+            suggest = "request_headers"
+        elif key == "responseHeaders":
+            suggest = "response_headers"
         elif key == "srcIps":
             suggest = "src_ips"
         elif key == "srcPortRanges":
@@ -1224,8 +1346,12 @@ class LoadbalancerFrontendRuleMatchers(dict):
                  headers: Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersHeader']] = None,
                  hosts: Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersHost']] = None,
                  http_methods: Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersHttpMethod']] = None,
+                 http_status_ranges: Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersHttpStatusRange']] = None,
+                 http_statuses: Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersHttpStatus']] = None,
                  num_members_ups: Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersNumMembersUp']] = None,
                  paths: Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersPath']] = None,
+                 request_headers: Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersRequestHeader']] = None,
+                 response_headers: Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersResponseHeader']] = None,
                  src_ips: Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersSrcIp']] = None,
                  src_port_ranges: Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersSrcPortRange']] = None,
                  src_ports: Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersSrcPort']] = None,
@@ -1239,8 +1365,12 @@ class LoadbalancerFrontendRuleMatchers(dict):
         :param Sequence['LoadbalancerFrontendRuleMatchersHeaderArgs'] headers: Matches by HTTP header value. Header name must be provided.
         :param Sequence['LoadbalancerFrontendRuleMatchersHostArgs'] hosts: Matches by hostname. Header extracted from HTTP Headers or from TLS certificate in case of secured connection.
         :param Sequence['LoadbalancerFrontendRuleMatchersHttpMethodArgs'] http_methods: Matches by HTTP method.
+        :param Sequence['LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs'] http_status_ranges: Matches by range of HTTP statuses.
+        :param Sequence['LoadbalancerFrontendRuleMatchersHttpStatusArgs'] http_statuses: Matches by HTTP status.
         :param Sequence['LoadbalancerFrontendRuleMatchersNumMembersUpArgs'] num_members_ups: Matches by number of healthy backend members.
         :param Sequence['LoadbalancerFrontendRuleMatchersPathArgs'] paths: Matches by URL path.
+        :param Sequence['LoadbalancerFrontendRuleMatchersRequestHeaderArgs'] request_headers: Matches by HTTP request header value. Header name must be provided.
+        :param Sequence['LoadbalancerFrontendRuleMatchersResponseHeaderArgs'] response_headers: Matches by HTTP response header value. Header name must be provided.
         :param Sequence['LoadbalancerFrontendRuleMatchersSrcIpArgs'] src_ips: Matches by source IP address.
         :param Sequence['LoadbalancerFrontendRuleMatchersSrcPortRangeArgs'] src_port_ranges: Matches by range of source port numbers.
         :param Sequence['LoadbalancerFrontendRuleMatchersSrcPortArgs'] src_ports: Matches by source port number.
@@ -1260,10 +1390,18 @@ class LoadbalancerFrontendRuleMatchers(dict):
             pulumi.set(__self__, "hosts", hosts)
         if http_methods is not None:
             pulumi.set(__self__, "http_methods", http_methods)
+        if http_status_ranges is not None:
+            pulumi.set(__self__, "http_status_ranges", http_status_ranges)
+        if http_statuses is not None:
+            pulumi.set(__self__, "http_statuses", http_statuses)
         if num_members_ups is not None:
             pulumi.set(__self__, "num_members_ups", num_members_ups)
         if paths is not None:
             pulumi.set(__self__, "paths", paths)
+        if request_headers is not None:
+            pulumi.set(__self__, "request_headers", request_headers)
+        if response_headers is not None:
+            pulumi.set(__self__, "response_headers", response_headers)
         if src_ips is not None:
             pulumi.set(__self__, "src_ips", src_ips)
         if src_port_ranges is not None:
@@ -1303,6 +1441,7 @@ class LoadbalancerFrontendRuleMatchers(dict):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Use `request_header` instead.""")
     def headers(self) -> Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersHeader']]:
         """
         Matches by HTTP header value. Header name must be provided.
@@ -1326,6 +1465,22 @@ class LoadbalancerFrontendRuleMatchers(dict):
         return pulumi.get(self, "http_methods")
 
     @property
+    @pulumi.getter(name="httpStatusRanges")
+    def http_status_ranges(self) -> Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersHttpStatusRange']]:
+        """
+        Matches by range of HTTP statuses.
+        """
+        return pulumi.get(self, "http_status_ranges")
+
+    @property
+    @pulumi.getter(name="httpStatuses")
+    def http_statuses(self) -> Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersHttpStatus']]:
+        """
+        Matches by HTTP status.
+        """
+        return pulumi.get(self, "http_statuses")
+
+    @property
     @pulumi.getter(name="numMembersUps")
     def num_members_ups(self) -> Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersNumMembersUp']]:
         """
@@ -1340,6 +1495,22 @@ class LoadbalancerFrontendRuleMatchers(dict):
         Matches by URL path.
         """
         return pulumi.get(self, "paths")
+
+    @property
+    @pulumi.getter(name="requestHeaders")
+    def request_headers(self) -> Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersRequestHeader']]:
+        """
+        Matches by HTTP request header value. Header name must be provided.
+        """
+        return pulumi.get(self, "request_headers")
+
+    @property
+    @pulumi.getter(name="responseHeaders")
+    def response_headers(self) -> Optional[Sequence['outputs.LoadbalancerFrontendRuleMatchersResponseHeader']]:
+        """
+        Matches by HTTP response header value. Header name must be provided.
+        """
+        return pulumi.get(self, "response_headers")
 
     @property
     @pulumi.getter(name="srcIps")
@@ -1716,6 +1887,107 @@ class LoadbalancerFrontendRuleMatchersHttpMethod(dict):
 
 
 @pulumi.output_type
+class LoadbalancerFrontendRuleMatchersHttpStatus(dict):
+    def __init__(__self__, *,
+                 method: str,
+                 value: int,
+                 inverse: Optional[bool] = None):
+        """
+        :param str method: Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
+        :param int value: Integer value.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "value", value)
+        if inverse is not None:
+            pulumi.set(__self__, "inverse", inverse)
+
+    @property
+    @pulumi.getter
+    def method(self) -> str:
+        """
+        Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
+        """
+        return pulumi.get(self, "method")
+
+    @property
+    @pulumi.getter
+    def value(self) -> int:
+        """
+        Integer value.
+        """
+        return pulumi.get(self, "value")
+
+    @property
+    @pulumi.getter
+    def inverse(self) -> Optional[bool]:
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        return pulumi.get(self, "inverse")
+
+
+@pulumi.output_type
+class LoadbalancerFrontendRuleMatchersHttpStatusRange(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "rangeEnd":
+            suggest = "range_end"
+        elif key == "rangeStart":
+            suggest = "range_start"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LoadbalancerFrontendRuleMatchersHttpStatusRange. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LoadbalancerFrontendRuleMatchersHttpStatusRange.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LoadbalancerFrontendRuleMatchersHttpStatusRange.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 range_end: int,
+                 range_start: int,
+                 inverse: Optional[bool] = None):
+        """
+        :param int range_end: Integer value.
+        :param int range_start: Integer value.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        pulumi.set(__self__, "range_end", range_end)
+        pulumi.set(__self__, "range_start", range_start)
+        if inverse is not None:
+            pulumi.set(__self__, "inverse", inverse)
+
+    @property
+    @pulumi.getter(name="rangeEnd")
+    def range_end(self) -> int:
+        """
+        Integer value.
+        """
+        return pulumi.get(self, "range_end")
+
+    @property
+    @pulumi.getter(name="rangeStart")
+    def range_start(self) -> int:
+        """
+        Integer value.
+        """
+        return pulumi.get(self, "range_start")
+
+    @property
+    @pulumi.getter
+    def inverse(self) -> Optional[bool]:
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        return pulumi.get(self, "inverse")
+
+
+@pulumi.output_type
 class LoadbalancerFrontendRuleMatchersNumMembersUp(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1829,6 +2101,170 @@ class LoadbalancerFrontendRuleMatchersPath(dict):
         Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
         """
         return pulumi.get(self, "method")
+
+    @property
+    @pulumi.getter(name="ignoreCase")
+    def ignore_case(self) -> Optional[bool]:
+        """
+        Defines if case should be ignored. Defaults to `false`.
+        """
+        return pulumi.get(self, "ignore_case")
+
+    @property
+    @pulumi.getter
+    def inverse(self) -> Optional[bool]:
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        return pulumi.get(self, "inverse")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        String value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class LoadbalancerFrontendRuleMatchersRequestHeader(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ignoreCase":
+            suggest = "ignore_case"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LoadbalancerFrontendRuleMatchersRequestHeader. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LoadbalancerFrontendRuleMatchersRequestHeader.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LoadbalancerFrontendRuleMatchersRequestHeader.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 method: str,
+                 name: str,
+                 ignore_case: Optional[bool] = None,
+                 inverse: Optional[bool] = None,
+                 value: Optional[str] = None):
+        """
+        :param str method: Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        :param str name: Name of the argument.
+        :param bool ignore_case: Defines if case should be ignored. Defaults to `false`.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        :param str value: String value.
+        """
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "name", name)
+        if ignore_case is not None:
+            pulumi.set(__self__, "ignore_case", ignore_case)
+        if inverse is not None:
+            pulumi.set(__self__, "inverse", inverse)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def method(self) -> str:
+        """
+        Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        """
+        return pulumi.get(self, "method")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the argument.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="ignoreCase")
+    def ignore_case(self) -> Optional[bool]:
+        """
+        Defines if case should be ignored. Defaults to `false`.
+        """
+        return pulumi.get(self, "ignore_case")
+
+    @property
+    @pulumi.getter
+    def inverse(self) -> Optional[bool]:
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        return pulumi.get(self, "inverse")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        String value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class LoadbalancerFrontendRuleMatchersResponseHeader(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ignoreCase":
+            suggest = "ignore_case"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LoadbalancerFrontendRuleMatchersResponseHeader. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LoadbalancerFrontendRuleMatchersResponseHeader.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LoadbalancerFrontendRuleMatchersResponseHeader.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 method: str,
+                 name: str,
+                 ignore_case: Optional[bool] = None,
+                 inverse: Optional[bool] = None,
+                 value: Optional[str] = None):
+        """
+        :param str method: Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        :param str name: Name of the argument.
+        :param bool ignore_case: Defines if case should be ignored. Defaults to `false`.
+        :param bool inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        :param str value: String value.
+        """
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "name", name)
+        if ignore_case is not None:
+            pulumi.set(__self__, "ignore_case", ignore_case)
+        if inverse is not None:
+            pulumi.set(__self__, "inverse", inverse)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def method(self) -> str:
+        """
+        Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        """
+        return pulumi.get(self, "method")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the argument.
+        """
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="ignoreCase")
@@ -2238,10 +2674,10 @@ class LoadbalancerNetwork(dict):
                  network: Optional[str] = None):
         """
         :param str family: Network family. Currently only `IPv4` is supported.
-        :param str name: The name of the network must be unique within the service.
+        :param str name: The name of the network. Must be unique within the service.
         :param str type: The type of the network. Only one public network can be attached and at least one private network must be attached.
         :param str dns_name: DNS name of the load balancer network
-        :param str id: Network identifier.
+        :param str id: The unique identifier of the network.
         :param str network: Private network UUID. Required for private networks and must reside in loadbalancer zone. For public network the field should be omitted.
         """
         pulumi.set(__self__, "family", family)
@@ -2266,7 +2702,7 @@ class LoadbalancerNetwork(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The name of the network must be unique within the service.
+        The name of the network. Must be unique within the service.
         """
         return pulumi.get(self, "name")
 
@@ -2290,7 +2726,7 @@ class LoadbalancerNetwork(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        Network identifier.
+        The unique identifier of the network.
         """
         return pulumi.get(self, "id")
 
@@ -2326,6 +2762,7 @@ class LoadbalancerNode(dict):
                  networks: Optional[Sequence['outputs.LoadbalancerNodeNetwork']] = None,
                  operational_state: Optional[str] = None):
         """
+        :param Sequence['LoadbalancerNodeNetworkArgs'] networks: Networks attached to the node
         :param str operational_state: Node's operational state. Managed by the system.
         """
         if networks is not None:
@@ -2336,6 +2773,9 @@ class LoadbalancerNode(dict):
     @property
     @pulumi.getter
     def networks(self) -> Optional[Sequence['outputs.LoadbalancerNodeNetwork']]:
+        """
+        Networks attached to the node
+        """
         return pulumi.get(self, "networks")
 
     @property
@@ -2371,8 +2811,9 @@ class LoadbalancerNodeNetwork(dict):
                  name: Optional[str] = None,
                  type: Optional[str] = None):
         """
-        :param str name: The name of the network.
-        :param str type: The type of the network.
+        :param Sequence['LoadbalancerNodeNetworkIpAddressArgs'] ip_addresses: IP addresses attached to the network
+        :param str name: The name of the network
+        :param str type: The type of the network
         """
         if ip_addresses is not None:
             pulumi.set(__self__, "ip_addresses", ip_addresses)
@@ -2384,13 +2825,16 @@ class LoadbalancerNodeNetwork(dict):
     @property
     @pulumi.getter(name="ipAddresses")
     def ip_addresses(self) -> Optional[Sequence['outputs.LoadbalancerNodeNetworkIpAddress']]:
+        """
+        IP addresses attached to the network
+        """
         return pulumi.get(self, "ip_addresses")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        The name of the network.
+        The name of the network
         """
         return pulumi.get(self, "name")
 
@@ -2398,7 +2842,7 @@ class LoadbalancerNodeNetwork(dict):
     @pulumi.getter
     def type(self) -> Optional[str]:
         """
-        The type of the network.
+        The type of the network
         """
         return pulumi.get(self, "type")
 
@@ -2409,8 +2853,8 @@ class LoadbalancerNodeNetworkIpAddress(dict):
                  address: Optional[str] = None,
                  listen: Optional[bool] = None):
         """
-        :param str address: Node's IP address.
-        :param bool listen: Does IP address listen network connections.
+        :param str address: Node's IP address
+        :param bool listen: Whether the node listens to the traffic
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -2421,7 +2865,7 @@ class LoadbalancerNodeNetworkIpAddress(dict):
     @pulumi.getter
     def address(self) -> Optional[str]:
         """
-        Node's IP address.
+        Node's IP address
         """
         return pulumi.get(self, "address")
 
@@ -2429,7 +2873,7 @@ class LoadbalancerNodeNetworkIpAddress(dict):
     @pulumi.getter
     def listen(self) -> Optional[bool]:
         """
-        Does IP address listen network connections.
+        Whether the node listens to the traffic
         """
         return pulumi.get(self, "listen")
 
@@ -2650,6 +3094,8 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "internal_tmp_mem_storage_engine"
         elif key == "ipFilters":
             suggest = "ip_filters"
+        elif key == "logOutput":
+            suggest = "log_output"
         elif key == "longQueryTime":
             suggest = "long_query_time"
         elif key == "maxAllowedPacket":
@@ -2716,6 +3162,7 @@ class ManagedDatabaseMysqlProperties(dict):
                  interactive_timeout: Optional[int] = None,
                  internal_tmp_mem_storage_engine: Optional[str] = None,
                  ip_filters: Optional[Sequence[str]] = None,
+                 log_output: Optional[str] = None,
                  long_query_time: Optional[float] = None,
                  max_allowed_packet: Optional[int] = None,
                  max_heap_table_size: Optional[int] = None,
@@ -2758,7 +3205,8 @@ class ManagedDatabaseMysqlProperties(dict):
         :param int interactive_timeout: The number of seconds the server waits for activity on an interactive connection before closing it.
         :param str internal_tmp_mem_storage_engine: The storage engine for in-memory internal temporary tables.
         :param Sequence[str] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
-        :param float long_query_time: The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute. Default is 10s.
+        :param str log_output: The slow log output destination when slow_query_log is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
+        :param float long_query_time: The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute.
         :param int max_allowed_packet: Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
         :param int max_heap_table_size: Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
         :param 'ManagedDatabaseMysqlPropertiesMigrationArgs' migration: Migrate data from existing server.
@@ -2767,7 +3215,7 @@ class ManagedDatabaseMysqlProperties(dict):
         :param int net_write_timeout: The number of seconds to wait for a block to be written to a connection before aborting the write.
         :param bool public_access: Public Access. Allow access to the service from the public Internet.
         :param bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
-        :param bool slow_query_log: Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table. Default is off.
+        :param bool slow_query_log: Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table.
         :param int sort_buffer_size: Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
         :param str sql_mode: Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned.
         :param bool sql_require_primary_key: Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them.
@@ -2825,6 +3273,8 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "internal_tmp_mem_storage_engine", internal_tmp_mem_storage_engine)
         if ip_filters is not None:
             pulumi.set(__self__, "ip_filters", ip_filters)
+        if log_output is not None:
+            pulumi.set(__self__, "log_output", log_output)
         if long_query_time is not None:
             pulumi.set(__self__, "long_query_time", long_query_time)
         if max_allowed_packet is not None:
@@ -3059,10 +3509,18 @@ class ManagedDatabaseMysqlProperties(dict):
         return pulumi.get(self, "ip_filters")
 
     @property
+    @pulumi.getter(name="logOutput")
+    def log_output(self) -> Optional[str]:
+        """
+        The slow log output destination when slow_query_log is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
+        """
+        return pulumi.get(self, "log_output")
+
+    @property
     @pulumi.getter(name="longQueryTime")
     def long_query_time(self) -> Optional[float]:
         """
-        The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute. Default is 10s.
+        The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute.
         """
         return pulumi.get(self, "long_query_time")
 
@@ -3134,7 +3592,7 @@ class ManagedDatabaseMysqlProperties(dict):
     @pulumi.getter(name="slowQueryLog")
     def slow_query_log(self) -> Optional[bool]:
         """
-        Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table. Default is off.
+        Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table.
         """
         return pulumi.get(self, "slow_query_log")
 
@@ -3495,24 +3953,28 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "auth_failure_listeners"
         elif key == "automaticUtilityNetworkIpFilter":
             suggest = "automatic_utility_network_ip_filter"
-        elif key == "azureMigration":
-            suggest = "azure_migration"
         elif key == "clusterMaxShardsPerNode":
             suggest = "cluster_max_shards_per_node"
+        elif key == "clusterRoutingAllocationBalancePreferPrimary":
+            suggest = "cluster_routing_allocation_balance_prefer_primary"
         elif key == "clusterRoutingAllocationNodeConcurrentRecoveries":
             suggest = "cluster_routing_allocation_node_concurrent_recoveries"
+        elif key == "clusterSearchRequestSlowlog":
+            suggest = "cluster_search_request_slowlog"
         elif key == "customDomain":
             suggest = "custom_domain"
+        elif key == "elasticsearchVersion":
+            suggest = "elasticsearch_version"
         elif key == "emailSenderName":
             suggest = "email_sender_name"
         elif key == "emailSenderPassword":
             suggest = "email_sender_password"
         elif key == "emailSenderUsername":
             suggest = "email_sender_username"
+        elif key == "enableRemoteBackedStorage":
+            suggest = "enable_remote_backed_storage"
         elif key == "enableSecurityAudit":
             suggest = "enable_security_audit"
-        elif key == "gcsMigration":
-            suggest = "gcs_migration"
         elif key == "httpMaxContentLength":
             suggest = "http_max_content_length"
         elif key == "httpMaxHeaderSize":
@@ -3571,14 +4033,18 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "public_access"
         elif key == "reindexRemoteWhitelists":
             suggest = "reindex_remote_whitelists"
-        elif key == "s3Migration":
-            suggest = "s3_migration"
         elif key == "scriptMaxCompilationsRate":
             suggest = "script_max_compilations_rate"
+        elif key == "searchBackpressure":
+            suggest = "search_backpressure"
+        elif key == "searchInsightsTopQueries":
+            suggest = "search_insights_top_queries"
         elif key == "searchMaxBuckets":
             suggest = "search_max_buckets"
         elif key == "serviceLog":
             suggest = "service_log"
+        elif key == "shardIndexingPressure":
+            suggest = "shard_indexing_pressure"
         elif key == "threadPoolAnalyzeQueueSize":
             suggest = "thread_pool_analyze_queue_size"
         elif key == "threadPoolAnalyzeSize":
@@ -3618,15 +4084,17 @@ class ManagedDatabaseOpensearchProperties(dict):
                  action_destructive_requires_name: Optional[bool] = None,
                  auth_failure_listeners: Optional['outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListeners'] = None,
                  automatic_utility_network_ip_filter: Optional[bool] = None,
-                 azure_migration: Optional['outputs.ManagedDatabaseOpensearchPropertiesAzureMigration'] = None,
                  cluster_max_shards_per_node: Optional[int] = None,
+                 cluster_routing_allocation_balance_prefer_primary: Optional[bool] = None,
                  cluster_routing_allocation_node_concurrent_recoveries: Optional[int] = None,
+                 cluster_search_request_slowlog: Optional['outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog'] = None,
                  custom_domain: Optional[str] = None,
+                 elasticsearch_version: Optional[str] = None,
                  email_sender_name: Optional[str] = None,
                  email_sender_password: Optional[str] = None,
                  email_sender_username: Optional[str] = None,
+                 enable_remote_backed_storage: Optional[bool] = None,
                  enable_security_audit: Optional[bool] = None,
-                 gcs_migration: Optional['outputs.ManagedDatabaseOpensearchPropertiesGcsMigration'] = None,
                  http_max_content_length: Optional[int] = None,
                  http_max_header_size: Optional[int] = None,
                  http_max_initial_line_length: Optional[int] = None,
@@ -3657,11 +4125,14 @@ class ManagedDatabaseOpensearchProperties(dict):
                  plugins_alerting_filter_by_backend_roles: Optional[bool] = None,
                  public_access: Optional[bool] = None,
                  reindex_remote_whitelists: Optional[Sequence[str]] = None,
-                 s3_migration: Optional['outputs.ManagedDatabaseOpensearchPropertiesS3Migration'] = None,
                  saml: Optional['outputs.ManagedDatabaseOpensearchPropertiesSaml'] = None,
                  script_max_compilations_rate: Optional[str] = None,
+                 search_backpressure: Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressure'] = None,
+                 search_insights_top_queries: Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries'] = None,
                  search_max_buckets: Optional[int] = None,
+                 segrep: Optional['outputs.ManagedDatabaseOpensearchPropertiesSegrep'] = None,
                  service_log: Optional[bool] = None,
+                 shard_indexing_pressure: Optional['outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressure'] = None,
                  thread_pool_analyze_queue_size: Optional[int] = None,
                  thread_pool_analyze_size: Optional[int] = None,
                  thread_pool_force_merge_size: Optional[int] = None,
@@ -3680,11 +4151,14 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param 'ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs' auth_failure_listeners: Opensearch Security Plugin Settings.
         :param bool automatic_utility_network_ip_filter: Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
         :param int cluster_max_shards_per_node: Controls the number of shards allowed in the cluster per data node.
-        :param int cluster_routing_allocation_node_concurrent_recoveries: Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
+        :param bool cluster_routing_allocation_balance_prefer_primary: When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
+        :param int cluster_routing_allocation_node_concurrent_recoveries: Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
         :param str custom_domain: Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+        :param str elasticsearch_version: Elasticsearch major version.
         :param str email_sender_name: Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
         :param str email_sender_password: Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
         :param str email_sender_username: Sender username for Opensearch alerts.
+        :param bool enable_remote_backed_storage: Enable remote-backed storage.
         :param bool enable_security_audit: Enable/Disable security audit.
         :param int http_max_content_length: Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
         :param int http_max_header_size: The max size of allowed headers, in bytes.
@@ -3718,8 +4192,11 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param Sequence[str] reindex_remote_whitelists: Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
         :param 'ManagedDatabaseOpensearchPropertiesSamlArgs' saml: OpenSearch SAML configuration.
         :param str script_max_compilations_rate: Script max compilation rate - circuit breaker to prevent/minimize OOMs. Script compilation circuit breaker limits the number of inline script compilations within a period of time. Default is use-context.
+        :param 'ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs' search_backpressure: Search Backpressure Settings.
         :param int search_max_buckets: Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
+        :param 'ManagedDatabaseOpensearchPropertiesSegrepArgs' segrep: Segment Replication Backpressure Settings.
         :param bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
+        :param 'ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs' shard_indexing_pressure: Shard indexing back pressure settings.
         :param int thread_pool_analyze_queue_size: analyze thread pool queue size. Size for the thread pool queue. See documentation for exact details.
         :param int thread_pool_analyze_size: analyze thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
         :param int thread_pool_force_merge_size: force_merge thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
@@ -3741,24 +4218,28 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "auth_failure_listeners", auth_failure_listeners)
         if automatic_utility_network_ip_filter is not None:
             pulumi.set(__self__, "automatic_utility_network_ip_filter", automatic_utility_network_ip_filter)
-        if azure_migration is not None:
-            pulumi.set(__self__, "azure_migration", azure_migration)
         if cluster_max_shards_per_node is not None:
             pulumi.set(__self__, "cluster_max_shards_per_node", cluster_max_shards_per_node)
+        if cluster_routing_allocation_balance_prefer_primary is not None:
+            pulumi.set(__self__, "cluster_routing_allocation_balance_prefer_primary", cluster_routing_allocation_balance_prefer_primary)
         if cluster_routing_allocation_node_concurrent_recoveries is not None:
             pulumi.set(__self__, "cluster_routing_allocation_node_concurrent_recoveries", cluster_routing_allocation_node_concurrent_recoveries)
+        if cluster_search_request_slowlog is not None:
+            pulumi.set(__self__, "cluster_search_request_slowlog", cluster_search_request_slowlog)
         if custom_domain is not None:
             pulumi.set(__self__, "custom_domain", custom_domain)
+        if elasticsearch_version is not None:
+            pulumi.set(__self__, "elasticsearch_version", elasticsearch_version)
         if email_sender_name is not None:
             pulumi.set(__self__, "email_sender_name", email_sender_name)
         if email_sender_password is not None:
             pulumi.set(__self__, "email_sender_password", email_sender_password)
         if email_sender_username is not None:
             pulumi.set(__self__, "email_sender_username", email_sender_username)
+        if enable_remote_backed_storage is not None:
+            pulumi.set(__self__, "enable_remote_backed_storage", enable_remote_backed_storage)
         if enable_security_audit is not None:
             pulumi.set(__self__, "enable_security_audit", enable_security_audit)
-        if gcs_migration is not None:
-            pulumi.set(__self__, "gcs_migration", gcs_migration)
         if http_max_content_length is not None:
             pulumi.set(__self__, "http_max_content_length", http_max_content_length)
         if http_max_header_size is not None:
@@ -3819,16 +4300,22 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "public_access", public_access)
         if reindex_remote_whitelists is not None:
             pulumi.set(__self__, "reindex_remote_whitelists", reindex_remote_whitelists)
-        if s3_migration is not None:
-            pulumi.set(__self__, "s3_migration", s3_migration)
         if saml is not None:
             pulumi.set(__self__, "saml", saml)
         if script_max_compilations_rate is not None:
             pulumi.set(__self__, "script_max_compilations_rate", script_max_compilations_rate)
+        if search_backpressure is not None:
+            pulumi.set(__self__, "search_backpressure", search_backpressure)
+        if search_insights_top_queries is not None:
+            pulumi.set(__self__, "search_insights_top_queries", search_insights_top_queries)
         if search_max_buckets is not None:
             pulumi.set(__self__, "search_max_buckets", search_max_buckets)
+        if segrep is not None:
+            pulumi.set(__self__, "segrep", segrep)
         if service_log is not None:
             pulumi.set(__self__, "service_log", service_log)
+        if shard_indexing_pressure is not None:
+            pulumi.set(__self__, "shard_indexing_pressure", shard_indexing_pressure)
         if thread_pool_analyze_queue_size is not None:
             pulumi.set(__self__, "thread_pool_analyze_queue_size", thread_pool_analyze_queue_size)
         if thread_pool_analyze_size is not None:
@@ -3887,11 +4374,6 @@ class ManagedDatabaseOpensearchProperties(dict):
         return pulumi.get(self, "automatic_utility_network_ip_filter")
 
     @property
-    @pulumi.getter(name="azureMigration")
-    def azure_migration(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesAzureMigration']:
-        return pulumi.get(self, "azure_migration")
-
-    @property
     @pulumi.getter(name="clusterMaxShardsPerNode")
     def cluster_max_shards_per_node(self) -> Optional[int]:
         """
@@ -3900,12 +4382,25 @@ class ManagedDatabaseOpensearchProperties(dict):
         return pulumi.get(self, "cluster_max_shards_per_node")
 
     @property
+    @pulumi.getter(name="clusterRoutingAllocationBalancePreferPrimary")
+    def cluster_routing_allocation_balance_prefer_primary(self) -> Optional[bool]:
+        """
+        When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
+        """
+        return pulumi.get(self, "cluster_routing_allocation_balance_prefer_primary")
+
+    @property
     @pulumi.getter(name="clusterRoutingAllocationNodeConcurrentRecoveries")
     def cluster_routing_allocation_node_concurrent_recoveries(self) -> Optional[int]:
         """
-        Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
+        Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
         """
         return pulumi.get(self, "cluster_routing_allocation_node_concurrent_recoveries")
+
+    @property
+    @pulumi.getter(name="clusterSearchRequestSlowlog")
+    def cluster_search_request_slowlog(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog']:
+        return pulumi.get(self, "cluster_search_request_slowlog")
 
     @property
     @pulumi.getter(name="customDomain")
@@ -3914,6 +4409,14 @@ class ManagedDatabaseOpensearchProperties(dict):
         Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
         """
         return pulumi.get(self, "custom_domain")
+
+    @property
+    @pulumi.getter(name="elasticsearchVersion")
+    def elasticsearch_version(self) -> Optional[str]:
+        """
+        Elasticsearch major version.
+        """
+        return pulumi.get(self, "elasticsearch_version")
 
     @property
     @pulumi.getter(name="emailSenderName")
@@ -3940,17 +4443,20 @@ class ManagedDatabaseOpensearchProperties(dict):
         return pulumi.get(self, "email_sender_username")
 
     @property
+    @pulumi.getter(name="enableRemoteBackedStorage")
+    def enable_remote_backed_storage(self) -> Optional[bool]:
+        """
+        Enable remote-backed storage.
+        """
+        return pulumi.get(self, "enable_remote_backed_storage")
+
+    @property
     @pulumi.getter(name="enableSecurityAudit")
     def enable_security_audit(self) -> Optional[bool]:
         """
         Enable/Disable security audit.
         """
         return pulumi.get(self, "enable_security_audit")
-
-    @property
-    @pulumi.getter(name="gcsMigration")
-    def gcs_migration(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesGcsMigration']:
-        return pulumi.get(self, "gcs_migration")
 
     @property
     @pulumi.getter(name="httpMaxContentLength")
@@ -4193,11 +4699,6 @@ class ManagedDatabaseOpensearchProperties(dict):
         return pulumi.get(self, "reindex_remote_whitelists")
 
     @property
-    @pulumi.getter(name="s3Migration")
-    def s3_migration(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesS3Migration']:
-        return pulumi.get(self, "s3_migration")
-
-    @property
     @pulumi.getter
     def saml(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesSaml']:
         """
@@ -4214,6 +4715,19 @@ class ManagedDatabaseOpensearchProperties(dict):
         return pulumi.get(self, "script_max_compilations_rate")
 
     @property
+    @pulumi.getter(name="searchBackpressure")
+    def search_backpressure(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressure']:
+        """
+        Search Backpressure Settings.
+        """
+        return pulumi.get(self, "search_backpressure")
+
+    @property
+    @pulumi.getter(name="searchInsightsTopQueries")
+    def search_insights_top_queries(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries']:
+        return pulumi.get(self, "search_insights_top_queries")
+
+    @property
     @pulumi.getter(name="searchMaxBuckets")
     def search_max_buckets(self) -> Optional[int]:
         """
@@ -4222,12 +4736,28 @@ class ManagedDatabaseOpensearchProperties(dict):
         return pulumi.get(self, "search_max_buckets")
 
     @property
+    @pulumi.getter
+    def segrep(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesSegrep']:
+        """
+        Segment Replication Backpressure Settings.
+        """
+        return pulumi.get(self, "segrep")
+
+    @property
     @pulumi.getter(name="serviceLog")
     def service_log(self) -> Optional[bool]:
         """
         Service logging. Store logs for the service so that they are available in the HTTP API and console.
         """
         return pulumi.get(self, "service_log")
+
+    @property
+    @pulumi.getter(name="shardIndexingPressure")
+    def shard_indexing_pressure(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressure']:
+        """
+        Shard indexing back pressure settings.
+        """
+        return pulumi.get(self, "shard_indexing_pressure")
 
     @property
     @pulumi.getter(name="threadPoolAnalyzeQueueSize")
@@ -4595,243 +5125,85 @@ class ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting(dict
 
 
 @pulumi.output_type
-class ManagedDatabaseOpensearchPropertiesAzureMigration(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "basePath":
-            suggest = "base_path"
-        elif key == "chunkSize":
-            suggest = "chunk_size"
-        elif key == "endpointSuffix":
-            suggest = "endpoint_suffix"
-        elif key == "sasToken":
-            suggest = "sas_token"
-        elif key == "snapshotName":
-            suggest = "snapshot_name"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesAzureMigration. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ManagedDatabaseOpensearchPropertiesAzureMigration.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ManagedDatabaseOpensearchPropertiesAzureMigration.__key_warning(key)
-        return super().get(key, default)
-
+class ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog(dict):
     def __init__(__self__, *,
-                 account: Optional[str] = None,
-                 base_path: Optional[str] = None,
-                 chunk_size: Optional[str] = None,
-                 compress: Optional[bool] = None,
-                 container: Optional[str] = None,
-                 endpoint_suffix: Optional[str] = None,
-                 key: Optional[str] = None,
-                 sas_token: Optional[str] = None,
-                 snapshot_name: Optional[str] = None):
+                 level: Optional[str] = None,
+                 threshold: Optional['outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold'] = None):
         """
-        :param str account: Account name. Azure account name.
-        :param str base_path: The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-        :param str chunk_size: Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-        :param bool compress: Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-        :param str container: Azure container name. Azure container name.
-        :param str endpoint_suffix: Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
-        :param str key: Account secret key. Azure account secret key. One of key or sas_token should be specified.
-        :param str sas_token: SAS token. A shared access signatures (SAS) token. One of key or sas_token should be specified.
-        :param str snapshot_name: The snapshot name to restore from. The snapshot name to restore from.
+        :param str level: Log level.
         """
-        if account is not None:
-            pulumi.set(__self__, "account", account)
-        if base_path is not None:
-            pulumi.set(__self__, "base_path", base_path)
-        if chunk_size is not None:
-            pulumi.set(__self__, "chunk_size", chunk_size)
-        if compress is not None:
-            pulumi.set(__self__, "compress", compress)
-        if container is not None:
-            pulumi.set(__self__, "container", container)
-        if endpoint_suffix is not None:
-            pulumi.set(__self__, "endpoint_suffix", endpoint_suffix)
-        if key is not None:
-            pulumi.set(__self__, "key", key)
-        if sas_token is not None:
-            pulumi.set(__self__, "sas_token", sas_token)
-        if snapshot_name is not None:
-            pulumi.set(__self__, "snapshot_name", snapshot_name)
+        if level is not None:
+            pulumi.set(__self__, "level", level)
+        if threshold is not None:
+            pulumi.set(__self__, "threshold", threshold)
 
     @property
     @pulumi.getter
-    def account(self) -> Optional[str]:
+    def level(self) -> Optional[str]:
         """
-        Account name. Azure account name.
+        Log level.
         """
-        return pulumi.get(self, "account")
-
-    @property
-    @pulumi.getter(name="basePath")
-    def base_path(self) -> Optional[str]:
-        """
-        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-        """
-        return pulumi.get(self, "base_path")
-
-    @property
-    @pulumi.getter(name="chunkSize")
-    def chunk_size(self) -> Optional[str]:
-        """
-        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-        """
-        return pulumi.get(self, "chunk_size")
+        return pulumi.get(self, "level")
 
     @property
     @pulumi.getter
-    def compress(self) -> Optional[bool]:
-        """
-        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-        """
-        return pulumi.get(self, "compress")
-
-    @property
-    @pulumi.getter
-    def container(self) -> Optional[str]:
-        """
-        Azure container name. Azure container name.
-        """
-        return pulumi.get(self, "container")
-
-    @property
-    @pulumi.getter(name="endpointSuffix")
-    def endpoint_suffix(self) -> Optional[str]:
-        """
-        Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
-        """
-        return pulumi.get(self, "endpoint_suffix")
-
-    @property
-    @pulumi.getter
-    def key(self) -> Optional[str]:
-        """
-        Account secret key. Azure account secret key. One of key or sas_token should be specified.
-        """
-        return pulumi.get(self, "key")
-
-    @property
-    @pulumi.getter(name="sasToken")
-    def sas_token(self) -> Optional[str]:
-        """
-        SAS token. A shared access signatures (SAS) token. One of key or sas_token should be specified.
-        """
-        return pulumi.get(self, "sas_token")
-
-    @property
-    @pulumi.getter(name="snapshotName")
-    def snapshot_name(self) -> Optional[str]:
-        """
-        The snapshot name to restore from. The snapshot name to restore from.
-        """
-        return pulumi.get(self, "snapshot_name")
+    def threshold(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold']:
+        return pulumi.get(self, "threshold")
 
 
 @pulumi.output_type
-class ManagedDatabaseOpensearchPropertiesGcsMigration(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "basePath":
-            suggest = "base_path"
-        elif key == "chunkSize":
-            suggest = "chunk_size"
-        elif key == "snapshotName":
-            suggest = "snapshot_name"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesGcsMigration. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ManagedDatabaseOpensearchPropertiesGcsMigration.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ManagedDatabaseOpensearchPropertiesGcsMigration.__key_warning(key)
-        return super().get(key, default)
-
+class ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold(dict):
     def __init__(__self__, *,
-                 base_path: Optional[str] = None,
-                 bucket: Optional[str] = None,
-                 chunk_size: Optional[str] = None,
-                 compress: Optional[bool] = None,
-                 credentials: Optional[str] = None,
-                 snapshot_name: Optional[str] = None):
+                 debug: Optional[str] = None,
+                 info: Optional[str] = None,
+                 trace: Optional[str] = None,
+                 warn: Optional[str] = None):
         """
-        :param str base_path: The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-        :param str bucket: The path to the repository data within its container. Google Cloud Storage bucket name.
-        :param str chunk_size: Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-        :param bool compress: Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-        :param str credentials: Credentials. Google Cloud Storage credentials file content.
-        :param str snapshot_name: The snapshot name to restore from. The snapshot name to restore from.
+        :param str debug: Debug threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+        :param str info: Info threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+        :param str trace: Trace threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+        :param str warn: Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
-        if base_path is not None:
-            pulumi.set(__self__, "base_path", base_path)
-        if bucket is not None:
-            pulumi.set(__self__, "bucket", bucket)
-        if chunk_size is not None:
-            pulumi.set(__self__, "chunk_size", chunk_size)
-        if compress is not None:
-            pulumi.set(__self__, "compress", compress)
-        if credentials is not None:
-            pulumi.set(__self__, "credentials", credentials)
-        if snapshot_name is not None:
-            pulumi.set(__self__, "snapshot_name", snapshot_name)
-
-    @property
-    @pulumi.getter(name="basePath")
-    def base_path(self) -> Optional[str]:
-        """
-        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-        """
-        return pulumi.get(self, "base_path")
+        if debug is not None:
+            pulumi.set(__self__, "debug", debug)
+        if info is not None:
+            pulumi.set(__self__, "info", info)
+        if trace is not None:
+            pulumi.set(__self__, "trace", trace)
+        if warn is not None:
+            pulumi.set(__self__, "warn", warn)
 
     @property
     @pulumi.getter
-    def bucket(self) -> Optional[str]:
+    def debug(self) -> Optional[str]:
         """
-        The path to the repository data within its container. Google Cloud Storage bucket name.
+        Debug threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
-        return pulumi.get(self, "bucket")
-
-    @property
-    @pulumi.getter(name="chunkSize")
-    def chunk_size(self) -> Optional[str]:
-        """
-        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-        """
-        return pulumi.get(self, "chunk_size")
+        return pulumi.get(self, "debug")
 
     @property
     @pulumi.getter
-    def compress(self) -> Optional[bool]:
+    def info(self) -> Optional[str]:
         """
-        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+        Info threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
-        return pulumi.get(self, "compress")
+        return pulumi.get(self, "info")
 
     @property
     @pulumi.getter
-    def credentials(self) -> Optional[str]:
+    def trace(self) -> Optional[str]:
         """
-        Credentials. Google Cloud Storage credentials file content.
+        Trace threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
-        return pulumi.get(self, "credentials")
+        return pulumi.get(self, "trace")
 
     @property
-    @pulumi.getter(name="snapshotName")
-    def snapshot_name(self) -> Optional[str]:
+    @pulumi.getter
+    def warn(self) -> Optional[str]:
         """
-        The snapshot name to restore from. The snapshot name to restore from.
+        Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
-        return pulumi.get(self, "snapshot_name")
+        return pulumi.get(self, "warn")
 
 
 @pulumi.output_type
@@ -5181,6 +5553,8 @@ class ManagedDatabaseOpensearchPropertiesOpensearchDashboards(dict):
         suggest = None
         if key == "maxOldSpaceSize":
             suggest = "max_old_space_size"
+        elif key == "multipleDataSourceEnabled":
+            suggest = "multiple_data_source_enabled"
         elif key == "opensearchRequestTimeout":
             suggest = "opensearch_request_timeout"
 
@@ -5198,16 +5572,20 @@ class ManagedDatabaseOpensearchPropertiesOpensearchDashboards(dict):
     def __init__(__self__, *,
                  enabled: Optional[bool] = None,
                  max_old_space_size: Optional[int] = None,
+                 multiple_data_source_enabled: Optional[bool] = None,
                  opensearch_request_timeout: Optional[int] = None):
         """
         :param bool enabled: Enable or disable OpenSearch Dashboards.
         :param int max_old_space_size: Limits the maximum amount of memory (in MiB) the OpenSearch Dashboards process can use. This sets the max_old_space_size option of the nodejs running the OpenSearch Dashboards. Note: the memory reserved by OpenSearch Dashboards is not available for OpenSearch.
+        :param bool multiple_data_source_enabled: Enable or disable multiple data sources in OpenSearch Dashboards.
         :param int opensearch_request_timeout: Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
         """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
         if max_old_space_size is not None:
             pulumi.set(__self__, "max_old_space_size", max_old_space_size)
+        if multiple_data_source_enabled is not None:
+            pulumi.set(__self__, "multiple_data_source_enabled", multiple_data_source_enabled)
         if opensearch_request_timeout is not None:
             pulumi.set(__self__, "opensearch_request_timeout", opensearch_request_timeout)
 
@@ -5228,166 +5606,20 @@ class ManagedDatabaseOpensearchPropertiesOpensearchDashboards(dict):
         return pulumi.get(self, "max_old_space_size")
 
     @property
+    @pulumi.getter(name="multipleDataSourceEnabled")
+    def multiple_data_source_enabled(self) -> Optional[bool]:
+        """
+        Enable or disable multiple data sources in OpenSearch Dashboards.
+        """
+        return pulumi.get(self, "multiple_data_source_enabled")
+
+    @property
     @pulumi.getter(name="opensearchRequestTimeout")
     def opensearch_request_timeout(self) -> Optional[int]:
         """
         Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
         """
         return pulumi.get(self, "opensearch_request_timeout")
-
-
-@pulumi.output_type
-class ManagedDatabaseOpensearchPropertiesS3Migration(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "accessKey":
-            suggest = "access_key"
-        elif key == "basePath":
-            suggest = "base_path"
-        elif key == "chunkSize":
-            suggest = "chunk_size"
-        elif key == "secretKey":
-            suggest = "secret_key"
-        elif key == "serverSideEncryption":
-            suggest = "server_side_encryption"
-        elif key == "snapshotName":
-            suggest = "snapshot_name"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesS3Migration. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ManagedDatabaseOpensearchPropertiesS3Migration.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ManagedDatabaseOpensearchPropertiesS3Migration.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 access_key: Optional[str] = None,
-                 base_path: Optional[str] = None,
-                 bucket: Optional[str] = None,
-                 chunk_size: Optional[str] = None,
-                 compress: Optional[bool] = None,
-                 endpoint: Optional[str] = None,
-                 region: Optional[str] = None,
-                 secret_key: Optional[str] = None,
-                 server_side_encryption: Optional[bool] = None,
-                 snapshot_name: Optional[str] = None):
-        """
-        :param str access_key: AWS Access key. AWS Access key.
-        :param str base_path: The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-        :param str bucket: S3 bucket name. S3 bucket name.
-        :param str chunk_size: Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-        :param bool compress: Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-        :param str endpoint: The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
-        :param str region: S3 region. S3 region.
-        :param str secret_key: AWS secret key. AWS secret key.
-        :param bool server_side_encryption: Server side encryption. When set to true files are encrypted on server side.
-        :param str snapshot_name: The snapshot name to restore from. The snapshot name to restore from.
-        """
-        if access_key is not None:
-            pulumi.set(__self__, "access_key", access_key)
-        if base_path is not None:
-            pulumi.set(__self__, "base_path", base_path)
-        if bucket is not None:
-            pulumi.set(__self__, "bucket", bucket)
-        if chunk_size is not None:
-            pulumi.set(__self__, "chunk_size", chunk_size)
-        if compress is not None:
-            pulumi.set(__self__, "compress", compress)
-        if endpoint is not None:
-            pulumi.set(__self__, "endpoint", endpoint)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-        if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
-        if server_side_encryption is not None:
-            pulumi.set(__self__, "server_side_encryption", server_side_encryption)
-        if snapshot_name is not None:
-            pulumi.set(__self__, "snapshot_name", snapshot_name)
-
-    @property
-    @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[str]:
-        """
-        AWS Access key. AWS Access key.
-        """
-        return pulumi.get(self, "access_key")
-
-    @property
-    @pulumi.getter(name="basePath")
-    def base_path(self) -> Optional[str]:
-        """
-        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-        """
-        return pulumi.get(self, "base_path")
-
-    @property
-    @pulumi.getter
-    def bucket(self) -> Optional[str]:
-        """
-        S3 bucket name. S3 bucket name.
-        """
-        return pulumi.get(self, "bucket")
-
-    @property
-    @pulumi.getter(name="chunkSize")
-    def chunk_size(self) -> Optional[str]:
-        """
-        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-        """
-        return pulumi.get(self, "chunk_size")
-
-    @property
-    @pulumi.getter
-    def compress(self) -> Optional[bool]:
-        """
-        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-        """
-        return pulumi.get(self, "compress")
-
-    @property
-    @pulumi.getter
-    def endpoint(self) -> Optional[str]:
-        """
-        The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
-        """
-        return pulumi.get(self, "endpoint")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional[str]:
-        """
-        S3 region. S3 region.
-        """
-        return pulumi.get(self, "region")
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[str]:
-        """
-        AWS secret key. AWS secret key.
-        """
-        return pulumi.get(self, "secret_key")
-
-    @property
-    @pulumi.getter(name="serverSideEncryption")
-    def server_side_encryption(self) -> Optional[bool]:
-        """
-        Server side encryption. When set to true files are encrypted on server side.
-        """
-        return pulumi.get(self, "server_side_encryption")
-
-    @property
-    @pulumi.getter(name="snapshotName")
-    def snapshot_name(self) -> Optional[str]:
-        """
-        The snapshot name to restore from. The snapshot name to restore from.
-        """
-        return pulumi.get(self, "snapshot_name")
 
 
 @pulumi.output_type
@@ -5506,6 +5738,995 @@ class ManagedDatabaseOpensearchPropertiesSaml(dict):
         SAML response subject attribute. Optional. Specifies the attribute in the SAML response where the subject identifier is stored. If not configured, the NameID attribute is used by default.
         """
         return pulumi.get(self, "subject_key")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesSearchBackpressure(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "nodeDuress":
+            suggest = "node_duress"
+        elif key == "searchShardTask":
+            suggest = "search_shard_task"
+        elif key == "searchTask":
+            suggest = "search_task"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesSearchBackpressure. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesSearchBackpressure.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesSearchBackpressure.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 mode: Optional[str] = None,
+                 node_duress: Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress'] = None,
+                 search_shard_task: Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask'] = None,
+                 search_task: Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask'] = None):
+        """
+        :param str mode: The search backpressure mode. The search backpressure mode. Valid values are monitor_only, enforced, or disabled. Default is monitor_only.
+        :param 'ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs' node_duress: Node duress settings.
+        :param 'ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs' search_shard_task: Search shard settings.
+        :param 'ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs' search_task: Search task settings.
+        """
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if node_duress is not None:
+            pulumi.set(__self__, "node_duress", node_duress)
+        if search_shard_task is not None:
+            pulumi.set(__self__, "search_shard_task", search_shard_task)
+        if search_task is not None:
+            pulumi.set(__self__, "search_task", search_task)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        The search backpressure mode. The search backpressure mode. Valid values are monitor_only, enforced, or disabled. Default is monitor_only.
+        """
+        return pulumi.get(self, "mode")
+
+    @property
+    @pulumi.getter(name="nodeDuress")
+    def node_duress(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress']:
+        """
+        Node duress settings.
+        """
+        return pulumi.get(self, "node_duress")
+
+    @property
+    @pulumi.getter(name="searchShardTask")
+    def search_shard_task(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask']:
+        """
+        Search shard settings.
+        """
+        return pulumi.get(self, "search_shard_task")
+
+    @property
+    @pulumi.getter(name="searchTask")
+    def search_task(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask']:
+        """
+        Search task settings.
+        """
+        return pulumi.get(self, "search_task")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cpuThreshold":
+            suggest = "cpu_threshold"
+        elif key == "heapThreshold":
+            suggest = "heap_threshold"
+        elif key == "numSuccessiveBreaches":
+            suggest = "num_successive_breaches"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cpu_threshold: Optional[float] = None,
+                 heap_threshold: Optional[float] = None,
+                 num_successive_breaches: Optional[int] = None):
+        """
+        :param float cpu_threshold: The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.9.
+        :param float heap_threshold: The heap usage threshold (as a percentage) required for a node to be considered to be under duress. The heap usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.7.
+        :param int num_successive_breaches: The number of successive limit breaches after which the node is considered to be under duress. The number of successive limit breaches after which the node is considered to be under duress. Default is 3.
+        """
+        if cpu_threshold is not None:
+            pulumi.set(__self__, "cpu_threshold", cpu_threshold)
+        if heap_threshold is not None:
+            pulumi.set(__self__, "heap_threshold", heap_threshold)
+        if num_successive_breaches is not None:
+            pulumi.set(__self__, "num_successive_breaches", num_successive_breaches)
+
+    @property
+    @pulumi.getter(name="cpuThreshold")
+    def cpu_threshold(self) -> Optional[float]:
+        """
+        The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.9.
+        """
+        return pulumi.get(self, "cpu_threshold")
+
+    @property
+    @pulumi.getter(name="heapThreshold")
+    def heap_threshold(self) -> Optional[float]:
+        """
+        The heap usage threshold (as a percentage) required for a node to be considered to be under duress. The heap usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.7.
+        """
+        return pulumi.get(self, "heap_threshold")
+
+    @property
+    @pulumi.getter(name="numSuccessiveBreaches")
+    def num_successive_breaches(self) -> Optional[int]:
+        """
+        The number of successive limit breaches after which the node is considered to be under duress. The number of successive limit breaches after which the node is considered to be under duress. Default is 3.
+        """
+        return pulumi.get(self, "num_successive_breaches")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cancellationBurst":
+            suggest = "cancellation_burst"
+        elif key == "cancellationRate":
+            suggest = "cancellation_rate"
+        elif key == "cancellationRatio":
+            suggest = "cancellation_ratio"
+        elif key == "cpuTimeMillisThreshold":
+            suggest = "cpu_time_millis_threshold"
+        elif key == "elapsedTimeMillisThreshold":
+            suggest = "elapsed_time_millis_threshold"
+        elif key == "heapMovingAverageWindowSize":
+            suggest = "heap_moving_average_window_size"
+        elif key == "heapPercentThreshold":
+            suggest = "heap_percent_threshold"
+        elif key == "heapVariance":
+            suggest = "heap_variance"
+        elif key == "totalHeapPercentThreshold":
+            suggest = "total_heap_percent_threshold"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cancellation_burst: Optional[float] = None,
+                 cancellation_rate: Optional[float] = None,
+                 cancellation_ratio: Optional[float] = None,
+                 cpu_time_millis_threshold: Optional[int] = None,
+                 elapsed_time_millis_threshold: Optional[int] = None,
+                 heap_moving_average_window_size: Optional[int] = None,
+                 heap_percent_threshold: Optional[float] = None,
+                 heap_variance: Optional[float] = None,
+                 total_heap_percent_threshold: Optional[float] = None):
+        """
+        :param float cancellation_burst: The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 10.0.
+        :param float cancellation_rate: The maximum number of tasks to cancel per millisecond of elapsed time. The maximum number of tasks to cancel per millisecond of elapsed time. Default is 0.003.
+        :param float cancellation_ratio: The maximum number of tasks to cancel. The maximum number of tasks to cancel, as a percentage of successful task completions. Default is 0.1.
+        :param int cpu_time_millis_threshold: The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 15000.
+        :param int elapsed_time_millis_threshold: The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 30000.
+        :param int heap_moving_average_window_size: The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. Default is 100.
+        :param float heap_percent_threshold: The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. Default is 0.5.
+        :param float heap_variance: The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. Default is 2.0.
+        :param float total_heap_percent_threshold: The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. Default is 0.5.
+        """
+        if cancellation_burst is not None:
+            pulumi.set(__self__, "cancellation_burst", cancellation_burst)
+        if cancellation_rate is not None:
+            pulumi.set(__self__, "cancellation_rate", cancellation_rate)
+        if cancellation_ratio is not None:
+            pulumi.set(__self__, "cancellation_ratio", cancellation_ratio)
+        if cpu_time_millis_threshold is not None:
+            pulumi.set(__self__, "cpu_time_millis_threshold", cpu_time_millis_threshold)
+        if elapsed_time_millis_threshold is not None:
+            pulumi.set(__self__, "elapsed_time_millis_threshold", elapsed_time_millis_threshold)
+        if heap_moving_average_window_size is not None:
+            pulumi.set(__self__, "heap_moving_average_window_size", heap_moving_average_window_size)
+        if heap_percent_threshold is not None:
+            pulumi.set(__self__, "heap_percent_threshold", heap_percent_threshold)
+        if heap_variance is not None:
+            pulumi.set(__self__, "heap_variance", heap_variance)
+        if total_heap_percent_threshold is not None:
+            pulumi.set(__self__, "total_heap_percent_threshold", total_heap_percent_threshold)
+
+    @property
+    @pulumi.getter(name="cancellationBurst")
+    def cancellation_burst(self) -> Optional[float]:
+        """
+        The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 10.0.
+        """
+        return pulumi.get(self, "cancellation_burst")
+
+    @property
+    @pulumi.getter(name="cancellationRate")
+    def cancellation_rate(self) -> Optional[float]:
+        """
+        The maximum number of tasks to cancel per millisecond of elapsed time. The maximum number of tasks to cancel per millisecond of elapsed time. Default is 0.003.
+        """
+        return pulumi.get(self, "cancellation_rate")
+
+    @property
+    @pulumi.getter(name="cancellationRatio")
+    def cancellation_ratio(self) -> Optional[float]:
+        """
+        The maximum number of tasks to cancel. The maximum number of tasks to cancel, as a percentage of successful task completions. Default is 0.1.
+        """
+        return pulumi.get(self, "cancellation_ratio")
+
+    @property
+    @pulumi.getter(name="cpuTimeMillisThreshold")
+    def cpu_time_millis_threshold(self) -> Optional[int]:
+        """
+        The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 15000.
+        """
+        return pulumi.get(self, "cpu_time_millis_threshold")
+
+    @property
+    @pulumi.getter(name="elapsedTimeMillisThreshold")
+    def elapsed_time_millis_threshold(self) -> Optional[int]:
+        """
+        The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 30000.
+        """
+        return pulumi.get(self, "elapsed_time_millis_threshold")
+
+    @property
+    @pulumi.getter(name="heapMovingAverageWindowSize")
+    def heap_moving_average_window_size(self) -> Optional[int]:
+        """
+        The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. Default is 100.
+        """
+        return pulumi.get(self, "heap_moving_average_window_size")
+
+    @property
+    @pulumi.getter(name="heapPercentThreshold")
+    def heap_percent_threshold(self) -> Optional[float]:
+        """
+        The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. Default is 0.5.
+        """
+        return pulumi.get(self, "heap_percent_threshold")
+
+    @property
+    @pulumi.getter(name="heapVariance")
+    def heap_variance(self) -> Optional[float]:
+        """
+        The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. Default is 2.0.
+        """
+        return pulumi.get(self, "heap_variance")
+
+    @property
+    @pulumi.getter(name="totalHeapPercentThreshold")
+    def total_heap_percent_threshold(self) -> Optional[float]:
+        """
+        The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. Default is 0.5.
+        """
+        return pulumi.get(self, "total_heap_percent_threshold")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cancellationBurst":
+            suggest = "cancellation_burst"
+        elif key == "cancellationRate":
+            suggest = "cancellation_rate"
+        elif key == "cancellationRatio":
+            suggest = "cancellation_ratio"
+        elif key == "cpuTimeMillisThreshold":
+            suggest = "cpu_time_millis_threshold"
+        elif key == "elapsedTimeMillisThreshold":
+            suggest = "elapsed_time_millis_threshold"
+        elif key == "heapMovingAverageWindowSize":
+            suggest = "heap_moving_average_window_size"
+        elif key == "heapPercentThreshold":
+            suggest = "heap_percent_threshold"
+        elif key == "heapVariance":
+            suggest = "heap_variance"
+        elif key == "totalHeapPercentThreshold":
+            suggest = "total_heap_percent_threshold"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cancellation_burst: Optional[float] = None,
+                 cancellation_rate: Optional[float] = None,
+                 cancellation_ratio: Optional[float] = None,
+                 cpu_time_millis_threshold: Optional[int] = None,
+                 elapsed_time_millis_threshold: Optional[int] = None,
+                 heap_moving_average_window_size: Optional[int] = None,
+                 heap_percent_threshold: Optional[float] = None,
+                 heap_variance: Optional[float] = None,
+                 total_heap_percent_threshold: Optional[float] = None):
+        """
+        :param float cancellation_burst: The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 5.0.
+        :param float cancellation_rate: The maximum number of search tasks to cancel per millisecond of elapsed time. The maximum number of search tasks to cancel per millisecond of elapsed time. Default is 0.003.
+        :param float cancellation_ratio: The maximum number of search tasks to cancel, as a percentage of successful search task completions. The maximum number of search tasks to cancel, as a percentage of successful search task completions. Default is 0.1.
+        :param int cpu_time_millis_threshold: The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 30000.
+        :param int elapsed_time_millis_threshold: The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 45000.
+        :param int heap_moving_average_window_size: The window size used to calculate the rolling average of the heap usage for the completed parent tasks. The window size used to calculate the rolling average of the heap usage for the completed parent tasks. Default is 10.
+        :param float heap_percent_threshold: The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. Default is 0.2.
+        :param float heap_variance: The heap usage variance required for an individual parent task before it is considered for cancellation. The heap usage variance required for an individual parent task before it is considered for cancellation. A task is considered for cancellation when taskHeapUsage is greater than or equal to heapUsageMovingAverage * variance. Default is 2.0.
+        :param float total_heap_percent_threshold: The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. Default is 0.5.
+        """
+        if cancellation_burst is not None:
+            pulumi.set(__self__, "cancellation_burst", cancellation_burst)
+        if cancellation_rate is not None:
+            pulumi.set(__self__, "cancellation_rate", cancellation_rate)
+        if cancellation_ratio is not None:
+            pulumi.set(__self__, "cancellation_ratio", cancellation_ratio)
+        if cpu_time_millis_threshold is not None:
+            pulumi.set(__self__, "cpu_time_millis_threshold", cpu_time_millis_threshold)
+        if elapsed_time_millis_threshold is not None:
+            pulumi.set(__self__, "elapsed_time_millis_threshold", elapsed_time_millis_threshold)
+        if heap_moving_average_window_size is not None:
+            pulumi.set(__self__, "heap_moving_average_window_size", heap_moving_average_window_size)
+        if heap_percent_threshold is not None:
+            pulumi.set(__self__, "heap_percent_threshold", heap_percent_threshold)
+        if heap_variance is not None:
+            pulumi.set(__self__, "heap_variance", heap_variance)
+        if total_heap_percent_threshold is not None:
+            pulumi.set(__self__, "total_heap_percent_threshold", total_heap_percent_threshold)
+
+    @property
+    @pulumi.getter(name="cancellationBurst")
+    def cancellation_burst(self) -> Optional[float]:
+        """
+        The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 5.0.
+        """
+        return pulumi.get(self, "cancellation_burst")
+
+    @property
+    @pulumi.getter(name="cancellationRate")
+    def cancellation_rate(self) -> Optional[float]:
+        """
+        The maximum number of search tasks to cancel per millisecond of elapsed time. The maximum number of search tasks to cancel per millisecond of elapsed time. Default is 0.003.
+        """
+        return pulumi.get(self, "cancellation_rate")
+
+    @property
+    @pulumi.getter(name="cancellationRatio")
+    def cancellation_ratio(self) -> Optional[float]:
+        """
+        The maximum number of search tasks to cancel, as a percentage of successful search task completions. The maximum number of search tasks to cancel, as a percentage of successful search task completions. Default is 0.1.
+        """
+        return pulumi.get(self, "cancellation_ratio")
+
+    @property
+    @pulumi.getter(name="cpuTimeMillisThreshold")
+    def cpu_time_millis_threshold(self) -> Optional[int]:
+        """
+        The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 30000.
+        """
+        return pulumi.get(self, "cpu_time_millis_threshold")
+
+    @property
+    @pulumi.getter(name="elapsedTimeMillisThreshold")
+    def elapsed_time_millis_threshold(self) -> Optional[int]:
+        """
+        The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 45000.
+        """
+        return pulumi.get(self, "elapsed_time_millis_threshold")
+
+    @property
+    @pulumi.getter(name="heapMovingAverageWindowSize")
+    def heap_moving_average_window_size(self) -> Optional[int]:
+        """
+        The window size used to calculate the rolling average of the heap usage for the completed parent tasks. The window size used to calculate the rolling average of the heap usage for the completed parent tasks. Default is 10.
+        """
+        return pulumi.get(self, "heap_moving_average_window_size")
+
+    @property
+    @pulumi.getter(name="heapPercentThreshold")
+    def heap_percent_threshold(self) -> Optional[float]:
+        """
+        The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. Default is 0.2.
+        """
+        return pulumi.get(self, "heap_percent_threshold")
+
+    @property
+    @pulumi.getter(name="heapVariance")
+    def heap_variance(self) -> Optional[float]:
+        """
+        The heap usage variance required for an individual parent task before it is considered for cancellation. The heap usage variance required for an individual parent task before it is considered for cancellation. A task is considered for cancellation when taskHeapUsage is greater than or equal to heapUsageMovingAverage * variance. Default is 2.0.
+        """
+        return pulumi.get(self, "heap_variance")
+
+    @property
+    @pulumi.getter(name="totalHeapPercentThreshold")
+    def total_heap_percent_threshold(self) -> Optional[float]:
+        """
+        The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. Default is 0.5.
+        """
+        return pulumi.get(self, "total_heap_percent_threshold")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries(dict):
+    def __init__(__self__, *,
+                 cpu: Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu'] = None,
+                 latency: Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency'] = None,
+                 memory: Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory'] = None):
+        """
+        :param 'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs' cpu: Top N queries monitoring by CPU.
+        :param 'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs' latency: Top N queries monitoring by latency.
+        :param 'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs' memory: Top N queries monitoring by memory.
+        """
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if latency is not None:
+            pulumi.set(__self__, "latency", latency)
+        if memory is not None:
+            pulumi.set(__self__, "memory", memory)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu']:
+        """
+        Top N queries monitoring by CPU.
+        """
+        return pulumi.get(self, "cpu")
+
+    @property
+    @pulumi.getter
+    def latency(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency']:
+        """
+        Top N queries monitoring by latency.
+        """
+        return pulumi.get(self, "latency")
+
+    @property
+    @pulumi.getter
+    def memory(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory']:
+        """
+        Top N queries monitoring by memory.
+        """
+        return pulumi.get(self, "memory")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "topNSize":
+            suggest = "top_n_size"
+        elif key == "windowSize":
+            suggest = "window_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None,
+                 top_n_size: Optional[int] = None,
+                 window_size: Optional[str] = None):
+        """
+        :param bool enabled: Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        :param int top_n_size: Specify the value of N for the top N queries by the metric.
+        :param str window_size: The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if top_n_size is not None:
+            pulumi.set(__self__, "top_n_size", top_n_size)
+        if window_size is not None:
+            pulumi.set(__self__, "window_size", window_size)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="topNSize")
+    def top_n_size(self) -> Optional[int]:
+        """
+        Specify the value of N for the top N queries by the metric.
+        """
+        return pulumi.get(self, "top_n_size")
+
+    @property
+    @pulumi.getter(name="windowSize")
+    def window_size(self) -> Optional[str]:
+        """
+        The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+        return pulumi.get(self, "window_size")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "topNSize":
+            suggest = "top_n_size"
+        elif key == "windowSize":
+            suggest = "window_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None,
+                 top_n_size: Optional[int] = None,
+                 window_size: Optional[str] = None):
+        """
+        :param bool enabled: Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        :param int top_n_size: Specify the value of N for the top N queries by the metric.
+        :param str window_size: The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if top_n_size is not None:
+            pulumi.set(__self__, "top_n_size", top_n_size)
+        if window_size is not None:
+            pulumi.set(__self__, "window_size", window_size)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="topNSize")
+    def top_n_size(self) -> Optional[int]:
+        """
+        Specify the value of N for the top N queries by the metric.
+        """
+        return pulumi.get(self, "top_n_size")
+
+    @property
+    @pulumi.getter(name="windowSize")
+    def window_size(self) -> Optional[str]:
+        """
+        The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+        return pulumi.get(self, "window_size")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "topNSize":
+            suggest = "top_n_size"
+        elif key == "windowSize":
+            suggest = "window_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None,
+                 top_n_size: Optional[int] = None,
+                 window_size: Optional[str] = None):
+        """
+        :param bool enabled: Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        :param int top_n_size: Specify the value of N for the top N queries by the metric.
+        :param str window_size: The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if top_n_size is not None:
+            pulumi.set(__self__, "top_n_size", top_n_size)
+        if window_size is not None:
+            pulumi.set(__self__, "window_size", window_size)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="topNSize")
+    def top_n_size(self) -> Optional[int]:
+        """
+        Specify the value of N for the top N queries by the metric.
+        """
+        return pulumi.get(self, "top_n_size")
+
+    @property
+    @pulumi.getter(name="windowSize")
+    def window_size(self) -> Optional[str]:
+        """
+        The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+        return pulumi.get(self, "window_size")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesSegrep(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "pressureCheckpointLimit":
+            suggest = "pressure_checkpoint_limit"
+        elif key == "pressureEnabled":
+            suggest = "pressure_enabled"
+        elif key == "pressureReplicaStaleLimit":
+            suggest = "pressure_replica_stale_limit"
+        elif key == "pressureTimeLimit":
+            suggest = "pressure_time_limit"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesSegrep. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesSegrep.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesSegrep.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 pressure_checkpoint_limit: Optional[int] = None,
+                 pressure_enabled: Optional[bool] = None,
+                 pressure_replica_stale_limit: Optional[float] = None,
+                 pressure_time_limit: Optional[str] = None):
+        """
+        :param int pressure_checkpoint_limit: The maximum number of indexing checkpoints that a replica shard can fall behind when copying from primary. Once `segrep.pressure.checkpoint.limit` is breached along with `segrep.pressure.time.limit`, the segment replication backpressure mechanism is initiated. Default is 4 checkpoints.
+        :param bool pressure_enabled: Enables the segment replication backpressure mechanism. Default is false.
+        :param float pressure_replica_stale_limit: The maximum number of stale replica shards that can exist in a replication group. Once `segrep.pressure.replica.stale.limit` is breached, the segment replication backpressure mechanism is initiated. Default is .5, which is 50% of a replication group.
+        :param str pressure_time_limit: The maximum amount of time that a replica shard can take to copy from the primary shard. Once segrep.pressure.time.limit is breached along with segrep.pressure.checkpoint.limit, the segment replication backpressure mechanism is initiated. Default is 5 minutes.
+        """
+        if pressure_checkpoint_limit is not None:
+            pulumi.set(__self__, "pressure_checkpoint_limit", pressure_checkpoint_limit)
+        if pressure_enabled is not None:
+            pulumi.set(__self__, "pressure_enabled", pressure_enabled)
+        if pressure_replica_stale_limit is not None:
+            pulumi.set(__self__, "pressure_replica_stale_limit", pressure_replica_stale_limit)
+        if pressure_time_limit is not None:
+            pulumi.set(__self__, "pressure_time_limit", pressure_time_limit)
+
+    @property
+    @pulumi.getter(name="pressureCheckpointLimit")
+    def pressure_checkpoint_limit(self) -> Optional[int]:
+        """
+        The maximum number of indexing checkpoints that a replica shard can fall behind when copying from primary. Once `segrep.pressure.checkpoint.limit` is breached along with `segrep.pressure.time.limit`, the segment replication backpressure mechanism is initiated. Default is 4 checkpoints.
+        """
+        return pulumi.get(self, "pressure_checkpoint_limit")
+
+    @property
+    @pulumi.getter(name="pressureEnabled")
+    def pressure_enabled(self) -> Optional[bool]:
+        """
+        Enables the segment replication backpressure mechanism. Default is false.
+        """
+        return pulumi.get(self, "pressure_enabled")
+
+    @property
+    @pulumi.getter(name="pressureReplicaStaleLimit")
+    def pressure_replica_stale_limit(self) -> Optional[float]:
+        """
+        The maximum number of stale replica shards that can exist in a replication group. Once `segrep.pressure.replica.stale.limit` is breached, the segment replication backpressure mechanism is initiated. Default is .5, which is 50% of a replication group.
+        """
+        return pulumi.get(self, "pressure_replica_stale_limit")
+
+    @property
+    @pulumi.getter(name="pressureTimeLimit")
+    def pressure_time_limit(self) -> Optional[str]:
+        """
+        The maximum amount of time that a replica shard can take to copy from the primary shard. Once segrep.pressure.time.limit is breached along with segrep.pressure.checkpoint.limit, the segment replication backpressure mechanism is initiated. Default is 5 minutes.
+        """
+        return pulumi.get(self, "pressure_time_limit")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesShardIndexingPressure(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "operatingFactor":
+            suggest = "operating_factor"
+        elif key == "primaryParameter":
+            suggest = "primary_parameter"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesShardIndexingPressure. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesShardIndexingPressure.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesShardIndexingPressure.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None,
+                 enforced: Optional[bool] = None,
+                 operating_factor: Optional['outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor'] = None,
+                 primary_parameter: Optional['outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter'] = None):
+        """
+        :param bool enabled: Enable or disable shard indexing backpressure. Enable or disable shard indexing backpressure. Default is false.
+        :param bool enforced: Run shard indexing backpressure in shadow mode or enforced mode. Run shard indexing backpressure in shadow mode or enforced mode.
+                           In shadow mode (value set as false), shard indexing backpressure tracks all granular-level metrics,
+                           but it doesn’t actually reject any indexing requests.
+                           In enforced mode (value set as true),
+                           shard indexing backpressure rejects any requests to the cluster that might cause a dip in its performance.
+                           Default is false.
+        :param 'ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs' operating_factor: Operating factor.
+        :param 'ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs' primary_parameter: Primary parameter.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if enforced is not None:
+            pulumi.set(__self__, "enforced", enforced)
+        if operating_factor is not None:
+            pulumi.set(__self__, "operating_factor", operating_factor)
+        if primary_parameter is not None:
+            pulumi.set(__self__, "primary_parameter", primary_parameter)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Enable or disable shard indexing backpressure. Enable or disable shard indexing backpressure. Default is false.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def enforced(self) -> Optional[bool]:
+        """
+        Run shard indexing backpressure in shadow mode or enforced mode. Run shard indexing backpressure in shadow mode or enforced mode.
+                    In shadow mode (value set as false), shard indexing backpressure tracks all granular-level metrics,
+                    but it doesn’t actually reject any indexing requests.
+                    In enforced mode (value set as true),
+                    shard indexing backpressure rejects any requests to the cluster that might cause a dip in its performance.
+                    Default is false.
+        """
+        return pulumi.get(self, "enforced")
+
+    @property
+    @pulumi.getter(name="operatingFactor")
+    def operating_factor(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor']:
+        """
+        Operating factor.
+        """
+        return pulumi.get(self, "operating_factor")
+
+    @property
+    @pulumi.getter(name="primaryParameter")
+    def primary_parameter(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter']:
+        """
+        Primary parameter.
+        """
+        return pulumi.get(self, "primary_parameter")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor(dict):
+    def __init__(__self__, *,
+                 lower: Optional[float] = None,
+                 optimal: Optional[float] = None,
+                 upper: Optional[float] = None):
+        """
+        :param float lower: Lower occupancy limit of the allocated quota of memory for the shard. Specify the lower occupancy limit of the allocated quota of memory for the shard.
+                                   If the total memory usage of a shard is below this limit,
+                                   shard indexing backpressure decreases the current allocated memory for that shard.
+                                   Default is 0.75.
+        :param float optimal: Optimal occupancy of the allocated quota of memory for the shard. Specify the optimal occupancy of the allocated quota of memory for the shard.
+                                   If the total memory usage of a shard is at this level,
+                                   shard indexing backpressure doesn’t change the current allocated memory for that shard.
+                                   Default is 0.85.
+        :param float upper: Upper occupancy limit of the allocated quota of memory for the shard. Specify the upper occupancy limit of the allocated quota of memory for the shard.
+                                   If the total memory usage of a shard is above this limit,
+                                   shard indexing backpressure increases the current allocated memory for that shard.
+                                   Default is 0.95.
+        """
+        if lower is not None:
+            pulumi.set(__self__, "lower", lower)
+        if optimal is not None:
+            pulumi.set(__self__, "optimal", optimal)
+        if upper is not None:
+            pulumi.set(__self__, "upper", upper)
+
+    @property
+    @pulumi.getter
+    def lower(self) -> Optional[float]:
+        """
+        Lower occupancy limit of the allocated quota of memory for the shard. Specify the lower occupancy limit of the allocated quota of memory for the shard.
+                            If the total memory usage of a shard is below this limit,
+                            shard indexing backpressure decreases the current allocated memory for that shard.
+                            Default is 0.75.
+        """
+        return pulumi.get(self, "lower")
+
+    @property
+    @pulumi.getter
+    def optimal(self) -> Optional[float]:
+        """
+        Optimal occupancy of the allocated quota of memory for the shard. Specify the optimal occupancy of the allocated quota of memory for the shard.
+                            If the total memory usage of a shard is at this level,
+                            shard indexing backpressure doesn’t change the current allocated memory for that shard.
+                            Default is 0.85.
+        """
+        return pulumi.get(self, "optimal")
+
+    @property
+    @pulumi.getter
+    def upper(self) -> Optional[float]:
+        """
+        Upper occupancy limit of the allocated quota of memory for the shard. Specify the upper occupancy limit of the allocated quota of memory for the shard.
+                            If the total memory usage of a shard is above this limit,
+                            shard indexing backpressure increases the current allocated memory for that shard.
+                            Default is 0.95.
+        """
+        return pulumi.get(self, "upper")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter(dict):
+    def __init__(__self__, *,
+                 node: Optional['outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode'] = None,
+                 shard: Optional['outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard'] = None):
+        if node is not None:
+            pulumi.set(__self__, "node", node)
+        if shard is not None:
+            pulumi.set(__self__, "shard", shard)
+
+    @property
+    @pulumi.getter
+    def node(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode']:
+        return pulumi.get(self, "node")
+
+    @property
+    @pulumi.getter
+    def shard(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard']:
+        return pulumi.get(self, "shard")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "softLimit":
+            suggest = "soft_limit"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 soft_limit: Optional[float] = None):
+        """
+        :param float soft_limit: Node soft limit. Define the percentage of the node-level memory
+                                           threshold that acts as a soft indicator for strain on a node.
+                                           Default is 0.7.
+        """
+        if soft_limit is not None:
+            pulumi.set(__self__, "soft_limit", soft_limit)
+
+    @property
+    @pulumi.getter(name="softLimit")
+    def soft_limit(self) -> Optional[float]:
+        """
+        Node soft limit. Define the percentage of the node-level memory
+                                    threshold that acts as a soft indicator for strain on a node.
+                                    Default is 0.7.
+        """
+        return pulumi.get(self, "soft_limit")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "minLimit":
+            suggest = "min_limit"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 min_limit: Optional[float] = None):
+        """
+        :param float min_limit: Shard min limit. Specify the minimum assigned quota for a new shard in any role (coordinator, primary, or replica).
+                                           Shard indexing backpressure increases or decreases this allocated quota based on the inflow of traffic for the shard.
+                                           Default is 0.001.
+        """
+        if min_limit is not None:
+            pulumi.set(__self__, "min_limit", min_limit)
+
+    @property
+    @pulumi.getter(name="minLimit")
+    def min_limit(self) -> Optional[float]:
+        """
+        Shard min limit. Specify the minimum assigned quota for a new shard in any role (coordinator, primary, or replica).
+                                    Shard indexing backpressure increases or decreases this allocated quota based on the inflow of traffic for the shard.
+                                    Default is 0.001.
+        """
+        return pulumi.get(self, "min_limit")
 
 
 @pulumi.output_type
@@ -5756,6 +6977,8 @@ class ManagedDatabasePostgresqlProperties(dict):
             suggest = "max_wal_senders"
         elif key == "maxWorkerProcesses":
             suggest = "max_worker_processes"
+        elif key == "passwordEncryption":
+            suggest = "password_encryption"
         elif key == "pgPartmanBgwInterval":
             suggest = "pg_partman_bgw_interval"
         elif key == "pgPartmanBgwRole":
@@ -5848,6 +7071,7 @@ class ManagedDatabasePostgresqlProperties(dict):
                  max_wal_senders: Optional[int] = None,
                  max_worker_processes: Optional[int] = None,
                  migration: Optional['outputs.ManagedDatabasePostgresqlPropertiesMigration'] = None,
+                 password_encryption: Optional[str] = None,
                  pg_partman_bgw_interval: Optional[int] = None,
                  pg_partman_bgw_role: Optional[str] = None,
                  pg_stat_monitor_enable: Optional[bool] = None,
@@ -5916,6 +7140,7 @@ class ManagedDatabasePostgresqlProperties(dict):
         :param int max_wal_senders: PostgreSQL maximum WAL senders.
         :param int max_worker_processes: Sets the maximum number of background processes that the system can support.
         :param 'ManagedDatabasePostgresqlPropertiesMigrationArgs' migration: Migrate data from existing server.
+        :param str password_encryption: Chooses the algorithm for encrypting passwords.
         :param int pg_partman_bgw_interval: Sets the time interval to run pg_partman's scheduled tasks.
         :param str pg_partman_bgw_role: Controls which role to use for pg_partman's scheduled background tasks.
         :param bool pg_stat_monitor_enable: Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
@@ -6027,6 +7252,8 @@ class ManagedDatabasePostgresqlProperties(dict):
             pulumi.set(__self__, "max_worker_processes", max_worker_processes)
         if migration is not None:
             pulumi.set(__self__, "migration", migration)
+        if password_encryption is not None:
+            pulumi.set(__self__, "password_encryption", password_encryption)
         if pg_partman_bgw_interval is not None:
             pulumi.set(__self__, "pg_partman_bgw_interval", pg_partman_bgw_interval)
         if pg_partman_bgw_role is not None:
@@ -6419,6 +7646,14 @@ class ManagedDatabasePostgresqlProperties(dict):
         Migrate data from existing server.
         """
         return pulumi.get(self, "migration")
+
+    @property
+    @pulumi.getter(name="passwordEncryption")
+    def password_encryption(self) -> Optional[str]:
+        """
+        Chooses the algorithm for encrypting passwords.
+        """
+        return pulumi.get(self, "password_encryption")
 
     @property
     @pulumi.getter(name="pgPartmanBgwInterval")
@@ -7149,6 +8384,10 @@ class ManagedDatabaseRedisProperties(dict):
         suggest = None
         if key == "automaticUtilityNetworkIpFilter":
             suggest = "automatic_utility_network_ip_filter"
+        elif key == "backupHour":
+            suggest = "backup_hour"
+        elif key == "backupMinute":
+            suggest = "backup_minute"
         elif key == "ipFilters":
             suggest = "ip_filters"
         elif key == "publicAccess":
@@ -7193,6 +8432,8 @@ class ManagedDatabaseRedisProperties(dict):
 
     def __init__(__self__, *,
                  automatic_utility_network_ip_filter: Optional[bool] = None,
+                 backup_hour: Optional[int] = None,
+                 backup_minute: Optional[int] = None,
                  ip_filters: Optional[Sequence[str]] = None,
                  migration: Optional['outputs.ManagedDatabaseRedisPropertiesMigration'] = None,
                  public_access: Optional[bool] = None,
@@ -7211,6 +8452,8 @@ class ManagedDatabaseRedisProperties(dict):
                  service_log: Optional[bool] = None):
         """
         :param bool automatic_utility_network_ip_filter: Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+        :param int backup_hour: The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        :param int backup_minute: The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
         :param Sequence[str] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
         :param 'ManagedDatabaseRedisPropertiesMigrationArgs' migration: Migrate data from existing server.
         :param bool public_access: Public Access. Allow access to the service from the public Internet.
@@ -7230,6 +8473,10 @@ class ManagedDatabaseRedisProperties(dict):
         """
         if automatic_utility_network_ip_filter is not None:
             pulumi.set(__self__, "automatic_utility_network_ip_filter", automatic_utility_network_ip_filter)
+        if backup_hour is not None:
+            pulumi.set(__self__, "backup_hour", backup_hour)
+        if backup_minute is not None:
+            pulumi.set(__self__, "backup_minute", backup_minute)
         if ip_filters is not None:
             pulumi.set(__self__, "ip_filters", ip_filters)
         if migration is not None:
@@ -7270,6 +8517,22 @@ class ManagedDatabaseRedisProperties(dict):
         Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
         """
         return pulumi.get(self, "automatic_utility_network_ip_filter")
+
+    @property
+    @pulumi.getter(name="backupHour")
+    def backup_hour(self) -> Optional[int]:
+        """
+        The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        return pulumi.get(self, "backup_hour")
+
+    @property
+    @pulumi.getter(name="backupMinute")
+    def backup_minute(self) -> Optional[int]:
+        """
+        The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        return pulumi.get(self, "backup_minute")
 
     @property
     @pulumi.getter(name="ipFilters")
@@ -7673,6 +8936,628 @@ class ManagedDatabaseUserRedisAccessControl(dict):
 
 
 @pulumi.output_type
+class ManagedDatabaseUserValkeyAccessControl(dict):
+    def __init__(__self__, *,
+                 categories: Optional[str] = None,
+                 channels: Optional[str] = None,
+                 commands: Optional[str] = None,
+                 keys: Optional[str] = None):
+        """
+        :param str categories: Set access control to all commands in specified categories.
+        :param str channels: Set access control to Pub/Sub channels.
+        :param str commands: Set access control to commands.
+        :param str keys: Set access control to keys.
+        """
+        if categories is not None:
+            pulumi.set(__self__, "categories", categories)
+        if channels is not None:
+            pulumi.set(__self__, "channels", channels)
+        if commands is not None:
+            pulumi.set(__self__, "commands", commands)
+        if keys is not None:
+            pulumi.set(__self__, "keys", keys)
+
+    @property
+    @pulumi.getter
+    def categories(self) -> Optional[str]:
+        """
+        Set access control to all commands in specified categories.
+        """
+        return pulumi.get(self, "categories")
+
+    @property
+    @pulumi.getter
+    def channels(self) -> Optional[str]:
+        """
+        Set access control to Pub/Sub channels.
+        """
+        return pulumi.get(self, "channels")
+
+    @property
+    @pulumi.getter
+    def commands(self) -> Optional[str]:
+        """
+        Set access control to commands.
+        """
+        return pulumi.get(self, "commands")
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Optional[str]:
+        """
+        Set access control to keys.
+        """
+        return pulumi.get(self, "keys")
+
+
+@pulumi.output_type
+class ManagedDatabaseValkeyComponent(dict):
+    def __init__(__self__, *,
+                 component: Optional[str] = None,
+                 host: Optional[str] = None,
+                 port: Optional[int] = None,
+                 route: Optional[str] = None,
+                 usage: Optional[str] = None):
+        """
+        :param str component: Type of the component
+        :param str host: Hostname of the component
+        :param int port: Port number of the component
+        :param str route: Component network route type
+        :param str usage: Usage of the component
+        """
+        if component is not None:
+            pulumi.set(__self__, "component", component)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if route is not None:
+            pulumi.set(__self__, "route", route)
+        if usage is not None:
+            pulumi.set(__self__, "usage", usage)
+
+    @property
+    @pulumi.getter
+    def component(self) -> Optional[str]:
+        """
+        Type of the component
+        """
+        return pulumi.get(self, "component")
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[str]:
+        """
+        Hostname of the component
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        Port number of the component
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def route(self) -> Optional[str]:
+        """
+        Component network route type
+        """
+        return pulumi.get(self, "route")
+
+    @property
+    @pulumi.getter
+    def usage(self) -> Optional[str]:
+        """
+        Usage of the component
+        """
+        return pulumi.get(self, "usage")
+
+
+@pulumi.output_type
+class ManagedDatabaseValkeyNetwork(dict):
+    def __init__(__self__, *,
+                 family: str,
+                 name: str,
+                 type: str,
+                 uuid: str):
+        """
+        :param str family: Network family. Currently only `IPv4` is supported.
+        :param str name: The name of the network. Must be unique within the service.
+        :param str type: The type of the network. Must be private.
+        :param str uuid: Private network UUID. Must reside in the same zone as the database.
+        """
+        pulumi.set(__self__, "family", family)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "uuid", uuid)
+
+    @property
+    @pulumi.getter
+    def family(self) -> str:
+        """
+        Network family. Currently only `IPv4` is supported.
+        """
+        return pulumi.get(self, "family")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the network. Must be unique within the service.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the network. Must be private.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def uuid(self) -> str:
+        """
+        Private network UUID. Must reside in the same zone as the database.
+        """
+        return pulumi.get(self, "uuid")
+
+
+@pulumi.output_type
+class ManagedDatabaseValkeyNodeState(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 role: Optional[str] = None,
+                 state: Optional[str] = None):
+        """
+        :param str name: Name plus a node iteration
+        :param str role: Role of the node
+        :param str state: State of the node
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name plus a node iteration
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[str]:
+        """
+        Role of the node
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter
+    def state(self) -> Optional[str]:
+        """
+        State of the node
+        """
+        return pulumi.get(self, "state")
+
+
+@pulumi.output_type
+class ManagedDatabaseValkeyProperties(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "automaticUtilityNetworkIpFilter":
+            suggest = "automatic_utility_network_ip_filter"
+        elif key == "backupHour":
+            suggest = "backup_hour"
+        elif key == "backupMinute":
+            suggest = "backup_minute"
+        elif key == "ipFilters":
+            suggest = "ip_filters"
+        elif key == "publicAccess":
+            suggest = "public_access"
+        elif key == "serviceLog":
+            suggest = "service_log"
+        elif key == "valkeyAclChannelsDefault":
+            suggest = "valkey_acl_channels_default"
+        elif key == "valkeyIoThreads":
+            suggest = "valkey_io_threads"
+        elif key == "valkeyLfuDecayTime":
+            suggest = "valkey_lfu_decay_time"
+        elif key == "valkeyLfuLogFactor":
+            suggest = "valkey_lfu_log_factor"
+        elif key == "valkeyMaxmemoryPolicy":
+            suggest = "valkey_maxmemory_policy"
+        elif key == "valkeyNotifyKeyspaceEvents":
+            suggest = "valkey_notify_keyspace_events"
+        elif key == "valkeyNumberOfDatabases":
+            suggest = "valkey_number_of_databases"
+        elif key == "valkeyPersistence":
+            suggest = "valkey_persistence"
+        elif key == "valkeyPubsubClientOutputBufferLimit":
+            suggest = "valkey_pubsub_client_output_buffer_limit"
+        elif key == "valkeySsl":
+            suggest = "valkey_ssl"
+        elif key == "valkeyTimeout":
+            suggest = "valkey_timeout"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseValkeyProperties. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseValkeyProperties.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseValkeyProperties.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 automatic_utility_network_ip_filter: Optional[bool] = None,
+                 backup_hour: Optional[int] = None,
+                 backup_minute: Optional[int] = None,
+                 ip_filters: Optional[Sequence[str]] = None,
+                 migration: Optional['outputs.ManagedDatabaseValkeyPropertiesMigration'] = None,
+                 public_access: Optional[bool] = None,
+                 service_log: Optional[bool] = None,
+                 valkey_acl_channels_default: Optional[str] = None,
+                 valkey_io_threads: Optional[int] = None,
+                 valkey_lfu_decay_time: Optional[int] = None,
+                 valkey_lfu_log_factor: Optional[int] = None,
+                 valkey_maxmemory_policy: Optional[str] = None,
+                 valkey_notify_keyspace_events: Optional[str] = None,
+                 valkey_number_of_databases: Optional[int] = None,
+                 valkey_persistence: Optional[str] = None,
+                 valkey_pubsub_client_output_buffer_limit: Optional[int] = None,
+                 valkey_ssl: Optional[bool] = None,
+                 valkey_timeout: Optional[int] = None):
+        """
+        :param bool automatic_utility_network_ip_filter: Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+        :param int backup_hour: The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        :param int backup_minute: The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        :param Sequence[str] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+        :param 'ManagedDatabaseValkeyPropertiesMigrationArgs' migration: Migrate data from existing server.
+        :param bool public_access: Public Access. Allow access to the service from the public Internet.
+        :param bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
+        :param str valkey_acl_channels_default: Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+        :param int valkey_io_threads: Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
+        :param int valkey_lfu_decay_time: LFU maxmemory-policy counter decay time in minutes.
+        :param int valkey_lfu_log_factor: Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
+        :param str valkey_maxmemory_policy: Valkey maxmemory-policy.
+        :param str valkey_notify_keyspace_events: Set notify-keyspace-events option.
+        :param int valkey_number_of_databases: Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
+        :param str valkey_persistence: Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+        :param int valkey_pubsub_client_output_buffer_limit: Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
+        :param bool valkey_ssl: Require SSL to access Valkey.
+        :param int valkey_timeout: Valkey idle connection timeout in seconds.
+        """
+        if automatic_utility_network_ip_filter is not None:
+            pulumi.set(__self__, "automatic_utility_network_ip_filter", automatic_utility_network_ip_filter)
+        if backup_hour is not None:
+            pulumi.set(__self__, "backup_hour", backup_hour)
+        if backup_minute is not None:
+            pulumi.set(__self__, "backup_minute", backup_minute)
+        if ip_filters is not None:
+            pulumi.set(__self__, "ip_filters", ip_filters)
+        if migration is not None:
+            pulumi.set(__self__, "migration", migration)
+        if public_access is not None:
+            pulumi.set(__self__, "public_access", public_access)
+        if service_log is not None:
+            pulumi.set(__self__, "service_log", service_log)
+        if valkey_acl_channels_default is not None:
+            pulumi.set(__self__, "valkey_acl_channels_default", valkey_acl_channels_default)
+        if valkey_io_threads is not None:
+            pulumi.set(__self__, "valkey_io_threads", valkey_io_threads)
+        if valkey_lfu_decay_time is not None:
+            pulumi.set(__self__, "valkey_lfu_decay_time", valkey_lfu_decay_time)
+        if valkey_lfu_log_factor is not None:
+            pulumi.set(__self__, "valkey_lfu_log_factor", valkey_lfu_log_factor)
+        if valkey_maxmemory_policy is not None:
+            pulumi.set(__self__, "valkey_maxmemory_policy", valkey_maxmemory_policy)
+        if valkey_notify_keyspace_events is not None:
+            pulumi.set(__self__, "valkey_notify_keyspace_events", valkey_notify_keyspace_events)
+        if valkey_number_of_databases is not None:
+            pulumi.set(__self__, "valkey_number_of_databases", valkey_number_of_databases)
+        if valkey_persistence is not None:
+            pulumi.set(__self__, "valkey_persistence", valkey_persistence)
+        if valkey_pubsub_client_output_buffer_limit is not None:
+            pulumi.set(__self__, "valkey_pubsub_client_output_buffer_limit", valkey_pubsub_client_output_buffer_limit)
+        if valkey_ssl is not None:
+            pulumi.set(__self__, "valkey_ssl", valkey_ssl)
+        if valkey_timeout is not None:
+            pulumi.set(__self__, "valkey_timeout", valkey_timeout)
+
+    @property
+    @pulumi.getter(name="automaticUtilityNetworkIpFilter")
+    def automatic_utility_network_ip_filter(self) -> Optional[bool]:
+        """
+        Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+        """
+        return pulumi.get(self, "automatic_utility_network_ip_filter")
+
+    @property
+    @pulumi.getter(name="backupHour")
+    def backup_hour(self) -> Optional[int]:
+        """
+        The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        return pulumi.get(self, "backup_hour")
+
+    @property
+    @pulumi.getter(name="backupMinute")
+    def backup_minute(self) -> Optional[int]:
+        """
+        The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        return pulumi.get(self, "backup_minute")
+
+    @property
+    @pulumi.getter(name="ipFilters")
+    def ip_filters(self) -> Optional[Sequence[str]]:
+        """
+        IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+        """
+        return pulumi.get(self, "ip_filters")
+
+    @property
+    @pulumi.getter
+    def migration(self) -> Optional['outputs.ManagedDatabaseValkeyPropertiesMigration']:
+        """
+        Migrate data from existing server.
+        """
+        return pulumi.get(self, "migration")
+
+    @property
+    @pulumi.getter(name="publicAccess")
+    def public_access(self) -> Optional[bool]:
+        """
+        Public Access. Allow access to the service from the public Internet.
+        """
+        return pulumi.get(self, "public_access")
+
+    @property
+    @pulumi.getter(name="serviceLog")
+    def service_log(self) -> Optional[bool]:
+        """
+        Service logging. Store logs for the service so that they are available in the HTTP API and console.
+        """
+        return pulumi.get(self, "service_log")
+
+    @property
+    @pulumi.getter(name="valkeyAclChannelsDefault")
+    def valkey_acl_channels_default(self) -> Optional[str]:
+        """
+        Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+        """
+        return pulumi.get(self, "valkey_acl_channels_default")
+
+    @property
+    @pulumi.getter(name="valkeyIoThreads")
+    def valkey_io_threads(self) -> Optional[int]:
+        """
+        Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
+        """
+        return pulumi.get(self, "valkey_io_threads")
+
+    @property
+    @pulumi.getter(name="valkeyLfuDecayTime")
+    def valkey_lfu_decay_time(self) -> Optional[int]:
+        """
+        LFU maxmemory-policy counter decay time in minutes.
+        """
+        return pulumi.get(self, "valkey_lfu_decay_time")
+
+    @property
+    @pulumi.getter(name="valkeyLfuLogFactor")
+    def valkey_lfu_log_factor(self) -> Optional[int]:
+        """
+        Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
+        """
+        return pulumi.get(self, "valkey_lfu_log_factor")
+
+    @property
+    @pulumi.getter(name="valkeyMaxmemoryPolicy")
+    def valkey_maxmemory_policy(self) -> Optional[str]:
+        """
+        Valkey maxmemory-policy.
+        """
+        return pulumi.get(self, "valkey_maxmemory_policy")
+
+    @property
+    @pulumi.getter(name="valkeyNotifyKeyspaceEvents")
+    def valkey_notify_keyspace_events(self) -> Optional[str]:
+        """
+        Set notify-keyspace-events option.
+        """
+        return pulumi.get(self, "valkey_notify_keyspace_events")
+
+    @property
+    @pulumi.getter(name="valkeyNumberOfDatabases")
+    def valkey_number_of_databases(self) -> Optional[int]:
+        """
+        Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
+        """
+        return pulumi.get(self, "valkey_number_of_databases")
+
+    @property
+    @pulumi.getter(name="valkeyPersistence")
+    def valkey_persistence(self) -> Optional[str]:
+        """
+        Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+        """
+        return pulumi.get(self, "valkey_persistence")
+
+    @property
+    @pulumi.getter(name="valkeyPubsubClientOutputBufferLimit")
+    def valkey_pubsub_client_output_buffer_limit(self) -> Optional[int]:
+        """
+        Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
+        """
+        return pulumi.get(self, "valkey_pubsub_client_output_buffer_limit")
+
+    @property
+    @pulumi.getter(name="valkeySsl")
+    def valkey_ssl(self) -> Optional[bool]:
+        """
+        Require SSL to access Valkey.
+        """
+        return pulumi.get(self, "valkey_ssl")
+
+    @property
+    @pulumi.getter(name="valkeyTimeout")
+    def valkey_timeout(self) -> Optional[int]:
+        """
+        Valkey idle connection timeout in seconds.
+        """
+        return pulumi.get(self, "valkey_timeout")
+
+
+@pulumi.output_type
+class ManagedDatabaseValkeyPropertiesMigration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ignoreDbs":
+            suggest = "ignore_dbs"
+        elif key == "ignoreRoles":
+            suggest = "ignore_roles"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseValkeyPropertiesMigration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseValkeyPropertiesMigration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseValkeyPropertiesMigration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dbname: Optional[str] = None,
+                 host: Optional[str] = None,
+                 ignore_dbs: Optional[str] = None,
+                 ignore_roles: Optional[str] = None,
+                 method: Optional[str] = None,
+                 password: Optional[str] = None,
+                 port: Optional[int] = None,
+                 ssl: Optional[bool] = None,
+                 username: Optional[str] = None):
+        """
+        :param str dbname: Database name for bootstrapping the initial connection.
+        :param str host: Hostname or IP address of the server where to migrate data from.
+        :param str ignore_dbs: Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+        :param str ignore_roles: Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+        :param str method: The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
+        :param str password: Password for authentication with the server where to migrate data from.
+        :param int port: Port number of the server where to migrate data from.
+        :param bool ssl: The server where to migrate data from is secured with SSL.
+        :param str username: User name for authentication with the server where to migrate data from.
+        """
+        if dbname is not None:
+            pulumi.set(__self__, "dbname", dbname)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if ignore_dbs is not None:
+            pulumi.set(__self__, "ignore_dbs", ignore_dbs)
+        if ignore_roles is not None:
+            pulumi.set(__self__, "ignore_roles", ignore_roles)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if ssl is not None:
+            pulumi.set(__self__, "ssl", ssl)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def dbname(self) -> Optional[str]:
+        """
+        Database name for bootstrapping the initial connection.
+        """
+        return pulumi.get(self, "dbname")
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[str]:
+        """
+        Hostname or IP address of the server where to migrate data from.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="ignoreDbs")
+    def ignore_dbs(self) -> Optional[str]:
+        """
+        Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+        """
+        return pulumi.get(self, "ignore_dbs")
+
+    @property
+    @pulumi.getter(name="ignoreRoles")
+    def ignore_roles(self) -> Optional[str]:
+        """
+        Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+        """
+        return pulumi.get(self, "ignore_roles")
+
+    @property
+    @pulumi.getter
+    def method(self) -> Optional[str]:
+        """
+        The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
+        """
+        return pulumi.get(self, "method")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        Password for authentication with the server where to migrate data from.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        Port number of the server where to migrate data from.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def ssl(self) -> Optional[bool]:
+        """
+        The server where to migrate data from is secured with SSL.
+        """
+        return pulumi.get(self, "ssl")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        User name for authentication with the server where to migrate data from.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
 class ManagedObjectStorageEndpoint(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -8047,7 +9932,7 @@ class ServerFirewallRulesFirewallRule(dict):
                  source_port_end: Optional[str] = None,
                  source_port_start: Optional[str] = None):
         """
-        :param str action: Action to take if the rule conditions are met
+        :param str action: Action to take if the rule conditions are met. Valid values `accept | drop`
         :param str direction: The direction of network traffic this rule will be applied to
         :param str comment: Freeform comment string for the rule
         :param str destination_address_end: The destination address range ends from this address
@@ -8093,7 +9978,7 @@ class ServerFirewallRulesFirewallRule(dict):
     @pulumi.getter
     def action(self) -> str:
         """
-        Action to take if the rule conditions are met
+        Action to take if the rule conditions are met. Valid values `accept | drop`
         """
         return pulumi.get(self, "action")
 
@@ -8309,6 +10194,7 @@ class ServerNetworkInterface(dict):
                  type: str,
                  additional_ip_addresses: Optional[Sequence['outputs.ServerNetworkInterfaceAdditionalIpAddress']] = None,
                  bootable: Optional[bool] = None,
+                 index: Optional[int] = None,
                  ip_address: Optional[str] = None,
                  ip_address_family: Optional[str] = None,
                  ip_address_floating: Optional[bool] = None,
@@ -8317,13 +10203,14 @@ class ServerNetworkInterface(dict):
                  source_ip_filtering: Optional[bool] = None):
         """
         :param str type: Network interface type. For private network interfaces, a network must be specified with an existing network id.
-        :param Sequence['ServerNetworkInterfaceAdditionalIpAddressArgs'] additional_ip_addresses: 0-4 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+        :param Sequence['ServerNetworkInterfaceAdditionalIpAddressArgs'] additional_ip_addresses: 0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
         :param bool bootable: `true` if this interface should be used for network booting.
-        :param str ip_address: The assigned primary IP address.
+        :param int index: The interface index.
+        :param str ip_address: The primary IP address of this interface.
         :param str ip_address_family: The type of the primary IP address of this interface (one of `IPv4` or `IPv6`).
         :param bool ip_address_floating: `true` indicates that the primary IP address is a floating IP address.
-        :param str mac_address: The assigned MAC address.
-        :param str network: The unique ID of a network to attach this network to.
+        :param str mac_address: The MAC address of the interface.
+        :param str network: The UUID of the network to attach this interface to. Required for private network interfaces.
         :param bool source_ip_filtering: `true` if source IP should be filtered.
         """
         pulumi.set(__self__, "type", type)
@@ -8331,6 +10218,8 @@ class ServerNetworkInterface(dict):
             pulumi.set(__self__, "additional_ip_addresses", additional_ip_addresses)
         if bootable is not None:
             pulumi.set(__self__, "bootable", bootable)
+        if index is not None:
+            pulumi.set(__self__, "index", index)
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
         if ip_address_family is not None:
@@ -8356,7 +10245,7 @@ class ServerNetworkInterface(dict):
     @pulumi.getter(name="additionalIpAddresses")
     def additional_ip_addresses(self) -> Optional[Sequence['outputs.ServerNetworkInterfaceAdditionalIpAddress']]:
         """
-        0-4 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+        0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
         """
         return pulumi.get(self, "additional_ip_addresses")
 
@@ -8369,10 +10258,18 @@ class ServerNetworkInterface(dict):
         return pulumi.get(self, "bootable")
 
     @property
+    @pulumi.getter
+    def index(self) -> Optional[int]:
+        """
+        The interface index.
+        """
+        return pulumi.get(self, "index")
+
+    @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[str]:
         """
-        The assigned primary IP address.
+        The primary IP address of this interface.
         """
         return pulumi.get(self, "ip_address")
 
@@ -8396,7 +10293,7 @@ class ServerNetworkInterface(dict):
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> Optional[str]:
         """
-        The assigned MAC address.
+        The MAC address of the interface.
         """
         return pulumi.get(self, "mac_address")
 
@@ -8404,7 +10301,7 @@ class ServerNetworkInterface(dict):
     @pulumi.getter
     def network(self) -> Optional[str]:
         """
-        The unique ID of a network to attach this network to.
+        The UUID of the network to attach this interface to. Required for private network interfaces.
         """
         return pulumi.get(self, "network")
 
@@ -8445,8 +10342,8 @@ class ServerNetworkInterfaceAdditionalIpAddress(dict):
                  ip_address_family: Optional[str] = None,
                  ip_address_floating: Optional[bool] = None):
         """
-        :param str ip_address: The assigned additional IP address.
-        :param str ip_address_family: The type of this additional IP address of this interface (one of `IPv4` or `IPv6`).
+        :param str ip_address: An additional IP address for this interface.
+        :param str ip_address_family: The type of the additional IP address of this interface (one of `IPv4` or `IPv6`).
         :param bool ip_address_floating: `true` indicates that the additional IP address is a floating IP address.
         """
         if ip_address is not None:
@@ -8460,7 +10357,7 @@ class ServerNetworkInterfaceAdditionalIpAddress(dict):
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[str]:
         """
-        The assigned additional IP address.
+        An additional IP address for this interface.
         """
         return pulumi.get(self, "ip_address")
 
@@ -8468,7 +10365,7 @@ class ServerNetworkInterfaceAdditionalIpAddress(dict):
     @pulumi.getter(name="ipAddressFamily")
     def ip_address_family(self) -> Optional[str]:
         """
-        The type of this additional IP address of this interface (one of `IPv4` or `IPv6`).
+        The type of the additional IP address of this interface (one of `IPv4` or `IPv6`).
         """
         return pulumi.get(self, "ip_address_family")
 
@@ -8484,18 +10381,20 @@ class ServerNetworkInterfaceAdditionalIpAddress(dict):
 @pulumi.output_type
 class ServerSimpleBackup(dict):
     def __init__(__self__, *,
-                 plan: str,
-                 time: str):
+                 plan: Optional[str] = None,
+                 time: Optional[str] = None):
         """
         :param str plan: Simple backup plan. Accepted values: daily, dailies, weeklies, monthlies.
         :param str time: Time of the day at which backup will be taken. Should be provided in a hhmm format (e.g. 2230).
         """
-        pulumi.set(__self__, "plan", plan)
-        pulumi.set(__self__, "time", time)
+        if plan is not None:
+            pulumi.set(__self__, "plan", plan)
+        if time is not None:
+            pulumi.set(__self__, "time", time)
 
     @property
     @pulumi.getter
-    def plan(self) -> str:
+    def plan(self) -> Optional[str]:
         """
         Simple backup plan. Accepted values: daily, dailies, weeklies, monthlies.
         """
@@ -8503,7 +10402,7 @@ class ServerSimpleBackup(dict):
 
     @property
     @pulumi.getter
-    def time(self) -> str:
+    def time(self) -> Optional[str]:
         """
         Time of the day at which backup will be taken. Should be provided in a hhmm format (e.g. 2230).
         """
@@ -8530,31 +10429,24 @@ class ServerStorageDevice(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 storage: str,
                  address: Optional[str] = None,
                  address_position: Optional[str] = None,
+                 storage: Optional[str] = None,
                  type: Optional[str] = None):
         """
-        :param str storage: A valid storage UUID
         :param str address: The device address the storage will be attached to (`scsi`|`virtio`|`ide`). Leave `address_position` field empty to auto-select next available address from that bus.
         :param str address_position: The device position in the given bus (defined via field `address`). Valid values for address `virtio` are `0-15` (`0`, for example). Valid values for `scsi` or `ide` are `0-1:0-1` (`0:0`, for example). Leave empty to auto-select next available address in the given bus.
+        :param str storage: The UUID of the storage to attach to the server.
         :param str type: The device type the storage will be attached as
         """
-        pulumi.set(__self__, "storage", storage)
         if address is not None:
             pulumi.set(__self__, "address", address)
         if address_position is not None:
             pulumi.set(__self__, "address_position", address_position)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
         if type is not None:
             pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def storage(self) -> str:
-        """
-        A valid storage UUID
-        """
-        return pulumi.get(self, "storage")
 
     @property
     @pulumi.getter
@@ -8571,6 +10463,14 @@ class ServerStorageDevice(dict):
         The device position in the given bus (defined via field `address`). Valid values for address `virtio` are `0-15` (`0`, for example). Valid values for `scsi` or `ide` are `0-1:0-1` (`0:0`, for example). Leave empty to auto-select next available address in the given bus.
         """
         return pulumi.get(self, "address_position")
+
+    @property
+    @pulumi.getter
+    def storage(self) -> Optional[str]:
+        """
+        The UUID of the storage to attach to the server.
+        """
+        return pulumi.get(self, "storage")
 
     @property
     @pulumi.getter
@@ -8607,7 +10507,6 @@ class ServerTemplate(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 storage: str,
                  address: Optional[str] = None,
                  address_position: Optional[str] = None,
                  backup_rule: Optional['outputs.ServerTemplateBackupRule'] = None,
@@ -8616,10 +10515,10 @@ class ServerTemplate(dict):
                  filesystem_autoresize: Optional[bool] = None,
                  id: Optional[str] = None,
                  size: Optional[int] = None,
+                 storage: Optional[str] = None,
                  tier: Optional[str] = None,
                  title: Optional[str] = None):
         """
-        :param str storage: A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
         :param str address: The device address the storage will be attached to (`scsi`|`virtio`|`ide`). Leave `address_position` field empty to auto-select next available address from that bus.
         :param str address_position: The device position in the given bus (defined via field `address`). For example `0:0`, or `0`. Leave empty to auto-select next available address in the given bus.
         :param bool delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
@@ -8630,10 +10529,10 @@ class ServerTemplate(dict):
                							Taking and keeping backups incure costs.
         :param str id: The unique identifier for the storage
         :param int size: The size of the storage in gigabytes
-        :param str tier: The storage tier to use
+        :param str storage: A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
+        :param str tier: The storage tier to use.
         :param str title: A short, informative description
         """
-        pulumi.set(__self__, "storage", storage)
         if address is not None:
             pulumi.set(__self__, "address", address)
         if address_position is not None:
@@ -8650,18 +10549,12 @@ class ServerTemplate(dict):
             pulumi.set(__self__, "id", id)
         if size is not None:
             pulumi.set(__self__, "size", size)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
         if tier is not None:
             pulumi.set(__self__, "tier", tier)
         if title is not None:
             pulumi.set(__self__, "title", title)
-
-    @property
-    @pulumi.getter
-    def storage(self) -> str:
-        """
-        A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
-        """
-        return pulumi.get(self, "storage")
 
     @property
     @pulumi.getter
@@ -8729,9 +10622,17 @@ class ServerTemplate(dict):
 
     @property
     @pulumi.getter
+    def storage(self) -> Optional[str]:
+        """
+        A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
+        """
+        return pulumi.get(self, "storage")
+
+    @property
+    @pulumi.getter
     def tier(self) -> Optional[str]:
         """
-        The storage tier to use
+        The storage tier to use.
         """
         return pulumi.get(self, "tier")
 
@@ -9515,6 +11416,200 @@ class GetManagedDatabasePostgresqlSessionsSessionResult(dict):
 
 @pulumi.output_type
 class GetManagedDatabaseRedisSessionsSessionResult(dict):
+    def __init__(__self__, *,
+                 active_channel_subscriptions: int,
+                 active_database: str,
+                 active_pattern_matching_channel_subscriptions: int,
+                 application_name: str,
+                 client_addr: str,
+                 connection_age: int,
+                 connection_idle: int,
+                 flags: Sequence[str],
+                 flags_raw: str,
+                 id: str,
+                 multi_exec_commands: int,
+                 output_buffer: int,
+                 output_buffer_memory: int,
+                 output_list_length: int,
+                 query: str,
+                 query_buffer: int,
+                 query_buffer_free: int):
+        """
+        :param int active_channel_subscriptions: Number of active channel subscriptions
+        :param str active_database: Current database ID
+        :param int active_pattern_matching_channel_subscriptions: Number of pattern matching subscriptions.
+        :param str application_name: Name of the application that is connected to this service.
+        :param str client_addr: Number of pattern matching subscriptions.
+        :param int connection_age: Total duration of the connection in nanoseconds.
+        :param int connection_idle: Idle time of the connection in nanoseconds.
+        :param Sequence[str] flags: A set containing flags' descriptions.
+        :param str flags_raw: Client connection flags in raw string format.
+        :param str id: Process ID of this session.
+        :param int multi_exec_commands: Number of commands in a MULTI/EXEC context.
+        :param int output_buffer: Output buffer length.
+        :param int output_buffer_memory: Output buffer memory usage.
+        :param int output_list_length: Output list length (replies are queued in this list when the buffer is full).
+        :param str query: The last executed command.
+        :param int query_buffer: Query buffer length (0 means no query pending).
+        :param int query_buffer_free: Free space of the query buffer (0 means the buffer is full).
+        """
+        pulumi.set(__self__, "active_channel_subscriptions", active_channel_subscriptions)
+        pulumi.set(__self__, "active_database", active_database)
+        pulumi.set(__self__, "active_pattern_matching_channel_subscriptions", active_pattern_matching_channel_subscriptions)
+        pulumi.set(__self__, "application_name", application_name)
+        pulumi.set(__self__, "client_addr", client_addr)
+        pulumi.set(__self__, "connection_age", connection_age)
+        pulumi.set(__self__, "connection_idle", connection_idle)
+        pulumi.set(__self__, "flags", flags)
+        pulumi.set(__self__, "flags_raw", flags_raw)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "multi_exec_commands", multi_exec_commands)
+        pulumi.set(__self__, "output_buffer", output_buffer)
+        pulumi.set(__self__, "output_buffer_memory", output_buffer_memory)
+        pulumi.set(__self__, "output_list_length", output_list_length)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "query_buffer", query_buffer)
+        pulumi.set(__self__, "query_buffer_free", query_buffer_free)
+
+    @property
+    @pulumi.getter(name="activeChannelSubscriptions")
+    def active_channel_subscriptions(self) -> int:
+        """
+        Number of active channel subscriptions
+        """
+        return pulumi.get(self, "active_channel_subscriptions")
+
+    @property
+    @pulumi.getter(name="activeDatabase")
+    def active_database(self) -> str:
+        """
+        Current database ID
+        """
+        return pulumi.get(self, "active_database")
+
+    @property
+    @pulumi.getter(name="activePatternMatchingChannelSubscriptions")
+    def active_pattern_matching_channel_subscriptions(self) -> int:
+        """
+        Number of pattern matching subscriptions.
+        """
+        return pulumi.get(self, "active_pattern_matching_channel_subscriptions")
+
+    @property
+    @pulumi.getter(name="applicationName")
+    def application_name(self) -> str:
+        """
+        Name of the application that is connected to this service.
+        """
+        return pulumi.get(self, "application_name")
+
+    @property
+    @pulumi.getter(name="clientAddr")
+    def client_addr(self) -> str:
+        """
+        Number of pattern matching subscriptions.
+        """
+        return pulumi.get(self, "client_addr")
+
+    @property
+    @pulumi.getter(name="connectionAge")
+    def connection_age(self) -> int:
+        """
+        Total duration of the connection in nanoseconds.
+        """
+        return pulumi.get(self, "connection_age")
+
+    @property
+    @pulumi.getter(name="connectionIdle")
+    def connection_idle(self) -> int:
+        """
+        Idle time of the connection in nanoseconds.
+        """
+        return pulumi.get(self, "connection_idle")
+
+    @property
+    @pulumi.getter
+    def flags(self) -> Sequence[str]:
+        """
+        A set containing flags' descriptions.
+        """
+        return pulumi.get(self, "flags")
+
+    @property
+    @pulumi.getter(name="flagsRaw")
+    def flags_raw(self) -> str:
+        """
+        Client connection flags in raw string format.
+        """
+        return pulumi.get(self, "flags_raw")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Process ID of this session.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="multiExecCommands")
+    def multi_exec_commands(self) -> int:
+        """
+        Number of commands in a MULTI/EXEC context.
+        """
+        return pulumi.get(self, "multi_exec_commands")
+
+    @property
+    @pulumi.getter(name="outputBuffer")
+    def output_buffer(self) -> int:
+        """
+        Output buffer length.
+        """
+        return pulumi.get(self, "output_buffer")
+
+    @property
+    @pulumi.getter(name="outputBufferMemory")
+    def output_buffer_memory(self) -> int:
+        """
+        Output buffer memory usage.
+        """
+        return pulumi.get(self, "output_buffer_memory")
+
+    @property
+    @pulumi.getter(name="outputListLength")
+    def output_list_length(self) -> int:
+        """
+        Output list length (replies are queued in this list when the buffer is full).
+        """
+        return pulumi.get(self, "output_list_length")
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        """
+        The last executed command.
+        """
+        return pulumi.get(self, "query")
+
+    @property
+    @pulumi.getter(name="queryBuffer")
+    def query_buffer(self) -> int:
+        """
+        Query buffer length (0 means no query pending).
+        """
+        return pulumi.get(self, "query_buffer")
+
+    @property
+    @pulumi.getter(name="queryBufferFree")
+    def query_buffer_free(self) -> int:
+        """
+        Free space of the query buffer (0 means the buffer is full).
+        """
+        return pulumi.get(self, "query_buffer_free")
+
+
+@pulumi.output_type
+class GetManagedDatabaseValkeySessionsSessionResult(dict):
     def __init__(__self__, *,
                  active_channel_subscriptions: int,
                  active_database: str,

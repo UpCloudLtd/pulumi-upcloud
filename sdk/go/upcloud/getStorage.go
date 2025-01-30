@@ -122,21 +122,11 @@ type LookupStorageResult struct {
 }
 
 func LookupStorageOutput(ctx *pulumi.Context, args LookupStorageOutputArgs, opts ...pulumi.InvokeOption) LookupStorageResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupStorageResultOutput, error) {
 			args := v.(LookupStorageArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupStorageResult
-			secret, err := ctx.InvokePackageRaw("upcloud:index/getStorage:getStorage", args, &rv, "", opts...)
-			if err != nil {
-				return LookupStorageResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupStorageResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupStorageResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("upcloud:index/getStorage:getStorage", args, LookupStorageResultOutput{}, options).(LookupStorageResultOutput), nil
 		}).(LookupStorageResultOutput)
 }
 

@@ -14,11 +14,11 @@ namespace Pulumi.Upcloud.Outputs
     public sealed class LoadbalancerNodeNetworkIpAddress
     {
         /// <summary>
-        /// Node's IP address.
+        /// Node's IP address
         /// </summary>
         public readonly string? Address;
         /// <summary>
-        /// Does IP address listen network connections.
+        /// Whether the node listens to the traffic
         /// </summary>
         public readonly bool? Listen;
 

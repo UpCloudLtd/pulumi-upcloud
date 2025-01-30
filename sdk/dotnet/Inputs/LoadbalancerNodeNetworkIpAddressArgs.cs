@@ -13,13 +13,13 @@ namespace Pulumi.Upcloud.Inputs
     public sealed class LoadbalancerNodeNetworkIpAddressArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Node's IP address.
+        /// Node's IP address
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// Does IP address listen network connections.
+        /// Whether the node listens to the traffic
         /// </summary>
         [Input("listen")]
         public Input<bool>? Listen { get; set; }

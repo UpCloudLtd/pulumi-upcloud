@@ -47,7 +47,7 @@ export interface GetLoadBalancerDnsChallengeDomainResult {
  * const this = upcloud.getLoadBalancerDnsChallengeDomain({});
  * ```
  */
-export function getLoadBalancerDnsChallengeDomainOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadBalancerDnsChallengeDomainResult> {
+export function getLoadBalancerDnsChallengeDomainOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLoadBalancerDnsChallengeDomainResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("upcloud:index/getLoadBalancerDnsChallengeDomain:getLoadBalancerDnsChallengeDomain", {
     }, opts);

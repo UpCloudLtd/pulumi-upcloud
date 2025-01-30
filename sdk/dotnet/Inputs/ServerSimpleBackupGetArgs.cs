@@ -15,14 +15,14 @@ namespace Pulumi.Upcloud.Inputs
         /// <summary>
         /// Simple backup plan. Accepted values: daily, dailies, weeklies, monthlies.
         /// </summary>
-        [Input("plan", required: true)]
-        public Input<string> Plan { get; set; } = null!;
+        [Input("plan")]
+        public Input<string>? Plan { get; set; }
 
         /// <summary>
         /// Time of the day at which backup will be taken. Should be provided in a hhmm format (e.g. 2230).
         /// </summary>
-        [Input("time", required: true)]
-        public Input<string> Time { get; set; } = null!;
+        [Input("time")]
+        public Input<string>? Time { get; set; }
 
         public ServerSimpleBackupGetArgs()
         {

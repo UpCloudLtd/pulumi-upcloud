@@ -54,6 +54,7 @@ namespace Pulumi.Upcloud.Inputs
         /// <summary>
         /// Matches by HTTP header value. Header name must be provided.
         /// </summary>
+        [Obsolete(@"Use `request_header` instead.")]
         public InputList<Inputs.LoadbalancerFrontendRuleMatchersHeaderArgs> Headers
         {
             get => _headers ?? (_headers = new InputList<Inputs.LoadbalancerFrontendRuleMatchersHeaderArgs>());
@@ -84,6 +85,30 @@ namespace Pulumi.Upcloud.Inputs
             set => _httpMethods = value;
         }
 
+        [Input("httpStatusRanges")]
+        private InputList<Inputs.LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs>? _httpStatusRanges;
+
+        /// <summary>
+        /// Matches by range of HTTP statuses.
+        /// </summary>
+        public InputList<Inputs.LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs> HttpStatusRanges
+        {
+            get => _httpStatusRanges ?? (_httpStatusRanges = new InputList<Inputs.LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs>());
+            set => _httpStatusRanges = value;
+        }
+
+        [Input("httpStatuses")]
+        private InputList<Inputs.LoadbalancerFrontendRuleMatchersHttpStatusArgs>? _httpStatuses;
+
+        /// <summary>
+        /// Matches by HTTP status.
+        /// </summary>
+        public InputList<Inputs.LoadbalancerFrontendRuleMatchersHttpStatusArgs> HttpStatuses
+        {
+            get => _httpStatuses ?? (_httpStatuses = new InputList<Inputs.LoadbalancerFrontendRuleMatchersHttpStatusArgs>());
+            set => _httpStatuses = value;
+        }
+
         [Input("numMembersUps")]
         private InputList<Inputs.LoadbalancerFrontendRuleMatchersNumMembersUpArgs>? _numMembersUps;
 
@@ -106,6 +131,30 @@ namespace Pulumi.Upcloud.Inputs
         {
             get => _paths ?? (_paths = new InputList<Inputs.LoadbalancerFrontendRuleMatchersPathArgs>());
             set => _paths = value;
+        }
+
+        [Input("requestHeaders")]
+        private InputList<Inputs.LoadbalancerFrontendRuleMatchersRequestHeaderArgs>? _requestHeaders;
+
+        /// <summary>
+        /// Matches by HTTP request header value. Header name must be provided.
+        /// </summary>
+        public InputList<Inputs.LoadbalancerFrontendRuleMatchersRequestHeaderArgs> RequestHeaders
+        {
+            get => _requestHeaders ?? (_requestHeaders = new InputList<Inputs.LoadbalancerFrontendRuleMatchersRequestHeaderArgs>());
+            set => _requestHeaders = value;
+        }
+
+        [Input("responseHeaders")]
+        private InputList<Inputs.LoadbalancerFrontendRuleMatchersResponseHeaderArgs>? _responseHeaders;
+
+        /// <summary>
+        /// Matches by HTTP response header value. Header name must be provided.
+        /// </summary>
+        public InputList<Inputs.LoadbalancerFrontendRuleMatchersResponseHeaderArgs> ResponseHeaders
+        {
+            get => _responseHeaders ?? (_responseHeaders = new InputList<Inputs.LoadbalancerFrontendRuleMatchersResponseHeaderArgs>());
+            set => _responseHeaders = value;
         }
 
         [Input("srcIps")]

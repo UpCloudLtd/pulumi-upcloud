@@ -25,10 +25,10 @@ namespace Pulumi.Upcloud.Inputs
         public Input<string>? AddressPosition { get; set; }
 
         /// <summary>
-        /// A valid storage UUID
+        /// The UUID of the storage to attach to the server.
         /// </summary>
-        [Input("storage", required: true)]
-        public Input<string> Storage { get; set; } = null!;
+        [Input("storage")]
+        public Input<string>? Storage { get; set; }
 
         /// <summary>
         /// The device type the storage will be attached as

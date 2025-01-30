@@ -74,7 +74,7 @@ namespace Pulumi.Upcloud
         /// The service configured status indicates the service's current intended status. Managed by the customer.
         /// </summary>
         [Output("configuredStatus")]
-        public Output<string?> ConfiguredStatus { get; private set; } = null!;
+        public Output<string> ConfiguredStatus { get; private set; } = null!;
 
         /// <summary>
         /// DNS name of the load balancer
@@ -92,7 +92,7 @@ namespace Pulumi.Upcloud
         /// User defined key-value pairs to classify the load balancer.
         /// </summary>
         [Output("labels")]
-        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
         /// <summary>
         /// The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
@@ -111,7 +111,7 @@ namespace Pulumi.Upcloud
         public Output<string> MaintenanceTime { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the service must be unique within customer account.
+        /// The name of the service. Must be unique within customer account.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -120,7 +120,7 @@ namespace Pulumi.Upcloud
         /// Private network UUID where traffic will be routed. Must reside in load balancer zone.
         /// </summary>
         [Output("network")]
-        public Output<string?> Network { get; private set; } = null!;
+        public Output<string> Network { get; private set; } = null!;
 
         /// <summary>
         /// Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
@@ -147,7 +147,7 @@ namespace Pulumi.Upcloud
         public Output<string> Plan { get; private set; } = null!;
 
         /// <summary>
-        /// Domain Name Resolvers must be configured in case of customer uses dynamic type members
+        /// Domain Name Resolvers.
         /// </summary>
         [Output("resolvers")]
         public Output<ImmutableArray<string>> Resolvers { get; private set; } = null!;
@@ -240,7 +240,7 @@ namespace Pulumi.Upcloud
         public Input<string>? MaintenanceTime { get; set; }
 
         /// <summary>
-        /// The name of the service must be unique within customer account.
+        /// The name of the service. Must be unique within customer account.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -348,7 +348,7 @@ namespace Pulumi.Upcloud
         public Input<string>? MaintenanceTime { get; set; }
 
         /// <summary>
-        /// The name of the service must be unique within customer account.
+        /// The name of the service. Must be unique within customer account.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -399,7 +399,7 @@ namespace Pulumi.Upcloud
         private InputList<string>? _resolvers;
 
         /// <summary>
-        /// Domain Name Resolvers must be configured in case of customer uses dynamic type members
+        /// Domain Name Resolvers.
         /// </summary>
         public InputList<string> Resolvers
         {

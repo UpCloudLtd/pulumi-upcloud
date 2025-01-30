@@ -12,6 +12,8 @@ namespace Pulumi.Upcloud
     public static class GetManagedDatabaseRedisSessions
     {
         /// <summary>
+        /// &gt; Redis is deprecated in favor of Valkey. Please use Valkey for new key value store instances.
+        /// 
         /// Current sessions of a Redis managed database
         /// 
         /// ## Example Usage
@@ -45,6 +47,8 @@ namespace Pulumi.Upcloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetManagedDatabaseRedisSessionsResult>("upcloud:index/getManagedDatabaseRedisSessions:getManagedDatabaseRedisSessions", args ?? new GetManagedDatabaseRedisSessionsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &gt; Redis is deprecated in favor of Valkey. Please use Valkey for new key value store instances.
+        /// 
         /// Current sessions of a Redis managed database
         /// 
         /// ## Example Usage
@@ -75,6 +79,41 @@ namespace Pulumi.Upcloud
         /// ```
         /// </summary>
         public static Output<GetManagedDatabaseRedisSessionsResult> Invoke(GetManagedDatabaseRedisSessionsInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetManagedDatabaseRedisSessionsResult>("upcloud:index/getManagedDatabaseRedisSessions:getManagedDatabaseRedisSessions", args ?? new GetManagedDatabaseRedisSessionsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// &gt; Redis is deprecated in favor of Valkey. Please use Valkey for new key value store instances.
+        /// 
+        /// Current sessions of a Redis managed database
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Upcloud = Pulumi.Upcloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Use data source to gather a list of the active sessions for a Managed Redis Database
+        ///     // Create a Managed Redis resource
+        ///     var exampleManagedDatabaseRedis = new Upcloud.ManagedDatabaseRedis("exampleManagedDatabaseRedis", new()
+        ///     {
+        ///         Title = "example",
+        ///         Plan = "1x1xCPU-2GB",
+        ///         Zone = "fi-hel2",
+        ///     });
+        /// 
+        ///     var exampleManagedDatabaseRedisSessions = Upcloud.GetManagedDatabaseRedisSessions.Invoke(new()
+        ///     {
+        ///         Service = exampleManagedDatabaseRedis.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetManagedDatabaseRedisSessionsResult> Invoke(GetManagedDatabaseRedisSessionsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetManagedDatabaseRedisSessionsResult>("upcloud:index/getManagedDatabaseRedisSessions:getManagedDatabaseRedisSessions", args ?? new GetManagedDatabaseRedisSessionsInvokeArgs(), options.WithDefaults());
     }
 

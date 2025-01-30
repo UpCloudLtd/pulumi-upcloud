@@ -84,7 +84,7 @@ export interface GetManagedDatabasePostgresqlSessionsResult {
  * });
  * ```
  */
-export function getManagedDatabasePostgresqlSessionsOutput(args: GetManagedDatabasePostgresqlSessionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetManagedDatabasePostgresqlSessionsResult> {
+export function getManagedDatabasePostgresqlSessionsOutput(args: GetManagedDatabasePostgresqlSessionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetManagedDatabasePostgresqlSessionsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions", {
         "limit": args.limit,

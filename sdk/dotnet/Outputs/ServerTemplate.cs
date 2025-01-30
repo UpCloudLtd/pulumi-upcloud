@@ -48,9 +48,9 @@ namespace Pulumi.Upcloud.Outputs
         /// <summary>
         /// A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
         /// </summary>
-        public readonly string Storage;
+        public readonly string? Storage;
         /// <summary>
-        /// The storage tier to use
+        /// The storage tier to use.
         /// </summary>
         public readonly string? Tier;
         /// <summary>
@@ -76,7 +76,7 @@ namespace Pulumi.Upcloud.Outputs
 
             int? size,
 
-            string storage,
+            string? storage,
 
             string? tier,
 

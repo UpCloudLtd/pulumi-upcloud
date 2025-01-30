@@ -31,18 +31,8 @@ type GetTagsResult struct {
 
 func GetTagsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetTagsResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetTagsResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetTagsResult
-		secret, err := ctx.InvokePackageRaw("upcloud:index/getTags:getTags", nil, &rv, "", opts...)
-		if err != nil {
-			return GetTagsResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetTagsResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetTagsResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("upcloud:index/getTags:getTags", nil, GetTagsResultOutput{}, options).(GetTagsResultOutput), nil
 	}).(GetTagsResultOutput)
 }
 

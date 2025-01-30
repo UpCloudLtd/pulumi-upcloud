@@ -30,7 +30,8 @@ class ManagedDatabasePostgresqlArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabasePostgresqlNetworkArgs']]]] = None,
                  powered: Optional[pulumi.Input[bool]] = None,
-                 properties: Optional[pulumi.Input['ManagedDatabasePostgresqlPropertiesArgs']] = None):
+                 properties: Optional[pulumi.Input['ManagedDatabasePostgresqlPropertiesArgs']] = None,
+                 termination_protection: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a ManagedDatabasePostgresql resource.
         :param pulumi.Input[str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
@@ -44,6 +45,7 @@ class ManagedDatabasePostgresqlArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabasePostgresqlNetworkArgs']]] networks: Private networks attached to the managed database
         :param pulumi.Input[bool] powered: The administrative power state of the service
         :param pulumi.Input['ManagedDatabasePostgresqlPropertiesArgs'] properties: Database Engine properties for PostgreSQL
+        :param pulumi.Input[bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
         """
         pulumi.set(__self__, "plan", plan)
         pulumi.set(__self__, "title", title)
@@ -62,6 +64,8 @@ class ManagedDatabasePostgresqlArgs:
             pulumi.set(__self__, "powered", powered)
         if properties is not None:
             pulumi.set(__self__, "properties", properties)
+        if termination_protection is not None:
+            pulumi.set(__self__, "termination_protection", termination_protection)
 
     @property
     @pulumi.getter
@@ -184,6 +188,18 @@ class ManagedDatabasePostgresqlArgs:
     def properties(self, value: Optional[pulumi.Input['ManagedDatabasePostgresqlPropertiesArgs']]):
         pulumi.set(self, "properties", value)
 
+    @property
+    @pulumi.getter(name="terminationProtection")
+    def termination_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, prevents the managed service from being powered off, or deleted.
+        """
+        return pulumi.get(self, "termination_protection")
+
+    @termination_protection.setter
+    def termination_protection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "termination_protection", value)
+
 
 @pulumi.input_type
 class _ManagedDatabasePostgresqlState:
@@ -206,6 +222,7 @@ class _ManagedDatabasePostgresqlState:
                  service_username: Optional[pulumi.Input[str]] = None,
                  sslmode: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
+                 termination_protection: Optional[pulumi.Input[bool]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
@@ -230,6 +247,7 @@ class _ManagedDatabasePostgresqlState:
         :param pulumi.Input[str] service_username: Primary username to the service instance
         :param pulumi.Input[str] sslmode: SSL Connection Mode for PostgreSQL
         :param pulumi.Input[str] state: State of the service
+        :param pulumi.Input[bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
         :param pulumi.Input[str] title: Title of a managed database instance
         :param pulumi.Input[str] type: Type of the service
         :param pulumi.Input[str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
@@ -270,6 +288,8 @@ class _ManagedDatabasePostgresqlState:
             pulumi.set(__self__, "sslmode", sslmode)
         if state is not None:
             pulumi.set(__self__, "state", state)
+        if termination_protection is not None:
+            pulumi.set(__self__, "termination_protection", termination_protection)
         if title is not None:
             pulumi.set(__self__, "title", title)
         if type is not None:
@@ -495,6 +515,18 @@ class _ManagedDatabasePostgresqlState:
         pulumi.set(self, "state", value)
 
     @property
+    @pulumi.getter(name="terminationProtection")
+    def termination_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, prevents the managed service from being powered off, or deleted.
+        """
+        return pulumi.get(self, "termination_protection")
+
+    @termination_protection.setter
+    def termination_protection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "termination_protection", value)
+
+    @property
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[str]]:
         """
@@ -544,6 +576,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
                  plan: Optional[pulumi.Input[str]] = None,
                  powered: Optional[pulumi.Input[bool]] = None,
                  properties: Optional[pulumi.Input[Union['ManagedDatabasePostgresqlPropertiesArgs', 'ManagedDatabasePostgresqlPropertiesArgsDict']]] = None,
+                 termination_protection: Optional[pulumi.Input[bool]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -584,6 +617,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
                database plans <type>`.
         :param pulumi.Input[bool] powered: The administrative power state of the service
         :param pulumi.Input[Union['ManagedDatabasePostgresqlPropertiesArgs', 'ManagedDatabasePostgresqlPropertiesArgsDict']] properties: Database Engine properties for PostgreSQL
+        :param pulumi.Input[bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
         :param pulumi.Input[str] title: Title of a managed database instance
         :param pulumi.Input[str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
@@ -642,6 +676,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
                  plan: Optional[pulumi.Input[str]] = None,
                  powered: Optional[pulumi.Input[bool]] = None,
                  properties: Optional[pulumi.Input[Union['ManagedDatabasePostgresqlPropertiesArgs', 'ManagedDatabasePostgresqlPropertiesArgsDict']]] = None,
+                 termination_protection: Optional[pulumi.Input[bool]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -663,6 +698,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
             __props__.__dict__["plan"] = plan
             __props__.__dict__["powered"] = powered
             __props__.__dict__["properties"] = properties
+            __props__.__dict__["termination_protection"] = termination_protection
             if title is None and not opts.urn:
                 raise TypeError("Missing required property 'title'")
             __props__.__dict__["title"] = title
@@ -710,6 +746,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
             service_username: Optional[pulumi.Input[str]] = None,
             sslmode: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
+            termination_protection: Optional[pulumi.Input[bool]] = None,
             title: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             zone: Optional[pulumi.Input[str]] = None) -> 'ManagedDatabasePostgresql':
@@ -739,6 +776,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
         :param pulumi.Input[str] service_username: Primary username to the service instance
         :param pulumi.Input[str] sslmode: SSL Connection Mode for PostgreSQL
         :param pulumi.Input[str] state: State of the service
+        :param pulumi.Input[bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
         :param pulumi.Input[str] title: Title of a managed database instance
         :param pulumi.Input[str] type: Type of the service
         :param pulumi.Input[str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
@@ -765,6 +803,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
         __props__.__dict__["service_username"] = service_username
         __props__.__dict__["sslmode"] = sslmode
         __props__.__dict__["state"] = state
+        __props__.__dict__["termination_protection"] = termination_protection
         __props__.__dict__["title"] = title
         __props__.__dict__["type"] = type
         __props__.__dict__["zone"] = zone
@@ -914,6 +953,14 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
         State of the service
         """
         return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter(name="terminationProtection")
+    def termination_protection(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set to true, prevents the managed service from being powered off, or deleted.
+        """
+        return pulumi.get(self, "termination_protection")
 
     @property
     @pulumi.getter

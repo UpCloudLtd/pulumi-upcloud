@@ -86,6 +86,44 @@ namespace Pulumi.Upcloud
         /// </summary>
         public static Output<GetManagedDatabaseOpensearchIndicesResult> Invoke(GetManagedDatabaseOpensearchIndicesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetManagedDatabaseOpensearchIndicesResult>("upcloud:index/getManagedDatabaseOpensearchIndices:getManagedDatabaseOpensearchIndices", args ?? new GetManagedDatabaseOpensearchIndicesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// OpenSearch indices
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Upcloud = Pulumi.Upcloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Use data source to gather a list of the indices for a Managed OpenSearch Database
+        ///     // Create a Managed OpenSearch resource
+        ///     var exampleManagedDatabaseOpensearch = new Upcloud.ManagedDatabaseOpensearch("exampleManagedDatabaseOpensearch", new()
+        ///     {
+        ///         Title = "opensearch-example",
+        ///         Plan = "1x2xCPU-4GB-80GB-1D",
+        ///         Zone = "fi-hel1",
+        ///         Properties = new Upcloud.Inputs.ManagedDatabaseOpensearchPropertiesArgs
+        ///         {
+        ///             AutomaticUtilityNetworkIpFilter = false,
+        ///             PublicAccess = false,
+        ///         },
+        ///     });
+        /// 
+        ///     var exampleManagedDatabaseOpensearchIndices = Upcloud.GetManagedDatabaseOpensearchIndices.Invoke(new()
+        ///     {
+        ///         Service = exampleManagedDatabaseOpensearch.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetManagedDatabaseOpensearchIndicesResult> Invoke(GetManagedDatabaseOpensearchIndicesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetManagedDatabaseOpensearchIndicesResult>("upcloud:index/getManagedDatabaseOpensearchIndices:getManagedDatabaseOpensearchIndices", args ?? new GetManagedDatabaseOpensearchIndicesInvokeArgs(), options.WithDefaults());
     }
 
 

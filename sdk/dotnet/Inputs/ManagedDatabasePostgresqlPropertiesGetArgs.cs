@@ -286,6 +286,22 @@ namespace Pulumi.Upcloud.Inputs
         [Input("migration")]
         public Input<Inputs.ManagedDatabasePostgresqlPropertiesMigrationGetArgs>? Migration { get; set; }
 
+        [Input("passwordEncryption")]
+        private Input<string>? _passwordEncryption;
+
+        /// <summary>
+        /// Chooses the algorithm for encrypting passwords.
+        /// </summary>
+        public Input<string>? PasswordEncryption
+        {
+            get => _passwordEncryption;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordEncryption = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         /// <summary>
         /// Sets the time interval to run pg_partman's scheduled tasks.
         /// </summary>

@@ -18,6 +18,14 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly bool? AutomaticUtilityNetworkIpFilter;
         /// <summary>
+        /// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        /// </summary>
+        public readonly int? BackupHour;
+        /// <summary>
+        /// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        /// </summary>
+        public readonly int? BackupMinute;
+        /// <summary>
         /// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
         /// </summary>
         public readonly ImmutableArray<string> IpFilters;
@@ -86,6 +94,10 @@ namespace Pulumi.Upcloud.Outputs
         private ManagedDatabaseRedisProperties(
             bool? automaticUtilityNetworkIpFilter,
 
+            int? backupHour,
+
+            int? backupMinute,
+
             ImmutableArray<string> ipFilters,
 
             Outputs.ManagedDatabaseRedisPropertiesMigration? migration,
@@ -119,6 +131,8 @@ namespace Pulumi.Upcloud.Outputs
             bool? serviceLog)
         {
             AutomaticUtilityNetworkIpFilter = automaticUtilityNetworkIpFilter;
+            BackupHour = backupHour;
+            BackupMinute = backupMinute;
             IpFilters = ipFilters;
             Migration = migration;
             PublicAccess = publicAccess;

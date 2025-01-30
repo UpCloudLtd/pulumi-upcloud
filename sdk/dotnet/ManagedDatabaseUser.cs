@@ -90,6 +90,12 @@ namespace Pulumi.Upcloud
         [Output("username")]
         public Output<string> Username { get; private set; } = null!;
 
+        /// <summary>
+        /// Valkey access control object.
+        /// </summary>
+        [Output("valkeyAccessControl")]
+        public Output<Outputs.ManagedDatabaseUserValkeyAccessControl?> ValkeyAccessControl { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a ManagedDatabaseUser resource with the given unique name, arguments, and options.
@@ -193,6 +199,12 @@ namespace Pulumi.Upcloud
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
+        /// <summary>
+        /// Valkey access control object.
+        /// </summary>
+        [Input("valkeyAccessControl")]
+        public Input<Inputs.ManagedDatabaseUserValkeyAccessControlArgs>? ValkeyAccessControl { get; set; }
+
         public ManagedDatabaseUserArgs()
         {
         }
@@ -258,6 +270,12 @@ namespace Pulumi.Upcloud
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
+
+        /// <summary>
+        /// Valkey access control object.
+        /// </summary>
+        [Input("valkeyAccessControl")]
+        public Input<Inputs.ManagedDatabaseUserValkeyAccessControlGetArgs>? ValkeyAccessControl { get; set; }
 
         public ManagedDatabaseUserState()
         {

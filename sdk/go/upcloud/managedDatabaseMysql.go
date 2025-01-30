@@ -108,6 +108,8 @@ type ManagedDatabaseMysql struct {
 	ServiceUsername pulumi.StringOutput `pulumi:"serviceUsername"`
 	// State of the service
 	State pulumi.StringOutput `pulumi:"state"`
+	// If set to true, prevents the managed service from being powered off, or deleted.
+	TerminationProtection pulumi.BoolPtrOutput `pulumi:"terminationProtection"`
 	// Title of a managed database instance
 	Title pulumi.StringOutput `pulumi:"title"`
 	// Type of the service
@@ -195,6 +197,8 @@ type managedDatabaseMysqlState struct {
 	ServiceUsername *string `pulumi:"serviceUsername"`
 	// State of the service
 	State *string `pulumi:"state"`
+	// If set to true, prevents the managed service from being powered off, or deleted.
+	TerminationProtection *bool `pulumi:"terminationProtection"`
 	// Title of a managed database instance
 	Title *string `pulumi:"title"`
 	// Type of the service
@@ -239,6 +243,8 @@ type ManagedDatabaseMysqlState struct {
 	ServiceUsername pulumi.StringPtrInput
 	// State of the service
 	State pulumi.StringPtrInput
+	// If set to true, prevents the managed service from being powered off, or deleted.
+	TerminationProtection pulumi.BoolPtrInput
 	// Title of a managed database instance
 	Title pulumi.StringPtrInput
 	// Type of the service
@@ -269,6 +275,8 @@ type managedDatabaseMysqlArgs struct {
 	Powered *bool `pulumi:"powered"`
 	// Database Engine properties for MySQL
 	Properties *ManagedDatabaseMysqlProperties `pulumi:"properties"`
+	// If set to true, prevents the managed service from being powered off, or deleted.
+	TerminationProtection *bool `pulumi:"terminationProtection"`
 	// Title of a managed database instance
 	Title string `pulumi:"title"`
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
@@ -294,6 +302,8 @@ type ManagedDatabaseMysqlArgs struct {
 	Powered pulumi.BoolPtrInput
 	// Database Engine properties for MySQL
 	Properties ManagedDatabaseMysqlPropertiesPtrInput
+	// If set to true, prevents the managed service from being powered off, or deleted.
+	TerminationProtection pulumi.BoolPtrInput
 	// Title of a managed database instance
 	Title pulumi.StringInput
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
@@ -471,6 +481,11 @@ func (o ManagedDatabaseMysqlOutput) ServiceUsername() pulumi.StringOutput {
 // State of the service
 func (o ManagedDatabaseMysqlOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysql) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
+}
+
+// If set to true, prevents the managed service from being powered off, or deleted.
+func (o ManagedDatabaseMysqlOutput) TerminationProtection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysql) pulumi.BoolPtrOutput { return v.TerminationProtection }).(pulumi.BoolPtrOutput)
 }
 
 // Title of a managed database instance

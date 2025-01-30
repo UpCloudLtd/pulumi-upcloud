@@ -22,6 +22,12 @@ namespace Pulumi.Upcloud
         /// </summary>
         public static Output<GetZonesResult> Invoke(GetZonesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetZonesResult>("upcloud:index/getZones:getZones", args ?? new GetZonesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Returns a list of available UpCloud zones.
+        /// </summary>
+        public static Output<GetZonesResult> Invoke(GetZonesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetZonesResult>("upcloud:index/getZones:getZones", args ?? new GetZonesInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -76,6 +76,39 @@ namespace Pulumi.Upcloud
         /// </summary>
         public static Output<GetManagedDatabasePostgresqlSessionsResult> Invoke(GetManagedDatabasePostgresqlSessionsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetManagedDatabasePostgresqlSessionsResult>("upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions", args ?? new GetManagedDatabasePostgresqlSessionsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Current sessions of a PostgreSQL managed database
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Upcloud = Pulumi.Upcloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
+        ///     // Create a Managed PostgreSQL resource
+        ///     var exampleManagedDatabasePostgresql = new Upcloud.ManagedDatabasePostgresql("exampleManagedDatabasePostgresql", new()
+        ///     {
+        ///         Title = "mysql-example1",
+        ///         Plan = "1x1xCPU-2GB-25GB",
+        ///         Zone = "fi-hel1",
+        ///     });
+        /// 
+        ///     var exampleManagedDatabasePostgresqlSessions = Upcloud.GetManagedDatabasePostgresqlSessions.Invoke(new()
+        ///     {
+        ///         Service = exampleManagedDatabasePostgresql.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetManagedDatabasePostgresqlSessionsResult> Invoke(GetManagedDatabasePostgresqlSessionsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetManagedDatabasePostgresqlSessionsResult>("upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions", args ?? new GetManagedDatabasePostgresqlSessionsInvokeArgs(), options.WithDefaults());
     }
 
 

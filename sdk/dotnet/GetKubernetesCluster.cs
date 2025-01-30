@@ -22,6 +22,12 @@ namespace Pulumi.Upcloud
         /// </summary>
         public static Output<GetKubernetesClusterResult> Invoke(GetKubernetesClusterInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetKubernetesClusterResult>("upcloud:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// </summary>
+        public static Output<GetKubernetesClusterResult> Invoke(GetKubernetesClusterInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetKubernetesClusterResult>("upcloud:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterInvokeArgs(), options.WithDefaults());
     }
 
 

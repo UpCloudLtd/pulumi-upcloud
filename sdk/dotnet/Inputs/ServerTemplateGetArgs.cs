@@ -63,11 +63,11 @@ namespace Pulumi.Upcloud.Inputs
         /// <summary>
         /// A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
         /// </summary>
-        [Input("storage", required: true)]
-        public Input<string> Storage { get; set; } = null!;
+        [Input("storage")]
+        public Input<string>? Storage { get; set; }
 
         /// <summary>
-        /// The storage tier to use
+        /// The storage tier to use.
         /// </summary>
         [Input("tier")]
         public Input<string>? Tier { get; set; }

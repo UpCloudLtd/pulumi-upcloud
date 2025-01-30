@@ -59,7 +59,7 @@ export interface GetHostsResult {
  * const allHosts = upcloud.getHosts({});
  * ```
  */
-export function getHostsOutput(args?: GetHostsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetHostsResult> {
+export function getHostsOutput(args?: GetHostsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetHostsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("upcloud:index/getHosts:getHosts", {

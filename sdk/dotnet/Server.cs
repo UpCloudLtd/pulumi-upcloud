@@ -12,57 +12,6 @@ namespace Pulumi.Upcloud
     /// <summary>
     /// The UpCloud server resource allows the creation, update and deletion of a [cloud server](https://upcloud.com/products/cloud-servers).
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Upcloud = Pulumi.Upcloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Upcloud.Server("example", new()
-    ///     {
-    ///         Hostname = "terraform.example.tld",
-    ///         Labels = 
-    ///         {
-    ///             { "env", "dev" },
-    ///             { "production", "false" },
-    ///         },
-    ///         Login = new Upcloud.Inputs.ServerLoginArgs
-    ///         {
-    ///             Keys = new[]
-    ///             {
-    ///                 "&lt;YOUR SSH PUBLIC KEY&gt;",
-    ///             },
-    ///             User = "myusername",
-    ///         },
-    ///         NetworkInterfaces = new[]
-    ///         {
-    ///             new Upcloud.Inputs.ServerNetworkInterfaceArgs
-    ///             {
-    ///                 Type = "public",
-    ///             },
-    ///         },
-    ///         Plan = "1xCPU-1GB",
-    ///         Template = new Upcloud.Inputs.ServerTemplateArgs
-    ///         {
-    ///             BackupRule = new Upcloud.Inputs.ServerTemplateBackupRuleArgs
-    ///             {
-    ///                 Interval = "daily",
-    ///                 Retention = 8,
-    ///                 Time = "0100",
-    ///             },
-    ///             Size = 25,
-    ///             Storage = "Ubuntu Server 20.04 LTS (Focal Fossa)",
-    ///         },
-    ///         Zone = "de-fra1",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// ```sh
@@ -79,7 +28,7 @@ namespace Pulumi.Upcloud
         public Output<string> BootOrder { get; private set; } = null!;
 
         /// <summary>
-        /// The number of CPU for the server
+        /// The number of CPU cores for the server
         /// </summary>
         [Output("cpu")]
         public Output<int> Cpu { get; private set; } = null!;
@@ -88,7 +37,7 @@ namespace Pulumi.Upcloud
         /// Are firewall rules active for the server
         /// </summary>
         [Output("firewall")]
-        public Output<bool?> Firewall { get; private set; } = null!;
+        public Output<bool> Firewall { get; private set; } = null!;
 
         /// <summary>
         /// Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
@@ -98,7 +47,7 @@ namespace Pulumi.Upcloud
         public Output<int?> Host { get; private set; } = null!;
 
         /// <summary>
-        /// A valid domain name
+        /// The hostname of the server.
         /// </summary>
         [Output("hostname")]
         public Output<string> Hostname { get; private set; } = null!;
@@ -107,7 +56,7 @@ namespace Pulumi.Upcloud
         /// User defined key-value pairs to classify the server.
         /// </summary>
         [Output("labels")]
-        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
         /// <summary>
         /// Configure access credentials to the server
@@ -116,19 +65,24 @@ namespace Pulumi.Upcloud
         public Output<Outputs.ServerLogin?> Login { get; private set; } = null!;
 
         /// <summary>
-        /// The size of memory for the server (in megabytes)
+        /// The amount of memory for the server (in megabytes)
         /// </summary>
         [Output("mem")]
         public Output<int> Mem { get; private set; } = null!;
 
         /// <summary>
-        /// Is the metadata service active for the server
+        /// Is metadata service active for the server
         /// </summary>
         [Output("metadata")]
         public Output<bool?> Metadata { get; private set; } = null!;
 
         /// <summary>
-        /// One or more blocks describing the network interfaces of the server.
+        /// One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+        /// interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid
+        /// public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+        /// diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+        /// explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+        /// middle of the list.
         /// </summary>
         [Output("networkInterfaces")]
         public Output<ImmutableArray<Outputs.ServerNetworkInterface>> NetworkInterfaces { get; private set; } = null!;
@@ -157,7 +111,7 @@ namespace Pulumi.Upcloud
         public Output<Outputs.ServerSimpleBackup?> SimpleBackup { get; private set; } = null!;
 
         /// <summary>
-        /// A list of storage devices associated with the server
+        /// A set of storage devices associated with the server
         /// </summary>
         [Output("storageDevices")]
         public Output<ImmutableArray<Outputs.ServerStorageDevice>> StorageDevices { get; private set; } = null!;
@@ -175,16 +129,16 @@ namespace Pulumi.Upcloud
         public Output<Outputs.ServerTemplate?> Template { get; private set; } = null!;
 
         /// <summary>
-        /// A timezone identifier, e.g. `Europe/Helsinki`
+        /// The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
         /// </summary>
         [Output("timezone")]
         public Output<string> Timezone { get; private set; } = null!;
 
         /// <summary>
-        /// A short, informational description
+        /// A short, informational description of the server.
         /// </summary>
         [Output("title")]
-        public Output<string?> Title { get; private set; } = null!;
+        public Output<string> Title { get; private set; } = null!;
 
         /// <summary>
         /// Defines URL for a server setup script, or the script body itself
@@ -258,7 +212,7 @@ namespace Pulumi.Upcloud
         public Input<string>? BootOrder { get; set; }
 
         /// <summary>
-        /// The number of CPU for the server
+        /// The number of CPU cores for the server
         /// </summary>
         [Input("cpu")]
         public Input<int>? Cpu { get; set; }
@@ -277,7 +231,7 @@ namespace Pulumi.Upcloud
         public Input<int>? Host { get; set; }
 
         /// <summary>
-        /// A valid domain name
+        /// The hostname of the server.
         /// </summary>
         [Input("hostname", required: true)]
         public Input<string> Hostname { get; set; } = null!;
@@ -301,22 +255,27 @@ namespace Pulumi.Upcloud
         public Input<Inputs.ServerLoginArgs>? Login { get; set; }
 
         /// <summary>
-        /// The size of memory for the server (in megabytes)
+        /// The amount of memory for the server (in megabytes)
         /// </summary>
         [Input("mem")]
         public Input<int>? Mem { get; set; }
 
         /// <summary>
-        /// Is the metadata service active for the server
+        /// Is metadata service active for the server
         /// </summary>
         [Input("metadata")]
         public Input<bool>? Metadata { get; set; }
 
-        [Input("networkInterfaces", required: true)]
+        [Input("networkInterfaces")]
         private InputList<Inputs.ServerNetworkInterfaceArgs>? _networkInterfaces;
 
         /// <summary>
-        /// One or more blocks describing the network interfaces of the server.
+        /// One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+        /// interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid
+        /// public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+        /// diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+        /// explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+        /// middle of the list.
         /// </summary>
         public InputList<Inputs.ServerNetworkInterfaceArgs> NetworkInterfaces
         {
@@ -351,7 +310,7 @@ namespace Pulumi.Upcloud
         private InputList<Inputs.ServerStorageDeviceArgs>? _storageDevices;
 
         /// <summary>
-        /// A list of storage devices associated with the server
+        /// A set of storage devices associated with the server
         /// </summary>
         public InputList<Inputs.ServerStorageDeviceArgs> StorageDevices
         {
@@ -378,13 +337,13 @@ namespace Pulumi.Upcloud
         public Input<Inputs.ServerTemplateArgs>? Template { get; set; }
 
         /// <summary>
-        /// A timezone identifier, e.g. `Europe/Helsinki`
+        /// The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
         /// </summary>
         [Input("timezone")]
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// A short, informational description
+        /// A short, informational description of the server.
         /// </summary>
         [Input("title")]
         public Input<string>? Title { get; set; }
@@ -422,7 +381,7 @@ namespace Pulumi.Upcloud
         public Input<string>? BootOrder { get; set; }
 
         /// <summary>
-        /// The number of CPU for the server
+        /// The number of CPU cores for the server
         /// </summary>
         [Input("cpu")]
         public Input<int>? Cpu { get; set; }
@@ -441,7 +400,7 @@ namespace Pulumi.Upcloud
         public Input<int>? Host { get; set; }
 
         /// <summary>
-        /// A valid domain name
+        /// The hostname of the server.
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
@@ -465,13 +424,13 @@ namespace Pulumi.Upcloud
         public Input<Inputs.ServerLoginGetArgs>? Login { get; set; }
 
         /// <summary>
-        /// The size of memory for the server (in megabytes)
+        /// The amount of memory for the server (in megabytes)
         /// </summary>
         [Input("mem")]
         public Input<int>? Mem { get; set; }
 
         /// <summary>
-        /// Is the metadata service active for the server
+        /// Is metadata service active for the server
         /// </summary>
         [Input("metadata")]
         public Input<bool>? Metadata { get; set; }
@@ -480,7 +439,12 @@ namespace Pulumi.Upcloud
         private InputList<Inputs.ServerNetworkInterfaceGetArgs>? _networkInterfaces;
 
         /// <summary>
-        /// One or more blocks describing the network interfaces of the server.
+        /// One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+        /// interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid
+        /// public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+        /// diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+        /// explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+        /// middle of the list.
         /// </summary>
         public InputList<Inputs.ServerNetworkInterfaceGetArgs> NetworkInterfaces
         {
@@ -515,7 +479,7 @@ namespace Pulumi.Upcloud
         private InputList<Inputs.ServerStorageDeviceGetArgs>? _storageDevices;
 
         /// <summary>
-        /// A list of storage devices associated with the server
+        /// A set of storage devices associated with the server
         /// </summary>
         public InputList<Inputs.ServerStorageDeviceGetArgs> StorageDevices
         {
@@ -542,13 +506,13 @@ namespace Pulumi.Upcloud
         public Input<Inputs.ServerTemplateGetArgs>? Template { get; set; }
 
         /// <summary>
-        /// A timezone identifier, e.g. `Europe/Helsinki`
+        /// The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
         /// </summary>
         [Input("timezone")]
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// A short, informational description
+        /// A short, informational description of the server.
         /// </summary>
         [Input("title")]
         public Input<string>? Title { get; set; }

@@ -30,7 +30,7 @@ yarn add @pulumi/foo
 To use from Python, install using `pip`:
 
 ```bash
-pip install pulumi_foo
+pip install pulumi-upcloud
 ```
 
 <!--

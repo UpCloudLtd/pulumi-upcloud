@@ -22,7 +22,6 @@ __all__ = ['ServerArgs', 'Server']
 class ServerArgs:
     def __init__(__self__, *,
                  hostname: pulumi.Input[str],
-                 network_interfaces: pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]],
                  zone: pulumi.Input[str],
                  boot_order: Optional[pulumi.Input[str]] = None,
                  cpu: Optional[pulumi.Input[int]] = None,
@@ -32,6 +31,7 @@ class ServerArgs:
                  login: Optional[pulumi.Input['ServerLoginArgs']] = None,
                  mem: Optional[pulumi.Input[int]] = None,
                  metadata: Optional[pulumi.Input[bool]] = None,
+                 network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]] = None,
                  nic_model: Optional[pulumi.Input[str]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  server_group: Optional[pulumi.Input[str]] = None,
@@ -45,33 +45,37 @@ class ServerArgs:
                  video_model: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Server resource.
-        :param pulumi.Input[str] hostname: A valid domain name
-        :param pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]] network_interfaces: One or more blocks describing the network interfaces of the server.
+        :param pulumi.Input[str] hostname: The hostname of the server.
         :param pulumi.Input[str] zone: The zone in which the server will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         :param pulumi.Input[str] boot_order: The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
-        :param pulumi.Input[int] cpu: The number of CPU for the server
+        :param pulumi.Input[int] cpu: The number of CPU cores for the server
         :param pulumi.Input[bool] firewall: Are firewall rules active for the server
         :param pulumi.Input[int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
                hosts
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the server.
         :param pulumi.Input['ServerLoginArgs'] login: Configure access credentials to the server
-        :param pulumi.Input[int] mem: The size of memory for the server (in megabytes)
-        :param pulumi.Input[bool] metadata: Is the metadata service active for the server
+        :param pulumi.Input[int] mem: The amount of memory for the server (in megabytes)
+        :param pulumi.Input[bool] metadata: Is metadata service active for the server
+        :param pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]] network_interfaces: One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+               interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid
+               public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+               diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+               explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+               middle of the list.
         :param pulumi.Input[str] nic_model: The model of the server's network interfaces
         :param pulumi.Input[str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the
                `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it
                has been set to non-zero value.
-        :param pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]] storage_devices: A list of storage devices associated with the server
+        :param pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]] storage_devices: A set of storage devices associated with the server
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The server related tags
         :param pulumi.Input['ServerTemplateArgs'] template: Block describing the preconfigured operating system
-        :param pulumi.Input[str] timezone: A timezone identifier, e.g. `Europe/Helsinki`
-        :param pulumi.Input[str] title: A short, informational description
+        :param pulumi.Input[str] timezone: The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
+        :param pulumi.Input[str] title: A short, informational description of the server.
         :param pulumi.Input[str] user_data: Defines URL for a server setup script, or the script body itself
         :param pulumi.Input[str] video_model: The model of the server's video interface
         """
         pulumi.set(__self__, "hostname", hostname)
-        pulumi.set(__self__, "network_interfaces", network_interfaces)
         pulumi.set(__self__, "zone", zone)
         if boot_order is not None:
             pulumi.set(__self__, "boot_order", boot_order)
@@ -89,6 +93,8 @@ class ServerArgs:
             pulumi.set(__self__, "mem", mem)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if network_interfaces is not None:
+            pulumi.set(__self__, "network_interfaces", network_interfaces)
         if nic_model is not None:
             pulumi.set(__self__, "nic_model", nic_model)
         if plan is not None:
@@ -116,25 +122,13 @@ class ServerArgs:
     @pulumi.getter
     def hostname(self) -> pulumi.Input[str]:
         """
-        A valid domain name
+        The hostname of the server.
         """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
     def hostname(self, value: pulumi.Input[str]):
         pulumi.set(self, "hostname", value)
-
-    @property
-    @pulumi.getter(name="networkInterfaces")
-    def network_interfaces(self) -> pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]:
-        """
-        One or more blocks describing the network interfaces of the server.
-        """
-        return pulumi.get(self, "network_interfaces")
-
-    @network_interfaces.setter
-    def network_interfaces(self, value: pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]):
-        pulumi.set(self, "network_interfaces", value)
 
     @property
     @pulumi.getter
@@ -164,7 +158,7 @@ class ServerArgs:
     @pulumi.getter
     def cpu(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of CPU for the server
+        The number of CPU cores for the server
         """
         return pulumi.get(self, "cpu")
 
@@ -225,7 +219,7 @@ class ServerArgs:
     @pulumi.getter
     def mem(self) -> Optional[pulumi.Input[int]]:
         """
-        The size of memory for the server (in megabytes)
+        The amount of memory for the server (in megabytes)
         """
         return pulumi.get(self, "mem")
 
@@ -237,13 +231,30 @@ class ServerArgs:
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input[bool]]:
         """
-        Is the metadata service active for the server
+        Is metadata service active for the server
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "metadata", value)
+
+    @property
+    @pulumi.getter(name="networkInterfaces")
+    def network_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]]:
+        """
+        One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+        interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid
+        public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+        diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+        explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+        middle of the list.
+        """
+        return pulumi.get(self, "network_interfaces")
+
+    @network_interfaces.setter
+    def network_interfaces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]]):
+        pulumi.set(self, "network_interfaces", value)
 
     @property
     @pulumi.getter(name="nicModel")
@@ -296,7 +307,7 @@ class ServerArgs:
     @pulumi.getter(name="storageDevices")
     def storage_devices(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]]]:
         """
-        A list of storage devices associated with the server
+        A set of storage devices associated with the server
         """
         return pulumi.get(self, "storage_devices")
 
@@ -332,7 +343,7 @@ class ServerArgs:
     @pulumi.getter
     def timezone(self) -> Optional[pulumi.Input[str]]:
         """
-        A timezone identifier, e.g. `Europe/Helsinki`
+        The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
         """
         return pulumi.get(self, "timezone")
 
@@ -344,7 +355,7 @@ class ServerArgs:
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[str]]:
         """
-        A short, informational description
+        A short, informational description of the server.
         """
         return pulumi.get(self, "title")
 
@@ -405,26 +416,31 @@ class _ServerState:
         """
         Input properties used for looking up and filtering Server resources.
         :param pulumi.Input[str] boot_order: The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
-        :param pulumi.Input[int] cpu: The number of CPU for the server
+        :param pulumi.Input[int] cpu: The number of CPU cores for the server
         :param pulumi.Input[bool] firewall: Are firewall rules active for the server
         :param pulumi.Input[int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
                hosts
-        :param pulumi.Input[str] hostname: A valid domain name
+        :param pulumi.Input[str] hostname: The hostname of the server.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the server.
         :param pulumi.Input['ServerLoginArgs'] login: Configure access credentials to the server
-        :param pulumi.Input[int] mem: The size of memory for the server (in megabytes)
-        :param pulumi.Input[bool] metadata: Is the metadata service active for the server
-        :param pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]] network_interfaces: One or more blocks describing the network interfaces of the server.
+        :param pulumi.Input[int] mem: The amount of memory for the server (in megabytes)
+        :param pulumi.Input[bool] metadata: Is metadata service active for the server
+        :param pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]] network_interfaces: One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+               interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid
+               public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+               diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+               explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+               middle of the list.
         :param pulumi.Input[str] nic_model: The model of the server's network interfaces
         :param pulumi.Input[str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the
                `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it
                has been set to non-zero value.
-        :param pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]] storage_devices: A list of storage devices associated with the server
+        :param pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]] storage_devices: A set of storage devices associated with the server
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The server related tags
         :param pulumi.Input['ServerTemplateArgs'] template: Block describing the preconfigured operating system
-        :param pulumi.Input[str] timezone: A timezone identifier, e.g. `Europe/Helsinki`
-        :param pulumi.Input[str] title: A short, informational description
+        :param pulumi.Input[str] timezone: The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
+        :param pulumi.Input[str] title: A short, informational description of the server.
         :param pulumi.Input[str] user_data: Defines URL for a server setup script, or the script body itself
         :param pulumi.Input[str] video_model: The model of the server's video interface
         :param pulumi.Input[str] zone: The zone in which the server will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
@@ -490,7 +506,7 @@ class _ServerState:
     @pulumi.getter
     def cpu(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of CPU for the server
+        The number of CPU cores for the server
         """
         return pulumi.get(self, "cpu")
 
@@ -527,7 +543,7 @@ class _ServerState:
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        A valid domain name
+        The hostname of the server.
         """
         return pulumi.get(self, "hostname")
 
@@ -563,7 +579,7 @@ class _ServerState:
     @pulumi.getter
     def mem(self) -> Optional[pulumi.Input[int]]:
         """
-        The size of memory for the server (in megabytes)
+        The amount of memory for the server (in megabytes)
         """
         return pulumi.get(self, "mem")
 
@@ -575,7 +591,7 @@ class _ServerState:
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input[bool]]:
         """
-        Is the metadata service active for the server
+        Is metadata service active for the server
         """
         return pulumi.get(self, "metadata")
 
@@ -587,7 +603,12 @@ class _ServerState:
     @pulumi.getter(name="networkInterfaces")
     def network_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]]:
         """
-        One or more blocks describing the network interfaces of the server.
+        One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+        interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid
+        public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+        diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+        explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+        middle of the list.
         """
         return pulumi.get(self, "network_interfaces")
 
@@ -646,7 +667,7 @@ class _ServerState:
     @pulumi.getter(name="storageDevices")
     def storage_devices(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]]]:
         """
-        A list of storage devices associated with the server
+        A set of storage devices associated with the server
         """
         return pulumi.get(self, "storage_devices")
 
@@ -682,7 +703,7 @@ class _ServerState:
     @pulumi.getter
     def timezone(self) -> Optional[pulumi.Input[str]]:
         """
-        A timezone identifier, e.g. `Europe/Helsinki`
+        The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
         """
         return pulumi.get(self, "timezone")
 
@@ -694,7 +715,7 @@ class _ServerState:
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[str]]:
         """
-        A short, informational description
+        A short, informational description of the server.
         """
         return pulumi.get(self, "title")
 
@@ -770,38 +791,6 @@ class Server(pulumi.CustomResource):
         """
         The UpCloud server resource allows the creation, update and deletion of a [cloud server](https://upcloud.com/products/cloud-servers).
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_upcloud as upcloud
-
-        example = upcloud.Server("example",
-            hostname="terraform.example.tld",
-            labels={
-                "env": "dev",
-                "production": "false",
-            },
-            login={
-                "keys": ["<YOUR SSH PUBLIC KEY>"],
-                "user": "myusername",
-            },
-            network_interfaces=[{
-                "type": "public",
-            }],
-            plan="1xCPU-1GB",
-            template={
-                "backup_rule": {
-                    "interval": "daily",
-                    "retention": 8,
-                    "time": "0100",
-                },
-                "size": 25,
-                "storage": "Ubuntu Server 20.04 LTS (Focal Fossa)",
-            },
-            zone="de-fra1")
-        ```
-
         ## Import
 
         ```sh
@@ -811,26 +800,31 @@ class Server(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] boot_order: The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
-        :param pulumi.Input[int] cpu: The number of CPU for the server
+        :param pulumi.Input[int] cpu: The number of CPU cores for the server
         :param pulumi.Input[bool] firewall: Are firewall rules active for the server
         :param pulumi.Input[int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
                hosts
-        :param pulumi.Input[str] hostname: A valid domain name
+        :param pulumi.Input[str] hostname: The hostname of the server.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the server.
         :param pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']] login: Configure access credentials to the server
-        :param pulumi.Input[int] mem: The size of memory for the server (in megabytes)
-        :param pulumi.Input[bool] metadata: Is the metadata service active for the server
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]] network_interfaces: One or more blocks describing the network interfaces of the server.
+        :param pulumi.Input[int] mem: The amount of memory for the server (in megabytes)
+        :param pulumi.Input[bool] metadata: Is metadata service active for the server
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]] network_interfaces: One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+               interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid
+               public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+               diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+               explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+               middle of the list.
         :param pulumi.Input[str] nic_model: The model of the server's network interfaces
         :param pulumi.Input[str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the
                `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it
                has been set to non-zero value.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]] storage_devices: A list of storage devices associated with the server
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]] storage_devices: A set of storage devices associated with the server
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The server related tags
         :param pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict']] template: Block describing the preconfigured operating system
-        :param pulumi.Input[str] timezone: A timezone identifier, e.g. `Europe/Helsinki`
-        :param pulumi.Input[str] title: A short, informational description
+        :param pulumi.Input[str] timezone: The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
+        :param pulumi.Input[str] title: A short, informational description of the server.
         :param pulumi.Input[str] user_data: Defines URL for a server setup script, or the script body itself
         :param pulumi.Input[str] video_model: The model of the server's video interface
         :param pulumi.Input[str] zone: The zone in which the server will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
@@ -843,38 +837,6 @@ class Server(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The UpCloud server resource allows the creation, update and deletion of a [cloud server](https://upcloud.com/products/cloud-servers).
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_upcloud as upcloud
-
-        example = upcloud.Server("example",
-            hostname="terraform.example.tld",
-            labels={
-                "env": "dev",
-                "production": "false",
-            },
-            login={
-                "keys": ["<YOUR SSH PUBLIC KEY>"],
-                "user": "myusername",
-            },
-            network_interfaces=[{
-                "type": "public",
-            }],
-            plan="1xCPU-1GB",
-            template={
-                "backup_rule": {
-                    "interval": "daily",
-                    "retention": 8,
-                    "time": "0100",
-                },
-                "size": 25,
-                "storage": "Ubuntu Server 20.04 LTS (Focal Fossa)",
-            },
-            zone="de-fra1")
-        ```
 
         ## Import
 
@@ -939,8 +901,6 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["login"] = login
             __props__.__dict__["mem"] = mem
             __props__.__dict__["metadata"] = metadata
-            if network_interfaces is None and not opts.urn:
-                raise TypeError("Missing required property 'network_interfaces'")
             __props__.__dict__["network_interfaces"] = network_interfaces
             __props__.__dict__["nic_model"] = nic_model
             __props__.__dict__["plan"] = plan
@@ -996,26 +956,31 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] boot_order: The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
-        :param pulumi.Input[int] cpu: The number of CPU for the server
+        :param pulumi.Input[int] cpu: The number of CPU cores for the server
         :param pulumi.Input[bool] firewall: Are firewall rules active for the server
         :param pulumi.Input[int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
                hosts
-        :param pulumi.Input[str] hostname: A valid domain name
+        :param pulumi.Input[str] hostname: The hostname of the server.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the server.
         :param pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']] login: Configure access credentials to the server
-        :param pulumi.Input[int] mem: The size of memory for the server (in megabytes)
-        :param pulumi.Input[bool] metadata: Is the metadata service active for the server
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]] network_interfaces: One or more blocks describing the network interfaces of the server.
+        :param pulumi.Input[int] mem: The amount of memory for the server (in megabytes)
+        :param pulumi.Input[bool] metadata: Is metadata service active for the server
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]] network_interfaces: One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+               interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid
+               public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+               diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+               explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+               middle of the list.
         :param pulumi.Input[str] nic_model: The model of the server's network interfaces
         :param pulumi.Input[str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the
                `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it
                has been set to non-zero value.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]] storage_devices: A list of storage devices associated with the server
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]] storage_devices: A set of storage devices associated with the server
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The server related tags
         :param pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict']] template: Block describing the preconfigured operating system
-        :param pulumi.Input[str] timezone: A timezone identifier, e.g. `Europe/Helsinki`
-        :param pulumi.Input[str] title: A short, informational description
+        :param pulumi.Input[str] timezone: The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
+        :param pulumi.Input[str] title: A short, informational description of the server.
         :param pulumi.Input[str] user_data: Defines URL for a server setup script, or the script body itself
         :param pulumi.Input[str] video_model: The model of the server's video interface
         :param pulumi.Input[str] zone: The zone in which the server will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
@@ -1060,13 +1025,13 @@ class Server(pulumi.CustomResource):
     @pulumi.getter
     def cpu(self) -> pulumi.Output[int]:
         """
-        The number of CPU for the server
+        The number of CPU cores for the server
         """
         return pulumi.get(self, "cpu")
 
     @property
     @pulumi.getter
-    def firewall(self) -> pulumi.Output[Optional[bool]]:
+    def firewall(self) -> pulumi.Output[bool]:
         """
         Are firewall rules active for the server
         """
@@ -1085,13 +1050,13 @@ class Server(pulumi.CustomResource):
     @pulumi.getter
     def hostname(self) -> pulumi.Output[str]:
         """
-        A valid domain name
+        The hostname of the server.
         """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter
-    def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+    def labels(self) -> pulumi.Output[Mapping[str, str]]:
         """
         User defined key-value pairs to classify the server.
         """
@@ -1109,7 +1074,7 @@ class Server(pulumi.CustomResource):
     @pulumi.getter
     def mem(self) -> pulumi.Output[int]:
         """
-        The size of memory for the server (in megabytes)
+        The amount of memory for the server (in megabytes)
         """
         return pulumi.get(self, "mem")
 
@@ -1117,15 +1082,20 @@ class Server(pulumi.CustomResource):
     @pulumi.getter
     def metadata(self) -> pulumi.Output[Optional[bool]]:
         """
-        Is the metadata service active for the server
+        Is metadata service active for the server
         """
         return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter(name="networkInterfaces")
-    def network_interfaces(self) -> pulumi.Output[Sequence['outputs.ServerNetworkInterface']]:
+    def network_interfaces(self) -> pulumi.Output[Optional[Sequence['outputs.ServerNetworkInterface']]]:
         """
-        One or more blocks describing the network interfaces of the server.
+        One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
+        interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid
+        public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
+        diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
+        explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
+        middle of the list.
         """
         return pulumi.get(self, "network_interfaces")
 
@@ -1164,13 +1134,13 @@ class Server(pulumi.CustomResource):
     @pulumi.getter(name="storageDevices")
     def storage_devices(self) -> pulumi.Output[Optional[Sequence['outputs.ServerStorageDevice']]]:
         """
-        A list of storage devices associated with the server
+        A set of storage devices associated with the server
         """
         return pulumi.get(self, "storage_devices")
 
     @property
     @pulumi.getter
-    def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    def tags(self) -> pulumi.Output[Sequence[str]]:
         """
         The server related tags
         """
@@ -1188,15 +1158,15 @@ class Server(pulumi.CustomResource):
     @pulumi.getter
     def timezone(self) -> pulumi.Output[str]:
         """
-        A timezone identifier, e.g. `Europe/Helsinki`
+        The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
         """
         return pulumi.get(self, "timezone")
 
     @property
     @pulumi.getter
-    def title(self) -> pulumi.Output[Optional[str]]:
+    def title(self) -> pulumi.Output[str]:
         """
-        A short, informational description
+        A short, informational description of the server.
         """
         return pulumi.get(self, "title")
 

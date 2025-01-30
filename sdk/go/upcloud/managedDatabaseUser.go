@@ -68,6 +68,8 @@ type ManagedDatabaseUser struct {
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Name of the database user
 	Username pulumi.StringOutput `pulumi:"username"`
+	// Valkey access control object.
+	ValkeyAccessControl ManagedDatabaseUserValkeyAccessControlPtrOutput `pulumi:"valkeyAccessControl"`
 }
 
 // NewManagedDatabaseUser registers a new resource with the given unique name, arguments, and options.
@@ -129,6 +131,8 @@ type managedDatabaseUserState struct {
 	Type *string `pulumi:"type"`
 	// Name of the database user
 	Username *string `pulumi:"username"`
+	// Valkey access control object.
+	ValkeyAccessControl *ManagedDatabaseUserValkeyAccessControl `pulumi:"valkeyAccessControl"`
 }
 
 type ManagedDatabaseUserState struct {
@@ -148,6 +152,8 @@ type ManagedDatabaseUserState struct {
 	Type pulumi.StringPtrInput
 	// Name of the database user
 	Username pulumi.StringPtrInput
+	// Valkey access control object.
+	ValkeyAccessControl ManagedDatabaseUserValkeyAccessControlPtrInput
 }
 
 func (ManagedDatabaseUserState) ElementType() reflect.Type {
@@ -169,6 +175,8 @@ type managedDatabaseUserArgs struct {
 	Service string `pulumi:"service"`
 	// Name of the database user
 	Username string `pulumi:"username"`
+	// Valkey access control object.
+	ValkeyAccessControl *ManagedDatabaseUserValkeyAccessControl `pulumi:"valkeyAccessControl"`
 }
 
 // The set of arguments for constructing a ManagedDatabaseUser resource.
@@ -187,6 +195,8 @@ type ManagedDatabaseUserArgs struct {
 	Service pulumi.StringInput
 	// Name of the database user
 	Username pulumi.StringInput
+	// Valkey access control object.
+	ValkeyAccessControl ManagedDatabaseUserValkeyAccessControlPtrInput
 }
 
 func (ManagedDatabaseUserArgs) ElementType() reflect.Type {
@@ -318,6 +328,13 @@ func (o ManagedDatabaseUserOutput) Type() pulumi.StringOutput {
 // Name of the database user
 func (o ManagedDatabaseUserOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseUser) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+// Valkey access control object.
+func (o ManagedDatabaseUserOutput) ValkeyAccessControl() ManagedDatabaseUserValkeyAccessControlPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseUser) ManagedDatabaseUserValkeyAccessControlPtrOutput {
+		return v.ValkeyAccessControl
+	}).(ManagedDatabaseUserValkeyAccessControlPtrOutput)
 }
 
 type ManagedDatabaseUserArrayOutput struct{ *pulumi.OutputState }

@@ -103,6 +103,8 @@ def get_managed_database_redis_sessions(limit: Optional[int] = None,
                                         sessions: Optional[Sequence[Union['GetManagedDatabaseRedisSessionsSessionArgs', 'GetManagedDatabaseRedisSessionsSessionArgsDict']]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetManagedDatabaseRedisSessionsResult:
     """
+    > Redis is deprecated in favor of Valkey. Please use Valkey for new key value store instances.
+
     Current sessions of a Redis managed database
 
     ## Example Usage
@@ -141,8 +143,10 @@ def get_managed_database_redis_sessions_output(limit: Optional[pulumi.Input[Opti
                                                order: Optional[pulumi.Input[Optional[str]]] = None,
                                                service: Optional[pulumi.Input[str]] = None,
                                                sessions: Optional[pulumi.Input[Optional[Sequence[Union['GetManagedDatabaseRedisSessionsSessionArgs', 'GetManagedDatabaseRedisSessionsSessionArgsDict']]]]] = None,
-                                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetManagedDatabaseRedisSessionsResult]:
+                                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetManagedDatabaseRedisSessionsResult]:
     """
+    > Redis is deprecated in favor of Valkey. Please use Valkey for new key value store instances.
+
     Current sessions of a Redis managed database
 
     ## Example Usage
@@ -166,7 +170,7 @@ def get_managed_database_redis_sessions_output(limit: Optional[pulumi.Input[Opti
     __args__['order'] = order
     __args__['service'] = service
     __args__['sessions'] = sessions
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('upcloud:index/getManagedDatabaseRedisSessions:getManagedDatabaseRedisSessions', __args__, opts=opts, typ=GetManagedDatabaseRedisSessionsResult)
     return __ret__.apply(lambda __response__: GetManagedDatabaseRedisSessionsResult(
         id=pulumi.get(__response__, 'id'),

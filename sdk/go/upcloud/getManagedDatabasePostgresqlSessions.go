@@ -76,21 +76,11 @@ type GetManagedDatabasePostgresqlSessionsResult struct {
 }
 
 func GetManagedDatabasePostgresqlSessionsOutput(ctx *pulumi.Context, args GetManagedDatabasePostgresqlSessionsOutputArgs, opts ...pulumi.InvokeOption) GetManagedDatabasePostgresqlSessionsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetManagedDatabasePostgresqlSessionsResultOutput, error) {
 			args := v.(GetManagedDatabasePostgresqlSessionsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetManagedDatabasePostgresqlSessionsResult
-			secret, err := ctx.InvokePackageRaw("upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions", args, &rv, "", opts...)
-			if err != nil {
-				return GetManagedDatabasePostgresqlSessionsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetManagedDatabasePostgresqlSessionsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetManagedDatabasePostgresqlSessionsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions", args, GetManagedDatabasePostgresqlSessionsResultOutput{}, options).(GetManagedDatabasePostgresqlSessionsResultOutput), nil
 		}).(GetManagedDatabasePostgresqlSessionsResultOutput)
 }
 

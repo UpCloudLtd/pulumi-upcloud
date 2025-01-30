@@ -50,7 +50,7 @@ namespace Pulumi.Upcloud
     /// 
     ///     var myNewFloatingAddress = new Upcloud.FloatingIpAddress("myNewFloatingAddress", new()
     ///     {
-    ///         MacAddress = example.NetworkInterfaces.Apply(networkInterfaces =&gt; networkInterfaces[0].MacAddress),
+    ///         MacAddress = example.NetworkInterfaces.Apply(networkInterfaces =&gt; networkInterfaces[0]?.MacAddress),
     ///     });
     /// 
     /// });
