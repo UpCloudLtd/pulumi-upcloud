@@ -19,7 +19,7 @@ import (
 	_ "embed"
 
 	upcloud "github.com/UpCloudLtd/pulumi-upcloud/provider"
-	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 )
 
 //go:embed schema.json
