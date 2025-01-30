@@ -18,7 +18,7 @@ def readme():
 
 
 setup(name='pulumi_upcloud',
-      python_requires='>=3.8',
+      python_requires='>=3.9',
       version=VERSION,
       description="A Pulumi package for creating and managing UpCloud resources.",
       long_description=readme(),

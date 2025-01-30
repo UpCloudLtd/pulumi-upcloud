@@ -106,7 +106,7 @@ def get_managed_database_opensearch_indices(indices: Optional[Sequence[Union['Ge
         service=pulumi.get(__ret__, 'service'))
 def get_managed_database_opensearch_indices_output(indices: Optional[pulumi.Input[Optional[Sequence[Union['GetManagedDatabaseOpensearchIndicesIndexArgs', 'GetManagedDatabaseOpensearchIndicesIndexArgsDict']]]]] = None,
                                                    service: Optional[pulumi.Input[str]] = None,
-                                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetManagedDatabaseOpensearchIndicesResult]:
+                                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetManagedDatabaseOpensearchIndicesResult]:
     """
     OpenSearch indices
 
@@ -132,7 +132,7 @@ def get_managed_database_opensearch_indices_output(indices: Optional[pulumi.Inpu
     __args__ = dict()
     __args__['indices'] = indices
     __args__['service'] = service
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('upcloud:index/getManagedDatabaseOpensearchIndices:getManagedDatabaseOpensearchIndices', __args__, opts=opts, typ=GetManagedDatabaseOpensearchIndicesResult)
     return __ret__.apply(lambda __response__: GetManagedDatabaseOpensearchIndicesResult(
         id=pulumi.get(__response__, 'id'),

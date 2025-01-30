@@ -87,6 +87,10 @@ export class ManagedDatabaseUser extends pulumi.CustomResource {
      * Name of the database user
      */
     public readonly username!: pulumi.Output<string>;
+    /**
+     * Valkey access control object.
+     */
+    public readonly valkeyAccessControl!: pulumi.Output<outputs.ManagedDatabaseUserValkeyAccessControl | undefined>;
 
     /**
      * Create a ManagedDatabaseUser resource with the given unique name, arguments, and options.
@@ -109,6 +113,7 @@ export class ManagedDatabaseUser extends pulumi.CustomResource {
             resourceInputs["service"] = state ? state.service : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["valkeyAccessControl"] = state ? state.valkeyAccessControl : undefined;
         } else {
             const args = argsOrState as ManagedDatabaseUserArgs | undefined;
             if ((!args || args.service === undefined) && !opts.urn) {
@@ -124,6 +129,7 @@ export class ManagedDatabaseUser extends pulumi.CustomResource {
             resourceInputs["redisAccessControl"] = args ? args.redisAccessControl : undefined;
             resourceInputs["service"] = args ? args.service : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["valkeyAccessControl"] = args ? args.valkeyAccessControl : undefined;
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -169,6 +175,10 @@ export interface ManagedDatabaseUserState {
      * Name of the database user
      */
     username?: pulumi.Input<string>;
+    /**
+     * Valkey access control object.
+     */
+    valkeyAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserValkeyAccessControl>;
 }
 
 /**
@@ -203,4 +213,8 @@ export interface ManagedDatabaseUserArgs {
      * Name of the database user
      */
     username: pulumi.Input<string>;
+    /**
+     * Valkey access control object.
+     */
+    valkeyAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserValkeyAccessControl>;
 }

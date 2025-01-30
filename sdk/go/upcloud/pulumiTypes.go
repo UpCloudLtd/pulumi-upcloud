@@ -2142,6 +2142,10 @@ type LoadbalancerFrontendRuleActions struct {
 	HttpReturns []LoadbalancerFrontendRuleActionsHttpReturn `pulumi:"httpReturns"`
 	// Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
 	SetForwardedHeaders []LoadbalancerFrontendRuleActionsSetForwardedHeader `pulumi:"setForwardedHeaders"`
+	// Set request header
+	SetRequestHeaders []LoadbalancerFrontendRuleActionsSetRequestHeader `pulumi:"setRequestHeaders"`
+	// Set response header
+	SetResponseHeaders []LoadbalancerFrontendRuleActionsSetResponseHeader `pulumi:"setResponseHeaders"`
 	// Terminates a connection.
 	TcpRejects []LoadbalancerFrontendRuleActionsTcpReject `pulumi:"tcpRejects"`
 	// Routes traffic to specified `backend`.
@@ -2166,6 +2170,10 @@ type LoadbalancerFrontendRuleActionsArgs struct {
 	HttpReturns LoadbalancerFrontendRuleActionsHttpReturnArrayInput `pulumi:"httpReturns"`
 	// Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
 	SetForwardedHeaders LoadbalancerFrontendRuleActionsSetForwardedHeaderArrayInput `pulumi:"setForwardedHeaders"`
+	// Set request header
+	SetRequestHeaders LoadbalancerFrontendRuleActionsSetRequestHeaderArrayInput `pulumi:"setRequestHeaders"`
+	// Set response header
+	SetResponseHeaders LoadbalancerFrontendRuleActionsSetResponseHeaderArrayInput `pulumi:"setResponseHeaders"`
 	// Terminates a connection.
 	TcpRejects LoadbalancerFrontendRuleActionsTcpRejectArrayInput `pulumi:"tcpRejects"`
 	// Routes traffic to specified `backend`.
@@ -2270,6 +2278,20 @@ func (o LoadbalancerFrontendRuleActionsOutput) SetForwardedHeaders() Loadbalance
 	}).(LoadbalancerFrontendRuleActionsSetForwardedHeaderArrayOutput)
 }
 
+// Set request header
+func (o LoadbalancerFrontendRuleActionsOutput) SetRequestHeaders() LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleActions) []LoadbalancerFrontendRuleActionsSetRequestHeader {
+		return v.SetRequestHeaders
+	}).(LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput)
+}
+
+// Set response header
+func (o LoadbalancerFrontendRuleActionsOutput) SetResponseHeaders() LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleActions) []LoadbalancerFrontendRuleActionsSetResponseHeader {
+		return v.SetResponseHeaders
+	}).(LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput)
+}
+
 // Terminates a connection.
 func (o LoadbalancerFrontendRuleActionsOutput) TcpRejects() LoadbalancerFrontendRuleActionsTcpRejectArrayOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleActions) []LoadbalancerFrontendRuleActionsTcpReject {
@@ -2336,6 +2358,26 @@ func (o LoadbalancerFrontendRuleActionsPtrOutput) SetForwardedHeaders() Loadbala
 		}
 		return v.SetForwardedHeaders
 	}).(LoadbalancerFrontendRuleActionsSetForwardedHeaderArrayOutput)
+}
+
+// Set request header
+func (o LoadbalancerFrontendRuleActionsPtrOutput) SetRequestHeaders() LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontendRuleActions) []LoadbalancerFrontendRuleActionsSetRequestHeader {
+		if v == nil {
+			return nil
+		}
+		return v.SetRequestHeaders
+	}).(LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput)
+}
+
+// Set response header
+func (o LoadbalancerFrontendRuleActionsPtrOutput) SetResponseHeaders() LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontendRuleActions) []LoadbalancerFrontendRuleActionsSetResponseHeader {
+		if v == nil {
+			return nil
+		}
+		return v.SetResponseHeaders
+	}).(LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput)
 }
 
 // Terminates a connection.
@@ -2673,6 +2715,218 @@ func (o LoadbalancerFrontendRuleActionsSetForwardedHeaderArrayOutput) Index(i pu
 	}).(LoadbalancerFrontendRuleActionsSetForwardedHeaderOutput)
 }
 
+type LoadbalancerFrontendRuleActionsSetRequestHeader struct {
+	// Header name.
+	Header string `pulumi:"header"`
+	// Header value.
+	Value *string `pulumi:"value"`
+}
+
+// LoadbalancerFrontendRuleActionsSetRequestHeaderInput is an input type that accepts LoadbalancerFrontendRuleActionsSetRequestHeaderArgs and LoadbalancerFrontendRuleActionsSetRequestHeaderOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleActionsSetRequestHeaderInput` via:
+//
+//	LoadbalancerFrontendRuleActionsSetRequestHeaderArgs{...}
+type LoadbalancerFrontendRuleActionsSetRequestHeaderInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleActionsSetRequestHeaderOutput() LoadbalancerFrontendRuleActionsSetRequestHeaderOutput
+	ToLoadbalancerFrontendRuleActionsSetRequestHeaderOutputWithContext(context.Context) LoadbalancerFrontendRuleActionsSetRequestHeaderOutput
+}
+
+type LoadbalancerFrontendRuleActionsSetRequestHeaderArgs struct {
+	// Header name.
+	Header pulumi.StringInput `pulumi:"header"`
+	// Header value.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (LoadbalancerFrontendRuleActionsSetRequestHeaderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleActionsSetRequestHeader)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleActionsSetRequestHeaderArgs) ToLoadbalancerFrontendRuleActionsSetRequestHeaderOutput() LoadbalancerFrontendRuleActionsSetRequestHeaderOutput {
+	return i.ToLoadbalancerFrontendRuleActionsSetRequestHeaderOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleActionsSetRequestHeaderArgs) ToLoadbalancerFrontendRuleActionsSetRequestHeaderOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsSetRequestHeaderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleActionsSetRequestHeaderOutput)
+}
+
+// LoadbalancerFrontendRuleActionsSetRequestHeaderArrayInput is an input type that accepts LoadbalancerFrontendRuleActionsSetRequestHeaderArray and LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleActionsSetRequestHeaderArrayInput` via:
+//
+//	LoadbalancerFrontendRuleActionsSetRequestHeaderArray{ LoadbalancerFrontendRuleActionsSetRequestHeaderArgs{...} }
+type LoadbalancerFrontendRuleActionsSetRequestHeaderArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput() LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput
+	ToLoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutputWithContext(context.Context) LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput
+}
+
+type LoadbalancerFrontendRuleActionsSetRequestHeaderArray []LoadbalancerFrontendRuleActionsSetRequestHeaderInput
+
+func (LoadbalancerFrontendRuleActionsSetRequestHeaderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleActionsSetRequestHeader)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleActionsSetRequestHeaderArray) ToLoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput() LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput {
+	return i.ToLoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleActionsSetRequestHeaderArray) ToLoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput)
+}
+
+type LoadbalancerFrontendRuleActionsSetRequestHeaderOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleActionsSetRequestHeaderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleActionsSetRequestHeader)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleActionsSetRequestHeaderOutput) ToLoadbalancerFrontendRuleActionsSetRequestHeaderOutput() LoadbalancerFrontendRuleActionsSetRequestHeaderOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleActionsSetRequestHeaderOutput) ToLoadbalancerFrontendRuleActionsSetRequestHeaderOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsSetRequestHeaderOutput {
+	return o
+}
+
+// Header name.
+func (o LoadbalancerFrontendRuleActionsSetRequestHeaderOutput) Header() pulumi.StringOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleActionsSetRequestHeader) string { return v.Header }).(pulumi.StringOutput)
+}
+
+// Header value.
+func (o LoadbalancerFrontendRuleActionsSetRequestHeaderOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleActionsSetRequestHeader) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleActionsSetRequestHeader)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput) ToLoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput() LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput) ToLoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput) Index(i pulumi.IntInput) LoadbalancerFrontendRuleActionsSetRequestHeaderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadbalancerFrontendRuleActionsSetRequestHeader {
+		return vs[0].([]LoadbalancerFrontendRuleActionsSetRequestHeader)[vs[1].(int)]
+	}).(LoadbalancerFrontendRuleActionsSetRequestHeaderOutput)
+}
+
+type LoadbalancerFrontendRuleActionsSetResponseHeader struct {
+	// Header name.
+	Header string `pulumi:"header"`
+	// Header value.
+	Value *string `pulumi:"value"`
+}
+
+// LoadbalancerFrontendRuleActionsSetResponseHeaderInput is an input type that accepts LoadbalancerFrontendRuleActionsSetResponseHeaderArgs and LoadbalancerFrontendRuleActionsSetResponseHeaderOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleActionsSetResponseHeaderInput` via:
+//
+//	LoadbalancerFrontendRuleActionsSetResponseHeaderArgs{...}
+type LoadbalancerFrontendRuleActionsSetResponseHeaderInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleActionsSetResponseHeaderOutput() LoadbalancerFrontendRuleActionsSetResponseHeaderOutput
+	ToLoadbalancerFrontendRuleActionsSetResponseHeaderOutputWithContext(context.Context) LoadbalancerFrontendRuleActionsSetResponseHeaderOutput
+}
+
+type LoadbalancerFrontendRuleActionsSetResponseHeaderArgs struct {
+	// Header name.
+	Header pulumi.StringInput `pulumi:"header"`
+	// Header value.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (LoadbalancerFrontendRuleActionsSetResponseHeaderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleActionsSetResponseHeader)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleActionsSetResponseHeaderArgs) ToLoadbalancerFrontendRuleActionsSetResponseHeaderOutput() LoadbalancerFrontendRuleActionsSetResponseHeaderOutput {
+	return i.ToLoadbalancerFrontendRuleActionsSetResponseHeaderOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleActionsSetResponseHeaderArgs) ToLoadbalancerFrontendRuleActionsSetResponseHeaderOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsSetResponseHeaderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleActionsSetResponseHeaderOutput)
+}
+
+// LoadbalancerFrontendRuleActionsSetResponseHeaderArrayInput is an input type that accepts LoadbalancerFrontendRuleActionsSetResponseHeaderArray and LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleActionsSetResponseHeaderArrayInput` via:
+//
+//	LoadbalancerFrontendRuleActionsSetResponseHeaderArray{ LoadbalancerFrontendRuleActionsSetResponseHeaderArgs{...} }
+type LoadbalancerFrontendRuleActionsSetResponseHeaderArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput() LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput
+	ToLoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutputWithContext(context.Context) LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput
+}
+
+type LoadbalancerFrontendRuleActionsSetResponseHeaderArray []LoadbalancerFrontendRuleActionsSetResponseHeaderInput
+
+func (LoadbalancerFrontendRuleActionsSetResponseHeaderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleActionsSetResponseHeader)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleActionsSetResponseHeaderArray) ToLoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput() LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput {
+	return i.ToLoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleActionsSetResponseHeaderArray) ToLoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput)
+}
+
+type LoadbalancerFrontendRuleActionsSetResponseHeaderOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleActionsSetResponseHeaderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleActionsSetResponseHeader)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleActionsSetResponseHeaderOutput) ToLoadbalancerFrontendRuleActionsSetResponseHeaderOutput() LoadbalancerFrontendRuleActionsSetResponseHeaderOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleActionsSetResponseHeaderOutput) ToLoadbalancerFrontendRuleActionsSetResponseHeaderOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsSetResponseHeaderOutput {
+	return o
+}
+
+// Header name.
+func (o LoadbalancerFrontendRuleActionsSetResponseHeaderOutput) Header() pulumi.StringOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleActionsSetResponseHeader) string { return v.Header }).(pulumi.StringOutput)
+}
+
+// Header value.
+func (o LoadbalancerFrontendRuleActionsSetResponseHeaderOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleActionsSetResponseHeader) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleActionsSetResponseHeader)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput) ToLoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput() LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput) ToLoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput) Index(i pulumi.IntInput) LoadbalancerFrontendRuleActionsSetResponseHeaderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadbalancerFrontendRuleActionsSetResponseHeader {
+		return vs[0].([]LoadbalancerFrontendRuleActionsSetResponseHeader)[vs[1].(int)]
+	}).(LoadbalancerFrontendRuleActionsSetResponseHeaderOutput)
+}
+
 type LoadbalancerFrontendRuleActionsTcpReject struct {
 	// Indicates if the rule is active.
 	Active *bool `pulumi:"active"`
@@ -2875,15 +3129,25 @@ type LoadbalancerFrontendRuleMatchers struct {
 	// Matches by HTTP cookie value. Cookie name must be provided.
 	Cookies []LoadbalancerFrontendRuleMatchersCookie `pulumi:"cookies"`
 	// Matches by HTTP header value. Header name must be provided.
+	//
+	// Deprecated: Use `requestHeader` instead.
 	Headers []LoadbalancerFrontendRuleMatchersHeader `pulumi:"headers"`
 	// Matches by hostname. Header extracted from HTTP Headers or from TLS certificate in case of secured connection.
 	Hosts []LoadbalancerFrontendRuleMatchersHost `pulumi:"hosts"`
 	// Matches by HTTP method.
 	HttpMethods []LoadbalancerFrontendRuleMatchersHttpMethod `pulumi:"httpMethods"`
+	// Matches by range of HTTP statuses.
+	HttpStatusRanges []LoadbalancerFrontendRuleMatchersHttpStatusRange `pulumi:"httpStatusRanges"`
+	// Matches by HTTP status.
+	HttpStatuses []LoadbalancerFrontendRuleMatchersHttpStatus `pulumi:"httpStatuses"`
 	// Matches by number of healthy backend members.
 	NumMembersUps []LoadbalancerFrontendRuleMatchersNumMembersUp `pulumi:"numMembersUps"`
 	// Matches by URL path.
 	Paths []LoadbalancerFrontendRuleMatchersPath `pulumi:"paths"`
+	// Matches by HTTP request header value. Header name must be provided.
+	RequestHeaders []LoadbalancerFrontendRuleMatchersRequestHeader `pulumi:"requestHeaders"`
+	// Matches by HTTP response header value. Header name must be provided.
+	ResponseHeaders []LoadbalancerFrontendRuleMatchersResponseHeader `pulumi:"responseHeaders"`
 	// Matches by source IP address.
 	SrcIps []LoadbalancerFrontendRuleMatchersSrcIp `pulumi:"srcIps"`
 	// Matches by range of source port numbers.
@@ -2917,15 +3181,25 @@ type LoadbalancerFrontendRuleMatchersArgs struct {
 	// Matches by HTTP cookie value. Cookie name must be provided.
 	Cookies LoadbalancerFrontendRuleMatchersCookieArrayInput `pulumi:"cookies"`
 	// Matches by HTTP header value. Header name must be provided.
+	//
+	// Deprecated: Use `requestHeader` instead.
 	Headers LoadbalancerFrontendRuleMatchersHeaderArrayInput `pulumi:"headers"`
 	// Matches by hostname. Header extracted from HTTP Headers or from TLS certificate in case of secured connection.
 	Hosts LoadbalancerFrontendRuleMatchersHostArrayInput `pulumi:"hosts"`
 	// Matches by HTTP method.
 	HttpMethods LoadbalancerFrontendRuleMatchersHttpMethodArrayInput `pulumi:"httpMethods"`
+	// Matches by range of HTTP statuses.
+	HttpStatusRanges LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayInput `pulumi:"httpStatusRanges"`
+	// Matches by HTTP status.
+	HttpStatuses LoadbalancerFrontendRuleMatchersHttpStatusArrayInput `pulumi:"httpStatuses"`
 	// Matches by number of healthy backend members.
 	NumMembersUps LoadbalancerFrontendRuleMatchersNumMembersUpArrayInput `pulumi:"numMembersUps"`
 	// Matches by URL path.
 	Paths LoadbalancerFrontendRuleMatchersPathArrayInput `pulumi:"paths"`
+	// Matches by HTTP request header value. Header name must be provided.
+	RequestHeaders LoadbalancerFrontendRuleMatchersRequestHeaderArrayInput `pulumi:"requestHeaders"`
+	// Matches by HTTP response header value. Header name must be provided.
+	ResponseHeaders LoadbalancerFrontendRuleMatchersResponseHeaderArrayInput `pulumi:"responseHeaders"`
 	// Matches by source IP address.
 	SrcIps LoadbalancerFrontendRuleMatchersSrcIpArrayInput `pulumi:"srcIps"`
 	// Matches by range of source port numbers.
@@ -3037,6 +3311,8 @@ func (o LoadbalancerFrontendRuleMatchersOutput) Cookies() LoadbalancerFrontendRu
 }
 
 // Matches by HTTP header value. Header name must be provided.
+//
+// Deprecated: Use `requestHeader` instead.
 func (o LoadbalancerFrontendRuleMatchersOutput) Headers() LoadbalancerFrontendRuleMatchersHeaderArrayOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersHeader { return v.Headers }).(LoadbalancerFrontendRuleMatchersHeaderArrayOutput)
 }
@@ -3053,6 +3329,20 @@ func (o LoadbalancerFrontendRuleMatchersOutput) HttpMethods() LoadbalancerFronte
 	}).(LoadbalancerFrontendRuleMatchersHttpMethodArrayOutput)
 }
 
+// Matches by range of HTTP statuses.
+func (o LoadbalancerFrontendRuleMatchersOutput) HttpStatusRanges() LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersHttpStatusRange {
+		return v.HttpStatusRanges
+	}).(LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput)
+}
+
+// Matches by HTTP status.
+func (o LoadbalancerFrontendRuleMatchersOutput) HttpStatuses() LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersHttpStatus {
+		return v.HttpStatuses
+	}).(LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput)
+}
+
 // Matches by number of healthy backend members.
 func (o LoadbalancerFrontendRuleMatchersOutput) NumMembersUps() LoadbalancerFrontendRuleMatchersNumMembersUpArrayOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersNumMembersUp {
@@ -3063,6 +3353,20 @@ func (o LoadbalancerFrontendRuleMatchersOutput) NumMembersUps() LoadbalancerFron
 // Matches by URL path.
 func (o LoadbalancerFrontendRuleMatchersOutput) Paths() LoadbalancerFrontendRuleMatchersPathArrayOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersPath { return v.Paths }).(LoadbalancerFrontendRuleMatchersPathArrayOutput)
+}
+
+// Matches by HTTP request header value. Header name must be provided.
+func (o LoadbalancerFrontendRuleMatchersOutput) RequestHeaders() LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersRequestHeader {
+		return v.RequestHeaders
+	}).(LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput)
+}
+
+// Matches by HTTP response header value. Header name must be provided.
+func (o LoadbalancerFrontendRuleMatchersOutput) ResponseHeaders() LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersResponseHeader {
+		return v.ResponseHeaders
+	}).(LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput)
 }
 
 // Matches by source IP address.
@@ -3156,6 +3460,8 @@ func (o LoadbalancerFrontendRuleMatchersPtrOutput) Cookies() LoadbalancerFronten
 }
 
 // Matches by HTTP header value. Header name must be provided.
+//
+// Deprecated: Use `requestHeader` instead.
 func (o LoadbalancerFrontendRuleMatchersPtrOutput) Headers() LoadbalancerFrontendRuleMatchersHeaderArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersHeader {
 		if v == nil {
@@ -3185,6 +3491,26 @@ func (o LoadbalancerFrontendRuleMatchersPtrOutput) HttpMethods() LoadbalancerFro
 	}).(LoadbalancerFrontendRuleMatchersHttpMethodArrayOutput)
 }
 
+// Matches by range of HTTP statuses.
+func (o LoadbalancerFrontendRuleMatchersPtrOutput) HttpStatusRanges() LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersHttpStatusRange {
+		if v == nil {
+			return nil
+		}
+		return v.HttpStatusRanges
+	}).(LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput)
+}
+
+// Matches by HTTP status.
+func (o LoadbalancerFrontendRuleMatchersPtrOutput) HttpStatuses() LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersHttpStatus {
+		if v == nil {
+			return nil
+		}
+		return v.HttpStatuses
+	}).(LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput)
+}
+
 // Matches by number of healthy backend members.
 func (o LoadbalancerFrontendRuleMatchersPtrOutput) NumMembersUps() LoadbalancerFrontendRuleMatchersNumMembersUpArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersNumMembersUp {
@@ -3203,6 +3529,26 @@ func (o LoadbalancerFrontendRuleMatchersPtrOutput) Paths() LoadbalancerFrontendR
 		}
 		return v.Paths
 	}).(LoadbalancerFrontendRuleMatchersPathArrayOutput)
+}
+
+// Matches by HTTP request header value. Header name must be provided.
+func (o LoadbalancerFrontendRuleMatchersPtrOutput) RequestHeaders() LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersRequestHeader {
+		if v == nil {
+			return nil
+		}
+		return v.RequestHeaders
+	}).(LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput)
+}
+
+// Matches by HTTP response header value. Header name must be provided.
+func (o LoadbalancerFrontendRuleMatchersPtrOutput) ResponseHeaders() LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontendRuleMatchers) []LoadbalancerFrontendRuleMatchersResponseHeader {
+		if v == nil {
+			return nil
+		}
+		return v.ResponseHeaders
+	}).(LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput)
 }
 
 // Matches by source IP address.
@@ -3973,6 +4319,236 @@ func (o LoadbalancerFrontendRuleMatchersHttpMethodArrayOutput) Index(i pulumi.In
 	}).(LoadbalancerFrontendRuleMatchersHttpMethodOutput)
 }
 
+type LoadbalancerFrontendRuleMatchersHttpStatus struct {
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
+	Inverse *bool `pulumi:"inverse"`
+	// Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
+	Method string `pulumi:"method"`
+	// Integer value.
+	Value int `pulumi:"value"`
+}
+
+// LoadbalancerFrontendRuleMatchersHttpStatusInput is an input type that accepts LoadbalancerFrontendRuleMatchersHttpStatusArgs and LoadbalancerFrontendRuleMatchersHttpStatusOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleMatchersHttpStatusInput` via:
+//
+//	LoadbalancerFrontendRuleMatchersHttpStatusArgs{...}
+type LoadbalancerFrontendRuleMatchersHttpStatusInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleMatchersHttpStatusOutput() LoadbalancerFrontendRuleMatchersHttpStatusOutput
+	ToLoadbalancerFrontendRuleMatchersHttpStatusOutputWithContext(context.Context) LoadbalancerFrontendRuleMatchersHttpStatusOutput
+}
+
+type LoadbalancerFrontendRuleMatchersHttpStatusArgs struct {
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
+	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
+	// Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
+	Method pulumi.StringInput `pulumi:"method"`
+	// Integer value.
+	Value pulumi.IntInput `pulumi:"value"`
+}
+
+func (LoadbalancerFrontendRuleMatchersHttpStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleMatchersHttpStatus)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleMatchersHttpStatusArgs) ToLoadbalancerFrontendRuleMatchersHttpStatusOutput() LoadbalancerFrontendRuleMatchersHttpStatusOutput {
+	return i.ToLoadbalancerFrontendRuleMatchersHttpStatusOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleMatchersHttpStatusArgs) ToLoadbalancerFrontendRuleMatchersHttpStatusOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersHttpStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleMatchersHttpStatusOutput)
+}
+
+// LoadbalancerFrontendRuleMatchersHttpStatusArrayInput is an input type that accepts LoadbalancerFrontendRuleMatchersHttpStatusArray and LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleMatchersHttpStatusArrayInput` via:
+//
+//	LoadbalancerFrontendRuleMatchersHttpStatusArray{ LoadbalancerFrontendRuleMatchersHttpStatusArgs{...} }
+type LoadbalancerFrontendRuleMatchersHttpStatusArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleMatchersHttpStatusArrayOutput() LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput
+	ToLoadbalancerFrontendRuleMatchersHttpStatusArrayOutputWithContext(context.Context) LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput
+}
+
+type LoadbalancerFrontendRuleMatchersHttpStatusArray []LoadbalancerFrontendRuleMatchersHttpStatusInput
+
+func (LoadbalancerFrontendRuleMatchersHttpStatusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleMatchersHttpStatus)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleMatchersHttpStatusArray) ToLoadbalancerFrontendRuleMatchersHttpStatusArrayOutput() LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput {
+	return i.ToLoadbalancerFrontendRuleMatchersHttpStatusArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleMatchersHttpStatusArray) ToLoadbalancerFrontendRuleMatchersHttpStatusArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput)
+}
+
+type LoadbalancerFrontendRuleMatchersHttpStatusOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleMatchersHttpStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleMatchersHttpStatus)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleMatchersHttpStatusOutput) ToLoadbalancerFrontendRuleMatchersHttpStatusOutput() LoadbalancerFrontendRuleMatchersHttpStatusOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleMatchersHttpStatusOutput) ToLoadbalancerFrontendRuleMatchersHttpStatusOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersHttpStatusOutput {
+	return o
+}
+
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
+func (o LoadbalancerFrontendRuleMatchersHttpStatusOutput) Inverse() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersHttpStatus) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
+}
+
+// Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
+func (o LoadbalancerFrontendRuleMatchersHttpStatusOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersHttpStatus) string { return v.Method }).(pulumi.StringOutput)
+}
+
+// Integer value.
+func (o LoadbalancerFrontendRuleMatchersHttpStatusOutput) Value() pulumi.IntOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersHttpStatus) int { return v.Value }).(pulumi.IntOutput)
+}
+
+type LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleMatchersHttpStatus)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput) ToLoadbalancerFrontendRuleMatchersHttpStatusArrayOutput() LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput) ToLoadbalancerFrontendRuleMatchersHttpStatusArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput) Index(i pulumi.IntInput) LoadbalancerFrontendRuleMatchersHttpStatusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadbalancerFrontendRuleMatchersHttpStatus {
+		return vs[0].([]LoadbalancerFrontendRuleMatchersHttpStatus)[vs[1].(int)]
+	}).(LoadbalancerFrontendRuleMatchersHttpStatusOutput)
+}
+
+type LoadbalancerFrontendRuleMatchersHttpStatusRange struct {
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
+	Inverse *bool `pulumi:"inverse"`
+	// Integer value.
+	RangeEnd int `pulumi:"rangeEnd"`
+	// Integer value.
+	RangeStart int `pulumi:"rangeStart"`
+}
+
+// LoadbalancerFrontendRuleMatchersHttpStatusRangeInput is an input type that accepts LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs and LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleMatchersHttpStatusRangeInput` via:
+//
+//	LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs{...}
+type LoadbalancerFrontendRuleMatchersHttpStatusRangeInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleMatchersHttpStatusRangeOutput() LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput
+	ToLoadbalancerFrontendRuleMatchersHttpStatusRangeOutputWithContext(context.Context) LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput
+}
+
+type LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs struct {
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
+	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
+	// Integer value.
+	RangeEnd pulumi.IntInput `pulumi:"rangeEnd"`
+	// Integer value.
+	RangeStart pulumi.IntInput `pulumi:"rangeStart"`
+}
+
+func (LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleMatchersHttpStatusRange)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs) ToLoadbalancerFrontendRuleMatchersHttpStatusRangeOutput() LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput {
+	return i.ToLoadbalancerFrontendRuleMatchersHttpStatusRangeOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs) ToLoadbalancerFrontendRuleMatchersHttpStatusRangeOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput)
+}
+
+// LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayInput is an input type that accepts LoadbalancerFrontendRuleMatchersHttpStatusRangeArray and LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayInput` via:
+//
+//	LoadbalancerFrontendRuleMatchersHttpStatusRangeArray{ LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs{...} }
+type LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput() LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput
+	ToLoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutputWithContext(context.Context) LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput
+}
+
+type LoadbalancerFrontendRuleMatchersHttpStatusRangeArray []LoadbalancerFrontendRuleMatchersHttpStatusRangeInput
+
+func (LoadbalancerFrontendRuleMatchersHttpStatusRangeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleMatchersHttpStatusRange)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleMatchersHttpStatusRangeArray) ToLoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput() LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput {
+	return i.ToLoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleMatchersHttpStatusRangeArray) ToLoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput)
+}
+
+type LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleMatchersHttpStatusRange)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput) ToLoadbalancerFrontendRuleMatchersHttpStatusRangeOutput() LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput) ToLoadbalancerFrontendRuleMatchersHttpStatusRangeOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput {
+	return o
+}
+
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
+func (o LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput) Inverse() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersHttpStatusRange) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
+}
+
+// Integer value.
+func (o LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput) RangeEnd() pulumi.IntOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersHttpStatusRange) int { return v.RangeEnd }).(pulumi.IntOutput)
+}
+
+// Integer value.
+func (o LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput) RangeStart() pulumi.IntOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersHttpStatusRange) int { return v.RangeStart }).(pulumi.IntOutput)
+}
+
+type LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleMatchersHttpStatusRange)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput) ToLoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput() LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput) ToLoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput) Index(i pulumi.IntInput) LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadbalancerFrontendRuleMatchersHttpStatusRange {
+		return vs[0].([]LoadbalancerFrontendRuleMatchersHttpStatusRange)[vs[1].(int)]
+	}).(LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput)
+}
+
 type LoadbalancerFrontendRuleMatchersNumMembersUp struct {
 	// The name of the `backend`.
 	BackendName string `pulumi:"backendName"`
@@ -4219,6 +4795,272 @@ func (o LoadbalancerFrontendRuleMatchersPathArrayOutput) Index(i pulumi.IntInput
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadbalancerFrontendRuleMatchersPath {
 		return vs[0].([]LoadbalancerFrontendRuleMatchersPath)[vs[1].(int)]
 	}).(LoadbalancerFrontendRuleMatchersPathOutput)
+}
+
+type LoadbalancerFrontendRuleMatchersRequestHeader struct {
+	// Defines if case should be ignored. Defaults to `false`.
+	IgnoreCase *bool `pulumi:"ignoreCase"`
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
+	Inverse *bool `pulumi:"inverse"`
+	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
+	Method string `pulumi:"method"`
+	// Name of the argument.
+	Name string `pulumi:"name"`
+	// String value.
+	Value *string `pulumi:"value"`
+}
+
+// LoadbalancerFrontendRuleMatchersRequestHeaderInput is an input type that accepts LoadbalancerFrontendRuleMatchersRequestHeaderArgs and LoadbalancerFrontendRuleMatchersRequestHeaderOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleMatchersRequestHeaderInput` via:
+//
+//	LoadbalancerFrontendRuleMatchersRequestHeaderArgs{...}
+type LoadbalancerFrontendRuleMatchersRequestHeaderInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleMatchersRequestHeaderOutput() LoadbalancerFrontendRuleMatchersRequestHeaderOutput
+	ToLoadbalancerFrontendRuleMatchersRequestHeaderOutputWithContext(context.Context) LoadbalancerFrontendRuleMatchersRequestHeaderOutput
+}
+
+type LoadbalancerFrontendRuleMatchersRequestHeaderArgs struct {
+	// Defines if case should be ignored. Defaults to `false`.
+	IgnoreCase pulumi.BoolPtrInput `pulumi:"ignoreCase"`
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
+	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
+	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
+	Method pulumi.StringInput `pulumi:"method"`
+	// Name of the argument.
+	Name pulumi.StringInput `pulumi:"name"`
+	// String value.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (LoadbalancerFrontendRuleMatchersRequestHeaderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleMatchersRequestHeader)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleMatchersRequestHeaderArgs) ToLoadbalancerFrontendRuleMatchersRequestHeaderOutput() LoadbalancerFrontendRuleMatchersRequestHeaderOutput {
+	return i.ToLoadbalancerFrontendRuleMatchersRequestHeaderOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleMatchersRequestHeaderArgs) ToLoadbalancerFrontendRuleMatchersRequestHeaderOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersRequestHeaderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleMatchersRequestHeaderOutput)
+}
+
+// LoadbalancerFrontendRuleMatchersRequestHeaderArrayInput is an input type that accepts LoadbalancerFrontendRuleMatchersRequestHeaderArray and LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleMatchersRequestHeaderArrayInput` via:
+//
+//	LoadbalancerFrontendRuleMatchersRequestHeaderArray{ LoadbalancerFrontendRuleMatchersRequestHeaderArgs{...} }
+type LoadbalancerFrontendRuleMatchersRequestHeaderArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput() LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput
+	ToLoadbalancerFrontendRuleMatchersRequestHeaderArrayOutputWithContext(context.Context) LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput
+}
+
+type LoadbalancerFrontendRuleMatchersRequestHeaderArray []LoadbalancerFrontendRuleMatchersRequestHeaderInput
+
+func (LoadbalancerFrontendRuleMatchersRequestHeaderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleMatchersRequestHeader)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleMatchersRequestHeaderArray) ToLoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput() LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput {
+	return i.ToLoadbalancerFrontendRuleMatchersRequestHeaderArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleMatchersRequestHeaderArray) ToLoadbalancerFrontendRuleMatchersRequestHeaderArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput)
+}
+
+type LoadbalancerFrontendRuleMatchersRequestHeaderOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleMatchersRequestHeaderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleMatchersRequestHeader)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleMatchersRequestHeaderOutput) ToLoadbalancerFrontendRuleMatchersRequestHeaderOutput() LoadbalancerFrontendRuleMatchersRequestHeaderOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleMatchersRequestHeaderOutput) ToLoadbalancerFrontendRuleMatchersRequestHeaderOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersRequestHeaderOutput {
+	return o
+}
+
+// Defines if case should be ignored. Defaults to `false`.
+func (o LoadbalancerFrontendRuleMatchersRequestHeaderOutput) IgnoreCase() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersRequestHeader) *bool { return v.IgnoreCase }).(pulumi.BoolPtrOutput)
+}
+
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
+func (o LoadbalancerFrontendRuleMatchersRequestHeaderOutput) Inverse() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersRequestHeader) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
+}
+
+// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
+func (o LoadbalancerFrontendRuleMatchersRequestHeaderOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersRequestHeader) string { return v.Method }).(pulumi.StringOutput)
+}
+
+// Name of the argument.
+func (o LoadbalancerFrontendRuleMatchersRequestHeaderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersRequestHeader) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// String value.
+func (o LoadbalancerFrontendRuleMatchersRequestHeaderOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersRequestHeader) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleMatchersRequestHeader)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput) ToLoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput() LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput) ToLoadbalancerFrontendRuleMatchersRequestHeaderArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput) Index(i pulumi.IntInput) LoadbalancerFrontendRuleMatchersRequestHeaderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadbalancerFrontendRuleMatchersRequestHeader {
+		return vs[0].([]LoadbalancerFrontendRuleMatchersRequestHeader)[vs[1].(int)]
+	}).(LoadbalancerFrontendRuleMatchersRequestHeaderOutput)
+}
+
+type LoadbalancerFrontendRuleMatchersResponseHeader struct {
+	// Defines if case should be ignored. Defaults to `false`.
+	IgnoreCase *bool `pulumi:"ignoreCase"`
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
+	Inverse *bool `pulumi:"inverse"`
+	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
+	Method string `pulumi:"method"`
+	// Name of the argument.
+	Name string `pulumi:"name"`
+	// String value.
+	Value *string `pulumi:"value"`
+}
+
+// LoadbalancerFrontendRuleMatchersResponseHeaderInput is an input type that accepts LoadbalancerFrontendRuleMatchersResponseHeaderArgs and LoadbalancerFrontendRuleMatchersResponseHeaderOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleMatchersResponseHeaderInput` via:
+//
+//	LoadbalancerFrontendRuleMatchersResponseHeaderArgs{...}
+type LoadbalancerFrontendRuleMatchersResponseHeaderInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleMatchersResponseHeaderOutput() LoadbalancerFrontendRuleMatchersResponseHeaderOutput
+	ToLoadbalancerFrontendRuleMatchersResponseHeaderOutputWithContext(context.Context) LoadbalancerFrontendRuleMatchersResponseHeaderOutput
+}
+
+type LoadbalancerFrontendRuleMatchersResponseHeaderArgs struct {
+	// Defines if case should be ignored. Defaults to `false`.
+	IgnoreCase pulumi.BoolPtrInput `pulumi:"ignoreCase"`
+	// Defines if the condition should be inverted. Works similarly to logical NOT operator.
+	Inverse pulumi.BoolPtrInput `pulumi:"inverse"`
+	// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
+	Method pulumi.StringInput `pulumi:"method"`
+	// Name of the argument.
+	Name pulumi.StringInput `pulumi:"name"`
+	// String value.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (LoadbalancerFrontendRuleMatchersResponseHeaderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleMatchersResponseHeader)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleMatchersResponseHeaderArgs) ToLoadbalancerFrontendRuleMatchersResponseHeaderOutput() LoadbalancerFrontendRuleMatchersResponseHeaderOutput {
+	return i.ToLoadbalancerFrontendRuleMatchersResponseHeaderOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleMatchersResponseHeaderArgs) ToLoadbalancerFrontendRuleMatchersResponseHeaderOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersResponseHeaderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleMatchersResponseHeaderOutput)
+}
+
+// LoadbalancerFrontendRuleMatchersResponseHeaderArrayInput is an input type that accepts LoadbalancerFrontendRuleMatchersResponseHeaderArray and LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleMatchersResponseHeaderArrayInput` via:
+//
+//	LoadbalancerFrontendRuleMatchersResponseHeaderArray{ LoadbalancerFrontendRuleMatchersResponseHeaderArgs{...} }
+type LoadbalancerFrontendRuleMatchersResponseHeaderArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput() LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput
+	ToLoadbalancerFrontendRuleMatchersResponseHeaderArrayOutputWithContext(context.Context) LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput
+}
+
+type LoadbalancerFrontendRuleMatchersResponseHeaderArray []LoadbalancerFrontendRuleMatchersResponseHeaderInput
+
+func (LoadbalancerFrontendRuleMatchersResponseHeaderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleMatchersResponseHeader)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleMatchersResponseHeaderArray) ToLoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput() LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput {
+	return i.ToLoadbalancerFrontendRuleMatchersResponseHeaderArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleMatchersResponseHeaderArray) ToLoadbalancerFrontendRuleMatchersResponseHeaderArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput)
+}
+
+type LoadbalancerFrontendRuleMatchersResponseHeaderOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleMatchersResponseHeaderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleMatchersResponseHeader)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleMatchersResponseHeaderOutput) ToLoadbalancerFrontendRuleMatchersResponseHeaderOutput() LoadbalancerFrontendRuleMatchersResponseHeaderOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleMatchersResponseHeaderOutput) ToLoadbalancerFrontendRuleMatchersResponseHeaderOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersResponseHeaderOutput {
+	return o
+}
+
+// Defines if case should be ignored. Defaults to `false`.
+func (o LoadbalancerFrontendRuleMatchersResponseHeaderOutput) IgnoreCase() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersResponseHeader) *bool { return v.IgnoreCase }).(pulumi.BoolPtrOutput)
+}
+
+// Defines if the condition should be inverted. Works similarly to logical NOT operator.
+func (o LoadbalancerFrontendRuleMatchersResponseHeaderOutput) Inverse() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersResponseHeader) *bool { return v.Inverse }).(pulumi.BoolPtrOutput)
+}
+
+// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
+func (o LoadbalancerFrontendRuleMatchersResponseHeaderOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersResponseHeader) string { return v.Method }).(pulumi.StringOutput)
+}
+
+// Name of the argument.
+func (o LoadbalancerFrontendRuleMatchersResponseHeaderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersResponseHeader) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// String value.
+func (o LoadbalancerFrontendRuleMatchersResponseHeaderOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleMatchersResponseHeader) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleMatchersResponseHeader)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput) ToLoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput() LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput) ToLoadbalancerFrontendRuleMatchersResponseHeaderArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput) Index(i pulumi.IntInput) LoadbalancerFrontendRuleMatchersResponseHeaderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadbalancerFrontendRuleMatchersResponseHeader {
+		return vs[0].([]LoadbalancerFrontendRuleMatchersResponseHeader)[vs[1].(int)]
+	}).(LoadbalancerFrontendRuleMatchersResponseHeaderOutput)
 }
 
 type LoadbalancerFrontendRuleMatchersSrcIp struct {
@@ -4943,9 +5785,9 @@ type LoadbalancerNetwork struct {
 	DnsName *string `pulumi:"dnsName"`
 	// Network family. Currently only `IPv4` is supported.
 	Family string `pulumi:"family"`
-	// Network identifier.
+	// The unique identifier of the network.
 	Id *string `pulumi:"id"`
-	// The name of the network must be unique within the service.
+	// The name of the network. Must be unique within the service.
 	Name string `pulumi:"name"`
 	// Private network UUID. Required for private networks and must reside in loadbalancer zone. For public network the field should be omitted.
 	Network *string `pulumi:"network"`
@@ -4969,9 +5811,9 @@ type LoadbalancerNetworkArgs struct {
 	DnsName pulumi.StringPtrInput `pulumi:"dnsName"`
 	// Network family. Currently only `IPv4` is supported.
 	Family pulumi.StringInput `pulumi:"family"`
-	// Network identifier.
+	// The unique identifier of the network.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The name of the network must be unique within the service.
+	// The name of the network. Must be unique within the service.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Private network UUID. Required for private networks and must reside in loadbalancer zone. For public network the field should be omitted.
 	Network pulumi.StringPtrInput `pulumi:"network"`
@@ -5040,12 +5882,12 @@ func (o LoadbalancerNetworkOutput) Family() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerNetwork) string { return v.Family }).(pulumi.StringOutput)
 }
 
-// Network identifier.
+// The unique identifier of the network.
 func (o LoadbalancerNetworkOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The name of the network must be unique within the service.
+// The name of the network. Must be unique within the service.
 func (o LoadbalancerNetworkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerNetwork) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -5081,6 +5923,7 @@ func (o LoadbalancerNetworkArrayOutput) Index(i pulumi.IntInput) LoadbalancerNet
 }
 
 type LoadbalancerNode struct {
+	// Networks attached to the node
 	Networks []LoadbalancerNodeNetwork `pulumi:"networks"`
 	// Node's operational state. Managed by the system.
 	OperationalState *string `pulumi:"operationalState"`
@@ -5098,6 +5941,7 @@ type LoadbalancerNodeInput interface {
 }
 
 type LoadbalancerNodeArgs struct {
+	// Networks attached to the node
 	Networks LoadbalancerNodeNetworkArrayInput `pulumi:"networks"`
 	// Node's operational state. Managed by the system.
 	OperationalState pulumi.StringPtrInput `pulumi:"operationalState"`
@@ -5154,6 +5998,7 @@ func (o LoadbalancerNodeOutput) ToLoadbalancerNodeOutputWithContext(ctx context.
 	return o
 }
 
+// Networks attached to the node
 func (o LoadbalancerNodeOutput) Networks() LoadbalancerNodeNetworkArrayOutput {
 	return o.ApplyT(func(v LoadbalancerNode) []LoadbalancerNodeNetwork { return v.Networks }).(LoadbalancerNodeNetworkArrayOutput)
 }
@@ -5184,10 +6029,11 @@ func (o LoadbalancerNodeArrayOutput) Index(i pulumi.IntInput) LoadbalancerNodeOu
 }
 
 type LoadbalancerNodeNetwork struct {
+	// IP addresses attached to the network
 	IpAddresses []LoadbalancerNodeNetworkIpAddress `pulumi:"ipAddresses"`
-	// The name of the network.
+	// The name of the network
 	Name *string `pulumi:"name"`
-	// The type of the network.
+	// The type of the network
 	Type *string `pulumi:"type"`
 }
 
@@ -5203,10 +6049,11 @@ type LoadbalancerNodeNetworkInput interface {
 }
 
 type LoadbalancerNodeNetworkArgs struct {
+	// IP addresses attached to the network
 	IpAddresses LoadbalancerNodeNetworkIpAddressArrayInput `pulumi:"ipAddresses"`
-	// The name of the network.
+	// The name of the network
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The type of the network.
+	// The type of the network
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -5261,16 +6108,17 @@ func (o LoadbalancerNodeNetworkOutput) ToLoadbalancerNodeNetworkOutputWithContex
 	return o
 }
 
+// IP addresses attached to the network
 func (o LoadbalancerNodeNetworkOutput) IpAddresses() LoadbalancerNodeNetworkIpAddressArrayOutput {
 	return o.ApplyT(func(v LoadbalancerNodeNetwork) []LoadbalancerNodeNetworkIpAddress { return v.IpAddresses }).(LoadbalancerNodeNetworkIpAddressArrayOutput)
 }
 
-// The name of the network.
+// The name of the network
 func (o LoadbalancerNodeNetworkOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerNodeNetwork) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The type of the network.
+// The type of the network
 func (o LoadbalancerNodeNetworkOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerNodeNetwork) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -5296,9 +6144,9 @@ func (o LoadbalancerNodeNetworkArrayOutput) Index(i pulumi.IntInput) Loadbalance
 }
 
 type LoadbalancerNodeNetworkIpAddress struct {
-	// Node's IP address.
+	// Node's IP address
 	Address *string `pulumi:"address"`
-	// Does IP address listen network connections.
+	// Whether the node listens to the traffic
 	Listen *bool `pulumi:"listen"`
 }
 
@@ -5314,9 +6162,9 @@ type LoadbalancerNodeNetworkIpAddressInput interface {
 }
 
 type LoadbalancerNodeNetworkIpAddressArgs struct {
-	// Node's IP address.
+	// Node's IP address
 	Address pulumi.StringPtrInput `pulumi:"address"`
-	// Does IP address listen network connections.
+	// Whether the node listens to the traffic
 	Listen pulumi.BoolPtrInput `pulumi:"listen"`
 }
 
@@ -5371,12 +6219,12 @@ func (o LoadbalancerNodeNetworkIpAddressOutput) ToLoadbalancerNodeNetworkIpAddre
 	return o
 }
 
-// Node's IP address.
+// Node's IP address
 func (o LoadbalancerNodeNetworkIpAddressOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerNodeNetworkIpAddress) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
 
-// Does IP address listen network connections.
+// Whether the node listens to the traffic
 func (o LoadbalancerNodeNetworkIpAddressOutput) Listen() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerNodeNetworkIpAddress) *bool { return v.Listen }).(pulumi.BoolPtrOutput)
 }
@@ -5824,7 +6672,9 @@ type ManagedDatabaseMysqlProperties struct {
 	InternalTmpMemStorageEngine *string `pulumi:"internalTmpMemStorageEngine"`
 	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 	IpFilters []string `pulumi:"ipFilters"`
-	// The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute. Default is 10s.
+	// The slow log output destination when slowQueryLog is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
+	LogOutput *string `pulumi:"logOutput"`
+	// The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute.
 	LongQueryTime *float64 `pulumi:"longQueryTime"`
 	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
 	MaxAllowedPacket *int `pulumi:"maxAllowedPacket"`
@@ -5842,7 +6692,7 @@ type ManagedDatabaseMysqlProperties struct {
 	PublicAccess *bool `pulumi:"publicAccess"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog *bool `pulumi:"serviceLog"`
-	// Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table. Default is off.
+	// Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table.
 	SlowQueryLog *bool `pulumi:"slowQueryLog"`
 	// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
 	SortBufferSize *int `pulumi:"sortBufferSize"`
@@ -5920,7 +6770,9 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	InternalTmpMemStorageEngine pulumi.StringPtrInput `pulumi:"internalTmpMemStorageEngine"`
 	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 	IpFilters pulumi.StringArrayInput `pulumi:"ipFilters"`
-	// The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute. Default is 10s.
+	// The slow log output destination when slowQueryLog is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
+	LogOutput pulumi.StringPtrInput `pulumi:"logOutput"`
+	// The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute.
 	LongQueryTime pulumi.Float64PtrInput `pulumi:"longQueryTime"`
 	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
 	MaxAllowedPacket pulumi.IntPtrInput `pulumi:"maxAllowedPacket"`
@@ -5938,7 +6790,7 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	PublicAccess pulumi.BoolPtrInput `pulumi:"publicAccess"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog pulumi.BoolPtrInput `pulumi:"serviceLog"`
-	// Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table. Default is off.
+	// Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table.
 	SlowQueryLog pulumi.BoolPtrInput `pulumi:"slowQueryLog"`
 	// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
 	SortBufferSize pulumi.IntPtrInput `pulumi:"sortBufferSize"`
@@ -6156,7 +7008,12 @@ func (o ManagedDatabaseMysqlPropertiesOutput) IpFilters() pulumi.StringArrayOutp
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) []string { return v.IpFilters }).(pulumi.StringArrayOutput)
 }
 
-// The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute. Default is 10s.
+// The slow log output destination when slowQueryLog is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
+func (o ManagedDatabaseMysqlPropertiesOutput) LogOutput() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *string { return v.LogOutput }).(pulumi.StringPtrOutput)
+}
+
+// The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute.
 func (o ManagedDatabaseMysqlPropertiesOutput) LongQueryTime() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *float64 { return v.LongQueryTime }).(pulumi.Float64PtrOutput)
 }
@@ -6201,7 +7058,7 @@ func (o ManagedDatabaseMysqlPropertiesOutput) ServiceLog() pulumi.BoolPtrOutput 
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *bool { return v.ServiceLog }).(pulumi.BoolPtrOutput)
 }
 
-// Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table. Default is off.
+// Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table.
 func (o ManagedDatabaseMysqlPropertiesOutput) SlowQueryLog() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *bool { return v.SlowQueryLog }).(pulumi.BoolPtrOutput)
 }
@@ -6510,7 +7367,17 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) IpFilters() pulumi.StringArrayO
 	}).(pulumi.StringArrayOutput)
 }
 
-// The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute. Default is 10s.
+// The slow log output destination when slowQueryLog is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) LogOutput() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LogOutput
+	}).(pulumi.StringPtrOutput)
+}
+
+// The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute.
 func (o ManagedDatabaseMysqlPropertiesPtrOutput) LongQueryTime() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *float64 {
 		if v == nil {
@@ -6600,7 +7467,7 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) ServiceLog() pulumi.BoolPtrOutp
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table. Default is off.
+// Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table.
 func (o ManagedDatabaseMysqlPropertiesPtrOutput) SlowQueryLog() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *bool {
 		if v == nil {
@@ -7339,23 +8206,28 @@ type ManagedDatabaseOpensearchProperties struct {
 	// Opensearch Security Plugin Settings.
 	AuthFailureListeners *ManagedDatabaseOpensearchPropertiesAuthFailureListeners `pulumi:"authFailureListeners"`
 	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
-	AutomaticUtilityNetworkIpFilter *bool                                              `pulumi:"automaticUtilityNetworkIpFilter"`
-	AzureMigration                  *ManagedDatabaseOpensearchPropertiesAzureMigration `pulumi:"azureMigration"`
+	AutomaticUtilityNetworkIpFilter *bool `pulumi:"automaticUtilityNetworkIpFilter"`
 	// Controls the number of shards allowed in the cluster per data node.
 	ClusterMaxShardsPerNode *int `pulumi:"clusterMaxShardsPerNode"`
-	// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
-	ClusterRoutingAllocationNodeConcurrentRecoveries *int `pulumi:"clusterRoutingAllocationNodeConcurrentRecoveries"`
+	// When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
+	ClusterRoutingAllocationBalancePreferPrimary *bool `pulumi:"clusterRoutingAllocationBalancePreferPrimary"`
+	// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
+	ClusterRoutingAllocationNodeConcurrentRecoveries *int                                                            `pulumi:"clusterRoutingAllocationNodeConcurrentRecoveries"`
+	ClusterSearchRequestSlowlog                      *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog `pulumi:"clusterSearchRequestSlowlog"`
 	// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
 	CustomDomain *string `pulumi:"customDomain"`
+	// Elasticsearch major version.
+	ElasticsearchVersion *string `pulumi:"elasticsearchVersion"`
 	// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
 	EmailSenderName *string `pulumi:"emailSenderName"`
 	// Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
 	EmailSenderPassword *string `pulumi:"emailSenderPassword"`
 	// Sender username for Opensearch alerts.
 	EmailSenderUsername *string `pulumi:"emailSenderUsername"`
+	// Enable remote-backed storage.
+	EnableRemoteBackedStorage *bool `pulumi:"enableRemoteBackedStorage"`
 	// Enable/Disable security audit.
-	EnableSecurityAudit *bool                                            `pulumi:"enableSecurityAudit"`
-	GcsMigration        *ManagedDatabaseOpensearchPropertiesGcsMigration `pulumi:"gcsMigration"`
+	EnableSecurityAudit *bool `pulumi:"enableSecurityAudit"`
 	// Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
 	HttpMaxContentLength *int `pulumi:"httpMaxContentLength"`
 	// The max size of allowed headers, in bytes.
@@ -7415,16 +8287,22 @@ type ManagedDatabaseOpensearchProperties struct {
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess *bool `pulumi:"publicAccess"`
 	// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
-	ReindexRemoteWhitelists []string                                        `pulumi:"reindexRemoteWhitelists"`
-	S3Migration             *ManagedDatabaseOpensearchPropertiesS3Migration `pulumi:"s3Migration"`
+	ReindexRemoteWhitelists []string `pulumi:"reindexRemoteWhitelists"`
 	// OpenSearch SAML configuration.
 	Saml *ManagedDatabaseOpensearchPropertiesSaml `pulumi:"saml"`
 	// Script max compilation rate - circuit breaker to prevent/minimize OOMs. Script compilation circuit breaker limits the number of inline script compilations within a period of time. Default is use-context.
 	ScriptMaxCompilationsRate *string `pulumi:"scriptMaxCompilationsRate"`
+	// Search Backpressure Settings.
+	SearchBackpressure       *ManagedDatabaseOpensearchPropertiesSearchBackpressure       `pulumi:"searchBackpressure"`
+	SearchInsightsTopQueries *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries `pulumi:"searchInsightsTopQueries"`
 	// Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
 	SearchMaxBuckets *int `pulumi:"searchMaxBuckets"`
+	// Segment Replication Backpressure Settings.
+	Segrep *ManagedDatabaseOpensearchPropertiesSegrep `pulumi:"segrep"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog *bool `pulumi:"serviceLog"`
+	// Shard indexing back pressure settings.
+	ShardIndexingPressure *ManagedDatabaseOpensearchPropertiesShardIndexingPressure `pulumi:"shardIndexingPressure"`
 	// analyze thread pool queue size. Size for the thread pool queue. See documentation for exact details.
 	ThreadPoolAnalyzeQueueSize *int `pulumi:"threadPoolAnalyzeQueueSize"`
 	// analyze thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
@@ -7470,23 +8348,28 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	// Opensearch Security Plugin Settings.
 	AuthFailureListeners ManagedDatabaseOpensearchPropertiesAuthFailureListenersPtrInput `pulumi:"authFailureListeners"`
 	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
-	AutomaticUtilityNetworkIpFilter pulumi.BoolPtrInput                                       `pulumi:"automaticUtilityNetworkIpFilter"`
-	AzureMigration                  ManagedDatabaseOpensearchPropertiesAzureMigrationPtrInput `pulumi:"azureMigration"`
+	AutomaticUtilityNetworkIpFilter pulumi.BoolPtrInput `pulumi:"automaticUtilityNetworkIpFilter"`
 	// Controls the number of shards allowed in the cluster per data node.
 	ClusterMaxShardsPerNode pulumi.IntPtrInput `pulumi:"clusterMaxShardsPerNode"`
-	// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
-	ClusterRoutingAllocationNodeConcurrentRecoveries pulumi.IntPtrInput `pulumi:"clusterRoutingAllocationNodeConcurrentRecoveries"`
+	// When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
+	ClusterRoutingAllocationBalancePreferPrimary pulumi.BoolPtrInput `pulumi:"clusterRoutingAllocationBalancePreferPrimary"`
+	// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
+	ClusterRoutingAllocationNodeConcurrentRecoveries pulumi.IntPtrInput                                                     `pulumi:"clusterRoutingAllocationNodeConcurrentRecoveries"`
+	ClusterSearchRequestSlowlog                      ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrInput `pulumi:"clusterSearchRequestSlowlog"`
 	// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
 	CustomDomain pulumi.StringPtrInput `pulumi:"customDomain"`
+	// Elasticsearch major version.
+	ElasticsearchVersion pulumi.StringPtrInput `pulumi:"elasticsearchVersion"`
 	// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
 	EmailSenderName pulumi.StringPtrInput `pulumi:"emailSenderName"`
 	// Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
 	EmailSenderPassword pulumi.StringPtrInput `pulumi:"emailSenderPassword"`
 	// Sender username for Opensearch alerts.
 	EmailSenderUsername pulumi.StringPtrInput `pulumi:"emailSenderUsername"`
+	// Enable remote-backed storage.
+	EnableRemoteBackedStorage pulumi.BoolPtrInput `pulumi:"enableRemoteBackedStorage"`
 	// Enable/Disable security audit.
-	EnableSecurityAudit pulumi.BoolPtrInput                                     `pulumi:"enableSecurityAudit"`
-	GcsMigration        ManagedDatabaseOpensearchPropertiesGcsMigrationPtrInput `pulumi:"gcsMigration"`
+	EnableSecurityAudit pulumi.BoolPtrInput `pulumi:"enableSecurityAudit"`
 	// Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
 	HttpMaxContentLength pulumi.IntPtrInput `pulumi:"httpMaxContentLength"`
 	// The max size of allowed headers, in bytes.
@@ -7546,16 +8429,22 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess pulumi.BoolPtrInput `pulumi:"publicAccess"`
 	// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
-	ReindexRemoteWhitelists pulumi.StringArrayInput                                `pulumi:"reindexRemoteWhitelists"`
-	S3Migration             ManagedDatabaseOpensearchPropertiesS3MigrationPtrInput `pulumi:"s3Migration"`
+	ReindexRemoteWhitelists pulumi.StringArrayInput `pulumi:"reindexRemoteWhitelists"`
 	// OpenSearch SAML configuration.
 	Saml ManagedDatabaseOpensearchPropertiesSamlPtrInput `pulumi:"saml"`
 	// Script max compilation rate - circuit breaker to prevent/minimize OOMs. Script compilation circuit breaker limits the number of inline script compilations within a period of time. Default is use-context.
 	ScriptMaxCompilationsRate pulumi.StringPtrInput `pulumi:"scriptMaxCompilationsRate"`
+	// Search Backpressure Settings.
+	SearchBackpressure       ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrInput       `pulumi:"searchBackpressure"`
+	SearchInsightsTopQueries ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrInput `pulumi:"searchInsightsTopQueries"`
 	// Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
 	SearchMaxBuckets pulumi.IntPtrInput `pulumi:"searchMaxBuckets"`
+	// Segment Replication Backpressure Settings.
+	Segrep ManagedDatabaseOpensearchPropertiesSegrepPtrInput `pulumi:"segrep"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog pulumi.BoolPtrInput `pulumi:"serviceLog"`
+	// Shard indexing back pressure settings.
+	ShardIndexingPressure ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrInput `pulumi:"shardIndexingPressure"`
 	// analyze thread pool queue size. Size for the thread pool queue. See documentation for exact details.
 	ThreadPoolAnalyzeQueueSize pulumi.IntPtrInput `pulumi:"threadPoolAnalyzeQueueSize"`
 	// analyze thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
@@ -7681,27 +8570,39 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) AutomaticUtilityNetworkIpFilt
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.AutomaticUtilityNetworkIpFilter }).(pulumi.BoolPtrOutput)
 }
 
-func (o ManagedDatabaseOpensearchPropertiesOutput) AzureMigration() ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesAzureMigration {
-		return v.AzureMigration
-	}).(ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput)
-}
-
 // Controls the number of shards allowed in the cluster per data node.
 func (o ManagedDatabaseOpensearchPropertiesOutput) ClusterMaxShardsPerNode() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.ClusterMaxShardsPerNode }).(pulumi.IntPtrOutput)
 }
 
-// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
+// When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
+func (o ManagedDatabaseOpensearchPropertiesOutput) ClusterRoutingAllocationBalancePreferPrimary() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool {
+		return v.ClusterRoutingAllocationBalancePreferPrimary
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
 func (o ManagedDatabaseOpensearchPropertiesOutput) ClusterRoutingAllocationNodeConcurrentRecoveries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int {
 		return v.ClusterRoutingAllocationNodeConcurrentRecoveries
 	}).(pulumi.IntPtrOutput)
 }
 
+func (o ManagedDatabaseOpensearchPropertiesOutput) ClusterSearchRequestSlowlog() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog {
+		return v.ClusterSearchRequestSlowlog
+	}).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput)
+}
+
 // Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
 func (o ManagedDatabaseOpensearchPropertiesOutput) CustomDomain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *string { return v.CustomDomain }).(pulumi.StringPtrOutput)
+}
+
+// Elasticsearch major version.
+func (o ManagedDatabaseOpensearchPropertiesOutput) ElasticsearchVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *string { return v.ElasticsearchVersion }).(pulumi.StringPtrOutput)
 }
 
 // Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
@@ -7719,15 +8620,14 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) EmailSenderUsername() pulumi.
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *string { return v.EmailSenderUsername }).(pulumi.StringPtrOutput)
 }
 
+// Enable remote-backed storage.
+func (o ManagedDatabaseOpensearchPropertiesOutput) EnableRemoteBackedStorage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.EnableRemoteBackedStorage }).(pulumi.BoolPtrOutput)
+}
+
 // Enable/Disable security audit.
 func (o ManagedDatabaseOpensearchPropertiesOutput) EnableSecurityAudit() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.EnableSecurityAudit }).(pulumi.BoolPtrOutput)
-}
-
-func (o ManagedDatabaseOpensearchPropertiesOutput) GcsMigration() ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesGcsMigration {
-		return v.GcsMigration
-	}).(ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput)
 }
 
 // Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
@@ -7888,12 +8788,6 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) ReindexRemoteWhitelists() pul
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) []string { return v.ReindexRemoteWhitelists }).(pulumi.StringArrayOutput)
 }
 
-func (o ManagedDatabaseOpensearchPropertiesOutput) S3Migration() ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesS3Migration {
-		return v.S3Migration
-	}).(ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput)
-}
-
 // OpenSearch SAML configuration.
 func (o ManagedDatabaseOpensearchPropertiesOutput) Saml() ManagedDatabaseOpensearchPropertiesSamlPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesSaml { return v.Saml }).(ManagedDatabaseOpensearchPropertiesSamlPtrOutput)
@@ -7904,14 +8798,41 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) ScriptMaxCompilationsRate() p
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *string { return v.ScriptMaxCompilationsRate }).(pulumi.StringPtrOutput)
 }
 
+// Search Backpressure Settings.
+func (o ManagedDatabaseOpensearchPropertiesOutput) SearchBackpressure() ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesSearchBackpressure {
+		return v.SearchBackpressure
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput)
+}
+
+func (o ManagedDatabaseOpensearchPropertiesOutput) SearchInsightsTopQueries() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries {
+		return v.SearchInsightsTopQueries
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput)
+}
+
 // Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
 func (o ManagedDatabaseOpensearchPropertiesOutput) SearchMaxBuckets() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.SearchMaxBuckets }).(pulumi.IntPtrOutput)
 }
 
+// Segment Replication Backpressure Settings.
+func (o ManagedDatabaseOpensearchPropertiesOutput) Segrep() ManagedDatabaseOpensearchPropertiesSegrepPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesSegrep {
+		return v.Segrep
+	}).(ManagedDatabaseOpensearchPropertiesSegrepPtrOutput)
+}
+
 // Service logging. Store logs for the service so that they are available in the HTTP API and console.
 func (o ManagedDatabaseOpensearchPropertiesOutput) ServiceLog() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.ServiceLog }).(pulumi.BoolPtrOutput)
+}
+
+// Shard indexing back pressure settings.
+func (o ManagedDatabaseOpensearchPropertiesOutput) ShardIndexingPressure() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesShardIndexingPressure {
+		return v.ShardIndexingPressure
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput)
 }
 
 // analyze thread pool queue size. Size for the thread pool queue. See documentation for exact details.
@@ -8038,15 +8959,6 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) AutomaticUtilityNetworkIpF
 	}).(pulumi.BoolPtrOutput)
 }
 
-func (o ManagedDatabaseOpensearchPropertiesPtrOutput) AzureMigration() ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesAzureMigration {
-		if v == nil {
-			return nil
-		}
-		return v.AzureMigration
-	}).(ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput)
-}
-
 // Controls the number of shards allowed in the cluster per data node.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ClusterMaxShardsPerNode() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *int {
@@ -8057,7 +8969,17 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ClusterMaxShardsPerNode() 
 	}).(pulumi.IntPtrOutput)
 }
 
-// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
+// When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ClusterRoutingAllocationBalancePreferPrimary() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ClusterRoutingAllocationBalancePreferPrimary
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ClusterRoutingAllocationNodeConcurrentRecoveries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *int {
 		if v == nil {
@@ -8067,6 +8989,15 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ClusterRoutingAllocationNo
 	}).(pulumi.IntPtrOutput)
 }
 
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ClusterSearchRequestSlowlog() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog {
+		if v == nil {
+			return nil
+		}
+		return v.ClusterSearchRequestSlowlog
+	}).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput)
+}
+
 // Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) CustomDomain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *string {
@@ -8074,6 +9005,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) CustomDomain() pulumi.Stri
 			return nil
 		}
 		return v.CustomDomain
+	}).(pulumi.StringPtrOutput)
+}
+
+// Elasticsearch major version.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ElasticsearchVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ElasticsearchVersion
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -8107,6 +9048,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) EmailSenderUsername() pulu
 	}).(pulumi.StringPtrOutput)
 }
 
+// Enable remote-backed storage.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) EnableRemoteBackedStorage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.EnableRemoteBackedStorage
+	}).(pulumi.BoolPtrOutput)
+}
+
 // Enable/Disable security audit.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) EnableSecurityAudit() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
@@ -8115,15 +9066,6 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) EnableSecurityAudit() pulu
 		}
 		return v.EnableSecurityAudit
 	}).(pulumi.BoolPtrOutput)
-}
-
-func (o ManagedDatabaseOpensearchPropertiesPtrOutput) GcsMigration() ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesGcsMigration {
-		if v == nil {
-			return nil
-		}
-		return v.GcsMigration
-	}).(ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput)
 }
 
 // Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
@@ -8426,15 +9368,6 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ReindexRemoteWhitelists() 
 	}).(pulumi.StringArrayOutput)
 }
 
-func (o ManagedDatabaseOpensearchPropertiesPtrOutput) S3Migration() ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesS3Migration {
-		if v == nil {
-			return nil
-		}
-		return v.S3Migration
-	}).(ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput)
-}
-
 // OpenSearch SAML configuration.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) Saml() ManagedDatabaseOpensearchPropertiesSamlPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesSaml {
@@ -8455,6 +9388,25 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ScriptMaxCompilationsRate(
 	}).(pulumi.StringPtrOutput)
 }
 
+// Search Backpressure Settings.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) SearchBackpressure() ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesSearchBackpressure {
+		if v == nil {
+			return nil
+		}
+		return v.SearchBackpressure
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput)
+}
+
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) SearchInsightsTopQueries() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries {
+		if v == nil {
+			return nil
+		}
+		return v.SearchInsightsTopQueries
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput)
+}
+
 // Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) SearchMaxBuckets() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *int {
@@ -8465,6 +9417,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) SearchMaxBuckets() pulumi.
 	}).(pulumi.IntPtrOutput)
 }
 
+// Segment Replication Backpressure Settings.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) Segrep() ManagedDatabaseOpensearchPropertiesSegrepPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesSegrep {
+		if v == nil {
+			return nil
+		}
+		return v.Segrep
+	}).(ManagedDatabaseOpensearchPropertiesSegrepPtrOutput)
+}
+
 // Service logging. Store logs for the service so that they are available in the HTTP API and console.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ServiceLog() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
@@ -8473,6 +9435,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ServiceLog() pulumi.BoolPt
 		}
 		return v.ServiceLog
 	}).(pulumi.BoolPtrOutput)
+}
+
+// Shard indexing back pressure settings.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ShardIndexingPressure() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesShardIndexingPressure {
+		if v == nil {
+			return nil
+		}
+		return v.ShardIndexingPressure
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput)
 }
 
 // analyze thread pool queue size. Size for the thread pool queue. See documentation for exact details.
@@ -9258,524 +10230,355 @@ func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-type ManagedDatabaseOpensearchPropertiesAzureMigration struct {
-	// Account name. Azure account name.
-	Account *string `pulumi:"account"`
-	// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-	BasePath *string `pulumi:"basePath"`
-	// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-	ChunkSize *string `pulumi:"chunkSize"`
-	// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-	Compress *bool `pulumi:"compress"`
-	// Azure container name. Azure container name.
-	Container *string `pulumi:"container"`
-	// Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
-	EndpointSuffix *string `pulumi:"endpointSuffix"`
-	// Account secret key. Azure account secret key. One of key or sasToken should be specified.
-	Key *string `pulumi:"key"`
-	// SAS token. A shared access signatures (SAS) token. One of key or sasToken should be specified.
-	SasToken *string `pulumi:"sasToken"`
-	// The snapshot name to restore from. The snapshot name to restore from.
-	SnapshotName *string `pulumi:"snapshotName"`
+type ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog struct {
+	// Log level.
+	Level     *string                                                                  `pulumi:"level"`
+	Threshold *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold `pulumi:"threshold"`
 }
 
-// ManagedDatabaseOpensearchPropertiesAzureMigrationInput is an input type that accepts ManagedDatabaseOpensearchPropertiesAzureMigrationArgs and ManagedDatabaseOpensearchPropertiesAzureMigrationOutput values.
-// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesAzureMigrationInput` via:
+// ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogInput is an input type that accepts ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs and ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogInput` via:
 //
-//	ManagedDatabaseOpensearchPropertiesAzureMigrationArgs{...}
-type ManagedDatabaseOpensearchPropertiesAzureMigrationInput interface {
+//	ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs{...}
+type ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogInput interface {
 	pulumi.Input
 
-	ToManagedDatabaseOpensearchPropertiesAzureMigrationOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationOutput
-	ToManagedDatabaseOpensearchPropertiesAzureMigrationOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationOutput
+	ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput
+	ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput
 }
 
-type ManagedDatabaseOpensearchPropertiesAzureMigrationArgs struct {
-	// Account name. Azure account name.
-	Account pulumi.StringPtrInput `pulumi:"account"`
-	// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-	BasePath pulumi.StringPtrInput `pulumi:"basePath"`
-	// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-	ChunkSize pulumi.StringPtrInput `pulumi:"chunkSize"`
-	// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-	Compress pulumi.BoolPtrInput `pulumi:"compress"`
-	// Azure container name. Azure container name.
-	Container pulumi.StringPtrInput `pulumi:"container"`
-	// Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
-	EndpointSuffix pulumi.StringPtrInput `pulumi:"endpointSuffix"`
-	// Account secret key. Azure account secret key. One of key or sasToken should be specified.
-	Key pulumi.StringPtrInput `pulumi:"key"`
-	// SAS token. A shared access signatures (SAS) token. One of key or sasToken should be specified.
-	SasToken pulumi.StringPtrInput `pulumi:"sasToken"`
-	// The snapshot name to restore from. The snapshot name to restore from.
-	SnapshotName pulumi.StringPtrInput `pulumi:"snapshotName"`
+type ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs struct {
+	// Log level.
+	Level     pulumi.StringPtrInput                                                           `pulumi:"level"`
+	Threshold ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrInput `pulumi:"threshold"`
 }
 
-func (ManagedDatabaseOpensearchPropertiesAzureMigrationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAzureMigration)(nil)).Elem()
+func (ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog)(nil)).Elem()
 }
 
-func (i ManagedDatabaseOpensearchPropertiesAzureMigrationArgs) ToManagedDatabaseOpensearchPropertiesAzureMigrationOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationOutput {
-	return i.ToManagedDatabaseOpensearchPropertiesAzureMigrationOutputWithContext(context.Background())
+func (i ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutputWithContext(context.Background())
 }
 
-func (i ManagedDatabaseOpensearchPropertiesAzureMigrationArgs) ToManagedDatabaseOpensearchPropertiesAzureMigrationOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesAzureMigrationOutput)
+func (i ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput)
 }
 
-func (i ManagedDatabaseOpensearchPropertiesAzureMigrationArgs) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
-	return i.ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(context.Background())
+func (i ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutputWithContext(context.Background())
 }
 
-func (i ManagedDatabaseOpensearchPropertiesAzureMigrationArgs) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesAzureMigrationOutput).ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(ctx)
+func (i ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput).ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutputWithContext(ctx)
 }
 
-// ManagedDatabaseOpensearchPropertiesAzureMigrationPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesAzureMigrationArgs, ManagedDatabaseOpensearchPropertiesAzureMigrationPtr and ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput values.
-// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesAzureMigrationPtrInput` via:
+// ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs, ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtr and ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrInput` via:
 //
-//	        ManagedDatabaseOpensearchPropertiesAzureMigrationArgs{...}
+//	        ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs{...}
 //
 //	or:
 //
 //	        nil
-type ManagedDatabaseOpensearchPropertiesAzureMigrationPtrInput interface {
+type ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrInput interface {
 	pulumi.Input
 
-	ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput
-	ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput
+	ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput
+	ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput
 }
 
-type managedDatabaseOpensearchPropertiesAzureMigrationPtrType ManagedDatabaseOpensearchPropertiesAzureMigrationArgs
+type managedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrType ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs
 
-func ManagedDatabaseOpensearchPropertiesAzureMigrationPtr(v *ManagedDatabaseOpensearchPropertiesAzureMigrationArgs) ManagedDatabaseOpensearchPropertiesAzureMigrationPtrInput {
-	return (*managedDatabaseOpensearchPropertiesAzureMigrationPtrType)(v)
+func ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtr(v *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrInput {
+	return (*managedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrType)(v)
 }
 
-func (*managedDatabaseOpensearchPropertiesAzureMigrationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesAzureMigration)(nil)).Elem()
+func (*managedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog)(nil)).Elem()
 }
 
-func (i *managedDatabaseOpensearchPropertiesAzureMigrationPtrType) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
-	return i.ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(context.Background())
+func (i *managedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrType) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutputWithContext(context.Background())
 }
 
-func (i *managedDatabaseOpensearchPropertiesAzureMigrationPtrType) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput)
+func (i *managedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrType) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput)
 }
 
-type ManagedDatabaseOpensearchPropertiesAzureMigrationOutput struct{ *pulumi.OutputState }
+type ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput struct{ *pulumi.OutputState }
 
-func (ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAzureMigration)(nil)).Elem()
+func (ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog)(nil)).Elem()
 }
 
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) ToManagedDatabaseOpensearchPropertiesAzureMigrationOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationOutput {
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput {
 	return o
 }
 
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) ToManagedDatabaseOpensearchPropertiesAzureMigrationOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationOutput {
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput {
 	return o
 }
 
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
-	return o.ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(context.Background())
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutputWithContext(context.Background())
 }
 
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesAzureMigration) *ManagedDatabaseOpensearchPropertiesAzureMigration {
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog) *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog {
 		return &v
-	}).(ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput)
+	}).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput)
 }
 
-// Account name. Azure account name.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) Account() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.Account }).(pulumi.StringPtrOutput)
+// Log level.
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput) Level() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog) *string { return v.Level }).(pulumi.StringPtrOutput)
 }
 
-// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) BasePath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.BasePath }).(pulumi.StringPtrOutput)
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput) Threshold() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog) *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold {
+		return v.Threshold
+	}).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput)
 }
 
-// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) ChunkSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.ChunkSize }).(pulumi.StringPtrOutput)
+type ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog)(nil)).Elem()
 }
 
-// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) Compress() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *bool { return v.Compress }).(pulumi.BoolPtrOutput)
-}
-
-// Azure container name. Azure container name.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) Container() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.Container }).(pulumi.StringPtrOutput)
-}
-
-// Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) EndpointSuffix() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.EndpointSuffix }).(pulumi.StringPtrOutput)
-}
-
-// Account secret key. Azure account secret key. One of key or sasToken should be specified.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) Key() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.Key }).(pulumi.StringPtrOutput)
-}
-
-// SAS token. A shared access signatures (SAS) token. One of key or sasToken should be specified.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) SasToken() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.SasToken }).(pulumi.StringPtrOutput)
-}
-
-// The snapshot name to restore from. The snapshot name to restore from.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationOutput) SnapshotName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAzureMigration) *string { return v.SnapshotName }).(pulumi.StringPtrOutput)
-}
-
-type ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesAzureMigration)(nil)).Elem()
-}
-
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput {
 	return o
 }
 
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) ToManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput {
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput {
 	return o
 }
 
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesAzureMigrationOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) ManagedDatabaseOpensearchPropertiesAzureMigration {
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog {
 		if v != nil {
 			return *v
 		}
-		var ret ManagedDatabaseOpensearchPropertiesAzureMigration
+		var ret ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog
 		return ret
-	}).(ManagedDatabaseOpensearchPropertiesAzureMigrationOutput)
+	}).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput)
 }
 
-// Account name. Azure account name.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) Account() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
+// Log level.
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput) Level() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog) *string {
 		if v == nil {
 			return nil
 		}
-		return v.Account
+		return v.Level
 	}).(pulumi.StringPtrOutput)
 }
 
-// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) BasePath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput) Threshold() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog) *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold {
 		if v == nil {
 			return nil
 		}
-		return v.BasePath
-	}).(pulumi.StringPtrOutput)
+		return v.Threshold
+	}).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput)
 }
 
-// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) ChunkSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.ChunkSize
-	}).(pulumi.StringPtrOutput)
+type ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold struct {
+	// Debug threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+	Debug *string `pulumi:"debug"`
+	// Info threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+	Info *string `pulumi:"info"`
+	// Trace threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+	Trace *string `pulumi:"trace"`
+	// Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+	Warn *string `pulumi:"warn"`
 }
 
-// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) Compress() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.Compress
-	}).(pulumi.BoolPtrOutput)
-}
-
-// Azure container name. Azure container name.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) Container() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Container
-	}).(pulumi.StringPtrOutput)
-}
-
-// Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) EndpointSuffix() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.EndpointSuffix
-	}).(pulumi.StringPtrOutput)
-}
-
-// Account secret key. Azure account secret key. One of key or sasToken should be specified.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) Key() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Key
-	}).(pulumi.StringPtrOutput)
-}
-
-// SAS token. A shared access signatures (SAS) token. One of key or sasToken should be specified.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) SasToken() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.SasToken
-	}).(pulumi.StringPtrOutput)
-}
-
-// The snapshot name to restore from. The snapshot name to restore from.
-func (o ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput) SnapshotName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAzureMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.SnapshotName
-	}).(pulumi.StringPtrOutput)
-}
-
-type ManagedDatabaseOpensearchPropertiesGcsMigration struct {
-	// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-	BasePath *string `pulumi:"basePath"`
-	// The path to the repository data within its container. Google Cloud Storage bucket name.
-	Bucket *string `pulumi:"bucket"`
-	// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-	ChunkSize *string `pulumi:"chunkSize"`
-	// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-	Compress *bool `pulumi:"compress"`
-	// Credentials. Google Cloud Storage credentials file content.
-	Credentials *string `pulumi:"credentials"`
-	// The snapshot name to restore from. The snapshot name to restore from.
-	SnapshotName *string `pulumi:"snapshotName"`
-}
-
-// ManagedDatabaseOpensearchPropertiesGcsMigrationInput is an input type that accepts ManagedDatabaseOpensearchPropertiesGcsMigrationArgs and ManagedDatabaseOpensearchPropertiesGcsMigrationOutput values.
-// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesGcsMigrationInput` via:
+// ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdInput is an input type that accepts ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs and ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdInput` via:
 //
-//	ManagedDatabaseOpensearchPropertiesGcsMigrationArgs{...}
-type ManagedDatabaseOpensearchPropertiesGcsMigrationInput interface {
+//	ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs{...}
+type ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdInput interface {
 	pulumi.Input
 
-	ToManagedDatabaseOpensearchPropertiesGcsMigrationOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationOutput
-	ToManagedDatabaseOpensearchPropertiesGcsMigrationOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationOutput
+	ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput
+	ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput
 }
 
-type ManagedDatabaseOpensearchPropertiesGcsMigrationArgs struct {
-	// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-	BasePath pulumi.StringPtrInput `pulumi:"basePath"`
-	// The path to the repository data within its container. Google Cloud Storage bucket name.
-	Bucket pulumi.StringPtrInput `pulumi:"bucket"`
-	// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-	ChunkSize pulumi.StringPtrInput `pulumi:"chunkSize"`
-	// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-	Compress pulumi.BoolPtrInput `pulumi:"compress"`
-	// Credentials. Google Cloud Storage credentials file content.
-	Credentials pulumi.StringPtrInput `pulumi:"credentials"`
-	// The snapshot name to restore from. The snapshot name to restore from.
-	SnapshotName pulumi.StringPtrInput `pulumi:"snapshotName"`
+type ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs struct {
+	// Debug threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+	Debug pulumi.StringPtrInput `pulumi:"debug"`
+	// Info threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+	Info pulumi.StringPtrInput `pulumi:"info"`
+	// Trace threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+	Trace pulumi.StringPtrInput `pulumi:"trace"`
+	// Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+	Warn pulumi.StringPtrInput `pulumi:"warn"`
 }
 
-func (ManagedDatabaseOpensearchPropertiesGcsMigrationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesGcsMigration)(nil)).Elem()
+func (ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold)(nil)).Elem()
 }
 
-func (i ManagedDatabaseOpensearchPropertiesGcsMigrationArgs) ToManagedDatabaseOpensearchPropertiesGcsMigrationOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationOutput {
-	return i.ToManagedDatabaseOpensearchPropertiesGcsMigrationOutputWithContext(context.Background())
+func (i ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutputWithContext(context.Background())
 }
 
-func (i ManagedDatabaseOpensearchPropertiesGcsMigrationArgs) ToManagedDatabaseOpensearchPropertiesGcsMigrationOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesGcsMigrationOutput)
+func (i ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput)
 }
 
-func (i ManagedDatabaseOpensearchPropertiesGcsMigrationArgs) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
-	return i.ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(context.Background())
+func (i ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutputWithContext(context.Background())
 }
 
-func (i ManagedDatabaseOpensearchPropertiesGcsMigrationArgs) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesGcsMigrationOutput).ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(ctx)
+func (i ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput).ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutputWithContext(ctx)
 }
 
-// ManagedDatabaseOpensearchPropertiesGcsMigrationPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesGcsMigrationArgs, ManagedDatabaseOpensearchPropertiesGcsMigrationPtr and ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput values.
-// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesGcsMigrationPtrInput` via:
+// ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs, ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtr and ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrInput` via:
 //
-//	        ManagedDatabaseOpensearchPropertiesGcsMigrationArgs{...}
+//	        ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs{...}
 //
 //	or:
 //
 //	        nil
-type ManagedDatabaseOpensearchPropertiesGcsMigrationPtrInput interface {
+type ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrInput interface {
 	pulumi.Input
 
-	ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput
-	ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput
+	ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput
+	ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput
 }
 
-type managedDatabaseOpensearchPropertiesGcsMigrationPtrType ManagedDatabaseOpensearchPropertiesGcsMigrationArgs
+type managedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrType ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs
 
-func ManagedDatabaseOpensearchPropertiesGcsMigrationPtr(v *ManagedDatabaseOpensearchPropertiesGcsMigrationArgs) ManagedDatabaseOpensearchPropertiesGcsMigrationPtrInput {
-	return (*managedDatabaseOpensearchPropertiesGcsMigrationPtrType)(v)
+func ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtr(v *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrInput {
+	return (*managedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrType)(v)
 }
 
-func (*managedDatabaseOpensearchPropertiesGcsMigrationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesGcsMigration)(nil)).Elem()
+func (*managedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold)(nil)).Elem()
 }
 
-func (i *managedDatabaseOpensearchPropertiesGcsMigrationPtrType) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
-	return i.ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(context.Background())
+func (i *managedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrType) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutputWithContext(context.Background())
 }
 
-func (i *managedDatabaseOpensearchPropertiesGcsMigrationPtrType) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput)
+func (i *managedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrType) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput)
 }
 
-type ManagedDatabaseOpensearchPropertiesGcsMigrationOutput struct{ *pulumi.OutputState }
+type ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput struct{ *pulumi.OutputState }
 
-func (ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesGcsMigration)(nil)).Elem()
+func (ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold)(nil)).Elem()
 }
 
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) ToManagedDatabaseOpensearchPropertiesGcsMigrationOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationOutput {
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput {
 	return o
 }
 
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) ToManagedDatabaseOpensearchPropertiesGcsMigrationOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationOutput {
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput {
 	return o
 }
 
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
-	return o.ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(context.Background())
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutputWithContext(context.Background())
 }
 
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesGcsMigration) *ManagedDatabaseOpensearchPropertiesGcsMigration {
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold) *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold {
 		return &v
-	}).(ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput)
+	}).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput)
 }
 
-// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) BasePath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesGcsMigration) *string { return v.BasePath }).(pulumi.StringPtrOutput)
+// Debug threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput) Debug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold) *string {
+		return v.Debug
+	}).(pulumi.StringPtrOutput)
 }
 
-// The path to the repository data within its container. Google Cloud Storage bucket name.
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) Bucket() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesGcsMigration) *string { return v.Bucket }).(pulumi.StringPtrOutput)
+// Info threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput) Info() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold) *string { return v.Info }).(pulumi.StringPtrOutput)
 }
 
-// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) ChunkSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesGcsMigration) *string { return v.ChunkSize }).(pulumi.StringPtrOutput)
+// Trace threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput) Trace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold) *string {
+		return v.Trace
+	}).(pulumi.StringPtrOutput)
 }
 
-// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) Compress() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesGcsMigration) *bool { return v.Compress }).(pulumi.BoolPtrOutput)
+// Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput) Warn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold) *string { return v.Warn }).(pulumi.StringPtrOutput)
 }
 
-// Credentials. Google Cloud Storage credentials file content.
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) Credentials() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesGcsMigration) *string { return v.Credentials }).(pulumi.StringPtrOutput)
+type ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold)(nil)).Elem()
 }
 
-// The snapshot name to restore from. The snapshot name to restore from.
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationOutput) SnapshotName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesGcsMigration) *string { return v.SnapshotName }).(pulumi.StringPtrOutput)
-}
-
-type ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesGcsMigration)(nil)).Elem()
-}
-
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput() ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput {
 	return o
 }
 
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) ToManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput {
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput) ToManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput {
 	return o
 }
 
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesGcsMigrationOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesGcsMigration) ManagedDatabaseOpensearchPropertiesGcsMigration {
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold) ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold {
 		if v != nil {
 			return *v
 		}
-		var ret ManagedDatabaseOpensearchPropertiesGcsMigration
+		var ret ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold
 		return ret
-	}).(ManagedDatabaseOpensearchPropertiesGcsMigrationOutput)
+	}).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput)
 }
 
-// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) BasePath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesGcsMigration) *string {
+// Debug threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput) Debug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold) *string {
 		if v == nil {
 			return nil
 		}
-		return v.BasePath
+		return v.Debug
 	}).(pulumi.StringPtrOutput)
 }
 
-// The path to the repository data within its container. Google Cloud Storage bucket name.
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) Bucket() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesGcsMigration) *string {
+// Info threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput) Info() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold) *string {
 		if v == nil {
 			return nil
 		}
-		return v.Bucket
+		return v.Info
 	}).(pulumi.StringPtrOutput)
 }
 
-// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) ChunkSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesGcsMigration) *string {
+// Trace threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput) Trace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold) *string {
 		if v == nil {
 			return nil
 		}
-		return v.ChunkSize
+		return v.Trace
 	}).(pulumi.StringPtrOutput)
 }
 
-// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) Compress() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesGcsMigration) *bool {
+// Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput) Warn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold) *string {
 		if v == nil {
 			return nil
 		}
-		return v.Compress
-	}).(pulumi.BoolPtrOutput)
-}
-
-// Credentials. Google Cloud Storage credentials file content.
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) Credentials() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesGcsMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Credentials
-	}).(pulumi.StringPtrOutput)
-}
-
-// The snapshot name to restore from. The snapshot name to restore from.
-func (o ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput) SnapshotName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesGcsMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.SnapshotName
+		return v.Warn
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -10518,6 +11321,8 @@ type ManagedDatabaseOpensearchPropertiesOpensearchDashboards struct {
 	Enabled *bool `pulumi:"enabled"`
 	// Limits the maximum amount of memory (in MiB) the OpenSearch Dashboards process can use. This sets the maxOldSpaceSize option of the nodejs running the OpenSearch Dashboards. Note: the memory reserved by OpenSearch Dashboards is not available for OpenSearch.
 	MaxOldSpaceSize *int `pulumi:"maxOldSpaceSize"`
+	// Enable or disable multiple data sources in OpenSearch Dashboards.
+	MultipleDataSourceEnabled *bool `pulumi:"multipleDataSourceEnabled"`
 	// Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
 	OpensearchRequestTimeout *int `pulumi:"opensearchRequestTimeout"`
 }
@@ -10538,6 +11343,8 @@ type ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs struct {
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Limits the maximum amount of memory (in MiB) the OpenSearch Dashboards process can use. This sets the maxOldSpaceSize option of the nodejs running the OpenSearch Dashboards. Note: the memory reserved by OpenSearch Dashboards is not available for OpenSearch.
 	MaxOldSpaceSize pulumi.IntPtrInput `pulumi:"maxOldSpaceSize"`
+	// Enable or disable multiple data sources in OpenSearch Dashboards.
+	MultipleDataSourceEnabled pulumi.BoolPtrInput `pulumi:"multipleDataSourceEnabled"`
 	// Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
 	OpensearchRequestTimeout pulumi.IntPtrInput `pulumi:"opensearchRequestTimeout"`
 }
@@ -10629,6 +11436,13 @@ func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsOutput) MaxOldSpa
 	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesOpensearchDashboards) *int { return v.MaxOldSpaceSize }).(pulumi.IntPtrOutput)
 }
 
+// Enable or disable multiple data sources in OpenSearch Dashboards.
+func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsOutput) MultipleDataSourceEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesOpensearchDashboards) *bool {
+		return v.MultipleDataSourceEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
 // Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
 func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsOutput) OpensearchRequestTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesOpensearchDashboards) *int {
@@ -10680,6 +11494,16 @@ func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput) MaxOld
 	}).(pulumi.IntPtrOutput)
 }
 
+// Enable or disable multiple data sources in OpenSearch Dashboards.
+func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput) MultipleDataSourceEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesOpensearchDashboards) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.MultipleDataSourceEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
 // Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
 func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput) OpensearchRequestTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesOpensearchDashboards) *int {
@@ -10688,314 +11512,6 @@ func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput) Opense
 		}
 		return v.OpensearchRequestTimeout
 	}).(pulumi.IntPtrOutput)
-}
-
-type ManagedDatabaseOpensearchPropertiesS3Migration struct {
-	// AWS Access key. AWS Access key.
-	AccessKey *string `pulumi:"accessKey"`
-	// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-	BasePath *string `pulumi:"basePath"`
-	// S3 bucket name. S3 bucket name.
-	Bucket *string `pulumi:"bucket"`
-	// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-	ChunkSize *string `pulumi:"chunkSize"`
-	// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-	Compress *bool `pulumi:"compress"`
-	// The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
-	Endpoint *string `pulumi:"endpoint"`
-	// S3 region. S3 region.
-	Region *string `pulumi:"region"`
-	// AWS secret key. AWS secret key.
-	SecretKey *string `pulumi:"secretKey"`
-	// Server side encryption. When set to true files are encrypted on server side.
-	ServerSideEncryption *bool `pulumi:"serverSideEncryption"`
-	// The snapshot name to restore from. The snapshot name to restore from.
-	SnapshotName *string `pulumi:"snapshotName"`
-}
-
-// ManagedDatabaseOpensearchPropertiesS3MigrationInput is an input type that accepts ManagedDatabaseOpensearchPropertiesS3MigrationArgs and ManagedDatabaseOpensearchPropertiesS3MigrationOutput values.
-// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesS3MigrationInput` via:
-//
-//	ManagedDatabaseOpensearchPropertiesS3MigrationArgs{...}
-type ManagedDatabaseOpensearchPropertiesS3MigrationInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseOpensearchPropertiesS3MigrationOutput() ManagedDatabaseOpensearchPropertiesS3MigrationOutput
-	ToManagedDatabaseOpensearchPropertiesS3MigrationOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationOutput
-}
-
-type ManagedDatabaseOpensearchPropertiesS3MigrationArgs struct {
-	// AWS Access key. AWS Access key.
-	AccessKey pulumi.StringPtrInput `pulumi:"accessKey"`
-	// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-	BasePath pulumi.StringPtrInput `pulumi:"basePath"`
-	// S3 bucket name. S3 bucket name.
-	Bucket pulumi.StringPtrInput `pulumi:"bucket"`
-	// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-	ChunkSize pulumi.StringPtrInput `pulumi:"chunkSize"`
-	// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-	Compress pulumi.BoolPtrInput `pulumi:"compress"`
-	// The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
-	Endpoint pulumi.StringPtrInput `pulumi:"endpoint"`
-	// S3 region. S3 region.
-	Region pulumi.StringPtrInput `pulumi:"region"`
-	// AWS secret key. AWS secret key.
-	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
-	// Server side encryption. When set to true files are encrypted on server side.
-	ServerSideEncryption pulumi.BoolPtrInput `pulumi:"serverSideEncryption"`
-	// The snapshot name to restore from. The snapshot name to restore from.
-	SnapshotName pulumi.StringPtrInput `pulumi:"snapshotName"`
-}
-
-func (ManagedDatabaseOpensearchPropertiesS3MigrationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesS3Migration)(nil)).Elem()
-}
-
-func (i ManagedDatabaseOpensearchPropertiesS3MigrationArgs) ToManagedDatabaseOpensearchPropertiesS3MigrationOutput() ManagedDatabaseOpensearchPropertiesS3MigrationOutput {
-	return i.ToManagedDatabaseOpensearchPropertiesS3MigrationOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseOpensearchPropertiesS3MigrationArgs) ToManagedDatabaseOpensearchPropertiesS3MigrationOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesS3MigrationOutput)
-}
-
-func (i ManagedDatabaseOpensearchPropertiesS3MigrationArgs) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput() ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
-	return i.ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseOpensearchPropertiesS3MigrationArgs) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesS3MigrationOutput).ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(ctx)
-}
-
-// ManagedDatabaseOpensearchPropertiesS3MigrationPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesS3MigrationArgs, ManagedDatabaseOpensearchPropertiesS3MigrationPtr and ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput values.
-// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesS3MigrationPtrInput` via:
-//
-//	        ManagedDatabaseOpensearchPropertiesS3MigrationArgs{...}
-//
-//	or:
-//
-//	        nil
-type ManagedDatabaseOpensearchPropertiesS3MigrationPtrInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput() ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput
-	ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput
-}
-
-type managedDatabaseOpensearchPropertiesS3MigrationPtrType ManagedDatabaseOpensearchPropertiesS3MigrationArgs
-
-func ManagedDatabaseOpensearchPropertiesS3MigrationPtr(v *ManagedDatabaseOpensearchPropertiesS3MigrationArgs) ManagedDatabaseOpensearchPropertiesS3MigrationPtrInput {
-	return (*managedDatabaseOpensearchPropertiesS3MigrationPtrType)(v)
-}
-
-func (*managedDatabaseOpensearchPropertiesS3MigrationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesS3Migration)(nil)).Elem()
-}
-
-func (i *managedDatabaseOpensearchPropertiesS3MigrationPtrType) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput() ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
-	return i.ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(context.Background())
-}
-
-func (i *managedDatabaseOpensearchPropertiesS3MigrationPtrType) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput)
-}
-
-type ManagedDatabaseOpensearchPropertiesS3MigrationOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseOpensearchPropertiesS3MigrationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesS3Migration)(nil)).Elem()
-}
-
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) ToManagedDatabaseOpensearchPropertiesS3MigrationOutput() ManagedDatabaseOpensearchPropertiesS3MigrationOutput {
-	return o
-}
-
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) ToManagedDatabaseOpensearchPropertiesS3MigrationOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationOutput {
-	return o
-}
-
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput() ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
-	return o.ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(context.Background())
-}
-
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesS3Migration) *ManagedDatabaseOpensearchPropertiesS3Migration {
-		return &v
-	}).(ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput)
-}
-
-// AWS Access key. AWS Access key.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) AccessKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.AccessKey }).(pulumi.StringPtrOutput)
-}
-
-// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) BasePath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.BasePath }).(pulumi.StringPtrOutput)
-}
-
-// S3 bucket name. S3 bucket name.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) Bucket() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.Bucket }).(pulumi.StringPtrOutput)
-}
-
-// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) ChunkSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.ChunkSize }).(pulumi.StringPtrOutput)
-}
-
-// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) Compress() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *bool { return v.Compress }).(pulumi.BoolPtrOutput)
-}
-
-// The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) Endpoint() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.Endpoint }).(pulumi.StringPtrOutput)
-}
-
-// S3 region. S3 region.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.Region }).(pulumi.StringPtrOutput)
-}
-
-// AWS secret key. AWS secret key.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) SecretKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
-}
-
-// Server side encryption. When set to true files are encrypted on server side.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) ServerSideEncryption() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *bool { return v.ServerSideEncryption }).(pulumi.BoolPtrOutput)
-}
-
-// The snapshot name to restore from. The snapshot name to restore from.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationOutput) SnapshotName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesS3Migration) *string { return v.SnapshotName }).(pulumi.StringPtrOutput)
-}
-
-type ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesS3Migration)(nil)).Elem()
-}
-
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput() ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
-	return o
-}
-
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) ToManagedDatabaseOpensearchPropertiesS3MigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput {
-	return o
-}
-
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesS3MigrationOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) ManagedDatabaseOpensearchPropertiesS3Migration {
-		if v != nil {
-			return *v
-		}
-		var ret ManagedDatabaseOpensearchPropertiesS3Migration
-		return ret
-	}).(ManagedDatabaseOpensearchPropertiesS3MigrationOutput)
-}
-
-// AWS Access key. AWS Access key.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) AccessKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.AccessKey
-	}).(pulumi.StringPtrOutput)
-}
-
-// The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) BasePath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.BasePath
-	}).(pulumi.StringPtrOutput)
-}
-
-// S3 bucket name. S3 bucket name.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) Bucket() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Bucket
-	}).(pulumi.StringPtrOutput)
-}
-
-// Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) ChunkSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.ChunkSize
-	}).(pulumi.StringPtrOutput)
-}
-
-// Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) Compress() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.Compress
-	}).(pulumi.BoolPtrOutput)
-}
-
-// The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) Endpoint() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Endpoint
-	}).(pulumi.StringPtrOutput)
-}
-
-// S3 region. S3 region.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Region
-	}).(pulumi.StringPtrOutput)
-}
-
-// AWS secret key. AWS secret key.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) SecretKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.SecretKey
-	}).(pulumi.StringPtrOutput)
-}
-
-// Server side encryption. When set to true files are encrypted on server side.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) ServerSideEncryption() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.ServerSideEncryption
-	}).(pulumi.BoolPtrOutput)
-}
-
-// The snapshot name to restore from. The snapshot name to restore from.
-func (o ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput) SnapshotName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesS3Migration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.SnapshotName
-	}).(pulumi.StringPtrOutput)
 }
 
 type ManagedDatabaseOpensearchPropertiesSaml struct {
@@ -11247,6 +11763,2796 @@ func (o ManagedDatabaseOpensearchPropertiesSamlPtrOutput) SubjectKey() pulumi.St
 		}
 		return v.SubjectKey
 	}).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressure struct {
+	// The search backpressure mode. The search backpressure mode. Valid values are monitor_only, enforced, or disabled. Default is monitor_only.
+	Mode *string `pulumi:"mode"`
+	// Node duress settings.
+	NodeDuress *ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress `pulumi:"nodeDuress"`
+	// Search shard settings.
+	SearchShardTask *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask `pulumi:"searchShardTask"`
+	// Search task settings.
+	SearchTask *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask `pulumi:"searchTask"`
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchBackpressureInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs and ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchBackpressureInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs{...}
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressureOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressureOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs struct {
+	// The search backpressure mode. The search backpressure mode. Valid values are monitor_only, enforced, or disabled. Default is monitor_only.
+	Mode pulumi.StringPtrInput `pulumi:"mode"`
+	// Node duress settings.
+	NodeDuress ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrInput `pulumi:"nodeDuress"`
+	// Search shard settings.
+	SearchShardTask ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrInput `pulumi:"searchShardTask"`
+	// Search task settings.
+	SearchTask ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrInput `pulumi:"searchTask"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressure)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressureOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchBackpressureOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressureOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput).ToManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs, ManagedDatabaseOpensearchPropertiesSearchBackpressurePtr and ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesSearchBackpressurePtrType ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs
+
+func ManagedDatabaseOpensearchPropertiesSearchBackpressurePtr(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs) ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrInput {
+	return (*managedDatabaseOpensearchPropertiesSearchBackpressurePtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesSearchBackpressurePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchBackpressure)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchBackpressurePtrType) ToManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchBackpressurePtrType) ToManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressure)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesSearchBackpressure) *ManagedDatabaseOpensearchPropertiesSearchBackpressure {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput)
+}
+
+// The search backpressure mode. The search backpressure mode. Valid values are monitor_only, enforced, or disabled. Default is monitor_only.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressure) *string { return v.Mode }).(pulumi.StringPtrOutput)
+}
+
+// Node duress settings.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput) NodeDuress() ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressure) *ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress {
+		return v.NodeDuress
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput)
+}
+
+// Search shard settings.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput) SearchShardTask() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressure) *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask {
+		return v.SearchShardTask
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput)
+}
+
+// Search task settings.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput) SearchTask() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressure) *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask {
+		return v.SearchTask
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchBackpressure)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput) Elem() ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressure) ManagedDatabaseOpensearchPropertiesSearchBackpressure {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesSearchBackpressure
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput)
+}
+
+// The search backpressure mode. The search backpressure mode. Valid values are monitor_only, enforced, or disabled. Default is monitor_only.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressure) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Mode
+	}).(pulumi.StringPtrOutput)
+}
+
+// Node duress settings.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput) NodeDuress() ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressure) *ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress {
+		if v == nil {
+			return nil
+		}
+		return v.NodeDuress
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput)
+}
+
+// Search shard settings.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput) SearchShardTask() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressure) *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask {
+		if v == nil {
+			return nil
+		}
+		return v.SearchShardTask
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput)
+}
+
+// Search task settings.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput) SearchTask() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressure) *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask {
+		if v == nil {
+			return nil
+		}
+		return v.SearchTask
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress struct {
+	// The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.9.
+	CpuThreshold *float64 `pulumi:"cpuThreshold"`
+	// The heap usage threshold (as a percentage) required for a node to be considered to be under duress. The heap usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.7.
+	HeapThreshold *float64 `pulumi:"heapThreshold"`
+	// The number of successive limit breaches after which the node is considered to be under duress. The number of successive limit breaches after which the node is considered to be under duress. Default is 3.
+	NumSuccessiveBreaches *int `pulumi:"numSuccessiveBreaches"`
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs and ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs{...}
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs struct {
+	// The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.9.
+	CpuThreshold pulumi.Float64PtrInput `pulumi:"cpuThreshold"`
+	// The heap usage threshold (as a percentage) required for a node to be considered to be under duress. The heap usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.7.
+	HeapThreshold pulumi.Float64PtrInput `pulumi:"heapThreshold"`
+	// The number of successive limit breaches after which the node is considered to be under duress. The number of successive limit breaches after which the node is considered to be under duress. Default is 3.
+	NumSuccessiveBreaches pulumi.IntPtrInput `pulumi:"numSuccessiveBreaches"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput).ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs, ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtr and ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrType ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs
+
+func ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtr(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs) ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrInput {
+	return (*managedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrType) ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrType) ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress) *ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput)
+}
+
+// The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.9.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput) CpuThreshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress) *float64 {
+		return v.CpuThreshold
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The heap usage threshold (as a percentage) required for a node to be considered to be under duress. The heap usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.7.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput) HeapThreshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress) *float64 {
+		return v.HeapThreshold
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The number of successive limit breaches after which the node is considered to be under duress. The number of successive limit breaches after which the node is considered to be under duress. Default is 3.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput) NumSuccessiveBreaches() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress) *int {
+		return v.NumSuccessiveBreaches
+	}).(pulumi.IntPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress) ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput)
+}
+
+// The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.9.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput) CpuThreshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.CpuThreshold
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The heap usage threshold (as a percentage) required for a node to be considered to be under duress. The heap usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.7.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput) HeapThreshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.HeapThreshold
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The number of successive limit breaches after which the node is considered to be under duress. The number of successive limit breaches after which the node is considered to be under duress. Default is 3.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput) NumSuccessiveBreaches() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NumSuccessiveBreaches
+	}).(pulumi.IntPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask struct {
+	// The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 10.0.
+	CancellationBurst *float64 `pulumi:"cancellationBurst"`
+	// The maximum number of tasks to cancel per millisecond of elapsed time. The maximum number of tasks to cancel per millisecond of elapsed time. Default is 0.003.
+	CancellationRate *float64 `pulumi:"cancellationRate"`
+	// The maximum number of tasks to cancel. The maximum number of tasks to cancel, as a percentage of successful task completions. Default is 0.1.
+	CancellationRatio *float64 `pulumi:"cancellationRatio"`
+	// The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 15000.
+	CpuTimeMillisThreshold *int `pulumi:"cpuTimeMillisThreshold"`
+	// The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 30000.
+	ElapsedTimeMillisThreshold *int `pulumi:"elapsedTimeMillisThreshold"`
+	// The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. Default is 100.
+	HeapMovingAverageWindowSize *int `pulumi:"heapMovingAverageWindowSize"`
+	// The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. Default is 0.5.
+	HeapPercentThreshold *float64 `pulumi:"heapPercentThreshold"`
+	// The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. Default is 2.0.
+	HeapVariance *float64 `pulumi:"heapVariance"`
+	// The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. Default is 0.5.
+	TotalHeapPercentThreshold *float64 `pulumi:"totalHeapPercentThreshold"`
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs and ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs{...}
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs struct {
+	// The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 10.0.
+	CancellationBurst pulumi.Float64PtrInput `pulumi:"cancellationBurst"`
+	// The maximum number of tasks to cancel per millisecond of elapsed time. The maximum number of tasks to cancel per millisecond of elapsed time. Default is 0.003.
+	CancellationRate pulumi.Float64PtrInput `pulumi:"cancellationRate"`
+	// The maximum number of tasks to cancel. The maximum number of tasks to cancel, as a percentage of successful task completions. Default is 0.1.
+	CancellationRatio pulumi.Float64PtrInput `pulumi:"cancellationRatio"`
+	// The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 15000.
+	CpuTimeMillisThreshold pulumi.IntPtrInput `pulumi:"cpuTimeMillisThreshold"`
+	// The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 30000.
+	ElapsedTimeMillisThreshold pulumi.IntPtrInput `pulumi:"elapsedTimeMillisThreshold"`
+	// The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. Default is 100.
+	HeapMovingAverageWindowSize pulumi.IntPtrInput `pulumi:"heapMovingAverageWindowSize"`
+	// The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. Default is 0.5.
+	HeapPercentThreshold pulumi.Float64PtrInput `pulumi:"heapPercentThreshold"`
+	// The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. Default is 2.0.
+	HeapVariance pulumi.Float64PtrInput `pulumi:"heapVariance"`
+	// The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. Default is 0.5.
+	TotalHeapPercentThreshold pulumi.Float64PtrInput `pulumi:"totalHeapPercentThreshold"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput).ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs, ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtr and ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrType ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs
+
+func ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtr(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrInput {
+	return (*managedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrType) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrType) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput)
+}
+
+// The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 10.0.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput) CancellationBurst() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *float64 {
+		return v.CancellationBurst
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The maximum number of tasks to cancel per millisecond of elapsed time. The maximum number of tasks to cancel per millisecond of elapsed time. Default is 0.003.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput) CancellationRate() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *float64 {
+		return v.CancellationRate
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The maximum number of tasks to cancel. The maximum number of tasks to cancel, as a percentage of successful task completions. Default is 0.1.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput) CancellationRatio() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *float64 {
+		return v.CancellationRatio
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 15000.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput) CpuTimeMillisThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *int {
+		return v.CpuTimeMillisThreshold
+	}).(pulumi.IntPtrOutput)
+}
+
+// The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 30000.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput) ElapsedTimeMillisThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *int {
+		return v.ElapsedTimeMillisThreshold
+	}).(pulumi.IntPtrOutput)
+}
+
+// The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. Default is 100.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput) HeapMovingAverageWindowSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *int {
+		return v.HeapMovingAverageWindowSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. Default is 0.5.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput) HeapPercentThreshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *float64 {
+		return v.HeapPercentThreshold
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. Default is 2.0.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput) HeapVariance() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *float64 {
+		return v.HeapVariance
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. Default is 0.5.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput) TotalHeapPercentThreshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *float64 {
+		return v.TotalHeapPercentThreshold
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput)
+}
+
+// The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 10.0.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput) CancellationBurst() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.CancellationBurst
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The maximum number of tasks to cancel per millisecond of elapsed time. The maximum number of tasks to cancel per millisecond of elapsed time. Default is 0.003.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput) CancellationRate() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.CancellationRate
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The maximum number of tasks to cancel. The maximum number of tasks to cancel, as a percentage of successful task completions. Default is 0.1.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput) CancellationRatio() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.CancellationRatio
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 15000.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput) CpuTimeMillisThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *int {
+		if v == nil {
+			return nil
+		}
+		return v.CpuTimeMillisThreshold
+	}).(pulumi.IntPtrOutput)
+}
+
+// The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 30000.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput) ElapsedTimeMillisThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ElapsedTimeMillisThreshold
+	}).(pulumi.IntPtrOutput)
+}
+
+// The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. Default is 100.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput) HeapMovingAverageWindowSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *int {
+		if v == nil {
+			return nil
+		}
+		return v.HeapMovingAverageWindowSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. Default is 0.5.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput) HeapPercentThreshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.HeapPercentThreshold
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. Default is 2.0.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput) HeapVariance() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.HeapVariance
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. Default is 0.5.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput) TotalHeapPercentThreshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.TotalHeapPercentThreshold
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask struct {
+	// The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 5.0.
+	CancellationBurst *float64 `pulumi:"cancellationBurst"`
+	// The maximum number of search tasks to cancel per millisecond of elapsed time. The maximum number of search tasks to cancel per millisecond of elapsed time. Default is 0.003.
+	CancellationRate *float64 `pulumi:"cancellationRate"`
+	// The maximum number of search tasks to cancel, as a percentage of successful search task completions. The maximum number of search tasks to cancel, as a percentage of successful search task completions. Default is 0.1.
+	CancellationRatio *float64 `pulumi:"cancellationRatio"`
+	// The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 30000.
+	CpuTimeMillisThreshold *int `pulumi:"cpuTimeMillisThreshold"`
+	// The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 45000.
+	ElapsedTimeMillisThreshold *int `pulumi:"elapsedTimeMillisThreshold"`
+	// The window size used to calculate the rolling average of the heap usage for the completed parent tasks. The window size used to calculate the rolling average of the heap usage for the completed parent tasks. Default is 10.
+	HeapMovingAverageWindowSize *int `pulumi:"heapMovingAverageWindowSize"`
+	// The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. Default is 0.2.
+	HeapPercentThreshold *float64 `pulumi:"heapPercentThreshold"`
+	// The heap usage variance required for an individual parent task before it is considered for cancellation. The heap usage variance required for an individual parent task before it is considered for cancellation. A task is considered for cancellation when taskHeapUsage is greater than or equal to heapUsageMovingAverage * variance. Default is 2.0.
+	HeapVariance *float64 `pulumi:"heapVariance"`
+	// The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. Default is 0.5.
+	TotalHeapPercentThreshold *float64 `pulumi:"totalHeapPercentThreshold"`
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs and ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs{...}
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs struct {
+	// The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 5.0.
+	CancellationBurst pulumi.Float64PtrInput `pulumi:"cancellationBurst"`
+	// The maximum number of search tasks to cancel per millisecond of elapsed time. The maximum number of search tasks to cancel per millisecond of elapsed time. Default is 0.003.
+	CancellationRate pulumi.Float64PtrInput `pulumi:"cancellationRate"`
+	// The maximum number of search tasks to cancel, as a percentage of successful search task completions. The maximum number of search tasks to cancel, as a percentage of successful search task completions. Default is 0.1.
+	CancellationRatio pulumi.Float64PtrInput `pulumi:"cancellationRatio"`
+	// The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 30000.
+	CpuTimeMillisThreshold pulumi.IntPtrInput `pulumi:"cpuTimeMillisThreshold"`
+	// The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 45000.
+	ElapsedTimeMillisThreshold pulumi.IntPtrInput `pulumi:"elapsedTimeMillisThreshold"`
+	// The window size used to calculate the rolling average of the heap usage for the completed parent tasks. The window size used to calculate the rolling average of the heap usage for the completed parent tasks. Default is 10.
+	HeapMovingAverageWindowSize pulumi.IntPtrInput `pulumi:"heapMovingAverageWindowSize"`
+	// The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. Default is 0.2.
+	HeapPercentThreshold pulumi.Float64PtrInput `pulumi:"heapPercentThreshold"`
+	// The heap usage variance required for an individual parent task before it is considered for cancellation. The heap usage variance required for an individual parent task before it is considered for cancellation. A task is considered for cancellation when taskHeapUsage is greater than or equal to heapUsageMovingAverage * variance. Default is 2.0.
+	HeapVariance pulumi.Float64PtrInput `pulumi:"heapVariance"`
+	// The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. Default is 0.5.
+	TotalHeapPercentThreshold pulumi.Float64PtrInput `pulumi:"totalHeapPercentThreshold"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput).ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs, ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtr and ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput
+	ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrType ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs
+
+func ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtr(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrInput {
+	return (*managedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrType) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrType) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput)
+}
+
+// The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 5.0.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput) CancellationBurst() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *float64 {
+		return v.CancellationBurst
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The maximum number of search tasks to cancel per millisecond of elapsed time. The maximum number of search tasks to cancel per millisecond of elapsed time. Default is 0.003.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput) CancellationRate() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *float64 {
+		return v.CancellationRate
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The maximum number of search tasks to cancel, as a percentage of successful search task completions. The maximum number of search tasks to cancel, as a percentage of successful search task completions. Default is 0.1.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput) CancellationRatio() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *float64 {
+		return v.CancellationRatio
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 30000.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput) CpuTimeMillisThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *int {
+		return v.CpuTimeMillisThreshold
+	}).(pulumi.IntPtrOutput)
+}
+
+// The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 45000.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput) ElapsedTimeMillisThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *int {
+		return v.ElapsedTimeMillisThreshold
+	}).(pulumi.IntPtrOutput)
+}
+
+// The window size used to calculate the rolling average of the heap usage for the completed parent tasks. The window size used to calculate the rolling average of the heap usage for the completed parent tasks. Default is 10.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput) HeapMovingAverageWindowSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *int {
+		return v.HeapMovingAverageWindowSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. Default is 0.2.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput) HeapPercentThreshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *float64 {
+		return v.HeapPercentThreshold
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The heap usage variance required for an individual parent task before it is considered for cancellation. The heap usage variance required for an individual parent task before it is considered for cancellation. A task is considered for cancellation when taskHeapUsage is greater than or equal to heapUsageMovingAverage * variance. Default is 2.0.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput) HeapVariance() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *float64 {
+		return v.HeapVariance
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. Default is 0.5.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput) TotalHeapPercentThreshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *float64 {
+		return v.TotalHeapPercentThreshold
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput) ToManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput)
+}
+
+// The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 5.0.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput) CancellationBurst() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.CancellationBurst
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The maximum number of search tasks to cancel per millisecond of elapsed time. The maximum number of search tasks to cancel per millisecond of elapsed time. Default is 0.003.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput) CancellationRate() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.CancellationRate
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The maximum number of search tasks to cancel, as a percentage of successful search task completions. The maximum number of search tasks to cancel, as a percentage of successful search task completions. Default is 0.1.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput) CancellationRatio() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.CancellationRatio
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 30000.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput) CpuTimeMillisThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *int {
+		if v == nil {
+			return nil
+		}
+		return v.CpuTimeMillisThreshold
+	}).(pulumi.IntPtrOutput)
+}
+
+// The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 45000.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput) ElapsedTimeMillisThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ElapsedTimeMillisThreshold
+	}).(pulumi.IntPtrOutput)
+}
+
+// The window size used to calculate the rolling average of the heap usage for the completed parent tasks. The window size used to calculate the rolling average of the heap usage for the completed parent tasks. Default is 10.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput) HeapMovingAverageWindowSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *int {
+		if v == nil {
+			return nil
+		}
+		return v.HeapMovingAverageWindowSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. Default is 0.2.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput) HeapPercentThreshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.HeapPercentThreshold
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The heap usage variance required for an individual parent task before it is considered for cancellation. The heap usage variance required for an individual parent task before it is considered for cancellation. A task is considered for cancellation when taskHeapUsage is greater than or equal to heapUsageMovingAverage * variance. Default is 2.0.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput) HeapVariance() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.HeapVariance
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. Default is 0.5.
+func (o ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput) TotalHeapPercentThreshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.TotalHeapPercentThreshold
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries struct {
+	// Top N queries monitoring by CPU.
+	Cpu *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu `pulumi:"cpu"`
+	// Top N queries monitoring by latency.
+	Latency *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency `pulumi:"latency"`
+	// Top N queries monitoring by memory.
+	Memory *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory `pulumi:"memory"`
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs and ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs{...}
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs struct {
+	// Top N queries monitoring by CPU.
+	Cpu ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrInput `pulumi:"cpu"`
+	// Top N queries monitoring by latency.
+	Latency ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrInput `pulumi:"latency"`
+	// Top N queries monitoring by memory.
+	Memory ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrInput `pulumi:"memory"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput).ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs, ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtr and ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrType ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs
+
+func ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtr(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrInput {
+	return (*managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrType) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrType) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries) *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput)
+}
+
+// Top N queries monitoring by CPU.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput) Cpu() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries) *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu {
+		return v.Cpu
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput)
+}
+
+// Top N queries monitoring by latency.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput) Latency() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries) *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency {
+		return v.Latency
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput)
+}
+
+// Top N queries monitoring by memory.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput) Memory() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries) *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory {
+		return v.Memory
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput)
+}
+
+// Top N queries monitoring by CPU.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput) Cpu() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries) *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu {
+		if v == nil {
+			return nil
+		}
+		return v.Cpu
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput)
+}
+
+// Top N queries monitoring by latency.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput) Latency() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries) *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency {
+		if v == nil {
+			return nil
+		}
+		return v.Latency
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput)
+}
+
+// Top N queries monitoring by memory.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput) Memory() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries) *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory {
+		if v == nil {
+			return nil
+		}
+		return v.Memory
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu struct {
+	// Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+	Enabled *bool `pulumi:"enabled"`
+	// Specify the value of N for the top N queries by the metric.
+	TopNSize *int `pulumi:"topNSize"`
+	// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+	WindowSize *string `pulumi:"windowSize"`
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs and ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs{...}
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs struct {
+	// Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Specify the value of N for the top N queries by the metric.
+	TopNSize pulumi.IntPtrInput `pulumi:"topNSize"`
+	// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+	WindowSize pulumi.StringPtrInput `pulumi:"windowSize"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput).ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs, ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtr and ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrType ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs
+
+func ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtr(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrInput {
+	return (*managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrType) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrType) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu) *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput)
+}
+
+// Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Specify the value of N for the top N queries by the metric.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput) TopNSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu) *int { return v.TopNSize }).(pulumi.IntPtrOutput)
+}
+
+// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput) WindowSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu) *string { return v.WindowSize }).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput)
+}
+
+// Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Specify the value of N for the top N queries by the metric.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput) TopNSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TopNSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput) WindowSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu) *string {
+		if v == nil {
+			return nil
+		}
+		return v.WindowSize
+	}).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency struct {
+	// Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+	Enabled *bool `pulumi:"enabled"`
+	// Specify the value of N for the top N queries by the metric.
+	TopNSize *int `pulumi:"topNSize"`
+	// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+	WindowSize *string `pulumi:"windowSize"`
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs and ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs{...}
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs struct {
+	// Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Specify the value of N for the top N queries by the metric.
+	TopNSize pulumi.IntPtrInput `pulumi:"topNSize"`
+	// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+	WindowSize pulumi.StringPtrInput `pulumi:"windowSize"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput).ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs, ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtr and ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrType ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs
+
+func ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtr(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrInput {
+	return (*managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrType) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrType) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency) *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput)
+}
+
+// Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Specify the value of N for the top N queries by the metric.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput) TopNSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency) *int { return v.TopNSize }).(pulumi.IntPtrOutput)
+}
+
+// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput) WindowSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency) *string {
+		return v.WindowSize
+	}).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput)
+}
+
+// Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Specify the value of N for the top N queries by the metric.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput) TopNSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TopNSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput) WindowSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency) *string {
+		if v == nil {
+			return nil
+		}
+		return v.WindowSize
+	}).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory struct {
+	// Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+	Enabled *bool `pulumi:"enabled"`
+	// Specify the value of N for the top N queries by the metric.
+	TopNSize *int `pulumi:"topNSize"`
+	// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+	WindowSize *string `pulumi:"windowSize"`
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs and ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs{...}
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs struct {
+	// Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Specify the value of N for the top N queries by the metric.
+	TopNSize pulumi.IntPtrInput `pulumi:"topNSize"`
+	// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+	WindowSize pulumi.StringPtrInput `pulumi:"windowSize"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput).ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs, ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtr and ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput
+	ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrType ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs
+
+func ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtr(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrInput {
+	return (*managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrType) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrType) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory) *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput)
+}
+
+// Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Specify the value of N for the top N queries by the metric.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput) TopNSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory) *int { return v.TopNSize }).(pulumi.IntPtrOutput)
+}
+
+// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput) WindowSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory) *string { return v.WindowSize }).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput) ToManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory) ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput)
+}
+
+// Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Specify the value of N for the top N queries by the metric.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput) TopNSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TopNSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput) WindowSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory) *string {
+		if v == nil {
+			return nil
+		}
+		return v.WindowSize
+	}).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSegrep struct {
+	// The maximum number of indexing checkpoints that a replica shard can fall behind when copying from primary. Once `segrep.pressure.checkpoint.limit` is breached along with `segrep.pressure.time.limit`, the segment replication backpressure mechanism is initiated. Default is 4 checkpoints.
+	PressureCheckpointLimit *int `pulumi:"pressureCheckpointLimit"`
+	// Enables the segment replication backpressure mechanism. Default is false.
+	PressureEnabled *bool `pulumi:"pressureEnabled"`
+	// The maximum number of stale replica shards that can exist in a replication group. Once `segrep.pressure.replica.stale.limit` is breached, the segment replication backpressure mechanism is initiated. Default is .5, which is 50% of a replication group.
+	PressureReplicaStaleLimit *float64 `pulumi:"pressureReplicaStaleLimit"`
+	// The maximum amount of time that a replica shard can take to copy from the primary shard. Once segrep.pressure.time.limit is breached along with segrep.pressure.checkpoint.limit, the segment replication backpressure mechanism is initiated. Default is 5 minutes.
+	PressureTimeLimit *string `pulumi:"pressureTimeLimit"`
+}
+
+// ManagedDatabaseOpensearchPropertiesSegrepInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSegrepArgs and ManagedDatabaseOpensearchPropertiesSegrepOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSegrepInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesSegrepArgs{...}
+type ManagedDatabaseOpensearchPropertiesSegrepInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSegrepOutput() ManagedDatabaseOpensearchPropertiesSegrepOutput
+	ToManagedDatabaseOpensearchPropertiesSegrepOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSegrepOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesSegrepArgs struct {
+	// The maximum number of indexing checkpoints that a replica shard can fall behind when copying from primary. Once `segrep.pressure.checkpoint.limit` is breached along with `segrep.pressure.time.limit`, the segment replication backpressure mechanism is initiated. Default is 4 checkpoints.
+	PressureCheckpointLimit pulumi.IntPtrInput `pulumi:"pressureCheckpointLimit"`
+	// Enables the segment replication backpressure mechanism. Default is false.
+	PressureEnabled pulumi.BoolPtrInput `pulumi:"pressureEnabled"`
+	// The maximum number of stale replica shards that can exist in a replication group. Once `segrep.pressure.replica.stale.limit` is breached, the segment replication backpressure mechanism is initiated. Default is .5, which is 50% of a replication group.
+	PressureReplicaStaleLimit pulumi.Float64PtrInput `pulumi:"pressureReplicaStaleLimit"`
+	// The maximum amount of time that a replica shard can take to copy from the primary shard. Once segrep.pressure.time.limit is breached along with segrep.pressure.checkpoint.limit, the segment replication backpressure mechanism is initiated. Default is 5 minutes.
+	PressureTimeLimit pulumi.StringPtrInput `pulumi:"pressureTimeLimit"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesSegrepArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSegrep)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSegrepArgs) ToManagedDatabaseOpensearchPropertiesSegrepOutput() ManagedDatabaseOpensearchPropertiesSegrepOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSegrepOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSegrepArgs) ToManagedDatabaseOpensearchPropertiesSegrepOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSegrepOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSegrepOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSegrepArgs) ToManagedDatabaseOpensearchPropertiesSegrepPtrOutput() ManagedDatabaseOpensearchPropertiesSegrepPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSegrepPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesSegrepArgs) ToManagedDatabaseOpensearchPropertiesSegrepPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSegrepPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSegrepOutput).ToManagedDatabaseOpensearchPropertiesSegrepPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesSegrepPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesSegrepArgs, ManagedDatabaseOpensearchPropertiesSegrepPtr and ManagedDatabaseOpensearchPropertiesSegrepPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesSegrepPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesSegrepArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesSegrepPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesSegrepPtrOutput() ManagedDatabaseOpensearchPropertiesSegrepPtrOutput
+	ToManagedDatabaseOpensearchPropertiesSegrepPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesSegrepPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesSegrepPtrType ManagedDatabaseOpensearchPropertiesSegrepArgs
+
+func ManagedDatabaseOpensearchPropertiesSegrepPtr(v *ManagedDatabaseOpensearchPropertiesSegrepArgs) ManagedDatabaseOpensearchPropertiesSegrepPtrInput {
+	return (*managedDatabaseOpensearchPropertiesSegrepPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesSegrepPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSegrep)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesSegrepPtrType) ToManagedDatabaseOpensearchPropertiesSegrepPtrOutput() ManagedDatabaseOpensearchPropertiesSegrepPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesSegrepPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesSegrepPtrType) ToManagedDatabaseOpensearchPropertiesSegrepPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSegrepPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesSegrepPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSegrepOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSegrepOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSegrep)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSegrepOutput) ToManagedDatabaseOpensearchPropertiesSegrepOutput() ManagedDatabaseOpensearchPropertiesSegrepOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSegrepOutput) ToManagedDatabaseOpensearchPropertiesSegrepOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSegrepOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSegrepOutput) ToManagedDatabaseOpensearchPropertiesSegrepPtrOutput() ManagedDatabaseOpensearchPropertiesSegrepPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesSegrepPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSegrepOutput) ToManagedDatabaseOpensearchPropertiesSegrepPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSegrepPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesSegrep) *ManagedDatabaseOpensearchPropertiesSegrep {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesSegrepPtrOutput)
+}
+
+// The maximum number of indexing checkpoints that a replica shard can fall behind when copying from primary. Once `segrep.pressure.checkpoint.limit` is breached along with `segrep.pressure.time.limit`, the segment replication backpressure mechanism is initiated. Default is 4 checkpoints.
+func (o ManagedDatabaseOpensearchPropertiesSegrepOutput) PressureCheckpointLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSegrep) *int { return v.PressureCheckpointLimit }).(pulumi.IntPtrOutput)
+}
+
+// Enables the segment replication backpressure mechanism. Default is false.
+func (o ManagedDatabaseOpensearchPropertiesSegrepOutput) PressureEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSegrep) *bool { return v.PressureEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The maximum number of stale replica shards that can exist in a replication group. Once `segrep.pressure.replica.stale.limit` is breached, the segment replication backpressure mechanism is initiated. Default is .5, which is 50% of a replication group.
+func (o ManagedDatabaseOpensearchPropertiesSegrepOutput) PressureReplicaStaleLimit() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSegrep) *float64 { return v.PressureReplicaStaleLimit }).(pulumi.Float64PtrOutput)
+}
+
+// The maximum amount of time that a replica shard can take to copy from the primary shard. Once segrep.pressure.time.limit is breached along with segrep.pressure.checkpoint.limit, the segment replication backpressure mechanism is initiated. Default is 5 minutes.
+func (o ManagedDatabaseOpensearchPropertiesSegrepOutput) PressureTimeLimit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSegrep) *string { return v.PressureTimeLimit }).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesSegrepPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesSegrepPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesSegrep)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSegrepPtrOutput) ToManagedDatabaseOpensearchPropertiesSegrepPtrOutput() ManagedDatabaseOpensearchPropertiesSegrepPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSegrepPtrOutput) ToManagedDatabaseOpensearchPropertiesSegrepPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesSegrepPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesSegrepPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesSegrepOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSegrep) ManagedDatabaseOpensearchPropertiesSegrep {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesSegrep
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesSegrepOutput)
+}
+
+// The maximum number of indexing checkpoints that a replica shard can fall behind when copying from primary. Once `segrep.pressure.checkpoint.limit` is breached along with `segrep.pressure.time.limit`, the segment replication backpressure mechanism is initiated. Default is 4 checkpoints.
+func (o ManagedDatabaseOpensearchPropertiesSegrepPtrOutput) PressureCheckpointLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSegrep) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PressureCheckpointLimit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Enables the segment replication backpressure mechanism. Default is false.
+func (o ManagedDatabaseOpensearchPropertiesSegrepPtrOutput) PressureEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSegrep) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.PressureEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The maximum number of stale replica shards that can exist in a replication group. Once `segrep.pressure.replica.stale.limit` is breached, the segment replication backpressure mechanism is initiated. Default is .5, which is 50% of a replication group.
+func (o ManagedDatabaseOpensearchPropertiesSegrepPtrOutput) PressureReplicaStaleLimit() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSegrep) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.PressureReplicaStaleLimit
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The maximum amount of time that a replica shard can take to copy from the primary shard. Once segrep.pressure.time.limit is breached along with segrep.pressure.checkpoint.limit, the segment replication backpressure mechanism is initiated. Default is 5 minutes.
+func (o ManagedDatabaseOpensearchPropertiesSegrepPtrOutput) PressureTimeLimit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSegrep) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PressureTimeLimit
+	}).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressure struct {
+	// Enable or disable shard indexing backpressure. Enable or disable shard indexing backpressure. Default is false.
+	Enabled *bool `pulumi:"enabled"`
+	// Run shard indexing backpressure in shadow mode or enforced mode. Run shard indexing backpressure in shadow mode or enforced mode.
+	//             In shadow mode (value set as false), shard indexing backpressure tracks all granular-level metrics,
+	//             but it doesn’t actually reject any indexing requests.
+	//             In enforced mode (value set as true),
+	//             shard indexing backpressure rejects any requests to the cluster that might cause a dip in its performance.
+	//             Default is false.
+	Enforced *bool `pulumi:"enforced"`
+	// Operating factor.
+	OperatingFactor *ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor `pulumi:"operatingFactor"`
+	// Primary parameter.
+	PrimaryParameter *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter `pulumi:"primaryParameter"`
+}
+
+// ManagedDatabaseOpensearchPropertiesShardIndexingPressureInput is an input type that accepts ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs and ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesShardIndexingPressureInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs{...}
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressureInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs struct {
+	// Enable or disable shard indexing backpressure. Enable or disable shard indexing backpressure. Default is false.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Run shard indexing backpressure in shadow mode or enforced mode. Run shard indexing backpressure in shadow mode or enforced mode.
+	//             In shadow mode (value set as false), shard indexing backpressure tracks all granular-level metrics,
+	//             but it doesn’t actually reject any indexing requests.
+	//             In enforced mode (value set as true),
+	//             shard indexing backpressure rejects any requests to the cluster that might cause a dip in its performance.
+	//             Default is false.
+	Enforced pulumi.BoolPtrInput `pulumi:"enforced"`
+	// Operating factor.
+	OperatingFactor ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrInput `pulumi:"operatingFactor"`
+	// Primary parameter.
+	PrimaryParameter ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrInput `pulumi:"primaryParameter"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressure)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput).ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs, ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtr and ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesShardIndexingPressurePtrType ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs
+
+func ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtr(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrInput {
+	return (*managedDatabaseOpensearchPropertiesShardIndexingPressurePtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesShardIndexingPressurePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesShardIndexingPressure)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesShardIndexingPressurePtrType) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesShardIndexingPressurePtrType) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressure)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesShardIndexingPressure) *ManagedDatabaseOpensearchPropertiesShardIndexingPressure {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput)
+}
+
+// Enable or disable shard indexing backpressure. Enable or disable shard indexing backpressure. Default is false.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesShardIndexingPressure) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Run shard indexing backpressure in shadow mode or enforced mode. Run shard indexing backpressure in shadow mode or enforced mode.
+//
+//	In shadow mode (value set as false), shard indexing backpressure tracks all granular-level metrics,
+//	but it doesn’t actually reject any indexing requests.
+//	In enforced mode (value set as true),
+//	shard indexing backpressure rejects any requests to the cluster that might cause a dip in its performance.
+//	Default is false.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput) Enforced() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesShardIndexingPressure) *bool { return v.Enforced }).(pulumi.BoolPtrOutput)
+}
+
+// Operating factor.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput) OperatingFactor() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesShardIndexingPressure) *ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor {
+		return v.OperatingFactor
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput)
+}
+
+// Primary parameter.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput) PrimaryParameter() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesShardIndexingPressure) *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter {
+		return v.PrimaryParameter
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesShardIndexingPressure)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput) Elem() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressure) ManagedDatabaseOpensearchPropertiesShardIndexingPressure {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesShardIndexingPressure
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput)
+}
+
+// Enable or disable shard indexing backpressure. Enable or disable shard indexing backpressure. Default is false.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressure) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Run shard indexing backpressure in shadow mode or enforced mode. Run shard indexing backpressure in shadow mode or enforced mode.
+//
+//	In shadow mode (value set as false), shard indexing backpressure tracks all granular-level metrics,
+//	but it doesn’t actually reject any indexing requests.
+//	In enforced mode (value set as true),
+//	shard indexing backpressure rejects any requests to the cluster that might cause a dip in its performance.
+//	Default is false.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput) Enforced() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressure) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enforced
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Operating factor.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput) OperatingFactor() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressure) *ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor {
+		if v == nil {
+			return nil
+		}
+		return v.OperatingFactor
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput)
+}
+
+// Primary parameter.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput) PrimaryParameter() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressure) *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter {
+		if v == nil {
+			return nil
+		}
+		return v.PrimaryParameter
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor struct {
+	// Lower occupancy limit of the allocated quota of memory for the shard. Specify the lower occupancy limit of the allocated quota of memory for the shard.
+	//                     If the total memory usage of a shard is below this limit,
+	//                     shard indexing backpressure decreases the current allocated memory for that shard.
+	//                     Default is 0.75.
+	Lower *float64 `pulumi:"lower"`
+	// Optimal occupancy of the allocated quota of memory for the shard. Specify the optimal occupancy of the allocated quota of memory for the shard.
+	//                     If the total memory usage of a shard is at this level,
+	//                     shard indexing backpressure doesn’t change the current allocated memory for that shard.
+	//                     Default is 0.85.
+	Optimal *float64 `pulumi:"optimal"`
+	// Upper occupancy limit of the allocated quota of memory for the shard. Specify the upper occupancy limit of the allocated quota of memory for the shard.
+	//                     If the total memory usage of a shard is above this limit,
+	//                     shard indexing backpressure increases the current allocated memory for that shard.
+	//                     Default is 0.95.
+	Upper *float64 `pulumi:"upper"`
+}
+
+// ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorInput is an input type that accepts ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs and ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs{...}
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs struct {
+	// Lower occupancy limit of the allocated quota of memory for the shard. Specify the lower occupancy limit of the allocated quota of memory for the shard.
+	//                     If the total memory usage of a shard is below this limit,
+	//                     shard indexing backpressure decreases the current allocated memory for that shard.
+	//                     Default is 0.75.
+	Lower pulumi.Float64PtrInput `pulumi:"lower"`
+	// Optimal occupancy of the allocated quota of memory for the shard. Specify the optimal occupancy of the allocated quota of memory for the shard.
+	//                     If the total memory usage of a shard is at this level,
+	//                     shard indexing backpressure doesn’t change the current allocated memory for that shard.
+	//                     Default is 0.85.
+	Optimal pulumi.Float64PtrInput `pulumi:"optimal"`
+	// Upper occupancy limit of the allocated quota of memory for the shard. Specify the upper occupancy limit of the allocated quota of memory for the shard.
+	//                     If the total memory usage of a shard is above this limit,
+	//                     shard indexing backpressure increases the current allocated memory for that shard.
+	//                     Default is 0.95.
+	Upper pulumi.Float64PtrInput `pulumi:"upper"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput).ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs, ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtr and ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrType ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs
+
+func ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtr(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs) ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrInput {
+	return (*managedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrType) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrType) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor) *ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput)
+}
+
+// Lower occupancy limit of the allocated quota of memory for the shard. Specify the lower occupancy limit of the allocated quota of memory for the shard.
+//
+//	If the total memory usage of a shard is below this limit,
+//	shard indexing backpressure decreases the current allocated memory for that shard.
+//	Default is 0.75.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput) Lower() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor) *float64 {
+		return v.Lower
+	}).(pulumi.Float64PtrOutput)
+}
+
+// Optimal occupancy of the allocated quota of memory for the shard. Specify the optimal occupancy of the allocated quota of memory for the shard.
+//
+//	If the total memory usage of a shard is at this level,
+//	shard indexing backpressure doesn’t change the current allocated memory for that shard.
+//	Default is 0.85.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput) Optimal() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor) *float64 {
+		return v.Optimal
+	}).(pulumi.Float64PtrOutput)
+}
+
+// Upper occupancy limit of the allocated quota of memory for the shard. Specify the upper occupancy limit of the allocated quota of memory for the shard.
+//
+//	If the total memory usage of a shard is above this limit,
+//	shard indexing backpressure increases the current allocated memory for that shard.
+//	Default is 0.95.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput) Upper() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor) *float64 {
+		return v.Upper
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor) ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput)
+}
+
+// Lower occupancy limit of the allocated quota of memory for the shard. Specify the lower occupancy limit of the allocated quota of memory for the shard.
+//
+//	If the total memory usage of a shard is below this limit,
+//	shard indexing backpressure decreases the current allocated memory for that shard.
+//	Default is 0.75.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput) Lower() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.Lower
+	}).(pulumi.Float64PtrOutput)
+}
+
+// Optimal occupancy of the allocated quota of memory for the shard. Specify the optimal occupancy of the allocated quota of memory for the shard.
+//
+//	If the total memory usage of a shard is at this level,
+//	shard indexing backpressure doesn’t change the current allocated memory for that shard.
+//	Default is 0.85.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput) Optimal() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.Optimal
+	}).(pulumi.Float64PtrOutput)
+}
+
+// Upper occupancy limit of the allocated quota of memory for the shard. Specify the upper occupancy limit of the allocated quota of memory for the shard.
+//
+//	If the total memory usage of a shard is above this limit,
+//	shard indexing backpressure increases the current allocated memory for that shard.
+//	Default is 0.95.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput) Upper() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.Upper
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter struct {
+	Node  *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode  `pulumi:"node"`
+	Shard *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard `pulumi:"shard"`
+}
+
+// ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterInput is an input type that accepts ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs and ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs{...}
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs struct {
+	Node  ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrInput  `pulumi:"node"`
+	Shard ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrInput `pulumi:"shard"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput).ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs, ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtr and ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrType ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs
+
+func ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtr(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrInput {
+	return (*managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrType) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrType) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter) *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput)
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput) Node() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter) *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode {
+		return v.Node
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput)
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput) Shard() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter) *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard {
+		return v.Shard
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput)
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput) Node() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter) *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode {
+		if v == nil {
+			return nil
+		}
+		return v.Node
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput)
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput) Shard() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter) *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard {
+		if v == nil {
+			return nil
+		}
+		return v.Shard
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode struct {
+	// Node soft limit. Define the percentage of the node-level memory
+	//                             threshold that acts as a soft indicator for strain on a node.
+	//                             Default is 0.7.
+	SoftLimit *float64 `pulumi:"softLimit"`
+}
+
+// ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeInput is an input type that accepts ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs and ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs{...}
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs struct {
+	// Node soft limit. Define the percentage of the node-level memory
+	//                             threshold that acts as a soft indicator for strain on a node.
+	//                             Default is 0.7.
+	SoftLimit pulumi.Float64PtrInput `pulumi:"softLimit"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput).ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs, ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtr and ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrType ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs
+
+func ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtr(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrInput {
+	return (*managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrType) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrType) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode) *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput)
+}
+
+// Node soft limit. Define the percentage of the node-level memory
+//
+//	threshold that acts as a soft indicator for strain on a node.
+//	Default is 0.7.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput) SoftLimit() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode) *float64 {
+		return v.SoftLimit
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput) Elem() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput)
+}
+
+// Node soft limit. Define the percentage of the node-level memory
+//
+//	threshold that acts as a soft indicator for strain on a node.
+//	Default is 0.7.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput) SoftLimit() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.SoftLimit
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard struct {
+	// Shard min limit. Specify the minimum assigned quota for a new shard in any role (coordinator, primary, or replica).
+	//                             Shard indexing backpressure increases or decreases this allocated quota based on the inflow of traffic for the shard.
+	//                             Default is 0.001.
+	MinLimit *float64 `pulumi:"minLimit"`
+}
+
+// ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardInput is an input type that accepts ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs and ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs{...}
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs struct {
+	// Shard min limit. Specify the minimum assigned quota for a new shard in any role (coordinator, primary, or replica).
+	//                             Shard indexing backpressure increases or decreases this allocated quota based on the inflow of traffic for the shard.
+	//                             Default is 0.001.
+	MinLimit pulumi.Float64PtrInput `pulumi:"minLimit"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput).ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs, ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtr and ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput
+	ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrType ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs
+
+func ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtr(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrInput {
+	return (*managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrType) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrType) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard) *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput)
+}
+
+// Shard min limit. Specify the minimum assigned quota for a new shard in any role (coordinator, primary, or replica).
+//
+//	Shard indexing backpressure increases or decreases this allocated quota based on the inflow of traffic for the shard.
+//	Default is 0.001.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput) MinLimit() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard) *float64 {
+		return v.MinLimit
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput) ToManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard) ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput)
+}
+
+// Shard min limit. Specify the minimum assigned quota for a new shard in any role (coordinator, primary, or replica).
+//
+//	Shard indexing backpressure increases or decreases this allocated quota based on the inflow of traffic for the shard.
+//	Default is 0.001.
+func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput) MinLimit() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.MinLimit
+	}).(pulumi.Float64PtrOutput)
 }
 
 type ManagedDatabasePostgresqlComponent struct {
@@ -11708,6 +15014,8 @@ type ManagedDatabasePostgresqlProperties struct {
 	MaxWorkerProcesses *int `pulumi:"maxWorkerProcesses"`
 	// Migrate data from existing server.
 	Migration *ManagedDatabasePostgresqlPropertiesMigration `pulumi:"migration"`
+	// Chooses the algorithm for encrypting passwords.
+	PasswordEncryption *string `pulumi:"passwordEncryption"`
 	// Sets the time interval to run pg_partman's scheduled tasks.
 	PgPartmanBgwInterval *int `pulumi:"pgPartmanBgwInterval"`
 	// Controls which role to use for pg_partman's scheduled background tasks.
@@ -11856,6 +15164,8 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	MaxWorkerProcesses pulumi.IntPtrInput `pulumi:"maxWorkerProcesses"`
 	// Migrate data from existing server.
 	Migration ManagedDatabasePostgresqlPropertiesMigrationPtrInput `pulumi:"migration"`
+	// Chooses the algorithm for encrypting passwords.
+	PasswordEncryption pulumi.StringPtrInput `pulumi:"passwordEncryption"`
 	// Sets the time interval to run pg_partman's scheduled tasks.
 	PgPartmanBgwInterval pulumi.IntPtrInput `pulumi:"pgPartmanBgwInterval"`
 	// Controls which role to use for pg_partman's scheduled background tasks.
@@ -12198,6 +15508,11 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) Migration() ManagedDatabasePo
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *ManagedDatabasePostgresqlPropertiesMigration {
 		return v.Migration
 	}).(ManagedDatabasePostgresqlPropertiesMigrationPtrOutput)
+}
+
+// Chooses the algorithm for encrypting passwords.
+func (o ManagedDatabasePostgresqlPropertiesOutput) PasswordEncryption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.PasswordEncryption }).(pulumi.StringPtrOutput)
 }
 
 // Sets the time interval to run pg_partman's scheduled tasks.
@@ -12778,6 +16093,16 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) Migration() ManagedDatabas
 		}
 		return v.Migration
 	}).(ManagedDatabasePostgresqlPropertiesMigrationPtrOutput)
+}
+
+// Chooses the algorithm for encrypting passwords.
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PasswordEncryption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordEncryption
+	}).(pulumi.StringPtrOutput)
 }
 
 // Sets the time interval to run pg_partman's scheduled tasks.
@@ -14266,6 +17591,10 @@ func (o ManagedDatabaseRedisNodeStateArrayOutput) Index(i pulumi.IntInput) Manag
 type ManagedDatabaseRedisProperties struct {
 	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
 	AutomaticUtilityNetworkIpFilter *bool `pulumi:"automaticUtilityNetworkIpFilter"`
+	// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+	BackupHour *int `pulumi:"backupHour"`
+	// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+	BackupMinute *int `pulumi:"backupMinute"`
 	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 	IpFilters []string `pulumi:"ipFilters"`
 	// Migrate data from existing server.
@@ -14314,6 +17643,10 @@ type ManagedDatabaseRedisPropertiesInput interface {
 type ManagedDatabaseRedisPropertiesArgs struct {
 	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
 	AutomaticUtilityNetworkIpFilter pulumi.BoolPtrInput `pulumi:"automaticUtilityNetworkIpFilter"`
+	// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+	BackupHour pulumi.IntPtrInput `pulumi:"backupHour"`
+	// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+	BackupMinute pulumi.IntPtrInput `pulumi:"backupMinute"`
 	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 	IpFilters pulumi.StringArrayInput `pulumi:"ipFilters"`
 	// Migrate data from existing server.
@@ -14430,6 +17763,16 @@ func (o ManagedDatabaseRedisPropertiesOutput) AutomaticUtilityNetworkIpFilter() 
 	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *bool { return v.AutomaticUtilityNetworkIpFilter }).(pulumi.BoolPtrOutput)
 }
 
+// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+func (o ManagedDatabaseRedisPropertiesOutput) BackupHour() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *int { return v.BackupHour }).(pulumi.IntPtrOutput)
+}
+
+// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+func (o ManagedDatabaseRedisPropertiesOutput) BackupMinute() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *int { return v.BackupMinute }).(pulumi.IntPtrOutput)
+}
+
 // IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 func (o ManagedDatabaseRedisPropertiesOutput) IpFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ManagedDatabaseRedisProperties) []string { return v.IpFilters }).(pulumi.StringArrayOutput)
@@ -14542,6 +17885,26 @@ func (o ManagedDatabaseRedisPropertiesPtrOutput) AutomaticUtilityNetworkIpFilter
 		}
 		return v.AutomaticUtilityNetworkIpFilter
 	}).(pulumi.BoolPtrOutput)
+}
+
+// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+func (o ManagedDatabaseRedisPropertiesPtrOutput) BackupHour() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.BackupHour
+	}).(pulumi.IntPtrOutput)
+}
+
+// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+func (o ManagedDatabaseRedisPropertiesPtrOutput) BackupMinute() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.BackupMinute
+	}).(pulumi.IntPtrOutput)
 }
 
 // IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
@@ -15569,6 +18932,1321 @@ func (o ManagedDatabaseUserRedisAccessControlPtrOutput) Keys() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+type ManagedDatabaseUserValkeyAccessControl struct {
+	// Set access control to all commands in specified categories.
+	Categories *string `pulumi:"categories"`
+	// Set access control to Pub/Sub channels.
+	Channels *string `pulumi:"channels"`
+	// Set access control to commands.
+	Commands *string `pulumi:"commands"`
+	// Set access control to keys.
+	Keys *string `pulumi:"keys"`
+}
+
+// ManagedDatabaseUserValkeyAccessControlInput is an input type that accepts ManagedDatabaseUserValkeyAccessControlArgs and ManagedDatabaseUserValkeyAccessControlOutput values.
+// You can construct a concrete instance of `ManagedDatabaseUserValkeyAccessControlInput` via:
+//
+//	ManagedDatabaseUserValkeyAccessControlArgs{...}
+type ManagedDatabaseUserValkeyAccessControlInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseUserValkeyAccessControlOutput() ManagedDatabaseUserValkeyAccessControlOutput
+	ToManagedDatabaseUserValkeyAccessControlOutputWithContext(context.Context) ManagedDatabaseUserValkeyAccessControlOutput
+}
+
+type ManagedDatabaseUserValkeyAccessControlArgs struct {
+	// Set access control to all commands in specified categories.
+	Categories pulumi.StringPtrInput `pulumi:"categories"`
+	// Set access control to Pub/Sub channels.
+	Channels pulumi.StringPtrInput `pulumi:"channels"`
+	// Set access control to commands.
+	Commands pulumi.StringPtrInput `pulumi:"commands"`
+	// Set access control to keys.
+	Keys pulumi.StringPtrInput `pulumi:"keys"`
+}
+
+func (ManagedDatabaseUserValkeyAccessControlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseUserValkeyAccessControl)(nil)).Elem()
+}
+
+func (i ManagedDatabaseUserValkeyAccessControlArgs) ToManagedDatabaseUserValkeyAccessControlOutput() ManagedDatabaseUserValkeyAccessControlOutput {
+	return i.ToManagedDatabaseUserValkeyAccessControlOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseUserValkeyAccessControlArgs) ToManagedDatabaseUserValkeyAccessControlOutputWithContext(ctx context.Context) ManagedDatabaseUserValkeyAccessControlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseUserValkeyAccessControlOutput)
+}
+
+func (i ManagedDatabaseUserValkeyAccessControlArgs) ToManagedDatabaseUserValkeyAccessControlPtrOutput() ManagedDatabaseUserValkeyAccessControlPtrOutput {
+	return i.ToManagedDatabaseUserValkeyAccessControlPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseUserValkeyAccessControlArgs) ToManagedDatabaseUserValkeyAccessControlPtrOutputWithContext(ctx context.Context) ManagedDatabaseUserValkeyAccessControlPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseUserValkeyAccessControlOutput).ToManagedDatabaseUserValkeyAccessControlPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseUserValkeyAccessControlPtrInput is an input type that accepts ManagedDatabaseUserValkeyAccessControlArgs, ManagedDatabaseUserValkeyAccessControlPtr and ManagedDatabaseUserValkeyAccessControlPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseUserValkeyAccessControlPtrInput` via:
+//
+//	        ManagedDatabaseUserValkeyAccessControlArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseUserValkeyAccessControlPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseUserValkeyAccessControlPtrOutput() ManagedDatabaseUserValkeyAccessControlPtrOutput
+	ToManagedDatabaseUserValkeyAccessControlPtrOutputWithContext(context.Context) ManagedDatabaseUserValkeyAccessControlPtrOutput
+}
+
+type managedDatabaseUserValkeyAccessControlPtrType ManagedDatabaseUserValkeyAccessControlArgs
+
+func ManagedDatabaseUserValkeyAccessControlPtr(v *ManagedDatabaseUserValkeyAccessControlArgs) ManagedDatabaseUserValkeyAccessControlPtrInput {
+	return (*managedDatabaseUserValkeyAccessControlPtrType)(v)
+}
+
+func (*managedDatabaseUserValkeyAccessControlPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseUserValkeyAccessControl)(nil)).Elem()
+}
+
+func (i *managedDatabaseUserValkeyAccessControlPtrType) ToManagedDatabaseUserValkeyAccessControlPtrOutput() ManagedDatabaseUserValkeyAccessControlPtrOutput {
+	return i.ToManagedDatabaseUserValkeyAccessControlPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseUserValkeyAccessControlPtrType) ToManagedDatabaseUserValkeyAccessControlPtrOutputWithContext(ctx context.Context) ManagedDatabaseUserValkeyAccessControlPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseUserValkeyAccessControlPtrOutput)
+}
+
+type ManagedDatabaseUserValkeyAccessControlOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseUserValkeyAccessControlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseUserValkeyAccessControl)(nil)).Elem()
+}
+
+func (o ManagedDatabaseUserValkeyAccessControlOutput) ToManagedDatabaseUserValkeyAccessControlOutput() ManagedDatabaseUserValkeyAccessControlOutput {
+	return o
+}
+
+func (o ManagedDatabaseUserValkeyAccessControlOutput) ToManagedDatabaseUserValkeyAccessControlOutputWithContext(ctx context.Context) ManagedDatabaseUserValkeyAccessControlOutput {
+	return o
+}
+
+func (o ManagedDatabaseUserValkeyAccessControlOutput) ToManagedDatabaseUserValkeyAccessControlPtrOutput() ManagedDatabaseUserValkeyAccessControlPtrOutput {
+	return o.ToManagedDatabaseUserValkeyAccessControlPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseUserValkeyAccessControlOutput) ToManagedDatabaseUserValkeyAccessControlPtrOutputWithContext(ctx context.Context) ManagedDatabaseUserValkeyAccessControlPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseUserValkeyAccessControl) *ManagedDatabaseUserValkeyAccessControl {
+		return &v
+	}).(ManagedDatabaseUserValkeyAccessControlPtrOutput)
+}
+
+// Set access control to all commands in specified categories.
+func (o ManagedDatabaseUserValkeyAccessControlOutput) Categories() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseUserValkeyAccessControl) *string { return v.Categories }).(pulumi.StringPtrOutput)
+}
+
+// Set access control to Pub/Sub channels.
+func (o ManagedDatabaseUserValkeyAccessControlOutput) Channels() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseUserValkeyAccessControl) *string { return v.Channels }).(pulumi.StringPtrOutput)
+}
+
+// Set access control to commands.
+func (o ManagedDatabaseUserValkeyAccessControlOutput) Commands() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseUserValkeyAccessControl) *string { return v.Commands }).(pulumi.StringPtrOutput)
+}
+
+// Set access control to keys.
+func (o ManagedDatabaseUserValkeyAccessControlOutput) Keys() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseUserValkeyAccessControl) *string { return v.Keys }).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseUserValkeyAccessControlPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseUserValkeyAccessControlPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseUserValkeyAccessControl)(nil)).Elem()
+}
+
+func (o ManagedDatabaseUserValkeyAccessControlPtrOutput) ToManagedDatabaseUserValkeyAccessControlPtrOutput() ManagedDatabaseUserValkeyAccessControlPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseUserValkeyAccessControlPtrOutput) ToManagedDatabaseUserValkeyAccessControlPtrOutputWithContext(ctx context.Context) ManagedDatabaseUserValkeyAccessControlPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseUserValkeyAccessControlPtrOutput) Elem() ManagedDatabaseUserValkeyAccessControlOutput {
+	return o.ApplyT(func(v *ManagedDatabaseUserValkeyAccessControl) ManagedDatabaseUserValkeyAccessControl {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseUserValkeyAccessControl
+		return ret
+	}).(ManagedDatabaseUserValkeyAccessControlOutput)
+}
+
+// Set access control to all commands in specified categories.
+func (o ManagedDatabaseUserValkeyAccessControlPtrOutput) Categories() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseUserValkeyAccessControl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Categories
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set access control to Pub/Sub channels.
+func (o ManagedDatabaseUserValkeyAccessControlPtrOutput) Channels() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseUserValkeyAccessControl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Channels
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set access control to commands.
+func (o ManagedDatabaseUserValkeyAccessControlPtrOutput) Commands() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseUserValkeyAccessControl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Commands
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set access control to keys.
+func (o ManagedDatabaseUserValkeyAccessControlPtrOutput) Keys() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseUserValkeyAccessControl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Keys
+	}).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseValkeyComponent struct {
+	// Type of the component
+	Component *string `pulumi:"component"`
+	// Hostname of the component
+	Host *string `pulumi:"host"`
+	// Port number of the component
+	Port *int `pulumi:"port"`
+	// Component network route type
+	Route *string `pulumi:"route"`
+	// Usage of the component
+	Usage *string `pulumi:"usage"`
+}
+
+// ManagedDatabaseValkeyComponentInput is an input type that accepts ManagedDatabaseValkeyComponentArgs and ManagedDatabaseValkeyComponentOutput values.
+// You can construct a concrete instance of `ManagedDatabaseValkeyComponentInput` via:
+//
+//	ManagedDatabaseValkeyComponentArgs{...}
+type ManagedDatabaseValkeyComponentInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseValkeyComponentOutput() ManagedDatabaseValkeyComponentOutput
+	ToManagedDatabaseValkeyComponentOutputWithContext(context.Context) ManagedDatabaseValkeyComponentOutput
+}
+
+type ManagedDatabaseValkeyComponentArgs struct {
+	// Type of the component
+	Component pulumi.StringPtrInput `pulumi:"component"`
+	// Hostname of the component
+	Host pulumi.StringPtrInput `pulumi:"host"`
+	// Port number of the component
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Component network route type
+	Route pulumi.StringPtrInput `pulumi:"route"`
+	// Usage of the component
+	Usage pulumi.StringPtrInput `pulumi:"usage"`
+}
+
+func (ManagedDatabaseValkeyComponentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseValkeyComponent)(nil)).Elem()
+}
+
+func (i ManagedDatabaseValkeyComponentArgs) ToManagedDatabaseValkeyComponentOutput() ManagedDatabaseValkeyComponentOutput {
+	return i.ToManagedDatabaseValkeyComponentOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseValkeyComponentArgs) ToManagedDatabaseValkeyComponentOutputWithContext(ctx context.Context) ManagedDatabaseValkeyComponentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseValkeyComponentOutput)
+}
+
+// ManagedDatabaseValkeyComponentArrayInput is an input type that accepts ManagedDatabaseValkeyComponentArray and ManagedDatabaseValkeyComponentArrayOutput values.
+// You can construct a concrete instance of `ManagedDatabaseValkeyComponentArrayInput` via:
+//
+//	ManagedDatabaseValkeyComponentArray{ ManagedDatabaseValkeyComponentArgs{...} }
+type ManagedDatabaseValkeyComponentArrayInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseValkeyComponentArrayOutput() ManagedDatabaseValkeyComponentArrayOutput
+	ToManagedDatabaseValkeyComponentArrayOutputWithContext(context.Context) ManagedDatabaseValkeyComponentArrayOutput
+}
+
+type ManagedDatabaseValkeyComponentArray []ManagedDatabaseValkeyComponentInput
+
+func (ManagedDatabaseValkeyComponentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedDatabaseValkeyComponent)(nil)).Elem()
+}
+
+func (i ManagedDatabaseValkeyComponentArray) ToManagedDatabaseValkeyComponentArrayOutput() ManagedDatabaseValkeyComponentArrayOutput {
+	return i.ToManagedDatabaseValkeyComponentArrayOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseValkeyComponentArray) ToManagedDatabaseValkeyComponentArrayOutputWithContext(ctx context.Context) ManagedDatabaseValkeyComponentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseValkeyComponentArrayOutput)
+}
+
+type ManagedDatabaseValkeyComponentOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseValkeyComponentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseValkeyComponent)(nil)).Elem()
+}
+
+func (o ManagedDatabaseValkeyComponentOutput) ToManagedDatabaseValkeyComponentOutput() ManagedDatabaseValkeyComponentOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyComponentOutput) ToManagedDatabaseValkeyComponentOutputWithContext(ctx context.Context) ManagedDatabaseValkeyComponentOutput {
+	return o
+}
+
+// Type of the component
+func (o ManagedDatabaseValkeyComponentOutput) Component() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyComponent) *string { return v.Component }).(pulumi.StringPtrOutput)
+}
+
+// Hostname of the component
+func (o ManagedDatabaseValkeyComponentOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyComponent) *string { return v.Host }).(pulumi.StringPtrOutput)
+}
+
+// Port number of the component
+func (o ManagedDatabaseValkeyComponentOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyComponent) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Component network route type
+func (o ManagedDatabaseValkeyComponentOutput) Route() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyComponent) *string { return v.Route }).(pulumi.StringPtrOutput)
+}
+
+// Usage of the component
+func (o ManagedDatabaseValkeyComponentOutput) Usage() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyComponent) *string { return v.Usage }).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseValkeyComponentArrayOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseValkeyComponentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedDatabaseValkeyComponent)(nil)).Elem()
+}
+
+func (o ManagedDatabaseValkeyComponentArrayOutput) ToManagedDatabaseValkeyComponentArrayOutput() ManagedDatabaseValkeyComponentArrayOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyComponentArrayOutput) ToManagedDatabaseValkeyComponentArrayOutputWithContext(ctx context.Context) ManagedDatabaseValkeyComponentArrayOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyComponentArrayOutput) Index(i pulumi.IntInput) ManagedDatabaseValkeyComponentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedDatabaseValkeyComponent {
+		return vs[0].([]ManagedDatabaseValkeyComponent)[vs[1].(int)]
+	}).(ManagedDatabaseValkeyComponentOutput)
+}
+
+type ManagedDatabaseValkeyNetwork struct {
+	// Network family. Currently only `IPv4` is supported.
+	Family string `pulumi:"family"`
+	// The name of the network. Must be unique within the service.
+	Name string `pulumi:"name"`
+	// The type of the network. Must be private.
+	Type string `pulumi:"type"`
+	// Private network UUID. Must reside in the same zone as the database.
+	Uuid string `pulumi:"uuid"`
+}
+
+// ManagedDatabaseValkeyNetworkInput is an input type that accepts ManagedDatabaseValkeyNetworkArgs and ManagedDatabaseValkeyNetworkOutput values.
+// You can construct a concrete instance of `ManagedDatabaseValkeyNetworkInput` via:
+//
+//	ManagedDatabaseValkeyNetworkArgs{...}
+type ManagedDatabaseValkeyNetworkInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseValkeyNetworkOutput() ManagedDatabaseValkeyNetworkOutput
+	ToManagedDatabaseValkeyNetworkOutputWithContext(context.Context) ManagedDatabaseValkeyNetworkOutput
+}
+
+type ManagedDatabaseValkeyNetworkArgs struct {
+	// Network family. Currently only `IPv4` is supported.
+	Family pulumi.StringInput `pulumi:"family"`
+	// The name of the network. Must be unique within the service.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The type of the network. Must be private.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Private network UUID. Must reside in the same zone as the database.
+	Uuid pulumi.StringInput `pulumi:"uuid"`
+}
+
+func (ManagedDatabaseValkeyNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseValkeyNetwork)(nil)).Elem()
+}
+
+func (i ManagedDatabaseValkeyNetworkArgs) ToManagedDatabaseValkeyNetworkOutput() ManagedDatabaseValkeyNetworkOutput {
+	return i.ToManagedDatabaseValkeyNetworkOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseValkeyNetworkArgs) ToManagedDatabaseValkeyNetworkOutputWithContext(ctx context.Context) ManagedDatabaseValkeyNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseValkeyNetworkOutput)
+}
+
+// ManagedDatabaseValkeyNetworkArrayInput is an input type that accepts ManagedDatabaseValkeyNetworkArray and ManagedDatabaseValkeyNetworkArrayOutput values.
+// You can construct a concrete instance of `ManagedDatabaseValkeyNetworkArrayInput` via:
+//
+//	ManagedDatabaseValkeyNetworkArray{ ManagedDatabaseValkeyNetworkArgs{...} }
+type ManagedDatabaseValkeyNetworkArrayInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseValkeyNetworkArrayOutput() ManagedDatabaseValkeyNetworkArrayOutput
+	ToManagedDatabaseValkeyNetworkArrayOutputWithContext(context.Context) ManagedDatabaseValkeyNetworkArrayOutput
+}
+
+type ManagedDatabaseValkeyNetworkArray []ManagedDatabaseValkeyNetworkInput
+
+func (ManagedDatabaseValkeyNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedDatabaseValkeyNetwork)(nil)).Elem()
+}
+
+func (i ManagedDatabaseValkeyNetworkArray) ToManagedDatabaseValkeyNetworkArrayOutput() ManagedDatabaseValkeyNetworkArrayOutput {
+	return i.ToManagedDatabaseValkeyNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseValkeyNetworkArray) ToManagedDatabaseValkeyNetworkArrayOutputWithContext(ctx context.Context) ManagedDatabaseValkeyNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseValkeyNetworkArrayOutput)
+}
+
+type ManagedDatabaseValkeyNetworkOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseValkeyNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseValkeyNetwork)(nil)).Elem()
+}
+
+func (o ManagedDatabaseValkeyNetworkOutput) ToManagedDatabaseValkeyNetworkOutput() ManagedDatabaseValkeyNetworkOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyNetworkOutput) ToManagedDatabaseValkeyNetworkOutputWithContext(ctx context.Context) ManagedDatabaseValkeyNetworkOutput {
+	return o
+}
+
+// Network family. Currently only `IPv4` is supported.
+func (o ManagedDatabaseValkeyNetworkOutput) Family() pulumi.StringOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyNetwork) string { return v.Family }).(pulumi.StringOutput)
+}
+
+// The name of the network. Must be unique within the service.
+func (o ManagedDatabaseValkeyNetworkOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyNetwork) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The type of the network. Must be private.
+func (o ManagedDatabaseValkeyNetworkOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyNetwork) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Private network UUID. Must reside in the same zone as the database.
+func (o ManagedDatabaseValkeyNetworkOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyNetwork) string { return v.Uuid }).(pulumi.StringOutput)
+}
+
+type ManagedDatabaseValkeyNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseValkeyNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedDatabaseValkeyNetwork)(nil)).Elem()
+}
+
+func (o ManagedDatabaseValkeyNetworkArrayOutput) ToManagedDatabaseValkeyNetworkArrayOutput() ManagedDatabaseValkeyNetworkArrayOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyNetworkArrayOutput) ToManagedDatabaseValkeyNetworkArrayOutputWithContext(ctx context.Context) ManagedDatabaseValkeyNetworkArrayOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyNetworkArrayOutput) Index(i pulumi.IntInput) ManagedDatabaseValkeyNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedDatabaseValkeyNetwork {
+		return vs[0].([]ManagedDatabaseValkeyNetwork)[vs[1].(int)]
+	}).(ManagedDatabaseValkeyNetworkOutput)
+}
+
+type ManagedDatabaseValkeyNodeState struct {
+	// Name plus a node iteration
+	Name *string `pulumi:"name"`
+	// Role of the node
+	Role *string `pulumi:"role"`
+	// State of the node
+	State *string `pulumi:"state"`
+}
+
+// ManagedDatabaseValkeyNodeStateInput is an input type that accepts ManagedDatabaseValkeyNodeStateArgs and ManagedDatabaseValkeyNodeStateOutput values.
+// You can construct a concrete instance of `ManagedDatabaseValkeyNodeStateInput` via:
+//
+//	ManagedDatabaseValkeyNodeStateArgs{...}
+type ManagedDatabaseValkeyNodeStateInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseValkeyNodeStateOutput() ManagedDatabaseValkeyNodeStateOutput
+	ToManagedDatabaseValkeyNodeStateOutputWithContext(context.Context) ManagedDatabaseValkeyNodeStateOutput
+}
+
+type ManagedDatabaseValkeyNodeStateArgs struct {
+	// Name plus a node iteration
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Role of the node
+	Role pulumi.StringPtrInput `pulumi:"role"`
+	// State of the node
+	State pulumi.StringPtrInput `pulumi:"state"`
+}
+
+func (ManagedDatabaseValkeyNodeStateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseValkeyNodeState)(nil)).Elem()
+}
+
+func (i ManagedDatabaseValkeyNodeStateArgs) ToManagedDatabaseValkeyNodeStateOutput() ManagedDatabaseValkeyNodeStateOutput {
+	return i.ToManagedDatabaseValkeyNodeStateOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseValkeyNodeStateArgs) ToManagedDatabaseValkeyNodeStateOutputWithContext(ctx context.Context) ManagedDatabaseValkeyNodeStateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseValkeyNodeStateOutput)
+}
+
+// ManagedDatabaseValkeyNodeStateArrayInput is an input type that accepts ManagedDatabaseValkeyNodeStateArray and ManagedDatabaseValkeyNodeStateArrayOutput values.
+// You can construct a concrete instance of `ManagedDatabaseValkeyNodeStateArrayInput` via:
+//
+//	ManagedDatabaseValkeyNodeStateArray{ ManagedDatabaseValkeyNodeStateArgs{...} }
+type ManagedDatabaseValkeyNodeStateArrayInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseValkeyNodeStateArrayOutput() ManagedDatabaseValkeyNodeStateArrayOutput
+	ToManagedDatabaseValkeyNodeStateArrayOutputWithContext(context.Context) ManagedDatabaseValkeyNodeStateArrayOutput
+}
+
+type ManagedDatabaseValkeyNodeStateArray []ManagedDatabaseValkeyNodeStateInput
+
+func (ManagedDatabaseValkeyNodeStateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedDatabaseValkeyNodeState)(nil)).Elem()
+}
+
+func (i ManagedDatabaseValkeyNodeStateArray) ToManagedDatabaseValkeyNodeStateArrayOutput() ManagedDatabaseValkeyNodeStateArrayOutput {
+	return i.ToManagedDatabaseValkeyNodeStateArrayOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseValkeyNodeStateArray) ToManagedDatabaseValkeyNodeStateArrayOutputWithContext(ctx context.Context) ManagedDatabaseValkeyNodeStateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseValkeyNodeStateArrayOutput)
+}
+
+type ManagedDatabaseValkeyNodeStateOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseValkeyNodeStateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseValkeyNodeState)(nil)).Elem()
+}
+
+func (o ManagedDatabaseValkeyNodeStateOutput) ToManagedDatabaseValkeyNodeStateOutput() ManagedDatabaseValkeyNodeStateOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyNodeStateOutput) ToManagedDatabaseValkeyNodeStateOutputWithContext(ctx context.Context) ManagedDatabaseValkeyNodeStateOutput {
+	return o
+}
+
+// Name plus a node iteration
+func (o ManagedDatabaseValkeyNodeStateOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyNodeState) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Role of the node
+func (o ManagedDatabaseValkeyNodeStateOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyNodeState) *string { return v.Role }).(pulumi.StringPtrOutput)
+}
+
+// State of the node
+func (o ManagedDatabaseValkeyNodeStateOutput) State() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyNodeState) *string { return v.State }).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseValkeyNodeStateArrayOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseValkeyNodeStateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedDatabaseValkeyNodeState)(nil)).Elem()
+}
+
+func (o ManagedDatabaseValkeyNodeStateArrayOutput) ToManagedDatabaseValkeyNodeStateArrayOutput() ManagedDatabaseValkeyNodeStateArrayOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyNodeStateArrayOutput) ToManagedDatabaseValkeyNodeStateArrayOutputWithContext(ctx context.Context) ManagedDatabaseValkeyNodeStateArrayOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyNodeStateArrayOutput) Index(i pulumi.IntInput) ManagedDatabaseValkeyNodeStateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedDatabaseValkeyNodeState {
+		return vs[0].([]ManagedDatabaseValkeyNodeState)[vs[1].(int)]
+	}).(ManagedDatabaseValkeyNodeStateOutput)
+}
+
+type ManagedDatabaseValkeyProperties struct {
+	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+	AutomaticUtilityNetworkIpFilter *bool `pulumi:"automaticUtilityNetworkIpFilter"`
+	// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+	BackupHour *int `pulumi:"backupHour"`
+	// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+	BackupMinute *int `pulumi:"backupMinute"`
+	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+	IpFilters []string `pulumi:"ipFilters"`
+	// Migrate data from existing server.
+	Migration *ManagedDatabaseValkeyPropertiesMigration `pulumi:"migration"`
+	// Public Access. Allow access to the service from the public Internet.
+	PublicAccess *bool `pulumi:"publicAccess"`
+	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
+	ServiceLog *bool `pulumi:"serviceLog"`
+	// Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+	ValkeyAclChannelsDefault *string `pulumi:"valkeyAclChannelsDefault"`
+	// Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
+	ValkeyIoThreads *int `pulumi:"valkeyIoThreads"`
+	// LFU maxmemory-policy counter decay time in minutes.
+	ValkeyLfuDecayTime *int `pulumi:"valkeyLfuDecayTime"`
+	// Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
+	ValkeyLfuLogFactor *int `pulumi:"valkeyLfuLogFactor"`
+	// Valkey maxmemory-policy.
+	ValkeyMaxmemoryPolicy *string `pulumi:"valkeyMaxmemoryPolicy"`
+	// Set notify-keyspace-events option.
+	ValkeyNotifyKeyspaceEvents *string `pulumi:"valkeyNotifyKeyspaceEvents"`
+	// Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
+	ValkeyNumberOfDatabases *int `pulumi:"valkeyNumberOfDatabases"`
+	// Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+	ValkeyPersistence *string `pulumi:"valkeyPersistence"`
+	// Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
+	ValkeyPubsubClientOutputBufferLimit *int `pulumi:"valkeyPubsubClientOutputBufferLimit"`
+	// Require SSL to access Valkey.
+	ValkeySsl *bool `pulumi:"valkeySsl"`
+	// Valkey idle connection timeout in seconds.
+	ValkeyTimeout *int `pulumi:"valkeyTimeout"`
+}
+
+// ManagedDatabaseValkeyPropertiesInput is an input type that accepts ManagedDatabaseValkeyPropertiesArgs and ManagedDatabaseValkeyPropertiesOutput values.
+// You can construct a concrete instance of `ManagedDatabaseValkeyPropertiesInput` via:
+//
+//	ManagedDatabaseValkeyPropertiesArgs{...}
+type ManagedDatabaseValkeyPropertiesInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseValkeyPropertiesOutput() ManagedDatabaseValkeyPropertiesOutput
+	ToManagedDatabaseValkeyPropertiesOutputWithContext(context.Context) ManagedDatabaseValkeyPropertiesOutput
+}
+
+type ManagedDatabaseValkeyPropertiesArgs struct {
+	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+	AutomaticUtilityNetworkIpFilter pulumi.BoolPtrInput `pulumi:"automaticUtilityNetworkIpFilter"`
+	// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+	BackupHour pulumi.IntPtrInput `pulumi:"backupHour"`
+	// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+	BackupMinute pulumi.IntPtrInput `pulumi:"backupMinute"`
+	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+	IpFilters pulumi.StringArrayInput `pulumi:"ipFilters"`
+	// Migrate data from existing server.
+	Migration ManagedDatabaseValkeyPropertiesMigrationPtrInput `pulumi:"migration"`
+	// Public Access. Allow access to the service from the public Internet.
+	PublicAccess pulumi.BoolPtrInput `pulumi:"publicAccess"`
+	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
+	ServiceLog pulumi.BoolPtrInput `pulumi:"serviceLog"`
+	// Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+	ValkeyAclChannelsDefault pulumi.StringPtrInput `pulumi:"valkeyAclChannelsDefault"`
+	// Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
+	ValkeyIoThreads pulumi.IntPtrInput `pulumi:"valkeyIoThreads"`
+	// LFU maxmemory-policy counter decay time in minutes.
+	ValkeyLfuDecayTime pulumi.IntPtrInput `pulumi:"valkeyLfuDecayTime"`
+	// Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
+	ValkeyLfuLogFactor pulumi.IntPtrInput `pulumi:"valkeyLfuLogFactor"`
+	// Valkey maxmemory-policy.
+	ValkeyMaxmemoryPolicy pulumi.StringPtrInput `pulumi:"valkeyMaxmemoryPolicy"`
+	// Set notify-keyspace-events option.
+	ValkeyNotifyKeyspaceEvents pulumi.StringPtrInput `pulumi:"valkeyNotifyKeyspaceEvents"`
+	// Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
+	ValkeyNumberOfDatabases pulumi.IntPtrInput `pulumi:"valkeyNumberOfDatabases"`
+	// Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+	ValkeyPersistence pulumi.StringPtrInput `pulumi:"valkeyPersistence"`
+	// Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
+	ValkeyPubsubClientOutputBufferLimit pulumi.IntPtrInput `pulumi:"valkeyPubsubClientOutputBufferLimit"`
+	// Require SSL to access Valkey.
+	ValkeySsl pulumi.BoolPtrInput `pulumi:"valkeySsl"`
+	// Valkey idle connection timeout in seconds.
+	ValkeyTimeout pulumi.IntPtrInput `pulumi:"valkeyTimeout"`
+}
+
+func (ManagedDatabaseValkeyPropertiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseValkeyProperties)(nil)).Elem()
+}
+
+func (i ManagedDatabaseValkeyPropertiesArgs) ToManagedDatabaseValkeyPropertiesOutput() ManagedDatabaseValkeyPropertiesOutput {
+	return i.ToManagedDatabaseValkeyPropertiesOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseValkeyPropertiesArgs) ToManagedDatabaseValkeyPropertiesOutputWithContext(ctx context.Context) ManagedDatabaseValkeyPropertiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseValkeyPropertiesOutput)
+}
+
+func (i ManagedDatabaseValkeyPropertiesArgs) ToManagedDatabaseValkeyPropertiesPtrOutput() ManagedDatabaseValkeyPropertiesPtrOutput {
+	return i.ToManagedDatabaseValkeyPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseValkeyPropertiesArgs) ToManagedDatabaseValkeyPropertiesPtrOutputWithContext(ctx context.Context) ManagedDatabaseValkeyPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseValkeyPropertiesOutput).ToManagedDatabaseValkeyPropertiesPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseValkeyPropertiesPtrInput is an input type that accepts ManagedDatabaseValkeyPropertiesArgs, ManagedDatabaseValkeyPropertiesPtr and ManagedDatabaseValkeyPropertiesPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseValkeyPropertiesPtrInput` via:
+//
+//	        ManagedDatabaseValkeyPropertiesArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseValkeyPropertiesPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseValkeyPropertiesPtrOutput() ManagedDatabaseValkeyPropertiesPtrOutput
+	ToManagedDatabaseValkeyPropertiesPtrOutputWithContext(context.Context) ManagedDatabaseValkeyPropertiesPtrOutput
+}
+
+type managedDatabaseValkeyPropertiesPtrType ManagedDatabaseValkeyPropertiesArgs
+
+func ManagedDatabaseValkeyPropertiesPtr(v *ManagedDatabaseValkeyPropertiesArgs) ManagedDatabaseValkeyPropertiesPtrInput {
+	return (*managedDatabaseValkeyPropertiesPtrType)(v)
+}
+
+func (*managedDatabaseValkeyPropertiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseValkeyProperties)(nil)).Elem()
+}
+
+func (i *managedDatabaseValkeyPropertiesPtrType) ToManagedDatabaseValkeyPropertiesPtrOutput() ManagedDatabaseValkeyPropertiesPtrOutput {
+	return i.ToManagedDatabaseValkeyPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseValkeyPropertiesPtrType) ToManagedDatabaseValkeyPropertiesPtrOutputWithContext(ctx context.Context) ManagedDatabaseValkeyPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseValkeyPropertiesPtrOutput)
+}
+
+type ManagedDatabaseValkeyPropertiesOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseValkeyPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseValkeyProperties)(nil)).Elem()
+}
+
+func (o ManagedDatabaseValkeyPropertiesOutput) ToManagedDatabaseValkeyPropertiesOutput() ManagedDatabaseValkeyPropertiesOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyPropertiesOutput) ToManagedDatabaseValkeyPropertiesOutputWithContext(ctx context.Context) ManagedDatabaseValkeyPropertiesOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyPropertiesOutput) ToManagedDatabaseValkeyPropertiesPtrOutput() ManagedDatabaseValkeyPropertiesPtrOutput {
+	return o.ToManagedDatabaseValkeyPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseValkeyPropertiesOutput) ToManagedDatabaseValkeyPropertiesPtrOutputWithContext(ctx context.Context) ManagedDatabaseValkeyPropertiesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseValkeyProperties) *ManagedDatabaseValkeyProperties {
+		return &v
+	}).(ManagedDatabaseValkeyPropertiesPtrOutput)
+}
+
+// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+func (o ManagedDatabaseValkeyPropertiesOutput) AutomaticUtilityNetworkIpFilter() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *bool { return v.AutomaticUtilityNetworkIpFilter }).(pulumi.BoolPtrOutput)
+}
+
+// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+func (o ManagedDatabaseValkeyPropertiesOutput) BackupHour() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.BackupHour }).(pulumi.IntPtrOutput)
+}
+
+// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+func (o ManagedDatabaseValkeyPropertiesOutput) BackupMinute() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.BackupMinute }).(pulumi.IntPtrOutput)
+}
+
+// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+func (o ManagedDatabaseValkeyPropertiesOutput) IpFilters() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) []string { return v.IpFilters }).(pulumi.StringArrayOutput)
+}
+
+// Migrate data from existing server.
+func (o ManagedDatabaseValkeyPropertiesOutput) Migration() ManagedDatabaseValkeyPropertiesMigrationPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *ManagedDatabaseValkeyPropertiesMigration { return v.Migration }).(ManagedDatabaseValkeyPropertiesMigrationPtrOutput)
+}
+
+// Public Access. Allow access to the service from the public Internet.
+func (o ManagedDatabaseValkeyPropertiesOutput) PublicAccess() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *bool { return v.PublicAccess }).(pulumi.BoolPtrOutput)
+}
+
+// Service logging. Store logs for the service so that they are available in the HTTP API and console.
+func (o ManagedDatabaseValkeyPropertiesOutput) ServiceLog() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *bool { return v.ServiceLog }).(pulumi.BoolPtrOutput)
+}
+
+// Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyAclChannelsDefault() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *string { return v.ValkeyAclChannelsDefault }).(pulumi.StringPtrOutput)
+}
+
+// Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyIoThreads() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.ValkeyIoThreads }).(pulumi.IntPtrOutput)
+}
+
+// LFU maxmemory-policy counter decay time in minutes.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyLfuDecayTime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.ValkeyLfuDecayTime }).(pulumi.IntPtrOutput)
+}
+
+// Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyLfuLogFactor() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.ValkeyLfuLogFactor }).(pulumi.IntPtrOutput)
+}
+
+// Valkey maxmemory-policy.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyMaxmemoryPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *string { return v.ValkeyMaxmemoryPolicy }).(pulumi.StringPtrOutput)
+}
+
+// Set notify-keyspace-events option.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyNotifyKeyspaceEvents() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *string { return v.ValkeyNotifyKeyspaceEvents }).(pulumi.StringPtrOutput)
+}
+
+// Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyNumberOfDatabases() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.ValkeyNumberOfDatabases }).(pulumi.IntPtrOutput)
+}
+
+// Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyPersistence() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *string { return v.ValkeyPersistence }).(pulumi.StringPtrOutput)
+}
+
+// Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyPubsubClientOutputBufferLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.ValkeyPubsubClientOutputBufferLimit }).(pulumi.IntPtrOutput)
+}
+
+// Require SSL to access Valkey.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeySsl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *bool { return v.ValkeySsl }).(pulumi.BoolPtrOutput)
+}
+
+// Valkey idle connection timeout in seconds.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.ValkeyTimeout }).(pulumi.IntPtrOutput)
+}
+
+type ManagedDatabaseValkeyPropertiesPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseValkeyPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseValkeyProperties)(nil)).Elem()
+}
+
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ToManagedDatabaseValkeyPropertiesPtrOutput() ManagedDatabaseValkeyPropertiesPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ToManagedDatabaseValkeyPropertiesPtrOutputWithContext(ctx context.Context) ManagedDatabaseValkeyPropertiesPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) Elem() ManagedDatabaseValkeyPropertiesOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) ManagedDatabaseValkeyProperties {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseValkeyProperties
+		return ret
+	}).(ManagedDatabaseValkeyPropertiesOutput)
+}
+
+// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) AutomaticUtilityNetworkIpFilter() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AutomaticUtilityNetworkIpFilter
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) BackupHour() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.BackupHour
+	}).(pulumi.IntPtrOutput)
+}
+
+// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) BackupMinute() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.BackupMinute
+	}).(pulumi.IntPtrOutput)
+}
+
+// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) IpFilters() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) []string {
+		if v == nil {
+			return nil
+		}
+		return v.IpFilters
+	}).(pulumi.StringArrayOutput)
+}
+
+// Migrate data from existing server.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) Migration() ManagedDatabaseValkeyPropertiesMigrationPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *ManagedDatabaseValkeyPropertiesMigration {
+		if v == nil {
+			return nil
+		}
+		return v.Migration
+	}).(ManagedDatabaseValkeyPropertiesMigrationPtrOutput)
+}
+
+// Public Access. Allow access to the service from the public Internet.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) PublicAccess() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.PublicAccess
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Service logging. Store logs for the service so that they are available in the HTTP API and console.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ServiceLog() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceLog
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyAclChannelsDefault() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyAclChannelsDefault
+	}).(pulumi.StringPtrOutput)
+}
+
+// Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyIoThreads() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyIoThreads
+	}).(pulumi.IntPtrOutput)
+}
+
+// LFU maxmemory-policy counter decay time in minutes.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyLfuDecayTime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyLfuDecayTime
+	}).(pulumi.IntPtrOutput)
+}
+
+// Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyLfuLogFactor() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyLfuLogFactor
+	}).(pulumi.IntPtrOutput)
+}
+
+// Valkey maxmemory-policy.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyMaxmemoryPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyMaxmemoryPolicy
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set notify-keyspace-events option.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyNotifyKeyspaceEvents() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyNotifyKeyspaceEvents
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyNumberOfDatabases() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyNumberOfDatabases
+	}).(pulumi.IntPtrOutput)
+}
+
+// Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyPersistence() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyPersistence
+	}).(pulumi.StringPtrOutput)
+}
+
+// Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyPubsubClientOutputBufferLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyPubsubClientOutputBufferLimit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Require SSL to access Valkey.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeySsl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeySsl
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Valkey idle connection timeout in seconds.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+type ManagedDatabaseValkeyPropertiesMigration struct {
+	// Database name for bootstrapping the initial connection.
+	Dbname *string `pulumi:"dbname"`
+	// Hostname or IP address of the server where to migrate data from.
+	Host *string `pulumi:"host"`
+	// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+	IgnoreDbs *string `pulumi:"ignoreDbs"`
+	// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+	IgnoreRoles *string `pulumi:"ignoreRoles"`
+	// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
+	Method *string `pulumi:"method"`
+	// Password for authentication with the server where to migrate data from.
+	Password *string `pulumi:"password"`
+	// Port number of the server where to migrate data from.
+	Port *int `pulumi:"port"`
+	// The server where to migrate data from is secured with SSL.
+	Ssl *bool `pulumi:"ssl"`
+	// User name for authentication with the server where to migrate data from.
+	Username *string `pulumi:"username"`
+}
+
+// ManagedDatabaseValkeyPropertiesMigrationInput is an input type that accepts ManagedDatabaseValkeyPropertiesMigrationArgs and ManagedDatabaseValkeyPropertiesMigrationOutput values.
+// You can construct a concrete instance of `ManagedDatabaseValkeyPropertiesMigrationInput` via:
+//
+//	ManagedDatabaseValkeyPropertiesMigrationArgs{...}
+type ManagedDatabaseValkeyPropertiesMigrationInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseValkeyPropertiesMigrationOutput() ManagedDatabaseValkeyPropertiesMigrationOutput
+	ToManagedDatabaseValkeyPropertiesMigrationOutputWithContext(context.Context) ManagedDatabaseValkeyPropertiesMigrationOutput
+}
+
+type ManagedDatabaseValkeyPropertiesMigrationArgs struct {
+	// Database name for bootstrapping the initial connection.
+	Dbname pulumi.StringPtrInput `pulumi:"dbname"`
+	// Hostname or IP address of the server where to migrate data from.
+	Host pulumi.StringPtrInput `pulumi:"host"`
+	// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+	IgnoreDbs pulumi.StringPtrInput `pulumi:"ignoreDbs"`
+	// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+	IgnoreRoles pulumi.StringPtrInput `pulumi:"ignoreRoles"`
+	// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
+	Method pulumi.StringPtrInput `pulumi:"method"`
+	// Password for authentication with the server where to migrate data from.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Port number of the server where to migrate data from.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// The server where to migrate data from is secured with SSL.
+	Ssl pulumi.BoolPtrInput `pulumi:"ssl"`
+	// User name for authentication with the server where to migrate data from.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (ManagedDatabaseValkeyPropertiesMigrationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseValkeyPropertiesMigration)(nil)).Elem()
+}
+
+func (i ManagedDatabaseValkeyPropertiesMigrationArgs) ToManagedDatabaseValkeyPropertiesMigrationOutput() ManagedDatabaseValkeyPropertiesMigrationOutput {
+	return i.ToManagedDatabaseValkeyPropertiesMigrationOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseValkeyPropertiesMigrationArgs) ToManagedDatabaseValkeyPropertiesMigrationOutputWithContext(ctx context.Context) ManagedDatabaseValkeyPropertiesMigrationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseValkeyPropertiesMigrationOutput)
+}
+
+func (i ManagedDatabaseValkeyPropertiesMigrationArgs) ToManagedDatabaseValkeyPropertiesMigrationPtrOutput() ManagedDatabaseValkeyPropertiesMigrationPtrOutput {
+	return i.ToManagedDatabaseValkeyPropertiesMigrationPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseValkeyPropertiesMigrationArgs) ToManagedDatabaseValkeyPropertiesMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseValkeyPropertiesMigrationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseValkeyPropertiesMigrationOutput).ToManagedDatabaseValkeyPropertiesMigrationPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseValkeyPropertiesMigrationPtrInput is an input type that accepts ManagedDatabaseValkeyPropertiesMigrationArgs, ManagedDatabaseValkeyPropertiesMigrationPtr and ManagedDatabaseValkeyPropertiesMigrationPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseValkeyPropertiesMigrationPtrInput` via:
+//
+//	        ManagedDatabaseValkeyPropertiesMigrationArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseValkeyPropertiesMigrationPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseValkeyPropertiesMigrationPtrOutput() ManagedDatabaseValkeyPropertiesMigrationPtrOutput
+	ToManagedDatabaseValkeyPropertiesMigrationPtrOutputWithContext(context.Context) ManagedDatabaseValkeyPropertiesMigrationPtrOutput
+}
+
+type managedDatabaseValkeyPropertiesMigrationPtrType ManagedDatabaseValkeyPropertiesMigrationArgs
+
+func ManagedDatabaseValkeyPropertiesMigrationPtr(v *ManagedDatabaseValkeyPropertiesMigrationArgs) ManagedDatabaseValkeyPropertiesMigrationPtrInput {
+	return (*managedDatabaseValkeyPropertiesMigrationPtrType)(v)
+}
+
+func (*managedDatabaseValkeyPropertiesMigrationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseValkeyPropertiesMigration)(nil)).Elem()
+}
+
+func (i *managedDatabaseValkeyPropertiesMigrationPtrType) ToManagedDatabaseValkeyPropertiesMigrationPtrOutput() ManagedDatabaseValkeyPropertiesMigrationPtrOutput {
+	return i.ToManagedDatabaseValkeyPropertiesMigrationPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseValkeyPropertiesMigrationPtrType) ToManagedDatabaseValkeyPropertiesMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseValkeyPropertiesMigrationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseValkeyPropertiesMigrationPtrOutput)
+}
+
+type ManagedDatabaseValkeyPropertiesMigrationOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseValkeyPropertiesMigrationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseValkeyPropertiesMigration)(nil)).Elem()
+}
+
+func (o ManagedDatabaseValkeyPropertiesMigrationOutput) ToManagedDatabaseValkeyPropertiesMigrationOutput() ManagedDatabaseValkeyPropertiesMigrationOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyPropertiesMigrationOutput) ToManagedDatabaseValkeyPropertiesMigrationOutputWithContext(ctx context.Context) ManagedDatabaseValkeyPropertiesMigrationOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyPropertiesMigrationOutput) ToManagedDatabaseValkeyPropertiesMigrationPtrOutput() ManagedDatabaseValkeyPropertiesMigrationPtrOutput {
+	return o.ToManagedDatabaseValkeyPropertiesMigrationPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseValkeyPropertiesMigrationOutput) ToManagedDatabaseValkeyPropertiesMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseValkeyPropertiesMigrationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseValkeyPropertiesMigration) *ManagedDatabaseValkeyPropertiesMigration {
+		return &v
+	}).(ManagedDatabaseValkeyPropertiesMigrationPtrOutput)
+}
+
+// Database name for bootstrapping the initial connection.
+func (o ManagedDatabaseValkeyPropertiesMigrationOutput) Dbname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyPropertiesMigration) *string { return v.Dbname }).(pulumi.StringPtrOutput)
+}
+
+// Hostname or IP address of the server where to migrate data from.
+func (o ManagedDatabaseValkeyPropertiesMigrationOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyPropertiesMigration) *string { return v.Host }).(pulumi.StringPtrOutput)
+}
+
+// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+func (o ManagedDatabaseValkeyPropertiesMigrationOutput) IgnoreDbs() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyPropertiesMigration) *string { return v.IgnoreDbs }).(pulumi.StringPtrOutput)
+}
+
+// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+func (o ManagedDatabaseValkeyPropertiesMigrationOutput) IgnoreRoles() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyPropertiesMigration) *string { return v.IgnoreRoles }).(pulumi.StringPtrOutput)
+}
+
+// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
+func (o ManagedDatabaseValkeyPropertiesMigrationOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyPropertiesMigration) *string { return v.Method }).(pulumi.StringPtrOutput)
+}
+
+// Password for authentication with the server where to migrate data from.
+func (o ManagedDatabaseValkeyPropertiesMigrationOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyPropertiesMigration) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Port number of the server where to migrate data from.
+func (o ManagedDatabaseValkeyPropertiesMigrationOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyPropertiesMigration) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// The server where to migrate data from is secured with SSL.
+func (o ManagedDatabaseValkeyPropertiesMigrationOutput) Ssl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyPropertiesMigration) *bool { return v.Ssl }).(pulumi.BoolPtrOutput)
+}
+
+// User name for authentication with the server where to migrate data from.
+func (o ManagedDatabaseValkeyPropertiesMigrationOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyPropertiesMigration) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseValkeyPropertiesMigrationPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseValkeyPropertiesMigrationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseValkeyPropertiesMigration)(nil)).Elem()
+}
+
+func (o ManagedDatabaseValkeyPropertiesMigrationPtrOutput) ToManagedDatabaseValkeyPropertiesMigrationPtrOutput() ManagedDatabaseValkeyPropertiesMigrationPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyPropertiesMigrationPtrOutput) ToManagedDatabaseValkeyPropertiesMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseValkeyPropertiesMigrationPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseValkeyPropertiesMigrationPtrOutput) Elem() ManagedDatabaseValkeyPropertiesMigrationOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyPropertiesMigration) ManagedDatabaseValkeyPropertiesMigration {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseValkeyPropertiesMigration
+		return ret
+	}).(ManagedDatabaseValkeyPropertiesMigrationOutput)
+}
+
+// Database name for bootstrapping the initial connection.
+func (o ManagedDatabaseValkeyPropertiesMigrationPtrOutput) Dbname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyPropertiesMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Dbname
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hostname or IP address of the server where to migrate data from.
+func (o ManagedDatabaseValkeyPropertiesMigrationPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyPropertiesMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+func (o ManagedDatabaseValkeyPropertiesMigrationPtrOutput) IgnoreDbs() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyPropertiesMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IgnoreDbs
+	}).(pulumi.StringPtrOutput)
+}
+
+// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+func (o ManagedDatabaseValkeyPropertiesMigrationPtrOutput) IgnoreRoles() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyPropertiesMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IgnoreRoles
+	}).(pulumi.StringPtrOutput)
+}
+
+// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
+func (o ManagedDatabaseValkeyPropertiesMigrationPtrOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyPropertiesMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Method
+	}).(pulumi.StringPtrOutput)
+}
+
+// Password for authentication with the server where to migrate data from.
+func (o ManagedDatabaseValkeyPropertiesMigrationPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyPropertiesMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Port number of the server where to migrate data from.
+func (o ManagedDatabaseValkeyPropertiesMigrationPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyPropertiesMigration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// The server where to migrate data from is secured with SSL.
+func (o ManagedDatabaseValkeyPropertiesMigrationPtrOutput) Ssl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyPropertiesMigration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Ssl
+	}).(pulumi.BoolPtrOutput)
+}
+
+// User name for authentication with the server where to migrate data from.
+func (o ManagedDatabaseValkeyPropertiesMigrationPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyPropertiesMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
 type ManagedObjectStorageEndpoint struct {
 	// Domain name of the endpoint.
 	DomainName *string `pulumi:"domainName"`
@@ -16552,7 +21230,7 @@ func (o RouterStaticRouteArrayOutput) Index(i pulumi.IntInput) RouterStaticRoute
 }
 
 type ServerFirewallRulesFirewallRule struct {
-	// Action to take if the rule conditions are met
+	// Action to take if the rule conditions are met. Valid values `accept | drop`
 	Action string `pulumi:"action"`
 	// Freeform comment string for the rule
 	Comment *string `pulumi:"comment"`
@@ -16594,7 +21272,7 @@ type ServerFirewallRulesFirewallRuleInput interface {
 }
 
 type ServerFirewallRulesFirewallRuleArgs struct {
-	// Action to take if the rule conditions are met
+	// Action to take if the rule conditions are met. Valid values `accept | drop`
 	Action pulumi.StringInput `pulumi:"action"`
 	// Freeform comment string for the rule
 	Comment pulumi.StringPtrInput `pulumi:"comment"`
@@ -16675,7 +21353,7 @@ func (o ServerFirewallRulesFirewallRuleOutput) ToServerFirewallRulesFirewallRule
 	return o
 }
 
-// Action to take if the rule conditions are met
+// Action to take if the rule conditions are met. Valid values `accept | drop`
 func (o ServerFirewallRulesFirewallRuleOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerFirewallRulesFirewallRule) string { return v.Action }).(pulumi.StringOutput)
 }
@@ -16960,19 +21638,21 @@ func (o ServerLoginPtrOutput) User() pulumi.StringPtrOutput {
 }
 
 type ServerNetworkInterface struct {
-	// 0-4 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+	// 0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
 	AdditionalIpAddresses []ServerNetworkInterfaceAdditionalIpAddress `pulumi:"additionalIpAddresses"`
 	// `true` if this interface should be used for network booting.
 	Bootable *bool `pulumi:"bootable"`
-	// The assigned primary IP address.
+	// The interface index.
+	Index *int `pulumi:"index"`
+	// The primary IP address of this interface.
 	IpAddress *string `pulumi:"ipAddress"`
 	// The type of the primary IP address of this interface (one of `IPv4` or `IPv6`).
 	IpAddressFamily *string `pulumi:"ipAddressFamily"`
 	// `true` indicates that the primary IP address is a floating IP address.
 	IpAddressFloating *bool `pulumi:"ipAddressFloating"`
-	// The assigned MAC address.
+	// The MAC address of the interface.
 	MacAddress *string `pulumi:"macAddress"`
-	// The unique ID of a network to attach this network to.
+	// The UUID of the network to attach this interface to. Required for private network interfaces.
 	Network *string `pulumi:"network"`
 	// `true` if source IP should be filtered.
 	SourceIpFiltering *bool `pulumi:"sourceIpFiltering"`
@@ -16992,19 +21672,21 @@ type ServerNetworkInterfaceInput interface {
 }
 
 type ServerNetworkInterfaceArgs struct {
-	// 0-4 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+	// 0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
 	AdditionalIpAddresses ServerNetworkInterfaceAdditionalIpAddressArrayInput `pulumi:"additionalIpAddresses"`
 	// `true` if this interface should be used for network booting.
 	Bootable pulumi.BoolPtrInput `pulumi:"bootable"`
-	// The assigned primary IP address.
+	// The interface index.
+	Index pulumi.IntPtrInput `pulumi:"index"`
+	// The primary IP address of this interface.
 	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
 	// The type of the primary IP address of this interface (one of `IPv4` or `IPv6`).
 	IpAddressFamily pulumi.StringPtrInput `pulumi:"ipAddressFamily"`
 	// `true` indicates that the primary IP address is a floating IP address.
 	IpAddressFloating pulumi.BoolPtrInput `pulumi:"ipAddressFloating"`
-	// The assigned MAC address.
+	// The MAC address of the interface.
 	MacAddress pulumi.StringPtrInput `pulumi:"macAddress"`
-	// The unique ID of a network to attach this network to.
+	// The UUID of the network to attach this interface to. Required for private network interfaces.
 	Network pulumi.StringPtrInput `pulumi:"network"`
 	// `true` if source IP should be filtered.
 	SourceIpFiltering pulumi.BoolPtrInput `pulumi:"sourceIpFiltering"`
@@ -17063,7 +21745,7 @@ func (o ServerNetworkInterfaceOutput) ToServerNetworkInterfaceOutputWithContext(
 	return o
 }
 
-// 0-4 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+// 0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
 func (o ServerNetworkInterfaceOutput) AdditionalIpAddresses() ServerNetworkInterfaceAdditionalIpAddressArrayOutput {
 	return o.ApplyT(func(v ServerNetworkInterface) []ServerNetworkInterfaceAdditionalIpAddress {
 		return v.AdditionalIpAddresses
@@ -17075,7 +21757,12 @@ func (o ServerNetworkInterfaceOutput) Bootable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServerNetworkInterface) *bool { return v.Bootable }).(pulumi.BoolPtrOutput)
 }
 
-// The assigned primary IP address.
+// The interface index.
+func (o ServerNetworkInterfaceOutput) Index() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServerNetworkInterface) *int { return v.Index }).(pulumi.IntPtrOutput)
+}
+
+// The primary IP address of this interface.
 func (o ServerNetworkInterfaceOutput) IpAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerNetworkInterface) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
 }
@@ -17090,12 +21777,12 @@ func (o ServerNetworkInterfaceOutput) IpAddressFloating() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServerNetworkInterface) *bool { return v.IpAddressFloating }).(pulumi.BoolPtrOutput)
 }
 
-// The assigned MAC address.
+// The MAC address of the interface.
 func (o ServerNetworkInterfaceOutput) MacAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerNetworkInterface) *string { return v.MacAddress }).(pulumi.StringPtrOutput)
 }
 
-// The unique ID of a network to attach this network to.
+// The UUID of the network to attach this interface to. Required for private network interfaces.
 func (o ServerNetworkInterfaceOutput) Network() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerNetworkInterface) *string { return v.Network }).(pulumi.StringPtrOutput)
 }
@@ -17131,9 +21818,9 @@ func (o ServerNetworkInterfaceArrayOutput) Index(i pulumi.IntInput) ServerNetwor
 }
 
 type ServerNetworkInterfaceAdditionalIpAddress struct {
-	// The assigned additional IP address.
+	// An additional IP address for this interface.
 	IpAddress *string `pulumi:"ipAddress"`
-	// The type of this additional IP address of this interface (one of `IPv4` or `IPv6`).
+	// The type of the additional IP address of this interface (one of `IPv4` or `IPv6`).
 	IpAddressFamily *string `pulumi:"ipAddressFamily"`
 	// `true` indicates that the additional IP address is a floating IP address.
 	IpAddressFloating *bool `pulumi:"ipAddressFloating"`
@@ -17151,9 +21838,9 @@ type ServerNetworkInterfaceAdditionalIpAddressInput interface {
 }
 
 type ServerNetworkInterfaceAdditionalIpAddressArgs struct {
-	// The assigned additional IP address.
+	// An additional IP address for this interface.
 	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
-	// The type of this additional IP address of this interface (one of `IPv4` or `IPv6`).
+	// The type of the additional IP address of this interface (one of `IPv4` or `IPv6`).
 	IpAddressFamily pulumi.StringPtrInput `pulumi:"ipAddressFamily"`
 	// `true` indicates that the additional IP address is a floating IP address.
 	IpAddressFloating pulumi.BoolPtrInput `pulumi:"ipAddressFloating"`
@@ -17210,12 +21897,12 @@ func (o ServerNetworkInterfaceAdditionalIpAddressOutput) ToServerNetworkInterfac
 	return o
 }
 
-// The assigned additional IP address.
+// An additional IP address for this interface.
 func (o ServerNetworkInterfaceAdditionalIpAddressOutput) IpAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerNetworkInterfaceAdditionalIpAddress) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
 }
 
-// The type of this additional IP address of this interface (one of `IPv4` or `IPv6`).
+// The type of the additional IP address of this interface (one of `IPv4` or `IPv6`).
 func (o ServerNetworkInterfaceAdditionalIpAddressOutput) IpAddressFamily() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerNetworkInterfaceAdditionalIpAddress) *string { return v.IpAddressFamily }).(pulumi.StringPtrOutput)
 }
@@ -17247,9 +21934,9 @@ func (o ServerNetworkInterfaceAdditionalIpAddressArrayOutput) Index(i pulumi.Int
 
 type ServerSimpleBackup struct {
 	// Simple backup plan. Accepted values: daily, dailies, weeklies, monthlies.
-	Plan string `pulumi:"plan"`
+	Plan *string `pulumi:"plan"`
 	// Time of the day at which backup will be taken. Should be provided in a hhmm format (e.g. 2230).
-	Time string `pulumi:"time"`
+	Time *string `pulumi:"time"`
 }
 
 // ServerSimpleBackupInput is an input type that accepts ServerSimpleBackupArgs and ServerSimpleBackupOutput values.
@@ -17265,9 +21952,9 @@ type ServerSimpleBackupInput interface {
 
 type ServerSimpleBackupArgs struct {
 	// Simple backup plan. Accepted values: daily, dailies, weeklies, monthlies.
-	Plan pulumi.StringInput `pulumi:"plan"`
+	Plan pulumi.StringPtrInput `pulumi:"plan"`
 	// Time of the day at which backup will be taken. Should be provided in a hhmm format (e.g. 2230).
-	Time pulumi.StringInput `pulumi:"time"`
+	Time pulumi.StringPtrInput `pulumi:"time"`
 }
 
 func (ServerSimpleBackupArgs) ElementType() reflect.Type {
@@ -17348,13 +22035,13 @@ func (o ServerSimpleBackupOutput) ToServerSimpleBackupPtrOutputWithContext(ctx c
 }
 
 // Simple backup plan. Accepted values: daily, dailies, weeklies, monthlies.
-func (o ServerSimpleBackupOutput) Plan() pulumi.StringOutput {
-	return o.ApplyT(func(v ServerSimpleBackup) string { return v.Plan }).(pulumi.StringOutput)
+func (o ServerSimpleBackupOutput) Plan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerSimpleBackup) *string { return v.Plan }).(pulumi.StringPtrOutput)
 }
 
 // Time of the day at which backup will be taken. Should be provided in a hhmm format (e.g. 2230).
-func (o ServerSimpleBackupOutput) Time() pulumi.StringOutput {
-	return o.ApplyT(func(v ServerSimpleBackup) string { return v.Time }).(pulumi.StringOutput)
+func (o ServerSimpleBackupOutput) Time() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerSimpleBackup) *string { return v.Time }).(pulumi.StringPtrOutput)
 }
 
 type ServerSimpleBackupPtrOutput struct{ *pulumi.OutputState }
@@ -17387,7 +22074,7 @@ func (o ServerSimpleBackupPtrOutput) Plan() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.Plan
+		return v.Plan
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -17397,7 +22084,7 @@ func (o ServerSimpleBackupPtrOutput) Time() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.Time
+		return v.Time
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -17406,8 +22093,8 @@ type ServerStorageDevice struct {
 	Address *string `pulumi:"address"`
 	// The device position in the given bus (defined via field `address`). Valid values for address `virtio` are `0-15` (`0`, for example). Valid values for `scsi` or `ide` are `0-1:0-1` (`0:0`, for example). Leave empty to auto-select next available address in the given bus.
 	AddressPosition *string `pulumi:"addressPosition"`
-	// A valid storage UUID
-	Storage string `pulumi:"storage"`
+	// The UUID of the storage to attach to the server.
+	Storage *string `pulumi:"storage"`
 	// The device type the storage will be attached as
 	Type *string `pulumi:"type"`
 }
@@ -17428,8 +22115,8 @@ type ServerStorageDeviceArgs struct {
 	Address pulumi.StringPtrInput `pulumi:"address"`
 	// The device position in the given bus (defined via field `address`). Valid values for address `virtio` are `0-15` (`0`, for example). Valid values for `scsi` or `ide` are `0-1:0-1` (`0:0`, for example). Leave empty to auto-select next available address in the given bus.
 	AddressPosition pulumi.StringPtrInput `pulumi:"addressPosition"`
-	// A valid storage UUID
-	Storage pulumi.StringInput `pulumi:"storage"`
+	// The UUID of the storage to attach to the server.
+	Storage pulumi.StringPtrInput `pulumi:"storage"`
 	// The device type the storage will be attached as
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
@@ -17495,9 +22182,9 @@ func (o ServerStorageDeviceOutput) AddressPosition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerStorageDevice) *string { return v.AddressPosition }).(pulumi.StringPtrOutput)
 }
 
-// A valid storage UUID
-func (o ServerStorageDeviceOutput) Storage() pulumi.StringOutput {
-	return o.ApplyT(func(v ServerStorageDevice) string { return v.Storage }).(pulumi.StringOutput)
+// The UUID of the storage to attach to the server.
+func (o ServerStorageDeviceOutput) Storage() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerStorageDevice) *string { return v.Storage }).(pulumi.StringPtrOutput)
 }
 
 // The device type the storage will be attached as
@@ -17545,8 +22232,8 @@ type ServerTemplate struct {
 	// The size of the storage in gigabytes
 	Size *int `pulumi:"size"`
 	// A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
-	Storage string `pulumi:"storage"`
-	// The storage tier to use
+	Storage *string `pulumi:"storage"`
+	// The storage tier to use.
 	Tier *string `pulumi:"tier"`
 	// A short, informative description
 	Title *string `pulumi:"title"`
@@ -17583,8 +22270,8 @@ type ServerTemplateArgs struct {
 	// The size of the storage in gigabytes
 	Size pulumi.IntPtrInput `pulumi:"size"`
 	// A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
-	Storage pulumi.StringInput `pulumi:"storage"`
-	// The storage tier to use
+	Storage pulumi.StringPtrInput `pulumi:"storage"`
+	// The storage tier to use.
 	Tier pulumi.StringPtrInput `pulumi:"tier"`
 	// A short, informative description
 	Title pulumi.StringPtrInput `pulumi:"title"`
@@ -17711,11 +22398,11 @@ func (o ServerTemplateOutput) Size() pulumi.IntPtrOutput {
 }
 
 // A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
-func (o ServerTemplateOutput) Storage() pulumi.StringOutput {
-	return o.ApplyT(func(v ServerTemplate) string { return v.Storage }).(pulumi.StringOutput)
+func (o ServerTemplateOutput) Storage() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerTemplate) *string { return v.Storage }).(pulumi.StringPtrOutput)
 }
 
-// The storage tier to use
+// The storage tier to use.
 func (o ServerTemplateOutput) Tier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerTemplate) *string { return v.Tier }).(pulumi.StringPtrOutput)
 }
@@ -17838,11 +22525,11 @@ func (o ServerTemplatePtrOutput) Storage() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.Storage
+		return v.Storage
 	}).(pulumi.StringPtrOutput)
 }
 
-// The storage tier to use
+// The storage tier to use.
 func (o ServerTemplatePtrOutput) Tier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerTemplate) *string {
 		if v == nil {
@@ -19693,6 +24380,249 @@ func (o GetManagedDatabaseRedisSessionsSessionArrayOutput) Index(i pulumi.IntInp
 	}).(GetManagedDatabaseRedisSessionsSessionOutput)
 }
 
+type GetManagedDatabaseValkeySessionsSession struct {
+	// Number of active channel subscriptions
+	ActiveChannelSubscriptions int `pulumi:"activeChannelSubscriptions"`
+	// Current database ID
+	ActiveDatabase string `pulumi:"activeDatabase"`
+	// Number of pattern matching subscriptions.
+	ActivePatternMatchingChannelSubscriptions int `pulumi:"activePatternMatchingChannelSubscriptions"`
+	// Name of the application that is connected to this service.
+	ApplicationName string `pulumi:"applicationName"`
+	// Number of pattern matching subscriptions.
+	ClientAddr string `pulumi:"clientAddr"`
+	// Total duration of the connection in nanoseconds.
+	ConnectionAge int `pulumi:"connectionAge"`
+	// Idle time of the connection in nanoseconds.
+	ConnectionIdle int `pulumi:"connectionIdle"`
+	// A set containing flags' descriptions.
+	Flags []string `pulumi:"flags"`
+	// Client connection flags in raw string format.
+	FlagsRaw string `pulumi:"flagsRaw"`
+	// Process ID of this session.
+	Id string `pulumi:"id"`
+	// Number of commands in a MULTI/EXEC context.
+	MultiExecCommands int `pulumi:"multiExecCommands"`
+	// Output buffer length.
+	OutputBuffer int `pulumi:"outputBuffer"`
+	// Output buffer memory usage.
+	OutputBufferMemory int `pulumi:"outputBufferMemory"`
+	// Output list length (replies are queued in this list when the buffer is full).
+	OutputListLength int `pulumi:"outputListLength"`
+	// The last executed command.
+	Query string `pulumi:"query"`
+	// Query buffer length (0 means no query pending).
+	QueryBuffer int `pulumi:"queryBuffer"`
+	// Free space of the query buffer (0 means the buffer is full).
+	QueryBufferFree int `pulumi:"queryBufferFree"`
+}
+
+// GetManagedDatabaseValkeySessionsSessionInput is an input type that accepts GetManagedDatabaseValkeySessionsSessionArgs and GetManagedDatabaseValkeySessionsSessionOutput values.
+// You can construct a concrete instance of `GetManagedDatabaseValkeySessionsSessionInput` via:
+//
+//	GetManagedDatabaseValkeySessionsSessionArgs{...}
+type GetManagedDatabaseValkeySessionsSessionInput interface {
+	pulumi.Input
+
+	ToGetManagedDatabaseValkeySessionsSessionOutput() GetManagedDatabaseValkeySessionsSessionOutput
+	ToGetManagedDatabaseValkeySessionsSessionOutputWithContext(context.Context) GetManagedDatabaseValkeySessionsSessionOutput
+}
+
+type GetManagedDatabaseValkeySessionsSessionArgs struct {
+	// Number of active channel subscriptions
+	ActiveChannelSubscriptions pulumi.IntInput `pulumi:"activeChannelSubscriptions"`
+	// Current database ID
+	ActiveDatabase pulumi.StringInput `pulumi:"activeDatabase"`
+	// Number of pattern matching subscriptions.
+	ActivePatternMatchingChannelSubscriptions pulumi.IntInput `pulumi:"activePatternMatchingChannelSubscriptions"`
+	// Name of the application that is connected to this service.
+	ApplicationName pulumi.StringInput `pulumi:"applicationName"`
+	// Number of pattern matching subscriptions.
+	ClientAddr pulumi.StringInput `pulumi:"clientAddr"`
+	// Total duration of the connection in nanoseconds.
+	ConnectionAge pulumi.IntInput `pulumi:"connectionAge"`
+	// Idle time of the connection in nanoseconds.
+	ConnectionIdle pulumi.IntInput `pulumi:"connectionIdle"`
+	// A set containing flags' descriptions.
+	Flags pulumi.StringArrayInput `pulumi:"flags"`
+	// Client connection flags in raw string format.
+	FlagsRaw pulumi.StringInput `pulumi:"flagsRaw"`
+	// Process ID of this session.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Number of commands in a MULTI/EXEC context.
+	MultiExecCommands pulumi.IntInput `pulumi:"multiExecCommands"`
+	// Output buffer length.
+	OutputBuffer pulumi.IntInput `pulumi:"outputBuffer"`
+	// Output buffer memory usage.
+	OutputBufferMemory pulumi.IntInput `pulumi:"outputBufferMemory"`
+	// Output list length (replies are queued in this list when the buffer is full).
+	OutputListLength pulumi.IntInput `pulumi:"outputListLength"`
+	// The last executed command.
+	Query pulumi.StringInput `pulumi:"query"`
+	// Query buffer length (0 means no query pending).
+	QueryBuffer pulumi.IntInput `pulumi:"queryBuffer"`
+	// Free space of the query buffer (0 means the buffer is full).
+	QueryBufferFree pulumi.IntInput `pulumi:"queryBufferFree"`
+}
+
+func (GetManagedDatabaseValkeySessionsSessionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetManagedDatabaseValkeySessionsSession)(nil)).Elem()
+}
+
+func (i GetManagedDatabaseValkeySessionsSessionArgs) ToGetManagedDatabaseValkeySessionsSessionOutput() GetManagedDatabaseValkeySessionsSessionOutput {
+	return i.ToGetManagedDatabaseValkeySessionsSessionOutputWithContext(context.Background())
+}
+
+func (i GetManagedDatabaseValkeySessionsSessionArgs) ToGetManagedDatabaseValkeySessionsSessionOutputWithContext(ctx context.Context) GetManagedDatabaseValkeySessionsSessionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetManagedDatabaseValkeySessionsSessionOutput)
+}
+
+// GetManagedDatabaseValkeySessionsSessionArrayInput is an input type that accepts GetManagedDatabaseValkeySessionsSessionArray and GetManagedDatabaseValkeySessionsSessionArrayOutput values.
+// You can construct a concrete instance of `GetManagedDatabaseValkeySessionsSessionArrayInput` via:
+//
+//	GetManagedDatabaseValkeySessionsSessionArray{ GetManagedDatabaseValkeySessionsSessionArgs{...} }
+type GetManagedDatabaseValkeySessionsSessionArrayInput interface {
+	pulumi.Input
+
+	ToGetManagedDatabaseValkeySessionsSessionArrayOutput() GetManagedDatabaseValkeySessionsSessionArrayOutput
+	ToGetManagedDatabaseValkeySessionsSessionArrayOutputWithContext(context.Context) GetManagedDatabaseValkeySessionsSessionArrayOutput
+}
+
+type GetManagedDatabaseValkeySessionsSessionArray []GetManagedDatabaseValkeySessionsSessionInput
+
+func (GetManagedDatabaseValkeySessionsSessionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetManagedDatabaseValkeySessionsSession)(nil)).Elem()
+}
+
+func (i GetManagedDatabaseValkeySessionsSessionArray) ToGetManagedDatabaseValkeySessionsSessionArrayOutput() GetManagedDatabaseValkeySessionsSessionArrayOutput {
+	return i.ToGetManagedDatabaseValkeySessionsSessionArrayOutputWithContext(context.Background())
+}
+
+func (i GetManagedDatabaseValkeySessionsSessionArray) ToGetManagedDatabaseValkeySessionsSessionArrayOutputWithContext(ctx context.Context) GetManagedDatabaseValkeySessionsSessionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetManagedDatabaseValkeySessionsSessionArrayOutput)
+}
+
+type GetManagedDatabaseValkeySessionsSessionOutput struct{ *pulumi.OutputState }
+
+func (GetManagedDatabaseValkeySessionsSessionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetManagedDatabaseValkeySessionsSession)(nil)).Elem()
+}
+
+func (o GetManagedDatabaseValkeySessionsSessionOutput) ToGetManagedDatabaseValkeySessionsSessionOutput() GetManagedDatabaseValkeySessionsSessionOutput {
+	return o
+}
+
+func (o GetManagedDatabaseValkeySessionsSessionOutput) ToGetManagedDatabaseValkeySessionsSessionOutputWithContext(ctx context.Context) GetManagedDatabaseValkeySessionsSessionOutput {
+	return o
+}
+
+// Number of active channel subscriptions
+func (o GetManagedDatabaseValkeySessionsSessionOutput) ActiveChannelSubscriptions() pulumi.IntOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) int { return v.ActiveChannelSubscriptions }).(pulumi.IntOutput)
+}
+
+// Current database ID
+func (o GetManagedDatabaseValkeySessionsSessionOutput) ActiveDatabase() pulumi.StringOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) string { return v.ActiveDatabase }).(pulumi.StringOutput)
+}
+
+// Number of pattern matching subscriptions.
+func (o GetManagedDatabaseValkeySessionsSessionOutput) ActivePatternMatchingChannelSubscriptions() pulumi.IntOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) int {
+		return v.ActivePatternMatchingChannelSubscriptions
+	}).(pulumi.IntOutput)
+}
+
+// Name of the application that is connected to this service.
+func (o GetManagedDatabaseValkeySessionsSessionOutput) ApplicationName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) string { return v.ApplicationName }).(pulumi.StringOutput)
+}
+
+// Number of pattern matching subscriptions.
+func (o GetManagedDatabaseValkeySessionsSessionOutput) ClientAddr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) string { return v.ClientAddr }).(pulumi.StringOutput)
+}
+
+// Total duration of the connection in nanoseconds.
+func (o GetManagedDatabaseValkeySessionsSessionOutput) ConnectionAge() pulumi.IntOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) int { return v.ConnectionAge }).(pulumi.IntOutput)
+}
+
+// Idle time of the connection in nanoseconds.
+func (o GetManagedDatabaseValkeySessionsSessionOutput) ConnectionIdle() pulumi.IntOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) int { return v.ConnectionIdle }).(pulumi.IntOutput)
+}
+
+// A set containing flags' descriptions.
+func (o GetManagedDatabaseValkeySessionsSessionOutput) Flags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) []string { return v.Flags }).(pulumi.StringArrayOutput)
+}
+
+// Client connection flags in raw string format.
+func (o GetManagedDatabaseValkeySessionsSessionOutput) FlagsRaw() pulumi.StringOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) string { return v.FlagsRaw }).(pulumi.StringOutput)
+}
+
+// Process ID of this session.
+func (o GetManagedDatabaseValkeySessionsSessionOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Number of commands in a MULTI/EXEC context.
+func (o GetManagedDatabaseValkeySessionsSessionOutput) MultiExecCommands() pulumi.IntOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) int { return v.MultiExecCommands }).(pulumi.IntOutput)
+}
+
+// Output buffer length.
+func (o GetManagedDatabaseValkeySessionsSessionOutput) OutputBuffer() pulumi.IntOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) int { return v.OutputBuffer }).(pulumi.IntOutput)
+}
+
+// Output buffer memory usage.
+func (o GetManagedDatabaseValkeySessionsSessionOutput) OutputBufferMemory() pulumi.IntOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) int { return v.OutputBufferMemory }).(pulumi.IntOutput)
+}
+
+// Output list length (replies are queued in this list when the buffer is full).
+func (o GetManagedDatabaseValkeySessionsSessionOutput) OutputListLength() pulumi.IntOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) int { return v.OutputListLength }).(pulumi.IntOutput)
+}
+
+// The last executed command.
+func (o GetManagedDatabaseValkeySessionsSessionOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) string { return v.Query }).(pulumi.StringOutput)
+}
+
+// Query buffer length (0 means no query pending).
+func (o GetManagedDatabaseValkeySessionsSessionOutput) QueryBuffer() pulumi.IntOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) int { return v.QueryBuffer }).(pulumi.IntOutput)
+}
+
+// Free space of the query buffer (0 means the buffer is full).
+func (o GetManagedDatabaseValkeySessionsSessionOutput) QueryBufferFree() pulumi.IntOutput {
+	return o.ApplyT(func(v GetManagedDatabaseValkeySessionsSession) int { return v.QueryBufferFree }).(pulumi.IntOutput)
+}
+
+type GetManagedDatabaseValkeySessionsSessionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetManagedDatabaseValkeySessionsSessionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetManagedDatabaseValkeySessionsSession)(nil)).Elem()
+}
+
+func (o GetManagedDatabaseValkeySessionsSessionArrayOutput) ToGetManagedDatabaseValkeySessionsSessionArrayOutput() GetManagedDatabaseValkeySessionsSessionArrayOutput {
+	return o
+}
+
+func (o GetManagedDatabaseValkeySessionsSessionArrayOutput) ToGetManagedDatabaseValkeySessionsSessionArrayOutputWithContext(ctx context.Context) GetManagedDatabaseValkeySessionsSessionArrayOutput {
+	return o
+}
+
+func (o GetManagedDatabaseValkeySessionsSessionArrayOutput) Index(i pulumi.IntInput) GetManagedDatabaseValkeySessionsSessionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetManagedDatabaseValkeySessionsSession {
+		return vs[0].([]GetManagedDatabaseValkeySessionsSession)[vs[1].(int)]
+	}).(GetManagedDatabaseValkeySessionsSessionOutput)
+}
+
 type GetManagedObjectStoragePoliciesPolicy struct {
 	// Policy ARN.
 	Arn string `pulumi:"arn"`
@@ -20534,6 +25464,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsHttpReturnArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsHttpReturnArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsSetForwardedHeaderInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsSetForwardedHeaderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsSetForwardedHeaderArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsSetForwardedHeaderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsSetRequestHeaderInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsSetRequestHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsSetRequestHeaderArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsSetRequestHeaderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsSetResponseHeaderInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsSetResponseHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsSetResponseHeaderArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsSetResponseHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsTcpRejectInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsTcpRejectArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsTcpRejectArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsTcpRejectArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsUseBackendInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsUseBackendArgs{})
@@ -20552,10 +25486,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersHostArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersHostArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersHttpMethodInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersHttpMethodArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersHttpMethodArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersHttpMethodArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersHttpStatusInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersHttpStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersHttpStatusArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersHttpStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersHttpStatusRangeInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersHttpStatusRangeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersNumMembersUpInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersNumMembersUpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersNumMembersUpArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersNumMembersUpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersPathInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersPathArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersPathArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersPathArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersRequestHeaderInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersRequestHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersRequestHeaderArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersRequestHeaderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersResponseHeaderInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersResponseHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersResponseHeaderArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersResponseHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersSrcIpInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersSrcIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersSrcIpArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersSrcIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersSrcPortInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersSrcPortArgs{})
@@ -20600,10 +25542,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAzureMigrationInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAzureMigrationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAzureMigrationPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAzureMigrationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesGcsMigrationInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesGcsMigrationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesGcsMigrationPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesGcsMigrationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexRollupInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesIndexRollupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexRollupPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesIndexRollupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexTemplateInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesIndexTemplateArgs{})
@@ -20612,10 +25554,36 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesOpenidPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesOpenidArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesOpensearchDashboardsInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesS3MigrationInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesS3MigrationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesS3MigrationPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesS3MigrationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSamlInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSamlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSamlPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSamlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressureInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSegrepInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSegrepArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSegrepPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSegrepArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressureInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlComponentInput)(nil)).Elem(), ManagedDatabasePostgresqlComponentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlComponentArrayInput)(nil)).Elem(), ManagedDatabasePostgresqlComponentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlNetworkInput)(nil)).Elem(), ManagedDatabasePostgresqlNetworkArgs{})
@@ -20650,6 +25618,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserPgAccessControlPtrInput)(nil)).Elem(), ManagedDatabaseUserPgAccessControlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserRedisAccessControlInput)(nil)).Elem(), ManagedDatabaseUserRedisAccessControlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserRedisAccessControlPtrInput)(nil)).Elem(), ManagedDatabaseUserRedisAccessControlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserValkeyAccessControlInput)(nil)).Elem(), ManagedDatabaseUserValkeyAccessControlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserValkeyAccessControlPtrInput)(nil)).Elem(), ManagedDatabaseUserValkeyAccessControlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseValkeyComponentInput)(nil)).Elem(), ManagedDatabaseValkeyComponentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseValkeyComponentArrayInput)(nil)).Elem(), ManagedDatabaseValkeyComponentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseValkeyNetworkInput)(nil)).Elem(), ManagedDatabaseValkeyNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseValkeyNetworkArrayInput)(nil)).Elem(), ManagedDatabaseValkeyNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseValkeyNodeStateInput)(nil)).Elem(), ManagedDatabaseValkeyNodeStateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseValkeyNodeStateArrayInput)(nil)).Elem(), ManagedDatabaseValkeyNodeStateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseValkeyPropertiesInput)(nil)).Elem(), ManagedDatabaseValkeyPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseValkeyPropertiesPtrInput)(nil)).Elem(), ManagedDatabaseValkeyPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseValkeyPropertiesMigrationInput)(nil)).Elem(), ManagedDatabaseValkeyPropertiesMigrationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseValkeyPropertiesMigrationPtrInput)(nil)).Elem(), ManagedDatabaseValkeyPropertiesMigrationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedObjectStorageEndpointInput)(nil)).Elem(), ManagedObjectStorageEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedObjectStorageEndpointArrayInput)(nil)).Elem(), ManagedObjectStorageEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedObjectStorageNetworkInput)(nil)).Elem(), ManagedObjectStorageNetworkArgs{})
@@ -20698,6 +25678,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedDatabasePostgresqlSessionsSessionArrayInput)(nil)).Elem(), GetManagedDatabasePostgresqlSessionsSessionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedDatabaseRedisSessionsSessionInput)(nil)).Elem(), GetManagedDatabaseRedisSessionsSessionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedDatabaseRedisSessionsSessionArrayInput)(nil)).Elem(), GetManagedDatabaseRedisSessionsSessionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedDatabaseValkeySessionsSessionInput)(nil)).Elem(), GetManagedDatabaseValkeySessionsSessionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedDatabaseValkeySessionsSessionArrayInput)(nil)).Elem(), GetManagedDatabaseValkeySessionsSessionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedObjectStoragePoliciesPolicyInput)(nil)).Elem(), GetManagedObjectStoragePoliciesPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedObjectStoragePoliciesPolicyArrayInput)(nil)).Elem(), GetManagedObjectStoragePoliciesPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedObjectStorageRegionsRegionInput)(nil)).Elem(), GetManagedObjectStorageRegionsRegionArgs{})
@@ -20743,6 +25725,10 @@ func init() {
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsHttpReturnArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsSetForwardedHeaderOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsSetForwardedHeaderArrayOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsSetRequestHeaderOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsSetRequestHeaderArrayOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsSetResponseHeaderOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsSetResponseHeaderArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsTcpRejectOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsTcpRejectArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsUseBackendOutput{})
@@ -20761,10 +25747,18 @@ func init() {
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersHostArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersHttpMethodOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersHttpMethodArrayOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersHttpStatusOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersHttpStatusArrayOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersHttpStatusRangeOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersHttpStatusRangeArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersNumMembersUpOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersNumMembersUpArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersPathOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersPathArrayOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersRequestHeaderOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersRequestHeaderArrayOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersResponseHeaderOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersResponseHeaderArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersSrcIpOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersSrcIpArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersSrcPortOutput{})
@@ -20809,10 +25803,10 @@ func init() {
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAzureMigrationOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAzureMigrationPtrOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesGcsMigrationOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesGcsMigrationPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesIndexRollupOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesIndexTemplateOutput{})
@@ -20821,10 +25815,36 @@ func init() {
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesOpenidPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesOpensearchDashboardsOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesS3MigrationOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesS3MigrationPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSamlOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSamlPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchBackpressurePtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSegrepOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSegrepPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesShardIndexingPressureOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodePtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabasePostgresqlComponentOutput{})
 	pulumi.RegisterOutputType(ManagedDatabasePostgresqlComponentArrayOutput{})
 	pulumi.RegisterOutputType(ManagedDatabasePostgresqlNetworkOutput{})
@@ -20859,6 +25879,18 @@ func init() {
 	pulumi.RegisterOutputType(ManagedDatabaseUserPgAccessControlPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseUserRedisAccessControlOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseUserRedisAccessControlPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseUserValkeyAccessControlOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseUserValkeyAccessControlPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseValkeyComponentOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseValkeyComponentArrayOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseValkeyNetworkOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseValkeyNetworkArrayOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseValkeyNodeStateOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseValkeyNodeStateArrayOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseValkeyPropertiesOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseValkeyPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseValkeyPropertiesMigrationOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseValkeyPropertiesMigrationPtrOutput{})
 	pulumi.RegisterOutputType(ManagedObjectStorageEndpointOutput{})
 	pulumi.RegisterOutputType(ManagedObjectStorageEndpointArrayOutput{})
 	pulumi.RegisterOutputType(ManagedObjectStorageNetworkOutput{})
@@ -20907,6 +25939,8 @@ func init() {
 	pulumi.RegisterOutputType(GetManagedDatabasePostgresqlSessionsSessionArrayOutput{})
 	pulumi.RegisterOutputType(GetManagedDatabaseRedisSessionsSessionOutput{})
 	pulumi.RegisterOutputType(GetManagedDatabaseRedisSessionsSessionArrayOutput{})
+	pulumi.RegisterOutputType(GetManagedDatabaseValkeySessionsSessionOutput{})
+	pulumi.RegisterOutputType(GetManagedDatabaseValkeySessionsSessionArrayOutput{})
 	pulumi.RegisterOutputType(GetManagedObjectStoragePoliciesPolicyOutput{})
 	pulumi.RegisterOutputType(GetManagedObjectStoragePoliciesPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetManagedObjectStorageRegionsRegionOutput{})

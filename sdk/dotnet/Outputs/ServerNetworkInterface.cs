@@ -14,7 +14,7 @@ namespace Pulumi.Upcloud.Outputs
     public sealed class ServerNetworkInterface
     {
         /// <summary>
-        /// 0-4 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+        /// 0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
         /// </summary>
         public readonly ImmutableArray<Outputs.ServerNetworkInterfaceAdditionalIpAddress> AdditionalIpAddresses;
         /// <summary>
@@ -22,7 +22,11 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly bool? Bootable;
         /// <summary>
-        /// The assigned primary IP address.
+        /// The interface index.
+        /// </summary>
+        public readonly int? Index;
+        /// <summary>
+        /// The primary IP address of this interface.
         /// </summary>
         public readonly string? IpAddress;
         /// <summary>
@@ -34,11 +38,11 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly bool? IpAddressFloating;
         /// <summary>
-        /// The assigned MAC address.
+        /// The MAC address of the interface.
         /// </summary>
         public readonly string? MacAddress;
         /// <summary>
-        /// The unique ID of a network to attach this network to.
+        /// The UUID of the network to attach this interface to. Required for private network interfaces.
         /// </summary>
         public readonly string? Network;
         /// <summary>
@@ -56,6 +60,8 @@ namespace Pulumi.Upcloud.Outputs
 
             bool? bootable,
 
+            int? index,
+
             string? ipAddress,
 
             string? ipAddressFamily,
@@ -72,6 +78,7 @@ namespace Pulumi.Upcloud.Outputs
         {
             AdditionalIpAddresses = additionalIpAddresses;
             Bootable = bootable;
+            Index = index;
             IpAddress = ipAddress;
             IpAddressFamily = ipAddressFamily;
             IpAddressFloating = ipAddressFloating;

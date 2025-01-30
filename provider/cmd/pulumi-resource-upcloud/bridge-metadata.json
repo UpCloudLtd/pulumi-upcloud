@@ -202,6 +202,12 @@
                                 "set_forwarded_headers": {
                                     "maxItemsOne": false
                                 },
+                                "set_request_header": {
+                                    "maxItemsOne": false
+                                },
+                                "set_response_header": {
+                                    "maxItemsOne": false
+                                },
                                 "tcp_reject": {
                                     "maxItemsOne": false
                                 },
@@ -233,10 +239,22 @@
                                 "http_method": {
                                     "maxItemsOne": false
                                 },
+                                "http_status": {
+                                    "maxItemsOne": false
+                                },
+                                "http_status_range": {
+                                    "maxItemsOne": false
+                                },
                                 "num_members_up": {
                                     "maxItemsOne": false
                                 },
                                 "path": {
+                                    "maxItemsOne": false
+                                },
+                                "request_header": {
+                                    "maxItemsOne": false
+                                },
+                                "response_header": {
                                     "maxItemsOne": false
                                 },
                                 "src_ip": {
@@ -338,11 +356,15 @@
                                         }
                                     }
                                 },
-                                "azure_migration": {
-                                    "maxItemsOne": true
-                                },
-                                "gcs_migration": {
-                                    "maxItemsOne": true
+                                "cluster_search_request_slowlog": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "threshold": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
                                 },
                                 "index_patterns": {
                                     "maxItemsOne": false
@@ -365,11 +387,66 @@
                                 "reindex_remote_whitelist": {
                                     "maxItemsOne": false
                                 },
-                                "s3_migration": {
-                                    "maxItemsOne": true
-                                },
                                 "saml": {
                                     "maxItemsOne": true
+                                },
+                                "search_backpressure": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "node_duress": {
+                                                "maxItemsOne": true
+                                            },
+                                            "search_shard_task": {
+                                                "maxItemsOne": true
+                                            },
+                                            "search_task": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
+                                },
+                                "search_insights_top_queries": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "cpu": {
+                                                "maxItemsOne": true
+                                            },
+                                            "latency": {
+                                                "maxItemsOne": true
+                                            },
+                                            "memory": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
+                                },
+                                "segrep": {
+                                    "maxItemsOne": true
+                                },
+                                "shard_indexing_pressure": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "operating_factor": {
+                                                "maxItemsOne": true
+                                            },
+                                            "primary_parameter": {
+                                                "maxItemsOne": true,
+                                                "elem": {
+                                                    "fields": {
+                                                        "node": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "shard": {
+                                                            "maxItemsOne": true
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -480,6 +557,52 @@
                                 }
                             }
                         }
+                    },
+                    "valkey_access_control": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "categories": {
+                                    "maxItemsOne": true
+                                },
+                                "channels": {
+                                    "maxItemsOne": true
+                                },
+                                "commands": {
+                                    "maxItemsOne": true
+                                },
+                                "keys": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "upcloud_managed_database_valkey": {
+                "current": "upcloud:index/managedDatabaseValkey:ManagedDatabaseValkey",
+                "fields": {
+                    "components": {
+                        "maxItemsOne": false
+                    },
+                    "network": {
+                        "maxItemsOne": false
+                    },
+                    "node_states": {
+                        "maxItemsOne": false
+                    },
+                    "properties": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "ip_filter": {
+                                    "maxItemsOne": false
+                                },
+                                "migration": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -493,6 +616,9 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "upcloud_managed_object_storage_bucket": {
+                "current": "upcloud:index/managedObjectStorageBucket:ManagedObjectStorageBucket"
             },
             "upcloud_managed_object_storage_custom_domain": {
                 "current": "upcloud:index/managedObjectStorageCustomDomain:ManagedObjectStorageCustomDomain"
@@ -700,6 +826,21 @@
                     }
                 }
             },
+            "upcloud_managed_database_valkey_sessions": {
+                "current": "upcloud:index/getManagedDatabaseValkeySessions:getManagedDatabaseValkeySessions",
+                "fields": {
+                    "sessions": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "flags": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "upcloud_managed_object_storage_policies": {
                 "current": "upcloud:index/getManagedObjectStoragePolicies:getManagedObjectStoragePolicies",
                 "fields": {
@@ -784,6 +925,13 @@
     },
     "auto-settings": {
         "resources": {
+            "upcloud_server": {
+                "maxItemsOneOverrides": {
+                    "login": true,
+                    "simple_backup": true,
+                    "template.$.backup_rule": true
+                }
+            },
             "upcloud_storage": {
                 "maxItemsOneOverrides": {
                     "backup_rule": true,
@@ -801,7 +949,7 @@
             "upcloud:index/gatewayConnectionTunnel:GatewayConnectionTunnel": 0,
             "upcloud:index/kubernetesCluster:KubernetesCluster": 1,
             "upcloud:index/kubernetesNodeGroup:KubernetesNodeGroup": 1,
-            "upcloud:index/loadbalancer:Loadbalancer": 0,
+            "upcloud:index/loadbalancer:Loadbalancer": 1,
             "upcloud:index/loadbalancerBackend:LoadbalancerBackend": 1,
             "upcloud:index/loadbalancerBackendTlsConfig:LoadbalancerBackendTlsConfig": 1,
             "upcloud:index/loadbalancerDynamicBackendMember:LoadbalancerDynamicBackendMember": 1,
@@ -818,7 +966,9 @@
             "upcloud:index/managedDatabasePostgresql:ManagedDatabasePostgresql": 0,
             "upcloud:index/managedDatabaseRedis:ManagedDatabaseRedis": 0,
             "upcloud:index/managedDatabaseUser:ManagedDatabaseUser": 0,
+            "upcloud:index/managedDatabaseValkey:ManagedDatabaseValkey": 0,
             "upcloud:index/managedObjectStorage:ManagedObjectStorage": 0,
+            "upcloud:index/managedObjectStorageBucket:ManagedObjectStorageBucket": 1,
             "upcloud:index/managedObjectStorageCustomDomain:ManagedObjectStorageCustomDomain": 1,
             "upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy": 1,
             "upcloud:index/managedObjectStorageUser:ManagedObjectStorageUser": 0,
@@ -828,7 +978,7 @@
             "upcloud:index/networkPeering:NetworkPeering": 1,
             "upcloud:index/objectStorage:ObjectStorage": 0,
             "upcloud:index/router:Router": 1,
-            "upcloud:index/server:Server": 0,
+            "upcloud:index/server:Server": 1,
             "upcloud:index/serverFirewallRules:ServerFirewallRules": 0,
             "upcloud:index/serverGroup:ServerGroup": 1,
             "upcloud:index/storage:Storage": 1,
@@ -837,13 +987,14 @@
         },
         "functions": {
             "upcloud:index/getHosts:getHosts": 1,
-            "upcloud:index/getIpAddresses:getIpAddresses": 0,
+            "upcloud:index/getIpAddresses:getIpAddresses": 1,
             "upcloud:index/getKubernetesCluster:getKubernetesCluster": 1,
             "upcloud:index/getLoadBalancerDnsChallengeDomain:getLoadBalancerDnsChallengeDomain": 1,
             "upcloud:index/getManagedDatabaseMysqlSessions:getManagedDatabaseMysqlSessions": 0,
             "upcloud:index/getManagedDatabaseOpensearchIndices:getManagedDatabaseOpensearchIndices": 0,
             "upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions": 0,
             "upcloud:index/getManagedDatabaseRedisSessions:getManagedDatabaseRedisSessions": 0,
+            "upcloud:index/getManagedDatabaseValkeySessions:getManagedDatabaseValkeySessions": 0,
             "upcloud:index/getManagedObjectStoragePolicies:getManagedObjectStoragePolicies": 0,
             "upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions": 1,
             "upcloud:index/getNetworks:getNetworks": 0,

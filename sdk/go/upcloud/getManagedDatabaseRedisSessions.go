@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Current sessions of a Redis managed database
+// > Redis is deprecated in favor of Valkey. Please use Valkey for new key value store instances.
+//
+// # Current sessions of a Redis managed database
 //
 // ## Example Usage
 //
@@ -76,21 +78,11 @@ type GetManagedDatabaseRedisSessionsResult struct {
 }
 
 func GetManagedDatabaseRedisSessionsOutput(ctx *pulumi.Context, args GetManagedDatabaseRedisSessionsOutputArgs, opts ...pulumi.InvokeOption) GetManagedDatabaseRedisSessionsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetManagedDatabaseRedisSessionsResultOutput, error) {
 			args := v.(GetManagedDatabaseRedisSessionsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetManagedDatabaseRedisSessionsResult
-			secret, err := ctx.InvokePackageRaw("upcloud:index/getManagedDatabaseRedisSessions:getManagedDatabaseRedisSessions", args, &rv, "", opts...)
-			if err != nil {
-				return GetManagedDatabaseRedisSessionsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetManagedDatabaseRedisSessionsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetManagedDatabaseRedisSessionsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("upcloud:index/getManagedDatabaseRedisSessions:getManagedDatabaseRedisSessions", args, GetManagedDatabaseRedisSessionsResultOutput{}, options).(GetManagedDatabaseRedisSessionsResultOutput), nil
 		}).(GetManagedDatabaseRedisSessionsResultOutput)
 }
 

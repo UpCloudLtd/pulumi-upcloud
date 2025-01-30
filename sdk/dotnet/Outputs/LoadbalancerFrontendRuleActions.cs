@@ -26,6 +26,14 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsSetForwardedHeader> SetForwardedHeaders;
         /// <summary>
+        /// Set request header
+        /// </summary>
+        public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsSetRequestHeader> SetRequestHeaders;
+        /// <summary>
+        /// Set response header
+        /// </summary>
+        public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsSetResponseHeader> SetResponseHeaders;
+        /// <summary>
         /// Terminates a connection.
         /// </summary>
         public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsTcpReject> TcpRejects;
@@ -42,6 +50,10 @@ namespace Pulumi.Upcloud.Outputs
 
             ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsSetForwardedHeader> setForwardedHeaders,
 
+            ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsSetRequestHeader> setRequestHeaders,
+
+            ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsSetResponseHeader> setResponseHeaders,
+
             ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsTcpReject> tcpRejects,
 
             ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsUseBackend> useBackends)
@@ -49,6 +61,8 @@ namespace Pulumi.Upcloud.Outputs
             HttpRedirects = httpRedirects;
             HttpReturns = httpReturns;
             SetForwardedHeaders = setForwardedHeaders;
+            SetRequestHeaders = setRequestHeaders;
+            SetResponseHeaders = setResponseHeaders;
             TcpRejects = tcpRejects;
             UseBackends = useBackends;
         }

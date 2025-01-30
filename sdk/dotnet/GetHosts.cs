@@ -56,6 +56,29 @@ namespace Pulumi.Upcloud
         /// </summary>
         public static Output<GetHostsResult> Invoke(GetHostsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetHostsResult>("upcloud:index/getHosts:getHosts", args ?? new GetHostsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Returns a list of available UpCloud hosts. 
+        /// 		A host identifies the host server that virtual machines are run on. 
+        /// 		Only hosts on private cloud to which the calling account has access to are available through this resource.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Upcloud = Pulumi.Upcloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var allHosts = Upcloud.GetHosts.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetHostsResult> Invoke(GetHostsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetHostsResult>("upcloud:index/getHosts:getHosts", args ?? new GetHostsInvokeArgs(), options.WithDefaults());
     }
 
 

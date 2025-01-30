@@ -42,7 +42,7 @@ class LoadbalancerArgs:
                period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime
                of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
                HH:MM:SSZ, for example `20:01:01Z`.
-        :param pulumi.Input[str] name: The name of the service must be unique within customer account.
+        :param pulumi.Input[str] name: The name of the service. Must be unique within customer account.
         :param pulumi.Input[str] network: Private network UUID where traffic will be routed. Must reside in load balancer zone.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerNetworkArgs']]] networks: Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
         """
@@ -146,7 +146,7 @@ class LoadbalancerArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the service must be unique within customer account.
+        The name of the service. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 
@@ -211,13 +211,13 @@ class _LoadbalancerState:
                period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime
                of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
                HH:MM:SSZ, for example `20:01:01Z`.
-        :param pulumi.Input[str] name: The name of the service must be unique within customer account.
+        :param pulumi.Input[str] name: The name of the service. Must be unique within customer account.
         :param pulumi.Input[str] network: Private network UUID where traffic will be routed. Must reside in load balancer zone.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerNetworkArgs']]] networks: Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerNodeArgs']]] nodes: Nodes are instances running load balancer service
         :param pulumi.Input[str] operational_state: The service operational state indicates the service's current operational, effective state. Managed by the system.
         :param pulumi.Input[str] plan: Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] resolvers: Domain Name Resolvers must be configured in case of customer uses dynamic type members
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] resolvers: Domain Name Resolvers.
         :param pulumi.Input[str] zone: Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
         """
         if backends is not None:
@@ -350,7 +350,7 @@ class _LoadbalancerState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the service must be unique within customer account.
+        The name of the service. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 
@@ -423,7 +423,7 @@ class _LoadbalancerState:
     @pulumi.getter
     def resolvers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Domain Name Resolvers must be configured in case of customer uses dynamic type members
+        Domain Name Resolvers.
         """
         return pulumi.get(self, "resolvers")
 
@@ -508,7 +508,7 @@ class Loadbalancer(pulumi.CustomResource):
                period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime
                of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
                HH:MM:SSZ, for example `20:01:01Z`.
-        :param pulumi.Input[str] name: The name of the service must be unique within customer account.
+        :param pulumi.Input[str] name: The name of the service. Must be unique within customer account.
         :param pulumi.Input[str] network: Private network UUID where traffic will be routed. Must reside in load balancer zone.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict']]]] networks: Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
         :param pulumi.Input[str] plan: Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
@@ -654,13 +654,13 @@ class Loadbalancer(pulumi.CustomResource):
                period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime
                of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
                HH:MM:SSZ, for example `20:01:01Z`.
-        :param pulumi.Input[str] name: The name of the service must be unique within customer account.
+        :param pulumi.Input[str] name: The name of the service. Must be unique within customer account.
         :param pulumi.Input[str] network: Private network UUID where traffic will be routed. Must reside in load balancer zone.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict']]]] networks: Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNodeArgs', 'LoadbalancerNodeArgsDict']]]] nodes: Nodes are instances running load balancer service
         :param pulumi.Input[str] operational_state: The service operational state indicates the service's current operational, effective state. Managed by the system.
         :param pulumi.Input[str] plan: Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] resolvers: Domain Name Resolvers must be configured in case of customer uses dynamic type members
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] resolvers: Domain Name Resolvers.
         :param pulumi.Input[str] zone: Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -694,7 +694,7 @@ class Loadbalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="configuredStatus")
-    def configured_status(self) -> pulumi.Output[Optional[str]]:
+    def configured_status(self) -> pulumi.Output[str]:
         """
         The service configured status indicates the service's current intended status. Managed by the customer.
         """
@@ -719,7 +719,7 @@ class Loadbalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+    def labels(self) -> pulumi.Output[Mapping[str, str]]:
         """
         User defined key-value pairs to classify the load balancer.
         """
@@ -749,14 +749,14 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the service must be unique within customer account.
+        The name of the service. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     @_utilities.deprecated("""Use 'networks' to define networks attached to load balancer""")
-    def network(self) -> pulumi.Output[Optional[str]]:
+    def network(self) -> pulumi.Output[str]:
         """
         Private network UUID where traffic will be routed. Must reside in load balancer zone.
         """
@@ -798,7 +798,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter
     def resolvers(self) -> pulumi.Output[Sequence[str]]:
         """
-        Domain Name Resolvers must be configured in case of customer uses dynamic type members
+        Domain Name Resolvers.
         """
         return pulumi.get(self, "resolvers")
 

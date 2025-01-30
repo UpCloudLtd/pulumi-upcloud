@@ -25,13 +25,13 @@ namespace Pulumi.Upcloud.Inputs
         public Input<string> Family { get; set; } = null!;
 
         /// <summary>
-        /// Network identifier.
+        /// The unique identifier of the network.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// The name of the network must be unique within the service.
+        /// The name of the network. Must be unique within the service.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

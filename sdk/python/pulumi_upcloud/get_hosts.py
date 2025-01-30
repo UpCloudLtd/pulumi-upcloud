@@ -85,7 +85,7 @@ def get_hosts(hosts: Optional[Sequence[Union['GetHostsHostArgs', 'GetHostsHostAr
         hosts=pulumi.get(__ret__, 'hosts'),
         id=pulumi.get(__ret__, 'id'))
 def get_hosts_output(hosts: Optional[pulumi.Input[Optional[Sequence[Union['GetHostsHostArgs', 'GetHostsHostArgsDict']]]]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetHostsResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetHostsResult]:
     """
     Returns a list of available UpCloud hosts.
     		A host identifies the host server that virtual machines are run on.
@@ -102,7 +102,7 @@ def get_hosts_output(hosts: Optional[pulumi.Input[Optional[Sequence[Union['GetHo
     """
     __args__ = dict()
     __args__['hosts'] = hosts
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('upcloud:index/getHosts:getHosts', __args__, opts=opts, typ=GetHostsResult)
     return __ret__.apply(lambda __response__: GetHostsResult(
         hosts=pulumi.get(__response__, 'hosts'),

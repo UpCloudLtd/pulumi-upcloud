@@ -114,7 +114,11 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly ImmutableArray<string> IpFilters;
         /// <summary>
-        /// The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute. Default is 10s.
+        /// The slow log output destination when slow_query_log is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
+        /// </summary>
+        public readonly string? LogOutput;
+        /// <summary>
+        /// The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute.
         /// </summary>
         public readonly double? LongQueryTime;
         /// <summary>
@@ -150,7 +154,7 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly bool? ServiceLog;
         /// <summary>
-        /// Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table. Default is off.
+        /// Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table.
         /// </summary>
         public readonly bool? SlowQueryLog;
         /// <summary>
@@ -230,6 +234,8 @@ namespace Pulumi.Upcloud.Outputs
 
             ImmutableArray<string> ipFilters,
 
+            string? logOutput,
+
             double? longQueryTime,
 
             int? maxAllowedPacket,
@@ -287,6 +293,7 @@ namespace Pulumi.Upcloud.Outputs
             InteractiveTimeout = interactiveTimeout;
             InternalTmpMemStorageEngine = internalTmpMemStorageEngine;
             IpFilters = ipFilters;
+            LogOutput = logOutput;
             LongQueryTime = longQueryTime;
             MaxAllowedPacket = maxAllowedPacket;
             MaxHeapTableSize = maxHeapTableSize;

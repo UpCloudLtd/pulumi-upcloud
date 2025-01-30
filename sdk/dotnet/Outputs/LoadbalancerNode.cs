@@ -13,6 +13,9 @@ namespace Pulumi.Upcloud.Outputs
     [OutputType]
     public sealed class LoadbalancerNode
     {
+        /// <summary>
+        /// Networks attached to the node
+        /// </summary>
         public readonly ImmutableArray<Outputs.LoadbalancerNodeNetwork> Networks;
         /// <summary>
         /// Node's operational state. Managed by the system.

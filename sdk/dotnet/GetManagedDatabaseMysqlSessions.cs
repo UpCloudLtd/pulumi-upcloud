@@ -76,6 +76,39 @@ namespace Pulumi.Upcloud
         /// </summary>
         public static Output<GetManagedDatabaseMysqlSessionsResult> Invoke(GetManagedDatabaseMysqlSessionsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetManagedDatabaseMysqlSessionsResult>("upcloud:index/getManagedDatabaseMysqlSessions:getManagedDatabaseMysqlSessions", args ?? new GetManagedDatabaseMysqlSessionsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Current sessions of a MySQL managed database
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Upcloud = Pulumi.Upcloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Use data source to gather a list of the active sessions for a Managed MySQL Database
+        ///     // Create a Managed MySQL resource
+        ///     var exampleManagedDatabaseMysql = new Upcloud.ManagedDatabaseMysql("exampleManagedDatabaseMysql", new()
+        ///     {
+        ///         Title = "mysql-example1",
+        ///         Plan = "1x1xCPU-2GB-25GB",
+        ///         Zone = "fi-hel1",
+        ///     });
+        /// 
+        ///     var exampleManagedDatabaseMysqlSessions = Upcloud.GetManagedDatabaseMysqlSessions.Invoke(new()
+        ///     {
+        ///         Service = exampleManagedDatabaseMysql.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetManagedDatabaseMysqlSessionsResult> Invoke(GetManagedDatabaseMysqlSessionsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetManagedDatabaseMysqlSessionsResult>("upcloud:index/getManagedDatabaseMysqlSessions:getManagedDatabaseMysqlSessions", args ?? new GetManagedDatabaseMysqlSessionsInvokeArgs(), options.WithDefaults());
     }
 
 

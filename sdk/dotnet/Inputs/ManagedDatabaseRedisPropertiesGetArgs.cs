@@ -18,6 +18,18 @@ namespace Pulumi.Upcloud.Inputs
         [Input("automaticUtilityNetworkIpFilter")]
         public Input<bool>? AutomaticUtilityNetworkIpFilter { get; set; }
 
+        /// <summary>
+        /// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        /// </summary>
+        [Input("backupHour")]
+        public Input<int>? BackupHour { get; set; }
+
+        /// <summary>
+        /// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        /// </summary>
+        [Input("backupMinute")]
+        public Input<int>? BackupMinute { get; set; }
+
         [Input("ipFilters")]
         private InputList<string>? _ipFilters;
 

@@ -22,6 +22,10 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly int? MaxOldSpaceSize;
         /// <summary>
+        /// Enable or disable multiple data sources in OpenSearch Dashboards.
+        /// </summary>
+        public readonly bool? MultipleDataSourceEnabled;
+        /// <summary>
         /// Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
         /// </summary>
         public readonly int? OpensearchRequestTimeout;
@@ -32,10 +36,13 @@ namespace Pulumi.Upcloud.Outputs
 
             int? maxOldSpaceSize,
 
+            bool? multipleDataSourceEnabled,
+
             int? opensearchRequestTimeout)
         {
             Enabled = enabled;
             MaxOldSpaceSize = maxOldSpaceSize;
+            MultipleDataSourceEnabled = multipleDataSourceEnabled;
             OpensearchRequestTimeout = opensearchRequestTimeout;
         }
     }

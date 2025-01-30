@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * > Redis is deprecated in favor of Valkey. Please use Valkey for new key value store instances.
+ *
  * Current sessions of a Redis managed database
  *
  * ## Example Usage
@@ -64,6 +66,8 @@ export interface GetManagedDatabaseRedisSessionsResult {
     readonly sessions: outputs.GetManagedDatabaseRedisSessionsSession[];
 }
 /**
+ * > Redis is deprecated in favor of Valkey. Please use Valkey for new key value store instances.
+ *
  * Current sessions of a Redis managed database
  *
  * ## Example Usage
@@ -84,7 +88,7 @@ export interface GetManagedDatabaseRedisSessionsResult {
  * });
  * ```
  */
-export function getManagedDatabaseRedisSessionsOutput(args: GetManagedDatabaseRedisSessionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetManagedDatabaseRedisSessionsResult> {
+export function getManagedDatabaseRedisSessionsOutput(args: GetManagedDatabaseRedisSessionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetManagedDatabaseRedisSessionsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("upcloud:index/getManagedDatabaseRedisSessions:getManagedDatabaseRedisSessions", {
         "limit": args.limit,

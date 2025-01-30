@@ -84,7 +84,7 @@ export interface GetManagedDatabaseMysqlSessionsResult {
  * });
  * ```
  */
-export function getManagedDatabaseMysqlSessionsOutput(args: GetManagedDatabaseMysqlSessionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetManagedDatabaseMysqlSessionsResult> {
+export function getManagedDatabaseMysqlSessionsOutput(args: GetManagedDatabaseMysqlSessionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetManagedDatabaseMysqlSessionsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("upcloud:index/getManagedDatabaseMysqlSessions:getManagedDatabaseMysqlSessions", {
         "limit": args.limit,

@@ -393,6 +393,77 @@ export interface GetManagedDatabaseRedisSessionsSession {
     queryBufferFree: number;
 }
 
+export interface GetManagedDatabaseValkeySessionsSession {
+    /**
+     * Number of active channel subscriptions
+     */
+    activeChannelSubscriptions: number;
+    /**
+     * Current database ID
+     */
+    activeDatabase: string;
+    /**
+     * Number of pattern matching subscriptions.
+     */
+    activePatternMatchingChannelSubscriptions: number;
+    /**
+     * Name of the application that is connected to this service.
+     */
+    applicationName: string;
+    /**
+     * Number of pattern matching subscriptions.
+     */
+    clientAddr: string;
+    /**
+     * Total duration of the connection in nanoseconds.
+     */
+    connectionAge: number;
+    /**
+     * Idle time of the connection in nanoseconds.
+     */
+    connectionIdle: number;
+    /**
+     * A set containing flags' descriptions.
+     */
+    flags: string[];
+    /**
+     * Client connection flags in raw string format.
+     */
+    flagsRaw: string;
+    /**
+     * Process ID of this session.
+     */
+    id: string;
+    /**
+     * Number of commands in a MULTI/EXEC context.
+     */
+    multiExecCommands: number;
+    /**
+     * Output buffer length.
+     */
+    outputBuffer: number;
+    /**
+     * Output buffer memory usage.
+     */
+    outputBufferMemory: number;
+    /**
+     * Output list length (replies are queued in this list when the buffer is full).
+     */
+    outputListLength: number;
+    /**
+     * The last executed command.
+     */
+    query: string;
+    /**
+     * Query buffer length (0 means no query pending).
+     */
+    queryBuffer: number;
+    /**
+     * Free space of the query buffer (0 means the buffer is full).
+     */
+    queryBufferFree: number;
+}
+
 export interface GetManagedObjectStoragePoliciesPolicy {
     /**
      * Policy ARN.
@@ -679,6 +750,14 @@ export interface LoadbalancerFrontendRuleActions {
      */
     setForwardedHeaders?: outputs.LoadbalancerFrontendRuleActionsSetForwardedHeader[];
     /**
+     * Set request header
+     */
+    setRequestHeaders?: outputs.LoadbalancerFrontendRuleActionsSetRequestHeader[];
+    /**
+     * Set response header
+     */
+    setResponseHeaders?: outputs.LoadbalancerFrontendRuleActionsSetResponseHeader[];
+    /**
      * Terminates a connection.
      */
     tcpRejects?: outputs.LoadbalancerFrontendRuleActionsTcpReject[];
@@ -718,6 +797,28 @@ export interface LoadbalancerFrontendRuleActionsSetForwardedHeader {
     active: boolean;
 }
 
+export interface LoadbalancerFrontendRuleActionsSetRequestHeader {
+    /**
+     * Header name.
+     */
+    header: string;
+    /**
+     * Header value.
+     */
+    value?: string;
+}
+
+export interface LoadbalancerFrontendRuleActionsSetResponseHeader {
+    /**
+     * Header name.
+     */
+    header: string;
+    /**
+     * Header value.
+     */
+    value?: string;
+}
+
 export interface LoadbalancerFrontendRuleActionsTcpReject {
     /**
      * Indicates if the rule is active.
@@ -747,6 +848,8 @@ export interface LoadbalancerFrontendRuleMatchers {
     cookies?: outputs.LoadbalancerFrontendRuleMatchersCookie[];
     /**
      * Matches by HTTP header value. Header name must be provided.
+     *
+     * @deprecated Use `requestHeader` instead.
      */
     headers?: outputs.LoadbalancerFrontendRuleMatchersHeader[];
     /**
@@ -758,6 +861,14 @@ export interface LoadbalancerFrontendRuleMatchers {
      */
     httpMethods?: outputs.LoadbalancerFrontendRuleMatchersHttpMethod[];
     /**
+     * Matches by range of HTTP statuses.
+     */
+    httpStatusRanges?: outputs.LoadbalancerFrontendRuleMatchersHttpStatusRange[];
+    /**
+     * Matches by HTTP status.
+     */
+    httpStatuses?: outputs.LoadbalancerFrontendRuleMatchersHttpStatus[];
+    /**
      * Matches by number of healthy backend members.
      */
     numMembersUps?: outputs.LoadbalancerFrontendRuleMatchersNumMembersUp[];
@@ -765,6 +876,14 @@ export interface LoadbalancerFrontendRuleMatchers {
      * Matches by URL path.
      */
     paths?: outputs.LoadbalancerFrontendRuleMatchersPath[];
+    /**
+     * Matches by HTTP request header value. Header name must be provided.
+     */
+    requestHeaders?: outputs.LoadbalancerFrontendRuleMatchersRequestHeader[];
+    /**
+     * Matches by HTTP response header value. Header name must be provided.
+     */
+    responseHeaders?: outputs.LoadbalancerFrontendRuleMatchersResponseHeader[];
     /**
      * Matches by source IP address.
      */
@@ -889,6 +1008,36 @@ export interface LoadbalancerFrontendRuleMatchersHttpMethod {
     value: string;
 }
 
+export interface LoadbalancerFrontendRuleMatchersHttpStatus {
+    /**
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
+     */
+    inverse: boolean;
+    /**
+     * Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
+     */
+    method: string;
+    /**
+     * Integer value.
+     */
+    value: number;
+}
+
+export interface LoadbalancerFrontendRuleMatchersHttpStatusRange {
+    /**
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
+     */
+    inverse: boolean;
+    /**
+     * Integer value.
+     */
+    rangeEnd: number;
+    /**
+     * Integer value.
+     */
+    rangeStart: number;
+}
+
 export interface LoadbalancerFrontendRuleMatchersNumMembersUp {
     /**
      * The name of the `backend`.
@@ -921,6 +1070,52 @@ export interface LoadbalancerFrontendRuleMatchersPath {
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
     method: string;
+    /**
+     * String value.
+     */
+    value?: string;
+}
+
+export interface LoadbalancerFrontendRuleMatchersRequestHeader {
+    /**
+     * Defines if case should be ignored. Defaults to `false`.
+     */
+    ignoreCase: boolean;
+    /**
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
+     */
+    inverse: boolean;
+    /**
+     * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
+     */
+    method: string;
+    /**
+     * Name of the argument.
+     */
+    name: string;
+    /**
+     * String value.
+     */
+    value?: string;
+}
+
+export interface LoadbalancerFrontendRuleMatchersResponseHeader {
+    /**
+     * Defines if case should be ignored. Defaults to `false`.
+     */
+    ignoreCase: boolean;
+    /**
+     * Defines if the condition should be inverted. Works similarly to logical NOT operator.
+     */
+    inverse: boolean;
+    /**
+     * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
+     */
+    method: string;
+    /**
+     * Name of the argument.
+     */
+    name: string;
     /**
      * String value.
      */
@@ -1039,11 +1234,11 @@ export interface LoadbalancerNetwork {
      */
     family: string;
     /**
-     * Network identifier.
+     * The unique identifier of the network.
      */
     id: string;
     /**
-     * The name of the network must be unique within the service.
+     * The name of the network. Must be unique within the service.
      */
     name: string;
     /**
@@ -1057,6 +1252,9 @@ export interface LoadbalancerNetwork {
 }
 
 export interface LoadbalancerNode {
+    /**
+     * Networks attached to the node
+     */
     networks: outputs.LoadbalancerNodeNetwork[];
     /**
      * Node's operational state. Managed by the system.
@@ -1065,24 +1263,27 @@ export interface LoadbalancerNode {
 }
 
 export interface LoadbalancerNodeNetwork {
+    /**
+     * IP addresses attached to the network
+     */
     ipAddresses: outputs.LoadbalancerNodeNetworkIpAddress[];
     /**
-     * The name of the network.
+     * The name of the network
      */
     name: string;
     /**
-     * The type of the network.
+     * The type of the network
      */
     type: string;
 }
 
 export interface LoadbalancerNodeNetworkIpAddress {
     /**
-     * Node's IP address.
+     * Node's IP address
      */
     address: string;
     /**
-     * Does IP address listen network connections.
+     * Whether the node listens to the traffic
      */
     listen: boolean;
 }
@@ -1246,7 +1447,11 @@ export interface ManagedDatabaseMysqlProperties {
      */
     ipFilters: string[];
     /**
-     * The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute. Default is 10s.
+     * The slow log output destination when slowQueryLog is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
+     */
+    logOutput: string;
+    /**
+     * The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute.
      */
     longQueryTime: number;
     /**
@@ -1282,7 +1487,7 @@ export interface ManagedDatabaseMysqlProperties {
      */
     serviceLog: boolean;
     /**
-     * Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table. Default is off.
+     * Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table.
      */
     slowQueryLog: boolean;
     /**
@@ -1424,19 +1629,27 @@ export interface ManagedDatabaseOpensearchProperties {
      * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
      */
     automaticUtilityNetworkIpFilter?: boolean;
-    azureMigration: outputs.ManagedDatabaseOpensearchPropertiesAzureMigration;
     /**
      * Controls the number of shards allowed in the cluster per data node.
      */
     clusterMaxShardsPerNode: number;
     /**
-     * Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
+     * When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
+     */
+    clusterRoutingAllocationBalancePreferPrimary?: boolean;
+    /**
+     * Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
      */
     clusterRoutingAllocationNodeConcurrentRecoveries: number;
+    clusterSearchRequestSlowlog: outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog;
     /**
      * Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
      */
     customDomain: string;
+    /**
+     * Elasticsearch major version.
+     */
+    elasticsearchVersion: string;
     /**
      * Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
      */
@@ -1450,10 +1663,13 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     emailSenderUsername: string;
     /**
+     * Enable remote-backed storage.
+     */
+    enableRemoteBackedStorage: boolean;
+    /**
      * Enable/Disable security audit.
      */
     enableSecurityAudit: boolean;
-    gcsMigration: outputs.ManagedDatabaseOpensearchPropertiesGcsMigration;
     /**
      * Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
      */
@@ -1574,7 +1790,6 @@ export interface ManagedDatabaseOpensearchProperties {
      * Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
      */
     reindexRemoteWhitelists: string[];
-    s3Migration: outputs.ManagedDatabaseOpensearchPropertiesS3Migration;
     /**
      * OpenSearch SAML configuration.
      */
@@ -1584,13 +1799,26 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     scriptMaxCompilationsRate?: string;
     /**
+     * Search Backpressure Settings.
+     */
+    searchBackpressure: outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressure;
+    searchInsightsTopQueries: outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries;
+    /**
      * Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
      */
     searchMaxBuckets: number;
     /**
+     * Segment Replication Backpressure Settings.
+     */
+    segrep: outputs.ManagedDatabaseOpensearchPropertiesSegrep;
+    /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      */
     serviceLog: boolean;
+    /**
+     * Shard indexing back pressure settings.
+     */
+    shardIndexingPressure: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressure;
     /**
      * analyze thread pool queue size. Size for the thread pool queue. See documentation for exact details.
      */
@@ -1707,70 +1935,31 @@ export interface ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLi
     type: string;
 }
 
-export interface ManagedDatabaseOpensearchPropertiesAzureMigration {
+export interface ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog {
     /**
-     * Account name. Azure account name.
+     * Log level.
      */
-    account?: string;
-    /**
-     * The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-     */
-    basePath?: string;
-    /**
-     * Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-     */
-    chunkSize?: string;
-    /**
-     * Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-     */
-    compress: boolean;
-    /**
-     * Azure container name. Azure container name.
-     */
-    container?: string;
-    /**
-     * Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
-     */
-    endpointSuffix?: string;
-    /**
-     * Account secret key. Azure account secret key. One of key or sasToken should be specified.
-     */
-    key?: string;
-    /**
-     * SAS token. A shared access signatures (SAS) token. One of key or sasToken should be specified.
-     */
-    sasToken?: string;
-    /**
-     * The snapshot name to restore from. The snapshot name to restore from.
-     */
-    snapshotName?: string;
+    level: string;
+    threshold: outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold;
 }
 
-export interface ManagedDatabaseOpensearchPropertiesGcsMigration {
+export interface ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold {
     /**
-     * The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+     * Debug threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    basePath?: string;
+    debug?: string;
     /**
-     * The path to the repository data within its container. Google Cloud Storage bucket name.
+     * Info threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    bucket?: string;
+    info?: string;
     /**
-     * Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+     * Trace threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    chunkSize?: string;
+    trace?: string;
     /**
-     * Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+     * Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    compress: boolean;
-    /**
-     * Credentials. Google Cloud Storage credentials file content.
-     */
-    credentials?: string;
-    /**
-     * The snapshot name to restore from. The snapshot name to restore from.
-     */
-    snapshotName?: string;
+    warn?: string;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesIndexRollup {
@@ -1872,52 +2061,13 @@ export interface ManagedDatabaseOpensearchPropertiesOpensearchDashboards {
      */
     maxOldSpaceSize: number;
     /**
+     * Enable or disable multiple data sources in OpenSearch Dashboards.
+     */
+    multipleDataSourceEnabled: boolean;
+    /**
      * Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
      */
     opensearchRequestTimeout: number;
-}
-
-export interface ManagedDatabaseOpensearchPropertiesS3Migration {
-    /**
-     * AWS Access key. AWS Access key.
-     */
-    accessKey?: string;
-    /**
-     * The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-     */
-    basePath?: string;
-    /**
-     * S3 bucket name. S3 bucket name.
-     */
-    bucket?: string;
-    /**
-     * Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-     */
-    chunkSize?: string;
-    /**
-     * Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-     */
-    compress: boolean;
-    /**
-     * The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
-     */
-    endpoint?: string;
-    /**
-     * S3 region. S3 region.
-     */
-    region?: string;
-    /**
-     * AWS secret key. AWS secret key.
-     */
-    secretKey?: string;
-    /**
-     * Server side encryption. When set to true files are encrypted on server side.
-     */
-    serverSideEncryption: boolean;
-    /**
-     * The snapshot name to restore from. The snapshot name to restore from.
-     */
-    snapshotName?: string;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSaml {
@@ -1949,6 +2099,268 @@ export interface ManagedDatabaseOpensearchPropertiesSaml {
      * SAML response subject attribute. Optional. Specifies the attribute in the SAML response where the subject identifier is stored. If not configured, the NameID attribute is used by default.
      */
     subjectKey: string;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchBackpressure {
+    /**
+     * The search backpressure mode. The search backpressure mode. Valid values are monitor_only, enforced, or disabled. Default is monitor_only.
+     */
+    mode: string;
+    /**
+     * Node duress settings.
+     */
+    nodeDuress: outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress;
+    /**
+     * Search shard settings.
+     */
+    searchShardTask: outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask;
+    /**
+     * Search task settings.
+     */
+    searchTask: outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress {
+    /**
+     * The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.9.
+     */
+    cpuThreshold: number;
+    /**
+     * The heap usage threshold (as a percentage) required for a node to be considered to be under duress. The heap usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.7.
+     */
+    heapThreshold: number;
+    /**
+     * The number of successive limit breaches after which the node is considered to be under duress. The number of successive limit breaches after which the node is considered to be under duress. Default is 3.
+     */
+    numSuccessiveBreaches: number;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask {
+    /**
+     * The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 10.0.
+     */
+    cancellationBurst: number;
+    /**
+     * The maximum number of tasks to cancel per millisecond of elapsed time. The maximum number of tasks to cancel per millisecond of elapsed time. Default is 0.003.
+     */
+    cancellationRate: number;
+    /**
+     * The maximum number of tasks to cancel. The maximum number of tasks to cancel, as a percentage of successful task completions. Default is 0.1.
+     */
+    cancellationRatio: number;
+    /**
+     * The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 15000.
+     */
+    cpuTimeMillisThreshold: number;
+    /**
+     * The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 30000.
+     */
+    elapsedTimeMillisThreshold: number;
+    /**
+     * The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. Default is 100.
+     */
+    heapMovingAverageWindowSize: number;
+    /**
+     * The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. Default is 0.5.
+     */
+    heapPercentThreshold: number;
+    /**
+     * The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. Default is 2.0.
+     */
+    heapVariance: number;
+    /**
+     * The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. Default is 0.5.
+     */
+    totalHeapPercentThreshold: number;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask {
+    /**
+     * The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 5.0.
+     */
+    cancellationBurst: number;
+    /**
+     * The maximum number of search tasks to cancel per millisecond of elapsed time. The maximum number of search tasks to cancel per millisecond of elapsed time. Default is 0.003.
+     */
+    cancellationRate: number;
+    /**
+     * The maximum number of search tasks to cancel, as a percentage of successful search task completions. The maximum number of search tasks to cancel, as a percentage of successful search task completions. Default is 0.1.
+     */
+    cancellationRatio: number;
+    /**
+     * The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 30000.
+     */
+    cpuTimeMillisThreshold: number;
+    /**
+     * The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 45000.
+     */
+    elapsedTimeMillisThreshold: number;
+    /**
+     * The window size used to calculate the rolling average of the heap usage for the completed parent tasks. The window size used to calculate the rolling average of the heap usage for the completed parent tasks. Default is 10.
+     */
+    heapMovingAverageWindowSize: number;
+    /**
+     * The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. Default is 0.2.
+     */
+    heapPercentThreshold: number;
+    /**
+     * The heap usage variance required for an individual parent task before it is considered for cancellation. The heap usage variance required for an individual parent task before it is considered for cancellation. A task is considered for cancellation when taskHeapUsage is greater than or equal to heapUsageMovingAverage * variance. Default is 2.0.
+     */
+    heapVariance: number;
+    /**
+     * The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. Default is 0.5.
+     */
+    totalHeapPercentThreshold: number;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries {
+    /**
+     * Top N queries monitoring by CPU.
+     */
+    cpu: outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu;
+    /**
+     * Top N queries monitoring by latency.
+     */
+    latency: outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency;
+    /**
+     * Top N queries monitoring by memory.
+     */
+    memory: outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu {
+    /**
+     * Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+     */
+    enabled?: boolean;
+    /**
+     * Specify the value of N for the top N queries by the metric.
+     */
+    topNSize: number;
+    /**
+     * The window size of the top N queries by the metric. Configure the window size of the top N queries.
+     */
+    windowSize?: string;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency {
+    /**
+     * Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+     */
+    enabled?: boolean;
+    /**
+     * Specify the value of N for the top N queries by the metric.
+     */
+    topNSize: number;
+    /**
+     * The window size of the top N queries by the metric. Configure the window size of the top N queries.
+     */
+    windowSize?: string;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory {
+    /**
+     * Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+     */
+    enabled?: boolean;
+    /**
+     * Specify the value of N for the top N queries by the metric.
+     */
+    topNSize: number;
+    /**
+     * The window size of the top N queries by the metric. Configure the window size of the top N queries.
+     */
+    windowSize?: string;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesSegrep {
+    /**
+     * The maximum number of indexing checkpoints that a replica shard can fall behind when copying from primary. Once `segrep.pressure.checkpoint.limit` is breached along with `segrep.pressure.time.limit`, the segment replication backpressure mechanism is initiated. Default is 4 checkpoints.
+     */
+    pressureCheckpointLimit: number;
+    /**
+     * Enables the segment replication backpressure mechanism. Default is false.
+     */
+    pressureEnabled: boolean;
+    /**
+     * The maximum number of stale replica shards that can exist in a replication group. Once `segrep.pressure.replica.stale.limit` is breached, the segment replication backpressure mechanism is initiated. Default is .5, which is 50% of a replication group.
+     */
+    pressureReplicaStaleLimit: number;
+    /**
+     * The maximum amount of time that a replica shard can take to copy from the primary shard. Once segrep.pressure.time.limit is breached along with segrep.pressure.checkpoint.limit, the segment replication backpressure mechanism is initiated. Default is 5 minutes.
+     */
+    pressureTimeLimit: string;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressure {
+    /**
+     * Enable or disable shard indexing backpressure. Enable or disable shard indexing backpressure. Default is false.
+     */
+    enabled: boolean;
+    /**
+     * Run shard indexing backpressure in shadow mode or enforced mode. Run shard indexing backpressure in shadow mode or enforced mode.
+     *             In shadow mode (value set as false), shard indexing backpressure tracks all granular-level metrics,
+     *             but it doesn’t actually reject any indexing requests.
+     *             In enforced mode (value set as true),
+     *             shard indexing backpressure rejects any requests to the cluster that might cause a dip in its performance.
+     *             Default is false.
+     */
+    enforced: boolean;
+    /**
+     * Operating factor.
+     */
+    operatingFactor: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor;
+    /**
+     * Primary parameter.
+     */
+    primaryParameter: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor {
+    /**
+     * Lower occupancy limit of the allocated quota of memory for the shard. Specify the lower occupancy limit of the allocated quota of memory for the shard.
+     *                     If the total memory usage of a shard is below this limit,
+     *                     shard indexing backpressure decreases the current allocated memory for that shard.
+     *                     Default is 0.75.
+     */
+    lower: number;
+    /**
+     * Optimal occupancy of the allocated quota of memory for the shard. Specify the optimal occupancy of the allocated quota of memory for the shard.
+     *                     If the total memory usage of a shard is at this level,
+     *                     shard indexing backpressure doesn’t change the current allocated memory for that shard.
+     *                     Default is 0.85.
+     */
+    optimal: number;
+    /**
+     * Upper occupancy limit of the allocated quota of memory for the shard. Specify the upper occupancy limit of the allocated quota of memory for the shard.
+     *                     If the total memory usage of a shard is above this limit,
+     *                     shard indexing backpressure increases the current allocated memory for that shard.
+     *                     Default is 0.95.
+     */
+    upper: number;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter {
+    node: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode;
+    shard: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode {
+    /**
+     * Node soft limit. Define the percentage of the node-level memory
+     *                             threshold that acts as a soft indicator for strain on a node.
+     *                             Default is 0.7.
+     */
+    softLimit: number;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard {
+    /**
+     * Shard min limit. Specify the minimum assigned quota for a new shard in any role (coordinator, primary, or replica).
+     *                             Shard indexing backpressure increases or decreases this allocated quota based on the inflow of traffic for the shard.
+     *                             Default is 0.001.
+     */
+    minLimit: number;
 }
 
 export interface ManagedDatabasePostgresqlComponent {
@@ -2181,6 +2593,10 @@ export interface ManagedDatabasePostgresqlProperties {
      * Migrate data from existing server.
      */
     migration: outputs.ManagedDatabasePostgresqlPropertiesMigration;
+    /**
+     * Chooses the algorithm for encrypting passwords.
+     */
+    passwordEncryption: string;
     /**
      * Sets the time interval to run pg_partman's scheduled tasks.
      */
@@ -2438,6 +2854,14 @@ export interface ManagedDatabaseRedisProperties {
      */
     automaticUtilityNetworkIpFilter?: boolean;
     /**
+     * The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+     */
+    backupHour: number;
+    /**
+     * The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+     */
+    backupMinute: number;
+    /**
      * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
      */
     ipFilters: string[];
@@ -2586,6 +3010,196 @@ export interface ManagedDatabaseUserRedisAccessControl {
     keys?: string;
 }
 
+export interface ManagedDatabaseUserValkeyAccessControl {
+    /**
+     * Set access control to all commands in specified categories.
+     */
+    categories?: string;
+    /**
+     * Set access control to Pub/Sub channels.
+     */
+    channels?: string;
+    /**
+     * Set access control to commands.
+     */
+    commands?: string;
+    /**
+     * Set access control to keys.
+     */
+    keys?: string;
+}
+
+export interface ManagedDatabaseValkeyComponent {
+    /**
+     * Type of the component
+     */
+    component: string;
+    /**
+     * Hostname of the component
+     */
+    host: string;
+    /**
+     * Port number of the component
+     */
+    port: number;
+    /**
+     * Component network route type
+     */
+    route: string;
+    /**
+     * Usage of the component
+     */
+    usage: string;
+}
+
+export interface ManagedDatabaseValkeyNetwork {
+    /**
+     * Network family. Currently only `IPv4` is supported.
+     */
+    family: string;
+    /**
+     * The name of the network. Must be unique within the service.
+     */
+    name: string;
+    /**
+     * The type of the network. Must be private.
+     */
+    type: string;
+    /**
+     * Private network UUID. Must reside in the same zone as the database.
+     */
+    uuid: string;
+}
+
+export interface ManagedDatabaseValkeyNodeState {
+    /**
+     * Name plus a node iteration
+     */
+    name: string;
+    /**
+     * Role of the node
+     */
+    role: string;
+    /**
+     * State of the node
+     */
+    state: string;
+}
+
+export interface ManagedDatabaseValkeyProperties {
+    /**
+     * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+     */
+    automaticUtilityNetworkIpFilter?: boolean;
+    /**
+     * The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+     */
+    backupHour: number;
+    /**
+     * The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+     */
+    backupMinute: number;
+    /**
+     * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+     */
+    ipFilters: string[];
+    /**
+     * Migrate data from existing server.
+     */
+    migration: outputs.ManagedDatabaseValkeyPropertiesMigration;
+    /**
+     * Public Access. Allow access to the service from the public Internet.
+     */
+    publicAccess?: boolean;
+    /**
+     * Service logging. Store logs for the service so that they are available in the HTTP API and console.
+     */
+    serviceLog: boolean;
+    /**
+     * Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+     */
+    valkeyAclChannelsDefault: string;
+    /**
+     * Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
+     */
+    valkeyIoThreads: number;
+    /**
+     * LFU maxmemory-policy counter decay time in minutes.
+     */
+    valkeyLfuDecayTime: number;
+    /**
+     * Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
+     */
+    valkeyLfuLogFactor: number;
+    /**
+     * Valkey maxmemory-policy.
+     */
+    valkeyMaxmemoryPolicy: string;
+    /**
+     * Set notify-keyspace-events option.
+     */
+    valkeyNotifyKeyspaceEvents?: string;
+    /**
+     * Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
+     */
+    valkeyNumberOfDatabases: number;
+    /**
+     * Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+     */
+    valkeyPersistence: string;
+    /**
+     * Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
+     */
+    valkeyPubsubClientOutputBufferLimit: number;
+    /**
+     * Require SSL to access Valkey.
+     */
+    valkeySsl?: boolean;
+    /**
+     * Valkey idle connection timeout in seconds.
+     */
+    valkeyTimeout: number;
+}
+
+export interface ManagedDatabaseValkeyPropertiesMigration {
+    /**
+     * Database name for bootstrapping the initial connection.
+     */
+    dbname: string;
+    /**
+     * Hostname or IP address of the server where to migrate data from.
+     */
+    host: string;
+    /**
+     * Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+     */
+    ignoreDbs: string;
+    /**
+     * Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+     */
+    ignoreRoles: string;
+    /**
+     * The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
+     */
+    method: string;
+    /**
+     * Password for authentication with the server where to migrate data from.
+     */
+    password: string;
+    /**
+     * Port number of the server where to migrate data from.
+     */
+    port: number;
+    /**
+     * The server where to migrate data from is secured with SSL.
+     */
+    ssl: boolean;
+    /**
+     * User name for authentication with the server where to migrate data from.
+     */
+    username: string;
+}
+
 export interface ManagedObjectStorageEndpoint {
     /**
      * Domain name of the endpoint.
@@ -2685,7 +3299,7 @@ export interface RouterStaticRoute {
 
 export interface ServerFirewallRulesFirewallRule {
     /**
-     * Action to take if the rule conditions are met
+     * Action to take if the rule conditions are met. Valid values `accept | drop`
      */
     action: string;
     /**
@@ -2746,7 +3360,7 @@ export interface ServerLogin {
     /**
      * Indicates a password should be create to allow access
      */
-    createPassword?: boolean;
+    createPassword: boolean;
     /**
      * A list of ssh keys to access the server
      */
@@ -2754,7 +3368,7 @@ export interface ServerLogin {
     /**
      * The delivery method for the server's root password (one of `none`, `email` or `sms`)
      */
-    passwordDelivery?: string;
+    passwordDelivery: string;
     /**
      * Username to be create to access the server
      */
@@ -2763,37 +3377,41 @@ export interface ServerLogin {
 
 export interface ServerNetworkInterface {
     /**
-     * 0-4 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+     * 0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
      */
     additionalIpAddresses?: outputs.ServerNetworkInterfaceAdditionalIpAddress[];
     /**
      * `true` if this interface should be used for network booting.
      */
-    bootable?: boolean;
+    bootable: boolean;
     /**
-     * The assigned primary IP address.
+     * The interface index.
+     */
+    index: number;
+    /**
+     * The primary IP address of this interface.
      */
     ipAddress: string;
     /**
      * The type of the primary IP address of this interface (one of `IPv4` or `IPv6`).
      */
-    ipAddressFamily?: string;
+    ipAddressFamily: string;
     /**
      * `true` indicates that the primary IP address is a floating IP address.
      */
     ipAddressFloating: boolean;
     /**
-     * The assigned MAC address.
+     * The MAC address of the interface.
      */
     macAddress: string;
     /**
-     * The unique ID of a network to attach this network to.
+     * The UUID of the network to attach this interface to. Required for private network interfaces.
      */
     network: string;
     /**
      * `true` if source IP should be filtered.
      */
-    sourceIpFiltering?: boolean;
+    sourceIpFiltering: boolean;
     /**
      * Network interface type. For private network interfaces, a network must be specified with an existing network id.
      */
@@ -2802,13 +3420,13 @@ export interface ServerNetworkInterface {
 
 export interface ServerNetworkInterfaceAdditionalIpAddress {
     /**
-     * The assigned additional IP address.
+     * An additional IP address for this interface.
      */
     ipAddress: string;
     /**
-     * The type of this additional IP address of this interface (one of `IPv4` or `IPv6`).
+     * The type of the additional IP address of this interface (one of `IPv4` or `IPv6`).
      */
-    ipAddressFamily?: string;
+    ipAddressFamily: string;
     /**
      * `true` indicates that the additional IP address is a floating IP address.
      */
@@ -2819,11 +3437,11 @@ export interface ServerSimpleBackup {
     /**
      * Simple backup plan. Accepted values: daily, dailies, weeklies, monthlies.
      */
-    plan: string;
+    plan?: string;
     /**
      * Time of the day at which backup will be taken. Should be provided in a hhmm format (e.g. 2230).
      */
-    time: string;
+    time?: string;
 }
 
 export interface ServerStorageDevice {
@@ -2836,9 +3454,9 @@ export interface ServerStorageDevice {
      */
     addressPosition: string;
     /**
-     * A valid storage UUID
+     * The UUID of the storage to attach to the server.
      */
-    storage: string;
+    storage?: string;
     /**
      * The device type the storage will be attached as
      */
@@ -2858,18 +3476,18 @@ export interface ServerTemplate {
     /**
      * If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
      */
-    deleteAutoresizeBackup?: boolean;
+    deleteAutoresizeBackup: boolean;
     /**
      * Sets if the storage is encrypted at rest
      */
-    encrypt?: boolean;
+    encrypt: boolean;
     /**
      * If set to true, provider will attempt to resize partition and filesystem when the size of template storage changes.
      * 							Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used
      * 							to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless deleteAutoresizeBackup option is set to true).
      * 							Taking and keeping backups incure costs.
      */
-    filesystemAutoresize?: boolean;
+    filesystemAutoresize: boolean;
     /**
      * The unique identifier for the storage
      */
@@ -2881,9 +3499,9 @@ export interface ServerTemplate {
     /**
      * A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
      */
-    storage: string;
+    storage?: string;
     /**
-     * The storage tier to use
+     * The storage tier to use.
      */
     tier: string;
     /**

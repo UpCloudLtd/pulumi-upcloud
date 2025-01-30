@@ -52,6 +52,27 @@ namespace Pulumi.Upcloud
         /// </summary>
         public static Output<GetLoadBalancerDnsChallengeDomainResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLoadBalancerDnsChallengeDomainResult>("upcloud:index/getLoadBalancerDnsChallengeDomain:getLoadBalancerDnsChallengeDomain", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Returns DNS challenge domain to use when validating domain ownership using ACME challenge method.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Upcloud = Pulumi.Upcloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var @this = Upcloud.GetLoadBalancerDnsChallengeDomain.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetLoadBalancerDnsChallengeDomainResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLoadBalancerDnsChallengeDomainResult>("upcloud:index/getLoadBalancerDnsChallengeDomain:getLoadBalancerDnsChallengeDomain", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

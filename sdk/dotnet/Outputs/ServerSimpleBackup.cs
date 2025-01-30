@@ -16,17 +16,17 @@ namespace Pulumi.Upcloud.Outputs
         /// <summary>
         /// Simple backup plan. Accepted values: daily, dailies, weeklies, monthlies.
         /// </summary>
-        public readonly string Plan;
+        public readonly string? Plan;
         /// <summary>
         /// Time of the day at which backup will be taken. Should be provided in a hhmm format (e.g. 2230).
         /// </summary>
-        public readonly string Time;
+        public readonly string? Time;
 
         [OutputConstructor]
         private ServerSimpleBackup(
-            string plan,
+            string? plan,
 
-            string time)
+            string? time)
         {
             Plan = plan;
             Time = time;

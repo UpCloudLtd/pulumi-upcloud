@@ -27,7 +27,8 @@ class ManagedDatabaseUserArgs:
                  opensearch_access_control: Optional[pulumi.Input['ManagedDatabaseUserOpensearchAccessControlArgs']] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  pg_access_control: Optional[pulumi.Input['ManagedDatabaseUserPgAccessControlArgs']] = None,
-                 redis_access_control: Optional[pulumi.Input['ManagedDatabaseUserRedisAccessControlArgs']] = None):
+                 redis_access_control: Optional[pulumi.Input['ManagedDatabaseUserRedisAccessControlArgs']] = None,
+                 valkey_access_control: Optional[pulumi.Input['ManagedDatabaseUserValkeyAccessControlArgs']] = None):
         """
         The set of arguments for constructing a ManagedDatabaseUser resource.
         :param pulumi.Input[str] service: Service's UUID for which this user belongs to
@@ -37,6 +38,7 @@ class ManagedDatabaseUserArgs:
         :param pulumi.Input[str] password: Password for the database user. Defaults to a random value
         :param pulumi.Input['ManagedDatabaseUserPgAccessControlArgs'] pg_access_control: PostgreSQL access control object.
         :param pulumi.Input['ManagedDatabaseUserRedisAccessControlArgs'] redis_access_control: Redis access control object.
+        :param pulumi.Input['ManagedDatabaseUserValkeyAccessControlArgs'] valkey_access_control: Valkey access control object.
         """
         pulumi.set(__self__, "service", service)
         pulumi.set(__self__, "username", username)
@@ -50,6 +52,8 @@ class ManagedDatabaseUserArgs:
             pulumi.set(__self__, "pg_access_control", pg_access_control)
         if redis_access_control is not None:
             pulumi.set(__self__, "redis_access_control", redis_access_control)
+        if valkey_access_control is not None:
+            pulumi.set(__self__, "valkey_access_control", valkey_access_control)
 
     @property
     @pulumi.getter
@@ -135,6 +139,18 @@ class ManagedDatabaseUserArgs:
     def redis_access_control(self, value: Optional[pulumi.Input['ManagedDatabaseUserRedisAccessControlArgs']]):
         pulumi.set(self, "redis_access_control", value)
 
+    @property
+    @pulumi.getter(name="valkeyAccessControl")
+    def valkey_access_control(self) -> Optional[pulumi.Input['ManagedDatabaseUserValkeyAccessControlArgs']]:
+        """
+        Valkey access control object.
+        """
+        return pulumi.get(self, "valkey_access_control")
+
+    @valkey_access_control.setter
+    def valkey_access_control(self, value: Optional[pulumi.Input['ManagedDatabaseUserValkeyAccessControlArgs']]):
+        pulumi.set(self, "valkey_access_control", value)
+
 
 @pulumi.input_type
 class _ManagedDatabaseUserState:
@@ -146,7 +162,8 @@ class _ManagedDatabaseUserState:
                  redis_access_control: Optional[pulumi.Input['ManagedDatabaseUserRedisAccessControlArgs']] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 username: Optional[pulumi.Input[str]] = None):
+                 username: Optional[pulumi.Input[str]] = None,
+                 valkey_access_control: Optional[pulumi.Input['ManagedDatabaseUserValkeyAccessControlArgs']] = None):
         """
         Input properties used for looking up and filtering ManagedDatabaseUser resources.
         :param pulumi.Input[str] authentication: MySQL only, authentication type.
@@ -157,6 +174,7 @@ class _ManagedDatabaseUserState:
         :param pulumi.Input[str] service: Service's UUID for which this user belongs to
         :param pulumi.Input[str] type: Type of the user. Only normal type users can be created
         :param pulumi.Input[str] username: Name of the database user
+        :param pulumi.Input['ManagedDatabaseUserValkeyAccessControlArgs'] valkey_access_control: Valkey access control object.
         """
         if authentication is not None:
             pulumi.set(__self__, "authentication", authentication)
@@ -174,6 +192,8 @@ class _ManagedDatabaseUserState:
             pulumi.set(__self__, "type", type)
         if username is not None:
             pulumi.set(__self__, "username", username)
+        if valkey_access_control is not None:
+            pulumi.set(__self__, "valkey_access_control", valkey_access_control)
 
     @property
     @pulumi.getter
@@ -271,6 +291,18 @@ class _ManagedDatabaseUserState:
     def username(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username", value)
 
+    @property
+    @pulumi.getter(name="valkeyAccessControl")
+    def valkey_access_control(self) -> Optional[pulumi.Input['ManagedDatabaseUserValkeyAccessControlArgs']]:
+        """
+        Valkey access control object.
+        """
+        return pulumi.get(self, "valkey_access_control")
+
+    @valkey_access_control.setter
+    def valkey_access_control(self, value: Optional[pulumi.Input['ManagedDatabaseUserValkeyAccessControlArgs']]):
+        pulumi.set(self, "valkey_access_control", value)
+
 
 class ManagedDatabaseUser(pulumi.CustomResource):
     @overload
@@ -284,6 +316,7 @@ class ManagedDatabaseUser(pulumi.CustomResource):
                  redis_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserRedisAccessControlArgs', 'ManagedDatabaseUserRedisAccessControlArgsDict']]] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
+                 valkey_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict']]] = None,
                  __props__=None):
         """
         This resource represents a user in managed database
@@ -313,6 +346,7 @@ class ManagedDatabaseUser(pulumi.CustomResource):
         :param pulumi.Input[Union['ManagedDatabaseUserRedisAccessControlArgs', 'ManagedDatabaseUserRedisAccessControlArgsDict']] redis_access_control: Redis access control object.
         :param pulumi.Input[str] service: Service's UUID for which this user belongs to
         :param pulumi.Input[str] username: Name of the database user
+        :param pulumi.Input[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict']] valkey_access_control: Valkey access control object.
         """
         ...
     @overload
@@ -361,6 +395,7 @@ class ManagedDatabaseUser(pulumi.CustomResource):
                  redis_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserRedisAccessControlArgs', 'ManagedDatabaseUserRedisAccessControlArgsDict']]] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
+                 valkey_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -381,6 +416,7 @@ class ManagedDatabaseUser(pulumi.CustomResource):
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username
+            __props__.__dict__["valkey_access_control"] = valkey_access_control
             __props__.__dict__["type"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -401,7 +437,8 @@ class ManagedDatabaseUser(pulumi.CustomResource):
             redis_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserRedisAccessControlArgs', 'ManagedDatabaseUserRedisAccessControlArgsDict']]] = None,
             service: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            username: Optional[pulumi.Input[str]] = None) -> 'ManagedDatabaseUser':
+            username: Optional[pulumi.Input[str]] = None,
+            valkey_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict']]] = None) -> 'ManagedDatabaseUser':
         """
         Get an existing ManagedDatabaseUser resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -417,6 +454,7 @@ class ManagedDatabaseUser(pulumi.CustomResource):
         :param pulumi.Input[str] service: Service's UUID for which this user belongs to
         :param pulumi.Input[str] type: Type of the user. Only normal type users can be created
         :param pulumi.Input[str] username: Name of the database user
+        :param pulumi.Input[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict']] valkey_access_control: Valkey access control object.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -430,6 +468,7 @@ class ManagedDatabaseUser(pulumi.CustomResource):
         __props__.__dict__["service"] = service
         __props__.__dict__["type"] = type
         __props__.__dict__["username"] = username
+        __props__.__dict__["valkey_access_control"] = valkey_access_control
         return ManagedDatabaseUser(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -495,4 +534,12 @@ class ManagedDatabaseUser(pulumi.CustomResource):
         Name of the database user
         """
         return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="valkeyAccessControl")
+    def valkey_access_control(self) -> pulumi.Output[Optional['outputs.ManagedDatabaseUserValkeyAccessControl']]:
+        """
+        Valkey access control object.
+        """
+        return pulumi.get(self, "valkey_access_control")
 

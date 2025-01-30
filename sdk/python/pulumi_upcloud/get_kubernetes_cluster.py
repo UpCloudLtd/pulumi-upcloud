@@ -119,13 +119,13 @@ def get_kubernetes_cluster(id: Optional[str] = None,
         kubeconfig=pulumi.get(__ret__, 'kubeconfig'),
         name=pulumi.get(__ret__, 'name'))
 def get_kubernetes_cluster_output(id: Optional[pulumi.Input[str]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKubernetesClusterResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKubernetesClusterResult]:
     """
     ## Example Usage
     """
     __args__ = dict()
     __args__['id'] = id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('upcloud:index/getKubernetesCluster:getKubernetesCluster', __args__, opts=opts, typ=GetKubernetesClusterResult)
     return __ret__.apply(lambda __response__: GetKubernetesClusterResult(
         client_certificate=pulumi.get(__response__, 'client_certificate'),

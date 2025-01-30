@@ -83,13 +83,13 @@ def get_managed_object_storage_policies(service_uuid: Optional[str] = None,
         policies=pulumi.get(__ret__, 'policies'),
         service_uuid=pulumi.get(__ret__, 'service_uuid'))
 def get_managed_object_storage_policies_output(service_uuid: Optional[pulumi.Input[str]] = None,
-                                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetManagedObjectStoragePoliciesResult]:
+                                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetManagedObjectStoragePoliciesResult]:
     """
     Policies available for a Managed Object Storage resource. See `managed_object_storage_user_policy` for attaching to a user.
     """
     __args__ = dict()
     __args__['serviceUuid'] = service_uuid
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('upcloud:index/getManagedObjectStoragePolicies:getManagedObjectStoragePolicies', __args__, opts=opts, typ=GetManagedObjectStoragePoliciesResult)
     return __ret__.apply(lambda __response__: GetManagedObjectStoragePoliciesResult(
         id=pulumi.get(__response__, 'id'),

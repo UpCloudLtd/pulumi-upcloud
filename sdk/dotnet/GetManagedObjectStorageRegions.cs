@@ -22,6 +22,12 @@ namespace Pulumi.Upcloud
         /// </summary>
         public static Output<GetManagedObjectStorageRegionsResult> Invoke(GetManagedObjectStorageRegionsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetManagedObjectStorageRegionsResult>("upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions", args ?? new GetManagedObjectStorageRegionsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Returns a list of available Managed Object Storage regions.
+        /// </summary>
+        public static Output<GetManagedObjectStorageRegionsResult> Invoke(GetManagedObjectStorageRegionsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetManagedObjectStorageRegionsResult>("upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions", args ?? new GetManagedObjectStorageRegionsInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -106,7 +106,7 @@ def get_networks(filter_name: Optional[str] = None,
         zone=pulumi.get(__ret__, 'zone'))
 def get_networks_output(filter_name: Optional[pulumi.Input[Optional[str]]] = None,
                         zone: Optional[pulumi.Input[Optional[str]]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworksResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNetworksResult]:
     """
     Use this data source to get the available UpCloud networks.
 
@@ -123,7 +123,7 @@ def get_networks_output(filter_name: Optional[pulumi.Input[Optional[str]]] = Non
     __args__ = dict()
     __args__['filterName'] = filter_name
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('upcloud:index/getNetworks:getNetworks', __args__, opts=opts, typ=GetNetworksResult)
     return __ret__.apply(lambda __response__: GetNetworksResult(
         filter_name=pulumi.get(__response__, 'filter_name'),

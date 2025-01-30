@@ -17,6 +17,7 @@ from .get_managed_database_mysql_sessions import *
 from .get_managed_database_opensearch_indices import *
 from .get_managed_database_postgresql_sessions import *
 from .get_managed_database_redis_sessions import *
+from .get_managed_database_valkey_sessions import *
 from .get_managed_object_storage_policies import *
 from .get_managed_object_storage_regions import *
 from .get_networks import *
@@ -43,7 +44,9 @@ from .managed_database_opensearch import *
 from .managed_database_postgresql import *
 from .managed_database_redis import *
 from .managed_database_user import *
+from .managed_database_valkey import *
 from .managed_object_storage import *
+from .managed_object_storage_bucket import *
 from .managed_object_storage_custom_domain import *
 from .managed_object_storage_policy import *
 from .managed_object_storage_user import *
@@ -259,10 +262,26 @@ _utilities.register(
  },
  {
   "pkg": "upcloud",
+  "mod": "index/managedDatabaseValkey",
+  "fqn": "pulumi_upcloud",
+  "classes": {
+   "upcloud:index/managedDatabaseValkey:ManagedDatabaseValkey": "ManagedDatabaseValkey"
+  }
+ },
+ {
+  "pkg": "upcloud",
   "mod": "index/managedObjectStorage",
   "fqn": "pulumi_upcloud",
   "classes": {
    "upcloud:index/managedObjectStorage:ManagedObjectStorage": "ManagedObjectStorage"
+  }
+ },
+ {
+  "pkg": "upcloud",
+  "mod": "index/managedObjectStorageBucket",
+  "fqn": "pulumi_upcloud",
+  "classes": {
+   "upcloud:index/managedObjectStorageBucket:ManagedObjectStorageBucket": "ManagedObjectStorageBucket"
   }
  },
  {

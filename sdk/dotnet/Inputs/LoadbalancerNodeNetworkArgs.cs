@@ -14,6 +14,10 @@ namespace Pulumi.Upcloud.Inputs
     {
         [Input("ipAddresses")]
         private InputList<Inputs.LoadbalancerNodeNetworkIpAddressArgs>? _ipAddresses;
+
+        /// <summary>
+        /// IP addresses attached to the network
+        /// </summary>
         public InputList<Inputs.LoadbalancerNodeNetworkIpAddressArgs> IpAddresses
         {
             get => _ipAddresses ?? (_ipAddresses = new InputList<Inputs.LoadbalancerNodeNetworkIpAddressArgs>());
@@ -21,13 +25,13 @@ namespace Pulumi.Upcloud.Inputs
         }
 
         /// <summary>
-        /// The name of the network.
+        /// The name of the network
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of the network.
+        /// The type of the network
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

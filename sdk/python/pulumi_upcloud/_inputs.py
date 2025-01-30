@@ -47,6 +47,10 @@ __all__ = [
     'LoadbalancerFrontendRuleActionsHttpReturnArgsDict',
     'LoadbalancerFrontendRuleActionsSetForwardedHeaderArgs',
     'LoadbalancerFrontendRuleActionsSetForwardedHeaderArgsDict',
+    'LoadbalancerFrontendRuleActionsSetRequestHeaderArgs',
+    'LoadbalancerFrontendRuleActionsSetRequestHeaderArgsDict',
+    'LoadbalancerFrontendRuleActionsSetResponseHeaderArgs',
+    'LoadbalancerFrontendRuleActionsSetResponseHeaderArgsDict',
     'LoadbalancerFrontendRuleActionsTcpRejectArgs',
     'LoadbalancerFrontendRuleActionsTcpRejectArgsDict',
     'LoadbalancerFrontendRuleActionsUseBackendArgs',
@@ -65,10 +69,18 @@ __all__ = [
     'LoadbalancerFrontendRuleMatchersHostArgsDict',
     'LoadbalancerFrontendRuleMatchersHttpMethodArgs',
     'LoadbalancerFrontendRuleMatchersHttpMethodArgsDict',
+    'LoadbalancerFrontendRuleMatchersHttpStatusArgs',
+    'LoadbalancerFrontendRuleMatchersHttpStatusArgsDict',
+    'LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs',
+    'LoadbalancerFrontendRuleMatchersHttpStatusRangeArgsDict',
     'LoadbalancerFrontendRuleMatchersNumMembersUpArgs',
     'LoadbalancerFrontendRuleMatchersNumMembersUpArgsDict',
     'LoadbalancerFrontendRuleMatchersPathArgs',
     'LoadbalancerFrontendRuleMatchersPathArgsDict',
+    'LoadbalancerFrontendRuleMatchersRequestHeaderArgs',
+    'LoadbalancerFrontendRuleMatchersRequestHeaderArgsDict',
+    'LoadbalancerFrontendRuleMatchersResponseHeaderArgs',
+    'LoadbalancerFrontendRuleMatchersResponseHeaderArgsDict',
     'LoadbalancerFrontendRuleMatchersSrcIpArgs',
     'LoadbalancerFrontendRuleMatchersSrcIpArgsDict',
     'LoadbalancerFrontendRuleMatchersSrcPortArgs',
@@ -113,10 +125,10 @@ __all__ = [
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgsDict',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgsDict',
-    'ManagedDatabaseOpensearchPropertiesAzureMigrationArgs',
-    'ManagedDatabaseOpensearchPropertiesAzureMigrationArgsDict',
-    'ManagedDatabaseOpensearchPropertiesGcsMigrationArgs',
-    'ManagedDatabaseOpensearchPropertiesGcsMigrationArgsDict',
+    'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs',
+    'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgsDict',
+    'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs',
+    'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgsDict',
     'ManagedDatabaseOpensearchPropertiesIndexRollupArgs',
     'ManagedDatabaseOpensearchPropertiesIndexRollupArgsDict',
     'ManagedDatabaseOpensearchPropertiesIndexTemplateArgs',
@@ -125,10 +137,36 @@ __all__ = [
     'ManagedDatabaseOpensearchPropertiesOpenidArgsDict',
     'ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs',
     'ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgsDict',
-    'ManagedDatabaseOpensearchPropertiesS3MigrationArgs',
-    'ManagedDatabaseOpensearchPropertiesS3MigrationArgsDict',
     'ManagedDatabaseOpensearchPropertiesSamlArgs',
     'ManagedDatabaseOpensearchPropertiesSamlArgsDict',
+    'ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs',
+    'ManagedDatabaseOpensearchPropertiesSearchBackpressureArgsDict',
+    'ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs',
+    'ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgsDict',
+    'ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs',
+    'ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgsDict',
+    'ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs',
+    'ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgsDict',
+    'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs',
+    'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgsDict',
+    'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs',
+    'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgsDict',
+    'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs',
+    'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgsDict',
+    'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs',
+    'ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgsDict',
+    'ManagedDatabaseOpensearchPropertiesSegrepArgs',
+    'ManagedDatabaseOpensearchPropertiesSegrepArgsDict',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgsDict',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgsDict',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgsDict',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgsDict',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs',
+    'ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgsDict',
     'ManagedDatabasePostgresqlComponentArgs',
     'ManagedDatabasePostgresqlComponentArgsDict',
     'ManagedDatabasePostgresqlNetworkArgs',
@@ -163,6 +201,18 @@ __all__ = [
     'ManagedDatabaseUserPgAccessControlArgsDict',
     'ManagedDatabaseUserRedisAccessControlArgs',
     'ManagedDatabaseUserRedisAccessControlArgsDict',
+    'ManagedDatabaseUserValkeyAccessControlArgs',
+    'ManagedDatabaseUserValkeyAccessControlArgsDict',
+    'ManagedDatabaseValkeyComponentArgs',
+    'ManagedDatabaseValkeyComponentArgsDict',
+    'ManagedDatabaseValkeyNetworkArgs',
+    'ManagedDatabaseValkeyNetworkArgsDict',
+    'ManagedDatabaseValkeyNodeStateArgs',
+    'ManagedDatabaseValkeyNodeStateArgsDict',
+    'ManagedDatabaseValkeyPropertiesArgs',
+    'ManagedDatabaseValkeyPropertiesArgsDict',
+    'ManagedDatabaseValkeyPropertiesMigrationArgs',
+    'ManagedDatabaseValkeyPropertiesMigrationArgsDict',
     'ManagedObjectStorageEndpointArgs',
     'ManagedObjectStorageEndpointArgsDict',
     'ManagedObjectStorageNetworkArgs',
@@ -201,6 +251,8 @@ __all__ = [
     'StorageImportArgsDict',
     'GetHostsHostArgs',
     'GetHostsHostArgsDict',
+    'GetIpAddressesAddressArgs',
+    'GetIpAddressesAddressArgsDict',
     'GetManagedDatabaseMysqlSessionsSessionArgs',
     'GetManagedDatabaseMysqlSessionsSessionArgsDict',
     'GetManagedDatabaseOpensearchIndicesIndexArgs',
@@ -209,6 +261,8 @@ __all__ = [
     'GetManagedDatabasePostgresqlSessionsSessionArgsDict',
     'GetManagedDatabaseRedisSessionsSessionArgs',
     'GetManagedDatabaseRedisSessionsSessionArgsDict',
+    'GetManagedDatabaseValkeySessionsSessionArgs',
+    'GetManagedDatabaseValkeySessionsSessionArgsDict',
     'GetManagedObjectStorageRegionsRegionArgs',
     'GetManagedObjectStorageRegionsRegionArgsDict',
 ]
@@ -1338,6 +1392,14 @@ if not MYPY:
         """
         Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
         """
+        set_request_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsSetRequestHeaderArgsDict']]]]
+        """
+        Set request header
+        """
+        set_response_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsSetResponseHeaderArgsDict']]]]
+        """
+        Set response header
+        """
         tcp_rejects: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsTcpRejectArgsDict']]]]
         """
         Terminates a connection.
@@ -1355,12 +1417,16 @@ class LoadbalancerFrontendRuleActionsArgs:
                  http_redirects: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsHttpRedirectArgs']]]] = None,
                  http_returns: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsHttpReturnArgs']]]] = None,
                  set_forwarded_headers: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsSetForwardedHeaderArgs']]]] = None,
+                 set_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsSetRequestHeaderArgs']]]] = None,
+                 set_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsSetResponseHeaderArgs']]]] = None,
                  tcp_rejects: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsTcpRejectArgs']]]] = None,
                  use_backends: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsUseBackendArgs']]]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsHttpRedirectArgs']]] http_redirects: Redirects HTTP requests to specified location or URL scheme. Only either location or scheme can be defined at a time.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsHttpReturnArgs']]] http_returns: Returns HTTP response with specified HTTP status.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsSetForwardedHeaderArgs']]] set_forwarded_headers: Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsSetRequestHeaderArgs']]] set_request_headers: Set request header
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsSetResponseHeaderArgs']]] set_response_headers: Set response header
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsTcpRejectArgs']]] tcp_rejects: Terminates a connection.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsUseBackendArgs']]] use_backends: Routes traffic to specified `backend`.
         """
@@ -1370,6 +1436,10 @@ class LoadbalancerFrontendRuleActionsArgs:
             pulumi.set(__self__, "http_returns", http_returns)
         if set_forwarded_headers is not None:
             pulumi.set(__self__, "set_forwarded_headers", set_forwarded_headers)
+        if set_request_headers is not None:
+            pulumi.set(__self__, "set_request_headers", set_request_headers)
+        if set_response_headers is not None:
+            pulumi.set(__self__, "set_response_headers", set_response_headers)
         if tcp_rejects is not None:
             pulumi.set(__self__, "tcp_rejects", tcp_rejects)
         if use_backends is not None:
@@ -1410,6 +1480,30 @@ class LoadbalancerFrontendRuleActionsArgs:
     @set_forwarded_headers.setter
     def set_forwarded_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsSetForwardedHeaderArgs']]]]):
         pulumi.set(self, "set_forwarded_headers", value)
+
+    @property
+    @pulumi.getter(name="setRequestHeaders")
+    def set_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsSetRequestHeaderArgs']]]]:
+        """
+        Set request header
+        """
+        return pulumi.get(self, "set_request_headers")
+
+    @set_request_headers.setter
+    def set_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsSetRequestHeaderArgs']]]]):
+        pulumi.set(self, "set_request_headers", value)
+
+    @property
+    @pulumi.getter(name="setResponseHeaders")
+    def set_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsSetResponseHeaderArgs']]]]:
+        """
+        Set response header
+        """
+        return pulumi.get(self, "set_response_headers")
+
+    @set_response_headers.setter
+    def set_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleActionsSetResponseHeaderArgs']]]]):
+        pulumi.set(self, "set_response_headers", value)
 
     @property
     @pulumi.getter(name="tcpRejects")
@@ -1581,6 +1675,108 @@ class LoadbalancerFrontendRuleActionsSetForwardedHeaderArgs:
 
 
 if not MYPY:
+    class LoadbalancerFrontendRuleActionsSetRequestHeaderArgsDict(TypedDict):
+        header: pulumi.Input[str]
+        """
+        Header name.
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        Header value.
+        """
+elif False:
+    LoadbalancerFrontendRuleActionsSetRequestHeaderArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class LoadbalancerFrontendRuleActionsSetRequestHeaderArgs:
+    def __init__(__self__, *,
+                 header: pulumi.Input[str],
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] header: Header name.
+        :param pulumi.Input[str] value: Header value.
+        """
+        pulumi.set(__self__, "header", header)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def header(self) -> pulumi.Input[str]:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "header")
+
+    @header.setter
+    def header(self, value: pulumi.Input[str]):
+        pulumi.set(self, "header", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Header value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class LoadbalancerFrontendRuleActionsSetResponseHeaderArgsDict(TypedDict):
+        header: pulumi.Input[str]
+        """
+        Header name.
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        Header value.
+        """
+elif False:
+    LoadbalancerFrontendRuleActionsSetResponseHeaderArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class LoadbalancerFrontendRuleActionsSetResponseHeaderArgs:
+    def __init__(__self__, *,
+                 header: pulumi.Input[str],
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] header: Header name.
+        :param pulumi.Input[str] value: Header value.
+        """
+        pulumi.set(__self__, "header", header)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def header(self) -> pulumi.Input[str]:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "header")
+
+    @header.setter
+    def header(self, value: pulumi.Input[str]):
+        pulumi.set(self, "header", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Header value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
     class LoadbalancerFrontendRuleActionsTcpRejectArgsDict(TypedDict):
         active: NotRequired[pulumi.Input[bool]]
         """
@@ -1669,6 +1865,14 @@ if not MYPY:
         """
         Matches by HTTP method.
         """
+        http_status_ranges: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHttpStatusRangeArgsDict']]]]
+        """
+        Matches by range of HTTP statuses.
+        """
+        http_statuses: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHttpStatusArgsDict']]]]
+        """
+        Matches by HTTP status.
+        """
         num_members_ups: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersNumMembersUpArgsDict']]]]
         """
         Matches by number of healthy backend members.
@@ -1676,6 +1880,14 @@ if not MYPY:
         paths: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersPathArgsDict']]]]
         """
         Matches by URL path.
+        """
+        request_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersRequestHeaderArgsDict']]]]
+        """
+        Matches by HTTP request header value. Header name must be provided.
+        """
+        response_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersResponseHeaderArgsDict']]]]
+        """
+        Matches by HTTP response header value. Header name must be provided.
         """
         src_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersSrcIpArgsDict']]]]
         """
@@ -1713,8 +1925,12 @@ class LoadbalancerFrontendRuleMatchersArgs:
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHeaderArgs']]]] = None,
                  hosts: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHostArgs']]]] = None,
                  http_methods: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHttpMethodArgs']]]] = None,
+                 http_status_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs']]]] = None,
+                 http_statuses: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHttpStatusArgs']]]] = None,
                  num_members_ups: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersNumMembersUpArgs']]]] = None,
                  paths: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersPathArgs']]]] = None,
+                 request_headers: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersRequestHeaderArgs']]]] = None,
+                 response_headers: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersResponseHeaderArgs']]]] = None,
                  src_ips: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersSrcIpArgs']]]] = None,
                  src_port_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersSrcPortRangeArgs']]]] = None,
                  src_ports: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersSrcPortArgs']]]] = None,
@@ -1728,8 +1944,12 @@ class LoadbalancerFrontendRuleMatchersArgs:
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHeaderArgs']]] headers: Matches by HTTP header value. Header name must be provided.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHostArgs']]] hosts: Matches by hostname. Header extracted from HTTP Headers or from TLS certificate in case of secured connection.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHttpMethodArgs']]] http_methods: Matches by HTTP method.
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs']]] http_status_ranges: Matches by range of HTTP statuses.
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHttpStatusArgs']]] http_statuses: Matches by HTTP status.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersNumMembersUpArgs']]] num_members_ups: Matches by number of healthy backend members.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersPathArgs']]] paths: Matches by URL path.
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersRequestHeaderArgs']]] request_headers: Matches by HTTP request header value. Header name must be provided.
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersResponseHeaderArgs']]] response_headers: Matches by HTTP response header value. Header name must be provided.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersSrcIpArgs']]] src_ips: Matches by source IP address.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersSrcPortRangeArgs']]] src_port_ranges: Matches by range of source port numbers.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersSrcPortArgs']]] src_ports: Matches by source port number.
@@ -1744,15 +1964,26 @@ class LoadbalancerFrontendRuleMatchersArgs:
         if cookies is not None:
             pulumi.set(__self__, "cookies", cookies)
         if headers is not None:
+            warnings.warn("""Use `request_header` instead.""", DeprecationWarning)
+            pulumi.log.warn("""headers is deprecated: Use `request_header` instead.""")
+        if headers is not None:
             pulumi.set(__self__, "headers", headers)
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if http_methods is not None:
             pulumi.set(__self__, "http_methods", http_methods)
+        if http_status_ranges is not None:
+            pulumi.set(__self__, "http_status_ranges", http_status_ranges)
+        if http_statuses is not None:
+            pulumi.set(__self__, "http_statuses", http_statuses)
         if num_members_ups is not None:
             pulumi.set(__self__, "num_members_ups", num_members_ups)
         if paths is not None:
             pulumi.set(__self__, "paths", paths)
+        if request_headers is not None:
+            pulumi.set(__self__, "request_headers", request_headers)
+        if response_headers is not None:
+            pulumi.set(__self__, "response_headers", response_headers)
         if src_ips is not None:
             pulumi.set(__self__, "src_ips", src_ips)
         if src_port_ranges is not None:
@@ -1804,6 +2035,7 @@ class LoadbalancerFrontendRuleMatchersArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Use `request_header` instead.""")
     def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHeaderArgs']]]]:
         """
         Matches by HTTP header value. Header name must be provided.
@@ -1839,6 +2071,30 @@ class LoadbalancerFrontendRuleMatchersArgs:
         pulumi.set(self, "http_methods", value)
 
     @property
+    @pulumi.getter(name="httpStatusRanges")
+    def http_status_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs']]]]:
+        """
+        Matches by range of HTTP statuses.
+        """
+        return pulumi.get(self, "http_status_ranges")
+
+    @http_status_ranges.setter
+    def http_status_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs']]]]):
+        pulumi.set(self, "http_status_ranges", value)
+
+    @property
+    @pulumi.getter(name="httpStatuses")
+    def http_statuses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHttpStatusArgs']]]]:
+        """
+        Matches by HTTP status.
+        """
+        return pulumi.get(self, "http_statuses")
+
+    @http_statuses.setter
+    def http_statuses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersHttpStatusArgs']]]]):
+        pulumi.set(self, "http_statuses", value)
+
+    @property
     @pulumi.getter(name="numMembersUps")
     def num_members_ups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersNumMembersUpArgs']]]]:
         """
@@ -1861,6 +2117,30 @@ class LoadbalancerFrontendRuleMatchersArgs:
     @paths.setter
     def paths(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersPathArgs']]]]):
         pulumi.set(self, "paths", value)
+
+    @property
+    @pulumi.getter(name="requestHeaders")
+    def request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersRequestHeaderArgs']]]]:
+        """
+        Matches by HTTP request header value. Header name must be provided.
+        """
+        return pulumi.get(self, "request_headers")
+
+    @request_headers.setter
+    def request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersRequestHeaderArgs']]]]):
+        pulumi.set(self, "request_headers", value)
+
+    @property
+    @pulumi.getter(name="responseHeaders")
+    def response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersResponseHeaderArgs']]]]:
+        """
+        Matches by HTTP response header value. Header name must be provided.
+        """
+        return pulumi.get(self, "response_headers")
+
+    @response_headers.setter
+    def response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendRuleMatchersResponseHeaderArgs']]]]):
+        pulumi.set(self, "response_headers", value)
 
     @property
     @pulumi.getter(name="srcIps")
@@ -2398,6 +2678,146 @@ class LoadbalancerFrontendRuleMatchersHttpMethodArgs:
 
 
 if not MYPY:
+    class LoadbalancerFrontendRuleMatchersHttpStatusArgsDict(TypedDict):
+        method: pulumi.Input[str]
+        """
+        Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
+        """
+        value: pulumi.Input[int]
+        """
+        Integer value.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersHttpStatusArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class LoadbalancerFrontendRuleMatchersHttpStatusArgs:
+    def __init__(__self__, *,
+                 method: pulumi.Input[str],
+                 value: pulumi.Input[int],
+                 inverse: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] method: Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
+        :param pulumi.Input[int] value: Integer value.
+        :param pulumi.Input[bool] inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "value", value)
+        if inverse is not None:
+            pulumi.set(__self__, "inverse", inverse)
+
+    @property
+    @pulumi.getter
+    def method(self) -> pulumi.Input[str]:
+        """
+        Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
+        """
+        return pulumi.get(self, "method")
+
+    @method.setter
+    def method(self, value: pulumi.Input[str]):
+        pulumi.set(self, "method", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[int]:
+        """
+        Integer value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[int]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def inverse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        return pulumi.get(self, "inverse")
+
+    @inverse.setter
+    def inverse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "inverse", value)
+
+
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersHttpStatusRangeArgsDict(TypedDict):
+        range_end: pulumi.Input[int]
+        """
+        Integer value.
+        """
+        range_start: pulumi.Input[int]
+        """
+        Integer value.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersHttpStatusRangeArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class LoadbalancerFrontendRuleMatchersHttpStatusRangeArgs:
+    def __init__(__self__, *,
+                 range_end: pulumi.Input[int],
+                 range_start: pulumi.Input[int],
+                 inverse: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[int] range_end: Integer value.
+        :param pulumi.Input[int] range_start: Integer value.
+        :param pulumi.Input[bool] inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        pulumi.set(__self__, "range_end", range_end)
+        pulumi.set(__self__, "range_start", range_start)
+        if inverse is not None:
+            pulumi.set(__self__, "inverse", inverse)
+
+    @property
+    @pulumi.getter(name="rangeEnd")
+    def range_end(self) -> pulumi.Input[int]:
+        """
+        Integer value.
+        """
+        return pulumi.get(self, "range_end")
+
+    @range_end.setter
+    def range_end(self, value: pulumi.Input[int]):
+        pulumi.set(self, "range_end", value)
+
+    @property
+    @pulumi.getter(name="rangeStart")
+    def range_start(self) -> pulumi.Input[int]:
+        """
+        Integer value.
+        """
+        return pulumi.get(self, "range_start")
+
+    @range_start.setter
+    def range_start(self, value: pulumi.Input[int]):
+        pulumi.set(self, "range_start", value)
+
+    @property
+    @pulumi.getter
+    def inverse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        return pulumi.get(self, "inverse")
+
+    @inverse.setter
+    def inverse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "inverse", value)
+
+
+if not MYPY:
     class LoadbalancerFrontendRuleMatchersNumMembersUpArgsDict(TypedDict):
         backend_name: pulumi.Input[str]
         """
@@ -2539,6 +2959,226 @@ class LoadbalancerFrontendRuleMatchersPathArgs:
     @method.setter
     def method(self, value: pulumi.Input[str]):
         pulumi.set(self, "method", value)
+
+    @property
+    @pulumi.getter(name="ignoreCase")
+    def ignore_case(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines if case should be ignored. Defaults to `false`.
+        """
+        return pulumi.get(self, "ignore_case")
+
+    @ignore_case.setter
+    def ignore_case(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ignore_case", value)
+
+    @property
+    @pulumi.getter
+    def inverse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        return pulumi.get(self, "inverse")
+
+    @inverse.setter
+    def inverse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "inverse", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        String value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersRequestHeaderArgsDict(TypedDict):
+        method: pulumi.Input[str]
+        """
+        Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        """
+        name: pulumi.Input[str]
+        """
+        Name of the argument.
+        """
+        ignore_case: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if case should be ignored. Defaults to `false`.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        String value.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersRequestHeaderArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class LoadbalancerFrontendRuleMatchersRequestHeaderArgs:
+    def __init__(__self__, *,
+                 method: pulumi.Input[str],
+                 name: pulumi.Input[str],
+                 ignore_case: Optional[pulumi.Input[bool]] = None,
+                 inverse: Optional[pulumi.Input[bool]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] method: Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        :param pulumi.Input[str] name: Name of the argument.
+        :param pulumi.Input[bool] ignore_case: Defines if case should be ignored. Defaults to `false`.
+        :param pulumi.Input[bool] inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        :param pulumi.Input[str] value: String value.
+        """
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "name", name)
+        if ignore_case is not None:
+            pulumi.set(__self__, "ignore_case", ignore_case)
+        if inverse is not None:
+            pulumi.set(__self__, "inverse", inverse)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def method(self) -> pulumi.Input[str]:
+        """
+        Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        """
+        return pulumi.get(self, "method")
+
+    @method.setter
+    def method(self, value: pulumi.Input[str]):
+        pulumi.set(self, "method", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name of the argument.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="ignoreCase")
+    def ignore_case(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines if case should be ignored. Defaults to `false`.
+        """
+        return pulumi.get(self, "ignore_case")
+
+    @ignore_case.setter
+    def ignore_case(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ignore_case", value)
+
+    @property
+    @pulumi.getter
+    def inverse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        return pulumi.get(self, "inverse")
+
+    @inverse.setter
+    def inverse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "inverse", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        String value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class LoadbalancerFrontendRuleMatchersResponseHeaderArgsDict(TypedDict):
+        method: pulumi.Input[str]
+        """
+        Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        """
+        name: pulumi.Input[str]
+        """
+        Name of the argument.
+        """
+        ignore_case: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if case should be ignored. Defaults to `false`.
+        """
+        inverse: NotRequired[pulumi.Input[bool]]
+        """
+        Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        String value.
+        """
+elif False:
+    LoadbalancerFrontendRuleMatchersResponseHeaderArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class LoadbalancerFrontendRuleMatchersResponseHeaderArgs:
+    def __init__(__self__, *,
+                 method: pulumi.Input[str],
+                 name: pulumi.Input[str],
+                 ignore_case: Optional[pulumi.Input[bool]] = None,
+                 inverse: Optional[pulumi.Input[bool]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] method: Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        :param pulumi.Input[str] name: Name of the argument.
+        :param pulumi.Input[bool] ignore_case: Defines if case should be ignored. Defaults to `false`.
+        :param pulumi.Input[bool] inverse: Defines if the condition should be inverted. Works similarly to logical NOT operator.
+        :param pulumi.Input[str] value: String value.
+        """
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "name", name)
+        if ignore_case is not None:
+            pulumi.set(__self__, "ignore_case", ignore_case)
+        if inverse is not None:
+            pulumi.set(__self__, "inverse", inverse)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def method(self) -> pulumi.Input[str]:
+        """
+        Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        """
+        return pulumi.get(self, "method")
+
+    @method.setter
+    def method(self, value: pulumi.Input[str]):
+        pulumi.set(self, "method", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name of the argument.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="ignoreCase")
@@ -3068,7 +3708,7 @@ if not MYPY:
         """
         name: pulumi.Input[str]
         """
-        The name of the network must be unique within the service.
+        The name of the network. Must be unique within the service.
         """
         type: pulumi.Input[str]
         """
@@ -3080,7 +3720,7 @@ if not MYPY:
         """
         id: NotRequired[pulumi.Input[str]]
         """
-        Network identifier.
+        The unique identifier of the network.
         """
         network: NotRequired[pulumi.Input[str]]
         """
@@ -3100,10 +3740,10 @@ class LoadbalancerNetworkArgs:
                  network: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] family: Network family. Currently only `IPv4` is supported.
-        :param pulumi.Input[str] name: The name of the network must be unique within the service.
+        :param pulumi.Input[str] name: The name of the network. Must be unique within the service.
         :param pulumi.Input[str] type: The type of the network. Only one public network can be attached and at least one private network must be attached.
         :param pulumi.Input[str] dns_name: DNS name of the load balancer network
-        :param pulumi.Input[str] id: Network identifier.
+        :param pulumi.Input[str] id: The unique identifier of the network.
         :param pulumi.Input[str] network: Private network UUID. Required for private networks and must reside in loadbalancer zone. For public network the field should be omitted.
         """
         pulumi.set(__self__, "family", family)
@@ -3132,7 +3772,7 @@ class LoadbalancerNetworkArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The name of the network must be unique within the service.
+        The name of the network. Must be unique within the service.
         """
         return pulumi.get(self, "name")
 
@@ -3168,7 +3808,7 @@ class LoadbalancerNetworkArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        Network identifier.
+        The unique identifier of the network.
         """
         return pulumi.get(self, "id")
 
@@ -3192,6 +3832,9 @@ class LoadbalancerNetworkArgs:
 if not MYPY:
     class LoadbalancerNodeArgsDict(TypedDict):
         networks: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNodeNetworkArgsDict']]]]
+        """
+        Networks attached to the node
+        """
         operational_state: NotRequired[pulumi.Input[str]]
         """
         Node's operational state. Managed by the system.
@@ -3205,6 +3848,7 @@ class LoadbalancerNodeArgs:
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNodeNetworkArgs']]]] = None,
                  operational_state: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerNodeNetworkArgs']]] networks: Networks attached to the node
         :param pulumi.Input[str] operational_state: Node's operational state. Managed by the system.
         """
         if networks is not None:
@@ -3215,6 +3859,9 @@ class LoadbalancerNodeArgs:
     @property
     @pulumi.getter
     def networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNodeNetworkArgs']]]]:
+        """
+        Networks attached to the node
+        """
         return pulumi.get(self, "networks")
 
     @networks.setter
@@ -3237,13 +3884,16 @@ class LoadbalancerNodeArgs:
 if not MYPY:
     class LoadbalancerNodeNetworkArgsDict(TypedDict):
         ip_addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNodeNetworkIpAddressArgsDict']]]]
+        """
+        IP addresses attached to the network
+        """
         name: NotRequired[pulumi.Input[str]]
         """
-        The name of the network.
+        The name of the network
         """
         type: NotRequired[pulumi.Input[str]]
         """
-        The type of the network.
+        The type of the network
         """
 elif False:
     LoadbalancerNodeNetworkArgsDict: TypeAlias = Mapping[str, Any]
@@ -3255,8 +3905,9 @@ class LoadbalancerNodeNetworkArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: The name of the network.
-        :param pulumi.Input[str] type: The type of the network.
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerNodeNetworkIpAddressArgs']]] ip_addresses: IP addresses attached to the network
+        :param pulumi.Input[str] name: The name of the network
+        :param pulumi.Input[str] type: The type of the network
         """
         if ip_addresses is not None:
             pulumi.set(__self__, "ip_addresses", ip_addresses)
@@ -3268,6 +3919,9 @@ class LoadbalancerNodeNetworkArgs:
     @property
     @pulumi.getter(name="ipAddresses")
     def ip_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNodeNetworkIpAddressArgs']]]]:
+        """
+        IP addresses attached to the network
+        """
         return pulumi.get(self, "ip_addresses")
 
     @ip_addresses.setter
@@ -3278,7 +3932,7 @@ class LoadbalancerNodeNetworkArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the network.
+        The name of the network
         """
         return pulumi.get(self, "name")
 
@@ -3290,7 +3944,7 @@ class LoadbalancerNodeNetworkArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the network.
+        The type of the network
         """
         return pulumi.get(self, "type")
 
@@ -3303,11 +3957,11 @@ if not MYPY:
     class LoadbalancerNodeNetworkIpAddressArgsDict(TypedDict):
         address: NotRequired[pulumi.Input[str]]
         """
-        Node's IP address.
+        Node's IP address
         """
         listen: NotRequired[pulumi.Input[bool]]
         """
-        Does IP address listen network connections.
+        Whether the node listens to the traffic
         """
 elif False:
     LoadbalancerNodeNetworkIpAddressArgsDict: TypeAlias = Mapping[str, Any]
@@ -3318,8 +3972,8 @@ class LoadbalancerNodeNetworkIpAddressArgs:
                  address: Optional[pulumi.Input[str]] = None,
                  listen: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[str] address: Node's IP address.
-        :param pulumi.Input[bool] listen: Does IP address listen network connections.
+        :param pulumi.Input[str] address: Node's IP address
+        :param pulumi.Input[bool] listen: Whether the node listens to the traffic
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -3330,7 +3984,7 @@ class LoadbalancerNodeNetworkIpAddressArgs:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
         """
-        Node's IP address.
+        Node's IP address
         """
         return pulumi.get(self, "address")
 
@@ -3342,7 +3996,7 @@ class LoadbalancerNodeNetworkIpAddressArgs:
     @pulumi.getter
     def listen(self) -> Optional[pulumi.Input[bool]]:
         """
-        Does IP address listen network connections.
+        Whether the node listens to the traffic
         """
         return pulumi.get(self, "listen")
 
@@ -3725,9 +4379,13 @@ if not MYPY:
         """
         IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
         """
+        log_output: NotRequired[pulumi.Input[str]]
+        """
+        The slow log output destination when slow_query_log is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
+        """
         long_query_time: NotRequired[pulumi.Input[float]]
         """
-        The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute. Default is 10s.
+        The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute.
         """
         max_allowed_packet: NotRequired[pulumi.Input[int]]
         """
@@ -3763,7 +4421,7 @@ if not MYPY:
         """
         slow_query_log: NotRequired[pulumi.Input[bool]]
         """
-        Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table. Default is off.
+        Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table.
         """
         sort_buffer_size: NotRequired[pulumi.Input[int]]
         """
@@ -3820,6 +4478,7 @@ class ManagedDatabaseMysqlPropertiesArgs:
                  interactive_timeout: Optional[pulumi.Input[int]] = None,
                  internal_tmp_mem_storage_engine: Optional[pulumi.Input[str]] = None,
                  ip_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 log_output: Optional[pulumi.Input[str]] = None,
                  long_query_time: Optional[pulumi.Input[float]] = None,
                  max_allowed_packet: Optional[pulumi.Input[int]] = None,
                  max_heap_table_size: Optional[pulumi.Input[int]] = None,
@@ -3862,7 +4521,8 @@ class ManagedDatabaseMysqlPropertiesArgs:
         :param pulumi.Input[int] interactive_timeout: The number of seconds the server waits for activity on an interactive connection before closing it.
         :param pulumi.Input[str] internal_tmp_mem_storage_engine: The storage engine for in-memory internal temporary tables.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
-        :param pulumi.Input[float] long_query_time: The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute. Default is 10s.
+        :param pulumi.Input[str] log_output: The slow log output destination when slow_query_log is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
+        :param pulumi.Input[float] long_query_time: The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute.
         :param pulumi.Input[int] max_allowed_packet: Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
         :param pulumi.Input[int] max_heap_table_size: Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
         :param pulumi.Input['ManagedDatabaseMysqlPropertiesMigrationArgs'] migration: Migrate data from existing server.
@@ -3871,7 +4531,7 @@ class ManagedDatabaseMysqlPropertiesArgs:
         :param pulumi.Input[int] net_write_timeout: The number of seconds to wait for a block to be written to a connection before aborting the write.
         :param pulumi.Input[bool] public_access: Public Access. Allow access to the service from the public Internet.
         :param pulumi.Input[bool] service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
-        :param pulumi.Input[bool] slow_query_log: Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table. Default is off.
+        :param pulumi.Input[bool] slow_query_log: Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table.
         :param pulumi.Input[int] sort_buffer_size: Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
         :param pulumi.Input[str] sql_mode: Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned.
         :param pulumi.Input[bool] sql_require_primary_key: Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them.
@@ -3929,6 +4589,8 @@ class ManagedDatabaseMysqlPropertiesArgs:
             pulumi.set(__self__, "internal_tmp_mem_storage_engine", internal_tmp_mem_storage_engine)
         if ip_filters is not None:
             pulumi.set(__self__, "ip_filters", ip_filters)
+        if log_output is not None:
+            pulumi.set(__self__, "log_output", log_output)
         if long_query_time is not None:
             pulumi.set(__self__, "long_query_time", long_query_time)
         if max_allowed_packet is not None:
@@ -4263,10 +4925,22 @@ class ManagedDatabaseMysqlPropertiesArgs:
         pulumi.set(self, "ip_filters", value)
 
     @property
+    @pulumi.getter(name="logOutput")
+    def log_output(self) -> Optional[pulumi.Input[str]]:
+        """
+        The slow log output destination when slow_query_log is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
+        """
+        return pulumi.get(self, "log_output")
+
+    @log_output.setter
+    def log_output(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_output", value)
+
+    @property
     @pulumi.getter(name="longQueryTime")
     def long_query_time(self) -> Optional[pulumi.Input[float]]:
         """
-        The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute. Default is 10s.
+        The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute.
         """
         return pulumi.get(self, "long_query_time")
 
@@ -4374,7 +5048,7 @@ class ManagedDatabaseMysqlPropertiesArgs:
     @pulumi.getter(name="slowQueryLog")
     def slow_query_log(self) -> Optional[pulumi.Input[bool]]:
         """
-        Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table. Default is off.
+        Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table.
         """
         return pulumi.get(self, "slow_query_log")
 
@@ -4937,18 +5611,26 @@ if not MYPY:
         """
         Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
         """
-        azure_migration: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesAzureMigrationArgsDict']]
         cluster_max_shards_per_node: NotRequired[pulumi.Input[int]]
         """
         Controls the number of shards allowed in the cluster per data node.
         """
+        cluster_routing_allocation_balance_prefer_primary: NotRequired[pulumi.Input[bool]]
+        """
+        When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
+        """
         cluster_routing_allocation_node_concurrent_recoveries: NotRequired[pulumi.Input[int]]
         """
-        Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
+        Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
         """
+        cluster_search_request_slowlog: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgsDict']]
         custom_domain: NotRequired[pulumi.Input[str]]
         """
         Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+        """
+        elasticsearch_version: NotRequired[pulumi.Input[str]]
+        """
+        Elasticsearch major version.
         """
         email_sender_name: NotRequired[pulumi.Input[str]]
         """
@@ -4962,11 +5644,14 @@ if not MYPY:
         """
         Sender username for Opensearch alerts.
         """
+        enable_remote_backed_storage: NotRequired[pulumi.Input[bool]]
+        """
+        Enable remote-backed storage.
+        """
         enable_security_audit: NotRequired[pulumi.Input[bool]]
         """
         Enable/Disable security audit.
         """
-        gcs_migration: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesGcsMigrationArgsDict']]
         http_max_content_length: NotRequired[pulumi.Input[int]]
         """
         Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
@@ -5087,7 +5772,6 @@ if not MYPY:
         """
         Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
         """
-        s3_migration: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesS3MigrationArgsDict']]
         saml: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesSamlArgsDict']]
         """
         OpenSearch SAML configuration.
@@ -5096,13 +5780,26 @@ if not MYPY:
         """
         Script max compilation rate - circuit breaker to prevent/minimize OOMs. Script compilation circuit breaker limits the number of inline script compilations within a period of time. Default is use-context.
         """
+        search_backpressure: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureArgsDict']]
+        """
+        Search Backpressure Settings.
+        """
+        search_insights_top_queries: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgsDict']]
         search_max_buckets: NotRequired[pulumi.Input[int]]
         """
         Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
         """
+        segrep: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesSegrepArgsDict']]
+        """
+        Segment Replication Backpressure Settings.
+        """
         service_log: NotRequired[pulumi.Input[bool]]
         """
         Service logging. Store logs for the service so that they are available in the HTTP API and console.
+        """
+        shard_indexing_pressure: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgsDict']]
+        """
+        Shard indexing back pressure settings.
         """
         thread_pool_analyze_queue_size: NotRequired[pulumi.Input[int]]
         """
@@ -5162,15 +5859,17 @@ class ManagedDatabaseOpensearchPropertiesArgs:
                  action_destructive_requires_name: Optional[pulumi.Input[bool]] = None,
                  auth_failure_listeners: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs']] = None,
                  automatic_utility_network_ip_filter: Optional[pulumi.Input[bool]] = None,
-                 azure_migration: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAzureMigrationArgs']] = None,
                  cluster_max_shards_per_node: Optional[pulumi.Input[int]] = None,
+                 cluster_routing_allocation_balance_prefer_primary: Optional[pulumi.Input[bool]] = None,
                  cluster_routing_allocation_node_concurrent_recoveries: Optional[pulumi.Input[int]] = None,
+                 cluster_search_request_slowlog: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs']] = None,
                  custom_domain: Optional[pulumi.Input[str]] = None,
+                 elasticsearch_version: Optional[pulumi.Input[str]] = None,
                  email_sender_name: Optional[pulumi.Input[str]] = None,
                  email_sender_password: Optional[pulumi.Input[str]] = None,
                  email_sender_username: Optional[pulumi.Input[str]] = None,
+                 enable_remote_backed_storage: Optional[pulumi.Input[bool]] = None,
                  enable_security_audit: Optional[pulumi.Input[bool]] = None,
-                 gcs_migration: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesGcsMigrationArgs']] = None,
                  http_max_content_length: Optional[pulumi.Input[int]] = None,
                  http_max_header_size: Optional[pulumi.Input[int]] = None,
                  http_max_initial_line_length: Optional[pulumi.Input[int]] = None,
@@ -5201,11 +5900,14 @@ class ManagedDatabaseOpensearchPropertiesArgs:
                  plugins_alerting_filter_by_backend_roles: Optional[pulumi.Input[bool]] = None,
                  public_access: Optional[pulumi.Input[bool]] = None,
                  reindex_remote_whitelists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 s3_migration: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesS3MigrationArgs']] = None,
                  saml: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSamlArgs']] = None,
                  script_max_compilations_rate: Optional[pulumi.Input[str]] = None,
+                 search_backpressure: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs']] = None,
+                 search_insights_top_queries: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs']] = None,
                  search_max_buckets: Optional[pulumi.Input[int]] = None,
+                 segrep: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSegrepArgs']] = None,
                  service_log: Optional[pulumi.Input[bool]] = None,
+                 shard_indexing_pressure: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs']] = None,
                  thread_pool_analyze_queue_size: Optional[pulumi.Input[int]] = None,
                  thread_pool_analyze_size: Optional[pulumi.Input[int]] = None,
                  thread_pool_force_merge_size: Optional[pulumi.Input[int]] = None,
@@ -5224,11 +5926,14 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         :param pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs'] auth_failure_listeners: Opensearch Security Plugin Settings.
         :param pulumi.Input[bool] automatic_utility_network_ip_filter: Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
         :param pulumi.Input[int] cluster_max_shards_per_node: Controls the number of shards allowed in the cluster per data node.
-        :param pulumi.Input[int] cluster_routing_allocation_node_concurrent_recoveries: Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
+        :param pulumi.Input[bool] cluster_routing_allocation_balance_prefer_primary: When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
+        :param pulumi.Input[int] cluster_routing_allocation_node_concurrent_recoveries: Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
         :param pulumi.Input[str] custom_domain: Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+        :param pulumi.Input[str] elasticsearch_version: Elasticsearch major version.
         :param pulumi.Input[str] email_sender_name: Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
         :param pulumi.Input[str] email_sender_password: Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
         :param pulumi.Input[str] email_sender_username: Sender username for Opensearch alerts.
+        :param pulumi.Input[bool] enable_remote_backed_storage: Enable remote-backed storage.
         :param pulumi.Input[bool] enable_security_audit: Enable/Disable security audit.
         :param pulumi.Input[int] http_max_content_length: Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
         :param pulumi.Input[int] http_max_header_size: The max size of allowed headers, in bytes.
@@ -5262,8 +5967,11 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] reindex_remote_whitelists: Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
         :param pulumi.Input['ManagedDatabaseOpensearchPropertiesSamlArgs'] saml: OpenSearch SAML configuration.
         :param pulumi.Input[str] script_max_compilations_rate: Script max compilation rate - circuit breaker to prevent/minimize OOMs. Script compilation circuit breaker limits the number of inline script compilations within a period of time. Default is use-context.
+        :param pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs'] search_backpressure: Search Backpressure Settings.
         :param pulumi.Input[int] search_max_buckets: Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
+        :param pulumi.Input['ManagedDatabaseOpensearchPropertiesSegrepArgs'] segrep: Segment Replication Backpressure Settings.
         :param pulumi.Input[bool] service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
+        :param pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs'] shard_indexing_pressure: Shard indexing back pressure settings.
         :param pulumi.Input[int] thread_pool_analyze_queue_size: analyze thread pool queue size. Size for the thread pool queue. See documentation for exact details.
         :param pulumi.Input[int] thread_pool_analyze_size: analyze thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
         :param pulumi.Input[int] thread_pool_force_merge_size: force_merge thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
@@ -5285,24 +5993,28 @@ class ManagedDatabaseOpensearchPropertiesArgs:
             pulumi.set(__self__, "auth_failure_listeners", auth_failure_listeners)
         if automatic_utility_network_ip_filter is not None:
             pulumi.set(__self__, "automatic_utility_network_ip_filter", automatic_utility_network_ip_filter)
-        if azure_migration is not None:
-            pulumi.set(__self__, "azure_migration", azure_migration)
         if cluster_max_shards_per_node is not None:
             pulumi.set(__self__, "cluster_max_shards_per_node", cluster_max_shards_per_node)
+        if cluster_routing_allocation_balance_prefer_primary is not None:
+            pulumi.set(__self__, "cluster_routing_allocation_balance_prefer_primary", cluster_routing_allocation_balance_prefer_primary)
         if cluster_routing_allocation_node_concurrent_recoveries is not None:
             pulumi.set(__self__, "cluster_routing_allocation_node_concurrent_recoveries", cluster_routing_allocation_node_concurrent_recoveries)
+        if cluster_search_request_slowlog is not None:
+            pulumi.set(__self__, "cluster_search_request_slowlog", cluster_search_request_slowlog)
         if custom_domain is not None:
             pulumi.set(__self__, "custom_domain", custom_domain)
+        if elasticsearch_version is not None:
+            pulumi.set(__self__, "elasticsearch_version", elasticsearch_version)
         if email_sender_name is not None:
             pulumi.set(__self__, "email_sender_name", email_sender_name)
         if email_sender_password is not None:
             pulumi.set(__self__, "email_sender_password", email_sender_password)
         if email_sender_username is not None:
             pulumi.set(__self__, "email_sender_username", email_sender_username)
+        if enable_remote_backed_storage is not None:
+            pulumi.set(__self__, "enable_remote_backed_storage", enable_remote_backed_storage)
         if enable_security_audit is not None:
             pulumi.set(__self__, "enable_security_audit", enable_security_audit)
-        if gcs_migration is not None:
-            pulumi.set(__self__, "gcs_migration", gcs_migration)
         if http_max_content_length is not None:
             pulumi.set(__self__, "http_max_content_length", http_max_content_length)
         if http_max_header_size is not None:
@@ -5363,16 +6075,22 @@ class ManagedDatabaseOpensearchPropertiesArgs:
             pulumi.set(__self__, "public_access", public_access)
         if reindex_remote_whitelists is not None:
             pulumi.set(__self__, "reindex_remote_whitelists", reindex_remote_whitelists)
-        if s3_migration is not None:
-            pulumi.set(__self__, "s3_migration", s3_migration)
         if saml is not None:
             pulumi.set(__self__, "saml", saml)
         if script_max_compilations_rate is not None:
             pulumi.set(__self__, "script_max_compilations_rate", script_max_compilations_rate)
+        if search_backpressure is not None:
+            pulumi.set(__self__, "search_backpressure", search_backpressure)
+        if search_insights_top_queries is not None:
+            pulumi.set(__self__, "search_insights_top_queries", search_insights_top_queries)
         if search_max_buckets is not None:
             pulumi.set(__self__, "search_max_buckets", search_max_buckets)
+        if segrep is not None:
+            pulumi.set(__self__, "segrep", segrep)
         if service_log is not None:
             pulumi.set(__self__, "service_log", service_log)
+        if shard_indexing_pressure is not None:
+            pulumi.set(__self__, "shard_indexing_pressure", shard_indexing_pressure)
         if thread_pool_analyze_queue_size is not None:
             pulumi.set(__self__, "thread_pool_analyze_queue_size", thread_pool_analyze_queue_size)
         if thread_pool_analyze_size is not None:
@@ -5447,15 +6165,6 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         pulumi.set(self, "automatic_utility_network_ip_filter", value)
 
     @property
-    @pulumi.getter(name="azureMigration")
-    def azure_migration(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAzureMigrationArgs']]:
-        return pulumi.get(self, "azure_migration")
-
-    @azure_migration.setter
-    def azure_migration(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAzureMigrationArgs']]):
-        pulumi.set(self, "azure_migration", value)
-
-    @property
     @pulumi.getter(name="clusterMaxShardsPerNode")
     def cluster_max_shards_per_node(self) -> Optional[pulumi.Input[int]]:
         """
@@ -5468,16 +6177,37 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         pulumi.set(self, "cluster_max_shards_per_node", value)
 
     @property
+    @pulumi.getter(name="clusterRoutingAllocationBalancePreferPrimary")
+    def cluster_routing_allocation_balance_prefer_primary(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
+        """
+        return pulumi.get(self, "cluster_routing_allocation_balance_prefer_primary")
+
+    @cluster_routing_allocation_balance_prefer_primary.setter
+    def cluster_routing_allocation_balance_prefer_primary(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "cluster_routing_allocation_balance_prefer_primary", value)
+
+    @property
     @pulumi.getter(name="clusterRoutingAllocationNodeConcurrentRecoveries")
     def cluster_routing_allocation_node_concurrent_recoveries(self) -> Optional[pulumi.Input[int]]:
         """
-        Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
+        Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
         """
         return pulumi.get(self, "cluster_routing_allocation_node_concurrent_recoveries")
 
     @cluster_routing_allocation_node_concurrent_recoveries.setter
     def cluster_routing_allocation_node_concurrent_recoveries(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cluster_routing_allocation_node_concurrent_recoveries", value)
+
+    @property
+    @pulumi.getter(name="clusterSearchRequestSlowlog")
+    def cluster_search_request_slowlog(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs']]:
+        return pulumi.get(self, "cluster_search_request_slowlog")
+
+    @cluster_search_request_slowlog.setter
+    def cluster_search_request_slowlog(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs']]):
+        pulumi.set(self, "cluster_search_request_slowlog", value)
 
     @property
     @pulumi.getter(name="customDomain")
@@ -5490,6 +6220,18 @@ class ManagedDatabaseOpensearchPropertiesArgs:
     @custom_domain.setter
     def custom_domain(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "custom_domain", value)
+
+    @property
+    @pulumi.getter(name="elasticsearchVersion")
+    def elasticsearch_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Elasticsearch major version.
+        """
+        return pulumi.get(self, "elasticsearch_version")
+
+    @elasticsearch_version.setter
+    def elasticsearch_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "elasticsearch_version", value)
 
     @property
     @pulumi.getter(name="emailSenderName")
@@ -5528,6 +6270,18 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         pulumi.set(self, "email_sender_username", value)
 
     @property
+    @pulumi.getter(name="enableRemoteBackedStorage")
+    def enable_remote_backed_storage(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable remote-backed storage.
+        """
+        return pulumi.get(self, "enable_remote_backed_storage")
+
+    @enable_remote_backed_storage.setter
+    def enable_remote_backed_storage(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_remote_backed_storage", value)
+
+    @property
     @pulumi.getter(name="enableSecurityAudit")
     def enable_security_audit(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -5538,15 +6292,6 @@ class ManagedDatabaseOpensearchPropertiesArgs:
     @enable_security_audit.setter
     def enable_security_audit(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enable_security_audit", value)
-
-    @property
-    @pulumi.getter(name="gcsMigration")
-    def gcs_migration(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesGcsMigrationArgs']]:
-        return pulumi.get(self, "gcs_migration")
-
-    @gcs_migration.setter
-    def gcs_migration(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesGcsMigrationArgs']]):
-        pulumi.set(self, "gcs_migration", value)
 
     @property
     @pulumi.getter(name="httpMaxContentLength")
@@ -5909,15 +6654,6 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         pulumi.set(self, "reindex_remote_whitelists", value)
 
     @property
-    @pulumi.getter(name="s3Migration")
-    def s3_migration(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesS3MigrationArgs']]:
-        return pulumi.get(self, "s3_migration")
-
-    @s3_migration.setter
-    def s3_migration(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesS3MigrationArgs']]):
-        pulumi.set(self, "s3_migration", value)
-
-    @property
     @pulumi.getter
     def saml(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSamlArgs']]:
         """
@@ -5942,6 +6678,27 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         pulumi.set(self, "script_max_compilations_rate", value)
 
     @property
+    @pulumi.getter(name="searchBackpressure")
+    def search_backpressure(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs']]:
+        """
+        Search Backpressure Settings.
+        """
+        return pulumi.get(self, "search_backpressure")
+
+    @search_backpressure.setter
+    def search_backpressure(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs']]):
+        pulumi.set(self, "search_backpressure", value)
+
+    @property
+    @pulumi.getter(name="searchInsightsTopQueries")
+    def search_insights_top_queries(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs']]:
+        return pulumi.get(self, "search_insights_top_queries")
+
+    @search_insights_top_queries.setter
+    def search_insights_top_queries(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs']]):
+        pulumi.set(self, "search_insights_top_queries", value)
+
+    @property
     @pulumi.getter(name="searchMaxBuckets")
     def search_max_buckets(self) -> Optional[pulumi.Input[int]]:
         """
@@ -5954,6 +6711,18 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         pulumi.set(self, "search_max_buckets", value)
 
     @property
+    @pulumi.getter
+    def segrep(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSegrepArgs']]:
+        """
+        Segment Replication Backpressure Settings.
+        """
+        return pulumi.get(self, "segrep")
+
+    @segrep.setter
+    def segrep(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSegrepArgs']]):
+        pulumi.set(self, "segrep", value)
+
+    @property
     @pulumi.getter(name="serviceLog")
     def service_log(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -5964,6 +6733,18 @@ class ManagedDatabaseOpensearchPropertiesArgs:
     @service_log.setter
     def service_log(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "service_log", value)
+
+    @property
+    @pulumi.getter(name="shardIndexingPressure")
+    def shard_indexing_pressure(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs']]:
+        """
+        Shard indexing back pressure settings.
+        """
+        return pulumi.get(self, "shard_indexing_pressure")
+
+    @shard_indexing_pressure.setter
+    def shard_indexing_pressure(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs']]):
+        pulumi.set(self, "shard_indexing_pressure", value)
 
     @property
     @pulumi.getter(name="threadPoolAnalyzeQueueSize")
@@ -6440,327 +7221,140 @@ class ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs:
 
 
 if not MYPY:
-    class ManagedDatabaseOpensearchPropertiesAzureMigrationArgsDict(TypedDict):
-        account: NotRequired[pulumi.Input[str]]
+    class ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgsDict(TypedDict):
+        level: NotRequired[pulumi.Input[str]]
         """
-        Account name. Azure account name.
+        Log level.
         """
-        base_path: NotRequired[pulumi.Input[str]]
-        """
-        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-        """
-        chunk_size: NotRequired[pulumi.Input[str]]
-        """
-        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-        """
-        compress: NotRequired[pulumi.Input[bool]]
-        """
-        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-        """
-        container: NotRequired[pulumi.Input[str]]
-        """
-        Azure container name. Azure container name.
-        """
-        endpoint_suffix: NotRequired[pulumi.Input[str]]
-        """
-        Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
-        """
-        key: NotRequired[pulumi.Input[str]]
-        """
-        Account secret key. Azure account secret key. One of key or sas_token should be specified.
-        """
-        sas_token: NotRequired[pulumi.Input[str]]
-        """
-        SAS token. A shared access signatures (SAS) token. One of key or sas_token should be specified.
-        """
-        snapshot_name: NotRequired[pulumi.Input[str]]
-        """
-        The snapshot name to restore from. The snapshot name to restore from.
-        """
+        threshold: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgsDict']]
 elif False:
-    ManagedDatabaseOpensearchPropertiesAzureMigrationArgsDict: TypeAlias = Mapping[str, Any]
+    ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
-class ManagedDatabaseOpensearchPropertiesAzureMigrationArgs:
+class ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs:
     def __init__(__self__, *,
-                 account: Optional[pulumi.Input[str]] = None,
-                 base_path: Optional[pulumi.Input[str]] = None,
-                 chunk_size: Optional[pulumi.Input[str]] = None,
-                 compress: Optional[pulumi.Input[bool]] = None,
-                 container: Optional[pulumi.Input[str]] = None,
-                 endpoint_suffix: Optional[pulumi.Input[str]] = None,
-                 key: Optional[pulumi.Input[str]] = None,
-                 sas_token: Optional[pulumi.Input[str]] = None,
-                 snapshot_name: Optional[pulumi.Input[str]] = None):
+                 level: Optional[pulumi.Input[str]] = None,
+                 threshold: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs']] = None):
         """
-        :param pulumi.Input[str] account: Account name. Azure account name.
-        :param pulumi.Input[str] base_path: The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-        :param pulumi.Input[str] chunk_size: Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-        :param pulumi.Input[bool] compress: Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-        :param pulumi.Input[str] container: Azure container name. Azure container name.
-        :param pulumi.Input[str] endpoint_suffix: Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
-        :param pulumi.Input[str] key: Account secret key. Azure account secret key. One of key or sas_token should be specified.
-        :param pulumi.Input[str] sas_token: SAS token. A shared access signatures (SAS) token. One of key or sas_token should be specified.
-        :param pulumi.Input[str] snapshot_name: The snapshot name to restore from. The snapshot name to restore from.
+        :param pulumi.Input[str] level: Log level.
         """
-        if account is not None:
-            pulumi.set(__self__, "account", account)
-        if base_path is not None:
-            pulumi.set(__self__, "base_path", base_path)
-        if chunk_size is not None:
-            pulumi.set(__self__, "chunk_size", chunk_size)
-        if compress is not None:
-            pulumi.set(__self__, "compress", compress)
-        if container is not None:
-            pulumi.set(__self__, "container", container)
-        if endpoint_suffix is not None:
-            pulumi.set(__self__, "endpoint_suffix", endpoint_suffix)
-        if key is not None:
-            pulumi.set(__self__, "key", key)
-        if sas_token is not None:
-            pulumi.set(__self__, "sas_token", sas_token)
-        if snapshot_name is not None:
-            pulumi.set(__self__, "snapshot_name", snapshot_name)
+        if level is not None:
+            pulumi.set(__self__, "level", level)
+        if threshold is not None:
+            pulumi.set(__self__, "threshold", threshold)
 
     @property
     @pulumi.getter
-    def account(self) -> Optional[pulumi.Input[str]]:
+    def level(self) -> Optional[pulumi.Input[str]]:
         """
-        Account name. Azure account name.
+        Log level.
         """
-        return pulumi.get(self, "account")
+        return pulumi.get(self, "level")
 
-    @account.setter
-    def account(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "account", value)
-
-    @property
-    @pulumi.getter(name="basePath")
-    def base_path(self) -> Optional[pulumi.Input[str]]:
-        """
-        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-        """
-        return pulumi.get(self, "base_path")
-
-    @base_path.setter
-    def base_path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "base_path", value)
-
-    @property
-    @pulumi.getter(name="chunkSize")
-    def chunk_size(self) -> Optional[pulumi.Input[str]]:
-        """
-        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-        """
-        return pulumi.get(self, "chunk_size")
-
-    @chunk_size.setter
-    def chunk_size(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "chunk_size", value)
+    @level.setter
+    def level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "level", value)
 
     @property
     @pulumi.getter
-    def compress(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-        """
-        return pulumi.get(self, "compress")
+    def threshold(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs']]:
+        return pulumi.get(self, "threshold")
 
-    @compress.setter
-    def compress(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "compress", value)
-
-    @property
-    @pulumi.getter
-    def container(self) -> Optional[pulumi.Input[str]]:
-        """
-        Azure container name. Azure container name.
-        """
-        return pulumi.get(self, "container")
-
-    @container.setter
-    def container(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "container", value)
-
-    @property
-    @pulumi.getter(name="endpointSuffix")
-    def endpoint_suffix(self) -> Optional[pulumi.Input[str]]:
-        """
-        Endpoint suffix. Defines the DNS suffix for Azure Storage endpoints.
-        """
-        return pulumi.get(self, "endpoint_suffix")
-
-    @endpoint_suffix.setter
-    def endpoint_suffix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "endpoint_suffix", value)
-
-    @property
-    @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Account secret key. Azure account secret key. One of key or sas_token should be specified.
-        """
-        return pulumi.get(self, "key")
-
-    @key.setter
-    def key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "key", value)
-
-    @property
-    @pulumi.getter(name="sasToken")
-    def sas_token(self) -> Optional[pulumi.Input[str]]:
-        """
-        SAS token. A shared access signatures (SAS) token. One of key or sas_token should be specified.
-        """
-        return pulumi.get(self, "sas_token")
-
-    @sas_token.setter
-    def sas_token(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "sas_token", value)
-
-    @property
-    @pulumi.getter(name="snapshotName")
-    def snapshot_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The snapshot name to restore from. The snapshot name to restore from.
-        """
-        return pulumi.get(self, "snapshot_name")
-
-    @snapshot_name.setter
-    def snapshot_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "snapshot_name", value)
+    @threshold.setter
+    def threshold(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs']]):
+        pulumi.set(self, "threshold", value)
 
 
 if not MYPY:
-    class ManagedDatabaseOpensearchPropertiesGcsMigrationArgsDict(TypedDict):
-        base_path: NotRequired[pulumi.Input[str]]
+    class ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgsDict(TypedDict):
+        debug: NotRequired[pulumi.Input[str]]
         """
-        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
+        Debug threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
-        bucket: NotRequired[pulumi.Input[str]]
+        info: NotRequired[pulumi.Input[str]]
         """
-        The path to the repository data within its container. Google Cloud Storage bucket name.
+        Info threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
-        chunk_size: NotRequired[pulumi.Input[str]]
+        trace: NotRequired[pulumi.Input[str]]
         """
-        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
+        Trace threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
-        compress: NotRequired[pulumi.Input[bool]]
+        warn: NotRequired[pulumi.Input[str]]
         """
-        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-        """
-        credentials: NotRequired[pulumi.Input[str]]
-        """
-        Credentials. Google Cloud Storage credentials file content.
-        """
-        snapshot_name: NotRequired[pulumi.Input[str]]
-        """
-        The snapshot name to restore from. The snapshot name to restore from.
+        Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
 elif False:
-    ManagedDatabaseOpensearchPropertiesGcsMigrationArgsDict: TypeAlias = Mapping[str, Any]
+    ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
-class ManagedDatabaseOpensearchPropertiesGcsMigrationArgs:
+class ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs:
     def __init__(__self__, *,
-                 base_path: Optional[pulumi.Input[str]] = None,
-                 bucket: Optional[pulumi.Input[str]] = None,
-                 chunk_size: Optional[pulumi.Input[str]] = None,
-                 compress: Optional[pulumi.Input[bool]] = None,
-                 credentials: Optional[pulumi.Input[str]] = None,
-                 snapshot_name: Optional[pulumi.Input[str]] = None):
+                 debug: Optional[pulumi.Input[str]] = None,
+                 info: Optional[pulumi.Input[str]] = None,
+                 trace: Optional[pulumi.Input[str]] = None,
+                 warn: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] base_path: The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-        :param pulumi.Input[str] bucket: The path to the repository data within its container. Google Cloud Storage bucket name.
-        :param pulumi.Input[str] chunk_size: Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-        :param pulumi.Input[bool] compress: Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-        :param pulumi.Input[str] credentials: Credentials. Google Cloud Storage credentials file content.
-        :param pulumi.Input[str] snapshot_name: The snapshot name to restore from. The snapshot name to restore from.
+        :param pulumi.Input[str] debug: Debug threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+        :param pulumi.Input[str] info: Info threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+        :param pulumi.Input[str] trace: Trace threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
+        :param pulumi.Input[str] warn: Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
-        if base_path is not None:
-            pulumi.set(__self__, "base_path", base_path)
-        if bucket is not None:
-            pulumi.set(__self__, "bucket", bucket)
-        if chunk_size is not None:
-            pulumi.set(__self__, "chunk_size", chunk_size)
-        if compress is not None:
-            pulumi.set(__self__, "compress", compress)
-        if credentials is not None:
-            pulumi.set(__self__, "credentials", credentials)
-        if snapshot_name is not None:
-            pulumi.set(__self__, "snapshot_name", snapshot_name)
-
-    @property
-    @pulumi.getter(name="basePath")
-    def base_path(self) -> Optional[pulumi.Input[str]]:
-        """
-        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-        """
-        return pulumi.get(self, "base_path")
-
-    @base_path.setter
-    def base_path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "base_path", value)
+        if debug is not None:
+            pulumi.set(__self__, "debug", debug)
+        if info is not None:
+            pulumi.set(__self__, "info", info)
+        if trace is not None:
+            pulumi.set(__self__, "trace", trace)
+        if warn is not None:
+            pulumi.set(__self__, "warn", warn)
 
     @property
     @pulumi.getter
-    def bucket(self) -> Optional[pulumi.Input[str]]:
+    def debug(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to the repository data within its container. Google Cloud Storage bucket name.
+        Debug threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
-        return pulumi.get(self, "bucket")
+        return pulumi.get(self, "debug")
 
-    @bucket.setter
-    def bucket(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "bucket", value)
-
-    @property
-    @pulumi.getter(name="chunkSize")
-    def chunk_size(self) -> Optional[pulumi.Input[str]]:
-        """
-        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-        """
-        return pulumi.get(self, "chunk_size")
-
-    @chunk_size.setter
-    def chunk_size(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "chunk_size", value)
+    @debug.setter
+    def debug(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "debug", value)
 
     @property
     @pulumi.getter
-    def compress(self) -> Optional[pulumi.Input[bool]]:
+    def info(self) -> Optional[pulumi.Input[str]]:
         """
-        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
+        Info threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
-        return pulumi.get(self, "compress")
+        return pulumi.get(self, "info")
 
-    @compress.setter
-    def compress(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "compress", value)
+    @info.setter
+    def info(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "info", value)
 
     @property
     @pulumi.getter
-    def credentials(self) -> Optional[pulumi.Input[str]]:
+    def trace(self) -> Optional[pulumi.Input[str]]:
         """
-        Credentials. Google Cloud Storage credentials file content.
+        Trace threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
-        return pulumi.get(self, "credentials")
+        return pulumi.get(self, "trace")
 
-    @credentials.setter
-    def credentials(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "credentials", value)
+    @trace.setter
+    def trace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trace", value)
 
     @property
-    @pulumi.getter(name="snapshotName")
-    def snapshot_name(self) -> Optional[pulumi.Input[str]]:
+    @pulumi.getter
+    def warn(self) -> Optional[pulumi.Input[str]]:
         """
-        The snapshot name to restore from. The snapshot name to restore from.
+        Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
-        return pulumi.get(self, "snapshot_name")
+        return pulumi.get(self, "warn")
 
-    @snapshot_name.setter
-    def snapshot_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "snapshot_name", value)
+    @warn.setter
+    def warn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "warn", value)
 
 
 if not MYPY:
@@ -7209,6 +7803,10 @@ if not MYPY:
         """
         Limits the maximum amount of memory (in MiB) the OpenSearch Dashboards process can use. This sets the max_old_space_size option of the nodejs running the OpenSearch Dashboards. Note: the memory reserved by OpenSearch Dashboards is not available for OpenSearch.
         """
+        multiple_data_source_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable or disable multiple data sources in OpenSearch Dashboards.
+        """
         opensearch_request_timeout: NotRequired[pulumi.Input[int]]
         """
         Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
@@ -7221,16 +7819,20 @@ class ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs:
     def __init__(__self__, *,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  max_old_space_size: Optional[pulumi.Input[int]] = None,
+                 multiple_data_source_enabled: Optional[pulumi.Input[bool]] = None,
                  opensearch_request_timeout: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] enabled: Enable or disable OpenSearch Dashboards.
         :param pulumi.Input[int] max_old_space_size: Limits the maximum amount of memory (in MiB) the OpenSearch Dashboards process can use. This sets the max_old_space_size option of the nodejs running the OpenSearch Dashboards. Note: the memory reserved by OpenSearch Dashboards is not available for OpenSearch.
+        :param pulumi.Input[bool] multiple_data_source_enabled: Enable or disable multiple data sources in OpenSearch Dashboards.
         :param pulumi.Input[int] opensearch_request_timeout: Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
         """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
         if max_old_space_size is not None:
             pulumi.set(__self__, "max_old_space_size", max_old_space_size)
+        if multiple_data_source_enabled is not None:
+            pulumi.set(__self__, "multiple_data_source_enabled", multiple_data_source_enabled)
         if opensearch_request_timeout is not None:
             pulumi.set(__self__, "opensearch_request_timeout", opensearch_request_timeout)
 
@@ -7259,6 +7861,18 @@ class ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs:
         pulumi.set(self, "max_old_space_size", value)
 
     @property
+    @pulumi.getter(name="multipleDataSourceEnabled")
+    def multiple_data_source_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable multiple data sources in OpenSearch Dashboards.
+        """
+        return pulumi.get(self, "multiple_data_source_enabled")
+
+    @multiple_data_source_enabled.setter
+    def multiple_data_source_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "multiple_data_source_enabled", value)
+
+    @property
     @pulumi.getter(name="opensearchRequestTimeout")
     def opensearch_request_timeout(self) -> Optional[pulumi.Input[int]]:
         """
@@ -7269,218 +7883,6 @@ class ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs:
     @opensearch_request_timeout.setter
     def opensearch_request_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "opensearch_request_timeout", value)
-
-
-if not MYPY:
-    class ManagedDatabaseOpensearchPropertiesS3MigrationArgsDict(TypedDict):
-        access_key: NotRequired[pulumi.Input[str]]
-        """
-        AWS Access key. AWS Access key.
-        """
-        base_path: NotRequired[pulumi.Input[str]]
-        """
-        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-        """
-        bucket: NotRequired[pulumi.Input[str]]
-        """
-        S3 bucket name. S3 bucket name.
-        """
-        chunk_size: NotRequired[pulumi.Input[str]]
-        """
-        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-        """
-        compress: NotRequired[pulumi.Input[bool]]
-        """
-        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-        """
-        endpoint: NotRequired[pulumi.Input[str]]
-        """
-        The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
-        """
-        region: NotRequired[pulumi.Input[str]]
-        """
-        S3 region. S3 region.
-        """
-        secret_key: NotRequired[pulumi.Input[str]]
-        """
-        AWS secret key. AWS secret key.
-        """
-        server_side_encryption: NotRequired[pulumi.Input[bool]]
-        """
-        Server side encryption. When set to true files are encrypted on server side.
-        """
-        snapshot_name: NotRequired[pulumi.Input[str]]
-        """
-        The snapshot name to restore from. The snapshot name to restore from.
-        """
-elif False:
-    ManagedDatabaseOpensearchPropertiesS3MigrationArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class ManagedDatabaseOpensearchPropertiesS3MigrationArgs:
-    def __init__(__self__, *,
-                 access_key: Optional[pulumi.Input[str]] = None,
-                 base_path: Optional[pulumi.Input[str]] = None,
-                 bucket: Optional[pulumi.Input[str]] = None,
-                 chunk_size: Optional[pulumi.Input[str]] = None,
-                 compress: Optional[pulumi.Input[bool]] = None,
-                 endpoint: Optional[pulumi.Input[str]] = None,
-                 region: Optional[pulumi.Input[str]] = None,
-                 secret_key: Optional[pulumi.Input[str]] = None,
-                 server_side_encryption: Optional[pulumi.Input[bool]] = None,
-                 snapshot_name: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] access_key: AWS Access key. AWS Access key.
-        :param pulumi.Input[str] base_path: The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-        :param pulumi.Input[str] bucket: S3 bucket name. S3 bucket name.
-        :param pulumi.Input[str] chunk_size: Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-        :param pulumi.Input[bool] compress: Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-        :param pulumi.Input[str] endpoint: The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
-        :param pulumi.Input[str] region: S3 region. S3 region.
-        :param pulumi.Input[str] secret_key: AWS secret key. AWS secret key.
-        :param pulumi.Input[bool] server_side_encryption: Server side encryption. When set to true files are encrypted on server side.
-        :param pulumi.Input[str] snapshot_name: The snapshot name to restore from. The snapshot name to restore from.
-        """
-        if access_key is not None:
-            pulumi.set(__self__, "access_key", access_key)
-        if base_path is not None:
-            pulumi.set(__self__, "base_path", base_path)
-        if bucket is not None:
-            pulumi.set(__self__, "bucket", bucket)
-        if chunk_size is not None:
-            pulumi.set(__self__, "chunk_size", chunk_size)
-        if compress is not None:
-            pulumi.set(__self__, "compress", compress)
-        if endpoint is not None:
-            pulumi.set(__self__, "endpoint", endpoint)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-        if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
-        if server_side_encryption is not None:
-            pulumi.set(__self__, "server_side_encryption", server_side_encryption)
-        if snapshot_name is not None:
-            pulumi.set(__self__, "snapshot_name", snapshot_name)
-
-    @property
-    @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        AWS Access key. AWS Access key.
-        """
-        return pulumi.get(self, "access_key")
-
-    @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "access_key", value)
-
-    @property
-    @pulumi.getter(name="basePath")
-    def base_path(self) -> Optional[pulumi.Input[str]]:
-        """
-        The path to the repository data within its container. The path to the repository data within its container. The value of this setting should not start or end with a /.
-        """
-        return pulumi.get(self, "base_path")
-
-    @base_path.setter
-    def base_path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "base_path", value)
-
-    @property
-    @pulumi.getter
-    def bucket(self) -> Optional[pulumi.Input[str]]:
-        """
-        S3 bucket name. S3 bucket name.
-        """
-        return pulumi.get(self, "bucket")
-
-    @bucket.setter
-    def bucket(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "bucket", value)
-
-    @property
-    @pulumi.getter(name="chunkSize")
-    def chunk_size(self) -> Optional[pulumi.Input[str]]:
-        """
-        Chunk size. Big files can be broken down into chunks during snapshotting if needed. Should be the same as for the 3rd party repository.
-        """
-        return pulumi.get(self, "chunk_size")
-
-    @chunk_size.setter
-    def chunk_size(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "chunk_size", value)
-
-    @property
-    @pulumi.getter
-    def compress(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Metadata files are stored in compressed format. when set to true metadata files are stored in compressed format.
-        """
-        return pulumi.get(self, "compress")
-
-    @compress.setter
-    def compress(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "compress", value)
-
-    @property
-    @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[str]]:
-        """
-        The S3 service endpoint to connect. The S3 service endpoint to connect to. If you are using an S3-compatible service then you should set this to the service’s endpoint.
-        """
-        return pulumi.get(self, "endpoint")
-
-    @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "endpoint", value)
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[str]]:
-        """
-        S3 region. S3 region.
-        """
-        return pulumi.get(self, "region")
-
-    @region.setter
-    def region(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "region", value)
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        AWS secret key. AWS secret key.
-        """
-        return pulumi.get(self, "secret_key")
-
-    @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "secret_key", value)
-
-    @property
-    @pulumi.getter(name="serverSideEncryption")
-    def server_side_encryption(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Server side encryption. When set to true files are encrypted on server side.
-        """
-        return pulumi.get(self, "server_side_encryption")
-
-    @server_side_encryption.setter
-    def server_side_encryption(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "server_side_encryption", value)
-
-    @property
-    @pulumi.getter(name="snapshotName")
-    def snapshot_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The snapshot name to restore from. The snapshot name to restore from.
-        """
-        return pulumi.get(self, "snapshot_name")
-
-    @snapshot_name.setter
-    def snapshot_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "snapshot_name", value)
 
 
 if not MYPY:
@@ -7633,6 +8035,1252 @@ class ManagedDatabaseOpensearchPropertiesSamlArgs:
     @subject_key.setter
     def subject_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "subject_key", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesSearchBackpressureArgsDict(TypedDict):
+        mode: NotRequired[pulumi.Input[str]]
+        """
+        The search backpressure mode. The search backpressure mode. Valid values are monitor_only, enforced, or disabled. Default is monitor_only.
+        """
+        node_duress: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgsDict']]
+        """
+        Node duress settings.
+        """
+        search_shard_task: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgsDict']]
+        """
+        Search shard settings.
+        """
+        search_task: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgsDict']]
+        """
+        Search task settings.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesSearchBackpressureArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs:
+    def __init__(__self__, *,
+                 mode: Optional[pulumi.Input[str]] = None,
+                 node_duress: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs']] = None,
+                 search_shard_task: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs']] = None,
+                 search_task: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs']] = None):
+        """
+        :param pulumi.Input[str] mode: The search backpressure mode. The search backpressure mode. Valid values are monitor_only, enforced, or disabled. Default is monitor_only.
+        :param pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs'] node_duress: Node duress settings.
+        :param pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs'] search_shard_task: Search shard settings.
+        :param pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs'] search_task: Search task settings.
+        """
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if node_duress is not None:
+            pulumi.set(__self__, "node_duress", node_duress)
+        if search_shard_task is not None:
+            pulumi.set(__self__, "search_shard_task", search_shard_task)
+        if search_task is not None:
+            pulumi.set(__self__, "search_task", search_task)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        The search backpressure mode. The search backpressure mode. Valid values are monitor_only, enforced, or disabled. Default is monitor_only.
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter(name="nodeDuress")
+    def node_duress(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs']]:
+        """
+        Node duress settings.
+        """
+        return pulumi.get(self, "node_duress")
+
+    @node_duress.setter
+    def node_duress(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs']]):
+        pulumi.set(self, "node_duress", value)
+
+    @property
+    @pulumi.getter(name="searchShardTask")
+    def search_shard_task(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs']]:
+        """
+        Search shard settings.
+        """
+        return pulumi.get(self, "search_shard_task")
+
+    @search_shard_task.setter
+    def search_shard_task(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs']]):
+        pulumi.set(self, "search_shard_task", value)
+
+    @property
+    @pulumi.getter(name="searchTask")
+    def search_task(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs']]:
+        """
+        Search task settings.
+        """
+        return pulumi.get(self, "search_task")
+
+    @search_task.setter
+    def search_task(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs']]):
+        pulumi.set(self, "search_task", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgsDict(TypedDict):
+        cpu_threshold: NotRequired[pulumi.Input[float]]
+        """
+        The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.9.
+        """
+        heap_threshold: NotRequired[pulumi.Input[float]]
+        """
+        The heap usage threshold (as a percentage) required for a node to be considered to be under duress. The heap usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.7.
+        """
+        num_successive_breaches: NotRequired[pulumi.Input[int]]
+        """
+        The number of successive limit breaches after which the node is considered to be under duress. The number of successive limit breaches after which the node is considered to be under duress. Default is 3.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuressArgs:
+    def __init__(__self__, *,
+                 cpu_threshold: Optional[pulumi.Input[float]] = None,
+                 heap_threshold: Optional[pulumi.Input[float]] = None,
+                 num_successive_breaches: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[float] cpu_threshold: The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.9.
+        :param pulumi.Input[float] heap_threshold: The heap usage threshold (as a percentage) required for a node to be considered to be under duress. The heap usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.7.
+        :param pulumi.Input[int] num_successive_breaches: The number of successive limit breaches after which the node is considered to be under duress. The number of successive limit breaches after which the node is considered to be under duress. Default is 3.
+        """
+        if cpu_threshold is not None:
+            pulumi.set(__self__, "cpu_threshold", cpu_threshold)
+        if heap_threshold is not None:
+            pulumi.set(__self__, "heap_threshold", heap_threshold)
+        if num_successive_breaches is not None:
+            pulumi.set(__self__, "num_successive_breaches", num_successive_breaches)
+
+    @property
+    @pulumi.getter(name="cpuThreshold")
+    def cpu_threshold(self) -> Optional[pulumi.Input[float]]:
+        """
+        The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.9.
+        """
+        return pulumi.get(self, "cpu_threshold")
+
+    @cpu_threshold.setter
+    def cpu_threshold(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "cpu_threshold", value)
+
+    @property
+    @pulumi.getter(name="heapThreshold")
+    def heap_threshold(self) -> Optional[pulumi.Input[float]]:
+        """
+        The heap usage threshold (as a percentage) required for a node to be considered to be under duress. The heap usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.7.
+        """
+        return pulumi.get(self, "heap_threshold")
+
+    @heap_threshold.setter
+    def heap_threshold(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "heap_threshold", value)
+
+    @property
+    @pulumi.getter(name="numSuccessiveBreaches")
+    def num_successive_breaches(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of successive limit breaches after which the node is considered to be under duress. The number of successive limit breaches after which the node is considered to be under duress. Default is 3.
+        """
+        return pulumi.get(self, "num_successive_breaches")
+
+    @num_successive_breaches.setter
+    def num_successive_breaches(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "num_successive_breaches", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgsDict(TypedDict):
+        cancellation_burst: NotRequired[pulumi.Input[float]]
+        """
+        The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 10.0.
+        """
+        cancellation_rate: NotRequired[pulumi.Input[float]]
+        """
+        The maximum number of tasks to cancel per millisecond of elapsed time. The maximum number of tasks to cancel per millisecond of elapsed time. Default is 0.003.
+        """
+        cancellation_ratio: NotRequired[pulumi.Input[float]]
+        """
+        The maximum number of tasks to cancel. The maximum number of tasks to cancel, as a percentage of successful task completions. Default is 0.1.
+        """
+        cpu_time_millis_threshold: NotRequired[pulumi.Input[int]]
+        """
+        The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 15000.
+        """
+        elapsed_time_millis_threshold: NotRequired[pulumi.Input[int]]
+        """
+        The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 30000.
+        """
+        heap_moving_average_window_size: NotRequired[pulumi.Input[int]]
+        """
+        The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. Default is 100.
+        """
+        heap_percent_threshold: NotRequired[pulumi.Input[float]]
+        """
+        The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. Default is 0.5.
+        """
+        heap_variance: NotRequired[pulumi.Input[float]]
+        """
+        The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. Default is 2.0.
+        """
+        total_heap_percent_threshold: NotRequired[pulumi.Input[float]]
+        """
+        The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. Default is 0.5.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTaskArgs:
+    def __init__(__self__, *,
+                 cancellation_burst: Optional[pulumi.Input[float]] = None,
+                 cancellation_rate: Optional[pulumi.Input[float]] = None,
+                 cancellation_ratio: Optional[pulumi.Input[float]] = None,
+                 cpu_time_millis_threshold: Optional[pulumi.Input[int]] = None,
+                 elapsed_time_millis_threshold: Optional[pulumi.Input[int]] = None,
+                 heap_moving_average_window_size: Optional[pulumi.Input[int]] = None,
+                 heap_percent_threshold: Optional[pulumi.Input[float]] = None,
+                 heap_variance: Optional[pulumi.Input[float]] = None,
+                 total_heap_percent_threshold: Optional[pulumi.Input[float]] = None):
+        """
+        :param pulumi.Input[float] cancellation_burst: The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 10.0.
+        :param pulumi.Input[float] cancellation_rate: The maximum number of tasks to cancel per millisecond of elapsed time. The maximum number of tasks to cancel per millisecond of elapsed time. Default is 0.003.
+        :param pulumi.Input[float] cancellation_ratio: The maximum number of tasks to cancel. The maximum number of tasks to cancel, as a percentage of successful task completions. Default is 0.1.
+        :param pulumi.Input[int] cpu_time_millis_threshold: The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 15000.
+        :param pulumi.Input[int] elapsed_time_millis_threshold: The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 30000.
+        :param pulumi.Input[int] heap_moving_average_window_size: The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. Default is 100.
+        :param pulumi.Input[float] heap_percent_threshold: The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. Default is 0.5.
+        :param pulumi.Input[float] heap_variance: The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. Default is 2.0.
+        :param pulumi.Input[float] total_heap_percent_threshold: The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. Default is 0.5.
+        """
+        if cancellation_burst is not None:
+            pulumi.set(__self__, "cancellation_burst", cancellation_burst)
+        if cancellation_rate is not None:
+            pulumi.set(__self__, "cancellation_rate", cancellation_rate)
+        if cancellation_ratio is not None:
+            pulumi.set(__self__, "cancellation_ratio", cancellation_ratio)
+        if cpu_time_millis_threshold is not None:
+            pulumi.set(__self__, "cpu_time_millis_threshold", cpu_time_millis_threshold)
+        if elapsed_time_millis_threshold is not None:
+            pulumi.set(__self__, "elapsed_time_millis_threshold", elapsed_time_millis_threshold)
+        if heap_moving_average_window_size is not None:
+            pulumi.set(__self__, "heap_moving_average_window_size", heap_moving_average_window_size)
+        if heap_percent_threshold is not None:
+            pulumi.set(__self__, "heap_percent_threshold", heap_percent_threshold)
+        if heap_variance is not None:
+            pulumi.set(__self__, "heap_variance", heap_variance)
+        if total_heap_percent_threshold is not None:
+            pulumi.set(__self__, "total_heap_percent_threshold", total_heap_percent_threshold)
+
+    @property
+    @pulumi.getter(name="cancellationBurst")
+    def cancellation_burst(self) -> Optional[pulumi.Input[float]]:
+        """
+        The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 10.0.
+        """
+        return pulumi.get(self, "cancellation_burst")
+
+    @cancellation_burst.setter
+    def cancellation_burst(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "cancellation_burst", value)
+
+    @property
+    @pulumi.getter(name="cancellationRate")
+    def cancellation_rate(self) -> Optional[pulumi.Input[float]]:
+        """
+        The maximum number of tasks to cancel per millisecond of elapsed time. The maximum number of tasks to cancel per millisecond of elapsed time. Default is 0.003.
+        """
+        return pulumi.get(self, "cancellation_rate")
+
+    @cancellation_rate.setter
+    def cancellation_rate(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "cancellation_rate", value)
+
+    @property
+    @pulumi.getter(name="cancellationRatio")
+    def cancellation_ratio(self) -> Optional[pulumi.Input[float]]:
+        """
+        The maximum number of tasks to cancel. The maximum number of tasks to cancel, as a percentage of successful task completions. Default is 0.1.
+        """
+        return pulumi.get(self, "cancellation_ratio")
+
+    @cancellation_ratio.setter
+    def cancellation_ratio(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "cancellation_ratio", value)
+
+    @property
+    @pulumi.getter(name="cpuTimeMillisThreshold")
+    def cpu_time_millis_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 15000.
+        """
+        return pulumi.get(self, "cpu_time_millis_threshold")
+
+    @cpu_time_millis_threshold.setter
+    def cpu_time_millis_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cpu_time_millis_threshold", value)
+
+    @property
+    @pulumi.getter(name="elapsedTimeMillisThreshold")
+    def elapsed_time_millis_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 30000.
+        """
+        return pulumi.get(self, "elapsed_time_millis_threshold")
+
+    @elapsed_time_millis_threshold.setter
+    def elapsed_time_millis_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "elapsed_time_millis_threshold", value)
+
+    @property
+    @pulumi.getter(name="heapMovingAverageWindowSize")
+    def heap_moving_average_window_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. Default is 100.
+        """
+        return pulumi.get(self, "heap_moving_average_window_size")
+
+    @heap_moving_average_window_size.setter
+    def heap_moving_average_window_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "heap_moving_average_window_size", value)
+
+    @property
+    @pulumi.getter(name="heapPercentThreshold")
+    def heap_percent_threshold(self) -> Optional[pulumi.Input[float]]:
+        """
+        The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. Default is 0.5.
+        """
+        return pulumi.get(self, "heap_percent_threshold")
+
+    @heap_percent_threshold.setter
+    def heap_percent_threshold(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "heap_percent_threshold", value)
+
+    @property
+    @pulumi.getter(name="heapVariance")
+    def heap_variance(self) -> Optional[pulumi.Input[float]]:
+        """
+        The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. Default is 2.0.
+        """
+        return pulumi.get(self, "heap_variance")
+
+    @heap_variance.setter
+    def heap_variance(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "heap_variance", value)
+
+    @property
+    @pulumi.getter(name="totalHeapPercentThreshold")
+    def total_heap_percent_threshold(self) -> Optional[pulumi.Input[float]]:
+        """
+        The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. Default is 0.5.
+        """
+        return pulumi.get(self, "total_heap_percent_threshold")
+
+    @total_heap_percent_threshold.setter
+    def total_heap_percent_threshold(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "total_heap_percent_threshold", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgsDict(TypedDict):
+        cancellation_burst: NotRequired[pulumi.Input[float]]
+        """
+        The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 5.0.
+        """
+        cancellation_rate: NotRequired[pulumi.Input[float]]
+        """
+        The maximum number of search tasks to cancel per millisecond of elapsed time. The maximum number of search tasks to cancel per millisecond of elapsed time. Default is 0.003.
+        """
+        cancellation_ratio: NotRequired[pulumi.Input[float]]
+        """
+        The maximum number of search tasks to cancel, as a percentage of successful search task completions. The maximum number of search tasks to cancel, as a percentage of successful search task completions. Default is 0.1.
+        """
+        cpu_time_millis_threshold: NotRequired[pulumi.Input[int]]
+        """
+        The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 30000.
+        """
+        elapsed_time_millis_threshold: NotRequired[pulumi.Input[int]]
+        """
+        The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 45000.
+        """
+        heap_moving_average_window_size: NotRequired[pulumi.Input[int]]
+        """
+        The window size used to calculate the rolling average of the heap usage for the completed parent tasks. The window size used to calculate the rolling average of the heap usage for the completed parent tasks. Default is 10.
+        """
+        heap_percent_threshold: NotRequired[pulumi.Input[float]]
+        """
+        The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. Default is 0.2.
+        """
+        heap_variance: NotRequired[pulumi.Input[float]]
+        """
+        The heap usage variance required for an individual parent task before it is considered for cancellation. The heap usage variance required for an individual parent task before it is considered for cancellation. A task is considered for cancellation when taskHeapUsage is greater than or equal to heapUsageMovingAverage * variance. Default is 2.0.
+        """
+        total_heap_percent_threshold: NotRequired[pulumi.Input[float]]
+        """
+        The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. Default is 0.5.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTaskArgs:
+    def __init__(__self__, *,
+                 cancellation_burst: Optional[pulumi.Input[float]] = None,
+                 cancellation_rate: Optional[pulumi.Input[float]] = None,
+                 cancellation_ratio: Optional[pulumi.Input[float]] = None,
+                 cpu_time_millis_threshold: Optional[pulumi.Input[int]] = None,
+                 elapsed_time_millis_threshold: Optional[pulumi.Input[int]] = None,
+                 heap_moving_average_window_size: Optional[pulumi.Input[int]] = None,
+                 heap_percent_threshold: Optional[pulumi.Input[float]] = None,
+                 heap_variance: Optional[pulumi.Input[float]] = None,
+                 total_heap_percent_threshold: Optional[pulumi.Input[float]] = None):
+        """
+        :param pulumi.Input[float] cancellation_burst: The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 5.0.
+        :param pulumi.Input[float] cancellation_rate: The maximum number of search tasks to cancel per millisecond of elapsed time. The maximum number of search tasks to cancel per millisecond of elapsed time. Default is 0.003.
+        :param pulumi.Input[float] cancellation_ratio: The maximum number of search tasks to cancel, as a percentage of successful search task completions. The maximum number of search tasks to cancel, as a percentage of successful search task completions. Default is 0.1.
+        :param pulumi.Input[int] cpu_time_millis_threshold: The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 30000.
+        :param pulumi.Input[int] elapsed_time_millis_threshold: The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 45000.
+        :param pulumi.Input[int] heap_moving_average_window_size: The window size used to calculate the rolling average of the heap usage for the completed parent tasks. The window size used to calculate the rolling average of the heap usage for the completed parent tasks. Default is 10.
+        :param pulumi.Input[float] heap_percent_threshold: The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. Default is 0.2.
+        :param pulumi.Input[float] heap_variance: The heap usage variance required for an individual parent task before it is considered for cancellation. The heap usage variance required for an individual parent task before it is considered for cancellation. A task is considered for cancellation when taskHeapUsage is greater than or equal to heapUsageMovingAverage * variance. Default is 2.0.
+        :param pulumi.Input[float] total_heap_percent_threshold: The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. Default is 0.5.
+        """
+        if cancellation_burst is not None:
+            pulumi.set(__self__, "cancellation_burst", cancellation_burst)
+        if cancellation_rate is not None:
+            pulumi.set(__self__, "cancellation_rate", cancellation_rate)
+        if cancellation_ratio is not None:
+            pulumi.set(__self__, "cancellation_ratio", cancellation_ratio)
+        if cpu_time_millis_threshold is not None:
+            pulumi.set(__self__, "cpu_time_millis_threshold", cpu_time_millis_threshold)
+        if elapsed_time_millis_threshold is not None:
+            pulumi.set(__self__, "elapsed_time_millis_threshold", elapsed_time_millis_threshold)
+        if heap_moving_average_window_size is not None:
+            pulumi.set(__self__, "heap_moving_average_window_size", heap_moving_average_window_size)
+        if heap_percent_threshold is not None:
+            pulumi.set(__self__, "heap_percent_threshold", heap_percent_threshold)
+        if heap_variance is not None:
+            pulumi.set(__self__, "heap_variance", heap_variance)
+        if total_heap_percent_threshold is not None:
+            pulumi.set(__self__, "total_heap_percent_threshold", total_heap_percent_threshold)
+
+    @property
+    @pulumi.getter(name="cancellationBurst")
+    def cancellation_burst(self) -> Optional[pulumi.Input[float]]:
+        """
+        The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 5.0.
+        """
+        return pulumi.get(self, "cancellation_burst")
+
+    @cancellation_burst.setter
+    def cancellation_burst(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "cancellation_burst", value)
+
+    @property
+    @pulumi.getter(name="cancellationRate")
+    def cancellation_rate(self) -> Optional[pulumi.Input[float]]:
+        """
+        The maximum number of search tasks to cancel per millisecond of elapsed time. The maximum number of search tasks to cancel per millisecond of elapsed time. Default is 0.003.
+        """
+        return pulumi.get(self, "cancellation_rate")
+
+    @cancellation_rate.setter
+    def cancellation_rate(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "cancellation_rate", value)
+
+    @property
+    @pulumi.getter(name="cancellationRatio")
+    def cancellation_ratio(self) -> Optional[pulumi.Input[float]]:
+        """
+        The maximum number of search tasks to cancel, as a percentage of successful search task completions. The maximum number of search tasks to cancel, as a percentage of successful search task completions. Default is 0.1.
+        """
+        return pulumi.get(self, "cancellation_ratio")
+
+    @cancellation_ratio.setter
+    def cancellation_ratio(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "cancellation_ratio", value)
+
+    @property
+    @pulumi.getter(name="cpuTimeMillisThreshold")
+    def cpu_time_millis_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 30000.
+        """
+        return pulumi.get(self, "cpu_time_millis_threshold")
+
+    @cpu_time_millis_threshold.setter
+    def cpu_time_millis_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cpu_time_millis_threshold", value)
+
+    @property
+    @pulumi.getter(name="elapsedTimeMillisThreshold")
+    def elapsed_time_millis_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 45000.
+        """
+        return pulumi.get(self, "elapsed_time_millis_threshold")
+
+    @elapsed_time_millis_threshold.setter
+    def elapsed_time_millis_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "elapsed_time_millis_threshold", value)
+
+    @property
+    @pulumi.getter(name="heapMovingAverageWindowSize")
+    def heap_moving_average_window_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The window size used to calculate the rolling average of the heap usage for the completed parent tasks. The window size used to calculate the rolling average of the heap usage for the completed parent tasks. Default is 10.
+        """
+        return pulumi.get(self, "heap_moving_average_window_size")
+
+    @heap_moving_average_window_size.setter
+    def heap_moving_average_window_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "heap_moving_average_window_size", value)
+
+    @property
+    @pulumi.getter(name="heapPercentThreshold")
+    def heap_percent_threshold(self) -> Optional[pulumi.Input[float]]:
+        """
+        The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. Default is 0.2.
+        """
+        return pulumi.get(self, "heap_percent_threshold")
+
+    @heap_percent_threshold.setter
+    def heap_percent_threshold(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "heap_percent_threshold", value)
+
+    @property
+    @pulumi.getter(name="heapVariance")
+    def heap_variance(self) -> Optional[pulumi.Input[float]]:
+        """
+        The heap usage variance required for an individual parent task before it is considered for cancellation. The heap usage variance required for an individual parent task before it is considered for cancellation. A task is considered for cancellation when taskHeapUsage is greater than or equal to heapUsageMovingAverage * variance. Default is 2.0.
+        """
+        return pulumi.get(self, "heap_variance")
+
+    @heap_variance.setter
+    def heap_variance(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "heap_variance", value)
+
+    @property
+    @pulumi.getter(name="totalHeapPercentThreshold")
+    def total_heap_percent_threshold(self) -> Optional[pulumi.Input[float]]:
+        """
+        The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. Default is 0.5.
+        """
+        return pulumi.get(self, "total_heap_percent_threshold")
+
+    @total_heap_percent_threshold.setter
+    def total_heap_percent_threshold(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "total_heap_percent_threshold", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgsDict(TypedDict):
+        cpu: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgsDict']]
+        """
+        Top N queries monitoring by CPU.
+        """
+        latency: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgsDict']]
+        """
+        Top N queries monitoring by latency.
+        """
+        memory: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgsDict']]
+        """
+        Top N queries monitoring by memory.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs:
+    def __init__(__self__, *,
+                 cpu: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs']] = None,
+                 latency: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs']] = None,
+                 memory: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs']] = None):
+        """
+        :param pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs'] cpu: Top N queries monitoring by CPU.
+        :param pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs'] latency: Top N queries monitoring by latency.
+        :param pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs'] memory: Top N queries monitoring by memory.
+        """
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if latency is not None:
+            pulumi.set(__self__, "latency", latency)
+        if memory is not None:
+            pulumi.set(__self__, "memory", memory)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs']]:
+        """
+        Top N queries monitoring by CPU.
+        """
+        return pulumi.get(self, "cpu")
+
+    @cpu.setter
+    def cpu(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs']]):
+        pulumi.set(self, "cpu", value)
+
+    @property
+    @pulumi.getter
+    def latency(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs']]:
+        """
+        Top N queries monitoring by latency.
+        """
+        return pulumi.get(self, "latency")
+
+    @latency.setter
+    def latency(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs']]):
+        pulumi.set(self, "latency", value)
+
+    @property
+    @pulumi.getter
+    def memory(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs']]:
+        """
+        Top N queries monitoring by memory.
+        """
+        return pulumi.get(self, "memory")
+
+    @memory.setter
+    def memory(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs']]):
+        pulumi.set(self, "memory", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        """
+        top_n_size: NotRequired[pulumi.Input[int]]
+        """
+        Specify the value of N for the top N queries by the metric.
+        """
+        window_size: NotRequired[pulumi.Input[str]]
+        """
+        The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 top_n_size: Optional[pulumi.Input[int]] = None,
+                 window_size: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] enabled: Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        :param pulumi.Input[int] top_n_size: Specify the value of N for the top N queries by the metric.
+        :param pulumi.Input[str] window_size: The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if top_n_size is not None:
+            pulumi.set(__self__, "top_n_size", top_n_size)
+        if window_size is not None:
+            pulumi.set(__self__, "window_size", window_size)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="topNSize")
+    def top_n_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specify the value of N for the top N queries by the metric.
+        """
+        return pulumi.get(self, "top_n_size")
+
+    @top_n_size.setter
+    def top_n_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "top_n_size", value)
+
+    @property
+    @pulumi.getter(name="windowSize")
+    def window_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+        return pulumi.get(self, "window_size")
+
+    @window_size.setter
+    def window_size(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "window_size", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        """
+        top_n_size: NotRequired[pulumi.Input[int]]
+        """
+        Specify the value of N for the top N queries by the metric.
+        """
+        window_size: NotRequired[pulumi.Input[str]]
+        """
+        The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 top_n_size: Optional[pulumi.Input[int]] = None,
+                 window_size: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] enabled: Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        :param pulumi.Input[int] top_n_size: Specify the value of N for the top N queries by the metric.
+        :param pulumi.Input[str] window_size: The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if top_n_size is not None:
+            pulumi.set(__self__, "top_n_size", top_n_size)
+        if window_size is not None:
+            pulumi.set(__self__, "window_size", window_size)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="topNSize")
+    def top_n_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specify the value of N for the top N queries by the metric.
+        """
+        return pulumi.get(self, "top_n_size")
+
+    @top_n_size.setter
+    def top_n_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "top_n_size", value)
+
+    @property
+    @pulumi.getter(name="windowSize")
+    def window_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+        return pulumi.get(self, "window_size")
+
+    @window_size.setter
+    def window_size(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "window_size", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        """
+        top_n_size: NotRequired[pulumi.Input[int]]
+        """
+        Specify the value of N for the top N queries by the metric.
+        """
+        window_size: NotRequired[pulumi.Input[str]]
+        """
+        The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 top_n_size: Optional[pulumi.Input[int]] = None,
+                 window_size: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] enabled: Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        :param pulumi.Input[int] top_n_size: Specify the value of N for the top N queries by the metric.
+        :param pulumi.Input[str] window_size: The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if top_n_size is not None:
+            pulumi.set(__self__, "top_n_size", top_n_size)
+        if window_size is not None:
+            pulumi.set(__self__, "window_size", window_size)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="topNSize")
+    def top_n_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specify the value of N for the top N queries by the metric.
+        """
+        return pulumi.get(self, "top_n_size")
+
+    @top_n_size.setter
+    def top_n_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "top_n_size", value)
+
+    @property
+    @pulumi.getter(name="windowSize")
+    def window_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        """
+        return pulumi.get(self, "window_size")
+
+    @window_size.setter
+    def window_size(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "window_size", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesSegrepArgsDict(TypedDict):
+        pressure_checkpoint_limit: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of indexing checkpoints that a replica shard can fall behind when copying from primary. Once `segrep.pressure.checkpoint.limit` is breached along with `segrep.pressure.time.limit`, the segment replication backpressure mechanism is initiated. Default is 4 checkpoints.
+        """
+        pressure_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enables the segment replication backpressure mechanism. Default is false.
+        """
+        pressure_replica_stale_limit: NotRequired[pulumi.Input[float]]
+        """
+        The maximum number of stale replica shards that can exist in a replication group. Once `segrep.pressure.replica.stale.limit` is breached, the segment replication backpressure mechanism is initiated. Default is .5, which is 50% of a replication group.
+        """
+        pressure_time_limit: NotRequired[pulumi.Input[str]]
+        """
+        The maximum amount of time that a replica shard can take to copy from the primary shard. Once segrep.pressure.time.limit is breached along with segrep.pressure.checkpoint.limit, the segment replication backpressure mechanism is initiated. Default is 5 minutes.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesSegrepArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesSegrepArgs:
+    def __init__(__self__, *,
+                 pressure_checkpoint_limit: Optional[pulumi.Input[int]] = None,
+                 pressure_enabled: Optional[pulumi.Input[bool]] = None,
+                 pressure_replica_stale_limit: Optional[pulumi.Input[float]] = None,
+                 pressure_time_limit: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] pressure_checkpoint_limit: The maximum number of indexing checkpoints that a replica shard can fall behind when copying from primary. Once `segrep.pressure.checkpoint.limit` is breached along with `segrep.pressure.time.limit`, the segment replication backpressure mechanism is initiated. Default is 4 checkpoints.
+        :param pulumi.Input[bool] pressure_enabled: Enables the segment replication backpressure mechanism. Default is false.
+        :param pulumi.Input[float] pressure_replica_stale_limit: The maximum number of stale replica shards that can exist in a replication group. Once `segrep.pressure.replica.stale.limit` is breached, the segment replication backpressure mechanism is initiated. Default is .5, which is 50% of a replication group.
+        :param pulumi.Input[str] pressure_time_limit: The maximum amount of time that a replica shard can take to copy from the primary shard. Once segrep.pressure.time.limit is breached along with segrep.pressure.checkpoint.limit, the segment replication backpressure mechanism is initiated. Default is 5 minutes.
+        """
+        if pressure_checkpoint_limit is not None:
+            pulumi.set(__self__, "pressure_checkpoint_limit", pressure_checkpoint_limit)
+        if pressure_enabled is not None:
+            pulumi.set(__self__, "pressure_enabled", pressure_enabled)
+        if pressure_replica_stale_limit is not None:
+            pulumi.set(__self__, "pressure_replica_stale_limit", pressure_replica_stale_limit)
+        if pressure_time_limit is not None:
+            pulumi.set(__self__, "pressure_time_limit", pressure_time_limit)
+
+    @property
+    @pulumi.getter(name="pressureCheckpointLimit")
+    def pressure_checkpoint_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of indexing checkpoints that a replica shard can fall behind when copying from primary. Once `segrep.pressure.checkpoint.limit` is breached along with `segrep.pressure.time.limit`, the segment replication backpressure mechanism is initiated. Default is 4 checkpoints.
+        """
+        return pulumi.get(self, "pressure_checkpoint_limit")
+
+    @pressure_checkpoint_limit.setter
+    def pressure_checkpoint_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "pressure_checkpoint_limit", value)
+
+    @property
+    @pulumi.getter(name="pressureEnabled")
+    def pressure_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables the segment replication backpressure mechanism. Default is false.
+        """
+        return pulumi.get(self, "pressure_enabled")
+
+    @pressure_enabled.setter
+    def pressure_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "pressure_enabled", value)
+
+    @property
+    @pulumi.getter(name="pressureReplicaStaleLimit")
+    def pressure_replica_stale_limit(self) -> Optional[pulumi.Input[float]]:
+        """
+        The maximum number of stale replica shards that can exist in a replication group. Once `segrep.pressure.replica.stale.limit` is breached, the segment replication backpressure mechanism is initiated. Default is .5, which is 50% of a replication group.
+        """
+        return pulumi.get(self, "pressure_replica_stale_limit")
+
+    @pressure_replica_stale_limit.setter
+    def pressure_replica_stale_limit(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "pressure_replica_stale_limit", value)
+
+    @property
+    @pulumi.getter(name="pressureTimeLimit")
+    def pressure_time_limit(self) -> Optional[pulumi.Input[str]]:
+        """
+        The maximum amount of time that a replica shard can take to copy from the primary shard. Once segrep.pressure.time.limit is breached along with segrep.pressure.checkpoint.limit, the segment replication backpressure mechanism is initiated. Default is 5 minutes.
+        """
+        return pulumi.get(self, "pressure_time_limit")
+
+    @pressure_time_limit.setter
+    def pressure_time_limit(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pressure_time_limit", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable or disable shard indexing backpressure. Enable or disable shard indexing backpressure. Default is false.
+        """
+        enforced: NotRequired[pulumi.Input[bool]]
+        """
+        Run shard indexing backpressure in shadow mode or enforced mode. Run shard indexing backpressure in shadow mode or enforced mode.
+                    In shadow mode (value set as false), shard indexing backpressure tracks all granular-level metrics,
+                    but it doesn’t actually reject any indexing requests.
+                    In enforced mode (value set as true),
+                    shard indexing backpressure rejects any requests to the cluster that might cause a dip in its performance.
+                    Default is false.
+        """
+        operating_factor: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgsDict']]
+        """
+        Operating factor.
+        """
+        primary_parameter: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgsDict']]
+        """
+        Primary parameter.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 enforced: Optional[pulumi.Input[bool]] = None,
+                 operating_factor: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs']] = None,
+                 primary_parameter: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs']] = None):
+        """
+        :param pulumi.Input[bool] enabled: Enable or disable shard indexing backpressure. Enable or disable shard indexing backpressure. Default is false.
+        :param pulumi.Input[bool] enforced: Run shard indexing backpressure in shadow mode or enforced mode. Run shard indexing backpressure in shadow mode or enforced mode.
+                           In shadow mode (value set as false), shard indexing backpressure tracks all granular-level metrics,
+                           but it doesn’t actually reject any indexing requests.
+                           In enforced mode (value set as true),
+                           shard indexing backpressure rejects any requests to the cluster that might cause a dip in its performance.
+                           Default is false.
+        :param pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs'] operating_factor: Operating factor.
+        :param pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs'] primary_parameter: Primary parameter.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if enforced is not None:
+            pulumi.set(__self__, "enforced", enforced)
+        if operating_factor is not None:
+            pulumi.set(__self__, "operating_factor", operating_factor)
+        if primary_parameter is not None:
+            pulumi.set(__self__, "primary_parameter", primary_parameter)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable shard indexing backpressure. Enable or disable shard indexing backpressure. Default is false.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def enforced(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Run shard indexing backpressure in shadow mode or enforced mode. Run shard indexing backpressure in shadow mode or enforced mode.
+                    In shadow mode (value set as false), shard indexing backpressure tracks all granular-level metrics,
+                    but it doesn’t actually reject any indexing requests.
+                    In enforced mode (value set as true),
+                    shard indexing backpressure rejects any requests to the cluster that might cause a dip in its performance.
+                    Default is false.
+        """
+        return pulumi.get(self, "enforced")
+
+    @enforced.setter
+    def enforced(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enforced", value)
+
+    @property
+    @pulumi.getter(name="operatingFactor")
+    def operating_factor(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs']]:
+        """
+        Operating factor.
+        """
+        return pulumi.get(self, "operating_factor")
+
+    @operating_factor.setter
+    def operating_factor(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs']]):
+        pulumi.set(self, "operating_factor", value)
+
+    @property
+    @pulumi.getter(name="primaryParameter")
+    def primary_parameter(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs']]:
+        """
+        Primary parameter.
+        """
+        return pulumi.get(self, "primary_parameter")
+
+    @primary_parameter.setter
+    def primary_parameter(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs']]):
+        pulumi.set(self, "primary_parameter", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgsDict(TypedDict):
+        lower: NotRequired[pulumi.Input[float]]
+        """
+        Lower occupancy limit of the allocated quota of memory for the shard. Specify the lower occupancy limit of the allocated quota of memory for the shard.
+                            If the total memory usage of a shard is below this limit,
+                            shard indexing backpressure decreases the current allocated memory for that shard.
+                            Default is 0.75.
+        """
+        optimal: NotRequired[pulumi.Input[float]]
+        """
+        Optimal occupancy of the allocated quota of memory for the shard. Specify the optimal occupancy of the allocated quota of memory for the shard.
+                            If the total memory usage of a shard is at this level,
+                            shard indexing backpressure doesn’t change the current allocated memory for that shard.
+                            Default is 0.85.
+        """
+        upper: NotRequired[pulumi.Input[float]]
+        """
+        Upper occupancy limit of the allocated quota of memory for the shard. Specify the upper occupancy limit of the allocated quota of memory for the shard.
+                            If the total memory usage of a shard is above this limit,
+                            shard indexing backpressure increases the current allocated memory for that shard.
+                            Default is 0.95.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactorArgs:
+    def __init__(__self__, *,
+                 lower: Optional[pulumi.Input[float]] = None,
+                 optimal: Optional[pulumi.Input[float]] = None,
+                 upper: Optional[pulumi.Input[float]] = None):
+        """
+        :param pulumi.Input[float] lower: Lower occupancy limit of the allocated quota of memory for the shard. Specify the lower occupancy limit of the allocated quota of memory for the shard.
+                                   If the total memory usage of a shard is below this limit,
+                                   shard indexing backpressure decreases the current allocated memory for that shard.
+                                   Default is 0.75.
+        :param pulumi.Input[float] optimal: Optimal occupancy of the allocated quota of memory for the shard. Specify the optimal occupancy of the allocated quota of memory for the shard.
+                                   If the total memory usage of a shard is at this level,
+                                   shard indexing backpressure doesn’t change the current allocated memory for that shard.
+                                   Default is 0.85.
+        :param pulumi.Input[float] upper: Upper occupancy limit of the allocated quota of memory for the shard. Specify the upper occupancy limit of the allocated quota of memory for the shard.
+                                   If the total memory usage of a shard is above this limit,
+                                   shard indexing backpressure increases the current allocated memory for that shard.
+                                   Default is 0.95.
+        """
+        if lower is not None:
+            pulumi.set(__self__, "lower", lower)
+        if optimal is not None:
+            pulumi.set(__self__, "optimal", optimal)
+        if upper is not None:
+            pulumi.set(__self__, "upper", upper)
+
+    @property
+    @pulumi.getter
+    def lower(self) -> Optional[pulumi.Input[float]]:
+        """
+        Lower occupancy limit of the allocated quota of memory for the shard. Specify the lower occupancy limit of the allocated quota of memory for the shard.
+                            If the total memory usage of a shard is below this limit,
+                            shard indexing backpressure decreases the current allocated memory for that shard.
+                            Default is 0.75.
+        """
+        return pulumi.get(self, "lower")
+
+    @lower.setter
+    def lower(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "lower", value)
+
+    @property
+    @pulumi.getter
+    def optimal(self) -> Optional[pulumi.Input[float]]:
+        """
+        Optimal occupancy of the allocated quota of memory for the shard. Specify the optimal occupancy of the allocated quota of memory for the shard.
+                            If the total memory usage of a shard is at this level,
+                            shard indexing backpressure doesn’t change the current allocated memory for that shard.
+                            Default is 0.85.
+        """
+        return pulumi.get(self, "optimal")
+
+    @optimal.setter
+    def optimal(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "optimal", value)
+
+    @property
+    @pulumi.getter
+    def upper(self) -> Optional[pulumi.Input[float]]:
+        """
+        Upper occupancy limit of the allocated quota of memory for the shard. Specify the upper occupancy limit of the allocated quota of memory for the shard.
+                            If the total memory usage of a shard is above this limit,
+                            shard indexing backpressure increases the current allocated memory for that shard.
+                            Default is 0.95.
+        """
+        return pulumi.get(self, "upper")
+
+    @upper.setter
+    def upper(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "upper", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgsDict(TypedDict):
+        node: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgsDict']]
+        shard: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgsDict']]
+elif False:
+    ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterArgs:
+    def __init__(__self__, *,
+                 node: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs']] = None,
+                 shard: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs']] = None):
+        if node is not None:
+            pulumi.set(__self__, "node", node)
+        if shard is not None:
+            pulumi.set(__self__, "shard", shard)
+
+    @property
+    @pulumi.getter
+    def node(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs']]:
+        return pulumi.get(self, "node")
+
+    @node.setter
+    def node(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs']]):
+        pulumi.set(self, "node", value)
+
+    @property
+    @pulumi.getter
+    def shard(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs']]:
+        return pulumi.get(self, "shard")
+
+    @shard.setter
+    def shard(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs']]):
+        pulumi.set(self, "shard", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgsDict(TypedDict):
+        soft_limit: NotRequired[pulumi.Input[float]]
+        """
+        Node soft limit. Define the percentage of the node-level memory
+                                    threshold that acts as a soft indicator for strain on a node.
+                                    Default is 0.7.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNodeArgs:
+    def __init__(__self__, *,
+                 soft_limit: Optional[pulumi.Input[float]] = None):
+        """
+        :param pulumi.Input[float] soft_limit: Node soft limit. Define the percentage of the node-level memory
+                                           threshold that acts as a soft indicator for strain on a node.
+                                           Default is 0.7.
+        """
+        if soft_limit is not None:
+            pulumi.set(__self__, "soft_limit", soft_limit)
+
+    @property
+    @pulumi.getter(name="softLimit")
+    def soft_limit(self) -> Optional[pulumi.Input[float]]:
+        """
+        Node soft limit. Define the percentage of the node-level memory
+                                    threshold that acts as a soft indicator for strain on a node.
+                                    Default is 0.7.
+        """
+        return pulumi.get(self, "soft_limit")
+
+    @soft_limit.setter
+    def soft_limit(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "soft_limit", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgsDict(TypedDict):
+        min_limit: NotRequired[pulumi.Input[float]]
+        """
+        Shard min limit. Specify the minimum assigned quota for a new shard in any role (coordinator, primary, or replica).
+                                    Shard indexing backpressure increases or decreases this allocated quota based on the inflow of traffic for the shard.
+                                    Default is 0.001.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShardArgs:
+    def __init__(__self__, *,
+                 min_limit: Optional[pulumi.Input[float]] = None):
+        """
+        :param pulumi.Input[float] min_limit: Shard min limit. Specify the minimum assigned quota for a new shard in any role (coordinator, primary, or replica).
+                                           Shard indexing backpressure increases or decreases this allocated quota based on the inflow of traffic for the shard.
+                                           Default is 0.001.
+        """
+        if min_limit is not None:
+            pulumi.set(__self__, "min_limit", min_limit)
+
+    @property
+    @pulumi.getter(name="minLimit")
+    def min_limit(self) -> Optional[pulumi.Input[float]]:
+        """
+        Shard min limit. Specify the minimum assigned quota for a new shard in any role (coordinator, primary, or replica).
+                                    Shard indexing backpressure increases or decreases this allocated quota based on the inflow of traffic for the shard.
+                                    Default is 0.001.
+        """
+        return pulumi.get(self, "min_limit")
+
+    @min_limit.setter
+    def min_limit(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_limit", value)
 
 
 if not MYPY:
@@ -8081,6 +9729,10 @@ if not MYPY:
         """
         Migrate data from existing server.
         """
+        password_encryption: NotRequired[pulumi.Input[str]]
+        """
+        Chooses the algorithm for encrypting passwords.
+        """
         pg_partman_bgw_interval: NotRequired[pulumi.Input[int]]
         """
         Sets the time interval to run pg_partman's scheduled tasks.
@@ -8226,6 +9878,7 @@ class ManagedDatabasePostgresqlPropertiesArgs:
                  max_wal_senders: Optional[pulumi.Input[int]] = None,
                  max_worker_processes: Optional[pulumi.Input[int]] = None,
                  migration: Optional[pulumi.Input['ManagedDatabasePostgresqlPropertiesMigrationArgs']] = None,
+                 password_encryption: Optional[pulumi.Input[str]] = None,
                  pg_partman_bgw_interval: Optional[pulumi.Input[int]] = None,
                  pg_partman_bgw_role: Optional[pulumi.Input[str]] = None,
                  pg_stat_monitor_enable: Optional[pulumi.Input[bool]] = None,
@@ -8294,6 +9947,7 @@ class ManagedDatabasePostgresqlPropertiesArgs:
         :param pulumi.Input[int] max_wal_senders: PostgreSQL maximum WAL senders.
         :param pulumi.Input[int] max_worker_processes: Sets the maximum number of background processes that the system can support.
         :param pulumi.Input['ManagedDatabasePostgresqlPropertiesMigrationArgs'] migration: Migrate data from existing server.
+        :param pulumi.Input[str] password_encryption: Chooses the algorithm for encrypting passwords.
         :param pulumi.Input[int] pg_partman_bgw_interval: Sets the time interval to run pg_partman's scheduled tasks.
         :param pulumi.Input[str] pg_partman_bgw_role: Controls which role to use for pg_partman's scheduled background tasks.
         :param pulumi.Input[bool] pg_stat_monitor_enable: Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
@@ -8405,6 +10059,8 @@ class ManagedDatabasePostgresqlPropertiesArgs:
             pulumi.set(__self__, "max_worker_processes", max_worker_processes)
         if migration is not None:
             pulumi.set(__self__, "migration", migration)
+        if password_encryption is not None:
+            pulumi.set(__self__, "password_encryption", password_encryption)
         if pg_partman_bgw_interval is not None:
             pulumi.set(__self__, "pg_partman_bgw_interval", pg_partman_bgw_interval)
         if pg_partman_bgw_role is not None:
@@ -8969,6 +10625,18 @@ class ManagedDatabasePostgresqlPropertiesArgs:
     @migration.setter
     def migration(self, value: Optional[pulumi.Input['ManagedDatabasePostgresqlPropertiesMigrationArgs']]):
         pulumi.set(self, "migration", value)
+
+    @property
+    @pulumi.getter(name="passwordEncryption")
+    def password_encryption(self) -> Optional[pulumi.Input[str]]:
+        """
+        Chooses the algorithm for encrypting passwords.
+        """
+        return pulumi.get(self, "password_encryption")
+
+    @password_encryption.setter
+    def password_encryption(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password_encryption", value)
 
     @property
     @pulumi.getter(name="pgPartmanBgwInterval")
@@ -10005,6 +11673,14 @@ if not MYPY:
         """
         Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
         """
+        backup_hour: NotRequired[pulumi.Input[int]]
+        """
+        The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        backup_minute: NotRequired[pulumi.Input[int]]
+        """
+        The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
         ip_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
@@ -10076,6 +11752,8 @@ elif False:
 class ManagedDatabaseRedisPropertiesArgs:
     def __init__(__self__, *,
                  automatic_utility_network_ip_filter: Optional[pulumi.Input[bool]] = None,
+                 backup_hour: Optional[pulumi.Input[int]] = None,
+                 backup_minute: Optional[pulumi.Input[int]] = None,
                  ip_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  migration: Optional[pulumi.Input['ManagedDatabaseRedisPropertiesMigrationArgs']] = None,
                  public_access: Optional[pulumi.Input[bool]] = None,
@@ -10094,6 +11772,8 @@ class ManagedDatabaseRedisPropertiesArgs:
                  service_log: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[bool] automatic_utility_network_ip_filter: Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+        :param pulumi.Input[int] backup_hour: The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        :param pulumi.Input[int] backup_minute: The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
         :param pulumi.Input['ManagedDatabaseRedisPropertiesMigrationArgs'] migration: Migrate data from existing server.
         :param pulumi.Input[bool] public_access: Public Access. Allow access to the service from the public Internet.
@@ -10113,6 +11793,10 @@ class ManagedDatabaseRedisPropertiesArgs:
         """
         if automatic_utility_network_ip_filter is not None:
             pulumi.set(__self__, "automatic_utility_network_ip_filter", automatic_utility_network_ip_filter)
+        if backup_hour is not None:
+            pulumi.set(__self__, "backup_hour", backup_hour)
+        if backup_minute is not None:
+            pulumi.set(__self__, "backup_minute", backup_minute)
         if ip_filters is not None:
             pulumi.set(__self__, "ip_filters", ip_filters)
         if migration is not None:
@@ -10157,6 +11841,30 @@ class ManagedDatabaseRedisPropertiesArgs:
     @automatic_utility_network_ip_filter.setter
     def automatic_utility_network_ip_filter(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "automatic_utility_network_ip_filter", value)
+
+    @property
+    @pulumi.getter(name="backupHour")
+    def backup_hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        return pulumi.get(self, "backup_hour")
+
+    @backup_hour.setter
+    def backup_hour(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "backup_hour", value)
+
+    @property
+    @pulumi.getter(name="backupMinute")
+    def backup_minute(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        return pulumi.get(self, "backup_minute")
+
+    @backup_minute.setter
+    def backup_minute(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "backup_minute", value)
 
     @property
     @pulumi.getter(name="ipFilters")
@@ -10749,6 +12457,934 @@ class ManagedDatabaseUserRedisAccessControlArgs:
 
 
 if not MYPY:
+    class ManagedDatabaseUserValkeyAccessControlArgsDict(TypedDict):
+        categories: NotRequired[pulumi.Input[str]]
+        """
+        Set access control to all commands in specified categories.
+        """
+        channels: NotRequired[pulumi.Input[str]]
+        """
+        Set access control to Pub/Sub channels.
+        """
+        commands: NotRequired[pulumi.Input[str]]
+        """
+        Set access control to commands.
+        """
+        keys: NotRequired[pulumi.Input[str]]
+        """
+        Set access control to keys.
+        """
+elif False:
+    ManagedDatabaseUserValkeyAccessControlArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseUserValkeyAccessControlArgs:
+    def __init__(__self__, *,
+                 categories: Optional[pulumi.Input[str]] = None,
+                 channels: Optional[pulumi.Input[str]] = None,
+                 commands: Optional[pulumi.Input[str]] = None,
+                 keys: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] categories: Set access control to all commands in specified categories.
+        :param pulumi.Input[str] channels: Set access control to Pub/Sub channels.
+        :param pulumi.Input[str] commands: Set access control to commands.
+        :param pulumi.Input[str] keys: Set access control to keys.
+        """
+        if categories is not None:
+            pulumi.set(__self__, "categories", categories)
+        if channels is not None:
+            pulumi.set(__self__, "channels", channels)
+        if commands is not None:
+            pulumi.set(__self__, "commands", commands)
+        if keys is not None:
+            pulumi.set(__self__, "keys", keys)
+
+    @property
+    @pulumi.getter
+    def categories(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set access control to all commands in specified categories.
+        """
+        return pulumi.get(self, "categories")
+
+    @categories.setter
+    def categories(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "categories", value)
+
+    @property
+    @pulumi.getter
+    def channels(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set access control to Pub/Sub channels.
+        """
+        return pulumi.get(self, "channels")
+
+    @channels.setter
+    def channels(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "channels", value)
+
+    @property
+    @pulumi.getter
+    def commands(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set access control to commands.
+        """
+        return pulumi.get(self, "commands")
+
+    @commands.setter
+    def commands(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "commands", value)
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set access control to keys.
+        """
+        return pulumi.get(self, "keys")
+
+    @keys.setter
+    def keys(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "keys", value)
+
+
+if not MYPY:
+    class ManagedDatabaseValkeyComponentArgsDict(TypedDict):
+        component: NotRequired[pulumi.Input[str]]
+        """
+        Type of the component
+        """
+        host: NotRequired[pulumi.Input[str]]
+        """
+        Hostname of the component
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        Port number of the component
+        """
+        route: NotRequired[pulumi.Input[str]]
+        """
+        Component network route type
+        """
+        usage: NotRequired[pulumi.Input[str]]
+        """
+        Usage of the component
+        """
+elif False:
+    ManagedDatabaseValkeyComponentArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseValkeyComponentArgs:
+    def __init__(__self__, *,
+                 component: Optional[pulumi.Input[str]] = None,
+                 host: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 route: Optional[pulumi.Input[str]] = None,
+                 usage: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] component: Type of the component
+        :param pulumi.Input[str] host: Hostname of the component
+        :param pulumi.Input[int] port: Port number of the component
+        :param pulumi.Input[str] route: Component network route type
+        :param pulumi.Input[str] usage: Usage of the component
+        """
+        if component is not None:
+            pulumi.set(__self__, "component", component)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if route is not None:
+            pulumi.set(__self__, "route", route)
+        if usage is not None:
+            pulumi.set(__self__, "usage", usage)
+
+    @property
+    @pulumi.getter
+    def component(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the component
+        """
+        return pulumi.get(self, "component")
+
+    @component.setter
+    def component(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "component", value)
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        Hostname of the component
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port number of the component
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter
+    def route(self) -> Optional[pulumi.Input[str]]:
+        """
+        Component network route type
+        """
+        return pulumi.get(self, "route")
+
+    @route.setter
+    def route(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route", value)
+
+    @property
+    @pulumi.getter
+    def usage(self) -> Optional[pulumi.Input[str]]:
+        """
+        Usage of the component
+        """
+        return pulumi.get(self, "usage")
+
+    @usage.setter
+    def usage(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "usage", value)
+
+
+if not MYPY:
+    class ManagedDatabaseValkeyNetworkArgsDict(TypedDict):
+        family: pulumi.Input[str]
+        """
+        Network family. Currently only `IPv4` is supported.
+        """
+        name: pulumi.Input[str]
+        """
+        The name of the network. Must be unique within the service.
+        """
+        type: pulumi.Input[str]
+        """
+        The type of the network. Must be private.
+        """
+        uuid: pulumi.Input[str]
+        """
+        Private network UUID. Must reside in the same zone as the database.
+        """
+elif False:
+    ManagedDatabaseValkeyNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseValkeyNetworkArgs:
+    def __init__(__self__, *,
+                 family: pulumi.Input[str],
+                 name: pulumi.Input[str],
+                 type: pulumi.Input[str],
+                 uuid: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] family: Network family. Currently only `IPv4` is supported.
+        :param pulumi.Input[str] name: The name of the network. Must be unique within the service.
+        :param pulumi.Input[str] type: The type of the network. Must be private.
+        :param pulumi.Input[str] uuid: Private network UUID. Must reside in the same zone as the database.
+        """
+        pulumi.set(__self__, "family", family)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "uuid", uuid)
+
+    @property
+    @pulumi.getter
+    def family(self) -> pulumi.Input[str]:
+        """
+        Network family. Currently only `IPv4` is supported.
+        """
+        return pulumi.get(self, "family")
+
+    @family.setter
+    def family(self, value: pulumi.Input[str]):
+        pulumi.set(self, "family", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        The name of the network. Must be unique within the service.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        The type of the network. Must be private.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def uuid(self) -> pulumi.Input[str]:
+        """
+        Private network UUID. Must reside in the same zone as the database.
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: pulumi.Input[str]):
+        pulumi.set(self, "uuid", value)
+
+
+if not MYPY:
+    class ManagedDatabaseValkeyNodeStateArgsDict(TypedDict):
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Name plus a node iteration
+        """
+        role: NotRequired[pulumi.Input[str]]
+        """
+        Role of the node
+        """
+        state: NotRequired[pulumi.Input[str]]
+        """
+        State of the node
+        """
+elif False:
+    ManagedDatabaseValkeyNodeStateArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseValkeyNodeStateArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 state: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Name plus a node iteration
+        :param pulumi.Input[str] role: Role of the node
+        :param pulumi.Input[str] state: State of the node
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name plus a node iteration
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        Role of the node
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter
+    def state(self) -> Optional[pulumi.Input[str]]:
+        """
+        State of the node
+        """
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "state", value)
+
+
+if not MYPY:
+    class ManagedDatabaseValkeyPropertiesArgsDict(TypedDict):
+        automatic_utility_network_ip_filter: NotRequired[pulumi.Input[bool]]
+        """
+        Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+        """
+        backup_hour: NotRequired[pulumi.Input[int]]
+        """
+        The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        backup_minute: NotRequired[pulumi.Input[int]]
+        """
+        The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        ip_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+        """
+        migration: NotRequired[pulumi.Input['ManagedDatabaseValkeyPropertiesMigrationArgsDict']]
+        """
+        Migrate data from existing server.
+        """
+        public_access: NotRequired[pulumi.Input[bool]]
+        """
+        Public Access. Allow access to the service from the public Internet.
+        """
+        service_log: NotRequired[pulumi.Input[bool]]
+        """
+        Service logging. Store logs for the service so that they are available in the HTTP API and console.
+        """
+        valkey_acl_channels_default: NotRequired[pulumi.Input[str]]
+        """
+        Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+        """
+        valkey_io_threads: NotRequired[pulumi.Input[int]]
+        """
+        Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
+        """
+        valkey_lfu_decay_time: NotRequired[pulumi.Input[int]]
+        """
+        LFU maxmemory-policy counter decay time in minutes.
+        """
+        valkey_lfu_log_factor: NotRequired[pulumi.Input[int]]
+        """
+        Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
+        """
+        valkey_maxmemory_policy: NotRequired[pulumi.Input[str]]
+        """
+        Valkey maxmemory-policy.
+        """
+        valkey_notify_keyspace_events: NotRequired[pulumi.Input[str]]
+        """
+        Set notify-keyspace-events option.
+        """
+        valkey_number_of_databases: NotRequired[pulumi.Input[int]]
+        """
+        Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
+        """
+        valkey_persistence: NotRequired[pulumi.Input[str]]
+        """
+        Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+        """
+        valkey_pubsub_client_output_buffer_limit: NotRequired[pulumi.Input[int]]
+        """
+        Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
+        """
+        valkey_ssl: NotRequired[pulumi.Input[bool]]
+        """
+        Require SSL to access Valkey.
+        """
+        valkey_timeout: NotRequired[pulumi.Input[int]]
+        """
+        Valkey idle connection timeout in seconds.
+        """
+elif False:
+    ManagedDatabaseValkeyPropertiesArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseValkeyPropertiesArgs:
+    def __init__(__self__, *,
+                 automatic_utility_network_ip_filter: Optional[pulumi.Input[bool]] = None,
+                 backup_hour: Optional[pulumi.Input[int]] = None,
+                 backup_minute: Optional[pulumi.Input[int]] = None,
+                 ip_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 migration: Optional[pulumi.Input['ManagedDatabaseValkeyPropertiesMigrationArgs']] = None,
+                 public_access: Optional[pulumi.Input[bool]] = None,
+                 service_log: Optional[pulumi.Input[bool]] = None,
+                 valkey_acl_channels_default: Optional[pulumi.Input[str]] = None,
+                 valkey_io_threads: Optional[pulumi.Input[int]] = None,
+                 valkey_lfu_decay_time: Optional[pulumi.Input[int]] = None,
+                 valkey_lfu_log_factor: Optional[pulumi.Input[int]] = None,
+                 valkey_maxmemory_policy: Optional[pulumi.Input[str]] = None,
+                 valkey_notify_keyspace_events: Optional[pulumi.Input[str]] = None,
+                 valkey_number_of_databases: Optional[pulumi.Input[int]] = None,
+                 valkey_persistence: Optional[pulumi.Input[str]] = None,
+                 valkey_pubsub_client_output_buffer_limit: Optional[pulumi.Input[int]] = None,
+                 valkey_ssl: Optional[pulumi.Input[bool]] = None,
+                 valkey_timeout: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[bool] automatic_utility_network_ip_filter: Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+        :param pulumi.Input[int] backup_hour: The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        :param pulumi.Input[int] backup_minute: The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+        :param pulumi.Input['ManagedDatabaseValkeyPropertiesMigrationArgs'] migration: Migrate data from existing server.
+        :param pulumi.Input[bool] public_access: Public Access. Allow access to the service from the public Internet.
+        :param pulumi.Input[bool] service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
+        :param pulumi.Input[str] valkey_acl_channels_default: Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+        :param pulumi.Input[int] valkey_io_threads: Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
+        :param pulumi.Input[int] valkey_lfu_decay_time: LFU maxmemory-policy counter decay time in minutes.
+        :param pulumi.Input[int] valkey_lfu_log_factor: Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
+        :param pulumi.Input[str] valkey_maxmemory_policy: Valkey maxmemory-policy.
+        :param pulumi.Input[str] valkey_notify_keyspace_events: Set notify-keyspace-events option.
+        :param pulumi.Input[int] valkey_number_of_databases: Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
+        :param pulumi.Input[str] valkey_persistence: Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+        :param pulumi.Input[int] valkey_pubsub_client_output_buffer_limit: Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
+        :param pulumi.Input[bool] valkey_ssl: Require SSL to access Valkey.
+        :param pulumi.Input[int] valkey_timeout: Valkey idle connection timeout in seconds.
+        """
+        if automatic_utility_network_ip_filter is not None:
+            pulumi.set(__self__, "automatic_utility_network_ip_filter", automatic_utility_network_ip_filter)
+        if backup_hour is not None:
+            pulumi.set(__self__, "backup_hour", backup_hour)
+        if backup_minute is not None:
+            pulumi.set(__self__, "backup_minute", backup_minute)
+        if ip_filters is not None:
+            pulumi.set(__self__, "ip_filters", ip_filters)
+        if migration is not None:
+            pulumi.set(__self__, "migration", migration)
+        if public_access is not None:
+            pulumi.set(__self__, "public_access", public_access)
+        if service_log is not None:
+            pulumi.set(__self__, "service_log", service_log)
+        if valkey_acl_channels_default is not None:
+            pulumi.set(__self__, "valkey_acl_channels_default", valkey_acl_channels_default)
+        if valkey_io_threads is not None:
+            pulumi.set(__self__, "valkey_io_threads", valkey_io_threads)
+        if valkey_lfu_decay_time is not None:
+            pulumi.set(__self__, "valkey_lfu_decay_time", valkey_lfu_decay_time)
+        if valkey_lfu_log_factor is not None:
+            pulumi.set(__self__, "valkey_lfu_log_factor", valkey_lfu_log_factor)
+        if valkey_maxmemory_policy is not None:
+            pulumi.set(__self__, "valkey_maxmemory_policy", valkey_maxmemory_policy)
+        if valkey_notify_keyspace_events is not None:
+            pulumi.set(__self__, "valkey_notify_keyspace_events", valkey_notify_keyspace_events)
+        if valkey_number_of_databases is not None:
+            pulumi.set(__self__, "valkey_number_of_databases", valkey_number_of_databases)
+        if valkey_persistence is not None:
+            pulumi.set(__self__, "valkey_persistence", valkey_persistence)
+        if valkey_pubsub_client_output_buffer_limit is not None:
+            pulumi.set(__self__, "valkey_pubsub_client_output_buffer_limit", valkey_pubsub_client_output_buffer_limit)
+        if valkey_ssl is not None:
+            pulumi.set(__self__, "valkey_ssl", valkey_ssl)
+        if valkey_timeout is not None:
+            pulumi.set(__self__, "valkey_timeout", valkey_timeout)
+
+    @property
+    @pulumi.getter(name="automaticUtilityNetworkIpFilter")
+    def automatic_utility_network_ip_filter(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+        """
+        return pulumi.get(self, "automatic_utility_network_ip_filter")
+
+    @automatic_utility_network_ip_filter.setter
+    def automatic_utility_network_ip_filter(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "automatic_utility_network_ip_filter", value)
+
+    @property
+    @pulumi.getter(name="backupHour")
+    def backup_hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        return pulumi.get(self, "backup_hour")
+
+    @backup_hour.setter
+    def backup_hour(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "backup_hour", value)
+
+    @property
+    @pulumi.getter(name="backupMinute")
+    def backup_minute(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        return pulumi.get(self, "backup_minute")
+
+    @backup_minute.setter
+    def backup_minute(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "backup_minute", value)
+
+    @property
+    @pulumi.getter(name="ipFilters")
+    def ip_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
+        """
+        return pulumi.get(self, "ip_filters")
+
+    @ip_filters.setter
+    def ip_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ip_filters", value)
+
+    @property
+    @pulumi.getter
+    def migration(self) -> Optional[pulumi.Input['ManagedDatabaseValkeyPropertiesMigrationArgs']]:
+        """
+        Migrate data from existing server.
+        """
+        return pulumi.get(self, "migration")
+
+    @migration.setter
+    def migration(self, value: Optional[pulumi.Input['ManagedDatabaseValkeyPropertiesMigrationArgs']]):
+        pulumi.set(self, "migration", value)
+
+    @property
+    @pulumi.getter(name="publicAccess")
+    def public_access(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Public Access. Allow access to the service from the public Internet.
+        """
+        return pulumi.get(self, "public_access")
+
+    @public_access.setter
+    def public_access(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "public_access", value)
+
+    @property
+    @pulumi.getter(name="serviceLog")
+    def service_log(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Service logging. Store logs for the service so that they are available in the HTTP API and console.
+        """
+        return pulumi.get(self, "service_log")
+
+    @service_log.setter
+    def service_log(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "service_log", value)
+
+    @property
+    @pulumi.getter(name="valkeyAclChannelsDefault")
+    def valkey_acl_channels_default(self) -> Optional[pulumi.Input[str]]:
+        """
+        Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+        """
+        return pulumi.get(self, "valkey_acl_channels_default")
+
+    @valkey_acl_channels_default.setter
+    def valkey_acl_channels_default(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "valkey_acl_channels_default", value)
+
+    @property
+    @pulumi.getter(name="valkeyIoThreads")
+    def valkey_io_threads(self) -> Optional[pulumi.Input[int]]:
+        """
+        Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
+        """
+        return pulumi.get(self, "valkey_io_threads")
+
+    @valkey_io_threads.setter
+    def valkey_io_threads(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "valkey_io_threads", value)
+
+    @property
+    @pulumi.getter(name="valkeyLfuDecayTime")
+    def valkey_lfu_decay_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        LFU maxmemory-policy counter decay time in minutes.
+        """
+        return pulumi.get(self, "valkey_lfu_decay_time")
+
+    @valkey_lfu_decay_time.setter
+    def valkey_lfu_decay_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "valkey_lfu_decay_time", value)
+
+    @property
+    @pulumi.getter(name="valkeyLfuLogFactor")
+    def valkey_lfu_log_factor(self) -> Optional[pulumi.Input[int]]:
+        """
+        Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
+        """
+        return pulumi.get(self, "valkey_lfu_log_factor")
+
+    @valkey_lfu_log_factor.setter
+    def valkey_lfu_log_factor(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "valkey_lfu_log_factor", value)
+
+    @property
+    @pulumi.getter(name="valkeyMaxmemoryPolicy")
+    def valkey_maxmemory_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Valkey maxmemory-policy.
+        """
+        return pulumi.get(self, "valkey_maxmemory_policy")
+
+    @valkey_maxmemory_policy.setter
+    def valkey_maxmemory_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "valkey_maxmemory_policy", value)
+
+    @property
+    @pulumi.getter(name="valkeyNotifyKeyspaceEvents")
+    def valkey_notify_keyspace_events(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set notify-keyspace-events option.
+        """
+        return pulumi.get(self, "valkey_notify_keyspace_events")
+
+    @valkey_notify_keyspace_events.setter
+    def valkey_notify_keyspace_events(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "valkey_notify_keyspace_events", value)
+
+    @property
+    @pulumi.getter(name="valkeyNumberOfDatabases")
+    def valkey_number_of_databases(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
+        """
+        return pulumi.get(self, "valkey_number_of_databases")
+
+    @valkey_number_of_databases.setter
+    def valkey_number_of_databases(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "valkey_number_of_databases", value)
+
+    @property
+    @pulumi.getter(name="valkeyPersistence")
+    def valkey_persistence(self) -> Optional[pulumi.Input[str]]:
+        """
+        Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+        """
+        return pulumi.get(self, "valkey_persistence")
+
+    @valkey_persistence.setter
+    def valkey_persistence(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "valkey_persistence", value)
+
+    @property
+    @pulumi.getter(name="valkeyPubsubClientOutputBufferLimit")
+    def valkey_pubsub_client_output_buffer_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
+        """
+        return pulumi.get(self, "valkey_pubsub_client_output_buffer_limit")
+
+    @valkey_pubsub_client_output_buffer_limit.setter
+    def valkey_pubsub_client_output_buffer_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "valkey_pubsub_client_output_buffer_limit", value)
+
+    @property
+    @pulumi.getter(name="valkeySsl")
+    def valkey_ssl(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Require SSL to access Valkey.
+        """
+        return pulumi.get(self, "valkey_ssl")
+
+    @valkey_ssl.setter
+    def valkey_ssl(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "valkey_ssl", value)
+
+    @property
+    @pulumi.getter(name="valkeyTimeout")
+    def valkey_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Valkey idle connection timeout in seconds.
+        """
+        return pulumi.get(self, "valkey_timeout")
+
+    @valkey_timeout.setter
+    def valkey_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "valkey_timeout", value)
+
+
+if not MYPY:
+    class ManagedDatabaseValkeyPropertiesMigrationArgsDict(TypedDict):
+        dbname: NotRequired[pulumi.Input[str]]
+        """
+        Database name for bootstrapping the initial connection.
+        """
+        host: NotRequired[pulumi.Input[str]]
+        """
+        Hostname or IP address of the server where to migrate data from.
+        """
+        ignore_dbs: NotRequired[pulumi.Input[str]]
+        """
+        Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+        """
+        ignore_roles: NotRequired[pulumi.Input[str]]
+        """
+        Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+        """
+        method: NotRequired[pulumi.Input[str]]
+        """
+        The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        Password for authentication with the server where to migrate data from.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        Port number of the server where to migrate data from.
+        """
+        ssl: NotRequired[pulumi.Input[bool]]
+        """
+        The server where to migrate data from is secured with SSL.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        User name for authentication with the server where to migrate data from.
+        """
+elif False:
+    ManagedDatabaseValkeyPropertiesMigrationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseValkeyPropertiesMigrationArgs:
+    def __init__(__self__, *,
+                 dbname: Optional[pulumi.Input[str]] = None,
+                 host: Optional[pulumi.Input[str]] = None,
+                 ignore_dbs: Optional[pulumi.Input[str]] = None,
+                 ignore_roles: Optional[pulumi.Input[str]] = None,
+                 method: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 ssl: Optional[pulumi.Input[bool]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] dbname: Database name for bootstrapping the initial connection.
+        :param pulumi.Input[str] host: Hostname or IP address of the server where to migrate data from.
+        :param pulumi.Input[str] ignore_dbs: Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+        :param pulumi.Input[str] ignore_roles: Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+        :param pulumi.Input[str] method: The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
+        :param pulumi.Input[str] password: Password for authentication with the server where to migrate data from.
+        :param pulumi.Input[int] port: Port number of the server where to migrate data from.
+        :param pulumi.Input[bool] ssl: The server where to migrate data from is secured with SSL.
+        :param pulumi.Input[str] username: User name for authentication with the server where to migrate data from.
+        """
+        if dbname is not None:
+            pulumi.set(__self__, "dbname", dbname)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if ignore_dbs is not None:
+            pulumi.set(__self__, "ignore_dbs", ignore_dbs)
+        if ignore_roles is not None:
+            pulumi.set(__self__, "ignore_roles", ignore_roles)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if ssl is not None:
+            pulumi.set(__self__, "ssl", ssl)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def dbname(self) -> Optional[pulumi.Input[str]]:
+        """
+        Database name for bootstrapping the initial connection.
+        """
+        return pulumi.get(self, "dbname")
+
+    @dbname.setter
+    def dbname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dbname", value)
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        Hostname or IP address of the server where to migrate data from.
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter(name="ignoreDbs")
+    def ignore_dbs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
+        """
+        return pulumi.get(self, "ignore_dbs")
+
+    @ignore_dbs.setter
+    def ignore_dbs(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ignore_dbs", value)
+
+    @property
+    @pulumi.getter(name="ignoreRoles")
+    def ignore_roles(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
+        """
+        return pulumi.get(self, "ignore_roles")
+
+    @ignore_roles.setter
+    def ignore_roles(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ignore_roles", value)
+
+    @property
+    @pulumi.getter
+    def method(self) -> Optional[pulumi.Input[str]]:
+        """
+        The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
+        """
+        return pulumi.get(self, "method")
+
+    @method.setter
+    def method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "method", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for authentication with the server where to migrate data from.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port number of the server where to migrate data from.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter
+    def ssl(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The server where to migrate data from is secured with SSL.
+        """
+        return pulumi.get(self, "ssl")
+
+    @ssl.setter
+    def ssl(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ssl", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        User name for authentication with the server where to migrate data from.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+
+if not MYPY:
     class ManagedObjectStorageEndpointArgsDict(TypedDict):
         domain_name: NotRequired[pulumi.Input[str]]
         """
@@ -11233,7 +13869,7 @@ if not MYPY:
     class ServerFirewallRulesFirewallRuleArgsDict(TypedDict):
         action: pulumi.Input[str]
         """
-        Action to take if the rule conditions are met
+        Action to take if the rule conditions are met. Valid values `accept | drop`
         """
         direction: pulumi.Input[str]
         """
@@ -11308,7 +13944,7 @@ class ServerFirewallRulesFirewallRuleArgs:
                  source_port_end: Optional[pulumi.Input[str]] = None,
                  source_port_start: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] action: Action to take if the rule conditions are met
+        :param pulumi.Input[str] action: Action to take if the rule conditions are met. Valid values `accept | drop`
         :param pulumi.Input[str] direction: The direction of network traffic this rule will be applied to
         :param pulumi.Input[str] comment: Freeform comment string for the rule
         :param pulumi.Input[str] destination_address_end: The destination address range ends from this address
@@ -11354,7 +13990,7 @@ class ServerFirewallRulesFirewallRuleArgs:
     @pulumi.getter
     def action(self) -> pulumi.Input[str]:
         """
-        Action to take if the rule conditions are met
+        Action to take if the rule conditions are met. Valid values `accept | drop`
         """
         return pulumi.get(self, "action")
 
@@ -11619,15 +14255,19 @@ if not MYPY:
         """
         additional_ip_addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceAdditionalIpAddressArgsDict']]]]
         """
-        0-4 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+        0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
         """
         bootable: NotRequired[pulumi.Input[bool]]
         """
         `true` if this interface should be used for network booting.
         """
+        index: NotRequired[pulumi.Input[int]]
+        """
+        The interface index.
+        """
         ip_address: NotRequired[pulumi.Input[str]]
         """
-        The assigned primary IP address.
+        The primary IP address of this interface.
         """
         ip_address_family: NotRequired[pulumi.Input[str]]
         """
@@ -11639,11 +14279,11 @@ if not MYPY:
         """
         mac_address: NotRequired[pulumi.Input[str]]
         """
-        The assigned MAC address.
+        The MAC address of the interface.
         """
         network: NotRequired[pulumi.Input[str]]
         """
-        The unique ID of a network to attach this network to.
+        The UUID of the network to attach this interface to. Required for private network interfaces.
         """
         source_ip_filtering: NotRequired[pulumi.Input[bool]]
         """
@@ -11658,6 +14298,7 @@ class ServerNetworkInterfaceArgs:
                  type: pulumi.Input[str],
                  additional_ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceAdditionalIpAddressArgs']]]] = None,
                  bootable: Optional[pulumi.Input[bool]] = None,
+                 index: Optional[pulumi.Input[int]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
                  ip_address_family: Optional[pulumi.Input[str]] = None,
                  ip_address_floating: Optional[pulumi.Input[bool]] = None,
@@ -11666,13 +14307,14 @@ class ServerNetworkInterfaceArgs:
                  source_ip_filtering: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[str] type: Network interface type. For private network interfaces, a network must be specified with an existing network id.
-        :param pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceAdditionalIpAddressArgs']]] additional_ip_addresses: 0-4 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+        :param pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceAdditionalIpAddressArgs']]] additional_ip_addresses: 0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
         :param pulumi.Input[bool] bootable: `true` if this interface should be used for network booting.
-        :param pulumi.Input[str] ip_address: The assigned primary IP address.
+        :param pulumi.Input[int] index: The interface index.
+        :param pulumi.Input[str] ip_address: The primary IP address of this interface.
         :param pulumi.Input[str] ip_address_family: The type of the primary IP address of this interface (one of `IPv4` or `IPv6`).
         :param pulumi.Input[bool] ip_address_floating: `true` indicates that the primary IP address is a floating IP address.
-        :param pulumi.Input[str] mac_address: The assigned MAC address.
-        :param pulumi.Input[str] network: The unique ID of a network to attach this network to.
+        :param pulumi.Input[str] mac_address: The MAC address of the interface.
+        :param pulumi.Input[str] network: The UUID of the network to attach this interface to. Required for private network interfaces.
         :param pulumi.Input[bool] source_ip_filtering: `true` if source IP should be filtered.
         """
         pulumi.set(__self__, "type", type)
@@ -11680,6 +14322,8 @@ class ServerNetworkInterfaceArgs:
             pulumi.set(__self__, "additional_ip_addresses", additional_ip_addresses)
         if bootable is not None:
             pulumi.set(__self__, "bootable", bootable)
+        if index is not None:
+            pulumi.set(__self__, "index", index)
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
         if ip_address_family is not None:
@@ -11709,7 +14353,7 @@ class ServerNetworkInterfaceArgs:
     @pulumi.getter(name="additionalIpAddresses")
     def additional_ip_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceAdditionalIpAddressArgs']]]]:
         """
-        0-4 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+        0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
         """
         return pulumi.get(self, "additional_ip_addresses")
 
@@ -11730,10 +14374,22 @@ class ServerNetworkInterfaceArgs:
         pulumi.set(self, "bootable", value)
 
     @property
+    @pulumi.getter
+    def index(self) -> Optional[pulumi.Input[int]]:
+        """
+        The interface index.
+        """
+        return pulumi.get(self, "index")
+
+    @index.setter
+    def index(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "index", value)
+
+    @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[pulumi.Input[str]]:
         """
-        The assigned primary IP address.
+        The primary IP address of this interface.
         """
         return pulumi.get(self, "ip_address")
 
@@ -11769,7 +14425,7 @@ class ServerNetworkInterfaceArgs:
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> Optional[pulumi.Input[str]]:
         """
-        The assigned MAC address.
+        The MAC address of the interface.
         """
         return pulumi.get(self, "mac_address")
 
@@ -11781,7 +14437,7 @@ class ServerNetworkInterfaceArgs:
     @pulumi.getter
     def network(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique ID of a network to attach this network to.
+        The UUID of the network to attach this interface to. Required for private network interfaces.
         """
         return pulumi.get(self, "network")
 
@@ -11806,11 +14462,11 @@ if not MYPY:
     class ServerNetworkInterfaceAdditionalIpAddressArgsDict(TypedDict):
         ip_address: NotRequired[pulumi.Input[str]]
         """
-        The assigned additional IP address.
+        An additional IP address for this interface.
         """
         ip_address_family: NotRequired[pulumi.Input[str]]
         """
-        The type of this additional IP address of this interface (one of `IPv4` or `IPv6`).
+        The type of the additional IP address of this interface (one of `IPv4` or `IPv6`).
         """
         ip_address_floating: NotRequired[pulumi.Input[bool]]
         """
@@ -11826,8 +14482,8 @@ class ServerNetworkInterfaceAdditionalIpAddressArgs:
                  ip_address_family: Optional[pulumi.Input[str]] = None,
                  ip_address_floating: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[str] ip_address: The assigned additional IP address.
-        :param pulumi.Input[str] ip_address_family: The type of this additional IP address of this interface (one of `IPv4` or `IPv6`).
+        :param pulumi.Input[str] ip_address: An additional IP address for this interface.
+        :param pulumi.Input[str] ip_address_family: The type of the additional IP address of this interface (one of `IPv4` or `IPv6`).
         :param pulumi.Input[bool] ip_address_floating: `true` indicates that the additional IP address is a floating IP address.
         """
         if ip_address is not None:
@@ -11841,7 +14497,7 @@ class ServerNetworkInterfaceAdditionalIpAddressArgs:
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[pulumi.Input[str]]:
         """
-        The assigned additional IP address.
+        An additional IP address for this interface.
         """
         return pulumi.get(self, "ip_address")
 
@@ -11853,7 +14509,7 @@ class ServerNetworkInterfaceAdditionalIpAddressArgs:
     @pulumi.getter(name="ipAddressFamily")
     def ip_address_family(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of this additional IP address of this interface (one of `IPv4` or `IPv6`).
+        The type of the additional IP address of this interface (one of `IPv4` or `IPv6`).
         """
         return pulumi.get(self, "ip_address_family")
 
@@ -11876,11 +14532,11 @@ class ServerNetworkInterfaceAdditionalIpAddressArgs:
 
 if not MYPY:
     class ServerSimpleBackupArgsDict(TypedDict):
-        plan: pulumi.Input[str]
+        plan: NotRequired[pulumi.Input[str]]
         """
         Simple backup plan. Accepted values: daily, dailies, weeklies, monthlies.
         """
-        time: pulumi.Input[str]
+        time: NotRequired[pulumi.Input[str]]
         """
         Time of the day at which backup will be taken. Should be provided in a hhmm format (e.g. 2230).
         """
@@ -11890,46 +14546,44 @@ elif False:
 @pulumi.input_type
 class ServerSimpleBackupArgs:
     def __init__(__self__, *,
-                 plan: pulumi.Input[str],
-                 time: pulumi.Input[str]):
+                 plan: Optional[pulumi.Input[str]] = None,
+                 time: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] plan: Simple backup plan. Accepted values: daily, dailies, weeklies, monthlies.
         :param pulumi.Input[str] time: Time of the day at which backup will be taken. Should be provided in a hhmm format (e.g. 2230).
         """
-        pulumi.set(__self__, "plan", plan)
-        pulumi.set(__self__, "time", time)
+        if plan is not None:
+            pulumi.set(__self__, "plan", plan)
+        if time is not None:
+            pulumi.set(__self__, "time", time)
 
     @property
     @pulumi.getter
-    def plan(self) -> pulumi.Input[str]:
+    def plan(self) -> Optional[pulumi.Input[str]]:
         """
         Simple backup plan. Accepted values: daily, dailies, weeklies, monthlies.
         """
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: pulumi.Input[str]):
+    def plan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "plan", value)
 
     @property
     @pulumi.getter
-    def time(self) -> pulumi.Input[str]:
+    def time(self) -> Optional[pulumi.Input[str]]:
         """
         Time of the day at which backup will be taken. Should be provided in a hhmm format (e.g. 2230).
         """
         return pulumi.get(self, "time")
 
     @time.setter
-    def time(self, value: pulumi.Input[str]):
+    def time(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "time", value)
 
 
 if not MYPY:
     class ServerStorageDeviceArgsDict(TypedDict):
-        storage: pulumi.Input[str]
-        """
-        A valid storage UUID
-        """
         address: NotRequired[pulumi.Input[str]]
         """
         The device address the storage will be attached to (`scsi`|`virtio`|`ide`). Leave `address_position` field empty to auto-select next available address from that bus.
@@ -11937,6 +14591,10 @@ if not MYPY:
         address_position: NotRequired[pulumi.Input[str]]
         """
         The device position in the given bus (defined via field `address`). Valid values for address `virtio` are `0-15` (`0`, for example). Valid values for `scsi` or `ide` are `0-1:0-1` (`0:0`, for example). Leave empty to auto-select next available address in the given bus.
+        """
+        storage: NotRequired[pulumi.Input[str]]
+        """
+        The UUID of the storage to attach to the server.
         """
         type: NotRequired[pulumi.Input[str]]
         """
@@ -11948,35 +14606,24 @@ elif False:
 @pulumi.input_type
 class ServerStorageDeviceArgs:
     def __init__(__self__, *,
-                 storage: pulumi.Input[str],
                  address: Optional[pulumi.Input[str]] = None,
                  address_position: Optional[pulumi.Input[str]] = None,
+                 storage: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] storage: A valid storage UUID
         :param pulumi.Input[str] address: The device address the storage will be attached to (`scsi`|`virtio`|`ide`). Leave `address_position` field empty to auto-select next available address from that bus.
         :param pulumi.Input[str] address_position: The device position in the given bus (defined via field `address`). Valid values for address `virtio` are `0-15` (`0`, for example). Valid values for `scsi` or `ide` are `0-1:0-1` (`0:0`, for example). Leave empty to auto-select next available address in the given bus.
+        :param pulumi.Input[str] storage: The UUID of the storage to attach to the server.
         :param pulumi.Input[str] type: The device type the storage will be attached as
         """
-        pulumi.set(__self__, "storage", storage)
         if address is not None:
             pulumi.set(__self__, "address", address)
         if address_position is not None:
             pulumi.set(__self__, "address_position", address_position)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
         if type is not None:
             pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def storage(self) -> pulumi.Input[str]:
-        """
-        A valid storage UUID
-        """
-        return pulumi.get(self, "storage")
-
-    @storage.setter
-    def storage(self, value: pulumi.Input[str]):
-        pulumi.set(self, "storage", value)
 
     @property
     @pulumi.getter
@@ -12004,6 +14651,18 @@ class ServerStorageDeviceArgs:
 
     @property
     @pulumi.getter
+    def storage(self) -> Optional[pulumi.Input[str]]:
+        """
+        The UUID of the storage to attach to the server.
+        """
+        return pulumi.get(self, "storage")
+
+    @storage.setter
+    def storage(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "storage", value)
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         The device type the storage will be attached as
@@ -12017,10 +14676,6 @@ class ServerStorageDeviceArgs:
 
 if not MYPY:
     class ServerTemplateArgsDict(TypedDict):
-        storage: pulumi.Input[str]
-        """
-        A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
-        """
         address: NotRequired[pulumi.Input[str]]
         """
         The device address the storage will be attached to (`scsi`|`virtio`|`ide`). Leave `address_position` field empty to auto-select next available address from that bus.
@@ -12053,9 +14708,13 @@ if not MYPY:
         """
         The size of the storage in gigabytes
         """
+        storage: NotRequired[pulumi.Input[str]]
+        """
+        A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
+        """
         tier: NotRequired[pulumi.Input[str]]
         """
-        The storage tier to use
+        The storage tier to use.
         """
         title: NotRequired[pulumi.Input[str]]
         """
@@ -12067,7 +14726,6 @@ elif False:
 @pulumi.input_type
 class ServerTemplateArgs:
     def __init__(__self__, *,
-                 storage: pulumi.Input[str],
                  address: Optional[pulumi.Input[str]] = None,
                  address_position: Optional[pulumi.Input[str]] = None,
                  backup_rule: Optional[pulumi.Input['ServerTemplateBackupRuleArgs']] = None,
@@ -12076,10 +14734,10 @@ class ServerTemplateArgs:
                  filesystem_autoresize: Optional[pulumi.Input[bool]] = None,
                  id: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
+                 storage: Optional[pulumi.Input[str]] = None,
                  tier: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] storage: A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
         :param pulumi.Input[str] address: The device address the storage will be attached to (`scsi`|`virtio`|`ide`). Leave `address_position` field empty to auto-select next available address from that bus.
         :param pulumi.Input[str] address_position: The device position in the given bus (defined via field `address`). For example `0:0`, or `0`. Leave empty to auto-select next available address in the given bus.
         :param pulumi.Input[bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
@@ -12090,10 +14748,10 @@ class ServerTemplateArgs:
                							Taking and keeping backups incure costs.
         :param pulumi.Input[str] id: The unique identifier for the storage
         :param pulumi.Input[int] size: The size of the storage in gigabytes
-        :param pulumi.Input[str] tier: The storage tier to use
+        :param pulumi.Input[str] storage: A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
+        :param pulumi.Input[str] tier: The storage tier to use.
         :param pulumi.Input[str] title: A short, informative description
         """
-        pulumi.set(__self__, "storage", storage)
         if address is not None:
             pulumi.set(__self__, "address", address)
         if address_position is not None:
@@ -12110,22 +14768,12 @@ class ServerTemplateArgs:
             pulumi.set(__self__, "id", id)
         if size is not None:
             pulumi.set(__self__, "size", size)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
         if tier is not None:
             pulumi.set(__self__, "tier", tier)
         if title is not None:
             pulumi.set(__self__, "title", title)
-
-    @property
-    @pulumi.getter
-    def storage(self) -> pulumi.Input[str]:
-        """
-        A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
-        """
-        return pulumi.get(self, "storage")
-
-    @storage.setter
-    def storage(self, value: pulumi.Input[str]):
-        pulumi.set(self, "storage", value)
 
     @property
     @pulumi.getter
@@ -12225,9 +14873,21 @@ class ServerTemplateArgs:
 
     @property
     @pulumi.getter
+    def storage(self) -> Optional[pulumi.Input[str]]:
+        """
+        A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
+        """
+        return pulumi.get(self, "storage")
+
+    @storage.setter
+    def storage(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "storage", value)
+
+    @property
+    @pulumi.getter
     def tier(self) -> Optional[pulumi.Input[str]]:
         """
-        The storage tier to use
+        The storage tier to use.
         """
         return pulumi.get(self, "tier")
 
@@ -12588,6 +15248,189 @@ class GetHostsHostArgs:
     def zone(self) -> str:
         """
         The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        """
+        return pulumi.get(self, "zone")
+
+    @zone.setter
+    def zone(self, value: str):
+        pulumi.set(self, "zone", value)
+
+
+if not MYPY:
+    class GetIpAddressesAddressArgsDict(TypedDict):
+        access: str
+        """
+        Is address for utility or public network
+        """
+        address: str
+        """
+        An UpCloud assigned IP Address
+        """
+        family: str
+        """
+        IP address family
+        """
+        floating: bool
+        """
+        Does the IP Address represents a floating IP Address
+        """
+        mac: str
+        """
+        MAC address of server interface to assign address to
+        """
+        part_of_plan: bool
+        """
+        Is the address a part of a plan
+        """
+        ptr_record: str
+        """
+        A reverse DNS record entry
+        """
+        server: str
+        """
+        The unique identifier for a server
+        """
+        zone: str
+        """
+        Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        """
+elif False:
+    GetIpAddressesAddressArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetIpAddressesAddressArgs:
+    def __init__(__self__, *,
+                 access: str,
+                 address: str,
+                 family: str,
+                 floating: bool,
+                 mac: str,
+                 part_of_plan: bool,
+                 ptr_record: str,
+                 server: str,
+                 zone: str):
+        """
+        :param str access: Is address for utility or public network
+        :param str address: An UpCloud assigned IP Address
+        :param str family: IP address family
+        :param bool floating: Does the IP Address represents a floating IP Address
+        :param str mac: MAC address of server interface to assign address to
+        :param bool part_of_plan: Is the address a part of a plan
+        :param str ptr_record: A reverse DNS record entry
+        :param str server: The unique identifier for a server
+        :param str zone: Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        """
+        pulumi.set(__self__, "access", access)
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "family", family)
+        pulumi.set(__self__, "floating", floating)
+        pulumi.set(__self__, "mac", mac)
+        pulumi.set(__self__, "part_of_plan", part_of_plan)
+        pulumi.set(__self__, "ptr_record", ptr_record)
+        pulumi.set(__self__, "server", server)
+        pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter
+    def access(self) -> str:
+        """
+        Is address for utility or public network
+        """
+        return pulumi.get(self, "access")
+
+    @access.setter
+    def access(self, value: str):
+        pulumi.set(self, "access", value)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        An UpCloud assigned IP Address
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: str):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def family(self) -> str:
+        """
+        IP address family
+        """
+        return pulumi.get(self, "family")
+
+    @family.setter
+    def family(self, value: str):
+        pulumi.set(self, "family", value)
+
+    @property
+    @pulumi.getter
+    def floating(self) -> bool:
+        """
+        Does the IP Address represents a floating IP Address
+        """
+        return pulumi.get(self, "floating")
+
+    @floating.setter
+    def floating(self, value: bool):
+        pulumi.set(self, "floating", value)
+
+    @property
+    @pulumi.getter
+    def mac(self) -> str:
+        """
+        MAC address of server interface to assign address to
+        """
+        return pulumi.get(self, "mac")
+
+    @mac.setter
+    def mac(self, value: str):
+        pulumi.set(self, "mac", value)
+
+    @property
+    @pulumi.getter(name="partOfPlan")
+    def part_of_plan(self) -> bool:
+        """
+        Is the address a part of a plan
+        """
+        return pulumi.get(self, "part_of_plan")
+
+    @part_of_plan.setter
+    def part_of_plan(self, value: bool):
+        pulumi.set(self, "part_of_plan", value)
+
+    @property
+    @pulumi.getter(name="ptrRecord")
+    def ptr_record(self) -> str:
+        """
+        A reverse DNS record entry
+        """
+        return pulumi.get(self, "ptr_record")
+
+    @ptr_record.setter
+    def ptr_record(self, value: str):
+        pulumi.set(self, "ptr_record", value)
+
+    @property
+    @pulumi.getter
+    def server(self) -> str:
+        """
+        The unique identifier for a server
+        """
+        return pulumi.get(self, "server")
+
+    @server.setter
+    def server(self, value: str):
+        pulumi.set(self, "server", value)
+
+    @property
+    @pulumi.getter
+    def zone(self) -> str:
+        """
+        Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 
@@ -13429,6 +16272,341 @@ elif False:
 
 @pulumi.input_type
 class GetManagedDatabaseRedisSessionsSessionArgs:
+    def __init__(__self__, *,
+                 active_channel_subscriptions: int,
+                 active_database: str,
+                 active_pattern_matching_channel_subscriptions: int,
+                 application_name: str,
+                 client_addr: str,
+                 connection_age: int,
+                 connection_idle: int,
+                 flags: Sequence[str],
+                 flags_raw: str,
+                 id: str,
+                 multi_exec_commands: int,
+                 output_buffer: int,
+                 output_buffer_memory: int,
+                 output_list_length: int,
+                 query: str,
+                 query_buffer: int,
+                 query_buffer_free: int):
+        """
+        :param int active_channel_subscriptions: Number of active channel subscriptions
+        :param str active_database: Current database ID
+        :param int active_pattern_matching_channel_subscriptions: Number of pattern matching subscriptions.
+        :param str application_name: Name of the application that is connected to this service.
+        :param str client_addr: Number of pattern matching subscriptions.
+        :param int connection_age: Total duration of the connection in nanoseconds.
+        :param int connection_idle: Idle time of the connection in nanoseconds.
+        :param Sequence[str] flags: A set containing flags' descriptions.
+        :param str flags_raw: Client connection flags in raw string format.
+        :param str id: Process ID of this session.
+        :param int multi_exec_commands: Number of commands in a MULTI/EXEC context.
+        :param int output_buffer: Output buffer length.
+        :param int output_buffer_memory: Output buffer memory usage.
+        :param int output_list_length: Output list length (replies are queued in this list when the buffer is full).
+        :param str query: The last executed command.
+        :param int query_buffer: Query buffer length (0 means no query pending).
+        :param int query_buffer_free: Free space of the query buffer (0 means the buffer is full).
+        """
+        pulumi.set(__self__, "active_channel_subscriptions", active_channel_subscriptions)
+        pulumi.set(__self__, "active_database", active_database)
+        pulumi.set(__self__, "active_pattern_matching_channel_subscriptions", active_pattern_matching_channel_subscriptions)
+        pulumi.set(__self__, "application_name", application_name)
+        pulumi.set(__self__, "client_addr", client_addr)
+        pulumi.set(__self__, "connection_age", connection_age)
+        pulumi.set(__self__, "connection_idle", connection_idle)
+        pulumi.set(__self__, "flags", flags)
+        pulumi.set(__self__, "flags_raw", flags_raw)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "multi_exec_commands", multi_exec_commands)
+        pulumi.set(__self__, "output_buffer", output_buffer)
+        pulumi.set(__self__, "output_buffer_memory", output_buffer_memory)
+        pulumi.set(__self__, "output_list_length", output_list_length)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "query_buffer", query_buffer)
+        pulumi.set(__self__, "query_buffer_free", query_buffer_free)
+
+    @property
+    @pulumi.getter(name="activeChannelSubscriptions")
+    def active_channel_subscriptions(self) -> int:
+        """
+        Number of active channel subscriptions
+        """
+        return pulumi.get(self, "active_channel_subscriptions")
+
+    @active_channel_subscriptions.setter
+    def active_channel_subscriptions(self, value: int):
+        pulumi.set(self, "active_channel_subscriptions", value)
+
+    @property
+    @pulumi.getter(name="activeDatabase")
+    def active_database(self) -> str:
+        """
+        Current database ID
+        """
+        return pulumi.get(self, "active_database")
+
+    @active_database.setter
+    def active_database(self, value: str):
+        pulumi.set(self, "active_database", value)
+
+    @property
+    @pulumi.getter(name="activePatternMatchingChannelSubscriptions")
+    def active_pattern_matching_channel_subscriptions(self) -> int:
+        """
+        Number of pattern matching subscriptions.
+        """
+        return pulumi.get(self, "active_pattern_matching_channel_subscriptions")
+
+    @active_pattern_matching_channel_subscriptions.setter
+    def active_pattern_matching_channel_subscriptions(self, value: int):
+        pulumi.set(self, "active_pattern_matching_channel_subscriptions", value)
+
+    @property
+    @pulumi.getter(name="applicationName")
+    def application_name(self) -> str:
+        """
+        Name of the application that is connected to this service.
+        """
+        return pulumi.get(self, "application_name")
+
+    @application_name.setter
+    def application_name(self, value: str):
+        pulumi.set(self, "application_name", value)
+
+    @property
+    @pulumi.getter(name="clientAddr")
+    def client_addr(self) -> str:
+        """
+        Number of pattern matching subscriptions.
+        """
+        return pulumi.get(self, "client_addr")
+
+    @client_addr.setter
+    def client_addr(self, value: str):
+        pulumi.set(self, "client_addr", value)
+
+    @property
+    @pulumi.getter(name="connectionAge")
+    def connection_age(self) -> int:
+        """
+        Total duration of the connection in nanoseconds.
+        """
+        return pulumi.get(self, "connection_age")
+
+    @connection_age.setter
+    def connection_age(self, value: int):
+        pulumi.set(self, "connection_age", value)
+
+    @property
+    @pulumi.getter(name="connectionIdle")
+    def connection_idle(self) -> int:
+        """
+        Idle time of the connection in nanoseconds.
+        """
+        return pulumi.get(self, "connection_idle")
+
+    @connection_idle.setter
+    def connection_idle(self, value: int):
+        pulumi.set(self, "connection_idle", value)
+
+    @property
+    @pulumi.getter
+    def flags(self) -> Sequence[str]:
+        """
+        A set containing flags' descriptions.
+        """
+        return pulumi.get(self, "flags")
+
+    @flags.setter
+    def flags(self, value: Sequence[str]):
+        pulumi.set(self, "flags", value)
+
+    @property
+    @pulumi.getter(name="flagsRaw")
+    def flags_raw(self) -> str:
+        """
+        Client connection flags in raw string format.
+        """
+        return pulumi.get(self, "flags_raw")
+
+    @flags_raw.setter
+    def flags_raw(self, value: str):
+        pulumi.set(self, "flags_raw", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Process ID of this session.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: str):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="multiExecCommands")
+    def multi_exec_commands(self) -> int:
+        """
+        Number of commands in a MULTI/EXEC context.
+        """
+        return pulumi.get(self, "multi_exec_commands")
+
+    @multi_exec_commands.setter
+    def multi_exec_commands(self, value: int):
+        pulumi.set(self, "multi_exec_commands", value)
+
+    @property
+    @pulumi.getter(name="outputBuffer")
+    def output_buffer(self) -> int:
+        """
+        Output buffer length.
+        """
+        return pulumi.get(self, "output_buffer")
+
+    @output_buffer.setter
+    def output_buffer(self, value: int):
+        pulumi.set(self, "output_buffer", value)
+
+    @property
+    @pulumi.getter(name="outputBufferMemory")
+    def output_buffer_memory(self) -> int:
+        """
+        Output buffer memory usage.
+        """
+        return pulumi.get(self, "output_buffer_memory")
+
+    @output_buffer_memory.setter
+    def output_buffer_memory(self, value: int):
+        pulumi.set(self, "output_buffer_memory", value)
+
+    @property
+    @pulumi.getter(name="outputListLength")
+    def output_list_length(self) -> int:
+        """
+        Output list length (replies are queued in this list when the buffer is full).
+        """
+        return pulumi.get(self, "output_list_length")
+
+    @output_list_length.setter
+    def output_list_length(self, value: int):
+        pulumi.set(self, "output_list_length", value)
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        """
+        The last executed command.
+        """
+        return pulumi.get(self, "query")
+
+    @query.setter
+    def query(self, value: str):
+        pulumi.set(self, "query", value)
+
+    @property
+    @pulumi.getter(name="queryBuffer")
+    def query_buffer(self) -> int:
+        """
+        Query buffer length (0 means no query pending).
+        """
+        return pulumi.get(self, "query_buffer")
+
+    @query_buffer.setter
+    def query_buffer(self, value: int):
+        pulumi.set(self, "query_buffer", value)
+
+    @property
+    @pulumi.getter(name="queryBufferFree")
+    def query_buffer_free(self) -> int:
+        """
+        Free space of the query buffer (0 means the buffer is full).
+        """
+        return pulumi.get(self, "query_buffer_free")
+
+    @query_buffer_free.setter
+    def query_buffer_free(self, value: int):
+        pulumi.set(self, "query_buffer_free", value)
+
+
+if not MYPY:
+    class GetManagedDatabaseValkeySessionsSessionArgsDict(TypedDict):
+        active_channel_subscriptions: int
+        """
+        Number of active channel subscriptions
+        """
+        active_database: str
+        """
+        Current database ID
+        """
+        active_pattern_matching_channel_subscriptions: int
+        """
+        Number of pattern matching subscriptions.
+        """
+        application_name: str
+        """
+        Name of the application that is connected to this service.
+        """
+        client_addr: str
+        """
+        Number of pattern matching subscriptions.
+        """
+        connection_age: int
+        """
+        Total duration of the connection in nanoseconds.
+        """
+        connection_idle: int
+        """
+        Idle time of the connection in nanoseconds.
+        """
+        flags: Sequence[str]
+        """
+        A set containing flags' descriptions.
+        """
+        flags_raw: str
+        """
+        Client connection flags in raw string format.
+        """
+        id: str
+        """
+        Process ID of this session.
+        """
+        multi_exec_commands: int
+        """
+        Number of commands in a MULTI/EXEC context.
+        """
+        output_buffer: int
+        """
+        Output buffer length.
+        """
+        output_buffer_memory: int
+        """
+        Output buffer memory usage.
+        """
+        output_list_length: int
+        """
+        Output list length (replies are queued in this list when the buffer is full).
+        """
+        query: str
+        """
+        The last executed command.
+        """
+        query_buffer: int
+        """
+        Query buffer length (0 means no query pending).
+        """
+        query_buffer_free: int
+        """
+        Free space of the query buffer (0 means the buffer is full).
+        """
+elif False:
+    GetManagedDatabaseValkeySessionsSessionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetManagedDatabaseValkeySessionsSessionArgs:
     def __init__(__self__, *,
                  active_channel_subscriptions: int,
                  active_database: str,

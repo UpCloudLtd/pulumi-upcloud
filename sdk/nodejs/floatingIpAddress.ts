@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  *         type: "public",
  *     }],
  * });
- * const myNewFloatingAddress = new upcloud.FloatingIpAddress("myNewFloatingAddress", {macAddress: example.networkInterfaces.apply(networkInterfaces => networkInterfaces[0].macAddress)});
+ * const myNewFloatingAddress = new upcloud.FloatingIpAddress("myNewFloatingAddress", {macAddress: example.networkInterfaces.apply(networkInterfaces => networkInterfaces?.[0]?.macAddress)});
  * ```
  *
  * ## Import

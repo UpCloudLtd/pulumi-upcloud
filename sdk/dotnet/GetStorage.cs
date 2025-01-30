@@ -140,6 +140,71 @@ namespace Pulumi.Upcloud
         /// </summary>
         public static Output<GetStorageResult> Invoke(GetStorageInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStorageResult>("upcloud:index/getStorage:getStorage", args ?? new GetStorageInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Provides information on UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.
+        /// 
+        /// Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `normal`, `backup`, `cdrom`, and `template`.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Upcloud = Pulumi.Upcloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var appImage = Upcloud.GetStorage.Invoke(new()
+        ///     {
+        ///         Type = "template",
+        ///         NameRegex = "^app_image.*",
+        ///         MostRecent = true,
+        ///     });
+        /// 
+        ///     var example = new Upcloud.Server("example", new()
+        ///     {
+        ///         Hostname = "debian.example.tld",
+        ///         Zone = "fi-hel1",
+        ///         NetworkInterfaces = new[]
+        ///         {
+        ///             new Upcloud.Inputs.ServerNetworkInterfaceArgs
+        ///             {
+        ///                 Type = "public",
+        ///             },
+        ///         },
+        ///         Template = new Upcloud.Inputs.ServerTemplateArgs
+        ///         {
+        ///             Storage = appImage.Apply(getStorageResult =&gt; getStorageResult.Id),
+        ///         },
+        ///     });
+        /// 
+        ///     // Build only new servers with your latest custom image 
+        ///     //
+        ///     // Use the lifecycle meta-argument to ignore changes in server's template triggered by new image version
+        ///     var example2 = new Upcloud.Server("example2", new()
+        ///     {
+        ///         Hostname = "debian.example2.tld",
+        ///         Zone = "fi-hel1",
+        ///         NetworkInterfaces = new[]
+        ///         {
+        ///             new Upcloud.Inputs.ServerNetworkInterfaceArgs
+        ///             {
+        ///                 Type = "public",
+        ///             },
+        ///         },
+        ///         Template = new Upcloud.Inputs.ServerTemplateArgs
+        ///         {
+        ///             Storage = appImage.Apply(getStorageResult =&gt; getStorageResult.Id),
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetStorageResult> Invoke(GetStorageInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetStorageResult>("upcloud:index/getStorage:getStorage", args ?? new GetStorageInvokeArgs(), options.WithDefaults());
     }
 
 

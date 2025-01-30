@@ -25,6 +25,12 @@ namespace Pulumi.Upcloud.Inputs
         public Input<int>? MaxOldSpaceSize { get; set; }
 
         /// <summary>
+        /// Enable or disable multiple data sources in OpenSearch Dashboards.
+        /// </summary>
+        [Input("multipleDataSourceEnabled")]
+        public Input<bool>? MultipleDataSourceEnabled { get; set; }
+
+        /// <summary>
         /// Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
         /// </summary>
         [Input("opensearchRequestTimeout")]

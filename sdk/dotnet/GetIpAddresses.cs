@@ -29,8 +29,8 @@ namespace Pulumi.Upcloud
         /// });
         /// ```
         /// </summary>
-        public static Task<GetIpAddressesResult> InvokeAsync(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetIpAddressesResult>("upcloud:index/getIpAddresses:getIpAddresses", InvokeArgs.Empty, options.WithDefaults());
+        public static Task<GetIpAddressesResult> InvokeAsync(GetIpAddressesArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetIpAddressesResult>("upcloud:index/getIpAddresses:getIpAddresses", args ?? new GetIpAddressesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Returns a set of IP Addresses that are associated with the UpCloud account.
@@ -50,8 +50,62 @@ namespace Pulumi.Upcloud
         /// });
         /// ```
         /// </summary>
-        public static Output<GetIpAddressesResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetIpAddressesResult>("upcloud:index/getIpAddresses:getIpAddresses", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetIpAddressesResult> Invoke(GetIpAddressesInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIpAddressesResult>("upcloud:index/getIpAddresses:getIpAddresses", args ?? new GetIpAddressesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Returns a set of IP Addresses that are associated with the UpCloud account.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Upcloud = Pulumi.Upcloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var allIpAddresses = Upcloud.GetIpAddresses.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetIpAddressesResult> Invoke(GetIpAddressesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIpAddressesResult>("upcloud:index/getIpAddresses:getIpAddresses", args ?? new GetIpAddressesInvokeArgs(), options.WithDefaults());
+    }
+
+
+    public sealed class GetIpAddressesArgs : global::Pulumi.InvokeArgs
+    {
+        [Input("addresses")]
+        private List<Inputs.GetIpAddressesAddressArgs>? _addresses;
+        public List<Inputs.GetIpAddressesAddressArgs> Addresses
+        {
+            get => _addresses ?? (_addresses = new List<Inputs.GetIpAddressesAddressArgs>());
+            set => _addresses = value;
+        }
+
+        public GetIpAddressesArgs()
+        {
+        }
+        public static new GetIpAddressesArgs Empty => new GetIpAddressesArgs();
+    }
+
+    public sealed class GetIpAddressesInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        [Input("addresses")]
+        private InputList<Inputs.GetIpAddressesAddressInputArgs>? _addresses;
+        public InputList<Inputs.GetIpAddressesAddressInputArgs> Addresses
+        {
+            get => _addresses ?? (_addresses = new InputList<Inputs.GetIpAddressesAddressInputArgs>());
+            set => _addresses = value;
+        }
+
+        public GetIpAddressesInvokeArgs()
+        {
+        }
+        public static new GetIpAddressesInvokeArgs Empty => new GetIpAddressesInvokeArgs();
     }
 
 
@@ -60,7 +114,7 @@ namespace Pulumi.Upcloud
     {
         public readonly ImmutableArray<Outputs.GetIpAddressesAddressResult> Addresses;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// ID of the resource.
         /// </summary>
         public readonly string Id;
 

@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := upcloud.GetIpAddresses(ctx, map[string]interface{}{}, nil)
+//			_, err := upcloud.GetIpAddresses(ctx, &upcloud.GetIpAddressesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -36,38 +36,44 @@ import (
 //	}
 //
 // ```
-func GetIpAddresses(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetIpAddressesResult, error) {
+func GetIpAddresses(ctx *pulumi.Context, args *GetIpAddressesArgs, opts ...pulumi.InvokeOption) (*GetIpAddressesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetIpAddressesResult
-	err := ctx.Invoke("upcloud:index/getIpAddresses:getIpAddresses", nil, &rv, opts...)
+	err := ctx.Invoke("upcloud:index/getIpAddresses:getIpAddresses", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
+// A collection of arguments for invoking getIpAddresses.
+type GetIpAddressesArgs struct {
+	Addresses []GetIpAddressesAddress `pulumi:"addresses"`
+}
+
 // A collection of values returned by getIpAddresses.
 type GetIpAddressesResult struct {
 	Addresses []GetIpAddressesAddress `pulumi:"addresses"`
-	// The provider-assigned unique ID for this managed resource.
+	// ID of the resource.
 	Id string `pulumi:"id"`
 }
 
-func GetIpAddressesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetIpAddressesResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetIpAddressesResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetIpAddressesResult
-		secret, err := ctx.InvokePackageRaw("upcloud:index/getIpAddresses:getIpAddresses", nil, &rv, "", opts...)
-		if err != nil {
-			return GetIpAddressesResultOutput{}, err
-		}
+func GetIpAddressesOutput(ctx *pulumi.Context, args GetIpAddressesOutputArgs, opts ...pulumi.InvokeOption) GetIpAddressesResultOutput {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetIpAddressesResultOutput, error) {
+			args := v.(GetIpAddressesArgs)
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("upcloud:index/getIpAddresses:getIpAddresses", args, GetIpAddressesResultOutput{}, options).(GetIpAddressesResultOutput), nil
+		}).(GetIpAddressesResultOutput)
+}
 
-		output := pulumi.ToOutput(rv).(GetIpAddressesResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetIpAddressesResultOutput), nil
-		}
-		return output, nil
-	}).(GetIpAddressesResultOutput)
+// A collection of arguments for invoking getIpAddresses.
+type GetIpAddressesOutputArgs struct {
+	Addresses GetIpAddressesAddressArrayInput `pulumi:"addresses"`
+}
+
+func (GetIpAddressesOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpAddressesArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getIpAddresses.
@@ -89,7 +95,7 @@ func (o GetIpAddressesResultOutput) Addresses() GetIpAddressesAddressArrayOutput
 	return o.ApplyT(func(v GetIpAddressesResult) []GetIpAddressesAddress { return v.Addresses }).(GetIpAddressesAddressArrayOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// ID of the resource.
 func (o GetIpAddressesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpAddressesResult) string { return v.Id }).(pulumi.StringOutput)
 }

@@ -13,7 +13,7 @@ namespace Pulumi.Upcloud.Inputs
     public sealed class ServerFirewallRulesFirewallRuleGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Action to take if the rule conditions are met
+        /// Action to take if the rule conditions are met. Valid values `accept | drop`
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;

@@ -167,6 +167,12 @@ namespace Pulumi.Upcloud
         public Output<string> State { get; private set; } = null!;
 
         /// <summary>
+        /// If set to true, prevents the managed service from being powered off, or deleted.
+        /// </summary>
+        [Output("terminationProtection")]
+        public Output<bool?> TerminationProtection { get; private set; } = null!;
+
+        /// <summary>
         /// Title of a managed database instance
         /// </summary>
         [Output("title")]
@@ -296,6 +302,12 @@ namespace Pulumi.Upcloud
         /// </summary>
         [Input("properties")]
         public Input<Inputs.ManagedDatabaseMysqlPropertiesArgs>? Properties { get; set; }
+
+        /// <summary>
+        /// If set to true, prevents the managed service from being powered off, or deleted.
+        /// </summary>
+        [Input("terminationProtection")]
+        public Input<bool>? TerminationProtection { get; set; }
 
         /// <summary>
         /// Title of a managed database instance
@@ -463,6 +475,12 @@ namespace Pulumi.Upcloud
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
+
+        /// <summary>
+        /// If set to true, prevents the managed service from being powered off, or deleted.
+        /// </summary>
+        [Input("terminationProtection")]
+        public Input<bool>? TerminationProtection { get; set; }
 
         /// <summary>
         /// Title of a managed database instance

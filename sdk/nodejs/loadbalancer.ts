@@ -80,7 +80,7 @@ export class Loadbalancer extends pulumi.CustomResource {
     /**
      * The service configured status indicates the service's current intended status. Managed by the customer.
      */
-    public readonly configuredStatus!: pulumi.Output<string | undefined>;
+    public readonly configuredStatus!: pulumi.Output<string>;
     /**
      * DNS name of the load balancer
      *
@@ -94,7 +94,7 @@ export class Loadbalancer extends pulumi.CustomResource {
     /**
      * User defined key-value pairs to classify the load balancer.
      */
-    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    public readonly labels!: pulumi.Output<{[key: string]: string}>;
     /**
      * The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
      * Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
@@ -108,7 +108,7 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public readonly maintenanceTime!: pulumi.Output<string>;
     /**
-     * The name of the service must be unique within customer account.
+     * The name of the service. Must be unique within customer account.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -116,7 +116,7 @@ export class Loadbalancer extends pulumi.CustomResource {
      *
      * @deprecated Use 'networks' to define networks attached to load balancer
      */
-    public readonly network!: pulumi.Output<string | undefined>;
+    public readonly network!: pulumi.Output<string>;
     /**
      * Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
      */
@@ -134,7 +134,7 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public readonly plan!: pulumi.Output<string>;
     /**
-     * Domain Name Resolvers must be configured in case of customer uses dynamic type members
+     * Domain Name Resolvers.
      */
     public /*out*/ readonly resolvers!: pulumi.Output<string[]>;
     /**
@@ -238,7 +238,7 @@ export interface LoadbalancerState {
      */
     maintenanceTime?: pulumi.Input<string>;
     /**
-     * The name of the service must be unique within customer account.
+     * The name of the service. Must be unique within customer account.
      */
     name?: pulumi.Input<string>;
     /**
@@ -264,7 +264,7 @@ export interface LoadbalancerState {
      */
     plan?: pulumi.Input<string>;
     /**
-     * Domain Name Resolvers must be configured in case of customer uses dynamic type members
+     * Domain Name Resolvers.
      */
     resolvers?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -298,7 +298,7 @@ export interface LoadbalancerArgs {
      */
     maintenanceTime?: pulumi.Input<string>;
     /**
-     * The name of the service must be unique within customer account.
+     * The name of the service. Must be unique within customer account.
      */
     name?: pulumi.Input<string>;
     /**

@@ -81,7 +81,7 @@ def get_load_balancer_dns_challenge_domain(opts: Optional[pulumi.InvokeOptions] 
     return AwaitableGetLoadBalancerDnsChallengeDomainResult(
         domain=pulumi.get(__ret__, 'domain'),
         id=pulumi.get(__ret__, 'id'))
-def get_load_balancer_dns_challenge_domain_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLoadBalancerDnsChallengeDomainResult]:
+def get_load_balancer_dns_challenge_domain_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLoadBalancerDnsChallengeDomainResult]:
     """
     Returns DNS challenge domain to use when validating domain ownership using ACME challenge method.
 
@@ -95,7 +95,7 @@ def get_load_balancer_dns_challenge_domain_output(opts: Optional[pulumi.InvokeOp
     ```
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('upcloud:index/getLoadBalancerDnsChallengeDomain:getLoadBalancerDnsChallengeDomain', __args__, opts=opts, typ=GetLoadBalancerDnsChallengeDomainResult)
     return __ret__.apply(lambda __response__: GetLoadBalancerDnsChallengeDomainResult(
         domain=pulumi.get(__response__, 'domain'),

@@ -83,7 +83,7 @@ export interface GetManagedDatabaseOpensearchIndicesResult {
  * });
  * ```
  */
-export function getManagedDatabaseOpensearchIndicesOutput(args: GetManagedDatabaseOpensearchIndicesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetManagedDatabaseOpensearchIndicesResult> {
+export function getManagedDatabaseOpensearchIndicesOutput(args: GetManagedDatabaseOpensearchIndicesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetManagedDatabaseOpensearchIndicesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("upcloud:index/getManagedDatabaseOpensearchIndices:getManagedDatabaseOpensearchIndices", {
         "indices": args.indices,

@@ -29,19 +29,27 @@ namespace Pulumi.Upcloud.Outputs
         /// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
         /// </summary>
         public readonly bool? AutomaticUtilityNetworkIpFilter;
-        public readonly Outputs.ManagedDatabaseOpensearchPropertiesAzureMigration? AzureMigration;
         /// <summary>
         /// Controls the number of shards allowed in the cluster per data node.
         /// </summary>
         public readonly int? ClusterMaxShardsPerNode;
         /// <summary>
-        /// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to 2.
+        /// When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
+        /// </summary>
+        public readonly bool? ClusterRoutingAllocationBalancePreferPrimary;
+        /// <summary>
+        /// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
         /// </summary>
         public readonly int? ClusterRoutingAllocationNodeConcurrentRecoveries;
+        public readonly Outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog? ClusterSearchRequestSlowlog;
         /// <summary>
         /// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
         /// </summary>
         public readonly string? CustomDomain;
+        /// <summary>
+        /// Elasticsearch major version.
+        /// </summary>
+        public readonly string? ElasticsearchVersion;
         /// <summary>
         /// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
         /// </summary>
@@ -55,10 +63,13 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly string? EmailSenderUsername;
         /// <summary>
+        /// Enable remote-backed storage.
+        /// </summary>
+        public readonly bool? EnableRemoteBackedStorage;
+        /// <summary>
         /// Enable/Disable security audit.
         /// </summary>
         public readonly bool? EnableSecurityAudit;
-        public readonly Outputs.ManagedDatabaseOpensearchPropertiesGcsMigration? GcsMigration;
         /// <summary>
         /// Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
         /// </summary>
@@ -179,7 +190,6 @@ namespace Pulumi.Upcloud.Outputs
         /// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
         /// </summary>
         public readonly ImmutableArray<string> ReindexRemoteWhitelists;
-        public readonly Outputs.ManagedDatabaseOpensearchPropertiesS3Migration? S3Migration;
         /// <summary>
         /// OpenSearch SAML configuration.
         /// </summary>
@@ -189,13 +199,26 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly string? ScriptMaxCompilationsRate;
         /// <summary>
+        /// Search Backpressure Settings.
+        /// </summary>
+        public readonly Outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressure? SearchBackpressure;
+        public readonly Outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries? SearchInsightsTopQueries;
+        /// <summary>
         /// Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
         /// </summary>
         public readonly int? SearchMaxBuckets;
         /// <summary>
+        /// Segment Replication Backpressure Settings.
+        /// </summary>
+        public readonly Outputs.ManagedDatabaseOpensearchPropertiesSegrep? Segrep;
+        /// <summary>
         /// Service logging. Store logs for the service so that they are available in the HTTP API and console.
         /// </summary>
         public readonly bool? ServiceLog;
+        /// <summary>
+        /// Shard indexing back pressure settings.
+        /// </summary>
+        public readonly Outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressure? ShardIndexingPressure;
         /// <summary>
         /// analyze thread pool queue size. Size for the thread pool queue. See documentation for exact details.
         /// </summary>
@@ -255,13 +278,17 @@ namespace Pulumi.Upcloud.Outputs
 
             bool? automaticUtilityNetworkIpFilter,
 
-            Outputs.ManagedDatabaseOpensearchPropertiesAzureMigration? azureMigration,
-
             int? clusterMaxShardsPerNode,
+
+            bool? clusterRoutingAllocationBalancePreferPrimary,
 
             int? clusterRoutingAllocationNodeConcurrentRecoveries,
 
+            Outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog? clusterSearchRequestSlowlog,
+
             string? customDomain,
+
+            string? elasticsearchVersion,
 
             string? emailSenderName,
 
@@ -269,9 +296,9 @@ namespace Pulumi.Upcloud.Outputs
 
             string? emailSenderUsername,
 
-            bool? enableSecurityAudit,
+            bool? enableRemoteBackedStorage,
 
-            Outputs.ManagedDatabaseOpensearchPropertiesGcsMigration? gcsMigration,
+            bool? enableSecurityAudit,
 
             int? httpMaxContentLength,
 
@@ -333,15 +360,21 @@ namespace Pulumi.Upcloud.Outputs
 
             ImmutableArray<string> reindexRemoteWhitelists,
 
-            Outputs.ManagedDatabaseOpensearchPropertiesS3Migration? s3Migration,
-
             Outputs.ManagedDatabaseOpensearchPropertiesSaml? saml,
 
             string? scriptMaxCompilationsRate,
 
+            Outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressure? searchBackpressure,
+
+            Outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries? searchInsightsTopQueries,
+
             int? searchMaxBuckets,
 
+            Outputs.ManagedDatabaseOpensearchPropertiesSegrep? segrep,
+
             bool? serviceLog,
+
+            Outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressure? shardIndexingPressure,
 
             int? threadPoolAnalyzeQueueSize,
 
@@ -371,15 +404,17 @@ namespace Pulumi.Upcloud.Outputs
             ActionDestructiveRequiresName = actionDestructiveRequiresName;
             AuthFailureListeners = authFailureListeners;
             AutomaticUtilityNetworkIpFilter = automaticUtilityNetworkIpFilter;
-            AzureMigration = azureMigration;
             ClusterMaxShardsPerNode = clusterMaxShardsPerNode;
+            ClusterRoutingAllocationBalancePreferPrimary = clusterRoutingAllocationBalancePreferPrimary;
             ClusterRoutingAllocationNodeConcurrentRecoveries = clusterRoutingAllocationNodeConcurrentRecoveries;
+            ClusterSearchRequestSlowlog = clusterSearchRequestSlowlog;
             CustomDomain = customDomain;
+            ElasticsearchVersion = elasticsearchVersion;
             EmailSenderName = emailSenderName;
             EmailSenderPassword = emailSenderPassword;
             EmailSenderUsername = emailSenderUsername;
+            EnableRemoteBackedStorage = enableRemoteBackedStorage;
             EnableSecurityAudit = enableSecurityAudit;
-            GcsMigration = gcsMigration;
             HttpMaxContentLength = httpMaxContentLength;
             HttpMaxHeaderSize = httpMaxHeaderSize;
             HttpMaxInitialLineLength = httpMaxInitialLineLength;
@@ -410,11 +445,14 @@ namespace Pulumi.Upcloud.Outputs
             PluginsAlertingFilterByBackendRoles = pluginsAlertingFilterByBackendRoles;
             PublicAccess = publicAccess;
             ReindexRemoteWhitelists = reindexRemoteWhitelists;
-            S3Migration = s3Migration;
             Saml = saml;
             ScriptMaxCompilationsRate = scriptMaxCompilationsRate;
+            SearchBackpressure = searchBackpressure;
+            SearchInsightsTopQueries = searchInsightsTopQueries;
             SearchMaxBuckets = searchMaxBuckets;
+            Segrep = segrep;
             ServiceLog = serviceLog;
+            ShardIndexingPressure = shardIndexingPressure;
             ThreadPoolAnalyzeQueueSize = threadPoolAnalyzeQueueSize;
             ThreadPoolAnalyzeSize = threadPoolAnalyzeSize;
             ThreadPoolForceMergeSize = threadPoolForceMergeSize;

@@ -37,7 +37,7 @@ export interface GetManagedObjectStorageRegionsResult {
 /**
  * Returns a list of available Managed Object Storage regions.
  */
-export function getManagedObjectStorageRegionsOutput(args?: GetManagedObjectStorageRegionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetManagedObjectStorageRegionsResult> {
+export function getManagedObjectStorageRegionsOutput(args?: GetManagedObjectStorageRegionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetManagedObjectStorageRegionsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions", {

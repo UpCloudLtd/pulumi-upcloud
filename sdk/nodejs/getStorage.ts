@@ -152,7 +152,7 @@ export interface GetStorageResult {
  * });
  * ```
  */
-export function getStorageOutput(args?: GetStorageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStorageResult> {
+export function getStorageOutput(args?: GetStorageOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStorageResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("upcloud:index/getStorage:getStorage", {

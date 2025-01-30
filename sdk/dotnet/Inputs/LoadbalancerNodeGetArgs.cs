@@ -14,6 +14,10 @@ namespace Pulumi.Upcloud.Inputs
     {
         [Input("networks")]
         private InputList<Inputs.LoadbalancerNodeNetworkGetArgs>? _networks;
+
+        /// <summary>
+        /// Networks attached to the node
+        /// </summary>
         public InputList<Inputs.LoadbalancerNodeNetworkGetArgs> Networks
         {
             get => _networks ?? (_networks = new InputList<Inputs.LoadbalancerNodeNetworkGetArgs>());

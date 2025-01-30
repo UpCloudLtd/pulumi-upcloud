@@ -186,6 +186,10 @@ namespace Pulumi.Upcloud.Outputs
         /// </summary>
         public readonly Outputs.ManagedDatabasePostgresqlPropertiesMigration? Migration;
         /// <summary>
+        /// Chooses the algorithm for encrypting passwords.
+        /// </summary>
+        public readonly string? PasswordEncryption;
+        /// <summary>
         /// Sets the time interval to run pg_partman's scheduled tasks.
         /// </summary>
         public readonly int? PgPartmanBgwInterval;
@@ -370,6 +374,8 @@ namespace Pulumi.Upcloud.Outputs
 
             Outputs.ManagedDatabasePostgresqlPropertiesMigration? migration,
 
+            string? passwordEncryption,
+
             int? pgPartmanBgwInterval,
 
             string? pgPartmanBgwRole,
@@ -461,6 +467,7 @@ namespace Pulumi.Upcloud.Outputs
             MaxWalSenders = maxWalSenders;
             MaxWorkerProcesses = maxWorkerProcesses;
             Migration = migration;
+            PasswordEncryption = passwordEncryption;
             PgPartmanBgwInterval = pgPartmanBgwInterval;
             PgPartmanBgwRole = pgPartmanBgwRole;
             PgStatMonitorEnable = pgStatMonitorEnable;

@@ -18,19 +18,28 @@ import * as utilities from "./utilities";
  * const allIpAddresses = upcloud.getIpAddresses({});
  * ```
  */
-export function getIpAddresses(opts?: pulumi.InvokeOptions): Promise<GetIpAddressesResult> {
+export function getIpAddresses(args?: GetIpAddressesArgs, opts?: pulumi.InvokeOptions): Promise<GetIpAddressesResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("upcloud:index/getIpAddresses:getIpAddresses", {
+        "addresses": args.addresses,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getIpAddresses.
+ */
+export interface GetIpAddressesArgs {
+    addresses?: inputs.GetIpAddressesAddress[];
 }
 
 /**
  * A collection of values returned by getIpAddresses.
  */
 export interface GetIpAddressesResult {
-    readonly addresses: outputs.GetIpAddressesAddress[];
+    readonly addresses?: outputs.GetIpAddressesAddress[];
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * ID of the resource.
      */
     readonly id: string;
 }
@@ -46,8 +55,17 @@ export interface GetIpAddressesResult {
  * const allIpAddresses = upcloud.getIpAddresses({});
  * ```
  */
-export function getIpAddressesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetIpAddressesResult> {
+export function getIpAddressesOutput(args?: GetIpAddressesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIpAddressesResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("upcloud:index/getIpAddresses:getIpAddresses", {
+        "addresses": args.addresses,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getIpAddresses.
+ */
+export interface GetIpAddressesOutputArgs {
+    addresses?: pulumi.Input<pulumi.Input<inputs.GetIpAddressesAddressArgs>[]>;
 }

@@ -13,13 +13,13 @@ namespace Pulumi.Upcloud.Inputs
     public sealed class ServerNetworkInterfaceAdditionalIpAddressArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The assigned additional IP address.
+        /// An additional IP address for this interface.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// The type of this additional IP address of this interface (one of `IPv4` or `IPv6`).
+        /// The type of the additional IP address of this interface (one of `IPv4` or `IPv6`).
         /// </summary>
         [Input("ipAddressFamily")]
         public Input<string>? IpAddressFamily { get; set; }

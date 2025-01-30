@@ -103,14 +103,14 @@ def get_zone(id: Optional[str] = None,
         public=pulumi.get(__ret__, 'public'))
 def get_zone_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                     name: Optional[pulumi.Input[Optional[str]]] = None,
-                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetZoneResult]:
+                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetZoneResult]:
     """
     Provides details on given zone.
     """
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('upcloud:index/getZone:getZone', __args__, opts=opts, typ=GetZoneResult)
     return __ret__.apply(lambda __response__: GetZoneResult(
         description=pulumi.get(__response__, 'description'),

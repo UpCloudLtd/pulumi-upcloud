@@ -14,11 +14,11 @@ namespace Pulumi.Upcloud.Outputs
     public sealed class ServerNetworkInterfaceAdditionalIpAddress
     {
         /// <summary>
-        /// The assigned additional IP address.
+        /// An additional IP address for this interface.
         /// </summary>
         public readonly string? IpAddress;
         /// <summary>
-        /// The type of this additional IP address of this interface (one of `IPv4` or `IPv6`).
+        /// The type of the additional IP address of this interface (one of `IPv4` or `IPv6`).
         /// </summary>
         public readonly string? IpAddressFamily;
         /// <summary>

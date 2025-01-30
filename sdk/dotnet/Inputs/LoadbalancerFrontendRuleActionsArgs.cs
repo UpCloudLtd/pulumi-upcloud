@@ -48,6 +48,30 @@ namespace Pulumi.Upcloud.Inputs
             set => _setForwardedHeaders = value;
         }
 
+        [Input("setRequestHeaders")]
+        private InputList<Inputs.LoadbalancerFrontendRuleActionsSetRequestHeaderArgs>? _setRequestHeaders;
+
+        /// <summary>
+        /// Set request header
+        /// </summary>
+        public InputList<Inputs.LoadbalancerFrontendRuleActionsSetRequestHeaderArgs> SetRequestHeaders
+        {
+            get => _setRequestHeaders ?? (_setRequestHeaders = new InputList<Inputs.LoadbalancerFrontendRuleActionsSetRequestHeaderArgs>());
+            set => _setRequestHeaders = value;
+        }
+
+        [Input("setResponseHeaders")]
+        private InputList<Inputs.LoadbalancerFrontendRuleActionsSetResponseHeaderArgs>? _setResponseHeaders;
+
+        /// <summary>
+        /// Set response header
+        /// </summary>
+        public InputList<Inputs.LoadbalancerFrontendRuleActionsSetResponseHeaderArgs> SetResponseHeaders
+        {
+            get => _setResponseHeaders ?? (_setResponseHeaders = new InputList<Inputs.LoadbalancerFrontendRuleActionsSetResponseHeaderArgs>());
+            set => _setResponseHeaders = value;
+        }
+
         [Input("tcpRejects")]
         private InputList<Inputs.LoadbalancerFrontendRuleActionsTcpRejectArgs>? _tcpRejects;
 
