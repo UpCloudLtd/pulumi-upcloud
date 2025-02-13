@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as upcloud from "@pulumi/upcloud";
+ * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // The following example defines a server and then links the server to a single firewall rule. 
  * // The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.

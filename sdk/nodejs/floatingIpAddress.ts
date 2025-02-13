@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as upcloud from "@pulumi/upcloud";
+ * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Create a detached floating IP address.
  * const myFloatingAddress = new upcloud.FloatingIpAddress("myFloatingAddress", {zone: "de-fra1"});

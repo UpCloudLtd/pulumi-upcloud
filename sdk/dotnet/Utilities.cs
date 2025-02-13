@@ -53,7 +53,7 @@ namespace Pulumi.Upcloud
         {
             var dst = src ?? new global::Pulumi.InvokeOptions{};
             dst.Version = src?.Version ?? Version;
-            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "https://github.com/UpCloudLtd/pulumi-upcloud/releases/download/v${VERSION}/";
+            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "github://api.github.com/UpCloudLtd/pulumi-upcloud";
             return dst;
         }
 
@@ -61,7 +61,7 @@ namespace Pulumi.Upcloud
         {
             var dst = src ?? new global::Pulumi.InvokeOutputOptions{};
             dst.Version = src?.Version ?? Version;
-            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "https://github.com/UpCloudLtd/pulumi-upcloud/releases/download/v${VERSION}/";
+            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "github://api.github.com/UpCloudLtd/pulumi-upcloud";
             return dst;
         }
 

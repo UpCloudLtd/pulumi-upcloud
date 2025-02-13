@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as upcloud from "@pulumi/upcloud";
+ * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * const example = new upcloud.ManagedDatabasePostgresql("example", {
  *     plan: "1x1xCPU-2GB-25GB",

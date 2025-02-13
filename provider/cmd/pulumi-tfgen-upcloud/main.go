@@ -15,8 +15,9 @@
 package main
 
 import (
-	upcloud "github.com/UpCloudLtd/pulumi-upcloud/provider"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfgen"
+
+	upcloud "github.com/UpCloudLtd/pulumi-upcloud/provider"
 )
 
 func main() {

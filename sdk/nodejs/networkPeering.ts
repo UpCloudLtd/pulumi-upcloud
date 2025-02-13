@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as upcloud from "@pulumi/upcloud";
+ * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Network peering requires the networks to have routers attached to them.
  * const thisRouter = new upcloud.Router("thisRouter", {});

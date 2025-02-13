@@ -1,5 +1,5 @@
 {
-    "name": "@pulumi/upcloud",
+    "name": "@upcloud/pulumi-upcloud",
     "version": "${VERSION}",
     "description": "A Pulumi package for creating and managing UpCloud resources.",
     "keywords": [
@@ -13,7 +13,7 @@
         "build": "tsc"
     },
     "dependencies": {
-        "@pulumi/pulumi": "^3.0.0"
+        "@pulumi/pulumi": "^3.142.0"
     },
     "devDependencies": {
         "@types/mime": "^2.0.0",
@@ -23,6 +23,6 @@
     "pulumi": {
         "resource": true,
         "name": "upcloud",
-        "server": "https://github.com/UpCloudLtd/pulumi-upcloud/releases/download/v${VERSION}/"
+        "server": "github://api.github.com/UpCloudLtd/pulumi-upcloud"
     }
 }
