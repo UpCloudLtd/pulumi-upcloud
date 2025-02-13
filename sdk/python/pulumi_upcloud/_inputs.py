@@ -251,6 +251,8 @@ __all__ = [
     'StorageImportArgsDict',
     'GetHostsHostArgs',
     'GetHostsHostArgsDict',
+    'GetHostsHostStatisticArgs',
+    'GetHostsHostStatisticArgsDict',
     'GetIpAddressesAddressArgs',
     'GetIpAddressesAddressArgsDict',
     'GetManagedDatabaseMysqlSessionsSessionArgs',
@@ -1540,6 +1542,10 @@ if not MYPY:
         """
         Target scheme.
         """
+        status: NotRequired[pulumi.Input[int]]
+        """
+        HTTP status code.
+        """
 elif False:
     LoadbalancerFrontendRuleActionsHttpRedirectArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -1547,15 +1553,19 @@ elif False:
 class LoadbalancerFrontendRuleActionsHttpRedirectArgs:
     def __init__(__self__, *,
                  location: Optional[pulumi.Input[str]] = None,
-                 scheme: Optional[pulumi.Input[str]] = None):
+                 scheme: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] location: Target location.
         :param pulumi.Input[str] scheme: Target scheme.
+        :param pulumi.Input[int] status: HTTP status code.
         """
         if location is not None:
             pulumi.set(__self__, "location", location)
         if scheme is not None:
             pulumi.set(__self__, "scheme", scheme)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter
@@ -1580,6 +1590,18 @@ class LoadbalancerFrontendRuleActionsHttpRedirectArgs:
     @scheme.setter
     def scheme(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "scheme", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[int]]:
+        """
+        HTTP status code.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "status", value)
 
 
 if not MYPY:
@@ -15197,10 +15219,15 @@ if not MYPY:
         """
         The unique id of the host
         """
+        windows_enabled: bool
+        """
+        If true, this node can be used as a host for Windows servers.
+        """
         zone: str
         """
         The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
+        statistics: NotRequired[Sequence['GetHostsHostStatisticArgsDict']]
 elif False:
     GetHostsHostArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -15209,15 +15236,21 @@ class GetHostsHostArgs:
     def __init__(__self__, *,
                  description: str,
                  host_id: int,
-                 zone: str):
+                 windows_enabled: bool,
+                 zone: str,
+                 statistics: Optional[Sequence['GetHostsHostStatisticArgs']] = None):
         """
         :param str description: Free form text describing the host
         :param int host_id: The unique id of the host
+        :param bool windows_enabled: If true, this node can be used as a host for Windows servers.
         :param str zone: The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "windows_enabled", windows_enabled)
         pulumi.set(__self__, "zone", zone)
+        if statistics is not None:
+            pulumi.set(__self__, "statistics", statistics)
 
     @property
     @pulumi.getter
@@ -15244,6 +15277,18 @@ class GetHostsHostArgs:
         pulumi.set(self, "host_id", value)
 
     @property
+    @pulumi.getter(name="windowsEnabled")
+    def windows_enabled(self) -> bool:
+        """
+        If true, this node can be used as a host for Windows servers.
+        """
+        return pulumi.get(self, "windows_enabled")
+
+    @windows_enabled.setter
+    def windows_enabled(self, value: bool):
+        pulumi.set(self, "windows_enabled", value)
+
+    @property
     @pulumi.getter
     def zone(self) -> str:
         """
@@ -15254,6 +15299,84 @@ class GetHostsHostArgs:
     @zone.setter
     def zone(self, value: str):
         pulumi.set(self, "zone", value)
+
+    @property
+    @pulumi.getter
+    def statistics(self) -> Optional[Sequence['GetHostsHostStatisticArgs']]:
+        return pulumi.get(self, "statistics")
+
+    @statistics.setter
+    def statistics(self, value: Optional[Sequence['GetHostsHostStatisticArgs']]):
+        pulumi.set(self, "statistics", value)
+
+
+if not MYPY:
+    class GetHostsHostStatisticArgsDict(TypedDict):
+        name: str
+        """
+        The name of the statistic
+        """
+        timestamp: str
+        """
+        The timestamp of the statistic
+        """
+        value: float
+        """
+        The value of the statistic
+        """
+elif False:
+    GetHostsHostStatisticArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetHostsHostStatisticArgs:
+    def __init__(__self__, *,
+                 name: str,
+                 timestamp: str,
+                 value: float):
+        """
+        :param str name: The name of the statistic
+        :param str timestamp: The timestamp of the statistic
+        :param float value: The value of the statistic
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "timestamp", timestamp)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the statistic
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: str):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def timestamp(self) -> str:
+        """
+        The timestamp of the statistic
+        """
+        return pulumi.get(self, "timestamp")
+
+    @timestamp.setter
+    def timestamp(self, value: str):
+        pulumi.set(self, "timestamp", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        """
+        The value of the statistic
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: float):
+        pulumi.set(self, "value", value)
 
 
 if not MYPY:

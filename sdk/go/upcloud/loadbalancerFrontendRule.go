@@ -79,7 +79,19 @@ import (
 //				ConfiguredStatus: pulumi.String("started"),
 //				Plan:             pulumi.String("development"),
 //				Zone:             pulumi.String(lbZone),
-//				Network:          pulumi.Any(resource.Upcloud_network.Lb_network.Id),
+//				Networks: upcloud.LoadbalancerNetworkArray{
+//					&upcloud.LoadbalancerNetworkArgs{
+//						Type:   pulumi.String("public"),
+//						Family: pulumi.String("IPv4"),
+//						Name:   pulumi.String("public"),
+//					},
+//					&upcloud.LoadbalancerNetworkArgs{
+//						Type:    pulumi.String("private"),
+//						Family:  pulumi.String("IPv4"),
+//						Name:    pulumi.String("private"),
+//						Network: pulumi.Any(resource.Upcloud_network.Lb_network.Id),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err

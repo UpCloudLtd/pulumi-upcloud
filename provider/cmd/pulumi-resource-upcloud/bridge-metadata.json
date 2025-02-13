@@ -769,7 +769,14 @@
                 "current": "upcloud:index/getHosts:getHosts",
                 "fields": {
                     "hosts": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "statistics": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },

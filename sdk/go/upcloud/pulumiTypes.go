@@ -2405,6 +2405,8 @@ type LoadbalancerFrontendRuleActionsHttpRedirect struct {
 	Location *string `pulumi:"location"`
 	// Target scheme.
 	Scheme *string `pulumi:"scheme"`
+	// HTTP status code.
+	Status *int `pulumi:"status"`
 }
 
 // LoadbalancerFrontendRuleActionsHttpRedirectInput is an input type that accepts LoadbalancerFrontendRuleActionsHttpRedirectArgs and LoadbalancerFrontendRuleActionsHttpRedirectOutput values.
@@ -2423,6 +2425,8 @@ type LoadbalancerFrontendRuleActionsHttpRedirectArgs struct {
 	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Target scheme.
 	Scheme pulumi.StringPtrInput `pulumi:"scheme"`
+	// HTTP status code.
+	Status pulumi.IntPtrInput `pulumi:"status"`
 }
 
 func (LoadbalancerFrontendRuleActionsHttpRedirectArgs) ElementType() reflect.Type {
@@ -2484,6 +2488,11 @@ func (o LoadbalancerFrontendRuleActionsHttpRedirectOutput) Location() pulumi.Str
 // Target scheme.
 func (o LoadbalancerFrontendRuleActionsHttpRedirectOutput) Scheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleActionsHttpRedirect) *string { return v.Scheme }).(pulumi.StringPtrOutput)
+}
+
+// HTTP status code.
+func (o LoadbalancerFrontendRuleActionsHttpRedirectOutput) Status() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleActionsHttpRedirect) *int { return v.Status }).(pulumi.IntPtrOutput)
 }
 
 type LoadbalancerFrontendRuleActionsHttpRedirectArrayOutput struct{ *pulumi.OutputState }
@@ -23253,7 +23262,10 @@ type GetHostsHost struct {
 	// Free form text describing the host
 	Description string `pulumi:"description"`
 	// The unique id of the host
-	HostId int `pulumi:"hostId"`
+	HostId     int                     `pulumi:"hostId"`
+	Statistics []GetHostsHostStatistic `pulumi:"statistics"`
+	// If true, this node can be used as a host for Windows servers.
+	WindowsEnabled bool `pulumi:"windowsEnabled"`
 	// The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone string `pulumi:"zone"`
 }
@@ -23273,7 +23285,10 @@ type GetHostsHostArgs struct {
 	// Free form text describing the host
 	Description pulumi.StringInput `pulumi:"description"`
 	// The unique id of the host
-	HostId pulumi.IntInput `pulumi:"hostId"`
+	HostId     pulumi.IntInput                 `pulumi:"hostId"`
+	Statistics GetHostsHostStatisticArrayInput `pulumi:"statistics"`
+	// If true, this node can be used as a host for Windows servers.
+	WindowsEnabled pulumi.BoolInput `pulumi:"windowsEnabled"`
 	// The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringInput `pulumi:"zone"`
 }
@@ -23339,6 +23354,15 @@ func (o GetHostsHostOutput) HostId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetHostsHost) int { return v.HostId }).(pulumi.IntOutput)
 }
 
+func (o GetHostsHostOutput) Statistics() GetHostsHostStatisticArrayOutput {
+	return o.ApplyT(func(v GetHostsHost) []GetHostsHostStatistic { return v.Statistics }).(GetHostsHostStatisticArrayOutput)
+}
+
+// If true, this node can be used as a host for Windows servers.
+func (o GetHostsHostOutput) WindowsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetHostsHost) bool { return v.WindowsEnabled }).(pulumi.BoolOutput)
+}
+
 // The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 func (o GetHostsHostOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHostsHost) string { return v.Zone }).(pulumi.StringOutput)
@@ -23362,6 +23386,121 @@ func (o GetHostsHostArrayOutput) Index(i pulumi.IntInput) GetHostsHostOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHostsHost {
 		return vs[0].([]GetHostsHost)[vs[1].(int)]
 	}).(GetHostsHostOutput)
+}
+
+type GetHostsHostStatistic struct {
+	// The name of the statistic
+	Name string `pulumi:"name"`
+	// The timestamp of the statistic
+	Timestamp string `pulumi:"timestamp"`
+	// The value of the statistic
+	Value float64 `pulumi:"value"`
+}
+
+// GetHostsHostStatisticInput is an input type that accepts GetHostsHostStatisticArgs and GetHostsHostStatisticOutput values.
+// You can construct a concrete instance of `GetHostsHostStatisticInput` via:
+//
+//	GetHostsHostStatisticArgs{...}
+type GetHostsHostStatisticInput interface {
+	pulumi.Input
+
+	ToGetHostsHostStatisticOutput() GetHostsHostStatisticOutput
+	ToGetHostsHostStatisticOutputWithContext(context.Context) GetHostsHostStatisticOutput
+}
+
+type GetHostsHostStatisticArgs struct {
+	// The name of the statistic
+	Name pulumi.StringInput `pulumi:"name"`
+	// The timestamp of the statistic
+	Timestamp pulumi.StringInput `pulumi:"timestamp"`
+	// The value of the statistic
+	Value pulumi.Float64Input `pulumi:"value"`
+}
+
+func (GetHostsHostStatisticArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHostsHostStatistic)(nil)).Elem()
+}
+
+func (i GetHostsHostStatisticArgs) ToGetHostsHostStatisticOutput() GetHostsHostStatisticOutput {
+	return i.ToGetHostsHostStatisticOutputWithContext(context.Background())
+}
+
+func (i GetHostsHostStatisticArgs) ToGetHostsHostStatisticOutputWithContext(ctx context.Context) GetHostsHostStatisticOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHostsHostStatisticOutput)
+}
+
+// GetHostsHostStatisticArrayInput is an input type that accepts GetHostsHostStatisticArray and GetHostsHostStatisticArrayOutput values.
+// You can construct a concrete instance of `GetHostsHostStatisticArrayInput` via:
+//
+//	GetHostsHostStatisticArray{ GetHostsHostStatisticArgs{...} }
+type GetHostsHostStatisticArrayInput interface {
+	pulumi.Input
+
+	ToGetHostsHostStatisticArrayOutput() GetHostsHostStatisticArrayOutput
+	ToGetHostsHostStatisticArrayOutputWithContext(context.Context) GetHostsHostStatisticArrayOutput
+}
+
+type GetHostsHostStatisticArray []GetHostsHostStatisticInput
+
+func (GetHostsHostStatisticArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHostsHostStatistic)(nil)).Elem()
+}
+
+func (i GetHostsHostStatisticArray) ToGetHostsHostStatisticArrayOutput() GetHostsHostStatisticArrayOutput {
+	return i.ToGetHostsHostStatisticArrayOutputWithContext(context.Background())
+}
+
+func (i GetHostsHostStatisticArray) ToGetHostsHostStatisticArrayOutputWithContext(ctx context.Context) GetHostsHostStatisticArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHostsHostStatisticArrayOutput)
+}
+
+type GetHostsHostStatisticOutput struct{ *pulumi.OutputState }
+
+func (GetHostsHostStatisticOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHostsHostStatistic)(nil)).Elem()
+}
+
+func (o GetHostsHostStatisticOutput) ToGetHostsHostStatisticOutput() GetHostsHostStatisticOutput {
+	return o
+}
+
+func (o GetHostsHostStatisticOutput) ToGetHostsHostStatisticOutputWithContext(ctx context.Context) GetHostsHostStatisticOutput {
+	return o
+}
+
+// The name of the statistic
+func (o GetHostsHostStatisticOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostsHostStatistic) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The timestamp of the statistic
+func (o GetHostsHostStatisticOutput) Timestamp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHostsHostStatistic) string { return v.Timestamp }).(pulumi.StringOutput)
+}
+
+// The value of the statistic
+func (o GetHostsHostStatisticOutput) Value() pulumi.Float64Output {
+	return o.ApplyT(func(v GetHostsHostStatistic) float64 { return v.Value }).(pulumi.Float64Output)
+}
+
+type GetHostsHostStatisticArrayOutput struct{ *pulumi.OutputState }
+
+func (GetHostsHostStatisticArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHostsHostStatistic)(nil)).Elem()
+}
+
+func (o GetHostsHostStatisticArrayOutput) ToGetHostsHostStatisticArrayOutput() GetHostsHostStatisticArrayOutput {
+	return o
+}
+
+func (o GetHostsHostStatisticArrayOutput) ToGetHostsHostStatisticArrayOutputWithContext(ctx context.Context) GetHostsHostStatisticArrayOutput {
+	return o
+}
+
+func (o GetHostsHostStatisticArrayOutput) Index(i pulumi.IntInput) GetHostsHostStatisticOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHostsHostStatistic {
+		return vs[0].([]GetHostsHostStatistic)[vs[1].(int)]
+	}).(GetHostsHostStatisticOutput)
 }
 
 type GetIpAddressesAddress struct {
@@ -25668,6 +25807,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*StorageImportPtrInput)(nil)).Elem(), StorageImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHostsHostInput)(nil)).Elem(), GetHostsHostArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHostsHostArrayInput)(nil)).Elem(), GetHostsHostArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHostsHostStatisticInput)(nil)).Elem(), GetHostsHostStatisticArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHostsHostStatisticArrayInput)(nil)).Elem(), GetHostsHostStatisticArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpAddressesAddressInput)(nil)).Elem(), GetIpAddressesAddressArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpAddressesAddressArrayInput)(nil)).Elem(), GetIpAddressesAddressArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedDatabaseMysqlSessionsSessionInput)(nil)).Elem(), GetManagedDatabaseMysqlSessionsSessionArgs{})
@@ -25929,6 +26070,8 @@ func init() {
 	pulumi.RegisterOutputType(StorageImportPtrOutput{})
 	pulumi.RegisterOutputType(GetHostsHostOutput{})
 	pulumi.RegisterOutputType(GetHostsHostArrayOutput{})
+	pulumi.RegisterOutputType(GetHostsHostStatisticOutput{})
+	pulumi.RegisterOutputType(GetHostsHostStatisticArrayOutput{})
 	pulumi.RegisterOutputType(GetIpAddressesAddressOutput{})
 	pulumi.RegisterOutputType(GetIpAddressesAddressArrayOutput{})
 	pulumi.RegisterOutputType(GetManagedDatabaseMysqlSessionsSessionOutput{})

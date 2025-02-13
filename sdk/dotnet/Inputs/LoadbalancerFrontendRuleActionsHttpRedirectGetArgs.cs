@@ -24,6 +24,12 @@ namespace Pulumi.Upcloud.Inputs
         [Input("scheme")]
         public Input<string>? Scheme { get; set; }
 
+        /// <summary>
+        /// HTTP status code.
+        /// </summary>
+        [Input("status")]
+        public Input<int>? Status { get; set; }
+
         public LoadbalancerFrontendRuleActionsHttpRedirectGetArgs()
         {
         }

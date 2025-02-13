@@ -74,7 +74,22 @@ namespace Pulumi.Upcloud
     ///         ConfiguredStatus = "started",
     ///         Plan = "development",
     ///         Zone = lbZone,
-    ///         Network = resource.Upcloud_network.Lb_network.Id,
+    ///         Networks = new[]
+    ///         {
+    ///             new Upcloud.Inputs.LoadbalancerNetworkArgs
+    ///             {
+    ///                 Type = "public",
+    ///                 Family = "IPv4",
+    ///                 Name = "public",
+    ///             },
+    ///             new Upcloud.Inputs.LoadbalancerNetworkArgs
+    ///             {
+    ///                 Type = "private",
+    ///                 Family = "IPv4",
+    ///                 Name = "private",
+    ///                 Network = resource.Upcloud_network.Lb_network.Id,
+    ///             },
+    ///         },
     ///     });
     /// 
     ///     var lbBe1 = new Upcloud.LoadbalancerBackend("lbBe1", new()

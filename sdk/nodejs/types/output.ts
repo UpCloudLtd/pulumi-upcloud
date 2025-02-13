@@ -116,10 +116,30 @@ export interface GetHostsHost {
      * The unique id of the host
      */
     hostId: number;
+    statistics?: outputs.GetHostsHostStatistic[];
+    /**
+     * If true, this node can be used as a host for Windows servers.
+     */
+    windowsEnabled: boolean;
     /**
      * The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      */
     zone: string;
+}
+
+export interface GetHostsHostStatistic {
+    /**
+     * The name of the statistic
+     */
+    name: string;
+    /**
+     * The timestamp of the statistic
+     */
+    timestamp: string;
+    /**
+     * The value of the statistic
+     */
+    value: number;
 }
 
 export interface GetIpAddressesAddress {
@@ -776,6 +796,10 @@ export interface LoadbalancerFrontendRuleActionsHttpRedirect {
      * Target scheme.
      */
     scheme?: string;
+    /**
+     * HTTP status code.
+     */
+    status: number;
 }
 
 export interface LoadbalancerFrontendRuleActionsHttpReturn {

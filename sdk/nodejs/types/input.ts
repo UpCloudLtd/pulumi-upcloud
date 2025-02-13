@@ -116,6 +116,11 @@ export interface GetHostsHost {
      * The unique id of the host
      */
     hostId?: number;
+    statistics?: inputs.GetHostsHostStatistic[];
+    /**
+     * If true, this node can be used as a host for Windows servers.
+     */
+    windowsEnabled?: boolean;
     /**
      * The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      */
@@ -131,10 +136,45 @@ export interface GetHostsHostArgs {
      * The unique id of the host
      */
     hostId?: pulumi.Input<number>;
+    statistics?: pulumi.Input<pulumi.Input<inputs.GetHostsHostStatisticArgs>[]>;
+    /**
+     * If true, this node can be used as a host for Windows servers.
+     */
+    windowsEnabled?: pulumi.Input<boolean>;
     /**
      * The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      */
     zone?: pulumi.Input<string>;
+}
+
+export interface GetHostsHostStatistic {
+    /**
+     * The name of the statistic
+     */
+    name?: string;
+    /**
+     * The timestamp of the statistic
+     */
+    timestamp?: string;
+    /**
+     * The value of the statistic
+     */
+    value?: number;
+}
+
+export interface GetHostsHostStatisticArgs {
+    /**
+     * The name of the statistic
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The timestamp of the statistic
+     */
+    timestamp?: pulumi.Input<string>;
+    /**
+     * The value of the statistic
+     */
+    value?: pulumi.Input<number>;
 }
 
 export interface GetIpAddressesAddress {
@@ -1021,6 +1061,10 @@ export interface LoadbalancerFrontendRuleActionsHttpRedirect {
      * Target scheme.
      */
     scheme?: pulumi.Input<string>;
+    /**
+     * HTTP status code.
+     */
+    status?: pulumi.Input<number>;
 }
 
 export interface LoadbalancerFrontendRuleActionsHttpReturn {
