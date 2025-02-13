@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Pulumi.Upcloud
+namespace UpCloud.Pulumi.UpCloud
 {
     public static class Config
     {
