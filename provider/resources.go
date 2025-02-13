@@ -129,7 +129,7 @@ func Provider() tfbridge.ProviderInfo {
 		Version: version.Version,
 		// DisplayName is a way to be able to change the casing of the provider name when being
 		// displayed on the Pulumi registry
-		DisplayName: "",
+		DisplayName: "UpCloud",
 		// Change this to your personal name (or a company name) that you would like to be shown in
 		// the Pulumi Registry if this package is published there.
 		Publisher: "UpCloudLtd",
@@ -190,9 +190,13 @@ func Provider() tfbridge.ProviderInfo {
 			GenerateResourceContainerTypes: true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
+			Namespaces: map[string]string{
+				"upcloud": "UpCloud",
+			},
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
+			RootNamespace: "UpCloud.Pulumi",
 		},
 
 		Resources: map[string]*tfbridge.ResourceInfo{
