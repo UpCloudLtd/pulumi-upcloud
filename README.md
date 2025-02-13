@@ -9,21 +9,19 @@ The UpCloud Resource Provider lets you manage [UpCloud](https://upcloud.com/) re
 
 This package is available for several languages/platforms:
 
-<!--
 ### Node.js (JavaScript/TypeScript)
 
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```bash
-npm install @pulumi/foo
+npm install @upcloud/pulumi-upcloud
 ```
 
 or `yarn`:
 
 ```bash
-yarn add @pulumi/foo
+yarn add @upcloud/pulumi-upcloud
 ```
--->
 
 ### Python
 
@@ -33,13 +31,12 @@ To use from Python, install using `pip`:
 pip install pulumi-upcloud
 ```
 
-<!--
 ### Go
 
 To use from Go, use `go get` to grab the latest version of the library:
 
 ```bash
-go get github.com/pulumi/pulumi-foo/sdk/go/...
+go get github.com/UpCloudLtd/pulumi-upcloud/sdk/go/...
 ```
 
 ### .NET
@@ -47,9 +44,8 @@ go get github.com/pulumi/pulumi-foo/sdk/go/...
 To use from .NET, install using `dotnet add package`:
 
 ```bash
-dotnet add package Pulumi.Foo
+dotnet add package UpCloud.Pulumi.UpCloud
 ```
--->
 
 ## Configuration
 
