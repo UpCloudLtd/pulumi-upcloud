@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as upcloud from "@pulumi/upcloud";
+ * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * const lbFe1Tls1 = new upcloud.LoadbalancerFrontendTlsConfig("lbFe1Tls1", {
  *     frontend: resource.upcloud_loadbalancer_frontend.lb_fe_1.id,

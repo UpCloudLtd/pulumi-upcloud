@@ -16,10 +16,12 @@ package main
 
 import (
 	"context"
+
 	_ "embed"
 
-	upcloud "github.com/UpCloudLtd/pulumi-upcloud/provider"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
+
+	upcloud "github.com/UpCloudLtd/pulumi-upcloud/provider"
 )
 
 //go:embed schema.json

@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@pulumi/upcloud";
+ * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Use data source to gather a list of the indices for a Managed OpenSearch Database
  * // Create a Managed OpenSearch resource
@@ -66,6 +67,7 @@ export interface GetManagedDatabaseOpensearchIndicesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@pulumi/upcloud";
+ * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Use data source to gather a list of the indices for a Managed OpenSearch Database
  * // Create a Managed OpenSearch resource

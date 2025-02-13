@@ -1,5 +1,5 @@
 {
   "resource": true,
   "name": "upcloud",
-  "server": "https://github.com/UpCloudLtd/pulumi-upcloud/releases/download/v${VERSION}/"
+  "server": "github://api.github.com/UpCloudLtd/pulumi-upcloud"
 }

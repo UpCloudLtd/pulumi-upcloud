@@ -16,6 +16,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@pulumi/upcloud";
+ * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Use data source to gather a list of the active sessions for a Managed Redis Database
  * // Create a Managed Redis resource
@@ -75,6 +76,7 @@ export interface GetManagedDatabaseRedisSessionsResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@pulumi/upcloud";
+ * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Use data source to gather a list of the active sessions for a Managed Redis Database
  * // Create a Managed Redis resource

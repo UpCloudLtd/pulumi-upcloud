@@ -22,14 +22,14 @@ import (
 	// Allow embedding bridge-metadata.json in the provider.
 	_ "embed"
 
+	"github.com/UpCloudLtd/terraform-provider-upcloud/upcloud"
 	sdkv2_diag "github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+
 	pfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-
-	"github.com/UpCloudLtd/terraform-provider-upcloud/upcloud"
 
 	"github.com/UpCloudLtd/pulumi-upcloud/provider/pkg/version"
 )
@@ -142,7 +142,9 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/download/v${VERSION}/
-		PluginDownloadURL: "https://github.com/UpCloudLtd/pulumi-upcloud/releases/download/v${VERSION}/",
+		// This does not work because of a bug in pulumi-java-gen:
+		// PluginDownloadURL: "https://github.com/UpCloudLtd/pulumi-upcloud/releases/download/v${VERSION}/",
+		PluginDownloadURL: "github://api.github.com/UpCloudLtd/pulumi-upcloud",
 		Description:       "A Pulumi package for creating and managing UpCloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
@@ -167,19 +169,16 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
-			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^3.0.0",
-			},
+
 			DevDependencies: map[string]string{
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
+			PackageName: "@upcloud/pulumi-upcloud",
 		},
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
-			Requires: map[string]string{
-				"pulumi": ">=3.0.0,<4.0.0",
-			},
+
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: path.Join(

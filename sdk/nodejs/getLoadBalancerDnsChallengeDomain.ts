@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@pulumi/upcloud";
  *
- * const this = upcloud.getLoadBalancerDnsChallengeDomain({});
+ * const _this = upcloud.getLoadBalancerDnsChallengeDomain({});
  * ```
  */
 export function getLoadBalancerDnsChallengeDomain(opts?: pulumi.InvokeOptions): Promise<GetLoadBalancerDnsChallengeDomainResult> {
@@ -44,7 +44,7 @@ export interface GetLoadBalancerDnsChallengeDomainResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@pulumi/upcloud";
  *
- * const this = upcloud.getLoadBalancerDnsChallengeDomain({});
+ * const _this = upcloud.getLoadBalancerDnsChallengeDomain({});
  * ```
  */
 export function getLoadBalancerDnsChallengeDomainOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLoadBalancerDnsChallengeDomainResult> {
