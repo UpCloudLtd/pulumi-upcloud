@@ -21,6 +21,11 @@ namespace Pulumi.Upcloud.Outputs
         /// The unique id of the host
         /// </summary>
         public readonly int HostId;
+        public readonly ImmutableArray<Outputs.GetHostsHostStatisticResult> Statistics;
+        /// <summary>
+        /// If true, this node can be used as a host for Windows servers.
+        /// </summary>
+        public readonly bool WindowsEnabled;
         /// <summary>
         /// The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         /// </summary>
@@ -32,10 +37,16 @@ namespace Pulumi.Upcloud.Outputs
 
             int hostId,
 
+            ImmutableArray<Outputs.GetHostsHostStatisticResult> statistics,
+
+            bool windowsEnabled,
+
             string zone)
         {
             Description = description;
             HostId = hostId;
+            Statistics = statistics;
+            WindowsEnabled = windowsEnabled;
             Zone = zone;
         }
     }

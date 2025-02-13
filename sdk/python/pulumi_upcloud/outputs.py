@@ -134,6 +134,7 @@ __all__ = [
     'StorageClone',
     'StorageImport',
     'GetHostsHostResult',
+    'GetHostsHostStatisticResult',
     'GetIpAddressesAddressResult',
     'GetManagedDatabaseMysqlSessionsSessionResult',
     'GetManagedDatabaseOpensearchIndicesIndexResult',
@@ -1085,15 +1086,19 @@ class LoadbalancerFrontendRuleActions(dict):
 class LoadbalancerFrontendRuleActionsHttpRedirect(dict):
     def __init__(__self__, *,
                  location: Optional[str] = None,
-                 scheme: Optional[str] = None):
+                 scheme: Optional[str] = None,
+                 status: Optional[int] = None):
         """
         :param str location: Target location.
         :param str scheme: Target scheme.
+        :param int status: HTTP status code.
         """
         if location is not None:
             pulumi.set(__self__, "location", location)
         if scheme is not None:
             pulumi.set(__self__, "scheme", scheme)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter
@@ -1110,6 +1115,14 @@ class LoadbalancerFrontendRuleActionsHttpRedirect(dict):
         Target scheme.
         """
         return pulumi.get(self, "scheme")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[int]:
+        """
+        HTTP status code.
+        """
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
@@ -10834,15 +10847,21 @@ class GetHostsHostResult(dict):
     def __init__(__self__, *,
                  description: str,
                  host_id: int,
-                 zone: str):
+                 windows_enabled: bool,
+                 zone: str,
+                 statistics: Optional[Sequence['outputs.GetHostsHostStatisticResult']] = None):
         """
         :param str description: Free form text describing the host
         :param int host_id: The unique id of the host
+        :param bool windows_enabled: If true, this node can be used as a host for Windows servers.
         :param str zone: The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "windows_enabled", windows_enabled)
         pulumi.set(__self__, "zone", zone)
+        if statistics is not None:
+            pulumi.set(__self__, "statistics", statistics)
 
     @property
     @pulumi.getter
@@ -10861,12 +10880,65 @@ class GetHostsHostResult(dict):
         return pulumi.get(self, "host_id")
 
     @property
+    @pulumi.getter(name="windowsEnabled")
+    def windows_enabled(self) -> bool:
+        """
+        If true, this node can be used as a host for Windows servers.
+        """
+        return pulumi.get(self, "windows_enabled")
+
+    @property
     @pulumi.getter
     def zone(self) -> str:
         """
         The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
+
+    @property
+    @pulumi.getter
+    def statistics(self) -> Optional[Sequence['outputs.GetHostsHostStatisticResult']]:
+        return pulumi.get(self, "statistics")
+
+
+@pulumi.output_type
+class GetHostsHostStatisticResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 timestamp: str,
+                 value: float):
+        """
+        :param str name: The name of the statistic
+        :param str timestamp: The timestamp of the statistic
+        :param float value: The value of the statistic
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "timestamp", timestamp)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the statistic
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def timestamp(self) -> str:
+        """
+        The timestamp of the statistic
+        """
+        return pulumi.get(self, "timestamp")
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        """
+        The value of the statistic
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

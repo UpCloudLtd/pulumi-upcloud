@@ -278,7 +278,19 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
             configured_status="started",
             plan="development",
             zone=lb_zone,
-            network=resource["upcloud_network"]["lb_network"]["id"])
+            networks=[
+                {
+                    "type": "public",
+                    "family": "IPv4",
+                    "name": "public",
+                },
+                {
+                    "type": "private",
+                    "family": "IPv4",
+                    "name": "private",
+                    "network": resource["upcloud_network"]["lb_network"]["id"],
+                },
+            ])
         lb_be1 = upcloud.LoadbalancerBackend("lbBe1", loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"])
         ```
 
@@ -339,7 +351,19 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
             configured_status="started",
             plan="development",
             zone=lb_zone,
-            network=resource["upcloud_network"]["lb_network"]["id"])
+            networks=[
+                {
+                    "type": "public",
+                    "family": "IPv4",
+                    "name": "public",
+                },
+                {
+                    "type": "private",
+                    "family": "IPv4",
+                    "name": "private",
+                    "network": resource["upcloud_network"]["lb_network"]["id"],
+                },
+            ])
         lb_be1 = upcloud.LoadbalancerBackend("lbBe1", loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"])
         ```
 

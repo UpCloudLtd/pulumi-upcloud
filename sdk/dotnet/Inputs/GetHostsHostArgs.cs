@@ -24,6 +24,20 @@ namespace Pulumi.Upcloud.Inputs
         [Input("hostId", required: true)]
         public Input<int> HostId { get; set; } = null!;
 
+        [Input("statistics")]
+        private InputList<Inputs.GetHostsHostStatisticInputArgs>? _statistics;
+        public InputList<Inputs.GetHostsHostStatisticInputArgs> Statistics
+        {
+            get => _statistics ?? (_statistics = new InputList<Inputs.GetHostsHostStatisticInputArgs>());
+            set => _statistics = value;
+        }
+
+        /// <summary>
+        /// If true, this node can be used as a host for Windows servers.
+        /// </summary>
+        [Input("windowsEnabled", required: true)]
+        public Input<bool> WindowsEnabled { get; set; } = null!;
+
         /// <summary>
         /// The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         /// </summary>

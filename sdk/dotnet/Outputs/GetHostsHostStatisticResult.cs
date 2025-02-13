@@ -11,32 +11,32 @@ namespace Pulumi.Upcloud.Outputs
 {
 
     [OutputType]
-    public sealed class LoadbalancerFrontendRuleActionsHttpRedirect
+    public sealed class GetHostsHostStatisticResult
     {
         /// <summary>
-        /// Target location.
+        /// The name of the statistic
         /// </summary>
-        public readonly string? Location;
+        public readonly string Name;
         /// <summary>
-        /// Target scheme.
+        /// The timestamp of the statistic
         /// </summary>
-        public readonly string? Scheme;
+        public readonly string Timestamp;
         /// <summary>
-        /// HTTP status code.
+        /// The value of the statistic
         /// </summary>
-        public readonly int? Status;
+        public readonly double Value;
 
         [OutputConstructor]
-        private LoadbalancerFrontendRuleActionsHttpRedirect(
-            string? location,
+        private GetHostsHostStatisticResult(
+            string name,
 
-            string? scheme,
+            string timestamp,
 
-            int? status)
+            double value)
         {
-            Location = location;
-            Scheme = scheme;
-            Status = status;
+            Name = name;
+            Timestamp = timestamp;
+            Value = value;
         }
     }
 }

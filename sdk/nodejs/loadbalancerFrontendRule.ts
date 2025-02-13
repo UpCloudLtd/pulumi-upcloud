@@ -49,7 +49,19 @@ import * as utilities from "./utilities";
  *     configuredStatus: "started",
  *     plan: "development",
  *     zone: lbZone,
- *     network: resource.upcloud_network.lb_network.id,
+ *     networks: [
+ *         {
+ *             type: "public",
+ *             family: "IPv4",
+ *             name: "public",
+ *         },
+ *         {
+ *             type: "private",
+ *             family: "IPv4",
+ *             name: "private",
+ *             network: resource.upcloud_network.lb_network.id,
+ *         },
+ *     ],
  * });
  * const lbBe1 = new upcloud.LoadbalancerBackend("lbBe1", {loadbalancer: resource.upcloud_loadbalancer.lb.id});
  * ```
