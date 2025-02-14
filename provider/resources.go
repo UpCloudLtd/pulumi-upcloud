@@ -63,76 +63,13 @@ func Provider() tfbridge.ProviderInfo {
 	)
 
 	prov := tfbridge.ProviderInfo{
-		// Instantiate the Terraform provider
-		//
-		// The [pulumi-terraform-bridge](https://github.com/pulumi/pulumi-terraform-bridge) supports 3
-		// types of Terraform providers:
-		//
-		// 1. Providers written with the terraform-plugin-sdk/v1:
-		//
-		//    If the provider you are bridging is written with the terraform-plugin-sdk/v1, then you
-		//    will need to adapt the boilerplate:
-		//
-		//    - Change the import "shimv2" to "shimv1" and change the associated import to
-		//      "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1".
-		//
-		//    You can then proceed as normal.
-		//
-		// 2. Providers written with terraform-plugin-sdk/v2:
-		//
-		//    This boilerplate is already geared towards providers written with the
-		//    terraform-plugin-sdk/v2, since it is the most common provider framework used. No
-		//    adaptions are needed.
-		//
-		// 3. Providers written with terraform-plugin-framework:
-		//
-		//    If the provider you are bridging is written with the terraform-plugin-framework, then
-		//    you will need to adapt the boilerplate:
-		//
-		//    - Remove the `shimv2` import and add:
-		//
-		//      	pfbridge "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
-		//
-		//    - Replace `shimv2.NewProvider` with `pfbridge.ShimProvider`.
-		//
-		//    - In provider/cmd/pulumi-tfgen-xyz/main.go, replace the
-		//      "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen" import with
-		//      "github.com/pulumi/pulumi-terraform-bridge/pf/tfgen". Remove the `version.Version`
-		//      argument to `tfgen.Main`.
-		//
-		//    - In provider/cmd/pulumi-resource-xyz/main.go, replace the
-		//      "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge" import with
-		//      "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge". Replace the arguments to the
-		//      `tfbridge.Main` so it looks like this:
-		//
-		//      	tfbridge.Main(context.Background(), "xyz", xyz.Provider(),
-		//			tfbridge.ProviderMetadata{PulumiSchema: pulumiSchema})
-		//
-		//   Detailed instructions can be found at
-		//   https://github.com/pulumi/pulumi-terraform-bridge/blob/master/pf/README.md#how-to-upgrade-a-bridged-provider-to-plugin-framework.
-		//   After that, you can proceed as normal.
-		//
-		// This is where you give the bridge a handle to the upstream terraform provider. SDKv2
-		// convention is to have a function at "github.com/iwahbe/terraform-provider-xyz/provider".New
-		// which takes a version and produces a factory function. The provider you are bridging may
-		// not do that. You will need to find the function (generally called in upstream's main.go)
-		// that produces a:
-		//
-		// - *"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema".Provider (for SDKv2)
-		// - *"github.com/hashicorp/terraform-plugin-sdk/v1/helper/schema".Provider (for SDKv1)
-		// - "github.com/hashicorp/terraform-plugin-framework/provider".Provider (for plugin-framework)
-		//
 		//nolint:lll
 		P: p,
 
-		Name:    "upcloud",
-		Version: version.Version,
-		// DisplayName is a way to be able to change the casing of the provider name when being
-		// displayed on the Pulumi registry
+		Name:        "upcloud",
+		Version:     version.Version,
 		DisplayName: "UpCloud",
-		// Change this to your personal name (or a company name) that you would like to be shown in
-		// the Pulumi Registry if this package is published there.
-		Publisher: "UpCloudLtd",
+		Publisher:   "UpCloudLtd",
 		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
 		// if this package is published there.
 		//
@@ -149,12 +86,10 @@ func Provider() tfbridge.ProviderInfo {
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
 		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
-		Keywords:   []string{"UpCloud", "category/cloud"},
-		License:    "Apache-2.0",
-		Homepage:   "https://upcloud.com",
-		Repository: "https://github.com/UpCloudLtd/pulumi-upcloud",
-		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this should
-		// match the TF provider module's require directive, not any replace directives.
+		Keywords:     []string{"UpCloud", "category/cloud"},
+		License:      "Apache-2.0",
+		Homepage:     "https://upcloud.com",
+		Repository:   "https://github.com/UpCloudLtd/pulumi-upcloud",
 		GitHubOrg:    "UpCloudLtd",
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Config:       map[string]*tfbridge.SchemaInfo{
@@ -169,25 +104,29 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
-
 			DevDependencies: map[string]string{
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
-			PackageName: "@upcloud/pulumi-upcloud",
+			PackageName:          "@upcloud/pulumi-upcloud",
+			RespectSchemaVersion: true,
 		},
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
-
+			PyProject: struct {
+				Enabled bool
+			}{true},
+			RespectSchemaVersion: true,
 		},
 		Golang: &tfbridge.GolangInfo{
+			GenerateResourceContainerTypes: true,
 			ImportBasePath: path.Join(
 				"github.com/UpCloudLtd/pulumi-upcloud/sdk/",
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,
 			),
-			GenerateResourceContainerTypes: true,
+			RespectSchemaVersion: true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			Namespaces: map[string]string{
@@ -196,7 +135,8 @@ func Provider() tfbridge.ProviderInfo {
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
-			RootNamespace: "UpCloud.Pulumi",
+			RespectSchemaVersion: true,
+			RootNamespace:        "UpCloud.Pulumi",
 		},
 
 		Resources: map[string]*tfbridge.ResourceInfo{
