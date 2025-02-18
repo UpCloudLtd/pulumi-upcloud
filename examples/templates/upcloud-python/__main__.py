@@ -3,14 +3,14 @@ import pulumi_upcloud as upcloud
 
 # Load user input from Pulumi config
 config = pulumi.Config()
-storage_name = config.require("storage_name")
+object_storage_name = config.require("object_storage_name")
 region = config.require("region")
 bucket_name = config.require("bucket_name")
 
 # Create an UpCloud Managed Object Storage
 object_storage = upcloud.ManagedObjectStorage(
     "objectStorage",
-    name=storage_name,
+    name=object_storage_name,
     region=region,
     configured_status="started",
 )

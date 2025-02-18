@@ -6,13 +6,13 @@ return await Deployment.RunAsync(() =>
 {
     var config = new Pulumi.Config();
 
-    var storageName = config.Require("storage_name");
+    var objectStorageName = config.Require("object_storage_name");
     var region = config.Require("region");
     var bucketName = config.Require("bucket_name");
 
     var objectStorage = new ManagedObjectStorage("objectStorage", new()
     {
-        Name = storageName,
+        Name = objectStorageName,
         Region = region,
         ConfiguredStatus = "started"
     });

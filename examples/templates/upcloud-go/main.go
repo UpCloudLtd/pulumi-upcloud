@@ -11,9 +11,9 @@ func main() {
 		// Load configuration from Pulumi config
 		cfg := config.New(ctx, "")
 
-		storageName := cfg.Get("storage_name")
-		if storageName == "" {
-			storageName = "bucket-example-objstov2"
+		objectStorageName := cfg.Get("object_storage_name")
+		if objectStorageName == "" {
+			objectStorageName = "bucket-example-objstov2"
 		}
 
 		region := cfg.Get("region")
@@ -28,7 +28,7 @@ func main() {
 
 		// Create an UpCloud Managed Object Storage
 		objectStorage, err := upcloud.NewManagedObjectStorage(ctx, "objectStorage", &upcloud.ManagedObjectStorageArgs{
-			Name:             pulumi.String(storageName),
+			Name:             pulumi.String(objectStorageName),
 			Region:           pulumi.String(region),
 			ConfiguredStatus: pulumi.String("started"),
 		})

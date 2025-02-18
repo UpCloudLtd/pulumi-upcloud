@@ -4,13 +4,13 @@ import * as upcloud from "@upcloud/pulumi-upcloud";
 // Load Pulumi config values
 const config = new pulumi.Config();
 
-const storageName = config.require("storage_name");
+const objectStorageName = config.require("object_storage_name");
 const region = config.require("region");
 const bucketName = config.require("bucket_name");
 
 // Create an UpCloud Managed Object Storage
 const objectStorage = new upcloud.ManagedObjectStorage("objectStorage", {
-    name: storageName,
+    name: objectStorageName,
     region: region,
     configuredStatus: "started"
 });

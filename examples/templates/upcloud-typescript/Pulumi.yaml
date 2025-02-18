@@ -7,7 +7,7 @@ template:
     This template provisions an UpCloud Managed Object Storage instance and a Bucket.
 
   config:
-    storage_name:
+    object_storage_name:
       description: "Enter a name for the Object Storage"
     region:
       description: "Enter the region for the storage (e.g., europe-1)"

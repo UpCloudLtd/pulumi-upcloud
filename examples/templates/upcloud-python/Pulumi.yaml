@@ -4,7 +4,7 @@ description: A Pulumi template to provision UpCloud Managed Object Storage and a
 
 template:
   config:
-    storage_name:
+    object_storage_name:
       description: "Enter a name for the Object Storage"
       default: "bucket-example-objstov2"
     region:
