@@ -8,7 +8,7 @@ template:
       description: "Enter a name for the Object Storage"
       default: "bucket-example-objstov2"
     region:
-      description: "Enter the region for the storage (e.g., europe-1)"
+      description: "Enter the region for the storage"
       default: "europe-1"
     bucket_name:
       description: "Enter a name for the bucket"
