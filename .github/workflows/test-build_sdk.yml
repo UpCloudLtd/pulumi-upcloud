@@ -1,0 +1,12 @@
+name: "Test Build SDK"
+
+on:
+  workflow_dispatch:  
+
+jobs:
+  build_sdk:
+    name: build_sdk
+    uses: ./.github/workflows/build_sdk.yml 
+    secrets: inherit 
+    with:
+      version: "0.0.6" 
