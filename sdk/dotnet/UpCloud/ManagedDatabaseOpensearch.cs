@@ -24,25 +24,27 @@ namespace UpCloud.Pulumi.UpCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Minimal config
-    ///     var example1 = new UpCloud.ManagedDatabaseOpensearch("example1", new()
+    ///     var example1 = new UpCloud.ManagedDatabaseOpensearch("example_1", new()
     ///     {
-    ///         Plan = "1x2xCPU-4GB-80GB-1D",
+    ///         Name = "opensearch-1",
     ///         Title = "opensearch-1-example-1",
+    ///         Plan = "1x2xCPU-4GB-80GB-1D",
     ///         Zone = "fi-hel2",
     ///     });
     /// 
     ///     // Service with custom properties and access control
-    ///     var example2 = new UpCloud.ManagedDatabaseOpensearch("example2", new()
+    ///     var example2 = new UpCloud.ManagedDatabaseOpensearch("example_2", new()
     ///     {
+    ///         Name = "opensearch-2",
+    ///         Title = "opensearch-2-example-2",
+    ///         Plan = "1x2xCPU-4GB-80GB-1D",
+    ///         Zone = "fi-hel1",
     ///         AccessControl = true,
     ///         ExtendedAccessControl = true,
-    ///         Plan = "1x2xCPU-4GB-80GB-1D",
     ///         Properties = new UpCloud.Inputs.ManagedDatabaseOpensearchPropertiesArgs
     ///         {
     ///             PublicAccess = false,
     ///         },
-    ///         Title = "opensearch-2-example-2",
-    ///         Zone = "fi-hel1",
     ///     });
     /// 
     /// });

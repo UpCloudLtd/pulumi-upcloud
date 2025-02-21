@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * const myExampleRouter = new upcloud.Router("myExampleRouter", {});
+ * const myExampleRouter = new upcloud.Router("my_example_router", {name: "My Example Router"});
  * ```
  *
  * ## Import

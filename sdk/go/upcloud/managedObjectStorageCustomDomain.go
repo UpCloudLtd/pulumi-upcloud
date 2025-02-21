@@ -28,7 +28,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			thisManagedObjectStorage, err := upcloud.NewManagedObjectStorage(ctx, "thisManagedObjectStorage", &upcloud.ManagedObjectStorageArgs{
+//			thisManagedObjectStorage, err := upcloud.NewManagedObjectStorage(ctx, "this", &upcloud.ManagedObjectStorageArgs{
+//				Name:             pulumi.String("object-storage-custom-domain-example"),
 //				Region:           pulumi.String("europe-1"),
 //				ConfiguredStatus: pulumi.String("started"),
 //				Networks: upcloud.ManagedObjectStorageNetworkArray{
@@ -50,7 +51,7 @@ import (
 //			// - "_acme-challenge.objects IN CNAME ${data.upcloud_load_balancer_dns_challenge_domain.this.domain}"
 //			// - "objects IN CNAME ${[for i in upcloud_managed_object_storage.this.endpoint: i.domain_name if i.type == "public"][0]}"
 //			// - "*.objects IN CNAME ${[for i in upcloud_managed_object_storage.this.endpoint: i.domain_name if i.type == "public"][0]}"
-//			_, err = upcloud.NewManagedObjectStorageCustomDomain(ctx, "thisManagedObjectStorageCustomDomain", &upcloud.ManagedObjectStorageCustomDomainArgs{
+//			_, err = upcloud.NewManagedObjectStorageCustomDomain(ctx, "this", &upcloud.ManagedObjectStorageCustomDomainArgs{
 //				ServiceUuid: thisManagedObjectStorage.ID(),
 //				DomainName:  pulumi.String("objects.example.com"),
 //			})

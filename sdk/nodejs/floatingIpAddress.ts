@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Create a detached floating IP address.
- * const myFloatingAddress = new upcloud.FloatingIpAddress("myFloatingAddress", {zone: "de-fra1"});
+ * const myFloatingAddress = new upcloud.FloatingIpAddress("my_floating_address", {zone: "de-fra1"});
  * // Floating IP address assigned to a server resource.
  * const example = new upcloud.Server("example", {
  *     hostname: "terraform.example.tld",
@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  *         type: "public",
  *     }],
  * });
- * const myNewFloatingAddress = new upcloud.FloatingIpAddress("myNewFloatingAddress", {macAddress: example.networkInterfaces.apply(networkInterfaces => networkInterfaces?.[0]?.macAddress)});
+ * const myNewFloatingAddress = new upcloud.FloatingIpAddress("my_new_floating_address", {macAddress: example.networkInterfaces.apply(networkInterfaces => networkInterfaces?.[0]?.macAddress)});
  * ```
  *
  * ## Import

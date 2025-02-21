@@ -207,15 +207,16 @@ class ManagedObjectStorageUserAccessKey(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        this_managed_object_storage = upcloud.ManagedObjectStorage("thisManagedObjectStorage",
+        this = upcloud.ManagedObjectStorage("this",
+            name="example",
             region="europe-1",
             configured_status="started")
-        this_managed_object_storage_user = upcloud.ManagedObjectStorageUser("thisManagedObjectStorageUser",
+        this_managed_object_storage_user = upcloud.ManagedObjectStorageUser("this",
             username="example",
-            service_uuid=this_managed_object_storage.id)
-        this_managed_object_storage_user_access_key = upcloud.ManagedObjectStorageUserAccessKey("thisManagedObjectStorageUserAccessKey",
+            service_uuid=this.id)
+        this_managed_object_storage_user_access_key = upcloud.ManagedObjectStorageUserAccessKey("this",
             username=this_managed_object_storage_user.username,
-            service_uuid=this_managed_object_storage.id,
+            service_uuid=this.id,
             status="Active")
         ```
 
@@ -240,15 +241,16 @@ class ManagedObjectStorageUserAccessKey(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        this_managed_object_storage = upcloud.ManagedObjectStorage("thisManagedObjectStorage",
+        this = upcloud.ManagedObjectStorage("this",
+            name="example",
             region="europe-1",
             configured_status="started")
-        this_managed_object_storage_user = upcloud.ManagedObjectStorageUser("thisManagedObjectStorageUser",
+        this_managed_object_storage_user = upcloud.ManagedObjectStorageUser("this",
             username="example",
-            service_uuid=this_managed_object_storage.id)
-        this_managed_object_storage_user_access_key = upcloud.ManagedObjectStorageUserAccessKey("thisManagedObjectStorageUserAccessKey",
+            service_uuid=this.id)
+        this_managed_object_storage_user_access_key = upcloud.ManagedObjectStorageUserAccessKey("this",
             username=this_managed_object_storage_user.username,
-            service_uuid=this_managed_object_storage.id,
+            service_uuid=this.id,
             status="Active")
         ```
 

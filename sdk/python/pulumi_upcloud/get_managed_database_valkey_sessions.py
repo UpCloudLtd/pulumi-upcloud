@@ -113,11 +113,13 @@ def get_managed_database_valkey_sessions(limit: Optional[int] = None,
 
     # Use data source to gather a list of the active sessions for a Managed Valkey Database
     # Create a Managed Valkey resource
-    example_managed_database_valkey = upcloud.ManagedDatabaseValkey("exampleManagedDatabaseValkey",
+    example_managed_database_valkey = upcloud.ManagedDatabaseValkey("example",
+        name="example",
         title="example",
         plan="1x1xCPU-2GB",
         zone="fi-hel2")
-    example_managed_database_valkey_sessions = upcloud.get_managed_database_valkey_sessions_output(service=example_managed_database_valkey.id)
+    # Read the active sessions of the newly created service
+    example = upcloud.get_managed_database_valkey_sessions_output(service=example_managed_database_valkey.id)
     ```
     """
     __args__ = dict()
@@ -153,11 +155,13 @@ def get_managed_database_valkey_sessions_output(limit: Optional[pulumi.Input[Opt
 
     # Use data source to gather a list of the active sessions for a Managed Valkey Database
     # Create a Managed Valkey resource
-    example_managed_database_valkey = upcloud.ManagedDatabaseValkey("exampleManagedDatabaseValkey",
+    example_managed_database_valkey = upcloud.ManagedDatabaseValkey("example",
+        name="example",
         title="example",
         plan="1x1xCPU-2GB",
         zone="fi-hel2")
-    example_managed_database_valkey_sessions = upcloud.get_managed_database_valkey_sessions_output(service=example_managed_database_valkey.id)
+    # Read the active sessions of the newly created service
+    example = upcloud.get_managed_database_valkey_sessions_output(service=example_managed_database_valkey.id)
     ```
     """
     __args__ = dict()

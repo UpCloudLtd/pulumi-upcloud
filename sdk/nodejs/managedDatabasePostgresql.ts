@@ -16,21 +16,23 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Minimal config
- * const example1 = new upcloud.ManagedDatabasePostgresql("example1", {
+ * const example1 = new upcloud.ManagedDatabasePostgresql("example_1", {
+ *     name: "postgres-1",
  *     plan: "1x1xCPU-2GB-25GB",
  *     title: "postgres",
  *     zone: "fi-hel1",
  * });
  * // Service with custom properties
- * const example2 = new upcloud.ManagedDatabasePostgresql("example2", {
+ * const example2 = new upcloud.ManagedDatabasePostgresql("example_2", {
+ *     name: "postgres-2",
  *     plan: "1x1xCPU-2GB-25GB",
- *     properties: {
- *         adminPassword: "<ADMIN_PASSWORD>",
- *         adminUsername: "admin",
- *         timezone: "Europe/Helsinki",
- *     },
  *     title: "postgres",
  *     zone: "fi-hel1",
+ *     properties: {
+ *         timezone: "Europe/Helsinki",
+ *         adminUsername: "admin",
+ *         adminPassword: "<ADMIN_PASSWORD>",
+ *     },
  * });
  * ```
  */

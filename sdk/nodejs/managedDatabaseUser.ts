@@ -16,11 +16,12 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * const example = new upcloud.ManagedDatabasePostgresql("example", {
+ *     name: "postgres",
  *     plan: "1x1xCPU-2GB-25GB",
  *     title: "postgres",
  *     zone: "fi-hel1",
  * });
- * const exampleUser = new upcloud.ManagedDatabaseUser("exampleUser", {
+ * const exampleUser = new upcloud.ManagedDatabaseUser("example_user", {
  *     service: example.id,
  *     username: "example_user",
  *     password: "<USER_PASSWORD>",

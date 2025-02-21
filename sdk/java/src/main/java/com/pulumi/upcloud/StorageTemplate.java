@@ -45,12 +45,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var template = new StorageTemplate("template", StorageTemplateArgs.builder()
+ *             .sourceStorage("e0328f8a-9944-406b-99c3-656dcc03e671")
+ *             .title("custom-storage-template")
  *             .labels(Map.ofEntries(
  *                 Map.entry("os", "linux"),
  *                 Map.entry("usage", "example")
  *             ))
- *             .sourceStorage("e0328f8a-9944-406b-99c3-656dcc03e671")
- *             .title("custom-storage-template")
  *             .build());
  * 
  *     }

@@ -24,11 +24,15 @@ namespace UpCloud.Pulumi.UpCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Create router for the gateway
-    ///     var thisRouter = new UpCloud.Router("thisRouter");
+    ///     var @this = new UpCloud.Router("this", new()
+    ///     {
+    ///         Name = "gateway-example-router",
+    ///     });
     /// 
     ///     // Create network for the gateway
-    ///     var thisNetwork = new UpCloud.Network("thisNetwork", new()
+    ///     var thisNetwork = new UpCloud.Network("this", new()
     ///     {
+    ///         Name = "gateway-example-net",
     ///         Zone = "pl-waw1",
     ///         IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs
     ///         {
@@ -36,11 +40,12 @@ namespace UpCloud.Pulumi.UpCloud
     ///             Dhcp = true,
     ///             Family = "IPv4",
     ///         },
-    ///         Router = thisRouter.Id,
+    ///         Router = @this.Id,
     ///     });
     /// 
-    ///     var thisGateway = new UpCloud.Gateway("thisGateway", new()
+    ///     var thisGateway = new UpCloud.Gateway("this", new()
     ///     {
+    ///         Name = "gateway-example-gw",
     ///         Zone = "pl-waw1",
     ///         Features = new[]
     ///         {
@@ -48,7 +53,7 @@ namespace UpCloud.Pulumi.UpCloud
     ///         },
     ///         Router = new UpCloud.Inputs.GatewayRouterArgs
     ///         {
-    ///             Id = thisRouter.Id,
+    ///             Id = @this.Id,
     ///         },
     ///         Labels = 
     ///         {

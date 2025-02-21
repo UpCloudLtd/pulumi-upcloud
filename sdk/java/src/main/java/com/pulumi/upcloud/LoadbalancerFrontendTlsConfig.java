@@ -54,12 +54,14 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         final var config = ctx.config();
  *         var lbFe1Tls1 = new LoadbalancerFrontendTlsConfig("lbFe1Tls1", LoadbalancerFrontendTlsConfigArgs.builder()
- *             .frontend(resource.upcloud_loadbalancer_frontend().lb_fe_1().id())
- *             .certificateBundle(resource.upcloud_loadbalancer_manual_certificate_bundle().lb-cb-m1().id())
+ *             .frontend(upcloudLoadbalancerFrontend.lbFe1().id())
+ *             .name("lb-fe-1-tls1-test")
+ *             .certificateBundle(upcloudLoadbalancerManualCertificateBundle.lb-cb-m1().id())
  *             .build());
  * 
  *         final var lbZone = config.get("lbZone").orElse("fi-hel2");
  *         var lbNetwork = new Network("lbNetwork", NetworkArgs.builder()
+ *             .name("lb-test-net")
  *             .zone(lbZone)
  *             .ipNetwork(NetworkIpNetworkArgs.builder()
  *                 .address("10.0.0.0/24")
@@ -69,26 +71,30 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var lb_cb_m1 = new LoadbalancerManualCertificateBundle("lb-cb-m1", LoadbalancerManualCertificateBundleArgs.builder()
+ *             .name("lb-cb-m1-test")
  *             .certificate("LS0tLS1CRUdJTiBDRVJ...")
  *             .privateKey("LS0tLS1CRUdJTiBQUkl...")
  *             .build());
  * 
  *         var lbFe1 = new LoadbalancerFrontend("lbFe1", LoadbalancerFrontendArgs.builder()
- *             .loadbalancer(resource.upcloud_loadbalancer().lb().id())
+ *             .loadbalancer(upcloudLoadbalancer.lb().id())
+ *             .name("lb-fe-1-test")
  *             .mode("http")
  *             .port(8080)
- *             .defaultBackendName(resource.upcloud_loadbalancer_backend().lb_be_1().name())
+ *             .defaultBackendName(upcloudLoadbalancerBackend.lbBe1().name())
  *             .build());
  * 
  *         var lb = new Loadbalancer("lb", LoadbalancerArgs.builder()
  *             .configuredStatus("started")
+ *             .name("lb-test")
  *             .plan("development")
  *             .zone(lbZone)
- *             .network(resource.upcloud_network().lb_network().id())
+ *             .network(upcloudNetwork.lbNetwork().id())
  *             .build());
  * 
  *         var lbBe1 = new LoadbalancerBackend("lbBe1", LoadbalancerBackendArgs.builder()
- *             .loadbalancer(resource.upcloud_loadbalancer().lb().id())
+ *             .loadbalancer(upcloudLoadbalancer.lb().id())
+ *             .name("lb-be-1-test")
  *             .build());
  * 
  *     }

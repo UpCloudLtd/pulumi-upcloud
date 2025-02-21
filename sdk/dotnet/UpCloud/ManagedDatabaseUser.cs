@@ -25,12 +25,13 @@ namespace UpCloud.Pulumi.UpCloud
     /// {
     ///     var example = new UpCloud.ManagedDatabasePostgresql("example", new()
     ///     {
+    ///         Name = "postgres",
     ///         Plan = "1x1xCPU-2GB-25GB",
     ///         Title = "postgres",
     ///         Zone = "fi-hel1",
     ///     });
     /// 
-    ///     var exampleUser = new UpCloud.ManagedDatabaseUser("exampleUser", new()
+    ///     var exampleUser = new UpCloud.ManagedDatabaseUser("example_user", new()
     ///     {
     ///         Service = example.Id,
     ///         Username = "example_user",

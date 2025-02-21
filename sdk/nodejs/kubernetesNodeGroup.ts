@@ -16,7 +16,8 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Create a network for the Kubernetes cluster
- * const exampleNetwork = new upcloud.Network("exampleNetwork", {
+ * const example = new upcloud.Network("example", {
+ *     name: "example-network",
  *     zone: "de-fra1",
  *     ipNetwork: {
  *         address: "172.16.1.0/24",
@@ -25,15 +26,17 @@ import * as utilities from "./utilities";
  *     },
  * });
  * // Create a Kubernetes cluster
- * const exampleKubernetesCluster = new upcloud.KubernetesCluster("exampleKubernetesCluster", {
+ * const exampleKubernetesCluster = new upcloud.KubernetesCluster("example", {
  *     controlPlaneIpFilters: ["0.0.0.0/0"],
- *     network: exampleNetwork.id,
+ *     name: "exampleapp",
+ *     network: example.id,
  *     zone: "de-fra1",
  * });
  * // Create a Kubernetes cluster node group
  * const group = new upcloud.KubernetesNodeGroup("group", {
- *     cluster: resource.upcloud_kubernetes_cluster.example.id,
+ *     cluster: upcloudKubernetesCluster.example.id,
  *     nodeCount: 2,
+ *     name: "medium",
  *     plan: "2xCPU-4GB",
  *     labels: {
  *         managedBy: "terraform",

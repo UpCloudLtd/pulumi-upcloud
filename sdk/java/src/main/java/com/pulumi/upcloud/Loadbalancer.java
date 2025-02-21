@@ -53,6 +53,7 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         final var lbZone = config.get("lbZone").orElse("fi-hel2");
  *         var lbNetwork = new Network("lbNetwork", NetworkArgs.builder()
+ *             .name("lb-test-net")
  *             .zone(lbZone)
  *             .ipNetwork(NetworkIpNetworkArgs.builder()
  *                 .address("10.0.0.0/24")
@@ -63,6 +64,7 @@ import javax.annotation.Nullable;
  * 
  *         var lb = new Loadbalancer("lb", LoadbalancerArgs.builder()
  *             .configuredStatus("started")
+ *             .name("lb-test")
  *             .plan("development")
  *             .zone(lbZone)
  *             .networks(            
@@ -70,7 +72,7 @@ import javax.annotation.Nullable;
  *                     .name("Private-Net")
  *                     .type("private")
  *                     .family("IPv4")
- *                     .network(resource.upcloud_network().lb_network().id())
+ *                     .network(upcloudNetwork.lbNetwork().id())
  *                     .build(),
  *                 LoadbalancerNetworkArgs.builder()
  *                     .name("Public-Net")

@@ -249,15 +249,17 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
         lb_zone = config.get("lbZone")
         if lb_zone is None:
             lb_zone = "fi-hel2"
-        lb_network = upcloud.Network("lbNetwork",
+        lb_network = upcloud.Network("lb_network",
+            name="lb-test-net",
             zone=lb_zone,
             ip_network={
                 "address": "10.0.0.0/24",
                 "dhcp": True,
                 "family": "IPv4",
             })
-        lb_fe1_r1 = upcloud.LoadbalancerFrontendRule("lbFe1R1",
-            frontend=resource["upcloud_loadbalancer_frontend"]["lb_fe_1"]["id"],
+        lb_fe1_r1 = upcloud.LoadbalancerFrontendRule("lb_fe_1_r1",
+            frontend=upcloud_loadbalancer_frontend["lbFe1"]["id"],
+            name="lb-fe-1-r1-test",
             priority=10,
             matchers={
                 "src_ips": [{
@@ -266,16 +268,18 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
             },
             actions={
                 "use_backends": [{
-                    "backend_name": resource["upcloud_loadbalancer_backend"]["lb_be_1"]["name"],
+                    "backend_name": upcloud_loadbalancer_backend["lbBe1"]["name"],
                 }],
             })
-        lb_fe1 = upcloud.LoadbalancerFrontend("lbFe1",
-            loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"],
+        lb_fe1 = upcloud.LoadbalancerFrontend("lb_fe_1",
+            loadbalancer=upcloud_loadbalancer["lb"]["id"],
+            name="lb-fe-1-test",
             mode="http",
             port=8080,
-            default_backend_name=resource["upcloud_loadbalancer_backend"]["lb_be_1"]["name"])
+            default_backend_name=upcloud_loadbalancer_backend["lbBe1"]["name"])
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
+            name="lb-test",
             plan="development",
             zone=lb_zone,
             networks=[
@@ -288,10 +292,12 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
                     "type": "private",
                     "family": "IPv4",
                     "name": "private",
-                    "network": resource["upcloud_network"]["lb_network"]["id"],
+                    "network": upcloud_network["lbNetwork"]["id"],
                 },
             ])
-        lb_be1 = upcloud.LoadbalancerBackend("lbBe1", loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"])
+        lb_be1 = upcloud.LoadbalancerBackend("lb_be_1",
+            loadbalancer=upcloud_loadbalancer["lb"]["id"],
+            name="lb-be-1-test")
         ```
 
         :param str resource_name: The name of the resource.
@@ -322,15 +328,17 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
         lb_zone = config.get("lbZone")
         if lb_zone is None:
             lb_zone = "fi-hel2"
-        lb_network = upcloud.Network("lbNetwork",
+        lb_network = upcloud.Network("lb_network",
+            name="lb-test-net",
             zone=lb_zone,
             ip_network={
                 "address": "10.0.0.0/24",
                 "dhcp": True,
                 "family": "IPv4",
             })
-        lb_fe1_r1 = upcloud.LoadbalancerFrontendRule("lbFe1R1",
-            frontend=resource["upcloud_loadbalancer_frontend"]["lb_fe_1"]["id"],
+        lb_fe1_r1 = upcloud.LoadbalancerFrontendRule("lb_fe_1_r1",
+            frontend=upcloud_loadbalancer_frontend["lbFe1"]["id"],
+            name="lb-fe-1-r1-test",
             priority=10,
             matchers={
                 "src_ips": [{
@@ -339,16 +347,18 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
             },
             actions={
                 "use_backends": [{
-                    "backend_name": resource["upcloud_loadbalancer_backend"]["lb_be_1"]["name"],
+                    "backend_name": upcloud_loadbalancer_backend["lbBe1"]["name"],
                 }],
             })
-        lb_fe1 = upcloud.LoadbalancerFrontend("lbFe1",
-            loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"],
+        lb_fe1 = upcloud.LoadbalancerFrontend("lb_fe_1",
+            loadbalancer=upcloud_loadbalancer["lb"]["id"],
+            name="lb-fe-1-test",
             mode="http",
             port=8080,
-            default_backend_name=resource["upcloud_loadbalancer_backend"]["lb_be_1"]["name"])
+            default_backend_name=upcloud_loadbalancer_backend["lbBe1"]["name"])
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
+            name="lb-test",
             plan="development",
             zone=lb_zone,
             networks=[
@@ -361,10 +371,12 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
                     "type": "private",
                     "family": "IPv4",
                     "name": "private",
-                    "network": resource["upcloud_network"]["lb_network"]["id"],
+                    "network": upcloud_network["lbNetwork"]["id"],
                 },
             ])
-        lb_be1 = upcloud.LoadbalancerBackend("lbBe1", loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"])
+        lb_be1 = upcloud.LoadbalancerBackend("lb_be_1",
+            loadbalancer=upcloud_loadbalancer["lb"]["id"],
+            name="lb-be-1-test")
         ```
 
         :param str resource_name: The name of the resource.

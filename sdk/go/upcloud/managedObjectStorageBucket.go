@@ -30,15 +30,17 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleManagedObjectStorage, err := upcloud.NewManagedObjectStorage(ctx, "exampleManagedObjectStorage", &upcloud.ManagedObjectStorageArgs{
+//			example, err := upcloud.NewManagedObjectStorage(ctx, "example", &upcloud.ManagedObjectStorageArgs{
+//				Name:             pulumi.String("bucket-example-objstov2"),
 //				Region:           pulumi.String("europe-1"),
 //				ConfiguredStatus: pulumi.String("started"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = upcloud.NewManagedObjectStorageBucket(ctx, "exampleManagedObjectStorageBucket", &upcloud.ManagedObjectStorageBucketArgs{
-//				ServiceUuid: exampleManagedObjectStorage.ID(),
+//			_, err = upcloud.NewManagedObjectStorageBucket(ctx, "example", &upcloud.ManagedObjectStorageBucketArgs{
+//				ServiceUuid: example.ID(),
+//				Name:        pulumi.String("bucket"),
 //			})
 //			if err != nil {
 //				return err

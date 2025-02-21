@@ -31,22 +31,24 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Minimal config
-//			_, err := upcloud.NewManagedDatabaseRedis(ctx, "example1", &upcloud.ManagedDatabaseRedisArgs{
-//				Plan:  pulumi.String("1x1xCPU-2GB"),
+//			_, err := upcloud.NewManagedDatabaseRedis(ctx, "example_1", &upcloud.ManagedDatabaseRedisArgs{
+//				Name:  pulumi.String("redis-1"),
 //				Title: pulumi.String("redis-1-example-2"),
+//				Plan:  pulumi.String("1x1xCPU-2GB"),
 //				Zone:  pulumi.String("fi-hel2"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Service with custom properties
-//			_, err = upcloud.NewManagedDatabaseRedis(ctx, "example2", &upcloud.ManagedDatabaseRedisArgs{
-//				Plan: pulumi.String("1x1xCPU-2GB"),
+//			_, err = upcloud.NewManagedDatabaseRedis(ctx, "example_2", &upcloud.ManagedDatabaseRedisArgs{
+//				Name:  pulumi.String("redis-2"),
+//				Title: pulumi.String("redis-2-example-2"),
+//				Plan:  pulumi.String("1x1xCPU-2GB"),
+//				Zone:  pulumi.String("fi-hel1"),
 //				Properties: &upcloud.ManagedDatabaseRedisPropertiesArgs{
 //					PublicAccess: pulumi.Bool(false),
 //				},
-//				Title: pulumi.String("redis-2-example-2"),
-//				Zone:  pulumi.String("fi-hel1"),
 //			})
 //			if err != nil {
 //				return err

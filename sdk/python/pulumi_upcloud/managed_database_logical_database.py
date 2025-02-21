@@ -179,17 +179,23 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # PostgreSQL managed database with additional logical database: example_db 
-        example_managed_database_postgresql = upcloud.ManagedDatabasePostgresql("exampleManagedDatabasePostgresql",
+        example = upcloud.ManagedDatabasePostgresql("example",
+            name="postgres",
             plan="1x1xCPU-2GB-25GB",
             title="postgres",
             zone="fi-hel1")
-        example_db = upcloud.ManagedDatabaseLogicalDatabase("exampleDb", service=example_managed_database_postgresql.id)
+        example_db = upcloud.ManagedDatabaseLogicalDatabase("example_db",
+            service=example.id,
+            name="example_db")
         # MySQL managed database with additional logical database: example2_db 
-        example_managed_database_mysql = upcloud.ManagedDatabaseMysql("exampleManagedDatabaseMysql",
+        example_managed_database_mysql = upcloud.ManagedDatabaseMysql("example",
+            name="mysql",
             plan="1x1xCPU-2GB-25GB",
             title="mysql",
             zone="fi-hel1")
-        example2_db = upcloud.ManagedDatabaseLogicalDatabase("example2Db", service=example_managed_database_mysql.id)
+        example2_db = upcloud.ManagedDatabaseLogicalDatabase("example2_db",
+            service=example_managed_database_mysql.id,
+            name="example2_db")
         ```
 
         :param str resource_name: The name of the resource.
@@ -215,17 +221,23 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # PostgreSQL managed database with additional logical database: example_db 
-        example_managed_database_postgresql = upcloud.ManagedDatabasePostgresql("exampleManagedDatabasePostgresql",
+        example = upcloud.ManagedDatabasePostgresql("example",
+            name="postgres",
             plan="1x1xCPU-2GB-25GB",
             title="postgres",
             zone="fi-hel1")
-        example_db = upcloud.ManagedDatabaseLogicalDatabase("exampleDb", service=example_managed_database_postgresql.id)
+        example_db = upcloud.ManagedDatabaseLogicalDatabase("example_db",
+            service=example.id,
+            name="example_db")
         # MySQL managed database with additional logical database: example2_db 
-        example_managed_database_mysql = upcloud.ManagedDatabaseMysql("exampleManagedDatabaseMysql",
+        example_managed_database_mysql = upcloud.ManagedDatabaseMysql("example",
+            name="mysql",
             plan="1x1xCPU-2GB-25GB",
             title="mysql",
             zone="fi-hel1")
-        example2_db = upcloud.ManagedDatabaseLogicalDatabase("example2Db", service=example_managed_database_mysql.id)
+        example2_db = upcloud.ManagedDatabaseLogicalDatabase("example2_db",
+            service=example_managed_database_mysql.id,
+            name="example2_db")
         ```
 
         :param str resource_name: The name of the resource.

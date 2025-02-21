@@ -285,17 +285,19 @@ class ManagedObjectStorage(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Create router for the network
-        this_router = upcloud.Router("thisRouter")
+        this = upcloud.Router("this", name="object-storage-example-router")
         # Create network for the Managed Object Storage
-        this_network = upcloud.Network("thisNetwork",
+        this_network = upcloud.Network("this",
+            name="object-storage-example-net",
             zone="fi-hel1",
             ip_network={
                 "address": "172.16.2.0/24",
                 "dhcp": True,
                 "family": "IPv4",
             },
-            router=this_router.id)
-        this_managed_object_storage = upcloud.ManagedObjectStorage("thisManagedObjectStorage",
+            router=this.id)
+        this_managed_object_storage = upcloud.ManagedObjectStorage("this",
+            name="example",
             region="europe-1",
             configured_status="started",
             networks=[{
@@ -335,17 +337,19 @@ class ManagedObjectStorage(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Create router for the network
-        this_router = upcloud.Router("thisRouter")
+        this = upcloud.Router("this", name="object-storage-example-router")
         # Create network for the Managed Object Storage
-        this_network = upcloud.Network("thisNetwork",
+        this_network = upcloud.Network("this",
+            name="object-storage-example-net",
             zone="fi-hel1",
             ip_network={
                 "address": "172.16.2.0/24",
                 "dhcp": True,
                 "family": "IPv4",
             },
-            router=this_router.id)
-        this_managed_object_storage = upcloud.ManagedObjectStorage("thisManagedObjectStorage",
+            router=this.id)
+        this_managed_object_storage = upcloud.ManagedObjectStorage("this",
+            name="example",
             region="europe-1",
             configured_status="started",
             networks=[{

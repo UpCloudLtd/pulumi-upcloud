@@ -243,12 +243,12 @@ class StorageTemplate(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         template = upcloud.StorageTemplate("template",
+            source_storage="e0328f8a-9944-406b-99c3-656dcc03e671",
+            title="custom-storage-template",
             labels={
                 "os": "linux",
                 "usage": "example",
-            },
-            source_storage="e0328f8a-9944-406b-99c3-656dcc03e671",
-            title="custom-storage-template")
+            })
         ```
 
         :param str resource_name: The name of the resource.
@@ -273,12 +273,12 @@ class StorageTemplate(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         template = upcloud.StorageTemplate("template",
+            source_storage="e0328f8a-9944-406b-99c3-656dcc03e671",
+            title="custom-storage-template",
             labels={
                 "os": "linux",
                 "usage": "example",
-            },
-            source_storage="e0328f8a-9944-406b-99c3-656dcc03e671",
-            title="custom-storage-template")
+            })
         ```
 
         :param str resource_name: The name of the resource.

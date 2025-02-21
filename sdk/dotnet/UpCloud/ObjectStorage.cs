@@ -26,9 +26,14 @@ namespace UpCloud.Pulumi.UpCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Object storage instance called storage-name in the fi-hel2 zone, with 2 buckets called "products" and "images".
-    ///     var myObjectStorage = new UpCloud.ObjectStorage("myObjectStorage", new()
+    ///     var myObjectStorage = new UpCloud.ObjectStorage("my_object_storage", new()
     ///     {
+    ///         Size = 250,
+    ///         Name = "storage-name",
+    ///         Zone = "fi-hel2",
     ///         AccessKey = "admin",
+    ///         SecretKey = "changeme",
+    ///         Description = "catalogue",
     ///         Buckets = new[]
     ///         {
     ///             new UpCloud.Inputs.ObjectStorageBucketArgs
@@ -40,13 +45,8 @@ namespace UpCloud.Pulumi.UpCloud
     ///                 Name = "images",
     ///             },
     ///         },
-    ///         Description = "catalogue",
-    ///         SecretKey = "changeme",
-    ///         Size = 250,
-    ///         Zone = "fi-hel2",
     ///     });
     /// 
-    ///     // The zone in wgich to create the instance
     /// });
     /// ```
     /// 

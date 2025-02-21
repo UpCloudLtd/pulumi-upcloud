@@ -463,7 +463,8 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Create a network for the Kubernetes cluster
-        example_network = upcloud.Network("exampleNetwork",
+        example = upcloud.Network("example",
+            name="example-network",
             zone="de-fra1",
             ip_network={
                 "address": "172.16.1.0/24",
@@ -471,14 +472,16 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                 "family": "IPv4",
             })
         # Create a Kubernetes cluster
-        example_kubernetes_cluster = upcloud.KubernetesCluster("exampleKubernetesCluster",
+        example_kubernetes_cluster = upcloud.KubernetesCluster("example",
             control_plane_ip_filters=["0.0.0.0/0"],
-            network=example_network.id,
+            name="exampleapp",
+            network=example.id,
             zone="de-fra1")
         # Create a Kubernetes cluster node group
         group = upcloud.KubernetesNodeGroup("group",
-            cluster=resource["upcloud_kubernetes_cluster"]["example"]["id"],
+            cluster=upcloud_kubernetes_cluster["example"]["id"],
             node_count=2,
+            name="medium",
             plan="2xCPU-4GB",
             labels={
                 "managedBy": "terraform",
@@ -526,7 +529,8 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Create a network for the Kubernetes cluster
-        example_network = upcloud.Network("exampleNetwork",
+        example = upcloud.Network("example",
+            name="example-network",
             zone="de-fra1",
             ip_network={
                 "address": "172.16.1.0/24",
@@ -534,14 +538,16 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                 "family": "IPv4",
             })
         # Create a Kubernetes cluster
-        example_kubernetes_cluster = upcloud.KubernetesCluster("exampleKubernetesCluster",
+        example_kubernetes_cluster = upcloud.KubernetesCluster("example",
             control_plane_ip_filters=["0.0.0.0/0"],
-            network=example_network.id,
+            name="exampleapp",
+            network=example.id,
             zone="de-fra1")
         # Create a Kubernetes cluster node group
         group = upcloud.KubernetesNodeGroup("group",
-            cluster=resource["upcloud_kubernetes_cluster"]["example"]["id"],
+            cluster=upcloud_kubernetes_cluster["example"]["id"],
             node_count=2,
+            name="medium",
             plan="2xCPU-4GB",
             labels={
                 "managedBy": "terraform",

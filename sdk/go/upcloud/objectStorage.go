@@ -31,8 +31,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Object storage instance called storage-name in the fi-hel2 zone, with 2 buckets called "products" and "images".
-//			_, err := upcloud.NewObjectStorage(ctx, "myObjectStorage", &upcloud.ObjectStorageArgs{
-//				AccessKey: pulumi.String("admin"),
+//			_, err := upcloud.NewObjectStorage(ctx, "my_object_storage", &upcloud.ObjectStorageArgs{
+//				Size:        pulumi.Int(250),
+//				Name:        pulumi.String("storage-name"),
+//				Zone:        pulumi.String("fi-hel2"),
+//				AccessKey:   pulumi.String("admin"),
+//				SecretKey:   pulumi.String("changeme"),
+//				Description: pulumi.String("catalogue"),
 //				Buckets: upcloud.ObjectStorageBucketArray{
 //					&upcloud.ObjectStorageBucketArgs{
 //						Name: pulumi.String("products"),
@@ -41,10 +46,6 @@ import (
 //						Name: pulumi.String("images"),
 //					},
 //				},
-//				Description: pulumi.String("catalogue"),
-//				SecretKey:   pulumi.String("changeme"),
-//				Size:        pulumi.Int(250),
-//				Zone:        pulumi.String("fi-hel2"),
 //			})
 //			if err != nil {
 //				return err

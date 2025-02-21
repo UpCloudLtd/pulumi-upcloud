@@ -144,19 +144,22 @@ class ManagedObjectStorageUserPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        this_managed_object_storage = upcloud.ManagedObjectStorage("thisManagedObjectStorage",
+        this = upcloud.ManagedObjectStorage("this",
+            name="example",
             region="europe-1",
             configured_status="started")
-        this_managed_object_storage_policy = upcloud.ManagedObjectStoragePolicy("thisManagedObjectStoragePolicy",
+        this_managed_object_storage_policy = upcloud.ManagedObjectStoragePolicy("this",
+            name="example",
             description="example description",
             document="%7B%22Version%22%3A%20%222012-10-17%22%2C%20%20%22Statement%22%3A%20%5B%7B%22Action%22%3A%20%5B%22iam%3AGetUser%22%5D%2C%20%22Resource%22%3A%20%22%2A%22%2C%20%22Effect%22%3A%20%22Allow%22%2C%20%22Sid%22%3A%20%22editor%22%7D%5D%7D",
-            service_uuid=this_managed_object_storage.id)
-        this_managed_object_storage_user = upcloud.ManagedObjectStorageUser("thisManagedObjectStorageUser",
+            service_uuid=this.id)
+        this_managed_object_storage_user = upcloud.ManagedObjectStorageUser("this",
             username="example",
-            service_uuid=this_managed_object_storage.id)
-        this_managed_object_storage_user_policy = upcloud.ManagedObjectStorageUserPolicy("thisManagedObjectStorageUserPolicy",
+            service_uuid=this.id)
+        this_managed_object_storage_user_policy = upcloud.ManagedObjectStorageUserPolicy("this",
             username=this_managed_object_storage_user.username,
-            service_uuid=this_managed_object_storage.id)
+            service_uuid=this.id,
+            name=this_managed_object_storage_policy.name)
         ```
 
         :param str resource_name: The name of the resource.
@@ -180,19 +183,22 @@ class ManagedObjectStorageUserPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        this_managed_object_storage = upcloud.ManagedObjectStorage("thisManagedObjectStorage",
+        this = upcloud.ManagedObjectStorage("this",
+            name="example",
             region="europe-1",
             configured_status="started")
-        this_managed_object_storage_policy = upcloud.ManagedObjectStoragePolicy("thisManagedObjectStoragePolicy",
+        this_managed_object_storage_policy = upcloud.ManagedObjectStoragePolicy("this",
+            name="example",
             description="example description",
             document="%7B%22Version%22%3A%20%222012-10-17%22%2C%20%20%22Statement%22%3A%20%5B%7B%22Action%22%3A%20%5B%22iam%3AGetUser%22%5D%2C%20%22Resource%22%3A%20%22%2A%22%2C%20%22Effect%22%3A%20%22Allow%22%2C%20%22Sid%22%3A%20%22editor%22%7D%5D%7D",
-            service_uuid=this_managed_object_storage.id)
-        this_managed_object_storage_user = upcloud.ManagedObjectStorageUser("thisManagedObjectStorageUser",
+            service_uuid=this.id)
+        this_managed_object_storage_user = upcloud.ManagedObjectStorageUser("this",
             username="example",
-            service_uuid=this_managed_object_storage.id)
-        this_managed_object_storage_user_policy = upcloud.ManagedObjectStorageUserPolicy("thisManagedObjectStorageUserPolicy",
+            service_uuid=this.id)
+        this_managed_object_storage_user_policy = upcloud.ManagedObjectStorageUserPolicy("this",
             username=this_managed_object_storage_user.username,
-            service_uuid=this_managed_object_storage.id)
+            service_uuid=this.id,
+            name=this_managed_object_storage_policy.name)
         ```
 
         :param str resource_name: The name of the resource.

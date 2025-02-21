@@ -25,8 +25,9 @@ namespace UpCloud.Pulumi.UpCloud
     /// {
     ///     var config = new Config();
     ///     var lbZone = config.Get("lbZone") ?? "fi-hel2";
-    ///     var lbNetwork = new UpCloud.Network("lbNetwork", new()
+    ///     var lbNetwork = new UpCloud.Network("lb_network", new()
     ///     {
+    ///         Name = "lb-test-net",
     ///         Zone = lbZone,
     ///         IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs
     ///         {
@@ -39,19 +40,22 @@ namespace UpCloud.Pulumi.UpCloud
     ///     var lb = new UpCloud.Loadbalancer("lb", new()
     ///     {
     ///         ConfiguredStatus = "started",
+    ///         Name = "lb-test",
     ///         Plan = "development",
     ///         Zone = lbZone,
-    ///         Network = resource.Upcloud_network.Lb_network.Id,
+    ///         Network = upcloudNetwork.LbNetwork.Id,
     ///     });
     /// 
-    ///     var lbBe1 = new UpCloud.LoadbalancerBackend("lbBe1", new()
+    ///     var lbBe1 = new UpCloud.LoadbalancerBackend("lb_be_1", new()
     ///     {
-    ///         Loadbalancer = resource.Upcloud_loadbalancer.Lb.Id,
+    ///         Loadbalancer = upcloudLoadbalancer.Lb.Id,
+    ///         Name = "lb-be-1-test",
     ///     });
     /// 
-    ///     var lbBe1Sm1 = new UpCloud.LoadbalancerStaticBackendMember("lbBe1Sm1", new()
+    ///     var lbBe1Sm1 = new UpCloud.LoadbalancerStaticBackendMember("lb_be_1_sm_1", new()
     ///     {
-    ///         Backend = resource.Upcloud_loadbalancer_backend.Lb_be_1.Id,
+    ///         Backend = upcloudLoadbalancerBackend.LbBe1.Id,
+    ///         Name = "lb-be-1-sm-1-test",
     ///         Ip = "10.0.0.10",
     ///         Port = 8000,
     ///         Weight = 0,

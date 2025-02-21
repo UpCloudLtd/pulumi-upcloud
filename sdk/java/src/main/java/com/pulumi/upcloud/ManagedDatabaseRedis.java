@@ -54,19 +54,21 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Minimal config
  *         var example1 = new ManagedDatabaseRedis("example1", ManagedDatabaseRedisArgs.builder()
- *             .plan("1x1xCPU-2GB")
+ *             .name("redis-1")
  *             .title("redis-1-example-2")
+ *             .plan("1x1xCPU-2GB")
  *             .zone("fi-hel2")
  *             .build());
  * 
  *         // Service with custom properties
  *         var example2 = new ManagedDatabaseRedis("example2", ManagedDatabaseRedisArgs.builder()
+ *             .name("redis-2")
+ *             .title("redis-2-example-2")
  *             .plan("1x1xCPU-2GB")
+ *             .zone("fi-hel1")
  *             .properties(ManagedDatabaseRedisPropertiesArgs.builder()
  *                 .publicAccess(false)
  *                 .build())
- *             .title("redis-2-example-2")
- *             .zone("fi-hel1")
  *             .build());
  * 
  *     }

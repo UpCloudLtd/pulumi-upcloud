@@ -115,11 +115,13 @@ def get_managed_database_redis_sessions(limit: Optional[int] = None,
 
     # Use data source to gather a list of the active sessions for a Managed Redis Database
     # Create a Managed Redis resource
-    example_managed_database_redis = upcloud.ManagedDatabaseRedis("exampleManagedDatabaseRedis",
+    example_managed_database_redis = upcloud.ManagedDatabaseRedis("example",
+        name="example",
         title="example",
         plan="1x1xCPU-2GB",
         zone="fi-hel2")
-    example_managed_database_redis_sessions = upcloud.get_managed_database_redis_sessions_output(service=example_managed_database_redis.id)
+    # Read the active sessions of the newly created service
+    example = upcloud.get_managed_database_redis_sessions_output(service=example_managed_database_redis.id)
     ```
     """
     __args__ = dict()
@@ -157,11 +159,13 @@ def get_managed_database_redis_sessions_output(limit: Optional[pulumi.Input[Opti
 
     # Use data source to gather a list of the active sessions for a Managed Redis Database
     # Create a Managed Redis resource
-    example_managed_database_redis = upcloud.ManagedDatabaseRedis("exampleManagedDatabaseRedis",
+    example_managed_database_redis = upcloud.ManagedDatabaseRedis("example",
+        name="example",
         title="example",
         plan="1x1xCPU-2GB",
         zone="fi-hel2")
-    example_managed_database_redis_sessions = upcloud.get_managed_database_redis_sessions_output(service=example_managed_database_redis.id)
+    # Read the active sessions of the newly created service
+    example = upcloud.get_managed_database_redis_sessions_output(service=example_managed_database_redis.id)
     ```
     """
     __args__ = dict()

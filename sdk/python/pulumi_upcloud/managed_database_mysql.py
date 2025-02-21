@@ -574,30 +574,33 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Minimal config
-        example1 = upcloud.ManagedDatabaseMysql("example1",
-            plan="1x1xCPU-2GB-25GB",
+        example1 = upcloud.ManagedDatabaseMysql("example_1",
+            name="mysql-1",
             title="mysql-1-example-1",
+            plan="1x1xCPU-2GB-25GB",
             zone="fi-hel1")
         # Shutdown instance after creation
-        example2 = upcloud.ManagedDatabaseMysql("example2",
-            plan="1x1xCPU-2GB-25GB",
-            powered=False,
+        example2 = upcloud.ManagedDatabaseMysql("example_2",
+            name="mysql-2",
             title="mysql-2-example-2",
-            zone="fi-hel1")
+            plan="1x1xCPU-2GB-25GB",
+            zone="fi-hel1",
+            powered=False)
         # Service with custom properties
         # Note that this basically sets strict mode off which is not normally recommended
-        example3 = upcloud.ManagedDatabaseMysql("example3",
+        example3 = upcloud.ManagedDatabaseMysql("example_3",
+            name="mysql-3",
+            title="mysql-3-example-3",
             plan="1x1xCPU-2GB-25GB",
+            zone="fi-hel1",
             properties={
-                "admin_password": "<ADMIN_PASSWORD>",
-                "admin_username": "admin",
-                "max_allowed_packet": 16000000,
-                "sort_buffer_size": 4000000,
                 "sql_mode": "NO_ENGINE_SUBSTITUTION",
                 "wait_timeout": 300,
-            },
-            title="mysql-3-example-3",
-            zone="fi-hel1")
+                "sort_buffer_size": 4000000,
+                "max_allowed_packet": 16000000,
+                "admin_username": "admin",
+                "admin_password": "<ADMIN_PASSWORD>",
+            })
         ```
 
         :param str resource_name: The name of the resource.
@@ -631,30 +634,33 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Minimal config
-        example1 = upcloud.ManagedDatabaseMysql("example1",
-            plan="1x1xCPU-2GB-25GB",
+        example1 = upcloud.ManagedDatabaseMysql("example_1",
+            name="mysql-1",
             title="mysql-1-example-1",
+            plan="1x1xCPU-2GB-25GB",
             zone="fi-hel1")
         # Shutdown instance after creation
-        example2 = upcloud.ManagedDatabaseMysql("example2",
-            plan="1x1xCPU-2GB-25GB",
-            powered=False,
+        example2 = upcloud.ManagedDatabaseMysql("example_2",
+            name="mysql-2",
             title="mysql-2-example-2",
-            zone="fi-hel1")
+            plan="1x1xCPU-2GB-25GB",
+            zone="fi-hel1",
+            powered=False)
         # Service with custom properties
         # Note that this basically sets strict mode off which is not normally recommended
-        example3 = upcloud.ManagedDatabaseMysql("example3",
+        example3 = upcloud.ManagedDatabaseMysql("example_3",
+            name="mysql-3",
+            title="mysql-3-example-3",
             plan="1x1xCPU-2GB-25GB",
+            zone="fi-hel1",
             properties={
-                "admin_password": "<ADMIN_PASSWORD>",
-                "admin_username": "admin",
-                "max_allowed_packet": 16000000,
-                "sort_buffer_size": 4000000,
                 "sql_mode": "NO_ENGINE_SUBSTITUTION",
                 "wait_timeout": 300,
-            },
-            title="mysql-3-example-3",
-            zone="fi-hel1")
+                "sort_buffer_size": 4000000,
+                "max_allowed_packet": 16000000,
+                "admin_username": "admin",
+                "admin_password": "<ADMIN_PASSWORD>",
+            })
         ```
 
         :param str resource_name: The name of the resource.

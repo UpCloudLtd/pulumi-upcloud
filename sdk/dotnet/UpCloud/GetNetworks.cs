@@ -14,78 +14,18 @@ namespace UpCloud.Pulumi.UpCloud
     {
         /// <summary>
         /// Use this data source to get the available UpCloud networks.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using UpCloud = Pulumi.UpCloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var upcloud = UpCloud.GetNetworks.Invoke();
-        /// 
-        ///     var upcloudByZone = UpCloud.GetNetworks.Invoke(new()
-        ///     {
-        ///         FilterName = "^Public.*",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetNetworksResult> InvokeAsync(GetNetworksArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNetworksResult>("upcloud:index/getNetworks:getNetworks", args ?? new GetNetworksArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get the available UpCloud networks.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using UpCloud = Pulumi.UpCloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var upcloud = UpCloud.GetNetworks.Invoke();
-        /// 
-        ///     var upcloudByZone = UpCloud.GetNetworks.Invoke(new()
-        ///     {
-        ///         FilterName = "^Public.*",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetNetworksResult> Invoke(GetNetworksInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworksResult>("upcloud:index/getNetworks:getNetworks", args ?? new GetNetworksInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get the available UpCloud networks.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using UpCloud = Pulumi.UpCloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var upcloud = UpCloud.GetNetworks.Invoke();
-        /// 
-        ///     var upcloudByZone = UpCloud.GetNetworks.Invoke(new()
-        ///     {
-        ///         FilterName = "^Public.*",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetNetworksResult> Invoke(GetNetworksInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworksResult>("upcloud:index/getNetworks:getNetworks", args ?? new GetNetworksInvokeArgs(), options.WithDefaults());

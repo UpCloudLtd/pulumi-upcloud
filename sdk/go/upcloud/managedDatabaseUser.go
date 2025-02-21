@@ -29,6 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			example, err := upcloud.NewManagedDatabasePostgresql(ctx, "example", &upcloud.ManagedDatabasePostgresqlArgs{
+//				Name:  pulumi.String("postgres"),
 //				Plan:  pulumi.String("1x1xCPU-2GB-25GB"),
 //				Title: pulumi.String("postgres"),
 //				Zone:  pulumi.String("fi-hel1"),
@@ -36,7 +37,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = upcloud.NewManagedDatabaseUser(ctx, "exampleUser", &upcloud.ManagedDatabaseUserArgs{
+//			_, err = upcloud.NewManagedDatabaseUser(ctx, "example_user", &upcloud.ManagedDatabaseUserArgs{
 //				Service:  example.ID(),
 //				Username: pulumi.String("example_user"),
 //				Password: pulumi.String("<USER_PASSWORD>"),

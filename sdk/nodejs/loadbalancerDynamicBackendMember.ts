@@ -15,7 +15,8 @@ import * as utilities from "./utilities";
  *
  * const config = new pulumi.Config();
  * const lbZone = config.get("lbZone") || "fi-hel2";
- * const lbNetwork = new upcloud.Network("lbNetwork", {
+ * const lbNetwork = new upcloud.Network("lb_network", {
+ *     name: "lb-test-net",
  *     zone: lbZone,
  *     ipNetwork: {
  *         address: "10.0.0.0/24",
@@ -25,12 +26,14 @@ import * as utilities from "./utilities";
  * });
  * const lb = new upcloud.Loadbalancer("lb", {
  *     configuredStatus: "started",
+ *     name: "lb-test",
  *     plan: "development",
  *     zone: lbZone,
- *     network: resource.upcloud_network.lb_network.id,
+ *     network: upcloudNetwork.lbNetwork.id,
  * });
- * const lbDns1 = new upcloud.LoadbalancerResolver("lbDns1", {
- *     loadbalancer: resource.upcloud_loadbalancer.lb.id,
+ * const lbDns1 = new upcloud.LoadbalancerResolver("lb_dns_1", {
+ *     loadbalancer: upcloudLoadbalancer.lb.id,
+ *     name: "lb-resolver-1-test",
  *     cacheInvalid: 10,
  *     cacheValid: 100,
  *     retries: 5,
@@ -41,12 +44,14 @@ import * as utilities from "./utilities";
  *         "94.237.40.9:53",
  *     ],
  * });
- * const lbBe1 = new upcloud.LoadbalancerBackend("lbBe1", {
- *     loadbalancer: resource.upcloud_loadbalancer.lb.id,
- *     resolverName: resource.upcloud_loadbalancer_resolver.lb_dns_1.name,
+ * const lbBe1 = new upcloud.LoadbalancerBackend("lb_be_1", {
+ *     loadbalancer: upcloudLoadbalancer.lb.id,
+ *     resolverName: upcloudLoadbalancerResolver.lbDns1.name,
+ *     name: "lb-be-1-test",
  * });
- * const lbBe1Dm1 = new upcloud.LoadbalancerDynamicBackendMember("lbBe1Dm1", {
- *     backend: resource.upcloud_loadbalancer_backend.lb_be_1.id,
+ * const lbBe1Dm1 = new upcloud.LoadbalancerDynamicBackendMember("lb_be_1_dm_1", {
+ *     backend: upcloudLoadbalancerBackend.lbBe1.id,
+ *     name: "lb-be-1-dm-1-test",
  *     weight: 10,
  *     maxSessions: 10,
  *     enabled: false,

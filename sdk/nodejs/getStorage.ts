@@ -16,6 +16,11 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@pulumi/upcloud";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
+ * // Build server with your latest custom image 
+ * //
+ * // Note that when applied new updated image will cause replacement of the old server (debian.example.tld) 
+ * // with the new server created based on the updated image.This can cause posible data loss 
+ * // if it hasn't been taken into account when planning the service.
  * const appImage = upcloud.getStorage({
  *     type: "template",
  *     nameRegex: "^app_image.*",
@@ -124,6 +129,11 @@ export interface GetStorageResult {
  * import * as upcloud from "@pulumi/upcloud";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
+ * // Build server with your latest custom image 
+ * //
+ * // Note that when applied new updated image will cause replacement of the old server (debian.example.tld) 
+ * // with the new server created based on the updated image.This can cause posible data loss 
+ * // if it hasn't been taken into account when planning the service.
  * const appImage = upcloud.getStorage({
  *     type: "template",
  *     nameRegex: "^app_image.*",

@@ -24,23 +24,25 @@ namespace UpCloud.Pulumi.UpCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Minimal config
-    ///     var example1 = new UpCloud.ManagedDatabaseValkey("example1", new()
+    ///     var example1 = new UpCloud.ManagedDatabaseValkey("example_1", new()
     ///     {
-    ///         Plan = "1x1xCPU-2GB",
+    ///         Name = "valkey-1",
     ///         Title = "valkey-example-1",
+    ///         Plan = "1x1xCPU-2GB",
     ///         Zone = "fi-hel2",
     ///     });
     /// 
     ///     // Service with custom properties
-    ///     var example2 = new UpCloud.ManagedDatabaseValkey("example2", new()
+    ///     var example2 = new UpCloud.ManagedDatabaseValkey("example_2", new()
     ///     {
+    ///         Name = "valkey-2",
+    ///         Title = "valkey-example-2",
     ///         Plan = "1x1xCPU-2GB",
+    ///         Zone = "fi-hel1",
     ///         Properties = new UpCloud.Inputs.ManagedDatabaseValkeyPropertiesArgs
     ///         {
     ///             PublicAccess = false,
     ///         },
-    ///         Title = "valkey-example-2",
-    ///         Zone = "fi-hel1",
     ///     });
     /// 
     /// });

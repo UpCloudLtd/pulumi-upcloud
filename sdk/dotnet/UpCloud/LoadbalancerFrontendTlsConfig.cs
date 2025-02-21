@@ -23,16 +23,18 @@ namespace UpCloud.Pulumi.UpCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var lbFe1Tls1 = new UpCloud.LoadbalancerFrontendTlsConfig("lbFe1Tls1", new()
+    ///     var lbFe1Tls1 = new UpCloud.LoadbalancerFrontendTlsConfig("lb_fe_1_tls1", new()
     ///     {
-    ///         Frontend = resource.Upcloud_loadbalancer_frontend.Lb_fe_1.Id,
-    ///         CertificateBundle = resource.Upcloud_loadbalancer_manual_certificate_bundle.Lb_cb_m1.Id,
+    ///         Frontend = upcloudLoadbalancerFrontend.LbFe1.Id,
+    ///         Name = "lb-fe-1-tls1-test",
+    ///         CertificateBundle = upcloudLoadbalancerManualCertificateBundle.Lb_cb_m1.Id,
     ///     });
     /// 
     ///     var config = new Config();
     ///     var lbZone = config.Get("lbZone") ?? "fi-hel2";
-    ///     var lbNetwork = new UpCloud.Network("lbNetwork", new()
+    ///     var lbNetwork = new UpCloud.Network("lb_network", new()
     ///     {
+    ///         Name = "lb-test-net",
     ///         Zone = lbZone,
     ///         IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs
     ///         {
@@ -44,29 +46,33 @@ namespace UpCloud.Pulumi.UpCloud
     /// 
     ///     var lb_cb_m1 = new UpCloud.LoadbalancerManualCertificateBundle("lb-cb-m1", new()
     ///     {
+    ///         Name = "lb-cb-m1-test",
     ///         Certificate = "LS0tLS1CRUdJTiBDRVJ...",
     ///         PrivateKey = "LS0tLS1CRUdJTiBQUkl...",
     ///     });
     /// 
-    ///     var lbFe1 = new UpCloud.LoadbalancerFrontend("lbFe1", new()
+    ///     var lbFe1 = new UpCloud.LoadbalancerFrontend("lb_fe_1", new()
     ///     {
-    ///         Loadbalancer = resource.Upcloud_loadbalancer.Lb.Id,
+    ///         Loadbalancer = upcloudLoadbalancer.Lb.Id,
+    ///         Name = "lb-fe-1-test",
     ///         Mode = "http",
     ///         Port = 8080,
-    ///         DefaultBackendName = resource.Upcloud_loadbalancer_backend.Lb_be_1.Name,
+    ///         DefaultBackendName = upcloudLoadbalancerBackend.LbBe1.Name,
     ///     });
     /// 
     ///     var lb = new UpCloud.Loadbalancer("lb", new()
     ///     {
     ///         ConfiguredStatus = "started",
+    ///         Name = "lb-test",
     ///         Plan = "development",
     ///         Zone = lbZone,
-    ///         Network = resource.Upcloud_network.Lb_network.Id,
+    ///         Network = upcloudNetwork.LbNetwork.Id,
     ///     });
     /// 
-    ///     var lbBe1 = new UpCloud.LoadbalancerBackend("lbBe1", new()
+    ///     var lbBe1 = new UpCloud.LoadbalancerBackend("lb_be_1", new()
     ///     {
-    ///         Loadbalancer = resource.Upcloud_loadbalancer.Lb.Id,
+    ///         Loadbalancer = upcloudLoadbalancer.Lb.Id,
+    ///         Name = "lb-be-1-test",
     ///     });
     /// 
     /// });

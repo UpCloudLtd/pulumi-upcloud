@@ -56,7 +56,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Create a network for the Kubernetes cluster
- *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
+ *         var example = new Network("example", NetworkArgs.builder()
+ *             .name("example-network")
  *             .zone("de-fra1")
  *             .ipNetwork(NetworkIpNetworkArgs.builder()
  *                 .address("172.16.1.0/24")
@@ -68,14 +69,16 @@ import javax.annotation.Nullable;
  *         // Create a Kubernetes cluster
  *         var exampleKubernetesCluster = new KubernetesCluster("exampleKubernetesCluster", KubernetesClusterArgs.builder()
  *             .controlPlaneIpFilters("0.0.0.0/0")
- *             .network(exampleNetwork.id())
+ *             .name("exampleapp")
+ *             .network(example.id())
  *             .zone("de-fra1")
  *             .build());
  * 
  *         // Create a Kubernetes cluster node group
  *         var group = new KubernetesNodeGroup("group", KubernetesNodeGroupArgs.builder()
- *             .cluster(resource.upcloud_kubernetes_cluster().example().id())
+ *             .cluster(upcloudKubernetesCluster.example().id())
  *             .nodeCount(2)
+ *             .name("medium")
  *             .plan("2xCPU-4GB")
  *             .labels(Map.of("managedBy", "terraform"))
  *             .taints(KubernetesNodeGroupTaintArgs.builder()

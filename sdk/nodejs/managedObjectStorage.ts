@@ -16,18 +16,20 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Create router for the network
- * const thisRouter = new upcloud.Router("thisRouter", {});
+ * const _this = new upcloud.Router("this", {name: "object-storage-example-router"});
  * // Create network for the Managed Object Storage
- * const thisNetwork = new upcloud.Network("thisNetwork", {
+ * const thisNetwork = new upcloud.Network("this", {
+ *     name: "object-storage-example-net",
  *     zone: "fi-hel1",
  *     ipNetwork: {
  *         address: "172.16.2.0/24",
  *         dhcp: true,
  *         family: "IPv4",
  *     },
- *     router: thisRouter.id,
+ *     router: _this.id,
  * });
- * const thisManagedObjectStorage = new upcloud.ManagedObjectStorage("thisManagedObjectStorage", {
+ * const thisManagedObjectStorage = new upcloud.ManagedObjectStorage("this", {
+ *     name: "example",
  *     region: "europe-1",
  *     configuredStatus: "started",
  *     networks: [{

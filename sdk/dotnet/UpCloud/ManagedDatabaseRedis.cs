@@ -26,23 +26,25 @@ namespace UpCloud.Pulumi.UpCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Minimal config
-    ///     var example1 = new UpCloud.ManagedDatabaseRedis("example1", new()
+    ///     var example1 = new UpCloud.ManagedDatabaseRedis("example_1", new()
     ///     {
-    ///         Plan = "1x1xCPU-2GB",
+    ///         Name = "redis-1",
     ///         Title = "redis-1-example-2",
+    ///         Plan = "1x1xCPU-2GB",
     ///         Zone = "fi-hel2",
     ///     });
     /// 
     ///     // Service with custom properties
-    ///     var example2 = new UpCloud.ManagedDatabaseRedis("example2", new()
+    ///     var example2 = new UpCloud.ManagedDatabaseRedis("example_2", new()
     ///     {
+    ///         Name = "redis-2",
+    ///         Title = "redis-2-example-2",
     ///         Plan = "1x1xCPU-2GB",
+    ///         Zone = "fi-hel1",
     ///         Properties = new UpCloud.Inputs.ManagedDatabaseRedisPropertiesArgs
     ///         {
     ///             PublicAccess = false,
     ///         },
-    ///         Title = "redis-2-example-2",
-    ///         Zone = "fi-hel1",
     ///     });
     /// 
     /// });

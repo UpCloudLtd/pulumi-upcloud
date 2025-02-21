@@ -29,7 +29,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Create a network for the Kubernetes cluster
-//			exampleNetwork, err := upcloud.NewNetwork(ctx, "exampleNetwork", &upcloud.NetworkArgs{
+//			example, err := upcloud.NewNetwork(ctx, "example", &upcloud.NetworkArgs{
+//				Name: pulumi.String("example-network"),
 //				Zone: pulumi.String("de-fra1"),
 //				IpNetwork: &upcloud.NetworkIpNetworkArgs{
 //					Address: pulumi.String("172.16.1.0/24"),
@@ -41,34 +42,39 @@ import (
 //				return err
 //			}
 //			// Create a Kubernetes cluster
-//			_, err = upcloud.NewKubernetesCluster(ctx, "exampleKubernetesCluster", &upcloud.KubernetesClusterArgs{
+//			_, err = upcloud.NewKubernetesCluster(ctx, "example", &upcloud.KubernetesClusterArgs{
 //				ControlPlaneIpFilters: pulumi.StringArray{
 //					pulumi.String("0.0.0.0/0"),
 //				},
-//				Network: exampleNetwork.ID(),
+//				Name:    pulumi.String("exampleapp"),
+//				Network: example.ID(),
 //				Zone:    pulumi.String("de-fra1"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Kubernetes cluster with private node groups requires a network that is routed through NAT gateway.
-//			example2Router, err := upcloud.NewRouter(ctx, "example2Router", nil)
+//			example2, err := upcloud.NewRouter(ctx, "example2", &upcloud.RouterArgs{
+//				Name: pulumi.String("example2-router"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = upcloud.NewGateway(ctx, "example2Gateway", &upcloud.GatewayArgs{
+//			_, err = upcloud.NewGateway(ctx, "example2", &upcloud.GatewayArgs{
+//				Name: pulumi.String("example2-nat-gateway"),
 //				Zone: pulumi.String("de-fra1"),
 //				Features: pulumi.StringArray{
 //					pulumi.String("nat"),
 //				},
 //				Router: &upcloud.GatewayRouterArgs{
-//					Id: example2Router.ID(),
+//					Id: example2.ID(),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			example2Network, err := upcloud.NewNetwork(ctx, "example2Network", &upcloud.NetworkArgs{
+//			example2Network, err := upcloud.NewNetwork(ctx, "example2", &upcloud.NetworkArgs{
+//				Name: pulumi.String("example2-network"),
 //				Zone: pulumi.String("de-fra1"),
 //				IpNetwork: &upcloud.NetworkIpNetworkArgs{
 //					Address:          pulumi.String("10.10.0.0/24"),
@@ -76,12 +82,13 @@ import (
 //					Family:           pulumi.String("IPv4"),
 //					DhcpDefaultRoute: pulumi.Bool(true),
 //				},
-//				Router: example2Router.ID(),
+//				Router: example2.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = upcloud.NewKubernetesCluster(ctx, "example2KubernetesCluster", &upcloud.KubernetesClusterArgs{
+//			_, err = upcloud.NewKubernetesCluster(ctx, "example2", &upcloud.KubernetesClusterArgs{
+//				Name:              pulumi.String("example2-cluster"),
 //				Network:           example2Network.ID(),
 //				Zone:              pulumi.String("de-fra1"),
 //				Plan:              pulumi.String("production-small"),

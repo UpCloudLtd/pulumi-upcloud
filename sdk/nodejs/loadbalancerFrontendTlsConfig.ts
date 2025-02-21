@@ -13,13 +13,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * const lbFe1Tls1 = new upcloud.LoadbalancerFrontendTlsConfig("lbFe1Tls1", {
- *     frontend: resource.upcloud_loadbalancer_frontend.lb_fe_1.id,
- *     certificateBundle: resource.upcloud_loadbalancer_manual_certificate_bundle["lb-cb-m1"].id,
+ * const lbFe1Tls1 = new upcloud.LoadbalancerFrontendTlsConfig("lb_fe_1_tls1", {
+ *     frontend: upcloudLoadbalancerFrontend.lbFe1.id,
+ *     name: "lb-fe-1-tls1-test",
+ *     certificateBundle: upcloudLoadbalancerManualCertificateBundle["lb-cb-m1"].id,
  * });
  * const config = new pulumi.Config();
  * const lbZone = config.get("lbZone") || "fi-hel2";
- * const lbNetwork = new upcloud.Network("lbNetwork", {
+ * const lbNetwork = new upcloud.Network("lb_network", {
+ *     name: "lb-test-net",
  *     zone: lbZone,
  *     ipNetwork: {
  *         address: "10.0.0.0/24",
@@ -28,22 +30,28 @@ import * as utilities from "./utilities";
  *     },
  * });
  * const lb_cb_m1 = new upcloud.LoadbalancerManualCertificateBundle("lb-cb-m1", {
+ *     name: "lb-cb-m1-test",
  *     certificate: "LS0tLS1CRUdJTiBDRVJ...",
  *     privateKey: "LS0tLS1CRUdJTiBQUkl...",
  * });
- * const lbFe1 = new upcloud.LoadbalancerFrontend("lbFe1", {
- *     loadbalancer: resource.upcloud_loadbalancer.lb.id,
+ * const lbFe1 = new upcloud.LoadbalancerFrontend("lb_fe_1", {
+ *     loadbalancer: upcloudLoadbalancer.lb.id,
+ *     name: "lb-fe-1-test",
  *     mode: "http",
  *     port: 8080,
- *     defaultBackendName: resource.upcloud_loadbalancer_backend.lb_be_1.name,
+ *     defaultBackendName: upcloudLoadbalancerBackend.lbBe1.name,
  * });
  * const lb = new upcloud.Loadbalancer("lb", {
  *     configuredStatus: "started",
+ *     name: "lb-test",
  *     plan: "development",
  *     zone: lbZone,
- *     network: resource.upcloud_network.lb_network.id,
+ *     network: upcloudNetwork.lbNetwork.id,
  * });
- * const lbBe1 = new upcloud.LoadbalancerBackend("lbBe1", {loadbalancer: resource.upcloud_loadbalancer.lb.id});
+ * const lbBe1 = new upcloud.LoadbalancerBackend("lb_be_1", {
+ *     loadbalancer: upcloudLoadbalancer.lb.id,
+ *     name: "lb-be-1-test",
+ * });
  * ```
  */
 export class LoadbalancerFrontendTlsConfig extends pulumi.CustomResource {

@@ -29,12 +29,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := upcloud.NewStorageTemplate(ctx, "template", &upcloud.StorageTemplateArgs{
+//				SourceStorage: pulumi.String("e0328f8a-9944-406b-99c3-656dcc03e671"),
+//				Title:         pulumi.String("custom-storage-template"),
 //				Labels: pulumi.StringMap{
 //					"os":    pulumi.String("linux"),
 //					"usage": pulumi.String("example"),
 //				},
-//				SourceStorage: pulumi.String("e0328f8a-9944-406b-99c3-656dcc03e671"),
-//				Title:         pulumi.String("custom-storage-template"),
 //			})
 //			if err != nil {
 //				return err

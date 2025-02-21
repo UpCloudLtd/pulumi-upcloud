@@ -29,7 +29,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Create a network for the Kubernetes cluster
-//			exampleNetwork, err := upcloud.NewNetwork(ctx, "exampleNetwork", &upcloud.NetworkArgs{
+//			example, err := upcloud.NewNetwork(ctx, "example", &upcloud.NetworkArgs{
+//				Name: pulumi.String("example-network"),
 //				Zone: pulumi.String("de-fra1"),
 //				IpNetwork: &upcloud.NetworkIpNetworkArgs{
 //					Address: pulumi.String("172.16.1.0/24"),
@@ -41,11 +42,12 @@ import (
 //				return err
 //			}
 //			// Create a Kubernetes cluster
-//			_, err = upcloud.NewKubernetesCluster(ctx, "exampleKubernetesCluster", &upcloud.KubernetesClusterArgs{
+//			_, err = upcloud.NewKubernetesCluster(ctx, "example", &upcloud.KubernetesClusterArgs{
 //				ControlPlaneIpFilters: pulumi.StringArray{
 //					pulumi.String("0.0.0.0/0"),
 //				},
-//				Network: exampleNetwork.ID(),
+//				Name:    pulumi.String("exampleapp"),
+//				Network: example.ID(),
 //				Zone:    pulumi.String("de-fra1"),
 //			})
 //			if err != nil {
@@ -53,8 +55,9 @@ import (
 //			}
 //			// Create a Kubernetes cluster node group
 //			_, err = upcloud.NewKubernetesNodeGroup(ctx, "group", &upcloud.KubernetesNodeGroupArgs{
-//				Cluster:   pulumi.Any(resource.Upcloud_kubernetes_cluster.Example.Id),
+//				Cluster:   pulumi.Any(upcloudKubernetesCluster.Example.Id),
 //				NodeCount: pulumi.Int(2),
+//				Name:      pulumi.String("medium"),
 //				Plan:      pulumi.String("2xCPU-4GB"),
 //				Labels: pulumi.StringMap{
 //					"managedBy": pulumi.String("terraform"),

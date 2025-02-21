@@ -24,25 +24,27 @@ namespace UpCloud.Pulumi.UpCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Minimal config
-    ///     var example1 = new UpCloud.ManagedDatabasePostgresql("example1", new()
+    ///     var example1 = new UpCloud.ManagedDatabasePostgresql("example_1", new()
     ///     {
+    ///         Name = "postgres-1",
     ///         Plan = "1x1xCPU-2GB-25GB",
     ///         Title = "postgres",
     ///         Zone = "fi-hel1",
     ///     });
     /// 
     ///     // Service with custom properties
-    ///     var example2 = new UpCloud.ManagedDatabasePostgresql("example2", new()
+    ///     var example2 = new UpCloud.ManagedDatabasePostgresql("example_2", new()
     ///     {
+    ///         Name = "postgres-2",
     ///         Plan = "1x1xCPU-2GB-25GB",
-    ///         Properties = new UpCloud.Inputs.ManagedDatabasePostgresqlPropertiesArgs
-    ///         {
-    ///             AdminPassword = "&lt;ADMIN_PASSWORD&gt;",
-    ///             AdminUsername = "admin",
-    ///             Timezone = "Europe/Helsinki",
-    ///         },
     ///         Title = "postgres",
     ///         Zone = "fi-hel1",
+    ///         Properties = new UpCloud.Inputs.ManagedDatabasePostgresqlPropertiesArgs
+    ///         {
+    ///             Timezone = "Europe/Helsinki",
+    ///             AdminUsername = "admin",
+    ///             AdminPassword = "&lt;ADMIN_PASSWORD&gt;",
+    ///         },
     ///     });
     /// 
     /// });

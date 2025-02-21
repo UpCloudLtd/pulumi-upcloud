@@ -198,7 +198,7 @@ class Router(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        my_example_router = upcloud.Router("myExampleRouter")
+        my_example_router = upcloud.Router("my_example_router", name="My Example Router")
         ```
 
         ## Import
@@ -228,7 +228,7 @@ class Router(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        my_example_router = upcloud.Router("myExampleRouter")
+        my_example_router = upcloud.Router("my_example_router", name="My Example Router")
         ```
 
         ## Import

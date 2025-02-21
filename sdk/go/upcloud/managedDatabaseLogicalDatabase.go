@@ -29,7 +29,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// PostgreSQL managed database with additional logical database: example_db
-//			exampleManagedDatabasePostgresql, err := upcloud.NewManagedDatabasePostgresql(ctx, "exampleManagedDatabasePostgresql", &upcloud.ManagedDatabasePostgresqlArgs{
+//			example, err := upcloud.NewManagedDatabasePostgresql(ctx, "example", &upcloud.ManagedDatabasePostgresqlArgs{
+//				Name:  pulumi.String("postgres"),
 //				Plan:  pulumi.String("1x1xCPU-2GB-25GB"),
 //				Title: pulumi.String("postgres"),
 //				Zone:  pulumi.String("fi-hel1"),
@@ -37,14 +38,16 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = upcloud.NewManagedDatabaseLogicalDatabase(ctx, "exampleDb", &upcloud.ManagedDatabaseLogicalDatabaseArgs{
-//				Service: exampleManagedDatabasePostgresql.ID(),
+//			_, err = upcloud.NewManagedDatabaseLogicalDatabase(ctx, "example_db", &upcloud.ManagedDatabaseLogicalDatabaseArgs{
+//				Service: example.ID(),
+//				Name:    pulumi.String("example_db"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// MySQL managed database with additional logical database: example2_db
-//			exampleManagedDatabaseMysql, err := upcloud.NewManagedDatabaseMysql(ctx, "exampleManagedDatabaseMysql", &upcloud.ManagedDatabaseMysqlArgs{
+//			exampleManagedDatabaseMysql, err := upcloud.NewManagedDatabaseMysql(ctx, "example", &upcloud.ManagedDatabaseMysqlArgs{
+//				Name:  pulumi.String("mysql"),
 //				Plan:  pulumi.String("1x1xCPU-2GB-25GB"),
 //				Title: pulumi.String("mysql"),
 //				Zone:  pulumi.String("fi-hel1"),
@@ -52,8 +55,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = upcloud.NewManagedDatabaseLogicalDatabase(ctx, "example2Db", &upcloud.ManagedDatabaseLogicalDatabaseArgs{
+//			_, err = upcloud.NewManagedDatabaseLogicalDatabase(ctx, "example2_db", &upcloud.ManagedDatabaseLogicalDatabaseArgs{
 //				Service: exampleManagedDatabaseMysql.ID(),
+//				Name:    pulumi.String("example2_db"),
 //			})
 //			if err != nil {
 //				return err

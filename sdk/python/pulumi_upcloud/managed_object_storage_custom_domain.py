@@ -148,7 +148,8 @@ class ManagedObjectStorageCustomDomain(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        this_managed_object_storage = upcloud.ManagedObjectStorage("thisManagedObjectStorage",
+        this_managed_object_storage = upcloud.ManagedObjectStorage("this",
+            name="object-storage-custom-domain-example",
             region="europe-1",
             configured_status="started",
             networks=[{
@@ -156,12 +157,12 @@ class ManagedObjectStorageCustomDomain(pulumi.CustomResource):
                 "name": "public",
                 "type": "public",
             }])
-        this_load_balancer_dns_challenge_domain = upcloud.get_load_balancer_dns_challenge_domain()
+        this = upcloud.get_load_balancer_dns_challenge_domain()
         # Before creating the custom domain, configure the DNS settings for your custom domain. For example, if your custom domain is objects.example.com, you should configure the following DNS records:
         # - "_acme-challenge.objects IN CNAME ${data.upcloud_load_balancer_dns_challenge_domain.this.domain}"
         # - "objects IN CNAME ${[for i in upcloud_managed_object_storage.this.endpoint: i.domain_name if i.type == "public"][0]}"
         # - "*.objects IN CNAME ${[for i in upcloud_managed_object_storage.this.endpoint: i.domain_name if i.type == "public"][0]}"
-        this_managed_object_storage_custom_domain = upcloud.ManagedObjectStorageCustomDomain("thisManagedObjectStorageCustomDomain",
+        this_managed_object_storage_custom_domain = upcloud.ManagedObjectStorageCustomDomain("this",
             service_uuid=this_managed_object_storage.id,
             domain_name="objects.example.com")
         ```
@@ -188,7 +189,8 @@ class ManagedObjectStorageCustomDomain(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        this_managed_object_storage = upcloud.ManagedObjectStorage("thisManagedObjectStorage",
+        this_managed_object_storage = upcloud.ManagedObjectStorage("this",
+            name="object-storage-custom-domain-example",
             region="europe-1",
             configured_status="started",
             networks=[{
@@ -196,12 +198,12 @@ class ManagedObjectStorageCustomDomain(pulumi.CustomResource):
                 "name": "public",
                 "type": "public",
             }])
-        this_load_balancer_dns_challenge_domain = upcloud.get_load_balancer_dns_challenge_domain()
+        this = upcloud.get_load_balancer_dns_challenge_domain()
         # Before creating the custom domain, configure the DNS settings for your custom domain. For example, if your custom domain is objects.example.com, you should configure the following DNS records:
         # - "_acme-challenge.objects IN CNAME ${data.upcloud_load_balancer_dns_challenge_domain.this.domain}"
         # - "objects IN CNAME ${[for i in upcloud_managed_object_storage.this.endpoint: i.domain_name if i.type == "public"][0]}"
         # - "*.objects IN CNAME ${[for i in upcloud_managed_object_storage.this.endpoint: i.domain_name if i.type == "public"][0]}"
-        this_managed_object_storage_custom_domain = upcloud.ManagedObjectStorageCustomDomain("thisManagedObjectStorageCustomDomain",
+        this_managed_object_storage_custom_domain = upcloud.ManagedObjectStorageCustomDomain("this",
             service_uuid=this_managed_object_storage.id,
             domain_name="objects.example.com")
         ```

@@ -192,7 +192,8 @@ class LoadbalancerDynamicCertificateBundle(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        lb_cb_d1 = upcloud.LoadbalancerDynamicCertificateBundle("lbCbD1",
+        lb_cb_d1 = upcloud.LoadbalancerDynamicCertificateBundle("lb_cb_d1",
+            name="lb-cb-d1-test",
             hostnames=[
                 "example.com",
                 "app.example.net",
@@ -221,7 +222,8 @@ class LoadbalancerDynamicCertificateBundle(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        lb_cb_d1 = upcloud.LoadbalancerDynamicCertificateBundle("lbCbD1",
+        lb_cb_d1 = upcloud.LoadbalancerDynamicCertificateBundle("lb_cb_d1",
+            name="lb-cb-d1-test",
             hostnames=[
                 "example.com",
                 "app.example.net",

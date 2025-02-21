@@ -213,24 +213,26 @@ class NetworkPeering(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Network peering requires the networks to have routers attached to them.
-        this_router = upcloud.Router("thisRouter")
+        this = upcloud.Router("this", name="network-peering-example-router")
         example = upcloud.Network("example",
+            name="network-peering-example-net",
             zone="nl-ams1",
-            router=upcloud_router["example"]["id"],
+            router=example_upcloud_router["id"],
             ip_network={
                 "address": "10.0.0.0/24",
                 "dhcp": True,
                 "family": "IPv4",
             })
-        this_network_peering = None
-        if 1 == True:
-            this_network_peering = upcloud.NetworkPeering("thisNetworkPeering",
+        this_network_peering = []
+        for range in [{"value": i} for i in range(0, 1)]:
+            this_network_peering.append(upcloud.NetworkPeering(f"this-{range['value']}",
+                name="network-peering-example-peering",
                 network={
                     "uuid": example.id,
                 },
                 peer_network={
                     "uuid": "0305723a-e5cb-4ef6-985d-e36ed44d133a",
-                })
+                }))
         ```
 
         :param str resource_name: The name of the resource.
@@ -257,24 +259,26 @@ class NetworkPeering(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Network peering requires the networks to have routers attached to them.
-        this_router = upcloud.Router("thisRouter")
+        this = upcloud.Router("this", name="network-peering-example-router")
         example = upcloud.Network("example",
+            name="network-peering-example-net",
             zone="nl-ams1",
-            router=upcloud_router["example"]["id"],
+            router=example_upcloud_router["id"],
             ip_network={
                 "address": "10.0.0.0/24",
                 "dhcp": True,
                 "family": "IPv4",
             })
-        this_network_peering = None
-        if 1 == True:
-            this_network_peering = upcloud.NetworkPeering("thisNetworkPeering",
+        this_network_peering = []
+        for range in [{"value": i} for i in range(0, 1)]:
+            this_network_peering.append(upcloud.NetworkPeering(f"this-{range['value']}",
+                name="network-peering-example-peering",
                 network={
                     "uuid": example.id,
                 },
                 peer_network={
                     "uuid": "0305723a-e5cb-4ef6-985d-e36ed44d133a",
-                })
+                }))
         ```
 
         :param str resource_name: The name of the resource.

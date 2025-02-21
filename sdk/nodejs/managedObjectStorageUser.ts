@@ -13,13 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * const thisManagedObjectStorage = new upcloud.ManagedObjectStorage("thisManagedObjectStorage", {
+ * const _this = new upcloud.ManagedObjectStorage("this", {
+ *     name: "example",
  *     region: "europe-1",
  *     configuredStatus: "started",
  * });
- * const thisManagedObjectStorageUser = new upcloud.ManagedObjectStorageUser("thisManagedObjectStorageUser", {
+ * const thisManagedObjectStorageUser = new upcloud.ManagedObjectStorageUser("this", {
  *     username: "example",
- *     serviceUuid: thisManagedObjectStorage.id,
+ *     serviceUuid: _this.id,
  * });
  * ```
  */

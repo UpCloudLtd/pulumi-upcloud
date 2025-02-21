@@ -186,6 +186,11 @@ def get_storage(access_type: Optional[str] = None,
     import pulumi
     import pulumi_upcloud as upcloud
 
+    # Build server with your latest custom image 
+    #
+    # Note that when applied new updated image will cause replacement of the old server (debian.example.tld) 
+    # with the new server created based on the updated image.This can cause posible data loss 
+    # if it hasn't been taken into account when planning the service.
     app_image = upcloud.get_storage(type="template",
         name_regex="^app_image.*",
         most_recent=True)
@@ -259,6 +264,11 @@ def get_storage_output(access_type: Optional[pulumi.Input[Optional[str]]] = None
     import pulumi
     import pulumi_upcloud as upcloud
 
+    # Build server with your latest custom image 
+    #
+    # Note that when applied new updated image will cause replacement of the old server (debian.example.tld) 
+    # with the new server created based on the updated image.This can cause posible data loss 
+    # if it hasn't been taken into account when planning the service.
     app_image = upcloud.get_storage(type="template",
         name_regex="^app_image.*",
         most_recent=True)

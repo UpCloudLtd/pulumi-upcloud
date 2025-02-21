@@ -28,14 +28,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the active sessions for a Managed Valkey Database
         ///     // Create a Managed Valkey resource
-        ///     var exampleManagedDatabaseValkey = new UpCloud.ManagedDatabaseValkey("exampleManagedDatabaseValkey", new()
+        ///     var exampleManagedDatabaseValkey = new UpCloud.ManagedDatabaseValkey("example", new()
         ///     {
+        ///         Name = "example",
         ///         Title = "example",
         ///         Plan = "1x1xCPU-2GB",
         ///         Zone = "fi-hel2",
         ///     });
         /// 
-        ///     var exampleManagedDatabaseValkeySessions = UpCloud.GetManagedDatabaseValkeySessions.Invoke(new()
+        ///     // Read the active sessions of the newly created service
+        ///     var example = UpCloud.GetManagedDatabaseValkeySessions.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabaseValkey.Id,
         ///     });
@@ -62,14 +64,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the active sessions for a Managed Valkey Database
         ///     // Create a Managed Valkey resource
-        ///     var exampleManagedDatabaseValkey = new UpCloud.ManagedDatabaseValkey("exampleManagedDatabaseValkey", new()
+        ///     var exampleManagedDatabaseValkey = new UpCloud.ManagedDatabaseValkey("example", new()
         ///     {
+        ///         Name = "example",
         ///         Title = "example",
         ///         Plan = "1x1xCPU-2GB",
         ///         Zone = "fi-hel2",
         ///     });
         /// 
-        ///     var exampleManagedDatabaseValkeySessions = UpCloud.GetManagedDatabaseValkeySessions.Invoke(new()
+        ///     // Read the active sessions of the newly created service
+        ///     var example = UpCloud.GetManagedDatabaseValkeySessions.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabaseValkey.Id,
         ///     });
@@ -96,14 +100,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the active sessions for a Managed Valkey Database
         ///     // Create a Managed Valkey resource
-        ///     var exampleManagedDatabaseValkey = new UpCloud.ManagedDatabaseValkey("exampleManagedDatabaseValkey", new()
+        ///     var exampleManagedDatabaseValkey = new UpCloud.ManagedDatabaseValkey("example", new()
         ///     {
+        ///         Name = "example",
         ///         Title = "example",
         ///         Plan = "1x1xCPU-2GB",
         ///         Zone = "fi-hel2",
         ///     });
         /// 
-        ///     var exampleManagedDatabaseValkeySessions = UpCloud.GetManagedDatabaseValkeySessions.Invoke(new()
+        ///     // Read the active sessions of the newly created service
+        ///     var example = UpCloud.GetManagedDatabaseValkeySessions.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabaseValkey.Id,
         ///     });

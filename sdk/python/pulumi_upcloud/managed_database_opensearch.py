@@ -648,20 +648,22 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Minimal config
-        example1 = upcloud.ManagedDatabaseOpensearch("example1",
-            plan="1x2xCPU-4GB-80GB-1D",
+        example1 = upcloud.ManagedDatabaseOpensearch("example_1",
+            name="opensearch-1",
             title="opensearch-1-example-1",
+            plan="1x2xCPU-4GB-80GB-1D",
             zone="fi-hel2")
         # Service with custom properties and access control
-        example2 = upcloud.ManagedDatabaseOpensearch("example2",
+        example2 = upcloud.ManagedDatabaseOpensearch("example_2",
+            name="opensearch-2",
+            title="opensearch-2-example-2",
+            plan="1x2xCPU-4GB-80GB-1D",
+            zone="fi-hel1",
             access_control=True,
             extended_access_control=True,
-            plan="1x2xCPU-4GB-80GB-1D",
             properties={
                 "public_access": False,
-            },
-            title="opensearch-2-example-2",
-            zone="fi-hel1")
+            })
         ```
 
         :param str resource_name: The name of the resource.
@@ -699,20 +701,22 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Minimal config
-        example1 = upcloud.ManagedDatabaseOpensearch("example1",
-            plan="1x2xCPU-4GB-80GB-1D",
+        example1 = upcloud.ManagedDatabaseOpensearch("example_1",
+            name="opensearch-1",
             title="opensearch-1-example-1",
+            plan="1x2xCPU-4GB-80GB-1D",
             zone="fi-hel2")
         # Service with custom properties and access control
-        example2 = upcloud.ManagedDatabaseOpensearch("example2",
+        example2 = upcloud.ManagedDatabaseOpensearch("example_2",
+            name="opensearch-2",
+            title="opensearch-2-example-2",
+            plan="1x2xCPU-4GB-80GB-1D",
+            zone="fi-hel1",
             access_control=True,
             extended_access_control=True,
-            plan="1x2xCPU-4GB-80GB-1D",
             properties={
                 "public_access": False,
-            },
-            title="opensearch-2-example-2",
-            zone="fi-hel1")
+            })
         ```
 
         :param str resource_name: The name of the resource.

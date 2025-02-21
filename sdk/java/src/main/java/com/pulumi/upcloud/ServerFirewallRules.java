@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // The following example defines a server and then links the server to a single firewall rule. 
  *         // The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.
- *         var exampleServer = new Server("exampleServer", ServerArgs.builder()
+ *         var example = new Server("example", ServerArgs.builder()
  *             .firewall(true)
  *             .hostname("terraform.example.tld")
  *             .zone("de-fra1")
@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var exampleServerFirewallRules = new ServerFirewallRules("exampleServerFirewallRules", ServerFirewallRulesArgs.builder()
- *             .serverId(exampleServer.id())
+ *             .serverId(example.id())
  *             .firewallRules(ServerFirewallRulesFirewallRuleArgs.builder()
  *                 .action("accept")
  *                 .comment("Allow SSH from this network")

@@ -20,12 +20,14 @@ import * as utilities from "./utilities";
  *
  * // Use data source to gather a list of the active sessions for a Managed Redis Database
  * // Create a Managed Redis resource
- * const exampleManagedDatabaseRedis = new upcloud.ManagedDatabaseRedis("exampleManagedDatabaseRedis", {
+ * const exampleManagedDatabaseRedis = new upcloud.ManagedDatabaseRedis("example", {
+ *     name: "example",
  *     title: "example",
  *     plan: "1x1xCPU-2GB",
  *     zone: "fi-hel2",
  * });
- * const exampleManagedDatabaseRedisSessions = upcloud.getManagedDatabaseRedisSessionsOutput({
+ * // Read the active sessions of the newly created service
+ * const example = upcloud.getManagedDatabaseRedisSessionsOutput({
  *     service: exampleManagedDatabaseRedis.id,
  * });
  * ```
@@ -80,12 +82,14 @@ export interface GetManagedDatabaseRedisSessionsResult {
  *
  * // Use data source to gather a list of the active sessions for a Managed Redis Database
  * // Create a Managed Redis resource
- * const exampleManagedDatabaseRedis = new upcloud.ManagedDatabaseRedis("exampleManagedDatabaseRedis", {
+ * const exampleManagedDatabaseRedis = new upcloud.ManagedDatabaseRedis("example", {
+ *     name: "example",
  *     title: "example",
  *     plan: "1x1xCPU-2GB",
  *     zone: "fi-hel2",
  * });
- * const exampleManagedDatabaseRedisSessions = upcloud.getManagedDatabaseRedisSessionsOutput({
+ * // Read the active sessions of the newly created service
+ * const example = upcloud.getManagedDatabaseRedisSessionsOutput({
  *     service: exampleManagedDatabaseRedis.id,
  * });
  * ```

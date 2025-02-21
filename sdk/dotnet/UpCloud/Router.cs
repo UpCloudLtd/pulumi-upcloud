@@ -23,7 +23,10 @@ namespace UpCloud.Pulumi.UpCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myExampleRouter = new UpCloud.Router("myExampleRouter");
+    ///     var myExampleRouter = new UpCloud.Router("my_example_router", new()
+    ///     {
+    ///         Name = "My Example Router",
+    ///     });
     /// 
     /// });
     /// ```

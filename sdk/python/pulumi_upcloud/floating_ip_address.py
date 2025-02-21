@@ -200,7 +200,7 @@ class FloatingIpAddress(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Create a detached floating IP address.
-        my_floating_address = upcloud.FloatingIpAddress("myFloatingAddress", zone="de-fra1")
+        my_floating_address = upcloud.FloatingIpAddress("my_floating_address", zone="de-fra1")
         # Floating IP address assigned to a server resource.
         example = upcloud.Server("example",
             hostname="terraform.example.tld",
@@ -213,7 +213,7 @@ class FloatingIpAddress(pulumi.CustomResource):
             network_interfaces=[{
                 "type": "public",
             }])
-        my_new_floating_address = upcloud.FloatingIpAddress("myNewFloatingAddress", mac_address=example.network_interfaces[0].mac_address)
+        my_new_floating_address = upcloud.FloatingIpAddress("my_new_floating_address", mac_address=example.network_interfaces[0].mac_address)
         ```
 
         ## Import
@@ -246,7 +246,7 @@ class FloatingIpAddress(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Create a detached floating IP address.
-        my_floating_address = upcloud.FloatingIpAddress("myFloatingAddress", zone="de-fra1")
+        my_floating_address = upcloud.FloatingIpAddress("my_floating_address", zone="de-fra1")
         # Floating IP address assigned to a server resource.
         example = upcloud.Server("example",
             hostname="terraform.example.tld",
@@ -259,7 +259,7 @@ class FloatingIpAddress(pulumi.CustomResource):
             network_interfaces=[{
                 "type": "public",
             }])
-        my_new_floating_address = upcloud.FloatingIpAddress("myNewFloatingAddress", mac_address=example.network_interfaces[0].mac_address)
+        my_new_floating_address = upcloud.FloatingIpAddress("my_new_floating_address", mac_address=example.network_interfaces[0].mac_address)
         ```
 
         ## Import

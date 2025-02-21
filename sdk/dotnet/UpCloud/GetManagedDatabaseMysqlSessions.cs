@@ -28,14 +28,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the active sessions for a Managed MySQL Database
         ///     // Create a Managed MySQL resource
-        ///     var exampleManagedDatabaseMysql = new UpCloud.ManagedDatabaseMysql("exampleManagedDatabaseMysql", new()
+        ///     var exampleManagedDatabaseMysql = new UpCloud.ManagedDatabaseMysql("example", new()
         ///     {
+        ///         Name = "mysql-example1",
         ///         Title = "mysql-example1",
         ///         Plan = "1x1xCPU-2GB-25GB",
         ///         Zone = "fi-hel1",
         ///     });
         /// 
-        ///     var exampleManagedDatabaseMysqlSessions = UpCloud.GetManagedDatabaseMysqlSessions.Invoke(new()
+        ///     // Read the active sessions of the newly created service
+        ///     var example = UpCloud.GetManagedDatabaseMysqlSessions.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabaseMysql.Id,
         ///     });
@@ -62,14 +64,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the active sessions for a Managed MySQL Database
         ///     // Create a Managed MySQL resource
-        ///     var exampleManagedDatabaseMysql = new UpCloud.ManagedDatabaseMysql("exampleManagedDatabaseMysql", new()
+        ///     var exampleManagedDatabaseMysql = new UpCloud.ManagedDatabaseMysql("example", new()
         ///     {
+        ///         Name = "mysql-example1",
         ///         Title = "mysql-example1",
         ///         Plan = "1x1xCPU-2GB-25GB",
         ///         Zone = "fi-hel1",
         ///     });
         /// 
-        ///     var exampleManagedDatabaseMysqlSessions = UpCloud.GetManagedDatabaseMysqlSessions.Invoke(new()
+        ///     // Read the active sessions of the newly created service
+        ///     var example = UpCloud.GetManagedDatabaseMysqlSessions.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabaseMysql.Id,
         ///     });
@@ -96,14 +100,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the active sessions for a Managed MySQL Database
         ///     // Create a Managed MySQL resource
-        ///     var exampleManagedDatabaseMysql = new UpCloud.ManagedDatabaseMysql("exampleManagedDatabaseMysql", new()
+        ///     var exampleManagedDatabaseMysql = new UpCloud.ManagedDatabaseMysql("example", new()
         ///     {
+        ///         Name = "mysql-example1",
         ///         Title = "mysql-example1",
         ///         Plan = "1x1xCPU-2GB-25GB",
         ///         Zone = "fi-hel1",
         ///     });
         /// 
-        ///     var exampleManagedDatabaseMysqlSessions = UpCloud.GetManagedDatabaseMysqlSessions.Invoke(new()
+        ///     // Read the active sessions of the newly created service
+        ///     var example = UpCloud.GetManagedDatabaseMysqlSessions.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabaseMysql.Id,
         ///     });

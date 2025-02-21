@@ -24,11 +24,15 @@ namespace UpCloud.Pulumi.UpCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Create router for the network
-    ///     var thisRouter = new UpCloud.Router("thisRouter");
+    ///     var @this = new UpCloud.Router("this", new()
+    ///     {
+    ///         Name = "object-storage-example-router",
+    ///     });
     /// 
     ///     // Create network for the Managed Object Storage
-    ///     var thisNetwork = new UpCloud.Network("thisNetwork", new()
+    ///     var thisNetwork = new UpCloud.Network("this", new()
     ///     {
+    ///         Name = "object-storage-example-net",
     ///         Zone = "fi-hel1",
     ///         IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs
     ///         {
@@ -36,11 +40,12 @@ namespace UpCloud.Pulumi.UpCloud
     ///             Dhcp = true,
     ///             Family = "IPv4",
     ///         },
-    ///         Router = thisRouter.Id,
+    ///         Router = @this.Id,
     ///     });
     /// 
-    ///     var thisManagedObjectStorage = new UpCloud.ManagedObjectStorage("thisManagedObjectStorage", new()
+    ///     var thisManagedObjectStorage = new UpCloud.ManagedObjectStorage("this", new()
     ///     {
+    ///         Name = "example",
     ///         Region = "europe-1",
     ///         ConfiguredStatus = "started",
     ///         Networks = new[]

@@ -16,26 +16,28 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Network peering requires the networks to have routers attached to them.
- * const thisRouter = new upcloud.Router("thisRouter", {});
+ * const _this = new upcloud.Router("this", {name: "network-peering-example-router"});
  * const example = new upcloud.Network("example", {
+ *     name: "network-peering-example-net",
  *     zone: "nl-ams1",
- *     router: upcloud_router.example.id,
+ *     router: exampleUpcloudRouter.id,
  *     ipNetwork: {
  *         address: "10.0.0.0/24",
  *         dhcp: true,
  *         family: "IPv4",
  *     },
  * });
- * let thisNetworkPeering: upcloud.NetworkPeering | undefined;
- * if (1 == true) {
- *     thisNetworkPeering = new upcloud.NetworkPeering("thisNetworkPeering", {
+ * const thisNetworkPeering: upcloud.NetworkPeering[] = [];
+ * for (const range = {value: 0}; range.value < 1; range.value++) {
+ *     thisNetworkPeering.push(new upcloud.NetworkPeering(`this-${range.value}`, {
+ *         name: "network-peering-example-peering",
  *         network: {
  *             uuid: example.id,
  *         },
  *         peerNetwork: {
  *             uuid: "0305723a-e5cb-4ef6-985d-e36ed44d133a",
  *         },
- *     });
+ *     }));
  * }
  * ```
  */

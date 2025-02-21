@@ -32,6 +32,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.upcloud.Router;
+ * import com.pulumi.upcloud.RouterArgs;
  * import com.pulumi.upcloud.Network;
  * import com.pulumi.upcloud.NetworkArgs;
  * import com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;
@@ -52,20 +53,24 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Create router for the network
- *         var thisRouter = new Router("thisRouter");
+ *         var this_ = new Router("this", RouterArgs.builder()
+ *             .name("object-storage-example-router")
+ *             .build());
  * 
  *         // Create network for the Managed Object Storage
  *         var thisNetwork = new Network("thisNetwork", NetworkArgs.builder()
+ *             .name("object-storage-example-net")
  *             .zone("fi-hel1")
  *             .ipNetwork(NetworkIpNetworkArgs.builder()
  *                 .address("172.16.2.0/24")
  *                 .dhcp(true)
  *                 .family("IPv4")
  *                 .build())
- *             .router(thisRouter.id())
+ *             .router(this_.id())
  *             .build());
  * 
  *         var thisManagedObjectStorage = new ManagedObjectStorage("thisManagedObjectStorage", ManagedObjectStorageArgs.builder()
+ *             .name("example")
  *             .region("europe-1")
  *             .configuredStatus("started")
  *             .networks(ManagedObjectStorageNetworkArgs.builder()

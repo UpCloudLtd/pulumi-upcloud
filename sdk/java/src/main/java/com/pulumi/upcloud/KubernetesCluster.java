@@ -36,6 +36,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.upcloud.KubernetesCluster;
  * import com.pulumi.upcloud.KubernetesClusterArgs;
  * import com.pulumi.upcloud.Router;
+ * import com.pulumi.upcloud.RouterArgs;
  * import com.pulumi.upcloud.Gateway;
  * import com.pulumi.upcloud.GatewayArgs;
  * import com.pulumi.upcloud.inputs.GatewayRouterArgs;
@@ -53,7 +54,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Create a network for the Kubernetes cluster
- *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
+ *         var example = new Network("example", NetworkArgs.builder()
+ *             .name("example-network")
  *             .zone("de-fra1")
  *             .ipNetwork(NetworkIpNetworkArgs.builder()
  *                 .address("172.16.1.0/24")
@@ -65,22 +67,27 @@ import javax.annotation.Nullable;
  *         // Create a Kubernetes cluster
  *         var exampleKubernetesCluster = new KubernetesCluster("exampleKubernetesCluster", KubernetesClusterArgs.builder()
  *             .controlPlaneIpFilters("0.0.0.0/0")
- *             .network(exampleNetwork.id())
+ *             .name("exampleapp")
+ *             .network(example.id())
  *             .zone("de-fra1")
  *             .build());
  * 
  *         // Kubernetes cluster with private node groups requires a network that is routed through NAT gateway.
- *         var example2Router = new Router("example2Router");
+ *         var example2 = new Router("example2", RouterArgs.builder()
+ *             .name("example2-router")
+ *             .build());
  * 
  *         var example2Gateway = new Gateway("example2Gateway", GatewayArgs.builder()
+ *             .name("example2-nat-gateway")
  *             .zone("de-fra1")
  *             .features("nat")
  *             .router(GatewayRouterArgs.builder()
- *                 .id(example2Router.id())
+ *                 .id(example2.id())
  *                 .build())
  *             .build());
  * 
  *         var example2Network = new Network("example2Network", NetworkArgs.builder()
+ *             .name("example2-network")
  *             .zone("de-fra1")
  *             .ipNetwork(NetworkIpNetworkArgs.builder()
  *                 .address("10.10.0.0/24")
@@ -88,10 +95,11 @@ import javax.annotation.Nullable;
  *                 .family("IPv4")
  *                 .dhcpDefaultRoute(true)
  *                 .build())
- *             .router(example2Router.id())
+ *             .router(example2.id())
  *             .build());
  * 
  *         var example2KubernetesCluster = new KubernetesCluster("example2KubernetesCluster", KubernetesClusterArgs.builder()
+ *             .name("example2-cluster")
  *             .network(example2Network.id())
  *             .zone("de-fra1")
  *             .plan("production-small")

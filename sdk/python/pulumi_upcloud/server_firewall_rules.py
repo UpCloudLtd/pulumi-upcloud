@@ -135,7 +135,7 @@ class ServerFirewallRules(pulumi.CustomResource):
 
         # The following example defines a server and then links the server to a single firewall rule. 
         # The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.
-        example_server = upcloud.Server("exampleServer",
+        example = upcloud.Server("example",
             firewall=True,
             hostname="terraform.example.tld",
             zone="de-fra1",
@@ -147,8 +147,8 @@ class ServerFirewallRules(pulumi.CustomResource):
             network_interfaces=[{
                 "type": "utility",
             }])
-        example_server_firewall_rules = upcloud.ServerFirewallRules("exampleServerFirewallRules",
-            server_id=example_server.id,
+        example_server_firewall_rules = upcloud.ServerFirewallRules("example",
+            server_id=example.id,
             firewall_rules=[{
                 "action": "accept",
                 "comment": "Allow SSH from this network",
@@ -198,7 +198,7 @@ class ServerFirewallRules(pulumi.CustomResource):
 
         # The following example defines a server and then links the server to a single firewall rule. 
         # The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.
-        example_server = upcloud.Server("exampleServer",
+        example = upcloud.Server("example",
             firewall=True,
             hostname="terraform.example.tld",
             zone="de-fra1",
@@ -210,8 +210,8 @@ class ServerFirewallRules(pulumi.CustomResource):
             network_interfaces=[{
                 "type": "utility",
             }])
-        example_server_firewall_rules = upcloud.ServerFirewallRules("exampleServerFirewallRules",
-            server_id=example_server.id,
+        example_server_firewall_rules = upcloud.ServerFirewallRules("example",
+            server_id=example.id,
             firewall_rules=[{
                 "action": "accept",
                 "comment": "Allow SSH from this network",

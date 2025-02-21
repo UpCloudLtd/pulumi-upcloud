@@ -30,6 +30,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.upcloud.Router;
+ * import com.pulumi.upcloud.RouterArgs;
  * import com.pulumi.upcloud.Network;
  * import com.pulumi.upcloud.NetworkArgs;
  * import com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;
@@ -46,10 +47,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exampleRouter = new Router("exampleRouter");
+ *         var exampleRouter = new Router("exampleRouter", RouterArgs.builder()
+ *             .name("example_router")
+ *             .build());
  * 
  *         // SDN network with a router
  *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
+ *             .name("example_private_net")
  *             .zone("nl-ams1")
  *             .router(exampleRouter.id())
  *             .ipNetwork(NetworkIpNetworkArgs.builder()

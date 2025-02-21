@@ -14,7 +14,8 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Create a network for the Kubernetes cluster
- * const exampleNetwork = new upcloud.Network("exampleNetwork", {
+ * const example = new upcloud.Network("example", {
+ *     name: "example-network",
  *     zone: "de-fra1",
  *     ipNetwork: {
  *         address: "172.16.1.0/24",
@@ -23,21 +24,24 @@ import * as utilities from "./utilities";
  *     },
  * });
  * // Create a Kubernetes cluster
- * const exampleKubernetesCluster = new upcloud.KubernetesCluster("exampleKubernetesCluster", {
+ * const exampleKubernetesCluster = new upcloud.KubernetesCluster("example", {
  *     controlPlaneIpFilters: ["0.0.0.0/0"],
- *     network: exampleNetwork.id,
+ *     name: "exampleapp",
+ *     network: example.id,
  *     zone: "de-fra1",
  * });
  * // Kubernetes cluster with private node groups requires a network that is routed through NAT gateway.
- * const example2Router = new upcloud.Router("example2Router", {});
- * const example2Gateway = new upcloud.Gateway("example2Gateway", {
+ * const example2 = new upcloud.Router("example2", {name: "example2-router"});
+ * const example2Gateway = new upcloud.Gateway("example2", {
+ *     name: "example2-nat-gateway",
  *     zone: "de-fra1",
  *     features: ["nat"],
  *     router: {
- *         id: example2Router.id,
+ *         id: example2.id,
  *     },
  * });
- * const example2Network = new upcloud.Network("example2Network", {
+ * const example2Network = new upcloud.Network("example2", {
+ *     name: "example2-network",
  *     zone: "de-fra1",
  *     ipNetwork: {
  *         address: "10.10.0.0/24",
@@ -45,9 +49,10 @@ import * as utilities from "./utilities";
  *         family: "IPv4",
  *         dhcpDefaultRoute: true,
  *     },
- *     router: example2Router.id,
+ *     router: example2.id,
  * });
- * const example2KubernetesCluster = new upcloud.KubernetesCluster("example2KubernetesCluster", {
+ * const example2KubernetesCluster = new upcloud.KubernetesCluster("example2", {
+ *     name: "example2-cluster",
  *     network: example2Network.id,
  *     zone: "de-fra1",
  *     plan: "production-small",

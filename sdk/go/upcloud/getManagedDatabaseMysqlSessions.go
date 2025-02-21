@@ -29,7 +29,8 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Use data source to gather a list of the active sessions for a Managed MySQL Database
 //			// Create a Managed MySQL resource
-//			exampleManagedDatabaseMysql, err := upcloud.NewManagedDatabaseMysql(ctx, "exampleManagedDatabaseMysql", &upcloud.ManagedDatabaseMysqlArgs{
+//			exampleManagedDatabaseMysql, err := upcloud.NewManagedDatabaseMysql(ctx, "example", &upcloud.ManagedDatabaseMysqlArgs{
+//				Name:  pulumi.String("mysql-example1"),
 //				Title: pulumi.String("mysql-example1"),
 //				Plan:  pulumi.String("1x1xCPU-2GB-25GB"),
 //				Zone:  pulumi.String("fi-hel1"),
@@ -37,6 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Read the active sessions of the newly created service
 //			_ = upcloud.GetManagedDatabaseMysqlSessionsOutput(ctx, upcloud.GetManagedDatabaseMysqlSessionsOutputArgs{
 //				Service: exampleManagedDatabaseMysql.ID(),
 //			}, nil)

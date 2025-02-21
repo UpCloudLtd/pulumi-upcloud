@@ -24,8 +24,9 @@ namespace UpCloud.Pulumi.UpCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Create a network for the Kubernetes cluster
-    ///     var exampleNetwork = new UpCloud.Network("exampleNetwork", new()
+    ///     var example = new UpCloud.Network("example", new()
     ///     {
+    ///         Name = "example-network",
     ///         Zone = "de-fra1",
     ///         IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs
     ///         {
@@ -36,21 +37,23 @@ namespace UpCloud.Pulumi.UpCloud
     ///     });
     /// 
     ///     // Create a Kubernetes cluster
-    ///     var exampleKubernetesCluster = new UpCloud.KubernetesCluster("exampleKubernetesCluster", new()
+    ///     var exampleKubernetesCluster = new UpCloud.KubernetesCluster("example", new()
     ///     {
     ///         ControlPlaneIpFilters = new[]
     ///         {
     ///             "0.0.0.0/0",
     ///         },
-    ///         Network = exampleNetwork.Id,
+    ///         Name = "exampleapp",
+    ///         Network = example.Id,
     ///         Zone = "de-fra1",
     ///     });
     /// 
     ///     // Create a Kubernetes cluster node group
     ///     var @group = new UpCloud.KubernetesNodeGroup("group", new()
     ///     {
-    ///         Cluster = resource.Upcloud_kubernetes_cluster.Example.Id,
+    ///         Cluster = upcloudKubernetesCluster.Example.Id,
     ///         NodeCount = 2,
+    ///         Name = "medium",
     ///         Plan = "2xCPU-4GB",
     ///         Labels = 
     ///         {

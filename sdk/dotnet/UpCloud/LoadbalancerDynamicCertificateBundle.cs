@@ -23,8 +23,9 @@ namespace UpCloud.Pulumi.UpCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var lbCbD1 = new UpCloud.LoadbalancerDynamicCertificateBundle("lbCbD1", new()
+    ///     var lbCbD1 = new UpCloud.LoadbalancerDynamicCertificateBundle("lb_cb_d1", new()
     ///     {
+    ///         Name = "lb-cb-d1-test",
     ///         Hostnames = new[]
     ///         {
     ///             "example.com",

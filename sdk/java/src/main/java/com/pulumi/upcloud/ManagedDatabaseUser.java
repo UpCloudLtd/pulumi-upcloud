@@ -50,6 +50,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new ManagedDatabasePostgresql("example", ManagedDatabasePostgresqlArgs.builder()
+ *             .name("postgres")
  *             .plan("1x1xCPU-2GB-25GB")
  *             .title("postgres")
  *             .zone("fi-hel1")

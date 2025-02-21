@@ -14,12 +14,12 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * const template = new upcloud.StorageTemplate("template", {
+ *     sourceStorage: "e0328f8a-9944-406b-99c3-656dcc03e671",
+ *     title: "custom-storage-template",
  *     labels: {
  *         os: "linux",
  *         usage: "example",
  *     },
- *     sourceStorage: "e0328f8a-9944-406b-99c3-656dcc03e671",
- *     title: "custom-storage-template",
  * });
  * ```
  */

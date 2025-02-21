@@ -146,10 +146,13 @@ class ManagedObjectStorageBucket(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        example_managed_object_storage = upcloud.ManagedObjectStorage("exampleManagedObjectStorage",
+        example = upcloud.ManagedObjectStorage("example",
+            name="bucket-example-objstov2",
             region="europe-1",
             configured_status="started")
-        example_managed_object_storage_bucket = upcloud.ManagedObjectStorageBucket("exampleManagedObjectStorageBucket", service_uuid=example_managed_object_storage.id)
+        example_managed_object_storage_bucket = upcloud.ManagedObjectStorageBucket("example",
+            service_uuid=example.id,
+            name="bucket")
         ```
 
         :param str resource_name: The name of the resource.
@@ -174,10 +177,13 @@ class ManagedObjectStorageBucket(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        example_managed_object_storage = upcloud.ManagedObjectStorage("exampleManagedObjectStorage",
+        example = upcloud.ManagedObjectStorage("example",
+            name="bucket-example-objstov2",
             region="europe-1",
             configured_status="started")
-        example_managed_object_storage_bucket = upcloud.ManagedObjectStorageBucket("exampleManagedObjectStorageBucket", service_uuid=example_managed_object_storage.id)
+        example_managed_object_storage_bucket = upcloud.ManagedObjectStorageBucket("example",
+            service_uuid=example.id,
+            name="bucket")
         ```
 
         :param str resource_name: The name of the resource.

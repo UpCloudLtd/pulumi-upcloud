@@ -1,5 +1,5 @@
 # See default values from https://github.com/pulumi/ci-mgmt/blob/master/provider-ci/internal/pkg/templates/defaults.config.yaml
-
+template: external-bridged-provider
 lint: true
 major-version: 0
 organization: UpCloudLtd
@@ -11,3 +11,8 @@ publish:
   cdn: false
 upstreamProviderOrg: UpCloudLtd
 upstream-provider-repo: terraform-provider-upcloud
+pulumiConvert: 1
+plugins:
+  - name: terraform
+    version: "1.0.23"
+    kind: converter

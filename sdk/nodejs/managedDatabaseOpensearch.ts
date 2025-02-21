@@ -16,21 +16,23 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Minimal config
- * const example1 = new upcloud.ManagedDatabaseOpensearch("example1", {
- *     plan: "1x2xCPU-4GB-80GB-1D",
+ * const example1 = new upcloud.ManagedDatabaseOpensearch("example_1", {
+ *     name: "opensearch-1",
  *     title: "opensearch-1-example-1",
+ *     plan: "1x2xCPU-4GB-80GB-1D",
  *     zone: "fi-hel2",
  * });
  * // Service with custom properties and access control
- * const example2 = new upcloud.ManagedDatabaseOpensearch("example2", {
+ * const example2 = new upcloud.ManagedDatabaseOpensearch("example_2", {
+ *     name: "opensearch-2",
+ *     title: "opensearch-2-example-2",
+ *     plan: "1x2xCPU-4GB-80GB-1D",
+ *     zone: "fi-hel1",
  *     accessControl: true,
  *     extendedAccessControl: true,
- *     plan: "1x2xCPU-4GB-80GB-1D",
  *     properties: {
  *         publicAccess: false,
  *     },
- *     title: "opensearch-2-example-2",
- *     zone: "fi-hel1",
  * });
  * ```
  */

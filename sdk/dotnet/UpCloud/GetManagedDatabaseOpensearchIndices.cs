@@ -28,8 +28,9 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the indices for a Managed OpenSearch Database
         ///     // Create a Managed OpenSearch resource
-        ///     var exampleManagedDatabaseOpensearch = new UpCloud.ManagedDatabaseOpensearch("exampleManagedDatabaseOpensearch", new()
+        ///     var exampleManagedDatabaseOpensearch = new UpCloud.ManagedDatabaseOpensearch("example", new()
         ///     {
+        ///         Name = "opensearch-example",
         ///         Title = "opensearch-example",
         ///         Plan = "1x2xCPU-4GB-80GB-1D",
         ///         Zone = "fi-hel1",
@@ -40,7 +41,8 @@ namespace UpCloud.Pulumi.UpCloud
         ///         },
         ///     });
         /// 
-        ///     var exampleManagedDatabaseOpensearchIndices = UpCloud.GetManagedDatabaseOpensearchIndices.Invoke(new()
+        ///     // Read the available indices of the newly created service
+        ///     var example = UpCloud.GetManagedDatabaseOpensearchIndices.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabaseOpensearch.Id,
         ///     });
@@ -67,8 +69,9 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the indices for a Managed OpenSearch Database
         ///     // Create a Managed OpenSearch resource
-        ///     var exampleManagedDatabaseOpensearch = new UpCloud.ManagedDatabaseOpensearch("exampleManagedDatabaseOpensearch", new()
+        ///     var exampleManagedDatabaseOpensearch = new UpCloud.ManagedDatabaseOpensearch("example", new()
         ///     {
+        ///         Name = "opensearch-example",
         ///         Title = "opensearch-example",
         ///         Plan = "1x2xCPU-4GB-80GB-1D",
         ///         Zone = "fi-hel1",
@@ -79,7 +82,8 @@ namespace UpCloud.Pulumi.UpCloud
         ///         },
         ///     });
         /// 
-        ///     var exampleManagedDatabaseOpensearchIndices = UpCloud.GetManagedDatabaseOpensearchIndices.Invoke(new()
+        ///     // Read the available indices of the newly created service
+        ///     var example = UpCloud.GetManagedDatabaseOpensearchIndices.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabaseOpensearch.Id,
         ///     });
@@ -106,8 +110,9 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the indices for a Managed OpenSearch Database
         ///     // Create a Managed OpenSearch resource
-        ///     var exampleManagedDatabaseOpensearch = new UpCloud.ManagedDatabaseOpensearch("exampleManagedDatabaseOpensearch", new()
+        ///     var exampleManagedDatabaseOpensearch = new UpCloud.ManagedDatabaseOpensearch("example", new()
         ///     {
+        ///         Name = "opensearch-example",
         ///         Title = "opensearch-example",
         ///         Plan = "1x2xCPU-4GB-80GB-1D",
         ///         Zone = "fi-hel1",
@@ -118,7 +123,8 @@ namespace UpCloud.Pulumi.UpCloud
         ///         },
         ///     });
         /// 
-        ///     var exampleManagedDatabaseOpensearchIndices = UpCloud.GetManagedDatabaseOpensearchIndices.Invoke(new()
+        ///     // Read the available indices of the newly created service
+        ///     var example = UpCloud.GetManagedDatabaseOpensearchIndices.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabaseOpensearch.Id,
         ///     });

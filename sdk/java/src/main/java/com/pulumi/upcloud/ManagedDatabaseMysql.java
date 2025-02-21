@@ -52,33 +52,36 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Minimal config
  *         var example1 = new ManagedDatabaseMysql("example1", ManagedDatabaseMysqlArgs.builder()
- *             .plan("1x1xCPU-2GB-25GB")
+ *             .name("mysql-1")
  *             .title("mysql-1-example-1")
+ *             .plan("1x1xCPU-2GB-25GB")
  *             .zone("fi-hel1")
  *             .build());
  * 
  *         // Shutdown instance after creation
  *         var example2 = new ManagedDatabaseMysql("example2", ManagedDatabaseMysqlArgs.builder()
- *             .plan("1x1xCPU-2GB-25GB")
- *             .powered(false)
+ *             .name("mysql-2")
  *             .title("mysql-2-example-2")
+ *             .plan("1x1xCPU-2GB-25GB")
  *             .zone("fi-hel1")
+ *             .powered(false)
  *             .build());
  * 
  *         // Service with custom properties
  *         // Note that this basically sets strict mode off which is not normally recommended
  *         var example3 = new ManagedDatabaseMysql("example3", ManagedDatabaseMysqlArgs.builder()
+ *             .name("mysql-3")
+ *             .title("mysql-3-example-3")
  *             .plan("1x1xCPU-2GB-25GB")
+ *             .zone("fi-hel1")
  *             .properties(ManagedDatabaseMysqlPropertiesArgs.builder()
- *                 .adminPassword("<ADMIN_PASSWORD>")
- *                 .adminUsername("admin")
- *                 .maxAllowedPacket(16000000)
- *                 .sortBufferSize(4000000)
  *                 .sqlMode("NO_ENGINE_SUBSTITUTION")
  *                 .waitTimeout(300)
+ *                 .sortBufferSize(4000000)
+ *                 .maxAllowedPacket(16000000)
+ *                 .adminUsername("admin")
+ *                 .adminPassword("<ADMIN_PASSWORD>")
  *                 .build())
- *             .title("mysql-3-example-3")
- *             .zone("fi-hel1")
  *             .build());
  * 
  *     }

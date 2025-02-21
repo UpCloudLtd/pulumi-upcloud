@@ -28,7 +28,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := upcloud.NewLoadbalancerDynamicCertificateBundle(ctx, "lbCbD1", &upcloud.LoadbalancerDynamicCertificateBundleArgs{
+//			_, err := upcloud.NewLoadbalancerDynamicCertificateBundle(ctx, "lb_cb_d1", &upcloud.LoadbalancerDynamicCertificateBundleArgs{
+//				Name: pulumi.String("lb-cb-d1-test"),
 //				Hostnames: pulumi.StringArray{
 //					pulumi.String("example.com"),
 //					pulumi.String("app.example.net"),

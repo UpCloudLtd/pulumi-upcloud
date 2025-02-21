@@ -30,6 +30,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.upcloud.Router;
+ * import com.pulumi.upcloud.RouterArgs;
  * import com.pulumi.upcloud.Network;
  * import com.pulumi.upcloud.NetworkArgs;
  * import com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;
@@ -52,11 +53,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Network peering requires the networks to have routers attached to them.
- *         var thisRouter = new Router("thisRouter");
+ *         var this_ = new Router("this", RouterArgs.builder()
+ *             .name("network-peering-example-router")
+ *             .build());
  * 
  *         var example = new Network("example", NetworkArgs.builder()
+ *             .name("network-peering-example-net")
  *             .zone("nl-ams1")
- *             .router(upcloud_router.example().id())
+ *             .router(exampleUpcloudRouter.id())
  *             .ipNetwork(NetworkIpNetworkArgs.builder()
  *                 .address("10.0.0.0/24")
  *                 .dhcp(true)
@@ -64,8 +68,9 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         for (var i = 0; i < (1 == true); i++) {
+ *         for (var i = 0; i < 1; i++) {
  *             new NetworkPeering("thisNetworkPeering-" + i, NetworkPeeringArgs.builder()
+ *                 .name("network-peering-example-peering")
  *                 .network(NetworkPeeringNetworkArgs.builder()
  *                     .uuid(example.id())
  *                     .build())

@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Minimal config
  *         var example1 = new ManagedDatabasePostgresql("example1", ManagedDatabasePostgresqlArgs.builder()
+ *             .name("postgres-1")
  *             .plan("1x1xCPU-2GB-25GB")
  *             .title("postgres")
  *             .zone("fi-hel1")
@@ -59,14 +60,15 @@ import javax.annotation.Nullable;
  * 
  *         // Service with custom properties
  *         var example2 = new ManagedDatabasePostgresql("example2", ManagedDatabasePostgresqlArgs.builder()
+ *             .name("postgres-2")
  *             .plan("1x1xCPU-2GB-25GB")
- *             .properties(ManagedDatabasePostgresqlPropertiesArgs.builder()
- *                 .adminPassword("<ADMIN_PASSWORD>")
- *                 .adminUsername("admin")
- *                 .timezone("Europe/Helsinki")
- *                 .build())
  *             .title("postgres")
  *             .zone("fi-hel1")
+ *             .properties(ManagedDatabasePostgresqlPropertiesArgs.builder()
+ *                 .timezone("Europe/Helsinki")
+ *                 .adminUsername("admin")
+ *                 .adminPassword("<ADMIN_PASSWORD>")
+ *                 .build())
  *             .build());
  * 
  *     }

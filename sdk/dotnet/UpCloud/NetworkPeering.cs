@@ -24,12 +24,16 @@ namespace UpCloud.Pulumi.UpCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Network peering requires the networks to have routers attached to them.
-    ///     var thisRouter = new UpCloud.Router("thisRouter");
+    ///     var @this = new UpCloud.Router("this", new()
+    ///     {
+    ///         Name = "network-peering-example-router",
+    ///     });
     /// 
     ///     var example = new UpCloud.Network("example", new()
     ///     {
+    ///         Name = "network-peering-example-net",
     ///         Zone = "nl-ams1",
-    ///         Router = upcloud_router.Example.Id,
+    ///         Router = exampleUpcloudRouter.Id,
     ///         IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs
     ///         {
     ///             Address = "10.0.0.0/24",
@@ -39,11 +43,12 @@ namespace UpCloud.Pulumi.UpCloud
     ///     });
     /// 
     ///     var thisNetworkPeering = new List&lt;UpCloud.NetworkPeering&gt;();
-    ///     for (var rangeIndex = 0; rangeIndex &lt; (1 == true); rangeIndex++)
+    ///     for (var rangeIndex = 0; rangeIndex &lt; 1; rangeIndex++)
     ///     {
     ///         var range = new { Value = rangeIndex };
-    ///         thisNetworkPeering.Add(new UpCloud.NetworkPeering($"thisNetworkPeering-{range.Value}", new()
+    ///         thisNetworkPeering.Add(new UpCloud.NetworkPeering($"this-{range.Value}", new()
     ///         {
+    ///             Name = "network-peering-example-peering",
     ///             Network = new UpCloud.Inputs.NetworkPeeringNetworkArgs
     ///             {
     ///                 Uuid = example.Id,

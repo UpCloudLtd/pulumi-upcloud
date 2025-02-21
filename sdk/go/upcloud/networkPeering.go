@@ -29,13 +29,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Network peering requires the networks to have routers attached to them.
-//			_, err := upcloud.NewRouter(ctx, "thisRouter", nil)
+//			_, err := upcloud.NewRouter(ctx, "this", &upcloud.RouterArgs{
+//				Name: pulumi.String("network-peering-example-router"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			example, err := upcloud.NewNetwork(ctx, "example", &upcloud.NetworkArgs{
+//				Name:   pulumi.String("network-peering-example-net"),
 //				Zone:   pulumi.String("nl-ams1"),
-//				Router: pulumi.Any(upcloud_router.Example.Id),
+//				Router: pulumi.Any(exampleUpcloudRouter.Id),
 //				IpNetwork: &upcloud.NetworkIpNetworkArgs{
 //					Address: pulumi.String("10.0.0.0/24"),
 //					Dhcp:    pulumi.Bool(true),
@@ -46,10 +49,11 @@ import (
 //				return err
 //			}
 //			var thisNetworkPeering []*upcloud.NetworkPeering
-//			for index := 0; index < 1 == true; index++ {
+//			for index := 0; index < 1; index++ {
 //				key0 := index
 //				_ := index
-//				__res, err := upcloud.NewNetworkPeering(ctx, fmt.Sprintf("thisNetworkPeering-%v", key0), &upcloud.NetworkPeeringArgs{
+//				__res, err := upcloud.NewNetworkPeering(ctx, fmt.Sprintf("this-%v", key0), &upcloud.NetworkPeeringArgs{
+//					Name: pulumi.String("network-peering-example-peering"),
 //					Network: &upcloud.NetworkPeeringNetworkArgs{
 //						Uuid: example.ID(),
 //					},

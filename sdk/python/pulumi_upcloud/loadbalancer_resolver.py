@@ -312,7 +312,8 @@ class LoadbalancerResolver(pulumi.CustomResource):
         lb_zone = config.get("lbZone")
         if lb_zone is None:
             lb_zone = "fi-hel2"
-        lb_network = upcloud.Network("lbNetwork",
+        lb_network = upcloud.Network("lb_network",
+            name="lb-test-net",
             zone=lb_zone,
             ip_network={
                 "address": "10.0.0.0/24",
@@ -321,11 +322,13 @@ class LoadbalancerResolver(pulumi.CustomResource):
             })
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
+            name="lb-test",
             plan="development",
             zone=lb_zone,
-            network=resource["upcloud_network"]["lb_network"]["id"])
-        lb_resolver1 = upcloud.LoadbalancerResolver("lbResolver1",
-            loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"],
+            network=upcloud_network["lbNetwork"]["id"])
+        lb_resolver1 = upcloud.LoadbalancerResolver("lb_resolver_1",
+            loadbalancer=upcloud_loadbalancer["lb"]["id"],
+            name="lb-resolver-1-test",
             cache_invalid=10,
             cache_valid=100,
             retries=5,
@@ -365,7 +368,8 @@ class LoadbalancerResolver(pulumi.CustomResource):
         lb_zone = config.get("lbZone")
         if lb_zone is None:
             lb_zone = "fi-hel2"
-        lb_network = upcloud.Network("lbNetwork",
+        lb_network = upcloud.Network("lb_network",
+            name="lb-test-net",
             zone=lb_zone,
             ip_network={
                 "address": "10.0.0.0/24",
@@ -374,11 +378,13 @@ class LoadbalancerResolver(pulumi.CustomResource):
             })
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
+            name="lb-test",
             plan="development",
             zone=lb_zone,
-            network=resource["upcloud_network"]["lb_network"]["id"])
-        lb_resolver1 = upcloud.LoadbalancerResolver("lbResolver1",
-            loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"],
+            network=upcloud_network["lbNetwork"]["id"])
+        lb_resolver1 = upcloud.LoadbalancerResolver("lb_resolver_1",
+            loadbalancer=upcloud_loadbalancer["lb"]["id"],
+            name="lb-resolver-1-test",
             cache_invalid=10,
             cache_valid=100,
             retries=5,

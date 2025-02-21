@@ -245,24 +245,27 @@ class GatewayConnection(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        this_router = upcloud.Router("thisRouter")
-        this_network = upcloud.Network("thisNetwork",
+        this = upcloud.Router("this", name="gateway-example-router")
+        this_network = upcloud.Network("this",
+            name="gateway-example-net",
             zone="pl-waw1",
             ip_network={
                 "address": "172.16.2.0/24",
                 "dhcp": True,
                 "family": "IPv4",
             },
-            router=this_router.id)
-        this_gateway = upcloud.Gateway("thisGateway",
+            router=this.id)
+        this_gateway = upcloud.Gateway("this",
+            name="gateway-example-gw",
             zone="pl-waw1",
             features=["vpn"],
             plan="advanced",
             router={
-                "id": this_router.id,
+                "id": this.id,
             })
-        this_gateway_connection = upcloud.GatewayConnection("thisGatewayConnection",
+        this_gateway_connection = upcloud.GatewayConnection("this",
             gateway=this_gateway.id,
+            name="test-connection",
             type="ipsec",
             local_routes=[{
                 "name": "local-route",
@@ -297,24 +300,27 @@ class GatewayConnection(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        this_router = upcloud.Router("thisRouter")
-        this_network = upcloud.Network("thisNetwork",
+        this = upcloud.Router("this", name="gateway-example-router")
+        this_network = upcloud.Network("this",
+            name="gateway-example-net",
             zone="pl-waw1",
             ip_network={
                 "address": "172.16.2.0/24",
                 "dhcp": True,
                 "family": "IPv4",
             },
-            router=this_router.id)
-        this_gateway = upcloud.Gateway("thisGateway",
+            router=this.id)
+        this_gateway = upcloud.Gateway("this",
+            name="gateway-example-gw",
             zone="pl-waw1",
             features=["vpn"],
             plan="advanced",
             router={
-                "id": this_router.id,
+                "id": this.id,
             })
-        this_gateway_connection = upcloud.GatewayConnection("thisGatewayConnection",
+        this_gateway_connection = upcloud.GatewayConnection("this",
             gateway=this_gateway.id,
+            name="test-connection",
             type="ipsec",
             local_routes=[{
                 "name": "local-route",
