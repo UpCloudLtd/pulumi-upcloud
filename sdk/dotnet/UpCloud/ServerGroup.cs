@@ -25,6 +25,7 @@ namespace UpCloud.Pulumi.UpCloud
     /// {
     ///     var main = new UpCloud.ServerGroup("main", new()
     ///     {
+    ///         Title = "main_group",
     ///         AntiAffinityPolicy = "yes",
     ///         Labels = 
     ///         {
@@ -38,7 +39,6 @@ namespace UpCloud.Pulumi.UpCloud
     ///             "00d56575-3821-3301-9de4-2b2bc7e35pqf",
     ///             "000012dc-fe8c-a3y6-91f9-0db1215c36cf",
     ///         },
-    ///         Title = "main_group",
     ///     });
     /// 
     /// });

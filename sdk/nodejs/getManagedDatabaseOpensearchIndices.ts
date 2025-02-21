@@ -18,7 +18,8 @@ import * as utilities from "./utilities";
  *
  * // Use data source to gather a list of the indices for a Managed OpenSearch Database
  * // Create a Managed OpenSearch resource
- * const exampleManagedDatabaseOpensearch = new upcloud.ManagedDatabaseOpensearch("exampleManagedDatabaseOpensearch", {
+ * const exampleManagedDatabaseOpensearch = new upcloud.ManagedDatabaseOpensearch("example", {
+ *     name: "opensearch-example",
  *     title: "opensearch-example",
  *     plan: "1x2xCPU-4GB-80GB-1D",
  *     zone: "fi-hel1",
@@ -27,7 +28,8 @@ import * as utilities from "./utilities";
  *         publicAccess: false,
  *     },
  * });
- * const exampleManagedDatabaseOpensearchIndices = upcloud.getManagedDatabaseOpensearchIndicesOutput({
+ * // Read the available indices of the newly created service
+ * const example = upcloud.getManagedDatabaseOpensearchIndicesOutput({
  *     service: exampleManagedDatabaseOpensearch.id,
  * });
  * ```
@@ -71,7 +73,8 @@ export interface GetManagedDatabaseOpensearchIndicesResult {
  *
  * // Use data source to gather a list of the indices for a Managed OpenSearch Database
  * // Create a Managed OpenSearch resource
- * const exampleManagedDatabaseOpensearch = new upcloud.ManagedDatabaseOpensearch("exampleManagedDatabaseOpensearch", {
+ * const exampleManagedDatabaseOpensearch = new upcloud.ManagedDatabaseOpensearch("example", {
+ *     name: "opensearch-example",
  *     title: "opensearch-example",
  *     plan: "1x2xCPU-4GB-80GB-1D",
  *     zone: "fi-hel1",
@@ -80,7 +83,8 @@ export interface GetManagedDatabaseOpensearchIndicesResult {
  *         publicAccess: false,
  *     },
  * });
- * const exampleManagedDatabaseOpensearchIndices = upcloud.getManagedDatabaseOpensearchIndicesOutput({
+ * // Read the available indices of the newly created service
+ * const example = upcloud.getManagedDatabaseOpensearchIndicesOutput({
  *     service: exampleManagedDatabaseOpensearch.id,
  * });
  * ```

@@ -29,38 +29,41 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Minimal config
-//			_, err := upcloud.NewManagedDatabaseMysql(ctx, "example1", &upcloud.ManagedDatabaseMysqlArgs{
-//				Plan:  pulumi.String("1x1xCPU-2GB-25GB"),
+//			_, err := upcloud.NewManagedDatabaseMysql(ctx, "example_1", &upcloud.ManagedDatabaseMysqlArgs{
+//				Name:  pulumi.String("mysql-1"),
 //				Title: pulumi.String("mysql-1-example-1"),
+//				Plan:  pulumi.String("1x1xCPU-2GB-25GB"),
 //				Zone:  pulumi.String("fi-hel1"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Shutdown instance after creation
-//			_, err = upcloud.NewManagedDatabaseMysql(ctx, "example2", &upcloud.ManagedDatabaseMysqlArgs{
-//				Plan:    pulumi.String("1x1xCPU-2GB-25GB"),
-//				Powered: pulumi.Bool(false),
+//			_, err = upcloud.NewManagedDatabaseMysql(ctx, "example_2", &upcloud.ManagedDatabaseMysqlArgs{
+//				Name:    pulumi.String("mysql-2"),
 //				Title:   pulumi.String("mysql-2-example-2"),
+//				Plan:    pulumi.String("1x1xCPU-2GB-25GB"),
 //				Zone:    pulumi.String("fi-hel1"),
+//				Powered: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Service with custom properties
 //			// Note that this basically sets strict mode off which is not normally recommended
-//			_, err = upcloud.NewManagedDatabaseMysql(ctx, "example3", &upcloud.ManagedDatabaseMysqlArgs{
-//				Plan: pulumi.String("1x1xCPU-2GB-25GB"),
+//			_, err = upcloud.NewManagedDatabaseMysql(ctx, "example_3", &upcloud.ManagedDatabaseMysqlArgs{
+//				Name:  pulumi.String("mysql-3"),
+//				Title: pulumi.String("mysql-3-example-3"),
+//				Plan:  pulumi.String("1x1xCPU-2GB-25GB"),
+//				Zone:  pulumi.String("fi-hel1"),
 //				Properties: &upcloud.ManagedDatabaseMysqlPropertiesArgs{
-//					AdminPassword:    pulumi.String("<ADMIN_PASSWORD>"),
-//					AdminUsername:    pulumi.String("admin"),
-//					MaxAllowedPacket: pulumi.Int(16000000),
-//					SortBufferSize:   pulumi.Int(4000000),
 //					SqlMode:          pulumi.String("NO_ENGINE_SUBSTITUTION"),
 //					WaitTimeout:      pulumi.Int(300),
+//					SortBufferSize:   pulumi.Int(4000000),
+//					MaxAllowedPacket: pulumi.Int(16000000),
+//					AdminUsername:    pulumi.String("admin"),
+//					AdminPassword:    pulumi.String("<ADMIN_PASSWORD>"),
 //				},
-//				Title: pulumi.String("mysql-3-example-3"),
-//				Zone:  pulumi.String("fi-hel1"),
 //			})
 //			if err != nil {
 //				return err

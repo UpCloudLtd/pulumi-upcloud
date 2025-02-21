@@ -13,26 +13,29 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * const thisRouter = new upcloud.Router("thisRouter", {});
- * const thisNetwork = new upcloud.Network("thisNetwork", {
+ * const _this = new upcloud.Router("this", {name: "gateway-example-router"});
+ * const thisNetwork = new upcloud.Network("this", {
+ *     name: "gateway-example-net",
  *     zone: "pl-waw1",
  *     ipNetwork: {
  *         address: "172.16.2.0/24",
  *         dhcp: true,
  *         family: "IPv4",
  *     },
- *     router: thisRouter.id,
+ *     router: _this.id,
  * });
- * const thisGateway = new upcloud.Gateway("thisGateway", {
+ * const thisGateway = new upcloud.Gateway("this", {
+ *     name: "gateway-example-gw",
  *     zone: "pl-waw1",
  *     features: ["vpn"],
  *     plan: "advanced",
  *     router: {
- *         id: thisRouter.id,
+ *         id: _this.id,
  *     },
  * });
- * const thisGatewayConnection = new upcloud.GatewayConnection("thisGatewayConnection", {
+ * const thisGatewayConnection = new upcloud.GatewayConnection("this", {
  *     gateway: thisGateway.id,
+ *     name: "test-connection",
  *     type: "ipsec",
  *     localRoutes: [{
  *         name: "local-route",

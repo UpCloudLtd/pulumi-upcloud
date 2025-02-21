@@ -14,19 +14,27 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // PostgreSQL managed database with additional logical database: example_db 
- * const exampleManagedDatabasePostgresql = new upcloud.ManagedDatabasePostgresql("exampleManagedDatabasePostgresql", {
+ * const example = new upcloud.ManagedDatabasePostgresql("example", {
+ *     name: "postgres",
  *     plan: "1x1xCPU-2GB-25GB",
  *     title: "postgres",
  *     zone: "fi-hel1",
  * });
- * const exampleDb = new upcloud.ManagedDatabaseLogicalDatabase("exampleDb", {service: exampleManagedDatabasePostgresql.id});
+ * const exampleDb = new upcloud.ManagedDatabaseLogicalDatabase("example_db", {
+ *     service: example.id,
+ *     name: "example_db",
+ * });
  * // MySQL managed database with additional logical database: example2_db 
- * const exampleManagedDatabaseMysql = new upcloud.ManagedDatabaseMysql("exampleManagedDatabaseMysql", {
+ * const exampleManagedDatabaseMysql = new upcloud.ManagedDatabaseMysql("example", {
+ *     name: "mysql",
  *     plan: "1x1xCPU-2GB-25GB",
  *     title: "mysql",
  *     zone: "fi-hel1",
  * });
- * const example2Db = new upcloud.ManagedDatabaseLogicalDatabase("example2Db", {service: exampleManagedDatabaseMysql.id});
+ * const example2Db = new upcloud.ManagedDatabaseLogicalDatabase("example2_db", {
+ *     service: exampleManagedDatabaseMysql.id,
+ *     name: "example2_db",
+ * });
  * ```
  */
 export class ManagedDatabaseLogicalDatabase extends pulumi.CustomResource {

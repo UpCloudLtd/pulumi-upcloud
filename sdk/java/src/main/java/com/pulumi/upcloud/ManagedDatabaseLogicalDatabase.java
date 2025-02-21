@@ -46,18 +46,21 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // PostgreSQL managed database with additional logical database: example_db 
- *         var exampleManagedDatabasePostgresql = new ManagedDatabasePostgresql("exampleManagedDatabasePostgresql", ManagedDatabasePostgresqlArgs.builder()
+ *         var example = new ManagedDatabasePostgresql("example", ManagedDatabasePostgresqlArgs.builder()
+ *             .name("postgres")
  *             .plan("1x1xCPU-2GB-25GB")
  *             .title("postgres")
  *             .zone("fi-hel1")
  *             .build());
  * 
  *         var exampleDb = new ManagedDatabaseLogicalDatabase("exampleDb", ManagedDatabaseLogicalDatabaseArgs.builder()
- *             .service(exampleManagedDatabasePostgresql.id())
+ *             .service(example.id())
+ *             .name("example_db")
  *             .build());
  * 
  *         // MySQL managed database with additional logical database: example2_db 
  *         var exampleManagedDatabaseMysql = new ManagedDatabaseMysql("exampleManagedDatabaseMysql", ManagedDatabaseMysqlArgs.builder()
+ *             .name("mysql")
  *             .plan("1x1xCPU-2GB-25GB")
  *             .title("mysql")
  *             .zone("fi-hel1")
@@ -65,6 +68,7 @@ import javax.annotation.Nullable;
  * 
  *         var example2Db = new ManagedDatabaseLogicalDatabase("example2Db", ManagedDatabaseLogicalDatabaseArgs.builder()
  *             .service(exampleManagedDatabaseMysql.id())
+ *             .name("example2_db")
  *             .build());
  * 
  *     }

@@ -46,13 +46,15 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exampleManagedObjectStorage = new ManagedObjectStorage("exampleManagedObjectStorage", ManagedObjectStorageArgs.builder()
+ *         var example = new ManagedObjectStorage("example", ManagedObjectStorageArgs.builder()
+ *             .name("bucket-example-objstov2")
  *             .region("europe-1")
  *             .configuredStatus("started")
  *             .build());
  * 
  *         var exampleManagedObjectStorageBucket = new ManagedObjectStorageBucket("exampleManagedObjectStorageBucket", ManagedObjectStorageBucketArgs.builder()
- *             .serviceUuid(exampleManagedObjectStorage.id())
+ *             .serviceUuid(example.id())
+ *             .name("bucket")
  *             .build());
  * 
  *     }

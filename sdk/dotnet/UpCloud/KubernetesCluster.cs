@@ -24,8 +24,9 @@ namespace UpCloud.Pulumi.UpCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Create a network for the Kubernetes cluster
-    ///     var exampleNetwork = new UpCloud.Network("exampleNetwork", new()
+    ///     var example = new UpCloud.Network("example", new()
     ///     {
+    ///         Name = "example-network",
     ///         Zone = "de-fra1",
     ///         IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs
     ///         {
@@ -36,21 +37,26 @@ namespace UpCloud.Pulumi.UpCloud
     ///     });
     /// 
     ///     // Create a Kubernetes cluster
-    ///     var exampleKubernetesCluster = new UpCloud.KubernetesCluster("exampleKubernetesCluster", new()
+    ///     var exampleKubernetesCluster = new UpCloud.KubernetesCluster("example", new()
     ///     {
     ///         ControlPlaneIpFilters = new[]
     ///         {
     ///             "0.0.0.0/0",
     ///         },
-    ///         Network = exampleNetwork.Id,
+    ///         Name = "exampleapp",
+    ///         Network = example.Id,
     ///         Zone = "de-fra1",
     ///     });
     /// 
     ///     // Kubernetes cluster with private node groups requires a network that is routed through NAT gateway.
-    ///     var example2Router = new UpCloud.Router("example2Router");
-    /// 
-    ///     var example2Gateway = new UpCloud.Gateway("example2Gateway", new()
+    ///     var example2 = new UpCloud.Router("example2", new()
     ///     {
+    ///         Name = "example2-router",
+    ///     });
+    /// 
+    ///     var example2Gateway = new UpCloud.Gateway("example2", new()
+    ///     {
+    ///         Name = "example2-nat-gateway",
     ///         Zone = "de-fra1",
     ///         Features = new[]
     ///         {
@@ -58,12 +64,13 @@ namespace UpCloud.Pulumi.UpCloud
     ///         },
     ///         Router = new UpCloud.Inputs.GatewayRouterArgs
     ///         {
-    ///             Id = example2Router.Id,
+    ///             Id = example2.Id,
     ///         },
     ///     });
     /// 
-    ///     var example2Network = new UpCloud.Network("example2Network", new()
+    ///     var example2Network = new UpCloud.Network("example2", new()
     ///     {
+    ///         Name = "example2-network",
     ///         Zone = "de-fra1",
     ///         IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs
     ///         {
@@ -72,11 +79,12 @@ namespace UpCloud.Pulumi.UpCloud
     ///             Family = "IPv4",
     ///             DhcpDefaultRoute = true,
     ///         },
-    ///         Router = example2Router.Id,
+    ///         Router = example2.Id,
     ///     });
     /// 
-    ///     var example2KubernetesCluster = new UpCloud.KubernetesCluster("example2KubernetesCluster", new()
+    ///     var example2KubernetesCluster = new UpCloud.KubernetesCluster("example2", new()
     ///     {
+    ///         Name = "example2-cluster",
     ///         Network = example2Network.Id,
     ///         Zone = "de-fra1",
     ///         Plan = "production-small",

@@ -29,7 +29,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Minimal config
-//			_, err := upcloud.NewManagedDatabasePostgresql(ctx, "example1", &upcloud.ManagedDatabasePostgresqlArgs{
+//			_, err := upcloud.NewManagedDatabasePostgresql(ctx, "example_1", &upcloud.ManagedDatabasePostgresqlArgs{
+//				Name:  pulumi.String("postgres-1"),
 //				Plan:  pulumi.String("1x1xCPU-2GB-25GB"),
 //				Title: pulumi.String("postgres"),
 //				Zone:  pulumi.String("fi-hel1"),
@@ -38,15 +39,16 @@ import (
 //				return err
 //			}
 //			// Service with custom properties
-//			_, err = upcloud.NewManagedDatabasePostgresql(ctx, "example2", &upcloud.ManagedDatabasePostgresqlArgs{
-//				Plan: pulumi.String("1x1xCPU-2GB-25GB"),
-//				Properties: &upcloud.ManagedDatabasePostgresqlPropertiesArgs{
-//					AdminPassword: pulumi.String("<ADMIN_PASSWORD>"),
-//					AdminUsername: pulumi.String("admin"),
-//					Timezone:      pulumi.String("Europe/Helsinki"),
-//				},
+//			_, err = upcloud.NewManagedDatabasePostgresql(ctx, "example_2", &upcloud.ManagedDatabasePostgresqlArgs{
+//				Name:  pulumi.String("postgres-2"),
+//				Plan:  pulumi.String("1x1xCPU-2GB-25GB"),
 //				Title: pulumi.String("postgres"),
 //				Zone:  pulumi.String("fi-hel1"),
+//				Properties: &upcloud.ManagedDatabasePostgresqlPropertiesArgs{
+//					Timezone:      pulumi.String("Europe/Helsinki"),
+//					AdminUsername: pulumi.String("admin"),
+//					AdminPassword: pulumi.String("<ADMIN_PASSWORD>"),
+//				},
 //			})
 //			if err != nil {
 //				return err

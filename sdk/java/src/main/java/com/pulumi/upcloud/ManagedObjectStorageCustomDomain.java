@@ -46,6 +46,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var thisManagedObjectStorage = new ManagedObjectStorage("thisManagedObjectStorage", ManagedObjectStorageArgs.builder()
+ *             .name("object-storage-custom-domain-example")
  *             .region("europe-1")
  *             .configuredStatus("started")
  *             .networks(ManagedObjectStorageNetworkArgs.builder()
@@ -55,7 +56,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         final var thisLoadBalancerDnsChallengeDomain = UpcloudFunctions.getLoadBalancerDnsChallengeDomain();
+ *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain();
  * 
  *         // Before creating the custom domain, configure the DNS settings for your custom domain. For example, if your custom domain is objects.example.com, you should configure the following DNS records:
  *         // - "_acme-challenge.objects IN CNAME ${data.upcloud_load_balancer_dns_challenge_domain.this.domain}"

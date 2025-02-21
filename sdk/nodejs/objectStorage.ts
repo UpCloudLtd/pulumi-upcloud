@@ -18,8 +18,13 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Object storage instance called storage-name in the fi-hel2 zone, with 2 buckets called "products" and "images".
- * const myObjectStorage = new upcloud.ObjectStorage("myObjectStorage", {
+ * const myObjectStorage = new upcloud.ObjectStorage("my_object_storage", {
+ *     size: 250,
+ *     name: "storage-name",
+ *     zone: "fi-hel2",
  *     accessKey: "admin",
+ *     secretKey: "changeme",
+ *     description: "catalogue",
  *     buckets: [
  *         {
  *             name: "products",
@@ -28,12 +33,7 @@ import * as utilities from "./utilities";
  *             name: "images",
  *         },
  *     ],
- *     description: "catalogue",
- *     secretKey: "changeme",
- *     size: 250,
- *     zone: "fi-hel2",
  * });
- * // The zone in wgich to create the instance
  * ```
  *
  * ## Import

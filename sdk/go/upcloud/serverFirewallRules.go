@@ -35,7 +35,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// The following example defines a server and then links the server to a single firewall rule.
 //			// The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.
-//			exampleServer, err := upcloud.NewServer(ctx, "exampleServer", &upcloud.ServerArgs{
+//			example, err := upcloud.NewServer(ctx, "example", &upcloud.ServerArgs{
 //				Firewall: pulumi.Bool(true),
 //				Hostname: pulumi.String("terraform.example.tld"),
 //				Zone:     pulumi.String("de-fra1"),
@@ -53,8 +53,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = upcloud.NewServerFirewallRules(ctx, "exampleServerFirewallRules", &upcloud.ServerFirewallRulesArgs{
-//				ServerId: exampleServer.ID(),
+//			_, err = upcloud.NewServerFirewallRules(ctx, "example", &upcloud.ServerFirewallRulesArgs{
+//				ServerId: example.ID(),
 //				FirewallRules: upcloud.ServerFirewallRulesFirewallRuleArray{
 //					&upcloud.ServerFirewallRulesFirewallRuleArgs{
 //						Action:               pulumi.String("accept"),

@@ -29,7 +29,8 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Use data source to gather a list of the indices for a Managed OpenSearch Database
 //			// Create a Managed OpenSearch resource
-//			exampleManagedDatabaseOpensearch, err := upcloud.NewManagedDatabaseOpensearch(ctx, "exampleManagedDatabaseOpensearch", &upcloud.ManagedDatabaseOpensearchArgs{
+//			exampleManagedDatabaseOpensearch, err := upcloud.NewManagedDatabaseOpensearch(ctx, "example", &upcloud.ManagedDatabaseOpensearchArgs{
+//				Name:  pulumi.String("opensearch-example"),
 //				Title: pulumi.String("opensearch-example"),
 //				Plan:  pulumi.String("1x2xCPU-4GB-80GB-1D"),
 //				Zone:  pulumi.String("fi-hel1"),
@@ -41,6 +42,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Read the available indices of the newly created service
 //			_ = upcloud.GetManagedDatabaseOpensearchIndicesOutput(ctx, upcloud.GetManagedDatabaseOpensearchIndicesOutputArgs{
 //				Service: exampleManagedDatabaseOpensearch.ID(),
 //			}, nil)

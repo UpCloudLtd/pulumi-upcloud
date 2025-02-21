@@ -472,7 +472,8 @@ class Loadbalancer(pulumi.CustomResource):
         lb_zone = config.get("lbZone")
         if lb_zone is None:
             lb_zone = "fi-hel2"
-        lb_network = upcloud.Network("lbNetwork",
+        lb_network = upcloud.Network("lb_network",
+            name="lb-test-net",
             zone=lb_zone,
             ip_network={
                 "address": "10.0.0.0/24",
@@ -481,6 +482,7 @@ class Loadbalancer(pulumi.CustomResource):
             })
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
+            name="lb-test",
             plan="development",
             zone=lb_zone,
             networks=[
@@ -488,7 +490,7 @@ class Loadbalancer(pulumi.CustomResource):
                     "name": "Private-Net",
                     "type": "private",
                     "family": "IPv4",
-                    "network": resource["upcloud_network"]["lb_network"]["id"],
+                    "network": upcloud_network["lbNetwork"]["id"],
                 },
                 {
                     "name": "Public-Net",
@@ -533,7 +535,8 @@ class Loadbalancer(pulumi.CustomResource):
         lb_zone = config.get("lbZone")
         if lb_zone is None:
             lb_zone = "fi-hel2"
-        lb_network = upcloud.Network("lbNetwork",
+        lb_network = upcloud.Network("lb_network",
+            name="lb-test-net",
             zone=lb_zone,
             ip_network={
                 "address": "10.0.0.0/24",
@@ -542,6 +545,7 @@ class Loadbalancer(pulumi.CustomResource):
             })
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
+            name="lb-test",
             plan="development",
             zone=lb_zone,
             networks=[
@@ -549,7 +553,7 @@ class Loadbalancer(pulumi.CustomResource):
                     "name": "Private-Net",
                     "type": "private",
                     "family": "IPv4",
-                    "network": resource["upcloud_network"]["lb_network"]["id"],
+                    "network": upcloud_network["lbNetwork"]["id"],
                 },
                 {
                     "name": "Public-Net",

@@ -15,7 +15,8 @@ import * as utilities from "./utilities";
  *
  * const config = new pulumi.Config();
  * const lbZone = config.get("lbZone") || "fi-hel2";
- * const lbNetwork = new upcloud.Network("lbNetwork", {
+ * const lbNetwork = new upcloud.Network("lb_network", {
+ *     name: "lb-test-net",
  *     zone: lbZone,
  *     ipNetwork: {
  *         address: "10.0.0.0/24",
@@ -25,13 +26,18 @@ import * as utilities from "./utilities";
  * });
  * const lb = new upcloud.Loadbalancer("lb", {
  *     configuredStatus: "started",
+ *     name: "lb-test",
  *     plan: "development",
  *     zone: lbZone,
- *     network: resource.upcloud_network.lb_network.id,
+ *     network: upcloudNetwork.lbNetwork.id,
  * });
- * const lbBe1 = new upcloud.LoadbalancerBackend("lbBe1", {loadbalancer: resource.upcloud_loadbalancer.lb.id});
- * const lbBe1Sm1 = new upcloud.LoadbalancerStaticBackendMember("lbBe1Sm1", {
- *     backend: resource.upcloud_loadbalancer_backend.lb_be_1.id,
+ * const lbBe1 = new upcloud.LoadbalancerBackend("lb_be_1", {
+ *     loadbalancer: upcloudLoadbalancer.lb.id,
+ *     name: "lb-be-1-test",
+ * });
+ * const lbBe1Sm1 = new upcloud.LoadbalancerStaticBackendMember("lb_be_1_sm_1", {
+ *     backend: upcloudLoadbalancerBackend.lbBe1.id,
+ *     name: "lb-be-1-sm-1-test",
  *     ip: "10.0.0.10",
  *     port: 8000,
  *     weight: 0,

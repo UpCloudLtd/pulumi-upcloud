@@ -21,7 +21,7 @@ import * as utilities from "./utilities";
  *
  * // The following example defines a server and then links the server to a single firewall rule. 
  * // The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.
- * const exampleServer = new upcloud.Server("exampleServer", {
+ * const example = new upcloud.Server("example", {
  *     firewall: true,
  *     hostname: "terraform.example.tld",
  *     zone: "de-fra1",
@@ -34,8 +34,8 @@ import * as utilities from "./utilities";
  *         type: "utility",
  *     }],
  * });
- * const exampleServerFirewallRules = new upcloud.ServerFirewallRules("exampleServerFirewallRules", {
- *     serverId: exampleServer.id,
+ * const exampleServerFirewallRules = new upcloud.ServerFirewallRules("example", {
+ *     serverId: example.id,
  *     firewallRules: [{
  *         action: "accept",
  *         comment: "Allow SSH from this network",

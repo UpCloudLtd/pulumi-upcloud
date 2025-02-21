@@ -29,22 +29,24 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Minimal config
-//			_, err := upcloud.NewManagedDatabaseValkey(ctx, "example1", &upcloud.ManagedDatabaseValkeyArgs{
-//				Plan:  pulumi.String("1x1xCPU-2GB"),
+//			_, err := upcloud.NewManagedDatabaseValkey(ctx, "example_1", &upcloud.ManagedDatabaseValkeyArgs{
+//				Name:  pulumi.String("valkey-1"),
 //				Title: pulumi.String("valkey-example-1"),
+//				Plan:  pulumi.String("1x1xCPU-2GB"),
 //				Zone:  pulumi.String("fi-hel2"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Service with custom properties
-//			_, err = upcloud.NewManagedDatabaseValkey(ctx, "example2", &upcloud.ManagedDatabaseValkeyArgs{
-//				Plan: pulumi.String("1x1xCPU-2GB"),
+//			_, err = upcloud.NewManagedDatabaseValkey(ctx, "example_2", &upcloud.ManagedDatabaseValkeyArgs{
+//				Name:  pulumi.String("valkey-2"),
+//				Title: pulumi.String("valkey-example-2"),
+//				Plan:  pulumi.String("1x1xCPU-2GB"),
+//				Zone:  pulumi.String("fi-hel1"),
 //				Properties: &upcloud.ManagedDatabaseValkeyPropertiesArgs{
 //					PublicAccess: pulumi.Bool(false),
 //				},
-//				Title: pulumi.String("valkey-example-2"),
-//				Zone:  pulumi.String("fi-hel1"),
 //			})
 //			if err != nil {
 //				return err

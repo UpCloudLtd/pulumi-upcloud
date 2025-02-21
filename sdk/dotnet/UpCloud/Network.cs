@@ -23,11 +23,15 @@ namespace UpCloud.Pulumi.UpCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleRouter = new UpCloud.Router("exampleRouter");
+    ///     var exampleRouter = new UpCloud.Router("example_router", new()
+    ///     {
+    ///         Name = "example_router",
+    ///     });
     /// 
     ///     // SDN network with a router
-    ///     var exampleNetwork = new UpCloud.Network("exampleNetwork", new()
+    ///     var exampleNetwork = new UpCloud.Network("example_network", new()
     ///     {
+    ///         Name = "example_private_net",
     ///         Zone = "nl-ams1",
     ///         Router = exampleRouter.Id,
     ///         IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs

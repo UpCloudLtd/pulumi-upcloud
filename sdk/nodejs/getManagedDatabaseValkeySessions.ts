@@ -18,12 +18,14 @@ import * as utilities from "./utilities";
  *
  * // Use data source to gather a list of the active sessions for a Managed Valkey Database
  * // Create a Managed Valkey resource
- * const exampleManagedDatabaseValkey = new upcloud.ManagedDatabaseValkey("exampleManagedDatabaseValkey", {
+ * const exampleManagedDatabaseValkey = new upcloud.ManagedDatabaseValkey("example", {
+ *     name: "example",
  *     title: "example",
  *     plan: "1x1xCPU-2GB",
  *     zone: "fi-hel2",
  * });
- * const exampleManagedDatabaseValkeySessions = upcloud.getManagedDatabaseValkeySessionsOutput({
+ * // Read the active sessions of the newly created service
+ * const example = upcloud.getManagedDatabaseValkeySessionsOutput({
  *     service: exampleManagedDatabaseValkey.id,
  * });
  * ```
@@ -76,12 +78,14 @@ export interface GetManagedDatabaseValkeySessionsResult {
  *
  * // Use data source to gather a list of the active sessions for a Managed Valkey Database
  * // Create a Managed Valkey resource
- * const exampleManagedDatabaseValkey = new upcloud.ManagedDatabaseValkey("exampleManagedDatabaseValkey", {
+ * const exampleManagedDatabaseValkey = new upcloud.ManagedDatabaseValkey("example", {
+ *     name: "example",
  *     title: "example",
  *     plan: "1x1xCPU-2GB",
  *     zone: "fi-hel2",
  * });
- * const exampleManagedDatabaseValkeySessions = upcloud.getManagedDatabaseValkeySessionsOutput({
+ * // Read the active sessions of the newly created service
+ * const example = upcloud.getManagedDatabaseValkeySessionsOutput({
  *     service: exampleManagedDatabaseValkey.id,
  * });
  * ```

@@ -34,7 +34,8 @@ import (
 //			if param := cfg.Get("lbZone"); param != "" {
 //				lbZone = param
 //			}
-//			_, err := upcloud.NewNetwork(ctx, "lbNetwork", &upcloud.NetworkArgs{
+//			_, err := upcloud.NewNetwork(ctx, "lb_network", &upcloud.NetworkArgs{
+//				Name: pulumi.String("lb-test-net"),
 //				Zone: pulumi.String(lbZone),
 //				IpNetwork: &upcloud.NetworkIpNetworkArgs{
 //					Address: pulumi.String("10.0.0.0/24"),
@@ -47,21 +48,24 @@ import (
 //			}
 //			_, err = upcloud.NewLoadbalancer(ctx, "lb", &upcloud.LoadbalancerArgs{
 //				ConfiguredStatus: pulumi.String("started"),
+//				Name:             pulumi.String("lb-test"),
 //				Plan:             pulumi.String("development"),
 //				Zone:             pulumi.String(lbZone),
-//				Network:          pulumi.Any(resource.Upcloud_network.Lb_network.Id),
+//				Network:          pulumi.Any(upcloudNetwork.LbNetwork.Id),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = upcloud.NewLoadbalancerBackend(ctx, "lbBe1", &upcloud.LoadbalancerBackendArgs{
-//				Loadbalancer: pulumi.Any(resource.Upcloud_loadbalancer.Lb.Id),
+//			_, err = upcloud.NewLoadbalancerBackend(ctx, "lb_be_1", &upcloud.LoadbalancerBackendArgs{
+//				Loadbalancer: pulumi.Any(upcloudLoadbalancer.Lb.Id),
+//				Name:         pulumi.String("lb-be-1-test"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = upcloud.NewLoadbalancerStaticBackendMember(ctx, "lbBe1Sm1", &upcloud.LoadbalancerStaticBackendMemberArgs{
-//				Backend:     pulumi.Any(resource.Upcloud_loadbalancer_backend.Lb_be_1.Id),
+//			_, err = upcloud.NewLoadbalancerStaticBackendMember(ctx, "lb_be_1_sm_1", &upcloud.LoadbalancerStaticBackendMemberArgs{
+//				Backend:     pulumi.Any(upcloudLoadbalancerBackend.LbBe1.Id),
+//				Name:        pulumi.String("lb-be-1-sm-1-test"),
 //				Ip:          pulumi.String("10.0.0.10"),
 //				Port:        pulumi.Int(8000),
 //				Weight:      pulumi.Int(0),

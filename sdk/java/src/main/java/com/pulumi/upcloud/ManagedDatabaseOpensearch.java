@@ -52,21 +52,23 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Minimal config
  *         var example1 = new ManagedDatabaseOpensearch("example1", ManagedDatabaseOpensearchArgs.builder()
- *             .plan("1x2xCPU-4GB-80GB-1D")
+ *             .name("opensearch-1")
  *             .title("opensearch-1-example-1")
+ *             .plan("1x2xCPU-4GB-80GB-1D")
  *             .zone("fi-hel2")
  *             .build());
  * 
  *         // Service with custom properties and access control
  *         var example2 = new ManagedDatabaseOpensearch("example2", ManagedDatabaseOpensearchArgs.builder()
+ *             .name("opensearch-2")
+ *             .title("opensearch-2-example-2")
+ *             .plan("1x2xCPU-4GB-80GB-1D")
+ *             .zone("fi-hel1")
  *             .accessControl(true)
  *             .extendedAccessControl(true)
- *             .plan("1x2xCPU-4GB-80GB-1D")
  *             .properties(ManagedDatabaseOpensearchPropertiesArgs.builder()
  *                 .publicAccess(false)
  *                 .build())
- *             .title("opensearch-2-example-2")
- *             .zone("fi-hel1")
  *             .build());
  * 
  *     }

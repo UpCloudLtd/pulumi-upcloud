@@ -25,8 +25,9 @@ namespace UpCloud.Pulumi.UpCloud
     /// {
     ///     var config = new Config();
     ///     var lbZone = config.Get("lbZone") ?? "fi-hel2";
-    ///     var lbNetwork = new UpCloud.Network("lbNetwork", new()
+    ///     var lbNetwork = new UpCloud.Network("lb_network", new()
     ///     {
+    ///         Name = "lb-test-net",
     ///         Zone = lbZone,
     ///         IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs
     ///         {
@@ -39,14 +40,16 @@ namespace UpCloud.Pulumi.UpCloud
     ///     var lb = new UpCloud.Loadbalancer("lb", new()
     ///     {
     ///         ConfiguredStatus = "started",
+    ///         Name = "lb-test",
     ///         Plan = "development",
     ///         Zone = lbZone,
-    ///         Network = resource.Upcloud_network.Lb_network.Id,
+    ///         Network = upcloudNetwork.LbNetwork.Id,
     ///     });
     /// 
-    ///     var lbDns1 = new UpCloud.LoadbalancerResolver("lbDns1", new()
+    ///     var lbDns1 = new UpCloud.LoadbalancerResolver("lb_dns_1", new()
     ///     {
-    ///         Loadbalancer = resource.Upcloud_loadbalancer.Lb.Id,
+    ///         Loadbalancer = upcloudLoadbalancer.Lb.Id,
+    ///         Name = "lb-resolver-1-test",
     ///         CacheInvalid = 10,
     ///         CacheValid = 100,
     ///         Retries = 5,
@@ -59,15 +62,17 @@ namespace UpCloud.Pulumi.UpCloud
     ///         },
     ///     });
     /// 
-    ///     var lbBe1 = new UpCloud.LoadbalancerBackend("lbBe1", new()
+    ///     var lbBe1 = new UpCloud.LoadbalancerBackend("lb_be_1", new()
     ///     {
-    ///         Loadbalancer = resource.Upcloud_loadbalancer.Lb.Id,
-    ///         ResolverName = resource.Upcloud_loadbalancer_resolver.Lb_dns_1.Name,
+    ///         Loadbalancer = upcloudLoadbalancer.Lb.Id,
+    ///         ResolverName = upcloudLoadbalancerResolver.LbDns1.Name,
+    ///         Name = "lb-be-1-test",
     ///     });
     /// 
-    ///     var lbBe1Dm1 = new UpCloud.LoadbalancerDynamicBackendMember("lbBe1Dm1", new()
+    ///     var lbBe1Dm1 = new UpCloud.LoadbalancerDynamicBackendMember("lb_be_1_dm_1", new()
     ///     {
-    ///         Backend = resource.Upcloud_loadbalancer_backend.Lb_be_1.Id,
+    ///         Backend = upcloudLoadbalancerBackend.LbBe1.Id,
+    ///         Name = "lb-be-1-dm-1-test",
     ///         Weight = 10,
     ///         MaxSessions = 10,
     ///         Enabled = false,

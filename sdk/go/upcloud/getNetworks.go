@@ -12,36 +12,6 @@ import (
 )
 
 // Use this data source to get the available UpCloud networks.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := upcloud.GetNetworks(ctx, &upcloud.GetNetworksArgs{}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = upcloud.GetNetworks(ctx, &upcloud.GetNetworksArgs{
-//				FilterName: pulumi.StringRef("^Public.*"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetNetworks(ctx *pulumi.Context, args *GetNetworksArgs, opts ...pulumi.InvokeOption) (*GetNetworksResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetNetworksResult

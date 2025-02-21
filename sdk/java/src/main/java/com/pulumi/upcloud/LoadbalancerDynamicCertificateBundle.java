@@ -43,6 +43,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var lbCbD1 = new LoadbalancerDynamicCertificateBundle("lbCbD1", LoadbalancerDynamicCertificateBundleArgs.builder()
+ *             .name("lb-cb-d1-test")
  *             .hostnames(            
  *                 "example.com",
  *                 "app.example.net")

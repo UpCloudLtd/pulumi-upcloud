@@ -24,7 +24,7 @@ namespace UpCloud.Pulumi.UpCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Create a detached floating IP address.
-    ///     var myFloatingAddress = new UpCloud.FloatingIpAddress("myFloatingAddress", new()
+    ///     var myFloatingAddress = new UpCloud.FloatingIpAddress("my_floating_address", new()
     ///     {
     ///         Zone = "de-fra1",
     ///     });
@@ -49,7 +49,7 @@ namespace UpCloud.Pulumi.UpCloud
     ///         },
     ///     });
     /// 
-    ///     var myNewFloatingAddress = new UpCloud.FloatingIpAddress("myNewFloatingAddress", new()
+    ///     var myNewFloatingAddress = new UpCloud.FloatingIpAddress("my_new_floating_address", new()
     ///     {
     ///         MacAddress = example.NetworkInterfaces.Apply(networkInterfaces =&gt; networkInterfaces[0]?.MacAddress),
     ///     });

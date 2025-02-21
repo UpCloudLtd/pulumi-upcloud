@@ -590,20 +590,22 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Minimal config
-        example1 = upcloud.ManagedDatabasePostgresql("example1",
+        example1 = upcloud.ManagedDatabasePostgresql("example_1",
+            name="postgres-1",
             plan="1x1xCPU-2GB-25GB",
             title="postgres",
             zone="fi-hel1")
         # Service with custom properties
-        example2 = upcloud.ManagedDatabasePostgresql("example2",
+        example2 = upcloud.ManagedDatabasePostgresql("example_2",
+            name="postgres-2",
             plan="1x1xCPU-2GB-25GB",
-            properties={
-                "admin_password": "<ADMIN_PASSWORD>",
-                "admin_username": "admin",
-                "timezone": "Europe/Helsinki",
-            },
             title="postgres",
-            zone="fi-hel1")
+            zone="fi-hel1",
+            properties={
+                "timezone": "Europe/Helsinki",
+                "admin_username": "admin",
+                "admin_password": "<ADMIN_PASSWORD>",
+            })
         ```
 
         :param str resource_name: The name of the resource.
@@ -637,20 +639,22 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Minimal config
-        example1 = upcloud.ManagedDatabasePostgresql("example1",
+        example1 = upcloud.ManagedDatabasePostgresql("example_1",
+            name="postgres-1",
             plan="1x1xCPU-2GB-25GB",
             title="postgres",
             zone="fi-hel1")
         # Service with custom properties
-        example2 = upcloud.ManagedDatabasePostgresql("example2",
+        example2 = upcloud.ManagedDatabasePostgresql("example_2",
+            name="postgres-2",
             plan="1x1xCPU-2GB-25GB",
-            properties={
-                "admin_password": "<ADMIN_PASSWORD>",
-                "admin_username": "admin",
-                "timezone": "Europe/Helsinki",
-            },
             title="postgres",
-            zone="fi-hel1")
+            zone="fi-hel1",
+            properties={
+                "timezone": "Europe/Helsinki",
+                "admin_username": "admin",
+                "admin_password": "<ADMIN_PASSWORD>",
+            })
         ```
 
         :param str resource_name: The name of the resource.

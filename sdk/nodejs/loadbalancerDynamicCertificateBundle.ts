@@ -13,7 +13,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * const lbCbD1 = new upcloud.LoadbalancerDynamicCertificateBundle("lbCbD1", {
+ * const lbCbD1 = new upcloud.LoadbalancerDynamicCertificateBundle("lb_cb_d1", {
+ *     name: "lb-cb-d1-test",
  *     hostnames: [
  *         "example.com",
  *         "app.example.net",

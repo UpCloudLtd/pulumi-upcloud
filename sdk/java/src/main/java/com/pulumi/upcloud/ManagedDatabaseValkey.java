@@ -52,19 +52,21 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Minimal config
  *         var example1 = new ManagedDatabaseValkey("example1", ManagedDatabaseValkeyArgs.builder()
- *             .plan("1x1xCPU-2GB")
+ *             .name("valkey-1")
  *             .title("valkey-example-1")
+ *             .plan("1x1xCPU-2GB")
  *             .zone("fi-hel2")
  *             .build());
  * 
  *         // Service with custom properties
  *         var example2 = new ManagedDatabaseValkey("example2", ManagedDatabaseValkeyArgs.builder()
+ *             .name("valkey-2")
+ *             .title("valkey-example-2")
  *             .plan("1x1xCPU-2GB")
+ *             .zone("fi-hel1")
  *             .properties(ManagedDatabaseValkeyPropertiesArgs.builder()
  *                 .publicAccess(false)
  *                 .build())
- *             .title("valkey-example-2")
- *             .zone("fi-hel1")
  *             .build());
  * 
  *     }

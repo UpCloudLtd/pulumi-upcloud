@@ -31,7 +31,8 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Use data source to gather a list of the active sessions for a Managed Redis Database
 //			// Create a Managed Redis resource
-//			exampleManagedDatabaseRedis, err := upcloud.NewManagedDatabaseRedis(ctx, "exampleManagedDatabaseRedis", &upcloud.ManagedDatabaseRedisArgs{
+//			exampleManagedDatabaseRedis, err := upcloud.NewManagedDatabaseRedis(ctx, "example", &upcloud.ManagedDatabaseRedisArgs{
+//				Name:  pulumi.String("example"),
 //				Title: pulumi.String("example"),
 //				Plan:  pulumi.String("1x1xCPU-2GB"),
 //				Zone:  pulumi.String("fi-hel2"),
@@ -39,6 +40,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Read the active sessions of the newly created service
 //			_ = upcloud.GetManagedDatabaseRedisSessionsOutput(ctx, upcloud.GetManagedDatabaseRedisSessionsOutputArgs{
 //				Service: exampleManagedDatabaseRedis.ID(),
 //			}, nil)

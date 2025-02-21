@@ -50,7 +50,12 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Object storage instance called storage-name in the fi-hel2 zone, with 2 buckets called "products" and "images".
  *         var myObjectStorage = new ObjectStorage("myObjectStorage", ObjectStorageArgs.builder()
+ *             .size(250)
+ *             .name("storage-name")
+ *             .zone("fi-hel2")
  *             .accessKey("admin")
+ *             .secretKey("changeme")
+ *             .description("catalogue")
  *             .buckets(            
  *                 ObjectStorageBucketArgs.builder()
  *                     .name("products")
@@ -58,13 +63,8 @@ import javax.annotation.Nullable;
  *                 ObjectStorageBucketArgs.builder()
  *                     .name("images")
  *                     .build())
- *             .description("catalogue")
- *             .secretKey("changeme")
- *             .size(250)
- *             .zone("fi-hel2")
  *             .build());
  * 
- *         // The zone in wgich to create the instance
  *     }
  * }
  * }

@@ -574,18 +574,20 @@ class ManagedDatabaseValkey(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Minimal config
-        example1 = upcloud.ManagedDatabaseValkey("example1",
-            plan="1x1xCPU-2GB",
+        example1 = upcloud.ManagedDatabaseValkey("example_1",
+            name="valkey-1",
             title="valkey-example-1",
+            plan="1x1xCPU-2GB",
             zone="fi-hel2")
         # Service with custom properties
-        example2 = upcloud.ManagedDatabaseValkey("example2",
+        example2 = upcloud.ManagedDatabaseValkey("example_2",
+            name="valkey-2",
+            title="valkey-example-2",
             plan="1x1xCPU-2GB",
+            zone="fi-hel1",
             properties={
                 "public_access": False,
-            },
-            title="valkey-example-2",
-            zone="fi-hel1")
+            })
         ```
 
         :param str resource_name: The name of the resource.
@@ -619,18 +621,20 @@ class ManagedDatabaseValkey(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Minimal config
-        example1 = upcloud.ManagedDatabaseValkey("example1",
-            plan="1x1xCPU-2GB",
+        example1 = upcloud.ManagedDatabaseValkey("example_1",
+            name="valkey-1",
             title="valkey-example-1",
+            plan="1x1xCPU-2GB",
             zone="fi-hel2")
         # Service with custom properties
-        example2 = upcloud.ManagedDatabaseValkey("example2",
+        example2 = upcloud.ManagedDatabaseValkey("example_2",
+            name="valkey-2",
+            title="valkey-example-2",
             plan="1x1xCPU-2GB",
+            zone="fi-hel1",
             properties={
                 "public_access": False,
-            },
-            title="valkey-example-2",
-            zone="fi-hel1")
+            })
         ```
 
         :param str resource_name: The name of the resource.

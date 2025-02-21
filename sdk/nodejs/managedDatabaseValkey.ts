@@ -16,19 +16,21 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Minimal config
- * const example1 = new upcloud.ManagedDatabaseValkey("example1", {
- *     plan: "1x1xCPU-2GB",
+ * const example1 = new upcloud.ManagedDatabaseValkey("example_1", {
+ *     name: "valkey-1",
  *     title: "valkey-example-1",
+ *     plan: "1x1xCPU-2GB",
  *     zone: "fi-hel2",
  * });
  * // Service with custom properties
- * const example2 = new upcloud.ManagedDatabaseValkey("example2", {
+ * const example2 = new upcloud.ManagedDatabaseValkey("example_2", {
+ *     name: "valkey-2",
+ *     title: "valkey-example-2",
  *     plan: "1x1xCPU-2GB",
+ *     zone: "fi-hel1",
  *     properties: {
  *         publicAccess: false,
  *     },
- *     title: "valkey-example-2",
- *     zone: "fi-hel1",
  * });
  * ```
  */

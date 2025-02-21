@@ -82,16 +82,6 @@ def get_networks(filter_name: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworksResult:
     """
     Use this data source to get the available UpCloud networks.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_upcloud as upcloud
-
-    upcloud = upcloud.get_networks()
-    upcloud_by_zone = upcloud.get_networks(filter_name="^Public.*")
-    ```
     """
     __args__ = dict()
     __args__['filterName'] = filter_name
@@ -109,16 +99,6 @@ def get_networks_output(filter_name: Optional[pulumi.Input[Optional[str]]] = Non
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNetworksResult]:
     """
     Use this data source to get the available UpCloud networks.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_upcloud as upcloud
-
-    upcloud = upcloud.get_networks()
-    upcloud_by_zone = upcloud.get_networks(filter_name="^Public.*")
-    ```
     """
     __args__ = dict()
     __args__['filterName'] = filter_name

@@ -29,7 +29,7 @@ namespace UpCloud.Pulumi.UpCloud
     /// {
     ///     // The following example defines a server and then links the server to a single firewall rule. 
     ///     // The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.
-    ///     var exampleServer = new UpCloud.Server("exampleServer", new()
+    ///     var example = new UpCloud.Server("example", new()
     ///     {
     ///         Firewall = true,
     ///         Hostname = "terraform.example.tld",
@@ -49,9 +49,9 @@ namespace UpCloud.Pulumi.UpCloud
     ///         },
     ///     });
     /// 
-    ///     var exampleServerFirewallRules = new UpCloud.ServerFirewallRules("exampleServerFirewallRules", new()
+    ///     var exampleServerFirewallRules = new UpCloud.ServerFirewallRules("example", new()
     ///     {
-    ///         ServerId = exampleServer.Id,
+    ///         ServerId = example.Id,
     ///         FirewallRules = new[]
     ///         {
     ///             new UpCloud.Inputs.ServerFirewallRulesFirewallRuleArgs

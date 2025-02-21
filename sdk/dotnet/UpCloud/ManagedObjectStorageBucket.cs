@@ -25,15 +25,17 @@ namespace UpCloud.Pulumi.UpCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleManagedObjectStorage = new UpCloud.ManagedObjectStorage("exampleManagedObjectStorage", new()
+    ///     var example = new UpCloud.ManagedObjectStorage("example", new()
     ///     {
+    ///         Name = "bucket-example-objstov2",
     ///         Region = "europe-1",
     ///         ConfiguredStatus = "started",
     ///     });
     /// 
-    ///     var exampleManagedObjectStorageBucket = new UpCloud.ManagedObjectStorageBucket("exampleManagedObjectStorageBucket", new()
+    ///     var exampleManagedObjectStorageBucket = new UpCloud.ManagedObjectStorageBucket("example", new()
     ///     {
-    ///         ServiceUuid = exampleManagedObjectStorage.Id,
+    ///         ServiceUuid = example.Id,
+    ///         Name = "bucket",
     ///     });
     /// 
     /// });

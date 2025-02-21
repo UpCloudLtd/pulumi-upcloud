@@ -16,32 +16,35 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Minimal config
- * const example1 = new upcloud.ManagedDatabaseMysql("example1", {
- *     plan: "1x1xCPU-2GB-25GB",
+ * const example1 = new upcloud.ManagedDatabaseMysql("example_1", {
+ *     name: "mysql-1",
  *     title: "mysql-1-example-1",
+ *     plan: "1x1xCPU-2GB-25GB",
  *     zone: "fi-hel1",
  * });
  * // Shutdown instance after creation
- * const example2 = new upcloud.ManagedDatabaseMysql("example2", {
- *     plan: "1x1xCPU-2GB-25GB",
- *     powered: false,
+ * const example2 = new upcloud.ManagedDatabaseMysql("example_2", {
+ *     name: "mysql-2",
  *     title: "mysql-2-example-2",
+ *     plan: "1x1xCPU-2GB-25GB",
  *     zone: "fi-hel1",
+ *     powered: false,
  * });
  * // Service with custom properties
  * // Note that this basically sets strict mode off which is not normally recommended
- * const example3 = new upcloud.ManagedDatabaseMysql("example3", {
+ * const example3 = new upcloud.ManagedDatabaseMysql("example_3", {
+ *     name: "mysql-3",
+ *     title: "mysql-3-example-3",
  *     plan: "1x1xCPU-2GB-25GB",
+ *     zone: "fi-hel1",
  *     properties: {
- *         adminPassword: "<ADMIN_PASSWORD>",
- *         adminUsername: "admin",
- *         maxAllowedPacket: 16000000,
- *         sortBufferSize: 4000000,
  *         sqlMode: "NO_ENGINE_SUBSTITUTION",
  *         waitTimeout: 300,
+ *         sortBufferSize: 4000000,
+ *         maxAllowedPacket: 16000000,
+ *         adminUsername: "admin",
+ *         adminPassword: "<ADMIN_PASSWORD>",
  *     },
- *     title: "mysql-3-example-3",
- *     zone: "fi-hel1",
  * });
  * ```
  */

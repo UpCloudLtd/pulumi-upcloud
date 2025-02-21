@@ -29,24 +29,26 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Minimal config
-//			_, err := upcloud.NewManagedDatabaseOpensearch(ctx, "example1", &upcloud.ManagedDatabaseOpensearchArgs{
-//				Plan:  pulumi.String("1x2xCPU-4GB-80GB-1D"),
+//			_, err := upcloud.NewManagedDatabaseOpensearch(ctx, "example_1", &upcloud.ManagedDatabaseOpensearchArgs{
+//				Name:  pulumi.String("opensearch-1"),
 //				Title: pulumi.String("opensearch-1-example-1"),
+//				Plan:  pulumi.String("1x2xCPU-4GB-80GB-1D"),
 //				Zone:  pulumi.String("fi-hel2"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Service with custom properties and access control
-//			_, err = upcloud.NewManagedDatabaseOpensearch(ctx, "example2", &upcloud.ManagedDatabaseOpensearchArgs{
+//			_, err = upcloud.NewManagedDatabaseOpensearch(ctx, "example_2", &upcloud.ManagedDatabaseOpensearchArgs{
+//				Name:                  pulumi.String("opensearch-2"),
+//				Title:                 pulumi.String("opensearch-2-example-2"),
+//				Plan:                  pulumi.String("1x2xCPU-4GB-80GB-1D"),
+//				Zone:                  pulumi.String("fi-hel1"),
 //				AccessControl:         pulumi.Bool(true),
 //				ExtendedAccessControl: pulumi.Bool(true),
-//				Plan:                  pulumi.String("1x2xCPU-4GB-80GB-1D"),
 //				Properties: &upcloud.ManagedDatabaseOpensearchPropertiesArgs{
 //					PublicAccess: pulumi.Bool(false),
 //				},
-//				Title: pulumi.String("opensearch-2-example-2"),
-//				Zone:  pulumi.String("fi-hel1"),
 //			})
 //			if err != nil {
 //				return err

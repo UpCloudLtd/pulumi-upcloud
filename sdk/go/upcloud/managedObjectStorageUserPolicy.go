@@ -28,31 +28,34 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			thisManagedObjectStorage, err := upcloud.NewManagedObjectStorage(ctx, "thisManagedObjectStorage", &upcloud.ManagedObjectStorageArgs{
+//			this, err := upcloud.NewManagedObjectStorage(ctx, "this", &upcloud.ManagedObjectStorageArgs{
+//				Name:             pulumi.String("example"),
 //				Region:           pulumi.String("europe-1"),
 //				ConfiguredStatus: pulumi.String("started"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = upcloud.NewManagedObjectStoragePolicy(ctx, "thisManagedObjectStoragePolicy", &upcloud.ManagedObjectStoragePolicyArgs{
+//			thisManagedObjectStoragePolicy, err := upcloud.NewManagedObjectStoragePolicy(ctx, "this", &upcloud.ManagedObjectStoragePolicyArgs{
+//				Name:        pulumi.String("example"),
 //				Description: pulumi.String("example description"),
 //				Document:    pulumi.String("%7B%22Version%22%3A%20%222012-10-17%22%2C%20%20%22Statement%22%3A%20%5B%7B%22Action%22%3A%20%5B%22iam%3AGetUser%22%5D%2C%20%22Resource%22%3A%20%22%2A%22%2C%20%22Effect%22%3A%20%22Allow%22%2C%20%22Sid%22%3A%20%22editor%22%7D%5D%7D"),
-//				ServiceUuid: thisManagedObjectStorage.ID(),
+//				ServiceUuid: this.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			thisManagedObjectStorageUser, err := upcloud.NewManagedObjectStorageUser(ctx, "thisManagedObjectStorageUser", &upcloud.ManagedObjectStorageUserArgs{
+//			thisManagedObjectStorageUser, err := upcloud.NewManagedObjectStorageUser(ctx, "this", &upcloud.ManagedObjectStorageUserArgs{
 //				Username:    pulumi.String("example"),
-//				ServiceUuid: thisManagedObjectStorage.ID(),
+//				ServiceUuid: this.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = upcloud.NewManagedObjectStorageUserPolicy(ctx, "thisManagedObjectStorageUserPolicy", &upcloud.ManagedObjectStorageUserPolicyArgs{
+//			_, err = upcloud.NewManagedObjectStorageUserPolicy(ctx, "this", &upcloud.ManagedObjectStorageUserPolicyArgs{
 //				Username:    thisManagedObjectStorageUser.Username,
-//				ServiceUuid: thisManagedObjectStorage.ID(),
+//				ServiceUuid: this.ID(),
+//				Name:        thisManagedObjectStoragePolicy.Name,
 //			})
 //			if err != nil {
 //				return err

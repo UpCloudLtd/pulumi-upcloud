@@ -15,11 +15,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * const exampleManagedObjectStorage = new upcloud.ManagedObjectStorage("exampleManagedObjectStorage", {
+ * const example = new upcloud.ManagedObjectStorage("example", {
+ *     name: "bucket-example-objstov2",
  *     region: "europe-1",
  *     configuredStatus: "started",
  * });
- * const exampleManagedObjectStorageBucket = new upcloud.ManagedObjectStorageBucket("exampleManagedObjectStorageBucket", {serviceUuid: exampleManagedObjectStorage.id});
+ * const exampleManagedObjectStorageBucket = new upcloud.ManagedObjectStorageBucket("example", {
+ *     serviceUuid: example.id,
+ *     name: "bucket",
+ * });
  * ```
  */
 export class ManagedObjectStorageBucket extends pulumi.CustomResource {

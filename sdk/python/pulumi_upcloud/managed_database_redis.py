@@ -576,18 +576,20 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Minimal config
-        example1 = upcloud.ManagedDatabaseRedis("example1",
-            plan="1x1xCPU-2GB",
+        example1 = upcloud.ManagedDatabaseRedis("example_1",
+            name="redis-1",
             title="redis-1-example-2",
+            plan="1x1xCPU-2GB",
             zone="fi-hel2")
         # Service with custom properties
-        example2 = upcloud.ManagedDatabaseRedis("example2",
+        example2 = upcloud.ManagedDatabaseRedis("example_2",
+            name="redis-2",
+            title="redis-2-example-2",
             plan="1x1xCPU-2GB",
+            zone="fi-hel1",
             properties={
                 "public_access": False,
-            },
-            title="redis-2-example-2",
-            zone="fi-hel1")
+            })
         ```
 
         :param str resource_name: The name of the resource.
@@ -623,18 +625,20 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Minimal config
-        example1 = upcloud.ManagedDatabaseRedis("example1",
-            plan="1x1xCPU-2GB",
+        example1 = upcloud.ManagedDatabaseRedis("example_1",
+            name="redis-1",
             title="redis-1-example-2",
+            plan="1x1xCPU-2GB",
             zone="fi-hel2")
         # Service with custom properties
-        example2 = upcloud.ManagedDatabaseRedis("example2",
+        example2 = upcloud.ManagedDatabaseRedis("example_2",
+            name="redis-2",
+            title="redis-2-example-2",
             plan="1x1xCPU-2GB",
+            zone="fi-hel1",
             properties={
                 "public_access": False,
-            },
-            title="redis-2-example-2",
-            zone="fi-hel1")
+            })
         ```
 
         :param str resource_name: The name of the resource.
