@@ -50,8 +50,8 @@ jobs:
         shell: bash
       - name: "Set up git identity"
         run: |
-          git config --global user.name 'bot@pulumi.com'
-          git config --global user.email 'bot@pulumi.com'
+          git config --global user.name 'pulumi-bot'
+          git config --global user.email 'pulumi@upcloud.com'
         shell: bash
       - name: Create issues for new upstream version
         if: inputs.version == ''
@@ -74,9 +74,9 @@ jobs:
         uses: pulumi/pulumi-upgrade-provider-action@699de04d401c93c74824805b8d3e2936369f97db # v0.0.14
         with:
           kind: all
-          email: bot@pulumi.com
+          email: pulumi@upcloud.com
           username: pulumi-bot
-          automerge: true
+          automerge: false
           target-version: ${{ steps.target_version.outputs.version }}
           allow-missing-docs: true
       - name: Comment on upgrade issue if automated PR failed
