@@ -3,7 +3,8 @@
     "version": "0.0.0-alpha.0+dev",
     "description": "A Pulumi package for creating and managing UpCloud resources.",
     "keywords": [
-        "UpCloud",
+        "pulumi",
+        "upcloud",
         "category/cloud"
     ],
     "homepage": "https://upcloud.com",

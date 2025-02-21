@@ -3,13 +3,15 @@
     "displayName": "UpCloud",
     "description": "A Pulumi package for creating and managing UpCloud resources.",
     "keywords": [
-        "UpCloud",
+        "pulumi",
+        "upcloud",
         "category/cloud"
     ],
     "homepage": "https://upcloud.com",
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`upcloud` Terraform Provider](https://github.com/UpCloudLtd/terraform-provider-upcloud).",
     "repository": "https://github.com/UpCloudLtd/pulumi-upcloud",
+    "logoUrl": "https://raw.githubusercontent.com/UpCloudLtd/pulumi-upcloud/refs/heads/main/provider/upcloud.png",
     "pluginDownloadURL": "github://api.github.com/UpCloudLtd/pulumi-upcloud",
     "publisher": "UpCloudLtd",
     "meta": {

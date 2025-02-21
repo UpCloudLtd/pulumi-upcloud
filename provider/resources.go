@@ -70,12 +70,7 @@ func Provider() tfbridge.ProviderInfo {
 		Version:     version.Version,
 		DisplayName: "UpCloud",
 		Publisher:   "UpCloudLtd",
-		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
-		// if this package is published there.
-		//
-		// You may host a logo on a domain you control or add an SVG logo for your package
-		// in your repository and use the raw content URL for that file as your logo URL.
-		LogoURL: "",
+		LogoURL:     "https://raw.githubusercontent.com/UpCloudLtd/pulumi-upcloud/refs/heads/main/provider/upcloud.png",
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/download/v${VERSION}/
@@ -83,16 +78,13 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL: "https://github.com/UpCloudLtd/pulumi-upcloud/releases/download/v${VERSION}/",
 		PluginDownloadURL: "github://api.github.com/UpCloudLtd/pulumi-upcloud",
 		Description:       "A Pulumi package for creating and managing UpCloud resources.",
-		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
-		// For all available categories, see `Keywords` in
-		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
-		Keywords:     []string{"UpCloud", "category/cloud"},
-		License:      "Apache-2.0",
-		Homepage:     "https://upcloud.com",
-		Repository:   "https://github.com/UpCloudLtd/pulumi-upcloud",
-		GitHubOrg:    "UpCloudLtd",
-		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
-		Config:       map[string]*tfbridge.SchemaInfo{
+		Keywords:          []string{"pulumi", "upcloud", "category/cloud"},
+		License:           "Apache-2.0",
+		Homepage:          "https://upcloud.com",
+		Repository:        "https://github.com/UpCloudLtd/pulumi-upcloud",
+		GitHubOrg:         "UpCloudLtd",
+		MetadataInfo:      tfbridge.NewProviderMetadata(metadata),
+		Config:            map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			// "region": {
