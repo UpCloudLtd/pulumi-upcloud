@@ -11,12 +11,13 @@ jobs:
         secrets: inherit
         with:
             default_branch: ${{ github.event.repository.default_branch }}
-            is_pr: ${{ github.event_name == 'pull_request' }}
+            is_pr: ${{ github.event_name == 'push' }}
             is_automated: ${{ github.actor == 'dependabot[bot]' }}
 
     test_build_sdk:
         name: build_sdk
         uses: ./.github/workflows/build_sdk.yml 
+        needs: prerequisites
         secrets: inherit 
         with:
             version: "0.0.6" 
