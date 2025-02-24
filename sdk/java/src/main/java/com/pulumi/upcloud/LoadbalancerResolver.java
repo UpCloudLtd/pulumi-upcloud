@@ -51,6 +51,7 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         final var lbZone = config.get("lbZone").orElse("fi-hel2");
  *         var lbNetwork = new Network("lbNetwork", NetworkArgs.builder()
+ *             .name("lb-test-net")
  *             .zone(lbZone)
  *             .ipNetwork(NetworkIpNetworkArgs.builder()
  *                 .address("10.0.0.0/24")
@@ -61,13 +62,15 @@ import javax.annotation.Nullable;
  * 
  *         var lb = new Loadbalancer("lb", LoadbalancerArgs.builder()
  *             .configuredStatus("started")
+ *             .name("lb-test")
  *             .plan("development")
  *             .zone(lbZone)
- *             .network(resource.upcloud_network().lb_network().id())
+ *             .network(upcloudNetwork.lbNetwork().id())
  *             .build());
  * 
  *         var lbResolver1 = new LoadbalancerResolver("lbResolver1", LoadbalancerResolverArgs.builder()
- *             .loadbalancer(resource.upcloud_loadbalancer().lb().id())
+ *             .loadbalancer(upcloudLoadbalancer.lb().id())
+ *             .name("lb-resolver-1-test")
  *             .cacheInvalid(10)
  *             .cacheValid(100)
  *             .retries(5)

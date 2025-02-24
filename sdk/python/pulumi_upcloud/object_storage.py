@@ -354,8 +354,13 @@ class ObjectStorage(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Object storage instance called storage-name in the fi-hel2 zone, with 2 buckets called "products" and "images".
-        my_object_storage = upcloud.ObjectStorage("myObjectStorage",
+        my_object_storage = upcloud.ObjectStorage("my_object_storage",
+            size=250,
+            name="storage-name",
+            zone="fi-hel2",
             access_key="admin",
+            secret_key="changeme",
+            description="catalogue",
             buckets=[
                 {
                     "name": "products",
@@ -363,12 +368,7 @@ class ObjectStorage(pulumi.CustomResource):
                 {
                     "name": "images",
                 },
-            ],
-            description="catalogue",
-            secret_key="changeme",
-            size=250,
-            zone="fi-hel2")
-        # The zone in wgich to create the instance
+            ])
         ```
 
         ## Import
@@ -425,8 +425,13 @@ class ObjectStorage(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         # Object storage instance called storage-name in the fi-hel2 zone, with 2 buckets called "products" and "images".
-        my_object_storage = upcloud.ObjectStorage("myObjectStorage",
+        my_object_storage = upcloud.ObjectStorage("my_object_storage",
+            size=250,
+            name="storage-name",
+            zone="fi-hel2",
             access_key="admin",
+            secret_key="changeme",
+            description="catalogue",
             buckets=[
                 {
                     "name": "products",
@@ -434,12 +439,7 @@ class ObjectStorage(pulumi.CustomResource):
                 {
                     "name": "images",
                 },
-            ],
-            description="catalogue",
-            secret_key="changeme",
-            size=250,
-            zone="fi-hel2")
-        # The zone in wgich to create the instance
+            ])
         ```
 
         ## Import

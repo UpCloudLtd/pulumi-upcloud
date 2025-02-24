@@ -208,7 +208,8 @@ class LoadbalancerBackend(pulumi.CustomResource):
         lb_zone = config.get("lbZone")
         if lb_zone is None:
             lb_zone = "fi-hel2"
-        lb_network = upcloud.Network("lbNetwork",
+        lb_network = upcloud.Network("lb_network",
+            name="lb-test-net",
             zone=lb_zone,
             ip_network={
                 "address": "10.0.0.0/24",
@@ -217,10 +218,13 @@ class LoadbalancerBackend(pulumi.CustomResource):
             })
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
+            name="lb-test",
             plan="development",
             zone=lb_zone,
-            network=resource["upcloud_network"]["lb_network"]["id"])
-        lb_be1 = upcloud.LoadbalancerBackend("lbBe1", loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"])
+            network=upcloud_network["lbNetwork"]["id"])
+        lb_be1 = upcloud.LoadbalancerBackend("lb_be_1",
+            loadbalancer=upcloud_loadbalancer["lb"]["id"],
+            name="lb-be-1-test")
         ```
 
         :param str resource_name: The name of the resource.
@@ -248,7 +252,8 @@ class LoadbalancerBackend(pulumi.CustomResource):
         lb_zone = config.get("lbZone")
         if lb_zone is None:
             lb_zone = "fi-hel2"
-        lb_network = upcloud.Network("lbNetwork",
+        lb_network = upcloud.Network("lb_network",
+            name="lb-test-net",
             zone=lb_zone,
             ip_network={
                 "address": "10.0.0.0/24",
@@ -257,10 +262,13 @@ class LoadbalancerBackend(pulumi.CustomResource):
             })
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
+            name="lb-test",
             plan="development",
             zone=lb_zone,
-            network=resource["upcloud_network"]["lb_network"]["id"])
-        lb_be1 = upcloud.LoadbalancerBackend("lbBe1", loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"])
+            network=upcloud_network["lbNetwork"]["id"])
+        lb_be1 = upcloud.LoadbalancerBackend("lb_be_1",
+            loadbalancer=upcloud_loadbalancer["lb"]["id"],
+            name="lb-be-1-test")
         ```
 
         :param str resource_name: The name of the resource.

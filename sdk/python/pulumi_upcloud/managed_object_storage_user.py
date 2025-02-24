@@ -147,12 +147,13 @@ class ManagedObjectStorageUser(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        this_managed_object_storage = upcloud.ManagedObjectStorage("thisManagedObjectStorage",
+        this = upcloud.ManagedObjectStorage("this",
+            name="example",
             region="europe-1",
             configured_status="started")
-        this_managed_object_storage_user = upcloud.ManagedObjectStorageUser("thisManagedObjectStorageUser",
+        this_managed_object_storage_user = upcloud.ManagedObjectStorageUser("this",
             username="example",
-            service_uuid=this_managed_object_storage.id)
+            service_uuid=this.id)
         ```
 
         :param str resource_name: The name of the resource.
@@ -176,12 +177,13 @@ class ManagedObjectStorageUser(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        this_managed_object_storage = upcloud.ManagedObjectStorage("thisManagedObjectStorage",
+        this = upcloud.ManagedObjectStorage("this",
+            name="example",
             region="europe-1",
             configured_status="started")
-        this_managed_object_storage_user = upcloud.ManagedObjectStorageUser("thisManagedObjectStorageUser",
+        this_managed_object_storage_user = upcloud.ManagedObjectStorageUser("this",
             username="example",
-            service_uuid=this_managed_object_storage.id)
+            service_uuid=this.id)
         ```
 
         :param str resource_name: The name of the resource.

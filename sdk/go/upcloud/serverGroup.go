@@ -29,6 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := upcloud.NewServerGroup(ctx, "main", &upcloud.ServerGroupArgs{
+//				Title:              pulumi.String("main_group"),
 //				AntiAffinityPolicy: pulumi.String("yes"),
 //				Labels: pulumi.StringMap{
 //					"key1": pulumi.String("val1"),
@@ -40,7 +41,6 @@ import (
 //					pulumi.String("00d56575-3821-3301-9de4-2b2bc7e35pqf"),
 //					pulumi.String("000012dc-fe8c-a3y6-91f9-0db1215c36cf"),
 //				},
-//				Title: pulumi.String("main_group"),
 //			})
 //			if err != nil {
 //				return err

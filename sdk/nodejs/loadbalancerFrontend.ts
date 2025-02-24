@@ -17,7 +17,8 @@ import * as utilities from "./utilities";
  *
  * const config = new pulumi.Config();
  * const lbZone = config.get("lbZone") || "fi-hel2";
- * const lbNetwork = new upcloud.Network("lbNetwork", {
+ * const lbNetwork = new upcloud.Network("lb_network", {
+ *     name: "lb-test-net",
  *     zone: lbZone,
  *     ipNetwork: {
  *         address: "10.0.0.0/24",
@@ -25,17 +26,19 @@ import * as utilities from "./utilities";
  *         family: "IPv4",
  *     },
  * });
- * const lbFe1 = new upcloud.LoadbalancerFrontend("lbFe1", {
- *     loadbalancer: resource.upcloud_loadbalancer.lb.id,
+ * const lbFe1 = new upcloud.LoadbalancerFrontend("lb_fe_1", {
+ *     loadbalancer: upcloudLoadbalancer.lb.id,
+ *     name: "lb-fe-1-test",
  *     mode: "http",
  *     port: 8080,
- *     defaultBackendName: resource.upcloud_loadbalancer_backend.lb_be_1.name,
+ *     defaultBackendName: upcloudLoadbalancerBackend.lbBe1.name,
  *     networks: [{
- *         name: resource.upcloud_loadbalancer.lb.networks[1].name,
+ *         name: upcloudLoadbalancer.lb.networks[1].name,
  *     }],
  * });
  * const lb = new upcloud.Loadbalancer("lb", {
  *     configuredStatus: "started",
+ *     name: "lb-test",
  *     plan: "development",
  *     zone: lbZone,
  *     networks: [
@@ -43,7 +46,7 @@ import * as utilities from "./utilities";
  *             name: "Private-Net",
  *             type: "private",
  *             family: "IPv4",
- *             network: resource.upcloud_network.lb_network.id,
+ *             network: upcloudNetwork.lbNetwork.id,
  *         },
  *         {
  *             name: "Public-Net",
@@ -52,7 +55,10 @@ import * as utilities from "./utilities";
  *         },
  *     ],
  * });
- * const lbBe1 = new upcloud.LoadbalancerBackend("lbBe1", {loadbalancer: resource.upcloud_loadbalancer.lb.id});
+ * const lbBe1 = new upcloud.LoadbalancerBackend("lb_be_1", {
+ *     loadbalancer: upcloudLoadbalancer.lb.id,
+ *     name: "lb-be-1-test",
+ * });
  * ```
  */
 export class LoadbalancerFrontend extends pulumi.CustomResource {

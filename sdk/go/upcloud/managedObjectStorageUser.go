@@ -28,16 +28,17 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			thisManagedObjectStorage, err := upcloud.NewManagedObjectStorage(ctx, "thisManagedObjectStorage", &upcloud.ManagedObjectStorageArgs{
+//			this, err := upcloud.NewManagedObjectStorage(ctx, "this", &upcloud.ManagedObjectStorageArgs{
+//				Name:             pulumi.String("example"),
 //				Region:           pulumi.String("europe-1"),
 //				ConfiguredStatus: pulumi.String("started"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = upcloud.NewManagedObjectStorageUser(ctx, "thisManagedObjectStorageUser", &upcloud.ManagedObjectStorageUserArgs{
+//			_, err = upcloud.NewManagedObjectStorageUser(ctx, "this", &upcloud.ManagedObjectStorageUserArgs{
 //				Username:    pulumi.String("example"),
-//				ServiceUuid: thisManagedObjectStorage.ID(),
+//				ServiceUuid: this.ID(),
 //			})
 //			if err != nil {
 //				return err

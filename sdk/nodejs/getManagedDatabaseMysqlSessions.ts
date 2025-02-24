@@ -18,12 +18,14 @@ import * as utilities from "./utilities";
  *
  * // Use data source to gather a list of the active sessions for a Managed MySQL Database
  * // Create a Managed MySQL resource
- * const exampleManagedDatabaseMysql = new upcloud.ManagedDatabaseMysql("exampleManagedDatabaseMysql", {
+ * const exampleManagedDatabaseMysql = new upcloud.ManagedDatabaseMysql("example", {
+ *     name: "mysql-example1",
  *     title: "mysql-example1",
  *     plan: "1x1xCPU-2GB-25GB",
  *     zone: "fi-hel1",
  * });
- * const exampleManagedDatabaseMysqlSessions = upcloud.getManagedDatabaseMysqlSessionsOutput({
+ * // Read the active sessions of the newly created service
+ * const example = upcloud.getManagedDatabaseMysqlSessionsOutput({
  *     service: exampleManagedDatabaseMysql.id,
  * });
  * ```
@@ -76,12 +78,14 @@ export interface GetManagedDatabaseMysqlSessionsResult {
  *
  * // Use data source to gather a list of the active sessions for a Managed MySQL Database
  * // Create a Managed MySQL resource
- * const exampleManagedDatabaseMysql = new upcloud.ManagedDatabaseMysql("exampleManagedDatabaseMysql", {
+ * const exampleManagedDatabaseMysql = new upcloud.ManagedDatabaseMysql("example", {
+ *     name: "mysql-example1",
  *     title: "mysql-example1",
  *     plan: "1x1xCPU-2GB-25GB",
  *     zone: "fi-hel1",
  * });
- * const exampleManagedDatabaseMysqlSessions = upcloud.getManagedDatabaseMysqlSessionsOutput({
+ * // Read the active sessions of the newly created service
+ * const example = upcloud.getManagedDatabaseMysqlSessionsOutput({
  *     service: exampleManagedDatabaseMysql.id,
  * });
  * ```

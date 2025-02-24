@@ -24,8 +24,9 @@ namespace UpCloud.Pulumi.UpCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var thisManagedObjectStorage = new UpCloud.ManagedObjectStorage("thisManagedObjectStorage", new()
+    ///     var thisManagedObjectStorage = new UpCloud.ManagedObjectStorage("this", new()
     ///     {
+    ///         Name = "object-storage-custom-domain-example",
     ///         Region = "europe-1",
     ///         ConfiguredStatus = "started",
     ///         Networks = new[]
@@ -39,13 +40,13 @@ namespace UpCloud.Pulumi.UpCloud
     ///         },
     ///     });
     /// 
-    ///     var thisLoadBalancerDnsChallengeDomain = UpCloud.GetLoadBalancerDnsChallengeDomain.Invoke();
+    ///     var @this = UpCloud.GetLoadBalancerDnsChallengeDomain.Invoke();
     /// 
     ///     // Before creating the custom domain, configure the DNS settings for your custom domain. For example, if your custom domain is objects.example.com, you should configure the following DNS records:
     ///     // - "_acme-challenge.objects IN CNAME ${data.upcloud_load_balancer_dns_challenge_domain.this.domain}"
     ///     // - "objects IN CNAME ${[for i in upcloud_managed_object_storage.this.endpoint: i.domain_name if i.type == "public"][0]}"
     ///     // - "*.objects IN CNAME ${[for i in upcloud_managed_object_storage.this.endpoint: i.domain_name if i.type == "public"][0]}"
-    ///     var thisManagedObjectStorageCustomDomain = new UpCloud.ManagedObjectStorageCustomDomain("thisManagedObjectStorageCustomDomain", new()
+    ///     var thisManagedObjectStorageCustomDomain = new UpCloud.ManagedObjectStorageCustomDomain("this", new()
     ///     {
     ///         ServiceUuid = thisManagedObjectStorage.Id,
     ///         DomainName = "objects.example.com",

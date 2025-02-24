@@ -113,11 +113,13 @@ def get_managed_database_postgresql_sessions(limit: Optional[int] = None,
 
     # Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
     # Create a Managed PostgreSQL resource
-    example_managed_database_postgresql = upcloud.ManagedDatabasePostgresql("exampleManagedDatabasePostgresql",
+    example_managed_database_postgresql = upcloud.ManagedDatabasePostgresql("example",
+        name="mysql-example1",
         title="mysql-example1",
         plan="1x1xCPU-2GB-25GB",
         zone="fi-hel1")
-    example_managed_database_postgresql_sessions = upcloud.get_managed_database_postgresql_sessions_output(service=example_managed_database_postgresql.id)
+    # Read the active sessions of the newly created service
+    example = upcloud.get_managed_database_postgresql_sessions_output(service=example_managed_database_postgresql.id)
     ```
     """
     __args__ = dict()
@@ -153,11 +155,13 @@ def get_managed_database_postgresql_sessions_output(limit: Optional[pulumi.Input
 
     # Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
     # Create a Managed PostgreSQL resource
-    example_managed_database_postgresql = upcloud.ManagedDatabasePostgresql("exampleManagedDatabasePostgresql",
+    example_managed_database_postgresql = upcloud.ManagedDatabasePostgresql("example",
+        name="mysql-example1",
         title="mysql-example1",
         plan="1x1xCPU-2GB-25GB",
         zone="fi-hel1")
-    example_managed_database_postgresql_sessions = upcloud.get_managed_database_postgresql_sessions_output(service=example_managed_database_postgresql.id)
+    # Read the active sessions of the newly created service
+    example = upcloud.get_managed_database_postgresql_sessions_output(service=example_managed_database_postgresql.id)
     ```
     """
     __args__ = dict()

@@ -28,14 +28,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
         ///     // Create a Managed PostgreSQL resource
-        ///     var exampleManagedDatabasePostgresql = new UpCloud.ManagedDatabasePostgresql("exampleManagedDatabasePostgresql", new()
+        ///     var exampleManagedDatabasePostgresql = new UpCloud.ManagedDatabasePostgresql("example", new()
         ///     {
+        ///         Name = "mysql-example1",
         ///         Title = "mysql-example1",
         ///         Plan = "1x1xCPU-2GB-25GB",
         ///         Zone = "fi-hel1",
         ///     });
         /// 
-        ///     var exampleManagedDatabasePostgresqlSessions = UpCloud.GetManagedDatabasePostgresqlSessions.Invoke(new()
+        ///     // Read the active sessions of the newly created service
+        ///     var example = UpCloud.GetManagedDatabasePostgresqlSessions.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabasePostgresql.Id,
         ///     });
@@ -62,14 +64,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
         ///     // Create a Managed PostgreSQL resource
-        ///     var exampleManagedDatabasePostgresql = new UpCloud.ManagedDatabasePostgresql("exampleManagedDatabasePostgresql", new()
+        ///     var exampleManagedDatabasePostgresql = new UpCloud.ManagedDatabasePostgresql("example", new()
         ///     {
+        ///         Name = "mysql-example1",
         ///         Title = "mysql-example1",
         ///         Plan = "1x1xCPU-2GB-25GB",
         ///         Zone = "fi-hel1",
         ///     });
         /// 
-        ///     var exampleManagedDatabasePostgresqlSessions = UpCloud.GetManagedDatabasePostgresqlSessions.Invoke(new()
+        ///     // Read the active sessions of the newly created service
+        ///     var example = UpCloud.GetManagedDatabasePostgresqlSessions.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabasePostgresql.Id,
         ///     });
@@ -96,14 +100,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
         ///     // Create a Managed PostgreSQL resource
-        ///     var exampleManagedDatabasePostgresql = new UpCloud.ManagedDatabasePostgresql("exampleManagedDatabasePostgresql", new()
+        ///     var exampleManagedDatabasePostgresql = new UpCloud.ManagedDatabasePostgresql("example", new()
         ///     {
+        ///         Name = "mysql-example1",
         ///         Title = "mysql-example1",
         ///         Plan = "1x1xCPU-2GB-25GB",
         ///         Zone = "fi-hel1",
         ///     });
         /// 
-        ///     var exampleManagedDatabasePostgresqlSessions = UpCloud.GetManagedDatabasePostgresqlSessions.Invoke(new()
+        ///     // Read the active sessions of the newly created service
+        ///     var example = UpCloud.GetManagedDatabasePostgresqlSessions.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabasePostgresql.Id,
         ///     });

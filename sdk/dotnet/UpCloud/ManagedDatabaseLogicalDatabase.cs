@@ -24,29 +24,33 @@ namespace UpCloud.Pulumi.UpCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // PostgreSQL managed database with additional logical database: example_db 
-    ///     var exampleManagedDatabasePostgresql = new UpCloud.ManagedDatabasePostgresql("exampleManagedDatabasePostgresql", new()
+    ///     var example = new UpCloud.ManagedDatabasePostgresql("example", new()
     ///     {
+    ///         Name = "postgres",
     ///         Plan = "1x1xCPU-2GB-25GB",
     ///         Title = "postgres",
     ///         Zone = "fi-hel1",
     ///     });
     /// 
-    ///     var exampleDb = new UpCloud.ManagedDatabaseLogicalDatabase("exampleDb", new()
+    ///     var exampleDb = new UpCloud.ManagedDatabaseLogicalDatabase("example_db", new()
     ///     {
-    ///         Service = exampleManagedDatabasePostgresql.Id,
+    ///         Service = example.Id,
+    ///         Name = "example_db",
     ///     });
     /// 
     ///     // MySQL managed database with additional logical database: example2_db 
-    ///     var exampleManagedDatabaseMysql = new UpCloud.ManagedDatabaseMysql("exampleManagedDatabaseMysql", new()
+    ///     var exampleManagedDatabaseMysql = new UpCloud.ManagedDatabaseMysql("example", new()
     ///     {
+    ///         Name = "mysql",
     ///         Plan = "1x1xCPU-2GB-25GB",
     ///         Title = "mysql",
     ///         Zone = "fi-hel1",
     ///     });
     /// 
-    ///     var example2Db = new UpCloud.ManagedDatabaseLogicalDatabase("example2Db", new()
+    ///     var example2Db = new UpCloud.ManagedDatabaseLogicalDatabase("example2_db", new()
     ///     {
     ///         Service = exampleManagedDatabaseMysql.Id,
+    ///         Name = "example2_db",
     ///     });
     /// 
     /// });

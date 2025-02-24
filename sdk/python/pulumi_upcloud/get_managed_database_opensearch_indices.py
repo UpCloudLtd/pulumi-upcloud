@@ -83,7 +83,8 @@ def get_managed_database_opensearch_indices(indices: Optional[Sequence[Union['Ge
 
     # Use data source to gather a list of the indices for a Managed OpenSearch Database
     # Create a Managed OpenSearch resource
-    example_managed_database_opensearch = upcloud.ManagedDatabaseOpensearch("exampleManagedDatabaseOpensearch",
+    example_managed_database_opensearch = upcloud.ManagedDatabaseOpensearch("example",
+        name="opensearch-example",
         title="opensearch-example",
         plan="1x2xCPU-4GB-80GB-1D",
         zone="fi-hel1",
@@ -91,7 +92,8 @@ def get_managed_database_opensearch_indices(indices: Optional[Sequence[Union['Ge
             "automatic_utility_network_ip_filter": False,
             "public_access": False,
         })
-    example_managed_database_opensearch_indices = upcloud.get_managed_database_opensearch_indices_output(service=example_managed_database_opensearch.id)
+    # Read the available indices of the newly created service
+    example = upcloud.get_managed_database_opensearch_indices_output(service=example_managed_database_opensearch.id)
     ```
     """
     __args__ = dict()
@@ -118,7 +120,8 @@ def get_managed_database_opensearch_indices_output(indices: Optional[pulumi.Inpu
 
     # Use data source to gather a list of the indices for a Managed OpenSearch Database
     # Create a Managed OpenSearch resource
-    example_managed_database_opensearch = upcloud.ManagedDatabaseOpensearch("exampleManagedDatabaseOpensearch",
+    example_managed_database_opensearch = upcloud.ManagedDatabaseOpensearch("example",
+        name="opensearch-example",
         title="opensearch-example",
         plan="1x2xCPU-4GB-80GB-1D",
         zone="fi-hel1",
@@ -126,7 +129,8 @@ def get_managed_database_opensearch_indices_output(indices: Optional[pulumi.Inpu
             "automatic_utility_network_ip_filter": False,
             "public_access": False,
         })
-    example_managed_database_opensearch_indices = upcloud.get_managed_database_opensearch_indices_output(service=example_managed_database_opensearch.id)
+    # Read the available indices of the newly created service
+    example = upcloud.get_managed_database_opensearch_indices_output(service=example_managed_database_opensearch.id)
     ```
     """
     __args__ = dict()

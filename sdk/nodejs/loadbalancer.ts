@@ -17,7 +17,8 @@ import * as utilities from "./utilities";
  *
  * const config = new pulumi.Config();
  * const lbZone = config.get("lbZone") || "fi-hel2";
- * const lbNetwork = new upcloud.Network("lbNetwork", {
+ * const lbNetwork = new upcloud.Network("lb_network", {
+ *     name: "lb-test-net",
  *     zone: lbZone,
  *     ipNetwork: {
  *         address: "10.0.0.0/24",
@@ -27,6 +28,7 @@ import * as utilities from "./utilities";
  * });
  * const lb = new upcloud.Loadbalancer("lb", {
  *     configuredStatus: "started",
+ *     name: "lb-test",
  *     plan: "development",
  *     zone: lbZone,
  *     networks: [
@@ -34,7 +36,7 @@ import * as utilities from "./utilities";
  *             name: "Private-Net",
  *             type: "private",
  *             family: "IPv4",
- *             network: resource.upcloud_network.lb_network.id,
+ *             network: upcloudNetwork.lbNetwork.id,
  *         },
  *         {
  *             name: "Public-Net",

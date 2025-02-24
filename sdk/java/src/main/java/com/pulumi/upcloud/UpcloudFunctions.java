@@ -634,12 +634,18 @@ public final class UpcloudFunctions {
     /**
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetKubernetesClusterResult> getKubernetesCluster(GetKubernetesClusterArgs args) {
         return getKubernetesCluster(args, InvokeOptions.Empty);
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetKubernetesClusterResult> getKubernetesClusterPlain(GetKubernetesClusterPlainArgs args) {
@@ -648,6 +654,9 @@ public final class UpcloudFunctions {
     /**
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetKubernetesClusterResult> getKubernetesCluster(GetKubernetesClusterArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("upcloud:index/getKubernetesCluster:getKubernetesCluster", TypeShape.of(GetKubernetesClusterResult.class), args, Utilities.withVersion(options));
@@ -655,12 +664,18 @@ public final class UpcloudFunctions {
     /**
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetKubernetesClusterResult> getKubernetesCluster(GetKubernetesClusterArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("upcloud:index/getKubernetesCluster:getKubernetesCluster", TypeShape.of(GetKubernetesClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetKubernetesClusterResult> getKubernetesClusterPlain(GetKubernetesClusterPlainArgs args, InvokeOptions options) {
@@ -972,12 +987,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed MySQL Database
      *         // Create a Managed MySQL resource
      *         var exampleManagedDatabaseMysql = new ManagedDatabaseMysql("exampleManagedDatabaseMysql", ManagedDatabaseMysqlArgs.builder()
+     *             .name("mysql-example1")
      *             .title("mysql-example1")
      *             .plan("1x1xCPU-2GB-25GB")
      *             .zone("fi-hel1")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseMysqlSessions = UpcloudFunctions.getManagedDatabaseMysqlSessions(GetManagedDatabaseMysqlSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseMysqlSessions(GetManagedDatabaseMysqlSessionsArgs.builder()
      *             .service(exampleManagedDatabaseMysql.id())
      *             .build());
      * 
@@ -1024,12 +1041,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed MySQL Database
      *         // Create a Managed MySQL resource
      *         var exampleManagedDatabaseMysql = new ManagedDatabaseMysql("exampleManagedDatabaseMysql", ManagedDatabaseMysqlArgs.builder()
+     *             .name("mysql-example1")
      *             .title("mysql-example1")
      *             .plan("1x1xCPU-2GB-25GB")
      *             .zone("fi-hel1")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseMysqlSessions = UpcloudFunctions.getManagedDatabaseMysqlSessions(GetManagedDatabaseMysqlSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseMysqlSessions(GetManagedDatabaseMysqlSessionsArgs.builder()
      *             .service(exampleManagedDatabaseMysql.id())
      *             .build());
      * 
@@ -1076,12 +1095,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed MySQL Database
      *         // Create a Managed MySQL resource
      *         var exampleManagedDatabaseMysql = new ManagedDatabaseMysql("exampleManagedDatabaseMysql", ManagedDatabaseMysqlArgs.builder()
+     *             .name("mysql-example1")
      *             .title("mysql-example1")
      *             .plan("1x1xCPU-2GB-25GB")
      *             .zone("fi-hel1")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseMysqlSessions = UpcloudFunctions.getManagedDatabaseMysqlSessions(GetManagedDatabaseMysqlSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseMysqlSessions(GetManagedDatabaseMysqlSessionsArgs.builder()
      *             .service(exampleManagedDatabaseMysql.id())
      *             .build());
      * 
@@ -1128,12 +1149,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed MySQL Database
      *         // Create a Managed MySQL resource
      *         var exampleManagedDatabaseMysql = new ManagedDatabaseMysql("exampleManagedDatabaseMysql", ManagedDatabaseMysqlArgs.builder()
+     *             .name("mysql-example1")
      *             .title("mysql-example1")
      *             .plan("1x1xCPU-2GB-25GB")
      *             .zone("fi-hel1")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseMysqlSessions = UpcloudFunctions.getManagedDatabaseMysqlSessions(GetManagedDatabaseMysqlSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseMysqlSessions(GetManagedDatabaseMysqlSessionsArgs.builder()
      *             .service(exampleManagedDatabaseMysql.id())
      *             .build());
      * 
@@ -1180,12 +1203,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed MySQL Database
      *         // Create a Managed MySQL resource
      *         var exampleManagedDatabaseMysql = new ManagedDatabaseMysql("exampleManagedDatabaseMysql", ManagedDatabaseMysqlArgs.builder()
+     *             .name("mysql-example1")
      *             .title("mysql-example1")
      *             .plan("1x1xCPU-2GB-25GB")
      *             .zone("fi-hel1")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseMysqlSessions = UpcloudFunctions.getManagedDatabaseMysqlSessions(GetManagedDatabaseMysqlSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseMysqlSessions(GetManagedDatabaseMysqlSessionsArgs.builder()
      *             .service(exampleManagedDatabaseMysql.id())
      *             .build());
      * 
@@ -1233,6 +1258,7 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the indices for a Managed OpenSearch Database
      *         // Create a Managed OpenSearch resource
      *         var exampleManagedDatabaseOpensearch = new ManagedDatabaseOpensearch("exampleManagedDatabaseOpensearch", ManagedDatabaseOpensearchArgs.builder()
+     *             .name("opensearch-example")
      *             .title("opensearch-example")
      *             .plan("1x2xCPU-4GB-80GB-1D")
      *             .zone("fi-hel1")
@@ -1242,7 +1268,8 @@ public final class UpcloudFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var exampleManagedDatabaseOpensearchIndices = UpcloudFunctions.getManagedDatabaseOpensearchIndices(GetManagedDatabaseOpensearchIndicesArgs.builder()
+     *         // Read the available indices of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseOpensearchIndices(GetManagedDatabaseOpensearchIndicesArgs.builder()
      *             .service(exampleManagedDatabaseOpensearch.id())
      *             .build());
      * 
@@ -1290,6 +1317,7 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the indices for a Managed OpenSearch Database
      *         // Create a Managed OpenSearch resource
      *         var exampleManagedDatabaseOpensearch = new ManagedDatabaseOpensearch("exampleManagedDatabaseOpensearch", ManagedDatabaseOpensearchArgs.builder()
+     *             .name("opensearch-example")
      *             .title("opensearch-example")
      *             .plan("1x2xCPU-4GB-80GB-1D")
      *             .zone("fi-hel1")
@@ -1299,7 +1327,8 @@ public final class UpcloudFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var exampleManagedDatabaseOpensearchIndices = UpcloudFunctions.getManagedDatabaseOpensearchIndices(GetManagedDatabaseOpensearchIndicesArgs.builder()
+     *         // Read the available indices of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseOpensearchIndices(GetManagedDatabaseOpensearchIndicesArgs.builder()
      *             .service(exampleManagedDatabaseOpensearch.id())
      *             .build());
      * 
@@ -1347,6 +1376,7 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the indices for a Managed OpenSearch Database
      *         // Create a Managed OpenSearch resource
      *         var exampleManagedDatabaseOpensearch = new ManagedDatabaseOpensearch("exampleManagedDatabaseOpensearch", ManagedDatabaseOpensearchArgs.builder()
+     *             .name("opensearch-example")
      *             .title("opensearch-example")
      *             .plan("1x2xCPU-4GB-80GB-1D")
      *             .zone("fi-hel1")
@@ -1356,7 +1386,8 @@ public final class UpcloudFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var exampleManagedDatabaseOpensearchIndices = UpcloudFunctions.getManagedDatabaseOpensearchIndices(GetManagedDatabaseOpensearchIndicesArgs.builder()
+     *         // Read the available indices of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseOpensearchIndices(GetManagedDatabaseOpensearchIndicesArgs.builder()
      *             .service(exampleManagedDatabaseOpensearch.id())
      *             .build());
      * 
@@ -1404,6 +1435,7 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the indices for a Managed OpenSearch Database
      *         // Create a Managed OpenSearch resource
      *         var exampleManagedDatabaseOpensearch = new ManagedDatabaseOpensearch("exampleManagedDatabaseOpensearch", ManagedDatabaseOpensearchArgs.builder()
+     *             .name("opensearch-example")
      *             .title("opensearch-example")
      *             .plan("1x2xCPU-4GB-80GB-1D")
      *             .zone("fi-hel1")
@@ -1413,7 +1445,8 @@ public final class UpcloudFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var exampleManagedDatabaseOpensearchIndices = UpcloudFunctions.getManagedDatabaseOpensearchIndices(GetManagedDatabaseOpensearchIndicesArgs.builder()
+     *         // Read the available indices of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseOpensearchIndices(GetManagedDatabaseOpensearchIndicesArgs.builder()
      *             .service(exampleManagedDatabaseOpensearch.id())
      *             .build());
      * 
@@ -1461,6 +1494,7 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the indices for a Managed OpenSearch Database
      *         // Create a Managed OpenSearch resource
      *         var exampleManagedDatabaseOpensearch = new ManagedDatabaseOpensearch("exampleManagedDatabaseOpensearch", ManagedDatabaseOpensearchArgs.builder()
+     *             .name("opensearch-example")
      *             .title("opensearch-example")
      *             .plan("1x2xCPU-4GB-80GB-1D")
      *             .zone("fi-hel1")
@@ -1470,7 +1504,8 @@ public final class UpcloudFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var exampleManagedDatabaseOpensearchIndices = UpcloudFunctions.getManagedDatabaseOpensearchIndices(GetManagedDatabaseOpensearchIndicesArgs.builder()
+     *         // Read the available indices of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseOpensearchIndices(GetManagedDatabaseOpensearchIndicesArgs.builder()
      *             .service(exampleManagedDatabaseOpensearch.id())
      *             .build());
      * 
@@ -1517,12 +1552,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
      *         // Create a Managed PostgreSQL resource
      *         var exampleManagedDatabasePostgresql = new ManagedDatabasePostgresql("exampleManagedDatabasePostgresql", ManagedDatabasePostgresqlArgs.builder()
+     *             .name("mysql-example1")
      *             .title("mysql-example1")
      *             .plan("1x1xCPU-2GB-25GB")
      *             .zone("fi-hel1")
      *             .build());
      * 
-     *         final var exampleManagedDatabasePostgresqlSessions = UpcloudFunctions.getManagedDatabasePostgresqlSessions(GetManagedDatabasePostgresqlSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabasePostgresqlSessions(GetManagedDatabasePostgresqlSessionsArgs.builder()
      *             .service(exampleManagedDatabasePostgresql.id())
      *             .build());
      * 
@@ -1569,12 +1606,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
      *         // Create a Managed PostgreSQL resource
      *         var exampleManagedDatabasePostgresql = new ManagedDatabasePostgresql("exampleManagedDatabasePostgresql", ManagedDatabasePostgresqlArgs.builder()
+     *             .name("mysql-example1")
      *             .title("mysql-example1")
      *             .plan("1x1xCPU-2GB-25GB")
      *             .zone("fi-hel1")
      *             .build());
      * 
-     *         final var exampleManagedDatabasePostgresqlSessions = UpcloudFunctions.getManagedDatabasePostgresqlSessions(GetManagedDatabasePostgresqlSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabasePostgresqlSessions(GetManagedDatabasePostgresqlSessionsArgs.builder()
      *             .service(exampleManagedDatabasePostgresql.id())
      *             .build());
      * 
@@ -1621,12 +1660,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
      *         // Create a Managed PostgreSQL resource
      *         var exampleManagedDatabasePostgresql = new ManagedDatabasePostgresql("exampleManagedDatabasePostgresql", ManagedDatabasePostgresqlArgs.builder()
+     *             .name("mysql-example1")
      *             .title("mysql-example1")
      *             .plan("1x1xCPU-2GB-25GB")
      *             .zone("fi-hel1")
      *             .build());
      * 
-     *         final var exampleManagedDatabasePostgresqlSessions = UpcloudFunctions.getManagedDatabasePostgresqlSessions(GetManagedDatabasePostgresqlSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabasePostgresqlSessions(GetManagedDatabasePostgresqlSessionsArgs.builder()
      *             .service(exampleManagedDatabasePostgresql.id())
      *             .build());
      * 
@@ -1673,12 +1714,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
      *         // Create a Managed PostgreSQL resource
      *         var exampleManagedDatabasePostgresql = new ManagedDatabasePostgresql("exampleManagedDatabasePostgresql", ManagedDatabasePostgresqlArgs.builder()
+     *             .name("mysql-example1")
      *             .title("mysql-example1")
      *             .plan("1x1xCPU-2GB-25GB")
      *             .zone("fi-hel1")
      *             .build());
      * 
-     *         final var exampleManagedDatabasePostgresqlSessions = UpcloudFunctions.getManagedDatabasePostgresqlSessions(GetManagedDatabasePostgresqlSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabasePostgresqlSessions(GetManagedDatabasePostgresqlSessionsArgs.builder()
      *             .service(exampleManagedDatabasePostgresql.id())
      *             .build());
      * 
@@ -1725,12 +1768,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
      *         // Create a Managed PostgreSQL resource
      *         var exampleManagedDatabasePostgresql = new ManagedDatabasePostgresql("exampleManagedDatabasePostgresql", ManagedDatabasePostgresqlArgs.builder()
+     *             .name("mysql-example1")
      *             .title("mysql-example1")
      *             .plan("1x1xCPU-2GB-25GB")
      *             .zone("fi-hel1")
      *             .build());
      * 
-     *         final var exampleManagedDatabasePostgresqlSessions = UpcloudFunctions.getManagedDatabasePostgresqlSessions(GetManagedDatabasePostgresqlSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabasePostgresqlSessions(GetManagedDatabasePostgresqlSessionsArgs.builder()
      *             .service(exampleManagedDatabasePostgresql.id())
      *             .build());
      * 
@@ -1779,12 +1824,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed Redis Database
      *         // Create a Managed Redis resource
      *         var exampleManagedDatabaseRedis = new ManagedDatabaseRedis("exampleManagedDatabaseRedis", ManagedDatabaseRedisArgs.builder()
+     *             .name("example")
      *             .title("example")
      *             .plan("1x1xCPU-2GB")
      *             .zone("fi-hel2")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseRedisSessions = UpcloudFunctions.getManagedDatabaseRedisSessions(GetManagedDatabaseRedisSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseRedisSessions(GetManagedDatabaseRedisSessionsArgs.builder()
      *             .service(exampleManagedDatabaseRedis.id())
      *             .build());
      * 
@@ -1833,12 +1880,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed Redis Database
      *         // Create a Managed Redis resource
      *         var exampleManagedDatabaseRedis = new ManagedDatabaseRedis("exampleManagedDatabaseRedis", ManagedDatabaseRedisArgs.builder()
+     *             .name("example")
      *             .title("example")
      *             .plan("1x1xCPU-2GB")
      *             .zone("fi-hel2")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseRedisSessions = UpcloudFunctions.getManagedDatabaseRedisSessions(GetManagedDatabaseRedisSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseRedisSessions(GetManagedDatabaseRedisSessionsArgs.builder()
      *             .service(exampleManagedDatabaseRedis.id())
      *             .build());
      * 
@@ -1887,12 +1936,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed Redis Database
      *         // Create a Managed Redis resource
      *         var exampleManagedDatabaseRedis = new ManagedDatabaseRedis("exampleManagedDatabaseRedis", ManagedDatabaseRedisArgs.builder()
+     *             .name("example")
      *             .title("example")
      *             .plan("1x1xCPU-2GB")
      *             .zone("fi-hel2")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseRedisSessions = UpcloudFunctions.getManagedDatabaseRedisSessions(GetManagedDatabaseRedisSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseRedisSessions(GetManagedDatabaseRedisSessionsArgs.builder()
      *             .service(exampleManagedDatabaseRedis.id())
      *             .build());
      * 
@@ -1941,12 +1992,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed Redis Database
      *         // Create a Managed Redis resource
      *         var exampleManagedDatabaseRedis = new ManagedDatabaseRedis("exampleManagedDatabaseRedis", ManagedDatabaseRedisArgs.builder()
+     *             .name("example")
      *             .title("example")
      *             .plan("1x1xCPU-2GB")
      *             .zone("fi-hel2")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseRedisSessions = UpcloudFunctions.getManagedDatabaseRedisSessions(GetManagedDatabaseRedisSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseRedisSessions(GetManagedDatabaseRedisSessionsArgs.builder()
      *             .service(exampleManagedDatabaseRedis.id())
      *             .build());
      * 
@@ -1995,12 +2048,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed Redis Database
      *         // Create a Managed Redis resource
      *         var exampleManagedDatabaseRedis = new ManagedDatabaseRedis("exampleManagedDatabaseRedis", ManagedDatabaseRedisArgs.builder()
+     *             .name("example")
      *             .title("example")
      *             .plan("1x1xCPU-2GB")
      *             .zone("fi-hel2")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseRedisSessions = UpcloudFunctions.getManagedDatabaseRedisSessions(GetManagedDatabaseRedisSessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseRedisSessions(GetManagedDatabaseRedisSessionsArgs.builder()
      *             .service(exampleManagedDatabaseRedis.id())
      *             .build());
      * 
@@ -2047,12 +2102,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed Valkey Database
      *         // Create a Managed Valkey resource
      *         var exampleManagedDatabaseValkey = new ManagedDatabaseValkey("exampleManagedDatabaseValkey", ManagedDatabaseValkeyArgs.builder()
+     *             .name("example")
      *             .title("example")
      *             .plan("1x1xCPU-2GB")
      *             .zone("fi-hel2")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseValkeySessions = UpcloudFunctions.getManagedDatabaseValkeySessions(GetManagedDatabaseValkeySessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseValkeySessions(GetManagedDatabaseValkeySessionsArgs.builder()
      *             .service(exampleManagedDatabaseValkey.id())
      *             .build());
      * 
@@ -2099,12 +2156,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed Valkey Database
      *         // Create a Managed Valkey resource
      *         var exampleManagedDatabaseValkey = new ManagedDatabaseValkey("exampleManagedDatabaseValkey", ManagedDatabaseValkeyArgs.builder()
+     *             .name("example")
      *             .title("example")
      *             .plan("1x1xCPU-2GB")
      *             .zone("fi-hel2")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseValkeySessions = UpcloudFunctions.getManagedDatabaseValkeySessions(GetManagedDatabaseValkeySessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseValkeySessions(GetManagedDatabaseValkeySessionsArgs.builder()
      *             .service(exampleManagedDatabaseValkey.id())
      *             .build());
      * 
@@ -2151,12 +2210,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed Valkey Database
      *         // Create a Managed Valkey resource
      *         var exampleManagedDatabaseValkey = new ManagedDatabaseValkey("exampleManagedDatabaseValkey", ManagedDatabaseValkeyArgs.builder()
+     *             .name("example")
      *             .title("example")
      *             .plan("1x1xCPU-2GB")
      *             .zone("fi-hel2")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseValkeySessions = UpcloudFunctions.getManagedDatabaseValkeySessions(GetManagedDatabaseValkeySessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseValkeySessions(GetManagedDatabaseValkeySessionsArgs.builder()
      *             .service(exampleManagedDatabaseValkey.id())
      *             .build());
      * 
@@ -2203,12 +2264,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed Valkey Database
      *         // Create a Managed Valkey resource
      *         var exampleManagedDatabaseValkey = new ManagedDatabaseValkey("exampleManagedDatabaseValkey", ManagedDatabaseValkeyArgs.builder()
+     *             .name("example")
      *             .title("example")
      *             .plan("1x1xCPU-2GB")
      *             .zone("fi-hel2")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseValkeySessions = UpcloudFunctions.getManagedDatabaseValkeySessions(GetManagedDatabaseValkeySessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseValkeySessions(GetManagedDatabaseValkeySessionsArgs.builder()
      *             .service(exampleManagedDatabaseValkey.id())
      *             .build());
      * 
@@ -2255,12 +2318,14 @@ public final class UpcloudFunctions {
      *         // Use data source to gather a list of the active sessions for a Managed Valkey Database
      *         // Create a Managed Valkey resource
      *         var exampleManagedDatabaseValkey = new ManagedDatabaseValkey("exampleManagedDatabaseValkey", ManagedDatabaseValkeyArgs.builder()
+     *             .name("example")
      *             .title("example")
      *             .plan("1x1xCPU-2GB")
      *             .zone("fi-hel2")
      *             .build());
      * 
-     *         final var exampleManagedDatabaseValkeySessions = UpcloudFunctions.getManagedDatabaseValkeySessions(GetManagedDatabaseValkeySessionsArgs.builder()
+     *         // Read the active sessions of the newly created service
+     *         final var example = UpcloudFunctions.getManagedDatabaseValkeySessions(GetManagedDatabaseValkeySessionsArgs.builder()
      *             .service(exampleManagedDatabaseValkey.id())
      *             .build());
      * 
@@ -2361,86 +2426,12 @@ public final class UpcloudFunctions {
     /**
      * Use this data source to get the available UpCloud networks.
      * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.upcloud.UpcloudFunctions;
-     * import com.pulumi.upcloud.inputs.GetNetworksArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var upcloud = UpcloudFunctions.getNetworks();
-     * 
-     *         final var upcloudByZone = UpcloudFunctions.getNetworks(GetNetworksArgs.builder()
-     *             .filterName("^Public.*")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
      */
     public static Output<GetNetworksResult> getNetworks() {
         return getNetworks(GetNetworksArgs.Empty, InvokeOptions.Empty);
     }
     /**
      * Use this data source to get the available UpCloud networks.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.upcloud.UpcloudFunctions;
-     * import com.pulumi.upcloud.inputs.GetNetworksArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var upcloud = UpcloudFunctions.getNetworks();
-     * 
-     *         final var upcloudByZone = UpcloudFunctions.getNetworks(GetNetworksArgs.builder()
-     *             .filterName("^Public.*")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNetworksResult> getNetworksPlain() {
@@ -2449,86 +2440,12 @@ public final class UpcloudFunctions {
     /**
      * Use this data source to get the available UpCloud networks.
      * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.upcloud.UpcloudFunctions;
-     * import com.pulumi.upcloud.inputs.GetNetworksArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var upcloud = UpcloudFunctions.getNetworks();
-     * 
-     *         final var upcloudByZone = UpcloudFunctions.getNetworks(GetNetworksArgs.builder()
-     *             .filterName("^Public.*")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
      */
     public static Output<GetNetworksResult> getNetworks(GetNetworksArgs args) {
         return getNetworks(args, InvokeOptions.Empty);
     }
     /**
      * Use this data source to get the available UpCloud networks.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.upcloud.UpcloudFunctions;
-     * import com.pulumi.upcloud.inputs.GetNetworksArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var upcloud = UpcloudFunctions.getNetworks();
-     * 
-     *         final var upcloudByZone = UpcloudFunctions.getNetworks(GetNetworksArgs.builder()
-     *             .filterName("^Public.*")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNetworksResult> getNetworksPlain(GetNetworksPlainArgs args) {
@@ -2537,43 +2454,6 @@ public final class UpcloudFunctions {
     /**
      * Use this data source to get the available UpCloud networks.
      * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.upcloud.UpcloudFunctions;
-     * import com.pulumi.upcloud.inputs.GetNetworksArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var upcloud = UpcloudFunctions.getNetworks();
-     * 
-     *         final var upcloudByZone = UpcloudFunctions.getNetworks(GetNetworksArgs.builder()
-     *             .filterName("^Public.*")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
      */
     public static Output<GetNetworksResult> getNetworks(GetNetworksArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("upcloud:index/getNetworks:getNetworks", TypeShape.of(GetNetworksResult.class), args, Utilities.withVersion(options));
@@ -2581,86 +2461,12 @@ public final class UpcloudFunctions {
     /**
      * Use this data source to get the available UpCloud networks.
      * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.upcloud.UpcloudFunctions;
-     * import com.pulumi.upcloud.inputs.GetNetworksArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var upcloud = UpcloudFunctions.getNetworks();
-     * 
-     *         final var upcloudByZone = UpcloudFunctions.getNetworks(GetNetworksArgs.builder()
-     *             .filterName("^Public.*")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
      */
     public static Output<GetNetworksResult> getNetworks(GetNetworksArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("upcloud:index/getNetworks:getNetworks", TypeShape.of(GetNetworksResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to get the available UpCloud networks.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.upcloud.UpcloudFunctions;
-     * import com.pulumi.upcloud.inputs.GetNetworksArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var upcloud = UpcloudFunctions.getNetworks();
-     * 
-     *         final var upcloudByZone = UpcloudFunctions.getNetworks(GetNetworksArgs.builder()
-     *             .filterName("^Public.*")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNetworksResult> getNetworksPlain(GetNetworksPlainArgs args, InvokeOptions options) {
@@ -2700,6 +2506,11 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         // Build server with your latest custom image 
+     *         //
+     *         // Note that when applied new updated image will cause replacement of the old server (debian.example.tld) 
+     *         // with the new server created based on the updated image.This can cause posible data loss 
+     *         // if it hasn't been taken into account when planning the service.
      *         final var appImage = UpcloudFunctions.getStorage(GetStorageArgs.builder()
      *             .type("template")
      *             .nameRegex("^app_image.*")
@@ -2775,6 +2586,11 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         // Build server with your latest custom image 
+     *         //
+     *         // Note that when applied new updated image will cause replacement of the old server (debian.example.tld) 
+     *         // with the new server created based on the updated image.This can cause posible data loss 
+     *         // if it hasn't been taken into account when planning the service.
      *         final var appImage = UpcloudFunctions.getStorage(GetStorageArgs.builder()
      *             .type("template")
      *             .nameRegex("^app_image.*")
@@ -2850,6 +2666,11 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         // Build server with your latest custom image 
+     *         //
+     *         // Note that when applied new updated image will cause replacement of the old server (debian.example.tld) 
+     *         // with the new server created based on the updated image.This can cause posible data loss 
+     *         // if it hasn't been taken into account when planning the service.
      *         final var appImage = UpcloudFunctions.getStorage(GetStorageArgs.builder()
      *             .type("template")
      *             .nameRegex("^app_image.*")
@@ -2925,6 +2746,11 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         // Build server with your latest custom image 
+     *         //
+     *         // Note that when applied new updated image will cause replacement of the old server (debian.example.tld) 
+     *         // with the new server created based on the updated image.This can cause posible data loss 
+     *         // if it hasn't been taken into account when planning the service.
      *         final var appImage = UpcloudFunctions.getStorage(GetStorageArgs.builder()
      *             .type("template")
      *             .nameRegex("^app_image.*")
@@ -3000,6 +2826,11 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         // Build server with your latest custom image 
+     *         //
+     *         // Note that when applied new updated image will cause replacement of the old server (debian.example.tld) 
+     *         // with the new server created based on the updated image.This can cause posible data loss 
+     *         // if it hasn't been taken into account when planning the service.
      *         final var appImage = UpcloudFunctions.getStorage(GetStorageArgs.builder()
      *             .type("template")
      *             .nameRegex("^app_image.*")
@@ -3075,6 +2906,11 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         // Build server with your latest custom image 
+     *         //
+     *         // Note that when applied new updated image will cause replacement of the old server (debian.example.tld) 
+     *         // with the new server created based on the updated image.This can cause posible data loss 
+     *         // if it hasn't been taken into account when planning the service.
      *         final var appImage = UpcloudFunctions.getStorage(GetStorageArgs.builder()
      *             .type("template")
      *             .nameRegex("^app_image.*")
@@ -3150,6 +2986,11 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         // Build server with your latest custom image 
+     *         //
+     *         // Note that when applied new updated image will cause replacement of the old server (debian.example.tld) 
+     *         // with the new server created based on the updated image.This can cause posible data loss 
+     *         // if it hasn't been taken into account when planning the service.
      *         final var appImage = UpcloudFunctions.getStorage(GetStorageArgs.builder()
      *             .type("template")
      *             .nameRegex("^app_image.*")

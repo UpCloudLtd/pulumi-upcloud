@@ -228,9 +228,10 @@ class Network(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        example_router = upcloud.Router("exampleRouter")
+        example_router = upcloud.Router("example_router", name="example_router")
         # SDN network with a router
-        example_network = upcloud.Network("exampleNetwork",
+        example_network = upcloud.Network("example_network",
+            name="example_private_net",
             zone="nl-ams1",
             router=example_router.id,
             ip_network={
@@ -271,9 +272,10 @@ class Network(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        example_router = upcloud.Router("exampleRouter")
+        example_router = upcloud.Router("example_router", name="example_router")
         # SDN network with a router
-        example_network = upcloud.Network("exampleNetwork",
+        example_network = upcloud.Network("example_network",
+            name="example_private_net",
             zone="nl-ams1",
             router=example_router.id,
             ip_network={

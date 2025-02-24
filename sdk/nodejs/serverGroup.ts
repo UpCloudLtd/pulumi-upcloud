@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * const main = new upcloud.ServerGroup("main", {
+ *     title: "main_group",
  *     antiAffinityPolicy: "yes",
  *     labels: {
  *         key1: "val1",
@@ -25,7 +26,6 @@ import * as utilities from "./utilities";
  *         "00d56575-3821-3301-9de4-2b2bc7e35pqf",
  *         "000012dc-fe8c-a3y6-91f9-0db1215c36cf",
  *     ],
- *     title: "main_group",
  * });
  * ```
  *

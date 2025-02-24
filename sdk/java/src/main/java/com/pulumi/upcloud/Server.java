@@ -38,9 +38,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.upcloud.Server;
  * import com.pulumi.upcloud.ServerArgs;
- * import com.pulumi.upcloud.inputs.ServerLoginArgs;
- * import com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;
  * import com.pulumi.upcloud.inputs.ServerTemplateArgs;
+ * import com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;
+ * import com.pulumi.upcloud.inputs.ServerLoginArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -56,24 +56,24 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var example = new Server("example", ServerArgs.builder()
  *             .hostname("terraform.example.tld")
+ *             .zone("de-fra1")
+ *             .plan("1xCPU-1GB")
+ *             .template(ServerTemplateArgs.builder()
+ *                 .storage("Ubuntu Server 20.04 LTS (Focal Fossa)")
+ *                 .size(25)
+ *                 .backupRules(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                 .build())
+ *             .networkInterfaces(ServerNetworkInterfaceArgs.builder()
+ *                 .type("public")
+ *                 .build())
  *             .labels(Map.ofEntries(
  *                 Map.entry("env", "dev"),
  *                 Map.entry("production", "false")
  *             ))
  *             .login(ServerLoginArgs.builder()
- *                 .keys("<YOUR SSH PUBLIC KEY>")
  *                 .user("myusername")
+ *                 .keys("<YOUR SSH PUBLIC KEY>")
  *                 .build())
- *             .networkInterfaces(ServerNetworkInterfaceArgs.builder()
- *                 .type("public")
- *                 .build())
- *             .plan("1xCPU-1GB")
- *             .template(ServerTemplateArgs.builder()
- *                 .backupRules(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
- *                 .size(25)
- *                 .storage("Ubuntu Server 20.04 LTS (Focal Fossa)")
- *                 .build())
- *             .zone("de-fra1")
  *             .build());
  * 
  *     }

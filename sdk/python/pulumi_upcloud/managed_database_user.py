@@ -328,10 +328,11 @@ class ManagedDatabaseUser(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         example = upcloud.ManagedDatabasePostgresql("example",
+            name="postgres",
             plan="1x1xCPU-2GB-25GB",
             title="postgres",
             zone="fi-hel1")
-        example_user = upcloud.ManagedDatabaseUser("exampleUser",
+        example_user = upcloud.ManagedDatabaseUser("example_user",
             service=example.id,
             username="example_user",
             password="<USER_PASSWORD>")
@@ -364,10 +365,11 @@ class ManagedDatabaseUser(pulumi.CustomResource):
         import pulumi_upcloud as upcloud
 
         example = upcloud.ManagedDatabasePostgresql("example",
+            name="postgres",
             plan="1x1xCPU-2GB-25GB",
             title="postgres",
             zone="fi-hel1")
-        example_user = upcloud.ManagedDatabaseUser("exampleUser",
+        example_user = upcloud.ManagedDatabaseUser("example_user",
             service=example.id,
             username="example_user",
             password="<USER_PASSWORD>")

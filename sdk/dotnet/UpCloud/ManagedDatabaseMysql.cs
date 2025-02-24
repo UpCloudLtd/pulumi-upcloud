@@ -24,38 +24,41 @@ namespace UpCloud.Pulumi.UpCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Minimal config
-    ///     var example1 = new UpCloud.ManagedDatabaseMysql("example1", new()
+    ///     var example1 = new UpCloud.ManagedDatabaseMysql("example_1", new()
     ///     {
-    ///         Plan = "1x1xCPU-2GB-25GB",
+    ///         Name = "mysql-1",
     ///         Title = "mysql-1-example-1",
+    ///         Plan = "1x1xCPU-2GB-25GB",
     ///         Zone = "fi-hel1",
     ///     });
     /// 
     ///     // Shutdown instance after creation
-    ///     var example2 = new UpCloud.ManagedDatabaseMysql("example2", new()
+    ///     var example2 = new UpCloud.ManagedDatabaseMysql("example_2", new()
     ///     {
-    ///         Plan = "1x1xCPU-2GB-25GB",
-    ///         Powered = false,
+    ///         Name = "mysql-2",
     ///         Title = "mysql-2-example-2",
+    ///         Plan = "1x1xCPU-2GB-25GB",
     ///         Zone = "fi-hel1",
+    ///         Powered = false,
     ///     });
     /// 
     ///     // Service with custom properties
     ///     // Note that this basically sets strict mode off which is not normally recommended
-    ///     var example3 = new UpCloud.ManagedDatabaseMysql("example3", new()
+    ///     var example3 = new UpCloud.ManagedDatabaseMysql("example_3", new()
     ///     {
+    ///         Name = "mysql-3",
+    ///         Title = "mysql-3-example-3",
     ///         Plan = "1x1xCPU-2GB-25GB",
+    ///         Zone = "fi-hel1",
     ///         Properties = new UpCloud.Inputs.ManagedDatabaseMysqlPropertiesArgs
     ///         {
-    ///             AdminPassword = "&lt;ADMIN_PASSWORD&gt;",
-    ///             AdminUsername = "admin",
-    ///             MaxAllowedPacket = 16000000,
-    ///             SortBufferSize = 4000000,
     ///             SqlMode = "NO_ENGINE_SUBSTITUTION",
     ///             WaitTimeout = 300,
+    ///             SortBufferSize = 4000000,
+    ///             MaxAllowedPacket = 16000000,
+    ///             AdminUsername = "admin",
+    ///             AdminPassword = "&lt;ADMIN_PASSWORD&gt;",
     ///         },
-    ///         Title = "mysql-3-example-3",
-    ///         Zone = "fi-hel1",
     ///     });
     /// 
     /// });

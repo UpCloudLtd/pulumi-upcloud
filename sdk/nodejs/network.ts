@@ -15,9 +15,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * const exampleRouter = new upcloud.Router("exampleRouter", {});
+ * const exampleRouter = new upcloud.Router("example_router", {name: "example_router"});
  * // SDN network with a router
- * const exampleNetwork = new upcloud.Network("exampleNetwork", {
+ * const exampleNetwork = new upcloud.Network("example_network", {
+ *     name: "example_private_net",
  *     zone: "nl-ams1",
  *     router: exampleRouter.id,
  *     ipNetwork: {

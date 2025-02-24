@@ -29,7 +29,8 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Use data source to gather a list of the active sessions for a Managed Valkey Database
 //			// Create a Managed Valkey resource
-//			exampleManagedDatabaseValkey, err := upcloud.NewManagedDatabaseValkey(ctx, "exampleManagedDatabaseValkey", &upcloud.ManagedDatabaseValkeyArgs{
+//			exampleManagedDatabaseValkey, err := upcloud.NewManagedDatabaseValkey(ctx, "example", &upcloud.ManagedDatabaseValkeyArgs{
+//				Name:  pulumi.String("example"),
 //				Title: pulumi.String("example"),
 //				Plan:  pulumi.String("1x1xCPU-2GB"),
 //				Zone:  pulumi.String("fi-hel2"),
@@ -37,6 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Read the active sessions of the newly created service
 //			_ = upcloud.GetManagedDatabaseValkeySessionsOutput(ctx, upcloud.GetManagedDatabaseValkeySessionsOutputArgs{
 //				Service: exampleManagedDatabaseValkey.ID(),
 //			}, nil)

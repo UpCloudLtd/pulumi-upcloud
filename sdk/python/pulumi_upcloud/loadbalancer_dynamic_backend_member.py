@@ -279,7 +279,8 @@ class LoadbalancerDynamicBackendMember(pulumi.CustomResource):
         lb_zone = config.get("lbZone")
         if lb_zone is None:
             lb_zone = "fi-hel2"
-        lb_network = upcloud.Network("lbNetwork",
+        lb_network = upcloud.Network("lb_network",
+            name="lb-test-net",
             zone=lb_zone,
             ip_network={
                 "address": "10.0.0.0/24",
@@ -288,11 +289,13 @@ class LoadbalancerDynamicBackendMember(pulumi.CustomResource):
             })
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
+            name="lb-test",
             plan="development",
             zone=lb_zone,
-            network=resource["upcloud_network"]["lb_network"]["id"])
-        lb_dns1 = upcloud.LoadbalancerResolver("lbDns1",
-            loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"],
+            network=upcloud_network["lbNetwork"]["id"])
+        lb_dns1 = upcloud.LoadbalancerResolver("lb_dns_1",
+            loadbalancer=upcloud_loadbalancer["lb"]["id"],
+            name="lb-resolver-1-test",
             cache_invalid=10,
             cache_valid=100,
             retries=5,
@@ -302,11 +305,13 @@ class LoadbalancerDynamicBackendMember(pulumi.CustomResource):
                 "94.237.127.9:53",
                 "94.237.40.9:53",
             ])
-        lb_be1 = upcloud.LoadbalancerBackend("lbBe1",
-            loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"],
-            resolver_name=resource["upcloud_loadbalancer_resolver"]["lb_dns_1"]["name"])
-        lb_be1_dm1 = upcloud.LoadbalancerDynamicBackendMember("lbBe1Dm1",
-            backend=resource["upcloud_loadbalancer_backend"]["lb_be_1"]["id"],
+        lb_be1 = upcloud.LoadbalancerBackend("lb_be_1",
+            loadbalancer=upcloud_loadbalancer["lb"]["id"],
+            resolver_name=upcloud_loadbalancer_resolver["lbDns1"]["name"],
+            name="lb-be-1-test")
+        lb_be1_dm1 = upcloud.LoadbalancerDynamicBackendMember("lb_be_1_dm_1",
+            backend=upcloud_loadbalancer_backend["lbBe1"]["id"],
+            name="lb-be-1-dm-1-test",
             weight=10,
             max_sessions=10,
             enabled=False)
@@ -341,7 +346,8 @@ class LoadbalancerDynamicBackendMember(pulumi.CustomResource):
         lb_zone = config.get("lbZone")
         if lb_zone is None:
             lb_zone = "fi-hel2"
-        lb_network = upcloud.Network("lbNetwork",
+        lb_network = upcloud.Network("lb_network",
+            name="lb-test-net",
             zone=lb_zone,
             ip_network={
                 "address": "10.0.0.0/24",
@@ -350,11 +356,13 @@ class LoadbalancerDynamicBackendMember(pulumi.CustomResource):
             })
         lb = upcloud.Loadbalancer("lb",
             configured_status="started",
+            name="lb-test",
             plan="development",
             zone=lb_zone,
-            network=resource["upcloud_network"]["lb_network"]["id"])
-        lb_dns1 = upcloud.LoadbalancerResolver("lbDns1",
-            loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"],
+            network=upcloud_network["lbNetwork"]["id"])
+        lb_dns1 = upcloud.LoadbalancerResolver("lb_dns_1",
+            loadbalancer=upcloud_loadbalancer["lb"]["id"],
+            name="lb-resolver-1-test",
             cache_invalid=10,
             cache_valid=100,
             retries=5,
@@ -364,11 +372,13 @@ class LoadbalancerDynamicBackendMember(pulumi.CustomResource):
                 "94.237.127.9:53",
                 "94.237.40.9:53",
             ])
-        lb_be1 = upcloud.LoadbalancerBackend("lbBe1",
-            loadbalancer=resource["upcloud_loadbalancer"]["lb"]["id"],
-            resolver_name=resource["upcloud_loadbalancer_resolver"]["lb_dns_1"]["name"])
-        lb_be1_dm1 = upcloud.LoadbalancerDynamicBackendMember("lbBe1Dm1",
-            backend=resource["upcloud_loadbalancer_backend"]["lb_be_1"]["id"],
+        lb_be1 = upcloud.LoadbalancerBackend("lb_be_1",
+            loadbalancer=upcloud_loadbalancer["lb"]["id"],
+            resolver_name=upcloud_loadbalancer_resolver["lbDns1"]["name"],
+            name="lb-be-1-test")
+        lb_be1_dm1 = upcloud.LoadbalancerDynamicBackendMember("lb_be_1_dm_1",
+            backend=upcloud_loadbalancer_backend["lbBe1"]["id"],
+            name="lb-be-1-dm-1-test",
             weight=10,
             max_sessions=10,
             enabled=False)

@@ -16,22 +16,24 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Create router for the gateway
- * const thisRouter = new upcloud.Router("thisRouter", {});
+ * const _this = new upcloud.Router("this", {name: "gateway-example-router"});
  * // Create network for the gateway
- * const thisNetwork = new upcloud.Network("thisNetwork", {
+ * const thisNetwork = new upcloud.Network("this", {
+ *     name: "gateway-example-net",
  *     zone: "pl-waw1",
  *     ipNetwork: {
  *         address: "172.16.2.0/24",
  *         dhcp: true,
  *         family: "IPv4",
  *     },
- *     router: thisRouter.id,
+ *     router: _this.id,
  * });
- * const thisGateway = new upcloud.Gateway("thisGateway", {
+ * const thisGateway = new upcloud.Gateway("this", {
+ *     name: "gateway-example-gw",
  *     zone: "pl-waw1",
  *     features: ["nat"],
  *     router: {
- *         id: thisRouter.id,
+ *         id: _this.id,
  *     },
  *     labels: {
  *         "managed-by": "terraform",

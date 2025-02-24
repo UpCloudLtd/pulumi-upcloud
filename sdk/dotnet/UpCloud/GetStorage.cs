@@ -28,6 +28,11 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Build server with your latest custom image 
+        ///     //
+        ///     // Note that when applied new updated image will cause replacement of the old server (debian.example.tld) 
+        ///     // with the new server created based on the updated image.This can cause posible data loss 
+        ///     // if it hasn't been taken into account when planning the service.
         ///     var appImage = UpCloud.GetStorage.Invoke(new()
         ///     {
         ///         Type = "template",
@@ -94,6 +99,11 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Build server with your latest custom image 
+        ///     //
+        ///     // Note that when applied new updated image will cause replacement of the old server (debian.example.tld) 
+        ///     // with the new server created based on the updated image.This can cause posible data loss 
+        ///     // if it hasn't been taken into account when planning the service.
         ///     var appImage = UpCloud.GetStorage.Invoke(new()
         ///     {
         ///         Type = "template",
@@ -160,6 +170,11 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Build server with your latest custom image 
+        ///     //
+        ///     // Note that when applied new updated image will cause replacement of the old server (debian.example.tld) 
+        ///     // with the new server created based on the updated image.This can cause posible data loss 
+        ///     // if it hasn't been taken into account when planning the service.
         ///     var appImage = UpCloud.GetStorage.Invoke(new()
         ///     {
         ///         Type = "template",

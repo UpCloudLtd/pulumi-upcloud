@@ -8,18 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * Use this data source to get the available UpCloud networks.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as upcloud from "@pulumi/upcloud";
- *
- * const upcloud = upcloud.getNetworks({});
- * const upcloudByZone = upcloud.getNetworks({
- *     filterName: "^Public.*",
- * });
- * ```
  */
 export function getNetworks(args?: GetNetworksArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworksResult> {
     args = args || {};
@@ -52,18 +40,6 @@ export interface GetNetworksResult {
 }
 /**
  * Use this data source to get the available UpCloud networks.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as upcloud from "@pulumi/upcloud";
- *
- * const upcloud = upcloud.getNetworks({});
- * const upcloudByZone = upcloud.getNetworks({
- *     filterName: "^Public.*",
- * });
- * ```
  */
 export function getNetworksOutput(args?: GetNetworksOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNetworksResult> {
     args = args || {};

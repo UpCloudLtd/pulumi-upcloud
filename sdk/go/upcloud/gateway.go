@@ -29,30 +29,34 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Create router for the gateway
-//			thisRouter, err := upcloud.NewRouter(ctx, "thisRouter", nil)
+//			this, err := upcloud.NewRouter(ctx, "this", &upcloud.RouterArgs{
+//				Name: pulumi.String("gateway-example-router"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			// Create network for the gateway
-//			_, err = upcloud.NewNetwork(ctx, "thisNetwork", &upcloud.NetworkArgs{
+//			_, err = upcloud.NewNetwork(ctx, "this", &upcloud.NetworkArgs{
+//				Name: pulumi.String("gateway-example-net"),
 //				Zone: pulumi.String("pl-waw1"),
 //				IpNetwork: &upcloud.NetworkIpNetworkArgs{
 //					Address: pulumi.String("172.16.2.0/24"),
 //					Dhcp:    pulumi.Bool(true),
 //					Family:  pulumi.String("IPv4"),
 //				},
-//				Router: thisRouter.ID(),
+//				Router: this.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = upcloud.NewGateway(ctx, "thisGateway", &upcloud.GatewayArgs{
+//			_, err = upcloud.NewGateway(ctx, "this", &upcloud.GatewayArgs{
+//				Name: pulumi.String("gateway-example-gw"),
 //				Zone: pulumi.String("pl-waw1"),
 //				Features: pulumi.StringArray{
 //					pulumi.String("nat"),
 //				},
 //				Router: &upcloud.GatewayRouterArgs{
-//					Id: thisRouter.ID(),
+//					Id: this.ID(),
 //				},
 //				Labels: pulumi.StringMap{
 //					"managed-by": pulumi.String("terraform"),

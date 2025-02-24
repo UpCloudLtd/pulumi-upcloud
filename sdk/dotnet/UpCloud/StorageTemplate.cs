@@ -25,13 +25,13 @@ namespace UpCloud.Pulumi.UpCloud
     /// {
     ///     var template = new UpCloud.StorageTemplate("template", new()
     ///     {
+    ///         SourceStorage = "e0328f8a-9944-406b-99c3-656dcc03e671",
+    ///         Title = "custom-storage-template",
     ///         Labels = 
     ///         {
     ///             { "os", "linux" },
     ///             { "usage", "example" },
     ///         },
-    ///         SourceStorage = "e0328f8a-9944-406b-99c3-656dcc03e671",
-    ///         Title = "custom-storage-template",
     ///     });
     /// 
     /// });

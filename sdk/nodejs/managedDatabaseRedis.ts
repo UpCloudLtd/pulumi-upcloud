@@ -18,19 +18,21 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Minimal config
- * const example1 = new upcloud.ManagedDatabaseRedis("example1", {
- *     plan: "1x1xCPU-2GB",
+ * const example1 = new upcloud.ManagedDatabaseRedis("example_1", {
+ *     name: "redis-1",
  *     title: "redis-1-example-2",
+ *     plan: "1x1xCPU-2GB",
  *     zone: "fi-hel2",
  * });
  * // Service with custom properties
- * const example2 = new upcloud.ManagedDatabaseRedis("example2", {
+ * const example2 = new upcloud.ManagedDatabaseRedis("example_2", {
+ *     name: "redis-2",
+ *     title: "redis-2-example-2",
  *     plan: "1x1xCPU-2GB",
+ *     zone: "fi-hel1",
  *     properties: {
  *         publicAccess: false,
  *     },
- *     title: "redis-2-example-2",
- *     zone: "fi-hel1",
  * });
  * ```
  */

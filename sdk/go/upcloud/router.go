@@ -27,7 +27,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := upcloud.NewRouter(ctx, "myExampleRouter", nil)
+//			_, err := upcloud.NewRouter(ctx, "my_example_router", &upcloud.RouterArgs{
+//				Name: pulumi.String("My Example Router"),
+//			})
 //			if err != nil {
 //				return err
 //			}

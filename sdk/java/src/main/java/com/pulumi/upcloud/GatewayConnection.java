@@ -29,6 +29,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.upcloud.Router;
+ * import com.pulumi.upcloud.RouterArgs;
  * import com.pulumi.upcloud.Network;
  * import com.pulumi.upcloud.NetworkArgs;
  * import com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;
@@ -52,29 +53,34 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var thisRouter = new Router("thisRouter");
+ *         var this_ = new Router("this", RouterArgs.builder()
+ *             .name("gateway-example-router")
+ *             .build());
  * 
  *         var thisNetwork = new Network("thisNetwork", NetworkArgs.builder()
+ *             .name("gateway-example-net")
  *             .zone("pl-waw1")
  *             .ipNetwork(NetworkIpNetworkArgs.builder()
  *                 .address("172.16.2.0/24")
  *                 .dhcp(true)
  *                 .family("IPv4")
  *                 .build())
- *             .router(thisRouter.id())
+ *             .router(this_.id())
  *             .build());
  * 
  *         var thisGateway = new Gateway("thisGateway", GatewayArgs.builder()
+ *             .name("gateway-example-gw")
  *             .zone("pl-waw1")
  *             .features("vpn")
  *             .plan("advanced")
  *             .router(GatewayRouterArgs.builder()
- *                 .id(thisRouter.id())
+ *                 .id(this_.id())
  *                 .build())
  *             .build());
  * 
  *         var thisGatewayConnection = new GatewayConnection("thisGatewayConnection", GatewayConnectionArgs.builder()
  *             .gateway(thisGateway.id())
+ *             .name("test-connection")
  *             .type("ipsec")
  *             .localRoutes(GatewayConnectionLocalRouteArgs.builder()
  *                 .name("local-route")

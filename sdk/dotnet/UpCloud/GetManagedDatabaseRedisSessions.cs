@@ -30,14 +30,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the active sessions for a Managed Redis Database
         ///     // Create a Managed Redis resource
-        ///     var exampleManagedDatabaseRedis = new UpCloud.ManagedDatabaseRedis("exampleManagedDatabaseRedis", new()
+        ///     var exampleManagedDatabaseRedis = new UpCloud.ManagedDatabaseRedis("example", new()
         ///     {
+        ///         Name = "example",
         ///         Title = "example",
         ///         Plan = "1x1xCPU-2GB",
         ///         Zone = "fi-hel2",
         ///     });
         /// 
-        ///     var exampleManagedDatabaseRedisSessions = UpCloud.GetManagedDatabaseRedisSessions.Invoke(new()
+        ///     // Read the active sessions of the newly created service
+        ///     var example = UpCloud.GetManagedDatabaseRedisSessions.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabaseRedis.Id,
         ///     });
@@ -66,14 +68,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the active sessions for a Managed Redis Database
         ///     // Create a Managed Redis resource
-        ///     var exampleManagedDatabaseRedis = new UpCloud.ManagedDatabaseRedis("exampleManagedDatabaseRedis", new()
+        ///     var exampleManagedDatabaseRedis = new UpCloud.ManagedDatabaseRedis("example", new()
         ///     {
+        ///         Name = "example",
         ///         Title = "example",
         ///         Plan = "1x1xCPU-2GB",
         ///         Zone = "fi-hel2",
         ///     });
         /// 
-        ///     var exampleManagedDatabaseRedisSessions = UpCloud.GetManagedDatabaseRedisSessions.Invoke(new()
+        ///     // Read the active sessions of the newly created service
+        ///     var example = UpCloud.GetManagedDatabaseRedisSessions.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabaseRedis.Id,
         ///     });
@@ -102,14 +106,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// {
         ///     // Use data source to gather a list of the active sessions for a Managed Redis Database
         ///     // Create a Managed Redis resource
-        ///     var exampleManagedDatabaseRedis = new UpCloud.ManagedDatabaseRedis("exampleManagedDatabaseRedis", new()
+        ///     var exampleManagedDatabaseRedis = new UpCloud.ManagedDatabaseRedis("example", new()
         ///     {
+        ///         Name = "example",
         ///         Title = "example",
         ///         Plan = "1x1xCPU-2GB",
         ///         Zone = "fi-hel2",
         ///     });
         /// 
-        ///     var exampleManagedDatabaseRedisSessions = UpCloud.GetManagedDatabaseRedisSessions.Invoke(new()
+        ///     // Read the active sessions of the newly created service
+        ///     var example = UpCloud.GetManagedDatabaseRedisSessions.Invoke(new()
         ///     {
         ///         Service = exampleManagedDatabaseRedis.Id,
         ///     });

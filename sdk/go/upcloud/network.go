@@ -28,12 +28,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleRouter, err := upcloud.NewRouter(ctx, "exampleRouter", nil)
+//			exampleRouter, err := upcloud.NewRouter(ctx, "example_router", &upcloud.RouterArgs{
+//				Name: pulumi.String("example_router"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			// SDN network with a router
-//			_, err = upcloud.NewNetwork(ctx, "exampleNetwork", &upcloud.NetworkArgs{
+//			_, err = upcloud.NewNetwork(ctx, "example_network", &upcloud.NetworkArgs{
+//				Name:   pulumi.String("example_private_net"),
 //				Zone:   pulumi.String("nl-ams1"),
 //				Router: exampleRouter.ID(),
 //				IpNetwork: &upcloud.NetworkIpNetworkArgs{
