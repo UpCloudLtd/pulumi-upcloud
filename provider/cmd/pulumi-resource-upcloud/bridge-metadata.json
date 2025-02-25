@@ -349,9 +349,6 @@
                                         "fields": {
                                             "internal_authentication_backend_limiting": {
                                                 "maxItemsOne": true
-                                            },
-                                            "ip_rate_limiting": {
-                                                "maxItemsOne": true
                                             }
                                         }
                                     }
