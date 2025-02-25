@@ -78,6 +78,10 @@
                 "type": "integer",
                 "description": "Minimum time to wait between retries\n"
             },
+            "token": {
+                "type": "string",
+                "description": "Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.\n(EXPERIMENTAL)\n"
+            },
             "username": {
                 "type": "string",
                 "description": "UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.\n"
@@ -2267,18 +2271,13 @@
             "properties": {
                 "internalAuthenticationBackendLimiting": {
                     "$ref": "#/types/upcloud:index/ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting:ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting"
-                },
-                "ipRateLimiting": {
-                    "$ref": "#/types/upcloud:index/ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting:ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting",
-                    "description": "IP address rate limiting settings.\n"
                 }
             },
             "type": "object",
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "internalAuthenticationBackendLimiting",
-                        "ipRateLimiting"
+                        "internalAuthenticationBackendLimiting"
                     ]
                 }
             }
@@ -2320,47 +2319,6 @@
                     "requiredOutputs": [
                         "allowedTries",
                         "authenticationBackend",
-                        "blockExpirySeconds",
-                        "maxBlockedClients",
-                        "maxTrackedClients",
-                        "timeWindowSeconds",
-                        "type"
-                    ]
-                }
-            }
-        },
-        "upcloud:index/ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting:ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting": {
-            "properties": {
-                "allowedTries": {
-                    "type": "integer",
-                    "description": "The number of login attempts allowed before login is blocked.\n"
-                },
-                "blockExpirySeconds": {
-                    "type": "integer",
-                    "description": "The duration of time that login remains blocked after a failed login.\n"
-                },
-                "maxBlockedClients": {
-                    "type": "integer",
-                    "description": "The maximum number of blocked IP addresses.\n"
-                },
-                "maxTrackedClients": {
-                    "type": "integer",
-                    "description": "The maximum number of tracked IP addresses that have failed login.\n"
-                },
-                "timeWindowSeconds": {
-                    "type": "integer",
-                    "description": "The window of time in which the value for `allowed_tries` is enforced.\n"
-                },
-                "type": {
-                    "type": "string",
-                    "description": "The type of rate limiting.\n"
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "allowedTries",
                         "blockExpirySeconds",
                         "maxBlockedClients",
                         "maxTrackedClients",
@@ -4059,6 +4017,10 @@
                     "type": "integer",
                     "description": "The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.\n"
                 },
+                "frequentSnapshots": {
+                    "type": "boolean",
+                    "description": "Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkey_persistence` is set to `off`.\n"
+                },
                 "ipFilters": {
                     "type": "array",
                     "items": {
@@ -4081,6 +4043,10 @@
                 "valkeyAclChannelsDefault": {
                     "type": "string",
                     "description": "Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.\n"
+                },
+                "valkeyActiveExpireEffort": {
+                    "type": "integer",
+                    "description": "Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.\n"
                 },
                 "valkeyIoThreads": {
                     "type": "integer",
@@ -4133,6 +4099,7 @@
                         "migration",
                         "serviceLog",
                         "valkeyAclChannelsDefault",
+                        "valkeyActiveExpireEffort",
                         "valkeyIoThreads",
                         "valkeyLfuDecayTime",
                         "valkeyLfuLogFactor",
@@ -5595,6 +5562,10 @@
                 "type": "integer",
                 "description": "Minimum time to wait between retries\n"
             },
+            "token": {
+                "type": "string",
+                "description": "Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.\n(EXPERIMENTAL)\n"
+            },
             "username": {
                 "type": "string",
                 "description": "UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.\n"
@@ -5620,6 +5591,10 @@
             "retryWaitMinSec": {
                 "type": "integer",
                 "description": "Minimum time to wait between retries\n"
+            },
+            "token": {
+                "type": "string",
+                "description": "Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.\n(EXPERIMENTAL)\n"
             },
             "username": {
                 "type": "string",
@@ -11460,7 +11435,7 @@
             }
         },
         "upcloud:index/getKubernetesCluster:getKubernetesCluster": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  # Use Kubernetes provider to access your Kubernetes cluster\n\n  # Create a network for the Kubernetes cluster\n  exampleNetwork:\n    type: upcloud:Network\n    name: example\n    properties:\n      name: example-network\n      zone: de-fra1\n      ipNetwork:\n        address: 172.16.1.0/24\n        dhcp: true\n        family: IPv4\n  # Create a Kubernetes cluster\n  exampleKubernetesCluster:\n    type: upcloud:KubernetesCluster\n    name: example\n    properties:\n      name: exampleapp\n      network: ${exampleNetwork.id}\n      zone: de-fra1\n      nodeGroup:\n        - count: 2\n          name: group1\n          plan: K8S-2xCPU-4GB\n          sshKeys:\n            - public_ssh_key\n          labels:\n            managedBy: terraform\n          taint:\n            - effect: NoExecute\n              key: taintKey\n              value: taintValue\n        - count: 2\n          name: group2\n          plan: K8S-2xCPU-4GB\n  # Use the Kubernetes provider resources to interact with the cluster\n  exampleNamespace:\n    type: kubernetes:namespace\n    name: example\n    properties:\n      metadata:\n        - name: example-namespace\n  # In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients\n  exampleFile:\n    type: local:file\n    name: example\n    properties:\n      content: ${example.kubeconfig}\n      filename: example.conf\nvariables:\n  # Read the details of the newly created cluster\n  example:\n    fn::invoke:\n      function: upcloud:getKubernetesCluster\n      arguments:\n        id: ${exampleKubernetesCluster.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  # Use Kubernetes provider to access your Kubernetes cluster\n\n  # Create a network for the Kubernetes cluster\n  exampleNetwork:\n    type: upcloud:Network\n    name: example\n    properties:\n      name: example-network\n      zone: de-fra1\n      ipNetwork:\n        address: 172.16.1.0/24\n        dhcp: true\n        family: IPv4\n  # Create a Kubernetes cluster\n  exampleKubernetesCluster:\n    type: upcloud:KubernetesCluster\n    name: example\n    properties:\n      name: exampleapp\n      network: ${exampleNetwork.id}\n      zone: de-fra1\n      nodeGroup:\n        - count: 2\n          name: group1\n          plan: K8S-2xCPU-4GB\n          sshKeys:\n            - public_ssh_key\n          labels:\n            managedBy: terraform\n          taint:\n            - effect: NoExecute\n              key: taintKey\n              value: taintValue\n        - count: 2\n          name: group2\n          plan: K8S-2xCPU-4GB\n  # Use the Kubernetes provider resources to interact with the cluster\n  exampleNamespace:\n    type: kubernetes:Namespace\n    name: example\n    properties:\n      metadata:\n        - name: example-namespace\n  # In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients\n  exampleFile:\n    type: local:File\n    name: example\n    properties:\n      content: ${example.kubeconfig}\n      filename: example.conf\nvariables:\n  # Read the details of the newly created cluster\n  example:\n    fn::invoke:\n      function: upcloud:getKubernetesCluster\n      arguments:\n        id: ${exampleKubernetesCluster.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getKubernetesCluster.\n",
                 "properties": {

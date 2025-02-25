@@ -26,6 +26,13 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
+        /// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+        /// (EXPERIMENTAL)
+        /// </summary>
+        [Output("token")]
+        public Output<string?> Token { get; private set; } = null!;
+
+        /// <summary>
         /// UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
         /// </summary>
         [Output("username")]
@@ -90,6 +97,13 @@ namespace UpCloud.Pulumi.UpCloud
         /// </summary>
         [Input("retryWaitMinSec", json: true)]
         public Input<int>? RetryWaitMinSec { get; set; }
+
+        /// <summary>
+        /// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+        /// (EXPERIMENTAL)
+        /// </summary>
+        [Input("token")]
+        public Input<string>? Token { get; set; }
 
         /// <summary>
         /// UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.

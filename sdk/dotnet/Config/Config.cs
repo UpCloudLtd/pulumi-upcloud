@@ -83,6 +83,17 @@ namespace UpCloud.Pulumi.UpCloud
             set => _retryWaitMinSec.Set(value);
         }
 
+        private static readonly __Value<string?> _token = new __Value<string?>(() => __config.Get("token"));
+        /// <summary>
+        /// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+        /// (EXPERIMENTAL)
+        /// </summary>
+        public static string? Token
+        {
+            get => _token.Get();
+            set => _token.Set(value);
+        }
+
         private static readonly __Value<string?> _username = new __Value<string?>(() => __config.Get("username"));
         /// <summary>
         /// UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.

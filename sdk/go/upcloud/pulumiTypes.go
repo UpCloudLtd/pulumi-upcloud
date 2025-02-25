@@ -9578,8 +9578,6 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) Version() pulumi.StringPtr
 
 type ManagedDatabaseOpensearchPropertiesAuthFailureListeners struct {
 	InternalAuthenticationBackendLimiting *ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting `pulumi:"internalAuthenticationBackendLimiting"`
-	// IP address rate limiting settings.
-	IpRateLimiting *ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting `pulumi:"ipRateLimiting"`
 }
 
 // ManagedDatabaseOpensearchPropertiesAuthFailureListenersInput is an input type that accepts ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs and ManagedDatabaseOpensearchPropertiesAuthFailureListenersOutput values.
@@ -9595,8 +9593,6 @@ type ManagedDatabaseOpensearchPropertiesAuthFailureListenersInput interface {
 
 type ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs struct {
 	InternalAuthenticationBackendLimiting ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingPtrInput `pulumi:"internalAuthenticationBackendLimiting"`
-	// IP address rate limiting settings.
-	IpRateLimiting ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrInput `pulumi:"ipRateLimiting"`
 }
 
 func (ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs) ElementType() reflect.Type {
@@ -9682,13 +9678,6 @@ func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersOutput) InternalA
 	}).(ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingPtrOutput)
 }
 
-// IP address rate limiting settings.
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersOutput) IpRateLimiting() ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAuthFailureListeners) *ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting {
-		return v.IpRateLimiting
-	}).(ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput)
-}
-
 type ManagedDatabaseOpensearchPropertiesAuthFailureListenersPtrOutput struct{ *pulumi.OutputState }
 
 func (ManagedDatabaseOpensearchPropertiesAuthFailureListenersPtrOutput) ElementType() reflect.Type {
@@ -9720,16 +9709,6 @@ func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersPtrOutput) Intern
 		}
 		return v.InternalAuthenticationBackendLimiting
 	}).(ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingPtrOutput)
-}
-
-// IP address rate limiting settings.
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersPtrOutput) IpRateLimiting() ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAuthFailureListeners) *ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting {
-		if v == nil {
-			return nil
-		}
-		return v.IpRateLimiting
-	}).(ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput)
 }
 
 type ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting struct {
@@ -9990,248 +9969,6 @@ func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthentic
 // The type of rate limiting.
 func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingPtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Type
-	}).(pulumi.StringPtrOutput)
-}
-
-type ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting struct {
-	// The number of login attempts allowed before login is blocked.
-	AllowedTries *int `pulumi:"allowedTries"`
-	// The duration of time that login remains blocked after a failed login.
-	BlockExpirySeconds *int `pulumi:"blockExpirySeconds"`
-	// The maximum number of blocked IP addresses.
-	MaxBlockedClients *int `pulumi:"maxBlockedClients"`
-	// The maximum number of tracked IP addresses that have failed login.
-	MaxTrackedClients *int `pulumi:"maxTrackedClients"`
-	// The window of time in which the value for `allowedTries` is enforced.
-	TimeWindowSeconds *int `pulumi:"timeWindowSeconds"`
-	// The type of rate limiting.
-	Type *string `pulumi:"type"`
-}
-
-// ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingInput is an input type that accepts ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs and ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput values.
-// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingInput` via:
-//
-//	ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs{...}
-type ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput() ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput
-	ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput
-}
-
-type ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs struct {
-	// The number of login attempts allowed before login is blocked.
-	AllowedTries pulumi.IntPtrInput `pulumi:"allowedTries"`
-	// The duration of time that login remains blocked after a failed login.
-	BlockExpirySeconds pulumi.IntPtrInput `pulumi:"blockExpirySeconds"`
-	// The maximum number of blocked IP addresses.
-	MaxBlockedClients pulumi.IntPtrInput `pulumi:"maxBlockedClients"`
-	// The maximum number of tracked IP addresses that have failed login.
-	MaxTrackedClients pulumi.IntPtrInput `pulumi:"maxTrackedClients"`
-	// The window of time in which the value for `allowedTries` is enforced.
-	TimeWindowSeconds pulumi.IntPtrInput `pulumi:"timeWindowSeconds"`
-	// The type of rate limiting.
-	Type pulumi.StringPtrInput `pulumi:"type"`
-}
-
-func (ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting)(nil)).Elem()
-}
-
-func (i ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs) ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput() ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput {
-	return i.ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs) ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput)
-}
-
-func (i ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs) ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput() ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput {
-	return i.ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs) ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput).ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutputWithContext(ctx)
-}
-
-// ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs, ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtr and ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput values.
-// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrInput` via:
-//
-//	        ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs{...}
-//
-//	or:
-//
-//	        nil
-type ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput() ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput
-	ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput
-}
-
-type managedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrType ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs
-
-func ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtr(v *ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs) ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrInput {
-	return (*managedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrType)(v)
-}
-
-func (*managedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting)(nil)).Elem()
-}
-
-func (i *managedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrType) ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput() ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput {
-	return i.ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutputWithContext(context.Background())
-}
-
-func (i *managedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrType) ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput)
-}
-
-type ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting)(nil)).Elem()
-}
-
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput) ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput() ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput {
-	return o
-}
-
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput) ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput {
-	return o
-}
-
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput) ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput() ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput {
-	return o.ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutputWithContext(context.Background())
-}
-
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput) ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting) *ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting {
-		return &v
-	}).(ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput)
-}
-
-// The number of login attempts allowed before login is blocked.
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput) AllowedTries() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting) *int {
-		return v.AllowedTries
-	}).(pulumi.IntPtrOutput)
-}
-
-// The duration of time that login remains blocked after a failed login.
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput) BlockExpirySeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting) *int {
-		return v.BlockExpirySeconds
-	}).(pulumi.IntPtrOutput)
-}
-
-// The maximum number of blocked IP addresses.
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput) MaxBlockedClients() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting) *int {
-		return v.MaxBlockedClients
-	}).(pulumi.IntPtrOutput)
-}
-
-// The maximum number of tracked IP addresses that have failed login.
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput) MaxTrackedClients() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting) *int {
-		return v.MaxTrackedClients
-	}).(pulumi.IntPtrOutput)
-}
-
-// The window of time in which the value for `allowedTries` is enforced.
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput) TimeWindowSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting) *int {
-		return v.TimeWindowSeconds
-	}).(pulumi.IntPtrOutput)
-}
-
-// The type of rate limiting.
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting) *string { return v.Type }).(pulumi.StringPtrOutput)
-}
-
-type ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting)(nil)).Elem()
-}
-
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput) ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput() ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput {
-	return o
-}
-
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput) ToManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput {
-	return o
-}
-
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting) ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting {
-		if v != nil {
-			return *v
-		}
-		var ret ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting
-		return ret
-	}).(ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput)
-}
-
-// The number of login attempts allowed before login is blocked.
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput) AllowedTries() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting) *int {
-		if v == nil {
-			return nil
-		}
-		return v.AllowedTries
-	}).(pulumi.IntPtrOutput)
-}
-
-// The duration of time that login remains blocked after a failed login.
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput) BlockExpirySeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting) *int {
-		if v == nil {
-			return nil
-		}
-		return v.BlockExpirySeconds
-	}).(pulumi.IntPtrOutput)
-}
-
-// The maximum number of blocked IP addresses.
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput) MaxBlockedClients() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting) *int {
-		if v == nil {
-			return nil
-		}
-		return v.MaxBlockedClients
-	}).(pulumi.IntPtrOutput)
-}
-
-// The maximum number of tracked IP addresses that have failed login.
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput) MaxTrackedClients() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting) *int {
-		if v == nil {
-			return nil
-		}
-		return v.MaxTrackedClients
-	}).(pulumi.IntPtrOutput)
-}
-
-// The window of time in which the value for `allowedTries` is enforced.
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput) TimeWindowSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting) *int {
-		if v == nil {
-			return nil
-		}
-		return v.TimeWindowSeconds
-	}).(pulumi.IntPtrOutput)
-}
-
-// The type of rate limiting.
-func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting) *string {
 		if v == nil {
 			return nil
 		}
@@ -19514,6 +19251,8 @@ type ManagedDatabaseValkeyProperties struct {
 	BackupHour *int `pulumi:"backupHour"`
 	// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
 	BackupMinute *int `pulumi:"backupMinute"`
+	// Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkeyPersistence` is set to `off`.
+	FrequentSnapshots *bool `pulumi:"frequentSnapshots"`
 	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 	IpFilters []string `pulumi:"ipFilters"`
 	// Migrate data from existing server.
@@ -19524,6 +19263,8 @@ type ManagedDatabaseValkeyProperties struct {
 	ServiceLog *bool `pulumi:"serviceLog"`
 	// Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
 	ValkeyAclChannelsDefault *string `pulumi:"valkeyAclChannelsDefault"`
+	// Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
+	ValkeyActiveExpireEffort *int `pulumi:"valkeyActiveExpireEffort"`
 	// Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
 	ValkeyIoThreads *int `pulumi:"valkeyIoThreads"`
 	// LFU maxmemory-policy counter decay time in minutes.
@@ -19564,6 +19305,8 @@ type ManagedDatabaseValkeyPropertiesArgs struct {
 	BackupHour pulumi.IntPtrInput `pulumi:"backupHour"`
 	// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
 	BackupMinute pulumi.IntPtrInput `pulumi:"backupMinute"`
+	// Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkeyPersistence` is set to `off`.
+	FrequentSnapshots pulumi.BoolPtrInput `pulumi:"frequentSnapshots"`
 	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 	IpFilters pulumi.StringArrayInput `pulumi:"ipFilters"`
 	// Migrate data from existing server.
@@ -19574,6 +19317,8 @@ type ManagedDatabaseValkeyPropertiesArgs struct {
 	ServiceLog pulumi.BoolPtrInput `pulumi:"serviceLog"`
 	// Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
 	ValkeyAclChannelsDefault pulumi.StringPtrInput `pulumi:"valkeyAclChannelsDefault"`
+	// Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
+	ValkeyActiveExpireEffort pulumi.IntPtrInput `pulumi:"valkeyActiveExpireEffort"`
 	// Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
 	ValkeyIoThreads pulumi.IntPtrInput `pulumi:"valkeyIoThreads"`
 	// LFU maxmemory-policy counter decay time in minutes.
@@ -19688,6 +19433,11 @@ func (o ManagedDatabaseValkeyPropertiesOutput) BackupMinute() pulumi.IntPtrOutpu
 	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.BackupMinute }).(pulumi.IntPtrOutput)
 }
 
+// Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkeyPersistence` is set to `off`.
+func (o ManagedDatabaseValkeyPropertiesOutput) FrequentSnapshots() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *bool { return v.FrequentSnapshots }).(pulumi.BoolPtrOutput)
+}
+
 // IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 func (o ManagedDatabaseValkeyPropertiesOutput) IpFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) []string { return v.IpFilters }).(pulumi.StringArrayOutput)
@@ -19711,6 +19461,11 @@ func (o ManagedDatabaseValkeyPropertiesOutput) ServiceLog() pulumi.BoolPtrOutput
 // Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
 func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyAclChannelsDefault() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *string { return v.ValkeyAclChannelsDefault }).(pulumi.StringPtrOutput)
+}
+
+// Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyActiveExpireEffort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.ValkeyActiveExpireEffort }).(pulumi.IntPtrOutput)
 }
 
 // Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
@@ -19817,6 +19572,16 @@ func (o ManagedDatabaseValkeyPropertiesPtrOutput) BackupMinute() pulumi.IntPtrOu
 	}).(pulumi.IntPtrOutput)
 }
 
+// Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkeyPersistence` is set to `off`.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) FrequentSnapshots() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.FrequentSnapshots
+	}).(pulumi.BoolPtrOutput)
+}
+
 // IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 func (o ManagedDatabaseValkeyPropertiesPtrOutput) IpFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) []string {
@@ -19865,6 +19630,16 @@ func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyAclChannelsDefault() pul
 		}
 		return v.ValkeyAclChannelsDefault
 	}).(pulumi.StringPtrOutput)
+}
+
+// Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyActiveExpireEffort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyActiveExpireEffort
+	}).(pulumi.IntPtrOutput)
 }
 
 // Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
@@ -25679,8 +25454,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs{})
@@ -25942,8 +25715,6 @@ func init() {
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAuthFailureListenersPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingPtrOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput{})

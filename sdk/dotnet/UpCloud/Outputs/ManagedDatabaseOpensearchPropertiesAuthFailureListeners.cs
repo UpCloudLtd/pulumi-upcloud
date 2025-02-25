@@ -15,19 +15,11 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
     public sealed class ManagedDatabaseOpensearchPropertiesAuthFailureListeners
     {
         public readonly Outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting? InternalAuthenticationBackendLimiting;
-        /// <summary>
-        /// IP address rate limiting settings.
-        /// </summary>
-        public readonly Outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting? IpRateLimiting;
 
         [OutputConstructor]
-        private ManagedDatabaseOpensearchPropertiesAuthFailureListeners(
-            Outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting? internalAuthenticationBackendLimiting,
-
-            Outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting? ipRateLimiting)
+        private ManagedDatabaseOpensearchPropertiesAuthFailureListeners(Outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting? internalAuthenticationBackendLimiting)
         {
             InternalAuthenticationBackendLimiting = internalAuthenticationBackendLimiting;
-            IpRateLimiting = ipRateLimiting;
         }
     }
 }

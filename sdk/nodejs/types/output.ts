@@ -1895,10 +1895,6 @@ export interface ManagedDatabaseOpensearchProperties {
 
 export interface ManagedDatabaseOpensearchPropertiesAuthFailureListeners {
     internalAuthenticationBackendLimiting: outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting;
-    /**
-     * IP address rate limiting settings.
-     */
-    ipRateLimiting: outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting {
@@ -1910,33 +1906,6 @@ export interface ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternal
      * The internal backend. Enter `internal`.
      */
     authenticationBackend: string;
-    /**
-     * The duration of time that login remains blocked after a failed login.
-     */
-    blockExpirySeconds: number;
-    /**
-     * The maximum number of blocked IP addresses.
-     */
-    maxBlockedClients: number;
-    /**
-     * The maximum number of tracked IP addresses that have failed login.
-     */
-    maxTrackedClients: number;
-    /**
-     * The window of time in which the value for `allowedTries` is enforced.
-     */
-    timeWindowSeconds: number;
-    /**
-     * The type of rate limiting.
-     */
-    type: string;
-}
-
-export interface ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting {
-    /**
-     * The number of login attempts allowed before login is blocked.
-     */
-    allowedTries: number;
     /**
      * The duration of time that login remains blocked after a failed login.
      */
@@ -3124,6 +3093,10 @@ export interface ManagedDatabaseValkeyProperties {
      */
     backupMinute: number;
     /**
+     * Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkeyPersistence` is set to `off`.
+     */
+    frequentSnapshots?: boolean;
+    /**
      * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
      */
     ipFilters: string[];
@@ -3143,6 +3116,10 @@ export interface ManagedDatabaseValkeyProperties {
      * Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
      */
     valkeyAclChannelsDefault: string;
+    /**
+     * Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
+     */
+    valkeyActiveExpireEffort: number;
     /**
      * Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
      */

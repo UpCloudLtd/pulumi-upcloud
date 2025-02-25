@@ -70,7 +70,6 @@ __all__ = [
     'ManagedDatabaseOpensearchProperties',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListeners',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting',
-    'ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting',
     'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog',
     'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold',
     'ManagedDatabaseOpensearchPropertiesIndexRollup',
@@ -4876,8 +4875,6 @@ class ManagedDatabaseOpensearchPropertiesAuthFailureListeners(dict):
         suggest = None
         if key == "internalAuthenticationBackendLimiting":
             suggest = "internal_authentication_backend_limiting"
-        elif key == "ipRateLimiting":
-            suggest = "ip_rate_limiting"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesAuthFailureListeners. Access the value via the '{suggest}' property getter instead.")
@@ -4891,28 +4888,14 @@ class ManagedDatabaseOpensearchPropertiesAuthFailureListeners(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 internal_authentication_backend_limiting: Optional['outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting'] = None,
-                 ip_rate_limiting: Optional['outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting'] = None):
-        """
-        :param 'ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs' ip_rate_limiting: IP address rate limiting settings.
-        """
+                 internal_authentication_backend_limiting: Optional['outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting'] = None):
         if internal_authentication_backend_limiting is not None:
             pulumi.set(__self__, "internal_authentication_backend_limiting", internal_authentication_backend_limiting)
-        if ip_rate_limiting is not None:
-            pulumi.set(__self__, "ip_rate_limiting", ip_rate_limiting)
 
     @property
     @pulumi.getter(name="internalAuthenticationBackendLimiting")
     def internal_authentication_backend_limiting(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting']:
         return pulumi.get(self, "internal_authentication_backend_limiting")
-
-    @property
-    @pulumi.getter(name="ipRateLimiting")
-    def ip_rate_limiting(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting']:
-        """
-        IP address rate limiting settings.
-        """
-        return pulumi.get(self, "ip_rate_limiting")
 
 
 @pulumi.output_type
@@ -4991,110 +4974,6 @@ class ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticat
         The internal backend. Enter `internal`.
         """
         return pulumi.get(self, "authentication_backend")
-
-    @property
-    @pulumi.getter(name="blockExpirySeconds")
-    def block_expiry_seconds(self) -> Optional[int]:
-        """
-        The duration of time that login remains blocked after a failed login.
-        """
-        return pulumi.get(self, "block_expiry_seconds")
-
-    @property
-    @pulumi.getter(name="maxBlockedClients")
-    def max_blocked_clients(self) -> Optional[int]:
-        """
-        The maximum number of blocked IP addresses.
-        """
-        return pulumi.get(self, "max_blocked_clients")
-
-    @property
-    @pulumi.getter(name="maxTrackedClients")
-    def max_tracked_clients(self) -> Optional[int]:
-        """
-        The maximum number of tracked IP addresses that have failed login.
-        """
-        return pulumi.get(self, "max_tracked_clients")
-
-    @property
-    @pulumi.getter(name="timeWindowSeconds")
-    def time_window_seconds(self) -> Optional[int]:
-        """
-        The window of time in which the value for `allowed_tries` is enforced.
-        """
-        return pulumi.get(self, "time_window_seconds")
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[str]:
-        """
-        The type of rate limiting.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "allowedTries":
-            suggest = "allowed_tries"
-        elif key == "blockExpirySeconds":
-            suggest = "block_expiry_seconds"
-        elif key == "maxBlockedClients":
-            suggest = "max_blocked_clients"
-        elif key == "maxTrackedClients":
-            suggest = "max_tracked_clients"
-        elif key == "timeWindowSeconds":
-            suggest = "time_window_seconds"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 allowed_tries: Optional[int] = None,
-                 block_expiry_seconds: Optional[int] = None,
-                 max_blocked_clients: Optional[int] = None,
-                 max_tracked_clients: Optional[int] = None,
-                 time_window_seconds: Optional[int] = None,
-                 type: Optional[str] = None):
-        """
-        :param int allowed_tries: The number of login attempts allowed before login is blocked.
-        :param int block_expiry_seconds: The duration of time that login remains blocked after a failed login.
-        :param int max_blocked_clients: The maximum number of blocked IP addresses.
-        :param int max_tracked_clients: The maximum number of tracked IP addresses that have failed login.
-        :param int time_window_seconds: The window of time in which the value for `allowed_tries` is enforced.
-        :param str type: The type of rate limiting.
-        """
-        if allowed_tries is not None:
-            pulumi.set(__self__, "allowed_tries", allowed_tries)
-        if block_expiry_seconds is not None:
-            pulumi.set(__self__, "block_expiry_seconds", block_expiry_seconds)
-        if max_blocked_clients is not None:
-            pulumi.set(__self__, "max_blocked_clients", max_blocked_clients)
-        if max_tracked_clients is not None:
-            pulumi.set(__self__, "max_tracked_clients", max_tracked_clients)
-        if time_window_seconds is not None:
-            pulumi.set(__self__, "time_window_seconds", time_window_seconds)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter(name="allowedTries")
-    def allowed_tries(self) -> Optional[int]:
-        """
-        The number of login attempts allowed before login is blocked.
-        """
-        return pulumi.get(self, "allowed_tries")
 
     @property
     @pulumi.getter(name="blockExpirySeconds")
@@ -9175,6 +9054,8 @@ class ManagedDatabaseValkeyProperties(dict):
             suggest = "backup_hour"
         elif key == "backupMinute":
             suggest = "backup_minute"
+        elif key == "frequentSnapshots":
+            suggest = "frequent_snapshots"
         elif key == "ipFilters":
             suggest = "ip_filters"
         elif key == "publicAccess":
@@ -9183,6 +9064,8 @@ class ManagedDatabaseValkeyProperties(dict):
             suggest = "service_log"
         elif key == "valkeyAclChannelsDefault":
             suggest = "valkey_acl_channels_default"
+        elif key == "valkeyActiveExpireEffort":
+            suggest = "valkey_active_expire_effort"
         elif key == "valkeyIoThreads":
             suggest = "valkey_io_threads"
         elif key == "valkeyLfuDecayTime":
@@ -9219,11 +9102,13 @@ class ManagedDatabaseValkeyProperties(dict):
                  automatic_utility_network_ip_filter: Optional[bool] = None,
                  backup_hour: Optional[int] = None,
                  backup_minute: Optional[int] = None,
+                 frequent_snapshots: Optional[bool] = None,
                  ip_filters: Optional[Sequence[str]] = None,
                  migration: Optional['outputs.ManagedDatabaseValkeyPropertiesMigration'] = None,
                  public_access: Optional[bool] = None,
                  service_log: Optional[bool] = None,
                  valkey_acl_channels_default: Optional[str] = None,
+                 valkey_active_expire_effort: Optional[int] = None,
                  valkey_io_threads: Optional[int] = None,
                  valkey_lfu_decay_time: Optional[int] = None,
                  valkey_lfu_log_factor: Optional[int] = None,
@@ -9238,11 +9123,13 @@ class ManagedDatabaseValkeyProperties(dict):
         :param bool automatic_utility_network_ip_filter: Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
         :param int backup_hour: The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
         :param int backup_minute: The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        :param bool frequent_snapshots: Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkey_persistence` is set to `off`.
         :param Sequence[str] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
         :param 'ManagedDatabaseValkeyPropertiesMigrationArgs' migration: Migrate data from existing server.
         :param bool public_access: Public Access. Allow access to the service from the public Internet.
         :param bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
         :param str valkey_acl_channels_default: Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+        :param int valkey_active_expire_effort: Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
         :param int valkey_io_threads: Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
         :param int valkey_lfu_decay_time: LFU maxmemory-policy counter decay time in minutes.
         :param int valkey_lfu_log_factor: Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
@@ -9260,6 +9147,8 @@ class ManagedDatabaseValkeyProperties(dict):
             pulumi.set(__self__, "backup_hour", backup_hour)
         if backup_minute is not None:
             pulumi.set(__self__, "backup_minute", backup_minute)
+        if frequent_snapshots is not None:
+            pulumi.set(__self__, "frequent_snapshots", frequent_snapshots)
         if ip_filters is not None:
             pulumi.set(__self__, "ip_filters", ip_filters)
         if migration is not None:
@@ -9270,6 +9159,8 @@ class ManagedDatabaseValkeyProperties(dict):
             pulumi.set(__self__, "service_log", service_log)
         if valkey_acl_channels_default is not None:
             pulumi.set(__self__, "valkey_acl_channels_default", valkey_acl_channels_default)
+        if valkey_active_expire_effort is not None:
+            pulumi.set(__self__, "valkey_active_expire_effort", valkey_active_expire_effort)
         if valkey_io_threads is not None:
             pulumi.set(__self__, "valkey_io_threads", valkey_io_threads)
         if valkey_lfu_decay_time is not None:
@@ -9316,6 +9207,14 @@ class ManagedDatabaseValkeyProperties(dict):
         return pulumi.get(self, "backup_minute")
 
     @property
+    @pulumi.getter(name="frequentSnapshots")
+    def frequent_snapshots(self) -> Optional[bool]:
+        """
+        Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkey_persistence` is set to `off`.
+        """
+        return pulumi.get(self, "frequent_snapshots")
+
+    @property
     @pulumi.getter(name="ipFilters")
     def ip_filters(self) -> Optional[Sequence[str]]:
         """
@@ -9354,6 +9253,14 @@ class ManagedDatabaseValkeyProperties(dict):
         Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
         """
         return pulumi.get(self, "valkey_acl_channels_default")
+
+    @property
+    @pulumi.getter(name="valkeyActiveExpireEffort")
+    def valkey_active_expire_effort(self) -> Optional[int]:
+        """
+        Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
+        """
+        return pulumi.get(self, "valkey_active_expire_effort")
 
     @property
     @pulumi.getter(name="valkeyIoThreads")

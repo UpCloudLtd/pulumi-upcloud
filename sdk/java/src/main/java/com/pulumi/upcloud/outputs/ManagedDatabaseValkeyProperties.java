@@ -31,6 +31,11 @@ public final class ManagedDatabaseValkeyProperties {
      */
     private @Nullable Integer backupMinute;
     /**
+     * @return Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkey_persistence` is set to `off`.
+     * 
+     */
+    private @Nullable Boolean frequentSnapshots;
+    /**
      * @return IP filter. Allow incoming connections from CIDR address block, e.g. &#39;10.20.0.0/16&#39;.
      * 
      */
@@ -55,6 +60,11 @@ public final class ManagedDatabaseValkeyProperties {
      * 
      */
     private @Nullable String valkeyAclChannelsDefault;
+    /**
+     * @return Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
+     * 
+     */
+    private @Nullable Integer valkeyActiveExpireEffort;
     /**
      * @return Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
      * 
@@ -129,6 +139,13 @@ public final class ManagedDatabaseValkeyProperties {
         return Optional.ofNullable(this.backupMinute);
     }
     /**
+     * @return Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkey_persistence` is set to `off`.
+     * 
+     */
+    public Optional<Boolean> frequentSnapshots() {
+        return Optional.ofNullable(this.frequentSnapshots);
+    }
+    /**
      * @return IP filter. Allow incoming connections from CIDR address block, e.g. &#39;10.20.0.0/16&#39;.
      * 
      */
@@ -162,6 +179,13 @@ public final class ManagedDatabaseValkeyProperties {
      */
     public Optional<String> valkeyAclChannelsDefault() {
         return Optional.ofNullable(this.valkeyAclChannelsDefault);
+    }
+    /**
+     * @return Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
+     * 
+     */
+    public Optional<Integer> valkeyActiveExpireEffort() {
+        return Optional.ofNullable(this.valkeyActiveExpireEffort);
     }
     /**
      * @return Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
@@ -246,11 +270,13 @@ public final class ManagedDatabaseValkeyProperties {
         private @Nullable Boolean automaticUtilityNetworkIpFilter;
         private @Nullable Integer backupHour;
         private @Nullable Integer backupMinute;
+        private @Nullable Boolean frequentSnapshots;
         private @Nullable List<String> ipFilters;
         private @Nullable ManagedDatabaseValkeyPropertiesMigration migration;
         private @Nullable Boolean publicAccess;
         private @Nullable Boolean serviceLog;
         private @Nullable String valkeyAclChannelsDefault;
+        private @Nullable Integer valkeyActiveExpireEffort;
         private @Nullable Integer valkeyIoThreads;
         private @Nullable Integer valkeyLfuDecayTime;
         private @Nullable Integer valkeyLfuLogFactor;
@@ -267,11 +293,13 @@ public final class ManagedDatabaseValkeyProperties {
     	      this.automaticUtilityNetworkIpFilter = defaults.automaticUtilityNetworkIpFilter;
     	      this.backupHour = defaults.backupHour;
     	      this.backupMinute = defaults.backupMinute;
+    	      this.frequentSnapshots = defaults.frequentSnapshots;
     	      this.ipFilters = defaults.ipFilters;
     	      this.migration = defaults.migration;
     	      this.publicAccess = defaults.publicAccess;
     	      this.serviceLog = defaults.serviceLog;
     	      this.valkeyAclChannelsDefault = defaults.valkeyAclChannelsDefault;
+    	      this.valkeyActiveExpireEffort = defaults.valkeyActiveExpireEffort;
     	      this.valkeyIoThreads = defaults.valkeyIoThreads;
     	      this.valkeyLfuDecayTime = defaults.valkeyLfuDecayTime;
     	      this.valkeyLfuLogFactor = defaults.valkeyLfuLogFactor;
@@ -300,6 +328,12 @@ public final class ManagedDatabaseValkeyProperties {
         public Builder backupMinute(@Nullable Integer backupMinute) {
 
             this.backupMinute = backupMinute;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder frequentSnapshots(@Nullable Boolean frequentSnapshots) {
+
+            this.frequentSnapshots = frequentSnapshots;
             return this;
         }
         @CustomType.Setter
@@ -333,6 +367,12 @@ public final class ManagedDatabaseValkeyProperties {
         public Builder valkeyAclChannelsDefault(@Nullable String valkeyAclChannelsDefault) {
 
             this.valkeyAclChannelsDefault = valkeyAclChannelsDefault;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder valkeyActiveExpireEffort(@Nullable Integer valkeyActiveExpireEffort) {
+
+            this.valkeyActiveExpireEffort = valkeyActiveExpireEffort;
             return this;
         }
         @CustomType.Setter
@@ -400,11 +440,13 @@ public final class ManagedDatabaseValkeyProperties {
             _resultValue.automaticUtilityNetworkIpFilter = automaticUtilityNetworkIpFilter;
             _resultValue.backupHour = backupHour;
             _resultValue.backupMinute = backupMinute;
+            _resultValue.frequentSnapshots = frequentSnapshots;
             _resultValue.ipFilters = ipFilters;
             _resultValue.migration = migration;
             _resultValue.publicAccess = publicAccess;
             _resultValue.serviceLog = serviceLog;
             _resultValue.valkeyAclChannelsDefault = valkeyAclChannelsDefault;
+            _resultValue.valkeyActiveExpireEffort = valkeyActiveExpireEffort;
             _resultValue.valkeyIoThreads = valkeyIoThreads;
             _resultValue.valkeyLfuDecayTime = valkeyLfuDecayTime;
             _resultValue.valkeyLfuLogFactor = valkeyLfuLogFactor;

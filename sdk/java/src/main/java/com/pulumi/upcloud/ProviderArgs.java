@@ -94,6 +94,23 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+     * (EXPERIMENTAL)
+     * 
+     */
+    @Import(name="token")
+    private @Nullable Output<String> token;
+
+    /**
+     * @return Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+     * (EXPERIMENTAL)
+     * 
+     */
+    public Optional<Output<String>> token() {
+        return Optional.ofNullable(this.token);
+    }
+
+    /**
      * UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
      * 
      */
@@ -116,6 +133,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.retryMax = $.retryMax;
         this.retryWaitMaxSec = $.retryWaitMaxSec;
         this.retryWaitMinSec = $.retryWaitMinSec;
+        this.token = $.token;
         this.username = $.username;
     }
 
@@ -242,6 +260,29 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder retryWaitMinSec(Integer retryWaitMinSec) {
             return retryWaitMinSec(Output.of(retryWaitMinSec));
+        }
+
+        /**
+         * @param token Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+         * (EXPERIMENTAL)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder token(@Nullable Output<String> token) {
+            $.token = token;
+            return this;
+        }
+
+        /**
+         * @param token Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+         * (EXPERIMENTAL)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder token(String token) {
+            return token(Output.of(token));
         }
 
         /**

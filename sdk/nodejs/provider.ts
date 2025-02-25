@@ -30,6 +30,11 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
+     * Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+     * (EXPERIMENTAL)
+     */
+    public readonly token!: pulumi.Output<string | undefined>;
+    /**
      * UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
      */
     public readonly username!: pulumi.Output<string | undefined>;
@@ -50,6 +55,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["retryMax"] = pulumi.output(args ? args.retryMax : undefined).apply(JSON.stringify);
             resourceInputs["retryWaitMaxSec"] = pulumi.output(args ? args.retryWaitMaxSec : undefined).apply(JSON.stringify);
             resourceInputs["retryWaitMinSec"] = pulumi.output(args ? args.retryWaitMinSec : undefined).apply(JSON.stringify);
+            resourceInputs["token"] = args ? args.token : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -82,6 +88,11 @@ export interface ProviderArgs {
      * Minimum time to wait between retries
      */
     retryWaitMinSec?: pulumi.Input<number>;
+    /**
+     * Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+     * (EXPERIMENTAL)
+     */
+    token?: pulumi.Input<string>;
     /**
      * UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
      */

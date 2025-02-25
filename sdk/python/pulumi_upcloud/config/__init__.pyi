@@ -40,6 +40,12 @@ retryWaitMinSec: Optional[int]
 Minimum time to wait between retries
 """
 
+token: Optional[str]
+"""
+Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+(EXPERIMENTAL)
+"""
+
 username: Optional[str]
 """
 UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.

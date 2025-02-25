@@ -16,12 +16,6 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         [Input("internalAuthenticationBackendLimiting")]
         public Input<Inputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs>? InternalAuthenticationBackendLimiting { get; set; }
 
-        /// <summary>
-        /// IP address rate limiting settings.
-        /// </summary>
-        [Input("ipRateLimiting")]
-        public Input<Inputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs>? IpRateLimiting { get; set; }
-
         public ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs()
         {
         }

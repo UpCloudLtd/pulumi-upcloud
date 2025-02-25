@@ -48,6 +48,14 @@ public final class Config {
         return Codegen.integerProp("retryWaitMinSec").config(config).get();
     }
 /**
+ * Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+ * (EXPERIMENTAL)
+ * 
+ */
+    public Optional<String> token() {
+        return Codegen.stringProp("token").config(config).get();
+    }
+/**
  * UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
  * 
  */
