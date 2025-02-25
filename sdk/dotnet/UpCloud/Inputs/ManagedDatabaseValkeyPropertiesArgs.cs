@@ -31,6 +31,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         [Input("backupMinute")]
         public Input<int>? BackupMinute { get; set; }
 
+        /// <summary>
+        /// Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkey_persistence` is set to `off`.
+        /// </summary>
+        [Input("frequentSnapshots")]
+        public Input<bool>? FrequentSnapshots { get; set; }
+
         [Input("ipFilters")]
         private InputList<string>? _ipFilters;
 
@@ -66,6 +72,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         /// </summary>
         [Input("valkeyAclChannelsDefault")]
         public Input<string>? ValkeyAclChannelsDefault { get; set; }
+
+        /// <summary>
+        /// Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
+        /// </summary>
+        [Input("valkeyActiveExpireEffort")]
+        public Input<int>? ValkeyActiveExpireEffort { get; set; }
 
         /// <summary>
         /// Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.

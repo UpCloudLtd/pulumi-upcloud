@@ -37,6 +37,22 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.password);
     }
     /**
+     * Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+     * (EXPERIMENTAL)
+     * 
+     */
+    @Export(name="token", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> token;
+
+    /**
+     * @return Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+     * (EXPERIMENTAL)
+     * 
+     */
+    public Output<Optional<String>> token() {
+        return Codegen.optional(this.token);
+    }
+    /**
      * UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
      * 
      */

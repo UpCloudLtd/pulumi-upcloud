@@ -64,6 +64,18 @@ Object.defineProperty(exports, "retryWaitMinSec", {
 });
 
 /**
+ * Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+ * (EXPERIMENTAL)
+ */
+export declare const token: string | undefined;
+Object.defineProperty(exports, "token", {
+    get() {
+        return __config.get("token");
+    },
+    enumerable: true,
+});
+
+/**
  * UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
  */
 export declare const username: string | undefined;

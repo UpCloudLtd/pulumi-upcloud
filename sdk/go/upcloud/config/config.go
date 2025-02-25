@@ -37,6 +37,12 @@ func GetRetryWaitMinSec(ctx *pulumi.Context) int {
 	return config.GetInt(ctx, "upcloud:retryWaitMinSec")
 }
 
+// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+// (EXPERIMENTAL)
+func GetToken(ctx *pulumi.Context) string {
+	return config.Get(ctx, "upcloud:token")
+}
+
 // UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
 func GetUsername(ctx *pulumi.Context) string {
 	return config.Get(ctx, "upcloud:username")

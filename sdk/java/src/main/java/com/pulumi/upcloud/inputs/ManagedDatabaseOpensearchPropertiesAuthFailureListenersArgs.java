@@ -6,7 +6,6 @@ package com.pulumi.upcloud.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs;
-import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -23,26 +22,10 @@ public final class ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs e
         return Optional.ofNullable(this.internalAuthenticationBackendLimiting);
     }
 
-    /**
-     * IP address rate limiting settings.
-     * 
-     */
-    @Import(name="ipRateLimiting")
-    private @Nullable Output<ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs> ipRateLimiting;
-
-    /**
-     * @return IP address rate limiting settings.
-     * 
-     */
-    public Optional<Output<ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs>> ipRateLimiting() {
-        return Optional.ofNullable(this.ipRateLimiting);
-    }
-
     private ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs() {}
 
     private ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs(ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs $) {
         this.internalAuthenticationBackendLimiting = $.internalAuthenticationBackendLimiting;
-        this.ipRateLimiting = $.ipRateLimiting;
     }
 
     public static Builder builder() {
@@ -70,27 +53,6 @@ public final class ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs e
 
         public Builder internalAuthenticationBackendLimiting(ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs internalAuthenticationBackendLimiting) {
             return internalAuthenticationBackendLimiting(Output.of(internalAuthenticationBackendLimiting));
-        }
-
-        /**
-         * @param ipRateLimiting IP address rate limiting settings.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder ipRateLimiting(@Nullable Output<ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs> ipRateLimiting) {
-            $.ipRateLimiting = ipRateLimiting;
-            return this;
-        }
-
-        /**
-         * @param ipRateLimiting IP address rate limiting settings.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder ipRateLimiting(ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs ipRateLimiting) {
-            return ipRateLimiting(Output.of(ipRateLimiting));
         }
 
         public ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs build() {

@@ -24,6 +24,7 @@ class ProviderArgs:
                  retry_max: Optional[pulumi.Input[int]] = None,
                  retry_wait_max_sec: Optional[pulumi.Input[int]] = None,
                  retry_wait_min_sec: Optional[pulumi.Input[int]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
@@ -33,6 +34,8 @@ class ProviderArgs:
         :param pulumi.Input[int] retry_max: Maximum number of retries
         :param pulumi.Input[int] retry_wait_max_sec: Maximum time to wait between retries
         :param pulumi.Input[int] retry_wait_min_sec: Minimum time to wait between retries
+        :param pulumi.Input[str] token: Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+               (EXPERIMENTAL)
         :param pulumi.Input[str] username: UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
         """
         if password is not None:
@@ -45,6 +48,8 @@ class ProviderArgs:
             pulumi.set(__self__, "retry_wait_max_sec", retry_wait_max_sec)
         if retry_wait_min_sec is not None:
             pulumi.set(__self__, "retry_wait_min_sec", retry_wait_min_sec)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
         if username is not None:
             pulumi.set(__self__, "username", username)
 
@@ -111,6 +116,19 @@ class ProviderArgs:
 
     @property
     @pulumi.getter
+    def token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+        (EXPERIMENTAL)
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token", value)
+
+    @property
+    @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
         UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
@@ -132,6 +150,7 @@ class Provider(pulumi.ProviderResource):
                  retry_max: Optional[pulumi.Input[int]] = None,
                  retry_wait_max_sec: Optional[pulumi.Input[int]] = None,
                  retry_wait_min_sec: Optional[pulumi.Input[int]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -148,6 +167,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[int] retry_max: Maximum number of retries
         :param pulumi.Input[int] retry_wait_max_sec: Maximum time to wait between retries
         :param pulumi.Input[int] retry_wait_min_sec: Minimum time to wait between retries
+        :param pulumi.Input[str] token: Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+               (EXPERIMENTAL)
         :param pulumi.Input[str] username: UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
         """
         ...
@@ -182,6 +203,7 @@ class Provider(pulumi.ProviderResource):
                  retry_max: Optional[pulumi.Input[int]] = None,
                  retry_wait_max_sec: Optional[pulumi.Input[int]] = None,
                  retry_wait_min_sec: Optional[pulumi.Input[int]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -197,6 +219,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["retry_max"] = pulumi.Output.from_input(retry_max).apply(pulumi.runtime.to_json) if retry_max is not None else None
             __props__.__dict__["retry_wait_max_sec"] = pulumi.Output.from_input(retry_wait_max_sec).apply(pulumi.runtime.to_json) if retry_wait_max_sec is not None else None
             __props__.__dict__["retry_wait_min_sec"] = pulumi.Output.from_input(retry_wait_min_sec).apply(pulumi.runtime.to_json) if retry_wait_min_sec is not None else None
+            __props__.__dict__["token"] = token
             __props__.__dict__["username"] = username
         super(Provider, __self__).__init__(
             'upcloud',
@@ -211,6 +234,15 @@ class Provider(pulumi.ProviderResource):
         Password for UpCloud API user. Can also be configured using the `UPCLOUD_PASSWORD` environment variable.
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def token(self) -> pulumi.Output[Optional[str]]:
+        """
+        Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+        (EXPERIMENTAL)
+        """
+        return pulumi.get(self, "token")
 
     @property
     @pulumi.getter

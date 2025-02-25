@@ -57,6 +57,14 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get_int('retryWaitMinSec')
 
     @property
+    def token(self) -> Optional[str]:
+        """
+        Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
+        (EXPERIMENTAL)
+        """
+        return __config__.get('token')
+
+    @property
     def username(self) -> Optional[str]:
         """
         UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.

@@ -2160,10 +2160,6 @@ export interface ManagedDatabaseOpensearchProperties {
 
 export interface ManagedDatabaseOpensearchPropertiesAuthFailureListeners {
     internalAuthenticationBackendLimiting?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting>;
-    /**
-     * IP address rate limiting settings.
-     */
-    ipRateLimiting?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting {
@@ -2175,33 +2171,6 @@ export interface ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternal
      * The internal backend. Enter `internal`.
      */
     authenticationBackend?: pulumi.Input<string>;
-    /**
-     * The duration of time that login remains blocked after a failed login.
-     */
-    blockExpirySeconds?: pulumi.Input<number>;
-    /**
-     * The maximum number of blocked IP addresses.
-     */
-    maxBlockedClients?: pulumi.Input<number>;
-    /**
-     * The maximum number of tracked IP addresses that have failed login.
-     */
-    maxTrackedClients?: pulumi.Input<number>;
-    /**
-     * The window of time in which the value for `allowedTries` is enforced.
-     */
-    timeWindowSeconds?: pulumi.Input<number>;
-    /**
-     * The type of rate limiting.
-     */
-    type?: pulumi.Input<string>;
-}
-
-export interface ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting {
-    /**
-     * The number of login attempts allowed before login is blocked.
-     */
-    allowedTries?: pulumi.Input<number>;
     /**
      * The duration of time that login remains blocked after a failed login.
      */
@@ -3389,6 +3358,10 @@ export interface ManagedDatabaseValkeyProperties {
      */
     backupMinute?: pulumi.Input<number>;
     /**
+     * Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkeyPersistence` is set to `off`.
+     */
+    frequentSnapshots?: pulumi.Input<boolean>;
+    /**
      * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
      */
     ipFilters?: pulumi.Input<pulumi.Input<string>[]>;
@@ -3408,6 +3381,10 @@ export interface ManagedDatabaseValkeyProperties {
      * Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
      */
     valkeyAclChannelsDefault?: pulumi.Input<string>;
+    /**
+     * Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
+     */
+    valkeyActiveExpireEffort?: pulumi.Input<number>;
     /**
      * Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
      */

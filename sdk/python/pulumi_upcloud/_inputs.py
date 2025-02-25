@@ -123,8 +123,6 @@ __all__ = [
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgsDict',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgsDict',
-    'ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs',
-    'ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgsDict',
     'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs',
     'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgsDict',
     'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs',
@@ -6916,25 +6914,15 @@ class ManagedDatabaseOpensearchPropertiesArgs:
 if not MYPY:
     class ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgsDict(TypedDict):
         internal_authentication_backend_limiting: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgsDict']]
-        ip_rate_limiting: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgsDict']]
-        """
-        IP address rate limiting settings.
-        """
 elif False:
     ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs:
     def __init__(__self__, *,
-                 internal_authentication_backend_limiting: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs']] = None,
-                 ip_rate_limiting: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs']] = None):
-        """
-        :param pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs'] ip_rate_limiting: IP address rate limiting settings.
-        """
+                 internal_authentication_backend_limiting: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs']] = None):
         if internal_authentication_backend_limiting is not None:
             pulumi.set(__self__, "internal_authentication_backend_limiting", internal_authentication_backend_limiting)
-        if ip_rate_limiting is not None:
-            pulumi.set(__self__, "ip_rate_limiting", ip_rate_limiting)
 
     @property
     @pulumi.getter(name="internalAuthenticationBackendLimiting")
@@ -6944,18 +6932,6 @@ class ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs:
     @internal_authentication_backend_limiting.setter
     def internal_authentication_backend_limiting(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs']]):
         pulumi.set(self, "internal_authentication_backend_limiting", value)
-
-    @property
-    @pulumi.getter(name="ipRateLimiting")
-    def ip_rate_limiting(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs']]:
-        """
-        IP address rate limiting settings.
-        """
-        return pulumi.get(self, "ip_rate_limiting")
-
-    @ip_rate_limiting.setter
-    def ip_rate_limiting(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs']]):
-        pulumi.set(self, "ip_rate_limiting", value)
 
 
 if not MYPY:
@@ -7048,138 +7024,6 @@ class ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticat
     @authentication_backend.setter
     def authentication_backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "authentication_backend", value)
-
-    @property
-    @pulumi.getter(name="blockExpirySeconds")
-    def block_expiry_seconds(self) -> Optional[pulumi.Input[int]]:
-        """
-        The duration of time that login remains blocked after a failed login.
-        """
-        return pulumi.get(self, "block_expiry_seconds")
-
-    @block_expiry_seconds.setter
-    def block_expiry_seconds(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "block_expiry_seconds", value)
-
-    @property
-    @pulumi.getter(name="maxBlockedClients")
-    def max_blocked_clients(self) -> Optional[pulumi.Input[int]]:
-        """
-        The maximum number of blocked IP addresses.
-        """
-        return pulumi.get(self, "max_blocked_clients")
-
-    @max_blocked_clients.setter
-    def max_blocked_clients(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "max_blocked_clients", value)
-
-    @property
-    @pulumi.getter(name="maxTrackedClients")
-    def max_tracked_clients(self) -> Optional[pulumi.Input[int]]:
-        """
-        The maximum number of tracked IP addresses that have failed login.
-        """
-        return pulumi.get(self, "max_tracked_clients")
-
-    @max_tracked_clients.setter
-    def max_tracked_clients(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "max_tracked_clients", value)
-
-    @property
-    @pulumi.getter(name="timeWindowSeconds")
-    def time_window_seconds(self) -> Optional[pulumi.Input[int]]:
-        """
-        The window of time in which the value for `allowed_tries` is enforced.
-        """
-        return pulumi.get(self, "time_window_seconds")
-
-    @time_window_seconds.setter
-    def time_window_seconds(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "time_window_seconds", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[str]]:
-        """
-        The type of rate limiting.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "type", value)
-
-
-if not MYPY:
-    class ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgsDict(TypedDict):
-        allowed_tries: NotRequired[pulumi.Input[int]]
-        """
-        The number of login attempts allowed before login is blocked.
-        """
-        block_expiry_seconds: NotRequired[pulumi.Input[int]]
-        """
-        The duration of time that login remains blocked after a failed login.
-        """
-        max_blocked_clients: NotRequired[pulumi.Input[int]]
-        """
-        The maximum number of blocked IP addresses.
-        """
-        max_tracked_clients: NotRequired[pulumi.Input[int]]
-        """
-        The maximum number of tracked IP addresses that have failed login.
-        """
-        time_window_seconds: NotRequired[pulumi.Input[int]]
-        """
-        The window of time in which the value for `allowed_tries` is enforced.
-        """
-        type: NotRequired[pulumi.Input[str]]
-        """
-        The type of rate limiting.
-        """
-elif False:
-    ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimitingArgs:
-    def __init__(__self__, *,
-                 allowed_tries: Optional[pulumi.Input[int]] = None,
-                 block_expiry_seconds: Optional[pulumi.Input[int]] = None,
-                 max_blocked_clients: Optional[pulumi.Input[int]] = None,
-                 max_tracked_clients: Optional[pulumi.Input[int]] = None,
-                 time_window_seconds: Optional[pulumi.Input[int]] = None,
-                 type: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[int] allowed_tries: The number of login attempts allowed before login is blocked.
-        :param pulumi.Input[int] block_expiry_seconds: The duration of time that login remains blocked after a failed login.
-        :param pulumi.Input[int] max_blocked_clients: The maximum number of blocked IP addresses.
-        :param pulumi.Input[int] max_tracked_clients: The maximum number of tracked IP addresses that have failed login.
-        :param pulumi.Input[int] time_window_seconds: The window of time in which the value for `allowed_tries` is enforced.
-        :param pulumi.Input[str] type: The type of rate limiting.
-        """
-        if allowed_tries is not None:
-            pulumi.set(__self__, "allowed_tries", allowed_tries)
-        if block_expiry_seconds is not None:
-            pulumi.set(__self__, "block_expiry_seconds", block_expiry_seconds)
-        if max_blocked_clients is not None:
-            pulumi.set(__self__, "max_blocked_clients", max_blocked_clients)
-        if max_tracked_clients is not None:
-            pulumi.set(__self__, "max_tracked_clients", max_tracked_clients)
-        if time_window_seconds is not None:
-            pulumi.set(__self__, "time_window_seconds", time_window_seconds)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter(name="allowedTries")
-    def allowed_tries(self) -> Optional[pulumi.Input[int]]:
-        """
-        The number of login attempts allowed before login is blocked.
-        """
-        return pulumi.get(self, "allowed_tries")
-
-    @allowed_tries.setter
-    def allowed_tries(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "allowed_tries", value)
 
     @property
     @pulumi.getter(name="blockExpirySeconds")
@@ -12856,6 +12700,10 @@ if not MYPY:
         """
         The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
         """
+        frequent_snapshots: NotRequired[pulumi.Input[bool]]
+        """
+        Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkey_persistence` is set to `off`.
+        """
         ip_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
@@ -12875,6 +12723,10 @@ if not MYPY:
         valkey_acl_channels_default: NotRequired[pulumi.Input[str]]
         """
         Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+        """
+        valkey_active_expire_effort: NotRequired[pulumi.Input[int]]
+        """
+        Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
         """
         valkey_io_threads: NotRequired[pulumi.Input[int]]
         """
@@ -12925,11 +12777,13 @@ class ManagedDatabaseValkeyPropertiesArgs:
                  automatic_utility_network_ip_filter: Optional[pulumi.Input[bool]] = None,
                  backup_hour: Optional[pulumi.Input[int]] = None,
                  backup_minute: Optional[pulumi.Input[int]] = None,
+                 frequent_snapshots: Optional[pulumi.Input[bool]] = None,
                  ip_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  migration: Optional[pulumi.Input['ManagedDatabaseValkeyPropertiesMigrationArgs']] = None,
                  public_access: Optional[pulumi.Input[bool]] = None,
                  service_log: Optional[pulumi.Input[bool]] = None,
                  valkey_acl_channels_default: Optional[pulumi.Input[str]] = None,
+                 valkey_active_expire_effort: Optional[pulumi.Input[int]] = None,
                  valkey_io_threads: Optional[pulumi.Input[int]] = None,
                  valkey_lfu_decay_time: Optional[pulumi.Input[int]] = None,
                  valkey_lfu_log_factor: Optional[pulumi.Input[int]] = None,
@@ -12944,11 +12798,13 @@ class ManagedDatabaseValkeyPropertiesArgs:
         :param pulumi.Input[bool] automatic_utility_network_ip_filter: Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
         :param pulumi.Input[int] backup_hour: The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
         :param pulumi.Input[int] backup_minute: The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        :param pulumi.Input[bool] frequent_snapshots: Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkey_persistence` is set to `off`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
         :param pulumi.Input['ManagedDatabaseValkeyPropertiesMigrationArgs'] migration: Migrate data from existing server.
         :param pulumi.Input[bool] public_access: Public Access. Allow access to the service from the public Internet.
         :param pulumi.Input[bool] service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
         :param pulumi.Input[str] valkey_acl_channels_default: Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+        :param pulumi.Input[int] valkey_active_expire_effort: Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
         :param pulumi.Input[int] valkey_io_threads: Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
         :param pulumi.Input[int] valkey_lfu_decay_time: LFU maxmemory-policy counter decay time in minutes.
         :param pulumi.Input[int] valkey_lfu_log_factor: Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
@@ -12966,6 +12822,8 @@ class ManagedDatabaseValkeyPropertiesArgs:
             pulumi.set(__self__, "backup_hour", backup_hour)
         if backup_minute is not None:
             pulumi.set(__self__, "backup_minute", backup_minute)
+        if frequent_snapshots is not None:
+            pulumi.set(__self__, "frequent_snapshots", frequent_snapshots)
         if ip_filters is not None:
             pulumi.set(__self__, "ip_filters", ip_filters)
         if migration is not None:
@@ -12976,6 +12834,8 @@ class ManagedDatabaseValkeyPropertiesArgs:
             pulumi.set(__self__, "service_log", service_log)
         if valkey_acl_channels_default is not None:
             pulumi.set(__self__, "valkey_acl_channels_default", valkey_acl_channels_default)
+        if valkey_active_expire_effort is not None:
+            pulumi.set(__self__, "valkey_active_expire_effort", valkey_active_expire_effort)
         if valkey_io_threads is not None:
             pulumi.set(__self__, "valkey_io_threads", valkey_io_threads)
         if valkey_lfu_decay_time is not None:
@@ -13032,6 +12892,18 @@ class ManagedDatabaseValkeyPropertiesArgs:
     @backup_minute.setter
     def backup_minute(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "backup_minute", value)
+
+    @property
+    @pulumi.getter(name="frequentSnapshots")
+    def frequent_snapshots(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkey_persistence` is set to `off`.
+        """
+        return pulumi.get(self, "frequent_snapshots")
+
+    @frequent_snapshots.setter
+    def frequent_snapshots(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "frequent_snapshots", value)
 
     @property
     @pulumi.getter(name="ipFilters")
@@ -13092,6 +12964,18 @@ class ManagedDatabaseValkeyPropertiesArgs:
     @valkey_acl_channels_default.setter
     def valkey_acl_channels_default(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "valkey_acl_channels_default", value)
+
+    @property
+    @pulumi.getter(name="valkeyActiveExpireEffort")
+    def valkey_active_expire_effort(self) -> Optional[pulumi.Input[int]]:
+        """
+        Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
+        """
+        return pulumi.get(self, "valkey_active_expire_effort")
+
+    @valkey_active_expire_effort.setter
+    def valkey_active_expire_effort(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "valkey_active_expire_effort", value)
 
     @property
     @pulumi.getter(name="valkeyIoThreads")

@@ -27,6 +27,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? BackupMinute;
         /// <summary>
+        /// Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkey_persistence` is set to `off`.
+        /// </summary>
+        public readonly bool? FrequentSnapshots;
+        /// <summary>
         /// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
         /// </summary>
         public readonly ImmutableArray<string> IpFilters;
@@ -46,6 +50,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
         /// </summary>
         public readonly string? ValkeyAclChannelsDefault;
+        /// <summary>
+        /// Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
+        /// </summary>
+        public readonly int? ValkeyActiveExpireEffort;
         /// <summary>
         /// Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
         /// </summary>
@@ -95,6 +103,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             int? backupMinute,
 
+            bool? frequentSnapshots,
+
             ImmutableArray<string> ipFilters,
 
             Outputs.ManagedDatabaseValkeyPropertiesMigration? migration,
@@ -104,6 +114,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             bool? serviceLog,
 
             string? valkeyAclChannelsDefault,
+
+            int? valkeyActiveExpireEffort,
 
             int? valkeyIoThreads,
 
@@ -128,11 +140,13 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             AutomaticUtilityNetworkIpFilter = automaticUtilityNetworkIpFilter;
             BackupHour = backupHour;
             BackupMinute = backupMinute;
+            FrequentSnapshots = frequentSnapshots;
             IpFilters = ipFilters;
             Migration = migration;
             PublicAccess = publicAccess;
             ServiceLog = serviceLog;
             ValkeyAclChannelsDefault = valkeyAclChannelsDefault;
+            ValkeyActiveExpireEffort = valkeyActiveExpireEffort;
             ValkeyIoThreads = valkeyIoThreads;
             ValkeyLfuDecayTime = valkeyLfuDecayTime;
             ValkeyLfuLogFactor = valkeyLfuLogFactor;

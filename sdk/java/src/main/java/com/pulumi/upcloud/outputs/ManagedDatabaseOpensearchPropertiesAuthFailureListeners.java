@@ -5,7 +5,6 @@ package com.pulumi.upcloud.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting;
-import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -13,22 +12,10 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ManagedDatabaseOpensearchPropertiesAuthFailureListeners {
     private @Nullable ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting internalAuthenticationBackendLimiting;
-    /**
-     * @return IP address rate limiting settings.
-     * 
-     */
-    private @Nullable ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting ipRateLimiting;
 
     private ManagedDatabaseOpensearchPropertiesAuthFailureListeners() {}
     public Optional<ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting> internalAuthenticationBackendLimiting() {
         return Optional.ofNullable(this.internalAuthenticationBackendLimiting);
-    }
-    /**
-     * @return IP address rate limiting settings.
-     * 
-     */
-    public Optional<ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting> ipRateLimiting() {
-        return Optional.ofNullable(this.ipRateLimiting);
     }
 
     public static Builder builder() {
@@ -41,12 +28,10 @@ public final class ManagedDatabaseOpensearchPropertiesAuthFailureListeners {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting internalAuthenticationBackendLimiting;
-        private @Nullable ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting ipRateLimiting;
         public Builder() {}
         public Builder(ManagedDatabaseOpensearchPropertiesAuthFailureListeners defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.internalAuthenticationBackendLimiting = defaults.internalAuthenticationBackendLimiting;
-    	      this.ipRateLimiting = defaults.ipRateLimiting;
         }
 
         @CustomType.Setter
@@ -55,16 +40,9 @@ public final class ManagedDatabaseOpensearchPropertiesAuthFailureListeners {
             this.internalAuthenticationBackendLimiting = internalAuthenticationBackendLimiting;
             return this;
         }
-        @CustomType.Setter
-        public Builder ipRateLimiting(@Nullable ManagedDatabaseOpensearchPropertiesAuthFailureListenersIpRateLimiting ipRateLimiting) {
-
-            this.ipRateLimiting = ipRateLimiting;
-            return this;
-        }
         public ManagedDatabaseOpensearchPropertiesAuthFailureListeners build() {
             final var _resultValue = new ManagedDatabaseOpensearchPropertiesAuthFailureListeners();
             _resultValue.internalAuthenticationBackendLimiting = internalAuthenticationBackendLimiting;
-            _resultValue.ipRateLimiting = ipRateLimiting;
             return _resultValue;
         }
     }
