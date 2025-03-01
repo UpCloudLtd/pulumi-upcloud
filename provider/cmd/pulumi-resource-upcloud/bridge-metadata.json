@@ -363,6 +363,9 @@
                                         }
                                     }
                                 },
+                                "disk_watermarks": {
+                                    "maxItemsOne": true
+                                },
                                 "index_patterns": {
                                     "maxItemsOne": false
                                 },
