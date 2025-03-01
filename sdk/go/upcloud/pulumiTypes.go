@@ -8225,6 +8225,8 @@ type ManagedDatabaseOpensearchProperties struct {
 	ClusterSearchRequestSlowlog                      *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog `pulumi:"clusterSearchRequestSlowlog"`
 	// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
 	CustomDomain *string `pulumi:"customDomain"`
+	// Watermark settings.
+	DiskWatermarks *ManagedDatabaseOpensearchPropertiesDiskWatermarks `pulumi:"diskWatermarks"`
 	// Elasticsearch major version.
 	ElasticsearchVersion *string `pulumi:"elasticsearchVersion"`
 	// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
@@ -8367,6 +8369,8 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	ClusterSearchRequestSlowlog                      ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrInput `pulumi:"clusterSearchRequestSlowlog"`
 	// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
 	CustomDomain pulumi.StringPtrInput `pulumi:"customDomain"`
+	// Watermark settings.
+	DiskWatermarks ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrInput `pulumi:"diskWatermarks"`
 	// Elasticsearch major version.
 	ElasticsearchVersion pulumi.StringPtrInput `pulumi:"elasticsearchVersion"`
 	// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
@@ -8607,6 +8611,13 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) ClusterSearchRequestSlowlog()
 // Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
 func (o ManagedDatabaseOpensearchPropertiesOutput) CustomDomain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *string { return v.CustomDomain }).(pulumi.StringPtrOutput)
+}
+
+// Watermark settings.
+func (o ManagedDatabaseOpensearchPropertiesOutput) DiskWatermarks() ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesDiskWatermarks {
+		return v.DiskWatermarks
+	}).(ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput)
 }
 
 // Elasticsearch major version.
@@ -9015,6 +9026,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) CustomDomain() pulumi.Stri
 		}
 		return v.CustomDomain
 	}).(pulumi.StringPtrOutput)
+}
+
+// Watermark settings.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) DiskWatermarks() ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesDiskWatermarks {
+		if v == nil {
+			return nil
+		}
+		return v.DiskWatermarks
+	}).(ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput)
 }
 
 // Elasticsearch major version.
@@ -10326,6 +10347,181 @@ func (o ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdP
 		}
 		return v.Warn
 	}).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesDiskWatermarks struct {
+	// Flood stage watermark (percentage). The flood stage watermark for disk usage.
+	FloodStage *int `pulumi:"floodStage"`
+	// High watermark (percentage). The high watermark for disk usage.
+	High *int `pulumi:"high"`
+	// Low watermark (percentage). The low watermark for disk usage.
+	Low *int `pulumi:"low"`
+}
+
+// ManagedDatabaseOpensearchPropertiesDiskWatermarksInput is an input type that accepts ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs and ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesDiskWatermarksInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs{...}
+type ManagedDatabaseOpensearchPropertiesDiskWatermarksInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesDiskWatermarksOutput() ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput
+	ToManagedDatabaseOpensearchPropertiesDiskWatermarksOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs struct {
+	// Flood stage watermark (percentage). The flood stage watermark for disk usage.
+	FloodStage pulumi.IntPtrInput `pulumi:"floodStage"`
+	// High watermark (percentage). The high watermark for disk usage.
+	High pulumi.IntPtrInput `pulumi:"high"`
+	// Low watermark (percentage). The low watermark for disk usage.
+	Low pulumi.IntPtrInput `pulumi:"low"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesDiskWatermarks)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs) ToManagedDatabaseOpensearchPropertiesDiskWatermarksOutput() ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesDiskWatermarksOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs) ToManagedDatabaseOpensearchPropertiesDiskWatermarksOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs) ToManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput() ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs) ToManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput).ToManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs, ManagedDatabaseOpensearchPropertiesDiskWatermarksPtr and ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput() ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput
+	ToManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesDiskWatermarksPtrType ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs
+
+func ManagedDatabaseOpensearchPropertiesDiskWatermarksPtr(v *ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs) ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrInput {
+	return (*managedDatabaseOpensearchPropertiesDiskWatermarksPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesDiskWatermarksPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesDiskWatermarks)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesDiskWatermarksPtrType) ToManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput() ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesDiskWatermarksPtrType) ToManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesDiskWatermarks)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput) ToManagedDatabaseOpensearchPropertiesDiskWatermarksOutput() ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput) ToManagedDatabaseOpensearchPropertiesDiskWatermarksOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput) ToManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput() ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput) ToManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesDiskWatermarks) *ManagedDatabaseOpensearchPropertiesDiskWatermarks {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput)
+}
+
+// Flood stage watermark (percentage). The flood stage watermark for disk usage.
+func (o ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput) FloodStage() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesDiskWatermarks) *int { return v.FloodStage }).(pulumi.IntPtrOutput)
+}
+
+// High watermark (percentage). The high watermark for disk usage.
+func (o ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput) High() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesDiskWatermarks) *int { return v.High }).(pulumi.IntPtrOutput)
+}
+
+// Low watermark (percentage). The low watermark for disk usage.
+func (o ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput) Low() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesDiskWatermarks) *int { return v.Low }).(pulumi.IntPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesDiskWatermarks)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput) ToManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput() ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput) ToManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesDiskWatermarks) ManagedDatabaseOpensearchPropertiesDiskWatermarks {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesDiskWatermarks
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput)
+}
+
+// Flood stage watermark (percentage). The flood stage watermark for disk usage.
+func (o ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput) FloodStage() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesDiskWatermarks) *int {
+		if v == nil {
+			return nil
+		}
+		return v.FloodStage
+	}).(pulumi.IntPtrOutput)
+}
+
+// High watermark (percentage). The high watermark for disk usage.
+func (o ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput) High() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesDiskWatermarks) *int {
+		if v == nil {
+			return nil
+		}
+		return v.High
+	}).(pulumi.IntPtrOutput)
+}
+
+// Low watermark (percentage). The low watermark for disk usage.
+func (o ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput) Low() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesDiskWatermarks) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Low
+	}).(pulumi.IntPtrOutput)
 }
 
 type ManagedDatabaseOpensearchPropertiesIndexRollup struct {
@@ -25458,6 +25654,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesDiskWatermarksInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexRollupInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesIndexRollupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexRollupPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesIndexRollupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexTemplateInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesIndexTemplateArgs{})
@@ -25719,6 +25917,8 @@ func init() {
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesDiskWatermarksOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesIndexRollupOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesIndexTemplateOutput{})

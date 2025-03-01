@@ -65,6 +65,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? CustomDomain { get; set; }
 
         /// <summary>
+        /// Watermark settings.
+        /// </summary>
+        [Input("diskWatermarks")]
+        public Input<Inputs.ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs>? DiskWatermarks { get; set; }
+
+        /// <summary>
         /// Elasticsearch major version.
         /// </summary>
         [Input("elasticsearchVersion")]

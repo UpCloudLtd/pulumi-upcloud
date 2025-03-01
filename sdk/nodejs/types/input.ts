@@ -1936,6 +1936,10 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     customDomain?: pulumi.Input<string>;
     /**
+     * Watermark settings.
+     */
+    diskWatermarks?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks>;
+    /**
      * Elasticsearch major version.
      */
     elasticsearchVersion?: pulumi.Input<string>;
@@ -2218,6 +2222,21 @@ export interface ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogT
      * Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
     warn?: pulumi.Input<string>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesDiskWatermarks {
+    /**
+     * Flood stage watermark (percentage). The flood stage watermark for disk usage.
+     */
+    floodStage?: pulumi.Input<number>;
+    /**
+     * High watermark (percentage). The high watermark for disk usage.
+     */
+    high?: pulumi.Input<number>;
+    /**
+     * Low watermark (percentage). The low watermark for disk usage.
+     */
+    low?: pulumi.Input<number>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesIndexRollup {

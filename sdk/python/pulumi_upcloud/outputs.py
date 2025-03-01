@@ -72,6 +72,7 @@ __all__ = [
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting',
     'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog',
     'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold',
+    'ManagedDatabaseOpensearchPropertiesDiskWatermarks',
     'ManagedDatabaseOpensearchPropertiesIndexRollup',
     'ManagedDatabaseOpensearchPropertiesIndexTemplate',
     'ManagedDatabaseOpensearchPropertiesOpenid',
@@ -3975,6 +3976,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "cluster_search_request_slowlog"
         elif key == "customDomain":
             suggest = "custom_domain"
+        elif key == "diskWatermarks":
+            suggest = "disk_watermarks"
         elif key == "elasticsearchVersion":
             suggest = "elasticsearch_version"
         elif key == "emailSenderName":
@@ -4101,6 +4104,7 @@ class ManagedDatabaseOpensearchProperties(dict):
                  cluster_routing_allocation_node_concurrent_recoveries: Optional[int] = None,
                  cluster_search_request_slowlog: Optional['outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog'] = None,
                  custom_domain: Optional[str] = None,
+                 disk_watermarks: Optional['outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks'] = None,
                  elasticsearch_version: Optional[str] = None,
                  email_sender_name: Optional[str] = None,
                  email_sender_password: Optional[str] = None,
@@ -4166,6 +4170,7 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param bool cluster_routing_allocation_balance_prefer_primary: When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
         :param int cluster_routing_allocation_node_concurrent_recoveries: Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
         :param str custom_domain: Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+        :param 'ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs' disk_watermarks: Watermark settings.
         :param str elasticsearch_version: Elasticsearch major version.
         :param str email_sender_name: Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
         :param str email_sender_password: Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
@@ -4240,6 +4245,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "cluster_search_request_slowlog", cluster_search_request_slowlog)
         if custom_domain is not None:
             pulumi.set(__self__, "custom_domain", custom_domain)
+        if disk_watermarks is not None:
+            pulumi.set(__self__, "disk_watermarks", disk_watermarks)
         if elasticsearch_version is not None:
             pulumi.set(__self__, "elasticsearch_version", elasticsearch_version)
         if email_sender_name is not None:
@@ -4421,6 +4428,14 @@ class ManagedDatabaseOpensearchProperties(dict):
         Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
         """
         return pulumi.get(self, "custom_domain")
+
+    @property
+    @pulumi.getter(name="diskWatermarks")
+    def disk_watermarks(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks']:
+        """
+        Watermark settings.
+        """
+        return pulumi.get(self, "disk_watermarks")
 
     @property
     @pulumi.getter(name="elasticsearchVersion")
@@ -5096,6 +5111,66 @@ class ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold(di
         Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
         """
         return pulumi.get(self, "warn")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesDiskWatermarks(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "floodStage":
+            suggest = "flood_stage"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesDiskWatermarks. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesDiskWatermarks.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesDiskWatermarks.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 flood_stage: Optional[int] = None,
+                 high: Optional[int] = None,
+                 low: Optional[int] = None):
+        """
+        :param int flood_stage: Flood stage watermark (percentage). The flood stage watermark for disk usage.
+        :param int high: High watermark (percentage). The high watermark for disk usage.
+        :param int low: Low watermark (percentage). The low watermark for disk usage.
+        """
+        if flood_stage is not None:
+            pulumi.set(__self__, "flood_stage", flood_stage)
+        if high is not None:
+            pulumi.set(__self__, "high", high)
+        if low is not None:
+            pulumi.set(__self__, "low", low)
+
+    @property
+    @pulumi.getter(name="floodStage")
+    def flood_stage(self) -> Optional[int]:
+        """
+        Flood stage watermark (percentage). The flood stage watermark for disk usage.
+        """
+        return pulumi.get(self, "flood_stage")
+
+    @property
+    @pulumi.getter
+    def high(self) -> Optional[int]:
+        """
+        High watermark (percentage). The high watermark for disk usage.
+        """
+        return pulumi.get(self, "high")
+
+    @property
+    @pulumi.getter
+    def low(self) -> Optional[int]:
+        """
+        Low watermark (percentage). The low watermark for disk usage.
+        """
+        return pulumi.get(self, "low")
 
 
 @pulumi.output_type

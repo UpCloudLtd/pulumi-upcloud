@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs;
+import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesIndexRollupArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesIndexTemplateArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesOpenidArgs;
@@ -154,6 +155,21 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
      */
     public Optional<Output<String>> customDomain() {
         return Optional.ofNullable(this.customDomain);
+    }
+
+    /**
+     * Watermark settings.
+     * 
+     */
+    @Import(name="diskWatermarks")
+    private @Nullable Output<ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs> diskWatermarks;
+
+    /**
+     * @return Watermark settings.
+     * 
+     */
+    public Optional<Output<ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs>> diskWatermarks() {
+        return Optional.ofNullable(this.diskWatermarks);
     }
 
     /**
@@ -1000,6 +1016,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         this.clusterRoutingAllocationNodeConcurrentRecoveries = $.clusterRoutingAllocationNodeConcurrentRecoveries;
         this.clusterSearchRequestSlowlog = $.clusterSearchRequestSlowlog;
         this.customDomain = $.customDomain;
+        this.diskWatermarks = $.diskWatermarks;
         this.elasticsearchVersion = $.elasticsearchVersion;
         this.emailSenderName = $.emailSenderName;
         this.emailSenderPassword = $.emailSenderPassword;
@@ -1251,6 +1268,27 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
          */
         public Builder customDomain(String customDomain) {
             return customDomain(Output.of(customDomain));
+        }
+
+        /**
+         * @param diskWatermarks Watermark settings.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder diskWatermarks(@Nullable Output<ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs> diskWatermarks) {
+            $.diskWatermarks = diskWatermarks;
+            return this;
+        }
+
+        /**
+         * @param diskWatermarks Watermark settings.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder diskWatermarks(ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs diskWatermarks) {
+            return diskWatermarks(Output.of(diskWatermarks));
         }
 
         /**

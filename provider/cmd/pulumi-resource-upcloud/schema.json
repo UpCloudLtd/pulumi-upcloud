@@ -1964,6 +1964,10 @@
                     "type": "string",
                     "description": "Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.\n"
                 },
+                "diskWatermarks": {
+                    "$ref": "#/types/upcloud:index/ManagedDatabaseOpensearchPropertiesDiskWatermarks:ManagedDatabaseOpensearchPropertiesDiskWatermarks",
+                    "description": "Watermark settings.\n"
+                },
                 "elasticsearchVersion": {
                     "type": "string",
                     "description": "Elasticsearch major version.\n"
@@ -2209,6 +2213,7 @@
                         "clusterRoutingAllocationNodeConcurrentRecoveries",
                         "clusterSearchRequestSlowlog",
                         "customDomain",
+                        "diskWatermarks",
                         "elasticsearchVersion",
                         "emailSenderName",
                         "emailSenderPassword",
@@ -2368,6 +2373,32 @@
                 }
             },
             "type": "object"
+        },
+        "upcloud:index/ManagedDatabaseOpensearchPropertiesDiskWatermarks:ManagedDatabaseOpensearchPropertiesDiskWatermarks": {
+            "properties": {
+                "floodStage": {
+                    "type": "integer",
+                    "description": "Flood stage watermark (percentage). The flood stage watermark for disk usage.\n"
+                },
+                "high": {
+                    "type": "integer",
+                    "description": "High watermark (percentage). The high watermark for disk usage.\n"
+                },
+                "low": {
+                    "type": "integer",
+                    "description": "Low watermark (percentage). The low watermark for disk usage.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "floodStage",
+                        "high",
+                        "low"
+                    ]
+                }
+            }
         },
         "upcloud:index/ManagedDatabaseOpensearchPropertiesIndexRollup:ManagedDatabaseOpensearchPropertiesIndexRollup": {
             "properties": {

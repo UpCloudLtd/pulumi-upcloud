@@ -48,6 +48,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? CustomDomain;
         /// <summary>
+        /// Watermark settings.
+        /// </summary>
+        public readonly Outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks? DiskWatermarks;
+        /// <summary>
         /// Elasticsearch major version.
         /// </summary>
         public readonly string? ElasticsearchVersion;
@@ -289,6 +293,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             string? customDomain,
 
+            Outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks? diskWatermarks,
+
             string? elasticsearchVersion,
 
             string? emailSenderName,
@@ -410,6 +416,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             ClusterRoutingAllocationNodeConcurrentRecoveries = clusterRoutingAllocationNodeConcurrentRecoveries;
             ClusterSearchRequestSlowlog = clusterSearchRequestSlowlog;
             CustomDomain = customDomain;
+            DiskWatermarks = diskWatermarks;
             ElasticsearchVersion = elasticsearchVersion;
             EmailSenderName = emailSenderName;
             EmailSenderPassword = emailSenderPassword;

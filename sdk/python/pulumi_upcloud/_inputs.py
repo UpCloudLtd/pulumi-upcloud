@@ -127,6 +127,8 @@ __all__ = [
     'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgsDict',
     'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs',
     'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgsDict',
+    'ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs',
+    'ManagedDatabaseOpensearchPropertiesDiskWatermarksArgsDict',
     'ManagedDatabaseOpensearchPropertiesIndexRollupArgs',
     'ManagedDatabaseOpensearchPropertiesIndexRollupArgsDict',
     'ManagedDatabaseOpensearchPropertiesIndexTemplateArgs',
@@ -5648,6 +5650,10 @@ if not MYPY:
         """
         Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
         """
+        disk_watermarks: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesDiskWatermarksArgsDict']]
+        """
+        Watermark settings.
+        """
         elasticsearch_version: NotRequired[pulumi.Input[str]]
         """
         Elasticsearch major version.
@@ -5884,6 +5890,7 @@ class ManagedDatabaseOpensearchPropertiesArgs:
                  cluster_routing_allocation_node_concurrent_recoveries: Optional[pulumi.Input[int]] = None,
                  cluster_search_request_slowlog: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs']] = None,
                  custom_domain: Optional[pulumi.Input[str]] = None,
+                 disk_watermarks: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs']] = None,
                  elasticsearch_version: Optional[pulumi.Input[str]] = None,
                  email_sender_name: Optional[pulumi.Input[str]] = None,
                  email_sender_password: Optional[pulumi.Input[str]] = None,
@@ -5949,6 +5956,7 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         :param pulumi.Input[bool] cluster_routing_allocation_balance_prefer_primary: When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
         :param pulumi.Input[int] cluster_routing_allocation_node_concurrent_recoveries: Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
         :param pulumi.Input[str] custom_domain: Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+        :param pulumi.Input['ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs'] disk_watermarks: Watermark settings.
         :param pulumi.Input[str] elasticsearch_version: Elasticsearch major version.
         :param pulumi.Input[str] email_sender_name: Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
         :param pulumi.Input[str] email_sender_password: Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
@@ -6023,6 +6031,8 @@ class ManagedDatabaseOpensearchPropertiesArgs:
             pulumi.set(__self__, "cluster_search_request_slowlog", cluster_search_request_slowlog)
         if custom_domain is not None:
             pulumi.set(__self__, "custom_domain", custom_domain)
+        if disk_watermarks is not None:
+            pulumi.set(__self__, "disk_watermarks", disk_watermarks)
         if elasticsearch_version is not None:
             pulumi.set(__self__, "elasticsearch_version", elasticsearch_version)
         if email_sender_name is not None:
@@ -6240,6 +6250,18 @@ class ManagedDatabaseOpensearchPropertiesArgs:
     @custom_domain.setter
     def custom_domain(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "custom_domain", value)
+
+    @property
+    @pulumi.getter(name="diskWatermarks")
+    def disk_watermarks(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs']]:
+        """
+        Watermark settings.
+        """
+        return pulumi.get(self, "disk_watermarks")
+
+    @disk_watermarks.setter
+    def disk_watermarks(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs']]):
+        pulumi.set(self, "disk_watermarks", value)
 
     @property
     @pulumi.getter(name="elasticsearchVersion")
@@ -7221,6 +7243,78 @@ class ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArg
     @warn.setter
     def warn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "warn", value)
+
+
+if not MYPY:
+    class ManagedDatabaseOpensearchPropertiesDiskWatermarksArgsDict(TypedDict):
+        flood_stage: NotRequired[pulumi.Input[int]]
+        """
+        Flood stage watermark (percentage). The flood stage watermark for disk usage.
+        """
+        high: NotRequired[pulumi.Input[int]]
+        """
+        High watermark (percentage). The high watermark for disk usage.
+        """
+        low: NotRequired[pulumi.Input[int]]
+        """
+        Low watermark (percentage). The low watermark for disk usage.
+        """
+elif False:
+    ManagedDatabaseOpensearchPropertiesDiskWatermarksArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs:
+    def __init__(__self__, *,
+                 flood_stage: Optional[pulumi.Input[int]] = None,
+                 high: Optional[pulumi.Input[int]] = None,
+                 low: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] flood_stage: Flood stage watermark (percentage). The flood stage watermark for disk usage.
+        :param pulumi.Input[int] high: High watermark (percentage). The high watermark for disk usage.
+        :param pulumi.Input[int] low: Low watermark (percentage). The low watermark for disk usage.
+        """
+        if flood_stage is not None:
+            pulumi.set(__self__, "flood_stage", flood_stage)
+        if high is not None:
+            pulumi.set(__self__, "high", high)
+        if low is not None:
+            pulumi.set(__self__, "low", low)
+
+    @property
+    @pulumi.getter(name="floodStage")
+    def flood_stage(self) -> Optional[pulumi.Input[int]]:
+        """
+        Flood stage watermark (percentage). The flood stage watermark for disk usage.
+        """
+        return pulumi.get(self, "flood_stage")
+
+    @flood_stage.setter
+    def flood_stage(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "flood_stage", value)
+
+    @property
+    @pulumi.getter
+    def high(self) -> Optional[pulumi.Input[int]]:
+        """
+        High watermark (percentage). The high watermark for disk usage.
+        """
+        return pulumi.get(self, "high")
+
+    @high.setter
+    def high(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "high", value)
+
+    @property
+    @pulumi.getter
+    def low(self) -> Optional[pulumi.Input[int]]:
+        """
+        Low watermark (percentage). The low watermark for disk usage.
+        """
+        return pulumi.get(self, "low")
+
+    @low.setter
+    def low(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "low", value)
 
 
 if not MYPY:
