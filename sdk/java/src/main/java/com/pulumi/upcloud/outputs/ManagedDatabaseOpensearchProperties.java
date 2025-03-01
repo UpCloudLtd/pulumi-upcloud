@@ -6,6 +6,7 @@ package com.pulumi.upcloud.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListeners;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog;
+import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesIndexRollup;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesIndexTemplate;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesOpenid;
@@ -66,6 +67,11 @@ public final class ManagedDatabaseOpensearchProperties {
      * 
      */
     private @Nullable String customDomain;
+    /**
+     * @return Watermark settings.
+     * 
+     */
+    private @Nullable ManagedDatabaseOpensearchPropertiesDiskWatermarks diskWatermarks;
     /**
      * @return Elasticsearch major version.
      * 
@@ -402,6 +408,13 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     public Optional<String> customDomain() {
         return Optional.ofNullable(this.customDomain);
+    }
+    /**
+     * @return Watermark settings.
+     * 
+     */
+    public Optional<ManagedDatabaseOpensearchPropertiesDiskWatermarks> diskWatermarks() {
+        return Optional.ofNullable(this.diskWatermarks);
     }
     /**
      * @return Elasticsearch major version.
@@ -810,6 +823,7 @@ public final class ManagedDatabaseOpensearchProperties {
         private @Nullable Integer clusterRoutingAllocationNodeConcurrentRecoveries;
         private @Nullable ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog clusterSearchRequestSlowlog;
         private @Nullable String customDomain;
+        private @Nullable ManagedDatabaseOpensearchPropertiesDiskWatermarks diskWatermarks;
         private @Nullable String elasticsearchVersion;
         private @Nullable String emailSenderName;
         private @Nullable String emailSenderPassword;
@@ -878,6 +892,7 @@ public final class ManagedDatabaseOpensearchProperties {
     	      this.clusterRoutingAllocationNodeConcurrentRecoveries = defaults.clusterRoutingAllocationNodeConcurrentRecoveries;
     	      this.clusterSearchRequestSlowlog = defaults.clusterSearchRequestSlowlog;
     	      this.customDomain = defaults.customDomain;
+    	      this.diskWatermarks = defaults.diskWatermarks;
     	      this.elasticsearchVersion = defaults.elasticsearchVersion;
     	      this.emailSenderName = defaults.emailSenderName;
     	      this.emailSenderPassword = defaults.emailSenderPassword;
@@ -988,6 +1003,12 @@ public final class ManagedDatabaseOpensearchProperties {
         public Builder customDomain(@Nullable String customDomain) {
 
             this.customDomain = customDomain;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder diskWatermarks(@Nullable ManagedDatabaseOpensearchPropertiesDiskWatermarks diskWatermarks) {
+
+            this.diskWatermarks = diskWatermarks;
             return this;
         }
         @CustomType.Setter
@@ -1346,6 +1367,7 @@ public final class ManagedDatabaseOpensearchProperties {
             _resultValue.clusterRoutingAllocationNodeConcurrentRecoveries = clusterRoutingAllocationNodeConcurrentRecoveries;
             _resultValue.clusterSearchRequestSlowlog = clusterSearchRequestSlowlog;
             _resultValue.customDomain = customDomain;
+            _resultValue.diskWatermarks = diskWatermarks;
             _resultValue.elasticsearchVersion = elasticsearchVersion;
             _resultValue.emailSenderName = emailSenderName;
             _resultValue.emailSenderPassword = emailSenderPassword;

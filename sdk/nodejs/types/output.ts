@@ -1671,6 +1671,10 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     customDomain: string;
     /**
+     * Watermark settings.
+     */
+    diskWatermarks: outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks;
+    /**
      * Elasticsearch major version.
      */
     elasticsearchVersion: string;
@@ -1953,6 +1957,21 @@ export interface ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogT
      * Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
     warn?: string;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesDiskWatermarks {
+    /**
+     * Flood stage watermark (percentage). The flood stage watermark for disk usage.
+     */
+    floodStage: number;
+    /**
+     * High watermark (percentage). The high watermark for disk usage.
+     */
+    high: number;
+    /**
+     * Low watermark (percentage). The low watermark for disk usage.
+     */
+    low: number;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesIndexRollup {
