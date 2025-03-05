@@ -112,16 +112,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="upcloud:index/loadbalancerFrontend:LoadbalancerFrontend")
 public class LoadbalancerFrontend extends com.pulumi.resources.CustomResource {
     /**
-     * The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-     * rules.
+     * The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+     * rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+     * resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+     * resources are created and destroyed in the correct order.
      * 
      */
     @Export(name="defaultBackendName", refs={String.class}, tree="[0]")
     private Output<String> defaultBackendName;
 
     /**
-     * @return The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-     * rules.
+     * @return The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+     * rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+     * resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+     * resources are created and destroyed in the correct order.
      * 
      */
     public Output<String> defaultBackendName() {

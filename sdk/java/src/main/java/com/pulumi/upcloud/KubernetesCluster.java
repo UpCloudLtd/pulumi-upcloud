@@ -204,16 +204,14 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return this.nodeGroups;
     }
     /**
-     * The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-     * kubernetes plans`.
+     * The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
      * 
      */
     @Export(name="plan", refs={String.class}, tree="[0]")
     private Output<String> plan;
 
     /**
-     * @return The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-     * kubernetes plans`.
+     * @return The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
      * 
      */
     public Output<String> plan() {
@@ -262,14 +260,14 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.storageEncryption);
     }
     /**
-     * Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
      * 
      */
     @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**
-     * @return Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+     * @return Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
      * 
      */
     public Output<String> version() {

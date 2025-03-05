@@ -38,11 +38,10 @@ class KubernetesClusterArgs:
                list`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[str] name: Cluster name. Needs to be unique within the account.
-        :param pulumi.Input[str] plan: The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-               kubernetes plans`.
+        :param pulumi.Input[str] plan: The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         :param pulumi.Input[bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         :param pulumi.Input[str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
-        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
         """
         pulumi.set(__self__, "control_plane_ip_filters", control_plane_ip_filters)
         pulumi.set(__self__, "network", network)
@@ -127,8 +126,7 @@ class KubernetesClusterArgs:
     @pulumi.getter
     def plan(self) -> Optional[pulumi.Input[str]]:
         """
-        The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-        kubernetes plans`.
+        The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         """
         return pulumi.get(self, "plan")
 
@@ -164,7 +162,7 @@ class KubernetesClusterArgs:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+        Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
         """
         return pulumi.get(self, "version")
 
@@ -198,12 +196,11 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] network: Network ID for the cluster to run in.
         :param pulumi.Input[str] network_cidr: Network CIDR for the given network. Computed automatically.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_groups: Names of the node groups configured to cluster
-        :param pulumi.Input[str] plan: The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-               kubernetes plans`.
+        :param pulumi.Input[str] plan: The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         :param pulumi.Input[bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         :param pulumi.Input[str] state: Operational state of the cluster.
         :param pulumi.Input[str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
-        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
         :param pulumi.Input[str] zone: Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
                list`.
         """
@@ -310,8 +307,7 @@ class _KubernetesClusterState:
     @pulumi.getter
     def plan(self) -> Optional[pulumi.Input[str]]:
         """
-        The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-        kubernetes plans`.
+        The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         """
         return pulumi.get(self, "plan")
 
@@ -359,7 +355,7 @@ class _KubernetesClusterState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+        Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
         """
         return pulumi.get(self, "version")
 
@@ -455,11 +451,10 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[str] name: Cluster name. Needs to be unique within the account.
         :param pulumi.Input[str] network: Network ID for the cluster to run in.
-        :param pulumi.Input[str] plan: The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-               kubernetes plans`.
+        :param pulumi.Input[str] plan: The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         :param pulumi.Input[bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         :param pulumi.Input[str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
-        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
         :param pulumi.Input[str] zone: Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
                list`.
         """
@@ -608,12 +603,11 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] network: Network ID for the cluster to run in.
         :param pulumi.Input[str] network_cidr: Network CIDR for the given network. Computed automatically.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_groups: Names of the node groups configured to cluster
-        :param pulumi.Input[str] plan: The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-               kubernetes plans`.
+        :param pulumi.Input[str] plan: The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         :param pulumi.Input[bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         :param pulumi.Input[str] state: Operational state of the cluster.
         :param pulumi.Input[str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
-        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+        :param pulumi.Input[str] version: Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
         :param pulumi.Input[str] zone: Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
                list`.
         """
@@ -689,8 +683,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter
     def plan(self) -> pulumi.Output[str]:
         """
-        The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-        kubernetes plans`.
+        The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         """
         return pulumi.get(self, "plan")
 
@@ -722,7 +715,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
         """
-        Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+        Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
         """
         return pulumi.get(self, "version")
 

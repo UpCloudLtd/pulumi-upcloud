@@ -25,11 +25,12 @@ class ServerFirewallRulesArgs:
                  server_id: pulumi.Input[str]):
         """
         The set of arguments for constructing a ServerFirewallRules resource.
-        :param pulumi.Input[Sequence[pulumi.Input['ServerFirewallRulesFirewallRuleArgs']]] firewall_rules: A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
-               the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
-               if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
-               "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can
-               be created by providing only "action" and "direction" attributes. Default rule should be defined last.
+        :param pulumi.Input[Sequence[pulumi.Input['ServerFirewallRulesFirewallRuleArgs']]] firewall_rules: A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
+               Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
+               destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
+               attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
+               specified. These can be the same value if only one IP address or port number is specified. Source and destination port
+               numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
         :param pulumi.Input[str] server_id: The unique id of the server to be protected the firewall rules
         """
         pulumi.set(__self__, "firewall_rules", firewall_rules)
@@ -39,11 +40,12 @@ class ServerFirewallRulesArgs:
     @pulumi.getter(name="firewallRules")
     def firewall_rules(self) -> pulumi.Input[Sequence[pulumi.Input['ServerFirewallRulesFirewallRuleArgs']]]:
         """
-        A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
-        the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
-        if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
-        "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can
-        be created by providing only "action" and "direction" attributes. Default rule should be defined last.
+        A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
+        Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
+        destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
+        attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
+        specified. These can be the same value if only one IP address or port number is specified. Source and destination port
+        numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
         """
         return pulumi.get(self, "firewall_rules")
 
@@ -71,11 +73,12 @@ class _ServerFirewallRulesState:
                  server_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServerFirewallRules resources.
-        :param pulumi.Input[Sequence[pulumi.Input['ServerFirewallRulesFirewallRuleArgs']]] firewall_rules: A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
-               the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
-               if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
-               "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can
-               be created by providing only "action" and "direction" attributes. Default rule should be defined last.
+        :param pulumi.Input[Sequence[pulumi.Input['ServerFirewallRulesFirewallRuleArgs']]] firewall_rules: A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
+               Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
+               destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
+               attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
+               specified. These can be the same value if only one IP address or port number is specified. Source and destination port
+               numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
         :param pulumi.Input[str] server_id: The unique id of the server to be protected the firewall rules
         """
         if firewall_rules is not None:
@@ -87,11 +90,12 @@ class _ServerFirewallRulesState:
     @pulumi.getter(name="firewallRules")
     def firewall_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerFirewallRulesFirewallRuleArgs']]]]:
         """
-        A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
-        the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
-        if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
-        "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can
-        be created by providing only "action" and "direction" attributes. Default rule should be defined last.
+        A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
+        Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
+        destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
+        attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
+        specified. These can be the same value if only one IP address or port number is specified. Source and destination port
+        numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
         """
         return pulumi.get(self, "firewall_rules")
 
@@ -121,11 +125,8 @@ class ServerFirewallRules(pulumi.CustomResource):
                  server_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        This resource represents a generated list of UpCloud firewall rules.
-        		Firewall rules are used in conjunction with UpCloud servers.
-        		Each server has its own firewall rules.
-        		The firewall is enabled on all network interfaces except ones attached to private virtual networks.
-        		The maximum number of firewall rules per server is 1000.
+        Firewall rules are used to control network access of UpCloud servers. Each server has its own firewall rules and there should be only one `ServerFirewallRules` resource per server.
+        The firewall is enabled on public and utility network interfaces.
 
         ## Example Usage
 
@@ -170,11 +171,12 @@ class ServerFirewallRules(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerFirewallRulesFirewallRuleArgs', 'ServerFirewallRulesFirewallRuleArgsDict']]]] firewall_rules: A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
-               the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
-               if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
-               "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can
-               be created by providing only "action" and "direction" attributes. Default rule should be defined last.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerFirewallRulesFirewallRuleArgs', 'ServerFirewallRulesFirewallRuleArgsDict']]]] firewall_rules: A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
+               Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
+               destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
+               attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
+               specified. These can be the same value if only one IP address or port number is specified. Source and destination port
+               numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
         :param pulumi.Input[str] server_id: The unique id of the server to be protected the firewall rules
         """
         ...
@@ -184,11 +186,8 @@ class ServerFirewallRules(pulumi.CustomResource):
                  args: ServerFirewallRulesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource represents a generated list of UpCloud firewall rules.
-        		Firewall rules are used in conjunction with UpCloud servers.
-        		Each server has its own firewall rules.
-        		The firewall is enabled on all network interfaces except ones attached to private virtual networks.
-        		The maximum number of firewall rules per server is 1000.
+        Firewall rules are used to control network access of UpCloud servers. Each server has its own firewall rules and there should be only one `ServerFirewallRules` resource per server.
+        The firewall is enabled on public and utility network interfaces.
 
         ## Example Usage
 
@@ -282,11 +281,12 @@ class ServerFirewallRules(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerFirewallRulesFirewallRuleArgs', 'ServerFirewallRulesFirewallRuleArgsDict']]]] firewall_rules: A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
-               the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
-               if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
-               "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can
-               be created by providing only "action" and "direction" attributes. Default rule should be defined last.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerFirewallRulesFirewallRuleArgs', 'ServerFirewallRulesFirewallRuleArgsDict']]]] firewall_rules: A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
+               Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
+               destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
+               attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
+               specified. These can be the same value if only one IP address or port number is specified. Source and destination port
+               numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
         :param pulumi.Input[str] server_id: The unique id of the server to be protected the firewall rules
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -301,11 +301,12 @@ class ServerFirewallRules(pulumi.CustomResource):
     @pulumi.getter(name="firewallRules")
     def firewall_rules(self) -> pulumi.Output[Sequence['outputs.ServerFirewallRulesFirewallRule']]:
         """
-        A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
-        the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
-        if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
-        "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can
-        be created by providing only "action" and "direction" attributes. Default rule should be defined last.
+        A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
+        Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
+        destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
+        attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
+        specified. These can be the same value if only one IP address or port number is specified. Source and destination port
+        numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
         """
         return pulumi.get(self, "firewall_rules")
 

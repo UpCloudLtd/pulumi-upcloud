@@ -30,8 +30,10 @@ class LoadbalancerFrontendArgs:
                  properties: Optional[pulumi.Input['LoadbalancerFrontendPropertiesArgs']] = None):
         """
         The set of arguments for constructing a LoadbalancerFrontend resource.
-        :param pulumi.Input[str] default_backend_name: The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-               rules.
+        :param pulumi.Input[str] default_backend_name: The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+               rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+               resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+               resources are created and destroyed in the correct order.
         :param pulumi.Input[str] loadbalancer: UUID of the load balancer to which the frontend is connected.
         :param pulumi.Input[str] mode: When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
         :param pulumi.Input[int] port: Port to listen for incoming requests.
@@ -54,8 +56,10 @@ class LoadbalancerFrontendArgs:
     @pulumi.getter(name="defaultBackendName")
     def default_backend_name(self) -> pulumi.Input[str]:
         """
-        The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-        rules.
+        The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+        rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+        resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+        resources are created and destroyed in the correct order.
         """
         return pulumi.get(self, "default_backend_name")
 
@@ -148,8 +152,10 @@ class _LoadbalancerFrontendState:
                  tls_configs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerFrontend resources.
-        :param pulumi.Input[str] default_backend_name: The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-               rules.
+        :param pulumi.Input[str] default_backend_name: The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+               rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+               resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+               resources are created and destroyed in the correct order.
         :param pulumi.Input[str] loadbalancer: UUID of the load balancer to which the frontend is connected.
         :param pulumi.Input[str] mode: When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
         :param pulumi.Input[str] name: The name of the frontend. Must be unique within the load balancer service.
@@ -182,8 +188,10 @@ class _LoadbalancerFrontendState:
     @pulumi.getter(name="defaultBackendName")
     def default_backend_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-        rules.
+        The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+        rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+        resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+        resources are created and destroyed in the correct order.
         """
         return pulumi.get(self, "default_backend_name")
 
@@ -354,8 +362,10 @@ class LoadbalancerFrontend(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] default_backend_name: The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-               rules.
+        :param pulumi.Input[str] default_backend_name: The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+               rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+               resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+               resources are created and destroyed in the correct order.
         :param pulumi.Input[str] loadbalancer: UUID of the load balancer to which the frontend is connected.
         :param pulumi.Input[str] mode: When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
         :param pulumi.Input[str] name: The name of the frontend. Must be unique within the load balancer service.
@@ -496,8 +506,10 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] default_backend_name: The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-               rules.
+        :param pulumi.Input[str] default_backend_name: The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+               rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+               resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+               resources are created and destroyed in the correct order.
         :param pulumi.Input[str] loadbalancer: UUID of the load balancer to which the frontend is connected.
         :param pulumi.Input[str] mode: When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
         :param pulumi.Input[str] name: The name of the frontend. Must be unique within the load balancer service.
@@ -526,8 +538,10 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter(name="defaultBackendName")
     def default_backend_name(self) -> pulumi.Output[str]:
         """
-        The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-        rules.
+        The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+        rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+        resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+        resources are created and destroyed in the correct order.
         """
         return pulumi.get(self, "default_backend_name")
 

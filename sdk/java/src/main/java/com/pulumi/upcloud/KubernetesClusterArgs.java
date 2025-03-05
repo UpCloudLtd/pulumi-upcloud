@@ -84,16 +84,14 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-     * kubernetes plans`.
+     * The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
      * 
      */
     @Import(name="plan")
     private @Nullable Output<String> plan;
 
     /**
-     * @return The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-     * kubernetes plans`.
+     * @return The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
      * 
      */
     public Optional<Output<String>> plan() {
@@ -131,14 +129,14 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
      * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
-     * @return Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+     * @return Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
      * 
      */
     public Optional<Output<String>> version() {
@@ -295,8 +293,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param plan The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-         * kubernetes plans`.
+         * @param plan The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
          * 
          * @return builder
          * 
@@ -307,8 +304,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param plan The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-         * kubernetes plans`.
+         * @param plan The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
          * 
          * @return builder
          * 
@@ -360,7 +356,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param version Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+         * @param version Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
          * 
          * @return builder
          * 
@@ -371,7 +367,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param version Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+         * @param version Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
          * 
          * @return builder
          * 
