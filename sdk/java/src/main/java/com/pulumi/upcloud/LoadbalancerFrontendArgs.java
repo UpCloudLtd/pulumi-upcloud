@@ -21,16 +21,20 @@ public final class LoadbalancerFrontendArgs extends com.pulumi.resources.Resourc
     public static final LoadbalancerFrontendArgs Empty = new LoadbalancerFrontendArgs();
 
     /**
-     * The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-     * rules.
+     * The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+     * rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+     * resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+     * resources are created and destroyed in the correct order.
      * 
      */
     @Import(name="defaultBackendName", required=true)
     private Output<String> defaultBackendName;
 
     /**
-     * @return The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-     * rules.
+     * @return The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+     * rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+     * resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+     * resources are created and destroyed in the correct order.
      * 
      */
     public Output<String> defaultBackendName() {
@@ -152,8 +156,10 @@ public final class LoadbalancerFrontendArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param defaultBackendName The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-         * rules.
+         * @param defaultBackendName The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+         * rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+         * resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+         * resources are created and destroyed in the correct order.
          * 
          * @return builder
          * 
@@ -164,8 +170,10 @@ public final class LoadbalancerFrontendArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param defaultBackendName The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-         * rules.
+         * @param defaultBackendName The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+         * rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+         * resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+         * resources are created and destroyed in the correct order.
          * 
          * @return builder
          * 

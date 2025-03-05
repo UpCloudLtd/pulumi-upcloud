@@ -12,12 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource represents a generated list of UpCloud firewall rules.
-//
-//	Firewall rules are used in conjunction with UpCloud servers.
-//	Each server has its own firewall rules.
-//	The firewall is enabled on all network interfaces except ones attached to private virtual networks.
-//	The maximum number of firewall rules per server is 1000.
+// Firewall rules are used to control network access of UpCloud servers. Each server has its own firewall rules and there should be only one `ServerFirewallRules` resource per server.
+// The firewall is enabled on public and utility network interfaces.
 //
 // ## Example Usage
 //
@@ -86,11 +82,12 @@ import (
 type ServerFirewallRules struct {
 	pulumi.CustomResourceState
 
-	// A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
-	// the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
-	// if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
-	// "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can
-	// be created by providing only "action" and "direction" attributes. Default rule should be defined last.
+	// A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
+	// Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
+	// destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
+	// attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
+	// specified. These can be the same value if only one IP address or port number is specified. Source and destination port
+	// numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
 	FirewallRules ServerFirewallRulesFirewallRuleArrayOutput `pulumi:"firewallRules"`
 	// The unique id of the server to be protected the firewall rules
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
@@ -132,22 +129,24 @@ func GetServerFirewallRules(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServerFirewallRules resources.
 type serverFirewallRulesState struct {
-	// A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
-	// the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
-	// if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
-	// "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can
-	// be created by providing only "action" and "direction" attributes. Default rule should be defined last.
+	// A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
+	// Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
+	// destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
+	// attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
+	// specified. These can be the same value if only one IP address or port number is specified. Source and destination port
+	// numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
 	FirewallRules []ServerFirewallRulesFirewallRule `pulumi:"firewallRules"`
 	// The unique id of the server to be protected the firewall rules
 	ServerId *string `pulumi:"serverId"`
 }
 
 type ServerFirewallRulesState struct {
-	// A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
-	// the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
-	// if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
-	// "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can
-	// be created by providing only "action" and "direction" attributes. Default rule should be defined last.
+	// A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
+	// Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
+	// destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
+	// attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
+	// specified. These can be the same value if only one IP address or port number is specified. Source and destination port
+	// numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
 	FirewallRules ServerFirewallRulesFirewallRuleArrayInput
 	// The unique id of the server to be protected the firewall rules
 	ServerId pulumi.StringPtrInput
@@ -158,11 +157,12 @@ func (ServerFirewallRulesState) ElementType() reflect.Type {
 }
 
 type serverFirewallRulesArgs struct {
-	// A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
-	// the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
-	// if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
-	// "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can
-	// be created by providing only "action" and "direction" attributes. Default rule should be defined last.
+	// A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
+	// Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
+	// destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
+	// attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
+	// specified. These can be the same value if only one IP address or port number is specified. Source and destination port
+	// numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
 	FirewallRules []ServerFirewallRulesFirewallRule `pulumi:"firewallRules"`
 	// The unique id of the server to be protected the firewall rules
 	ServerId string `pulumi:"serverId"`
@@ -170,11 +170,12 @@ type serverFirewallRulesArgs struct {
 
 // The set of arguments for constructing a ServerFirewallRules resource.
 type ServerFirewallRulesArgs struct {
-	// A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
-	// the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
-	// if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
-	// "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can
-	// be created by providing only "action" and "direction" attributes. Default rule should be defined last.
+	// A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
+	// Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
+	// destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
+	// attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
+	// specified. These can be the same value if only one IP address or port number is specified. Source and destination port
+	// numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
 	FirewallRules ServerFirewallRulesFirewallRuleArrayInput
 	// The unique id of the server to be protected the firewall rules
 	ServerId pulumi.StringInput
@@ -267,11 +268,12 @@ func (o ServerFirewallRulesOutput) ToServerFirewallRulesOutputWithContext(ctx co
 	return o
 }
 
-// A single firewall rule. If used, IP address and port ranges must have both start and end values specified. These can be
-// the same value if only one IP address or port number is specified. Source and destination port numbers can only be set
-// if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP. Typical firewall rule should have
-// "action", "direction", "protocol", "family" and at least one destination/source-address/port range. The default rule can
-// be created by providing only "action" and "direction" attributes. Default rule should be defined last.
+// A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
+// Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
+// destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
+// attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
+// specified. These can be the same value if only one IP address or port number is specified. Source and destination port
+// numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
 func (o ServerFirewallRulesOutput) FirewallRules() ServerFirewallRulesFirewallRuleArrayOutput {
 	return o.ApplyT(func(v *ServerFirewallRules) ServerFirewallRulesFirewallRuleArrayOutput { return v.FirewallRules }).(ServerFirewallRulesFirewallRuleArrayOutput)
 }

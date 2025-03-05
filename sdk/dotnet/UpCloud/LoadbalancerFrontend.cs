@@ -90,8 +90,10 @@ namespace UpCloud.Pulumi.UpCloud
     public partial class LoadbalancerFrontend : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-        /// rules.
+        /// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+        /// rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+        /// resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+        /// resources are created and destroyed in the correct order.
         /// </summary>
         [Output("defaultBackendName")]
         public Output<string> DefaultBackendName { get; private set; } = null!;
@@ -190,8 +192,10 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class LoadbalancerFrontendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-        /// rules.
+        /// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+        /// rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+        /// resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+        /// resources are created and destroyed in the correct order.
         /// </summary>
         [Input("defaultBackendName", required: true)]
         public Input<string> DefaultBackendName { get; set; } = null!;
@@ -245,8 +249,10 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class LoadbalancerFrontendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-        /// rules.
+        /// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+        /// rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+        /// resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
+        /// resources are created and destroyed in the correct order.
         /// </summary>
         [Input("defaultBackendName")]
         public Input<string>? DefaultBackendName { get; set; }

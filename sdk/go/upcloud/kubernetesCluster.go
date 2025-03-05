@@ -119,8 +119,7 @@ type KubernetesCluster struct {
 	NetworkCidr pulumi.StringOutput `pulumi:"networkCidr"`
 	// Names of the node groups configured to cluster
 	NodeGroups pulumi.StringArrayOutput `pulumi:"nodeGroups"`
-	// The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-	// kubernetes plans`.
+	// The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
 	PrivateNodeGroups pulumi.BoolOutput `pulumi:"privateNodeGroups"`
@@ -128,7 +127,7 @@ type KubernetesCluster struct {
 	State pulumi.StringOutput `pulumi:"state"`
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption pulumi.StringPtrOutput `pulumi:"storageEncryption"`
-	// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
 	Version pulumi.StringOutput `pulumi:"version"`
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -188,8 +187,7 @@ type kubernetesClusterState struct {
 	NetworkCidr *string `pulumi:"networkCidr"`
 	// Names of the node groups configured to cluster
 	NodeGroups []string `pulumi:"nodeGroups"`
-	// The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-	// kubernetes plans`.
+	// The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
 	Plan *string `pulumi:"plan"`
 	// Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
 	PrivateNodeGroups *bool `pulumi:"privateNodeGroups"`
@@ -197,7 +195,7 @@ type kubernetesClusterState struct {
 	State *string `pulumi:"state"`
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption *string `pulumi:"storageEncryption"`
-	// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
 	Version *string `pulumi:"version"`
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -219,8 +217,7 @@ type KubernetesClusterState struct {
 	NetworkCidr pulumi.StringPtrInput
 	// Names of the node groups configured to cluster
 	NodeGroups pulumi.StringArrayInput
-	// The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-	// kubernetes plans`.
+	// The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
 	Plan pulumi.StringPtrInput
 	// Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
 	PrivateNodeGroups pulumi.BoolPtrInput
@@ -228,7 +225,7 @@ type KubernetesClusterState struct {
 	State pulumi.StringPtrInput
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption pulumi.StringPtrInput
-	// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
 	Version pulumi.StringPtrInput
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -250,14 +247,13 @@ type kubernetesClusterArgs struct {
 	Name *string `pulumi:"name"`
 	// Network ID for the cluster to run in.
 	Network string `pulumi:"network"`
-	// The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-	// kubernetes plans`.
+	// The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
 	Plan *string `pulumi:"plan"`
 	// Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
 	PrivateNodeGroups *bool `pulumi:"privateNodeGroups"`
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption *string `pulumi:"storageEncryption"`
-	// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
 	Version *string `pulumi:"version"`
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -276,14 +272,13 @@ type KubernetesClusterArgs struct {
 	Name pulumi.StringPtrInput
 	// Network ID for the cluster to run in.
 	Network pulumi.StringInput
-	// The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-	// kubernetes plans`.
+	// The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
 	Plan pulumi.StringPtrInput
 	// Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
 	PrivateNodeGroups pulumi.BoolPtrInput
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption pulumi.StringPtrInput
-	// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+	// Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
 	Version pulumi.StringPtrInput
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -409,8 +404,7 @@ func (o KubernetesClusterOutput) NodeGroups() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringArrayOutput { return v.NodeGroups }).(pulumi.StringArrayOutput)
 }
 
-// The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-// kubernetes plans`.
+// The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
 func (o KubernetesClusterOutput) Plan() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Plan }).(pulumi.StringOutput)
 }
@@ -430,7 +424,7 @@ func (o KubernetesClusterOutput) StorageEncryption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringPtrOutput { return v.StorageEncryption }).(pulumi.StringPtrOutput)
 }
 
-// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+// Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
 func (o KubernetesClusterOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

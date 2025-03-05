@@ -136,8 +136,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<string>> NodeGroups { get; private set; } = null!;
 
         /// <summary>
-        /// The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-        /// kubernetes plans`.
+        /// The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         /// </summary>
         [Output("plan")]
         public Output<string> Plan { get; private set; } = null!;
@@ -161,7 +160,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string?> StorageEncryption { get; private set; } = null!;
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+        /// Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -259,8 +258,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string> Network { get; set; } = null!;
 
         /// <summary>
-        /// The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-        /// kubernetes plans`.
+        /// The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }
@@ -278,7 +276,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? StorageEncryption { get; set; }
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+        /// Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
@@ -355,8 +353,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-        /// kubernetes plans`.
+        /// The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }
@@ -380,7 +377,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? StorageEncryption { get; set; }
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+        /// Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

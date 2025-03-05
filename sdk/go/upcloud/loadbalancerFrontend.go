@@ -98,8 +98,10 @@ import (
 type LoadbalancerFrontend struct {
 	pulumi.CustomResourceState
 
-	// The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-	// rules.
+	// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+	// rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+	// resource as the value for this field (like in the example above) or the `dependsOn` meta argument to ensure the
+	// resources are created and destroyed in the correct order.
 	DefaultBackendName pulumi.StringOutput `pulumi:"defaultBackendName"`
 	// UUID of the load balancer to which the frontend is connected.
 	Loadbalancer pulumi.StringOutput `pulumi:"loadbalancer"`
@@ -161,8 +163,10 @@ func GetLoadbalancerFrontend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoadbalancerFrontend resources.
 type loadbalancerFrontendState struct {
-	// The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-	// rules.
+	// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+	// rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+	// resource as the value for this field (like in the example above) or the `dependsOn` meta argument to ensure the
+	// resources are created and destroyed in the correct order.
 	DefaultBackendName *string `pulumi:"defaultBackendName"`
 	// UUID of the load balancer to which the frontend is connected.
 	Loadbalancer *string `pulumi:"loadbalancer"`
@@ -183,8 +187,10 @@ type loadbalancerFrontendState struct {
 }
 
 type LoadbalancerFrontendState struct {
-	// The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-	// rules.
+	// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+	// rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+	// resource as the value for this field (like in the example above) or the `dependsOn` meta argument to ensure the
+	// resources are created and destroyed in the correct order.
 	DefaultBackendName pulumi.StringPtrInput
 	// UUID of the load balancer to which the frontend is connected.
 	Loadbalancer pulumi.StringPtrInput
@@ -209,8 +215,10 @@ func (LoadbalancerFrontendState) ElementType() reflect.Type {
 }
 
 type loadbalancerFrontendArgs struct {
-	// The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-	// rules.
+	// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+	// rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+	// resource as the value for this field (like in the example above) or the `dependsOn` meta argument to ensure the
+	// resources are created and destroyed in the correct order.
 	DefaultBackendName string `pulumi:"defaultBackendName"`
 	// UUID of the load balancer to which the frontend is connected.
 	Loadbalancer string `pulumi:"loadbalancer"`
@@ -228,8 +236,10 @@ type loadbalancerFrontendArgs struct {
 
 // The set of arguments for constructing a LoadbalancerFrontend resource.
 type LoadbalancerFrontendArgs struct {
-	// The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-	// rules.
+	// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+	// rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+	// resource as the value for this field (like in the example above) or the `dependsOn` meta argument to ensure the
+	// resources are created and destroyed in the correct order.
 	DefaultBackendName pulumi.StringInput
 	// UUID of the load balancer to which the frontend is connected.
 	Loadbalancer pulumi.StringInput
@@ -332,8 +342,10 @@ func (o LoadbalancerFrontendOutput) ToLoadbalancerFrontendOutputWithContext(ctx 
 	return o
 }
 
-// The name of the default backend where traffic will be routed. Note, default backend can be overwritten in frontend
-// rules.
+// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
+// rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
+// resource as the value for this field (like in the example above) or the `dependsOn` meta argument to ensure the
+// resources are created and destroyed in the correct order.
 func (o LoadbalancerFrontendOutput) DefaultBackendName() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringOutput { return v.DefaultBackendName }).(pulumi.StringOutput)
 }

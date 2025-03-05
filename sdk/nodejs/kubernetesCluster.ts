@@ -115,8 +115,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly nodeGroups!: pulumi.Output<string[]>;
     /**
-     * The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-     * kubernetes plans`.
+     * The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
      */
     public readonly plan!: pulumi.Output<string>;
     /**
@@ -132,7 +131,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly storageEncryption!: pulumi.Output<string | undefined>;
     /**
-     * Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
      */
     public readonly version!: pulumi.Output<string>;
     /**
@@ -226,8 +225,7 @@ export interface KubernetesClusterState {
      */
     nodeGroups?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-     * kubernetes plans`.
+     * The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
      */
     plan?: pulumi.Input<string>;
     /**
@@ -243,7 +241,7 @@ export interface KubernetesClusterState {
      */
     storageEncryption?: pulumi.Input<string>;
     /**
-     * Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
      */
     version?: pulumi.Input<string>;
     /**
@@ -276,8 +274,7 @@ export interface KubernetesClusterArgs {
      */
     network: pulumi.Input<string>;
     /**
-     * The pricing plan used for the cluster. Default plan is `development`. You can list available plans with `upctl
-     * kubernetes plans`.
+     * The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
      */
     plan?: pulumi.Input<string>;
     /**
@@ -289,7 +286,7 @@ export interface KubernetesClusterArgs {
      */
     storageEncryption?: pulumi.Input<string>;
     /**
-     * Kubernetes version ID, e.g. `1.29`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
      */
     version?: pulumi.Input<string>;
     /**
