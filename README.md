@@ -53,7 +53,7 @@ The following configuration points are available for the `upcloud` provider:
 
 ## Reference
 
-For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/foo/api-docs/).
+For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/upcloud/).
 
 ## Templates
 
