@@ -1,6 +1,3 @@
-> [!WARNING]
-> This project is in development. Suitable for testing usage at the moment. All instructions, package names and URLs might not have been updated.
-
 # UpCloud Resource Provider
 
 The UpCloud Resource Provider lets you manage [UpCloud](https://upcloud.com/) resources.
@@ -54,6 +51,10 @@ The following configuration points are available for the `upcloud` provider:
 - `UPCLOUD_USERNAME` (environment variable) - the username of the account to use
 - `UPCLOUD_PASSWORD` (environment variable) - the password of the account to use
 
+## Reference
+
+For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/foo/api-docs/).
+
 ## Templates
 
 We have created templates in your language of choice to bootstrap your projects. 
@@ -71,8 +72,12 @@ They will set up the project and set up:
 - Set up UpCloud API credentials as explained in the configuration section
 
 #### Set up your project using the template
-- From the new project directory:
-    - pulumi new https://github.com/UpCloudLtd/pulumi-upcloud/tree/main/examples/templates/upcloud-csharp
+
+From the new project directory:
+
+```sh
+pulumi new https://github.com/UpCloudLtd/pulumi-upcloud/tree/main/examples/templates/upcloud-csharp
+```
 
 ### Typescript
 
@@ -82,8 +87,12 @@ They will set up the project and set up:
 - Set up UpCloud API credentials as explained in the configuration section
 
 #### Set up your project using the template
-- From the new project directory:
-    - pulumi new https://github.com/UpCloudLtd/pulumi-upcloud/tree/main/examples/templates/upcloud-typescript
+
+From the new project directory:
+
+```sh
+pulumi new https://github.com/UpCloudLtd/pulumi-upcloud/tree/main/examples/templates/upcloud-typescript
+```
 
 ### Go
 
@@ -93,8 +102,12 @@ They will set up the project and set up:
 - Set up UpCloud API credentials as explained in the configuration section
 
 #### Set up your project using the template
-- From the new project directory:
-    - pulumi new https://github.com/UpCloudLtd/pulumi-upcloud/tree/main/examples/templates/upcloud-go
+
+From the new project directory:
+
+```sh
+pulumi new https://github.com/UpCloudLtd/pulumi-upcloud/tree/main/examples/templates/upcloud-go
+```
 
 ### Python
 
@@ -104,11 +117,9 @@ They will set up the project and set up:
 - Set up UpCloud API credentials as explained in the configuration section
 
 #### Set up your project using the template
-- From the new project directory:
-    - pulumi new https://github.com/UpCloudLtd/pulumi-upcloud/tree/main/examples/templates/upcloud-python
 
-<!--
-## Reference
+From the new project directory:
 
-For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/foo/api-docs/).
--->
+```sh
+pulumi new https://github.com/UpCloudLtd/pulumi-upcloud/tree/main/examples/templates/upcloud-python
+```
