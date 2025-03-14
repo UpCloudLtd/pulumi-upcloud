@@ -30,7 +30,7 @@ type Server struct {
 	Firewall pulumi.BoolOutput `pulumi:"firewall"`
 	// Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
 	// hosts
-	Host pulumi.IntPtrOutput `pulumi:"host"`
+	Host pulumi.IntOutput `pulumi:"host"`
 	// The hostname of the server.
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// User defined key-value pairs to classify the server.
@@ -435,8 +435,8 @@ func (o ServerOutput) Firewall() pulumi.BoolOutput {
 
 // Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
 // hosts
-func (o ServerOutput) Host() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Server) pulumi.IntPtrOutput { return v.Host }).(pulumi.IntPtrOutput)
+func (o ServerOutput) Host() pulumi.IntOutput {
+	return o.ApplyT(func(v *Server) pulumi.IntOutput { return v.Host }).(pulumi.IntOutput)
 }
 
 // The hostname of the server.

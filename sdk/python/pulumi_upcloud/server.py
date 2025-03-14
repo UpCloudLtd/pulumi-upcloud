@@ -1039,7 +1039,7 @@ class Server(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def host(self) -> pulumi.Output[Optional[int]]:
+    def host(self) -> pulumi.Output[int]:
         """
         Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
         hosts

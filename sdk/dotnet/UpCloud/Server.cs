@@ -45,7 +45,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// hosts
         /// </summary>
         [Output("host")]
-        public Output<int?> Host { get; private set; } = null!;
+        public Output<int> Host { get; private set; } = null!;
 
         /// <summary>
         /// The hostname of the server.
