@@ -139,15 +139,15 @@ public class Server extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="host", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> host;
+    private Output<Integer> host;
 
     /**
      * @return Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
      * hosts
      * 
      */
-    public Output<Optional<Integer>> host() {
-        return Codegen.optional(this.host);
+    public Output<Integer> host() {
+        return this.host;
     }
     /**
      * The hostname of the server.

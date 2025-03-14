@@ -10637,6 +10637,7 @@
                 "bootOrder",
                 "cpu",
                 "firewall",
+                "host",
                 "hostname",
                 "labels",
                 "mem",

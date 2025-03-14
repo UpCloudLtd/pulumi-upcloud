@@ -59,7 +59,7 @@ export class Server extends pulumi.CustomResource {
      * Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
      * hosts
      */
-    public readonly host!: pulumi.Output<number | undefined>;
+    public readonly host!: pulumi.Output<number>;
     /**
      * The hostname of the server.
      */
