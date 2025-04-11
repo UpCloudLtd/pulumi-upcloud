@@ -340,6 +340,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? PgStatStatementsTrack { get; set; }
 
         /// <summary>
+        /// PGAudit settings. System-wide settings for the pgaudit extension.
+        /// </summary>
+        [Input("pgaudit")]
+        public Input<Inputs.ManagedDatabasePostgresqlPropertiesPgauditGetArgs>? Pgaudit { get; set; }
+
+        /// <summary>
         /// PGBouncer connection pooling settings. System-wide settings for pgbouncer.
         /// </summary>
         [Input("pgbouncer")]

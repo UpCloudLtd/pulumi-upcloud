@@ -475,6 +475,16 @@
                                 "migration": {
                                     "maxItemsOne": true
                                 },
+                                "pgaudit": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "log": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
                                 "pgbouncer": {
                                     "maxItemsOne": true,
                                     "elem": {

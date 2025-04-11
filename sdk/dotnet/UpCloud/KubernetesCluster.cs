@@ -84,10 +84,14 @@ namespace UpCloud.Pulumi.UpCloud
     /// 
     ///     var example2KubernetesCluster = new UpCloud.KubernetesCluster("example2", new()
     ///     {
+    ///         ControlPlaneIpFilters = new[]
+    ///         {
+    ///             "0.0.0.0/0",
+    ///         },
     ///         Name = "example2-cluster",
     ///         Network = example2Network.Id,
     ///         Zone = "de-fra1",
-    ///         Plan = "production-small",
+    ///         Plan = "prod-md",
     ///         PrivateNodeGroups = true,
     ///     });
     /// 
@@ -160,7 +164,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string?> StorageEncryption { get; private set; } = null!;
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+        /// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -276,7 +280,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? StorageEncryption { get; set; }
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+        /// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
@@ -377,7 +381,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? StorageEncryption { get; set; }
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+        /// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

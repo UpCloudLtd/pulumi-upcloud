@@ -215,6 +215,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? PgStatStatementsTrack;
         /// <summary>
+        /// PGAudit settings. System-wide settings for the pgaudit extension.
+        /// </summary>
+        public readonly Outputs.ManagedDatabasePostgresqlPropertiesPgaudit? Pgaudit;
+        /// <summary>
         /// PGBouncer connection pooling settings. System-wide settings for pgbouncer.
         /// </summary>
         public readonly Outputs.ManagedDatabasePostgresqlPropertiesPgbouncer? Pgbouncer;
@@ -389,6 +393,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             string? pgStatStatementsTrack,
 
+            Outputs.ManagedDatabasePostgresqlPropertiesPgaudit? pgaudit,
+
             Outputs.ManagedDatabasePostgresqlPropertiesPgbouncer? pgbouncer,
 
             Outputs.ManagedDatabasePostgresqlPropertiesPglookout? pglookout,
@@ -475,6 +481,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             PgStatMonitorPgsmEnableQueryPlan = pgStatMonitorPgsmEnableQueryPlan;
             PgStatMonitorPgsmMaxBuckets = pgStatMonitorPgsmMaxBuckets;
             PgStatStatementsTrack = pgStatStatementsTrack;
+            Pgaudit = pgaudit;
             Pgbouncer = pgbouncer;
             Pglookout = pglookout;
             PublicAccess = publicAccess;

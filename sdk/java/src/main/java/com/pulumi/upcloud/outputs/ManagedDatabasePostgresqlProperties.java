@@ -5,6 +5,7 @@ package com.pulumi.upcloud.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.upcloud.outputs.ManagedDatabasePostgresqlPropertiesMigration;
+import com.pulumi.upcloud.outputs.ManagedDatabasePostgresqlPropertiesPgaudit;
 import com.pulumi.upcloud.outputs.ManagedDatabasePostgresqlPropertiesPgbouncer;
 import com.pulumi.upcloud.outputs.ManagedDatabasePostgresqlPropertiesPglookout;
 import com.pulumi.upcloud.outputs.ManagedDatabasePostgresqlPropertiesTimescaledb;
@@ -269,6 +270,11 @@ public final class ManagedDatabasePostgresqlProperties {
      * 
      */
     private @Nullable String pgStatStatementsTrack;
+    /**
+     * @return PGAudit settings. System-wide settings for the pgaudit extension.
+     * 
+     */
+    private @Nullable ManagedDatabasePostgresqlPropertiesPgaudit pgaudit;
     /**
      * @return PGBouncer connection pooling settings. System-wide settings for pgbouncer.
      * 
@@ -712,6 +718,13 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.pgStatStatementsTrack);
     }
     /**
+     * @return PGAudit settings. System-wide settings for the pgaudit extension.
+     * 
+     */
+    public Optional<ManagedDatabasePostgresqlPropertiesPgaudit> pgaudit() {
+        return Optional.ofNullable(this.pgaudit);
+    }
+    /**
      * @return PGBouncer connection pooling settings. System-wide settings for pgbouncer.
      * 
      */
@@ -897,6 +910,7 @@ public final class ManagedDatabasePostgresqlProperties {
         private @Nullable Boolean pgStatMonitorPgsmEnableQueryPlan;
         private @Nullable Integer pgStatMonitorPgsmMaxBuckets;
         private @Nullable String pgStatStatementsTrack;
+        private @Nullable ManagedDatabasePostgresqlPropertiesPgaudit pgaudit;
         private @Nullable ManagedDatabasePostgresqlPropertiesPgbouncer pgbouncer;
         private @Nullable ManagedDatabasePostgresqlPropertiesPglookout pglookout;
         private @Nullable Boolean publicAccess;
@@ -968,6 +982,7 @@ public final class ManagedDatabasePostgresqlProperties {
     	      this.pgStatMonitorPgsmEnableQueryPlan = defaults.pgStatMonitorPgsmEnableQueryPlan;
     	      this.pgStatMonitorPgsmMaxBuckets = defaults.pgStatMonitorPgsmMaxBuckets;
     	      this.pgStatStatementsTrack = defaults.pgStatStatementsTrack;
+    	      this.pgaudit = defaults.pgaudit;
     	      this.pgbouncer = defaults.pgbouncer;
     	      this.pglookout = defaults.pglookout;
     	      this.publicAccess = defaults.publicAccess;
@@ -1292,6 +1307,12 @@ public final class ManagedDatabasePostgresqlProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder pgaudit(@Nullable ManagedDatabasePostgresqlPropertiesPgaudit pgaudit) {
+
+            this.pgaudit = pgaudit;
+            return this;
+        }
+        @CustomType.Setter
         public Builder pgbouncer(@Nullable ManagedDatabasePostgresqlPropertiesPgbouncer pgbouncer) {
 
             this.pgbouncer = pgbouncer;
@@ -1451,6 +1472,7 @@ public final class ManagedDatabasePostgresqlProperties {
             _resultValue.pgStatMonitorPgsmEnableQueryPlan = pgStatMonitorPgsmEnableQueryPlan;
             _resultValue.pgStatMonitorPgsmMaxBuckets = pgStatMonitorPgsmMaxBuckets;
             _resultValue.pgStatStatementsTrack = pgStatStatementsTrack;
+            _resultValue.pgaudit = pgaudit;
             _resultValue.pgbouncer = pgbouncer;
             _resultValue.pglookout = pglookout;
             _resultValue.publicAccess = publicAccess;

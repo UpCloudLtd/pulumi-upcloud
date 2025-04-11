@@ -88,9 +88,10 @@ type KubernetesNodeGroup struct {
 	Cluster pulumi.StringOutput `pulumi:"cluster"`
 	// Resource properties for custom plan
 	CustomPlan KubernetesNodeGroupCustomPlanPtrOutput `pulumi:"customPlan"`
-	// Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-	// kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-	// careful when adding kubelet args.
+	// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+	// prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+	// CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+	// when adding kubelet args.
 	KubeletArgs KubernetesNodeGroupKubeletArgArrayOutput `pulumi:"kubeletArgs"`
 	// User defined key-value pairs to classify the node_group.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
@@ -158,9 +159,10 @@ type kubernetesNodeGroupState struct {
 	Cluster *string `pulumi:"cluster"`
 	// Resource properties for custom plan
 	CustomPlan *KubernetesNodeGroupCustomPlan `pulumi:"customPlan"`
-	// Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-	// kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-	// careful when adding kubelet args.
+	// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+	// prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+	// CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+	// when adding kubelet args.
 	KubeletArgs []KubernetesNodeGroupKubeletArg `pulumi:"kubeletArgs"`
 	// User defined key-value pairs to classify the node_group.
 	Labels map[string]string `pulumi:"labels"`
@@ -190,9 +192,10 @@ type KubernetesNodeGroupState struct {
 	Cluster pulumi.StringPtrInput
 	// Resource properties for custom plan
 	CustomPlan KubernetesNodeGroupCustomPlanPtrInput
-	// Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-	// kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-	// careful when adding kubelet args.
+	// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+	// prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+	// CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+	// when adding kubelet args.
 	KubeletArgs KubernetesNodeGroupKubeletArgArrayInput
 	// User defined key-value pairs to classify the node_group.
 	Labels pulumi.StringMapInput
@@ -226,9 +229,10 @@ type kubernetesNodeGroupArgs struct {
 	Cluster string `pulumi:"cluster"`
 	// Resource properties for custom plan
 	CustomPlan *KubernetesNodeGroupCustomPlan `pulumi:"customPlan"`
-	// Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-	// kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-	// careful when adding kubelet args.
+	// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+	// prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+	// CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+	// when adding kubelet args.
 	KubeletArgs []KubernetesNodeGroupKubeletArg `pulumi:"kubeletArgs"`
 	// User defined key-value pairs to classify the node_group.
 	Labels map[string]string `pulumi:"labels"`
@@ -259,9 +263,10 @@ type KubernetesNodeGroupArgs struct {
 	Cluster pulumi.StringInput
 	// Resource properties for custom plan
 	CustomPlan KubernetesNodeGroupCustomPlanPtrInput
-	// Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-	// kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-	// careful when adding kubelet args.
+	// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+	// prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+	// CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+	// when adding kubelet args.
 	KubeletArgs KubernetesNodeGroupKubeletArgArrayInput
 	// User defined key-value pairs to classify the node_group.
 	Labels pulumi.StringMapInput
@@ -386,9 +391,10 @@ func (o KubernetesNodeGroupOutput) CustomPlan() KubernetesNodeGroupCustomPlanPtr
 	return o.ApplyT(func(v *KubernetesNodeGroup) KubernetesNodeGroupCustomPlanPtrOutput { return v.CustomPlan }).(KubernetesNodeGroupCustomPlanPtrOutput)
 }
 
-// Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-// kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-// careful when adding kubelet args.
+// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+// prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+// CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+// when adding kubelet args.
 func (o KubernetesNodeGroupOutput) KubeletArgs() KubernetesNodeGroupKubeletArgArrayOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroup) KubernetesNodeGroupKubeletArgArrayOutput { return v.KubeletArgs }).(KubernetesNodeGroupKubeletArgArrayOutput)
 }

@@ -66,7 +66,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var myNewFloatingAddress = new FloatingIpAddress("myNewFloatingAddress", FloatingIpAddressArgs.builder()
- *             .macAddress(example.networkInterfaces().applyValue(networkInterfaces -> networkInterfaces[0].macAddress()))
+ *             .macAddress(example.networkInterfaces().applyValue(_networkInterfaces -> _networkInterfaces[0].macAddress()))
  *             .build());
  * 
  *     }

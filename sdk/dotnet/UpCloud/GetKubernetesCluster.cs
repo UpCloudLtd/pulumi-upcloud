@@ -14,18 +14,213 @@ namespace UpCloud.Pulumi.UpCloud
     {
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Kubernetes = Pulumi.Kubernetes;
+        /// using Local = Pulumi.Local;
+        /// using UpCloud = Pulumi.UpCloud;
+        /// using UpCloud = UpCloud.Pulumi.UpCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Use Kubernetes provider to access your Kubernetes cluster
+        ///     // Create a network for the Kubernetes cluster
+        ///     var exampleNetwork = new UpCloud.Network("example", new()
+        ///     {
+        ///         Name = "example-network",
+        ///         Zone = "de-fra1",
+        ///         IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs
+        ///         {
+        ///             Address = "172.16.1.0/24",
+        ///             Dhcp = true,
+        ///             Family = "IPv4",
+        ///         },
+        ///     });
+        /// 
+        ///     // Create a Kubernetes cluster
+        ///     var exampleKubernetesCluster = new UpCloud.KubernetesCluster("example", new()
+        ///     {
+        ///         ControlPlaneIpFilters = new[]
+        ///         {
+        ///             "0.0.0.0/0",
+        ///         },
+        ///         Name = "exampleapp",
+        ///         Network = exampleNetwork.Id,
+        ///         Zone = "de-fra1",
+        ///     });
+        /// 
+        ///     // Read the details of the newly created cluster
+        ///     var example = UpCloud.GetKubernetesCluster.Invoke(new()
+        ///     {
+        ///         Id = exampleKubernetesCluster.Id,
+        ///     });
+        /// 
+        ///     // Use the Kubernetes provider resources to interact with the cluster
+        ///     var exampleNamespace = new Kubernetes.Index.Namespace("example", new()
+        ///     {
+        ///         Metadata = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "name", "example-namespace" },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     // In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients
+        ///     var exampleFile = new Local.Index.File("example", new()
+        ///     {
+        ///         Content = example.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.Kubeconfig),
+        ///         Filename = "example.conf",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetKubernetesClusterResult> InvokeAsync(GetKubernetesClusterArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetKubernetesClusterResult>("upcloud:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Kubernetes = Pulumi.Kubernetes;
+        /// using Local = Pulumi.Local;
+        /// using UpCloud = Pulumi.UpCloud;
+        /// using UpCloud = UpCloud.Pulumi.UpCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Use Kubernetes provider to access your Kubernetes cluster
+        ///     // Create a network for the Kubernetes cluster
+        ///     var exampleNetwork = new UpCloud.Network("example", new()
+        ///     {
+        ///         Name = "example-network",
+        ///         Zone = "de-fra1",
+        ///         IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs
+        ///         {
+        ///             Address = "172.16.1.0/24",
+        ///             Dhcp = true,
+        ///             Family = "IPv4",
+        ///         },
+        ///     });
+        /// 
+        ///     // Create a Kubernetes cluster
+        ///     var exampleKubernetesCluster = new UpCloud.KubernetesCluster("example", new()
+        ///     {
+        ///         ControlPlaneIpFilters = new[]
+        ///         {
+        ///             "0.0.0.0/0",
+        ///         },
+        ///         Name = "exampleapp",
+        ///         Network = exampleNetwork.Id,
+        ///         Zone = "de-fra1",
+        ///     });
+        /// 
+        ///     // Read the details of the newly created cluster
+        ///     var example = UpCloud.GetKubernetesCluster.Invoke(new()
+        ///     {
+        ///         Id = exampleKubernetesCluster.Id,
+        ///     });
+        /// 
+        ///     // Use the Kubernetes provider resources to interact with the cluster
+        ///     var exampleNamespace = new Kubernetes.Index.Namespace("example", new()
+        ///     {
+        ///         Metadata = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "name", "example-namespace" },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     // In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients
+        ///     var exampleFile = new Local.Index.File("example", new()
+        ///     {
+        ///         Content = example.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.Kubeconfig),
+        ///         Filename = "example.conf",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetKubernetesClusterResult> Invoke(GetKubernetesClusterInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetKubernetesClusterResult>("upcloud:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Kubernetes = Pulumi.Kubernetes;
+        /// using Local = Pulumi.Local;
+        /// using UpCloud = Pulumi.UpCloud;
+        /// using UpCloud = UpCloud.Pulumi.UpCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Use Kubernetes provider to access your Kubernetes cluster
+        ///     // Create a network for the Kubernetes cluster
+        ///     var exampleNetwork = new UpCloud.Network("example", new()
+        ///     {
+        ///         Name = "example-network",
+        ///         Zone = "de-fra1",
+        ///         IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs
+        ///         {
+        ///             Address = "172.16.1.0/24",
+        ///             Dhcp = true,
+        ///             Family = "IPv4",
+        ///         },
+        ///     });
+        /// 
+        ///     // Create a Kubernetes cluster
+        ///     var exampleKubernetesCluster = new UpCloud.KubernetesCluster("example", new()
+        ///     {
+        ///         ControlPlaneIpFilters = new[]
+        ///         {
+        ///             "0.0.0.0/0",
+        ///         },
+        ///         Name = "exampleapp",
+        ///         Network = exampleNetwork.Id,
+        ///         Zone = "de-fra1",
+        ///     });
+        /// 
+        ///     // Read the details of the newly created cluster
+        ///     var example = UpCloud.GetKubernetesCluster.Invoke(new()
+        ///     {
+        ///         Id = exampleKubernetesCluster.Id,
+        ///     });
+        /// 
+        ///     // Use the Kubernetes provider resources to interact with the cluster
+        ///     var exampleNamespace = new Kubernetes.Index.Namespace("example", new()
+        ///     {
+        ///         Metadata = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "name", "example-namespace" },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     // In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients
+        ///     var exampleFile = new Local.Index.File("example", new()
+        ///     {
+        ///         Content = example.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.Kubeconfig),
+        ///         Filename = "example.conf",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetKubernetesClusterResult> Invoke(GetKubernetesClusterInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetKubernetesClusterResult>("upcloud:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterInvokeArgs(), options.WithDefaults());

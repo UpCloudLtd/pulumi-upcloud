@@ -71,18 +71,20 @@ public final class KubernetesNodeGroupArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-     * kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-     * careful when adding kubelet args.
+     * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+     * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+     * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+     * when adding kubelet args.
      * 
      */
     @Import(name="kubeletArgs")
     private @Nullable Output<List<KubernetesNodeGroupKubeletArgArgs>> kubeletArgs;
 
     /**
-     * @return Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-     * kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-     * careful when adding kubelet args.
+     * @return Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+     * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+     * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+     * when adding kubelet args.
      * 
      */
     public Optional<Output<List<KubernetesNodeGroupKubeletArgArgs>>> kubeletArgs() {
@@ -314,9 +316,10 @@ public final class KubernetesNodeGroupArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param kubeletArgs Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-         * kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-         * careful when adding kubelet args.
+         * @param kubeletArgs Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+         * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+         * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+         * when adding kubelet args.
          * 
          * @return builder
          * 
@@ -327,9 +330,10 @@ public final class KubernetesNodeGroupArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param kubeletArgs Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-         * kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-         * careful when adding kubelet args.
+         * @param kubeletArgs Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+         * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+         * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+         * when adding kubelet args.
          * 
          * @return builder
          * 
@@ -339,9 +343,10 @@ public final class KubernetesNodeGroupArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param kubeletArgs Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-         * kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-         * careful when adding kubelet args.
+         * @param kubeletArgs Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+         * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+         * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+         * when adding kubelet args.
          * 
          * @return builder
          * 

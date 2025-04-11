@@ -99,10 +99,11 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var example2KubernetesCluster = new KubernetesCluster("example2KubernetesCluster", KubernetesClusterArgs.builder()
+ *             .controlPlaneIpFilters("0.0.0.0/0")
  *             .name("example2-cluster")
  *             .network(example2Network.id())
  *             .zone("de-fra1")
- *             .plan("production-small")
+ *             .plan("prod-md")
  *             .privateNodeGroups(true)
  *             .build());
  * 
@@ -260,14 +261,14 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.storageEncryption);
     }
     /**
-     * Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
      * 
      */
     @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**
-     * @return Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+     * @return Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
      * 
      */
     public Output<String> version() {

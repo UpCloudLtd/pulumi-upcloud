@@ -6,6 +6,7 @@ package com.pulumi.upcloud.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.upcloud.inputs.ManagedDatabasePostgresqlPropertiesMigrationArgs;
+import com.pulumi.upcloud.inputs.ManagedDatabasePostgresqlPropertiesPgauditArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabasePostgresqlPropertiesPgbouncerArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabasePostgresqlPropertiesPglookoutArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabasePostgresqlPropertiesTimescaledbArgs;
@@ -774,6 +775,21 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
+     * PGAudit settings. System-wide settings for the pgaudit extension.
+     * 
+     */
+    @Import(name="pgaudit")
+    private @Nullable Output<ManagedDatabasePostgresqlPropertiesPgauditArgs> pgaudit;
+
+    /**
+     * @return PGAudit settings. System-wide settings for the pgaudit extension.
+     * 
+     */
+    public Optional<Output<ManagedDatabasePostgresqlPropertiesPgauditArgs>> pgaudit() {
+        return Optional.ofNullable(this.pgaudit);
+    }
+
+    /**
      * PGBouncer connection pooling settings. System-wide settings for pgbouncer.
      * 
      */
@@ -1096,6 +1112,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         this.pgStatMonitorPgsmEnableQueryPlan = $.pgStatMonitorPgsmEnableQueryPlan;
         this.pgStatMonitorPgsmMaxBuckets = $.pgStatMonitorPgsmMaxBuckets;
         this.pgStatStatementsTrack = $.pgStatStatementsTrack;
+        this.pgaudit = $.pgaudit;
         this.pgbouncer = $.pgbouncer;
         this.pglookout = $.pglookout;
         this.publicAccess = $.publicAccess;
@@ -2192,6 +2209,27 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
          */
         public Builder pgStatStatementsTrack(String pgStatStatementsTrack) {
             return pgStatStatementsTrack(Output.of(pgStatStatementsTrack));
+        }
+
+        /**
+         * @param pgaudit PGAudit settings. System-wide settings for the pgaudit extension.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pgaudit(@Nullable Output<ManagedDatabasePostgresqlPropertiesPgauditArgs> pgaudit) {
+            $.pgaudit = pgaudit;
+            return this;
+        }
+
+        /**
+         * @param pgaudit PGAudit settings. System-wide settings for the pgaudit extension.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pgaudit(ManagedDatabasePostgresqlPropertiesPgauditArgs pgaudit) {
+            return pgaudit(Output.of(pgaudit));
         }
 
         /**

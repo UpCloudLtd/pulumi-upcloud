@@ -173,14 +173,14 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
      * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
-     * @return Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+     * @return Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
      * 
      */
     public Optional<Output<String>> version() {
@@ -476,7 +476,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param version Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+         * @param version Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
          * 
          * @return builder
          * 
@@ -487,7 +487,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param version Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+         * @param version Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
          * 
          * @return builder
          * 

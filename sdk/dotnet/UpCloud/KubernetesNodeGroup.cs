@@ -96,9 +96,10 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<Outputs.KubernetesNodeGroupCustomPlan?> CustomPlan { get; private set; } = null!;
 
         /// <summary>
-        /// Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-        /// kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-        /// careful when adding kubelet args.
+        /// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+        /// prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+        /// CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+        /// when adding kubelet args.
         /// </summary>
         [Output("kubeletArgs")]
         public Output<ImmutableArray<Outputs.KubernetesNodeGroupKubeletArg>> KubeletArgs { get; private set; } = null!;
@@ -223,9 +224,10 @@ namespace UpCloud.Pulumi.UpCloud
         private InputList<Inputs.KubernetesNodeGroupKubeletArgArgs>? _kubeletArgs;
 
         /// <summary>
-        /// Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-        /// kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-        /// careful when adding kubelet args.
+        /// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+        /// prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+        /// CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+        /// when adding kubelet args.
         /// </summary>
         public InputList<Inputs.KubernetesNodeGroupKubeletArgArgs> KubeletArgs
         {
@@ -332,9 +334,10 @@ namespace UpCloud.Pulumi.UpCloud
         private InputList<Inputs.KubernetesNodeGroupKubeletArgGetArgs>? _kubeletArgs;
 
         /// <summary>
-        /// Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-        /// kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-        /// careful when adding kubelet args.
+        /// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+        /// prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+        /// CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+        /// when adding kubelet args.
         /// </summary>
         public InputList<Inputs.KubernetesNodeGroupKubeletArgGetArgs> KubeletArgs
         {

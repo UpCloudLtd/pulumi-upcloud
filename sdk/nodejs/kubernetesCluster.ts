@@ -52,10 +52,11 @@ import * as utilities from "./utilities";
  *     router: example2.id,
  * });
  * const example2KubernetesCluster = new upcloud.KubernetesCluster("example2", {
+ *     controlPlaneIpFilters: ["0.0.0.0/0"],
  *     name: "example2-cluster",
  *     network: example2Network.id,
  *     zone: "de-fra1",
- *     plan: "production-small",
+ *     plan: "prod-md",
  *     privateNodeGroups: true,
  * });
  * ```
@@ -131,7 +132,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly storageEncryption!: pulumi.Output<string | undefined>;
     /**
-     * Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
      */
     public readonly version!: pulumi.Output<string>;
     /**
@@ -241,7 +242,7 @@ export interface KubernetesClusterState {
      */
     storageEncryption?: pulumi.Input<string>;
     /**
-     * Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
      */
     version?: pulumi.Input<string>;
     /**
@@ -286,7 +287,7 @@ export interface KubernetesClusterArgs {
      */
     storageEncryption?: pulumi.Input<string>;
     /**
-     * Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
      */
     version?: pulumi.Input<string>;
     /**
