@@ -87,7 +87,8 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var allHosts = UpcloudFunctions.getHosts();
+     *         final var allHosts = UpcloudFunctions.getHosts(GetHostsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -129,7 +130,8 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var allHosts = UpcloudFunctions.getHosts();
+     *         final var allHosts = UpcloudFunctions.getHosts(GetHostsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -171,7 +173,8 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var allHosts = UpcloudFunctions.getHosts();
+     *         final var allHosts = UpcloudFunctions.getHosts(GetHostsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -213,7 +216,8 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var allHosts = UpcloudFunctions.getHosts();
+     *         final var allHosts = UpcloudFunctions.getHosts(GetHostsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -255,7 +259,8 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var allHosts = UpcloudFunctions.getHosts();
+     *         final var allHosts = UpcloudFunctions.getHosts(GetHostsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -297,7 +302,8 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var allHosts = UpcloudFunctions.getHosts();
+     *         final var allHosts = UpcloudFunctions.getHosts(GetHostsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -339,7 +345,8 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var allHosts = UpcloudFunctions.getHosts();
+     *         final var allHosts = UpcloudFunctions.getHosts(GetHostsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -379,7 +386,8 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var allIpAddresses = UpcloudFunctions.getIpAddresses();
+     *         final var allIpAddresses = UpcloudFunctions.getIpAddresses(GetIpAddressesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -419,7 +427,8 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var allIpAddresses = UpcloudFunctions.getIpAddresses();
+     *         final var allIpAddresses = UpcloudFunctions.getIpAddresses(GetIpAddressesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -459,7 +468,8 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var allIpAddresses = UpcloudFunctions.getIpAddresses();
+     *         final var allIpAddresses = UpcloudFunctions.getIpAddresses(GetIpAddressesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -499,7 +509,8 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var allIpAddresses = UpcloudFunctions.getIpAddresses();
+     *         final var allIpAddresses = UpcloudFunctions.getIpAddresses(GetIpAddressesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -539,7 +550,8 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var allIpAddresses = UpcloudFunctions.getIpAddresses();
+     *         final var allIpAddresses = UpcloudFunctions.getIpAddresses(GetIpAddressesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -579,7 +591,8 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var allIpAddresses = UpcloudFunctions.getIpAddresses();
+     *         final var allIpAddresses = UpcloudFunctions.getIpAddresses(GetIpAddressesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -619,7 +632,8 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var allIpAddresses = UpcloudFunctions.getIpAddresses();
+     *         final var allIpAddresses = UpcloudFunctions.getIpAddresses(GetIpAddressesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -635,6 +649,77 @@ public final class UpcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.Network;
+     * import com.pulumi.upcloud.NetworkArgs;
+     * import com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;
+     * import com.pulumi.upcloud.KubernetesCluster;
+     * import com.pulumi.upcloud.KubernetesClusterArgs;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetKubernetesClusterArgs;
+     * import com.pulumi.kubernetes.Namespace;
+     * import com.pulumi.kubernetes.NamespaceArgs;
+     * import com.pulumi.local.File;
+     * import com.pulumi.local.FileArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Use Kubernetes provider to access your Kubernetes cluster
+     *         // Create a network for the Kubernetes cluster
+     *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
+     *             .name("example-network")
+     *             .zone("de-fra1")
+     *             .ipNetwork(NetworkIpNetworkArgs.builder()
+     *                 .address("172.16.1.0/24")
+     *                 .dhcp(true)
+     *                 .family("IPv4")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Create a Kubernetes cluster
+     *         var exampleKubernetesCluster = new KubernetesCluster("exampleKubernetesCluster", KubernetesClusterArgs.builder()
+     *             .controlPlaneIpFilters("0.0.0.0/0")
+     *             .name("exampleapp")
+     *             .network(exampleNetwork.id())
+     *             .zone("de-fra1")
+     *             .build());
+     * 
+     *         // Read the details of the newly created cluster
+     *         final var example = UpcloudFunctions.getKubernetesCluster(GetKubernetesClusterArgs.builder()
+     *             .id(exampleKubernetesCluster.id())
+     *             .build());
+     * 
+     *         // Use the Kubernetes provider resources to interact with the cluster
+     *         var exampleNamespace = new Namespace("exampleNamespace", NamespaceArgs.builder()
+     *             .metadata(List.of(Map.of("name", "example-namespace")))
+     *             .build());
+     * 
+     *         // In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients
+     *         var exampleFile = new File("exampleFile", FileArgs.builder()
+     *             .content(example.kubeconfig())
+     *             .filename("example.conf")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -645,6 +730,77 @@ public final class UpcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.Network;
+     * import com.pulumi.upcloud.NetworkArgs;
+     * import com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;
+     * import com.pulumi.upcloud.KubernetesCluster;
+     * import com.pulumi.upcloud.KubernetesClusterArgs;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetKubernetesClusterArgs;
+     * import com.pulumi.kubernetes.Namespace;
+     * import com.pulumi.kubernetes.NamespaceArgs;
+     * import com.pulumi.local.File;
+     * import com.pulumi.local.FileArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Use Kubernetes provider to access your Kubernetes cluster
+     *         // Create a network for the Kubernetes cluster
+     *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
+     *             .name("example-network")
+     *             .zone("de-fra1")
+     *             .ipNetwork(NetworkIpNetworkArgs.builder()
+     *                 .address("172.16.1.0/24")
+     *                 .dhcp(true)
+     *                 .family("IPv4")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Create a Kubernetes cluster
+     *         var exampleKubernetesCluster = new KubernetesCluster("exampleKubernetesCluster", KubernetesClusterArgs.builder()
+     *             .controlPlaneIpFilters("0.0.0.0/0")
+     *             .name("exampleapp")
+     *             .network(exampleNetwork.id())
+     *             .zone("de-fra1")
+     *             .build());
+     * 
+     *         // Read the details of the newly created cluster
+     *         final var example = UpcloudFunctions.getKubernetesCluster(GetKubernetesClusterArgs.builder()
+     *             .id(exampleKubernetesCluster.id())
+     *             .build());
+     * 
+     *         // Use the Kubernetes provider resources to interact with the cluster
+     *         var exampleNamespace = new Namespace("exampleNamespace", NamespaceArgs.builder()
+     *             .metadata(List.of(Map.of("name", "example-namespace")))
+     *             .build());
+     * 
+     *         // In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients
+     *         var exampleFile = new File("exampleFile", FileArgs.builder()
+     *             .content(example.kubeconfig())
+     *             .filename("example.conf")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -655,6 +811,77 @@ public final class UpcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.Network;
+     * import com.pulumi.upcloud.NetworkArgs;
+     * import com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;
+     * import com.pulumi.upcloud.KubernetesCluster;
+     * import com.pulumi.upcloud.KubernetesClusterArgs;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetKubernetesClusterArgs;
+     * import com.pulumi.kubernetes.Namespace;
+     * import com.pulumi.kubernetes.NamespaceArgs;
+     * import com.pulumi.local.File;
+     * import com.pulumi.local.FileArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Use Kubernetes provider to access your Kubernetes cluster
+     *         // Create a network for the Kubernetes cluster
+     *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
+     *             .name("example-network")
+     *             .zone("de-fra1")
+     *             .ipNetwork(NetworkIpNetworkArgs.builder()
+     *                 .address("172.16.1.0/24")
+     *                 .dhcp(true)
+     *                 .family("IPv4")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Create a Kubernetes cluster
+     *         var exampleKubernetesCluster = new KubernetesCluster("exampleKubernetesCluster", KubernetesClusterArgs.builder()
+     *             .controlPlaneIpFilters("0.0.0.0/0")
+     *             .name("exampleapp")
+     *             .network(exampleNetwork.id())
+     *             .zone("de-fra1")
+     *             .build());
+     * 
+     *         // Read the details of the newly created cluster
+     *         final var example = UpcloudFunctions.getKubernetesCluster(GetKubernetesClusterArgs.builder()
+     *             .id(exampleKubernetesCluster.id())
+     *             .build());
+     * 
+     *         // Use the Kubernetes provider resources to interact with the cluster
+     *         var exampleNamespace = new Namespace("exampleNamespace", NamespaceArgs.builder()
+     *             .metadata(List.of(Map.of("name", "example-namespace")))
+     *             .build());
+     * 
+     *         // In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients
+     *         var exampleFile = new File("exampleFile", FileArgs.builder()
+     *             .content(example.kubeconfig())
+     *             .filename("example.conf")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -665,6 +892,77 @@ public final class UpcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.Network;
+     * import com.pulumi.upcloud.NetworkArgs;
+     * import com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;
+     * import com.pulumi.upcloud.KubernetesCluster;
+     * import com.pulumi.upcloud.KubernetesClusterArgs;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetKubernetesClusterArgs;
+     * import com.pulumi.kubernetes.Namespace;
+     * import com.pulumi.kubernetes.NamespaceArgs;
+     * import com.pulumi.local.File;
+     * import com.pulumi.local.FileArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Use Kubernetes provider to access your Kubernetes cluster
+     *         // Create a network for the Kubernetes cluster
+     *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
+     *             .name("example-network")
+     *             .zone("de-fra1")
+     *             .ipNetwork(NetworkIpNetworkArgs.builder()
+     *                 .address("172.16.1.0/24")
+     *                 .dhcp(true)
+     *                 .family("IPv4")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Create a Kubernetes cluster
+     *         var exampleKubernetesCluster = new KubernetesCluster("exampleKubernetesCluster", KubernetesClusterArgs.builder()
+     *             .controlPlaneIpFilters("0.0.0.0/0")
+     *             .name("exampleapp")
+     *             .network(exampleNetwork.id())
+     *             .zone("de-fra1")
+     *             .build());
+     * 
+     *         // Read the details of the newly created cluster
+     *         final var example = UpcloudFunctions.getKubernetesCluster(GetKubernetesClusterArgs.builder()
+     *             .id(exampleKubernetesCluster.id())
+     *             .build());
+     * 
+     *         // Use the Kubernetes provider resources to interact with the cluster
+     *         var exampleNamespace = new Namespace("exampleNamespace", NamespaceArgs.builder()
+     *             .metadata(List.of(Map.of("name", "example-namespace")))
+     *             .build());
+     * 
+     *         // In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients
+     *         var exampleFile = new File("exampleFile", FileArgs.builder()
+     *             .content(example.kubeconfig())
+     *             .filename("example.conf")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -675,6 +973,77 @@ public final class UpcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.Network;
+     * import com.pulumi.upcloud.NetworkArgs;
+     * import com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;
+     * import com.pulumi.upcloud.KubernetesCluster;
+     * import com.pulumi.upcloud.KubernetesClusterArgs;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetKubernetesClusterArgs;
+     * import com.pulumi.kubernetes.Namespace;
+     * import com.pulumi.kubernetes.NamespaceArgs;
+     * import com.pulumi.local.File;
+     * import com.pulumi.local.FileArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Use Kubernetes provider to access your Kubernetes cluster
+     *         // Create a network for the Kubernetes cluster
+     *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
+     *             .name("example-network")
+     *             .zone("de-fra1")
+     *             .ipNetwork(NetworkIpNetworkArgs.builder()
+     *                 .address("172.16.1.0/24")
+     *                 .dhcp(true)
+     *                 .family("IPv4")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Create a Kubernetes cluster
+     *         var exampleKubernetesCluster = new KubernetesCluster("exampleKubernetesCluster", KubernetesClusterArgs.builder()
+     *             .controlPlaneIpFilters("0.0.0.0/0")
+     *             .name("exampleapp")
+     *             .network(exampleNetwork.id())
+     *             .zone("de-fra1")
+     *             .build());
+     * 
+     *         // Read the details of the newly created cluster
+     *         final var example = UpcloudFunctions.getKubernetesCluster(GetKubernetesClusterArgs.builder()
+     *             .id(exampleKubernetesCluster.id())
+     *             .build());
+     * 
+     *         // Use the Kubernetes provider resources to interact with the cluster
+     *         var exampleNamespace = new Namespace("exampleNamespace", NamespaceArgs.builder()
+     *             .metadata(List.of(Map.of("name", "example-namespace")))
+     *             .build());
+     * 
+     *         // In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients
+     *         var exampleFile = new File("exampleFile", FileArgs.builder()
+     *             .content(example.kubeconfig())
+     *             .filename("example.conf")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -708,7 +1077,7 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain();
+     *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -747,7 +1116,7 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain();
+     *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -786,7 +1155,7 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain();
+     *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -825,7 +1194,7 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain();
+     *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -864,7 +1233,7 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain();
+     *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -903,7 +1272,7 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain();
+     *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -942,7 +1311,7 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain();
+     *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -2524,7 +2893,7 @@ public final class UpcloudFunctions {
      *                 .type("public")
      *                 .build())
      *             .template(ServerTemplateArgs.builder()
-     *                 .storage(appImage.applyValue(getStorageResult -> getStorageResult.id()))
+     *                 .storage(appImage.id())
      *                 .build())
      *             .build());
      * 
@@ -2538,7 +2907,7 @@ public final class UpcloudFunctions {
      *                 .type("public")
      *                 .build())
      *             .template(ServerTemplateArgs.builder()
-     *                 .storage(appImage.applyValue(getStorageResult -> getStorageResult.id()))
+     *                 .storage(appImage.id())
      *                 .build())
      *             .build());
      * 
@@ -2604,7 +2973,7 @@ public final class UpcloudFunctions {
      *                 .type("public")
      *                 .build())
      *             .template(ServerTemplateArgs.builder()
-     *                 .storage(appImage.applyValue(getStorageResult -> getStorageResult.id()))
+     *                 .storage(appImage.id())
      *                 .build())
      *             .build());
      * 
@@ -2618,7 +2987,7 @@ public final class UpcloudFunctions {
      *                 .type("public")
      *                 .build())
      *             .template(ServerTemplateArgs.builder()
-     *                 .storage(appImage.applyValue(getStorageResult -> getStorageResult.id()))
+     *                 .storage(appImage.id())
      *                 .build())
      *             .build());
      * 
@@ -2684,7 +3053,7 @@ public final class UpcloudFunctions {
      *                 .type("public")
      *                 .build())
      *             .template(ServerTemplateArgs.builder()
-     *                 .storage(appImage.applyValue(getStorageResult -> getStorageResult.id()))
+     *                 .storage(appImage.id())
      *                 .build())
      *             .build());
      * 
@@ -2698,7 +3067,7 @@ public final class UpcloudFunctions {
      *                 .type("public")
      *                 .build())
      *             .template(ServerTemplateArgs.builder()
-     *                 .storage(appImage.applyValue(getStorageResult -> getStorageResult.id()))
+     *                 .storage(appImage.id())
      *                 .build())
      *             .build());
      * 
@@ -2764,7 +3133,7 @@ public final class UpcloudFunctions {
      *                 .type("public")
      *                 .build())
      *             .template(ServerTemplateArgs.builder()
-     *                 .storage(appImage.applyValue(getStorageResult -> getStorageResult.id()))
+     *                 .storage(appImage.id())
      *                 .build())
      *             .build());
      * 
@@ -2778,7 +3147,7 @@ public final class UpcloudFunctions {
      *                 .type("public")
      *                 .build())
      *             .template(ServerTemplateArgs.builder()
-     *                 .storage(appImage.applyValue(getStorageResult -> getStorageResult.id()))
+     *                 .storage(appImage.id())
      *                 .build())
      *             .build());
      * 
@@ -2844,7 +3213,7 @@ public final class UpcloudFunctions {
      *                 .type("public")
      *                 .build())
      *             .template(ServerTemplateArgs.builder()
-     *                 .storage(appImage.applyValue(getStorageResult -> getStorageResult.id()))
+     *                 .storage(appImage.id())
      *                 .build())
      *             .build());
      * 
@@ -2858,7 +3227,7 @@ public final class UpcloudFunctions {
      *                 .type("public")
      *                 .build())
      *             .template(ServerTemplateArgs.builder()
-     *                 .storage(appImage.applyValue(getStorageResult -> getStorageResult.id()))
+     *                 .storage(appImage.id())
      *                 .build())
      *             .build());
      * 
@@ -2924,7 +3293,7 @@ public final class UpcloudFunctions {
      *                 .type("public")
      *                 .build())
      *             .template(ServerTemplateArgs.builder()
-     *                 .storage(appImage.applyValue(getStorageResult -> getStorageResult.id()))
+     *                 .storage(appImage.id())
      *                 .build())
      *             .build());
      * 
@@ -2938,7 +3307,7 @@ public final class UpcloudFunctions {
      *                 .type("public")
      *                 .build())
      *             .template(ServerTemplateArgs.builder()
-     *                 .storage(appImage.applyValue(getStorageResult -> getStorageResult.id()))
+     *                 .storage(appImage.id())
      *                 .build())
      *             .build());
      * 
@@ -3004,7 +3373,7 @@ public final class UpcloudFunctions {
      *                 .type("public")
      *                 .build())
      *             .template(ServerTemplateArgs.builder()
-     *                 .storage(appImage.applyValue(getStorageResult -> getStorageResult.id()))
+     *                 .storage(appImage.id())
      *                 .build())
      *             .build());
      * 
@@ -3018,7 +3387,7 @@ public final class UpcloudFunctions {
      *                 .type("public")
      *                 .build())
      *             .template(ServerTemplateArgs.builder()
-     *                 .storage(appImage.applyValue(getStorageResult -> getStorageResult.id()))
+     *                 .storage(appImage.id())
      *                 .build())
      *             .build());
      * 

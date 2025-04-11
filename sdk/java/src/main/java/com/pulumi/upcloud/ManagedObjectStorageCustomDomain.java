@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain();
+ *         final var this = UpcloudFunctions.getLoadBalancerDnsChallengeDomain(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
  * 
  *         // Before creating the custom domain, configure the DNS settings for your custom domain. For example, if your custom domain is objects.example.com, you should configure the following DNS records:
  *         // - "_acme-challenge.objects IN CNAME ${data.upcloud_load_balancer_dns_challenge_domain.this.domain}"

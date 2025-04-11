@@ -2899,6 +2899,10 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     pgStatStatementsTrack?: pulumi.Input<string>;
     /**
+     * PGAudit settings. System-wide settings for the pgaudit extension.
+     */
+    pgaudit?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesPgaudit>;
+    /**
      * PGBouncer connection pooling settings. System-wide settings for pgbouncer.
      */
     pgbouncer?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesPgbouncer>;
@@ -3009,6 +3013,65 @@ export interface ManagedDatabasePostgresqlPropertiesMigration {
      * User name for authentication with the server where to migrate data from.
      */
     username?: pulumi.Input<string>;
+}
+
+export interface ManagedDatabasePostgresqlPropertiesPgaudit {
+    /**
+     * Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
+     */
+    featureEnabled?: pulumi.Input<boolean>;
+    /**
+     * Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+     */
+    logCatalog?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether log messages will be visible to a client process such as psql.
+     */
+    logClient?: pulumi.Input<boolean>;
+    /**
+     * Specifies the log level that will be used for log entries.
+     */
+    logLevel?: pulumi.Input<string>;
+    /**
+     * Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+     */
+    logMaxStringLength?: pulumi.Input<number>;
+    /**
+     * This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+     */
+    logNestedStatements?: pulumi.Input<boolean>;
+    /**
+     * Specifies that audit logging should include the parameters that were passed with the statement.
+     */
+    logParameter?: pulumi.Input<boolean>;
+    /**
+     * Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
+     */
+    logParameterMaxSize?: pulumi.Input<number>;
+    /**
+     * Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+     */
+    logRelation?: pulumi.Input<boolean>;
+    /**
+     * Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+     */
+    logRows?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether logging will include the statement text and parameters (if enabled).
+     */
+    logStatement?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+     */
+    logStatementOnce?: pulumi.Input<boolean>;
+    /**
+     * Specifies which classes of statements will be logged by session audit logging.
+     */
+    logs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the master role to use for object audit logging.
+     */
+    role?: pulumi.Input<string>;
 }
 
 export interface ManagedDatabasePostgresqlPropertiesPgbouncer {

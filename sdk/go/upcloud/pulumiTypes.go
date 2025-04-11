@@ -14970,6 +14970,8 @@ type ManagedDatabasePostgresqlProperties struct {
 	PgStatMonitorPgsmMaxBuckets *int `pulumi:"pgStatMonitorPgsmMaxBuckets"`
 	// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
 	PgStatStatementsTrack *string `pulumi:"pgStatStatementsTrack"`
+	// PGAudit settings. System-wide settings for the pgaudit extension.
+	Pgaudit *ManagedDatabasePostgresqlPropertiesPgaudit `pulumi:"pgaudit"`
 	// PGBouncer connection pooling settings. System-wide settings for pgbouncer.
 	Pgbouncer *ManagedDatabasePostgresqlPropertiesPgbouncer `pulumi:"pgbouncer"`
 	// PGLookout settings. System-wide settings for pglookout.
@@ -15120,6 +15122,8 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	PgStatMonitorPgsmMaxBuckets pulumi.IntPtrInput `pulumi:"pgStatMonitorPgsmMaxBuckets"`
 	// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
 	PgStatStatementsTrack pulumi.StringPtrInput `pulumi:"pgStatStatementsTrack"`
+	// PGAudit settings. System-wide settings for the pgaudit extension.
+	Pgaudit ManagedDatabasePostgresqlPropertiesPgauditPtrInput `pulumi:"pgaudit"`
 	// PGBouncer connection pooling settings. System-wide settings for pgbouncer.
 	Pgbouncer ManagedDatabasePostgresqlPropertiesPgbouncerPtrInput `pulumi:"pgbouncer"`
 	// PGLookout settings. System-wide settings for pglookout.
@@ -15485,6 +15489,13 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) PgStatMonitorPgsmMaxBuckets()
 // Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
 func (o ManagedDatabasePostgresqlPropertiesOutput) PgStatStatementsTrack() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.PgStatStatementsTrack }).(pulumi.StringPtrOutput)
+}
+
+// PGAudit settings. System-wide settings for the pgaudit extension.
+func (o ManagedDatabasePostgresqlPropertiesOutput) Pgaudit() ManagedDatabasePostgresqlPropertiesPgauditPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *ManagedDatabasePostgresqlPropertiesPgaudit {
+		return v.Pgaudit
+	}).(ManagedDatabasePostgresqlPropertiesPgauditPtrOutput)
 }
 
 // PGBouncer connection pooling settings. System-wide settings for pgbouncer.
@@ -16107,6 +16118,16 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgStatStatementsTrack() pu
 	}).(pulumi.StringPtrOutput)
 }
 
+// PGAudit settings. System-wide settings for the pgaudit extension.
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) Pgaudit() ManagedDatabasePostgresqlPropertiesPgauditPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *ManagedDatabasePostgresqlPropertiesPgaudit {
+		if v == nil {
+			return nil
+		}
+		return v.Pgaudit
+	}).(ManagedDatabasePostgresqlPropertiesPgauditPtrOutput)
+}
+
 // PGBouncer connection pooling settings. System-wide settings for pgbouncer.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) Pgbouncer() ManagedDatabasePostgresqlPropertiesPgbouncerPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *ManagedDatabasePostgresqlPropertiesPgbouncer {
@@ -16573,6 +16594,390 @@ func (o ManagedDatabasePostgresqlPropertiesMigrationPtrOutput) Username() pulumi
 			return nil
 		}
 		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabasePostgresqlPropertiesPgaudit struct {
+	// Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
+	FeatureEnabled *bool `pulumi:"featureEnabled"`
+	// Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+	LogCatalog *bool `pulumi:"logCatalog"`
+	// Specifies whether log messages will be visible to a client process such as psql.
+	LogClient *bool `pulumi:"logClient"`
+	// Specifies the log level that will be used for log entries.
+	LogLevel *string `pulumi:"logLevel"`
+	// Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+	LogMaxStringLength *int `pulumi:"logMaxStringLength"`
+	// This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+	LogNestedStatements *bool `pulumi:"logNestedStatements"`
+	// Specifies that audit logging should include the parameters that were passed with the statement.
+	LogParameter *bool `pulumi:"logParameter"`
+	// Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
+	LogParameterMaxSize *int `pulumi:"logParameterMaxSize"`
+	// Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+	LogRelation *bool `pulumi:"logRelation"`
+	// Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+	LogRows *bool `pulumi:"logRows"`
+	// Specifies whether logging will include the statement text and parameters (if enabled).
+	LogStatement *bool `pulumi:"logStatement"`
+	// Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+	LogStatementOnce *bool `pulumi:"logStatementOnce"`
+	// Specifies which classes of statements will be logged by session audit logging.
+	Logs []string `pulumi:"logs"`
+	// Specifies the master role to use for object audit logging.
+	Role *string `pulumi:"role"`
+}
+
+// ManagedDatabasePostgresqlPropertiesPgauditInput is an input type that accepts ManagedDatabasePostgresqlPropertiesPgauditArgs and ManagedDatabasePostgresqlPropertiesPgauditOutput values.
+// You can construct a concrete instance of `ManagedDatabasePostgresqlPropertiesPgauditInput` via:
+//
+//	ManagedDatabasePostgresqlPropertiesPgauditArgs{...}
+type ManagedDatabasePostgresqlPropertiesPgauditInput interface {
+	pulumi.Input
+
+	ToManagedDatabasePostgresqlPropertiesPgauditOutput() ManagedDatabasePostgresqlPropertiesPgauditOutput
+	ToManagedDatabasePostgresqlPropertiesPgauditOutputWithContext(context.Context) ManagedDatabasePostgresqlPropertiesPgauditOutput
+}
+
+type ManagedDatabasePostgresqlPropertiesPgauditArgs struct {
+	// Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
+	FeatureEnabled pulumi.BoolPtrInput `pulumi:"featureEnabled"`
+	// Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+	LogCatalog pulumi.BoolPtrInput `pulumi:"logCatalog"`
+	// Specifies whether log messages will be visible to a client process such as psql.
+	LogClient pulumi.BoolPtrInput `pulumi:"logClient"`
+	// Specifies the log level that will be used for log entries.
+	LogLevel pulumi.StringPtrInput `pulumi:"logLevel"`
+	// Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+	LogMaxStringLength pulumi.IntPtrInput `pulumi:"logMaxStringLength"`
+	// This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+	LogNestedStatements pulumi.BoolPtrInput `pulumi:"logNestedStatements"`
+	// Specifies that audit logging should include the parameters that were passed with the statement.
+	LogParameter pulumi.BoolPtrInput `pulumi:"logParameter"`
+	// Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
+	LogParameterMaxSize pulumi.IntPtrInput `pulumi:"logParameterMaxSize"`
+	// Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+	LogRelation pulumi.BoolPtrInput `pulumi:"logRelation"`
+	// Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+	LogRows pulumi.BoolPtrInput `pulumi:"logRows"`
+	// Specifies whether logging will include the statement text and parameters (if enabled).
+	LogStatement pulumi.BoolPtrInput `pulumi:"logStatement"`
+	// Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+	LogStatementOnce pulumi.BoolPtrInput `pulumi:"logStatementOnce"`
+	// Specifies which classes of statements will be logged by session audit logging.
+	Logs pulumi.StringArrayInput `pulumi:"logs"`
+	// Specifies the master role to use for object audit logging.
+	Role pulumi.StringPtrInput `pulumi:"role"`
+}
+
+func (ManagedDatabasePostgresqlPropertiesPgauditArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabasePostgresqlPropertiesPgaudit)(nil)).Elem()
+}
+
+func (i ManagedDatabasePostgresqlPropertiesPgauditArgs) ToManagedDatabasePostgresqlPropertiesPgauditOutput() ManagedDatabasePostgresqlPropertiesPgauditOutput {
+	return i.ToManagedDatabasePostgresqlPropertiesPgauditOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabasePostgresqlPropertiesPgauditArgs) ToManagedDatabasePostgresqlPropertiesPgauditOutputWithContext(ctx context.Context) ManagedDatabasePostgresqlPropertiesPgauditOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabasePostgresqlPropertiesPgauditOutput)
+}
+
+func (i ManagedDatabasePostgresqlPropertiesPgauditArgs) ToManagedDatabasePostgresqlPropertiesPgauditPtrOutput() ManagedDatabasePostgresqlPropertiesPgauditPtrOutput {
+	return i.ToManagedDatabasePostgresqlPropertiesPgauditPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabasePostgresqlPropertiesPgauditArgs) ToManagedDatabasePostgresqlPropertiesPgauditPtrOutputWithContext(ctx context.Context) ManagedDatabasePostgresqlPropertiesPgauditPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabasePostgresqlPropertiesPgauditOutput).ToManagedDatabasePostgresqlPropertiesPgauditPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabasePostgresqlPropertiesPgauditPtrInput is an input type that accepts ManagedDatabasePostgresqlPropertiesPgauditArgs, ManagedDatabasePostgresqlPropertiesPgauditPtr and ManagedDatabasePostgresqlPropertiesPgauditPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabasePostgresqlPropertiesPgauditPtrInput` via:
+//
+//	        ManagedDatabasePostgresqlPropertiesPgauditArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabasePostgresqlPropertiesPgauditPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabasePostgresqlPropertiesPgauditPtrOutput() ManagedDatabasePostgresqlPropertiesPgauditPtrOutput
+	ToManagedDatabasePostgresqlPropertiesPgauditPtrOutputWithContext(context.Context) ManagedDatabasePostgresqlPropertiesPgauditPtrOutput
+}
+
+type managedDatabasePostgresqlPropertiesPgauditPtrType ManagedDatabasePostgresqlPropertiesPgauditArgs
+
+func ManagedDatabasePostgresqlPropertiesPgauditPtr(v *ManagedDatabasePostgresqlPropertiesPgauditArgs) ManagedDatabasePostgresqlPropertiesPgauditPtrInput {
+	return (*managedDatabasePostgresqlPropertiesPgauditPtrType)(v)
+}
+
+func (*managedDatabasePostgresqlPropertiesPgauditPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabasePostgresqlPropertiesPgaudit)(nil)).Elem()
+}
+
+func (i *managedDatabasePostgresqlPropertiesPgauditPtrType) ToManagedDatabasePostgresqlPropertiesPgauditPtrOutput() ManagedDatabasePostgresqlPropertiesPgauditPtrOutput {
+	return i.ToManagedDatabasePostgresqlPropertiesPgauditPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabasePostgresqlPropertiesPgauditPtrType) ToManagedDatabasePostgresqlPropertiesPgauditPtrOutputWithContext(ctx context.Context) ManagedDatabasePostgresqlPropertiesPgauditPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabasePostgresqlPropertiesPgauditPtrOutput)
+}
+
+type ManagedDatabasePostgresqlPropertiesPgauditOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabasePostgresqlPropertiesPgauditOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabasePostgresqlPropertiesPgaudit)(nil)).Elem()
+}
+
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) ToManagedDatabasePostgresqlPropertiesPgauditOutput() ManagedDatabasePostgresqlPropertiesPgauditOutput {
+	return o
+}
+
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) ToManagedDatabasePostgresqlPropertiesPgauditOutputWithContext(ctx context.Context) ManagedDatabasePostgresqlPropertiesPgauditOutput {
+	return o
+}
+
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) ToManagedDatabasePostgresqlPropertiesPgauditPtrOutput() ManagedDatabasePostgresqlPropertiesPgauditPtrOutput {
+	return o.ToManagedDatabasePostgresqlPropertiesPgauditPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) ToManagedDatabasePostgresqlPropertiesPgauditPtrOutputWithContext(ctx context.Context) ManagedDatabasePostgresqlPropertiesPgauditPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabasePostgresqlPropertiesPgaudit) *ManagedDatabasePostgresqlPropertiesPgaudit {
+		return &v
+	}).(ManagedDatabasePostgresqlPropertiesPgauditPtrOutput)
+}
+
+// Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) FeatureEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.FeatureEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogCatalog() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogCatalog }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies whether log messages will be visible to a client process such as psql.
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogClient() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogClient }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies the log level that will be used for log entries.
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogLevel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *string { return v.LogLevel }).(pulumi.StringPtrOutput)
+}
+
+// Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogMaxStringLength() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *int { return v.LogMaxStringLength }).(pulumi.IntPtrOutput)
+}
+
+// This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogNestedStatements() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogNestedStatements }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies that audit logging should include the parameters that were passed with the statement.
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogParameter() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogParameter }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogParameterMaxSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *int { return v.LogParameterMaxSize }).(pulumi.IntPtrOutput)
+}
+
+// Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogRelation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogRelation }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogRows() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogRows }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies whether logging will include the statement text and parameters (if enabled).
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogStatement() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogStatement }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogStatementOnce() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogStatementOnce }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies which classes of statements will be logged by session audit logging.
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) Logs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) []string { return v.Logs }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the master role to use for object audit logging.
+func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *string { return v.Role }).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabasePostgresqlPropertiesPgauditPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabasePostgresqlPropertiesPgaudit)(nil)).Elem()
+}
+
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) ToManagedDatabasePostgresqlPropertiesPgauditPtrOutput() ManagedDatabasePostgresqlPropertiesPgauditPtrOutput {
+	return o
+}
+
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) ToManagedDatabasePostgresqlPropertiesPgauditPtrOutputWithContext(ctx context.Context) ManagedDatabasePostgresqlPropertiesPgauditPtrOutput {
+	return o
+}
+
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) Elem() ManagedDatabasePostgresqlPropertiesPgauditOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) ManagedDatabasePostgresqlPropertiesPgaudit {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabasePostgresqlPropertiesPgaudit
+		return ret
+	}).(ManagedDatabasePostgresqlPropertiesPgauditOutput)
+}
+
+// Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) FeatureEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.FeatureEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogCatalog() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.LogCatalog
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Specifies whether log messages will be visible to a client process such as psql.
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogClient() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.LogClient
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Specifies the log level that will be used for log entries.
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogLevel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LogLevel
+	}).(pulumi.StringPtrOutput)
+}
+
+// Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogMaxStringLength() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *int {
+		if v == nil {
+			return nil
+		}
+		return v.LogMaxStringLength
+	}).(pulumi.IntPtrOutput)
+}
+
+// This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogNestedStatements() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.LogNestedStatements
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Specifies that audit logging should include the parameters that were passed with the statement.
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogParameter() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.LogParameter
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogParameterMaxSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *int {
+		if v == nil {
+			return nil
+		}
+		return v.LogParameterMaxSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogRelation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.LogRelation
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogRows() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.LogRows
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Specifies whether logging will include the statement text and parameters (if enabled).
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogStatement() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.LogStatement
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogStatementOnce() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.LogStatementOnce
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Specifies which classes of statements will be logged by session audit logging.
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) Logs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Logs
+	}).(pulumi.StringArrayOutput)
+}
+
+// Specifies the master role to use for object audit logging.
+func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Role
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -25704,6 +26109,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlPropertiesPtrInput)(nil)).Elem(), ManagedDatabasePostgresqlPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlPropertiesMigrationInput)(nil)).Elem(), ManagedDatabasePostgresqlPropertiesMigrationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlPropertiesMigrationPtrInput)(nil)).Elem(), ManagedDatabasePostgresqlPropertiesMigrationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlPropertiesPgauditInput)(nil)).Elem(), ManagedDatabasePostgresqlPropertiesPgauditArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlPropertiesPgauditPtrInput)(nil)).Elem(), ManagedDatabasePostgresqlPropertiesPgauditArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlPropertiesPgbouncerInput)(nil)).Elem(), ManagedDatabasePostgresqlPropertiesPgbouncerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlPropertiesPgbouncerPtrInput)(nil)).Elem(), ManagedDatabasePostgresqlPropertiesPgbouncerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlPropertiesPglookoutInput)(nil)).Elem(), ManagedDatabasePostgresqlPropertiesPglookoutArgs{})
@@ -25967,6 +26374,8 @@ func init() {
 	pulumi.RegisterOutputType(ManagedDatabasePostgresqlPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabasePostgresqlPropertiesMigrationOutput{})
 	pulumi.RegisterOutputType(ManagedDatabasePostgresqlPropertiesMigrationPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabasePostgresqlPropertiesPgauditOutput{})
+	pulumi.RegisterOutputType(ManagedDatabasePostgresqlPropertiesPgauditPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabasePostgresqlPropertiesPgbouncerOutput{})
 	pulumi.RegisterOutputType(ManagedDatabasePostgresqlPropertiesPgbouncerPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabasePostgresqlPropertiesPglookoutOutput{})

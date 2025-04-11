@@ -129,14 +129,14 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
      * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
-     * @return Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+     * @return Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
      * 
      */
     public Optional<Output<String>> version() {
@@ -356,7 +356,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param version Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+         * @param version Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
          * 
          * @return builder
          * 
@@ -367,7 +367,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param version Kubernetes version ID, e.g. `1.30`. You can list available version IDs with `upctl kubernetes versions`.
+         * @param version Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
          * 
          * @return builder
          * 

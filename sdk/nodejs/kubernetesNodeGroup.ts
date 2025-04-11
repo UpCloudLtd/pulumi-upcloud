@@ -91,9 +91,10 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
      */
     public readonly customPlan!: pulumi.Output<outputs.KubernetesNodeGroupCustomPlan | undefined>;
     /**
-     * Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-     * kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-     * careful when adding kubelet args.
+     * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+     * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+     * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+     * when adding kubelet args.
      */
     public readonly kubeletArgs!: pulumi.Output<outputs.KubernetesNodeGroupKubeletArg[] | undefined>;
     /**
@@ -203,9 +204,10 @@ export interface KubernetesNodeGroupState {
      */
     customPlan?: pulumi.Input<inputs.KubernetesNodeGroupCustomPlan>;
     /**
-     * Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-     * kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-     * careful when adding kubelet args.
+     * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+     * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+     * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+     * when adding kubelet args.
      */
     kubeletArgs?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupKubeletArg>[]>;
     /**
@@ -262,9 +264,10 @@ export interface KubernetesNodeGroupArgs {
      */
     customPlan?: pulumi.Input<inputs.KubernetesNodeGroupCustomPlan>;
     /**
-     * Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-     * kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-     * careful when adding kubelet args.
+     * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+     * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+     * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+     * when adding kubelet args.
      */
     kubeletArgs?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupKubeletArg>[]>;
     /**

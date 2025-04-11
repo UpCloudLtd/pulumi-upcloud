@@ -142,18 +142,20 @@ public class KubernetesNodeGroup extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.customPlan);
     }
     /**
-     * Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-     * kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-     * careful when adding kubelet args.
+     * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+     * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+     * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+     * when adding kubelet args.
      * 
      */
     @Export(name="kubeletArgs", refs={List.class,KubernetesNodeGroupKubeletArg.class}, tree="[0,1]")
     private Output</* @Nullable */ List<KubernetesNodeGroupKubeletArg>> kubeletArgs;
 
     /**
-     * @return Additional arguments for kubelet for the nodes in this group. WARNING - those arguments will be passed directly to
-     * kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra
-     * careful when adding kubelet args.
+     * @return Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
+     * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
+     * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
+     * when adding kubelet args.
      * 
      */
     public Output<Optional<List<KubernetesNodeGroupKubeletArg>>> kubeletArgs() {

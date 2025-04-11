@@ -12,6 +12,75 @@ import (
 )
 
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud"
+//	"github.com/pulumi/pulumi-kubernetes/sdk/go/kubernetes"
+//	"github.com/pulumi/pulumi-local/sdk/go/local"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Use Kubernetes provider to access your Kubernetes cluster
+//			// Create a network for the Kubernetes cluster
+//			exampleNetwork, err := upcloud.NewNetwork(ctx, "example", &upcloud.NetworkArgs{
+//				Name: pulumi.String("example-network"),
+//				Zone: pulumi.String("de-fra1"),
+//				IpNetwork: &upcloud.NetworkIpNetworkArgs{
+//					Address: pulumi.String("172.16.1.0/24"),
+//					Dhcp:    pulumi.Bool(true),
+//					Family:  pulumi.String("IPv4"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Create a Kubernetes cluster
+//			exampleKubernetesCluster, err := upcloud.NewKubernetesCluster(ctx, "example", &upcloud.KubernetesClusterArgs{
+//				ControlPlaneIpFilters: pulumi.StringArray{
+//					pulumi.String("0.0.0.0/0"),
+//				},
+//				Name:    pulumi.String("exampleapp"),
+//				Network: exampleNetwork.ID(),
+//				Zone:    pulumi.String("de-fra1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Read the details of the newly created cluster
+//			example := upcloud.LookupKubernetesClusterOutput(ctx, upcloud.GetKubernetesClusterOutputArgs{
+//				Id: exampleKubernetesCluster.ID(),
+//			}, nil)
+//			// Use the Kubernetes provider resources to interact with the cluster
+//			_, err = kubernetes.NewNamespace(ctx, "example", &kubernetes.NamespaceArgs{
+//				Metadata: []map[string]interface{}{
+//					map[string]interface{}{
+//						"name": "example-namespace",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients
+//			_, err = local.NewFile(ctx, "example", &local.FileArgs{
+//				Content:  example.Kubeconfig,
+//				Filename: "example.conf",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupKubernetesCluster(ctx *pulumi.Context, args *LookupKubernetesClusterArgs, opts ...pulumi.InvokeOption) (*LookupKubernetesClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupKubernetesClusterResult
