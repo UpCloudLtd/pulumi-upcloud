@@ -54,6 +54,13 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> Hostname { get; private set; } = null!;
 
         /// <summary>
+        /// If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+        /// hot resizing fails, the apply operation will fail.
+        /// </summary>
+        [Output("hotResize")]
+        public Output<bool> HotResize { get; private set; } = null!;
+
+        /// <summary>
         /// User defined key-value pairs to classify the server.
         /// </summary>
         [Output("labels")]
@@ -237,6 +244,13 @@ namespace UpCloud.Pulumi.UpCloud
         [Input("hostname", required: true)]
         public Input<string> Hostname { get; set; } = null!;
 
+        /// <summary>
+        /// If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+        /// hot resizing fails, the apply operation will fail.
+        /// </summary>
+        [Input("hotResize")]
+        public Input<bool>? HotResize { get; set; }
+
         [Input("labels")]
         private InputMap<string>? _labels;
 
@@ -405,6 +419,13 @@ namespace UpCloud.Pulumi.UpCloud
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
+
+        /// <summary>
+        /// If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+        /// hot resizing fails, the apply operation will fail.
+        /// </summary>
+        [Input("hotResize")]
+        public Input<bool>? HotResize { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;

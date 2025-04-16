@@ -1960,6 +1960,10 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     enableRemoteBackedStorage?: pulumi.Input<boolean>;
     /**
+     * Enable searchable snapshots.
+     */
+    enableSearchableSnapshots?: pulumi.Input<boolean>;
+    /**
      * Enable/Disable security audit.
      */
     enableSecurityAudit?: pulumi.Input<boolean>;

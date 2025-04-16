@@ -1695,6 +1695,10 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     enableRemoteBackedStorage: boolean;
     /**
+     * Enable searchable snapshots.
+     */
+    enableSearchableSnapshots: boolean;
+    /**
      * Enable/Disable security audit.
      */
     enableSecurityAudit: boolean;

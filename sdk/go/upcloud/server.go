@@ -33,6 +33,9 @@ type Server struct {
 	Host pulumi.IntOutput `pulumi:"host"`
 	// The hostname of the server.
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
+	// If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+	// hot resizing fails, the apply operation will fail.
+	HotResize pulumi.BoolOutput `pulumi:"hotResize"`
 	// User defined key-value pairs to classify the server.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Configure access credentials to the server
@@ -122,6 +125,9 @@ type serverState struct {
 	Host *int `pulumi:"host"`
 	// The hostname of the server.
 	Hostname *string `pulumi:"hostname"`
+	// If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+	// hot resizing fails, the apply operation will fail.
+	HotResize *bool `pulumi:"hotResize"`
 	// User defined key-value pairs to classify the server.
 	Labels map[string]string `pulumi:"labels"`
 	// Configure access credentials to the server
@@ -176,6 +182,9 @@ type ServerState struct {
 	Host pulumi.IntPtrInput
 	// The hostname of the server.
 	Hostname pulumi.StringPtrInput
+	// If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+	// hot resizing fails, the apply operation will fail.
+	HotResize pulumi.BoolPtrInput
 	// User defined key-value pairs to classify the server.
 	Labels pulumi.StringMapInput
 	// Configure access credentials to the server
@@ -234,6 +243,9 @@ type serverArgs struct {
 	Host *int `pulumi:"host"`
 	// The hostname of the server.
 	Hostname string `pulumi:"hostname"`
+	// If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+	// hot resizing fails, the apply operation will fail.
+	HotResize *bool `pulumi:"hotResize"`
 	// User defined key-value pairs to classify the server.
 	Labels map[string]string `pulumi:"labels"`
 	// Configure access credentials to the server
@@ -289,6 +301,9 @@ type ServerArgs struct {
 	Host pulumi.IntPtrInput
 	// The hostname of the server.
 	Hostname pulumi.StringInput
+	// If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+	// hot resizing fails, the apply operation will fail.
+	HotResize pulumi.BoolPtrInput
 	// User defined key-value pairs to classify the server.
 	Labels pulumi.StringMapInput
 	// Configure access credentials to the server
@@ -442,6 +457,12 @@ func (o ServerOutput) Host() pulumi.IntOutput {
 // The hostname of the server.
 func (o ServerOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
+}
+
+// If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+// hot resizing fails, the apply operation will fail.
+func (o ServerOutput) HotResize() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Server) pulumi.BoolOutput { return v.HotResize }).(pulumi.BoolOutput)
 }
 
 // User defined key-value pairs to classify the server.

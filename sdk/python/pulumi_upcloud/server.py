@@ -28,6 +28,7 @@ class ServerArgs:
                  cpu: Optional[pulumi.Input[builtins.int]] = None,
                  firewall: Optional[pulumi.Input[builtins.bool]] = None,
                  host: Optional[pulumi.Input[builtins.int]] = None,
+                 hot_resize: Optional[pulumi.Input[builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  login: Optional[pulumi.Input['ServerLoginArgs']] = None,
                  mem: Optional[pulumi.Input[builtins.int]] = None,
@@ -53,6 +54,8 @@ class ServerArgs:
         :param pulumi.Input[builtins.bool] firewall: Are firewall rules active for the server
         :param pulumi.Input[builtins.int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
                hosts
+        :param pulumi.Input[builtins.bool] hot_resize: If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+               hot resizing fails, the apply operation will fail.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] labels: User defined key-value pairs to classify the server.
         :param pulumi.Input['ServerLoginArgs'] login: Configure access credentials to the server
         :param pulumi.Input[builtins.int] mem: The amount of memory for the server (in megabytes)
@@ -86,6 +89,8 @@ class ServerArgs:
             pulumi.set(__self__, "firewall", firewall)
         if host is not None:
             pulumi.set(__self__, "host", host)
+        if hot_resize is not None:
+            pulumi.set(__self__, "hot_resize", hot_resize)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if login is not None:
@@ -191,6 +196,19 @@ class ServerArgs:
     @host.setter
     def host(self, value: Optional[pulumi.Input[builtins.int]]):
         pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter(name="hotResize")
+    def hot_resize(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+        hot resizing fails, the apply operation will fail.
+        """
+        return pulumi.get(self, "hot_resize")
+
+    @hot_resize.setter
+    def hot_resize(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "hot_resize", value)
 
     @property
     @pulumi.getter
@@ -397,6 +415,7 @@ class _ServerState:
                  firewall: Optional[pulumi.Input[builtins.bool]] = None,
                  host: Optional[pulumi.Input[builtins.int]] = None,
                  hostname: Optional[pulumi.Input[builtins.str]] = None,
+                 hot_resize: Optional[pulumi.Input[builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  login: Optional[pulumi.Input['ServerLoginArgs']] = None,
                  mem: Optional[pulumi.Input[builtins.int]] = None,
@@ -422,6 +441,8 @@ class _ServerState:
         :param pulumi.Input[builtins.int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
                hosts
         :param pulumi.Input[builtins.str] hostname: The hostname of the server.
+        :param pulumi.Input[builtins.bool] hot_resize: If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+               hot resizing fails, the apply operation will fail.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] labels: User defined key-value pairs to classify the server.
         :param pulumi.Input['ServerLoginArgs'] login: Configure access credentials to the server
         :param pulumi.Input[builtins.int] mem: The amount of memory for the server (in megabytes)
@@ -456,6 +477,8 @@ class _ServerState:
             pulumi.set(__self__, "host", host)
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
+        if hot_resize is not None:
+            pulumi.set(__self__, "hot_resize", hot_resize)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if login is not None:
@@ -551,6 +574,19 @@ class _ServerState:
     @hostname.setter
     def hostname(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "hostname", value)
+
+    @property
+    @pulumi.getter(name="hotResize")
+    def hot_resize(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+        hot resizing fails, the apply operation will fail.
+        """
+        return pulumi.get(self, "hot_resize")
+
+    @hot_resize.setter
+    def hot_resize(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "hot_resize", value)
 
     @property
     @pulumi.getter
@@ -771,6 +807,7 @@ class Server(pulumi.CustomResource):
                  firewall: Optional[pulumi.Input[builtins.bool]] = None,
                  host: Optional[pulumi.Input[builtins.int]] = None,
                  hostname: Optional[pulumi.Input[builtins.str]] = None,
+                 hot_resize: Optional[pulumi.Input[builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  login: Optional[pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']]] = None,
                  mem: Optional[pulumi.Input[builtins.int]] = None,
@@ -806,6 +843,8 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[builtins.int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
                hosts
         :param pulumi.Input[builtins.str] hostname: The hostname of the server.
+        :param pulumi.Input[builtins.bool] hot_resize: If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+               hot resizing fails, the apply operation will fail.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] labels: User defined key-value pairs to classify the server.
         :param pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']] login: Configure access credentials to the server
         :param pulumi.Input[builtins.int] mem: The amount of memory for the server (in megabytes)
@@ -865,6 +904,7 @@ class Server(pulumi.CustomResource):
                  firewall: Optional[pulumi.Input[builtins.bool]] = None,
                  host: Optional[pulumi.Input[builtins.int]] = None,
                  hostname: Optional[pulumi.Input[builtins.str]] = None,
+                 hot_resize: Optional[pulumi.Input[builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  login: Optional[pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']]] = None,
                  mem: Optional[pulumi.Input[builtins.int]] = None,
@@ -898,6 +938,7 @@ class Server(pulumi.CustomResource):
             if hostname is None and not opts.urn:
                 raise TypeError("Missing required property 'hostname'")
             __props__.__dict__["hostname"] = hostname
+            __props__.__dict__["hot_resize"] = hot_resize
             __props__.__dict__["labels"] = labels
             __props__.__dict__["login"] = login
             __props__.__dict__["mem"] = mem
@@ -932,6 +973,7 @@ class Server(pulumi.CustomResource):
             firewall: Optional[pulumi.Input[builtins.bool]] = None,
             host: Optional[pulumi.Input[builtins.int]] = None,
             hostname: Optional[pulumi.Input[builtins.str]] = None,
+            hot_resize: Optional[pulumi.Input[builtins.bool]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
             login: Optional[pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']]] = None,
             mem: Optional[pulumi.Input[builtins.int]] = None,
@@ -962,6 +1004,8 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[builtins.int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
                hosts
         :param pulumi.Input[builtins.str] hostname: The hostname of the server.
+        :param pulumi.Input[builtins.bool] hot_resize: If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+               hot resizing fails, the apply operation will fail.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] labels: User defined key-value pairs to classify the server.
         :param pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']] login: Configure access credentials to the server
         :param pulumi.Input[builtins.int] mem: The amount of memory for the server (in megabytes)
@@ -995,6 +1039,7 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["firewall"] = firewall
         __props__.__dict__["host"] = host
         __props__.__dict__["hostname"] = hostname
+        __props__.__dict__["hot_resize"] = hot_resize
         __props__.__dict__["labels"] = labels
         __props__.__dict__["login"] = login
         __props__.__dict__["mem"] = mem
@@ -1054,6 +1099,15 @@ class Server(pulumi.CustomResource):
         The hostname of the server.
         """
         return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter(name="hotResize")
+    def hot_resize(self) -> pulumi.Output[builtins.bool]:
+        """
+        If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+        hot resizing fails, the apply operation will fail.
+        """
+        return pulumi.get(self, "hot_resize")
 
     @property
     @pulumi.getter

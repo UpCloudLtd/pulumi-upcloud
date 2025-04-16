@@ -102,6 +102,23 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+     * hot resizing fails, the apply operation will fail.
+     * 
+     */
+    @Import(name="hotResize")
+    private @Nullable Output<Boolean> hotResize;
+
+    /**
+     * @return If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+     * hot resizing fails, the apply operation will fail.
+     * 
+     */
+    public Optional<Output<Boolean>> hotResize() {
+        return Optional.ofNullable(this.hotResize);
+    }
+
+    /**
      * User defined key-value pairs to classify the server.
      * 
      */
@@ -370,6 +387,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         this.firewall = $.firewall;
         this.host = $.host;
         this.hostname = $.hostname;
+        this.hotResize = $.hotResize;
         this.labels = $.labels;
         this.login = $.login;
         this.mem = $.mem;
@@ -512,6 +530,29 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder hostname(String hostname) {
             return hostname(Output.of(hostname));
+        }
+
+        /**
+         * @param hotResize If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+         * hot resizing fails, the apply operation will fail.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hotResize(@Nullable Output<Boolean> hotResize) {
+            $.hotResize = hotResize;
+            return this;
+        }
+
+        /**
+         * @param hotResize If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+         * hot resizing fails, the apply operation will fail.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hotResize(Boolean hotResize) {
+            return hotResize(Output.of(hotResize));
         }
 
         /**
