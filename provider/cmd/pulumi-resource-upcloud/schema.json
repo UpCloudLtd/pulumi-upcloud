@@ -1989,6 +1989,10 @@
                     "type": "boolean",
                     "description": "Enable remote-backed storage.\n"
                 },
+                "enableSearchableSnapshots": {
+                    "type": "boolean",
+                    "description": "Enable searchable snapshots.\n"
+                },
                 "enableSecurityAudit": {
                     "type": "boolean",
                     "description": "Enable/Disable security audit.\n"
@@ -2219,6 +2223,7 @@
                         "emailSenderPassword",
                         "emailSenderUsername",
                         "enableRemoteBackedStorage",
+                        "enableSearchableSnapshots",
                         "enableSecurityAudit",
                         "httpMaxContentLength",
                         "httpMaxHeaderSize",
@@ -10642,6 +10647,10 @@
                     "type": "string",
                     "description": "The hostname of the server.\n"
                 },
+                "hotResize": {
+                    "type": "boolean",
+                    "description": "If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If\nhot resizing fails, the apply operation will fail.\n"
+                },
                 "labels": {
                     "type": "object",
                     "additionalProperties": {
@@ -10728,6 +10737,7 @@
                 "firewall",
                 "host",
                 "hostname",
+                "hotResize",
                 "labels",
                 "mem",
                 "nicModel",
@@ -10758,6 +10768,10 @@
                 "hostname": {
                     "type": "string",
                     "description": "The hostname of the server.\n"
+                },
+                "hotResize": {
+                    "type": "boolean",
+                    "description": "If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If\nhot resizing fails, the apply operation will fail.\n"
                 },
                 "labels": {
                     "type": "object",
@@ -10865,6 +10879,10 @@
                     "hostname": {
                         "type": "string",
                         "description": "The hostname of the server.\n"
+                    },
+                    "hotResize": {
+                        "type": "boolean",
+                        "description": "If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If\nhot resizing fails, the apply operation will fail.\n"
                     },
                     "labels": {
                         "type": "object",
