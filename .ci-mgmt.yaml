@@ -5,7 +5,7 @@ major-version: 0
 organization: UpCloudLtd
 provider: upcloud
 providerDefaultBranch: main
-publishRegistry: false # TODO: update after the first release to Pulumi registry
+publishRegistry: false # This would require bot access to pulumi/registry
 publish:
   sdk: all,!java
   cdn: false
