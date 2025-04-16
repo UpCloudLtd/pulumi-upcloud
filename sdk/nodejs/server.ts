@@ -65,6 +65,11 @@ export class Server extends pulumi.CustomResource {
      */
     public readonly hostname!: pulumi.Output<string>;
     /**
+     * If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+     * hot resizing fails, the apply operation will fail.
+     */
+    public readonly hotResize!: pulumi.Output<boolean>;
+    /**
      * User defined key-value pairs to classify the server.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
@@ -155,6 +160,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["firewall"] = state ? state.firewall : undefined;
             resourceInputs["host"] = state ? state.host : undefined;
             resourceInputs["hostname"] = state ? state.hostname : undefined;
+            resourceInputs["hotResize"] = state ? state.hotResize : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["login"] = state ? state.login : undefined;
             resourceInputs["mem"] = state ? state.mem : undefined;
@@ -185,6 +191,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["firewall"] = args ? args.firewall : undefined;
             resourceInputs["host"] = args ? args.host : undefined;
             resourceInputs["hostname"] = args ? args.hostname : undefined;
+            resourceInputs["hotResize"] = args ? args.hotResize : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["login"] = args ? args.login : undefined;
             resourceInputs["mem"] = args ? args.mem : undefined;
@@ -233,6 +240,11 @@ export interface ServerState {
      * The hostname of the server.
      */
     hostname?: pulumi.Input<string>;
+    /**
+     * If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+     * hot resizing fails, the apply operation will fail.
+     */
+    hotResize?: pulumi.Input<boolean>;
     /**
      * User defined key-value pairs to classify the server.
      */
@@ -332,6 +344,11 @@ export interface ServerArgs {
      * The hostname of the server.
      */
     hostname: pulumi.Input<string>;
+    /**
+     * If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+     * hot resizing fails, the apply operation will fail.
+     */
+    hotResize?: pulumi.Input<boolean>;
     /**
      * User defined key-value pairs to classify the server.
      */

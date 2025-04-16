@@ -8237,6 +8237,8 @@ type ManagedDatabaseOpensearchProperties struct {
 	EmailSenderUsername *string `pulumi:"emailSenderUsername"`
 	// Enable remote-backed storage.
 	EnableRemoteBackedStorage *bool `pulumi:"enableRemoteBackedStorage"`
+	// Enable searchable snapshots.
+	EnableSearchableSnapshots *bool `pulumi:"enableSearchableSnapshots"`
 	// Enable/Disable security audit.
 	EnableSecurityAudit *bool `pulumi:"enableSecurityAudit"`
 	// Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
@@ -8381,6 +8383,8 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	EmailSenderUsername pulumi.StringPtrInput `pulumi:"emailSenderUsername"`
 	// Enable remote-backed storage.
 	EnableRemoteBackedStorage pulumi.BoolPtrInput `pulumi:"enableRemoteBackedStorage"`
+	// Enable searchable snapshots.
+	EnableSearchableSnapshots pulumi.BoolPtrInput `pulumi:"enableSearchableSnapshots"`
 	// Enable/Disable security audit.
 	EnableSecurityAudit pulumi.BoolPtrInput `pulumi:"enableSecurityAudit"`
 	// Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
@@ -8643,6 +8647,11 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) EmailSenderUsername() pulumi.
 // Enable remote-backed storage.
 func (o ManagedDatabaseOpensearchPropertiesOutput) EnableRemoteBackedStorage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.EnableRemoteBackedStorage }).(pulumi.BoolPtrOutput)
+}
+
+// Enable searchable snapshots.
+func (o ManagedDatabaseOpensearchPropertiesOutput) EnableSearchableSnapshots() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.EnableSearchableSnapshots }).(pulumi.BoolPtrOutput)
 }
 
 // Enable/Disable security audit.
@@ -9085,6 +9094,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) EnableRemoteBackedStorage(
 			return nil
 		}
 		return v.EnableRemoteBackedStorage
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Enable searchable snapshots.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) EnableSearchableSnapshots() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.EnableSearchableSnapshots
 	}).(pulumi.BoolPtrOutput)
 }
 

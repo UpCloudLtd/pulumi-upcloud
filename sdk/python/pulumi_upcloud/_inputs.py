@@ -5677,6 +5677,10 @@ if not MYPY:
         """
         Enable remote-backed storage.
         """
+        enable_searchable_snapshots: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Enable searchable snapshots.
+        """
         enable_security_audit: NotRequired[pulumi.Input[builtins.bool]]
         """
         Enable/Disable security audit.
@@ -5899,6 +5903,7 @@ class ManagedDatabaseOpensearchPropertiesArgs:
                  email_sender_password: Optional[pulumi.Input[builtins.str]] = None,
                  email_sender_username: Optional[pulumi.Input[builtins.str]] = None,
                  enable_remote_backed_storage: Optional[pulumi.Input[builtins.bool]] = None,
+                 enable_searchable_snapshots: Optional[pulumi.Input[builtins.bool]] = None,
                  enable_security_audit: Optional[pulumi.Input[builtins.bool]] = None,
                  http_max_content_length: Optional[pulumi.Input[builtins.int]] = None,
                  http_max_header_size: Optional[pulumi.Input[builtins.int]] = None,
@@ -5965,6 +5970,7 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         :param pulumi.Input[builtins.str] email_sender_password: Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
         :param pulumi.Input[builtins.str] email_sender_username: Sender username for Opensearch alerts.
         :param pulumi.Input[builtins.bool] enable_remote_backed_storage: Enable remote-backed storage.
+        :param pulumi.Input[builtins.bool] enable_searchable_snapshots: Enable searchable snapshots.
         :param pulumi.Input[builtins.bool] enable_security_audit: Enable/Disable security audit.
         :param pulumi.Input[builtins.int] http_max_content_length: Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
         :param pulumi.Input[builtins.int] http_max_header_size: The max size of allowed headers, in bytes.
@@ -6046,6 +6052,8 @@ class ManagedDatabaseOpensearchPropertiesArgs:
             pulumi.set(__self__, "email_sender_username", email_sender_username)
         if enable_remote_backed_storage is not None:
             pulumi.set(__self__, "enable_remote_backed_storage", enable_remote_backed_storage)
+        if enable_searchable_snapshots is not None:
+            pulumi.set(__self__, "enable_searchable_snapshots", enable_searchable_snapshots)
         if enable_security_audit is not None:
             pulumi.set(__self__, "enable_security_audit", enable_security_audit)
         if http_max_content_length is not None:
@@ -6325,6 +6333,18 @@ class ManagedDatabaseOpensearchPropertiesArgs:
     @enable_remote_backed_storage.setter
     def enable_remote_backed_storage(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "enable_remote_backed_storage", value)
+
+    @property
+    @pulumi.getter(name="enableSearchableSnapshots")
+    def enable_searchable_snapshots(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Enable searchable snapshots.
+        """
+        return pulumi.get(self, "enable_searchable_snapshots")
+
+    @enable_searchable_snapshots.setter
+    def enable_searchable_snapshots(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "enable_searchable_snapshots", value)
 
     @property
     @pulumi.getter(name="enableSecurityAudit")

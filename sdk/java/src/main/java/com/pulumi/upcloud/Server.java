@@ -113,6 +113,22 @@ public class Server extends com.pulumi.resources.CustomResource {
         return this.hostname;
     }
     /**
+     * If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+     * hot resizing fails, the apply operation will fail.
+     * 
+     */
+    @Export(name="hotResize", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> hotResize;
+
+    /**
+     * @return If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
+     * hot resizing fails, the apply operation will fail.
+     * 
+     */
+    public Output<Boolean> hotResize() {
+        return this.hotResize;
+    }
+    /**
      * User defined key-value pairs to classify the server.
      * 
      */

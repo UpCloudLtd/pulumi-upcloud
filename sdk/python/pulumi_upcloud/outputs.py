@@ -3990,6 +3990,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "email_sender_username"
         elif key == "enableRemoteBackedStorage":
             suggest = "enable_remote_backed_storage"
+        elif key == "enableSearchableSnapshots":
+            suggest = "enable_searchable_snapshots"
         elif key == "enableSecurityAudit":
             suggest = "enable_security_audit"
         elif key == "httpMaxContentLength":
@@ -4112,6 +4114,7 @@ class ManagedDatabaseOpensearchProperties(dict):
                  email_sender_password: Optional[builtins.str] = None,
                  email_sender_username: Optional[builtins.str] = None,
                  enable_remote_backed_storage: Optional[builtins.bool] = None,
+                 enable_searchable_snapshots: Optional[builtins.bool] = None,
                  enable_security_audit: Optional[builtins.bool] = None,
                  http_max_content_length: Optional[builtins.int] = None,
                  http_max_header_size: Optional[builtins.int] = None,
@@ -4178,6 +4181,7 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param builtins.str email_sender_password: Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
         :param builtins.str email_sender_username: Sender username for Opensearch alerts.
         :param builtins.bool enable_remote_backed_storage: Enable remote-backed storage.
+        :param builtins.bool enable_searchable_snapshots: Enable searchable snapshots.
         :param builtins.bool enable_security_audit: Enable/Disable security audit.
         :param builtins.int http_max_content_length: Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
         :param builtins.int http_max_header_size: The max size of allowed headers, in bytes.
@@ -4259,6 +4263,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "email_sender_username", email_sender_username)
         if enable_remote_backed_storage is not None:
             pulumi.set(__self__, "enable_remote_backed_storage", enable_remote_backed_storage)
+        if enable_searchable_snapshots is not None:
+            pulumi.set(__self__, "enable_searchable_snapshots", enable_searchable_snapshots)
         if enable_security_audit is not None:
             pulumi.set(__self__, "enable_security_audit", enable_security_audit)
         if http_max_content_length is not None:
@@ -4478,6 +4484,14 @@ class ManagedDatabaseOpensearchProperties(dict):
         Enable remote-backed storage.
         """
         return pulumi.get(self, "enable_remote_backed_storage")
+
+    @property
+    @pulumi.getter(name="enableSearchableSnapshots")
+    def enable_searchable_snapshots(self) -> Optional[builtins.bool]:
+        """
+        Enable searchable snapshots.
+        """
+        return pulumi.get(self, "enable_searchable_snapshots")
 
     @property
     @pulumi.getter(name="enableSecurityAudit")

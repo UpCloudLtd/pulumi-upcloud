@@ -72,6 +72,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? EnableRemoteBackedStorage;
         /// <summary>
+        /// Enable searchable snapshots.
+        /// </summary>
+        public readonly bool? EnableSearchableSnapshots;
+        /// <summary>
         /// Enable/Disable security audit.
         /// </summary>
         public readonly bool? EnableSecurityAudit;
@@ -305,6 +309,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             bool? enableRemoteBackedStorage,
 
+            bool? enableSearchableSnapshots,
+
             bool? enableSecurityAudit,
 
             int? httpMaxContentLength,
@@ -422,6 +428,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             EmailSenderPassword = emailSenderPassword;
             EmailSenderUsername = emailSenderUsername;
             EnableRemoteBackedStorage = enableRemoteBackedStorage;
+            EnableSearchableSnapshots = enableSearchableSnapshots;
             EnableSecurityAudit = enableSecurityAudit;
             HttpMaxContentLength = httpMaxContentLength;
             HttpMaxHeaderSize = httpMaxHeaderSize;
