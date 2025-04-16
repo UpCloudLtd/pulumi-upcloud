@@ -25,4 +25,4 @@ Add version after upcloud if you need to install specific version, e.g., `pulumi
 
 ## Configuration
 
-Configure your UpCloud credentials to `UPCLOUD_USERNAME` and `UPCLOUD_PASSWORD` environment variables.
+Configure your UpCloud credentials to `UPCLOUD_USERNAME` and `UPCLOUD_PASSWORD` environment variables or your API token to `UPCLOUD_TOKEN` environment variable.

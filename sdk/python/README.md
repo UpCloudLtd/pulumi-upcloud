@@ -50,6 +50,7 @@ The following configuration points are available for the `upcloud` provider:
 
 - `UPCLOUD_USERNAME` (environment variable) - the username of the account to use
 - `UPCLOUD_PASSWORD` (environment variable) - the password of the account to use
+- `UPCLOUD_TOKEN` (environment variable) - an API token to use for authentication (instead of username and password)
 
 ## Reference
 
