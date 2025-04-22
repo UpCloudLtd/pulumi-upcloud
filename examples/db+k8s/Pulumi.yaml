@@ -1,0 +1,10 @@
+name: feedback
+runtime:
+  name: nodejs
+  options:
+    packagemanager: npm
+description: Example project that deploys a feedback application with a Kuberneter cluster and a Postgres database.
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://github.com/UpCloudLtd/pulumi-upcloud/tree/main/examples/templates/upcloud-typescript
