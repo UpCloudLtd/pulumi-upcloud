@@ -6,7 +6,9 @@
         "typescript": "^5.0.0"
     },
     "dependencies": {
-        "@upcloud/pulumi-upcloud": "^0.2.0",
-        "@pulumi/pulumi": "^3.0.0"
+        "@kubernetes/client-node": "^1.1.2",
+        "@pulumi/kubernetes": "^4.22.2",
+        "@pulumi/pulumi": "^3.0.0",
+        "@upcloud/pulumi-upcloud": "^0.2.0"
     }
 }
