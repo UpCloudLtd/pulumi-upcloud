@@ -1,11 +1,8 @@
+import { PassThrough } from "node:stream";
+
 import * as pulumi from "@pulumi/pulumi";
 import * as k8s from "@pulumi/kubernetes";
 import * as k8sClient from "@kubernetes/client-node";
-
-const kc = new k8sClient.KubeConfig();
-kc.loadFromDefault();
-
-const k8sApi = kc.makeApiClient(k8sClient.CoreV1Api);
 
 interface FeedbackAppArgs {
   /** Kubeconfig must be passed in as a string (instead of defining `opts.providers.kubernetes`) because it is also needed for initializing k8s node client library. */
@@ -28,6 +25,7 @@ export class FeedbackApp extends pulumi.ComponentResource {
   readonly uiService: k8s.core.v1.Service;
 
   private k8sApi: k8sClient.CoreV1Api;
+  private k8sExec: k8sClient.Exec;
 
   constructor(
     name: string,
@@ -43,6 +41,7 @@ export class FeedbackApp extends pulumi.ComponentResource {
     const kc = new k8sClient.KubeConfig();
     kc.loadFromString(kubeconfig);
     this.k8sApi = kc.makeApiClient(k8sClient.CoreV1Api);
+    this.k8sExec = new k8sClient.Exec(kc);
 
     const defaultDbConnectUrl = "postgresql://user:pass@db:5432/feedback";
 
@@ -234,18 +233,60 @@ export class FeedbackApp extends pulumi.ComponentResource {
     this.registerOutputs({});
   }
 
+  private async readInitialAdminPassword(namespace: string): Promise<string> {
+    const pods = await this.k8sApi.listNamespacedPod({
+      namespace,
+    });
+    const pod = pods.items
+      .map((i) => i.metadata?.name)
+      .find((i) => i?.startsWith("api-"));
+
+    if (!pod) {
+      return "";
+    }
+
+    const output = new PassThrough();
+    const done = new Promise<void>(async (resolve) => {
+      await this.k8sExec.exec(
+        namespace,
+        pod,
+        "api",
+        ["cat", "/var/feedback/initial_admin_password"],
+        output,
+        null,
+        null,
+        false,
+        () => {
+          void resolve();
+        }
+      );
+    });
+    await done;
+    return output.read().toString("utf8").trim();
+  }
+
+  public initialAdminPassword(): pulumi.Output<string> {
+    return pulumi.output(
+      this.namespace.metadata.apply((metadata) =>
+        this.readInitialAdminPassword(metadata.name)
+      )
+    );
+  }
+
   private async getNodePortUrl(port: number) {
-    const nodes = await k8sApi.listNode();
+    const nodes = await this.k8sApi.listNode();
     const addresses = nodes.items
       .map((i) => {
-        const address = i.status?.addresses?.find((j) => j.type === "ExternalIP");
+        const address = i.status?.addresses?.find(
+          (j) => j.type === "ExternalIP"
+        );
         return address?.address;
       })
       .filter((i) => i !== undefined);
-  
+
     const hostname = addresses?.[0] ?? "localhost";
     return `http://${hostname}:${port}`;
-  };
+  }
 
   public url(): pulumi.Output<string> {
     return pulumi.output(

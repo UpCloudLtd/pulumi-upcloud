@@ -88,19 +88,20 @@ const main = async () => {
     id: k8sCluster.id as any,
   });
 
-  const kubeconfig = k8sClusterInfo.kubeconfig
-  const app = new FeedbackApp(
-    "app",
-    {
-      kubeconfig,
-      namespace,
-      serviceType,
-      dbConnectUrl: db.serviceUri,
-    },
-  );
+  const kubeconfig = k8sClusterInfo.kubeconfig;
+  const app = new FeedbackApp("app", {
+    kubeconfig,
+    namespace,
+    serviceType,
+    dbConnectUrl: db.serviceUri,
+  });
 
+  const url = app.url();
   return {
-    url: app.url(),
+    form: url.apply((url) => `${url}?key=thumbs`),
+    admin_panel: url.apply((url) => `${url}/admin`),
+    admin_username: "admin",
+    initial_admin_password: app.initialAdminPassword(),
   };
 };
 
