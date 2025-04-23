@@ -208,17 +208,19 @@ export class FeedbackApp extends pulumi.ComponentResource {
                 {
                   name: "api",
                   image: `ghcr.io/cicd-tutorials/feedback-api:${appVersion}`,
-                  envFrom: [
-                    {
-                      secretRef: {
-                        name: this.apiSecret.metadata.name,
-                      },
-                    },
-                  ],
                   env: [
                     {
                       name: "FEEDBACK_URL",
                       value: this.url(),
+                    },
+                    {
+                      name: "FEEDBACK_DB_URL",
+                      valueFrom: {
+                        secretKeyRef: {
+                          name: this.apiSecret.metadata.name,
+                          key: "DB_CONNECT_URL",
+                        },
+                      },
                     },
                   ],
                 },
@@ -261,8 +263,14 @@ export class FeedbackApp extends pulumi.ComponentResource {
         }
       );
     });
+
     await done;
-    return output.read().toString("utf8").trim();
+
+    try {
+      return output.read().toString("utf8").trim();
+    } catch (_) {
+      return "";
+    }
   }
 
   public initialAdminPassword(): pulumi.Output<string> {
