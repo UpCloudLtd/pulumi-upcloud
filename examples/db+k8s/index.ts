@@ -20,6 +20,7 @@ const main = async () => {
   const privateNodeGroups = config.getBoolean("private-node-groups") ?? true;
 
   // Application configuration
+  const appVersion = config.get("app-version") ?? "latest";
   const namespace = config.get("namespace") ?? "feedback";
   const serviceType = config.get("service-type") ?? "LoadBalancer";
 
@@ -96,6 +97,7 @@ const main = async () => {
 
   const kubeconfig = k8sClusterInfo.kubeconfig;
   const app = new FeedbackApp("app", {
+    appVersion,
     kubeconfig,
     namespace,
     serviceType,
