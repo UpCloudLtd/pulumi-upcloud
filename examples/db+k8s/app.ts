@@ -24,8 +24,8 @@ export class FeedbackApp extends pulumi.ComponentResource {
   readonly uiDeployment: k8s.apps.v1.Deployment;
   readonly uiService: k8s.core.v1.Service;
 
-  private k8sApi: k8sClient.CoreV1Api;
-  private k8sExec: k8sClient.Exec;
+  private k8sApi: k8sClient.CoreV1Api | undefined;
+  private k8sExec: k8sClient.Exec | undefined;
 
   constructor(
     name: string,
@@ -38,11 +38,13 @@ export class FeedbackApp extends pulumi.ComponentResource {
       providers: { kubernetes: new k8s.Provider("k8s", { kubeconfig }) },
     });
 
-    const kc = new k8sClient.KubeConfig();
-    kc.loadFromString(kubeconfig);
-    this.k8sApi = kc.makeApiClient(k8sClient.CoreV1Api);
-    this.k8sExec = new k8sClient.Exec(kc);
-
+    // `kubeconfig` is empty when previewing the stack before the cluster has been created.
+    if (kubeconfig) {
+      const kc = new k8sClient.KubeConfig();
+      kc.loadFromString(kubeconfig);
+      this.k8sApi = kc.makeApiClient(k8sClient.CoreV1Api);
+      this.k8sExec = new k8sClient.Exec(kc);
+    }
     const defaultDbConnectUrl = "postgresql://user:pass@db:5432/feedback";
 
     const {
@@ -236,6 +238,10 @@ export class FeedbackApp extends pulumi.ComponentResource {
   }
 
   private async readInitialAdminPassword(namespace: string): Promise<string> {
+    if (this.k8sApi === undefined || this.k8sExec === undefined) {
+      return "";
+    }
+
     const pods = await this.k8sApi.listNamespacedPod({
       namespace,
     });
@@ -248,7 +254,12 @@ export class FeedbackApp extends pulumi.ComponentResource {
     }
 
     const output = new PassThrough();
-    const done = new Promise<void>(async (resolve) => {
+    const done = new Promise<void>(async (resolve, reject) => {
+      if (this.k8sExec === undefined) {
+        reject();
+        return;
+      }
+
       await this.k8sExec.exec(
         namespace,
         pod,
@@ -264,9 +275,8 @@ export class FeedbackApp extends pulumi.ComponentResource {
       );
     });
 
-    await done;
-
     try {
+      await done;
       return output.read().toString("utf8").trim();
     } catch (_) {
       return "";
@@ -282,8 +292,8 @@ export class FeedbackApp extends pulumi.ComponentResource {
   }
 
   private async getNodePortUrl(port: number) {
-    const nodes = await this.k8sApi.listNode();
-    const addresses = nodes.items
+    const nodes = await this.k8sApi?.listNode();
+    const addresses = nodes?.items
       .map((i) => {
         const address = i.status?.addresses?.find(
           (j) => j.type === "ExternalIP"

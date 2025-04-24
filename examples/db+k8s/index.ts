@@ -73,7 +73,7 @@ const main = async () => {
     plan: "dev-md",
     zone: zone,
     network: net.id,
-    privateNodeGroups: true,
+    privateNodeGroups,
     storageEncryption: "data-at-rest",
   });
 
@@ -85,6 +85,7 @@ const main = async () => {
   });
 
   const k8sClusterInfo = await upcloud.getKubernetesCluster({
+    // The `id` field accepts `pulumi.Input<string>` type even though the interface defines it as `string`. Cast `k8sCluster.id` to `any` to avoid type error.
     id: k8sCluster.id as any,
   });
 
@@ -94,6 +95,9 @@ const main = async () => {
     namespace,
     serviceType,
     dbConnectUrl: db.serviceUri,
+  }, {
+    // Delete the app before deleting the cluster and the node group. While the app also depends on the database, that dependency does not prevent creating or deleting the kubernetes resources.
+    dependsOn: [k8sCluster, k8sNodeGroup],
   });
 
   const url = app.url();
