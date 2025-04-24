@@ -6,15 +6,20 @@ import { FeedbackApp } from "./app";
 const main = async () => {
   const config = new pulumi.Config();
 
+  // Common configuration
   const prefix = config.get("prefix") ?? "pulumi-example-feedback";
   const zone = config.get("zone") ?? "se-sto1";
 
+  // Database configuration
   const dbPlan = config.get("database-plan") ?? "1x2xCPU-4GB-50GB";
 
+  // Network configuration
   const netCidr = config.get("network-cidr") ?? "172.24.0.0/24";
 
+  // Kubernetes configuration
   const privateNodeGroups = config.getBoolean("private-node-groups") ?? true;
 
+  // Application configuration
   const namespace = config.get("namespace") ?? "feedback";
   const serviceType = config.get("service-type") ?? "LoadBalancer";
 

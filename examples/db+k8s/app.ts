@@ -312,9 +312,8 @@ export class FeedbackApp extends pulumi.ComponentResource {
         .all([this.uiService.spec, this.uiService.status])
         .apply(([spec, status]) => {
           const port = spec.ports[0].nodePort;
-          const serviceType = spec.type;
-          return serviceType === "LoadBalancer"
-            ? `https://${status.loadBalancer.ingress[0].hostname}`
+          return spec.type === "LoadBalancer"
+            ? `https://${status.loadBalancer?.ingress?.[0].hostname}`
             : this.getNodePortUrl(port);
         })
     );
