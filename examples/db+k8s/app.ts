@@ -284,7 +284,7 @@ export class FeedbackApp extends pulumi.ComponentResource {
   }
 
   public initialAdminPassword(): pulumi.Output<string> {
-    return pulumi.output(
+    return pulumi.secret(
       this.namespace.metadata.apply((metadata) =>
         this.readInitialAdminPassword(metadata.name)
       )
