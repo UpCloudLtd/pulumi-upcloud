@@ -109,7 +109,7 @@ const main = async () => {
 
   const url = app.url();
   return {
-    form: url.apply((url) => `${url}?key=thumbs`),
+    form: url.apply((url) => `${url}/thumbs`),
     admin_panel: url.apply((url) => `${url}/admin`),
     admin_username: "admin",
     initial_admin_password: app.initialAdminPassword(),
