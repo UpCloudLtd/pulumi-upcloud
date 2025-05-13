@@ -132,7 +132,13 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly storageEncryption!: pulumi.Output<string | undefined>;
     /**
-     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+     * The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+     * When using `manual` strategy, you must replace the existing node-groups to update them.
+     */
+    public readonly upgradeStrategyType!: pulumi.Output<string | undefined>;
+    /**
+     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+     * changing the cluster version, `upgradeStrategy` will be taken into account.
      */
     public readonly version!: pulumi.Output<string>;
     /**
@@ -164,6 +170,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
             resourceInputs["privateNodeGroups"] = state ? state.privateNodeGroups : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
             resourceInputs["storageEncryption"] = state ? state.storageEncryption : undefined;
+            resourceInputs["upgradeStrategyType"] = state ? state.upgradeStrategyType : undefined;
             resourceInputs["version"] = state ? state.version : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
@@ -184,6 +191,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
             resourceInputs["plan"] = args ? args.plan : undefined;
             resourceInputs["privateNodeGroups"] = args ? args.privateNodeGroups : undefined;
             resourceInputs["storageEncryption"] = args ? args.storageEncryption : undefined;
+            resourceInputs["upgradeStrategyType"] = args ? args.upgradeStrategyType : undefined;
             resourceInputs["version"] = args ? args.version : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["networkCidr"] = undefined /*out*/;
@@ -242,7 +250,13 @@ export interface KubernetesClusterState {
      */
     storageEncryption?: pulumi.Input<string>;
     /**
-     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+     * The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+     * When using `manual` strategy, you must replace the existing node-groups to update them.
+     */
+    upgradeStrategyType?: pulumi.Input<string>;
+    /**
+     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+     * changing the cluster version, `upgradeStrategy` will be taken into account.
      */
     version?: pulumi.Input<string>;
     /**
@@ -287,7 +301,13 @@ export interface KubernetesClusterArgs {
      */
     storageEncryption?: pulumi.Input<string>;
     /**
-     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+     * The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+     * When using `manual` strategy, you must replace the existing node-groups to update them.
+     */
+    upgradeStrategyType?: pulumi.Input<string>;
+    /**
+     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+     * changing the cluster version, `upgradeStrategy` will be taken into account.
      */
     version?: pulumi.Input<string>;
     /**

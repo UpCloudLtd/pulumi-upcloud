@@ -62,6 +62,7 @@ from .server import *
 from .server_firewall_rules import *
 from .server_group import *
 from .storage import *
+from .storage_backup import *
 from .storage_template import *
 from .tag import *
 from ._inputs import *
@@ -387,6 +388,14 @@ _utilities.register(
   "fqn": "pulumi_upcloud",
   "classes": {
    "upcloud:index/storage:Storage": "Storage"
+  }
+ },
+ {
+  "pkg": "upcloud",
+  "mod": "index/storageBackup",
+  "fqn": "pulumi_upcloud",
+  "classes": {
+   "upcloud:index/storageBackup:StorageBackup": "StorageBackup"
   }
  },
  {

@@ -164,7 +164,15 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string?> StorageEncryption { get; private set; } = null!;
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+        /// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+        /// When using `manual` strategy, you must replace the existing node-groups to update them.
+        /// </summary>
+        [Output("upgradeStrategyType")]
+        public Output<string?> UpgradeStrategyType { get; private set; } = null!;
+
+        /// <summary>
+        /// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+        /// changing the cluster version, `upgrade_strategy` will be taken into account.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -280,7 +288,15 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? StorageEncryption { get; set; }
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+        /// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+        /// When using `manual` strategy, you must replace the existing node-groups to update them.
+        /// </summary>
+        [Input("upgradeStrategyType")]
+        public Input<string>? UpgradeStrategyType { get; set; }
+
+        /// <summary>
+        /// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+        /// changing the cluster version, `upgrade_strategy` will be taken into account.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
@@ -381,7 +397,15 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? StorageEncryption { get; set; }
 
         /// <summary>
-        /// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+        /// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+        /// When using `manual` strategy, you must replace the existing node-groups to update them.
+        /// </summary>
+        [Input("upgradeStrategyType")]
+        public Input<string>? UpgradeStrategyType { get; set; }
+
+        /// <summary>
+        /// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+        /// changing the cluster version, `upgrade_strategy` will be taken into account.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

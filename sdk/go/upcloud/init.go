@@ -99,6 +99,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ServerGroup{}
 	case "upcloud:index/storage:Storage":
 		r = &Storage{}
+	case "upcloud:index/storageBackup:StorageBackup":
+		r = &StorageBackup{}
 	case "upcloud:index/storageTemplate:StorageTemplate":
 		r = &StorageTemplate{}
 	case "upcloud:index/tag:Tag":
@@ -327,6 +329,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"upcloud",
 		"index/storage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upcloud",
+		"index/storageBackup",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

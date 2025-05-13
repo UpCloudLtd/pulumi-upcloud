@@ -285,6 +285,11 @@ export type Storage = import("./storage").Storage;
 export const Storage: typeof import("./storage").Storage = null as any;
 utilities.lazyLoad(exports, ["Storage"], () => require("./storage"));
 
+export { StorageBackupArgs, StorageBackupState } from "./storageBackup";
+export type StorageBackup = import("./storageBackup").StorageBackup;
+export const StorageBackup: typeof import("./storageBackup").StorageBackup = null as any;
+utilities.lazyLoad(exports, ["StorageBackup"], () => require("./storageBackup"));
+
 export { StorageTemplateArgs, StorageTemplateState } from "./storageTemplate";
 export type StorageTemplate = import("./storageTemplate").StorageTemplate;
 export const StorageTemplate: typeof import("./storageTemplate").StorageTemplate = null as any;
@@ -387,6 +392,8 @@ const _module = {
                 return new ServerGroup(name, <any>undefined, { urn })
             case "upcloud:index/storage:Storage":
                 return new Storage(name, <any>undefined, { urn })
+            case "upcloud:index/storageBackup:StorageBackup":
+                return new StorageBackup(name, <any>undefined, { urn })
             case "upcloud:index/storageTemplate:StorageTemplate":
                 return new StorageTemplate(name, <any>undefined, { urn })
             case "upcloud:index/tag:Tag":
@@ -435,6 +442,7 @@ pulumi.runtime.registerResourceModule("upcloud", "index/server", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/serverFirewallRules", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/serverGroup", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/storage", _module)
+pulumi.runtime.registerResourceModule("upcloud", "index/storageBackup", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/storageTemplate", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/tag", _module)
 pulumi.runtime.registerResourcePackage("upcloud", {

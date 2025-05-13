@@ -28,6 +28,7 @@ class KubernetesClusterArgs:
                  plan: Optional[pulumi.Input[builtins.str]] = None,
                  private_node_groups: Optional[pulumi.Input[builtins.bool]] = None,
                  storage_encryption: Optional[pulumi.Input[builtins.str]] = None,
+                 upgrade_strategy_type: Optional[pulumi.Input[builtins.str]] = None,
                  version: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a KubernetesCluster resource.
@@ -42,7 +43,10 @@ class KubernetesClusterArgs:
         :param pulumi.Input[builtins.str] plan: The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         :param pulumi.Input[builtins.bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         :param pulumi.Input[builtins.str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
-        :param pulumi.Input[builtins.str] version: Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+        :param pulumi.Input[builtins.str] upgrade_strategy_type: The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+               When using `manual` strategy, you must replace the existing node-groups to update them.
+        :param pulumi.Input[builtins.str] version: Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+               changing the cluster version, `upgrade_strategy` will be taken into account.
         """
         pulumi.set(__self__, "control_plane_ip_filters", control_plane_ip_filters)
         pulumi.set(__self__, "network", network)
@@ -57,6 +61,8 @@ class KubernetesClusterArgs:
             pulumi.set(__self__, "private_node_groups", private_node_groups)
         if storage_encryption is not None:
             pulumi.set(__self__, "storage_encryption", storage_encryption)
+        if upgrade_strategy_type is not None:
+            pulumi.set(__self__, "upgrade_strategy_type", upgrade_strategy_type)
         if version is not None:
             pulumi.set(__self__, "version", version)
 
@@ -160,10 +166,24 @@ class KubernetesClusterArgs:
         pulumi.set(self, "storage_encryption", value)
 
     @property
+    @pulumi.getter(name="upgradeStrategyType")
+    def upgrade_strategy_type(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+        When using `manual` strategy, you must replace the existing node-groups to update them.
+        """
+        return pulumi.get(self, "upgrade_strategy_type")
+
+    @upgrade_strategy_type.setter
+    def upgrade_strategy_type(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "upgrade_strategy_type", value)
+
+    @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+        Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+        changing the cluster version, `upgrade_strategy` will be taken into account.
         """
         return pulumi.get(self, "version")
 
@@ -185,6 +205,7 @@ class _KubernetesClusterState:
                  private_node_groups: Optional[pulumi.Input[builtins.bool]] = None,
                  state: Optional[pulumi.Input[builtins.str]] = None,
                  storage_encryption: Optional[pulumi.Input[builtins.str]] = None,
+                 upgrade_strategy_type: Optional[pulumi.Input[builtins.str]] = None,
                  version: Optional[pulumi.Input[builtins.str]] = None,
                  zone: Optional[pulumi.Input[builtins.str]] = None):
         """
@@ -201,7 +222,10 @@ class _KubernetesClusterState:
         :param pulumi.Input[builtins.bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         :param pulumi.Input[builtins.str] state: Operational state of the cluster.
         :param pulumi.Input[builtins.str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
-        :param pulumi.Input[builtins.str] version: Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+        :param pulumi.Input[builtins.str] upgrade_strategy_type: The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+               When using `manual` strategy, you must replace the existing node-groups to update them.
+        :param pulumi.Input[builtins.str] version: Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+               changing the cluster version, `upgrade_strategy` will be taken into account.
         :param pulumi.Input[builtins.str] zone: Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
                list`.
         """
@@ -225,6 +249,8 @@ class _KubernetesClusterState:
             pulumi.set(__self__, "state", state)
         if storage_encryption is not None:
             pulumi.set(__self__, "storage_encryption", storage_encryption)
+        if upgrade_strategy_type is not None:
+            pulumi.set(__self__, "upgrade_strategy_type", upgrade_strategy_type)
         if version is not None:
             pulumi.set(__self__, "version", version)
         if zone is not None:
@@ -353,10 +379,24 @@ class _KubernetesClusterState:
         pulumi.set(self, "storage_encryption", value)
 
     @property
+    @pulumi.getter(name="upgradeStrategyType")
+    def upgrade_strategy_type(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+        When using `manual` strategy, you must replace the existing node-groups to update them.
+        """
+        return pulumi.get(self, "upgrade_strategy_type")
+
+    @upgrade_strategy_type.setter
+    def upgrade_strategy_type(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "upgrade_strategy_type", value)
+
+    @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+        Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+        changing the cluster version, `upgrade_strategy` will be taken into account.
         """
         return pulumi.get(self, "version")
 
@@ -390,6 +430,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  plan: Optional[pulumi.Input[builtins.str]] = None,
                  private_node_groups: Optional[pulumi.Input[builtins.bool]] = None,
                  storage_encryption: Optional[pulumi.Input[builtins.str]] = None,
+                 upgrade_strategy_type: Optional[pulumi.Input[builtins.str]] = None,
                  version: Optional[pulumi.Input[builtins.str]] = None,
                  zone: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -456,7 +497,10 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] plan: The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         :param pulumi.Input[builtins.bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         :param pulumi.Input[builtins.str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
-        :param pulumi.Input[builtins.str] version: Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+        :param pulumi.Input[builtins.str] upgrade_strategy_type: The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+               When using `manual` strategy, you must replace the existing node-groups to update them.
+        :param pulumi.Input[builtins.str] version: Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+               changing the cluster version, `upgrade_strategy` will be taken into account.
         :param pulumi.Input[builtins.str] zone: Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
                list`.
         """
@@ -540,6 +584,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  plan: Optional[pulumi.Input[builtins.str]] = None,
                  private_node_groups: Optional[pulumi.Input[builtins.bool]] = None,
                  storage_encryption: Optional[pulumi.Input[builtins.str]] = None,
+                 upgrade_strategy_type: Optional[pulumi.Input[builtins.str]] = None,
                  version: Optional[pulumi.Input[builtins.str]] = None,
                  zone: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -562,6 +607,7 @@ class KubernetesCluster(pulumi.CustomResource):
             __props__.__dict__["plan"] = plan
             __props__.__dict__["private_node_groups"] = private_node_groups
             __props__.__dict__["storage_encryption"] = storage_encryption
+            __props__.__dict__["upgrade_strategy_type"] = upgrade_strategy_type
             __props__.__dict__["version"] = version
             if zone is None and not opts.urn:
                 raise TypeError("Missing required property 'zone'")
@@ -589,6 +635,7 @@ class KubernetesCluster(pulumi.CustomResource):
             private_node_groups: Optional[pulumi.Input[builtins.bool]] = None,
             state: Optional[pulumi.Input[builtins.str]] = None,
             storage_encryption: Optional[pulumi.Input[builtins.str]] = None,
+            upgrade_strategy_type: Optional[pulumi.Input[builtins.str]] = None,
             version: Optional[pulumi.Input[builtins.str]] = None,
             zone: Optional[pulumi.Input[builtins.str]] = None) -> 'KubernetesCluster':
         """
@@ -610,7 +657,10 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[builtins.bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         :param pulumi.Input[builtins.str] state: Operational state of the cluster.
         :param pulumi.Input[builtins.str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
-        :param pulumi.Input[builtins.str] version: Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+        :param pulumi.Input[builtins.str] upgrade_strategy_type: The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+               When using `manual` strategy, you must replace the existing node-groups to update them.
+        :param pulumi.Input[builtins.str] version: Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+               changing the cluster version, `upgrade_strategy` will be taken into account.
         :param pulumi.Input[builtins.str] zone: Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
                list`.
         """
@@ -628,6 +678,7 @@ class KubernetesCluster(pulumi.CustomResource):
         __props__.__dict__["private_node_groups"] = private_node_groups
         __props__.__dict__["state"] = state
         __props__.__dict__["storage_encryption"] = storage_encryption
+        __props__.__dict__["upgrade_strategy_type"] = upgrade_strategy_type
         __props__.__dict__["version"] = version
         __props__.__dict__["zone"] = zone
         return KubernetesCluster(resource_name, opts=opts, __props__=__props__)
@@ -715,10 +766,20 @@ class KubernetesCluster(pulumi.CustomResource):
         return pulumi.get(self, "storage_encryption")
 
     @property
+    @pulumi.getter(name="upgradeStrategyType")
+    def upgrade_strategy_type(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+        When using `manual` strategy, you must replace the existing node-groups to update them.
+        """
+        return pulumi.get(self, "upgrade_strategy_type")
+
+    @property
     @pulumi.getter
     def version(self) -> pulumi.Output[builtins.str]:
         """
-        Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+        Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+        changing the cluster version, `upgrade_strategy` will be taken into account.
         """
         return pulumi.get(self, "version")
 

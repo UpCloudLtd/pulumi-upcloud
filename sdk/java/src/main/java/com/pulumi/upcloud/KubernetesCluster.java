@@ -261,14 +261,32 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.storageEncryption);
     }
     /**
-     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+     * The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+     * When using `manual` strategy, you must replace the existing node-groups to update them.
+     * 
+     */
+    @Export(name="upgradeStrategyType", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> upgradeStrategyType;
+
+    /**
+     * @return The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+     * When using `manual` strategy, you must replace the existing node-groups to update them.
+     * 
+     */
+    public Output<Optional<String>> upgradeStrategyType() {
+        return Codegen.optional(this.upgradeStrategyType);
+    }
+    /**
+     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+     * changing the cluster version, `upgrade_strategy` will be taken into account.
      * 
      */
     @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**
-     * @return Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+     * @return Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+     * changing the cluster version, `upgrade_strategy` will be taken into account.
      * 
      */
     public Output<String> version() {
