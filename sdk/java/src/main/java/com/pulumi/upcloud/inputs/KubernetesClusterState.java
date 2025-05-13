@@ -173,14 +173,33 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+     * The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+     * When using `manual` strategy, you must replace the existing node-groups to update them.
+     * 
+     */
+    @Import(name="upgradeStrategyType")
+    private @Nullable Output<String> upgradeStrategyType;
+
+    /**
+     * @return The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+     * When using `manual` strategy, you must replace the existing node-groups to update them.
+     * 
+     */
+    public Optional<Output<String>> upgradeStrategyType() {
+        return Optional.ofNullable(this.upgradeStrategyType);
+    }
+
+    /**
+     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+     * changing the cluster version, `upgrade_strategy` will be taken into account.
      * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
-     * @return Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+     * @return Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+     * changing the cluster version, `upgrade_strategy` will be taken into account.
      * 
      */
     public Optional<Output<String>> version() {
@@ -217,6 +236,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         this.privateNodeGroups = $.privateNodeGroups;
         this.state = $.state;
         this.storageEncryption = $.storageEncryption;
+        this.upgradeStrategyType = $.upgradeStrategyType;
         this.version = $.version;
         this.zone = $.zone;
     }
@@ -476,7 +496,31 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param version Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+         * @param upgradeStrategyType The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+         * When using `manual` strategy, you must replace the existing node-groups to update them.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder upgradeStrategyType(@Nullable Output<String> upgradeStrategyType) {
+            $.upgradeStrategyType = upgradeStrategyType;
+            return this;
+        }
+
+        /**
+         * @param upgradeStrategyType The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+         * When using `manual` strategy, you must replace the existing node-groups to update them.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder upgradeStrategyType(String upgradeStrategyType) {
+            return upgradeStrategyType(Output.of(upgradeStrategyType));
+        }
+
+        /**
+         * @param version Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+         * changing the cluster version, `upgrade_strategy` will be taken into account.
          * 
          * @return builder
          * 
@@ -487,7 +531,8 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param version Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+         * @param version Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+         * changing the cluster version, `upgrade_strategy` will be taken into account.
          * 
          * @return builder
          * 

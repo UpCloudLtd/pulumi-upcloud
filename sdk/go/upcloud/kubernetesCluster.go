@@ -130,7 +130,11 @@ type KubernetesCluster struct {
 	State pulumi.StringOutput `pulumi:"state"`
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption pulumi.StringPtrOutput `pulumi:"storageEncryption"`
-	// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+	// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+	// When using `manual` strategy, you must replace the existing node-groups to update them.
+	UpgradeStrategyType pulumi.StringPtrOutput `pulumi:"upgradeStrategyType"`
+	// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+	// changing the cluster version, `upgradeStrategy` will be taken into account.
 	Version pulumi.StringOutput `pulumi:"version"`
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -198,7 +202,11 @@ type kubernetesClusterState struct {
 	State *string `pulumi:"state"`
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption *string `pulumi:"storageEncryption"`
-	// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+	// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+	// When using `manual` strategy, you must replace the existing node-groups to update them.
+	UpgradeStrategyType *string `pulumi:"upgradeStrategyType"`
+	// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+	// changing the cluster version, `upgradeStrategy` will be taken into account.
 	Version *string `pulumi:"version"`
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -228,7 +236,11 @@ type KubernetesClusterState struct {
 	State pulumi.StringPtrInput
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption pulumi.StringPtrInput
-	// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+	// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+	// When using `manual` strategy, you must replace the existing node-groups to update them.
+	UpgradeStrategyType pulumi.StringPtrInput
+	// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+	// changing the cluster version, `upgradeStrategy` will be taken into account.
 	Version pulumi.StringPtrInput
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -256,7 +268,11 @@ type kubernetesClusterArgs struct {
 	PrivateNodeGroups *bool `pulumi:"privateNodeGroups"`
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption *string `pulumi:"storageEncryption"`
-	// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+	// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+	// When using `manual` strategy, you must replace the existing node-groups to update them.
+	UpgradeStrategyType *string `pulumi:"upgradeStrategyType"`
+	// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+	// changing the cluster version, `upgradeStrategy` will be taken into account.
 	Version *string `pulumi:"version"`
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -281,7 +297,11 @@ type KubernetesClusterArgs struct {
 	PrivateNodeGroups pulumi.BoolPtrInput
 	// Set default storage encryption strategy for all nodes in the cluster.
 	StorageEncryption pulumi.StringPtrInput
-	// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+	// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+	// When using `manual` strategy, you must replace the existing node-groups to update them.
+	UpgradeStrategyType pulumi.StringPtrInput
+	// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+	// changing the cluster version, `upgradeStrategy` will be taken into account.
 	Version pulumi.StringPtrInput
 	// Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
 	// list`.
@@ -427,7 +447,14 @@ func (o KubernetesClusterOutput) StorageEncryption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringPtrOutput { return v.StorageEncryption }).(pulumi.StringPtrOutput)
 }
 
-// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
+// When using `manual` strategy, you must replace the existing node-groups to update them.
+func (o KubernetesClusterOutput) UpgradeStrategyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringPtrOutput { return v.UpgradeStrategyType }).(pulumi.StringPtrOutput)
+}
+
+// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
+// changing the cluster version, `upgradeStrategy` will be taken into account.
 func (o KubernetesClusterOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }
