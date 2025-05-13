@@ -6293,9 +6293,13 @@
                     "type": "string",
                     "description": "Set default storage encryption strategy for all nodes in the cluster.\n"
                 },
+                "upgradeStrategyType": {
+                    "type": "string",
+                    "description": "The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.\nWhen using `manual` strategy, you must replace the existing node-groups to update them.\n"
+                },
                 "version": {
                     "type": "string",
-                    "description": "Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.\n"
+                    "description": "Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when\nchanging the cluster version, `upgrade_strategy` will be taken into account.\n"
                 },
                 "zone": {
                     "type": "string",
@@ -6350,9 +6354,13 @@
                     "type": "string",
                     "description": "Set default storage encryption strategy for all nodes in the cluster.\n"
                 },
+                "upgradeStrategyType": {
+                    "type": "string",
+                    "description": "The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.\nWhen using `manual` strategy, you must replace the existing node-groups to update them.\n"
+                },
                 "version": {
                     "type": "string",
-                    "description": "Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.\n"
+                    "description": "Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when\nchanging the cluster version, `upgrade_strategy` will be taken into account.\n"
                 },
                 "zone": {
                     "type": "string",
@@ -6416,9 +6424,13 @@
                         "type": "string",
                         "description": "Set default storage encryption strategy for all nodes in the cluster.\n"
                     },
+                    "upgradeStrategyType": {
+                        "type": "string",
+                        "description": "The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.\nWhen using `manual` strategy, you must replace the existing node-groups to update them.\n"
+                    },
                     "version": {
                         "type": "string",
-                        "description": "Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.\n"
+                        "description": "Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when\nchanging the cluster version, `upgrade_strategy` will be taken into account.\n"
                     },
                     "zone": {
                         "type": "string",
@@ -11308,6 +11320,142 @@
                     "zone": {
                         "type": "string",
                         "description": "The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "upcloud:index/storageBackup:StorageBackup": {
+            "description": "Manages an on-demand storage backup.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\nconst backup1 = new upcloud.StorageBackup(\"backup_1\", {\n    title: \"backup\",\n    sourceStorage: \"01185ec5-1b0b-4cbc-a968-eb920ac7572d\",\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\nbackup1 = upcloud.StorageBackup(\"backup_1\",\n    title=\"backup\",\n    source_storage=\"01185ec5-1b0b-4cbc-a968-eb920ac7572d\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backup1 = new UpCloud.StorageBackup(\"backup_1\", new()\n    {\n        Title = \"backup\",\n        SourceStorage = \"01185ec5-1b0b-4cbc-a968-eb920ac7572d\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upcloud.NewStorageBackup(ctx, \"backup_1\", \u0026upcloud.StorageBackupArgs{\n\t\t\tTitle:         pulumi.String(\"backup\"),\n\t\t\tSourceStorage: pulumi.String(\"01185ec5-1b0b-4cbc-a968-eb920ac7572d\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.StorageBackup;\nimport com.pulumi.upcloud.StorageBackupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var backup1 = new StorageBackup(\"backup1\", StorageBackupArgs.builder()\n            .title(\"backup\")\n            .sourceStorage(\"01185ec5-1b0b-4cbc-a968-eb920ac7572d\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  backup1:\n    type: upcloud:StorageBackup\n    name: backup_1\n    properties:\n      title: backup\n      sourceStorage: 01185ec5-1b0b-4cbc-a968-eb920ac7572d\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Timestamp of the backup creation.\n"
+                },
+                "encrypt": {
+                    "type": "boolean",
+                    "description": "Sets if the storage is encrypted at rest.\n"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "User defined key-value pairs to classify the storage.\n"
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "The size of the storage in gigabytes.\n"
+                },
+                "sourceStorage": {
+                    "type": "string",
+                    "description": "The UUID of the storage to back up.\n"
+                },
+                "systemLabels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore\nand can not be modified by the user.\n"
+                },
+                "tier": {
+                    "type": "string",
+                    "description": "The tier of the storage.\n"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "Title of the backup.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the storage.\n"
+                },
+                "zone": {
+                    "type": "string",
+                    "description": "The zone the storage is in, e.g. `de-fra1`.\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "encrypt",
+                "labels",
+                "size",
+                "sourceStorage",
+                "systemLabels",
+                "tier",
+                "title",
+                "type",
+                "zone"
+            ],
+            "inputProperties": {
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "User defined key-value pairs to classify the storage.\n"
+                },
+                "sourceStorage": {
+                    "type": "string",
+                    "description": "The UUID of the storage to back up.\n"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "Title of the backup.\n"
+                }
+            },
+            "requiredInputs": [
+                "sourceStorage",
+                "title"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering StorageBackup resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Timestamp of the backup creation.\n"
+                    },
+                    "encrypt": {
+                        "type": "boolean",
+                        "description": "Sets if the storage is encrypted at rest.\n"
+                    },
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "User defined key-value pairs to classify the storage.\n"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "description": "The size of the storage in gigabytes.\n"
+                    },
+                    "sourceStorage": {
+                        "type": "string",
+                        "description": "The UUID of the storage to back up.\n"
+                    },
+                    "systemLabels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore\nand can not be modified by the user.\n"
+                    },
+                    "tier": {
+                        "type": "string",
+                        "description": "The tier of the storage.\n"
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "Title of the backup.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the storage.\n"
+                    },
+                    "zone": {
+                        "type": "string",
+                        "description": "The zone the storage is in, e.g. `de-fra1`.\n"
                     }
                 },
                 "type": "object"

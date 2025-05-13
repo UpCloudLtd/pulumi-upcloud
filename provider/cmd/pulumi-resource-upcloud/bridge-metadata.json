@@ -762,6 +762,9 @@
                     }
                 }
             },
+            "upcloud_storage_backup": {
+                "current": "upcloud:index/storageBackup:StorageBackup"
+            },
             "upcloud_storage_template": {
                 "current": "upcloud:index/storageTemplate:StorageTemplate"
             },
@@ -999,6 +1002,7 @@
             "upcloud:index/serverFirewallRules:ServerFirewallRules": 0,
             "upcloud:index/serverGroup:ServerGroup": 1,
             "upcloud:index/storage:Storage": 1,
+            "upcloud:index/storageBackup:StorageBackup": 1,
             "upcloud:index/storageTemplate:StorageTemplate": 1,
             "upcloud:index/tag:Tag": 0
         },
