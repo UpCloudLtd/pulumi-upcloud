@@ -4471,80 +4471,86 @@
             "properties": {
                 "action": {
                     "type": "string",
-                    "description": "Action to take if the rule conditions are met. Valid values `accept | drop`\n",
-                    "willReplaceOnChanges": true
+                    "description": "Action to take if the rule conditions are met. Valid values `accept | drop`.\n"
                 },
                 "comment": {
                     "type": "string",
-                    "description": "Freeform comment string for the rule\n",
-                    "willReplaceOnChanges": true
+                    "description": "A comment for the rule.\n"
                 },
                 "destinationAddressEnd": {
                     "type": "string",
-                    "description": "The destination address range ends from this address\n",
-                    "willReplaceOnChanges": true
+                    "description": "The destination address range ends from this address\n"
                 },
                 "destinationAddressStart": {
                     "type": "string",
-                    "description": "The destination address range starts from this address\n",
-                    "willReplaceOnChanges": true
+                    "description": "The destination address range starts from this address\n"
                 },
                 "destinationPortEnd": {
                     "type": "string",
-                    "description": "The destination port range ends from this port number\n",
-                    "willReplaceOnChanges": true
+                    "description": "The destination port range ends from this port number\n"
                 },
                 "destinationPortStart": {
                     "type": "string",
-                    "description": "The destination port range starts from this port number\n",
-                    "willReplaceOnChanges": true
+                    "description": "The destination port range starts from this port number\n"
                 },
                 "direction": {
                     "type": "string",
-                    "description": "The direction of network traffic this rule will be applied to\n",
-                    "willReplaceOnChanges": true
+                    "description": "The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.\n"
                 },
                 "family": {
                     "type": "string",
-                    "description": "The address family of new firewall rule\n",
-                    "willReplaceOnChanges": true
+                    "description": "The address family of new firewall rule\n"
                 },
                 "icmpType": {
                     "type": "string",
-                    "description": "The ICMP type\n",
-                    "willReplaceOnChanges": true
+                    "description": "The ICMP type of the rule. Only valid if protocol is ICMP.\n"
                 },
                 "protocol": {
                     "type": "string",
-                    "description": "The protocol this rule will be applied to\n",
-                    "willReplaceOnChanges": true
+                    "description": "The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.\n"
                 },
                 "sourceAddressEnd": {
                     "type": "string",
-                    "description": "The source address range ends from this address\n",
-                    "willReplaceOnChanges": true
+                    "description": "The source address range ends from this address\n"
                 },
                 "sourceAddressStart": {
                     "type": "string",
-                    "description": "The source address range starts from this address\n",
-                    "willReplaceOnChanges": true
+                    "description": "The source address range starts from this address\n"
                 },
                 "sourcePortEnd": {
                     "type": "string",
-                    "description": "The source port range ends from this port number\n",
-                    "willReplaceOnChanges": true
+                    "description": "The source port range ends from this port number\n"
                 },
                 "sourcePortStart": {
                     "type": "string",
-                    "description": "The source port range starts from this port number\n",
-                    "willReplaceOnChanges": true
+                    "description": "The source port range starts from this port number\n"
                 }
             },
             "type": "object",
             "required": [
                 "action",
                 "direction"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "action",
+                        "comment",
+                        "destinationAddressEnd",
+                        "destinationAddressStart",
+                        "destinationPortEnd",
+                        "destinationPortStart",
+                        "direction",
+                        "family",
+                        "icmpType",
+                        "protocol",
+                        "sourceAddressEnd",
+                        "sourceAddressStart",
+                        "sourcePortEnd",
+                        "sourcePortStart"
+                    ]
+                }
+            }
         },
         "upcloud:index/ServerLogin:ServerLogin": {
             "properties": {
@@ -10991,11 +10997,10 @@
                 },
                 "serverId": {
                     "type": "string",
-                    "description": "The unique id of the server to be protected the firewall rules\n"
+                    "description": "The UUID of the server to be protected with the firewall rules.\n"
                 }
             },
             "required": [
-                "firewallRules",
                 "serverId"
             ],
             "inputProperties": {
@@ -11008,12 +11013,10 @@
                 },
                 "serverId": {
                     "type": "string",
-                    "description": "The unique id of the server to be protected the firewall rules\n",
-                    "willReplaceOnChanges": true
+                    "description": "The UUID of the server to be protected with the firewall rules.\n"
                 }
             },
             "requiredInputs": [
-                "firewallRules",
                 "serverId"
             ],
             "stateInputs": {
@@ -11028,8 +11031,7 @@
                     },
                     "serverId": {
                         "type": "string",
-                        "description": "The unique id of the server to be protected the firewall rules\n",
-                        "willReplaceOnChanges": true
+                        "description": "The UUID of the server to be protected with the firewall rules.\n"
                     }
                 },
                 "type": "object"
