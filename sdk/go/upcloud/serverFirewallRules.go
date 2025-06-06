@@ -89,7 +89,7 @@ type ServerFirewallRules struct {
 	// specified. These can be the same value if only one IP address or port number is specified. Source and destination port
 	// numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
 	FirewallRules ServerFirewallRulesFirewallRuleArrayOutput `pulumi:"firewallRules"`
-	// The unique id of the server to be protected the firewall rules
+	// The UUID of the server to be protected with the firewall rules.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
 }
 
@@ -100,9 +100,6 @@ func NewServerFirewallRules(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.FirewallRules == nil {
-		return nil, errors.New("invalid value for required argument 'FirewallRules'")
-	}
 	if args.ServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ServerId'")
 	}
@@ -136,7 +133,7 @@ type serverFirewallRulesState struct {
 	// specified. These can be the same value if only one IP address or port number is specified. Source and destination port
 	// numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
 	FirewallRules []ServerFirewallRulesFirewallRule `pulumi:"firewallRules"`
-	// The unique id of the server to be protected the firewall rules
+	// The UUID of the server to be protected with the firewall rules.
 	ServerId *string `pulumi:"serverId"`
 }
 
@@ -148,7 +145,7 @@ type ServerFirewallRulesState struct {
 	// specified. These can be the same value if only one IP address or port number is specified. Source and destination port
 	// numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
 	FirewallRules ServerFirewallRulesFirewallRuleArrayInput
-	// The unique id of the server to be protected the firewall rules
+	// The UUID of the server to be protected with the firewall rules.
 	ServerId pulumi.StringPtrInput
 }
 
@@ -164,7 +161,7 @@ type serverFirewallRulesArgs struct {
 	// specified. These can be the same value if only one IP address or port number is specified. Source and destination port
 	// numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
 	FirewallRules []ServerFirewallRulesFirewallRule `pulumi:"firewallRules"`
-	// The unique id of the server to be protected the firewall rules
+	// The UUID of the server to be protected with the firewall rules.
 	ServerId string `pulumi:"serverId"`
 }
 
@@ -177,7 +174,7 @@ type ServerFirewallRulesArgs struct {
 	// specified. These can be the same value if only one IP address or port number is specified. Source and destination port
 	// numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
 	FirewallRules ServerFirewallRulesFirewallRuleArrayInput
-	// The unique id of the server to be protected the firewall rules
+	// The UUID of the server to be protected with the firewall rules.
 	ServerId pulumi.StringInput
 }
 
@@ -278,7 +275,7 @@ func (o ServerFirewallRulesOutput) FirewallRules() ServerFirewallRulesFirewallRu
 	return o.ApplyT(func(v *ServerFirewallRules) ServerFirewallRulesFirewallRuleArrayOutput { return v.FirewallRules }).(ServerFirewallRulesFirewallRuleArrayOutput)
 }
 
-// The unique id of the server to be protected the firewall rules
+// The UUID of the server to be protected with the firewall rules.
 func (o ServerFirewallRulesOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerFirewallRules) pulumi.StringOutput { return v.ServerId }).(pulumi.StringOutput)
 }

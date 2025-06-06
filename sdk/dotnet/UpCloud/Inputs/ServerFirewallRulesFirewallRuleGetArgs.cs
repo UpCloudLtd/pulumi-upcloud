@@ -14,13 +14,13 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
     public sealed class ServerFirewallRulesFirewallRuleGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Action to take if the rule conditions are met. Valid values `accept | drop`
+        /// Action to take if the rule conditions are met. Valid values `accept | drop`.
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
 
         /// <summary>
-        /// Freeform comment string for the rule
+        /// A comment for the rule.
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
@@ -50,7 +50,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? DestinationPortStart { get; set; }
 
         /// <summary>
-        /// The direction of network traffic this rule will be applied to
+        /// The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
         /// </summary>
         [Input("direction", required: true)]
         public Input<string> Direction { get; set; } = null!;
@@ -62,13 +62,13 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? Family { get; set; }
 
         /// <summary>
-        /// The ICMP type
+        /// The ICMP type of the rule. Only valid if protocol is ICMP.
         /// </summary>
         [Input("icmpType")]
         public Input<string>? IcmpType { get; set; }
 
         /// <summary>
-        /// The protocol this rule will be applied to
+        /// The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }

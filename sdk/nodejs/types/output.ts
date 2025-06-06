@@ -3386,61 +3386,61 @@ export interface RouterStaticRoute {
 
 export interface ServerFirewallRulesFirewallRule {
     /**
-     * Action to take if the rule conditions are met. Valid values `accept | drop`
+     * Action to take if the rule conditions are met. Valid values `accept | drop`.
      */
     action: string;
     /**
-     * Freeform comment string for the rule
+     * A comment for the rule.
      */
-    comment?: string;
+    comment: string;
     /**
      * The destination address range ends from this address
      */
-    destinationAddressEnd?: string;
+    destinationAddressEnd: string;
     /**
      * The destination address range starts from this address
      */
-    destinationAddressStart?: string;
+    destinationAddressStart: string;
     /**
      * The destination port range ends from this port number
      */
-    destinationPortEnd?: string;
+    destinationPortEnd: string;
     /**
      * The destination port range starts from this port number
      */
-    destinationPortStart?: string;
+    destinationPortStart: string;
     /**
-     * The direction of network traffic this rule will be applied to
+     * The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
      */
     direction: string;
     /**
      * The address family of new firewall rule
      */
-    family?: string;
+    family: string;
     /**
-     * The ICMP type
+     * The ICMP type of the rule. Only valid if protocol is ICMP.
      */
-    icmpType?: string;
+    icmpType: string;
     /**
-     * The protocol this rule will be applied to
+     * The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
      */
-    protocol?: string;
+    protocol: string;
     /**
      * The source address range ends from this address
      */
-    sourceAddressEnd?: string;
+    sourceAddressEnd: string;
     /**
      * The source address range starts from this address
      */
-    sourceAddressStart?: string;
+    sourceAddressStart: string;
     /**
      * The source port range ends from this port number
      */
-    sourcePortEnd?: string;
+    sourcePortEnd: string;
     /**
      * The source port range starts from this port number
      */
-    sourcePortStart?: string;
+    sourcePortStart: string;
 }
 
 export interface ServerLogin {

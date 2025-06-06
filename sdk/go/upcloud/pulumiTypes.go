@@ -21634,9 +21634,9 @@ func (o RouterStaticRouteArrayOutput) Index(i pulumi.IntInput) RouterStaticRoute
 }
 
 type ServerFirewallRulesFirewallRule struct {
-	// Action to take if the rule conditions are met. Valid values `accept | drop`
+	// Action to take if the rule conditions are met. Valid values `accept | drop`.
 	Action string `pulumi:"action"`
-	// Freeform comment string for the rule
+	// A comment for the rule.
 	Comment *string `pulumi:"comment"`
 	// The destination address range ends from this address
 	DestinationAddressEnd *string `pulumi:"destinationAddressEnd"`
@@ -21646,13 +21646,13 @@ type ServerFirewallRulesFirewallRule struct {
 	DestinationPortEnd *string `pulumi:"destinationPortEnd"`
 	// The destination port range starts from this port number
 	DestinationPortStart *string `pulumi:"destinationPortStart"`
-	// The direction of network traffic this rule will be applied to
+	// The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
 	Direction string `pulumi:"direction"`
 	// The address family of new firewall rule
 	Family *string `pulumi:"family"`
-	// The ICMP type
+	// The ICMP type of the rule. Only valid if protocol is ICMP.
 	IcmpType *string `pulumi:"icmpType"`
-	// The protocol this rule will be applied to
+	// The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
 	Protocol *string `pulumi:"protocol"`
 	// The source address range ends from this address
 	SourceAddressEnd *string `pulumi:"sourceAddressEnd"`
@@ -21676,9 +21676,9 @@ type ServerFirewallRulesFirewallRuleInput interface {
 }
 
 type ServerFirewallRulesFirewallRuleArgs struct {
-	// Action to take if the rule conditions are met. Valid values `accept | drop`
+	// Action to take if the rule conditions are met. Valid values `accept | drop`.
 	Action pulumi.StringInput `pulumi:"action"`
-	// Freeform comment string for the rule
+	// A comment for the rule.
 	Comment pulumi.StringPtrInput `pulumi:"comment"`
 	// The destination address range ends from this address
 	DestinationAddressEnd pulumi.StringPtrInput `pulumi:"destinationAddressEnd"`
@@ -21688,13 +21688,13 @@ type ServerFirewallRulesFirewallRuleArgs struct {
 	DestinationPortEnd pulumi.StringPtrInput `pulumi:"destinationPortEnd"`
 	// The destination port range starts from this port number
 	DestinationPortStart pulumi.StringPtrInput `pulumi:"destinationPortStart"`
-	// The direction of network traffic this rule will be applied to
+	// The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
 	Direction pulumi.StringInput `pulumi:"direction"`
 	// The address family of new firewall rule
 	Family pulumi.StringPtrInput `pulumi:"family"`
-	// The ICMP type
+	// The ICMP type of the rule. Only valid if protocol is ICMP.
 	IcmpType pulumi.StringPtrInput `pulumi:"icmpType"`
-	// The protocol this rule will be applied to
+	// The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
 	// The source address range ends from this address
 	SourceAddressEnd pulumi.StringPtrInput `pulumi:"sourceAddressEnd"`
@@ -21757,12 +21757,12 @@ func (o ServerFirewallRulesFirewallRuleOutput) ToServerFirewallRulesFirewallRule
 	return o
 }
 
-// Action to take if the rule conditions are met. Valid values `accept | drop`
+// Action to take if the rule conditions are met. Valid values `accept | drop`.
 func (o ServerFirewallRulesFirewallRuleOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerFirewallRulesFirewallRule) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// Freeform comment string for the rule
+// A comment for the rule.
 func (o ServerFirewallRulesFirewallRuleOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerFirewallRulesFirewallRule) *string { return v.Comment }).(pulumi.StringPtrOutput)
 }
@@ -21787,7 +21787,7 @@ func (o ServerFirewallRulesFirewallRuleOutput) DestinationPortStart() pulumi.Str
 	return o.ApplyT(func(v ServerFirewallRulesFirewallRule) *string { return v.DestinationPortStart }).(pulumi.StringPtrOutput)
 }
 
-// The direction of network traffic this rule will be applied to
+// The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
 func (o ServerFirewallRulesFirewallRuleOutput) Direction() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerFirewallRulesFirewallRule) string { return v.Direction }).(pulumi.StringOutput)
 }
@@ -21797,12 +21797,12 @@ func (o ServerFirewallRulesFirewallRuleOutput) Family() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerFirewallRulesFirewallRule) *string { return v.Family }).(pulumi.StringPtrOutput)
 }
 
-// The ICMP type
+// The ICMP type of the rule. Only valid if protocol is ICMP.
 func (o ServerFirewallRulesFirewallRuleOutput) IcmpType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerFirewallRulesFirewallRule) *string { return v.IcmpType }).(pulumi.StringPtrOutput)
 }
 
-// The protocol this rule will be applied to
+// The protocol of the rule. Possible values are “ (empty), `tcp`, `udp`, `icmp`.
 func (o ServerFirewallRulesFirewallRuleOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerFirewallRulesFirewallRule) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }

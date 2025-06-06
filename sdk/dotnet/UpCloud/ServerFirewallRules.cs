@@ -90,7 +90,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<Outputs.ServerFirewallRulesFirewallRule>> FirewallRules { get; private set; } = null!;
 
         /// <summary>
-        /// The unique id of the server to be protected the firewall rules
+        /// The UUID of the server to be protected with the firewall rules.
         /// </summary>
         [Output("serverId")]
         public Output<string> ServerId { get; private set; } = null!;
@@ -142,7 +142,7 @@ namespace UpCloud.Pulumi.UpCloud
 
     public sealed class ServerFirewallRulesArgs : global::Pulumi.ResourceArgs
     {
-        [Input("firewallRules", required: true)]
+        [Input("firewallRules")]
         private InputList<Inputs.ServerFirewallRulesFirewallRuleArgs>? _firewallRules;
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// The unique id of the server to be protected the firewall rules
+        /// The UUID of the server to be protected with the firewall rules.
         /// </summary>
         [Input("serverId", required: true)]
         public Input<string> ServerId { get; set; } = null!;
@@ -191,7 +191,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// The unique id of the server to be protected the firewall rules
+        /// The UUID of the server to be protected with the firewall rules.
         /// </summary>
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }

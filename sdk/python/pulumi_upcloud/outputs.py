@@ -10169,16 +10169,16 @@ class ServerFirewallRulesFirewallRule(dict):
                  source_port_end: Optional[builtins.str] = None,
                  source_port_start: Optional[builtins.str] = None):
         """
-        :param builtins.str action: Action to take if the rule conditions are met. Valid values `accept | drop`
-        :param builtins.str direction: The direction of network traffic this rule will be applied to
-        :param builtins.str comment: Freeform comment string for the rule
+        :param builtins.str action: Action to take if the rule conditions are met. Valid values `accept | drop`.
+        :param builtins.str direction: The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
+        :param builtins.str comment: A comment for the rule.
         :param builtins.str destination_address_end: The destination address range ends from this address
         :param builtins.str destination_address_start: The destination address range starts from this address
         :param builtins.str destination_port_end: The destination port range ends from this port number
         :param builtins.str destination_port_start: The destination port range starts from this port number
         :param builtins.str family: The address family of new firewall rule
-        :param builtins.str icmp_type: The ICMP type
-        :param builtins.str protocol: The protocol this rule will be applied to
+        :param builtins.str icmp_type: The ICMP type of the rule. Only valid if protocol is ICMP.
+        :param builtins.str protocol: The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
         :param builtins.str source_address_end: The source address range ends from this address
         :param builtins.str source_address_start: The source address range starts from this address
         :param builtins.str source_port_end: The source port range ends from this port number
@@ -10215,7 +10215,7 @@ class ServerFirewallRulesFirewallRule(dict):
     @pulumi.getter
     def action(self) -> builtins.str:
         """
-        Action to take if the rule conditions are met. Valid values `accept | drop`
+        Action to take if the rule conditions are met. Valid values `accept | drop`.
         """
         return pulumi.get(self, "action")
 
@@ -10223,7 +10223,7 @@ class ServerFirewallRulesFirewallRule(dict):
     @pulumi.getter
     def direction(self) -> builtins.str:
         """
-        The direction of network traffic this rule will be applied to
+        The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
         """
         return pulumi.get(self, "direction")
 
@@ -10231,7 +10231,7 @@ class ServerFirewallRulesFirewallRule(dict):
     @pulumi.getter
     def comment(self) -> Optional[builtins.str]:
         """
-        Freeform comment string for the rule
+        A comment for the rule.
         """
         return pulumi.get(self, "comment")
 
@@ -10279,7 +10279,7 @@ class ServerFirewallRulesFirewallRule(dict):
     @pulumi.getter(name="icmpType")
     def icmp_type(self) -> Optional[builtins.str]:
         """
-        The ICMP type
+        The ICMP type of the rule. Only valid if protocol is ICMP.
         """
         return pulumi.get(self, "icmp_type")
 
@@ -10287,7 +10287,7 @@ class ServerFirewallRulesFirewallRule(dict):
     @pulumi.getter
     def protocol(self) -> Optional[builtins.str]:
         """
-        The protocol this rule will be applied to
+        The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
         """
         return pulumi.get(self, "protocol")
 

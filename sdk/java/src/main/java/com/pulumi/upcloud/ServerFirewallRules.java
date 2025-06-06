@@ -13,6 +13,7 @@ import com.pulumi.upcloud.inputs.ServerFirewallRulesState;
 import com.pulumi.upcloud.outputs.ServerFirewallRulesFirewallRule;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -105,7 +106,7 @@ public class ServerFirewallRules extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="firewallRules", refs={List.class,ServerFirewallRulesFirewallRule.class}, tree="[0,1]")
-    private Output<List<ServerFirewallRulesFirewallRule>> firewallRules;
+    private Output</* @Nullable */ List<ServerFirewallRulesFirewallRule>> firewallRules;
 
     /**
      * @return A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
@@ -116,18 +117,18 @@ public class ServerFirewallRules extends com.pulumi.resources.CustomResource {
      * numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
      * 
      */
-    public Output<List<ServerFirewallRulesFirewallRule>> firewallRules() {
-        return this.firewallRules;
+    public Output<Optional<List<ServerFirewallRulesFirewallRule>>> firewallRules() {
+        return Codegen.optional(this.firewallRules);
     }
     /**
-     * The unique id of the server to be protected the firewall rules
+     * The UUID of the server to be protected with the firewall rules.
      * 
      */
     @Export(name="serverId", refs={String.class}, tree="[0]")
     private Output<String> serverId;
 
     /**
-     * @return The unique id of the server to be protected the firewall rules
+     * @return The UUID of the server to be protected with the firewall rules.
      * 
      */
     public Output<String> serverId() {

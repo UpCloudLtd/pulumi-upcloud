@@ -89,9 +89,9 @@ export class ServerFirewallRules extends pulumi.CustomResource {
      * specified. These can be the same value if only one IP address or port number is specified. Source and destination port
      * numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
      */
-    public readonly firewallRules!: pulumi.Output<outputs.ServerFirewallRulesFirewallRule[]>;
+    public readonly firewallRules!: pulumi.Output<outputs.ServerFirewallRulesFirewallRule[] | undefined>;
     /**
-     * The unique id of the server to be protected the firewall rules
+     * The UUID of the server to be protected with the firewall rules.
      */
     public readonly serverId!: pulumi.Output<string>;
 
@@ -112,9 +112,6 @@ export class ServerFirewallRules extends pulumi.CustomResource {
             resourceInputs["serverId"] = state ? state.serverId : undefined;
         } else {
             const args = argsOrState as ServerFirewallRulesArgs | undefined;
-            if ((!args || args.firewallRules === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'firewallRules'");
-            }
             if ((!args || args.serverId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serverId'");
             }
@@ -140,7 +137,7 @@ export interface ServerFirewallRulesState {
      */
     firewallRules?: pulumi.Input<pulumi.Input<inputs.ServerFirewallRulesFirewallRule>[]>;
     /**
-     * The unique id of the server to be protected the firewall rules
+     * The UUID of the server to be protected with the firewall rules.
      */
     serverId?: pulumi.Input<string>;
 }
@@ -157,9 +154,9 @@ export interface ServerFirewallRulesArgs {
      * specified. These can be the same value if only one IP address or port number is specified. Source and destination port
      * numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
      */
-    firewallRules: pulumi.Input<pulumi.Input<inputs.ServerFirewallRulesFirewallRule>[]>;
+    firewallRules?: pulumi.Input<pulumi.Input<inputs.ServerFirewallRulesFirewallRule>[]>;
     /**
-     * The unique id of the server to be protected the firewall rules
+     * The UUID of the server to be protected with the firewall rules.
      */
     serverId: pulumi.Input<string>;
 }

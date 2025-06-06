@@ -43,14 +43,14 @@ public final class ServerFirewallRulesState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The unique id of the server to be protected the firewall rules
+     * The UUID of the server to be protected with the firewall rules.
      * 
      */
     @Import(name="serverId")
     private @Nullable Output<String> serverId;
 
     /**
-     * @return The unique id of the server to be protected the firewall rules
+     * @return The UUID of the server to be protected with the firewall rules.
      * 
      */
     public Optional<Output<String>> serverId() {
@@ -129,7 +129,7 @@ public final class ServerFirewallRulesState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param serverId The unique id of the server to be protected the firewall rules
+         * @param serverId The UUID of the server to be protected with the firewall rules.
          * 
          * @return builder
          * 
@@ -140,7 +140,7 @@ public final class ServerFirewallRulesState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param serverId The unique id of the server to be protected the firewall rules
+         * @param serverId The UUID of the server to be protected with the firewall rules.
          * 
          * @return builder
          * 

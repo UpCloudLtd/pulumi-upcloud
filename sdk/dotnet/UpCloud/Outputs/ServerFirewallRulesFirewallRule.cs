@@ -15,11 +15,11 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
     public sealed class ServerFirewallRulesFirewallRule
     {
         /// <summary>
-        /// Action to take if the rule conditions are met. Valid values `accept | drop`
+        /// Action to take if the rule conditions are met. Valid values `accept | drop`.
         /// </summary>
         public readonly string Action;
         /// <summary>
-        /// Freeform comment string for the rule
+        /// A comment for the rule.
         /// </summary>
         public readonly string? Comment;
         /// <summary>
@@ -39,7 +39,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? DestinationPortStart;
         /// <summary>
-        /// The direction of network traffic this rule will be applied to
+        /// The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
         /// </summary>
         public readonly string Direction;
         /// <summary>
@@ -47,11 +47,11 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? Family;
         /// <summary>
-        /// The ICMP type
+        /// The ICMP type of the rule. Only valid if protocol is ICMP.
         /// </summary>
         public readonly string? IcmpType;
         /// <summary>
-        /// The protocol this rule will be applied to
+        /// The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
         /// </summary>
         public readonly string? Protocol;
         /// <summary>

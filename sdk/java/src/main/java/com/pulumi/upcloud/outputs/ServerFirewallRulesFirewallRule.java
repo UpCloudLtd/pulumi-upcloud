@@ -13,12 +13,12 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServerFirewallRulesFirewallRule {
     /**
-     * @return Action to take if the rule conditions are met. Valid values `accept | drop`
+     * @return Action to take if the rule conditions are met. Valid values `accept | drop`.
      * 
      */
     private String action;
     /**
-     * @return Freeform comment string for the rule
+     * @return A comment for the rule.
      * 
      */
     private @Nullable String comment;
@@ -43,7 +43,7 @@ public final class ServerFirewallRulesFirewallRule {
      */
     private @Nullable String destinationPortStart;
     /**
-     * @return The direction of network traffic this rule will be applied to
+     * @return The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
      * 
      */
     private String direction;
@@ -53,12 +53,12 @@ public final class ServerFirewallRulesFirewallRule {
      */
     private @Nullable String family;
     /**
-     * @return The ICMP type
+     * @return The ICMP type of the rule. Only valid if protocol is ICMP.
      * 
      */
     private @Nullable String icmpType;
     /**
-     * @return The protocol this rule will be applied to
+     * @return The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
      * 
      */
     private @Nullable String protocol;
@@ -85,14 +85,14 @@ public final class ServerFirewallRulesFirewallRule {
 
     private ServerFirewallRulesFirewallRule() {}
     /**
-     * @return Action to take if the rule conditions are met. Valid values `accept | drop`
+     * @return Action to take if the rule conditions are met. Valid values `accept | drop`.
      * 
      */
     public String action() {
         return this.action;
     }
     /**
-     * @return Freeform comment string for the rule
+     * @return A comment for the rule.
      * 
      */
     public Optional<String> comment() {
@@ -127,7 +127,7 @@ public final class ServerFirewallRulesFirewallRule {
         return Optional.ofNullable(this.destinationPortStart);
     }
     /**
-     * @return The direction of network traffic this rule will be applied to
+     * @return The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
      * 
      */
     public String direction() {
@@ -141,14 +141,14 @@ public final class ServerFirewallRulesFirewallRule {
         return Optional.ofNullable(this.family);
     }
     /**
-     * @return The ICMP type
+     * @return The ICMP type of the rule. Only valid if protocol is ICMP.
      * 
      */
     public Optional<String> icmpType() {
         return Optional.ofNullable(this.icmpType);
     }
     /**
-     * @return The protocol this rule will be applied to
+     * @return The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
      * 
      */
     public Optional<String> protocol() {
