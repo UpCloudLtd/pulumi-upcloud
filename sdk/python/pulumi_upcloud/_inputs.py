@@ -14204,15 +14204,15 @@ if not MYPY:
     class ServerFirewallRulesFirewallRuleArgsDict(TypedDict):
         action: pulumi.Input[builtins.str]
         """
-        Action to take if the rule conditions are met. Valid values `accept | drop`
+        Action to take if the rule conditions are met. Valid values `accept | drop`.
         """
         direction: pulumi.Input[builtins.str]
         """
-        The direction of network traffic this rule will be applied to
+        The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
         """
         comment: NotRequired[pulumi.Input[builtins.str]]
         """
-        Freeform comment string for the rule
+        A comment for the rule.
         """
         destination_address_end: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -14236,11 +14236,11 @@ if not MYPY:
         """
         icmp_type: NotRequired[pulumi.Input[builtins.str]]
         """
-        The ICMP type
+        The ICMP type of the rule. Only valid if protocol is ICMP.
         """
         protocol: NotRequired[pulumi.Input[builtins.str]]
         """
-        The protocol this rule will be applied to
+        The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
         """
         source_address_end: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -14279,16 +14279,16 @@ class ServerFirewallRulesFirewallRuleArgs:
                  source_port_end: Optional[pulumi.Input[builtins.str]] = None,
                  source_port_start: Optional[pulumi.Input[builtins.str]] = None):
         """
-        :param pulumi.Input[builtins.str] action: Action to take if the rule conditions are met. Valid values `accept | drop`
-        :param pulumi.Input[builtins.str] direction: The direction of network traffic this rule will be applied to
-        :param pulumi.Input[builtins.str] comment: Freeform comment string for the rule
+        :param pulumi.Input[builtins.str] action: Action to take if the rule conditions are met. Valid values `accept | drop`.
+        :param pulumi.Input[builtins.str] direction: The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
+        :param pulumi.Input[builtins.str] comment: A comment for the rule.
         :param pulumi.Input[builtins.str] destination_address_end: The destination address range ends from this address
         :param pulumi.Input[builtins.str] destination_address_start: The destination address range starts from this address
         :param pulumi.Input[builtins.str] destination_port_end: The destination port range ends from this port number
         :param pulumi.Input[builtins.str] destination_port_start: The destination port range starts from this port number
         :param pulumi.Input[builtins.str] family: The address family of new firewall rule
-        :param pulumi.Input[builtins.str] icmp_type: The ICMP type
-        :param pulumi.Input[builtins.str] protocol: The protocol this rule will be applied to
+        :param pulumi.Input[builtins.str] icmp_type: The ICMP type of the rule. Only valid if protocol is ICMP.
+        :param pulumi.Input[builtins.str] protocol: The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
         :param pulumi.Input[builtins.str] source_address_end: The source address range ends from this address
         :param pulumi.Input[builtins.str] source_address_start: The source address range starts from this address
         :param pulumi.Input[builtins.str] source_port_end: The source port range ends from this port number
@@ -14325,7 +14325,7 @@ class ServerFirewallRulesFirewallRuleArgs:
     @pulumi.getter
     def action(self) -> pulumi.Input[builtins.str]:
         """
-        Action to take if the rule conditions are met. Valid values `accept | drop`
+        Action to take if the rule conditions are met. Valid values `accept | drop`.
         """
         return pulumi.get(self, "action")
 
@@ -14337,7 +14337,7 @@ class ServerFirewallRulesFirewallRuleArgs:
     @pulumi.getter
     def direction(self) -> pulumi.Input[builtins.str]:
         """
-        The direction of network traffic this rule will be applied to
+        The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
         """
         return pulumi.get(self, "direction")
 
@@ -14349,7 +14349,7 @@ class ServerFirewallRulesFirewallRuleArgs:
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Freeform comment string for the rule
+        A comment for the rule.
         """
         return pulumi.get(self, "comment")
 
@@ -14421,7 +14421,7 @@ class ServerFirewallRulesFirewallRuleArgs:
     @pulumi.getter(name="icmpType")
     def icmp_type(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The ICMP type
+        The ICMP type of the rule. Only valid if protocol is ICMP.
         """
         return pulumi.get(self, "icmp_type")
 
@@ -14433,7 +14433,7 @@ class ServerFirewallRulesFirewallRuleArgs:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The protocol this rule will be applied to
+        The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
         """
         return pulumi.get(self, "protocol")
 

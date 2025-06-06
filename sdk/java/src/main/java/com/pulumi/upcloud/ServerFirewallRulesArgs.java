@@ -10,6 +10,8 @@ import com.pulumi.upcloud.inputs.ServerFirewallRulesFirewallRuleArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class ServerFirewallRulesArgs extends com.pulumi.resources.ResourceArgs {
@@ -25,8 +27,8 @@ public final class ServerFirewallRulesArgs extends com.pulumi.resources.Resource
      * numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
      * 
      */
-    @Import(name="firewallRules", required=true)
-    private Output<List<ServerFirewallRulesFirewallRuleArgs>> firewallRules;
+    @Import(name="firewallRules")
+    private @Nullable Output<List<ServerFirewallRulesFirewallRuleArgs>> firewallRules;
 
     /**
      * @return A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
@@ -37,19 +39,19 @@ public final class ServerFirewallRulesArgs extends com.pulumi.resources.Resource
      * numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
      * 
      */
-    public Output<List<ServerFirewallRulesFirewallRuleArgs>> firewallRules() {
-        return this.firewallRules;
+    public Optional<Output<List<ServerFirewallRulesFirewallRuleArgs>>> firewallRules() {
+        return Optional.ofNullable(this.firewallRules);
     }
 
     /**
-     * The unique id of the server to be protected the firewall rules
+     * The UUID of the server to be protected with the firewall rules.
      * 
      */
     @Import(name="serverId", required=true)
     private Output<String> serverId;
 
     /**
-     * @return The unique id of the server to be protected the firewall rules
+     * @return The UUID of the server to be protected with the firewall rules.
      * 
      */
     public Output<String> serverId() {
@@ -92,7 +94,7 @@ public final class ServerFirewallRulesArgs extends com.pulumi.resources.Resource
          * @return builder
          * 
          */
-        public Builder firewallRules(Output<List<ServerFirewallRulesFirewallRuleArgs>> firewallRules) {
+        public Builder firewallRules(@Nullable Output<List<ServerFirewallRulesFirewallRuleArgs>> firewallRules) {
             $.firewallRules = firewallRules;
             return this;
         }
@@ -128,7 +130,7 @@ public final class ServerFirewallRulesArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param serverId The unique id of the server to be protected the firewall rules
+         * @param serverId The UUID of the server to be protected with the firewall rules.
          * 
          * @return builder
          * 
@@ -139,7 +141,7 @@ public final class ServerFirewallRulesArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param serverId The unique id of the server to be protected the firewall rules
+         * @param serverId The UUID of the server to be protected with the firewall rules.
          * 
          * @return builder
          * 
@@ -149,9 +151,6 @@ public final class ServerFirewallRulesArgs extends com.pulumi.resources.Resource
         }
 
         public ServerFirewallRulesArgs build() {
-            if ($.firewallRules == null) {
-                throw new MissingRequiredPropertyException("ServerFirewallRulesArgs", "firewallRules");
-            }
             if ($.serverId == null) {
                 throw new MissingRequiredPropertyException("ServerFirewallRulesArgs", "serverId");
             }

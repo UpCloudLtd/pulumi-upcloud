@@ -17,14 +17,14 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
     public static final ServerFirewallRulesFirewallRuleArgs Empty = new ServerFirewallRulesFirewallRuleArgs();
 
     /**
-     * Action to take if the rule conditions are met. Valid values `accept | drop`
+     * Action to take if the rule conditions are met. Valid values `accept | drop`.
      * 
      */
     @Import(name="action", required=true)
     private Output<String> action;
 
     /**
-     * @return Action to take if the rule conditions are met. Valid values `accept | drop`
+     * @return Action to take if the rule conditions are met. Valid values `accept | drop`.
      * 
      */
     public Output<String> action() {
@@ -32,14 +32,14 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
     }
 
     /**
-     * Freeform comment string for the rule
+     * A comment for the rule.
      * 
      */
     @Import(name="comment")
     private @Nullable Output<String> comment;
 
     /**
-     * @return Freeform comment string for the rule
+     * @return A comment for the rule.
      * 
      */
     public Optional<Output<String>> comment() {
@@ -107,14 +107,14 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
     }
 
     /**
-     * The direction of network traffic this rule will be applied to
+     * The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
      * 
      */
     @Import(name="direction", required=true)
     private Output<String> direction;
 
     /**
-     * @return The direction of network traffic this rule will be applied to
+     * @return The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
      * 
      */
     public Output<String> direction() {
@@ -137,14 +137,14 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
     }
 
     /**
-     * The ICMP type
+     * The ICMP type of the rule. Only valid if protocol is ICMP.
      * 
      */
     @Import(name="icmpType")
     private @Nullable Output<String> icmpType;
 
     /**
-     * @return The ICMP type
+     * @return The ICMP type of the rule. Only valid if protocol is ICMP.
      * 
      */
     public Optional<Output<String>> icmpType() {
@@ -152,14 +152,14 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
     }
 
     /**
-     * The protocol this rule will be applied to
+     * The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
      * 
      */
     @Import(name="protocol")
     private @Nullable Output<String> protocol;
 
     /**
-     * @return The protocol this rule will be applied to
+     * @return The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
      * 
      */
     public Optional<Output<String>> protocol() {
@@ -264,7 +264,7 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
         }
 
         /**
-         * @param action Action to take if the rule conditions are met. Valid values `accept | drop`
+         * @param action Action to take if the rule conditions are met. Valid values `accept | drop`.
          * 
          * @return builder
          * 
@@ -275,7 +275,7 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
         }
 
         /**
-         * @param action Action to take if the rule conditions are met. Valid values `accept | drop`
+         * @param action Action to take if the rule conditions are met. Valid values `accept | drop`.
          * 
          * @return builder
          * 
@@ -285,7 +285,7 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
         }
 
         /**
-         * @param comment Freeform comment string for the rule
+         * @param comment A comment for the rule.
          * 
          * @return builder
          * 
@@ -296,7 +296,7 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
         }
 
         /**
-         * @param comment Freeform comment string for the rule
+         * @param comment A comment for the rule.
          * 
          * @return builder
          * 
@@ -390,7 +390,7 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
         }
 
         /**
-         * @param direction The direction of network traffic this rule will be applied to
+         * @param direction The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
          * 
          * @return builder
          * 
@@ -401,7 +401,7 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
         }
 
         /**
-         * @param direction The direction of network traffic this rule will be applied to
+         * @param direction The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
          * 
          * @return builder
          * 
@@ -432,7 +432,7 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
         }
 
         /**
-         * @param icmpType The ICMP type
+         * @param icmpType The ICMP type of the rule. Only valid if protocol is ICMP.
          * 
          * @return builder
          * 
@@ -443,7 +443,7 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
         }
 
         /**
-         * @param icmpType The ICMP type
+         * @param icmpType The ICMP type of the rule. Only valid if protocol is ICMP.
          * 
          * @return builder
          * 
@@ -453,7 +453,7 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
         }
 
         /**
-         * @param protocol The protocol this rule will be applied to
+         * @param protocol The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
          * 
          * @return builder
          * 
@@ -464,7 +464,7 @@ public final class ServerFirewallRulesFirewallRuleArgs extends com.pulumi.resour
         }
 
         /**
-         * @param protocol The protocol this rule will be applied to
+         * @param protocol The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
          * 
          * @return builder
          * 

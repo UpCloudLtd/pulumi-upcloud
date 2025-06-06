@@ -3651,11 +3651,11 @@ export interface RouterStaticRoute {
 
 export interface ServerFirewallRulesFirewallRule {
     /**
-     * Action to take if the rule conditions are met. Valid values `accept | drop`
+     * Action to take if the rule conditions are met. Valid values `accept | drop`.
      */
     action: pulumi.Input<string>;
     /**
-     * Freeform comment string for the rule
+     * A comment for the rule.
      */
     comment?: pulumi.Input<string>;
     /**
@@ -3675,7 +3675,7 @@ export interface ServerFirewallRulesFirewallRule {
      */
     destinationPortStart?: pulumi.Input<string>;
     /**
-     * The direction of network traffic this rule will be applied to
+     * The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
      */
     direction: pulumi.Input<string>;
     /**
@@ -3683,11 +3683,11 @@ export interface ServerFirewallRulesFirewallRule {
      */
     family?: pulumi.Input<string>;
     /**
-     * The ICMP type
+     * The ICMP type of the rule. Only valid if protocol is ICMP.
      */
     icmpType?: pulumi.Input<string>;
     /**
-     * The protocol this rule will be applied to
+     * The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
      */
     protocol?: pulumi.Input<string>;
     /**

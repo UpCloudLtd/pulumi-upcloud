@@ -945,6 +945,14 @@
     },
     "auto-settings": {
         "resources": {
+            "upcloud_managed_database_user": {
+                "maxItemsOneOverrides": {
+                    "valkey_access_control.$.categories": true,
+                    "valkey_access_control.$.channels": true,
+                    "valkey_access_control.$.commands": true,
+                    "valkey_access_control.$.keys": true
+                }
+            },
             "upcloud_server": {
                 "maxItemsOneOverrides": {
                     "login": true,
@@ -999,7 +1007,7 @@
             "upcloud:index/objectStorage:ObjectStorage": 0,
             "upcloud:index/router:Router": 1,
             "upcloud:index/server:Server": 1,
-            "upcloud:index/serverFirewallRules:ServerFirewallRules": 0,
+            "upcloud:index/serverFirewallRules:ServerFirewallRules": 1,
             "upcloud:index/serverGroup:ServerGroup": 1,
             "upcloud:index/storage:Storage": 1,
             "upcloud:index/storageBackup:StorageBackup": 1,
