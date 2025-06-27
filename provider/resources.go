@@ -70,7 +70,7 @@ func Provider() tfbridge.ProviderInfo {
 		Version:     version.Version,
 		DisplayName: "UpCloud",
 		Publisher:   "UpCloudLtd",
-		LogoURL:     "https://raw.githubusercontent.com/UpCloudLtd/pulumi-upcloud/refs/heads/main/provider/upcloud.png",
+		LogoURL:     "https://raw.githubusercontent.com/UpCloudLtd/.github/refs/heads/main/profile/logo.png",
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/download/v${VERSION}/
