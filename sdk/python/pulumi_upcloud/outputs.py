@@ -65,12 +65,14 @@ __all__ = [
     'ManagedDatabaseMysqlNodeState',
     'ManagedDatabaseMysqlProperties',
     'ManagedDatabaseMysqlPropertiesMigration',
+    'ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup',
     'ManagedDatabaseOpensearchComponent',
     'ManagedDatabaseOpensearchNetwork',
     'ManagedDatabaseOpensearchNodeState',
     'ManagedDatabaseOpensearchProperties',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListeners',
     'ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting',
+    'ManagedDatabaseOpensearchPropertiesClusterRemoteStore',
     'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog',
     'ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold',
     'ManagedDatabaseOpensearchPropertiesDiskWatermarks',
@@ -78,6 +80,7 @@ __all__ = [
     'ManagedDatabaseOpensearchPropertiesIndexTemplate',
     'ManagedDatabaseOpensearchPropertiesOpenid',
     'ManagedDatabaseOpensearchPropertiesOpensearchDashboards',
+    'ManagedDatabaseOpensearchPropertiesRemoteStore',
     'ManagedDatabaseOpensearchPropertiesSaml',
     'ManagedDatabaseOpensearchPropertiesSearchBackpressure',
     'ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress',
@@ -3117,6 +3120,8 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "max_allowed_packet"
         elif key == "maxHeapTableSize":
             suggest = "max_heap_table_size"
+        elif key == "mysqlIncrementalBackup":
+            suggest = "mysql_incremental_backup"
         elif key == "netBufferLength":
             suggest = "net_buffer_length"
         elif key == "netReadTimeout":
@@ -3182,6 +3187,7 @@ class ManagedDatabaseMysqlProperties(dict):
                  max_allowed_packet: Optional[builtins.int] = None,
                  max_heap_table_size: Optional[builtins.int] = None,
                  migration: Optional['outputs.ManagedDatabaseMysqlPropertiesMigration'] = None,
+                 mysql_incremental_backup: Optional['outputs.ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup'] = None,
                  net_buffer_length: Optional[builtins.int] = None,
                  net_read_timeout: Optional[builtins.int] = None,
                  net_write_timeout: Optional[builtins.int] = None,
@@ -3225,6 +3231,7 @@ class ManagedDatabaseMysqlProperties(dict):
         :param builtins.int max_allowed_packet: Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
         :param builtins.int max_heap_table_size: Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
         :param 'ManagedDatabaseMysqlPropertiesMigrationArgs' migration: Migrate data from existing server.
+        :param 'ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs' mysql_incremental_backup: MySQL incremental backup configuration.
         :param builtins.int net_buffer_length: Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
         :param builtins.int net_read_timeout: The number of seconds to wait for more data from a connection before aborting the read.
         :param builtins.int net_write_timeout: The number of seconds to wait for a block to be written to a connection before aborting the write.
@@ -3298,6 +3305,8 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "max_heap_table_size", max_heap_table_size)
         if migration is not None:
             pulumi.set(__self__, "migration", migration)
+        if mysql_incremental_backup is not None:
+            pulumi.set(__self__, "mysql_incremental_backup", mysql_incremental_backup)
         if net_buffer_length is not None:
             pulumi.set(__self__, "net_buffer_length", net_buffer_length)
         if net_read_timeout is not None:
@@ -3564,6 +3573,14 @@ class ManagedDatabaseMysqlProperties(dict):
         return pulumi.get(self, "migration")
 
     @property
+    @pulumi.getter(name="mysqlIncrementalBackup")
+    def mysql_incremental_backup(self) -> Optional['outputs.ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup']:
+        """
+        MySQL incremental backup configuration.
+        """
+        return pulumi.get(self, "mysql_incremental_backup")
+
+    @property
     @pulumi.getter(name="netBufferLength")
     def net_buffer_length(self) -> Optional[builtins.int]:
         """
@@ -3795,6 +3812,54 @@ class ManagedDatabaseMysqlPropertiesMigration(dict):
 
 
 @pulumi.output_type
+class ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fullBackupWeekSchedule":
+            suggest = "full_backup_week_schedule"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: Optional[builtins.bool] = None,
+                 full_backup_week_schedule: Optional[builtins.str] = None):
+        """
+        :param builtins.bool enabled: Enable incremental backups. Enable periodic incremental backups. When enabled, full_backup_week_schedule must be set. Incremental backups only store changes since the last backup, making them faster and more storage-efficient than full backups. This is particularly useful for large databases where daily full backups would be too time-consuming or expensive.
+        :param builtins.str full_backup_week_schedule: Full backup week schedule. Comma-separated list of days of the week when full backups should be created. Valid values: mon, tue, wed, thu, fri, sat, sun.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if full_backup_week_schedule is not None:
+            pulumi.set(__self__, "full_backup_week_schedule", full_backup_week_schedule)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[builtins.bool]:
+        """
+        Enable incremental backups. Enable periodic incremental backups. When enabled, full_backup_week_schedule must be set. Incremental backups only store changes since the last backup, making them faster and more storage-efficient than full backups. This is particularly useful for large databases where daily full backups would be too time-consuming or expensive.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="fullBackupWeekSchedule")
+    def full_backup_week_schedule(self) -> Optional[builtins.str]:
+        """
+        Full backup week schedule. Comma-separated list of days of the week when full backups should be created. Valid values: mon, tue, wed, thu, fri, sat, sun.
+        """
+        return pulumi.get(self, "full_backup_week_schedule")
+
+
+@pulumi.output_type
 class ManagedDatabaseOpensearchComponent(dict):
     def __init__(__self__, *,
                  component: Optional[builtins.str] = None,
@@ -3968,8 +4033,12 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "auth_failure_listeners"
         elif key == "automaticUtilityNetworkIpFilter":
             suggest = "automatic_utility_network_ip_filter"
+        elif key == "clusterFilecacheRemoteDataRatio":
+            suggest = "cluster_filecache_remote_data_ratio"
         elif key == "clusterMaxShardsPerNode":
             suggest = "cluster_max_shards_per_node"
+        elif key == "clusterRemoteStore":
+            suggest = "cluster_remote_store"
         elif key == "clusterRoutingAllocationBalancePreferPrimary":
             suggest = "cluster_routing_allocation_balance_prefer_primary"
         elif key == "clusterRoutingAllocationNodeConcurrentRecoveries":
@@ -3994,6 +4063,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "enable_searchable_snapshots"
         elif key == "enableSecurityAudit":
             suggest = "enable_security_audit"
+        elif key == "enableSnapshotApi":
+            suggest = "enable_snapshot_api"
         elif key == "httpMaxContentLength":
             suggest = "http_max_content_length"
         elif key == "httpMaxHeaderSize":
@@ -4042,6 +4113,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "knn_memory_circuit_breaker_enabled"
         elif key == "knnMemoryCircuitBreakerLimit":
             suggest = "knn_memory_circuit_breaker_limit"
+        elif key == "nodeSearchCacheSize":
+            suggest = "node_search_cache_size"
         elif key == "opensearchDashboards":
             suggest = "opensearch_dashboards"
         elif key == "overrideMainResponseVersion":
@@ -4052,6 +4125,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "public_access"
         elif key == "reindexRemoteWhitelists":
             suggest = "reindex_remote_whitelists"
+        elif key == "remoteStore":
+            suggest = "remote_store"
         elif key == "scriptMaxCompilationsRate":
             suggest = "script_max_compilations_rate"
         elif key == "searchBackpressure":
@@ -4103,7 +4178,9 @@ class ManagedDatabaseOpensearchProperties(dict):
                  action_destructive_requires_name: Optional[builtins.bool] = None,
                  auth_failure_listeners: Optional['outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListeners'] = None,
                  automatic_utility_network_ip_filter: Optional[builtins.bool] = None,
+                 cluster_filecache_remote_data_ratio: Optional[builtins.int] = None,
                  cluster_max_shards_per_node: Optional[builtins.int] = None,
+                 cluster_remote_store: Optional['outputs.ManagedDatabaseOpensearchPropertiesClusterRemoteStore'] = None,
                  cluster_routing_allocation_balance_prefer_primary: Optional[builtins.bool] = None,
                  cluster_routing_allocation_node_concurrent_recoveries: Optional[builtins.int] = None,
                  cluster_search_request_slowlog: Optional['outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog'] = None,
@@ -4116,6 +4193,7 @@ class ManagedDatabaseOpensearchProperties(dict):
                  enable_remote_backed_storage: Optional[builtins.bool] = None,
                  enable_searchable_snapshots: Optional[builtins.bool] = None,
                  enable_security_audit: Optional[builtins.bool] = None,
+                 enable_snapshot_api: Optional[builtins.bool] = None,
                  http_max_content_length: Optional[builtins.int] = None,
                  http_max_header_size: Optional[builtins.int] = None,
                  http_max_initial_line_length: Optional[builtins.int] = None,
@@ -4140,12 +4218,14 @@ class ManagedDatabaseOpensearchProperties(dict):
                  keep_index_refresh_interval: Optional[builtins.bool] = None,
                  knn_memory_circuit_breaker_enabled: Optional[builtins.bool] = None,
                  knn_memory_circuit_breaker_limit: Optional[builtins.int] = None,
+                 node_search_cache_size: Optional[builtins.str] = None,
                  openid: Optional['outputs.ManagedDatabaseOpensearchPropertiesOpenid'] = None,
                  opensearch_dashboards: Optional['outputs.ManagedDatabaseOpensearchPropertiesOpensearchDashboards'] = None,
                  override_main_response_version: Optional[builtins.bool] = None,
                  plugins_alerting_filter_by_backend_roles: Optional[builtins.bool] = None,
                  public_access: Optional[builtins.bool] = None,
                  reindex_remote_whitelists: Optional[Sequence[builtins.str]] = None,
+                 remote_store: Optional['outputs.ManagedDatabaseOpensearchPropertiesRemoteStore'] = None,
                  saml: Optional['outputs.ManagedDatabaseOpensearchPropertiesSaml'] = None,
                  script_max_compilations_rate: Optional[builtins.str] = None,
                  search_backpressure: Optional['outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressure'] = None,
@@ -4171,6 +4251,7 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param builtins.bool action_destructive_requires_name: Require explicit index names when deleting.
         :param 'ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs' auth_failure_listeners: Opensearch Security Plugin Settings.
         :param builtins.bool automatic_utility_network_ip_filter: Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
+        :param builtins.int cluster_filecache_remote_data_ratio: The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
         :param builtins.int cluster_max_shards_per_node: Controls the number of shards allowed in the cluster per data node.
         :param builtins.bool cluster_routing_allocation_balance_prefer_primary: When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
         :param builtins.int cluster_routing_allocation_node_concurrent_recoveries: Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
@@ -4183,6 +4264,7 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param builtins.bool enable_remote_backed_storage: Enable remote-backed storage.
         :param builtins.bool enable_searchable_snapshots: Enable searchable snapshots.
         :param builtins.bool enable_security_audit: Enable/Disable security audit.
+        :param builtins.bool enable_snapshot_api: Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
         :param builtins.int http_max_content_length: Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
         :param builtins.int http_max_header_size: The max size of allowed headers, in bytes.
         :param builtins.int http_max_initial_line_length: The max length of an HTTP URL, in bytes.
@@ -4207,6 +4289,7 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param builtins.bool keep_index_refresh_interval: Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
         :param builtins.bool knn_memory_circuit_breaker_enabled: Enable or disable KNN memory circuit breaker. Defaults to true.
         :param builtins.int knn_memory_circuit_breaker_limit: Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+        :param builtins.str node_search_cache_size: The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
         :param 'ManagedDatabaseOpensearchPropertiesOpenidArgs' openid: OpenSearch OpenID Connect Configuration.
         :param 'ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs' opensearch_dashboards: OpenSearch Dashboards settings.
         :param builtins.bool override_main_response_version: Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false.
@@ -4241,8 +4324,12 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "auth_failure_listeners", auth_failure_listeners)
         if automatic_utility_network_ip_filter is not None:
             pulumi.set(__self__, "automatic_utility_network_ip_filter", automatic_utility_network_ip_filter)
+        if cluster_filecache_remote_data_ratio is not None:
+            pulumi.set(__self__, "cluster_filecache_remote_data_ratio", cluster_filecache_remote_data_ratio)
         if cluster_max_shards_per_node is not None:
             pulumi.set(__self__, "cluster_max_shards_per_node", cluster_max_shards_per_node)
+        if cluster_remote_store is not None:
+            pulumi.set(__self__, "cluster_remote_store", cluster_remote_store)
         if cluster_routing_allocation_balance_prefer_primary is not None:
             pulumi.set(__self__, "cluster_routing_allocation_balance_prefer_primary", cluster_routing_allocation_balance_prefer_primary)
         if cluster_routing_allocation_node_concurrent_recoveries is not None:
@@ -4267,6 +4354,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "enable_searchable_snapshots", enable_searchable_snapshots)
         if enable_security_audit is not None:
             pulumi.set(__self__, "enable_security_audit", enable_security_audit)
+        if enable_snapshot_api is not None:
+            pulumi.set(__self__, "enable_snapshot_api", enable_snapshot_api)
         if http_max_content_length is not None:
             pulumi.set(__self__, "http_max_content_length", http_max_content_length)
         if http_max_header_size is not None:
@@ -4315,6 +4404,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "knn_memory_circuit_breaker_enabled", knn_memory_circuit_breaker_enabled)
         if knn_memory_circuit_breaker_limit is not None:
             pulumi.set(__self__, "knn_memory_circuit_breaker_limit", knn_memory_circuit_breaker_limit)
+        if node_search_cache_size is not None:
+            pulumi.set(__self__, "node_search_cache_size", node_search_cache_size)
         if openid is not None:
             pulumi.set(__self__, "openid", openid)
         if opensearch_dashboards is not None:
@@ -4327,6 +4418,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "public_access", public_access)
         if reindex_remote_whitelists is not None:
             pulumi.set(__self__, "reindex_remote_whitelists", reindex_remote_whitelists)
+        if remote_store is not None:
+            pulumi.set(__self__, "remote_store", remote_store)
         if saml is not None:
             pulumi.set(__self__, "saml", saml)
         if script_max_compilations_rate is not None:
@@ -4401,12 +4494,25 @@ class ManagedDatabaseOpensearchProperties(dict):
         return pulumi.get(self, "automatic_utility_network_ip_filter")
 
     @property
+    @pulumi.getter(name="clusterFilecacheRemoteDataRatio")
+    def cluster_filecache_remote_data_ratio(self) -> Optional[builtins.int]:
+        """
+        The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
+        """
+        return pulumi.get(self, "cluster_filecache_remote_data_ratio")
+
+    @property
     @pulumi.getter(name="clusterMaxShardsPerNode")
     def cluster_max_shards_per_node(self) -> Optional[builtins.int]:
         """
         Controls the number of shards allowed in the cluster per data node.
         """
         return pulumi.get(self, "cluster_max_shards_per_node")
+
+    @property
+    @pulumi.getter(name="clusterRemoteStore")
+    def cluster_remote_store(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesClusterRemoteStore']:
+        return pulumi.get(self, "cluster_remote_store")
 
     @property
     @pulumi.getter(name="clusterRoutingAllocationBalancePreferPrimary")
@@ -4500,6 +4606,14 @@ class ManagedDatabaseOpensearchProperties(dict):
         Enable/Disable security audit.
         """
         return pulumi.get(self, "enable_security_audit")
+
+    @property
+    @pulumi.getter(name="enableSnapshotApi")
+    def enable_snapshot_api(self) -> Optional[builtins.bool]:
+        """
+        Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
+        """
+        return pulumi.get(self, "enable_snapshot_api")
 
     @property
     @pulumi.getter(name="httpMaxContentLength")
@@ -4694,6 +4808,14 @@ class ManagedDatabaseOpensearchProperties(dict):
         return pulumi.get(self, "knn_memory_circuit_breaker_limit")
 
     @property
+    @pulumi.getter(name="nodeSearchCacheSize")
+    def node_search_cache_size(self) -> Optional[builtins.str]:
+        """
+        The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
+        """
+        return pulumi.get(self, "node_search_cache_size")
+
+    @property
     @pulumi.getter
     def openid(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesOpenid']:
         """
@@ -4740,6 +4862,11 @@ class ManagedDatabaseOpensearchProperties(dict):
         Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
         """
         return pulumi.get(self, "reindex_remote_whitelists")
+
+    @property
+    @pulumi.getter(name="remoteStore")
+    def remote_store(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesRemoteStore']:
+        return pulumi.get(self, "remote_store")
 
     @property
     @pulumi.getter
@@ -5045,6 +5172,84 @@ class ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticat
         The type of rate limiting.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesClusterRemoteStore(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "stateGlobalMetadataUploadTimeout":
+            suggest = "state_global_metadata_upload_timeout"
+        elif key == "stateMetadataManifestUploadTimeout":
+            suggest = "state_metadata_manifest_upload_timeout"
+        elif key == "translogBufferInterval":
+            suggest = "translog_buffer_interval"
+        elif key == "translogMaxReaders":
+            suggest = "translog_max_readers"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesClusterRemoteStore. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesClusterRemoteStore.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesClusterRemoteStore.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 state_global_metadata_upload_timeout: Optional[builtins.str] = None,
+                 state_metadata_manifest_upload_timeout: Optional[builtins.str] = None,
+                 translog_buffer_interval: Optional[builtins.str] = None,
+                 translog_max_readers: Optional[builtins.int] = None):
+        """
+        :param builtins.str state_global_metadata_upload_timeout: The amount of time to wait for the cluster state upload to complete. The amount of time to wait for the cluster state upload to complete. Defaults to 20s.
+        :param builtins.str state_metadata_manifest_upload_timeout: The amount of time to wait for the manifest file upload to complete. The amount of time to wait for the manifest file upload to complete. The manifest file contains the details of each of the files uploaded for a single cluster state, both index metadata files and global metadata files. Defaults to 20s.
+        :param builtins.str translog_buffer_interval: The default value of the translog buffer interval. The default value of the translog buffer interval used when performing periodic translog updates. This setting is only effective when the index setting `index.remote_store.translog.buffer_interval` is not present. Defaults to 650ms.
+        :param builtins.int translog_max_readers: The maximum number of open translog files for remote-backed indexes. Sets the maximum number of open translog files for remote-backed indexes. This limits the total number of translog files per shard. After reaching this limit, the remote store flushes the translog files. Default is 1000. The minimum required is 100.
+        """
+        if state_global_metadata_upload_timeout is not None:
+            pulumi.set(__self__, "state_global_metadata_upload_timeout", state_global_metadata_upload_timeout)
+        if state_metadata_manifest_upload_timeout is not None:
+            pulumi.set(__self__, "state_metadata_manifest_upload_timeout", state_metadata_manifest_upload_timeout)
+        if translog_buffer_interval is not None:
+            pulumi.set(__self__, "translog_buffer_interval", translog_buffer_interval)
+        if translog_max_readers is not None:
+            pulumi.set(__self__, "translog_max_readers", translog_max_readers)
+
+    @property
+    @pulumi.getter(name="stateGlobalMetadataUploadTimeout")
+    def state_global_metadata_upload_timeout(self) -> Optional[builtins.str]:
+        """
+        The amount of time to wait for the cluster state upload to complete. The amount of time to wait for the cluster state upload to complete. Defaults to 20s.
+        """
+        return pulumi.get(self, "state_global_metadata_upload_timeout")
+
+    @property
+    @pulumi.getter(name="stateMetadataManifestUploadTimeout")
+    def state_metadata_manifest_upload_timeout(self) -> Optional[builtins.str]:
+        """
+        The amount of time to wait for the manifest file upload to complete. The amount of time to wait for the manifest file upload to complete. The manifest file contains the details of each of the files uploaded for a single cluster state, both index metadata files and global metadata files. Defaults to 20s.
+        """
+        return pulumi.get(self, "state_metadata_manifest_upload_timeout")
+
+    @property
+    @pulumi.getter(name="translogBufferInterval")
+    def translog_buffer_interval(self) -> Optional[builtins.str]:
+        """
+        The default value of the translog buffer interval. The default value of the translog buffer interval used when performing periodic translog updates. This setting is only effective when the index setting `index.remote_store.translog.buffer_interval` is not present. Defaults to 650ms.
+        """
+        return pulumi.get(self, "translog_buffer_interval")
+
+    @property
+    @pulumi.getter(name="translogMaxReaders")
+    def translog_max_readers(self) -> Optional[builtins.int]:
+        """
+        The maximum number of open translog files for remote-backed indexes. Sets the maximum number of open translog files for remote-backed indexes. This limits the total number of translog files per shard. After reaching this limit, the remote store flushes the translog files. Default is 1000. The minimum required is 100.
+        """
+        return pulumi.get(self, "translog_max_readers")
 
 
 @pulumi.output_type
@@ -5603,6 +5808,84 @@ class ManagedDatabaseOpensearchPropertiesOpensearchDashboards(dict):
         Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
         """
         return pulumi.get(self, "opensearch_request_timeout")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesRemoteStore(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "segmentPressureBytesLagVarianceFactor":
+            suggest = "segment_pressure_bytes_lag_variance_factor"
+        elif key == "segmentPressureConsecutiveFailuresLimit":
+            suggest = "segment_pressure_consecutive_failures_limit"
+        elif key == "segmentPressureEnabled":
+            suggest = "segment_pressure_enabled"
+        elif key == "segmentPressureTimeLagVarianceFactor":
+            suggest = "segment_pressure_time_lag_variance_factor"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesRemoteStore. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesRemoteStore.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesRemoteStore.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 segment_pressure_bytes_lag_variance_factor: Optional[builtins.float] = None,
+                 segment_pressure_consecutive_failures_limit: Optional[builtins.int] = None,
+                 segment_pressure_enabled: Optional[builtins.bool] = None,
+                 segment_pressure_time_lag_variance_factor: Optional[builtins.float] = None):
+        """
+        :param builtins.float segment_pressure_bytes_lag_variance_factor: The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic bytes lag threshold for activating remote segment backpressure. Defaults to 10.
+        :param builtins.int segment_pressure_consecutive_failures_limit: The minimum consecutive failure count for activating remote segment backpressure. The minimum consecutive failure count for activating remote segment backpressure. Defaults to 5.
+        :param builtins.bool segment_pressure_enabled: Enables remote segment backpressure. Enables remote segment backpressure. Default is `true`.
+        :param builtins.float segment_pressure_time_lag_variance_factor: The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic time lag threshold for activating remote segment backpressure. Defaults to 10.
+        """
+        if segment_pressure_bytes_lag_variance_factor is not None:
+            pulumi.set(__self__, "segment_pressure_bytes_lag_variance_factor", segment_pressure_bytes_lag_variance_factor)
+        if segment_pressure_consecutive_failures_limit is not None:
+            pulumi.set(__self__, "segment_pressure_consecutive_failures_limit", segment_pressure_consecutive_failures_limit)
+        if segment_pressure_enabled is not None:
+            pulumi.set(__self__, "segment_pressure_enabled", segment_pressure_enabled)
+        if segment_pressure_time_lag_variance_factor is not None:
+            pulumi.set(__self__, "segment_pressure_time_lag_variance_factor", segment_pressure_time_lag_variance_factor)
+
+    @property
+    @pulumi.getter(name="segmentPressureBytesLagVarianceFactor")
+    def segment_pressure_bytes_lag_variance_factor(self) -> Optional[builtins.float]:
+        """
+        The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic bytes lag threshold for activating remote segment backpressure. Defaults to 10.
+        """
+        return pulumi.get(self, "segment_pressure_bytes_lag_variance_factor")
+
+    @property
+    @pulumi.getter(name="segmentPressureConsecutiveFailuresLimit")
+    def segment_pressure_consecutive_failures_limit(self) -> Optional[builtins.int]:
+        """
+        The minimum consecutive failure count for activating remote segment backpressure. The minimum consecutive failure count for activating remote segment backpressure. Defaults to 5.
+        """
+        return pulumi.get(self, "segment_pressure_consecutive_failures_limit")
+
+    @property
+    @pulumi.getter(name="segmentPressureEnabled")
+    def segment_pressure_enabled(self) -> Optional[builtins.bool]:
+        """
+        Enables remote segment backpressure. Enables remote segment backpressure. Default is `true`.
+        """
+        return pulumi.get(self, "segment_pressure_enabled")
+
+    @property
+    @pulumi.getter(name="segmentPressureTimeLagVarianceFactor")
+    def segment_pressure_time_lag_variance_factor(self) -> Optional[builtins.float]:
+        """
+        The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic time lag threshold for activating remote segment backpressure. Defaults to 10.
+        """
+        return pulumi.get(self, "segment_pressure_time_lag_variance_factor")
 
 
 @pulumi.output_type
@@ -6932,6 +7215,8 @@ class ManagedDatabasePostgresqlProperties(dict):
             suggest = "log_min_duration_statement"
         elif key == "logTempFiles":
             suggest = "log_temp_files"
+        elif key == "maxConnections":
+            suggest = "max_connections"
         elif key == "maxFilesPerProcess":
             suggest = "max_files_per_process"
         elif key == "maxLocksPerTransaction":
@@ -6956,6 +7241,8 @@ class ManagedDatabasePostgresqlProperties(dict):
             suggest = "max_standby_archive_delay"
         elif key == "maxStandbyStreamingDelay":
             suggest = "max_standby_streaming_delay"
+        elif key == "maxSyncWorkersPerSubscription":
+            suggest = "max_sync_workers_per_subscription"
         elif key == "maxWalSenders":
             suggest = "max_wal_senders"
         elif key == "maxWorkerProcesses":
@@ -7039,6 +7326,7 @@ class ManagedDatabasePostgresqlProperties(dict):
                  log_line_prefix: Optional[builtins.str] = None,
                  log_min_duration_statement: Optional[builtins.int] = None,
                  log_temp_files: Optional[builtins.int] = None,
+                 max_connections: Optional[builtins.int] = None,
                  max_files_per_process: Optional[builtins.int] = None,
                  max_locks_per_transaction: Optional[builtins.int] = None,
                  max_logical_replication_workers: Optional[builtins.int] = None,
@@ -7051,6 +7339,7 @@ class ManagedDatabasePostgresqlProperties(dict):
                  max_stack_depth: Optional[builtins.int] = None,
                  max_standby_archive_delay: Optional[builtins.int] = None,
                  max_standby_streaming_delay: Optional[builtins.int] = None,
+                 max_sync_workers_per_subscription: Optional[builtins.int] = None,
                  max_wal_senders: Optional[builtins.int] = None,
                  max_worker_processes: Optional[builtins.int] = None,
                  migration: Optional['outputs.ManagedDatabasePostgresqlPropertiesMigration'] = None,
@@ -7084,72 +7373,74 @@ class ManagedDatabasePostgresqlProperties(dict):
         :param builtins.str admin_password: Custom password for admin user. Defaults to random string. This must be set only when a new service is being created.
         :param builtins.str admin_username: Custom username for admin user. This must be set only when a new service is being created.
         :param builtins.bool automatic_utility_network_ip_filter: Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
-        :param builtins.float autovacuum_analyze_scale_factor: Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
-        :param builtins.int autovacuum_analyze_threshold: Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
-        :param builtins.int autovacuum_freeze_max_age: Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
-        :param builtins.int autovacuum_max_workers: Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
-        :param builtins.int autovacuum_naptime: Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
-        :param builtins.int autovacuum_vacuum_cost_delay: Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds.
-        :param builtins.int autovacuum_vacuum_cost_limit: Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
-        :param builtins.float autovacuum_vacuum_scale_factor: Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
-        :param builtins.int autovacuum_vacuum_threshold: Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+        :param builtins.float autovacuum_analyze_scale_factor: Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
+        :param builtins.int autovacuum_analyze_threshold: Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
+        :param builtins.int autovacuum_freeze_max_age: Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
+        :param builtins.int autovacuum_max_workers: Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
+        :param builtins.int autovacuum_naptime: Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
+        :param builtins.int autovacuum_vacuum_cost_delay: Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_delay value will be used. The default is `2` (upstream default).
+        :param builtins.int autovacuum_vacuum_cost_limit: Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_limit value will be used. The default is `-1` (upstream default).
+        :param builtins.float autovacuum_vacuum_scale_factor: Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
+        :param builtins.int autovacuum_vacuum_threshold: Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
         :param builtins.int backup_hour: The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
         :param builtins.int backup_minute: The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
-        :param builtins.int bgwriter_delay: Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
-        :param builtins.int bgwriter_flush_after: Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
-        :param builtins.int bgwriter_lru_maxpages: In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
-        :param builtins.float bgwriter_lru_multiplier: The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
-        :param builtins.int deadlock_timeout: This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
-        :param builtins.str default_toast_compression: Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+        :param builtins.int bgwriter_delay: Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
+        :param builtins.int bgwriter_flush_after: Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
+        :param builtins.int bgwriter_lru_maxpages: In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
+        :param builtins.float bgwriter_lru_multiplier: The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
+        :param builtins.int deadlock_timeout: This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
+        :param builtins.str default_toast_compression: Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
         :param builtins.int idle_in_transaction_session_timeout: Time out sessions with open transactions after this number of milliseconds.
         :param Sequence[builtins.str] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
         :param builtins.bool jit: Controls system-wide use of Just-in-Time Compilation (JIT).
-        :param builtins.int log_autovacuum_min_duration: Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+        :param builtins.int log_autovacuum_min_duration: Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
         :param builtins.str log_error_verbosity: Controls the amount of detail written in the server log for each message that is logged.
         :param builtins.str log_line_prefix: Choose from one of the available log formats.
         :param builtins.int log_min_duration_statement: Log statements that take more than this number of milliseconds to run, -1 disables.
         :param builtins.int log_temp_files: Log statements for each temporary file created larger than this number of kilobytes, -1 disables.
-        :param builtins.int max_files_per_process: PostgreSQL maximum number of files that can be open per process.
-        :param builtins.int max_locks_per_transaction: PostgreSQL maximum locks per transaction.
-        :param builtins.int max_logical_replication_workers: PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
-        :param builtins.int max_parallel_workers: Sets the maximum number of workers that the system can support for parallel queries.
-        :param builtins.int max_parallel_workers_per_gather: Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
-        :param builtins.int max_pred_locks_per_transaction: PostgreSQL maximum predicate locks per transaction.
-        :param builtins.int max_prepared_transactions: PostgreSQL maximum prepared transactions.
-        :param builtins.int max_replication_slots: PostgreSQL maximum replication slots.
-        :param builtins.int max_slot_wal_keep_size: PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
-        :param builtins.int max_stack_depth: Maximum depth of the stack in bytes.
-        :param builtins.int max_standby_archive_delay: Max standby archive delay in milliseconds.
-        :param builtins.int max_standby_streaming_delay: Max standby streaming delay in milliseconds.
-        :param builtins.int max_wal_senders: PostgreSQL maximum WAL senders.
-        :param builtins.int max_worker_processes: Sets the maximum number of background processes that the system can support.
+        :param builtins.int max_connections: PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+        :param builtins.int max_files_per_process: PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
+        :param builtins.int max_locks_per_transaction: PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
+        :param builtins.int max_logical_replication_workers: PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+        :param builtins.int max_parallel_workers: Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
+        :param builtins.int max_parallel_workers_per_gather: Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
+        :param builtins.int max_pred_locks_per_transaction: PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
+        :param builtins.int max_prepared_transactions: PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
+        :param builtins.int max_replication_slots: PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
+        :param builtins.int max_slot_wal_keep_size: PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). wal_keep_size minimum WAL size setting takes precedence over this.
+        :param builtins.int max_stack_depth: Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
+        :param builtins.int max_standby_archive_delay: Max standby archive delay in milliseconds. The default is `30000` (upstream default).
+        :param builtins.int max_standby_streaming_delay: Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
+        :param builtins.int max_sync_workers_per_subscription: Maximum number of synchronization workers per subscription. The default is `2`.
+        :param builtins.int max_wal_senders: PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
+        :param builtins.int max_worker_processes: Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
         :param 'ManagedDatabasePostgresqlPropertiesMigrationArgs' migration: Migrate data from existing server.
         :param builtins.str password_encryption: Chooses the algorithm for encrypting passwords.
-        :param builtins.int pg_partman_bgw_interval: Sets the time interval to run pg_partman's scheduled tasks.
+        :param builtins.int pg_partman_bgw_interval: Sets the time interval in seconds to run pg_partman's scheduled tasks. The default is `3600`.
         :param builtins.str pg_partman_bgw_role: Controls which role to use for pg_partman's scheduled background tasks.
-        :param builtins.bool pg_stat_monitor_enable: Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
-        :param builtins.bool pg_stat_monitor_pgsm_enable_query_plan: Enables or disables query plan monitoring.
-        :param builtins.int pg_stat_monitor_pgsm_max_buckets: Sets the maximum number of buckets.
-        :param builtins.str pg_stat_statements_track: Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+        :param builtins.bool pg_stat_monitor_enable: Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Changing this parameter causes a service restart. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
+        :param builtins.bool pg_stat_monitor_pgsm_enable_query_plan: Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+        :param builtins.int pg_stat_monitor_pgsm_max_buckets: Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+        :param builtins.str pg_stat_statements_track: Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
         :param 'ManagedDatabasePostgresqlPropertiesPgauditArgs' pgaudit: PGAudit settings. System-wide settings for the pgaudit extension.
         :param 'ManagedDatabasePostgresqlPropertiesPgbouncerArgs' pgbouncer: PGBouncer connection pooling settings. System-wide settings for pgbouncer.
         :param 'ManagedDatabasePostgresqlPropertiesPglookoutArgs' pglookout: PGLookout settings. System-wide settings for pglookout.
         :param builtins.bool public_access: Public Access. Allow access to the service from the public Internet.
         :param builtins.bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
-        :param builtins.float shared_buffers_percentage: Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+        :param builtins.float shared_buffers_percentage: Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
         :param builtins.str synchronous_replication: Synchronous replication type. Note that the service plan also needs to support synchronous replication.
         :param builtins.int temp_file_limit: PostgreSQL temporary file limit in KiB, -1 for unlimited.
         :param 'ManagedDatabasePostgresqlPropertiesTimescaledbArgs' timescaledb: TimescaleDB extension configuration values. System-wide settings for the timescaledb extension.
         :param builtins.str timezone: PostgreSQL service timezone.
-        :param builtins.int track_activity_query_size: Specifies the number of bytes reserved to track the currently executing command for each active session.
-        :param builtins.str track_commit_timestamp: Record commit time of transactions.
+        :param builtins.int track_activity_query_size: Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
+        :param builtins.str track_commit_timestamp: Record commit time of transactions. Changing this parameter causes a service restart.
         :param builtins.str track_functions: Enables tracking of function call counts and time used.
-        :param builtins.str track_io_timing: Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+        :param builtins.str track_io_timing: Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
         :param builtins.str variant: Variant of the PostgreSQL service, may affect the features that are exposed by default.
         :param builtins.str version: PostgreSQL major version.
         :param builtins.int wal_sender_timeout: Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to zero disables the timeout.
-        :param builtins.int wal_writer_delay: WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
-        :param builtins.int work_mem: Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+        :param builtins.int wal_writer_delay: WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
+        :param builtins.int work_mem: Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
         """
         if admin_password is not None:
             pulumi.set(__self__, "admin_password", admin_password)
@@ -7207,6 +7498,8 @@ class ManagedDatabasePostgresqlProperties(dict):
             pulumi.set(__self__, "log_min_duration_statement", log_min_duration_statement)
         if log_temp_files is not None:
             pulumi.set(__self__, "log_temp_files", log_temp_files)
+        if max_connections is not None:
+            pulumi.set(__self__, "max_connections", max_connections)
         if max_files_per_process is not None:
             pulumi.set(__self__, "max_files_per_process", max_files_per_process)
         if max_locks_per_transaction is not None:
@@ -7231,6 +7524,8 @@ class ManagedDatabasePostgresqlProperties(dict):
             pulumi.set(__self__, "max_standby_archive_delay", max_standby_archive_delay)
         if max_standby_streaming_delay is not None:
             pulumi.set(__self__, "max_standby_streaming_delay", max_standby_streaming_delay)
+        if max_sync_workers_per_subscription is not None:
+            pulumi.set(__self__, "max_sync_workers_per_subscription", max_sync_workers_per_subscription)
         if max_wal_senders is not None:
             pulumi.set(__self__, "max_wal_senders", max_wal_senders)
         if max_worker_processes is not None:
@@ -7318,7 +7613,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="autovacuumAnalyzeScaleFactor")
     def autovacuum_analyze_scale_factor(self) -> Optional[builtins.float]:
         """
-        Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
+        Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
         """
         return pulumi.get(self, "autovacuum_analyze_scale_factor")
 
@@ -7326,7 +7621,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="autovacuumAnalyzeThreshold")
     def autovacuum_analyze_threshold(self) -> Optional[builtins.int]:
         """
-        Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+        Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
         """
         return pulumi.get(self, "autovacuum_analyze_threshold")
 
@@ -7334,7 +7629,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="autovacuumFreezeMaxAge")
     def autovacuum_freeze_max_age(self) -> Optional[builtins.int]:
         """
-        Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
+        Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "autovacuum_freeze_max_age")
 
@@ -7342,7 +7637,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="autovacuumMaxWorkers")
     def autovacuum_max_workers(self) -> Optional[builtins.int]:
         """
-        Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+        Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "autovacuum_max_workers")
 
@@ -7350,7 +7645,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="autovacuumNaptime")
     def autovacuum_naptime(self) -> Optional[builtins.int]:
         """
-        Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
+        Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
         """
         return pulumi.get(self, "autovacuum_naptime")
 
@@ -7358,7 +7653,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="autovacuumVacuumCostDelay")
     def autovacuum_vacuum_cost_delay(self) -> Optional[builtins.int]:
         """
-        Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds.
+        Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_delay value will be used. The default is `2` (upstream default).
         """
         return pulumi.get(self, "autovacuum_vacuum_cost_delay")
 
@@ -7366,7 +7661,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="autovacuumVacuumCostLimit")
     def autovacuum_vacuum_cost_limit(self) -> Optional[builtins.int]:
         """
-        Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+        Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_limit value will be used. The default is `-1` (upstream default).
         """
         return pulumi.get(self, "autovacuum_vacuum_cost_limit")
 
@@ -7374,7 +7669,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="autovacuumVacuumScaleFactor")
     def autovacuum_vacuum_scale_factor(self) -> Optional[builtins.float]:
         """
-        Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
+        Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
         """
         return pulumi.get(self, "autovacuum_vacuum_scale_factor")
 
@@ -7382,7 +7677,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="autovacuumVacuumThreshold")
     def autovacuum_vacuum_threshold(self) -> Optional[builtins.int]:
         """
-        Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+        Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
         """
         return pulumi.get(self, "autovacuum_vacuum_threshold")
 
@@ -7406,7 +7701,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="bgwriterDelay")
     def bgwriter_delay(self) -> Optional[builtins.int]:
         """
-        Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+        Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
         """
         return pulumi.get(self, "bgwriter_delay")
 
@@ -7414,7 +7709,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="bgwriterFlushAfter")
     def bgwriter_flush_after(self) -> Optional[builtins.int]:
         """
-        Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+        Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
         """
         return pulumi.get(self, "bgwriter_flush_after")
 
@@ -7422,7 +7717,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="bgwriterLruMaxpages")
     def bgwriter_lru_maxpages(self) -> Optional[builtins.int]:
         """
-        In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+        In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
         """
         return pulumi.get(self, "bgwriter_lru_maxpages")
 
@@ -7430,7 +7725,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="bgwriterLruMultiplier")
     def bgwriter_lru_multiplier(self) -> Optional[builtins.float]:
         """
-        The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+        The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
         """
         return pulumi.get(self, "bgwriter_lru_multiplier")
 
@@ -7438,7 +7733,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="deadlockTimeout")
     def deadlock_timeout(self) -> Optional[builtins.int]:
         """
-        This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+        This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
         """
         return pulumi.get(self, "deadlock_timeout")
 
@@ -7446,7 +7741,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="defaultToastCompression")
     def default_toast_compression(self) -> Optional[builtins.str]:
         """
-        Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+        Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
         """
         return pulumi.get(self, "default_toast_compression")
 
@@ -7478,7 +7773,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="logAutovacuumMinDuration")
     def log_autovacuum_min_duration(self) -> Optional[builtins.int]:
         """
-        Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+        Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
         """
         return pulumi.get(self, "log_autovacuum_min_duration")
 
@@ -7515,10 +7810,18 @@ class ManagedDatabasePostgresqlProperties(dict):
         return pulumi.get(self, "log_temp_files")
 
     @property
+    @pulumi.getter(name="maxConnections")
+    def max_connections(self) -> Optional[builtins.int]:
+        """
+        PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+        """
+        return pulumi.get(self, "max_connections")
+
+    @property
     @pulumi.getter(name="maxFilesPerProcess")
     def max_files_per_process(self) -> Optional[builtins.int]:
         """
-        PostgreSQL maximum number of files that can be open per process.
+        PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "max_files_per_process")
 
@@ -7526,7 +7829,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="maxLocksPerTransaction")
     def max_locks_per_transaction(self) -> Optional[builtins.int]:
         """
-        PostgreSQL maximum locks per transaction.
+        PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "max_locks_per_transaction")
 
@@ -7534,7 +7837,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="maxLogicalReplicationWorkers")
     def max_logical_replication_workers(self) -> Optional[builtins.int]:
         """
-        PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+        PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "max_logical_replication_workers")
 
@@ -7542,7 +7845,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="maxParallelWorkers")
     def max_parallel_workers(self) -> Optional[builtins.int]:
         """
-        Sets the maximum number of workers that the system can support for parallel queries.
+        Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
         """
         return pulumi.get(self, "max_parallel_workers")
 
@@ -7550,7 +7853,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="maxParallelWorkersPerGather")
     def max_parallel_workers_per_gather(self) -> Optional[builtins.int]:
         """
-        Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+        Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
         """
         return pulumi.get(self, "max_parallel_workers_per_gather")
 
@@ -7558,7 +7861,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="maxPredLocksPerTransaction")
     def max_pred_locks_per_transaction(self) -> Optional[builtins.int]:
         """
-        PostgreSQL maximum predicate locks per transaction.
+        PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "max_pred_locks_per_transaction")
 
@@ -7566,7 +7869,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="maxPreparedTransactions")
     def max_prepared_transactions(self) -> Optional[builtins.int]:
         """
-        PostgreSQL maximum prepared transactions.
+        PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "max_prepared_transactions")
 
@@ -7574,7 +7877,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="maxReplicationSlots")
     def max_replication_slots(self) -> Optional[builtins.int]:
         """
-        PostgreSQL maximum replication slots.
+        PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "max_replication_slots")
 
@@ -7582,7 +7885,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="maxSlotWalKeepSize")
     def max_slot_wal_keep_size(self) -> Optional[builtins.int]:
         """
-        PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+        PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). wal_keep_size minimum WAL size setting takes precedence over this.
         """
         return pulumi.get(self, "max_slot_wal_keep_size")
 
@@ -7590,7 +7893,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="maxStackDepth")
     def max_stack_depth(self) -> Optional[builtins.int]:
         """
-        Maximum depth of the stack in bytes.
+        Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
         """
         return pulumi.get(self, "max_stack_depth")
 
@@ -7598,7 +7901,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="maxStandbyArchiveDelay")
     def max_standby_archive_delay(self) -> Optional[builtins.int]:
         """
-        Max standby archive delay in milliseconds.
+        Max standby archive delay in milliseconds. The default is `30000` (upstream default).
         """
         return pulumi.get(self, "max_standby_archive_delay")
 
@@ -7606,15 +7909,23 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="maxStandbyStreamingDelay")
     def max_standby_streaming_delay(self) -> Optional[builtins.int]:
         """
-        Max standby streaming delay in milliseconds.
+        Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
         """
         return pulumi.get(self, "max_standby_streaming_delay")
+
+    @property
+    @pulumi.getter(name="maxSyncWorkersPerSubscription")
+    def max_sync_workers_per_subscription(self) -> Optional[builtins.int]:
+        """
+        Maximum number of synchronization workers per subscription. The default is `2`.
+        """
+        return pulumi.get(self, "max_sync_workers_per_subscription")
 
     @property
     @pulumi.getter(name="maxWalSenders")
     def max_wal_senders(self) -> Optional[builtins.int]:
         """
-        PostgreSQL maximum WAL senders.
+        PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "max_wal_senders")
 
@@ -7622,7 +7933,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="maxWorkerProcesses")
     def max_worker_processes(self) -> Optional[builtins.int]:
         """
-        Sets the maximum number of background processes that the system can support.
+        Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "max_worker_processes")
 
@@ -7646,7 +7957,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="pgPartmanBgwInterval")
     def pg_partman_bgw_interval(self) -> Optional[builtins.int]:
         """
-        Sets the time interval to run pg_partman's scheduled tasks.
+        Sets the time interval in seconds to run pg_partman's scheduled tasks. The default is `3600`.
         """
         return pulumi.get(self, "pg_partman_bgw_interval")
 
@@ -7662,7 +7973,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="pgStatMonitorEnable")
     def pg_stat_monitor_enable(self) -> Optional[builtins.bool]:
         """
-        Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
+        Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Changing this parameter causes a service restart. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
         """
         return pulumi.get(self, "pg_stat_monitor_enable")
 
@@ -7670,7 +7981,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="pgStatMonitorPgsmEnableQueryPlan")
     def pg_stat_monitor_pgsm_enable_query_plan(self) -> Optional[builtins.bool]:
         """
-        Enables or disables query plan monitoring.
+        Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
         """
         return pulumi.get(self, "pg_stat_monitor_pgsm_enable_query_plan")
 
@@ -7678,7 +7989,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="pgStatMonitorPgsmMaxBuckets")
     def pg_stat_monitor_pgsm_max_buckets(self) -> Optional[builtins.int]:
         """
-        Sets the maximum number of buckets.
+        Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
         """
         return pulumi.get(self, "pg_stat_monitor_pgsm_max_buckets")
 
@@ -7686,7 +7997,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="pgStatStatementsTrack")
     def pg_stat_statements_track(self) -> Optional[builtins.str]:
         """
-        Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+        Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
         """
         return pulumi.get(self, "pg_stat_statements_track")
 
@@ -7734,7 +8045,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="sharedBuffersPercentage")
     def shared_buffers_percentage(self) -> Optional[builtins.float]:
         """
-        Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+        Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "shared_buffers_percentage")
 
@@ -7774,7 +8085,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="trackActivityQuerySize")
     def track_activity_query_size(self) -> Optional[builtins.int]:
         """
-        Specifies the number of bytes reserved to track the currently executing command for each active session.
+        Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "track_activity_query_size")
 
@@ -7782,7 +8093,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="trackCommitTimestamp")
     def track_commit_timestamp(self) -> Optional[builtins.str]:
         """
-        Record commit time of transactions.
+        Record commit time of transactions. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "track_commit_timestamp")
 
@@ -7798,7 +8109,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="trackIoTiming")
     def track_io_timing(self) -> Optional[builtins.str]:
         """
-        Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+        Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
         """
         return pulumi.get(self, "track_io_timing")
 
@@ -7830,7 +8141,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="walWriterDelay")
     def wal_writer_delay(self) -> Optional[builtins.int]:
         """
-        WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+        WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
         """
         return pulumi.get(self, "wal_writer_delay")
 
@@ -7838,7 +8149,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="workMem")
     def work_mem(self) -> Optional[builtins.int]:
         """
-        Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+        Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
         """
         return pulumi.get(self, "work_mem")
 
@@ -8411,7 +8722,7 @@ class ManagedDatabasePostgresqlPropertiesTimescaledb(dict):
     def __init__(__self__, *,
                  max_background_workers: Optional[builtins.int] = None):
         """
-        :param builtins.int max_background_workers: The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time.
+        :param builtins.int max_background_workers: The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time. Changing this parameter causes a service restart.
         """
         if max_background_workers is not None:
             pulumi.set(__self__, "max_background_workers", max_background_workers)
@@ -8420,7 +8731,7 @@ class ManagedDatabasePostgresqlPropertiesTimescaledb(dict):
     @pulumi.getter(name="maxBackgroundWorkers")
     def max_background_workers(self) -> Optional[builtins.int]:
         """
-        The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time.
+        The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "max_background_workers")
 
@@ -10891,7 +11202,7 @@ class ServerTemplateBackupRule(dict):
         """
         :param builtins.str interval: The weekday when the backup is created
         :param builtins.int retention: The number of days before a backup is automatically deleted
-        :param builtins.str time: The time of day when the backup is created
+        :param builtins.str time: The time of day (UTC) when the backup is created
         """
         pulumi.set(__self__, "interval", interval)
         pulumi.set(__self__, "retention", retention)
@@ -10917,7 +11228,7 @@ class ServerTemplateBackupRule(dict):
     @pulumi.getter
     def time(self) -> builtins.str:
         """
-        The time of day when the backup is created
+        The time of day (UTC) when the backup is created
         """
         return pulumi.get(self, "time")
 
@@ -10931,7 +11242,7 @@ class StorageBackupRule(dict):
         """
         :param builtins.str interval: The weekday when the backup is created
         :param builtins.int retention: The number of days before a backup is automatically deleted
-        :param builtins.str time: The time of day when the backup is created
+        :param builtins.str time: The time of day (UTC) when the backup is created
         """
         pulumi.set(__self__, "interval", interval)
         pulumi.set(__self__, "retention", retention)
@@ -10957,7 +11268,7 @@ class StorageBackupRule(dict):
     @pulumi.getter
     def time(self) -> builtins.str:
         """
-        The time of day when the backup is created
+        The time of day (UTC) when the backup is created
         """
         return pulumi.get(self, "time")
 

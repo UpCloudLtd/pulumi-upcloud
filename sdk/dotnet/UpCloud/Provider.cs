@@ -26,8 +26,8 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
-        /// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
-        /// (EXPERIMENTAL)
+        /// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
+        /// the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
         /// </summary>
         [Output("token")]
         public Output<string?> Token { get; private set; } = null!;
@@ -99,8 +99,8 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<int>? RetryWaitMinSec { get; set; }
 
         /// <summary>
-        /// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
-        /// (EXPERIMENTAL)
+        /// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
+        /// the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
         /// </summary>
         [Input("token")]
         public Input<string>? Token { get; set; }

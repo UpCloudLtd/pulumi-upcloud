@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The UpCloud server resource allows the creation, update and deletion of a [cloud server](https://upcloud.com/products/cloud-servers).
+ * The UpCloud server resource allows the creation, update and deletion of [cloud servers](https://upcloud.com/products/cloud-servers).
+ *
+ * > To deploy a GPU server, select a plan with `GPU-` prefix, e.g., `GPU-8xCPU-64GB-1xL40S`. Use `upctl zone devices` command to list per zone GPU availability.
  *
  * ## Import
  *

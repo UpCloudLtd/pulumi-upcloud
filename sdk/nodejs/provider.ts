@@ -30,8 +30,8 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
-     * Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
-     * (EXPERIMENTAL)
+     * Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
+     * the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
      */
     public readonly token!: pulumi.Output<string | undefined>;
     /**
@@ -89,8 +89,8 @@ export interface ProviderArgs {
      */
     retryWaitMinSec?: pulumi.Input<number>;
     /**
-     * Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
-     * (EXPERIMENTAL)
+     * Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
+     * the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
      */
     token?: pulumi.Input<string>;
     /**

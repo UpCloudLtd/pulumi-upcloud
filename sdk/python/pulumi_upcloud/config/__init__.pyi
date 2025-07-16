@@ -43,8 +43,8 @@ Minimum time to wait between retries
 
 token: Optional[str]
 """
-Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
-(EXPERIMENTAL)
+Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
+the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
 """
 
 username: Optional[str]

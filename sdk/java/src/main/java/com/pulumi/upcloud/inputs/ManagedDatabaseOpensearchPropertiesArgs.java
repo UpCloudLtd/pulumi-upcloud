@@ -6,12 +6,14 @@ package com.pulumi.upcloud.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs;
+import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesIndexRollupArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesIndexTemplateArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesOpenidArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs;
+import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesRemoteStoreArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesSamlArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesArgs;
@@ -91,6 +93,21 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
     }
 
     /**
+     * The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
+     * 
+     */
+    @Import(name="clusterFilecacheRemoteDataRatio")
+    private @Nullable Output<Integer> clusterFilecacheRemoteDataRatio;
+
+    /**
+     * @return The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
+     * 
+     */
+    public Optional<Output<Integer>> clusterFilecacheRemoteDataRatio() {
+        return Optional.ofNullable(this.clusterFilecacheRemoteDataRatio);
+    }
+
+    /**
      * Controls the number of shards allowed in the cluster per data node.
      * 
      */
@@ -103,6 +120,13 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
      */
     public Optional<Output<Integer>> clusterMaxShardsPerNode() {
         return Optional.ofNullable(this.clusterMaxShardsPerNode);
+    }
+
+    @Import(name="clusterRemoteStore")
+    private @Nullable Output<ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs> clusterRemoteStore;
+
+    public Optional<Output<ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs>> clusterRemoteStore() {
+        return Optional.ofNullable(this.clusterRemoteStore);
     }
 
     /**
@@ -275,6 +299,21 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
      */
     public Optional<Output<Boolean>> enableSecurityAudit() {
         return Optional.ofNullable(this.enableSecurityAudit);
+    }
+
+    /**
+     * Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
+     * 
+     */
+    @Import(name="enableSnapshotApi")
+    private @Nullable Output<Boolean> enableSnapshotApi;
+
+    /**
+     * @return Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
+     * 
+     */
+    public Optional<Output<Boolean>> enableSnapshotApi() {
+        return Optional.ofNullable(this.enableSnapshotApi);
     }
 
     /**
@@ -638,6 +677,21 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
     }
 
     /**
+     * The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
+     * 
+     */
+    @Import(name="nodeSearchCacheSize")
+    private @Nullable Output<String> nodeSearchCacheSize;
+
+    /**
+     * @return The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
+     * 
+     */
+    public Optional<Output<String>> nodeSearchCacheSize() {
+        return Optional.ofNullable(this.nodeSearchCacheSize);
+    }
+
+    /**
      * OpenSearch OpenID Connect Configuration.
      * 
      */
@@ -725,6 +779,13 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
      */
     public Optional<Output<List<String>>> reindexRemoteWhitelists() {
         return Optional.ofNullable(this.reindexRemoteWhitelists);
+    }
+
+    @Import(name="remoteStore")
+    private @Nullable Output<ManagedDatabaseOpensearchPropertiesRemoteStoreArgs> remoteStore;
+
+    public Optional<Output<ManagedDatabaseOpensearchPropertiesRemoteStoreArgs>> remoteStore() {
+        return Optional.ofNullable(this.remoteStore);
     }
 
     /**
@@ -1026,7 +1087,9 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         this.actionDestructiveRequiresName = $.actionDestructiveRequiresName;
         this.authFailureListeners = $.authFailureListeners;
         this.automaticUtilityNetworkIpFilter = $.automaticUtilityNetworkIpFilter;
+        this.clusterFilecacheRemoteDataRatio = $.clusterFilecacheRemoteDataRatio;
         this.clusterMaxShardsPerNode = $.clusterMaxShardsPerNode;
+        this.clusterRemoteStore = $.clusterRemoteStore;
         this.clusterRoutingAllocationBalancePreferPrimary = $.clusterRoutingAllocationBalancePreferPrimary;
         this.clusterRoutingAllocationNodeConcurrentRecoveries = $.clusterRoutingAllocationNodeConcurrentRecoveries;
         this.clusterSearchRequestSlowlog = $.clusterSearchRequestSlowlog;
@@ -1039,6 +1102,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         this.enableRemoteBackedStorage = $.enableRemoteBackedStorage;
         this.enableSearchableSnapshots = $.enableSearchableSnapshots;
         this.enableSecurityAudit = $.enableSecurityAudit;
+        this.enableSnapshotApi = $.enableSnapshotApi;
         this.httpMaxContentLength = $.httpMaxContentLength;
         this.httpMaxHeaderSize = $.httpMaxHeaderSize;
         this.httpMaxInitialLineLength = $.httpMaxInitialLineLength;
@@ -1063,12 +1127,14 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         this.keepIndexRefreshInterval = $.keepIndexRefreshInterval;
         this.knnMemoryCircuitBreakerEnabled = $.knnMemoryCircuitBreakerEnabled;
         this.knnMemoryCircuitBreakerLimit = $.knnMemoryCircuitBreakerLimit;
+        this.nodeSearchCacheSize = $.nodeSearchCacheSize;
         this.openid = $.openid;
         this.opensearchDashboards = $.opensearchDashboards;
         this.overrideMainResponseVersion = $.overrideMainResponseVersion;
         this.pluginsAlertingFilterByBackendRoles = $.pluginsAlertingFilterByBackendRoles;
         this.publicAccess = $.publicAccess;
         this.reindexRemoteWhitelists = $.reindexRemoteWhitelists;
+        this.remoteStore = $.remoteStore;
         this.saml = $.saml;
         this.scriptMaxCompilationsRate = $.scriptMaxCompilationsRate;
         this.searchBackpressure = $.searchBackpressure;
@@ -1194,6 +1260,27 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
+         * @param clusterFilecacheRemoteDataRatio The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clusterFilecacheRemoteDataRatio(@Nullable Output<Integer> clusterFilecacheRemoteDataRatio) {
+            $.clusterFilecacheRemoteDataRatio = clusterFilecacheRemoteDataRatio;
+            return this;
+        }
+
+        /**
+         * @param clusterFilecacheRemoteDataRatio The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clusterFilecacheRemoteDataRatio(Integer clusterFilecacheRemoteDataRatio) {
+            return clusterFilecacheRemoteDataRatio(Output.of(clusterFilecacheRemoteDataRatio));
+        }
+
+        /**
          * @param clusterMaxShardsPerNode Controls the number of shards allowed in the cluster per data node.
          * 
          * @return builder
@@ -1212,6 +1299,15 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
          */
         public Builder clusterMaxShardsPerNode(Integer clusterMaxShardsPerNode) {
             return clusterMaxShardsPerNode(Output.of(clusterMaxShardsPerNode));
+        }
+
+        public Builder clusterRemoteStore(@Nullable Output<ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs> clusterRemoteStore) {
+            $.clusterRemoteStore = clusterRemoteStore;
+            return this;
+        }
+
+        public Builder clusterRemoteStore(ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs clusterRemoteStore) {
+            return clusterRemoteStore(Output.of(clusterRemoteStore));
         }
 
         /**
@@ -1452,6 +1548,27 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
          */
         public Builder enableSecurityAudit(Boolean enableSecurityAudit) {
             return enableSecurityAudit(Output.of(enableSecurityAudit));
+        }
+
+        /**
+         * @param enableSnapshotApi Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableSnapshotApi(@Nullable Output<Boolean> enableSnapshotApi) {
+            $.enableSnapshotApi = enableSnapshotApi;
+            return this;
+        }
+
+        /**
+         * @param enableSnapshotApi Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableSnapshotApi(Boolean enableSnapshotApi) {
+            return enableSnapshotApi(Output.of(enableSnapshotApi));
         }
 
         /**
@@ -1979,6 +2096,27 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
+         * @param nodeSearchCacheSize The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nodeSearchCacheSize(@Nullable Output<String> nodeSearchCacheSize) {
+            $.nodeSearchCacheSize = nodeSearchCacheSize;
+            return this;
+        }
+
+        /**
+         * @param nodeSearchCacheSize The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nodeSearchCacheSize(String nodeSearchCacheSize) {
+            return nodeSearchCacheSize(Output.of(nodeSearchCacheSize));
+        }
+
+        /**
          * @param openid OpenSearch OpenID Connect Configuration.
          * 
          * @return builder
@@ -2112,6 +2250,15 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
          */
         public Builder reindexRemoteWhitelists(String... reindexRemoteWhitelists) {
             return reindexRemoteWhitelists(List.of(reindexRemoteWhitelists));
+        }
+
+        public Builder remoteStore(@Nullable Output<ManagedDatabaseOpensearchPropertiesRemoteStoreArgs> remoteStore) {
+            $.remoteStore = remoteStore;
+            return this;
+        }
+
+        public Builder remoteStore(ManagedDatabaseOpensearchPropertiesRemoteStoreArgs remoteStore) {
+            return remoteStore(Output.of(remoteStore));
         }
 
         /**

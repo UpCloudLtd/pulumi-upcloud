@@ -5,12 +5,14 @@ package com.pulumi.upcloud.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListeners;
+import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesClusterRemoteStore;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesIndexRollup;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesIndexTemplate;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesOpenid;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesOpensearchDashboards;
+import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesRemoteStore;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesSaml;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressure;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries;
@@ -47,10 +49,16 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     private @Nullable Boolean automaticUtilityNetworkIpFilter;
     /**
+     * @return The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
+     * 
+     */
+    private @Nullable Integer clusterFilecacheRemoteDataRatio;
+    /**
      * @return Controls the number of shards allowed in the cluster per data node.
      * 
      */
     private @Nullable Integer clusterMaxShardsPerNode;
+    private @Nullable ManagedDatabaseOpensearchPropertiesClusterRemoteStore clusterRemoteStore;
     /**
      * @return When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
      * 
@@ -107,6 +115,11 @@ public final class ManagedDatabaseOpensearchProperties {
      * 
      */
     private @Nullable Boolean enableSecurityAudit;
+    /**
+     * @return Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
+     * 
+     */
+    private @Nullable Boolean enableSnapshotApi;
     /**
      * @return Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
      * 
@@ -228,6 +241,11 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     private @Nullable Integer knnMemoryCircuitBreakerLimit;
     /**
+     * @return The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
+     * 
+     */
+    private @Nullable String nodeSearchCacheSize;
+    /**
      * @return OpenSearch OpenID Connect Configuration.
      * 
      */
@@ -257,6 +275,7 @@ public final class ManagedDatabaseOpensearchProperties {
      * 
      */
     private @Nullable List<String> reindexRemoteWhitelists;
+    private @Nullable ManagedDatabaseOpensearchPropertiesRemoteStore remoteStore;
     /**
      * @return OpenSearch SAML configuration.
      * 
@@ -384,11 +403,21 @@ public final class ManagedDatabaseOpensearchProperties {
         return Optional.ofNullable(this.automaticUtilityNetworkIpFilter);
     }
     /**
+     * @return The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
+     * 
+     */
+    public Optional<Integer> clusterFilecacheRemoteDataRatio() {
+        return Optional.ofNullable(this.clusterFilecacheRemoteDataRatio);
+    }
+    /**
      * @return Controls the number of shards allowed in the cluster per data node.
      * 
      */
     public Optional<Integer> clusterMaxShardsPerNode() {
         return Optional.ofNullable(this.clusterMaxShardsPerNode);
+    }
+    public Optional<ManagedDatabaseOpensearchPropertiesClusterRemoteStore> clusterRemoteStore() {
+        return Optional.ofNullable(this.clusterRemoteStore);
     }
     /**
      * @return When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
@@ -469,6 +498,13 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     public Optional<Boolean> enableSecurityAudit() {
         return Optional.ofNullable(this.enableSecurityAudit);
+    }
+    /**
+     * @return Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
+     * 
+     */
+    public Optional<Boolean> enableSnapshotApi() {
+        return Optional.ofNullable(this.enableSnapshotApi);
     }
     /**
      * @return Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
@@ -639,6 +675,13 @@ public final class ManagedDatabaseOpensearchProperties {
         return Optional.ofNullable(this.knnMemoryCircuitBreakerLimit);
     }
     /**
+     * @return The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
+     * 
+     */
+    public Optional<String> nodeSearchCacheSize() {
+        return Optional.ofNullable(this.nodeSearchCacheSize);
+    }
+    /**
      * @return OpenSearch OpenID Connect Configuration.
      * 
      */
@@ -679,6 +722,9 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     public List<String> reindexRemoteWhitelists() {
         return this.reindexRemoteWhitelists == null ? List.of() : this.reindexRemoteWhitelists;
+    }
+    public Optional<ManagedDatabaseOpensearchPropertiesRemoteStore> remoteStore() {
+        return Optional.ofNullable(this.remoteStore);
     }
     /**
      * @return OpenSearch SAML configuration.
@@ -830,7 +876,9 @@ public final class ManagedDatabaseOpensearchProperties {
         private @Nullable Boolean actionDestructiveRequiresName;
         private @Nullable ManagedDatabaseOpensearchPropertiesAuthFailureListeners authFailureListeners;
         private @Nullable Boolean automaticUtilityNetworkIpFilter;
+        private @Nullable Integer clusterFilecacheRemoteDataRatio;
         private @Nullable Integer clusterMaxShardsPerNode;
+        private @Nullable ManagedDatabaseOpensearchPropertiesClusterRemoteStore clusterRemoteStore;
         private @Nullable Boolean clusterRoutingAllocationBalancePreferPrimary;
         private @Nullable Integer clusterRoutingAllocationNodeConcurrentRecoveries;
         private @Nullable ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog clusterSearchRequestSlowlog;
@@ -843,6 +891,7 @@ public final class ManagedDatabaseOpensearchProperties {
         private @Nullable Boolean enableRemoteBackedStorage;
         private @Nullable Boolean enableSearchableSnapshots;
         private @Nullable Boolean enableSecurityAudit;
+        private @Nullable Boolean enableSnapshotApi;
         private @Nullable Integer httpMaxContentLength;
         private @Nullable Integer httpMaxHeaderSize;
         private @Nullable Integer httpMaxInitialLineLength;
@@ -867,12 +916,14 @@ public final class ManagedDatabaseOpensearchProperties {
         private @Nullable Boolean keepIndexRefreshInterval;
         private @Nullable Boolean knnMemoryCircuitBreakerEnabled;
         private @Nullable Integer knnMemoryCircuitBreakerLimit;
+        private @Nullable String nodeSearchCacheSize;
         private @Nullable ManagedDatabaseOpensearchPropertiesOpenid openid;
         private @Nullable ManagedDatabaseOpensearchPropertiesOpensearchDashboards opensearchDashboards;
         private @Nullable Boolean overrideMainResponseVersion;
         private @Nullable Boolean pluginsAlertingFilterByBackendRoles;
         private @Nullable Boolean publicAccess;
         private @Nullable List<String> reindexRemoteWhitelists;
+        private @Nullable ManagedDatabaseOpensearchPropertiesRemoteStore remoteStore;
         private @Nullable ManagedDatabaseOpensearchPropertiesSaml saml;
         private @Nullable String scriptMaxCompilationsRate;
         private @Nullable ManagedDatabaseOpensearchPropertiesSearchBackpressure searchBackpressure;
@@ -900,7 +951,9 @@ public final class ManagedDatabaseOpensearchProperties {
     	      this.actionDestructiveRequiresName = defaults.actionDestructiveRequiresName;
     	      this.authFailureListeners = defaults.authFailureListeners;
     	      this.automaticUtilityNetworkIpFilter = defaults.automaticUtilityNetworkIpFilter;
+    	      this.clusterFilecacheRemoteDataRatio = defaults.clusterFilecacheRemoteDataRatio;
     	      this.clusterMaxShardsPerNode = defaults.clusterMaxShardsPerNode;
+    	      this.clusterRemoteStore = defaults.clusterRemoteStore;
     	      this.clusterRoutingAllocationBalancePreferPrimary = defaults.clusterRoutingAllocationBalancePreferPrimary;
     	      this.clusterRoutingAllocationNodeConcurrentRecoveries = defaults.clusterRoutingAllocationNodeConcurrentRecoveries;
     	      this.clusterSearchRequestSlowlog = defaults.clusterSearchRequestSlowlog;
@@ -913,6 +966,7 @@ public final class ManagedDatabaseOpensearchProperties {
     	      this.enableRemoteBackedStorage = defaults.enableRemoteBackedStorage;
     	      this.enableSearchableSnapshots = defaults.enableSearchableSnapshots;
     	      this.enableSecurityAudit = defaults.enableSecurityAudit;
+    	      this.enableSnapshotApi = defaults.enableSnapshotApi;
     	      this.httpMaxContentLength = defaults.httpMaxContentLength;
     	      this.httpMaxHeaderSize = defaults.httpMaxHeaderSize;
     	      this.httpMaxInitialLineLength = defaults.httpMaxInitialLineLength;
@@ -937,12 +991,14 @@ public final class ManagedDatabaseOpensearchProperties {
     	      this.keepIndexRefreshInterval = defaults.keepIndexRefreshInterval;
     	      this.knnMemoryCircuitBreakerEnabled = defaults.knnMemoryCircuitBreakerEnabled;
     	      this.knnMemoryCircuitBreakerLimit = defaults.knnMemoryCircuitBreakerLimit;
+    	      this.nodeSearchCacheSize = defaults.nodeSearchCacheSize;
     	      this.openid = defaults.openid;
     	      this.opensearchDashboards = defaults.opensearchDashboards;
     	      this.overrideMainResponseVersion = defaults.overrideMainResponseVersion;
     	      this.pluginsAlertingFilterByBackendRoles = defaults.pluginsAlertingFilterByBackendRoles;
     	      this.publicAccess = defaults.publicAccess;
     	      this.reindexRemoteWhitelists = defaults.reindexRemoteWhitelists;
+    	      this.remoteStore = defaults.remoteStore;
     	      this.saml = defaults.saml;
     	      this.scriptMaxCompilationsRate = defaults.scriptMaxCompilationsRate;
     	      this.searchBackpressure = defaults.searchBackpressure;
@@ -990,9 +1046,21 @@ public final class ManagedDatabaseOpensearchProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder clusterFilecacheRemoteDataRatio(@Nullable Integer clusterFilecacheRemoteDataRatio) {
+
+            this.clusterFilecacheRemoteDataRatio = clusterFilecacheRemoteDataRatio;
+            return this;
+        }
+        @CustomType.Setter
         public Builder clusterMaxShardsPerNode(@Nullable Integer clusterMaxShardsPerNode) {
 
             this.clusterMaxShardsPerNode = clusterMaxShardsPerNode;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder clusterRemoteStore(@Nullable ManagedDatabaseOpensearchPropertiesClusterRemoteStore clusterRemoteStore) {
+
+            this.clusterRemoteStore = clusterRemoteStore;
             return this;
         }
         @CustomType.Setter
@@ -1065,6 +1133,12 @@ public final class ManagedDatabaseOpensearchProperties {
         public Builder enableSecurityAudit(@Nullable Boolean enableSecurityAudit) {
 
             this.enableSecurityAudit = enableSecurityAudit;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder enableSnapshotApi(@Nullable Boolean enableSnapshotApi) {
+
+            this.enableSnapshotApi = enableSnapshotApi;
             return this;
         }
         @CustomType.Setter
@@ -1218,6 +1292,12 @@ public final class ManagedDatabaseOpensearchProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder nodeSearchCacheSize(@Nullable String nodeSearchCacheSize) {
+
+            this.nodeSearchCacheSize = nodeSearchCacheSize;
+            return this;
+        }
+        @CustomType.Setter
         public Builder openid(@Nullable ManagedDatabaseOpensearchPropertiesOpenid openid) {
 
             this.openid = openid;
@@ -1255,6 +1335,12 @@ public final class ManagedDatabaseOpensearchProperties {
         }
         public Builder reindexRemoteWhitelists(String... reindexRemoteWhitelists) {
             return reindexRemoteWhitelists(List.of(reindexRemoteWhitelists));
+        }
+        @CustomType.Setter
+        public Builder remoteStore(@Nullable ManagedDatabaseOpensearchPropertiesRemoteStore remoteStore) {
+
+            this.remoteStore = remoteStore;
+            return this;
         }
         @CustomType.Setter
         public Builder saml(@Nullable ManagedDatabaseOpensearchPropertiesSaml saml) {
@@ -1382,7 +1468,9 @@ public final class ManagedDatabaseOpensearchProperties {
             _resultValue.actionDestructiveRequiresName = actionDestructiveRequiresName;
             _resultValue.authFailureListeners = authFailureListeners;
             _resultValue.automaticUtilityNetworkIpFilter = automaticUtilityNetworkIpFilter;
+            _resultValue.clusterFilecacheRemoteDataRatio = clusterFilecacheRemoteDataRatio;
             _resultValue.clusterMaxShardsPerNode = clusterMaxShardsPerNode;
+            _resultValue.clusterRemoteStore = clusterRemoteStore;
             _resultValue.clusterRoutingAllocationBalancePreferPrimary = clusterRoutingAllocationBalancePreferPrimary;
             _resultValue.clusterRoutingAllocationNodeConcurrentRecoveries = clusterRoutingAllocationNodeConcurrentRecoveries;
             _resultValue.clusterSearchRequestSlowlog = clusterSearchRequestSlowlog;
@@ -1395,6 +1483,7 @@ public final class ManagedDatabaseOpensearchProperties {
             _resultValue.enableRemoteBackedStorage = enableRemoteBackedStorage;
             _resultValue.enableSearchableSnapshots = enableSearchableSnapshots;
             _resultValue.enableSecurityAudit = enableSecurityAudit;
+            _resultValue.enableSnapshotApi = enableSnapshotApi;
             _resultValue.httpMaxContentLength = httpMaxContentLength;
             _resultValue.httpMaxHeaderSize = httpMaxHeaderSize;
             _resultValue.httpMaxInitialLineLength = httpMaxInitialLineLength;
@@ -1419,12 +1508,14 @@ public final class ManagedDatabaseOpensearchProperties {
             _resultValue.keepIndexRefreshInterval = keepIndexRefreshInterval;
             _resultValue.knnMemoryCircuitBreakerEnabled = knnMemoryCircuitBreakerEnabled;
             _resultValue.knnMemoryCircuitBreakerLimit = knnMemoryCircuitBreakerLimit;
+            _resultValue.nodeSearchCacheSize = nodeSearchCacheSize;
             _resultValue.openid = openid;
             _resultValue.opensearchDashboards = opensearchDashboards;
             _resultValue.overrideMainResponseVersion = overrideMainResponseVersion;
             _resultValue.pluginsAlertingFilterByBackendRoles = pluginsAlertingFilterByBackendRoles;
             _resultValue.publicAccess = publicAccess;
             _resultValue.reindexRemoteWhitelists = reindexRemoteWhitelists;
+            _resultValue.remoteStore = remoteStore;
             _resultValue.saml = saml;
             _resultValue.scriptMaxCompilationsRate = scriptMaxCompilationsRate;
             _resultValue.searchBackpressure = searchBackpressure;

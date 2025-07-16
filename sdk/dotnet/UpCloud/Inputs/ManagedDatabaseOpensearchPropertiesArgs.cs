@@ -38,10 +38,19 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<bool>? AutomaticUtilityNetworkIpFilter { get; set; }
 
         /// <summary>
+        /// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
+        /// </summary>
+        [Input("clusterFilecacheRemoteDataRatio")]
+        public Input<int>? ClusterFilecacheRemoteDataRatio { get; set; }
+
+        /// <summary>
         /// Controls the number of shards allowed in the cluster per data node.
         /// </summary>
         [Input("clusterMaxShardsPerNode")]
         public Input<int>? ClusterMaxShardsPerNode { get; set; }
+
+        [Input("clusterRemoteStore")]
+        public Input<Inputs.ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs>? ClusterRemoteStore { get; set; }
 
         /// <summary>
         /// When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
@@ -121,6 +130,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         /// </summary>
         [Input("enableSecurityAudit")]
         public Input<bool>? EnableSecurityAudit { get; set; }
+
+        /// <summary>
+        /// Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
+        /// </summary>
+        [Input("enableSnapshotApi")]
+        public Input<bool>? EnableSnapshotApi { get; set; }
 
         /// <summary>
         /// Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
@@ -279,6 +294,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? KnnMemoryCircuitBreakerLimit { get; set; }
 
         /// <summary>
+        /// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
+        /// </summary>
+        [Input("nodeSearchCacheSize")]
+        public Input<string>? NodeSearchCacheSize { get; set; }
+
+        /// <summary>
         /// OpenSearch OpenID Connect Configuration.
         /// </summary>
         [Input("openid")]
@@ -319,6 +340,9 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
             get => _reindexRemoteWhitelists ?? (_reindexRemoteWhitelists = new InputList<string>());
             set => _reindexRemoteWhitelists = value;
         }
+
+        [Input("remoteStore")]
+        public Input<Inputs.ManagedDatabaseOpensearchPropertiesRemoteStoreArgs>? RemoteStore { get; set; }
 
         /// <summary>
         /// OpenSearch SAML configuration.

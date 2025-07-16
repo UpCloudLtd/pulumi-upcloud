@@ -70,14 +70,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
+     * Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
      * 
      */
     @Import(name="autovacuumAnalyzeScaleFactor")
     private @Nullable Output<Double> autovacuumAnalyzeScaleFactor;
 
     /**
-     * @return Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
+     * @return Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
      * 
      */
     public Optional<Output<Double>> autovacuumAnalyzeScaleFactor() {
@@ -85,14 +85,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+     * Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
      * 
      */
     @Import(name="autovacuumAnalyzeThreshold")
     private @Nullable Output<Integer> autovacuumAnalyzeThreshold;
 
     /**
-     * @return Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+     * @return Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
      * 
      */
     public Optional<Output<Integer>> autovacuumAnalyzeThreshold() {
@@ -100,14 +100,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Specifies the maximum age (in transactions) that a table&#39;s pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
+     * Specifies the maximum age (in transactions) that a table&#39;s pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
      * 
      */
     @Import(name="autovacuumFreezeMaxAge")
     private @Nullable Output<Integer> autovacuumFreezeMaxAge;
 
     /**
-     * @return Specifies the maximum age (in transactions) that a table&#39;s pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
+     * @return Specifies the maximum age (in transactions) that a table&#39;s pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> autovacuumFreezeMaxAge() {
@@ -115,14 +115,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+     * Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
      * 
      */
     @Import(name="autovacuumMaxWorkers")
     private @Nullable Output<Integer> autovacuumMaxWorkers;
 
     /**
-     * @return Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+     * @return Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> autovacuumMaxWorkers() {
@@ -130,14 +130,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
+     * Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
      * 
      */
     @Import(name="autovacuumNaptime")
     private @Nullable Output<Integer> autovacuumNaptime;
 
     /**
-     * @return Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
+     * @return Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
      * 
      */
     public Optional<Output<Integer>> autovacuumNaptime() {
@@ -145,14 +145,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds.
+     * Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_delay value will be used. The default is `2` (upstream default).
      * 
      */
     @Import(name="autovacuumVacuumCostDelay")
     private @Nullable Output<Integer> autovacuumVacuumCostDelay;
 
     /**
-     * @return Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds.
+     * @return Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_delay value will be used. The default is `2` (upstream default).
      * 
      */
     public Optional<Output<Integer>> autovacuumVacuumCostDelay() {
@@ -160,14 +160,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+     * Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_limit value will be used. The default is `-1` (upstream default).
      * 
      */
     @Import(name="autovacuumVacuumCostLimit")
     private @Nullable Output<Integer> autovacuumVacuumCostLimit;
 
     /**
-     * @return Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+     * @return Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_limit value will be used. The default is `-1` (upstream default).
      * 
      */
     public Optional<Output<Integer>> autovacuumVacuumCostLimit() {
@@ -175,14 +175,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
+     * Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
      * 
      */
     @Import(name="autovacuumVacuumScaleFactor")
     private @Nullable Output<Double> autovacuumVacuumScaleFactor;
 
     /**
-     * @return Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
+     * @return Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
      * 
      */
     public Optional<Output<Double>> autovacuumVacuumScaleFactor() {
@@ -190,14 +190,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+     * Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
      * 
      */
     @Import(name="autovacuumVacuumThreshold")
     private @Nullable Output<Integer> autovacuumVacuumThreshold;
 
     /**
-     * @return Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+     * @return Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
      * 
      */
     public Optional<Output<Integer>> autovacuumVacuumThreshold() {
@@ -235,14 +235,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+     * Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
      * 
      */
     @Import(name="bgwriterDelay")
     private @Nullable Output<Integer> bgwriterDelay;
 
     /**
-     * @return Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+     * @return Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
      * 
      */
     public Optional<Output<Integer>> bgwriterDelay() {
@@ -250,14 +250,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+     * Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
      * 
      */
     @Import(name="bgwriterFlushAfter")
     private @Nullable Output<Integer> bgwriterFlushAfter;
 
     /**
-     * @return Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+     * @return Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
      * 
      */
     public Optional<Output<Integer>> bgwriterFlushAfter() {
@@ -265,14 +265,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+     * In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
      * 
      */
     @Import(name="bgwriterLruMaxpages")
     private @Nullable Output<Integer> bgwriterLruMaxpages;
 
     /**
-     * @return In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+     * @return In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
      * 
      */
     public Optional<Output<Integer>> bgwriterLruMaxpages() {
@@ -280,14 +280,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+     * The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
      * 
      */
     @Import(name="bgwriterLruMultiplier")
     private @Nullable Output<Double> bgwriterLruMultiplier;
 
     /**
-     * @return The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+     * @return The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
      * 
      */
     public Optional<Output<Double>> bgwriterLruMultiplier() {
@@ -295,14 +295,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+     * This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
      * 
      */
     @Import(name="deadlockTimeout")
     private @Nullable Output<Integer> deadlockTimeout;
 
     /**
-     * @return This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+     * @return This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
      * 
      */
     public Optional<Output<Integer>> deadlockTimeout() {
@@ -310,14 +310,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+     * Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
      * 
      */
     @Import(name="defaultToastCompression")
     private @Nullable Output<String> defaultToastCompression;
 
     /**
-     * @return Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+     * @return Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
      * 
      */
     public Optional<Output<String>> defaultToastCompression() {
@@ -370,14 +370,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+     * Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
      * 
      */
     @Import(name="logAutovacuumMinDuration")
     private @Nullable Output<Integer> logAutovacuumMinDuration;
 
     /**
-     * @return Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+     * @return Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
      * 
      */
     public Optional<Output<Integer>> logAutovacuumMinDuration() {
@@ -445,14 +445,29 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * PostgreSQL maximum number of files that can be open per process.
+     * PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+     * 
+     */
+    @Import(name="maxConnections")
+    private @Nullable Output<Integer> maxConnections;
+
+    /**
+     * @return PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+     * 
+     */
+    public Optional<Output<Integer>> maxConnections() {
+        return Optional.ofNullable(this.maxConnections);
+    }
+
+    /**
+     * PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     @Import(name="maxFilesPerProcess")
     private @Nullable Output<Integer> maxFilesPerProcess;
 
     /**
-     * @return PostgreSQL maximum number of files that can be open per process.
+     * @return PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> maxFilesPerProcess() {
@@ -460,14 +475,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * PostgreSQL maximum locks per transaction.
+     * PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
      * 
      */
     @Import(name="maxLocksPerTransaction")
     private @Nullable Output<Integer> maxLocksPerTransaction;
 
     /**
-     * @return PostgreSQL maximum locks per transaction.
+     * @return PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> maxLocksPerTransaction() {
@@ -475,14 +490,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+     * PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     @Import(name="maxLogicalReplicationWorkers")
     private @Nullable Output<Integer> maxLogicalReplicationWorkers;
 
     /**
-     * @return PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+     * @return PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> maxLogicalReplicationWorkers() {
@@ -490,14 +505,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Sets the maximum number of workers that the system can support for parallel queries.
+     * Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
      * 
      */
     @Import(name="maxParallelWorkers")
     private @Nullable Output<Integer> maxParallelWorkers;
 
     /**
-     * @return Sets the maximum number of workers that the system can support for parallel queries.
+     * @return Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
      * 
      */
     public Optional<Output<Integer>> maxParallelWorkers() {
@@ -505,14 +520,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+     * Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
      * 
      */
     @Import(name="maxParallelWorkersPerGather")
     private @Nullable Output<Integer> maxParallelWorkersPerGather;
 
     /**
-     * @return Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+     * @return Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
      * 
      */
     public Optional<Output<Integer>> maxParallelWorkersPerGather() {
@@ -520,14 +535,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * PostgreSQL maximum predicate locks per transaction.
+     * PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     @Import(name="maxPredLocksPerTransaction")
     private @Nullable Output<Integer> maxPredLocksPerTransaction;
 
     /**
-     * @return PostgreSQL maximum predicate locks per transaction.
+     * @return PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> maxPredLocksPerTransaction() {
@@ -535,14 +550,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * PostgreSQL maximum prepared transactions.
+     * PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
      * 
      */
     @Import(name="maxPreparedTransactions")
     private @Nullable Output<Integer> maxPreparedTransactions;
 
     /**
-     * @return PostgreSQL maximum prepared transactions.
+     * @return PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> maxPreparedTransactions() {
@@ -550,14 +565,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * PostgreSQL maximum replication slots.
+     * PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
      * 
      */
     @Import(name="maxReplicationSlots")
     private @Nullable Output<Integer> maxReplicationSlots;
 
     /**
-     * @return PostgreSQL maximum replication slots.
+     * @return PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> maxReplicationSlots() {
@@ -565,14 +580,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+     * PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). wal_keep_size minimum WAL size setting takes precedence over this.
      * 
      */
     @Import(name="maxSlotWalKeepSize")
     private @Nullable Output<Integer> maxSlotWalKeepSize;
 
     /**
-     * @return PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+     * @return PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). wal_keep_size minimum WAL size setting takes precedence over this.
      * 
      */
     public Optional<Output<Integer>> maxSlotWalKeepSize() {
@@ -580,14 +595,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Maximum depth of the stack in bytes.
+     * Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
      * 
      */
     @Import(name="maxStackDepth")
     private @Nullable Output<Integer> maxStackDepth;
 
     /**
-     * @return Maximum depth of the stack in bytes.
+     * @return Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
      * 
      */
     public Optional<Output<Integer>> maxStackDepth() {
@@ -595,14 +610,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Max standby archive delay in milliseconds.
+     * Max standby archive delay in milliseconds. The default is `30000` (upstream default).
      * 
      */
     @Import(name="maxStandbyArchiveDelay")
     private @Nullable Output<Integer> maxStandbyArchiveDelay;
 
     /**
-     * @return Max standby archive delay in milliseconds.
+     * @return Max standby archive delay in milliseconds. The default is `30000` (upstream default).
      * 
      */
     public Optional<Output<Integer>> maxStandbyArchiveDelay() {
@@ -610,14 +625,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Max standby streaming delay in milliseconds.
+     * Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
      * 
      */
     @Import(name="maxStandbyStreamingDelay")
     private @Nullable Output<Integer> maxStandbyStreamingDelay;
 
     /**
-     * @return Max standby streaming delay in milliseconds.
+     * @return Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
      * 
      */
     public Optional<Output<Integer>> maxStandbyStreamingDelay() {
@@ -625,14 +640,29 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * PostgreSQL maximum WAL senders.
+     * Maximum number of synchronization workers per subscription. The default is `2`.
+     * 
+     */
+    @Import(name="maxSyncWorkersPerSubscription")
+    private @Nullable Output<Integer> maxSyncWorkersPerSubscription;
+
+    /**
+     * @return Maximum number of synchronization workers per subscription. The default is `2`.
+     * 
+     */
+    public Optional<Output<Integer>> maxSyncWorkersPerSubscription() {
+        return Optional.ofNullable(this.maxSyncWorkersPerSubscription);
+    }
+
+    /**
+     * PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
      * 
      */
     @Import(name="maxWalSenders")
     private @Nullable Output<Integer> maxWalSenders;
 
     /**
-     * @return PostgreSQL maximum WAL senders.
+     * @return PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> maxWalSenders() {
@@ -640,14 +670,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Sets the maximum number of background processes that the system can support.
+     * Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
      * 
      */
     @Import(name="maxWorkerProcesses")
     private @Nullable Output<Integer> maxWorkerProcesses;
 
     /**
-     * @return Sets the maximum number of background processes that the system can support.
+     * @return Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> maxWorkerProcesses() {
@@ -685,14 +715,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Sets the time interval to run pg_partman&#39;s scheduled tasks.
+     * Sets the time interval in seconds to run pg_partman&#39;s scheduled tasks. The default is `3600`.
      * 
      */
     @Import(name="pgPartmanBgwInterval")
     private @Nullable Output<Integer> pgPartmanBgwInterval;
 
     /**
-     * @return Sets the time interval to run pg_partman&#39;s scheduled tasks.
+     * @return Sets the time interval in seconds to run pg_partman&#39;s scheduled tasks. The default is `3600`.
      * 
      */
     public Optional<Output<Integer>> pgPartmanBgwInterval() {
@@ -715,14 +745,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
+     * Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Changing this parameter causes a service restart. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
      * 
      */
     @Import(name="pgStatMonitorEnable")
     private @Nullable Output<Boolean> pgStatMonitorEnable;
 
     /**
-     * @return Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
+     * @return Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Changing this parameter causes a service restart. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
      * 
      */
     public Optional<Output<Boolean>> pgStatMonitorEnable() {
@@ -730,14 +760,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Enables or disables query plan monitoring.
+     * Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
      * 
      */
     @Import(name="pgStatMonitorPgsmEnableQueryPlan")
     private @Nullable Output<Boolean> pgStatMonitorPgsmEnableQueryPlan;
 
     /**
-     * @return Enables or disables query plan monitoring.
+     * @return Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
      * 
      */
     public Optional<Output<Boolean>> pgStatMonitorPgsmEnableQueryPlan() {
@@ -745,14 +775,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Sets the maximum number of buckets.
+     * Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
      * 
      */
     @Import(name="pgStatMonitorPgsmMaxBuckets")
     private @Nullable Output<Integer> pgStatMonitorPgsmMaxBuckets;
 
     /**
-     * @return Sets the maximum number of buckets.
+     * @return Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
      * 
      */
     public Optional<Output<Integer>> pgStatMonitorPgsmMaxBuckets() {
@@ -760,14 +790,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+     * Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
      * 
      */
     @Import(name="pgStatStatementsTrack")
     private @Nullable Output<String> pgStatStatementsTrack;
 
     /**
-     * @return Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+     * @return Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
      * 
      */
     public Optional<Output<String>> pgStatStatementsTrack() {
@@ -850,14 +880,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+     * Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
      * 
      */
     @Import(name="sharedBuffersPercentage")
     private @Nullable Output<Double> sharedBuffersPercentage;
 
     /**
-     * @return Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+     * @return Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Double>> sharedBuffersPercentage() {
@@ -925,14 +955,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Specifies the number of bytes reserved to track the currently executing command for each active session.
+     * Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
      * 
      */
     @Import(name="trackActivityQuerySize")
     private @Nullable Output<Integer> trackActivityQuerySize;
 
     /**
-     * @return Specifies the number of bytes reserved to track the currently executing command for each active session.
+     * @return Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> trackActivityQuerySize() {
@@ -940,14 +970,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Record commit time of transactions.
+     * Record commit time of transactions. Changing this parameter causes a service restart.
      * 
      */
     @Import(name="trackCommitTimestamp")
     private @Nullable Output<String> trackCommitTimestamp;
 
     /**
-     * @return Record commit time of transactions.
+     * @return Record commit time of transactions. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<String>> trackCommitTimestamp() {
@@ -970,14 +1000,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+     * Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
      * 
      */
     @Import(name="trackIoTiming")
     private @Nullable Output<String> trackIoTiming;
 
     /**
-     * @return Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+     * @return Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
      * 
      */
     public Optional<Output<String>> trackIoTiming() {
@@ -1030,14 +1060,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+     * WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
      * 
      */
     @Import(name="walWriterDelay")
     private @Nullable Output<Integer> walWriterDelay;
 
     /**
-     * @return WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+     * @return WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
      * 
      */
     public Optional<Output<Integer>> walWriterDelay() {
@@ -1045,14 +1075,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+     * Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
      * 
      */
     @Import(name="workMem")
     private @Nullable Output<Integer> workMem;
 
     /**
-     * @return Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+     * @return Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
      * 
      */
     public Optional<Output<Integer>> workMem() {
@@ -1090,6 +1120,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         this.logLinePrefix = $.logLinePrefix;
         this.logMinDurationStatement = $.logMinDurationStatement;
         this.logTempFiles = $.logTempFiles;
+        this.maxConnections = $.maxConnections;
         this.maxFilesPerProcess = $.maxFilesPerProcess;
         this.maxLocksPerTransaction = $.maxLocksPerTransaction;
         this.maxLogicalReplicationWorkers = $.maxLogicalReplicationWorkers;
@@ -1102,6 +1133,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         this.maxStackDepth = $.maxStackDepth;
         this.maxStandbyArchiveDelay = $.maxStandbyArchiveDelay;
         this.maxStandbyStreamingDelay = $.maxStandbyStreamingDelay;
+        this.maxSyncWorkersPerSubscription = $.maxSyncWorkersPerSubscription;
         this.maxWalSenders = $.maxWalSenders;
         this.maxWorkerProcesses = $.maxWorkerProcesses;
         this.migration = $.migration;
@@ -1215,7 +1247,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumAnalyzeScaleFactor Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
+         * @param autovacuumAnalyzeScaleFactor Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
          * 
          * @return builder
          * 
@@ -1226,7 +1258,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumAnalyzeScaleFactor Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
+         * @param autovacuumAnalyzeScaleFactor Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
          * 
          * @return builder
          * 
@@ -1236,7 +1268,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumAnalyzeThreshold Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+         * @param autovacuumAnalyzeThreshold Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
          * 
          * @return builder
          * 
@@ -1247,7 +1279,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumAnalyzeThreshold Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+         * @param autovacuumAnalyzeThreshold Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
          * 
          * @return builder
          * 
@@ -1257,7 +1289,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumFreezeMaxAge Specifies the maximum age (in transactions) that a table&#39;s pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
+         * @param autovacuumFreezeMaxAge Specifies the maximum age (in transactions) that a table&#39;s pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1268,7 +1300,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumFreezeMaxAge Specifies the maximum age (in transactions) that a table&#39;s pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
+         * @param autovacuumFreezeMaxAge Specifies the maximum age (in transactions) that a table&#39;s pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1278,7 +1310,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumMaxWorkers Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+         * @param autovacuumMaxWorkers Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1289,7 +1321,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumMaxWorkers Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+         * @param autovacuumMaxWorkers Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1299,7 +1331,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumNaptime Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
+         * @param autovacuumNaptime Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
          * 
          * @return builder
          * 
@@ -1310,7 +1342,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumNaptime Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
+         * @param autovacuumNaptime Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
          * 
          * @return builder
          * 
@@ -1320,7 +1352,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumVacuumCostDelay Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds.
+         * @param autovacuumVacuumCostDelay Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_delay value will be used. The default is `2` (upstream default).
          * 
          * @return builder
          * 
@@ -1331,7 +1363,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumVacuumCostDelay Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds.
+         * @param autovacuumVacuumCostDelay Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_delay value will be used. The default is `2` (upstream default).
          * 
          * @return builder
          * 
@@ -1341,7 +1373,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumVacuumCostLimit Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+         * @param autovacuumVacuumCostLimit Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_limit value will be used. The default is `-1` (upstream default).
          * 
          * @return builder
          * 
@@ -1352,7 +1384,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumVacuumCostLimit Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+         * @param autovacuumVacuumCostLimit Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_limit value will be used. The default is `-1` (upstream default).
          * 
          * @return builder
          * 
@@ -1362,7 +1394,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumVacuumScaleFactor Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
+         * @param autovacuumVacuumScaleFactor Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
          * 
          * @return builder
          * 
@@ -1373,7 +1405,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumVacuumScaleFactor Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
+         * @param autovacuumVacuumScaleFactor Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
          * 
          * @return builder
          * 
@@ -1383,7 +1415,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumVacuumThreshold Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+         * @param autovacuumVacuumThreshold Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
          * 
          * @return builder
          * 
@@ -1394,7 +1426,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param autovacuumVacuumThreshold Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+         * @param autovacuumVacuumThreshold Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
          * 
          * @return builder
          * 
@@ -1446,7 +1478,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param bgwriterDelay Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+         * @param bgwriterDelay Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
          * 
          * @return builder
          * 
@@ -1457,7 +1489,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param bgwriterDelay Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+         * @param bgwriterDelay Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
          * 
          * @return builder
          * 
@@ -1467,7 +1499,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param bgwriterFlushAfter Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+         * @param bgwriterFlushAfter Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
          * 
          * @return builder
          * 
@@ -1478,7 +1510,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param bgwriterFlushAfter Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+         * @param bgwriterFlushAfter Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
          * 
          * @return builder
          * 
@@ -1488,7 +1520,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param bgwriterLruMaxpages In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+         * @param bgwriterLruMaxpages In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
          * 
          * @return builder
          * 
@@ -1499,7 +1531,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param bgwriterLruMaxpages In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+         * @param bgwriterLruMaxpages In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
          * 
          * @return builder
          * 
@@ -1509,7 +1541,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param bgwriterLruMultiplier The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+         * @param bgwriterLruMultiplier The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
          * 
          * @return builder
          * 
@@ -1520,7 +1552,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param bgwriterLruMultiplier The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+         * @param bgwriterLruMultiplier The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
          * 
          * @return builder
          * 
@@ -1530,7 +1562,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param deadlockTimeout This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+         * @param deadlockTimeout This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
          * 
          * @return builder
          * 
@@ -1541,7 +1573,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param deadlockTimeout This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+         * @param deadlockTimeout This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
          * 
          * @return builder
          * 
@@ -1551,7 +1583,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param defaultToastCompression Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+         * @param defaultToastCompression Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
          * 
          * @return builder
          * 
@@ -1562,7 +1594,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param defaultToastCompression Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+         * @param defaultToastCompression Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
          * 
          * @return builder
          * 
@@ -1645,7 +1677,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param logAutovacuumMinDuration Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+         * @param logAutovacuumMinDuration Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
          * 
          * @return builder
          * 
@@ -1656,7 +1688,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param logAutovacuumMinDuration Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+         * @param logAutovacuumMinDuration Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
          * 
          * @return builder
          * 
@@ -1750,7 +1782,28 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxFilesPerProcess PostgreSQL maximum number of files that can be open per process.
+         * @param maxConnections PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxConnections(@Nullable Output<Integer> maxConnections) {
+            $.maxConnections = maxConnections;
+            return this;
+        }
+
+        /**
+         * @param maxConnections PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxConnections(Integer maxConnections) {
+            return maxConnections(Output.of(maxConnections));
+        }
+
+        /**
+         * @param maxFilesPerProcess PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1761,7 +1814,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxFilesPerProcess PostgreSQL maximum number of files that can be open per process.
+         * @param maxFilesPerProcess PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1771,7 +1824,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxLocksPerTransaction PostgreSQL maximum locks per transaction.
+         * @param maxLocksPerTransaction PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1782,7 +1835,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxLocksPerTransaction PostgreSQL maximum locks per transaction.
+         * @param maxLocksPerTransaction PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1792,7 +1845,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxLogicalReplicationWorkers PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+         * @param maxLogicalReplicationWorkers PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1803,7 +1856,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxLogicalReplicationWorkers PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+         * @param maxLogicalReplicationWorkers PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1813,7 +1866,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxParallelWorkers Sets the maximum number of workers that the system can support for parallel queries.
+         * @param maxParallelWorkers Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
          * 
          * @return builder
          * 
@@ -1824,7 +1877,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxParallelWorkers Sets the maximum number of workers that the system can support for parallel queries.
+         * @param maxParallelWorkers Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
          * 
          * @return builder
          * 
@@ -1834,7 +1887,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxParallelWorkersPerGather Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+         * @param maxParallelWorkersPerGather Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
          * 
          * @return builder
          * 
@@ -1845,7 +1898,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxParallelWorkersPerGather Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+         * @param maxParallelWorkersPerGather Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
          * 
          * @return builder
          * 
@@ -1855,7 +1908,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxPredLocksPerTransaction PostgreSQL maximum predicate locks per transaction.
+         * @param maxPredLocksPerTransaction PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1866,7 +1919,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxPredLocksPerTransaction PostgreSQL maximum predicate locks per transaction.
+         * @param maxPredLocksPerTransaction PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1876,7 +1929,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxPreparedTransactions PostgreSQL maximum prepared transactions.
+         * @param maxPreparedTransactions PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1887,7 +1940,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxPreparedTransactions PostgreSQL maximum prepared transactions.
+         * @param maxPreparedTransactions PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1897,7 +1950,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxReplicationSlots PostgreSQL maximum replication slots.
+         * @param maxReplicationSlots PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1908,7 +1961,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxReplicationSlots PostgreSQL maximum replication slots.
+         * @param maxReplicationSlots PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1918,7 +1971,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxSlotWalKeepSize PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+         * @param maxSlotWalKeepSize PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). wal_keep_size minimum WAL size setting takes precedence over this.
          * 
          * @return builder
          * 
@@ -1929,7 +1982,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxSlotWalKeepSize PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+         * @param maxSlotWalKeepSize PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). wal_keep_size minimum WAL size setting takes precedence over this.
          * 
          * @return builder
          * 
@@ -1939,7 +1992,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxStackDepth Maximum depth of the stack in bytes.
+         * @param maxStackDepth Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
          * 
          * @return builder
          * 
@@ -1950,7 +2003,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxStackDepth Maximum depth of the stack in bytes.
+         * @param maxStackDepth Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
          * 
          * @return builder
          * 
@@ -1960,7 +2013,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxStandbyArchiveDelay Max standby archive delay in milliseconds.
+         * @param maxStandbyArchiveDelay Max standby archive delay in milliseconds. The default is `30000` (upstream default).
          * 
          * @return builder
          * 
@@ -1971,7 +2024,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxStandbyArchiveDelay Max standby archive delay in milliseconds.
+         * @param maxStandbyArchiveDelay Max standby archive delay in milliseconds. The default is `30000` (upstream default).
          * 
          * @return builder
          * 
@@ -1981,7 +2034,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxStandbyStreamingDelay Max standby streaming delay in milliseconds.
+         * @param maxStandbyStreamingDelay Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
          * 
          * @return builder
          * 
@@ -1992,7 +2045,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxStandbyStreamingDelay Max standby streaming delay in milliseconds.
+         * @param maxStandbyStreamingDelay Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
          * 
          * @return builder
          * 
@@ -2002,7 +2055,28 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxWalSenders PostgreSQL maximum WAL senders.
+         * @param maxSyncWorkersPerSubscription Maximum number of synchronization workers per subscription. The default is `2`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxSyncWorkersPerSubscription(@Nullable Output<Integer> maxSyncWorkersPerSubscription) {
+            $.maxSyncWorkersPerSubscription = maxSyncWorkersPerSubscription;
+            return this;
+        }
+
+        /**
+         * @param maxSyncWorkersPerSubscription Maximum number of synchronization workers per subscription. The default is `2`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxSyncWorkersPerSubscription(Integer maxSyncWorkersPerSubscription) {
+            return maxSyncWorkersPerSubscription(Output.of(maxSyncWorkersPerSubscription));
+        }
+
+        /**
+         * @param maxWalSenders PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -2013,7 +2087,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxWalSenders PostgreSQL maximum WAL senders.
+         * @param maxWalSenders PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -2023,7 +2097,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxWorkerProcesses Sets the maximum number of background processes that the system can support.
+         * @param maxWorkerProcesses Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -2034,7 +2108,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxWorkerProcesses Sets the maximum number of background processes that the system can support.
+         * @param maxWorkerProcesses Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -2086,7 +2160,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param pgPartmanBgwInterval Sets the time interval to run pg_partman&#39;s scheduled tasks.
+         * @param pgPartmanBgwInterval Sets the time interval in seconds to run pg_partman&#39;s scheduled tasks. The default is `3600`.
          * 
          * @return builder
          * 
@@ -2097,7 +2171,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param pgPartmanBgwInterval Sets the time interval to run pg_partman&#39;s scheduled tasks.
+         * @param pgPartmanBgwInterval Sets the time interval in seconds to run pg_partman&#39;s scheduled tasks. The default is `3600`.
          * 
          * @return builder
          * 
@@ -2128,7 +2202,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param pgStatMonitorEnable Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
+         * @param pgStatMonitorEnable Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Changing this parameter causes a service restart. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
          * 
          * @return builder
          * 
@@ -2139,7 +2213,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param pgStatMonitorEnable Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
+         * @param pgStatMonitorEnable Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Changing this parameter causes a service restart. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
          * 
          * @return builder
          * 
@@ -2149,7 +2223,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param pgStatMonitorPgsmEnableQueryPlan Enables or disables query plan monitoring.
+         * @param pgStatMonitorPgsmEnableQueryPlan Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
          * 
          * @return builder
          * 
@@ -2160,7 +2234,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param pgStatMonitorPgsmEnableQueryPlan Enables or disables query plan monitoring.
+         * @param pgStatMonitorPgsmEnableQueryPlan Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
          * 
          * @return builder
          * 
@@ -2170,7 +2244,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param pgStatMonitorPgsmMaxBuckets Sets the maximum number of buckets.
+         * @param pgStatMonitorPgsmMaxBuckets Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
          * 
          * @return builder
          * 
@@ -2181,7 +2255,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param pgStatMonitorPgsmMaxBuckets Sets the maximum number of buckets.
+         * @param pgStatMonitorPgsmMaxBuckets Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
          * 
          * @return builder
          * 
@@ -2191,7 +2265,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param pgStatStatementsTrack Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+         * @param pgStatStatementsTrack Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
          * 
          * @return builder
          * 
@@ -2202,7 +2276,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param pgStatStatementsTrack Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+         * @param pgStatStatementsTrack Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
          * 
          * @return builder
          * 
@@ -2317,7 +2391,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param sharedBuffersPercentage Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+         * @param sharedBuffersPercentage Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -2328,7 +2402,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param sharedBuffersPercentage Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+         * @param sharedBuffersPercentage Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -2422,7 +2496,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param trackActivityQuerySize Specifies the number of bytes reserved to track the currently executing command for each active session.
+         * @param trackActivityQuerySize Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -2433,7 +2507,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param trackActivityQuerySize Specifies the number of bytes reserved to track the currently executing command for each active session.
+         * @param trackActivityQuerySize Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -2443,7 +2517,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param trackCommitTimestamp Record commit time of transactions.
+         * @param trackCommitTimestamp Record commit time of transactions. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -2454,7 +2528,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param trackCommitTimestamp Record commit time of transactions.
+         * @param trackCommitTimestamp Record commit time of transactions. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -2485,7 +2559,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param trackIoTiming Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+         * @param trackIoTiming Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
          * 
          * @return builder
          * 
@@ -2496,7 +2570,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param trackIoTiming Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+         * @param trackIoTiming Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
          * 
          * @return builder
          * 
@@ -2569,7 +2643,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param walWriterDelay WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+         * @param walWriterDelay WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
          * 
          * @return builder
          * 
@@ -2580,7 +2654,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param walWriterDelay WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+         * @param walWriterDelay WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
          * 
          * @return builder
          * 
@@ -2590,7 +2664,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param workMem Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+         * @param workMem Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
          * 
          * @return builder
          * 
@@ -2601,7 +2675,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param workMem Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+         * @param workMem Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
          * 
          * @return builder
          * 

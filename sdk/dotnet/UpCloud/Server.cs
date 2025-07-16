@@ -11,7 +11,9 @@ using Pulumi;
 namespace UpCloud.Pulumi.UpCloud
 {
     /// <summary>
-    /// The UpCloud server resource allows the creation, update and deletion of a [cloud server](https://upcloud.com/products/cloud-servers).
+    /// The UpCloud server resource allows the creation, update and deletion of [cloud servers](https://upcloud.com/products/cloud-servers).
+    /// 
+    /// &gt; To deploy a GPU server, select a plan with `GPU-` prefix, e.g., `GPU-8xCPU-64GB-1xL40S`. Use `upctl zone devices` command to list per zone GPU availability.
     /// 
     /// ## Import
     /// 

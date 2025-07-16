@@ -6,6 +6,7 @@ package com.pulumi.upcloud.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.upcloud.inputs.ManagedDatabaseMysqlPropertiesMigrationArgs;
+import com.pulumi.upcloud.inputs.ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
@@ -471,6 +472,21 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
     }
 
     /**
+     * MySQL incremental backup configuration.
+     * 
+     */
+    @Import(name="mysqlIncrementalBackup")
+    private @Nullable Output<ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs> mysqlIncrementalBackup;
+
+    /**
+     * @return MySQL incremental backup configuration.
+     * 
+     */
+    public Optional<Output<ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs>> mysqlIncrementalBackup() {
+        return Optional.ofNullable(this.mysqlIncrementalBackup);
+    }
+
+    /**
      * Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
      * 
      */
@@ -683,6 +699,7 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         this.maxAllowedPacket = $.maxAllowedPacket;
         this.maxHeapTableSize = $.maxHeapTableSize;
         this.migration = $.migration;
+        this.mysqlIncrementalBackup = $.mysqlIncrementalBackup;
         this.netBufferLength = $.netBufferLength;
         this.netReadTimeout = $.netReadTimeout;
         this.netWriteTimeout = $.netWriteTimeout;
@@ -1353,6 +1370,27 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
          */
         public Builder migration(ManagedDatabaseMysqlPropertiesMigrationArgs migration) {
             return migration(Output.of(migration));
+        }
+
+        /**
+         * @param mysqlIncrementalBackup MySQL incremental backup configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mysqlIncrementalBackup(@Nullable Output<ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs> mysqlIncrementalBackup) {
+            $.mysqlIncrementalBackup = mysqlIncrementalBackup;
+            return this;
+        }
+
+        /**
+         * @param mysqlIncrementalBackup MySQL incremental backup configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mysqlIncrementalBackup(ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs mysqlIncrementalBackup) {
+            return mysqlIncrementalBackup(Output.of(mysqlIncrementalBackup));
         }
 
         /**

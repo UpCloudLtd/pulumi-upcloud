@@ -5,6 +5,7 @@ package com.pulumi.upcloud.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.upcloud.outputs.ManagedDatabaseMysqlPropertiesMigration;
+import com.pulumi.upcloud.outputs.ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
@@ -166,6 +167,11 @@ public final class ManagedDatabaseMysqlProperties {
      * 
      */
     private @Nullable ManagedDatabaseMysqlPropertiesMigration migration;
+    /**
+     * @return MySQL incremental backup configuration.
+     * 
+     */
+    private @Nullable ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup mysqlIncrementalBackup;
     /**
      * @return Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
      * 
@@ -439,6 +445,13 @@ public final class ManagedDatabaseMysqlProperties {
         return Optional.ofNullable(this.migration);
     }
     /**
+     * @return MySQL incremental backup configuration.
+     * 
+     */
+    public Optional<ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup> mysqlIncrementalBackup() {
+        return Optional.ofNullable(this.mysqlIncrementalBackup);
+    }
+    /**
      * @return Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
      * 
      */
@@ -562,6 +575,7 @@ public final class ManagedDatabaseMysqlProperties {
         private @Nullable Integer maxAllowedPacket;
         private @Nullable Integer maxHeapTableSize;
         private @Nullable ManagedDatabaseMysqlPropertiesMigration migration;
+        private @Nullable ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup mysqlIncrementalBackup;
         private @Nullable Integer netBufferLength;
         private @Nullable Integer netReadTimeout;
         private @Nullable Integer netWriteTimeout;
@@ -607,6 +621,7 @@ public final class ManagedDatabaseMysqlProperties {
     	      this.maxAllowedPacket = defaults.maxAllowedPacket;
     	      this.maxHeapTableSize = defaults.maxHeapTableSize;
     	      this.migration = defaults.migration;
+    	      this.mysqlIncrementalBackup = defaults.mysqlIncrementalBackup;
     	      this.netBufferLength = defaults.netBufferLength;
     	      this.netReadTimeout = defaults.netReadTimeout;
     	      this.netWriteTimeout = defaults.netWriteTimeout;
@@ -805,6 +820,12 @@ public final class ManagedDatabaseMysqlProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder mysqlIncrementalBackup(@Nullable ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup mysqlIncrementalBackup) {
+
+            this.mysqlIncrementalBackup = mysqlIncrementalBackup;
+            return this;
+        }
+        @CustomType.Setter
         public Builder netBufferLength(@Nullable Integer netBufferLength) {
 
             this.netBufferLength = netBufferLength;
@@ -908,6 +929,7 @@ public final class ManagedDatabaseMysqlProperties {
             _resultValue.maxAllowedPacket = maxAllowedPacket;
             _resultValue.maxHeapTableSize = maxHeapTableSize;
             _resultValue.migration = migration;
+            _resultValue.mysqlIncrementalBackup = mysqlIncrementalBackup;
             _resultValue.netBufferLength = netBufferLength;
             _resultValue.netReadTimeout = netReadTimeout;
             _resultValue.netWriteTimeout = netWriteTimeout;
