@@ -1756,6 +1756,10 @@ export interface ManagedDatabaseMysqlProperties {
      */
     migration?: pulumi.Input<inputs.ManagedDatabaseMysqlPropertiesMigration>;
     /**
+     * MySQL incremental backup configuration.
+     */
+    mysqlIncrementalBackup?: pulumi.Input<inputs.ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup>;
+    /**
      * Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
      */
     netBufferLength?: pulumi.Input<number>;
@@ -1844,6 +1848,17 @@ export interface ManagedDatabaseMysqlPropertiesMigration {
     username?: pulumi.Input<string>;
 }
 
+export interface ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup {
+    /**
+     * Enable incremental backups. Enable periodic incremental backups. When enabled, fullBackupWeekSchedule must be set. Incremental backups only store changes since the last backup, making them faster and more storage-efficient than full backups. This is particularly useful for large databases where daily full backups would be too time-consuming or expensive.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * Full backup week schedule. Comma-separated list of days of the week when full backups should be created. Valid values: mon, tue, wed, thu, fri, sat, sun.
+     */
+    fullBackupWeekSchedule?: pulumi.Input<string>;
+}
+
 export interface ManagedDatabaseOpensearchComponent {
     /**
      * Type of the component
@@ -1919,9 +1934,14 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     automaticUtilityNetworkIpFilter?: pulumi.Input<boolean>;
     /**
+     * The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
+     */
+    clusterFilecacheRemoteDataRatio?: pulumi.Input<number>;
+    /**
      * Controls the number of shards allowed in the cluster per data node.
      */
     clusterMaxShardsPerNode?: pulumi.Input<number>;
+    clusterRemoteStore?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesClusterRemoteStore>;
     /**
      * When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
      */
@@ -1967,6 +1987,10 @@ export interface ManagedDatabaseOpensearchProperties {
      * Enable/Disable security audit.
      */
     enableSecurityAudit?: pulumi.Input<boolean>;
+    /**
+     * Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
+     */
+    enableSnapshotApi?: pulumi.Input<boolean>;
     /**
      * Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
      */
@@ -2064,6 +2088,10 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     knnMemoryCircuitBreakerLimit?: pulumi.Input<number>;
     /**
+     * The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
+     */
+    nodeSearchCacheSize?: pulumi.Input<string>;
+    /**
      * OpenSearch OpenID Connect Configuration.
      */
     openid?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesOpenid>;
@@ -2087,6 +2115,7 @@ export interface ManagedDatabaseOpensearchProperties {
      * Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
      */
     reindexRemoteWhitelists?: pulumi.Input<pulumi.Input<string>[]>;
+    remoteStore?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesRemoteStore>;
     /**
      * OpenSearch SAML configuration.
      */
@@ -2199,6 +2228,25 @@ export interface ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternal
      * The type of rate limiting.
      */
     type?: pulumi.Input<string>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesClusterRemoteStore {
+    /**
+     * The amount of time to wait for the cluster state upload to complete. The amount of time to wait for the cluster state upload to complete. Defaults to 20s.
+     */
+    stateGlobalMetadataUploadTimeout?: pulumi.Input<string>;
+    /**
+     * The amount of time to wait for the manifest file upload to complete. The amount of time to wait for the manifest file upload to complete. The manifest file contains the details of each of the files uploaded for a single cluster state, both index metadata files and global metadata files. Defaults to 20s.
+     */
+    stateMetadataManifestUploadTimeout?: pulumi.Input<string>;
+    /**
+     * The default value of the translog buffer interval. The default value of the translog buffer interval used when performing periodic translog updates. This setting is only effective when the index setting `index.remote_store.translog.buffer_interval` is not present. Defaults to 650ms.
+     */
+    translogBufferInterval?: pulumi.Input<string>;
+    /**
+     * The maximum number of open translog files for remote-backed indexes. Sets the maximum number of open translog files for remote-backed indexes. This limits the total number of translog files per shard. After reaching this limit, the remote store flushes the translog files. Default is 1000. The minimum required is 100.
+     */
+    translogMaxReaders?: pulumi.Input<number>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog {
@@ -2349,6 +2397,25 @@ export interface ManagedDatabaseOpensearchPropertiesOpensearchDashboards {
      * Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
      */
     opensearchRequestTimeout?: pulumi.Input<number>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesRemoteStore {
+    /**
+     * The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic bytes lag threshold for activating remote segment backpressure. Defaults to 10.
+     */
+    segmentPressureBytesLagVarianceFactor?: pulumi.Input<number>;
+    /**
+     * The minimum consecutive failure count for activating remote segment backpressure. The minimum consecutive failure count for activating remote segment backpressure. Defaults to 5.
+     */
+    segmentPressureConsecutiveFailuresLimit?: pulumi.Input<number>;
+    /**
+     * Enables remote segment backpressure. Enables remote segment backpressure. Default is `true`.
+     */
+    segmentPressureEnabled?: pulumi.Input<boolean>;
+    /**
+     * The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic time lag threshold for activating remote segment backpressure. Defaults to 10.
+     */
+    segmentPressureTimeLagVarianceFactor?: pulumi.Input<number>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSaml {
@@ -2715,39 +2782,39 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     automaticUtilityNetworkIpFilter?: pulumi.Input<boolean>;
     /**
-     * Specifies a fraction of the table size to add to autovacuumAnalyzeThreshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
+     * Specifies a fraction of the table size to add to autovacuumAnalyzeThreshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
      */
     autovacuumAnalyzeScaleFactor?: pulumi.Input<number>;
     /**
-     * Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+     * Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
      */
     autovacuumAnalyzeThreshold?: pulumi.Input<number>;
     /**
-     * Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
+     * Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
      */
     autovacuumFreezeMaxAge?: pulumi.Input<number>;
     /**
-     * Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+     * Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
      */
     autovacuumMaxWorkers?: pulumi.Input<number>;
     /**
-     * Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
+     * Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
      */
     autovacuumNaptime?: pulumi.Input<number>;
     /**
-     * Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuumCostDelay value will be used. The default value is 20 milliseconds.
+     * Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuumCostDelay value will be used. The default is `2` (upstream default).
      */
     autovacuumVacuumCostDelay?: pulumi.Input<number>;
     /**
-     * Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuumCostLimit value will be used.
+     * Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuumCostLimit value will be used. The default is `-1` (upstream default).
      */
     autovacuumVacuumCostLimit?: pulumi.Input<number>;
     /**
-     * Specifies a fraction of the table size to add to autovacuumVacuumThreshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
+     * Specifies a fraction of the table size to add to autovacuumVacuumThreshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
      */
     autovacuumVacuumScaleFactor?: pulumi.Input<number>;
     /**
-     * Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+     * Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
      */
     autovacuumVacuumThreshold?: pulumi.Input<number>;
     /**
@@ -2759,27 +2826,27 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     backupMinute?: pulumi.Input<number>;
     /**
-     * Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+     * Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
      */
     bgwriterDelay?: pulumi.Input<number>;
     /**
-     * Whenever more than bgwriterFlushAfter bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+     * Whenever more than bgwriterFlushAfter bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
      */
     bgwriterFlushAfter?: pulumi.Input<number>;
     /**
-     * In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+     * In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
      */
     bgwriterLruMaxpages?: pulumi.Input<number>;
     /**
-     * The average recent need for new buffers is multiplied by bgwriterLruMultiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+     * The average recent need for new buffers is multiplied by bgwriterLruMultiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
      */
     bgwriterLruMultiplier?: pulumi.Input<number>;
     /**
-     * This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+     * This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
      */
     deadlockTimeout?: pulumi.Input<number>;
     /**
-     * Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+     * Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
      */
     defaultToastCompression?: pulumi.Input<string>;
     /**
@@ -2795,7 +2862,7 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     jit?: pulumi.Input<boolean>;
     /**
-     * Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+     * Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
      */
     logAutovacuumMinDuration?: pulumi.Input<number>;
     /**
@@ -2815,59 +2882,67 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     logTempFiles?: pulumi.Input<number>;
     /**
-     * PostgreSQL maximum number of files that can be open per process.
+     * PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+     */
+    maxConnections?: pulumi.Input<number>;
+    /**
+     * PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
      */
     maxFilesPerProcess?: pulumi.Input<number>;
     /**
-     * PostgreSQL maximum locks per transaction.
+     * PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
      */
     maxLocksPerTransaction?: pulumi.Input<number>;
     /**
-     * PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+     * PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
      */
     maxLogicalReplicationWorkers?: pulumi.Input<number>;
     /**
-     * Sets the maximum number of workers that the system can support for parallel queries.
+     * Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
      */
     maxParallelWorkers?: pulumi.Input<number>;
     /**
-     * Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+     * Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
      */
     maxParallelWorkersPerGather?: pulumi.Input<number>;
     /**
-     * PostgreSQL maximum predicate locks per transaction.
+     * PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
      */
     maxPredLocksPerTransaction?: pulumi.Input<number>;
     /**
-     * PostgreSQL maximum prepared transactions.
+     * PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
      */
     maxPreparedTransactions?: pulumi.Input<number>;
     /**
-     * PostgreSQL maximum replication slots.
+     * PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
      */
     maxReplicationSlots?: pulumi.Input<number>;
     /**
-     * PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). walKeepSize minimum WAL size setting takes precedence over this.
+     * PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). walKeepSize minimum WAL size setting takes precedence over this.
      */
     maxSlotWalKeepSize?: pulumi.Input<number>;
     /**
-     * Maximum depth of the stack in bytes.
+     * Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
      */
     maxStackDepth?: pulumi.Input<number>;
     /**
-     * Max standby archive delay in milliseconds.
+     * Max standby archive delay in milliseconds. The default is `30000` (upstream default).
      */
     maxStandbyArchiveDelay?: pulumi.Input<number>;
     /**
-     * Max standby streaming delay in milliseconds.
+     * Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
      */
     maxStandbyStreamingDelay?: pulumi.Input<number>;
     /**
-     * PostgreSQL maximum WAL senders.
+     * Maximum number of synchronization workers per subscription. The default is `2`.
+     */
+    maxSyncWorkersPerSubscription?: pulumi.Input<number>;
+    /**
+     * PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
      */
     maxWalSenders?: pulumi.Input<number>;
     /**
-     * Sets the maximum number of background processes that the system can support.
+     * Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
      */
     maxWorkerProcesses?: pulumi.Input<number>;
     /**
@@ -2879,7 +2954,7 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     passwordEncryption?: pulumi.Input<string>;
     /**
-     * Sets the time interval to run pg_partman's scheduled tasks.
+     * Sets the time interval in seconds to run pg_partman's scheduled tasks. The default is `3600`.
      */
     pgPartmanBgwInterval?: pulumi.Input<number>;
     /**
@@ -2887,19 +2962,19 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     pgPartmanBgwRole?: pulumi.Input<string>;
     /**
-     * Enable pgStatMonitor extension if available for the current cluster. Enable the pgStatMonitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pgStatStatements results for utility commands are unreliable.
+     * Enable pgStatMonitor extension if available for the current cluster. Enable the pgStatMonitor extension. Changing this parameter causes a service restart. When this extension is enabled, pgStatStatements results for utility commands are unreliable.
      */
     pgStatMonitorEnable?: pulumi.Input<boolean>;
     /**
-     * Enables or disables query plan monitoring.
+     * Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
      */
     pgStatMonitorPgsmEnableQueryPlan?: pulumi.Input<boolean>;
     /**
-     * Sets the maximum number of buckets.
+     * Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
      */
     pgStatMonitorPgsmMaxBuckets?: pulumi.Input<number>;
     /**
-     * Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+     * Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
      */
     pgStatStatementsTrack?: pulumi.Input<string>;
     /**
@@ -2923,7 +2998,7 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     serviceLog?: pulumi.Input<boolean>;
     /**
-     * Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value.
+     * Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value. Changing this parameter causes a service restart.
      */
     sharedBuffersPercentage?: pulumi.Input<number>;
     /**
@@ -2943,11 +3018,11 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     timezone?: pulumi.Input<string>;
     /**
-     * Specifies the number of bytes reserved to track the currently executing command for each active session.
+     * Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
      */
     trackActivityQuerySize?: pulumi.Input<number>;
     /**
-     * Record commit time of transactions.
+     * Record commit time of transactions. Changing this parameter causes a service restart.
      */
     trackCommitTimestamp?: pulumi.Input<string>;
     /**
@@ -2955,7 +3030,7 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     trackFunctions?: pulumi.Input<string>;
     /**
-     * Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+     * Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
      */
     trackIoTiming?: pulumi.Input<string>;
     /**
@@ -2971,11 +3046,11 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     walSenderTimeout?: pulumi.Input<number>;
     /**
-     * WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+     * WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
      */
     walWriterDelay?: pulumi.Input<number>;
     /**
-     * Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+     * Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
      */
     workMem?: pulumi.Input<number>;
 }
@@ -3130,7 +3205,7 @@ export interface ManagedDatabasePostgresqlPropertiesPglookout {
 
 export interface ManagedDatabasePostgresqlPropertiesTimescaledb {
     /**
-     * The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time.
+     * The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time. Changing this parameter causes a service restart.
      */
     maxBackgroundWorkers?: pulumi.Input<number>;
 }
@@ -3872,7 +3947,7 @@ export interface ServerTemplateBackupRule {
      */
     retention: pulumi.Input<number>;
     /**
-     * The time of day when the backup is created
+     * The time of day (UTC) when the backup is created
      */
     time: pulumi.Input<string>;
 }
@@ -3887,7 +3962,7 @@ export interface StorageBackupRule {
      */
     retention: pulumi.Input<number>;
     /**
-     * The time of day when the backup is created
+     * The time of day (UTC) when the backup is created
      */
     time: pulumi.Input<string>;
 }

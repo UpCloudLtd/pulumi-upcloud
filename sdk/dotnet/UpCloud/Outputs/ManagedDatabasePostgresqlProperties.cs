@@ -27,39 +27,39 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? AutomaticUtilityNetworkIpFilter;
         /// <summary>
-        /// Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
+        /// Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
         /// </summary>
         public readonly double? AutovacuumAnalyzeScaleFactor;
         /// <summary>
-        /// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+        /// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
         /// </summary>
         public readonly int? AutovacuumAnalyzeThreshold;
         /// <summary>
-        /// Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
+        /// Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
         /// </summary>
         public readonly int? AutovacuumFreezeMaxAge;
         /// <summary>
-        /// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+        /// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
         /// </summary>
         public readonly int? AutovacuumMaxWorkers;
         /// <summary>
-        /// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
+        /// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
         /// </summary>
         public readonly int? AutovacuumNaptime;
         /// <summary>
-        /// Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds.
+        /// Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_delay value will be used. The default is `2` (upstream default).
         /// </summary>
         public readonly int? AutovacuumVacuumCostDelay;
         /// <summary>
-        /// Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+        /// Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_limit value will be used. The default is `-1` (upstream default).
         /// </summary>
         public readonly int? AutovacuumVacuumCostLimit;
         /// <summary>
-        /// Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
+        /// Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
         /// </summary>
         public readonly double? AutovacuumVacuumScaleFactor;
         /// <summary>
-        /// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+        /// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
         /// </summary>
         public readonly int? AutovacuumVacuumThreshold;
         /// <summary>
@@ -71,27 +71,27 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? BackupMinute;
         /// <summary>
-        /// Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+        /// Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
         /// </summary>
         public readonly int? BgwriterDelay;
         /// <summary>
-        /// Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+        /// Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
         /// </summary>
         public readonly int? BgwriterFlushAfter;
         /// <summary>
-        /// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+        /// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
         /// </summary>
         public readonly int? BgwriterLruMaxpages;
         /// <summary>
-        /// The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+        /// The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
         /// </summary>
         public readonly double? BgwriterLruMultiplier;
         /// <summary>
-        /// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+        /// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
         /// </summary>
         public readonly int? DeadlockTimeout;
         /// <summary>
-        /// Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+        /// Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
         /// </summary>
         public readonly string? DefaultToastCompression;
         /// <summary>
@@ -107,7 +107,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? Jit;
         /// <summary>
-        /// Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+        /// Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
         /// </summary>
         public readonly int? LogAutovacuumMinDuration;
         /// <summary>
@@ -127,59 +127,67 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? LogTempFiles;
         /// <summary>
-        /// PostgreSQL maximum number of files that can be open per process.
+        /// PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+        /// </summary>
+        public readonly int? MaxConnections;
+        /// <summary>
+        /// PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
         /// </summary>
         public readonly int? MaxFilesPerProcess;
         /// <summary>
-        /// PostgreSQL maximum locks per transaction.
+        /// PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
         /// </summary>
         public readonly int? MaxLocksPerTransaction;
         /// <summary>
-        /// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+        /// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
         /// </summary>
         public readonly int? MaxLogicalReplicationWorkers;
         /// <summary>
-        /// Sets the maximum number of workers that the system can support for parallel queries.
+        /// Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
         /// </summary>
         public readonly int? MaxParallelWorkers;
         /// <summary>
-        /// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+        /// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
         /// </summary>
         public readonly int? MaxParallelWorkersPerGather;
         /// <summary>
-        /// PostgreSQL maximum predicate locks per transaction.
+        /// PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
         /// </summary>
         public readonly int? MaxPredLocksPerTransaction;
         /// <summary>
-        /// PostgreSQL maximum prepared transactions.
+        /// PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
         /// </summary>
         public readonly int? MaxPreparedTransactions;
         /// <summary>
-        /// PostgreSQL maximum replication slots.
+        /// PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
         /// </summary>
         public readonly int? MaxReplicationSlots;
         /// <summary>
-        /// PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+        /// PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). wal_keep_size minimum WAL size setting takes precedence over this.
         /// </summary>
         public readonly int? MaxSlotWalKeepSize;
         /// <summary>
-        /// Maximum depth of the stack in bytes.
+        /// Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
         /// </summary>
         public readonly int? MaxStackDepth;
         /// <summary>
-        /// Max standby archive delay in milliseconds.
+        /// Max standby archive delay in milliseconds. The default is `30000` (upstream default).
         /// </summary>
         public readonly int? MaxStandbyArchiveDelay;
         /// <summary>
-        /// Max standby streaming delay in milliseconds.
+        /// Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
         /// </summary>
         public readonly int? MaxStandbyStreamingDelay;
         /// <summary>
-        /// PostgreSQL maximum WAL senders.
+        /// Maximum number of synchronization workers per subscription. The default is `2`.
+        /// </summary>
+        public readonly int? MaxSyncWorkersPerSubscription;
+        /// <summary>
+        /// PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
         /// </summary>
         public readonly int? MaxWalSenders;
         /// <summary>
-        /// Sets the maximum number of background processes that the system can support.
+        /// Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
         /// </summary>
         public readonly int? MaxWorkerProcesses;
         /// <summary>
@@ -191,7 +199,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? PasswordEncryption;
         /// <summary>
-        /// Sets the time interval to run pg_partman's scheduled tasks.
+        /// Sets the time interval in seconds to run pg_partman's scheduled tasks. The default is `3600`.
         /// </summary>
         public readonly int? PgPartmanBgwInterval;
         /// <summary>
@@ -199,19 +207,19 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? PgPartmanBgwRole;
         /// <summary>
-        /// Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
+        /// Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Changing this parameter causes a service restart. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
         /// </summary>
         public readonly bool? PgStatMonitorEnable;
         /// <summary>
-        /// Enables or disables query plan monitoring.
+        /// Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
         /// </summary>
         public readonly bool? PgStatMonitorPgsmEnableQueryPlan;
         /// <summary>
-        /// Sets the maximum number of buckets.
+        /// Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
         /// </summary>
         public readonly int? PgStatMonitorPgsmMaxBuckets;
         /// <summary>
-        /// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+        /// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
         /// </summary>
         public readonly string? PgStatStatementsTrack;
         /// <summary>
@@ -235,7 +243,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? ServiceLog;
         /// <summary>
-        /// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+        /// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
         /// </summary>
         public readonly double? SharedBuffersPercentage;
         /// <summary>
@@ -255,11 +263,11 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? Timezone;
         /// <summary>
-        /// Specifies the number of bytes reserved to track the currently executing command for each active session.
+        /// Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
         /// </summary>
         public readonly int? TrackActivityQuerySize;
         /// <summary>
-        /// Record commit time of transactions.
+        /// Record commit time of transactions. Changing this parameter causes a service restart.
         /// </summary>
         public readonly string? TrackCommitTimestamp;
         /// <summary>
@@ -267,7 +275,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? TrackFunctions;
         /// <summary>
-        /// Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+        /// Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
         /// </summary>
         public readonly string? TrackIoTiming;
         /// <summary>
@@ -283,11 +291,11 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? WalSenderTimeout;
         /// <summary>
-        /// WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+        /// WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
         /// </summary>
         public readonly int? WalWriterDelay;
         /// <summary>
-        /// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+        /// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
         /// </summary>
         public readonly int? WorkMem;
 
@@ -349,6 +357,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             int? logTempFiles,
 
+            int? maxConnections,
+
             int? maxFilesPerProcess,
 
             int? maxLocksPerTransaction,
@@ -372,6 +382,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             int? maxStandbyArchiveDelay,
 
             int? maxStandbyStreamingDelay,
+
+            int? maxSyncWorkersPerSubscription,
 
             int? maxWalSenders,
 
@@ -459,6 +471,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             LogLinePrefix = logLinePrefix;
             LogMinDurationStatement = logMinDurationStatement;
             LogTempFiles = logTempFiles;
+            MaxConnections = maxConnections;
             MaxFilesPerProcess = maxFilesPerProcess;
             MaxLocksPerTransaction = maxLocksPerTransaction;
             MaxLogicalReplicationWorkers = maxLogicalReplicationWorkers;
@@ -471,6 +484,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             MaxStackDepth = maxStackDepth;
             MaxStandbyArchiveDelay = maxStandbyArchiveDelay;
             MaxStandbyStreamingDelay = maxStandbyStreamingDelay;
+            MaxSyncWorkersPerSubscription = maxSyncWorkersPerSubscription;
             MaxWalSenders = maxWalSenders;
             MaxWorkerProcesses = maxWorkerProcesses;
             Migration = migration;

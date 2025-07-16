@@ -6691,6 +6691,8 @@ type ManagedDatabaseMysqlProperties struct {
 	MaxHeapTableSize *int `pulumi:"maxHeapTableSize"`
 	// Migrate data from existing server.
 	Migration *ManagedDatabaseMysqlPropertiesMigration `pulumi:"migration"`
+	// MySQL incremental backup configuration.
+	MysqlIncrementalBackup *ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup `pulumi:"mysqlIncrementalBackup"`
 	// Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
 	NetBufferLength *int `pulumi:"netBufferLength"`
 	// The number of seconds to wait for more data from a connection before aborting the read.
@@ -6789,6 +6791,8 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	MaxHeapTableSize pulumi.IntPtrInput `pulumi:"maxHeapTableSize"`
 	// Migrate data from existing server.
 	Migration ManagedDatabaseMysqlPropertiesMigrationPtrInput `pulumi:"migration"`
+	// MySQL incremental backup configuration.
+	MysqlIncrementalBackup ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrInput `pulumi:"mysqlIncrementalBackup"`
 	// Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
 	NetBufferLength pulumi.IntPtrInput `pulumi:"netBufferLength"`
 	// The number of seconds to wait for more data from a connection before aborting the read.
@@ -7040,6 +7044,13 @@ func (o ManagedDatabaseMysqlPropertiesOutput) MaxHeapTableSize() pulumi.IntPtrOu
 // Migrate data from existing server.
 func (o ManagedDatabaseMysqlPropertiesOutput) Migration() ManagedDatabaseMysqlPropertiesMigrationPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *ManagedDatabaseMysqlPropertiesMigration { return v.Migration }).(ManagedDatabaseMysqlPropertiesMigrationPtrOutput)
+}
+
+// MySQL incremental backup configuration.
+func (o ManagedDatabaseMysqlPropertiesOutput) MysqlIncrementalBackup() ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup {
+		return v.MysqlIncrementalBackup
+	}).(ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput)
 }
 
 // Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
@@ -7424,6 +7435,16 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) Migration() ManagedDatabaseMysq
 		}
 		return v.Migration
 	}).(ManagedDatabaseMysqlPropertiesMigrationPtrOutput)
+}
+
+// MySQL incremental backup configuration.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) MysqlIncrementalBackup() ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup {
+		if v == nil {
+			return nil
+		}
+		return v.MysqlIncrementalBackup
+	}).(ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput)
 }
 
 // Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
@@ -7835,6 +7856,162 @@ func (o ManagedDatabaseMysqlPropertiesMigrationPtrOutput) Username() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
+type ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup struct {
+	// Enable incremental backups. Enable periodic incremental backups. When enabled, fullBackupWeekSchedule must be set. Incremental backups only store changes since the last backup, making them faster and more storage-efficient than full backups. This is particularly useful for large databases where daily full backups would be too time-consuming or expensive.
+	Enabled *bool `pulumi:"enabled"`
+	// Full backup week schedule. Comma-separated list of days of the week when full backups should be created. Valid values: mon, tue, wed, thu, fri, sat, sun.
+	FullBackupWeekSchedule *string `pulumi:"fullBackupWeekSchedule"`
+}
+
+// ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupInput is an input type that accepts ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs and ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput values.
+// You can construct a concrete instance of `ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupInput` via:
+//
+//	ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs{...}
+type ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput() ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput
+	ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutputWithContext(context.Context) ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput
+}
+
+type ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs struct {
+	// Enable incremental backups. Enable periodic incremental backups. When enabled, fullBackupWeekSchedule must be set. Incremental backups only store changes since the last backup, making them faster and more storage-efficient than full backups. This is particularly useful for large databases where daily full backups would be too time-consuming or expensive.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Full backup week schedule. Comma-separated list of days of the week when full backups should be created. Valid values: mon, tue, wed, thu, fri, sat, sun.
+	FullBackupWeekSchedule pulumi.StringPtrInput `pulumi:"fullBackupWeekSchedule"`
+}
+
+func (ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup)(nil)).Elem()
+}
+
+func (i ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs) ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput() ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput {
+	return i.ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs) ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutputWithContext(ctx context.Context) ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput)
+}
+
+func (i ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs) ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput() ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput {
+	return i.ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs) ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutputWithContext(ctx context.Context) ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput).ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrInput is an input type that accepts ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs, ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtr and ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrInput` via:
+//
+//	        ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput() ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput
+	ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutputWithContext(context.Context) ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput
+}
+
+type managedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrType ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs
+
+func ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtr(v *ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs) ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrInput {
+	return (*managedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrType)(v)
+}
+
+func (*managedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup)(nil)).Elem()
+}
+
+func (i *managedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrType) ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput() ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput {
+	return i.ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrType) ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutputWithContext(ctx context.Context) ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput)
+}
+
+type ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup)(nil)).Elem()
+}
+
+func (o ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput) ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput() ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput {
+	return o
+}
+
+func (o ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput) ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutputWithContext(ctx context.Context) ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput {
+	return o
+}
+
+func (o ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput) ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput() ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput {
+	return o.ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput) ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutputWithContext(ctx context.Context) ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup) *ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup {
+		return &v
+	}).(ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput)
+}
+
+// Enable incremental backups. Enable periodic incremental backups. When enabled, fullBackupWeekSchedule must be set. Incremental backups only store changes since the last backup, making them faster and more storage-efficient than full backups. This is particularly useful for large databases where daily full backups would be too time-consuming or expensive.
+func (o ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Full backup week schedule. Comma-separated list of days of the week when full backups should be created. Valid values: mon, tue, wed, thu, fri, sat, sun.
+func (o ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput) FullBackupWeekSchedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup) *string { return v.FullBackupWeekSchedule }).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup)(nil)).Elem()
+}
+
+func (o ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput) ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput() ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput) ToManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutputWithContext(ctx context.Context) ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput) Elem() ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup) ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup
+		return ret
+	}).(ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput)
+}
+
+// Enable incremental backups. Enable periodic incremental backups. When enabled, fullBackupWeekSchedule must be set. Incremental backups only store changes since the last backup, making them faster and more storage-efficient than full backups. This is particularly useful for large databases where daily full backups would be too time-consuming or expensive.
+func (o ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Full backup week schedule. Comma-separated list of days of the week when full backups should be created. Valid values: mon, tue, wed, thu, fri, sat, sun.
+func (o ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput) FullBackupWeekSchedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FullBackupWeekSchedule
+	}).(pulumi.StringPtrOutput)
+}
+
 type ManagedDatabaseOpensearchComponent struct {
 	// Type of the component
 	Component *string `pulumi:"component"`
@@ -8216,8 +8393,11 @@ type ManagedDatabaseOpensearchProperties struct {
 	AuthFailureListeners *ManagedDatabaseOpensearchPropertiesAuthFailureListeners `pulumi:"authFailureListeners"`
 	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
 	AutomaticUtilityNetworkIpFilter *bool `pulumi:"automaticUtilityNetworkIpFilter"`
+	// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
+	ClusterFilecacheRemoteDataRatio *int `pulumi:"clusterFilecacheRemoteDataRatio"`
 	// Controls the number of shards allowed in the cluster per data node.
-	ClusterMaxShardsPerNode *int `pulumi:"clusterMaxShardsPerNode"`
+	ClusterMaxShardsPerNode *int                                                   `pulumi:"clusterMaxShardsPerNode"`
+	ClusterRemoteStore      *ManagedDatabaseOpensearchPropertiesClusterRemoteStore `pulumi:"clusterRemoteStore"`
 	// When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
 	ClusterRoutingAllocationBalancePreferPrimary *bool `pulumi:"clusterRoutingAllocationBalancePreferPrimary"`
 	// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
@@ -8241,6 +8421,8 @@ type ManagedDatabaseOpensearchProperties struct {
 	EnableSearchableSnapshots *bool `pulumi:"enableSearchableSnapshots"`
 	// Enable/Disable security audit.
 	EnableSecurityAudit *bool `pulumi:"enableSecurityAudit"`
+	// Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
+	EnableSnapshotApi *bool `pulumi:"enableSnapshotApi"`
 	// Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
 	HttpMaxContentLength *int `pulumi:"httpMaxContentLength"`
 	// The max size of allowed headers, in bytes.
@@ -8289,6 +8471,8 @@ type ManagedDatabaseOpensearchProperties struct {
 	KnnMemoryCircuitBreakerEnabled *bool `pulumi:"knnMemoryCircuitBreakerEnabled"`
 	// Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
 	KnnMemoryCircuitBreakerLimit *int `pulumi:"knnMemoryCircuitBreakerLimit"`
+	// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
+	NodeSearchCacheSize *string `pulumi:"nodeSearchCacheSize"`
 	// OpenSearch OpenID Connect Configuration.
 	Openid *ManagedDatabaseOpensearchPropertiesOpenid `pulumi:"openid"`
 	// OpenSearch Dashboards settings.
@@ -8300,7 +8484,8 @@ type ManagedDatabaseOpensearchProperties struct {
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess *bool `pulumi:"publicAccess"`
 	// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
-	ReindexRemoteWhitelists []string `pulumi:"reindexRemoteWhitelists"`
+	ReindexRemoteWhitelists []string                                        `pulumi:"reindexRemoteWhitelists"`
+	RemoteStore             *ManagedDatabaseOpensearchPropertiesRemoteStore `pulumi:"remoteStore"`
 	// OpenSearch SAML configuration.
 	Saml *ManagedDatabaseOpensearchPropertiesSaml `pulumi:"saml"`
 	// Script max compilation rate - circuit breaker to prevent/minimize OOMs. Script compilation circuit breaker limits the number of inline script compilations within a period of time. Default is use-context.
@@ -8362,8 +8547,11 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	AuthFailureListeners ManagedDatabaseOpensearchPropertiesAuthFailureListenersPtrInput `pulumi:"authFailureListeners"`
 	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
 	AutomaticUtilityNetworkIpFilter pulumi.BoolPtrInput `pulumi:"automaticUtilityNetworkIpFilter"`
+	// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
+	ClusterFilecacheRemoteDataRatio pulumi.IntPtrInput `pulumi:"clusterFilecacheRemoteDataRatio"`
 	// Controls the number of shards allowed in the cluster per data node.
-	ClusterMaxShardsPerNode pulumi.IntPtrInput `pulumi:"clusterMaxShardsPerNode"`
+	ClusterMaxShardsPerNode pulumi.IntPtrInput                                            `pulumi:"clusterMaxShardsPerNode"`
+	ClusterRemoteStore      ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrInput `pulumi:"clusterRemoteStore"`
 	// When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
 	ClusterRoutingAllocationBalancePreferPrimary pulumi.BoolPtrInput `pulumi:"clusterRoutingAllocationBalancePreferPrimary"`
 	// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
@@ -8387,6 +8575,8 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	EnableSearchableSnapshots pulumi.BoolPtrInput `pulumi:"enableSearchableSnapshots"`
 	// Enable/Disable security audit.
 	EnableSecurityAudit pulumi.BoolPtrInput `pulumi:"enableSecurityAudit"`
+	// Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
+	EnableSnapshotApi pulumi.BoolPtrInput `pulumi:"enableSnapshotApi"`
 	// Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
 	HttpMaxContentLength pulumi.IntPtrInput `pulumi:"httpMaxContentLength"`
 	// The max size of allowed headers, in bytes.
@@ -8435,6 +8625,8 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	KnnMemoryCircuitBreakerEnabled pulumi.BoolPtrInput `pulumi:"knnMemoryCircuitBreakerEnabled"`
 	// Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
 	KnnMemoryCircuitBreakerLimit pulumi.IntPtrInput `pulumi:"knnMemoryCircuitBreakerLimit"`
+	// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
+	NodeSearchCacheSize pulumi.StringPtrInput `pulumi:"nodeSearchCacheSize"`
 	// OpenSearch OpenID Connect Configuration.
 	Openid ManagedDatabaseOpensearchPropertiesOpenidPtrInput `pulumi:"openid"`
 	// OpenSearch Dashboards settings.
@@ -8446,7 +8638,8 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess pulumi.BoolPtrInput `pulumi:"publicAccess"`
 	// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
-	ReindexRemoteWhitelists pulumi.StringArrayInput `pulumi:"reindexRemoteWhitelists"`
+	ReindexRemoteWhitelists pulumi.StringArrayInput                                `pulumi:"reindexRemoteWhitelists"`
+	RemoteStore             ManagedDatabaseOpensearchPropertiesRemoteStorePtrInput `pulumi:"remoteStore"`
 	// OpenSearch SAML configuration.
 	Saml ManagedDatabaseOpensearchPropertiesSamlPtrInput `pulumi:"saml"`
 	// Script max compilation rate - circuit breaker to prevent/minimize OOMs. Script compilation circuit breaker limits the number of inline script compilations within a period of time. Default is use-context.
@@ -8587,9 +8780,20 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) AutomaticUtilityNetworkIpFilt
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.AutomaticUtilityNetworkIpFilter }).(pulumi.BoolPtrOutput)
 }
 
+// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
+func (o ManagedDatabaseOpensearchPropertiesOutput) ClusterFilecacheRemoteDataRatio() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.ClusterFilecacheRemoteDataRatio }).(pulumi.IntPtrOutput)
+}
+
 // Controls the number of shards allowed in the cluster per data node.
 func (o ManagedDatabaseOpensearchPropertiesOutput) ClusterMaxShardsPerNode() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.ClusterMaxShardsPerNode }).(pulumi.IntPtrOutput)
+}
+
+func (o ManagedDatabaseOpensearchPropertiesOutput) ClusterRemoteStore() ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesClusterRemoteStore {
+		return v.ClusterRemoteStore
+	}).(ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput)
 }
 
 // When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
@@ -8657,6 +8861,11 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) EnableSearchableSnapshots() p
 // Enable/Disable security audit.
 func (o ManagedDatabaseOpensearchPropertiesOutput) EnableSecurityAudit() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.EnableSecurityAudit }).(pulumi.BoolPtrOutput)
+}
+
+// Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
+func (o ManagedDatabaseOpensearchPropertiesOutput) EnableSnapshotApi() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.EnableSnapshotApi }).(pulumi.BoolPtrOutput)
 }
 
 // Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
@@ -8783,6 +8992,11 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) KnnMemoryCircuitBreakerLimit(
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.KnnMemoryCircuitBreakerLimit }).(pulumi.IntPtrOutput)
 }
 
+// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
+func (o ManagedDatabaseOpensearchPropertiesOutput) NodeSearchCacheSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *string { return v.NodeSearchCacheSize }).(pulumi.StringPtrOutput)
+}
+
 // OpenSearch OpenID Connect Configuration.
 func (o ManagedDatabaseOpensearchPropertiesOutput) Openid() ManagedDatabaseOpensearchPropertiesOpenidPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesOpenid {
@@ -8815,6 +9029,12 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) PublicAccess() pulumi.BoolPtr
 // Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
 func (o ManagedDatabaseOpensearchPropertiesOutput) ReindexRemoteWhitelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) []string { return v.ReindexRemoteWhitelists }).(pulumi.StringArrayOutput)
+}
+
+func (o ManagedDatabaseOpensearchPropertiesOutput) RemoteStore() ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesRemoteStore {
+		return v.RemoteStore
+	}).(ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput)
 }
 
 // OpenSearch SAML configuration.
@@ -8988,6 +9208,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) AutomaticUtilityNetworkIpF
 	}).(pulumi.BoolPtrOutput)
 }
 
+// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ClusterFilecacheRemoteDataRatio() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ClusterFilecacheRemoteDataRatio
+	}).(pulumi.IntPtrOutput)
+}
+
 // Controls the number of shards allowed in the cluster per data node.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ClusterMaxShardsPerNode() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *int {
@@ -8996,6 +9226,15 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ClusterMaxShardsPerNode() 
 		}
 		return v.ClusterMaxShardsPerNode
 	}).(pulumi.IntPtrOutput)
+}
+
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ClusterRemoteStore() ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesClusterRemoteStore {
+		if v == nil {
+			return nil
+		}
+		return v.ClusterRemoteStore
+	}).(ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput)
 }
 
 // When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
@@ -9114,6 +9353,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) EnableSecurityAudit() pulu
 			return nil
 		}
 		return v.EnableSecurityAudit
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) EnableSnapshotApi() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.EnableSnapshotApi
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -9357,6 +9606,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) KnnMemoryCircuitBreakerLim
 	}).(pulumi.IntPtrOutput)
 }
 
+// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) NodeSearchCacheSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NodeSearchCacheSize
+	}).(pulumi.StringPtrOutput)
+}
+
 // OpenSearch OpenID Connect Configuration.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) Openid() ManagedDatabaseOpensearchPropertiesOpenidPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesOpenid {
@@ -9415,6 +9674,15 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ReindexRemoteWhitelists() 
 		}
 		return v.ReindexRemoteWhitelists
 	}).(pulumi.StringArrayOutput)
+}
+
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) RemoteStore() ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesRemoteStore {
+		if v == nil {
+			return nil
+		}
+		return v.RemoteStore
+	}).(ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput)
 }
 
 // OpenSearch SAML configuration.
@@ -10014,6 +10282,204 @@ func (o ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthentic
 		}
 		return v.Type
 	}).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesClusterRemoteStore struct {
+	// The amount of time to wait for the cluster state upload to complete. The amount of time to wait for the cluster state upload to complete. Defaults to 20s.
+	StateGlobalMetadataUploadTimeout *string `pulumi:"stateGlobalMetadataUploadTimeout"`
+	// The amount of time to wait for the manifest file upload to complete. The amount of time to wait for the manifest file upload to complete. The manifest file contains the details of each of the files uploaded for a single cluster state, both index metadata files and global metadata files. Defaults to 20s.
+	StateMetadataManifestUploadTimeout *string `pulumi:"stateMetadataManifestUploadTimeout"`
+	// The default value of the translog buffer interval. The default value of the translog buffer interval used when performing periodic translog updates. This setting is only effective when the index setting `index.remote_store.translog.buffer_interval` is not present. Defaults to 650ms.
+	TranslogBufferInterval *string `pulumi:"translogBufferInterval"`
+	// The maximum number of open translog files for remote-backed indexes. Sets the maximum number of open translog files for remote-backed indexes. This limits the total number of translog files per shard. After reaching this limit, the remote store flushes the translog files. Default is 1000. The minimum required is 100.
+	TranslogMaxReaders *int `pulumi:"translogMaxReaders"`
+}
+
+// ManagedDatabaseOpensearchPropertiesClusterRemoteStoreInput is an input type that accepts ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs and ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesClusterRemoteStoreInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs{...}
+type ManagedDatabaseOpensearchPropertiesClusterRemoteStoreInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput() ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput
+	ToManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs struct {
+	// The amount of time to wait for the cluster state upload to complete. The amount of time to wait for the cluster state upload to complete. Defaults to 20s.
+	StateGlobalMetadataUploadTimeout pulumi.StringPtrInput `pulumi:"stateGlobalMetadataUploadTimeout"`
+	// The amount of time to wait for the manifest file upload to complete. The amount of time to wait for the manifest file upload to complete. The manifest file contains the details of each of the files uploaded for a single cluster state, both index metadata files and global metadata files. Defaults to 20s.
+	StateMetadataManifestUploadTimeout pulumi.StringPtrInput `pulumi:"stateMetadataManifestUploadTimeout"`
+	// The default value of the translog buffer interval. The default value of the translog buffer interval used when performing periodic translog updates. This setting is only effective when the index setting `index.remote_store.translog.buffer_interval` is not present. Defaults to 650ms.
+	TranslogBufferInterval pulumi.StringPtrInput `pulumi:"translogBufferInterval"`
+	// The maximum number of open translog files for remote-backed indexes. Sets the maximum number of open translog files for remote-backed indexes. This limits the total number of translog files per shard. After reaching this limit, the remote store flushes the translog files. Default is 1000. The minimum required is 100.
+	TranslogMaxReaders pulumi.IntPtrInput `pulumi:"translogMaxReaders"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterRemoteStore)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs) ToManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput() ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs) ToManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs) ToManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput() ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs) ToManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput).ToManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs, ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtr and ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput() ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput
+	ToManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesClusterRemoteStorePtrType ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs
+
+func ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtr(v *ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs) ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrInput {
+	return (*managedDatabaseOpensearchPropertiesClusterRemoteStorePtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesClusterRemoteStorePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesClusterRemoteStore)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesClusterRemoteStorePtrType) ToManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput() ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesClusterRemoteStorePtrType) ToManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterRemoteStore)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput) ToManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput() ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput) ToManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput) ToManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput() ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput) ToManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesClusterRemoteStore) *ManagedDatabaseOpensearchPropertiesClusterRemoteStore {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput)
+}
+
+// The amount of time to wait for the cluster state upload to complete. The amount of time to wait for the cluster state upload to complete. Defaults to 20s.
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput) StateGlobalMetadataUploadTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesClusterRemoteStore) *string {
+		return v.StateGlobalMetadataUploadTimeout
+	}).(pulumi.StringPtrOutput)
+}
+
+// The amount of time to wait for the manifest file upload to complete. The amount of time to wait for the manifest file upload to complete. The manifest file contains the details of each of the files uploaded for a single cluster state, both index metadata files and global metadata files. Defaults to 20s.
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput) StateMetadataManifestUploadTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesClusterRemoteStore) *string {
+		return v.StateMetadataManifestUploadTimeout
+	}).(pulumi.StringPtrOutput)
+}
+
+// The default value of the translog buffer interval. The default value of the translog buffer interval used when performing periodic translog updates. This setting is only effective when the index setting `index.remote_store.translog.buffer_interval` is not present. Defaults to 650ms.
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput) TranslogBufferInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesClusterRemoteStore) *string { return v.TranslogBufferInterval }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of open translog files for remote-backed indexes. Sets the maximum number of open translog files for remote-backed indexes. This limits the total number of translog files per shard. After reaching this limit, the remote store flushes the translog files. Default is 1000. The minimum required is 100.
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput) TranslogMaxReaders() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesClusterRemoteStore) *int { return v.TranslogMaxReaders }).(pulumi.IntPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesClusterRemoteStore)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput) ToManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput() ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput) ToManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput) Elem() ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesClusterRemoteStore) ManagedDatabaseOpensearchPropertiesClusterRemoteStore {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesClusterRemoteStore
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput)
+}
+
+// The amount of time to wait for the cluster state upload to complete. The amount of time to wait for the cluster state upload to complete. Defaults to 20s.
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput) StateGlobalMetadataUploadTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesClusterRemoteStore) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StateGlobalMetadataUploadTimeout
+	}).(pulumi.StringPtrOutput)
+}
+
+// The amount of time to wait for the manifest file upload to complete. The amount of time to wait for the manifest file upload to complete. The manifest file contains the details of each of the files uploaded for a single cluster state, both index metadata files and global metadata files. Defaults to 20s.
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput) StateMetadataManifestUploadTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesClusterRemoteStore) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StateMetadataManifestUploadTimeout
+	}).(pulumi.StringPtrOutput)
+}
+
+// The default value of the translog buffer interval. The default value of the translog buffer interval used when performing periodic translog updates. This setting is only effective when the index setting `index.remote_store.translog.buffer_interval` is not present. Defaults to 650ms.
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput) TranslogBufferInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesClusterRemoteStore) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TranslogBufferInterval
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of open translog files for remote-backed indexes. Sets the maximum number of open translog files for remote-backed indexes. This limits the total number of translog files per shard. After reaching this limit, the remote store flushes the translog files. Default is 1000. The minimum required is 100.
+func (o ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput) TranslogMaxReaders() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesClusterRemoteStore) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TranslogMaxReaders
+	}).(pulumi.IntPtrOutput)
 }
 
 type ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog struct {
@@ -11473,6 +11939,206 @@ func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput) Opense
 		}
 		return v.OpensearchRequestTimeout
 	}).(pulumi.IntPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesRemoteStore struct {
+	// The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic bytes lag threshold for activating remote segment backpressure. Defaults to 10.
+	SegmentPressureBytesLagVarianceFactor *float64 `pulumi:"segmentPressureBytesLagVarianceFactor"`
+	// The minimum consecutive failure count for activating remote segment backpressure. The minimum consecutive failure count for activating remote segment backpressure. Defaults to 5.
+	SegmentPressureConsecutiveFailuresLimit *int `pulumi:"segmentPressureConsecutiveFailuresLimit"`
+	// Enables remote segment backpressure. Enables remote segment backpressure. Default is `true`.
+	SegmentPressureEnabled *bool `pulumi:"segmentPressureEnabled"`
+	// The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic time lag threshold for activating remote segment backpressure. Defaults to 10.
+	SegmentPressureTimeLagVarianceFactor *float64 `pulumi:"segmentPressureTimeLagVarianceFactor"`
+}
+
+// ManagedDatabaseOpensearchPropertiesRemoteStoreInput is an input type that accepts ManagedDatabaseOpensearchPropertiesRemoteStoreArgs and ManagedDatabaseOpensearchPropertiesRemoteStoreOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesRemoteStoreInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesRemoteStoreArgs{...}
+type ManagedDatabaseOpensearchPropertiesRemoteStoreInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesRemoteStoreOutput() ManagedDatabaseOpensearchPropertiesRemoteStoreOutput
+	ToManagedDatabaseOpensearchPropertiesRemoteStoreOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesRemoteStoreOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesRemoteStoreArgs struct {
+	// The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic bytes lag threshold for activating remote segment backpressure. Defaults to 10.
+	SegmentPressureBytesLagVarianceFactor pulumi.Float64PtrInput `pulumi:"segmentPressureBytesLagVarianceFactor"`
+	// The minimum consecutive failure count for activating remote segment backpressure. The minimum consecutive failure count for activating remote segment backpressure. Defaults to 5.
+	SegmentPressureConsecutiveFailuresLimit pulumi.IntPtrInput `pulumi:"segmentPressureConsecutiveFailuresLimit"`
+	// Enables remote segment backpressure. Enables remote segment backpressure. Default is `true`.
+	SegmentPressureEnabled pulumi.BoolPtrInput `pulumi:"segmentPressureEnabled"`
+	// The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic time lag threshold for activating remote segment backpressure. Defaults to 10.
+	SegmentPressureTimeLagVarianceFactor pulumi.Float64PtrInput `pulumi:"segmentPressureTimeLagVarianceFactor"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesRemoteStoreArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesRemoteStore)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesRemoteStoreArgs) ToManagedDatabaseOpensearchPropertiesRemoteStoreOutput() ManagedDatabaseOpensearchPropertiesRemoteStoreOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesRemoteStoreOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesRemoteStoreArgs) ToManagedDatabaseOpensearchPropertiesRemoteStoreOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesRemoteStoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesRemoteStoreOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesRemoteStoreArgs) ToManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput() ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesRemoteStorePtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesRemoteStoreArgs) ToManagedDatabaseOpensearchPropertiesRemoteStorePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesRemoteStoreOutput).ToManagedDatabaseOpensearchPropertiesRemoteStorePtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesRemoteStorePtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesRemoteStoreArgs, ManagedDatabaseOpensearchPropertiesRemoteStorePtr and ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesRemoteStorePtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesRemoteStoreArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesRemoteStorePtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput() ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput
+	ToManagedDatabaseOpensearchPropertiesRemoteStorePtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesRemoteStorePtrType ManagedDatabaseOpensearchPropertiesRemoteStoreArgs
+
+func ManagedDatabaseOpensearchPropertiesRemoteStorePtr(v *ManagedDatabaseOpensearchPropertiesRemoteStoreArgs) ManagedDatabaseOpensearchPropertiesRemoteStorePtrInput {
+	return (*managedDatabaseOpensearchPropertiesRemoteStorePtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesRemoteStorePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesRemoteStore)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesRemoteStorePtrType) ToManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput() ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesRemoteStorePtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesRemoteStorePtrType) ToManagedDatabaseOpensearchPropertiesRemoteStorePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesRemoteStoreOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesRemoteStoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesRemoteStore)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesRemoteStoreOutput) ToManagedDatabaseOpensearchPropertiesRemoteStoreOutput() ManagedDatabaseOpensearchPropertiesRemoteStoreOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesRemoteStoreOutput) ToManagedDatabaseOpensearchPropertiesRemoteStoreOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesRemoteStoreOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesRemoteStoreOutput) ToManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput() ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesRemoteStorePtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesRemoteStoreOutput) ToManagedDatabaseOpensearchPropertiesRemoteStorePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesRemoteStore) *ManagedDatabaseOpensearchPropertiesRemoteStore {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput)
+}
+
+// The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic bytes lag threshold for activating remote segment backpressure. Defaults to 10.
+func (o ManagedDatabaseOpensearchPropertiesRemoteStoreOutput) SegmentPressureBytesLagVarianceFactor() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesRemoteStore) *float64 {
+		return v.SegmentPressureBytesLagVarianceFactor
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The minimum consecutive failure count for activating remote segment backpressure. The minimum consecutive failure count for activating remote segment backpressure. Defaults to 5.
+func (o ManagedDatabaseOpensearchPropertiesRemoteStoreOutput) SegmentPressureConsecutiveFailuresLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesRemoteStore) *int {
+		return v.SegmentPressureConsecutiveFailuresLimit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Enables remote segment backpressure. Enables remote segment backpressure. Default is `true`.
+func (o ManagedDatabaseOpensearchPropertiesRemoteStoreOutput) SegmentPressureEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesRemoteStore) *bool { return v.SegmentPressureEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic time lag threshold for activating remote segment backpressure. Defaults to 10.
+func (o ManagedDatabaseOpensearchPropertiesRemoteStoreOutput) SegmentPressureTimeLagVarianceFactor() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesRemoteStore) *float64 {
+		return v.SegmentPressureTimeLagVarianceFactor
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesRemoteStore)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput) ToManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput() ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput) ToManagedDatabaseOpensearchPropertiesRemoteStorePtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput) Elem() ManagedDatabaseOpensearchPropertiesRemoteStoreOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesRemoteStore) ManagedDatabaseOpensearchPropertiesRemoteStore {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesRemoteStore
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesRemoteStoreOutput)
+}
+
+// The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic bytes lag threshold for activating remote segment backpressure. Defaults to 10.
+func (o ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput) SegmentPressureBytesLagVarianceFactor() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesRemoteStore) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.SegmentPressureBytesLagVarianceFactor
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The minimum consecutive failure count for activating remote segment backpressure. The minimum consecutive failure count for activating remote segment backpressure. Defaults to 5.
+func (o ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput) SegmentPressureConsecutiveFailuresLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesRemoteStore) *int {
+		if v == nil {
+			return nil
+		}
+		return v.SegmentPressureConsecutiveFailuresLimit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Enables remote segment backpressure. Enables remote segment backpressure. Default is `true`.
+func (o ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput) SegmentPressureEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesRemoteStore) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SegmentPressureEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic time lag threshold for activating remote segment backpressure. Defaults to 10.
+func (o ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput) SegmentPressureTimeLagVarianceFactor() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesRemoteStore) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.SegmentPressureTimeLagVarianceFactor
+	}).(pulumi.Float64PtrOutput)
 }
 
 type ManagedDatabaseOpensearchPropertiesSaml struct {
@@ -14895,39 +15561,39 @@ type ManagedDatabasePostgresqlProperties struct {
 	AdminUsername *string `pulumi:"adminUsername"`
 	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
 	AutomaticUtilityNetworkIpFilter *bool `pulumi:"automaticUtilityNetworkIpFilter"`
-	// Specifies a fraction of the table size to add to autovacuumAnalyzeThreshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
+	// Specifies a fraction of the table size to add to autovacuumAnalyzeThreshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
 	AutovacuumAnalyzeScaleFactor *float64 `pulumi:"autovacuumAnalyzeScaleFactor"`
-	// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+	// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
 	AutovacuumAnalyzeThreshold *int `pulumi:"autovacuumAnalyzeThreshold"`
-	// Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
+	// Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
 	AutovacuumFreezeMaxAge *int `pulumi:"autovacuumFreezeMaxAge"`
-	// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+	// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
 	AutovacuumMaxWorkers *int `pulumi:"autovacuumMaxWorkers"`
-	// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
+	// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
 	AutovacuumNaptime *int `pulumi:"autovacuumNaptime"`
-	// Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuumCostDelay value will be used. The default value is 20 milliseconds.
+	// Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuumCostDelay value will be used. The default is `2` (upstream default).
 	AutovacuumVacuumCostDelay *int `pulumi:"autovacuumVacuumCostDelay"`
-	// Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuumCostLimit value will be used.
+	// Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuumCostLimit value will be used. The default is `-1` (upstream default).
 	AutovacuumVacuumCostLimit *int `pulumi:"autovacuumVacuumCostLimit"`
-	// Specifies a fraction of the table size to add to autovacuumVacuumThreshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
+	// Specifies a fraction of the table size to add to autovacuumVacuumThreshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
 	AutovacuumVacuumScaleFactor *float64 `pulumi:"autovacuumVacuumScaleFactor"`
-	// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+	// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
 	AutovacuumVacuumThreshold *int `pulumi:"autovacuumVacuumThreshold"`
 	// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
 	BackupHour *int `pulumi:"backupHour"`
 	// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
 	BackupMinute *int `pulumi:"backupMinute"`
-	// Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+	// Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
 	BgwriterDelay *int `pulumi:"bgwriterDelay"`
-	// Whenever more than bgwriterFlushAfter bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+	// Whenever more than bgwriterFlushAfter bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
 	BgwriterFlushAfter *int `pulumi:"bgwriterFlushAfter"`
-	// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+	// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
 	BgwriterLruMaxpages *int `pulumi:"bgwriterLruMaxpages"`
-	// The average recent need for new buffers is multiplied by bgwriterLruMultiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+	// The average recent need for new buffers is multiplied by bgwriterLruMultiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
 	BgwriterLruMultiplier *float64 `pulumi:"bgwriterLruMultiplier"`
-	// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+	// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
 	DeadlockTimeout *int `pulumi:"deadlockTimeout"`
-	// Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+	// Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
 	DefaultToastCompression *string `pulumi:"defaultToastCompression"`
 	// Time out sessions with open transactions after this number of milliseconds.
 	IdleInTransactionSessionTimeout *int `pulumi:"idleInTransactionSessionTimeout"`
@@ -14935,7 +15601,7 @@ type ManagedDatabasePostgresqlProperties struct {
 	IpFilters []string `pulumi:"ipFilters"`
 	// Controls system-wide use of Just-in-Time Compilation (JIT).
 	Jit *bool `pulumi:"jit"`
-	// Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+	// Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
 	LogAutovacuumMinDuration *int `pulumi:"logAutovacuumMinDuration"`
 	// Controls the amount of detail written in the server log for each message that is logged.
 	LogErrorVerbosity *string `pulumi:"logErrorVerbosity"`
@@ -14945,49 +15611,53 @@ type ManagedDatabasePostgresqlProperties struct {
 	LogMinDurationStatement *int `pulumi:"logMinDurationStatement"`
 	// Log statements for each temporary file created larger than this number of kilobytes, -1 disables.
 	LogTempFiles *int `pulumi:"logTempFiles"`
-	// PostgreSQL maximum number of files that can be open per process.
+	// PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+	MaxConnections *int `pulumi:"maxConnections"`
+	// PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
 	MaxFilesPerProcess *int `pulumi:"maxFilesPerProcess"`
-	// PostgreSQL maximum locks per transaction.
+	// PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
 	MaxLocksPerTransaction *int `pulumi:"maxLocksPerTransaction"`
-	// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+	// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
 	MaxLogicalReplicationWorkers *int `pulumi:"maxLogicalReplicationWorkers"`
-	// Sets the maximum number of workers that the system can support for parallel queries.
+	// Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
 	MaxParallelWorkers *int `pulumi:"maxParallelWorkers"`
-	// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+	// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
 	MaxParallelWorkersPerGather *int `pulumi:"maxParallelWorkersPerGather"`
-	// PostgreSQL maximum predicate locks per transaction.
+	// PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
 	MaxPredLocksPerTransaction *int `pulumi:"maxPredLocksPerTransaction"`
-	// PostgreSQL maximum prepared transactions.
+	// PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
 	MaxPreparedTransactions *int `pulumi:"maxPreparedTransactions"`
-	// PostgreSQL maximum replication slots.
+	// PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
 	MaxReplicationSlots *int `pulumi:"maxReplicationSlots"`
-	// PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). walKeepSize minimum WAL size setting takes precedence over this.
+	// PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). walKeepSize minimum WAL size setting takes precedence over this.
 	MaxSlotWalKeepSize *int `pulumi:"maxSlotWalKeepSize"`
-	// Maximum depth of the stack in bytes.
+	// Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
 	MaxStackDepth *int `pulumi:"maxStackDepth"`
-	// Max standby archive delay in milliseconds.
+	// Max standby archive delay in milliseconds. The default is `30000` (upstream default).
 	MaxStandbyArchiveDelay *int `pulumi:"maxStandbyArchiveDelay"`
-	// Max standby streaming delay in milliseconds.
+	// Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
 	MaxStandbyStreamingDelay *int `pulumi:"maxStandbyStreamingDelay"`
-	// PostgreSQL maximum WAL senders.
+	// Maximum number of synchronization workers per subscription. The default is `2`.
+	MaxSyncWorkersPerSubscription *int `pulumi:"maxSyncWorkersPerSubscription"`
+	// PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
 	MaxWalSenders *int `pulumi:"maxWalSenders"`
-	// Sets the maximum number of background processes that the system can support.
+	// Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
 	MaxWorkerProcesses *int `pulumi:"maxWorkerProcesses"`
 	// Migrate data from existing server.
 	Migration *ManagedDatabasePostgresqlPropertiesMigration `pulumi:"migration"`
 	// Chooses the algorithm for encrypting passwords.
 	PasswordEncryption *string `pulumi:"passwordEncryption"`
-	// Sets the time interval to run pg_partman's scheduled tasks.
+	// Sets the time interval in seconds to run pg_partman's scheduled tasks. The default is `3600`.
 	PgPartmanBgwInterval *int `pulumi:"pgPartmanBgwInterval"`
 	// Controls which role to use for pg_partman's scheduled background tasks.
 	PgPartmanBgwRole *string `pulumi:"pgPartmanBgwRole"`
-	// Enable pgStatMonitor extension if available for the current cluster. Enable the pgStatMonitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pgStatStatements results for utility commands are unreliable.
+	// Enable pgStatMonitor extension if available for the current cluster. Enable the pgStatMonitor extension. Changing this parameter causes a service restart. When this extension is enabled, pgStatStatements results for utility commands are unreliable.
 	PgStatMonitorEnable *bool `pulumi:"pgStatMonitorEnable"`
-	// Enables or disables query plan monitoring.
+	// Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
 	PgStatMonitorPgsmEnableQueryPlan *bool `pulumi:"pgStatMonitorPgsmEnableQueryPlan"`
-	// Sets the maximum number of buckets.
+	// Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
 	PgStatMonitorPgsmMaxBuckets *int `pulumi:"pgStatMonitorPgsmMaxBuckets"`
-	// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+	// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
 	PgStatStatementsTrack *string `pulumi:"pgStatStatementsTrack"`
 	// PGAudit settings. System-wide settings for the pgaudit extension.
 	Pgaudit *ManagedDatabasePostgresqlPropertiesPgaudit `pulumi:"pgaudit"`
@@ -14999,7 +15669,7 @@ type ManagedDatabasePostgresqlProperties struct {
 	PublicAccess *bool `pulumi:"publicAccess"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog *bool `pulumi:"serviceLog"`
-	// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value.
+	// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value. Changing this parameter causes a service restart.
 	SharedBuffersPercentage *float64 `pulumi:"sharedBuffersPercentage"`
 	// Synchronous replication type. Note that the service plan also needs to support synchronous replication.
 	SynchronousReplication *string `pulumi:"synchronousReplication"`
@@ -15009,13 +15679,13 @@ type ManagedDatabasePostgresqlProperties struct {
 	Timescaledb *ManagedDatabasePostgresqlPropertiesTimescaledb `pulumi:"timescaledb"`
 	// PostgreSQL service timezone.
 	Timezone *string `pulumi:"timezone"`
-	// Specifies the number of bytes reserved to track the currently executing command for each active session.
+	// Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
 	TrackActivityQuerySize *int `pulumi:"trackActivityQuerySize"`
-	// Record commit time of transactions.
+	// Record commit time of transactions. Changing this parameter causes a service restart.
 	TrackCommitTimestamp *string `pulumi:"trackCommitTimestamp"`
 	// Enables tracking of function call counts and time used.
 	TrackFunctions *string `pulumi:"trackFunctions"`
-	// Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+	// Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
 	TrackIoTiming *string `pulumi:"trackIoTiming"`
 	// Variant of the PostgreSQL service, may affect the features that are exposed by default.
 	Variant *string `pulumi:"variant"`
@@ -15023,9 +15693,9 @@ type ManagedDatabasePostgresqlProperties struct {
 	Version *string `pulumi:"version"`
 	// Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to zero disables the timeout.
 	WalSenderTimeout *int `pulumi:"walSenderTimeout"`
-	// WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+	// WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
 	WalWriterDelay *int `pulumi:"walWriterDelay"`
-	// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+	// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
 	WorkMem *int `pulumi:"workMem"`
 }
 
@@ -15047,39 +15717,39 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	AdminUsername pulumi.StringPtrInput `pulumi:"adminUsername"`
 	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
 	AutomaticUtilityNetworkIpFilter pulumi.BoolPtrInput `pulumi:"automaticUtilityNetworkIpFilter"`
-	// Specifies a fraction of the table size to add to autovacuumAnalyzeThreshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
+	// Specifies a fraction of the table size to add to autovacuumAnalyzeThreshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
 	AutovacuumAnalyzeScaleFactor pulumi.Float64PtrInput `pulumi:"autovacuumAnalyzeScaleFactor"`
-	// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+	// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
 	AutovacuumAnalyzeThreshold pulumi.IntPtrInput `pulumi:"autovacuumAnalyzeThreshold"`
-	// Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
+	// Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
 	AutovacuumFreezeMaxAge pulumi.IntPtrInput `pulumi:"autovacuumFreezeMaxAge"`
-	// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+	// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
 	AutovacuumMaxWorkers pulumi.IntPtrInput `pulumi:"autovacuumMaxWorkers"`
-	// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
+	// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
 	AutovacuumNaptime pulumi.IntPtrInput `pulumi:"autovacuumNaptime"`
-	// Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuumCostDelay value will be used. The default value is 20 milliseconds.
+	// Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuumCostDelay value will be used. The default is `2` (upstream default).
 	AutovacuumVacuumCostDelay pulumi.IntPtrInput `pulumi:"autovacuumVacuumCostDelay"`
-	// Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuumCostLimit value will be used.
+	// Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuumCostLimit value will be used. The default is `-1` (upstream default).
 	AutovacuumVacuumCostLimit pulumi.IntPtrInput `pulumi:"autovacuumVacuumCostLimit"`
-	// Specifies a fraction of the table size to add to autovacuumVacuumThreshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
+	// Specifies a fraction of the table size to add to autovacuumVacuumThreshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
 	AutovacuumVacuumScaleFactor pulumi.Float64PtrInput `pulumi:"autovacuumVacuumScaleFactor"`
-	// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+	// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
 	AutovacuumVacuumThreshold pulumi.IntPtrInput `pulumi:"autovacuumVacuumThreshold"`
 	// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
 	BackupHour pulumi.IntPtrInput `pulumi:"backupHour"`
 	// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
 	BackupMinute pulumi.IntPtrInput `pulumi:"backupMinute"`
-	// Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+	// Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
 	BgwriterDelay pulumi.IntPtrInput `pulumi:"bgwriterDelay"`
-	// Whenever more than bgwriterFlushAfter bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+	// Whenever more than bgwriterFlushAfter bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
 	BgwriterFlushAfter pulumi.IntPtrInput `pulumi:"bgwriterFlushAfter"`
-	// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+	// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
 	BgwriterLruMaxpages pulumi.IntPtrInput `pulumi:"bgwriterLruMaxpages"`
-	// The average recent need for new buffers is multiplied by bgwriterLruMultiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+	// The average recent need for new buffers is multiplied by bgwriterLruMultiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
 	BgwriterLruMultiplier pulumi.Float64PtrInput `pulumi:"bgwriterLruMultiplier"`
-	// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+	// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
 	DeadlockTimeout pulumi.IntPtrInput `pulumi:"deadlockTimeout"`
-	// Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+	// Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
 	DefaultToastCompression pulumi.StringPtrInput `pulumi:"defaultToastCompression"`
 	// Time out sessions with open transactions after this number of milliseconds.
 	IdleInTransactionSessionTimeout pulumi.IntPtrInput `pulumi:"idleInTransactionSessionTimeout"`
@@ -15087,7 +15757,7 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	IpFilters pulumi.StringArrayInput `pulumi:"ipFilters"`
 	// Controls system-wide use of Just-in-Time Compilation (JIT).
 	Jit pulumi.BoolPtrInput `pulumi:"jit"`
-	// Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+	// Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
 	LogAutovacuumMinDuration pulumi.IntPtrInput `pulumi:"logAutovacuumMinDuration"`
 	// Controls the amount of detail written in the server log for each message that is logged.
 	LogErrorVerbosity pulumi.StringPtrInput `pulumi:"logErrorVerbosity"`
@@ -15097,49 +15767,53 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	LogMinDurationStatement pulumi.IntPtrInput `pulumi:"logMinDurationStatement"`
 	// Log statements for each temporary file created larger than this number of kilobytes, -1 disables.
 	LogTempFiles pulumi.IntPtrInput `pulumi:"logTempFiles"`
-	// PostgreSQL maximum number of files that can be open per process.
+	// PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+	MaxConnections pulumi.IntPtrInput `pulumi:"maxConnections"`
+	// PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
 	MaxFilesPerProcess pulumi.IntPtrInput `pulumi:"maxFilesPerProcess"`
-	// PostgreSQL maximum locks per transaction.
+	// PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
 	MaxLocksPerTransaction pulumi.IntPtrInput `pulumi:"maxLocksPerTransaction"`
-	// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+	// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
 	MaxLogicalReplicationWorkers pulumi.IntPtrInput `pulumi:"maxLogicalReplicationWorkers"`
-	// Sets the maximum number of workers that the system can support for parallel queries.
+	// Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
 	MaxParallelWorkers pulumi.IntPtrInput `pulumi:"maxParallelWorkers"`
-	// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+	// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
 	MaxParallelWorkersPerGather pulumi.IntPtrInput `pulumi:"maxParallelWorkersPerGather"`
-	// PostgreSQL maximum predicate locks per transaction.
+	// PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
 	MaxPredLocksPerTransaction pulumi.IntPtrInput `pulumi:"maxPredLocksPerTransaction"`
-	// PostgreSQL maximum prepared transactions.
+	// PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
 	MaxPreparedTransactions pulumi.IntPtrInput `pulumi:"maxPreparedTransactions"`
-	// PostgreSQL maximum replication slots.
+	// PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
 	MaxReplicationSlots pulumi.IntPtrInput `pulumi:"maxReplicationSlots"`
-	// PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). walKeepSize minimum WAL size setting takes precedence over this.
+	// PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). walKeepSize minimum WAL size setting takes precedence over this.
 	MaxSlotWalKeepSize pulumi.IntPtrInput `pulumi:"maxSlotWalKeepSize"`
-	// Maximum depth of the stack in bytes.
+	// Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
 	MaxStackDepth pulumi.IntPtrInput `pulumi:"maxStackDepth"`
-	// Max standby archive delay in milliseconds.
+	// Max standby archive delay in milliseconds. The default is `30000` (upstream default).
 	MaxStandbyArchiveDelay pulumi.IntPtrInput `pulumi:"maxStandbyArchiveDelay"`
-	// Max standby streaming delay in milliseconds.
+	// Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
 	MaxStandbyStreamingDelay pulumi.IntPtrInput `pulumi:"maxStandbyStreamingDelay"`
-	// PostgreSQL maximum WAL senders.
+	// Maximum number of synchronization workers per subscription. The default is `2`.
+	MaxSyncWorkersPerSubscription pulumi.IntPtrInput `pulumi:"maxSyncWorkersPerSubscription"`
+	// PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
 	MaxWalSenders pulumi.IntPtrInput `pulumi:"maxWalSenders"`
-	// Sets the maximum number of background processes that the system can support.
+	// Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
 	MaxWorkerProcesses pulumi.IntPtrInput `pulumi:"maxWorkerProcesses"`
 	// Migrate data from existing server.
 	Migration ManagedDatabasePostgresqlPropertiesMigrationPtrInput `pulumi:"migration"`
 	// Chooses the algorithm for encrypting passwords.
 	PasswordEncryption pulumi.StringPtrInput `pulumi:"passwordEncryption"`
-	// Sets the time interval to run pg_partman's scheduled tasks.
+	// Sets the time interval in seconds to run pg_partman's scheduled tasks. The default is `3600`.
 	PgPartmanBgwInterval pulumi.IntPtrInput `pulumi:"pgPartmanBgwInterval"`
 	// Controls which role to use for pg_partman's scheduled background tasks.
 	PgPartmanBgwRole pulumi.StringPtrInput `pulumi:"pgPartmanBgwRole"`
-	// Enable pgStatMonitor extension if available for the current cluster. Enable the pgStatMonitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pgStatStatements results for utility commands are unreliable.
+	// Enable pgStatMonitor extension if available for the current cluster. Enable the pgStatMonitor extension. Changing this parameter causes a service restart. When this extension is enabled, pgStatStatements results for utility commands are unreliable.
 	PgStatMonitorEnable pulumi.BoolPtrInput `pulumi:"pgStatMonitorEnable"`
-	// Enables or disables query plan monitoring.
+	// Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
 	PgStatMonitorPgsmEnableQueryPlan pulumi.BoolPtrInput `pulumi:"pgStatMonitorPgsmEnableQueryPlan"`
-	// Sets the maximum number of buckets.
+	// Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
 	PgStatMonitorPgsmMaxBuckets pulumi.IntPtrInput `pulumi:"pgStatMonitorPgsmMaxBuckets"`
-	// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+	// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
 	PgStatStatementsTrack pulumi.StringPtrInput `pulumi:"pgStatStatementsTrack"`
 	// PGAudit settings. System-wide settings for the pgaudit extension.
 	Pgaudit ManagedDatabasePostgresqlPropertiesPgauditPtrInput `pulumi:"pgaudit"`
@@ -15151,7 +15825,7 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	PublicAccess pulumi.BoolPtrInput `pulumi:"publicAccess"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog pulumi.BoolPtrInput `pulumi:"serviceLog"`
-	// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value.
+	// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value. Changing this parameter causes a service restart.
 	SharedBuffersPercentage pulumi.Float64PtrInput `pulumi:"sharedBuffersPercentage"`
 	// Synchronous replication type. Note that the service plan also needs to support synchronous replication.
 	SynchronousReplication pulumi.StringPtrInput `pulumi:"synchronousReplication"`
@@ -15161,13 +15835,13 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	Timescaledb ManagedDatabasePostgresqlPropertiesTimescaledbPtrInput `pulumi:"timescaledb"`
 	// PostgreSQL service timezone.
 	Timezone pulumi.StringPtrInput `pulumi:"timezone"`
-	// Specifies the number of bytes reserved to track the currently executing command for each active session.
+	// Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
 	TrackActivityQuerySize pulumi.IntPtrInput `pulumi:"trackActivityQuerySize"`
-	// Record commit time of transactions.
+	// Record commit time of transactions. Changing this parameter causes a service restart.
 	TrackCommitTimestamp pulumi.StringPtrInput `pulumi:"trackCommitTimestamp"`
 	// Enables tracking of function call counts and time used.
 	TrackFunctions pulumi.StringPtrInput `pulumi:"trackFunctions"`
-	// Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+	// Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
 	TrackIoTiming pulumi.StringPtrInput `pulumi:"trackIoTiming"`
 	// Variant of the PostgreSQL service, may affect the features that are exposed by default.
 	Variant pulumi.StringPtrInput `pulumi:"variant"`
@@ -15175,9 +15849,9 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	Version pulumi.StringPtrInput `pulumi:"version"`
 	// Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to zero disables the timeout.
 	WalSenderTimeout pulumi.IntPtrInput `pulumi:"walSenderTimeout"`
-	// WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+	// WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
 	WalWriterDelay pulumi.IntPtrInput `pulumi:"walWriterDelay"`
-	// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+	// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
 	WorkMem pulumi.IntPtrInput `pulumi:"workMem"`
 }
 
@@ -15273,47 +15947,47 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) AutomaticUtilityNetworkIpFilt
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *bool { return v.AutomaticUtilityNetworkIpFilter }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies a fraction of the table size to add to autovacuumAnalyzeThreshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
+// Specifies a fraction of the table size to add to autovacuumAnalyzeThreshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
 func (o ManagedDatabasePostgresqlPropertiesOutput) AutovacuumAnalyzeScaleFactor() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *float64 { return v.AutovacuumAnalyzeScaleFactor }).(pulumi.Float64PtrOutput)
 }
 
-// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
 func (o ManagedDatabasePostgresqlPropertiesOutput) AutovacuumAnalyzeThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.AutovacuumAnalyzeThreshold }).(pulumi.IntPtrOutput)
 }
 
-// Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
+// Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) AutovacuumFreezeMaxAge() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.AutovacuumFreezeMaxAge }).(pulumi.IntPtrOutput)
 }
 
-// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) AutovacuumMaxWorkers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.AutovacuumMaxWorkers }).(pulumi.IntPtrOutput)
 }
 
-// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
+// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
 func (o ManagedDatabasePostgresqlPropertiesOutput) AutovacuumNaptime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.AutovacuumNaptime }).(pulumi.IntPtrOutput)
 }
 
-// Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuumCostDelay value will be used. The default value is 20 milliseconds.
+// Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuumCostDelay value will be used. The default is `2` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesOutput) AutovacuumVacuumCostDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.AutovacuumVacuumCostDelay }).(pulumi.IntPtrOutput)
 }
 
-// Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuumCostLimit value will be used.
+// Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuumCostLimit value will be used. The default is `-1` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesOutput) AutovacuumVacuumCostLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.AutovacuumVacuumCostLimit }).(pulumi.IntPtrOutput)
 }
 
-// Specifies a fraction of the table size to add to autovacuumVacuumThreshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
+// Specifies a fraction of the table size to add to autovacuumVacuumThreshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
 func (o ManagedDatabasePostgresqlPropertiesOutput) AutovacuumVacuumScaleFactor() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *float64 { return v.AutovacuumVacuumScaleFactor }).(pulumi.Float64PtrOutput)
 }
 
-// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
 func (o ManagedDatabasePostgresqlPropertiesOutput) AutovacuumVacuumThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.AutovacuumVacuumThreshold }).(pulumi.IntPtrOutput)
 }
@@ -15328,32 +16002,32 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) BackupMinute() pulumi.IntPtrO
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.BackupMinute }).(pulumi.IntPtrOutput)
 }
 
-// Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+// Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
 func (o ManagedDatabasePostgresqlPropertiesOutput) BgwriterDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.BgwriterDelay }).(pulumi.IntPtrOutput)
 }
 
-// Whenever more than bgwriterFlushAfter bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+// Whenever more than bgwriterFlushAfter bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
 func (o ManagedDatabasePostgresqlPropertiesOutput) BgwriterFlushAfter() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.BgwriterFlushAfter }).(pulumi.IntPtrOutput)
 }
 
-// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
 func (o ManagedDatabasePostgresqlPropertiesOutput) BgwriterLruMaxpages() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.BgwriterLruMaxpages }).(pulumi.IntPtrOutput)
 }
 
-// The average recent need for new buffers is multiplied by bgwriterLruMultiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+// The average recent need for new buffers is multiplied by bgwriterLruMultiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
 func (o ManagedDatabasePostgresqlPropertiesOutput) BgwriterLruMultiplier() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *float64 { return v.BgwriterLruMultiplier }).(pulumi.Float64PtrOutput)
 }
 
-// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesOutput) DeadlockTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.DeadlockTimeout }).(pulumi.IntPtrOutput)
 }
 
-// Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+// Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
 func (o ManagedDatabasePostgresqlPropertiesOutput) DefaultToastCompression() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.DefaultToastCompression }).(pulumi.StringPtrOutput)
 }
@@ -15373,7 +16047,7 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) Jit() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *bool { return v.Jit }).(pulumi.BoolPtrOutput)
 }
 
-// Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+// Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
 func (o ManagedDatabasePostgresqlPropertiesOutput) LogAutovacuumMinDuration() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.LogAutovacuumMinDuration }).(pulumi.IntPtrOutput)
 }
@@ -15398,72 +16072,82 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) LogTempFiles() pulumi.IntPtrO
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.LogTempFiles }).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum number of files that can be open per process.
+// PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+func (o ManagedDatabasePostgresqlPropertiesOutput) MaxConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxConnections }).(pulumi.IntPtrOutput)
+}
+
+// PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxFilesPerProcess() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxFilesPerProcess }).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum locks per transaction.
+// PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxLocksPerTransaction() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxLocksPerTransaction }).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxLogicalReplicationWorkers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxLogicalReplicationWorkers }).(pulumi.IntPtrOutput)
 }
 
-// Sets the maximum number of workers that the system can support for parallel queries.
+// Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxParallelWorkers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxParallelWorkers }).(pulumi.IntPtrOutput)
 }
 
-// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxParallelWorkersPerGather() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxParallelWorkersPerGather }).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum predicate locks per transaction.
+// PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxPredLocksPerTransaction() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxPredLocksPerTransaction }).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum prepared transactions.
+// PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxPreparedTransactions() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxPreparedTransactions }).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum replication slots.
+// PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxReplicationSlots() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxReplicationSlots }).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). walKeepSize minimum WAL size setting takes precedence over this.
+// PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). walKeepSize minimum WAL size setting takes precedence over this.
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxSlotWalKeepSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxSlotWalKeepSize }).(pulumi.IntPtrOutput)
 }
 
-// Maximum depth of the stack in bytes.
+// Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxStackDepth() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxStackDepth }).(pulumi.IntPtrOutput)
 }
 
-// Max standby archive delay in milliseconds.
+// Max standby archive delay in milliseconds. The default is `30000` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxStandbyArchiveDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxStandbyArchiveDelay }).(pulumi.IntPtrOutput)
 }
 
-// Max standby streaming delay in milliseconds.
+// Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxStandbyStreamingDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxStandbyStreamingDelay }).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum WAL senders.
+// Maximum number of synchronization workers per subscription. The default is `2`.
+func (o ManagedDatabasePostgresqlPropertiesOutput) MaxSyncWorkersPerSubscription() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxSyncWorkersPerSubscription }).(pulumi.IntPtrOutput)
+}
+
+// PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxWalSenders() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxWalSenders }).(pulumi.IntPtrOutput)
 }
 
-// Sets the maximum number of background processes that the system can support.
+// Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxWorkerProcesses() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxWorkerProcesses }).(pulumi.IntPtrOutput)
 }
@@ -15480,7 +16164,7 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) PasswordEncryption() pulumi.S
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.PasswordEncryption }).(pulumi.StringPtrOutput)
 }
 
-// Sets the time interval to run pg_partman's scheduled tasks.
+// Sets the time interval in seconds to run pg_partman's scheduled tasks. The default is `3600`.
 func (o ManagedDatabasePostgresqlPropertiesOutput) PgPartmanBgwInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.PgPartmanBgwInterval }).(pulumi.IntPtrOutput)
 }
@@ -15490,22 +16174,22 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) PgPartmanBgwRole() pulumi.Str
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.PgPartmanBgwRole }).(pulumi.StringPtrOutput)
 }
 
-// Enable pgStatMonitor extension if available for the current cluster. Enable the pgStatMonitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pgStatStatements results for utility commands are unreliable.
+// Enable pgStatMonitor extension if available for the current cluster. Enable the pgStatMonitor extension. Changing this parameter causes a service restart. When this extension is enabled, pgStatStatements results for utility commands are unreliable.
 func (o ManagedDatabasePostgresqlPropertiesOutput) PgStatMonitorEnable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *bool { return v.PgStatMonitorEnable }).(pulumi.BoolPtrOutput)
 }
 
-// Enables or disables query plan monitoring.
+// Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
 func (o ManagedDatabasePostgresqlPropertiesOutput) PgStatMonitorPgsmEnableQueryPlan() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *bool { return v.PgStatMonitorPgsmEnableQueryPlan }).(pulumi.BoolPtrOutput)
 }
 
-// Sets the maximum number of buckets.
+// Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
 func (o ManagedDatabasePostgresqlPropertiesOutput) PgStatMonitorPgsmMaxBuckets() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.PgStatMonitorPgsmMaxBuckets }).(pulumi.IntPtrOutput)
 }
 
-// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
 func (o ManagedDatabasePostgresqlPropertiesOutput) PgStatStatementsTrack() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.PgStatStatementsTrack }).(pulumi.StringPtrOutput)
 }
@@ -15541,7 +16225,7 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) ServiceLog() pulumi.BoolPtrOu
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *bool { return v.ServiceLog }).(pulumi.BoolPtrOutput)
 }
 
-// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value.
+// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) SharedBuffersPercentage() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *float64 { return v.SharedBuffersPercentage }).(pulumi.Float64PtrOutput)
 }
@@ -15568,12 +16252,12 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) Timezone() pulumi.StringPtrOu
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.Timezone }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the number of bytes reserved to track the currently executing command for each active session.
+// Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) TrackActivityQuerySize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.TrackActivityQuerySize }).(pulumi.IntPtrOutput)
 }
 
-// Record commit time of transactions.
+// Record commit time of transactions. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) TrackCommitTimestamp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.TrackCommitTimestamp }).(pulumi.StringPtrOutput)
 }
@@ -15583,7 +16267,7 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) TrackFunctions() pulumi.Strin
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.TrackFunctions }).(pulumi.StringPtrOutput)
 }
 
-// Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+// Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
 func (o ManagedDatabasePostgresqlPropertiesOutput) TrackIoTiming() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.TrackIoTiming }).(pulumi.StringPtrOutput)
 }
@@ -15603,12 +16287,12 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) WalSenderTimeout() pulumi.Int
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.WalSenderTimeout }).(pulumi.IntPtrOutput)
 }
 
-// WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+// WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
 func (o ManagedDatabasePostgresqlPropertiesOutput) WalWriterDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.WalWriterDelay }).(pulumi.IntPtrOutput)
 }
 
-// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
 func (o ManagedDatabasePostgresqlPropertiesOutput) WorkMem() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.WorkMem }).(pulumi.IntPtrOutput)
 }
@@ -15667,7 +16351,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutomaticUtilityNetworkIpF
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Specifies a fraction of the table size to add to autovacuumAnalyzeThreshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
+// Specifies a fraction of the table size to add to autovacuumAnalyzeThreshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumAnalyzeScaleFactor() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *float64 {
 		if v == nil {
@@ -15677,7 +16361,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumAnalyzeScaleFact
 	}).(pulumi.Float64PtrOutput)
 }
 
-// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumAnalyzeThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15687,7 +16371,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumAnalyzeThreshold
 	}).(pulumi.IntPtrOutput)
 }
 
-// Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
+// Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumFreezeMaxAge() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15697,7 +16381,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumFreezeMaxAge() p
 	}).(pulumi.IntPtrOutput)
 }
 
-// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumMaxWorkers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15707,7 +16391,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumMaxWorkers() pul
 	}).(pulumi.IntPtrOutput)
 }
 
-// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
+// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumNaptime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15717,7 +16401,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumNaptime() pulumi
 	}).(pulumi.IntPtrOutput)
 }
 
-// Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuumCostDelay value will be used. The default value is 20 milliseconds.
+// Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuumCostDelay value will be used. The default is `2` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumVacuumCostDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15727,7 +16411,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumVacuumCostDelay(
 	}).(pulumi.IntPtrOutput)
 }
 
-// Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuumCostLimit value will be used.
+// Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuumCostLimit value will be used. The default is `-1` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumVacuumCostLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15737,7 +16421,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumVacuumCostLimit(
 	}).(pulumi.IntPtrOutput)
 }
 
-// Specifies a fraction of the table size to add to autovacuumVacuumThreshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
+// Specifies a fraction of the table size to add to autovacuumVacuumThreshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumVacuumScaleFactor() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *float64 {
 		if v == nil {
@@ -15747,7 +16431,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumVacuumScaleFacto
 	}).(pulumi.Float64PtrOutput)
 }
 
-// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) AutovacuumVacuumThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15777,7 +16461,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) BackupMinute() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+// Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) BgwriterDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15787,7 +16471,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) BgwriterDelay() pulumi.Int
 	}).(pulumi.IntPtrOutput)
 }
 
-// Whenever more than bgwriterFlushAfter bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+// Whenever more than bgwriterFlushAfter bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) BgwriterFlushAfter() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15797,7 +16481,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) BgwriterFlushAfter() pulum
 	}).(pulumi.IntPtrOutput)
 }
 
-// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) BgwriterLruMaxpages() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15807,7 +16491,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) BgwriterLruMaxpages() pulu
 	}).(pulumi.IntPtrOutput)
 }
 
-// The average recent need for new buffers is multiplied by bgwriterLruMultiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+// The average recent need for new buffers is multiplied by bgwriterLruMultiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) BgwriterLruMultiplier() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *float64 {
 		if v == nil {
@@ -15817,7 +16501,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) BgwriterLruMultiplier() pu
 	}).(pulumi.Float64PtrOutput)
 }
 
-// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) DeadlockTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15827,7 +16511,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) DeadlockTimeout() pulumi.I
 	}).(pulumi.IntPtrOutput)
 }
 
-// Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+// Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) DefaultToastCompression() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *string {
 		if v == nil {
@@ -15867,7 +16551,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) Jit() pulumi.BoolPtrOutput
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+// Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) LogAutovacuumMinDuration() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15917,7 +16601,17 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) LogTempFiles() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum number of files that can be open per process.
+// PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxConnections
+	}).(pulumi.IntPtrOutput)
+}
+
+// PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxFilesPerProcess() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15927,7 +16621,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxFilesPerProcess() pulum
 	}).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum locks per transaction.
+// PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxLocksPerTransaction() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15937,7 +16631,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxLocksPerTransaction() p
 	}).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxLogicalReplicationWorkers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15947,7 +16641,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxLogicalReplicationWorke
 	}).(pulumi.IntPtrOutput)
 }
 
-// Sets the maximum number of workers that the system can support for parallel queries.
+// Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxParallelWorkers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15957,7 +16651,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxParallelWorkers() pulum
 	}).(pulumi.IntPtrOutput)
 }
 
-// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxParallelWorkersPerGather() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15967,7 +16661,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxParallelWorkersPerGathe
 	}).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum predicate locks per transaction.
+// PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxPredLocksPerTransaction() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15977,7 +16671,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxPredLocksPerTransaction
 	}).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum prepared transactions.
+// PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxPreparedTransactions() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15987,7 +16681,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxPreparedTransactions() 
 	}).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum replication slots.
+// PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxReplicationSlots() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -15997,7 +16691,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxReplicationSlots() pulu
 	}).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). walKeepSize minimum WAL size setting takes precedence over this.
+// PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). walKeepSize minimum WAL size setting takes precedence over this.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxSlotWalKeepSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -16007,7 +16701,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxSlotWalKeepSize() pulum
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum depth of the stack in bytes.
+// Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxStackDepth() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -16017,7 +16711,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxStackDepth() pulumi.Int
 	}).(pulumi.IntPtrOutput)
 }
 
-// Max standby archive delay in milliseconds.
+// Max standby archive delay in milliseconds. The default is `30000` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxStandbyArchiveDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -16027,7 +16721,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxStandbyArchiveDelay() p
 	}).(pulumi.IntPtrOutput)
 }
 
-// Max standby streaming delay in milliseconds.
+// Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxStandbyStreamingDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -16037,7 +16731,17 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxStandbyStreamingDelay()
 	}).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum WAL senders.
+// Maximum number of synchronization workers per subscription. The default is `2`.
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxSyncWorkersPerSubscription() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSyncWorkersPerSubscription
+	}).(pulumi.IntPtrOutput)
+}
+
+// PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxWalSenders() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -16047,7 +16751,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxWalSenders() pulumi.Int
 	}).(pulumi.IntPtrOutput)
 }
 
-// Sets the maximum number of background processes that the system can support.
+// Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxWorkerProcesses() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -16077,7 +16781,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PasswordEncryption() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// Sets the time interval to run pg_partman's scheduled tasks.
+// Sets the time interval in seconds to run pg_partman's scheduled tasks. The default is `3600`.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgPartmanBgwInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -16097,7 +16801,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgPartmanBgwRole() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable pgStatMonitor extension if available for the current cluster. Enable the pgStatMonitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pgStatStatements results for utility commands are unreliable.
+// Enable pgStatMonitor extension if available for the current cluster. Enable the pgStatMonitor extension. Changing this parameter causes a service restart. When this extension is enabled, pgStatStatements results for utility commands are unreliable.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgStatMonitorEnable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *bool {
 		if v == nil {
@@ -16107,7 +16811,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgStatMonitorEnable() pulu
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Enables or disables query plan monitoring.
+// Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgStatMonitorPgsmEnableQueryPlan() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *bool {
 		if v == nil {
@@ -16117,7 +16821,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgStatMonitorPgsmEnableQue
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Sets the maximum number of buckets.
+// Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgStatMonitorPgsmMaxBuckets() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -16127,7 +16831,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgStatMonitorPgsmMaxBucket
 	}).(pulumi.IntPtrOutput)
 }
 
-// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgStatStatementsTrack() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *string {
 		if v == nil {
@@ -16187,7 +16891,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) ServiceLog() pulumi.BoolPt
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value.
+// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) SharedBuffersPercentage() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *float64 {
 		if v == nil {
@@ -16237,7 +16941,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) Timezone() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// Specifies the number of bytes reserved to track the currently executing command for each active session.
+// Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) TrackActivityQuerySize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -16247,7 +16951,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) TrackActivityQuerySize() p
 	}).(pulumi.IntPtrOutput)
 }
 
-// Record commit time of transactions.
+// Record commit time of transactions. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) TrackCommitTimestamp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *string {
 		if v == nil {
@@ -16267,7 +16971,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) TrackFunctions() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+// Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) TrackIoTiming() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *string {
 		if v == nil {
@@ -16307,7 +17011,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) WalSenderTimeout() pulumi.
 	}).(pulumi.IntPtrOutput)
 }
 
-// WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+// WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) WalWriterDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -16317,7 +17021,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) WalWriterDelay() pulumi.In
 	}).(pulumi.IntPtrOutput)
 }
 
-// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) WorkMem() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -17446,7 +18150,7 @@ func (o ManagedDatabasePostgresqlPropertiesPglookoutPtrOutput) MaxFailoverReplic
 }
 
 type ManagedDatabasePostgresqlPropertiesTimescaledb struct {
-	// The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time.
+	// The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time. Changing this parameter causes a service restart.
 	MaxBackgroundWorkers *int `pulumi:"maxBackgroundWorkers"`
 }
 
@@ -17462,7 +18166,7 @@ type ManagedDatabasePostgresqlPropertiesTimescaledbInput interface {
 }
 
 type ManagedDatabasePostgresqlPropertiesTimescaledbArgs struct {
-	// The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time.
+	// The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time. Changing this parameter causes a service restart.
 	MaxBackgroundWorkers pulumi.IntPtrInput `pulumi:"maxBackgroundWorkers"`
 }
 
@@ -17543,7 +18247,7 @@ func (o ManagedDatabasePostgresqlPropertiesTimescaledbOutput) ToManagedDatabaseP
 	}).(ManagedDatabasePostgresqlPropertiesTimescaledbPtrOutput)
 }
 
-// The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time.
+// The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesTimescaledbOutput) MaxBackgroundWorkers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesTimescaledb) *int { return v.MaxBackgroundWorkers }).(pulumi.IntPtrOutput)
 }
@@ -17572,7 +18276,7 @@ func (o ManagedDatabasePostgresqlPropertiesTimescaledbPtrOutput) Elem() ManagedD
 	}).(ManagedDatabasePostgresqlPropertiesTimescaledbOutput)
 }
 
-// The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time.
+// The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesTimescaledbPtrOutput) MaxBackgroundWorkers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesTimescaledb) *int {
 		if v == nil {
@@ -22958,7 +23662,7 @@ type ServerTemplateBackupRule struct {
 	Interval string `pulumi:"interval"`
 	// The number of days before a backup is automatically deleted
 	Retention int `pulumi:"retention"`
-	// The time of day when the backup is created
+	// The time of day (UTC) when the backup is created
 	Time string `pulumi:"time"`
 }
 
@@ -22978,7 +23682,7 @@ type ServerTemplateBackupRuleArgs struct {
 	Interval pulumi.StringInput `pulumi:"interval"`
 	// The number of days before a backup is automatically deleted
 	Retention pulumi.IntInput `pulumi:"retention"`
-	// The time of day when the backup is created
+	// The time of day (UTC) when the backup is created
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -23069,7 +23773,7 @@ func (o ServerTemplateBackupRuleOutput) Retention() pulumi.IntOutput {
 	return o.ApplyT(func(v ServerTemplateBackupRule) int { return v.Retention }).(pulumi.IntOutput)
 }
 
-// The time of day when the backup is created
+// The time of day (UTC) when the backup is created
 func (o ServerTemplateBackupRuleOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerTemplateBackupRule) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -23118,7 +23822,7 @@ func (o ServerTemplateBackupRulePtrOutput) Retention() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The time of day when the backup is created
+// The time of day (UTC) when the backup is created
 func (o ServerTemplateBackupRulePtrOutput) Time() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerTemplateBackupRule) *string {
 		if v == nil {
@@ -23133,7 +23837,7 @@ type StorageBackupRule struct {
 	Interval string `pulumi:"interval"`
 	// The number of days before a backup is automatically deleted
 	Retention int `pulumi:"retention"`
-	// The time of day when the backup is created
+	// The time of day (UTC) when the backup is created
 	Time string `pulumi:"time"`
 }
 
@@ -23153,7 +23857,7 @@ type StorageBackupRuleArgs struct {
 	Interval pulumi.StringInput `pulumi:"interval"`
 	// The number of days before a backup is automatically deleted
 	Retention pulumi.IntInput `pulumi:"retention"`
-	// The time of day when the backup is created
+	// The time of day (UTC) when the backup is created
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -23244,7 +23948,7 @@ func (o StorageBackupRuleOutput) Retention() pulumi.IntOutput {
 	return o.ApplyT(func(v StorageBackupRule) int { return v.Retention }).(pulumi.IntOutput)
 }
 
-// The time of day when the backup is created
+// The time of day (UTC) when the backup is created
 func (o StorageBackupRuleOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v StorageBackupRule) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -23293,7 +23997,7 @@ func (o StorageBackupRulePtrOutput) Retention() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The time of day when the backup is created
+// The time of day (UTC) when the backup is created
 func (o StorageBackupRulePtrOutput) Time() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageBackupRule) *string {
 		if v == nil {
@@ -26062,6 +26766,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseMysqlPropertiesPtrInput)(nil)).Elem(), ManagedDatabaseMysqlPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseMysqlPropertiesMigrationInput)(nil)).Elem(), ManagedDatabaseMysqlPropertiesMigrationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseMysqlPropertiesMigrationPtrInput)(nil)).Elem(), ManagedDatabaseMysqlPropertiesMigrationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupInput)(nil)).Elem(), ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrInput)(nil)).Elem(), ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchComponentInput)(nil)).Elem(), ManagedDatabaseOpensearchComponentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchComponentArrayInput)(nil)).Elem(), ManagedDatabaseOpensearchComponentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchNetworkInput)(nil)).Elem(), ManagedDatabaseOpensearchNetworkArgs{})
@@ -26074,6 +26780,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAuthFailureListenersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterRemoteStoreInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterRemoteStoreArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdArgs{})
@@ -26088,6 +26796,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesOpenidPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesOpenidArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesOpensearchDashboardsInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesRemoteStoreInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesRemoteStoreArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesRemoteStorePtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesRemoteStoreArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSamlInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSamlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSamlPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSamlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesSearchBackpressureInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs{})
@@ -26327,6 +27037,8 @@ func init() {
 	pulumi.RegisterOutputType(ManagedDatabaseMysqlPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseMysqlPropertiesMigrationOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseMysqlPropertiesMigrationPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchComponentOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchComponentArrayOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchNetworkOutput{})
@@ -26339,6 +27051,8 @@ func init() {
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAuthFailureListenersPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimitingPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterRemoteStoreOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterRemoteStorePtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThresholdOutput{})
@@ -26353,6 +27067,8 @@ func init() {
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesOpenidPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesOpensearchDashboardsOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesRemoteStoreOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesRemoteStorePtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSamlOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSamlPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesSearchBackpressureOutput{})

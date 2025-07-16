@@ -210,6 +210,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<Inputs.ManagedDatabaseMysqlPropertiesMigrationArgs>? Migration { get; set; }
 
         /// <summary>
+        /// MySQL incremental backup configuration.
+        /// </summary>
+        [Input("mysqlIncrementalBackup")]
+        public Input<Inputs.ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs>? MysqlIncrementalBackup { get; set; }
+
+        /// <summary>
         /// Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
         /// </summary>
         [Input("netBufferLength")]

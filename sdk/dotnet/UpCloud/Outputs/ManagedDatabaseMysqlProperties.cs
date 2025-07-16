@@ -135,6 +135,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly Outputs.ManagedDatabaseMysqlPropertiesMigration? Migration;
         /// <summary>
+        /// MySQL incremental backup configuration.
+        /// </summary>
+        public readonly Outputs.ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup? MysqlIncrementalBackup;
+        /// <summary>
         /// Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
         /// </summary>
         public readonly int? NetBufferLength;
@@ -245,6 +249,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             Outputs.ManagedDatabaseMysqlPropertiesMigration? migration,
 
+            Outputs.ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup? mysqlIncrementalBackup,
+
             int? netBufferLength,
 
             int? netReadTimeout,
@@ -299,6 +305,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             MaxAllowedPacket = maxAllowedPacket;
             MaxHeapTableSize = maxHeapTableSize;
             Migration = migration;
+            MysqlIncrementalBackup = mysqlIncrementalBackup;
             NetBufferLength = netBufferLength;
             NetReadTimeout = netReadTimeout;
             NetWriteTimeout = netWriteTimeout;

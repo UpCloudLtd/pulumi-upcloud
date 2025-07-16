@@ -16,14 +16,14 @@ public final class ManagedDatabasePostgresqlPropertiesTimescaledbArgs extends co
     public static final ManagedDatabasePostgresqlPropertiesTimescaledbArgs Empty = new ManagedDatabasePostgresqlPropertiesTimescaledbArgs();
 
     /**
-     * The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time.
+     * The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time. Changing this parameter causes a service restart.
      * 
      */
     @Import(name="maxBackgroundWorkers")
     private @Nullable Output<Integer> maxBackgroundWorkers;
 
     /**
-     * @return The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time.
+     * @return The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> maxBackgroundWorkers() {
@@ -55,7 +55,7 @@ public final class ManagedDatabasePostgresqlPropertiesTimescaledbArgs extends co
         }
 
         /**
-         * @param maxBackgroundWorkers The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time.
+         * @param maxBackgroundWorkers The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -66,7 +66,7 @@ public final class ManagedDatabasePostgresqlPropertiesTimescaledbArgs extends co
         }
 
         /**
-         * @param maxBackgroundWorkers The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time.
+         * @param maxBackgroundWorkers The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 

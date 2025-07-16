@@ -26,7 +26,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int> Retention { get; set; } = null!;
 
         /// <summary>
-        /// The time of day when the backup is created
+        /// The time of day (UTC) when the backup is created
         /// </summary>
         [Input("time", required: true)]
         public Input<string> Time { get; set; } = null!;

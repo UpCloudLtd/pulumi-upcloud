@@ -36,47 +36,47 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable Boolean automaticUtilityNetworkIpFilter;
     /**
-     * @return Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
+     * @return Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
      * 
      */
     private @Nullable Double autovacuumAnalyzeScaleFactor;
     /**
-     * @return Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+     * @return Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
      * 
      */
     private @Nullable Integer autovacuumAnalyzeThreshold;
     /**
-     * @return Specifies the maximum age (in transactions) that a table&#39;s pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
+     * @return Specifies the maximum age (in transactions) that a table&#39;s pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
      * 
      */
     private @Nullable Integer autovacuumFreezeMaxAge;
     /**
-     * @return Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+     * @return Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
      * 
      */
     private @Nullable Integer autovacuumMaxWorkers;
     /**
-     * @return Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
+     * @return Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
      * 
      */
     private @Nullable Integer autovacuumNaptime;
     /**
-     * @return Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds.
+     * @return Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_delay value will be used. The default is `2` (upstream default).
      * 
      */
     private @Nullable Integer autovacuumVacuumCostDelay;
     /**
-     * @return Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+     * @return Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_limit value will be used. The default is `-1` (upstream default).
      * 
      */
     private @Nullable Integer autovacuumVacuumCostLimit;
     /**
-     * @return Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
+     * @return Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
      * 
      */
     private @Nullable Double autovacuumVacuumScaleFactor;
     /**
-     * @return Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+     * @return Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
      * 
      */
     private @Nullable Integer autovacuumVacuumThreshold;
@@ -91,32 +91,32 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable Integer backupMinute;
     /**
-     * @return Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+     * @return Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
      * 
      */
     private @Nullable Integer bgwriterDelay;
     /**
-     * @return Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+     * @return Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
      * 
      */
     private @Nullable Integer bgwriterFlushAfter;
     /**
-     * @return In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+     * @return In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
      * 
      */
     private @Nullable Integer bgwriterLruMaxpages;
     /**
-     * @return The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+     * @return The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
      * 
      */
     private @Nullable Double bgwriterLruMultiplier;
     /**
-     * @return This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+     * @return This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
      * 
      */
     private @Nullable Integer deadlockTimeout;
     /**
-     * @return Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+     * @return Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
      * 
      */
     private @Nullable String defaultToastCompression;
@@ -136,7 +136,7 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable Boolean jit;
     /**
-     * @return Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+     * @return Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
      * 
      */
     private @Nullable Integer logAutovacuumMinDuration;
@@ -161,72 +161,82 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable Integer logTempFiles;
     /**
-     * @return PostgreSQL maximum number of files that can be open per process.
+     * @return PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+     * 
+     */
+    private @Nullable Integer maxConnections;
+    /**
+     * @return PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     private @Nullable Integer maxFilesPerProcess;
     /**
-     * @return PostgreSQL maximum locks per transaction.
+     * @return PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
      * 
      */
     private @Nullable Integer maxLocksPerTransaction;
     /**
-     * @return PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+     * @return PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     private @Nullable Integer maxLogicalReplicationWorkers;
     /**
-     * @return Sets the maximum number of workers that the system can support for parallel queries.
+     * @return Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
      * 
      */
     private @Nullable Integer maxParallelWorkers;
     /**
-     * @return Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+     * @return Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
      * 
      */
     private @Nullable Integer maxParallelWorkersPerGather;
     /**
-     * @return PostgreSQL maximum predicate locks per transaction.
+     * @return PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     private @Nullable Integer maxPredLocksPerTransaction;
     /**
-     * @return PostgreSQL maximum prepared transactions.
+     * @return PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
      * 
      */
     private @Nullable Integer maxPreparedTransactions;
     /**
-     * @return PostgreSQL maximum replication slots.
+     * @return PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
      * 
      */
     private @Nullable Integer maxReplicationSlots;
     /**
-     * @return PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+     * @return PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). wal_keep_size minimum WAL size setting takes precedence over this.
      * 
      */
     private @Nullable Integer maxSlotWalKeepSize;
     /**
-     * @return Maximum depth of the stack in bytes.
+     * @return Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
      * 
      */
     private @Nullable Integer maxStackDepth;
     /**
-     * @return Max standby archive delay in milliseconds.
+     * @return Max standby archive delay in milliseconds. The default is `30000` (upstream default).
      * 
      */
     private @Nullable Integer maxStandbyArchiveDelay;
     /**
-     * @return Max standby streaming delay in milliseconds.
+     * @return Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
      * 
      */
     private @Nullable Integer maxStandbyStreamingDelay;
     /**
-     * @return PostgreSQL maximum WAL senders.
+     * @return Maximum number of synchronization workers per subscription. The default is `2`.
+     * 
+     */
+    private @Nullable Integer maxSyncWorkersPerSubscription;
+    /**
+     * @return PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
      * 
      */
     private @Nullable Integer maxWalSenders;
     /**
-     * @return Sets the maximum number of background processes that the system can support.
+     * @return Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
      * 
      */
     private @Nullable Integer maxWorkerProcesses;
@@ -241,7 +251,7 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable String passwordEncryption;
     /**
-     * @return Sets the time interval to run pg_partman&#39;s scheduled tasks.
+     * @return Sets the time interval in seconds to run pg_partman&#39;s scheduled tasks. The default is `3600`.
      * 
      */
     private @Nullable Integer pgPartmanBgwInterval;
@@ -251,22 +261,22 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable String pgPartmanBgwRole;
     /**
-     * @return Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
+     * @return Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Changing this parameter causes a service restart. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
      * 
      */
     private @Nullable Boolean pgStatMonitorEnable;
     /**
-     * @return Enables or disables query plan monitoring.
+     * @return Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
      * 
      */
     private @Nullable Boolean pgStatMonitorPgsmEnableQueryPlan;
     /**
-     * @return Sets the maximum number of buckets.
+     * @return Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
      * 
      */
     private @Nullable Integer pgStatMonitorPgsmMaxBuckets;
     /**
-     * @return Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+     * @return Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
      * 
      */
     private @Nullable String pgStatStatementsTrack;
@@ -296,7 +306,7 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable Boolean serviceLog;
     /**
-     * @return Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+     * @return Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
      * 
      */
     private @Nullable Double sharedBuffersPercentage;
@@ -321,12 +331,12 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable String timezone;
     /**
-     * @return Specifies the number of bytes reserved to track the currently executing command for each active session.
+     * @return Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
      * 
      */
     private @Nullable Integer trackActivityQuerySize;
     /**
-     * @return Record commit time of transactions.
+     * @return Record commit time of transactions. Changing this parameter causes a service restart.
      * 
      */
     private @Nullable String trackCommitTimestamp;
@@ -336,7 +346,7 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable String trackFunctions;
     /**
-     * @return Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+     * @return Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
      * 
      */
     private @Nullable String trackIoTiming;
@@ -356,12 +366,12 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable Integer walSenderTimeout;
     /**
-     * @return WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+     * @return WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
      * 
      */
     private @Nullable Integer walWriterDelay;
     /**
-     * @return Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+     * @return Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
      * 
      */
     private @Nullable Integer workMem;
@@ -389,63 +399,63 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.automaticUtilityNetworkIpFilter);
     }
     /**
-     * @return Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size).
+     * @return Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
      * 
      */
     public Optional<Double> autovacuumAnalyzeScaleFactor() {
         return Optional.ofNullable(this.autovacuumAnalyzeScaleFactor);
     }
     /**
-     * @return Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+     * @return Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
      * 
      */
     public Optional<Integer> autovacuumAnalyzeThreshold() {
         return Optional.ofNullable(this.autovacuumAnalyzeThreshold);
     }
     /**
-     * @return Specifies the maximum age (in transactions) that a table&#39;s pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted.
+     * @return Specifies the maximum age (in transactions) that a table&#39;s pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Integer> autovacuumFreezeMaxAge() {
         return Optional.ofNullable(this.autovacuumFreezeMaxAge);
     }
     /**
-     * @return Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+     * @return Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Integer> autovacuumMaxWorkers() {
         return Optional.ofNullable(this.autovacuumMaxWorkers);
     }
     /**
-     * @return Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute.
+     * @return Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
      * 
      */
     public Optional<Integer> autovacuumNaptime() {
         return Optional.ofNullable(this.autovacuumNaptime);
     }
     /**
-     * @return Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds.
+     * @return Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_delay value will be used. The default is `2` (upstream default).
      * 
      */
     public Optional<Integer> autovacuumVacuumCostDelay() {
         return Optional.ofNullable(this.autovacuumVacuumCostDelay);
     }
     /**
-     * @return Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+     * @return Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_limit value will be used. The default is `-1` (upstream default).
      * 
      */
     public Optional<Integer> autovacuumVacuumCostLimit() {
         return Optional.ofNullable(this.autovacuumVacuumCostLimit);
     }
     /**
-     * @return Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size).
+     * @return Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
      * 
      */
     public Optional<Double> autovacuumVacuumScaleFactor() {
         return Optional.ofNullable(this.autovacuumVacuumScaleFactor);
     }
     /**
-     * @return Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+     * @return Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
      * 
      */
     public Optional<Integer> autovacuumVacuumThreshold() {
@@ -466,42 +476,42 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.backupMinute);
     }
     /**
-     * @return Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+     * @return Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
      * 
      */
     public Optional<Integer> bgwriterDelay() {
         return Optional.ofNullable(this.bgwriterDelay);
     }
     /**
-     * @return Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+     * @return Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
      * 
      */
     public Optional<Integer> bgwriterFlushAfter() {
         return Optional.ofNullable(this.bgwriterFlushAfter);
     }
     /**
-     * @return In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+     * @return In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
      * 
      */
     public Optional<Integer> bgwriterLruMaxpages() {
         return Optional.ofNullable(this.bgwriterLruMaxpages);
     }
     /**
-     * @return The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+     * @return The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
      * 
      */
     public Optional<Double> bgwriterLruMultiplier() {
         return Optional.ofNullable(this.bgwriterLruMultiplier);
     }
     /**
-     * @return This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+     * @return This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
      * 
      */
     public Optional<Integer> deadlockTimeout() {
         return Optional.ofNullable(this.deadlockTimeout);
     }
     /**
-     * @return Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+     * @return Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
      * 
      */
     public Optional<String> defaultToastCompression() {
@@ -529,7 +539,7 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.jit);
     }
     /**
-     * @return Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions.
+     * @return Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
      * 
      */
     public Optional<Integer> logAutovacuumMinDuration() {
@@ -564,98 +574,112 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.logTempFiles);
     }
     /**
-     * @return PostgreSQL maximum number of files that can be open per process.
+     * @return PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+     * 
+     */
+    public Optional<Integer> maxConnections() {
+        return Optional.ofNullable(this.maxConnections);
+    }
+    /**
+     * @return PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     public Optional<Integer> maxFilesPerProcess() {
         return Optional.ofNullable(this.maxFilesPerProcess);
     }
     /**
-     * @return PostgreSQL maximum locks per transaction.
+     * @return PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Integer> maxLocksPerTransaction() {
         return Optional.ofNullable(this.maxLocksPerTransaction);
     }
     /**
-     * @return PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+     * @return PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     public Optional<Integer> maxLogicalReplicationWorkers() {
         return Optional.ofNullable(this.maxLogicalReplicationWorkers);
     }
     /**
-     * @return Sets the maximum number of workers that the system can support for parallel queries.
+     * @return Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
      * 
      */
     public Optional<Integer> maxParallelWorkers() {
         return Optional.ofNullable(this.maxParallelWorkers);
     }
     /**
-     * @return Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+     * @return Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
      * 
      */
     public Optional<Integer> maxParallelWorkersPerGather() {
         return Optional.ofNullable(this.maxParallelWorkersPerGather);
     }
     /**
-     * @return PostgreSQL maximum predicate locks per transaction.
+     * @return PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     public Optional<Integer> maxPredLocksPerTransaction() {
         return Optional.ofNullable(this.maxPredLocksPerTransaction);
     }
     /**
-     * @return PostgreSQL maximum prepared transactions.
+     * @return PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Integer> maxPreparedTransactions() {
         return Optional.ofNullable(this.maxPreparedTransactions);
     }
     /**
-     * @return PostgreSQL maximum replication slots.
+     * @return PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Integer> maxReplicationSlots() {
         return Optional.ofNullable(this.maxReplicationSlots);
     }
     /**
-     * @return PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+     * @return PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). wal_keep_size minimum WAL size setting takes precedence over this.
      * 
      */
     public Optional<Integer> maxSlotWalKeepSize() {
         return Optional.ofNullable(this.maxSlotWalKeepSize);
     }
     /**
-     * @return Maximum depth of the stack in bytes.
+     * @return Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
      * 
      */
     public Optional<Integer> maxStackDepth() {
         return Optional.ofNullable(this.maxStackDepth);
     }
     /**
-     * @return Max standby archive delay in milliseconds.
+     * @return Max standby archive delay in milliseconds. The default is `30000` (upstream default).
      * 
      */
     public Optional<Integer> maxStandbyArchiveDelay() {
         return Optional.ofNullable(this.maxStandbyArchiveDelay);
     }
     /**
-     * @return Max standby streaming delay in milliseconds.
+     * @return Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
      * 
      */
     public Optional<Integer> maxStandbyStreamingDelay() {
         return Optional.ofNullable(this.maxStandbyStreamingDelay);
     }
     /**
-     * @return PostgreSQL maximum WAL senders.
+     * @return Maximum number of synchronization workers per subscription. The default is `2`.
+     * 
+     */
+    public Optional<Integer> maxSyncWorkersPerSubscription() {
+        return Optional.ofNullable(this.maxSyncWorkersPerSubscription);
+    }
+    /**
+     * @return PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Integer> maxWalSenders() {
         return Optional.ofNullable(this.maxWalSenders);
     }
     /**
-     * @return Sets the maximum number of background processes that the system can support.
+     * @return Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Integer> maxWorkerProcesses() {
@@ -676,7 +700,7 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.passwordEncryption);
     }
     /**
-     * @return Sets the time interval to run pg_partman&#39;s scheduled tasks.
+     * @return Sets the time interval in seconds to run pg_partman&#39;s scheduled tasks. The default is `3600`.
      * 
      */
     public Optional<Integer> pgPartmanBgwInterval() {
@@ -690,28 +714,28 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.pgPartmanBgwRole);
     }
     /**
-     * @return Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted.When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
+     * @return Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Changing this parameter causes a service restart. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
      * 
      */
     public Optional<Boolean> pgStatMonitorEnable() {
         return Optional.ofNullable(this.pgStatMonitorEnable);
     }
     /**
-     * @return Enables or disables query plan monitoring.
+     * @return Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
      * 
      */
     public Optional<Boolean> pgStatMonitorPgsmEnableQueryPlan() {
         return Optional.ofNullable(this.pgStatMonitorPgsmEnableQueryPlan);
     }
     /**
-     * @return Sets the maximum number of buckets.
+     * @return Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
      * 
      */
     public Optional<Integer> pgStatMonitorPgsmMaxBuckets() {
         return Optional.ofNullable(this.pgStatMonitorPgsmMaxBuckets);
     }
     /**
-     * @return Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+     * @return Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
      * 
      */
     public Optional<String> pgStatStatementsTrack() {
@@ -753,7 +777,7 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.serviceLog);
     }
     /**
-     * @return Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+     * @return Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Double> sharedBuffersPercentage() {
@@ -788,14 +812,14 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.timezone);
     }
     /**
-     * @return Specifies the number of bytes reserved to track the currently executing command for each active session.
+     * @return Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Integer> trackActivityQuerySize() {
         return Optional.ofNullable(this.trackActivityQuerySize);
     }
     /**
-     * @return Record commit time of transactions.
+     * @return Record commit time of transactions. Changing this parameter causes a service restart.
      * 
      */
     public Optional<String> trackCommitTimestamp() {
@@ -809,7 +833,7 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.trackFunctions);
     }
     /**
-     * @return Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+     * @return Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
      * 
      */
     public Optional<String> trackIoTiming() {
@@ -837,14 +861,14 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.walSenderTimeout);
     }
     /**
-     * @return WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+     * @return WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
      * 
      */
     public Optional<Integer> walWriterDelay() {
         return Optional.ofNullable(this.walWriterDelay);
     }
     /**
-     * @return Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+     * @return Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
      * 
      */
     public Optional<Integer> workMem() {
@@ -888,6 +912,7 @@ public final class ManagedDatabasePostgresqlProperties {
         private @Nullable String logLinePrefix;
         private @Nullable Integer logMinDurationStatement;
         private @Nullable Integer logTempFiles;
+        private @Nullable Integer maxConnections;
         private @Nullable Integer maxFilesPerProcess;
         private @Nullable Integer maxLocksPerTransaction;
         private @Nullable Integer maxLogicalReplicationWorkers;
@@ -900,6 +925,7 @@ public final class ManagedDatabasePostgresqlProperties {
         private @Nullable Integer maxStackDepth;
         private @Nullable Integer maxStandbyArchiveDelay;
         private @Nullable Integer maxStandbyStreamingDelay;
+        private @Nullable Integer maxSyncWorkersPerSubscription;
         private @Nullable Integer maxWalSenders;
         private @Nullable Integer maxWorkerProcesses;
         private @Nullable ManagedDatabasePostgresqlPropertiesMigration migration;
@@ -960,6 +986,7 @@ public final class ManagedDatabasePostgresqlProperties {
     	      this.logLinePrefix = defaults.logLinePrefix;
     	      this.logMinDurationStatement = defaults.logMinDurationStatement;
     	      this.logTempFiles = defaults.logTempFiles;
+    	      this.maxConnections = defaults.maxConnections;
     	      this.maxFilesPerProcess = defaults.maxFilesPerProcess;
     	      this.maxLocksPerTransaction = defaults.maxLocksPerTransaction;
     	      this.maxLogicalReplicationWorkers = defaults.maxLogicalReplicationWorkers;
@@ -972,6 +999,7 @@ public final class ManagedDatabasePostgresqlProperties {
     	      this.maxStackDepth = defaults.maxStackDepth;
     	      this.maxStandbyArchiveDelay = defaults.maxStandbyArchiveDelay;
     	      this.maxStandbyStreamingDelay = defaults.maxStandbyStreamingDelay;
+    	      this.maxSyncWorkersPerSubscription = defaults.maxSyncWorkersPerSubscription;
     	      this.maxWalSenders = defaults.maxWalSenders;
     	      this.maxWorkerProcesses = defaults.maxWorkerProcesses;
     	      this.migration = defaults.migration;
@@ -1175,6 +1203,12 @@ public final class ManagedDatabasePostgresqlProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder maxConnections(@Nullable Integer maxConnections) {
+
+            this.maxConnections = maxConnections;
+            return this;
+        }
+        @CustomType.Setter
         public Builder maxFilesPerProcess(@Nullable Integer maxFilesPerProcess) {
 
             this.maxFilesPerProcess = maxFilesPerProcess;
@@ -1244,6 +1278,12 @@ public final class ManagedDatabasePostgresqlProperties {
         public Builder maxStandbyStreamingDelay(@Nullable Integer maxStandbyStreamingDelay) {
 
             this.maxStandbyStreamingDelay = maxStandbyStreamingDelay;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder maxSyncWorkersPerSubscription(@Nullable Integer maxSyncWorkersPerSubscription) {
+
+            this.maxSyncWorkersPerSubscription = maxSyncWorkersPerSubscription;
             return this;
         }
         @CustomType.Setter
@@ -1450,6 +1490,7 @@ public final class ManagedDatabasePostgresqlProperties {
             _resultValue.logLinePrefix = logLinePrefix;
             _resultValue.logMinDurationStatement = logMinDurationStatement;
             _resultValue.logTempFiles = logTempFiles;
+            _resultValue.maxConnections = maxConnections;
             _resultValue.maxFilesPerProcess = maxFilesPerProcess;
             _resultValue.maxLocksPerTransaction = maxLocksPerTransaction;
             _resultValue.maxLogicalReplicationWorkers = maxLogicalReplicationWorkers;
@@ -1462,6 +1503,7 @@ public final class ManagedDatabasePostgresqlProperties {
             _resultValue.maxStackDepth = maxStackDepth;
             _resultValue.maxStandbyArchiveDelay = maxStandbyArchiveDelay;
             _resultValue.maxStandbyStreamingDelay = maxStandbyStreamingDelay;
+            _resultValue.maxSyncWorkersPerSubscription = maxSyncWorkersPerSubscription;
             _resultValue.maxWalSenders = maxWalSenders;
             _resultValue.maxWorkerProcesses = maxWorkerProcesses;
             _resultValue.migration = migration;

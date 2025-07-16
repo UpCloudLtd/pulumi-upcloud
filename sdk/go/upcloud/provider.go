@@ -20,8 +20,8 @@ type Provider struct {
 
 	// Password for UpCloud API user. Can also be configured using the `UPCLOUD_PASSWORD` environment variable.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
-	// (EXPERIMENTAL)
+	// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
+	// the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
 	Token pulumi.StringPtrOutput `pulumi:"token"`
 	// UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
 	Username pulumi.StringPtrOutput `pulumi:"username"`
@@ -55,8 +55,8 @@ type providerArgs struct {
 	RetryWaitMaxSec *int `pulumi:"retryWaitMaxSec"`
 	// Minimum time to wait between retries
 	RetryWaitMinSec *int `pulumi:"retryWaitMinSec"`
-	// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
-	// (EXPERIMENTAL)
+	// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
+	// the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
 	Token *string `pulumi:"token"`
 	// UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
 	Username *string `pulumi:"username"`
@@ -75,8 +75,8 @@ type ProviderArgs struct {
 	RetryWaitMaxSec pulumi.IntPtrInput
 	// Minimum time to wait between retries
 	RetryWaitMinSec pulumi.IntPtrInput
-	// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
-	// (EXPERIMENTAL)
+	// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
+	// the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
 	Token pulumi.StringPtrInput
 	// UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
 	Username pulumi.StringPtrInput
@@ -124,8 +124,8 @@ func (o ProviderOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
-// (EXPERIMENTAL)
+// Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
+// the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
 func (o ProviderOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
 }

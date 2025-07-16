@@ -22,7 +22,7 @@ public final class ServerTemplateBackupRule {
      */
     private Integer retention;
     /**
-     * @return The time of day when the backup is created
+     * @return The time of day (UTC) when the backup is created
      * 
      */
     private String time;
@@ -43,7 +43,7 @@ public final class ServerTemplateBackupRule {
         return this.retention;
     }
     /**
-     * @return The time of day when the backup is created
+     * @return The time of day (UTC) when the backup is created
      * 
      */
     public String time() {

@@ -46,14 +46,14 @@ public final class StorageBackupRuleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The time of day when the backup is created
+     * The time of day (UTC) when the backup is created
      * 
      */
     @Import(name="time", required=true)
     private Output<String> time;
 
     /**
-     * @return The time of day when the backup is created
+     * @return The time of day (UTC) when the backup is created
      * 
      */
     public Output<String> time() {
@@ -129,7 +129,7 @@ public final class StorageBackupRuleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param time The time of day when the backup is created
+         * @param time The time of day (UTC) when the backup is created
          * 
          * @return builder
          * 
@@ -140,7 +140,7 @@ public final class StorageBackupRuleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param time The time of day when the backup is created
+         * @param time The time of day (UTC) when the backup is created
          * 
          * @return builder
          * 

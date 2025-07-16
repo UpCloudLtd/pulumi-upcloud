@@ -23,7 +23,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int Retention;
         /// <summary>
-        /// The time of day when the backup is created
+        /// The time of day (UTC) when the backup is created
         /// </summary>
         public readonly string Time;
 

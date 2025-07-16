@@ -35,8 +35,8 @@ class ProviderArgs:
         :param pulumi.Input[builtins.int] retry_max: Maximum number of retries
         :param pulumi.Input[builtins.int] retry_wait_max_sec: Maximum time to wait between retries
         :param pulumi.Input[builtins.int] retry_wait_min_sec: Minimum time to wait between retries
-        :param pulumi.Input[builtins.str] token: Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
-               (EXPERIMENTAL)
+        :param pulumi.Input[builtins.str] token: Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
+               the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
         :param pulumi.Input[builtins.str] username: UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
         """
         if password is not None:
@@ -119,8 +119,8 @@ class ProviderArgs:
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
-        (EXPERIMENTAL)
+        Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
+        the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
         """
         return pulumi.get(self, "token")
 
@@ -168,8 +168,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[builtins.int] retry_max: Maximum number of retries
         :param pulumi.Input[builtins.int] retry_wait_max_sec: Maximum time to wait between retries
         :param pulumi.Input[builtins.int] retry_wait_min_sec: Minimum time to wait between retries
-        :param pulumi.Input[builtins.str] token: Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
-               (EXPERIMENTAL)
+        :param pulumi.Input[builtins.str] token: Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
+               the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
         :param pulumi.Input[builtins.str] username: UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
         """
         ...
@@ -240,8 +240,8 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def token(self) -> pulumi.Output[Optional[builtins.str]]:
         """
-        Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable.
-        (EXPERIMENTAL)
+        Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
+        the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
         """
         return pulumi.get(self, "token")
 

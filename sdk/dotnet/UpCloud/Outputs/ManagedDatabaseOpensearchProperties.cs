@@ -31,9 +31,14 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? AutomaticUtilityNetworkIpFilter;
         /// <summary>
+        /// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
+        /// </summary>
+        public readonly int? ClusterFilecacheRemoteDataRatio;
+        /// <summary>
         /// Controls the number of shards allowed in the cluster per data node.
         /// </summary>
         public readonly int? ClusterMaxShardsPerNode;
+        public readonly Outputs.ManagedDatabaseOpensearchPropertiesClusterRemoteStore? ClusterRemoteStore;
         /// <summary>
         /// When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
         /// </summary>
@@ -79,6 +84,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// Enable/Disable security audit.
         /// </summary>
         public readonly bool? EnableSecurityAudit;
+        /// <summary>
+        /// Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
+        /// </summary>
+        public readonly bool? EnableSnapshotApi;
         /// <summary>
         /// Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
         /// </summary>
@@ -176,6 +185,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? KnnMemoryCircuitBreakerLimit;
         /// <summary>
+        /// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
+        /// </summary>
+        public readonly string? NodeSearchCacheSize;
+        /// <summary>
         /// OpenSearch OpenID Connect Configuration.
         /// </summary>
         public readonly Outputs.ManagedDatabaseOpensearchPropertiesOpenid? Openid;
@@ -199,6 +212,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
         /// </summary>
         public readonly ImmutableArray<string> ReindexRemoteWhitelists;
+        public readonly Outputs.ManagedDatabaseOpensearchPropertiesRemoteStore? RemoteStore;
         /// <summary>
         /// OpenSearch SAML configuration.
         /// </summary>
@@ -287,7 +301,11 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             bool? automaticUtilityNetworkIpFilter,
 
+            int? clusterFilecacheRemoteDataRatio,
+
             int? clusterMaxShardsPerNode,
+
+            Outputs.ManagedDatabaseOpensearchPropertiesClusterRemoteStore? clusterRemoteStore,
 
             bool? clusterRoutingAllocationBalancePreferPrimary,
 
@@ -312,6 +330,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             bool? enableSearchableSnapshots,
 
             bool? enableSecurityAudit,
+
+            bool? enableSnapshotApi,
 
             int? httpMaxContentLength,
 
@@ -361,6 +381,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             int? knnMemoryCircuitBreakerLimit,
 
+            string? nodeSearchCacheSize,
+
             Outputs.ManagedDatabaseOpensearchPropertiesOpenid? openid,
 
             Outputs.ManagedDatabaseOpensearchPropertiesOpensearchDashboards? opensearchDashboards,
@@ -372,6 +394,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             bool? publicAccess,
 
             ImmutableArray<string> reindexRemoteWhitelists,
+
+            Outputs.ManagedDatabaseOpensearchPropertiesRemoteStore? remoteStore,
 
             Outputs.ManagedDatabaseOpensearchPropertiesSaml? saml,
 
@@ -417,7 +441,9 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             ActionDestructiveRequiresName = actionDestructiveRequiresName;
             AuthFailureListeners = authFailureListeners;
             AutomaticUtilityNetworkIpFilter = automaticUtilityNetworkIpFilter;
+            ClusterFilecacheRemoteDataRatio = clusterFilecacheRemoteDataRatio;
             ClusterMaxShardsPerNode = clusterMaxShardsPerNode;
+            ClusterRemoteStore = clusterRemoteStore;
             ClusterRoutingAllocationBalancePreferPrimary = clusterRoutingAllocationBalancePreferPrimary;
             ClusterRoutingAllocationNodeConcurrentRecoveries = clusterRoutingAllocationNodeConcurrentRecoveries;
             ClusterSearchRequestSlowlog = clusterSearchRequestSlowlog;
@@ -430,6 +456,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             EnableRemoteBackedStorage = enableRemoteBackedStorage;
             EnableSearchableSnapshots = enableSearchableSnapshots;
             EnableSecurityAudit = enableSecurityAudit;
+            EnableSnapshotApi = enableSnapshotApi;
             HttpMaxContentLength = httpMaxContentLength;
             HttpMaxHeaderSize = httpMaxHeaderSize;
             HttpMaxInitialLineLength = httpMaxInitialLineLength;
@@ -454,12 +481,14 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             KeepIndexRefreshInterval = keepIndexRefreshInterval;
             KnnMemoryCircuitBreakerEnabled = knnMemoryCircuitBreakerEnabled;
             KnnMemoryCircuitBreakerLimit = knnMemoryCircuitBreakerLimit;
+            NodeSearchCacheSize = nodeSearchCacheSize;
             Openid = openid;
             OpensearchDashboards = opensearchDashboards;
             OverrideMainResponseVersion = overrideMainResponseVersion;
             PluginsAlertingFilterByBackendRoles = pluginsAlertingFilterByBackendRoles;
             PublicAccess = publicAccess;
             ReindexRemoteWhitelists = reindexRemoteWhitelists;
+            RemoteStore = remoteStore;
             Saml = saml;
             ScriptMaxCompilationsRate = scriptMaxCompilationsRate;
             SearchBackpressure = searchBackpressure;
