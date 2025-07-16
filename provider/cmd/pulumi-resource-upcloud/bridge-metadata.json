@@ -321,6 +321,9 @@
                                 },
                                 "migration": {
                                     "maxItemsOne": true
+                                },
+                                "mysql_incremental_backup": {
+                                    "maxItemsOne": true
                                 }
                             }
                         }
@@ -352,6 +355,9 @@
                                             }
                                         }
                                     }
+                                },
+                                "cluster_remote_store": {
+                                    "maxItemsOne": true
                                 },
                                 "cluster_search_request_slowlog": {
                                     "maxItemsOne": true,
@@ -386,6 +392,9 @@
                                 },
                                 "reindex_remote_whitelist": {
                                     "maxItemsOne": false
+                                },
+                                "remote_store": {
+                                    "maxItemsOne": true
                                 },
                                 "saml": {
                                     "maxItemsOne": true
