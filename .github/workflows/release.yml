@@ -66,8 +66,7 @@ jobs:
       - prerequisites
       - build_provider
       - test
-      # Skip license check, because our Go SDK credentials release does not have license file available.
-      # - license_check
+      - license_check
     uses: ./.github/workflows/publish.yml
     secrets: inherit
     with:
