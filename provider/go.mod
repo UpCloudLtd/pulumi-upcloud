@@ -7,7 +7,7 @@ toolchain go1.24.4
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250221232320-8d4cfd37a3cd
 
 require (
-	github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20250718084611-df234357cb28
+	github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20250730071639-71873cbde0a5
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.35.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.106.0
 )
@@ -27,7 +27,7 @@ require (
 	github.com/Microsoft/go-winio v0.6.1 // indirect
 	github.com/ProtonMail/go-crypto v1.1.5 // indirect
 	github.com/UpCloudLtd/upcloud-go-api/credentials v0.1.1 // indirect
-	github.com/UpCloudLtd/upcloud-go-api/v8 v8.21.0 // indirect
+	github.com/UpCloudLtd/upcloud-go-api/v8 v8.22.0 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apparentlymart/go-cidr v1.1.0 // indirect
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
