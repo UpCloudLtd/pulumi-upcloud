@@ -81,7 +81,8 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<int> Mem { get; private set; } = null!;
 
         /// <summary>
-        /// Is metadata service active for the server
+        /// Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+        /// templates.
         /// </summary>
         [Output("metadata")]
         public Output<bool?> Metadata { get; private set; } = null!;
@@ -278,7 +279,8 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<int>? Mem { get; set; }
 
         /// <summary>
-        /// Is metadata service active for the server
+        /// Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+        /// templates.
         /// </summary>
         [Input("metadata")]
         public Input<bool>? Metadata { get; set; }
@@ -454,7 +456,8 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<int>? Mem { get; set; }
 
         /// <summary>
-        /// Is metadata service active for the server
+        /// Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+        /// templates.
         /// </summary>
         [Input("metadata")]
         public Input<bool>? Metadata { get; set; }

@@ -44,7 +44,8 @@ type Server struct {
 	Login ServerLoginPtrOutput `pulumi:"login"`
 	// The amount of memory for the server (in megabytes)
 	Mem pulumi.IntOutput `pulumi:"mem"`
-	// Is metadata service active for the server
+	// Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+	// templates.
 	Metadata pulumi.BoolPtrOutput `pulumi:"metadata"`
 	// One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
 	// interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid
@@ -136,7 +137,8 @@ type serverState struct {
 	Login *ServerLogin `pulumi:"login"`
 	// The amount of memory for the server (in megabytes)
 	Mem *int `pulumi:"mem"`
-	// Is metadata service active for the server
+	// Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+	// templates.
 	Metadata *bool `pulumi:"metadata"`
 	// One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
 	// interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid
@@ -193,7 +195,8 @@ type ServerState struct {
 	Login ServerLoginPtrInput
 	// The amount of memory for the server (in megabytes)
 	Mem pulumi.IntPtrInput
-	// Is metadata service active for the server
+	// Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+	// templates.
 	Metadata pulumi.BoolPtrInput
 	// One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
 	// interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid
@@ -254,7 +257,8 @@ type serverArgs struct {
 	Login *ServerLogin `pulumi:"login"`
 	// The amount of memory for the server (in megabytes)
 	Mem *int `pulumi:"mem"`
-	// Is metadata service active for the server
+	// Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+	// templates.
 	Metadata *bool `pulumi:"metadata"`
 	// One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
 	// interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid
@@ -312,7 +316,8 @@ type ServerArgs struct {
 	Login ServerLoginPtrInput
 	// The amount of memory for the server (in megabytes)
 	Mem pulumi.IntPtrInput
-	// Is metadata service active for the server
+	// Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+	// templates.
 	Metadata pulumi.BoolPtrInput
 	// One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
 	// interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid
@@ -482,7 +487,8 @@ func (o ServerOutput) Mem() pulumi.IntOutput {
 	return o.ApplyT(func(v *Server) pulumi.IntOutput { return v.Mem }).(pulumi.IntOutput)
 }
 
-// Is metadata service active for the server
+// Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+// templates.
 func (o ServerOutput) Metadata() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Server) pulumi.BoolPtrOutput { return v.Metadata }).(pulumi.BoolPtrOutput)
 }

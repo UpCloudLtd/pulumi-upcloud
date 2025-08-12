@@ -84,7 +84,8 @@ export class Server extends pulumi.CustomResource {
      */
     public readonly mem!: pulumi.Output<number>;
     /**
-     * Is metadata service active for the server
+     * Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+     * templates.
      */
     public readonly metadata!: pulumi.Output<boolean | undefined>;
     /**
@@ -260,7 +261,8 @@ export interface ServerState {
      */
     mem?: pulumi.Input<number>;
     /**
-     * Is metadata service active for the server
+     * Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+     * templates.
      */
     metadata?: pulumi.Input<boolean>;
     /**
@@ -364,7 +366,8 @@ export interface ServerArgs {
      */
     mem?: pulumi.Input<number>;
     /**
-     * Is metadata service active for the server
+     * Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+     * templates.
      */
     metadata?: pulumi.Input<boolean>;
     /**
