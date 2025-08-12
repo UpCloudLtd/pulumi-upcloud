@@ -10765,7 +10765,7 @@
             }
         },
         "upcloud:index/server:Server": {
-            "description": "The UpCloud server resource allows the creation, update and deletion of [cloud servers](https://upcloud.com/products/cloud-servers).\n\n\u003e To deploy a GPU server, select a plan with `GPU-` prefix, e.g., `GPU-8xCPU-64GB-1xL40S`. Use `upctl zone devices` command to list per zone GPU availability.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  example:\n    type: upcloud:Server\n    properties:\n      hostname: terraform.example.tld\n      zone: de-fra1\n      plan: 1xCPU-1GB\n      template:\n        storage: Ubuntu Server 20.04 LTS (Focal Fossa)\n        size: 25\n        backupRules:\n          - interval: daily\n            time: '0100'\n            retention: 8\n      networkInterfaces:\n        - type: public\n      labels:\n        env: dev\n        production: 'false'\n      login:\n        user: myusername\n        keys:\n          - \u003cYOUR SSH PUBLIC KEY\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import upcloud:index/server:Server example_server ead4544f-10bf-42a3-b98a-a0fea2e2ad14\n```\n\n",
+            "description": "The UpCloud server resource allows the creation, update and deletion of [cloud servers](https://upcloud.com/products/cloud-servers).\n\n\u003e To deploy a GPU server, select a plan with `GPU-` prefix, e.g., `GPU-8xCPU-64GB-1xL40S`. Use `upctl zone devices` command to list per zone GPU availability.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  example:\n    type: upcloud:Server\n    properties:\n      hostname: terraform.example.tld\n      zone: de-fra1\n      plan: 1xCPU-1GB\n      metadata: true\n      template:\n        storage: Ubuntu Server 24.04 LTS (Noble Numbat)\n        size: 25\n        backupRules:\n          - interval: daily\n            time: '0100'\n            retention: 8\n      networkInterfaces:\n        - type: public\n      labels:\n        env: dev\n        production: 'false'\n      login:\n        user: myusername\n        keys:\n          - \u003cYOUR SSH PUBLIC KEY\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import upcloud:index/server:Server example_server ead4544f-10bf-42a3-b98a-a0fea2e2ad14\n```\n\n",
             "properties": {
                 "bootOrder": {
                     "type": "string",
@@ -10808,7 +10808,7 @@
                 },
                 "metadata": {
                     "type": "boolean",
-                    "description": "Is metadata service active for the server\n"
+                    "description": "Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based\ntemplates.\n"
                 },
                 "networkInterfaces": {
                     "type": "array",
@@ -10930,7 +10930,7 @@
                 },
                 "metadata": {
                     "type": "boolean",
-                    "description": "Is metadata service active for the server\n"
+                    "description": "Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based\ntemplates.\n"
                 },
                 "networkInterfaces": {
                     "type": "array",
@@ -11041,7 +11041,7 @@
                     },
                     "metadata": {
                         "type": "boolean",
-                        "description": "Is metadata service active for the server\n"
+                        "description": "Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based\ntemplates.\n"
                     },
                     "networkInterfaces": {
                         "type": "array",
