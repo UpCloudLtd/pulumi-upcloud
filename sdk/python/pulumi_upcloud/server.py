@@ -59,7 +59,8 @@ class ServerArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] labels: User defined key-value pairs to classify the server.
         :param pulumi.Input['ServerLoginArgs'] login: Configure access credentials to the server
         :param pulumi.Input[builtins.int] mem: The amount of memory for the server (in megabytes)
-        :param pulumi.Input[builtins.bool] metadata: Is metadata service active for the server
+        :param pulumi.Input[builtins.bool] metadata: Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+               templates.
         :param pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]] network_interfaces: One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
                interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid
                public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
@@ -250,7 +251,8 @@ class ServerArgs:
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        Is metadata service active for the server
+        Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+        templates.
         """
         return pulumi.get(self, "metadata")
 
@@ -446,7 +448,8 @@ class _ServerState:
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] labels: User defined key-value pairs to classify the server.
         :param pulumi.Input['ServerLoginArgs'] login: Configure access credentials to the server
         :param pulumi.Input[builtins.int] mem: The amount of memory for the server (in megabytes)
-        :param pulumi.Input[builtins.bool] metadata: Is metadata service active for the server
+        :param pulumi.Input[builtins.bool] metadata: Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+               templates.
         :param pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]] network_interfaces: One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
                interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid
                public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
@@ -628,7 +631,8 @@ class _ServerState:
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        Is metadata service active for the server
+        Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+        templates.
         """
         return pulumi.get(self, "metadata")
 
@@ -850,7 +854,8 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] labels: User defined key-value pairs to classify the server.
         :param pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']] login: Configure access credentials to the server
         :param pulumi.Input[builtins.int] mem: The amount of memory for the server (in megabytes)
-        :param pulumi.Input[builtins.bool] metadata: Is metadata service active for the server
+        :param pulumi.Input[builtins.bool] metadata: Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+               templates.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]] network_interfaces: One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
                interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid
                public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
@@ -1013,7 +1018,8 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] labels: User defined key-value pairs to classify the server.
         :param pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']] login: Configure access credentials to the server
         :param pulumi.Input[builtins.int] mem: The amount of memory for the server (in megabytes)
-        :param pulumi.Input[builtins.bool] metadata: Is metadata service active for the server
+        :param pulumi.Input[builtins.bool] metadata: Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+               templates.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]] network_interfaces: One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
                interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid
                public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
@@ -1141,7 +1147,8 @@ class Server(pulumi.CustomResource):
     @pulumi.getter
     def metadata(self) -> pulumi.Output[Optional[builtins.bool]]:
         """
-        Is metadata service active for the server
+        Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+        templates.
         """
         return pulumi.get(self, "metadata")
 

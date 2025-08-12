@@ -173,14 +173,16 @@ public class Server extends com.pulumi.resources.CustomResource {
         return this.mem;
     }
     /**
-     * Is metadata service active for the server
+     * Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+     * templates.
      * 
      */
     @Export(name="metadata", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> metadata;
 
     /**
-     * @return Is metadata service active for the server
+     * @return Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+     * templates.
      * 
      */
     public Output<Optional<Boolean>> metadata() {

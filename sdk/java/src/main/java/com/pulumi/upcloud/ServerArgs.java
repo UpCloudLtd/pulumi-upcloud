@@ -165,14 +165,16 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Is metadata service active for the server
+     * Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+     * templates.
      * 
      */
     @Import(name="metadata")
     private @Nullable Output<Boolean> metadata;
 
     /**
-     * @return Is metadata service active for the server
+     * @return Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+     * templates.
      * 
      */
     public Optional<Output<Boolean>> metadata() {
@@ -620,7 +622,8 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param metadata Is metadata service active for the server
+         * @param metadata Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+         * templates.
          * 
          * @return builder
          * 
@@ -631,7 +634,8 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param metadata Is metadata service active for the server
+         * @param metadata Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
+         * templates.
          * 
          * @return builder
          * 
