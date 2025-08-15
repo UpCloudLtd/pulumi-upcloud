@@ -626,13 +626,24 @@ export interface GetTagsTag {
     servers: string[];
 }
 
+export interface KubernetesNodeGroupCloudNativePlan {
+    /**
+     * The size of the storage device in gigabytes.
+     */
+    storageSize?: number;
+    /**
+     * The storage tier to use.
+     */
+    storageTier: string;
+}
+
 export interface KubernetesNodeGroupCustomPlan {
     /**
-     * The number of CPU cores dedicated to individual node group nodes when using custom plan
+     * The number of CPU cores dedicated to individual node group nodes.
      */
     cores: number;
     /**
-     * The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+     * The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
      */
     memory: number;
     /**
@@ -640,7 +651,18 @@ export interface KubernetesNodeGroupCustomPlan {
      */
     storageSize: number;
     /**
-     * The storage tier to use. Defaults to maxiops
+     * The storage tier to use.
+     */
+    storageTier: string;
+}
+
+export interface KubernetesNodeGroupGpuPlan {
+    /**
+     * The size of the storage device in gigabytes.
+     */
+    storageSize?: number;
+    /**
+     * The storage tier to use.
      */
     storageTier: string;
 }

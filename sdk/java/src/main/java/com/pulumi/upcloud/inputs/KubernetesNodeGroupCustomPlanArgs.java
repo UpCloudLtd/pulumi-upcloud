@@ -18,14 +18,14 @@ public final class KubernetesNodeGroupCustomPlanArgs extends com.pulumi.resource
     public static final KubernetesNodeGroupCustomPlanArgs Empty = new KubernetesNodeGroupCustomPlanArgs();
 
     /**
-     * The number of CPU cores dedicated to individual node group nodes when using custom plan
+     * The number of CPU cores dedicated to individual node group nodes.
      * 
      */
     @Import(name="cores", required=true)
     private Output<Integer> cores;
 
     /**
-     * @return The number of CPU cores dedicated to individual node group nodes when using custom plan
+     * @return The number of CPU cores dedicated to individual node group nodes.
      * 
      */
     public Output<Integer> cores() {
@@ -33,14 +33,14 @@ public final class KubernetesNodeGroupCustomPlanArgs extends com.pulumi.resource
     }
 
     /**
-     * The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+     * The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
      * 
      */
     @Import(name="memory", required=true)
     private Output<Integer> memory;
 
     /**
-     * @return The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+     * @return The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
      * 
      */
     public Output<Integer> memory() {
@@ -63,14 +63,14 @@ public final class KubernetesNodeGroupCustomPlanArgs extends com.pulumi.resource
     }
 
     /**
-     * The storage tier to use. Defaults to maxiops
+     * The storage tier to use.
      * 
      */
     @Import(name="storageTier")
     private @Nullable Output<String> storageTier;
 
     /**
-     * @return The storage tier to use. Defaults to maxiops
+     * @return The storage tier to use.
      * 
      */
     public Optional<Output<String>> storageTier() {
@@ -105,7 +105,7 @@ public final class KubernetesNodeGroupCustomPlanArgs extends com.pulumi.resource
         }
 
         /**
-         * @param cores The number of CPU cores dedicated to individual node group nodes when using custom plan
+         * @param cores The number of CPU cores dedicated to individual node group nodes.
          * 
          * @return builder
          * 
@@ -116,7 +116,7 @@ public final class KubernetesNodeGroupCustomPlanArgs extends com.pulumi.resource
         }
 
         /**
-         * @param cores The number of CPU cores dedicated to individual node group nodes when using custom plan
+         * @param cores The number of CPU cores dedicated to individual node group nodes.
          * 
          * @return builder
          * 
@@ -126,7 +126,7 @@ public final class KubernetesNodeGroupCustomPlanArgs extends com.pulumi.resource
         }
 
         /**
-         * @param memory The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+         * @param memory The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
          * 
          * @return builder
          * 
@@ -137,7 +137,7 @@ public final class KubernetesNodeGroupCustomPlanArgs extends com.pulumi.resource
         }
 
         /**
-         * @param memory The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+         * @param memory The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
          * 
          * @return builder
          * 
@@ -168,7 +168,7 @@ public final class KubernetesNodeGroupCustomPlanArgs extends com.pulumi.resource
         }
 
         /**
-         * @param storageTier The storage tier to use. Defaults to maxiops
+         * @param storageTier The storage tier to use.
          * 
          * @return builder
          * 
@@ -179,7 +179,7 @@ public final class KubernetesNodeGroupCustomPlanArgs extends com.pulumi.resource
         }
 
         /**
-         * @param storageTier The storage tier to use. Defaults to maxiops
+         * @param storageTier The storage tier to use.
          * 
          * @return builder
          * 

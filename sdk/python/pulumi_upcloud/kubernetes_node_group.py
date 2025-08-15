@@ -26,7 +26,9 @@ class KubernetesNodeGroupArgs:
                  node_count: pulumi.Input[builtins.int],
                  plan: pulumi.Input[builtins.str],
                  anti_affinity: Optional[pulumi.Input[builtins.bool]] = None,
+                 cloud_native_plan: Optional[pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs']] = None,
                  custom_plan: Optional[pulumi.Input['KubernetesNodeGroupCustomPlanArgs']] = None,
+                 gpu_plan: Optional[pulumi.Input['KubernetesNodeGroupGpuPlanArgs']] = None,
                  kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -41,7 +43,9 @@ class KubernetesNodeGroupArgs:
         :param pulumi.Input[builtins.str] plan: The server plan used for the node group. You can list available plans with `upctl server plans`
         :param pulumi.Input[builtins.bool] anti_affinity: If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
                considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
-        :param pulumi.Input['KubernetesNodeGroupCustomPlanArgs'] custom_plan: Resource properties for custom plan
+        :param pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs'] cloud_native_plan: Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+        :param pulumi.Input['KubernetesNodeGroupCustomPlanArgs'] custom_plan: Resource properties for custom plan. This block is required for `custom` plans only.
+        :param pulumi.Input['KubernetesNodeGroupGpuPlanArgs'] gpu_plan: Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]] kubelet_args: Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
                prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
                CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
@@ -60,8 +64,12 @@ class KubernetesNodeGroupArgs:
         pulumi.set(__self__, "plan", plan)
         if anti_affinity is not None:
             pulumi.set(__self__, "anti_affinity", anti_affinity)
+        if cloud_native_plan is not None:
+            pulumi.set(__self__, "cloud_native_plan", cloud_native_plan)
         if custom_plan is not None:
             pulumi.set(__self__, "custom_plan", custom_plan)
+        if gpu_plan is not None:
+            pulumi.set(__self__, "gpu_plan", gpu_plan)
         if kubelet_args is not None:
             pulumi.set(__self__, "kubelet_args", kubelet_args)
         if labels is not None:
@@ -127,16 +135,40 @@ class KubernetesNodeGroupArgs:
         pulumi.set(self, "anti_affinity", value)
 
     @property
+    @pulumi.getter(name="cloudNativePlan")
+    def cloud_native_plan(self) -> Optional[pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs']]:
+        """
+        Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+        """
+        return pulumi.get(self, "cloud_native_plan")
+
+    @cloud_native_plan.setter
+    def cloud_native_plan(self, value: Optional[pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs']]):
+        pulumi.set(self, "cloud_native_plan", value)
+
+    @property
     @pulumi.getter(name="customPlan")
     def custom_plan(self) -> Optional[pulumi.Input['KubernetesNodeGroupCustomPlanArgs']]:
         """
-        Resource properties for custom plan
+        Resource properties for custom plan. This block is required for `custom` plans only.
         """
         return pulumi.get(self, "custom_plan")
 
     @custom_plan.setter
     def custom_plan(self, value: Optional[pulumi.Input['KubernetesNodeGroupCustomPlanArgs']]):
         pulumi.set(self, "custom_plan", value)
+
+    @property
+    @pulumi.getter(name="gpuPlan")
+    def gpu_plan(self) -> Optional[pulumi.Input['KubernetesNodeGroupGpuPlanArgs']]:
+        """
+        Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+        """
+        return pulumi.get(self, "gpu_plan")
+
+    @gpu_plan.setter
+    def gpu_plan(self, value: Optional[pulumi.Input['KubernetesNodeGroupGpuPlanArgs']]):
+        pulumi.set(self, "gpu_plan", value)
 
     @property
     @pulumi.getter(name="kubeletArgs")
@@ -232,8 +264,10 @@ class KubernetesNodeGroupArgs:
 class _KubernetesNodeGroupState:
     def __init__(__self__, *,
                  anti_affinity: Optional[pulumi.Input[builtins.bool]] = None,
+                 cloud_native_plan: Optional[pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs']] = None,
                  cluster: Optional[pulumi.Input[builtins.str]] = None,
                  custom_plan: Optional[pulumi.Input['KubernetesNodeGroupCustomPlanArgs']] = None,
+                 gpu_plan: Optional[pulumi.Input['KubernetesNodeGroupGpuPlanArgs']] = None,
                  kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -247,8 +281,10 @@ class _KubernetesNodeGroupState:
         Input properties used for looking up and filtering KubernetesNodeGroup resources.
         :param pulumi.Input[builtins.bool] anti_affinity: If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
                considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
+        :param pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs'] cloud_native_plan: Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
         :param pulumi.Input[builtins.str] cluster: UUID of the cluster.
-        :param pulumi.Input['KubernetesNodeGroupCustomPlanArgs'] custom_plan: Resource properties for custom plan
+        :param pulumi.Input['KubernetesNodeGroupCustomPlanArgs'] custom_plan: Resource properties for custom plan. This block is required for `custom` plans only.
+        :param pulumi.Input['KubernetesNodeGroupGpuPlanArgs'] gpu_plan: Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]] kubelet_args: Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
                prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
                CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
@@ -266,10 +302,14 @@ class _KubernetesNodeGroupState:
         """
         if anti_affinity is not None:
             pulumi.set(__self__, "anti_affinity", anti_affinity)
+        if cloud_native_plan is not None:
+            pulumi.set(__self__, "cloud_native_plan", cloud_native_plan)
         if cluster is not None:
             pulumi.set(__self__, "cluster", cluster)
         if custom_plan is not None:
             pulumi.set(__self__, "custom_plan", custom_plan)
+        if gpu_plan is not None:
+            pulumi.set(__self__, "gpu_plan", gpu_plan)
         if kubelet_args is not None:
             pulumi.set(__self__, "kubelet_args", kubelet_args)
         if labels is not None:
@@ -303,6 +343,18 @@ class _KubernetesNodeGroupState:
         pulumi.set(self, "anti_affinity", value)
 
     @property
+    @pulumi.getter(name="cloudNativePlan")
+    def cloud_native_plan(self) -> Optional[pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs']]:
+        """
+        Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+        """
+        return pulumi.get(self, "cloud_native_plan")
+
+    @cloud_native_plan.setter
+    def cloud_native_plan(self, value: Optional[pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs']]):
+        pulumi.set(self, "cloud_native_plan", value)
+
+    @property
     @pulumi.getter
     def cluster(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -318,13 +370,25 @@ class _KubernetesNodeGroupState:
     @pulumi.getter(name="customPlan")
     def custom_plan(self) -> Optional[pulumi.Input['KubernetesNodeGroupCustomPlanArgs']]:
         """
-        Resource properties for custom plan
+        Resource properties for custom plan. This block is required for `custom` plans only.
         """
         return pulumi.get(self, "custom_plan")
 
     @custom_plan.setter
     def custom_plan(self, value: Optional[pulumi.Input['KubernetesNodeGroupCustomPlanArgs']]):
         pulumi.set(self, "custom_plan", value)
+
+    @property
+    @pulumi.getter(name="gpuPlan")
+    def gpu_plan(self) -> Optional[pulumi.Input['KubernetesNodeGroupGpuPlanArgs']]:
+        """
+        Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+        """
+        return pulumi.get(self, "gpu_plan")
+
+    @gpu_plan.setter
+    def gpu_plan(self, value: Optional[pulumi.Input['KubernetesNodeGroupGpuPlanArgs']]):
+        pulumi.set(self, "gpu_plan", value)
 
     @property
     @pulumi.getter(name="kubeletArgs")
@@ -446,8 +510,10 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  anti_affinity: Optional[pulumi.Input[builtins.bool]] = None,
+                 cloud_native_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict']]] = None,
                  cluster: Optional[pulumi.Input[builtins.str]] = None,
                  custom_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']]] = None,
+                 gpu_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict']]] = None,
                  kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -502,8 +568,10 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.bool] anti_affinity: If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
                considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
+        :param pulumi.Input[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict']] cloud_native_plan: Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
         :param pulumi.Input[builtins.str] cluster: UUID of the cluster.
-        :param pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']] custom_plan: Resource properties for custom plan
+        :param pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']] custom_plan: Resource properties for custom plan. This block is required for `custom` plans only.
+        :param pulumi.Input[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict']] gpu_plan: Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
         :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]] kubelet_args: Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
                prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
                CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
@@ -581,8 +649,10 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  anti_affinity: Optional[pulumi.Input[builtins.bool]] = None,
+                 cloud_native_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict']]] = None,
                  cluster: Optional[pulumi.Input[builtins.str]] = None,
                  custom_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']]] = None,
+                 gpu_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict']]] = None,
                  kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -602,10 +672,12 @@ class KubernetesNodeGroup(pulumi.CustomResource):
             __props__ = KubernetesNodeGroupArgs.__new__(KubernetesNodeGroupArgs)
 
             __props__.__dict__["anti_affinity"] = anti_affinity
+            __props__.__dict__["cloud_native_plan"] = cloud_native_plan
             if cluster is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster'")
             __props__.__dict__["cluster"] = cluster
             __props__.__dict__["custom_plan"] = custom_plan
+            __props__.__dict__["gpu_plan"] = gpu_plan
             __props__.__dict__["kubelet_args"] = kubelet_args
             __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
@@ -630,8 +702,10 @@ class KubernetesNodeGroup(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             anti_affinity: Optional[pulumi.Input[builtins.bool]] = None,
+            cloud_native_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict']]] = None,
             cluster: Optional[pulumi.Input[builtins.str]] = None,
             custom_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']]] = None,
+            gpu_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict']]] = None,
             kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
             name: Optional[pulumi.Input[builtins.str]] = None,
@@ -650,8 +724,10 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.bool] anti_affinity: If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
                considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
+        :param pulumi.Input[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict']] cloud_native_plan: Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
         :param pulumi.Input[builtins.str] cluster: UUID of the cluster.
-        :param pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']] custom_plan: Resource properties for custom plan
+        :param pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']] custom_plan: Resource properties for custom plan. This block is required for `custom` plans only.
+        :param pulumi.Input[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict']] gpu_plan: Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
         :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]] kubelet_args: Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
                prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
                CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
@@ -672,8 +748,10 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         __props__ = _KubernetesNodeGroupState.__new__(_KubernetesNodeGroupState)
 
         __props__.__dict__["anti_affinity"] = anti_affinity
+        __props__.__dict__["cloud_native_plan"] = cloud_native_plan
         __props__.__dict__["cluster"] = cluster
         __props__.__dict__["custom_plan"] = custom_plan
+        __props__.__dict__["gpu_plan"] = gpu_plan
         __props__.__dict__["kubelet_args"] = kubelet_args
         __props__.__dict__["labels"] = labels
         __props__.__dict__["name"] = name
@@ -695,6 +773,14 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         return pulumi.get(self, "anti_affinity")
 
     @property
+    @pulumi.getter(name="cloudNativePlan")
+    def cloud_native_plan(self) -> pulumi.Output[Optional['outputs.KubernetesNodeGroupCloudNativePlan']]:
+        """
+        Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+        """
+        return pulumi.get(self, "cloud_native_plan")
+
+    @property
     @pulumi.getter
     def cluster(self) -> pulumi.Output[builtins.str]:
         """
@@ -706,9 +792,17 @@ class KubernetesNodeGroup(pulumi.CustomResource):
     @pulumi.getter(name="customPlan")
     def custom_plan(self) -> pulumi.Output[Optional['outputs.KubernetesNodeGroupCustomPlan']]:
         """
-        Resource properties for custom plan
+        Resource properties for custom plan. This block is required for `custom` plans only.
         """
         return pulumi.get(self, "custom_plan")
+
+    @property
+    @pulumi.getter(name="gpuPlan")
+    def gpu_plan(self) -> pulumi.Output[Optional['outputs.KubernetesNodeGroupGpuPlan']]:
+        """
+        Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+        """
+        return pulumi.get(self, "gpu_plan")
 
     @property
     @pulumi.getter(name="kubeletArgs")

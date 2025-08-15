@@ -14,13 +14,13 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
     public sealed class KubernetesNodeGroupCustomPlanGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The number of CPU cores dedicated to individual node group nodes when using custom plan
+        /// The number of CPU cores dedicated to individual node group nodes.
         /// </summary>
         [Input("cores", required: true)]
         public Input<int> Cores { get; set; } = null!;
 
         /// <summary>
-        /// The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+        /// The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
         /// </summary>
         [Input("memory", required: true)]
         public Input<int> Memory { get; set; } = null!;
@@ -32,7 +32,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int> StorageSize { get; set; } = null!;
 
         /// <summary>
-        /// The storage tier to use. Defaults to maxiops
+        /// The storage tier to use.
         /// </summary>
         [Input("storageTier")]
         public Input<string>? StorageTier { get; set; }

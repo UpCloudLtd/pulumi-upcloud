@@ -12,37 +12,23 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 {
 
     [OutputType]
-    public sealed class KubernetesNodeGroupCustomPlan
+    public sealed class KubernetesNodeGroupGpuPlan
     {
-        /// <summary>
-        /// The number of CPU cores dedicated to individual node group nodes.
-        /// </summary>
-        public readonly int Cores;
-        /// <summary>
-        /// The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
-        /// </summary>
-        public readonly int Memory;
         /// <summary>
         /// The size of the storage device in gigabytes.
         /// </summary>
-        public readonly int StorageSize;
+        public readonly int? StorageSize;
         /// <summary>
         /// The storage tier to use.
         /// </summary>
         public readonly string? StorageTier;
 
         [OutputConstructor]
-        private KubernetesNodeGroupCustomPlan(
-            int cores,
-
-            int memory,
-
-            int storageSize,
+        private KubernetesNodeGroupGpuPlan(
+            int? storageSize,
 
             string? storageTier)
         {
-            Cores = cores;
-            Memory = memory;
             StorageSize = storageSize;
             StorageTier = storageTier;
         }

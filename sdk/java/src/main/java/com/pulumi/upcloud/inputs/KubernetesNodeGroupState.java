@@ -5,7 +5,9 @@ package com.pulumi.upcloud.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.upcloud.inputs.KubernetesNodeGroupCloudNativePlanArgs;
 import com.pulumi.upcloud.inputs.KubernetesNodeGroupCustomPlanArgs;
+import com.pulumi.upcloud.inputs.KubernetesNodeGroupGpuPlanArgs;
 import com.pulumi.upcloud.inputs.KubernetesNodeGroupKubeletArgArgs;
 import com.pulumi.upcloud.inputs.KubernetesNodeGroupTaintArgs;
 import java.lang.Boolean;
@@ -40,6 +42,21 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
     }
 
     /**
+     * Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+     * 
+     */
+    @Import(name="cloudNativePlan")
+    private @Nullable Output<KubernetesNodeGroupCloudNativePlanArgs> cloudNativePlan;
+
+    /**
+     * @return Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+     * 
+     */
+    public Optional<Output<KubernetesNodeGroupCloudNativePlanArgs>> cloudNativePlan() {
+        return Optional.ofNullable(this.cloudNativePlan);
+    }
+
+    /**
      * UUID of the cluster.
      * 
      */
@@ -55,18 +72,33 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Resource properties for custom plan
+     * Resource properties for custom plan. This block is required for `custom` plans only.
      * 
      */
     @Import(name="customPlan")
     private @Nullable Output<KubernetesNodeGroupCustomPlanArgs> customPlan;
 
     /**
-     * @return Resource properties for custom plan
+     * @return Resource properties for custom plan. This block is required for `custom` plans only.
      * 
      */
     public Optional<Output<KubernetesNodeGroupCustomPlanArgs>> customPlan() {
         return Optional.ofNullable(this.customPlan);
+    }
+
+    /**
+     * Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+     * 
+     */
+    @Import(name="gpuPlan")
+    private @Nullable Output<KubernetesNodeGroupGpuPlanArgs> gpuPlan;
+
+    /**
+     * @return Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+     * 
+     */
+    public Optional<Output<KubernetesNodeGroupGpuPlanArgs>> gpuPlan() {
+        return Optional.ofNullable(this.gpuPlan);
     }
 
     /**
@@ -218,8 +250,10 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
 
     private KubernetesNodeGroupState(KubernetesNodeGroupState $) {
         this.antiAffinity = $.antiAffinity;
+        this.cloudNativePlan = $.cloudNativePlan;
         this.cluster = $.cluster;
         this.customPlan = $.customPlan;
+        this.gpuPlan = $.gpuPlan;
         this.kubeletArgs = $.kubeletArgs;
         this.labels = $.labels;
         this.name = $.name;
@@ -273,6 +307,27 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
         }
 
         /**
+         * @param cloudNativePlan Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cloudNativePlan(@Nullable Output<KubernetesNodeGroupCloudNativePlanArgs> cloudNativePlan) {
+            $.cloudNativePlan = cloudNativePlan;
+            return this;
+        }
+
+        /**
+         * @param cloudNativePlan Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cloudNativePlan(KubernetesNodeGroupCloudNativePlanArgs cloudNativePlan) {
+            return cloudNativePlan(Output.of(cloudNativePlan));
+        }
+
+        /**
          * @param cluster UUID of the cluster.
          * 
          * @return builder
@@ -294,7 +349,7 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param customPlan Resource properties for custom plan
+         * @param customPlan Resource properties for custom plan. This block is required for `custom` plans only.
          * 
          * @return builder
          * 
@@ -305,13 +360,34 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param customPlan Resource properties for custom plan
+         * @param customPlan Resource properties for custom plan. This block is required for `custom` plans only.
          * 
          * @return builder
          * 
          */
         public Builder customPlan(KubernetesNodeGroupCustomPlanArgs customPlan) {
             return customPlan(Output.of(customPlan));
+        }
+
+        /**
+         * @param gpuPlan Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gpuPlan(@Nullable Output<KubernetesNodeGroupGpuPlanArgs> gpuPlan) {
+            $.gpuPlan = gpuPlan;
+            return this;
+        }
+
+        /**
+         * @param gpuPlan Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gpuPlan(KubernetesNodeGroupGpuPlanArgs gpuPlan) {
+            return gpuPlan(Output.of(gpuPlan));
         }
 
         /**

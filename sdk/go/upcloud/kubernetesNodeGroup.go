@@ -84,10 +84,14 @@ type KubernetesNodeGroup struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
 	// considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity pulumi.BoolOutput `pulumi:"antiAffinity"`
+	// Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+	CloudNativePlan KubernetesNodeGroupCloudNativePlanPtrOutput `pulumi:"cloudNativePlan"`
 	// UUID of the cluster.
 	Cluster pulumi.StringOutput `pulumi:"cluster"`
-	// Resource properties for custom plan
+	// Resource properties for custom plan. This block is required for `custom` plans only.
 	CustomPlan KubernetesNodeGroupCustomPlanPtrOutput `pulumi:"customPlan"`
+	// Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+	GpuPlan KubernetesNodeGroupGpuPlanPtrOutput `pulumi:"gpuPlan"`
 	// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
 	// prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
 	// CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
@@ -155,10 +159,14 @@ type kubernetesNodeGroupState struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
 	// considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity *bool `pulumi:"antiAffinity"`
+	// Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+	CloudNativePlan *KubernetesNodeGroupCloudNativePlan `pulumi:"cloudNativePlan"`
 	// UUID of the cluster.
 	Cluster *string `pulumi:"cluster"`
-	// Resource properties for custom plan
+	// Resource properties for custom plan. This block is required for `custom` plans only.
 	CustomPlan *KubernetesNodeGroupCustomPlan `pulumi:"customPlan"`
+	// Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+	GpuPlan *KubernetesNodeGroupGpuPlan `pulumi:"gpuPlan"`
 	// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
 	// prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
 	// CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
@@ -188,10 +196,14 @@ type KubernetesNodeGroupState struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
 	// considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity pulumi.BoolPtrInput
+	// Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+	CloudNativePlan KubernetesNodeGroupCloudNativePlanPtrInput
 	// UUID of the cluster.
 	Cluster pulumi.StringPtrInput
-	// Resource properties for custom plan
+	// Resource properties for custom plan. This block is required for `custom` plans only.
 	CustomPlan KubernetesNodeGroupCustomPlanPtrInput
+	// Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+	GpuPlan KubernetesNodeGroupGpuPlanPtrInput
 	// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
 	// prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
 	// CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
@@ -225,10 +237,14 @@ type kubernetesNodeGroupArgs struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
 	// considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity *bool `pulumi:"antiAffinity"`
+	// Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+	CloudNativePlan *KubernetesNodeGroupCloudNativePlan `pulumi:"cloudNativePlan"`
 	// UUID of the cluster.
 	Cluster string `pulumi:"cluster"`
-	// Resource properties for custom plan
+	// Resource properties for custom plan. This block is required for `custom` plans only.
 	CustomPlan *KubernetesNodeGroupCustomPlan `pulumi:"customPlan"`
+	// Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+	GpuPlan *KubernetesNodeGroupGpuPlan `pulumi:"gpuPlan"`
 	// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
 	// prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
 	// CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
@@ -259,10 +275,14 @@ type KubernetesNodeGroupArgs struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
 	// considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity pulumi.BoolPtrInput
+	// Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+	CloudNativePlan KubernetesNodeGroupCloudNativePlanPtrInput
 	// UUID of the cluster.
 	Cluster pulumi.StringInput
-	// Resource properties for custom plan
+	// Resource properties for custom plan. This block is required for `custom` plans only.
 	CustomPlan KubernetesNodeGroupCustomPlanPtrInput
+	// Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+	GpuPlan KubernetesNodeGroupGpuPlanPtrInput
 	// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
 	// prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
 	// CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
@@ -381,14 +401,24 @@ func (o KubernetesNodeGroupOutput) AntiAffinity() pulumi.BoolOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.BoolOutput { return v.AntiAffinity }).(pulumi.BoolOutput)
 }
 
+// Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+func (o KubernetesNodeGroupOutput) CloudNativePlan() KubernetesNodeGroupCloudNativePlanPtrOutput {
+	return o.ApplyT(func(v *KubernetesNodeGroup) KubernetesNodeGroupCloudNativePlanPtrOutput { return v.CloudNativePlan }).(KubernetesNodeGroupCloudNativePlanPtrOutput)
+}
+
 // UUID of the cluster.
 func (o KubernetesNodeGroupOutput) Cluster() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.StringOutput { return v.Cluster }).(pulumi.StringOutput)
 }
 
-// Resource properties for custom plan
+// Resource properties for custom plan. This block is required for `custom` plans only.
 func (o KubernetesNodeGroupOutput) CustomPlan() KubernetesNodeGroupCustomPlanPtrOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroup) KubernetesNodeGroupCustomPlanPtrOutput { return v.CustomPlan }).(KubernetesNodeGroupCustomPlanPtrOutput)
+}
+
+// Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+func (o KubernetesNodeGroupOutput) GpuPlan() KubernetesNodeGroupGpuPlanPtrOutput {
+	return o.ApplyT(func(v *KubernetesNodeGroup) KubernetesNodeGroupGpuPlanPtrOutput { return v.GpuPlan }).(KubernetesNodeGroupGpuPlanPtrOutput)
 }
 
 // Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
