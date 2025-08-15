@@ -261,15 +261,35 @@
                 "id"
             ]
         },
+        "upcloud:index/KubernetesNodeGroupCloudNativePlan:KubernetesNodeGroupCloudNativePlan": {
+            "properties": {
+                "storageSize": {
+                    "type": "integer",
+                    "description": "The size of the storage device in gigabytes.\n"
+                },
+                "storageTier": {
+                    "type": "string",
+                    "description": "The storage tier to use.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "storageTier"
+                    ]
+                }
+            }
+        },
         "upcloud:index/KubernetesNodeGroupCustomPlan:KubernetesNodeGroupCustomPlan": {
             "properties": {
                 "cores": {
                     "type": "integer",
-                    "description": "The number of CPU cores dedicated to individual node group nodes when using custom plan\n"
+                    "description": "The number of CPU cores dedicated to individual node group nodes.\n"
                 },
                 "memory": {
                     "type": "integer",
-                    "description": "The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.\n"
+                    "description": "The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.\n"
                 },
                 "storageSize": {
                     "type": "integer",
@@ -277,7 +297,7 @@
                 },
                 "storageTier": {
                     "type": "string",
-                    "description": "The storage tier to use. Defaults to maxiops\n"
+                    "description": "The storage tier to use.\n"
                 }
             },
             "type": "object",
@@ -292,6 +312,26 @@
                         "cores",
                         "memory",
                         "storageSize",
+                        "storageTier"
+                    ]
+                }
+            }
+        },
+        "upcloud:index/KubernetesNodeGroupGpuPlan:KubernetesNodeGroupGpuPlan": {
+            "properties": {
+                "storageSize": {
+                    "type": "integer",
+                    "description": "The size of the storage device in gigabytes.\n"
+                },
+                "storageTier": {
+                    "type": "string",
+                    "description": "The storage tier to use.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
                         "storageTier"
                     ]
                 }
@@ -6575,13 +6615,21 @@
                     "type": "boolean",
                     "description": "If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is\nconsidered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.\n"
                 },
+                "cloudNativePlan": {
+                    "$ref": "#/types/upcloud:index/KubernetesNodeGroupCloudNativePlan:KubernetesNodeGroupCloudNativePlan",
+                    "description": "Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.\n"
+                },
                 "cluster": {
                     "type": "string",
                     "description": "UUID of the cluster.\n"
                 },
                 "customPlan": {
                     "$ref": "#/types/upcloud:index/KubernetesNodeGroupCustomPlan:KubernetesNodeGroupCustomPlan",
-                    "description": "Resource properties for custom plan\n"
+                    "description": "Resource properties for custom plan. This block is required for `custom` plans only.\n"
+                },
+                "gpuPlan": {
+                    "$ref": "#/types/upcloud:index/KubernetesNodeGroupGpuPlan:KubernetesNodeGroupGpuPlan",
+                    "description": "Resource properties for GPU plan storage configuration. This block is optional for GPU plans.\n"
                 },
                 "kubeletArgs": {
                     "type": "array",
@@ -6648,13 +6696,21 @@
                     "type": "boolean",
                     "description": "If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is\nconsidered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.\n"
                 },
+                "cloudNativePlan": {
+                    "$ref": "#/types/upcloud:index/KubernetesNodeGroupCloudNativePlan:KubernetesNodeGroupCloudNativePlan",
+                    "description": "Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.\n"
+                },
                 "cluster": {
                     "type": "string",
                     "description": "UUID of the cluster.\n"
                 },
                 "customPlan": {
                     "$ref": "#/types/upcloud:index/KubernetesNodeGroupCustomPlan:KubernetesNodeGroupCustomPlan",
-                    "description": "Resource properties for custom plan\n"
+                    "description": "Resource properties for custom plan. This block is required for `custom` plans only.\n"
+                },
+                "gpuPlan": {
+                    "$ref": "#/types/upcloud:index/KubernetesNodeGroupGpuPlan:KubernetesNodeGroupGpuPlan",
+                    "description": "Resource properties for GPU plan storage configuration. This block is optional for GPU plans.\n"
                 },
                 "kubeletArgs": {
                     "type": "array",
@@ -6717,13 +6773,21 @@
                         "type": "boolean",
                         "description": "If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is\nconsidered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.\n"
                     },
+                    "cloudNativePlan": {
+                        "$ref": "#/types/upcloud:index/KubernetesNodeGroupCloudNativePlan:KubernetesNodeGroupCloudNativePlan",
+                        "description": "Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.\n"
+                    },
                     "cluster": {
                         "type": "string",
                         "description": "UUID of the cluster.\n"
                     },
                     "customPlan": {
                         "$ref": "#/types/upcloud:index/KubernetesNodeGroupCustomPlan:KubernetesNodeGroupCustomPlan",
-                        "description": "Resource properties for custom plan\n"
+                        "description": "Resource properties for custom plan. This block is required for `custom` plans only.\n"
+                    },
+                    "gpuPlan": {
+                        "$ref": "#/types/upcloud:index/KubernetesNodeGroupGpuPlan:KubernetesNodeGroupGpuPlan",
+                        "description": "Resource properties for GPU plan storage configuration. This block is optional for GPU plans.\n"
                     },
                     "kubeletArgs": {
                         "type": "array",
