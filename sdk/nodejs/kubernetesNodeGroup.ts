@@ -83,13 +83,21 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
      */
     public readonly antiAffinity!: pulumi.Output<boolean>;
     /**
+     * Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+     */
+    public readonly cloudNativePlan!: pulumi.Output<outputs.KubernetesNodeGroupCloudNativePlan | undefined>;
+    /**
      * UUID of the cluster.
      */
     public readonly cluster!: pulumi.Output<string>;
     /**
-     * Resource properties for custom plan
+     * Resource properties for custom plan. This block is required for `custom` plans only.
      */
     public readonly customPlan!: pulumi.Output<outputs.KubernetesNodeGroupCustomPlan | undefined>;
+    /**
+     * Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+     */
+    public readonly gpuPlan!: pulumi.Output<outputs.KubernetesNodeGroupGpuPlan | undefined>;
     /**
      * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
      * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
@@ -146,8 +154,10 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as KubernetesNodeGroupState | undefined;
             resourceInputs["antiAffinity"] = state ? state.antiAffinity : undefined;
+            resourceInputs["cloudNativePlan"] = state ? state.cloudNativePlan : undefined;
             resourceInputs["cluster"] = state ? state.cluster : undefined;
             resourceInputs["customPlan"] = state ? state.customPlan : undefined;
+            resourceInputs["gpuPlan"] = state ? state.gpuPlan : undefined;
             resourceInputs["kubeletArgs"] = state ? state.kubeletArgs : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -169,8 +179,10 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
                 throw new Error("Missing required property 'plan'");
             }
             resourceInputs["antiAffinity"] = args ? args.antiAffinity : undefined;
+            resourceInputs["cloudNativePlan"] = args ? args.cloudNativePlan : undefined;
             resourceInputs["cluster"] = args ? args.cluster : undefined;
             resourceInputs["customPlan"] = args ? args.customPlan : undefined;
+            resourceInputs["gpuPlan"] = args ? args.gpuPlan : undefined;
             resourceInputs["kubeletArgs"] = args ? args.kubeletArgs : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -196,13 +208,21 @@ export interface KubernetesNodeGroupState {
      */
     antiAffinity?: pulumi.Input<boolean>;
     /**
+     * Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+     */
+    cloudNativePlan?: pulumi.Input<inputs.KubernetesNodeGroupCloudNativePlan>;
+    /**
      * UUID of the cluster.
      */
     cluster?: pulumi.Input<string>;
     /**
-     * Resource properties for custom plan
+     * Resource properties for custom plan. This block is required for `custom` plans only.
      */
     customPlan?: pulumi.Input<inputs.KubernetesNodeGroupCustomPlan>;
+    /**
+     * Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+     */
+    gpuPlan?: pulumi.Input<inputs.KubernetesNodeGroupGpuPlan>;
     /**
      * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
      * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
@@ -256,13 +276,21 @@ export interface KubernetesNodeGroupArgs {
      */
     antiAffinity?: pulumi.Input<boolean>;
     /**
+     * Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+     */
+    cloudNativePlan?: pulumi.Input<inputs.KubernetesNodeGroupCloudNativePlan>;
+    /**
      * UUID of the cluster.
      */
     cluster: pulumi.Input<string>;
     /**
-     * Resource properties for custom plan
+     * Resource properties for custom plan. This block is required for `custom` plans only.
      */
     customPlan?: pulumi.Input<inputs.KubernetesNodeGroupCustomPlan>;
+    /**
+     * Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+     */
+    gpuPlan?: pulumi.Input<inputs.KubernetesNodeGroupGpuPlan>;
     /**
      * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
      * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet

@@ -23,7 +23,9 @@ __all__ = [
     'GatewayConnectionTunnelIpsecAuthPsk',
     'GatewayConnectionTunnelIpsecProperties',
     'GatewayRouter',
+    'KubernetesNodeGroupCloudNativePlan',
     'KubernetesNodeGroupCustomPlan',
+    'KubernetesNodeGroupGpuPlan',
     'KubernetesNodeGroupKubeletArg',
     'KubernetesNodeGroupTaint',
     'LoadbalancerBackendProperties',
@@ -514,6 +516,56 @@ class GatewayRouter(dict):
 
 
 @pulumi.output_type
+class KubernetesNodeGroupCloudNativePlan(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "storageSize":
+            suggest = "storage_size"
+        elif key == "storageTier":
+            suggest = "storage_tier"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubernetesNodeGroupCloudNativePlan. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KubernetesNodeGroupCloudNativePlan.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KubernetesNodeGroupCloudNativePlan.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 storage_size: Optional[builtins.int] = None,
+                 storage_tier: Optional[builtins.str] = None):
+        """
+        :param builtins.int storage_size: The size of the storage device in gigabytes.
+        :param builtins.str storage_tier: The storage tier to use.
+        """
+        if storage_size is not None:
+            pulumi.set(__self__, "storage_size", storage_size)
+        if storage_tier is not None:
+            pulumi.set(__self__, "storage_tier", storage_tier)
+
+    @property
+    @pulumi.getter(name="storageSize")
+    def storage_size(self) -> Optional[builtins.int]:
+        """
+        The size of the storage device in gigabytes.
+        """
+        return pulumi.get(self, "storage_size")
+
+    @property
+    @pulumi.getter(name="storageTier")
+    def storage_tier(self) -> Optional[builtins.str]:
+        """
+        The storage tier to use.
+        """
+        return pulumi.get(self, "storage_tier")
+
+
+@pulumi.output_type
 class KubernetesNodeGroupCustomPlan(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -540,10 +592,10 @@ class KubernetesNodeGroupCustomPlan(dict):
                  storage_size: builtins.int,
                  storage_tier: Optional[builtins.str] = None):
         """
-        :param builtins.int cores: The number of CPU cores dedicated to individual node group nodes when using custom plan
-        :param builtins.int memory: The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+        :param builtins.int cores: The number of CPU cores dedicated to individual node group nodes.
+        :param builtins.int memory: The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
         :param builtins.int storage_size: The size of the storage device in gigabytes.
-        :param builtins.str storage_tier: The storage tier to use. Defaults to maxiops
+        :param builtins.str storage_tier: The storage tier to use.
         """
         pulumi.set(__self__, "cores", cores)
         pulumi.set(__self__, "memory", memory)
@@ -555,7 +607,7 @@ class KubernetesNodeGroupCustomPlan(dict):
     @pulumi.getter
     def cores(self) -> builtins.int:
         """
-        The number of CPU cores dedicated to individual node group nodes when using custom plan
+        The number of CPU cores dedicated to individual node group nodes.
         """
         return pulumi.get(self, "cores")
 
@@ -563,7 +615,7 @@ class KubernetesNodeGroupCustomPlan(dict):
     @pulumi.getter
     def memory(self) -> builtins.int:
         """
-        The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+        The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
         """
         return pulumi.get(self, "memory")
 
@@ -579,7 +631,57 @@ class KubernetesNodeGroupCustomPlan(dict):
     @pulumi.getter(name="storageTier")
     def storage_tier(self) -> Optional[builtins.str]:
         """
-        The storage tier to use. Defaults to maxiops
+        The storage tier to use.
+        """
+        return pulumi.get(self, "storage_tier")
+
+
+@pulumi.output_type
+class KubernetesNodeGroupGpuPlan(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "storageSize":
+            suggest = "storage_size"
+        elif key == "storageTier":
+            suggest = "storage_tier"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubernetesNodeGroupGpuPlan. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KubernetesNodeGroupGpuPlan.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KubernetesNodeGroupGpuPlan.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 storage_size: Optional[builtins.int] = None,
+                 storage_tier: Optional[builtins.str] = None):
+        """
+        :param builtins.int storage_size: The size of the storage device in gigabytes.
+        :param builtins.str storage_tier: The storage tier to use.
+        """
+        if storage_size is not None:
+            pulumi.set(__self__, "storage_size", storage_size)
+        if storage_tier is not None:
+            pulumi.set(__self__, "storage_tier", storage_tier)
+
+    @property
+    @pulumi.getter(name="storageSize")
+    def storage_size(self) -> Optional[builtins.int]:
+        """
+        The size of the storage device in gigabytes.
+        """
+        return pulumi.get(self, "storage_size")
+
+    @property
+    @pulumi.getter(name="storageTier")
+    def storage_tier(self) -> Optional[builtins.str]:
+        """
+        The storage tier to use.
         """
         return pulumi.get(self, "storage_tier")
 

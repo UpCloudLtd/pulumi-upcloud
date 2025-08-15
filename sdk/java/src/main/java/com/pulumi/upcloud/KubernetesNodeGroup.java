@@ -10,7 +10,9 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.upcloud.KubernetesNodeGroupArgs;
 import com.pulumi.upcloud.Utilities;
 import com.pulumi.upcloud.inputs.KubernetesNodeGroupState;
+import com.pulumi.upcloud.outputs.KubernetesNodeGroupCloudNativePlan;
 import com.pulumi.upcloud.outputs.KubernetesNodeGroupCustomPlan;
+import com.pulumi.upcloud.outputs.KubernetesNodeGroupGpuPlan;
 import com.pulumi.upcloud.outputs.KubernetesNodeGroupKubeletArg;
 import com.pulumi.upcloud.outputs.KubernetesNodeGroupTaint;
 import java.lang.Boolean;
@@ -114,6 +116,20 @@ public class KubernetesNodeGroup extends com.pulumi.resources.CustomResource {
         return this.antiAffinity;
     }
     /**
+     * Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+     * 
+     */
+    @Export(name="cloudNativePlan", refs={KubernetesNodeGroupCloudNativePlan.class}, tree="[0]")
+    private Output</* @Nullable */ KubernetesNodeGroupCloudNativePlan> cloudNativePlan;
+
+    /**
+     * @return Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+     * 
+     */
+    public Output<Optional<KubernetesNodeGroupCloudNativePlan>> cloudNativePlan() {
+        return Codegen.optional(this.cloudNativePlan);
+    }
+    /**
      * UUID of the cluster.
      * 
      */
@@ -128,18 +144,32 @@ public class KubernetesNodeGroup extends com.pulumi.resources.CustomResource {
         return this.cluster;
     }
     /**
-     * Resource properties for custom plan
+     * Resource properties for custom plan. This block is required for `custom` plans only.
      * 
      */
     @Export(name="customPlan", refs={KubernetesNodeGroupCustomPlan.class}, tree="[0]")
     private Output</* @Nullable */ KubernetesNodeGroupCustomPlan> customPlan;
 
     /**
-     * @return Resource properties for custom plan
+     * @return Resource properties for custom plan. This block is required for `custom` plans only.
      * 
      */
     public Output<Optional<KubernetesNodeGroupCustomPlan>> customPlan() {
         return Codegen.optional(this.customPlan);
+    }
+    /**
+     * Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+     * 
+     */
+    @Export(name="gpuPlan", refs={KubernetesNodeGroupGpuPlan.class}, tree="[0]")
+    private Output</* @Nullable */ KubernetesNodeGroupGpuPlan> gpuPlan;
+
+    /**
+     * @return Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+     * 
+     */
+    public Output<Optional<KubernetesNodeGroupGpuPlan>> gpuPlan() {
+        return Codegen.optional(this.gpuPlan);
     }
     /**
      * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will

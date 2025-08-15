@@ -93,7 +93,13 @@
             "upcloud_kubernetes_node_group": {
                 "current": "upcloud:index/kubernetesNodeGroup:KubernetesNodeGroup",
                 "fields": {
+                    "cloud_native_plan": {
+                        "maxItemsOne": true
+                    },
                     "custom_plan": {
+                        "maxItemsOne": true
+                    },
+                    "gpu_plan": {
                         "maxItemsOne": true
                     },
                     "kubelet_args": {

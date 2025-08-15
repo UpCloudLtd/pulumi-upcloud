@@ -14,12 +14,12 @@ import javax.annotation.Nullable;
 @CustomType
 public final class KubernetesNodeGroupCustomPlan {
     /**
-     * @return The number of CPU cores dedicated to individual node group nodes when using custom plan
+     * @return The number of CPU cores dedicated to individual node group nodes.
      * 
      */
     private Integer cores;
     /**
-     * @return The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+     * @return The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
      * 
      */
     private Integer memory;
@@ -29,21 +29,21 @@ public final class KubernetesNodeGroupCustomPlan {
      */
     private Integer storageSize;
     /**
-     * @return The storage tier to use. Defaults to maxiops
+     * @return The storage tier to use.
      * 
      */
     private @Nullable String storageTier;
 
     private KubernetesNodeGroupCustomPlan() {}
     /**
-     * @return The number of CPU cores dedicated to individual node group nodes when using custom plan
+     * @return The number of CPU cores dedicated to individual node group nodes.
      * 
      */
     public Integer cores() {
         return this.cores;
     }
     /**
-     * @return The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+     * @return The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
      * 
      */
     public Integer memory() {
@@ -57,7 +57,7 @@ public final class KubernetesNodeGroupCustomPlan {
         return this.storageSize;
     }
     /**
-     * @return The storage tier to use. Defaults to maxiops
+     * @return The storage tier to use.
      * 
      */
     public Optional<String> storageTier() {

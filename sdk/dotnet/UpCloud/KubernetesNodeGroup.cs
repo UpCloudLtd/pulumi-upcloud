@@ -84,16 +84,28 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<bool> AntiAffinity { get; private set; } = null!;
 
         /// <summary>
+        /// Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+        /// </summary>
+        [Output("cloudNativePlan")]
+        public Output<Outputs.KubernetesNodeGroupCloudNativePlan?> CloudNativePlan { get; private set; } = null!;
+
+        /// <summary>
         /// UUID of the cluster.
         /// </summary>
         [Output("cluster")]
         public Output<string> Cluster { get; private set; } = null!;
 
         /// <summary>
-        /// Resource properties for custom plan
+        /// Resource properties for custom plan. This block is required for `custom` plans only.
         /// </summary>
         [Output("customPlan")]
         public Output<Outputs.KubernetesNodeGroupCustomPlan?> CustomPlan { get; private set; } = null!;
+
+        /// <summary>
+        /// Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+        /// </summary>
+        [Output("gpuPlan")]
+        public Output<Outputs.KubernetesNodeGroupGpuPlan?> GpuPlan { get; private set; } = null!;
 
         /// <summary>
         /// Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
@@ -209,16 +221,28 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<bool>? AntiAffinity { get; set; }
 
         /// <summary>
+        /// Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+        /// </summary>
+        [Input("cloudNativePlan")]
+        public Input<Inputs.KubernetesNodeGroupCloudNativePlanArgs>? CloudNativePlan { get; set; }
+
+        /// <summary>
         /// UUID of the cluster.
         /// </summary>
         [Input("cluster", required: true)]
         public Input<string> Cluster { get; set; } = null!;
 
         /// <summary>
-        /// Resource properties for custom plan
+        /// Resource properties for custom plan. This block is required for `custom` plans only.
         /// </summary>
         [Input("customPlan")]
         public Input<Inputs.KubernetesNodeGroupCustomPlanArgs>? CustomPlan { get; set; }
+
+        /// <summary>
+        /// Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+        /// </summary>
+        [Input("gpuPlan")]
+        public Input<Inputs.KubernetesNodeGroupGpuPlanArgs>? GpuPlan { get; set; }
 
         [Input("kubeletArgs")]
         private InputList<Inputs.KubernetesNodeGroupKubeletArgArgs>? _kubeletArgs;
@@ -319,16 +343,28 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<bool>? AntiAffinity { get; set; }
 
         /// <summary>
+        /// Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+        /// </summary>
+        [Input("cloudNativePlan")]
+        public Input<Inputs.KubernetesNodeGroupCloudNativePlanGetArgs>? CloudNativePlan { get; set; }
+
+        /// <summary>
         /// UUID of the cluster.
         /// </summary>
         [Input("cluster")]
         public Input<string>? Cluster { get; set; }
 
         /// <summary>
-        /// Resource properties for custom plan
+        /// Resource properties for custom plan. This block is required for `custom` plans only.
         /// </summary>
         [Input("customPlan")]
         public Input<Inputs.KubernetesNodeGroupCustomPlanGetArgs>? CustomPlan { get; set; }
+
+        /// <summary>
+        /// Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+        /// </summary>
+        [Input("gpuPlan")]
+        public Input<Inputs.KubernetesNodeGroupGpuPlanGetArgs>? GpuPlan { get; set; }
 
         [Input("kubeletArgs")]
         private InputList<Inputs.KubernetesNodeGroupKubeletArgGetArgs>? _kubeletArgs;

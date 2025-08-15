@@ -1045,14 +1045,170 @@ func (o GatewayRouterPtrOutput) Id() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type KubernetesNodeGroupCloudNativePlan struct {
+	// The size of the storage device in gigabytes.
+	StorageSize *int `pulumi:"storageSize"`
+	// The storage tier to use.
+	StorageTier *string `pulumi:"storageTier"`
+}
+
+// KubernetesNodeGroupCloudNativePlanInput is an input type that accepts KubernetesNodeGroupCloudNativePlanArgs and KubernetesNodeGroupCloudNativePlanOutput values.
+// You can construct a concrete instance of `KubernetesNodeGroupCloudNativePlanInput` via:
+//
+//	KubernetesNodeGroupCloudNativePlanArgs{...}
+type KubernetesNodeGroupCloudNativePlanInput interface {
+	pulumi.Input
+
+	ToKubernetesNodeGroupCloudNativePlanOutput() KubernetesNodeGroupCloudNativePlanOutput
+	ToKubernetesNodeGroupCloudNativePlanOutputWithContext(context.Context) KubernetesNodeGroupCloudNativePlanOutput
+}
+
+type KubernetesNodeGroupCloudNativePlanArgs struct {
+	// The size of the storage device in gigabytes.
+	StorageSize pulumi.IntPtrInput `pulumi:"storageSize"`
+	// The storage tier to use.
+	StorageTier pulumi.StringPtrInput `pulumi:"storageTier"`
+}
+
+func (KubernetesNodeGroupCloudNativePlanArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesNodeGroupCloudNativePlan)(nil)).Elem()
+}
+
+func (i KubernetesNodeGroupCloudNativePlanArgs) ToKubernetesNodeGroupCloudNativePlanOutput() KubernetesNodeGroupCloudNativePlanOutput {
+	return i.ToKubernetesNodeGroupCloudNativePlanOutputWithContext(context.Background())
+}
+
+func (i KubernetesNodeGroupCloudNativePlanArgs) ToKubernetesNodeGroupCloudNativePlanOutputWithContext(ctx context.Context) KubernetesNodeGroupCloudNativePlanOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodeGroupCloudNativePlanOutput)
+}
+
+func (i KubernetesNodeGroupCloudNativePlanArgs) ToKubernetesNodeGroupCloudNativePlanPtrOutput() KubernetesNodeGroupCloudNativePlanPtrOutput {
+	return i.ToKubernetesNodeGroupCloudNativePlanPtrOutputWithContext(context.Background())
+}
+
+func (i KubernetesNodeGroupCloudNativePlanArgs) ToKubernetesNodeGroupCloudNativePlanPtrOutputWithContext(ctx context.Context) KubernetesNodeGroupCloudNativePlanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodeGroupCloudNativePlanOutput).ToKubernetesNodeGroupCloudNativePlanPtrOutputWithContext(ctx)
+}
+
+// KubernetesNodeGroupCloudNativePlanPtrInput is an input type that accepts KubernetesNodeGroupCloudNativePlanArgs, KubernetesNodeGroupCloudNativePlanPtr and KubernetesNodeGroupCloudNativePlanPtrOutput values.
+// You can construct a concrete instance of `KubernetesNodeGroupCloudNativePlanPtrInput` via:
+//
+//	        KubernetesNodeGroupCloudNativePlanArgs{...}
+//
+//	or:
+//
+//	        nil
+type KubernetesNodeGroupCloudNativePlanPtrInput interface {
+	pulumi.Input
+
+	ToKubernetesNodeGroupCloudNativePlanPtrOutput() KubernetesNodeGroupCloudNativePlanPtrOutput
+	ToKubernetesNodeGroupCloudNativePlanPtrOutputWithContext(context.Context) KubernetesNodeGroupCloudNativePlanPtrOutput
+}
+
+type kubernetesNodeGroupCloudNativePlanPtrType KubernetesNodeGroupCloudNativePlanArgs
+
+func KubernetesNodeGroupCloudNativePlanPtr(v *KubernetesNodeGroupCloudNativePlanArgs) KubernetesNodeGroupCloudNativePlanPtrInput {
+	return (*kubernetesNodeGroupCloudNativePlanPtrType)(v)
+}
+
+func (*kubernetesNodeGroupCloudNativePlanPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**KubernetesNodeGroupCloudNativePlan)(nil)).Elem()
+}
+
+func (i *kubernetesNodeGroupCloudNativePlanPtrType) ToKubernetesNodeGroupCloudNativePlanPtrOutput() KubernetesNodeGroupCloudNativePlanPtrOutput {
+	return i.ToKubernetesNodeGroupCloudNativePlanPtrOutputWithContext(context.Background())
+}
+
+func (i *kubernetesNodeGroupCloudNativePlanPtrType) ToKubernetesNodeGroupCloudNativePlanPtrOutputWithContext(ctx context.Context) KubernetesNodeGroupCloudNativePlanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodeGroupCloudNativePlanPtrOutput)
+}
+
+type KubernetesNodeGroupCloudNativePlanOutput struct{ *pulumi.OutputState }
+
+func (KubernetesNodeGroupCloudNativePlanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesNodeGroupCloudNativePlan)(nil)).Elem()
+}
+
+func (o KubernetesNodeGroupCloudNativePlanOutput) ToKubernetesNodeGroupCloudNativePlanOutput() KubernetesNodeGroupCloudNativePlanOutput {
+	return o
+}
+
+func (o KubernetesNodeGroupCloudNativePlanOutput) ToKubernetesNodeGroupCloudNativePlanOutputWithContext(ctx context.Context) KubernetesNodeGroupCloudNativePlanOutput {
+	return o
+}
+
+func (o KubernetesNodeGroupCloudNativePlanOutput) ToKubernetesNodeGroupCloudNativePlanPtrOutput() KubernetesNodeGroupCloudNativePlanPtrOutput {
+	return o.ToKubernetesNodeGroupCloudNativePlanPtrOutputWithContext(context.Background())
+}
+
+func (o KubernetesNodeGroupCloudNativePlanOutput) ToKubernetesNodeGroupCloudNativePlanPtrOutputWithContext(ctx context.Context) KubernetesNodeGroupCloudNativePlanPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v KubernetesNodeGroupCloudNativePlan) *KubernetesNodeGroupCloudNativePlan {
+		return &v
+	}).(KubernetesNodeGroupCloudNativePlanPtrOutput)
+}
+
+// The size of the storage device in gigabytes.
+func (o KubernetesNodeGroupCloudNativePlanOutput) StorageSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v KubernetesNodeGroupCloudNativePlan) *int { return v.StorageSize }).(pulumi.IntPtrOutput)
+}
+
+// The storage tier to use.
+func (o KubernetesNodeGroupCloudNativePlanOutput) StorageTier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesNodeGroupCloudNativePlan) *string { return v.StorageTier }).(pulumi.StringPtrOutput)
+}
+
+type KubernetesNodeGroupCloudNativePlanPtrOutput struct{ *pulumi.OutputState }
+
+func (KubernetesNodeGroupCloudNativePlanPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KubernetesNodeGroupCloudNativePlan)(nil)).Elem()
+}
+
+func (o KubernetesNodeGroupCloudNativePlanPtrOutput) ToKubernetesNodeGroupCloudNativePlanPtrOutput() KubernetesNodeGroupCloudNativePlanPtrOutput {
+	return o
+}
+
+func (o KubernetesNodeGroupCloudNativePlanPtrOutput) ToKubernetesNodeGroupCloudNativePlanPtrOutputWithContext(ctx context.Context) KubernetesNodeGroupCloudNativePlanPtrOutput {
+	return o
+}
+
+func (o KubernetesNodeGroupCloudNativePlanPtrOutput) Elem() KubernetesNodeGroupCloudNativePlanOutput {
+	return o.ApplyT(func(v *KubernetesNodeGroupCloudNativePlan) KubernetesNodeGroupCloudNativePlan {
+		if v != nil {
+			return *v
+		}
+		var ret KubernetesNodeGroupCloudNativePlan
+		return ret
+	}).(KubernetesNodeGroupCloudNativePlanOutput)
+}
+
+// The size of the storage device in gigabytes.
+func (o KubernetesNodeGroupCloudNativePlanPtrOutput) StorageSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *KubernetesNodeGroupCloudNativePlan) *int {
+		if v == nil {
+			return nil
+		}
+		return v.StorageSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// The storage tier to use.
+func (o KubernetesNodeGroupCloudNativePlanPtrOutput) StorageTier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesNodeGroupCloudNativePlan) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StorageTier
+	}).(pulumi.StringPtrOutput)
+}
+
 type KubernetesNodeGroupCustomPlan struct {
-	// The number of CPU cores dedicated to individual node group nodes when using custom plan
+	// The number of CPU cores dedicated to individual node group nodes.
 	Cores int `pulumi:"cores"`
-	// The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+	// The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
 	Memory int `pulumi:"memory"`
 	// The size of the storage device in gigabytes.
 	StorageSize int `pulumi:"storageSize"`
-	// The storage tier to use. Defaults to maxiops
+	// The storage tier to use.
 	StorageTier *string `pulumi:"storageTier"`
 }
 
@@ -1068,13 +1224,13 @@ type KubernetesNodeGroupCustomPlanInput interface {
 }
 
 type KubernetesNodeGroupCustomPlanArgs struct {
-	// The number of CPU cores dedicated to individual node group nodes when using custom plan
+	// The number of CPU cores dedicated to individual node group nodes.
 	Cores pulumi.IntInput `pulumi:"cores"`
-	// The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+	// The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
 	Memory pulumi.IntInput `pulumi:"memory"`
 	// The size of the storage device in gigabytes.
 	StorageSize pulumi.IntInput `pulumi:"storageSize"`
-	// The storage tier to use. Defaults to maxiops
+	// The storage tier to use.
 	StorageTier pulumi.StringPtrInput `pulumi:"storageTier"`
 }
 
@@ -1155,12 +1311,12 @@ func (o KubernetesNodeGroupCustomPlanOutput) ToKubernetesNodeGroupCustomPlanPtrO
 	}).(KubernetesNodeGroupCustomPlanPtrOutput)
 }
 
-// The number of CPU cores dedicated to individual node group nodes when using custom plan
+// The number of CPU cores dedicated to individual node group nodes.
 func (o KubernetesNodeGroupCustomPlanOutput) Cores() pulumi.IntOutput {
 	return o.ApplyT(func(v KubernetesNodeGroupCustomPlan) int { return v.Cores }).(pulumi.IntOutput)
 }
 
-// The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+// The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
 func (o KubernetesNodeGroupCustomPlanOutput) Memory() pulumi.IntOutput {
 	return o.ApplyT(func(v KubernetesNodeGroupCustomPlan) int { return v.Memory }).(pulumi.IntOutput)
 }
@@ -1170,7 +1326,7 @@ func (o KubernetesNodeGroupCustomPlanOutput) StorageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v KubernetesNodeGroupCustomPlan) int { return v.StorageSize }).(pulumi.IntOutput)
 }
 
-// The storage tier to use. Defaults to maxiops
+// The storage tier to use.
 func (o KubernetesNodeGroupCustomPlanOutput) StorageTier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesNodeGroupCustomPlan) *string { return v.StorageTier }).(pulumi.StringPtrOutput)
 }
@@ -1199,7 +1355,7 @@ func (o KubernetesNodeGroupCustomPlanPtrOutput) Elem() KubernetesNodeGroupCustom
 	}).(KubernetesNodeGroupCustomPlanOutput)
 }
 
-// The number of CPU cores dedicated to individual node group nodes when using custom plan
+// The number of CPU cores dedicated to individual node group nodes.
 func (o KubernetesNodeGroupCustomPlanPtrOutput) Cores() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroupCustomPlan) *int {
 		if v == nil {
@@ -1209,7 +1365,7 @@ func (o KubernetesNodeGroupCustomPlanPtrOutput) Cores() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The amount of memory in megabytes to assign to individual node group node when using custom plan. Value needs to be divisible by 1024.
+// The amount of memory in megabytes to assign to individual node group node. Value needs to be divisible by 1024.
 func (o KubernetesNodeGroupCustomPlanPtrOutput) Memory() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroupCustomPlan) *int {
 		if v == nil {
@@ -1229,9 +1385,165 @@ func (o KubernetesNodeGroupCustomPlanPtrOutput) StorageSize() pulumi.IntPtrOutpu
 	}).(pulumi.IntPtrOutput)
 }
 
-// The storage tier to use. Defaults to maxiops
+// The storage tier to use.
 func (o KubernetesNodeGroupCustomPlanPtrOutput) StorageTier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroupCustomPlan) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StorageTier
+	}).(pulumi.StringPtrOutput)
+}
+
+type KubernetesNodeGroupGpuPlan struct {
+	// The size of the storage device in gigabytes.
+	StorageSize *int `pulumi:"storageSize"`
+	// The storage tier to use.
+	StorageTier *string `pulumi:"storageTier"`
+}
+
+// KubernetesNodeGroupGpuPlanInput is an input type that accepts KubernetesNodeGroupGpuPlanArgs and KubernetesNodeGroupGpuPlanOutput values.
+// You can construct a concrete instance of `KubernetesNodeGroupGpuPlanInput` via:
+//
+//	KubernetesNodeGroupGpuPlanArgs{...}
+type KubernetesNodeGroupGpuPlanInput interface {
+	pulumi.Input
+
+	ToKubernetesNodeGroupGpuPlanOutput() KubernetesNodeGroupGpuPlanOutput
+	ToKubernetesNodeGroupGpuPlanOutputWithContext(context.Context) KubernetesNodeGroupGpuPlanOutput
+}
+
+type KubernetesNodeGroupGpuPlanArgs struct {
+	// The size of the storage device in gigabytes.
+	StorageSize pulumi.IntPtrInput `pulumi:"storageSize"`
+	// The storage tier to use.
+	StorageTier pulumi.StringPtrInput `pulumi:"storageTier"`
+}
+
+func (KubernetesNodeGroupGpuPlanArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesNodeGroupGpuPlan)(nil)).Elem()
+}
+
+func (i KubernetesNodeGroupGpuPlanArgs) ToKubernetesNodeGroupGpuPlanOutput() KubernetesNodeGroupGpuPlanOutput {
+	return i.ToKubernetesNodeGroupGpuPlanOutputWithContext(context.Background())
+}
+
+func (i KubernetesNodeGroupGpuPlanArgs) ToKubernetesNodeGroupGpuPlanOutputWithContext(ctx context.Context) KubernetesNodeGroupGpuPlanOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodeGroupGpuPlanOutput)
+}
+
+func (i KubernetesNodeGroupGpuPlanArgs) ToKubernetesNodeGroupGpuPlanPtrOutput() KubernetesNodeGroupGpuPlanPtrOutput {
+	return i.ToKubernetesNodeGroupGpuPlanPtrOutputWithContext(context.Background())
+}
+
+func (i KubernetesNodeGroupGpuPlanArgs) ToKubernetesNodeGroupGpuPlanPtrOutputWithContext(ctx context.Context) KubernetesNodeGroupGpuPlanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodeGroupGpuPlanOutput).ToKubernetesNodeGroupGpuPlanPtrOutputWithContext(ctx)
+}
+
+// KubernetesNodeGroupGpuPlanPtrInput is an input type that accepts KubernetesNodeGroupGpuPlanArgs, KubernetesNodeGroupGpuPlanPtr and KubernetesNodeGroupGpuPlanPtrOutput values.
+// You can construct a concrete instance of `KubernetesNodeGroupGpuPlanPtrInput` via:
+//
+//	        KubernetesNodeGroupGpuPlanArgs{...}
+//
+//	or:
+//
+//	        nil
+type KubernetesNodeGroupGpuPlanPtrInput interface {
+	pulumi.Input
+
+	ToKubernetesNodeGroupGpuPlanPtrOutput() KubernetesNodeGroupGpuPlanPtrOutput
+	ToKubernetesNodeGroupGpuPlanPtrOutputWithContext(context.Context) KubernetesNodeGroupGpuPlanPtrOutput
+}
+
+type kubernetesNodeGroupGpuPlanPtrType KubernetesNodeGroupGpuPlanArgs
+
+func KubernetesNodeGroupGpuPlanPtr(v *KubernetesNodeGroupGpuPlanArgs) KubernetesNodeGroupGpuPlanPtrInput {
+	return (*kubernetesNodeGroupGpuPlanPtrType)(v)
+}
+
+func (*kubernetesNodeGroupGpuPlanPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**KubernetesNodeGroupGpuPlan)(nil)).Elem()
+}
+
+func (i *kubernetesNodeGroupGpuPlanPtrType) ToKubernetesNodeGroupGpuPlanPtrOutput() KubernetesNodeGroupGpuPlanPtrOutput {
+	return i.ToKubernetesNodeGroupGpuPlanPtrOutputWithContext(context.Background())
+}
+
+func (i *kubernetesNodeGroupGpuPlanPtrType) ToKubernetesNodeGroupGpuPlanPtrOutputWithContext(ctx context.Context) KubernetesNodeGroupGpuPlanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodeGroupGpuPlanPtrOutput)
+}
+
+type KubernetesNodeGroupGpuPlanOutput struct{ *pulumi.OutputState }
+
+func (KubernetesNodeGroupGpuPlanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesNodeGroupGpuPlan)(nil)).Elem()
+}
+
+func (o KubernetesNodeGroupGpuPlanOutput) ToKubernetesNodeGroupGpuPlanOutput() KubernetesNodeGroupGpuPlanOutput {
+	return o
+}
+
+func (o KubernetesNodeGroupGpuPlanOutput) ToKubernetesNodeGroupGpuPlanOutputWithContext(ctx context.Context) KubernetesNodeGroupGpuPlanOutput {
+	return o
+}
+
+func (o KubernetesNodeGroupGpuPlanOutput) ToKubernetesNodeGroupGpuPlanPtrOutput() KubernetesNodeGroupGpuPlanPtrOutput {
+	return o.ToKubernetesNodeGroupGpuPlanPtrOutputWithContext(context.Background())
+}
+
+func (o KubernetesNodeGroupGpuPlanOutput) ToKubernetesNodeGroupGpuPlanPtrOutputWithContext(ctx context.Context) KubernetesNodeGroupGpuPlanPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v KubernetesNodeGroupGpuPlan) *KubernetesNodeGroupGpuPlan {
+		return &v
+	}).(KubernetesNodeGroupGpuPlanPtrOutput)
+}
+
+// The size of the storage device in gigabytes.
+func (o KubernetesNodeGroupGpuPlanOutput) StorageSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v KubernetesNodeGroupGpuPlan) *int { return v.StorageSize }).(pulumi.IntPtrOutput)
+}
+
+// The storage tier to use.
+func (o KubernetesNodeGroupGpuPlanOutput) StorageTier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesNodeGroupGpuPlan) *string { return v.StorageTier }).(pulumi.StringPtrOutput)
+}
+
+type KubernetesNodeGroupGpuPlanPtrOutput struct{ *pulumi.OutputState }
+
+func (KubernetesNodeGroupGpuPlanPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KubernetesNodeGroupGpuPlan)(nil)).Elem()
+}
+
+func (o KubernetesNodeGroupGpuPlanPtrOutput) ToKubernetesNodeGroupGpuPlanPtrOutput() KubernetesNodeGroupGpuPlanPtrOutput {
+	return o
+}
+
+func (o KubernetesNodeGroupGpuPlanPtrOutput) ToKubernetesNodeGroupGpuPlanPtrOutputWithContext(ctx context.Context) KubernetesNodeGroupGpuPlanPtrOutput {
+	return o
+}
+
+func (o KubernetesNodeGroupGpuPlanPtrOutput) Elem() KubernetesNodeGroupGpuPlanOutput {
+	return o.ApplyT(func(v *KubernetesNodeGroupGpuPlan) KubernetesNodeGroupGpuPlan {
+		if v != nil {
+			return *v
+		}
+		var ret KubernetesNodeGroupGpuPlan
+		return ret
+	}).(KubernetesNodeGroupGpuPlanOutput)
+}
+
+// The size of the storage device in gigabytes.
+func (o KubernetesNodeGroupGpuPlanPtrOutput) StorageSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *KubernetesNodeGroupGpuPlan) *int {
+		if v == nil {
+			return nil
+		}
+		return v.StorageSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// The storage tier to use.
+func (o KubernetesNodeGroupGpuPlanPtrOutput) StorageTier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesNodeGroupGpuPlan) *string {
 		if v == nil {
 			return nil
 		}
@@ -26682,8 +26994,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayConnectionTunnelIpsecPropertiesPtrInput)(nil)).Elem(), GatewayConnectionTunnelIpsecPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayRouterInput)(nil)).Elem(), GatewayRouterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayRouterPtrInput)(nil)).Elem(), GatewayRouterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodeGroupCloudNativePlanInput)(nil)).Elem(), KubernetesNodeGroupCloudNativePlanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodeGroupCloudNativePlanPtrInput)(nil)).Elem(), KubernetesNodeGroupCloudNativePlanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodeGroupCustomPlanInput)(nil)).Elem(), KubernetesNodeGroupCustomPlanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodeGroupCustomPlanPtrInput)(nil)).Elem(), KubernetesNodeGroupCustomPlanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodeGroupGpuPlanInput)(nil)).Elem(), KubernetesNodeGroupGpuPlanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodeGroupGpuPlanPtrInput)(nil)).Elem(), KubernetesNodeGroupGpuPlanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodeGroupKubeletArgInput)(nil)).Elem(), KubernetesNodeGroupKubeletArgArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodeGroupKubeletArgArrayInput)(nil)).Elem(), KubernetesNodeGroupKubeletArgArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodeGroupTaintInput)(nil)).Elem(), KubernetesNodeGroupTaintArgs{})
@@ -26953,8 +27269,12 @@ func init() {
 	pulumi.RegisterOutputType(GatewayConnectionTunnelIpsecPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(GatewayRouterOutput{})
 	pulumi.RegisterOutputType(GatewayRouterPtrOutput{})
+	pulumi.RegisterOutputType(KubernetesNodeGroupCloudNativePlanOutput{})
+	pulumi.RegisterOutputType(KubernetesNodeGroupCloudNativePlanPtrOutput{})
 	pulumi.RegisterOutputType(KubernetesNodeGroupCustomPlanOutput{})
 	pulumi.RegisterOutputType(KubernetesNodeGroupCustomPlanPtrOutput{})
+	pulumi.RegisterOutputType(KubernetesNodeGroupGpuPlanOutput{})
+	pulumi.RegisterOutputType(KubernetesNodeGroupGpuPlanPtrOutput{})
 	pulumi.RegisterOutputType(KubernetesNodeGroupKubeletArgOutput{})
 	pulumi.RegisterOutputType(KubernetesNodeGroupKubeletArgArrayOutput{})
 	pulumi.RegisterOutputType(KubernetesNodeGroupTaintOutput{})
