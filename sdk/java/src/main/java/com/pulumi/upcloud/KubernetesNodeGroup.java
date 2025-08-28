@@ -44,6 +44,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.upcloud.KubernetesNodeGroup;
  * import com.pulumi.upcloud.KubernetesNodeGroupArgs;
  * import com.pulumi.upcloud.inputs.KubernetesNodeGroupTaintArgs;
+ * import com.pulumi.upcloud.inputs.KubernetesNodeGroupGpuPlanArgs;
+ * import com.pulumi.upcloud.inputs.KubernetesNodeGroupCloudNativePlanArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -87,6 +89,30 @@ import javax.annotation.Nullable;
  *                 .effect("NoExecute")
  *                 .key("taintKey")
  *                 .value("taintValue")
+ *                 .build())
+ *             .build());
+ * 
+ *         // Create a Kubernetes cluster node group with a GPU plan, with a custom storage size
+ *         var groupGpu = new KubernetesNodeGroup("groupGpu", KubernetesNodeGroupArgs.builder()
+ *             .cluster(upcloudKubernetesCluster.example().id())
+ *             .nodeCount(2)
+ *             .name("gpu-workers")
+ *             .plan("GPU-8xCPU-64GB-1xL40S")
+ *             .gpuPlan(KubernetesNodeGroupGpuPlanArgs.builder()
+ *                 .storageSize(250)
+ *                 .build())
+ *             .labels(Map.of("gpu", "NVIDIA-L40S"))
+ *             .build());
+ * 
+ *         // Create a Kubernetes cluster node group with a Cloud Native plan, with a custom storage size and tier
+ *         var groupCloudNative = new KubernetesNodeGroup("groupCloudNative", KubernetesNodeGroupArgs.builder()
+ *             .cluster(upcloudKubernetesCluster.example().id())
+ *             .nodeCount(4)
+ *             .name("cloud-native-workers")
+ *             .plan("CLOUDNATIVE-4xCPU-8GB")
+ *             .cloudNativePlan(KubernetesNodeGroupCloudNativePlanArgs.builder()
+ *                 .storageSize(100)
+ *                 .storageTier("standard")
  *                 .build())
  *             .build());
  * 

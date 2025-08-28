@@ -70,6 +70,37 @@ namespace UpCloud.Pulumi.UpCloud
     ///         },
     ///     });
     /// 
+    ///     // Create a Kubernetes cluster node group with a GPU plan, with a custom storage size
+    ///     var groupGpu = new UpCloud.KubernetesNodeGroup("group_gpu", new()
+    ///     {
+    ///         Cluster = upcloudKubernetesCluster.Example.Id,
+    ///         NodeCount = 2,
+    ///         Name = "gpu-workers",
+    ///         Plan = "GPU-8xCPU-64GB-1xL40S",
+    ///         GpuPlan = new UpCloud.Inputs.KubernetesNodeGroupGpuPlanArgs
+    ///         {
+    ///             StorageSize = 250,
+    ///         },
+    ///         Labels = 
+    ///         {
+    ///             { "gpu", "NVIDIA-L40S" },
+    ///         },
+    ///     });
+    /// 
+    ///     // Create a Kubernetes cluster node group with a Cloud Native plan, with a custom storage size and tier
+    ///     var groupCloudNative = new UpCloud.KubernetesNodeGroup("group_cloud_native", new()
+    ///     {
+    ///         Cluster = upcloudKubernetesCluster.Example.Id,
+    ///         NodeCount = 4,
+    ///         Name = "cloud-native-workers",
+    ///         Plan = "CLOUDNATIVE-4xCPU-8GB",
+    ///         CloudNativePlan = new UpCloud.Inputs.KubernetesNodeGroupCloudNativePlanArgs
+    ///         {
+    ///             StorageSize = 100,
+    ///             StorageTier = "standard",
+    ///         },
+    ///     });
+    /// 
     /// });
     /// ```
     /// </summary>
