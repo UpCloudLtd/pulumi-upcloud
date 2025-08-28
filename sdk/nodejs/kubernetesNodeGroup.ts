@@ -47,6 +47,30 @@ import * as utilities from "./utilities";
  *         value: "taintValue",
  *     }],
  * });
+ * // Create a Kubernetes cluster node group with a GPU plan, with a custom storage size
+ * const groupGpu = new upcloud.KubernetesNodeGroup("group_gpu", {
+ *     cluster: upcloudKubernetesCluster.example.id,
+ *     nodeCount: 2,
+ *     name: "gpu-workers",
+ *     plan: "GPU-8xCPU-64GB-1xL40S",
+ *     gpuPlan: {
+ *         storageSize: 250,
+ *     },
+ *     labels: {
+ *         gpu: "NVIDIA-L40S",
+ *     },
+ * });
+ * // Create a Kubernetes cluster node group with a Cloud Native plan, with a custom storage size and tier
+ * const groupCloudNative = new upcloud.KubernetesNodeGroup("group_cloud_native", {
+ *     cluster: upcloudKubernetesCluster.example.id,
+ *     nodeCount: 4,
+ *     name: "cloud-native-workers",
+ *     plan: "CLOUDNATIVE-4xCPU-8GB",
+ *     cloudNativePlan: {
+ *         storageSize: 100,
+ *         storageTier: "standard",
+ *     },
+ * });
  * ```
  */
 export class KubernetesNodeGroup extends pulumi.CustomResource {

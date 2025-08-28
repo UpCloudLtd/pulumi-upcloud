@@ -562,6 +562,28 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                 "key": "taintKey",
                 "value": "taintValue",
             }])
+        # Create a Kubernetes cluster node group with a GPU plan, with a custom storage size
+        group_gpu = upcloud.KubernetesNodeGroup("group_gpu",
+            cluster=upcloud_kubernetes_cluster["example"]["id"],
+            node_count=2,
+            name="gpu-workers",
+            plan="GPU-8xCPU-64GB-1xL40S",
+            gpu_plan={
+                "storage_size": 250,
+            },
+            labels={
+                "gpu": "NVIDIA-L40S",
+            })
+        # Create a Kubernetes cluster node group with a Cloud Native plan, with a custom storage size and tier
+        group_cloud_native = upcloud.KubernetesNodeGroup("group_cloud_native",
+            cluster=upcloud_kubernetes_cluster["example"]["id"],
+            node_count=4,
+            name="cloud-native-workers",
+            plan="CLOUDNATIVE-4xCPU-8GB",
+            cloud_native_plan={
+                "storage_size": 100,
+                "storage_tier": "standard",
+            })
         ```
 
         :param str resource_name: The name of the resource.
@@ -631,6 +653,28 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                 "key": "taintKey",
                 "value": "taintValue",
             }])
+        # Create a Kubernetes cluster node group with a GPU plan, with a custom storage size
+        group_gpu = upcloud.KubernetesNodeGroup("group_gpu",
+            cluster=upcloud_kubernetes_cluster["example"]["id"],
+            node_count=2,
+            name="gpu-workers",
+            plan="GPU-8xCPU-64GB-1xL40S",
+            gpu_plan={
+                "storage_size": 250,
+            },
+            labels={
+                "gpu": "NVIDIA-L40S",
+            })
+        # Create a Kubernetes cluster node group with a Cloud Native plan, with a custom storage size and tier
+        group_cloud_native = upcloud.KubernetesNodeGroup("group_cloud_native",
+            cluster=upcloud_kubernetes_cluster["example"]["id"],
+            node_count=4,
+            name="cloud-native-workers",
+            plan="CLOUDNATIVE-4xCPU-8GB",
+            cloud_native_plan={
+                "storage_size": 100,
+                "storage_tier": "standard",
+            })
         ```
 
         :param str resource_name: The name of the resource.

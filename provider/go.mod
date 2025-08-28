@@ -1,13 +1,11 @@
 module github.com/UpCloudLtd/pulumi-upcloud/provider
 
-go 1.24.3
-
-toolchain go1.24.4
+go 1.25.0
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250221232320-8d4cfd37a3cd
 
 require (
-	github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20250814092120-7151a6165644
+	github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20250827100459-df3202120a47
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.35.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.106.0
 )

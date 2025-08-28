@@ -73,6 +73,36 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create a Kubernetes cluster node group with a GPU plan, with a custom storage size
+//			_, err = upcloud.NewKubernetesNodeGroup(ctx, "group_gpu", &upcloud.KubernetesNodeGroupArgs{
+//				Cluster:   pulumi.Any(upcloudKubernetesCluster.Example.Id),
+//				NodeCount: pulumi.Int(2),
+//				Name:      pulumi.String("gpu-workers"),
+//				Plan:      pulumi.String("GPU-8xCPU-64GB-1xL40S"),
+//				GpuPlan: &upcloud.KubernetesNodeGroupGpuPlanArgs{
+//					StorageSize: pulumi.Int(250),
+//				},
+//				Labels: pulumi.StringMap{
+//					"gpu": pulumi.String("NVIDIA-L40S"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Create a Kubernetes cluster node group with a Cloud Native plan, with a custom storage size and tier
+//			_, err = upcloud.NewKubernetesNodeGroup(ctx, "group_cloud_native", &upcloud.KubernetesNodeGroupArgs{
+//				Cluster:   pulumi.Any(upcloudKubernetesCluster.Example.Id),
+//				NodeCount: pulumi.Int(4),
+//				Name:      pulumi.String("cloud-native-workers"),
+//				Plan:      pulumi.String("CLOUDNATIVE-4xCPU-8GB"),
+//				CloudNativePlan: &upcloud.KubernetesNodeGroupCloudNativePlanArgs{
+//					StorageSize: pulumi.Int(100),
+//					StorageTier: pulumi.String("standard"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
