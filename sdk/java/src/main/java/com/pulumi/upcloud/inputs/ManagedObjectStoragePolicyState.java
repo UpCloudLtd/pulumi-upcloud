@@ -93,16 +93,14 @@ public final class ManagedObjectStoragePolicyState extends com.pulumi.resources.
     }
 
     /**
-     * Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
-     * document has changed.
+     * Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
      * 
      */
     @Import(name="document")
     private @Nullable Output<String> document;
 
     /**
-     * @return Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
-     * document has changed.
+     * @return Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
      * 
      */
     public Optional<Output<String>> document() {
@@ -308,8 +306,7 @@ public final class ManagedObjectStoragePolicyState extends com.pulumi.resources.
         }
 
         /**
-         * @param document Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
-         * document has changed.
+         * @param document Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
          * 
          * @return builder
          * 
@@ -320,8 +317,7 @@ public final class ManagedObjectStoragePolicyState extends com.pulumi.resources.
         }
 
         /**
-         * @param document Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
-         * document has changed.
+         * @param document Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
          * 
          * @return builder
          * 

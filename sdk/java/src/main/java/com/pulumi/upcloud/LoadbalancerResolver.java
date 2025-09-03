@@ -145,16 +145,14 @@ public class LoadbalancerResolver extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
-     * optional, if missing then default 53 will be used.
+     * List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is optional, if missing then default 53 will be used.
      * 
      */
     @Export(name="nameservers", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> nameservers;
 
     /**
-     * @return List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
-     * optional, if missing then default 53 will be used.
+     * @return List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is optional, if missing then default 53 will be used.
      * 
      */
     public Output<List<String>> nameservers() {

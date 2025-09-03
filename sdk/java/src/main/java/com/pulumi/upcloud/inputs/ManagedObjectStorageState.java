@@ -95,18 +95,14 @@ public final class ManagedObjectStorageState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain
-     * access from multiple private networks that might reside in different zones, create the networks and a corresponding
-     * router for each network.
+     * Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
      * 
      */
     @Import(name="networks")
     private @Nullable Output<List<ManagedObjectStorageNetworkArgs>> networks;
 
     /**
-     * @return Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain
-     * access from multiple private networks that might reside in different zones, create the networks and a corresponding
-     * router for each network.
+     * @return Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
      * 
      */
     public Optional<Output<List<ManagedObjectStorageNetworkArgs>>> networks() {
@@ -306,9 +302,7 @@ public final class ManagedObjectStorageState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param networks Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain
-         * access from multiple private networks that might reside in different zones, create the networks and a corresponding
-         * router for each network.
+         * @param networks Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
          * 
          * @return builder
          * 
@@ -319,9 +313,7 @@ public final class ManagedObjectStorageState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param networks Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain
-         * access from multiple private networks that might reside in different zones, create the networks and a corresponding
-         * router for each network.
+         * @param networks Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
          * 
          * @return builder
          * 
@@ -331,9 +323,7 @@ public final class ManagedObjectStorageState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param networks Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain
-         * access from multiple private networks that might reside in different zones, create the networks and a corresponding
-         * router for each network.
+         * @param networks Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
          * 
          * @return builder
          * 

@@ -17,16 +17,14 @@ public final class ManagedObjectStorageCustomDomainArgs extends com.pulumi.resou
     public static final ManagedObjectStorageCustomDomainArgs Empty = new ManagedObjectStorageCustomDomainArgs();
 
     /**
-     * Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g.
-     * example.com.
+     * Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
      * 
      */
     @Import(name="domainName", required=true)
     private Output<String> domainName;
 
     /**
-     * @return Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g.
-     * example.com.
+     * @return Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
      * 
      */
     public Output<String> domainName() {
@@ -90,8 +88,7 @@ public final class ManagedObjectStorageCustomDomainArgs extends com.pulumi.resou
         }
 
         /**
-         * @param domainName Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g.
-         * example.com.
+         * @param domainName Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
          * 
          * @return builder
          * 
@@ -102,8 +99,7 @@ public final class ManagedObjectStorageCustomDomainArgs extends com.pulumi.resou
         }
 
         /**
-         * @param domainName Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g.
-         * example.com.
+         * @param domainName Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
          * 
          * @return builder
          * 

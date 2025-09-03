@@ -129,16 +129,14 @@ public class StorageBackup extends com.pulumi.resources.CustomResource {
         return this.sourceStorage;
     }
     /**
-     * System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
-     * and can not be modified by the user.
+     * System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
      * 
      */
     @Export(name="systemLabels", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> systemLabels;
 
     /**
-     * @return System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
-     * and can not be modified by the user.
+     * @return System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
      * 
      */
     public Output<Map<String,String>> systemLabels() {

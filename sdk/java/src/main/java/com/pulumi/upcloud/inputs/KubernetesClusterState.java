@@ -19,18 +19,14 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     public static final KubernetesClusterState Empty = new KubernetesClusterState();
 
     /**
-     * IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any
-     * source, use `[&#34;0.0.0.0/0&#34;]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
-     * groups or exposed Kubernetes services.
+     * IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `[&#34;0.0.0.0/0&#34;]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
      * 
      */
     @Import(name="controlPlaneIpFilters")
     private @Nullable Output<List<String>> controlPlaneIpFilters;
 
     /**
-     * @return IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any
-     * source, use `[&#34;0.0.0.0/0&#34;]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
-     * groups or exposed Kubernetes services.
+     * @return IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `[&#34;0.0.0.0/0&#34;]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
      * 
      */
     public Optional<Output<List<String>>> controlPlaneIpFilters() {
@@ -173,16 +169,14 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
-     * When using `manual` strategy, you must replace the existing node-groups to update them.
+     * The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
      * 
      */
     @Import(name="upgradeStrategyType")
     private @Nullable Output<String> upgradeStrategyType;
 
     /**
-     * @return The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
-     * When using `manual` strategy, you must replace the existing node-groups to update them.
+     * @return The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
      * 
      */
     public Optional<Output<String>> upgradeStrategyType() {
@@ -190,16 +184,18 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
-     * changing the cluster version, `upgrade_strategy` will be taken into account.
+     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+     * 
+     *     Note that when changing the cluster version, `upgrade_strategy` will be taken into account.
      * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
-     * @return Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
-     * changing the cluster version, `upgrade_strategy` will be taken into account.
+     * @return Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+     * 
+     *     Note that when changing the cluster version, `upgrade_strategy` will be taken into account.
      * 
      */
     public Optional<Output<String>> version() {
@@ -207,16 +203,14 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
-     * list`.
+     * Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      * 
      */
     @Import(name="zone")
     private @Nullable Output<String> zone;
 
     /**
-     * @return Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
-     * list`.
+     * @return Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      * 
      */
     public Optional<Output<String>> zone() {
@@ -260,9 +254,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param controlPlaneIpFilters IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any
-         * source, use `[&#34;0.0.0.0/0&#34;]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
-         * groups or exposed Kubernetes services.
+         * @param controlPlaneIpFilters IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `[&#34;0.0.0.0/0&#34;]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
          * 
          * @return builder
          * 
@@ -273,9 +265,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param controlPlaneIpFilters IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any
-         * source, use `[&#34;0.0.0.0/0&#34;]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
-         * groups or exposed Kubernetes services.
+         * @param controlPlaneIpFilters IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `[&#34;0.0.0.0/0&#34;]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
          * 
          * @return builder
          * 
@@ -285,9 +275,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param controlPlaneIpFilters IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any
-         * source, use `[&#34;0.0.0.0/0&#34;]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
-         * groups or exposed Kubernetes services.
+         * @param controlPlaneIpFilters IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `[&#34;0.0.0.0/0&#34;]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
          * 
          * @return builder
          * 
@@ -496,8 +484,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param upgradeStrategyType The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
-         * When using `manual` strategy, you must replace the existing node-groups to update them.
+         * @param upgradeStrategyType The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
          * 
          * @return builder
          * 
@@ -508,8 +495,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param upgradeStrategyType The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
-         * When using `manual` strategy, you must replace the existing node-groups to update them.
+         * @param upgradeStrategyType The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
          * 
          * @return builder
          * 
@@ -519,8 +505,9 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param version Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
-         * changing the cluster version, `upgrade_strategy` will be taken into account.
+         * @param version Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+         * 
+         *     Note that when changing the cluster version, `upgrade_strategy` will be taken into account.
          * 
          * @return builder
          * 
@@ -531,8 +518,9 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param version Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
-         * changing the cluster version, `upgrade_strategy` will be taken into account.
+         * @param version Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+         * 
+         *     Note that when changing the cluster version, `upgrade_strategy` will be taken into account.
          * 
          * @return builder
          * 
@@ -542,8 +530,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param zone Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
-         * list`.
+         * @param zone Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
          * 
          * @return builder
          * 
@@ -554,8 +541,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param zone Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
-         * list`.
+         * @param zone Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
          * 
          * @return builder
          * 

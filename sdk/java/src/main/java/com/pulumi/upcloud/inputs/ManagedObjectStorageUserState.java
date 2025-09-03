@@ -61,18 +61,14 @@ public final class ManagedObjectStorageUserState extends com.pulumi.resources.Re
     }
 
     /**
-     * Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See
-     * `upcloud.ManagedObjectStorageUserAccessKey` for managing access keys and `upcloud.ManagedObjectStorageUserPolicy` for
-     * managing policies.
+     * Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See `upcloud.ManagedObjectStorageUserAccessKey` for managing access keys and `upcloud.ManagedObjectStorageUserPolicy` for managing policies.
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See
-     * `upcloud.ManagedObjectStorageUserAccessKey` for managing access keys and `upcloud.ManagedObjectStorageUserPolicy` for
-     * managing policies.
+     * @return Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See `upcloud.ManagedObjectStorageUserAccessKey` for managing access keys and `upcloud.ManagedObjectStorageUserPolicy` for managing policies.
      * 
      */
     public Optional<Output<String>> username() {
@@ -170,9 +166,7 @@ public final class ManagedObjectStorageUserState extends com.pulumi.resources.Re
         }
 
         /**
-         * @param username Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See
-         * `upcloud.ManagedObjectStorageUserAccessKey` for managing access keys and `upcloud.ManagedObjectStorageUserPolicy` for
-         * managing policies.
+         * @param username Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See `upcloud.ManagedObjectStorageUserAccessKey` for managing access keys and `upcloud.ManagedObjectStorageUserPolicy` for managing policies.
          * 
          * @return builder
          * 
@@ -183,9 +177,7 @@ public final class ManagedObjectStorageUserState extends com.pulumi.resources.Re
         }
 
         /**
-         * @param username Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See
-         * `upcloud.ManagedObjectStorageUserAccessKey` for managing access keys and `upcloud.ManagedObjectStorageUserPolicy` for
-         * managing policies.
+         * @param username Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See `upcloud.ManagedObjectStorageUserAccessKey` for managing access keys and `upcloud.ManagedObjectStorageUserPolicy` for managing policies.
          * 
          * @return builder
          * 

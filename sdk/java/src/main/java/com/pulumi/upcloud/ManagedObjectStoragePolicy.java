@@ -139,16 +139,14 @@ public class ManagedObjectStoragePolicy extends com.pulumi.resources.CustomResou
         return Codegen.optional(this.description);
     }
     /**
-     * Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
-     * document has changed.
+     * Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
      * 
      */
     @Export(name="document", refs={String.class}, tree="[0]")
     private Output<String> document;
 
     /**
-     * @return Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the
-     * document has changed.
+     * @return Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
      * 
      */
     public Output<String> document() {

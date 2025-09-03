@@ -73,16 +73,14 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Names of connections attached to the gateway. Note that this field can have outdated information as connections are
-     * created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
+     * Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
      * 
      */
     @Import(name="connections")
     private @Nullable Output<List<String>> connections;
 
     /**
-     * @return Names of connections attached to the gateway. Note that this field can have outdated information as connections are
-     * created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
+     * @return Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
      * 
      */
     public Optional<Output<List<String>>> connections() {
@@ -90,16 +88,14 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
-     * https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+     * Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
      * 
      */
     @Import(name="features")
     private @Nullable Output<List<String>> features;
 
     /**
-     * @return Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
-     * https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+     * @return Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
      * 
      */
     public Optional<Output<List<String>>> features() {
@@ -316,8 +312,7 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param connections Names of connections attached to the gateway. Note that this field can have outdated information as connections are
-         * created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
+         * @param connections Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
          * 
          * @return builder
          * 
@@ -328,8 +323,7 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param connections Names of connections attached to the gateway. Note that this field can have outdated information as connections are
-         * created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
+         * @param connections Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
          * 
          * @return builder
          * 
@@ -339,8 +333,7 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param connections Names of connections attached to the gateway. Note that this field can have outdated information as connections are
-         * created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
+         * @param connections Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
          * 
          * @return builder
          * 
@@ -350,8 +343,7 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param features Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
-         * https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+         * @param features Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
          * 
          * @return builder
          * 
@@ -362,8 +354,7 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param features Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
-         * https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+         * @param features Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
          * 
          * @return builder
          * 
@@ -373,8 +364,7 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param features Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
-         * https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+         * @param features Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
          * 
          * @return builder
          * 

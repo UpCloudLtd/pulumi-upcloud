@@ -53,16 +53,14 @@ public class Storage extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.clone);
     }
     /**
-     * If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
-     * success.
+     * If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
      * 
      */
     @Export(name="deleteAutoresizeBackup", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> deleteAutoresizeBackup;
 
     /**
-     * @return If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
-     * success.
+     * @return If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
      * 
      */
     public Output<Boolean> deleteAutoresizeBackup() {
@@ -83,20 +81,16 @@ public class Storage extends com.pulumi.resources.CustomResource {
         return this.encrypt;
     }
     /**
-     * If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
-     * note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
-     * backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-     * `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
+     * If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `delete_autoresize_backup` option is set to true).
+     * 				Taking and keeping backups incure costs.
      * 
      */
     @Export(name="filesystemAutoresize", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> filesystemAutoresize;
 
     /**
-     * @return If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
-     * note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
-     * backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-     * `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
+     * @return If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `delete_autoresize_backup` option is set to true).
+     * 				Taking and keeping backups incure costs.
      * 
      */
     public Output<Boolean> filesystemAutoresize() {
@@ -145,16 +139,14 @@ public class Storage extends com.pulumi.resources.CustomResource {
         return this.size;
     }
     /**
-     * System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
-     * and can not be modified by the user.
+     * System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
      * 
      */
     @Export(name="systemLabels", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> systemLabels;
 
     /**
-     * @return System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
-     * and can not be modified by the user.
+     * @return System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
      * 
      */
     public Output<Map<String,String>> systemLabels() {

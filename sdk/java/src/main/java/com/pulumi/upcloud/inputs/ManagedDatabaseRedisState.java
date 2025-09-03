@@ -128,16 +128,14 @@ public final class ManagedDatabaseRedisState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-     * database plans &lt;type&gt;`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
      * 
      */
     @Import(name="plan")
     private @Nullable Output<String> plan;
 
     /**
-     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-     * database plans &lt;type&gt;`.
+     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
      * 
      */
     public Optional<Output<String>> plan() {
@@ -561,8 +559,7 @@ public final class ManagedDatabaseRedisState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-         * database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
          * 
          * @return builder
          * 
@@ -573,8 +570,7 @@ public final class ManagedDatabaseRedisState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-         * database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
          * 
          * @return builder
          * 

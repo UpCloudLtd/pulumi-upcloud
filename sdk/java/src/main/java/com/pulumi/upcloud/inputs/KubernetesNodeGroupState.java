@@ -25,16 +25,14 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
     public static final KubernetesNodeGroupState Empty = new KubernetesNodeGroupState();
 
     /**
-     * If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-     * considered &#39;best effort&#39; and enabling it does not fully guarantee that the nodes will end up on different hardware.
+     * If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is considered &#39;best effort&#39; and enabling it does not fully guarantee that the nodes will end up on different hardware.
      * 
      */
     @Import(name="antiAffinity")
     private @Nullable Output<Boolean> antiAffinity;
 
     /**
-     * @return If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-     * considered &#39;best effort&#39; and enabling it does not fully guarantee that the nodes will end up on different hardware.
+     * @return If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is considered &#39;best effort&#39; and enabling it does not fully guarantee that the nodes will end up on different hardware.
      * 
      */
     public Optional<Output<Boolean>> antiAffinity() {
@@ -102,20 +100,18 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
-     * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
-     * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
-     * when adding kubelet args.
+     * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
+     * 
+     *     Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
      * 
      */
     @Import(name="kubeletArgs")
     private @Nullable Output<List<KubernetesNodeGroupKubeletArgArgs>> kubeletArgs;
 
     /**
-     * @return Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
-     * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
-     * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
-     * when adding kubelet args.
+     * @return Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
+     * 
+     *     Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
      * 
      */
     public Optional<Output<List<KubernetesNodeGroupKubeletArgArgs>>> kubeletArgs() {
@@ -183,16 +179,14 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
-     * connect to the nodes via SSH once they are running.
+     * You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
      * 
      */
     @Import(name="sshKeys")
     private @Nullable Output<List<String>> sshKeys;
 
     /**
-     * @return You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
-     * connect to the nodes via SSH once they are running.
+     * @return You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
      * 
      */
     public Optional<Output<List<String>>> sshKeys() {
@@ -200,16 +194,14 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption
-     * strategy will be used, if applicable.
+     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable.
      * 
      */
     @Import(name="storageEncryption")
     private @Nullable Output<String> storageEncryption;
 
     /**
-     * @return The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption
-     * strategy will be used, if applicable.
+     * @return The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable.
      * 
      */
     public Optional<Output<String>> storageEncryption() {
@@ -284,8 +276,7 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param antiAffinity If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-         * considered &#39;best effort&#39; and enabling it does not fully guarantee that the nodes will end up on different hardware.
+         * @param antiAffinity If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is considered &#39;best effort&#39; and enabling it does not fully guarantee that the nodes will end up on different hardware.
          * 
          * @return builder
          * 
@@ -296,8 +287,7 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param antiAffinity If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-         * considered &#39;best effort&#39; and enabling it does not fully guarantee that the nodes will end up on different hardware.
+         * @param antiAffinity If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is considered &#39;best effort&#39; and enabling it does not fully guarantee that the nodes will end up on different hardware.
          * 
          * @return builder
          * 
@@ -391,10 +381,9 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param kubeletArgs Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
-         * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
-         * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
-         * when adding kubelet args.
+         * @param kubeletArgs Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
+         * 
+         *     Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
          * 
          * @return builder
          * 
@@ -405,10 +394,9 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param kubeletArgs Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
-         * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
-         * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
-         * when adding kubelet args.
+         * @param kubeletArgs Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
+         * 
+         *     Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
          * 
          * @return builder
          * 
@@ -418,10 +406,9 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param kubeletArgs Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
-         * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
-         * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
-         * when adding kubelet args.
+         * @param kubeletArgs Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
+         * 
+         *     Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
          * 
          * @return builder
          * 
@@ -515,8 +502,7 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param sshKeys You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
-         * connect to the nodes via SSH once they are running.
+         * @param sshKeys You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
          * 
          * @return builder
          * 
@@ -527,8 +513,7 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param sshKeys You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
-         * connect to the nodes via SSH once they are running.
+         * @param sshKeys You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
          * 
          * @return builder
          * 
@@ -538,8 +523,7 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param sshKeys You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
-         * connect to the nodes via SSH once they are running.
+         * @param sshKeys You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
          * 
          * @return builder
          * 
@@ -549,8 +533,7 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param storageEncryption The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption
-         * strategy will be used, if applicable.
+         * @param storageEncryption The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable.
          * 
          * @return builder
          * 
@@ -561,8 +544,7 @@ public final class KubernetesNodeGroupState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param storageEncryption The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption
-         * strategy will be used, if applicable.
+         * @param storageEncryption The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable.
          * 
          * @return builder
          * 

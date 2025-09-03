@@ -85,16 +85,14 @@ public class Server extends com.pulumi.resources.CustomResource {
         return this.firewall;
     }
     /**
-     * Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
-     * hosts
+     * Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
      * 
      */
     @Export(name="host", refs={Integer.class}, tree="[0]")
     private Output<Integer> host;
 
     /**
-     * @return Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
-     * hosts
+     * @return Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
      * 
      */
     public Output<Integer> host() {
@@ -115,16 +113,14 @@ public class Server extends com.pulumi.resources.CustomResource {
         return this.hostname;
     }
     /**
-     * If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
-     * hot resizing fails, the apply operation will fail.
+     * If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
      * 
      */
     @Export(name="hotResize", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> hotResize;
 
     /**
-     * @return If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
-     * hot resizing fails, the apply operation will fail.
+     * @return If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
      * 
      */
     public Output<Boolean> hotResize() {
@@ -173,40 +169,36 @@ public class Server extends com.pulumi.resources.CustomResource {
         return this.mem;
     }
     /**
-     * Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
-     * templates.
+     * Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based templates.
      * 
      */
     @Export(name="metadata", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> metadata;
 
     /**
-     * @return Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
-     * templates.
+     * @return Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based templates.
      * 
      */
     public Output<Optional<Boolean>> metadata() {
         return Codegen.optional(this.metadata);
     }
     /**
-     * One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
-     * interfaces are matched to the server&#39;s actual network interfaces by `index` and `ip_address` fields. This is to avoid
-     * public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
-     * diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
-     * explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
-     * middle of the list.
+     * One or more blocks describing the network interfaces of the server.
+     * 
+     *     In addition to list order, the configured network interfaces are matched to the server&#39;s actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
+     *     
+     *     We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
      * 
      */
     @Export(name="networkInterfaces", refs={List.class,ServerNetworkInterface.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServerNetworkInterface>> networkInterfaces;
 
     /**
-     * @return One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
-     * interfaces are matched to the server&#39;s actual network interfaces by `index` and `ip_address` fields. This is to avoid
-     * public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
-     * diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
-     * explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
-     * middle of the list.
+     * @return One or more blocks describing the network interfaces of the server.
+     * 
+     *     In addition to list order, the configured network interfaces are matched to the server&#39;s actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
+     *     
+     *     We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
      * 
      */
     public Output<Optional<List<ServerNetworkInterface>>> networkInterfaces() {
@@ -241,18 +233,14 @@ public class Server extends com.pulumi.resources.CustomResource {
         return this.plan;
     }
     /**
-     * The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the
-     * `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only
-     * updated if it has been set to non-zero value.
+     * The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
      * 
      */
     @Export(name="serverGroup", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> serverGroup;
 
     /**
-     * @return The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the
-     * `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only
-     * updated if it has been set to non-zero value.
+     * @return The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
      * 
      */
     public Output<Optional<String>> serverGroup() {

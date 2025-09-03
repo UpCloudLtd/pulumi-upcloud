@@ -126,16 +126,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="upcloud:index/kubernetesNodeGroup:KubernetesNodeGroup")
 public class KubernetesNodeGroup extends com.pulumi.resources.CustomResource {
     /**
-     * If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-     * considered &#39;best effort&#39; and enabling it does not fully guarantee that the nodes will end up on different hardware.
+     * If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is considered &#39;best effort&#39; and enabling it does not fully guarantee that the nodes will end up on different hardware.
      * 
      */
     @Export(name="antiAffinity", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> antiAffinity;
 
     /**
-     * @return If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is
-     * considered &#39;best effort&#39; and enabling it does not fully guarantee that the nodes will end up on different hardware.
+     * @return If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is considered &#39;best effort&#39; and enabling it does not fully guarantee that the nodes will end up on different hardware.
      * 
      */
     public Output<Boolean> antiAffinity() {
@@ -198,20 +196,18 @@ public class KubernetesNodeGroup extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.gpuPlan);
     }
     /**
-     * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
-     * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
-     * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
-     * when adding kubelet args.
+     * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
+     * 
+     *     Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
      * 
      */
     @Export(name="kubeletArgs", refs={List.class,KubernetesNodeGroupKubeletArg.class}, tree="[0,1]")
     private Output</* @Nullable */ List<KubernetesNodeGroupKubeletArg>> kubeletArgs;
 
     /**
-     * @return Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will
-     * prefix the arguments with `--` when preparing kubelet call. Note that these arguments will be passed directly to kubelet
-     * CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful
-     * when adding kubelet args.
+     * @return Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
+     * 
+     *     Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
      * 
      */
     public Output<Optional<List<KubernetesNodeGroupKubeletArg>>> kubeletArgs() {
@@ -274,32 +270,28 @@ public class KubernetesNodeGroup extends com.pulumi.resources.CustomResource {
         return this.plan;
     }
     /**
-     * You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
-     * connect to the nodes via SSH once they are running.
+     * You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
      * 
      */
     @Export(name="sshKeys", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> sshKeys;
 
     /**
-     * @return You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to
-     * connect to the nodes via SSH once they are running.
+     * @return You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
      * 
      */
     public Output<List<String>> sshKeys() {
         return this.sshKeys;
     }
     /**
-     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption
-     * strategy will be used, if applicable.
+     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable.
      * 
      */
     @Export(name="storageEncryption", refs={String.class}, tree="[0]")
     private Output<String> storageEncryption;
 
     /**
-     * @return The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption
-     * strategy will be used, if applicable.
+     * @return The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable.
      * 
      */
     public Output<String> storageEncryption() {

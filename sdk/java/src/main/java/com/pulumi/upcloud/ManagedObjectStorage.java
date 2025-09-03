@@ -162,18 +162,14 @@ public class ManagedObjectStorage extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain
-     * access from multiple private networks that might reside in different zones, create the networks and a corresponding
-     * router for each network.
+     * Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
      * 
      */
     @Export(name="networks", refs={List.class,ManagedObjectStorageNetwork.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ManagedObjectStorageNetwork>> networks;
 
     /**
-     * @return Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain
-     * access from multiple private networks that might reside in different zones, create the networks and a corresponding
-     * router for each network.
+     * @return Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
      * 
      */
     public Output<Optional<List<ManagedObjectStorageNetwork>>> networks() {

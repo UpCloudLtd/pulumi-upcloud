@@ -93,22 +93,24 @@ import javax.annotation.Nullable;
 @ResourceType(type="upcloud:index/objectStorage:ObjectStorage")
 public class ObjectStorage extends com.pulumi.resources.CustomResource {
     /**
-     * The access key used to identify user. Can be set to an empty string, which will tell the provider to get the access key
-     * from environment variable. The environment variable should be &#34;UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_{name}&#34;. {name} is the
-     * name given to object storage instance (so not the resource label), it should be all uppercased and all dashes (-) should
-     * be replaced with underscores (_). For example, object storage named &#34;my-files&#34; would use environment variable named
-     * &#34;UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_MY_FILES&#34;.
+     * The access key used to identify user.
+     * 				Can be set to an empty string, which will tell the provider to get the access key from environment variable.
+     * 				The environment variable should be &#34;UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_{name}&#34;.
+     * 				{name} is the name given to object storage instance (so not the resource label), it should be all uppercased
+     * 				and all dashes (-) should be replaced with underscores (_). For example, object storage named &#34;my-files&#34; would
+     * 				use environment variable named &#34;UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_MY_FILES&#34;.
      * 
      */
     @Export(name="accessKey", refs={String.class}, tree="[0]")
     private Output<String> accessKey;
 
     /**
-     * @return The access key used to identify user. Can be set to an empty string, which will tell the provider to get the access key
-     * from environment variable. The environment variable should be &#34;UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_{name}&#34;. {name} is the
-     * name given to object storage instance (so not the resource label), it should be all uppercased and all dashes (-) should
-     * be replaced with underscores (_). For example, object storage named &#34;my-files&#34; would use environment variable named
-     * &#34;UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_MY_FILES&#34;.
+     * @return The access key used to identify user.
+     * 				Can be set to an empty string, which will tell the provider to get the access key from environment variable.
+     * 				The environment variable should be &#34;UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_{name}&#34;.
+     * 				{name} is the name given to object storage instance (so not the resource label), it should be all uppercased
+     * 				and all dashes (-) should be replaced with underscores (_). For example, object storage named &#34;my-files&#34; would
+     * 				use environment variable named &#34;UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_MY_FILES&#34;.
      * 
      */
     public Output<String> accessKey() {
@@ -155,22 +157,24 @@ public class ObjectStorage extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The secret key used to authenticate user. Can be set to an empty string, which will tell the provider to get the secret
-     * key from environment variable. The environment variable should be &#34;UPCLOUD_OBJECT_STORAGE_SECRET_KEY_{name}&#34;. {name} is
-     * the name given to object storage instance (so not the resource label), it should be all uppercased and all dashes (-)
-     * should be replaced with underscores (_). For example, object storage named &#34;my-files&#34; would use environment variable
-     * named &#34;UPCLOUD_OBJECT_STORAGE_SECRET_KEY_MY_FILES&#34;.
+     * The secret key used to authenticate user.
+     * 				Can be set to an empty string, which will tell the provider to get the secret key from environment variable.
+     * 				The environment variable should be &#34;UPCLOUD_OBJECT_STORAGE_SECRET_KEY_{name}&#34;.
+     * 				{name} is the name given to object storage instance (so not the resource label), it should be all uppercased
+     * 				and all dashes (-) should be replaced with underscores (_). For example, object storage named &#34;my-files&#34; would
+     * 				use environment variable named &#34;UPCLOUD_OBJECT_STORAGE_SECRET_KEY_MY_FILES&#34;.
      * 
      */
     @Export(name="secretKey", refs={String.class}, tree="[0]")
     private Output<String> secretKey;
 
     /**
-     * @return The secret key used to authenticate user. Can be set to an empty string, which will tell the provider to get the secret
-     * key from environment variable. The environment variable should be &#34;UPCLOUD_OBJECT_STORAGE_SECRET_KEY_{name}&#34;. {name} is
-     * the name given to object storage instance (so not the resource label), it should be all uppercased and all dashes (-)
-     * should be replaced with underscores (_). For example, object storage named &#34;my-files&#34; would use environment variable
-     * named &#34;UPCLOUD_OBJECT_STORAGE_SECRET_KEY_MY_FILES&#34;.
+     * @return The secret key used to authenticate user.
+     * 				Can be set to an empty string, which will tell the provider to get the secret key from environment variable.
+     * 				The environment variable should be &#34;UPCLOUD_OBJECT_STORAGE_SECRET_KEY_{name}&#34;.
+     * 				{name} is the name given to object storage instance (so not the resource label), it should be all uppercased
+     * 				and all dashes (-) should be replaced with underscores (_). For example, object storage named &#34;my-files&#34; would
+     * 				use environment variable named &#34;UPCLOUD_OBJECT_STORAGE_SECRET_KEY_MY_FILES&#34;.
      * 
      */
     public Output<String> secretKey() {
@@ -209,16 +213,14 @@ public class ObjectStorage extends com.pulumi.resources.CustomResource {
         return this.usedSpace;
     }
     /**
-     * The zone in which the object storage instance will be created, e.g. `de-fra1`. You can list available zones with `upctl
-     * zone list`.
+     * The zone in which the object storage instance will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      * 
      */
     @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**
-     * @return The zone in which the object storage instance will be created, e.g. `de-fra1`. You can list available zones with `upctl
-     * zone list`.
+     * @return The zone in which the object storage instance will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      * 
      */
     public Output<String> zone() {

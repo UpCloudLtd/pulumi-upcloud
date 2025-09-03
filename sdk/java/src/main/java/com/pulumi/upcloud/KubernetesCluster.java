@@ -117,18 +117,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="upcloud:index/kubernetesCluster:KubernetesCluster")
 public class KubernetesCluster extends com.pulumi.resources.CustomResource {
     /**
-     * IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any
-     * source, use `[&#34;0.0.0.0/0&#34;]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
-     * groups or exposed Kubernetes services.
+     * IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `[&#34;0.0.0.0/0&#34;]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
      * 
      */
     @Export(name="controlPlaneIpFilters", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> controlPlaneIpFilters;
 
     /**
-     * @return IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any
-     * source, use `[&#34;0.0.0.0/0&#34;]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node
-     * groups or exposed Kubernetes services.
+     * @return IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `[&#34;0.0.0.0/0&#34;]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
      * 
      */
     public Output<List<String>> controlPlaneIpFilters() {
@@ -261,48 +257,46 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.storageEncryption);
     }
     /**
-     * The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
-     * When using `manual` strategy, you must replace the existing node-groups to update them.
+     * The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
      * 
      */
     @Export(name="upgradeStrategyType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> upgradeStrategyType;
 
     /**
-     * @return The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default.
-     * When using `manual` strategy, you must replace the existing node-groups to update them.
+     * @return The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
      * 
      */
     public Output<Optional<String>> upgradeStrategyType() {
         return Codegen.optional(this.upgradeStrategyType);
     }
     /**
-     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
-     * changing the cluster version, `upgrade_strategy` will be taken into account.
+     * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+     * 
+     *     Note that when changing the cluster version, `upgrade_strategy` will be taken into account.
      * 
      */
     @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**
-     * @return Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`. Note that when
-     * changing the cluster version, `upgrade_strategy` will be taken into account.
+     * @return Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
+     * 
+     *     Note that when changing the cluster version, `upgrade_strategy` will be taken into account.
      * 
      */
     public Output<String> version() {
         return this.version;
     }
     /**
-     * Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
-     * list`.
+     * Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      * 
      */
     @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**
-     * @return Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone
-     * list`.
+     * @return Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      * 
      */
     public Output<String> zone() {

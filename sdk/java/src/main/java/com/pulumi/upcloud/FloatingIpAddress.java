@@ -141,16 +141,14 @@ public class FloatingIpAddress extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.macAddress);
     }
     /**
-     * Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
-     * zones with `upctl zone list`.
+     * Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
      * 
      */
     @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**
-     * @return Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
-     * zones with `upctl zone list`.
+     * @return Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
      * 
      */
     public Output<String> zone() {

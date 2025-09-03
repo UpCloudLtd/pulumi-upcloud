@@ -76,16 +76,14 @@ public final class FloatingIpAddressState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
-     * zones with `upctl zone list`.
+     * Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
      * 
      */
     @Import(name="zone")
     private @Nullable Output<String> zone;
 
     /**
-     * @return Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
-     * zones with `upctl zone list`.
+     * @return Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
      * 
      */
     public Optional<Output<String>> zone() {
@@ -205,8 +203,7 @@ public final class FloatingIpAddressState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param zone Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
-         * zones with `upctl zone list`.
+         * @param zone Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
          * 
          * @return builder
          * 
@@ -217,8 +214,7 @@ public final class FloatingIpAddressState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param zone Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available
-         * zones with `upctl zone list`.
+         * @param zone Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
          * 
          * @return builder
          * 

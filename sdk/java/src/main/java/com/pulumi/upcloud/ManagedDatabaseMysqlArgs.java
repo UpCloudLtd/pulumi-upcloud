@@ -97,16 +97,14 @@ public final class ManagedDatabaseMysqlArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-     * database plans &lt;type&gt;`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
      * 
      */
     @Import(name="plan", required=true)
     private Output<String> plan;
 
     /**
-     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-     * database plans &lt;type&gt;`.
+     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
      * 
      */
     public Output<String> plan() {
@@ -338,8 +336,7 @@ public final class ManagedDatabaseMysqlArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-         * database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
          * 
          * @return builder
          * 
@@ -350,8 +347,7 @@ public final class ManagedDatabaseMysqlArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-         * database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
          * 
          * @return builder
          * 

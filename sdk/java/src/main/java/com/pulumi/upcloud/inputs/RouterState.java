@@ -79,16 +79,14 @@ public final class RouterState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A collection of static routes for this router. This set includes both user and service defined static routes. The
-     * objects in this set use the same schema as `static_route` blocks.
+     * A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `static_route` blocks.
      * 
      */
     @Import(name="staticRoutes")
     private @Nullable Output<List<RouterStaticRouteArgs>> staticRoutes;
 
     /**
-     * @return A collection of static routes for this router. This set includes both user and service defined static routes. The
-     * objects in this set use the same schema as `static_route` blocks.
+     * @return A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `static_route` blocks.
      * 
      */
     public Optional<Output<List<RouterStaticRouteArgs>>> staticRoutes() {
@@ -244,8 +242,7 @@ public final class RouterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param staticRoutes A collection of static routes for this router. This set includes both user and service defined static routes. The
-         * objects in this set use the same schema as `static_route` blocks.
+         * @param staticRoutes A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `static_route` blocks.
          * 
          * @return builder
          * 
@@ -256,8 +253,7 @@ public final class RouterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param staticRoutes A collection of static routes for this router. This set includes both user and service defined static routes. The
-         * objects in this set use the same schema as `static_route` blocks.
+         * @param staticRoutes A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `static_route` blocks.
          * 
          * @return builder
          * 
@@ -267,8 +263,7 @@ public final class RouterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param staticRoutes A collection of static routes for this router. This set includes both user and service defined static routes. The
-         * objects in this set use the same schema as `static_route` blocks.
+         * @param staticRoutes A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `static_route` blocks.
          * 
          * @return builder
          * 

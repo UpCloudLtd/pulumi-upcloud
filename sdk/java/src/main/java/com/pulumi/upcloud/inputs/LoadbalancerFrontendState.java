@@ -20,20 +20,18 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
     public static final LoadbalancerFrontendState Empty = new LoadbalancerFrontendState();
 
     /**
-     * The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
-     * rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
-     * resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
-     * resources are created and destroyed in the correct order.
+     * The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
+     * 
+     *     Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the resources are created and destroyed in the correct order.
      * 
      */
     @Import(name="defaultBackendName")
     private @Nullable Output<String> defaultBackendName;
 
     /**
-     * @return The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
-     * rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
-     * resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
-     * resources are created and destroyed in the correct order.
+     * @return The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
+     * 
+     *     Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the resources are created and destroyed in the correct order.
      * 
      */
     public Optional<Output<String>> defaultBackendName() {
@@ -86,16 +84,14 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
-     * be required when deprecated field `network` is removed from load balancer resource.
+     * Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
      * 
      */
     @Import(name="networks")
     private @Nullable Output<List<LoadbalancerFrontendNetworkArgs>> networks;
 
     /**
-     * @return Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
-     * be required when deprecated field `network` is removed from load balancer resource.
+     * @return Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
      * 
      */
     public Optional<Output<List<LoadbalancerFrontendNetworkArgs>>> networks() {
@@ -187,10 +183,9 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param defaultBackendName The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
-         * rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
-         * resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
-         * resources are created and destroyed in the correct order.
+         * @param defaultBackendName The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
+         * 
+         *     Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the resources are created and destroyed in the correct order.
          * 
          * @return builder
          * 
@@ -201,10 +196,9 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param defaultBackendName The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
-         * rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
-         * resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
-         * resources are created and destroyed in the correct order.
+         * @param defaultBackendName The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
+         * 
+         *     Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the resources are created and destroyed in the correct order.
          * 
          * @return builder
          * 
@@ -277,8 +271,7 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param networks Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
-         * be required when deprecated field `network` is removed from load balancer resource.
+         * @param networks Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
          * 
          * @return builder
          * 
@@ -289,8 +282,7 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param networks Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
-         * be required when deprecated field `network` is removed from load balancer resource.
+         * @param networks Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
          * 
          * @return builder
          * 
@@ -300,8 +292,7 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param networks Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
-         * be required when deprecated field `network` is removed from load balancer resource.
+         * @param networks Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
          * 
          * @return builder
          * 

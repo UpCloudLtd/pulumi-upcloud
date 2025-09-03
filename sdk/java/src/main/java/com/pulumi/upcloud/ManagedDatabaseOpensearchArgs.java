@@ -22,16 +22,14 @@ public final class ManagedDatabaseOpensearchArgs extends com.pulumi.resources.Re
     public static final ManagedDatabaseOpensearchArgs Empty = new ManagedDatabaseOpensearchArgs();
 
     /**
-     * Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute
-     * is enabled.
+     * Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
      * 
      */
     @Import(name="accessControl")
     private @Nullable Output<Boolean> accessControl;
 
     /**
-     * @return Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute
-     * is enabled.
+     * @return Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
      * 
      */
     public Optional<Output<Boolean>> accessControl() {
@@ -39,16 +37,14 @@ public final class ManagedDatabaseOpensearchArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
-     * on the user-specific access control rules.
+     * Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
      * 
      */
     @Import(name="extendedAccessControl")
     private @Nullable Output<Boolean> extendedAccessControl;
 
     /**
-     * @return Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
-     * on the user-specific access control rules.
+     * @return Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
      * 
      */
     public Optional<Output<Boolean>> extendedAccessControl() {
@@ -131,16 +127,14 @@ public final class ManagedDatabaseOpensearchArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-     * database plans &lt;type&gt;`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
      * 
      */
     @Import(name="plan", required=true)
     private Output<String> plan;
 
     /**
-     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-     * database plans &lt;type&gt;`.
+     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
      * 
      */
     public Output<String> plan() {
@@ -259,8 +253,7 @@ public final class ManagedDatabaseOpensearchArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param accessControl Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute
-         * is enabled.
+         * @param accessControl Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
          * 
          * @return builder
          * 
@@ -271,8 +264,7 @@ public final class ManagedDatabaseOpensearchArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param accessControl Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute
-         * is enabled.
+         * @param accessControl Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
          * 
          * @return builder
          * 
@@ -282,8 +274,7 @@ public final class ManagedDatabaseOpensearchArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param extendedAccessControl Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
-         * on the user-specific access control rules.
+         * @param extendedAccessControl Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
          * 
          * @return builder
          * 
@@ -294,8 +285,7 @@ public final class ManagedDatabaseOpensearchArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param extendedAccessControl Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
-         * on the user-specific access control rules.
+         * @param extendedAccessControl Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
          * 
          * @return builder
          * 
@@ -420,8 +410,7 @@ public final class ManagedDatabaseOpensearchArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-         * database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
          * 
          * @return builder
          * 
@@ -432,8 +421,7 @@ public final class ManagedDatabaseOpensearchArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-         * database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
          * 
          * @return builder
          * 

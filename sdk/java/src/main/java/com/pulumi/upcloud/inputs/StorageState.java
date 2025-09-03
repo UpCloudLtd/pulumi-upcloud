@@ -44,16 +44,14 @@ public final class StorageState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
-     * success.
+     * If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
      * 
      */
     @Import(name="deleteAutoresizeBackup")
     private @Nullable Output<Boolean> deleteAutoresizeBackup;
 
     /**
-     * @return If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
-     * success.
+     * @return If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
      * 
      */
     public Optional<Output<Boolean>> deleteAutoresizeBackup() {
@@ -76,20 +74,16 @@ public final class StorageState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
-     * note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
-     * backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-     * `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
+     * If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `delete_autoresize_backup` option is set to true).
+     * 				Taking and keeping backups incure costs.
      * 
      */
     @Import(name="filesystemAutoresize")
     private @Nullable Output<Boolean> filesystemAutoresize;
 
     /**
-     * @return If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
-     * note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
-     * backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-     * `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
+     * @return If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `delete_autoresize_backup` option is set to true).
+     * 				Taking and keeping backups incure costs.
      * 
      */
     public Optional<Output<Boolean>> filesystemAutoresize() {
@@ -142,16 +136,14 @@ public final class StorageState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
-     * and can not be modified by the user.
+     * System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
      * 
      */
     @Import(name="systemLabels")
     private @Nullable Output<Map<String,String>> systemLabels;
 
     /**
-     * @return System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
-     * and can not be modified by the user.
+     * @return System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
      * 
      */
     public Optional<Output<Map<String,String>>> systemLabels() {
@@ -285,8 +277,7 @@ public final class StorageState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deleteAutoresizeBackup If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
-         * success.
+         * @param deleteAutoresizeBackup If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
          * 
          * @return builder
          * 
@@ -297,8 +288,7 @@ public final class StorageState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deleteAutoresizeBackup If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after
-         * success.
+         * @param deleteAutoresizeBackup If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
          * 
          * @return builder
          * 
@@ -329,10 +319,8 @@ public final class StorageState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param filesystemAutoresize If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
-         * note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
-         * backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-         * `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
+         * @param filesystemAutoresize If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `delete_autoresize_backup` option is set to true).
+         * 				Taking and keeping backups incure costs.
          * 
          * @return builder
          * 
@@ -343,10 +331,8 @@ public final class StorageState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param filesystemAutoresize If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please
-         * note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the
-         * backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless
-         * `delete_autoresize_backup` option is set to true). Taking and keeping backups incure costs.
+         * @param filesystemAutoresize If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `delete_autoresize_backup` option is set to true).
+         * 				Taking and keeping backups incure costs.
          * 
          * @return builder
          * 
@@ -419,8 +405,7 @@ public final class StorageState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param systemLabels System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
-         * and can not be modified by the user.
+         * @param systemLabels System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
          * 
          * @return builder
          * 
@@ -431,8 +416,7 @@ public final class StorageState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param systemLabels System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
-         * and can not be modified by the user.
+         * @param systemLabels System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
          * 
          * @return builder
          * 

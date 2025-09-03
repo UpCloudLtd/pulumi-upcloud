@@ -160,16 +160,14 @@ public class GatewayConnection extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.remoteRoutes);
     }
     /**
-     * List of connection&#39;s tunnels names. Note that this field can have outdated information as connections are created by a
-     * separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
+     * List of connection&#39;s tunnels names. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
      * 
      */
     @Export(name="tunnels", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> tunnels;
 
     /**
-     * @return List of connection&#39;s tunnels names. Note that this field can have outdated information as connections are created by a
-     * separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
+     * @return List of connection&#39;s tunnels names. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
      * 
      */
     public Output<List<String>> tunnels() {
