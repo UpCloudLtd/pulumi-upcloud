@@ -79,16 +79,14 @@ public final class GatewayConnectionState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * List of connection&#39;s tunnels names. Note that this field can have outdated information as connections are created by a
-     * separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
+     * List of connection&#39;s tunnels names. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
      * 
      */
     @Import(name="tunnels")
     private @Nullable Output<List<String>> tunnels;
 
     /**
-     * @return List of connection&#39;s tunnels names. Note that this field can have outdated information as connections are created by a
-     * separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
+     * @return List of connection&#39;s tunnels names. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
      * 
      */
     public Optional<Output<List<String>>> tunnels() {
@@ -260,8 +258,7 @@ public final class GatewayConnectionState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param tunnels List of connection&#39;s tunnels names. Note that this field can have outdated information as connections are created by a
-         * separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
+         * @param tunnels List of connection&#39;s tunnels names. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
          * 
          * @return builder
          * 
@@ -272,8 +269,7 @@ public final class GatewayConnectionState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param tunnels List of connection&#39;s tunnels names. Note that this field can have outdated information as connections are created by a
-         * separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
+         * @param tunnels List of connection&#39;s tunnels names. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
          * 
          * @return builder
          * 
@@ -283,8 +279,7 @@ public final class GatewayConnectionState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param tunnels List of connection&#39;s tunnels names. Note that this field can have outdated information as connections are created by a
-         * separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
+         * @param tunnels List of connection&#39;s tunnels names. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
          * 
          * @return builder
          * 

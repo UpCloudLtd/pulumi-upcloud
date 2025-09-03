@@ -77,16 +77,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="upcloud:index/managedObjectStorageCustomDomain:ManagedObjectStorageCustomDomain")
 public class ManagedObjectStorageCustomDomain extends com.pulumi.resources.CustomResource {
     /**
-     * Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g.
-     * example.com.
+     * Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
      * 
      */
     @Export(name="domainName", refs={String.class}, tree="[0]")
     private Output<String> domainName;
 
     /**
-     * @return Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g.
-     * example.com.
+     * @return Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
      * 
      */
     public Output<String> domainName() {

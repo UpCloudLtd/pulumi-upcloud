@@ -121,16 +121,14 @@ public class Router extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.staticRoute);
     }
     /**
-     * A collection of static routes for this router. This set includes both user and service defined static routes. The
-     * objects in this set use the same schema as `static_route` blocks.
+     * A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `static_route` blocks.
      * 
      */
     @Export(name="staticRoutes", refs={List.class,RouterStaticRoute.class}, tree="[0,1]")
     private Output<List<RouterStaticRoute>> staticRoutes;
 
     /**
-     * @return A collection of static routes for this router. This set includes both user and service defined static routes. The
-     * objects in this set use the same schema as `static_route` blocks.
+     * @return A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `static_route` blocks.
      * 
      */
     public Output<List<RouterStaticRoute>> staticRoutes() {

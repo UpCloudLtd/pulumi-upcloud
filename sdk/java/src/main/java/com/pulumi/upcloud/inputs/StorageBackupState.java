@@ -94,16 +94,14 @@ public final class StorageBackupState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
-     * and can not be modified by the user.
+     * System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
      * 
      */
     @Import(name="systemLabels")
     private @Nullable Output<Map<String,String>> systemLabels;
 
     /**
-     * @return System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
-     * and can not be modified by the user.
+     * @return System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
      * 
      */
     public Optional<Output<Map<String,String>>> systemLabels() {
@@ -309,8 +307,7 @@ public final class StorageBackupState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param systemLabels System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
-         * and can not be modified by the user.
+         * @param systemLabels System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
          * 
          * @return builder
          * 
@@ -321,8 +318,7 @@ public final class StorageBackupState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param systemLabels System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore
-         * and can not be modified by the user.
+         * @param systemLabels System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
          * 
          * @return builder
          * 

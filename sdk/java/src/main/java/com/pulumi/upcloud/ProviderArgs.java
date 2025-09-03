@@ -32,16 +32,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The duration (in seconds) that the provider waits for an HTTP request towards UpCloud API to complete. Defaults to 120
-     * seconds
+     * The duration (in seconds) that the provider waits for an HTTP request towards UpCloud API to complete. Defaults to 120 seconds
      * 
      */
     @Import(name="requestTimeoutSec", json=true)
     private @Nullable Output<Integer> requestTimeoutSec;
 
     /**
-     * @return The duration (in seconds) that the provider waits for an HTTP request towards UpCloud API to complete. Defaults to 120
-     * seconds
+     * @return The duration (in seconds) that the provider waits for an HTTP request towards UpCloud API to complete. Defaults to 120 seconds
      * 
      */
     public Optional<Output<Integer>> requestTimeoutSec() {
@@ -94,16 +92,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
-     * the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
+     * Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
      * 
      */
     @Import(name="token")
     private @Nullable Output<String> token;
 
     /**
-     * @return Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
-     * the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
+     * @return Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
      * 
      */
     public Optional<Output<String>> token() {
@@ -177,8 +173,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param requestTimeoutSec The duration (in seconds) that the provider waits for an HTTP request towards UpCloud API to complete. Defaults to 120
-         * seconds
+         * @param requestTimeoutSec The duration (in seconds) that the provider waits for an HTTP request towards UpCloud API to complete. Defaults to 120 seconds
          * 
          * @return builder
          * 
@@ -189,8 +184,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param requestTimeoutSec The duration (in seconds) that the provider waits for an HTTP request towards UpCloud API to complete. Defaults to 120
-         * seconds
+         * @param requestTimeoutSec The duration (in seconds) that the provider waits for an HTTP request towards UpCloud API to complete. Defaults to 120 seconds
          * 
          * @return builder
          * 
@@ -263,8 +257,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param token Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
-         * the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
+         * @param token Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
          * 
          * @return builder
          * 
@@ -275,8 +268,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param token Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using
-         * the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
+         * @param token Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
          * 
          * @return builder
          * 

@@ -98,11 +98,14 @@ import javax.annotation.Nullable;
 public class ServerFirewallRules extends com.pulumi.resources.CustomResource {
     /**
      * A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
-     * Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
-     * destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
-     * attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
-     * specified. These can be the same value if only one IP address or port number is specified. Source and destination port
-     * numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
+     * 
+     *     Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one destination/source-address/port range.
+     *     
+     *     A default rule can be created by providing only `action` and `direction` attributes. Default rule should be defined last.
+     *     
+     *     If used, IP address and port ranges must have both start and end values specified. These can be the same value if only one IP address or port number is specified.
+     *     Source and destination port numbers can only be set if the protocol is TCP or UDP.
+     *     The ICMP type may only be set if the protocol is ICMP.
      * 
      */
     @Export(name="firewallRules", refs={List.class,ServerFirewallRulesFirewallRule.class}, tree="[0,1]")
@@ -110,11 +113,14 @@ public class ServerFirewallRules extends com.pulumi.resources.CustomResource {
 
     /**
      * @return A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
-     * Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one
-     * destination/source-address/port range. A default rule can be created by providing only `action` and `direction`
-     * attributes. Default rule should be defined last. If used, IP address and port ranges must have both start and end values
-     * specified. These can be the same value if only one IP address or port number is specified. Source and destination port
-     * numbers can only be set if the protocol is TCP or UDP. The ICMP type may only be set if the protocol is ICMP.
+     * 
+     *     Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one destination/source-address/port range.
+     *     
+     *     A default rule can be created by providing only `action` and `direction` attributes. Default rule should be defined last.
+     *     
+     *     If used, IP address and port ranges must have both start and end values specified. These can be the same value if only one IP address or port number is specified.
+     *     Source and destination port numbers can only be set if the protocol is TCP or UDP.
+     *     The ICMP type may only be set if the protocol is ICMP.
      * 
      */
     public Output<Optional<List<ServerFirewallRulesFirewallRule>>> firewallRules() {

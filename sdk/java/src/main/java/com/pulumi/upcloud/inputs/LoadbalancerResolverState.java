@@ -78,16 +78,14 @@ public final class LoadbalancerResolverState extends com.pulumi.resources.Resour
     }
 
     /**
-     * List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
-     * optional, if missing then default 53 will be used.
+     * List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is optional, if missing then default 53 will be used.
      * 
      */
     @Import(name="nameservers")
     private @Nullable Output<List<String>> nameservers;
 
     /**
-     * @return List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
-     * optional, if missing then default 53 will be used.
+     * @return List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is optional, if missing then default 53 will be used.
      * 
      */
     public Optional<Output<List<String>>> nameservers() {
@@ -255,8 +253,7 @@ public final class LoadbalancerResolverState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param nameservers List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
-         * optional, if missing then default 53 will be used.
+         * @param nameservers List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is optional, if missing then default 53 will be used.
          * 
          * @return builder
          * 
@@ -267,8 +264,7 @@ public final class LoadbalancerResolverState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param nameservers List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
-         * optional, if missing then default 53 will be used.
+         * @param nameservers List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is optional, if missing then default 53 will be used.
          * 
          * @return builder
          * 
@@ -278,8 +274,7 @@ public final class LoadbalancerResolverState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param nameservers List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is
-         * optional, if missing then default 53 will be used.
+         * @param nameservers List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is optional, if missing then default 53 will be used.
          * 
          * @return builder
          * 

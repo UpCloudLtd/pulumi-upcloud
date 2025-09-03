@@ -81,16 +81,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="upcloud:index/managedDatabaseOpensearch:ManagedDatabaseOpensearch")
 public class ManagedDatabaseOpensearch extends com.pulumi.resources.CustomResource {
     /**
-     * Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute
-     * is enabled.
+     * Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
      * 
      */
     @Export(name="accessControl", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> accessControl;
 
     /**
-     * @return Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute
-     * is enabled.
+     * @return Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
      * 
      */
     public Output<Boolean> accessControl() {
@@ -111,16 +109,14 @@ public class ManagedDatabaseOpensearch extends com.pulumi.resources.CustomResour
         return this.components;
     }
     /**
-     * Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
-     * on the user-specific access control rules.
+     * Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
      * 
      */
     @Export(name="extendedAccessControl", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> extendedAccessControl;
 
     /**
-     * @return Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based
-     * on the user-specific access control rules.
+     * @return Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
      * 
      */
     public Output<Boolean> extendedAccessControl() {
@@ -211,16 +207,14 @@ public class ManagedDatabaseOpensearch extends com.pulumi.resources.CustomResour
         return this.nodeStates;
     }
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-     * database plans &lt;type&gt;`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
      * 
      */
     @Export(name="plan", refs={String.class}, tree="[0]")
     private Output<String> plan;
 
     /**
-     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-     * database plans &lt;type&gt;`.
+     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
      * 
      */
     public Output<String> plan() {

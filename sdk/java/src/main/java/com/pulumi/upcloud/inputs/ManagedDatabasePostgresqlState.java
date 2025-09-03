@@ -128,16 +128,14 @@ public final class ManagedDatabasePostgresqlState extends com.pulumi.resources.R
     }
 
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-     * database plans &lt;type&gt;`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
      * 
      */
     @Import(name="plan")
     private @Nullable Output<String> plan;
 
     /**
-     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-     * database plans &lt;type&gt;`.
+     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
      * 
      */
     public Optional<Output<String>> plan() {
@@ -577,8 +575,7 @@ public final class ManagedDatabasePostgresqlState extends com.pulumi.resources.R
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-         * database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
          * 
          * @return builder
          * 
@@ -589,8 +586,7 @@ public final class ManagedDatabasePostgresqlState extends com.pulumi.resources.R
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl
-         * database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
          * 
          * @return builder
          * 

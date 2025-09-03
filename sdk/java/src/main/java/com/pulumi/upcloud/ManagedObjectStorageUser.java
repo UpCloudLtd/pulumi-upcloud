@@ -106,18 +106,14 @@ public class ManagedObjectStorageUser extends com.pulumi.resources.CustomResourc
         return this.serviceUuid;
     }
     /**
-     * Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See
-     * `upcloud.ManagedObjectStorageUserAccessKey` for managing access keys and `upcloud.ManagedObjectStorageUserPolicy` for
-     * managing policies.
+     * Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See `upcloud.ManagedObjectStorageUserAccessKey` for managing access keys and `upcloud.ManagedObjectStorageUserPolicy` for managing policies.
      * 
      */
     @Export(name="username", refs={String.class}, tree="[0]")
     private Output<String> username;
 
     /**
-     * @return Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See
-     * `upcloud.ManagedObjectStorageUserAccessKey` for managing access keys and `upcloud.ManagedObjectStorageUserPolicy` for
-     * managing policies.
+     * @return Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See `upcloud.ManagedObjectStorageUserAccessKey` for managing access keys and `upcloud.ManagedObjectStorageUserPolicy` for managing policies.
      * 
      */
     public Output<String> username() {

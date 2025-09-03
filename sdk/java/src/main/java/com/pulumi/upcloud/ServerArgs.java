@@ -71,16 +71,14 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
-     * hosts
+     * Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
      * 
      */
     @Import(name="host")
     private @Nullable Output<Integer> host;
 
     /**
-     * @return Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
-     * hosts
+     * @return Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
      * 
      */
     public Optional<Output<Integer>> host() {
@@ -103,16 +101,14 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
-     * hot resizing fails, the apply operation will fail.
+     * If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
      * 
      */
     @Import(name="hotResize")
     private @Nullable Output<Boolean> hotResize;
 
     /**
-     * @return If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
-     * hot resizing fails, the apply operation will fail.
+     * @return If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
      * 
      */
     public Optional<Output<Boolean>> hotResize() {
@@ -165,16 +161,14 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
-     * templates.
+     * Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based templates.
      * 
      */
     @Import(name="metadata")
     private @Nullable Output<Boolean> metadata;
 
     /**
-     * @return Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
-     * templates.
+     * @return Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based templates.
      * 
      */
     public Optional<Output<Boolean>> metadata() {
@@ -182,24 +176,22 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
-     * interfaces are matched to the server&#39;s actual network interfaces by `index` and `ip_address` fields. This is to avoid
-     * public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
-     * diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
-     * explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
-     * middle of the list.
+     * One or more blocks describing the network interfaces of the server.
+     * 
+     *     In addition to list order, the configured network interfaces are matched to the server&#39;s actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
+     *     
+     *     We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
      * 
      */
     @Import(name="networkInterfaces")
     private @Nullable Output<List<ServerNetworkInterfaceArgs>> networkInterfaces;
 
     /**
-     * @return One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
-     * interfaces are matched to the server&#39;s actual network interfaces by `index` and `ip_address` fields. This is to avoid
-     * public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
-     * diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
-     * explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
-     * middle of the list.
+     * @return One or more blocks describing the network interfaces of the server.
+     * 
+     *     In addition to list order, the configured network interfaces are matched to the server&#39;s actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
+     *     
+     *     We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
      * 
      */
     public Optional<Output<List<ServerNetworkInterfaceArgs>>> networkInterfaces() {
@@ -237,18 +229,14 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the
-     * `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only
-     * updated if it has been set to non-zero value.
+     * The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
      * 
      */
     @Import(name="serverGroup")
     private @Nullable Output<String> serverGroup;
 
     /**
-     * @return The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the
-     * `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only
-     * updated if it has been set to non-zero value.
+     * @return The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
      * 
      */
     public Optional<Output<String>> serverGroup() {
@@ -492,8 +480,7 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param host Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
-         * hosts
+         * @param host Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
          * 
          * @return builder
          * 
@@ -504,8 +491,7 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param host Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud
-         * hosts
+         * @param host Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
          * 
          * @return builder
          * 
@@ -536,8 +522,7 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param hotResize If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
-         * hot resizing fails, the apply operation will fail.
+         * @param hotResize If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
          * 
          * @return builder
          * 
@@ -548,8 +533,7 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param hotResize If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If
-         * hot resizing fails, the apply operation will fail.
+         * @param hotResize If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
          * 
          * @return builder
          * 
@@ -622,8 +606,7 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param metadata Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
-         * templates.
+         * @param metadata Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based templates.
          * 
          * @return builder
          * 
@@ -634,8 +617,7 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param metadata Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based
-         * templates.
+         * @param metadata Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based templates.
          * 
          * @return builder
          * 
@@ -645,12 +627,11 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param networkInterfaces One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
-         * interfaces are matched to the server&#39;s actual network interfaces by `index` and `ip_address` fields. This is to avoid
-         * public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
-         * diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
-         * explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
-         * middle of the list.
+         * @param networkInterfaces One or more blocks describing the network interfaces of the server.
+         * 
+         *     In addition to list order, the configured network interfaces are matched to the server&#39;s actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
+         *     
+         *     We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
          * 
          * @return builder
          * 
@@ -661,12 +642,11 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param networkInterfaces One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
-         * interfaces are matched to the server&#39;s actual network interfaces by `index` and `ip_address` fields. This is to avoid
-         * public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
-         * diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
-         * explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
-         * middle of the list.
+         * @param networkInterfaces One or more blocks describing the network interfaces of the server.
+         * 
+         *     In addition to list order, the configured network interfaces are matched to the server&#39;s actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
+         *     
+         *     We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
          * 
          * @return builder
          * 
@@ -676,12 +656,11 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param networkInterfaces One or more blocks describing the network interfaces of the server. In addition to list order, the configured network
-         * interfaces are matched to the server&#39;s actual network interfaces by `index` and `ip_address` fields. This is to avoid
-         * public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate
-         * diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list. We recommend
-         * explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from
-         * middle of the list.
+         * @param networkInterfaces One or more blocks describing the network interfaces of the server.
+         * 
+         *     In addition to list order, the configured network interfaces are matched to the server&#39;s actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
+         *     
+         *     We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
          * 
          * @return builder
          * 
@@ -733,9 +712,7 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serverGroup The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the
-         * `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only
-         * updated if it has been set to non-zero value.
+         * @param serverGroup The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
          * 
          * @return builder
          * 
@@ -746,9 +723,7 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serverGroup The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the
-         * `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only
-         * updated if it has been set to non-zero value.
+         * @param serverGroup The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
          * 
          * @return builder
          * 

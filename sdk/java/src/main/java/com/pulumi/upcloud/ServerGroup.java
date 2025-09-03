@@ -75,28 +75,38 @@ import javax.annotation.Nullable;
 @ResourceType(type="upcloud:index/serverGroup:ServerGroup")
 public class ServerGroup extends com.pulumi.resources.CustomResource {
     /**
-     * Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will result in all servers in the
-     * group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`. * `strict` policy doesn&#39;t allow
-     * servers in the same server group to be on the same host * `yes` refers to best-effort policy and tries to put servers on
-     * different hosts, but this is not guaranteed * `no` refers to having no policy and thus no effect on server host affinity
-     * To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-     * please see UpCloud API documentation on server groups. Plese also note that anti-affinity policies are only applied on
-     * server start. This means that if anti-affinity policies in server group are not met, you need to manually restart the
-     * servers in said group, for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+     * Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
+     * 	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
+     * 
+     *     * `strict` policy doesn&#39;t allow servers in the same server group to be on the same host
+     *     * `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+     *     * `no` refers to having no policy and thus no effect on server host affinity
+     *     
+     *     To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+     *     please see UpCloud API documentation on server groups.
+     *     
+     *     Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+     *     policies in server group are not met, you need to manually restart the servers in said group,
+     *     for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
      * 
      */
     @Export(name="antiAffinityPolicy", refs={String.class}, tree="[0]")
     private Output<String> antiAffinityPolicy;
 
     /**
-     * @return Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will result in all servers in the
-     * group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`. * `strict` policy doesn&#39;t allow
-     * servers in the same server group to be on the same host * `yes` refers to best-effort policy and tries to put servers on
-     * different hosts, but this is not guaranteed * `no` refers to having no policy and thus no effect on server host affinity
-     * To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-     * please see UpCloud API documentation on server groups. Plese also note that anti-affinity policies are only applied on
-     * server start. This means that if anti-affinity policies in server group are not met, you need to manually restart the
-     * servers in said group, for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+     * @return Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
+     * 	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
+     * 
+     *     * `strict` policy doesn&#39;t allow servers in the same server group to be on the same host
+     *     * `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+     *     * `no` refers to having no policy and thus no effect on server host affinity
+     *     
+     *     To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+     *     please see UpCloud API documentation on server groups.
+     *     
+     *     Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+     *     policies in server group are not met, you need to manually restart the servers in said group,
+     *     for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
      * 
      */
     public Output<String> antiAffinityPolicy() {
@@ -117,16 +127,14 @@ public class ServerGroup extends com.pulumi.resources.CustomResource {
         return this.labels;
     }
     /**
-     * UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group`
-     * property of `upcloud.Server`. See also `track_members` property.
+     * UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group` property of `upcloud.Server`. See also `track_members` property.
      * 
      */
     @Export(name="members", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> members;
 
     /**
-     * @return UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group`
-     * property of `upcloud.Server`. See also `track_members` property.
+     * @return UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group` property of `upcloud.Server`. See also `track_members` property.
      * 
      */
     public Output<Optional<List<String>>> members() {
@@ -147,16 +155,14 @@ public class ServerGroup extends com.pulumi.resources.CustomResource {
         return this.title;
     }
     /**
-     * Controls if members of the server group are being tracked in this resource. Set to `false` when using `server_group`
-     * property of `upcloud.Server` to attach servers to the server group to avoid delayed state updates.
+     * Controls if members of the server group are being tracked in this resource. Set to `false` when using `server_group` property of `upcloud.Server` to attach servers to the server group to avoid delayed state updates.
      * 
      */
     @Export(name="trackMembers", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> trackMembers;
 
     /**
-     * @return Controls if members of the server group are being tracked in this resource. Set to `false` when using `server_group`
-     * property of `upcloud.Server` to attach servers to the server group to avoid delayed state updates.
+     * @return Controls if members of the server group are being tracked in this resource. Set to `false` when using `server_group` property of `upcloud.Server` to attach servers to the server group to avoid delayed state updates.
      * 
      */
     public Output<Boolean> trackMembers() {

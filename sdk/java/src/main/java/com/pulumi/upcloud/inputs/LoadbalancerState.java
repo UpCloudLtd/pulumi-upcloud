@@ -103,16 +103,14 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
-     * Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
+     * The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day. Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
      * 
      */
     @Import(name="maintenanceDow")
     private @Nullable Output<String> maintenanceDow;
 
     /**
-     * @return The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
-     * Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
+     * @return The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day. Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
      * 
      */
     public Optional<Output<String>> maintenanceDow() {
@@ -120,20 +118,14 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this
-     * period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime
-     * of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
-     * HH:MM:SSZ, for example `20:01:01Z`.
+     * The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC HH:MM:SSZ, for example `20:01:01Z`.
      * 
      */
     @Import(name="maintenanceTime")
     private @Nullable Output<String> maintenanceTime;
 
     /**
-     * @return The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this
-     * period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime
-     * of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
-     * HH:MM:SSZ, for example `20:01:01Z`.
+     * @return The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC HH:MM:SSZ, for example `20:01:01Z`.
      * 
      */
     public Optional<Output<String>> maintenanceTime() {
@@ -440,8 +432,7 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param maintenanceDow The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
-         * Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
+         * @param maintenanceDow The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day. Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
          * 
          * @return builder
          * 
@@ -452,8 +443,7 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param maintenanceDow The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day.
-         * Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
+         * @param maintenanceDow The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day. Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
          * 
          * @return builder
          * 
@@ -463,10 +453,7 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param maintenanceTime The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this
-         * period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime
-         * of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
-         * HH:MM:SSZ, for example `20:01:01Z`.
+         * @param maintenanceTime The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC HH:MM:SSZ, for example `20:01:01Z`.
          * 
          * @return builder
          * 
@@ -477,10 +464,7 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param maintenanceTime The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this
-         * period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime
-         * of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC
-         * HH:MM:SSZ, for example `20:01:01Z`.
+         * @param maintenanceTime The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC HH:MM:SSZ, for example `20:01:01Z`.
          * 
          * @return builder
          * 

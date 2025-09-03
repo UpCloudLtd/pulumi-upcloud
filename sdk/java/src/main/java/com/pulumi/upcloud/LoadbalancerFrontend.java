@@ -112,20 +112,18 @@ import javax.annotation.Nullable;
 @ResourceType(type="upcloud:index/loadbalancerFrontend:LoadbalancerFrontend")
 public class LoadbalancerFrontend extends com.pulumi.resources.CustomResource {
     /**
-     * The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
-     * rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
-     * resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
-     * resources are created and destroyed in the correct order.
+     * The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
+     * 
+     *     Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the resources are created and destroyed in the correct order.
      * 
      */
     @Export(name="defaultBackendName", refs={String.class}, tree="[0]")
     private Output<String> defaultBackendName;
 
     /**
-     * @return The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend
-     * rules. Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend
-     * resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the
-     * resources are created and destroyed in the correct order.
+     * @return The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
+     * 
+     *     Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the resources are created and destroyed in the correct order.
      * 
      */
     public Output<String> defaultBackendName() {
@@ -174,16 +172,14 @@ public class LoadbalancerFrontend extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
-     * be required when deprecated field `network` is removed from load balancer resource.
+     * Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
      * 
      */
     @Export(name="networks", refs={List.class,LoadbalancerFrontendNetwork.class}, tree="[0,1]")
     private Output</* @Nullable */ List<LoadbalancerFrontendNetwork>> networks;
 
     /**
-     * @return Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will
-     * be required when deprecated field `network` is removed from load balancer resource.
+     * @return Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
      * 
      */
     public Output<Optional<List<LoadbalancerFrontendNetwork>>> networks() {

@@ -135,32 +135,28 @@ public class Gateway extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.configuredStatus);
     }
     /**
-     * Names of connections attached to the gateway. Note that this field can have outdated information as connections are
-     * created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
+     * Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
      * 
      */
     @Export(name="connections", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> connections;
 
     /**
-     * @return Names of connections attached to the gateway. Note that this field can have outdated information as connections are
-     * created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
+     * @return Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
      * 
      */
     public Output<List<String>> connections() {
         return this.connections;
     }
     /**
-     * Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
-     * https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+     * Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
      * 
      */
     @Export(name="features", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> features;
 
     /**
-     * @return Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see
-     * https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+     * @return Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
      * 
      */
     public Output<List<String>> features() {
