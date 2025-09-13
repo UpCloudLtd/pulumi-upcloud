@@ -92,6 +92,12 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<string>> Frontends { get; private set; } = null!;
 
         /// <summary>
+        /// Floating IP addresses connected to the load balancer.
+        /// </summary>
+        [Output("ipAddresses")]
+        public Output<ImmutableArray<Outputs.LoadbalancerIpAddress>> IpAddresses { get; private set; } = null!;
+
+        /// <summary>
         /// User defined key-value pairs to classify the load balancer.
         /// </summary>
         [Output("labels")]
@@ -210,6 +216,18 @@ namespace UpCloud.Pulumi.UpCloud
         [Input("configuredStatus")]
         public Input<string>? ConfiguredStatus { get; set; }
 
+        [Input("ipAddresses")]
+        private InputList<Inputs.LoadbalancerIpAddressArgs>? _ipAddresses;
+
+        /// <summary>
+        /// Floating IP addresses connected to the load balancer.
+        /// </summary>
+        public InputList<Inputs.LoadbalancerIpAddressArgs> IpAddresses
+        {
+            get => _ipAddresses ?? (_ipAddresses = new InputList<Inputs.LoadbalancerIpAddressArgs>());
+            set => _ipAddresses = value;
+        }
+
         [Input("labels")]
         private InputMap<string>? _labels;
 
@@ -312,6 +330,18 @@ namespace UpCloud.Pulumi.UpCloud
         {
             get => _frontends ?? (_frontends = new InputList<string>());
             set => _frontends = value;
+        }
+
+        [Input("ipAddresses")]
+        private InputList<Inputs.LoadbalancerIpAddressGetArgs>? _ipAddresses;
+
+        /// <summary>
+        /// Floating IP addresses connected to the load balancer.
+        /// </summary>
+        public InputList<Inputs.LoadbalancerIpAddressGetArgs> IpAddresses
+        {
+            get => _ipAddresses ?? (_ipAddresses = new InputList<Inputs.LoadbalancerIpAddressGetArgs>());
+            set => _ipAddresses = value;
         }
 
         [Input("labels")]

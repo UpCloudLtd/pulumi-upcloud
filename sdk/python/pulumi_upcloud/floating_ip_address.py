@@ -22,12 +22,14 @@ class FloatingIpAddressArgs:
                  access: Optional[pulumi.Input[_builtins.str]] = None,
                  family: Optional[pulumi.Input[_builtins.str]] = None,
                  mac_address: Optional[pulumi.Input[_builtins.str]] = None,
+                 release_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FloatingIpAddress resource.
         :param pulumi.Input[_builtins.str] access: Network access for the floating IP address. Supported value: `public`.
         :param pulumi.Input[_builtins.str] family: The address family of the floating IP address.
         :param pulumi.Input[_builtins.str] mac_address: MAC address of a server interface to assign address to.
+        :param pulumi.Input[_builtins.str] release_policy: The release policy of the floating IP address.
         :param pulumi.Input[_builtins.str] zone: Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
         """
         if access is not None:
@@ -36,6 +38,8 @@ class FloatingIpAddressArgs:
             pulumi.set(__self__, "family", family)
         if mac_address is not None:
             pulumi.set(__self__, "mac_address", mac_address)
+        if release_policy is not None:
+            pulumi.set(__self__, "release_policy", release_policy)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
@@ -76,6 +80,18 @@ class FloatingIpAddressArgs:
         pulumi.set(self, "mac_address", value)
 
     @_builtins.property
+    @pulumi.getter(name="releasePolicy")
+    def release_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The release policy of the floating IP address.
+        """
+        return pulumi.get(self, "release_policy")
+
+    @release_policy.setter
+    def release_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "release_policy", value)
+
+    @_builtins.property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -95,6 +111,7 @@ class _FloatingIpAddressState:
                  family: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_address: Optional[pulumi.Input[_builtins.str]] = None,
                  mac_address: Optional[pulumi.Input[_builtins.str]] = None,
+                 release_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FloatingIpAddress resources.
@@ -102,6 +119,7 @@ class _FloatingIpAddressState:
         :param pulumi.Input[_builtins.str] family: The address family of the floating IP address.
         :param pulumi.Input[_builtins.str] ip_address: An UpCloud assigned IP Address.
         :param pulumi.Input[_builtins.str] mac_address: MAC address of a server interface to assign address to.
+        :param pulumi.Input[_builtins.str] release_policy: The release policy of the floating IP address.
         :param pulumi.Input[_builtins.str] zone: Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
         """
         if access is not None:
@@ -112,6 +130,8 @@ class _FloatingIpAddressState:
             pulumi.set(__self__, "ip_address", ip_address)
         if mac_address is not None:
             pulumi.set(__self__, "mac_address", mac_address)
+        if release_policy is not None:
+            pulumi.set(__self__, "release_policy", release_policy)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
@@ -164,6 +184,18 @@ class _FloatingIpAddressState:
         pulumi.set(self, "mac_address", value)
 
     @_builtins.property
+    @pulumi.getter(name="releasePolicy")
+    def release_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The release policy of the floating IP address.
+        """
+        return pulumi.get(self, "release_policy")
+
+    @release_policy.setter
+    def release_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "release_policy", value)
+
+    @_builtins.property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -185,6 +217,7 @@ class FloatingIpAddress(pulumi.CustomResource):
                  access: Optional[pulumi.Input[_builtins.str]] = None,
                  family: Optional[pulumi.Input[_builtins.str]] = None,
                  mac_address: Optional[pulumi.Input[_builtins.str]] = None,
+                 release_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  zone: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -224,6 +257,7 @@ class FloatingIpAddress(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] access: Network access for the floating IP address. Supported value: `public`.
         :param pulumi.Input[_builtins.str] family: The address family of the floating IP address.
         :param pulumi.Input[_builtins.str] mac_address: MAC address of a server interface to assign address to.
+        :param pulumi.Input[_builtins.str] release_policy: The release policy of the floating IP address.
         :param pulumi.Input[_builtins.str] zone: Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
         """
         ...
@@ -282,6 +316,7 @@ class FloatingIpAddress(pulumi.CustomResource):
                  access: Optional[pulumi.Input[_builtins.str]] = None,
                  family: Optional[pulumi.Input[_builtins.str]] = None,
                  mac_address: Optional[pulumi.Input[_builtins.str]] = None,
+                 release_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  zone: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -295,6 +330,7 @@ class FloatingIpAddress(pulumi.CustomResource):
             __props__.__dict__["access"] = access
             __props__.__dict__["family"] = family
             __props__.__dict__["mac_address"] = mac_address
+            __props__.__dict__["release_policy"] = release_policy
             __props__.__dict__["zone"] = zone
             __props__.__dict__["ip_address"] = None
         super(FloatingIpAddress, __self__).__init__(
@@ -311,6 +347,7 @@ class FloatingIpAddress(pulumi.CustomResource):
             family: Optional[pulumi.Input[_builtins.str]] = None,
             ip_address: Optional[pulumi.Input[_builtins.str]] = None,
             mac_address: Optional[pulumi.Input[_builtins.str]] = None,
+            release_policy: Optional[pulumi.Input[_builtins.str]] = None,
             zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'FloatingIpAddress':
         """
         Get an existing FloatingIpAddress resource's state with the given name, id, and optional extra
@@ -323,6 +360,7 @@ class FloatingIpAddress(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] family: The address family of the floating IP address.
         :param pulumi.Input[_builtins.str] ip_address: An UpCloud assigned IP Address.
         :param pulumi.Input[_builtins.str] mac_address: MAC address of a server interface to assign address to.
+        :param pulumi.Input[_builtins.str] release_policy: The release policy of the floating IP address.
         :param pulumi.Input[_builtins.str] zone: Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -333,6 +371,7 @@ class FloatingIpAddress(pulumi.CustomResource):
         __props__.__dict__["family"] = family
         __props__.__dict__["ip_address"] = ip_address
         __props__.__dict__["mac_address"] = mac_address
+        __props__.__dict__["release_policy"] = release_policy
         __props__.__dict__["zone"] = zone
         return FloatingIpAddress(resource_name, opts=opts, __props__=__props__)
 
@@ -362,11 +401,19 @@ class FloatingIpAddress(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="macAddress")
-    def mac_address(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def mac_address(self) -> pulumi.Output[_builtins.str]:
         """
         MAC address of a server interface to assign address to.
         """
         return pulumi.get(self, "mac_address")
+
+    @_builtins.property
+    @pulumi.getter(name="releasePolicy")
+    def release_policy(self) -> pulumi.Output[_builtins.str]:
+        """
+        The release policy of the floating IP address.
+        """
+        return pulumi.get(self, "release_policy")
 
     @_builtins.property
     @pulumi.getter

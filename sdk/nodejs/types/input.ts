@@ -207,6 +207,10 @@ export interface GetIpAddressesAddress {
      */
     ptrRecord?: string;
     /**
+     * Release policy for the address
+     */
+    releasePolicy?: string;
+    /**
      * The unique identifier for a server
      */
     server?: string;
@@ -245,6 +249,10 @@ export interface GetIpAddressesAddressArgs {
      * A reverse DNS record entry
      */
     ptrRecord?: pulumi.Input<string>;
+    /**
+     * Release policy for the address
+     */
+    releasePolicy?: pulumi.Input<string>;
     /**
      * The unique identifier for a server
      */
@@ -1533,6 +1541,17 @@ export interface LoadbalancerFrontendRuleMatchersUrlQuery {
      * String value.
      */
     value?: pulumi.Input<string>;
+}
+
+export interface LoadbalancerIpAddress {
+    /**
+     * Floating IP address to attach to the load balancer.
+     */
+    address: pulumi.Input<string>;
+    /**
+     * Name of the network where to attach the IP address.
+     */
+    networkName: pulumi.Input<string>;
 }
 
 export interface LoadbalancerNetwork {

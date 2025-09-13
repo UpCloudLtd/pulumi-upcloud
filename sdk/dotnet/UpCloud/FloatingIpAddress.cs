@@ -88,7 +88,13 @@ namespace UpCloud.Pulumi.UpCloud
         /// MAC address of a server interface to assign address to.
         /// </summary>
         [Output("macAddress")]
-        public Output<string?> MacAddress { get; private set; } = null!;
+        public Output<string> MacAddress { get; private set; } = null!;
+
+        /// <summary>
+        /// The release policy of the floating IP address.
+        /// </summary>
+        [Output("releasePolicy")]
+        public Output<string> ReleasePolicy { get; private set; } = null!;
 
         /// <summary>
         /// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
@@ -162,6 +168,12 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? MacAddress { get; set; }
 
         /// <summary>
+        /// The release policy of the floating IP address.
+        /// </summary>
+        [Input("releasePolicy")]
+        public Input<string>? ReleasePolicy { get; set; }
+
+        /// <summary>
         /// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
         /// </summary>
         [Input("zone")]
@@ -198,6 +210,12 @@ namespace UpCloud.Pulumi.UpCloud
         /// </summary>
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
+
+        /// <summary>
+        /// The release policy of the floating IP address.
+        /// </summary>
+        [Input("releasePolicy")]
+        public Input<string>? ReleasePolicy { get; set; }
 
         /// <summary>
         /// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.

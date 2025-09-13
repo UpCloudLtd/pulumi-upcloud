@@ -120,6 +120,21 @@ public final class GetIpAddressesAddress extends com.pulumi.resources.InvokeArgs
     }
 
     /**
+     * Release policy for the address
+     * 
+     */
+    @Import(name="releasePolicy", required=true)
+    private String releasePolicy;
+
+    /**
+     * @return Release policy for the address
+     * 
+     */
+    public String releasePolicy() {
+        return this.releasePolicy;
+    }
+
+    /**
      * The unique identifier for a server
      * 
      */
@@ -159,6 +174,7 @@ public final class GetIpAddressesAddress extends com.pulumi.resources.InvokeArgs
         this.mac = $.mac;
         this.partOfPlan = $.partOfPlan;
         this.ptrRecord = $.ptrRecord;
+        this.releasePolicy = $.releasePolicy;
         this.server = $.server;
         this.zone = $.zone;
     }
@@ -259,6 +275,17 @@ public final class GetIpAddressesAddress extends com.pulumi.resources.InvokeArgs
         }
 
         /**
+         * @param releasePolicy Release policy for the address
+         * 
+         * @return builder
+         * 
+         */
+        public Builder releasePolicy(String releasePolicy) {
+            $.releasePolicy = releasePolicy;
+            return this;
+        }
+
+        /**
          * @param server The unique identifier for a server
          * 
          * @return builder
@@ -301,6 +328,9 @@ public final class GetIpAddressesAddress extends com.pulumi.resources.InvokeArgs
             }
             if ($.ptrRecord == null) {
                 throw new MissingRequiredPropertyException("GetIpAddressesAddress", "ptrRecord");
+            }
+            if ($.releasePolicy == null) {
+                throw new MissingRequiredPropertyException("GetIpAddressesAddress", "releasePolicy");
             }
             if ($.server == null) {
                 throw new MissingRequiredPropertyException("GetIpAddressesAddress", "server");
