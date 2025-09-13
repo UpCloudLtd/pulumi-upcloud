@@ -97,6 +97,8 @@ __all__ = [
     'LoadbalancerFrontendRuleMatchersUrlParamArgsDict',
     'LoadbalancerFrontendRuleMatchersUrlQueryArgs',
     'LoadbalancerFrontendRuleMatchersUrlQueryArgsDict',
+    'LoadbalancerIpAddressArgs',
+    'LoadbalancerIpAddressArgsDict',
     'LoadbalancerNetworkArgs',
     'LoadbalancerNetworkArgsDict',
     'LoadbalancerNodeArgs',
@@ -3836,6 +3838,56 @@ class LoadbalancerFrontendRuleMatchersUrlQueryArgs:
     @value.setter
     def value(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class LoadbalancerIpAddressArgsDict(TypedDict):
+        address: pulumi.Input[_builtins.str]
+        """
+        Floating IP address to attach to the load balancer.
+        """
+        network_name: pulumi.Input[_builtins.str]
+        """
+        Name of the network where to attach the IP address.
+        """
+elif False:
+    LoadbalancerIpAddressArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class LoadbalancerIpAddressArgs:
+    def __init__(__self__, *,
+                 address: pulumi.Input[_builtins.str],
+                 network_name: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] address: Floating IP address to attach to the load balancer.
+        :param pulumi.Input[_builtins.str] network_name: Name of the network where to attach the IP address.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "network_name", network_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> pulumi.Input[_builtins.str]:
+        """
+        Floating IP address to attach to the load balancer.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "address", value)
+
+    @_builtins.property
+    @pulumi.getter(name="networkName")
+    def network_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Name of the network where to attach the IP address.
+        """
+        return pulumi.get(self, "network_name")
+
+    @network_name.setter
+    def network_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "network_name", value)
 
 
 if not MYPY:
@@ -16217,6 +16269,10 @@ if not MYPY:
         """
         A reverse DNS record entry
         """
+        release_policy: _builtins.str
+        """
+        Release policy for the address
+        """
         server: _builtins.str
         """
         The unique identifier for a server
@@ -16238,6 +16294,7 @@ class GetIpAddressesAddressArgs:
                  mac: _builtins.str,
                  part_of_plan: _builtins.bool,
                  ptr_record: _builtins.str,
+                 release_policy: _builtins.str,
                  server: _builtins.str,
                  zone: _builtins.str):
         """
@@ -16248,6 +16305,7 @@ class GetIpAddressesAddressArgs:
         :param _builtins.str mac: MAC address of server interface to assign address to
         :param _builtins.bool part_of_plan: Is the address a part of a plan
         :param _builtins.str ptr_record: A reverse DNS record entry
+        :param _builtins.str release_policy: Release policy for the address
         :param _builtins.str server: The unique identifier for a server
         :param _builtins.str zone: Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
@@ -16258,6 +16316,7 @@ class GetIpAddressesAddressArgs:
         pulumi.set(__self__, "mac", mac)
         pulumi.set(__self__, "part_of_plan", part_of_plan)
         pulumi.set(__self__, "ptr_record", ptr_record)
+        pulumi.set(__self__, "release_policy", release_policy)
         pulumi.set(__self__, "server", server)
         pulumi.set(__self__, "zone", zone)
 
@@ -16344,6 +16403,18 @@ class GetIpAddressesAddressArgs:
     @ptr_record.setter
     def ptr_record(self, value: _builtins.str):
         pulumi.set(self, "ptr_record", value)
+
+    @_builtins.property
+    @pulumi.getter(name="releasePolicy")
+    def release_policy(self) -> _builtins.str:
+        """
+        Release policy for the address
+        """
+        return pulumi.get(self, "release_policy")
+
+    @release_policy.setter
+    def release_policy(self, value: _builtins.str):
+        pulumi.set(self, "release_policy", value)
 
     @_builtins.property
     @pulumi.getter

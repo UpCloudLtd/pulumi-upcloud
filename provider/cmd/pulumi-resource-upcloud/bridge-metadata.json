@@ -122,6 +122,9 @@
                     "frontends": {
                         "maxItemsOne": false
                     },
+                    "ip_addresses": {
+                        "maxItemsOne": false
+                    },
                     "networks": {
                         "maxItemsOne": false
                     },

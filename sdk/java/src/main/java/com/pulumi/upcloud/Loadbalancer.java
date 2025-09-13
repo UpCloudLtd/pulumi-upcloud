@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.upcloud.LoadbalancerArgs;
 import com.pulumi.upcloud.Utilities;
 import com.pulumi.upcloud.inputs.LoadbalancerState;
+import com.pulumi.upcloud.outputs.LoadbalancerIpAddress;
 import com.pulumi.upcloud.outputs.LoadbalancerNetwork;
 import com.pulumi.upcloud.outputs.LoadbalancerNode;
 import java.lang.String;
@@ -149,6 +150,20 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
      */
     public Output<List<String>> frontends() {
         return this.frontends;
+    }
+    /**
+     * Floating IP addresses connected to the load balancer.
+     * 
+     */
+    @Export(name="ipAddresses", refs={List.class,LoadbalancerIpAddress.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<LoadbalancerIpAddress>> ipAddresses;
+
+    /**
+     * @return Floating IP addresses connected to the load balancer.
+     * 
+     */
+    public Output<Optional<List<LoadbalancerIpAddress>>> ipAddresses() {
+        return Codegen.optional(this.ipAddresses);
     }
     /**
      * User defined key-value pairs to classify the load balancer.

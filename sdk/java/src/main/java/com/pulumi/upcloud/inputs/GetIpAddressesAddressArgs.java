@@ -121,6 +121,21 @@ public final class GetIpAddressesAddressArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * Release policy for the address
+     * 
+     */
+    @Import(name="releasePolicy", required=true)
+    private Output<String> releasePolicy;
+
+    /**
+     * @return Release policy for the address
+     * 
+     */
+    public Output<String> releasePolicy() {
+        return this.releasePolicy;
+    }
+
+    /**
      * The unique identifier for a server
      * 
      */
@@ -160,6 +175,7 @@ public final class GetIpAddressesAddressArgs extends com.pulumi.resources.Resour
         this.mac = $.mac;
         this.partOfPlan = $.partOfPlan;
         this.ptrRecord = $.ptrRecord;
+        this.releasePolicy = $.releasePolicy;
         this.server = $.server;
         this.zone = $.zone;
     }
@@ -330,6 +346,27 @@ public final class GetIpAddressesAddressArgs extends com.pulumi.resources.Resour
         }
 
         /**
+         * @param releasePolicy Release policy for the address
+         * 
+         * @return builder
+         * 
+         */
+        public Builder releasePolicy(Output<String> releasePolicy) {
+            $.releasePolicy = releasePolicy;
+            return this;
+        }
+
+        /**
+         * @param releasePolicy Release policy for the address
+         * 
+         * @return builder
+         * 
+         */
+        public Builder releasePolicy(String releasePolicy) {
+            return releasePolicy(Output.of(releasePolicy));
+        }
+
+        /**
          * @param server The unique identifier for a server
          * 
          * @return builder
@@ -392,6 +429,9 @@ public final class GetIpAddressesAddressArgs extends com.pulumi.resources.Resour
             }
             if ($.ptrRecord == null) {
                 throw new MissingRequiredPropertyException("GetIpAddressesAddressArgs", "ptrRecord");
+            }
+            if ($.releasePolicy == null) {
+                throw new MissingRequiredPropertyException("GetIpAddressesAddressArgs", "releasePolicy");
             }
             if ($.server == null) {
                 throw new MissingRequiredPropertyException("GetIpAddressesAddressArgs", "server");

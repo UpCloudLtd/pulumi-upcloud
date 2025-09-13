@@ -43,6 +43,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string PtrRecord;
         /// <summary>
+        /// Release policy for the address
+        /// </summary>
+        public readonly string ReleasePolicy;
+        /// <summary>
         /// The unique identifier for a server
         /// </summary>
         public readonly string Server;
@@ -67,6 +71,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             string ptrRecord,
 
+            string releasePolicy,
+
             string server,
 
             string zone)
@@ -78,6 +84,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             Mac = mac;
             PartOfPlan = partOfPlan;
             PtrRecord = ptrRecord;
+            ReleasePolicy = releasePolicy;
             Server = server;
             Zone = zone;
         }

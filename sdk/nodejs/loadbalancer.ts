@@ -94,6 +94,10 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly frontends: pulumi.Output<string[]>;
     /**
+     * Floating IP addresses connected to the load balancer.
+     */
+    declare public readonly ipAddresses: pulumi.Output<outputs.LoadbalancerIpAddress[] | undefined>;
+    /**
      * User defined key-value pairs to classify the load balancer.
      */
     declare public readonly labels: pulumi.Output<{[key: string]: string}>;
@@ -157,6 +161,7 @@ export class Loadbalancer extends pulumi.CustomResource {
             resourceInputs["configuredStatus"] = state?.configuredStatus;
             resourceInputs["dnsName"] = state?.dnsName;
             resourceInputs["frontends"] = state?.frontends;
+            resourceInputs["ipAddresses"] = state?.ipAddresses;
             resourceInputs["labels"] = state?.labels;
             resourceInputs["maintenanceDow"] = state?.maintenanceDow;
             resourceInputs["maintenanceTime"] = state?.maintenanceTime;
@@ -177,6 +182,7 @@ export class Loadbalancer extends pulumi.CustomResource {
                 throw new Error("Missing required property 'zone'");
             }
             resourceInputs["configuredStatus"] = args?.configuredStatus;
+            resourceInputs["ipAddresses"] = args?.ipAddresses;
             resourceInputs["labels"] = args?.labels;
             resourceInputs["maintenanceDow"] = args?.maintenanceDow;
             resourceInputs["maintenanceTime"] = args?.maintenanceTime;
@@ -219,6 +225,10 @@ export interface LoadbalancerState {
      * Frontends receive the traffic before dispatching it to the backends.
      */
     frontends?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Floating IP addresses connected to the load balancer.
+     */
+    ipAddresses?: pulumi.Input<pulumi.Input<inputs.LoadbalancerIpAddress>[]>;
     /**
      * User defined key-value pairs to classify the load balancer.
      */
@@ -275,6 +285,10 @@ export interface LoadbalancerArgs {
      * The service configured status indicates the service's current intended status. Managed by the customer.
      */
     configuredStatus?: pulumi.Input<string>;
+    /**
+     * Floating IP addresses connected to the load balancer.
+     */
+    ipAddresses?: pulumi.Input<pulumi.Input<inputs.LoadbalancerIpAddress>[]>;
     /**
      * User defined key-value pairs to classify the load balancer.
      */

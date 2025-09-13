@@ -81,7 +81,9 @@ type FloatingIpAddress struct {
 	// An UpCloud assigned IP Address.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
 	// MAC address of a server interface to assign address to.
-	MacAddress pulumi.StringPtrOutput `pulumi:"macAddress"`
+	MacAddress pulumi.StringOutput `pulumi:"macAddress"`
+	// The release policy of the floating IP address.
+	ReleasePolicy pulumi.StringOutput `pulumi:"releasePolicy"`
 	// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
@@ -124,6 +126,8 @@ type floatingIpAddressState struct {
 	IpAddress *string `pulumi:"ipAddress"`
 	// MAC address of a server interface to assign address to.
 	MacAddress *string `pulumi:"macAddress"`
+	// The release policy of the floating IP address.
+	ReleasePolicy *string `pulumi:"releasePolicy"`
 	// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
 	Zone *string `pulumi:"zone"`
 }
@@ -137,6 +141,8 @@ type FloatingIpAddressState struct {
 	IpAddress pulumi.StringPtrInput
 	// MAC address of a server interface to assign address to.
 	MacAddress pulumi.StringPtrInput
+	// The release policy of the floating IP address.
+	ReleasePolicy pulumi.StringPtrInput
 	// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringPtrInput
 }
@@ -152,6 +158,8 @@ type floatingIpAddressArgs struct {
 	Family *string `pulumi:"family"`
 	// MAC address of a server interface to assign address to.
 	MacAddress *string `pulumi:"macAddress"`
+	// The release policy of the floating IP address.
+	ReleasePolicy *string `pulumi:"releasePolicy"`
 	// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
 	Zone *string `pulumi:"zone"`
 }
@@ -164,6 +172,8 @@ type FloatingIpAddressArgs struct {
 	Family pulumi.StringPtrInput
 	// MAC address of a server interface to assign address to.
 	MacAddress pulumi.StringPtrInput
+	// The release policy of the floating IP address.
+	ReleasePolicy pulumi.StringPtrInput
 	// Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringPtrInput
 }
@@ -271,8 +281,13 @@ func (o FloatingIpAddressOutput) IpAddress() pulumi.StringOutput {
 }
 
 // MAC address of a server interface to assign address to.
-func (o FloatingIpAddressOutput) MacAddress() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FloatingIpAddress) pulumi.StringPtrOutput { return v.MacAddress }).(pulumi.StringPtrOutput)
+func (o FloatingIpAddressOutput) MacAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v *FloatingIpAddress) pulumi.StringOutput { return v.MacAddress }).(pulumi.StringOutput)
+}
+
+// The release policy of the floating IP address.
+func (o FloatingIpAddressOutput) ReleasePolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *FloatingIpAddress) pulumi.StringOutput { return v.ReleasePolicy }).(pulumi.StringOutput)
 }
 
 // Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.

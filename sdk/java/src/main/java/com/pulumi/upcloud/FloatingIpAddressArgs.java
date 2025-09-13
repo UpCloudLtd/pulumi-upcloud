@@ -61,6 +61,21 @@ public final class FloatingIpAddressArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The release policy of the floating IP address.
+     * 
+     */
+    @Import(name="releasePolicy")
+    private @Nullable Output<String> releasePolicy;
+
+    /**
+     * @return The release policy of the floating IP address.
+     * 
+     */
+    public Optional<Output<String>> releasePolicy() {
+        return Optional.ofNullable(this.releasePolicy);
+    }
+
+    /**
      * Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
      * 
      */
@@ -81,6 +96,7 @@ public final class FloatingIpAddressArgs extends com.pulumi.resources.ResourceAr
         this.access = $.access;
         this.family = $.family;
         this.macAddress = $.macAddress;
+        this.releasePolicy = $.releasePolicy;
         this.zone = $.zone;
     }
 
@@ -163,6 +179,27 @@ public final class FloatingIpAddressArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder macAddress(String macAddress) {
             return macAddress(Output.of(macAddress));
+        }
+
+        /**
+         * @param releasePolicy The release policy of the floating IP address.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder releasePolicy(@Nullable Output<String> releasePolicy) {
+            $.releasePolicy = releasePolicy;
+            return this;
+        }
+
+        /**
+         * @param releasePolicy The release policy of the floating IP address.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder releasePolicy(String releasePolicy) {
+            return releasePolicy(Output.of(releasePolicy));
         }
 
         /**

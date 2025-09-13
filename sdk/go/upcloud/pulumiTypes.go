@@ -6101,6 +6101,112 @@ func (o LoadbalancerFrontendRuleMatchersUrlQueryArrayOutput) Index(i pulumi.IntI
 	}).(LoadbalancerFrontendRuleMatchersUrlQueryOutput)
 }
 
+type LoadbalancerIpAddress struct {
+	// Floating IP address to attach to the load balancer.
+	Address string `pulumi:"address"`
+	// Name of the network where to attach the IP address.
+	NetworkName string `pulumi:"networkName"`
+}
+
+// LoadbalancerIpAddressInput is an input type that accepts LoadbalancerIpAddressArgs and LoadbalancerIpAddressOutput values.
+// You can construct a concrete instance of `LoadbalancerIpAddressInput` via:
+//
+//	LoadbalancerIpAddressArgs{...}
+type LoadbalancerIpAddressInput interface {
+	pulumi.Input
+
+	ToLoadbalancerIpAddressOutput() LoadbalancerIpAddressOutput
+	ToLoadbalancerIpAddressOutputWithContext(context.Context) LoadbalancerIpAddressOutput
+}
+
+type LoadbalancerIpAddressArgs struct {
+	// Floating IP address to attach to the load balancer.
+	Address pulumi.StringInput `pulumi:"address"`
+	// Name of the network where to attach the IP address.
+	NetworkName pulumi.StringInput `pulumi:"networkName"`
+}
+
+func (LoadbalancerIpAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerIpAddress)(nil)).Elem()
+}
+
+func (i LoadbalancerIpAddressArgs) ToLoadbalancerIpAddressOutput() LoadbalancerIpAddressOutput {
+	return i.ToLoadbalancerIpAddressOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerIpAddressArgs) ToLoadbalancerIpAddressOutputWithContext(ctx context.Context) LoadbalancerIpAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerIpAddressOutput)
+}
+
+// LoadbalancerIpAddressArrayInput is an input type that accepts LoadbalancerIpAddressArray and LoadbalancerIpAddressArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerIpAddressArrayInput` via:
+//
+//	LoadbalancerIpAddressArray{ LoadbalancerIpAddressArgs{...} }
+type LoadbalancerIpAddressArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerIpAddressArrayOutput() LoadbalancerIpAddressArrayOutput
+	ToLoadbalancerIpAddressArrayOutputWithContext(context.Context) LoadbalancerIpAddressArrayOutput
+}
+
+type LoadbalancerIpAddressArray []LoadbalancerIpAddressInput
+
+func (LoadbalancerIpAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerIpAddress)(nil)).Elem()
+}
+
+func (i LoadbalancerIpAddressArray) ToLoadbalancerIpAddressArrayOutput() LoadbalancerIpAddressArrayOutput {
+	return i.ToLoadbalancerIpAddressArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerIpAddressArray) ToLoadbalancerIpAddressArrayOutputWithContext(ctx context.Context) LoadbalancerIpAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerIpAddressArrayOutput)
+}
+
+type LoadbalancerIpAddressOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerIpAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerIpAddress)(nil)).Elem()
+}
+
+func (o LoadbalancerIpAddressOutput) ToLoadbalancerIpAddressOutput() LoadbalancerIpAddressOutput {
+	return o
+}
+
+func (o LoadbalancerIpAddressOutput) ToLoadbalancerIpAddressOutputWithContext(ctx context.Context) LoadbalancerIpAddressOutput {
+	return o
+}
+
+// Floating IP address to attach to the load balancer.
+func (o LoadbalancerIpAddressOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v LoadbalancerIpAddress) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// Name of the network where to attach the IP address.
+func (o LoadbalancerIpAddressOutput) NetworkName() pulumi.StringOutput {
+	return o.ApplyT(func(v LoadbalancerIpAddress) string { return v.NetworkName }).(pulumi.StringOutput)
+}
+
+type LoadbalancerIpAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerIpAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerIpAddress)(nil)).Elem()
+}
+
+func (o LoadbalancerIpAddressArrayOutput) ToLoadbalancerIpAddressArrayOutput() LoadbalancerIpAddressArrayOutput {
+	return o
+}
+
+func (o LoadbalancerIpAddressArrayOutput) ToLoadbalancerIpAddressArrayOutputWithContext(ctx context.Context) LoadbalancerIpAddressArrayOutput {
+	return o
+}
+
+func (o LoadbalancerIpAddressArrayOutput) Index(i pulumi.IntInput) LoadbalancerIpAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadbalancerIpAddress {
+		return vs[0].([]LoadbalancerIpAddress)[vs[1].(int)]
+	}).(LoadbalancerIpAddressOutput)
+}
+
 type LoadbalancerNetwork struct {
 	// DNS name of the load balancer network
 	DnsName *string `pulumi:"dnsName"`
@@ -24929,6 +25035,8 @@ type GetIpAddressesAddress struct {
 	PartOfPlan bool `pulumi:"partOfPlan"`
 	// A reverse DNS record entry
 	PtrRecord string `pulumi:"ptrRecord"`
+	// Release policy for the address
+	ReleasePolicy string `pulumi:"releasePolicy"`
 	// The unique identifier for a server
 	Server string `pulumi:"server"`
 	// Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
@@ -24961,6 +25069,8 @@ type GetIpAddressesAddressArgs struct {
 	PartOfPlan pulumi.BoolInput `pulumi:"partOfPlan"`
 	// A reverse DNS record entry
 	PtrRecord pulumi.StringInput `pulumi:"ptrRecord"`
+	// Release policy for the address
+	ReleasePolicy pulumi.StringInput `pulumi:"releasePolicy"`
 	// The unique identifier for a server
 	Server pulumi.StringInput `pulumi:"server"`
 	// Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
@@ -25051,6 +25161,11 @@ func (o GetIpAddressesAddressOutput) PartOfPlan() pulumi.BoolOutput {
 // A reverse DNS record entry
 func (o GetIpAddressesAddressOutput) PtrRecord() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpAddressesAddress) string { return v.PtrRecord }).(pulumi.StringOutput)
+}
+
+// Release policy for the address
+func (o GetIpAddressesAddressOutput) ReleasePolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpAddressesAddress) string { return v.ReleasePolicy }).(pulumi.StringOutput)
 }
 
 // The unique identifier for a server
@@ -27064,6 +27179,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersUrlParamArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersUrlParamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersUrlQueryInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersUrlQueryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleMatchersUrlQueryArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleMatchersUrlQueryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerIpAddressInput)(nil)).Elem(), LoadbalancerIpAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerIpAddressArrayInput)(nil)).Elem(), LoadbalancerIpAddressArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerNetworkInput)(nil)).Elem(), LoadbalancerNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerNetworkArrayInput)(nil)).Elem(), LoadbalancerNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerNodeInput)(nil)).Elem(), LoadbalancerNodeArgs{})
@@ -27339,6 +27456,8 @@ func init() {
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersUrlParamArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersUrlQueryOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleMatchersUrlQueryArrayOutput{})
+	pulumi.RegisterOutputType(LoadbalancerIpAddressOutput{})
+	pulumi.RegisterOutputType(LoadbalancerIpAddressArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerNetworkOutput{})
 	pulumi.RegisterOutputType(LoadbalancerNetworkArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerNodeOutput{})

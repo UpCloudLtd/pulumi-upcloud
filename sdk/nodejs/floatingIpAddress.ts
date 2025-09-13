@@ -80,7 +80,11 @@ export class FloatingIpAddress extends pulumi.CustomResource {
     /**
      * MAC address of a server interface to assign address to.
      */
-    declare public readonly macAddress: pulumi.Output<string | undefined>;
+    declare public readonly macAddress: pulumi.Output<string>;
+    /**
+     * The release policy of the floating IP address.
+     */
+    declare public readonly releasePolicy: pulumi.Output<string>;
     /**
      * Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
      */
@@ -103,12 +107,14 @@ export class FloatingIpAddress extends pulumi.CustomResource {
             resourceInputs["family"] = state?.family;
             resourceInputs["ipAddress"] = state?.ipAddress;
             resourceInputs["macAddress"] = state?.macAddress;
+            resourceInputs["releasePolicy"] = state?.releasePolicy;
             resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as FloatingIpAddressArgs | undefined;
             resourceInputs["access"] = args?.access;
             resourceInputs["family"] = args?.family;
             resourceInputs["macAddress"] = args?.macAddress;
+            resourceInputs["releasePolicy"] = args?.releasePolicy;
             resourceInputs["zone"] = args?.zone;
             resourceInputs["ipAddress"] = undefined /*out*/;
         }
@@ -138,6 +144,10 @@ export interface FloatingIpAddressState {
      */
     macAddress?: pulumi.Input<string>;
     /**
+     * The release policy of the floating IP address.
+     */
+    releasePolicy?: pulumi.Input<string>;
+    /**
      * Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
      */
     zone?: pulumi.Input<string>;
@@ -159,6 +169,10 @@ export interface FloatingIpAddressArgs {
      * MAC address of a server interface to assign address to.
      */
     macAddress?: pulumi.Input<string>;
+    /**
+     * The release policy of the floating IP address.
+     */
+    releasePolicy?: pulumi.Input<string>;
     /**
      * Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
      */

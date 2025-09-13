@@ -56,6 +56,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public string PtrRecord { get; set; } = null!;
 
         /// <summary>
+        /// Release policy for the address
+        /// </summary>
+        [Input("releasePolicy", required: true)]
+        public string ReleasePolicy { get; set; } = null!;
+
+        /// <summary>
         /// The unique identifier for a server
         /// </summary>
         [Input("server", required: true)]

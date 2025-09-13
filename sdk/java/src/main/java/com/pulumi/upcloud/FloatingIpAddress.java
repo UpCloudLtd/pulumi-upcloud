@@ -11,7 +11,6 @@ import com.pulumi.upcloud.FloatingIpAddressArgs;
 import com.pulumi.upcloud.Utilities;
 import com.pulumi.upcloud.inputs.FloatingIpAddressState;
 import java.lang.String;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -131,14 +130,28 @@ public class FloatingIpAddress extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="macAddress", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> macAddress;
+    private Output<String> macAddress;
 
     /**
      * @return MAC address of a server interface to assign address to.
      * 
      */
-    public Output<Optional<String>> macAddress() {
-        return Codegen.optional(this.macAddress);
+    public Output<String> macAddress() {
+        return this.macAddress;
+    }
+    /**
+     * The release policy of the floating IP address.
+     * 
+     */
+    @Export(name="releasePolicy", refs={String.class}, tree="[0]")
+    private Output<String> releasePolicy;
+
+    /**
+     * @return The release policy of the floating IP address.
+     * 
+     */
+    public Output<String> releasePolicy() {
+        return this.releasePolicy;
     }
     /**
      * Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.

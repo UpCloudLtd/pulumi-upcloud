@@ -24,6 +24,7 @@ class LoadbalancerArgs:
                  plan: pulumi.Input[_builtins.str],
                  zone: pulumi.Input[_builtins.str],
                  configured_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_dow: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -35,6 +36,7 @@ class LoadbalancerArgs:
         :param pulumi.Input[_builtins.str] plan: Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
         :param pulumi.Input[_builtins.str] zone: Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]] ip_addresses: Floating IP addresses connected to the load balancer.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the load balancer.
         :param pulumi.Input[_builtins.str] maintenance_dow: The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day. Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
         :param pulumi.Input[_builtins.str] maintenance_time: The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC HH:MM:SSZ, for example `20:01:01Z`.
@@ -46,6 +48,8 @@ class LoadbalancerArgs:
         pulumi.set(__self__, "zone", zone)
         if configured_status is not None:
             pulumi.set(__self__, "configured_status", configured_status)
+        if ip_addresses is not None:
+            pulumi.set(__self__, "ip_addresses", ip_addresses)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if maintenance_dow is not None:
@@ -97,6 +101,18 @@ class LoadbalancerArgs:
     @configured_status.setter
     def configured_status(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "configured_status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddresses")
+    def ip_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]]:
+        """
+        Floating IP addresses connected to the load balancer.
+        """
+        return pulumi.get(self, "ip_addresses")
+
+    @ip_addresses.setter
+    def ip_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]]):
+        pulumi.set(self, "ip_addresses", value)
 
     @_builtins.property
     @pulumi.getter
@@ -179,6 +195,7 @@ class _LoadbalancerState:
                  configured_status: Optional[pulumi.Input[_builtins.str]] = None,
                  dns_name: Optional[pulumi.Input[_builtins.str]] = None,
                  frontends: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_dow: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -196,6 +213,7 @@ class _LoadbalancerState:
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
         :param pulumi.Input[_builtins.str] dns_name: DNS name of the load balancer
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] frontends: Frontends receive the traffic before dispatching it to the backends.
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]] ip_addresses: Floating IP addresses connected to the load balancer.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the load balancer.
         :param pulumi.Input[_builtins.str] maintenance_dow: The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day. Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
         :param pulumi.Input[_builtins.str] maintenance_time: The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC HH:MM:SSZ, for example `20:01:01Z`.
@@ -219,6 +237,8 @@ class _LoadbalancerState:
             pulumi.set(__self__, "dns_name", dns_name)
         if frontends is not None:
             pulumi.set(__self__, "frontends", frontends)
+        if ip_addresses is not None:
+            pulumi.set(__self__, "ip_addresses", ip_addresses)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if maintenance_dow is not None:
@@ -293,6 +313,18 @@ class _LoadbalancerState:
     @frontends.setter
     def frontends(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "frontends", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddresses")
+    def ip_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]]:
+        """
+        Floating IP addresses connected to the load balancer.
+        """
+        return pulumi.get(self, "ip_addresses")
+
+    @ip_addresses.setter
+    def ip_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]]):
+        pulumi.set(self, "ip_addresses", value)
 
     @_builtins.property
     @pulumi.getter
@@ -435,6 +467,7 @@ class Loadbalancer(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  configured_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict']]]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_dow: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -488,6 +521,7 @@ class Loadbalancer(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict']]]] ip_addresses: Floating IP addresses connected to the load balancer.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the load balancer.
         :param pulumi.Input[_builtins.str] maintenance_dow: The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day. Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
         :param pulumi.Input[_builtins.str] maintenance_time: The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC HH:MM:SSZ, for example `20:01:01Z`.
@@ -560,6 +594,7 @@ class Loadbalancer(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  configured_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict']]]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_dow: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -578,6 +613,7 @@ class Loadbalancer(pulumi.CustomResource):
             __props__ = LoadbalancerArgs.__new__(LoadbalancerArgs)
 
             __props__.__dict__["configured_status"] = configured_status
+            __props__.__dict__["ip_addresses"] = ip_addresses
             __props__.__dict__["labels"] = labels
             __props__.__dict__["maintenance_dow"] = maintenance_dow
             __props__.__dict__["maintenance_time"] = maintenance_time
@@ -610,6 +646,7 @@ class Loadbalancer(pulumi.CustomResource):
             configured_status: Optional[pulumi.Input[_builtins.str]] = None,
             dns_name: Optional[pulumi.Input[_builtins.str]] = None,
             frontends: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict']]]]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             maintenance_dow: Optional[pulumi.Input[_builtins.str]] = None,
             maintenance_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -632,6 +669,7 @@ class Loadbalancer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
         :param pulumi.Input[_builtins.str] dns_name: DNS name of the load balancer
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] frontends: Frontends receive the traffic before dispatching it to the backends.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict']]]] ip_addresses: Floating IP addresses connected to the load balancer.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the load balancer.
         :param pulumi.Input[_builtins.str] maintenance_dow: The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day. Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
         :param pulumi.Input[_builtins.str] maintenance_time: The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC HH:MM:SSZ, for example `20:01:01Z`.
@@ -652,6 +690,7 @@ class Loadbalancer(pulumi.CustomResource):
         __props__.__dict__["configured_status"] = configured_status
         __props__.__dict__["dns_name"] = dns_name
         __props__.__dict__["frontends"] = frontends
+        __props__.__dict__["ip_addresses"] = ip_addresses
         __props__.__dict__["labels"] = labels
         __props__.__dict__["maintenance_dow"] = maintenance_dow
         __props__.__dict__["maintenance_time"] = maintenance_time
@@ -697,6 +736,14 @@ class Loadbalancer(pulumi.CustomResource):
         Frontends receive the traffic before dispatching it to the backends.
         """
         return pulumi.get(self, "frontends")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddresses")
+    def ip_addresses(self) -> pulumi.Output[Optional[Sequence['outputs.LoadbalancerIpAddress']]]:
+        """
+        Floating IP addresses connected to the load balancer.
+        """
+        return pulumi.get(self, "ip_addresses")
 
     @_builtins.property
     @pulumi.getter

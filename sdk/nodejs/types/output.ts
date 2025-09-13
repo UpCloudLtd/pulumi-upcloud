@@ -172,6 +172,10 @@ export interface GetIpAddressesAddress {
      */
     ptrRecord: string;
     /**
+     * Release policy for the address
+     */
+    releasePolicy: string;
+    /**
      * The unique identifier for a server
      */
     server: string;
@@ -1268,6 +1272,17 @@ export interface LoadbalancerFrontendRuleMatchersUrlQuery {
      * String value.
      */
     value?: string;
+}
+
+export interface LoadbalancerIpAddress {
+    /**
+     * Floating IP address to attach to the load balancer.
+     */
+    address: string;
+    /**
+     * Name of the network where to attach the IP address.
+     */
+    networkName: string;
 }
 
 export interface LoadbalancerNetwork {

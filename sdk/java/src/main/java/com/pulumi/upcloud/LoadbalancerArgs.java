@@ -6,6 +6,7 @@ package com.pulumi.upcloud;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.upcloud.inputs.LoadbalancerIpAddressArgs;
 import com.pulumi.upcloud.inputs.LoadbalancerNetworkArgs;
 import java.lang.String;
 import java.util.List;
@@ -32,6 +33,21 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> configuredStatus() {
         return Optional.ofNullable(this.configuredStatus);
+    }
+
+    /**
+     * Floating IP addresses connected to the load balancer.
+     * 
+     */
+    @Import(name="ipAddresses")
+    private @Nullable Output<List<LoadbalancerIpAddressArgs>> ipAddresses;
+
+    /**
+     * @return Floating IP addresses connected to the load balancer.
+     * 
+     */
+    public Optional<Output<List<LoadbalancerIpAddressArgs>>> ipAddresses() {
+        return Optional.ofNullable(this.ipAddresses);
     }
 
     /**
@@ -166,6 +182,7 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
 
     private LoadbalancerArgs(LoadbalancerArgs $) {
         this.configuredStatus = $.configuredStatus;
+        this.ipAddresses = $.ipAddresses;
         this.labels = $.labels;
         this.maintenanceDow = $.maintenanceDow;
         this.maintenanceTime = $.maintenanceTime;
@@ -213,6 +230,37 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder configuredStatus(String configuredStatus) {
             return configuredStatus(Output.of(configuredStatus));
+        }
+
+        /**
+         * @param ipAddresses Floating IP addresses connected to the load balancer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipAddresses(@Nullable Output<List<LoadbalancerIpAddressArgs>> ipAddresses) {
+            $.ipAddresses = ipAddresses;
+            return this;
+        }
+
+        /**
+         * @param ipAddresses Floating IP addresses connected to the load balancer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipAddresses(List<LoadbalancerIpAddressArgs> ipAddresses) {
+            return ipAddresses(Output.of(ipAddresses));
+        }
+
+        /**
+         * @param ipAddresses Floating IP addresses connected to the load balancer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipAddresses(LoadbalancerIpAddressArgs... ipAddresses) {
+            return ipAddresses(List.of(ipAddresses));
         }
 
         /**

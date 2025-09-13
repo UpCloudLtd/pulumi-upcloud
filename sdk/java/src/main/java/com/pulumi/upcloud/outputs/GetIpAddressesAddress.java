@@ -47,6 +47,11 @@ public final class GetIpAddressesAddress {
      */
     private String ptrRecord;
     /**
+     * @return Release policy for the address
+     * 
+     */
+    private String releasePolicy;
+    /**
      * @return The unique identifier for a server
      * 
      */
@@ -108,6 +113,13 @@ public final class GetIpAddressesAddress {
         return this.ptrRecord;
     }
     /**
+     * @return Release policy for the address
+     * 
+     */
+    public String releasePolicy() {
+        return this.releasePolicy;
+    }
+    /**
      * @return The unique identifier for a server
      * 
      */
@@ -138,6 +150,7 @@ public final class GetIpAddressesAddress {
         private String mac;
         private Boolean partOfPlan;
         private String ptrRecord;
+        private String releasePolicy;
         private String server;
         private String zone;
         public Builder() {}
@@ -150,6 +163,7 @@ public final class GetIpAddressesAddress {
     	      this.mac = defaults.mac;
     	      this.partOfPlan = defaults.partOfPlan;
     	      this.ptrRecord = defaults.ptrRecord;
+    	      this.releasePolicy = defaults.releasePolicy;
     	      this.server = defaults.server;
     	      this.zone = defaults.zone;
         }
@@ -211,6 +225,14 @@ public final class GetIpAddressesAddress {
             return this;
         }
         @CustomType.Setter
+        public Builder releasePolicy(String releasePolicy) {
+            if (releasePolicy == null) {
+              throw new MissingRequiredPropertyException("GetIpAddressesAddress", "releasePolicy");
+            }
+            this.releasePolicy = releasePolicy;
+            return this;
+        }
+        @CustomType.Setter
         public Builder server(String server) {
             if (server == null) {
               throw new MissingRequiredPropertyException("GetIpAddressesAddress", "server");
@@ -235,6 +257,7 @@ public final class GetIpAddressesAddress {
             _resultValue.mac = mac;
             _resultValue.partOfPlan = partOfPlan;
             _resultValue.ptrRecord = ptrRecord;
+            _resultValue.releasePolicy = releasePolicy;
             _resultValue.server = server;
             _resultValue.zone = zone;
             return _resultValue;
