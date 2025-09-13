@@ -1389,6 +1389,23 @@
                 }
             }
         },
+        "upcloud:index/LoadbalancerIpAddress:LoadbalancerIpAddress": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "Floating IP address to attach to the load balancer.\n"
+                },
+                "networkName": {
+                    "type": "string",
+                    "description": "Name of the network where to attach the IP address.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "address",
+                "networkName"
+            ]
+        },
         "upcloud:index/LoadbalancerNetwork:LoadbalancerNetwork": {
             "properties": {
                 "dnsName": {
@@ -5134,6 +5151,10 @@
                     "type": "string",
                     "description": "A reverse DNS record entry\n"
                 },
+                "releasePolicy": {
+                    "type": "string",
+                    "description": "Release policy for the address\n"
+                },
                 "server": {
                     "type": "string",
                     "description": "The unique identifier for a server\n"
@@ -5152,6 +5173,7 @@
                 "mac",
                 "partOfPlan",
                 "ptrRecord",
+                "releasePolicy",
                 "server",
                 "zone"
             ],
@@ -5918,6 +5940,10 @@
                     "type": "string",
                     "description": "MAC address of a server interface to assign address to."
                 },
+                "releasePolicy": {
+                    "type": "string",
+                    "description": "The release policy of the floating IP address."
+                },
                 "zone": {
                     "type": "string",
                     "description": "Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`."
@@ -5927,6 +5953,8 @@
                 "access",
                 "family",
                 "ipAddress",
+                "macAddress",
+                "releasePolicy",
                 "zone"
             ],
             "inputProperties": {
@@ -5941,6 +5969,10 @@
                 "macAddress": {
                     "type": "string",
                     "description": "MAC address of a server interface to assign address to."
+                },
+                "releasePolicy": {
+                    "type": "string",
+                    "description": "The release policy of the floating IP address."
                 },
                 "zone": {
                     "type": "string",
@@ -5965,6 +5997,10 @@
                     "macAddress": {
                         "type": "string",
                         "description": "MAC address of a server interface to assign address to."
+                    },
+                    "releasePolicy": {
+                        "type": "string",
+                        "description": "The release policy of the floating IP address."
                     },
                     "zone": {
                         "type": "string",
@@ -6870,6 +6906,13 @@
                     },
                     "description": "Frontends receive the traffic before dispatching it to the backends."
                 },
+                "ipAddresses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/upcloud:index/LoadbalancerIpAddress:LoadbalancerIpAddress"
+                    },
+                    "description": "Floating IP addresses connected to the load balancer."
+                },
                 "labels": {
                     "type": "object",
                     "additionalProperties": {
@@ -6949,6 +6992,13 @@
                     "type": "string",
                     "description": "The service configured status indicates the service's current intended status. Managed by the customer."
                 },
+                "ipAddresses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/upcloud:index/LoadbalancerIpAddress:LoadbalancerIpAddress"
+                    },
+                    "description": "Floating IP addresses connected to the load balancer."
+                },
                 "labels": {
                     "type": "object",
                     "additionalProperties": {
@@ -7018,6 +7068,13 @@
                             "type": "string"
                         },
                         "description": "Frontends receive the traffic before dispatching it to the backends."
+                    },
+                    "ipAddresses": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/upcloud:index/LoadbalancerIpAddress:LoadbalancerIpAddress"
+                        },
+                        "description": "Floating IP addresses connected to the load balancer."
                     },
                     "labels": {
                         "type": "object",
