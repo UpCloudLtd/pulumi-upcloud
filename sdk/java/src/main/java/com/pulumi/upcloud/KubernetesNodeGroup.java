@@ -284,14 +284,14 @@ public class KubernetesNodeGroup extends com.pulumi.resources.CustomResource {
         return this.sshKeys;
     }
     /**
-     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable.
+     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
      * 
      */
     @Export(name="storageEncryption", refs={String.class}, tree="[0]")
     private Output<String> storageEncryption;
 
     /**
-     * @return The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable.
+     * @return The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
      * 
      */
     public Output<String> storageEncryption() {

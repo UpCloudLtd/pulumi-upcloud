@@ -15,15 +15,15 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
     public sealed class ManagedDatabaseOpensearchPropertiesIndexTemplate
     {
         /// <summary>
-        /// index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+        /// (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
         /// </summary>
         public readonly int? MappingNestedObjectsLimit;
         /// <summary>
-        /// The number of replicas each primary shard has.
+        /// The number of replicas each primary shard has. Deprecated, use an index template instead.
         /// </summary>
         public readonly int? NumberOfReplicas;
         /// <summary>
-        /// The number of primary shards that an index should have.
+        /// The number of primary shards that an index should have. Deprecated, use an index template instead.
         /// </summary>
         public readonly int? NumberOfShards;
 

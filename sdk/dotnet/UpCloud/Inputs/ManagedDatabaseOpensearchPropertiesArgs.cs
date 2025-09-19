@@ -73,6 +73,30 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         [Input("customDomain")]
         public Input<string>? CustomDomain { get; set; }
 
+        [Input("customKeystores")]
+        private InputList<string>? _customKeystores;
+
+        /// <summary>
+        /// OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+        /// </summary>
+        public InputList<string> CustomKeystores
+        {
+            get => _customKeystores ?? (_customKeystores = new InputList<string>());
+            set => _customKeystores = value;
+        }
+
+        [Input("customRepos")]
+        private InputList<string>? _customRepos;
+
+        /// <summary>
+        /// OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+        /// </summary>
+        public InputList<string> CustomRepos
+        {
+            get => _customRepos ?? (_customRepos = new InputList<string>());
+            set => _customRepos = value;
+        }
+
         /// <summary>
         /// Watermark settings.
         /// </summary>
@@ -80,7 +104,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<Inputs.ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs>? DiskWatermarks { get; set; }
 
         /// <summary>
-        /// Elasticsearch major version.
+        /// Elasticsearch version.
         /// </summary>
         [Input("elasticsearchVersion")]
         public Input<string>? ElasticsearchVersion { get; set; }
@@ -456,7 +480,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? ThreadPoolWriteSize { get; set; }
 
         /// <summary>
-        /// OpenSearch major version.
+        /// OpenSearch version.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

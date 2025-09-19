@@ -12,38 +12,38 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ManagedDatabaseOpensearchPropertiesIndexTemplate {
     /**
-     * @return index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+     * @return (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
      * 
      */
     private @Nullable Integer mappingNestedObjectsLimit;
     /**
-     * @return The number of replicas each primary shard has.
+     * @return The number of replicas each primary shard has. Deprecated, use an index template instead.
      * 
      */
     private @Nullable Integer numberOfReplicas;
     /**
-     * @return The number of primary shards that an index should have.
+     * @return The number of primary shards that an index should have. Deprecated, use an index template instead.
      * 
      */
     private @Nullable Integer numberOfShards;
 
     private ManagedDatabaseOpensearchPropertiesIndexTemplate() {}
     /**
-     * @return index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+     * @return (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
      * 
      */
     public Optional<Integer> mappingNestedObjectsLimit() {
         return Optional.ofNullable(this.mappingNestedObjectsLimit);
     }
     /**
-     * @return The number of replicas each primary shard has.
+     * @return The number of replicas each primary shard has. Deprecated, use an index template instead.
      * 
      */
     public Optional<Integer> numberOfReplicas() {
         return Optional.ofNullable(this.numberOfReplicas);
     }
     /**
-     * @return The number of primary shards that an index should have.
+     * @return The number of primary shards that an index should have. Deprecated, use an index template instead.
      * 
      */
     public Optional<Integer> numberOfShards() {

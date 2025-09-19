@@ -35,6 +35,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly ImmutableArray<string> DhcpRoutes;
         /// <summary>
+        /// DHCP routes auto-population configuration.
+        /// </summary>
+        public readonly Outputs.NetworkIpNetworkDhcpRoutesConfiguration? DhcpRoutesConfiguration;
+        /// <summary>
         /// IP address family
         /// </summary>
         public readonly string Family;
@@ -55,6 +59,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             ImmutableArray<string> dhcpRoutes,
 
+            Outputs.NetworkIpNetworkDhcpRoutesConfiguration? dhcpRoutesConfiguration,
+
             string family,
 
             string? gateway)
@@ -64,6 +70,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             DhcpDefaultRoute = dhcpDefaultRoute;
             DhcpDns = dhcpDns;
             DhcpRoutes = dhcpRoutes;
+            DhcpRoutesConfiguration = dhcpRoutesConfiguration;
             Family = family;
             Gateway = gateway;
         }

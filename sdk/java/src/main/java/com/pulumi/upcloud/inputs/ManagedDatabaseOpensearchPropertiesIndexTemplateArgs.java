@@ -16,14 +16,14 @@ public final class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs extends 
     public static final ManagedDatabaseOpensearchPropertiesIndexTemplateArgs Empty = new ManagedDatabaseOpensearchPropertiesIndexTemplateArgs();
 
     /**
-     * index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+     * (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
      * 
      */
     @Import(name="mappingNestedObjectsLimit")
     private @Nullable Output<Integer> mappingNestedObjectsLimit;
 
     /**
-     * @return index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+     * @return (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
      * 
      */
     public Optional<Output<Integer>> mappingNestedObjectsLimit() {
@@ -31,14 +31,14 @@ public final class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs extends 
     }
 
     /**
-     * The number of replicas each primary shard has.
+     * The number of replicas each primary shard has. Deprecated, use an index template instead.
      * 
      */
     @Import(name="numberOfReplicas")
     private @Nullable Output<Integer> numberOfReplicas;
 
     /**
-     * @return The number of replicas each primary shard has.
+     * @return The number of replicas each primary shard has. Deprecated, use an index template instead.
      * 
      */
     public Optional<Output<Integer>> numberOfReplicas() {
@@ -46,14 +46,14 @@ public final class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs extends 
     }
 
     /**
-     * The number of primary shards that an index should have.
+     * The number of primary shards that an index should have. Deprecated, use an index template instead.
      * 
      */
     @Import(name="numberOfShards")
     private @Nullable Output<Integer> numberOfShards;
 
     /**
-     * @return The number of primary shards that an index should have.
+     * @return The number of primary shards that an index should have. Deprecated, use an index template instead.
      * 
      */
     public Optional<Output<Integer>> numberOfShards() {
@@ -87,7 +87,7 @@ public final class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs extends 
         }
 
         /**
-         * @param mappingNestedObjectsLimit index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+         * @param mappingNestedObjectsLimit (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
          * 
          * @return builder
          * 
@@ -98,7 +98,7 @@ public final class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs extends 
         }
 
         /**
-         * @param mappingNestedObjectsLimit index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+         * @param mappingNestedObjectsLimit (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
          * 
          * @return builder
          * 
@@ -108,7 +108,7 @@ public final class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs extends 
         }
 
         /**
-         * @param numberOfReplicas The number of replicas each primary shard has.
+         * @param numberOfReplicas The number of replicas each primary shard has. Deprecated, use an index template instead.
          * 
          * @return builder
          * 
@@ -119,7 +119,7 @@ public final class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs extends 
         }
 
         /**
-         * @param numberOfReplicas The number of replicas each primary shard has.
+         * @param numberOfReplicas The number of replicas each primary shard has. Deprecated, use an index template instead.
          * 
          * @return builder
          * 
@@ -129,7 +129,7 @@ public final class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs extends 
         }
 
         /**
-         * @param numberOfShards The number of primary shards that an index should have.
+         * @param numberOfShards The number of primary shards that an index should have. Deprecated, use an index template instead.
          * 
          * @return builder
          * 
@@ -140,7 +140,7 @@ public final class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs extends 
         }
 
         /**
-         * @param numberOfShards The number of primary shards that an index should have.
+         * @param numberOfShards The number of primary shards that an index should have. Deprecated, use an index template instead.
          * 
          * @return builder
          * 

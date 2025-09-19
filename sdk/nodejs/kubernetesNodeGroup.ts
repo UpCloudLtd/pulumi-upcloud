@@ -148,7 +148,7 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
      */
     declare public readonly sshKeys: pulumi.Output<string[]>;
     /**
-     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
      */
     declare public readonly storageEncryption: pulumi.Output<string>;
     /**
@@ -269,7 +269,7 @@ export interface KubernetesNodeGroupState {
      */
     sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
      */
     storageEncryption?: pulumi.Input<string>;
     /**
@@ -333,7 +333,7 @@ export interface KubernetesNodeGroupArgs {
      */
     sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
      */
     storageEncryption?: pulumi.Input<string>;
     /**

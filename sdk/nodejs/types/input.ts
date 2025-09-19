@@ -1997,11 +1997,19 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     customDomain?: pulumi.Input<string>;
     /**
+     * OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+     */
+    customKeystores?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+     */
+    customRepos?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Watermark settings.
      */
     diskWatermarks?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks>;
     /**
-     * Elasticsearch major version.
+     * Elasticsearch version.
      */
     elasticsearchVersion?: pulumi.Input<string>;
     /**
@@ -2231,7 +2239,7 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     threadPoolWriteSize?: pulumi.Input<number>;
     /**
-     * OpenSearch major version.
+     * OpenSearch version.
      */
     version?: pulumi.Input<string>;
 }
@@ -2357,15 +2365,15 @@ export interface ManagedDatabaseOpensearchPropertiesIndexRollup {
 
 export interface ManagedDatabaseOpensearchPropertiesIndexTemplate {
     /**
-     * index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+     * (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
      */
     mappingNestedObjectsLimit?: pulumi.Input<number>;
     /**
-     * The number of replicas each primary shard has.
+     * The number of replicas each primary shard has. Deprecated, use an index template instead.
      */
     numberOfReplicas?: pulumi.Input<number>;
     /**
-     * The number of primary shards that an index should have.
+     * The number of primary shards that an index should have. Deprecated, use an index template instead.
      */
     numberOfShards?: pulumi.Input<number>;
 }
@@ -2923,7 +2931,7 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     logTempFiles?: pulumi.Input<number>;
     /**
-     * PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+     * Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
      */
     maxConnections?: pulumi.Input<number>;
     /**
@@ -3141,55 +3149,61 @@ export interface ManagedDatabasePostgresqlPropertiesPgaudit {
      */
     featureEnabled?: pulumi.Input<boolean>;
     /**
-     * Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+     * Log Catalog. Specifies that session logging should be enabled in the case where all relations
+     * in a statement are in pg_catalog.
      */
     logCatalog?: pulumi.Input<boolean>;
     /**
-     * Specifies whether log messages will be visible to a client process such as psql.
+     * Log Client. Specifies whether log messages will be visible to a client process such as psql.
      */
     logClient?: pulumi.Input<boolean>;
     /**
-     * Specifies the log level that will be used for log entries.
+     * Log level. Specifies the log level that will be used for log entries.
      */
     logLevel?: pulumi.Input<string>;
     /**
-     * Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+     * Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+     * A (default) value of -1 disable the truncation.
      */
     logMaxStringLength?: pulumi.Input<number>;
     /**
-     * This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+     * Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+     * executed as part of another ExecutorRun.
      */
     logNestedStatements?: pulumi.Input<boolean>;
     /**
-     * Specifies that audit logging should include the parameters that were passed with the statement.
+     * Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
      */
     logParameter?: pulumi.Input<boolean>;
     /**
-     * Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
+     * Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+     * but replaced with <long param suppressed>.
      */
     logParameterMaxSize?: pulumi.Input<number>;
     /**
-     * Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+     * Log Relation. Specifies whether session audit logging should create a separate log entry
+     * for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
      */
     logRelation?: pulumi.Input<boolean>;
     /**
-     * Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+     * Log Rows.
      */
     logRows?: pulumi.Input<boolean>;
     /**
-     * Specifies whether logging will include the statement text and parameters (if enabled).
+     * Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
      */
     logStatement?: pulumi.Input<boolean>;
     /**
-     * Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+     * Log Statement Once. Specifies whether logging will include the statement text and parameters with
+     * the first log entry for a statement/substatement combination or with every entry.
      */
     logStatementOnce?: pulumi.Input<boolean>;
     /**
-     * Specifies which classes of statements will be logged by session audit logging.
+     * Log. Specifies which classes of statements will be logged by session audit logging.
      */
     logs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Specifies the master role to use for object audit logging.
+     * Role. Specifies the master role to use for object audit logging.
      */
     role?: pulumi.Input<string>;
 }
@@ -3239,7 +3253,7 @@ export interface ManagedDatabasePostgresqlPropertiesPgbouncer {
 
 export interface ManagedDatabasePostgresqlPropertiesPglookout {
     /**
-     * Number of seconds of master unavailability before triggering database failover to standby.
+     * Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
      */
     maxFailoverReplicationTimeLag?: pulumi.Input<number>;
 }
@@ -3728,6 +3742,10 @@ export interface NetworkIpNetwork {
      */
     dhcpRoutes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * DHCP routes auto-population configuration.
+     */
+    dhcpRoutesConfiguration?: pulumi.Input<inputs.NetworkIpNetworkDhcpRoutesConfiguration>;
+    /**
      * IP address family
      */
     family: pulumi.Input<string>;
@@ -3735,6 +3753,32 @@ export interface NetworkIpNetwork {
      * Gateway address given by DHCP
      */
     gateway?: pulumi.Input<string>;
+}
+
+export interface NetworkIpNetworkDhcpRoutesConfiguration {
+    /**
+     * Automatically populate effective routes.
+     */
+    effectiveRoutesAutoPopulation?: pulumi.Input<inputs.NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation>;
+}
+
+export interface NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation {
+    /**
+     * Enable or disable route auto-population.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * Exclude routes coming from specific sources (router-connected-networks, static-route).
+     */
+    excludeBySources?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * CIDR destinations to include when auto-populating routes.
+     */
+    filterByDestinations?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Include only routes of given types (service, user).
+     */
+    filterByRouteTypes?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface NetworkPeeringNetwork {

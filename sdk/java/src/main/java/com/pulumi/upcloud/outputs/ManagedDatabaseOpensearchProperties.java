@@ -76,12 +76,22 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     private @Nullable String customDomain;
     /**
+     * @return OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+     * 
+     */
+    private @Nullable List<String> customKeystores;
+    /**
+     * @return OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+     * 
+     */
+    private @Nullable List<String> customRepos;
+    /**
      * @return Watermark settings.
      * 
      */
     private @Nullable ManagedDatabaseOpensearchPropertiesDiskWatermarks diskWatermarks;
     /**
-     * @return Elasticsearch major version.
+     * @return Elasticsearch version.
      * 
      */
     private @Nullable String elasticsearchVersion;
@@ -368,7 +378,7 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     private @Nullable Integer threadPoolWriteSize;
     /**
-     * @return OpenSearch major version.
+     * @return OpenSearch version.
      * 
      */
     private @Nullable String version;
@@ -444,6 +454,20 @@ public final class ManagedDatabaseOpensearchProperties {
         return Optional.ofNullable(this.customDomain);
     }
     /**
+     * @return OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+     * 
+     */
+    public List<String> customKeystores() {
+        return this.customKeystores == null ? List.of() : this.customKeystores;
+    }
+    /**
+     * @return OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+     * 
+     */
+    public List<String> customRepos() {
+        return this.customRepos == null ? List.of() : this.customRepos;
+    }
+    /**
      * @return Watermark settings.
      * 
      */
@@ -451,7 +475,7 @@ public final class ManagedDatabaseOpensearchProperties {
         return Optional.ofNullable(this.diskWatermarks);
     }
     /**
-     * @return Elasticsearch major version.
+     * @return Elasticsearch version.
      * 
      */
     public Optional<String> elasticsearchVersion() {
@@ -856,7 +880,7 @@ public final class ManagedDatabaseOpensearchProperties {
         return Optional.ofNullable(this.threadPoolWriteSize);
     }
     /**
-     * @return OpenSearch major version.
+     * @return OpenSearch version.
      * 
      */
     public Optional<String> version() {
@@ -883,6 +907,8 @@ public final class ManagedDatabaseOpensearchProperties {
         private @Nullable Integer clusterRoutingAllocationNodeConcurrentRecoveries;
         private @Nullable ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog clusterSearchRequestSlowlog;
         private @Nullable String customDomain;
+        private @Nullable List<String> customKeystores;
+        private @Nullable List<String> customRepos;
         private @Nullable ManagedDatabaseOpensearchPropertiesDiskWatermarks diskWatermarks;
         private @Nullable String elasticsearchVersion;
         private @Nullable String emailSenderName;
@@ -958,6 +984,8 @@ public final class ManagedDatabaseOpensearchProperties {
     	      this.clusterRoutingAllocationNodeConcurrentRecoveries = defaults.clusterRoutingAllocationNodeConcurrentRecoveries;
     	      this.clusterSearchRequestSlowlog = defaults.clusterSearchRequestSlowlog;
     	      this.customDomain = defaults.customDomain;
+    	      this.customKeystores = defaults.customKeystores;
+    	      this.customRepos = defaults.customRepos;
     	      this.diskWatermarks = defaults.diskWatermarks;
     	      this.elasticsearchVersion = defaults.elasticsearchVersion;
     	      this.emailSenderName = defaults.emailSenderName;
@@ -1086,6 +1114,24 @@ public final class ManagedDatabaseOpensearchProperties {
 
             this.customDomain = customDomain;
             return this;
+        }
+        @CustomType.Setter
+        public Builder customKeystores(@Nullable List<String> customKeystores) {
+
+            this.customKeystores = customKeystores;
+            return this;
+        }
+        public Builder customKeystores(String... customKeystores) {
+            return customKeystores(List.of(customKeystores));
+        }
+        @CustomType.Setter
+        public Builder customRepos(@Nullable List<String> customRepos) {
+
+            this.customRepos = customRepos;
+            return this;
+        }
+        public Builder customRepos(String... customRepos) {
+            return customRepos(List.of(customRepos));
         }
         @CustomType.Setter
         public Builder diskWatermarks(@Nullable ManagedDatabaseOpensearchPropertiesDiskWatermarks diskWatermarks) {
@@ -1475,6 +1521,8 @@ public final class ManagedDatabaseOpensearchProperties {
             _resultValue.clusterRoutingAllocationNodeConcurrentRecoveries = clusterRoutingAllocationNodeConcurrentRecoveries;
             _resultValue.clusterSearchRequestSlowlog = clusterSearchRequestSlowlog;
             _resultValue.customDomain = customDomain;
+            _resultValue.customKeystores = customKeystores;
+            _resultValue.customRepos = customRepos;
             _resultValue.diskWatermarks = diskWatermarks;
             _resultValue.elasticsearchVersion = elasticsearchVersion;
             _resultValue.emailSenderName = emailSenderName;

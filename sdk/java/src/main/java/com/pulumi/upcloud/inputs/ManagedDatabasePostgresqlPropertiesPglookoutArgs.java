@@ -16,14 +16,14 @@ public final class ManagedDatabasePostgresqlPropertiesPglookoutArgs extends com.
     public static final ManagedDatabasePostgresqlPropertiesPglookoutArgs Empty = new ManagedDatabasePostgresqlPropertiesPglookoutArgs();
 
     /**
-     * Number of seconds of master unavailability before triggering database failover to standby.
+     * Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
      * 
      */
     @Import(name="maxFailoverReplicationTimeLag")
     private @Nullable Output<Integer> maxFailoverReplicationTimeLag;
 
     /**
-     * @return Number of seconds of master unavailability before triggering database failover to standby.
+     * @return Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
      * 
      */
     public Optional<Output<Integer>> maxFailoverReplicationTimeLag() {
@@ -55,7 +55,7 @@ public final class ManagedDatabasePostgresqlPropertiesPglookoutArgs extends com.
         }
 
         /**
-         * @param maxFailoverReplicationTimeLag Number of seconds of master unavailability before triggering database failover to standby.
+         * @param maxFailoverReplicationTimeLag Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
          * 
          * @return builder
          * 
@@ -66,7 +66,7 @@ public final class ManagedDatabasePostgresqlPropertiesPglookoutArgs extends com.
         }
 
         /**
-         * @param maxFailoverReplicationTimeLag Number of seconds of master unavailability before triggering database failover to standby.
+         * @param maxFailoverReplicationTimeLag Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
          * 
          * @return builder
          * 

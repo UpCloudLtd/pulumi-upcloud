@@ -176,7 +176,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<string>> SshKeys { get; private set; } = null!;
 
         /// <summary>
-        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
         /// </summary>
         [Output("storageEncryption")]
         public Output<string> StorageEncryption { get; private set; } = null!;
@@ -327,7 +327,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
         /// </summary>
         [Input("storageEncryption")]
         public Input<string>? StorageEncryption { get; set; }
@@ -445,7 +445,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
         /// </summary>
         [Input("storageEncryption")]
         public Input<string>? StorageEncryption { get; set; }

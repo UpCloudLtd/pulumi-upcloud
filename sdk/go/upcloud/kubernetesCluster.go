@@ -126,7 +126,7 @@ type KubernetesCluster struct {
 	PrivateNodeGroups pulumi.BoolOutput `pulumi:"privateNodeGroups"`
 	// Operational state of the cluster.
 	State pulumi.StringOutput `pulumi:"state"`
-	// Set default storage encryption strategy for all nodes in the cluster.
+	// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
 	StorageEncryption pulumi.StringPtrOutput `pulumi:"storageEncryption"`
 	// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
 	UpgradeStrategyType pulumi.StringPtrOutput `pulumi:"upgradeStrategyType"`
@@ -195,7 +195,7 @@ type kubernetesClusterState struct {
 	PrivateNodeGroups *bool `pulumi:"privateNodeGroups"`
 	// Operational state of the cluster.
 	State *string `pulumi:"state"`
-	// Set default storage encryption strategy for all nodes in the cluster.
+	// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
 	StorageEncryption *string `pulumi:"storageEncryption"`
 	// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
 	UpgradeStrategyType *string `pulumi:"upgradeStrategyType"`
@@ -226,7 +226,7 @@ type KubernetesClusterState struct {
 	PrivateNodeGroups pulumi.BoolPtrInput
 	// Operational state of the cluster.
 	State pulumi.StringPtrInput
-	// Set default storage encryption strategy for all nodes in the cluster.
+	// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
 	StorageEncryption pulumi.StringPtrInput
 	// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
 	UpgradeStrategyType pulumi.StringPtrInput
@@ -255,7 +255,7 @@ type kubernetesClusterArgs struct {
 	Plan *string `pulumi:"plan"`
 	// Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
 	PrivateNodeGroups *bool `pulumi:"privateNodeGroups"`
-	// Set default storage encryption strategy for all nodes in the cluster.
+	// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
 	StorageEncryption *string `pulumi:"storageEncryption"`
 	// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
 	UpgradeStrategyType *string `pulumi:"upgradeStrategyType"`
@@ -281,7 +281,7 @@ type KubernetesClusterArgs struct {
 	Plan pulumi.StringPtrInput
 	// Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
 	PrivateNodeGroups pulumi.BoolPtrInput
-	// Set default storage encryption strategy for all nodes in the cluster.
+	// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
 	StorageEncryption pulumi.StringPtrInput
 	// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
 	UpgradeStrategyType pulumi.StringPtrInput
@@ -425,7 +425,7 @@ func (o KubernetesClusterOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
-// Set default storage encryption strategy for all nodes in the cluster.
+// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
 func (o KubernetesClusterOutput) StorageEncryption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringPtrOutput { return v.StorageEncryption }).(pulumi.StringPtrOutput)
 }

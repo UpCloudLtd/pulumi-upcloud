@@ -50,7 +50,7 @@ class KubernetesNodeGroupArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the node_group.
         :param pulumi.Input[_builtins.str] name: The name of the node group. Needs to be unique within a cluster.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
-        :param pulumi.Input[_builtins.str] storage_encryption: The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+        :param pulumi.Input[_builtins.str] storage_encryption: The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]] taints: Taints for the nodes in this group.
         :param pulumi.Input[_builtins.bool] utility_network_access: If set to false, nodes in this group will not have access to utility network.
         """
@@ -218,7 +218,7 @@ class KubernetesNodeGroupArgs:
     @pulumi.getter(name="storageEncryption")
     def storage_encryption(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+        The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
         """
         return pulumi.get(self, "storage_encryption")
 
@@ -283,7 +283,7 @@ class _KubernetesNodeGroupState:
         :param pulumi.Input[_builtins.int] node_count: Amount of nodes to provision in the node group.
         :param pulumi.Input[_builtins.str] plan: The server plan used for the node group. You can list available plans with `upctl server plans`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
-        :param pulumi.Input[_builtins.str] storage_encryption: The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+        :param pulumi.Input[_builtins.str] storage_encryption: The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]] taints: Taints for the nodes in this group.
         :param pulumi.Input[_builtins.bool] utility_network_access: If set to false, nodes in this group will not have access to utility network.
         """
@@ -454,7 +454,7 @@ class _KubernetesNodeGroupState:
     @pulumi.getter(name="storageEncryption")
     def storage_encryption(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+        The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
         """
         return pulumi.get(self, "storage_encryption")
 
@@ -585,7 +585,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] node_count: Amount of nodes to provision in the node group.
         :param pulumi.Input[_builtins.str] plan: The server plan used for the node group. You can list available plans with `upctl server plans`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
-        :param pulumi.Input[_builtins.str] storage_encryption: The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+        :param pulumi.Input[_builtins.str] storage_encryption: The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict']]]] taints: Taints for the nodes in this group.
         :param pulumi.Input[_builtins.bool] utility_network_access: If set to false, nodes in this group will not have access to utility network.
         """
@@ -759,7 +759,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] node_count: Amount of nodes to provision in the node group.
         :param pulumi.Input[_builtins.str] plan: The server plan used for the node group. You can list available plans with `upctl server plans`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
-        :param pulumi.Input[_builtins.str] storage_encryption: The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+        :param pulumi.Input[_builtins.str] storage_encryption: The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict']]]] taints: Taints for the nodes in this group.
         :param pulumi.Input[_builtins.bool] utility_network_access: If set to false, nodes in this group will not have access to utility network.
         """
@@ -877,7 +877,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
     @pulumi.getter(name="storageEncryption")
     def storage_encryption(self) -> pulumi.Output[_builtins.str]:
         """
-        The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+        The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
         """
         return pulumi.get(self, "storage_encryption")
 

@@ -233,6 +233,10 @@ __all__ = [
     'ManagedObjectStorageNetworkArgsDict',
     'NetworkIpNetworkArgs',
     'NetworkIpNetworkArgsDict',
+    'NetworkIpNetworkDhcpRoutesConfigurationArgs',
+    'NetworkIpNetworkDhcpRoutesConfigurationArgsDict',
+    'NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs',
+    'NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgsDict',
     'NetworkPeeringNetworkArgs',
     'NetworkPeeringNetworkArgsDict',
     'NetworkPeeringPeerNetworkArgs',
@@ -5895,13 +5899,21 @@ if not MYPY:
         """
         Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
         """
+        custom_keystores: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+        """
+        custom_repos: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+        """
         disk_watermarks: NotRequired[pulumi.Input['ManagedDatabaseOpensearchPropertiesDiskWatermarksArgsDict']]
         """
         Watermark settings.
         """
         elasticsearch_version: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Elasticsearch major version.
+        Elasticsearch version.
         """
         email_sender_name: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -6131,7 +6143,7 @@ if not MYPY:
         """
         version: NotRequired[pulumi.Input[_builtins.str]]
         """
-        OpenSearch major version.
+        OpenSearch version.
         """
 elif False:
     ManagedDatabaseOpensearchPropertiesArgsDict: TypeAlias = Mapping[str, Any]
@@ -6150,6 +6162,8 @@ class ManagedDatabaseOpensearchPropertiesArgs:
                  cluster_routing_allocation_node_concurrent_recoveries: Optional[pulumi.Input[_builtins.int]] = None,
                  cluster_search_request_slowlog: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogArgs']] = None,
                  custom_domain: Optional[pulumi.Input[_builtins.str]] = None,
+                 custom_keystores: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 custom_repos: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  disk_watermarks: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs']] = None,
                  elasticsearch_version: Optional[pulumi.Input[_builtins.str]] = None,
                  email_sender_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -6221,8 +6235,10 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         :param pulumi.Input[_builtins.bool] cluster_routing_allocation_balance_prefer_primary: When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
         :param pulumi.Input[_builtins.int] cluster_routing_allocation_node_concurrent_recoveries: Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
         :param pulumi.Input[_builtins.str] custom_domain: Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] custom_keystores: OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] custom_repos: OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
         :param pulumi.Input['ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs'] disk_watermarks: Watermark settings.
-        :param pulumi.Input[_builtins.str] elasticsearch_version: Elasticsearch major version.
+        :param pulumi.Input[_builtins.str] elasticsearch_version: Elasticsearch version.
         :param pulumi.Input[_builtins.str] email_sender_name: Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
         :param pulumi.Input[_builtins.str] email_sender_password: Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
         :param pulumi.Input[_builtins.str] email_sender_username: Sender username for Opensearch alerts.
@@ -6279,7 +6295,7 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         :param pulumi.Input[_builtins.int] thread_pool_search_throttled_size: search_throttled thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
         :param pulumi.Input[_builtins.int] thread_pool_write_queue_size: write thread pool queue size. Size for the thread pool queue. See documentation for exact details.
         :param pulumi.Input[_builtins.int] thread_pool_write_size: write thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
-        :param pulumi.Input[_builtins.str] version: OpenSearch major version.
+        :param pulumi.Input[_builtins.str] version: OpenSearch version.
         """
         if action_auto_create_index_enabled is not None:
             pulumi.set(__self__, "action_auto_create_index_enabled", action_auto_create_index_enabled)
@@ -6303,6 +6319,10 @@ class ManagedDatabaseOpensearchPropertiesArgs:
             pulumi.set(__self__, "cluster_search_request_slowlog", cluster_search_request_slowlog)
         if custom_domain is not None:
             pulumi.set(__self__, "custom_domain", custom_domain)
+        if custom_keystores is not None:
+            pulumi.set(__self__, "custom_keystores", custom_keystores)
+        if custom_repos is not None:
+            pulumi.set(__self__, "custom_repos", custom_repos)
         if disk_watermarks is not None:
             pulumi.set(__self__, "disk_watermarks", disk_watermarks)
         if elasticsearch_version is not None:
@@ -6553,6 +6573,30 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         pulumi.set(self, "custom_domain", value)
 
     @_builtins.property
+    @pulumi.getter(name="customKeystores")
+    def custom_keystores(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+        """
+        return pulumi.get(self, "custom_keystores")
+
+    @custom_keystores.setter
+    def custom_keystores(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "custom_keystores", value)
+
+    @_builtins.property
+    @pulumi.getter(name="customRepos")
+    def custom_repos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+        """
+        return pulumi.get(self, "custom_repos")
+
+    @custom_repos.setter
+    def custom_repos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "custom_repos", value)
+
+    @_builtins.property
     @pulumi.getter(name="diskWatermarks")
     def disk_watermarks(self) -> Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs']]:
         """
@@ -6568,7 +6612,7 @@ class ManagedDatabaseOpensearchPropertiesArgs:
     @pulumi.getter(name="elasticsearchVersion")
     def elasticsearch_version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Elasticsearch major version.
+        Elasticsearch version.
         """
         return pulumi.get(self, "elasticsearch_version")
 
@@ -7270,7 +7314,7 @@ class ManagedDatabaseOpensearchPropertiesArgs:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        OpenSearch major version.
+        OpenSearch version.
         """
         return pulumi.get(self, "version")
 
@@ -7871,15 +7915,15 @@ if not MYPY:
     class ManagedDatabaseOpensearchPropertiesIndexTemplateArgsDict(TypedDict):
         mapping_nested_objects_limit: NotRequired[pulumi.Input[_builtins.int]]
         """
-        index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+        (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
         """
         number_of_replicas: NotRequired[pulumi.Input[_builtins.int]]
         """
-        The number of replicas each primary shard has.
+        The number of replicas each primary shard has. Deprecated, use an index template instead.
         """
         number_of_shards: NotRequired[pulumi.Input[_builtins.int]]
         """
-        The number of primary shards that an index should have.
+        The number of primary shards that an index should have. Deprecated, use an index template instead.
         """
 elif False:
     ManagedDatabaseOpensearchPropertiesIndexTemplateArgsDict: TypeAlias = Mapping[str, Any]
@@ -7891,9 +7935,9 @@ class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs:
                  number_of_replicas: Optional[pulumi.Input[_builtins.int]] = None,
                  number_of_shards: Optional[pulumi.Input[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.int] mapping_nested_objects_limit: index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
-        :param pulumi.Input[_builtins.int] number_of_replicas: The number of replicas each primary shard has.
-        :param pulumi.Input[_builtins.int] number_of_shards: The number of primary shards that an index should have.
+        :param pulumi.Input[_builtins.int] mapping_nested_objects_limit: (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
+        :param pulumi.Input[_builtins.int] number_of_replicas: The number of replicas each primary shard has. Deprecated, use an index template instead.
+        :param pulumi.Input[_builtins.int] number_of_shards: The number of primary shards that an index should have. Deprecated, use an index template instead.
         """
         if mapping_nested_objects_limit is not None:
             pulumi.set(__self__, "mapping_nested_objects_limit", mapping_nested_objects_limit)
@@ -7906,7 +7950,7 @@ class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs:
     @pulumi.getter(name="mappingNestedObjectsLimit")
     def mapping_nested_objects_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+        (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
         """
         return pulumi.get(self, "mapping_nested_objects_limit")
 
@@ -7918,7 +7962,7 @@ class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs:
     @pulumi.getter(name="numberOfReplicas")
     def number_of_replicas(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The number of replicas each primary shard has.
+        The number of replicas each primary shard has. Deprecated, use an index template instead.
         """
         return pulumi.get(self, "number_of_replicas")
 
@@ -7930,7 +7974,7 @@ class ManagedDatabaseOpensearchPropertiesIndexTemplateArgs:
     @pulumi.getter(name="numberOfShards")
     def number_of_shards(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The number of primary shards that an index should have.
+        The number of primary shards that an index should have. Deprecated, use an index template instead.
         """
         return pulumi.get(self, "number_of_shards")
 
@@ -10161,7 +10205,7 @@ if not MYPY:
         """
         max_connections: NotRequired[pulumi.Input[_builtins.int]]
         """
-        PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+        Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
         """
         max_files_per_process: NotRequired[pulumi.Input[_builtins.int]]
         """
@@ -10437,7 +10481,7 @@ class ManagedDatabasePostgresqlPropertiesArgs:
         :param pulumi.Input[_builtins.str] log_line_prefix: Choose from one of the available log formats.
         :param pulumi.Input[_builtins.int] log_min_duration_statement: Log statements that take more than this number of milliseconds to run, -1 disables.
         :param pulumi.Input[_builtins.int] log_temp_files: Log statements for each temporary file created larger than this number of kilobytes, -1 disables.
-        :param pulumi.Input[_builtins.int] max_connections: PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+        :param pulumi.Input[_builtins.int] max_connections: Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
         :param pulumi.Input[_builtins.int] max_files_per_process: PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
         :param pulumi.Input[_builtins.int] max_locks_per_transaction: PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
         :param pulumi.Input[_builtins.int] max_logical_replication_workers: PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
@@ -10964,7 +11008,7 @@ class ManagedDatabasePostgresqlPropertiesArgs:
     @pulumi.getter(name="maxConnections")
     def max_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+        Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "max_connections")
 
@@ -11677,55 +11721,61 @@ if not MYPY:
         """
         log_catalog: NotRequired[pulumi.Input[_builtins.bool]]
         """
-        Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+        Log Catalog. Specifies that session logging should be enabled in the case where all relations
+        in a statement are in pg_catalog.
         """
         log_client: NotRequired[pulumi.Input[_builtins.bool]]
         """
-        Specifies whether log messages will be visible to a client process such as psql.
+        Log Client. Specifies whether log messages will be visible to a client process such as psql.
         """
         log_level: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Specifies the log level that will be used for log entries.
+        Log level. Specifies the log level that will be used for log entries.
         """
         log_max_string_length: NotRequired[pulumi.Input[_builtins.int]]
         """
-        Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+        Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+        A (default) value of -1 disable the truncation.
         """
         log_nested_statements: NotRequired[pulumi.Input[_builtins.bool]]
         """
-        This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+        Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+        executed as part of another ExecutorRun.
         """
         log_parameter: NotRequired[pulumi.Input[_builtins.bool]]
         """
-        Specifies that audit logging should include the parameters that were passed with the statement.
+        Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
         """
         log_parameter_max_size: NotRequired[pulumi.Input[_builtins.int]]
         """
-        Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
+        Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+        but replaced with <long param suppressed>.
         """
         log_relation: NotRequired[pulumi.Input[_builtins.bool]]
         """
-        Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+        Log Relation. Specifies whether session audit logging should create a separate log entry
+        for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
         """
         log_rows: NotRequired[pulumi.Input[_builtins.bool]]
         """
-        Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+        Log Rows.
         """
         log_statement: NotRequired[pulumi.Input[_builtins.bool]]
         """
-        Specifies whether logging will include the statement text and parameters (if enabled).
+        Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
         """
         log_statement_once: NotRequired[pulumi.Input[_builtins.bool]]
         """
-        Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+        Log Statement Once. Specifies whether logging will include the statement text and parameters with
+        the first log entry for a statement/substatement combination or with every entry.
         """
         logs: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
         """
-        Specifies which classes of statements will be logged by session audit logging.
+        Log. Specifies which classes of statements will be logged by session audit logging.
         """
         role: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Specifies the master role to use for object audit logging.
+        Role. Specifies the master role to use for object audit logging.
         """
 elif False:
     ManagedDatabasePostgresqlPropertiesPgauditArgsDict: TypeAlias = Mapping[str, Any]
@@ -11749,19 +11799,25 @@ class ManagedDatabasePostgresqlPropertiesPgauditArgs:
                  role: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] feature_enabled: Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
-        :param pulumi.Input[_builtins.bool] log_catalog: Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
-        :param pulumi.Input[_builtins.bool] log_client: Specifies whether log messages will be visible to a client process such as psql.
-        :param pulumi.Input[_builtins.str] log_level: Specifies the log level that will be used for log entries.
-        :param pulumi.Input[_builtins.int] log_max_string_length: Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
-        :param pulumi.Input[_builtins.bool] log_nested_statements: This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
-        :param pulumi.Input[_builtins.bool] log_parameter: Specifies that audit logging should include the parameters that were passed with the statement.
-        :param pulumi.Input[_builtins.int] log_parameter_max_size: Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
-        :param pulumi.Input[_builtins.bool] log_relation: Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
-        :param pulumi.Input[_builtins.bool] log_rows: Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
-        :param pulumi.Input[_builtins.bool] log_statement: Specifies whether logging will include the statement text and parameters (if enabled).
-        :param pulumi.Input[_builtins.bool] log_statement_once: Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] logs: Specifies which classes of statements will be logged by session audit logging.
-        :param pulumi.Input[_builtins.str] role: Specifies the master role to use for object audit logging.
+        :param pulumi.Input[_builtins.bool] log_catalog: Log Catalog. Specifies that session logging should be enabled in the case where all relations
+               in a statement are in pg_catalog.
+        :param pulumi.Input[_builtins.bool] log_client: Log Client. Specifies whether log messages will be visible to a client process such as psql.
+        :param pulumi.Input[_builtins.str] log_level: Log level. Specifies the log level that will be used for log entries.
+        :param pulumi.Input[_builtins.int] log_max_string_length: Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+               A (default) value of -1 disable the truncation.
+        :param pulumi.Input[_builtins.bool] log_nested_statements: Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+               executed as part of another ExecutorRun.
+        :param pulumi.Input[_builtins.bool] log_parameter: Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
+        :param pulumi.Input[_builtins.int] log_parameter_max_size: Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+               but replaced with <long param suppressed>.
+        :param pulumi.Input[_builtins.bool] log_relation: Log Relation. Specifies whether session audit logging should create a separate log entry
+               for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+        :param pulumi.Input[_builtins.bool] log_rows: Log Rows.
+        :param pulumi.Input[_builtins.bool] log_statement: Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
+        :param pulumi.Input[_builtins.bool] log_statement_once: Log Statement Once. Specifies whether logging will include the statement text and parameters with
+               the first log entry for a statement/substatement combination or with every entry.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] logs: Log. Specifies which classes of statements will be logged by session audit logging.
+        :param pulumi.Input[_builtins.str] role: Role. Specifies the master role to use for object audit logging.
         """
         if feature_enabled is not None:
             pulumi.set(__self__, "feature_enabled", feature_enabled)
@@ -11808,7 +11864,8 @@ class ManagedDatabasePostgresqlPropertiesPgauditArgs:
     @pulumi.getter(name="logCatalog")
     def log_catalog(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+        Log Catalog. Specifies that session logging should be enabled in the case where all relations
+        in a statement are in pg_catalog.
         """
         return pulumi.get(self, "log_catalog")
 
@@ -11820,7 +11877,7 @@ class ManagedDatabasePostgresqlPropertiesPgauditArgs:
     @pulumi.getter(name="logClient")
     def log_client(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether log messages will be visible to a client process such as psql.
+        Log Client. Specifies whether log messages will be visible to a client process such as psql.
         """
         return pulumi.get(self, "log_client")
 
@@ -11832,7 +11889,7 @@ class ManagedDatabasePostgresqlPropertiesPgauditArgs:
     @pulumi.getter(name="logLevel")
     def log_level(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the log level that will be used for log entries.
+        Log level. Specifies the log level that will be used for log entries.
         """
         return pulumi.get(self, "log_level")
 
@@ -11844,7 +11901,8 @@ class ManagedDatabasePostgresqlPropertiesPgauditArgs:
     @pulumi.getter(name="logMaxStringLength")
     def log_max_string_length(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+        Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+        A (default) value of -1 disable the truncation.
         """
         return pulumi.get(self, "log_max_string_length")
 
@@ -11856,7 +11914,8 @@ class ManagedDatabasePostgresqlPropertiesPgauditArgs:
     @pulumi.getter(name="logNestedStatements")
     def log_nested_statements(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+        Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+        executed as part of another ExecutorRun.
         """
         return pulumi.get(self, "log_nested_statements")
 
@@ -11868,7 +11927,7 @@ class ManagedDatabasePostgresqlPropertiesPgauditArgs:
     @pulumi.getter(name="logParameter")
     def log_parameter(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies that audit logging should include the parameters that were passed with the statement.
+        Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
         """
         return pulumi.get(self, "log_parameter")
 
@@ -11880,7 +11939,8 @@ class ManagedDatabasePostgresqlPropertiesPgauditArgs:
     @pulumi.getter(name="logParameterMaxSize")
     def log_parameter_max_size(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
+        Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+        but replaced with <long param suppressed>.
         """
         return pulumi.get(self, "log_parameter_max_size")
 
@@ -11892,7 +11952,8 @@ class ManagedDatabasePostgresqlPropertiesPgauditArgs:
     @pulumi.getter(name="logRelation")
     def log_relation(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+        Log Relation. Specifies whether session audit logging should create a separate log entry
+        for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
         """
         return pulumi.get(self, "log_relation")
 
@@ -11904,7 +11965,7 @@ class ManagedDatabasePostgresqlPropertiesPgauditArgs:
     @pulumi.getter(name="logRows")
     def log_rows(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+        Log Rows.
         """
         return pulumi.get(self, "log_rows")
 
@@ -11916,7 +11977,7 @@ class ManagedDatabasePostgresqlPropertiesPgauditArgs:
     @pulumi.getter(name="logStatement")
     def log_statement(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether logging will include the statement text and parameters (if enabled).
+        Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
         """
         return pulumi.get(self, "log_statement")
 
@@ -11928,7 +11989,8 @@ class ManagedDatabasePostgresqlPropertiesPgauditArgs:
     @pulumi.getter(name="logStatementOnce")
     def log_statement_once(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+        Log Statement Once. Specifies whether logging will include the statement text and parameters with
+        the first log entry for a statement/substatement combination or with every entry.
         """
         return pulumi.get(self, "log_statement_once")
 
@@ -11940,7 +12002,7 @@ class ManagedDatabasePostgresqlPropertiesPgauditArgs:
     @pulumi.getter
     def logs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Specifies which classes of statements will be logged by session audit logging.
+        Log. Specifies which classes of statements will be logged by session audit logging.
         """
         return pulumi.get(self, "logs")
 
@@ -11952,7 +12014,7 @@ class ManagedDatabasePostgresqlPropertiesPgauditArgs:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the master role to use for object audit logging.
+        Role. Specifies the master role to use for object audit logging.
         """
         return pulumi.get(self, "role")
 
@@ -12177,7 +12239,7 @@ if not MYPY:
     class ManagedDatabasePostgresqlPropertiesPglookoutArgsDict(TypedDict):
         max_failover_replication_time_lag: NotRequired[pulumi.Input[_builtins.int]]
         """
-        Number of seconds of master unavailability before triggering database failover to standby.
+        Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
         """
 elif False:
     ManagedDatabasePostgresqlPropertiesPglookoutArgsDict: TypeAlias = Mapping[str, Any]
@@ -12187,7 +12249,7 @@ class ManagedDatabasePostgresqlPropertiesPglookoutArgs:
     def __init__(__self__, *,
                  max_failover_replication_time_lag: Optional[pulumi.Input[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.int] max_failover_replication_time_lag: Number of seconds of master unavailability before triggering database failover to standby.
+        :param pulumi.Input[_builtins.int] max_failover_replication_time_lag: Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
         """
         if max_failover_replication_time_lag is not None:
             pulumi.set(__self__, "max_failover_replication_time_lag", max_failover_replication_time_lag)
@@ -12196,7 +12258,7 @@ class ManagedDatabasePostgresqlPropertiesPglookoutArgs:
     @pulumi.getter(name="maxFailoverReplicationTimeLag")
     def max_failover_replication_time_lag(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Number of seconds of master unavailability before triggering database failover to standby.
+        Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
         """
         return pulumi.get(self, "max_failover_replication_time_lag")
 
@@ -14473,6 +14535,10 @@ if not MYPY:
         """
         The additional DHCP classless static routes given by DHCP
         """
+        dhcp_routes_configuration: NotRequired[pulumi.Input['NetworkIpNetworkDhcpRoutesConfigurationArgsDict']]
+        """
+        DHCP routes auto-population configuration.
+        """
         gateway: NotRequired[pulumi.Input[_builtins.str]]
         """
         Gateway address given by DHCP
@@ -14489,6 +14555,7 @@ class NetworkIpNetworkArgs:
                  dhcp_default_route: Optional[pulumi.Input[_builtins.bool]] = None,
                  dhcp_dns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  dhcp_routes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 dhcp_routes_configuration: Optional[pulumi.Input['NetworkIpNetworkDhcpRoutesConfigurationArgs']] = None,
                  gateway: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The CIDR range of the subnet
@@ -14497,6 +14564,7 @@ class NetworkIpNetworkArgs:
         :param pulumi.Input[_builtins.bool] dhcp_default_route: Is the gateway the DHCP default route?
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dhcp_dns: The DNS servers given by DHCP
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dhcp_routes: The additional DHCP classless static routes given by DHCP
+        :param pulumi.Input['NetworkIpNetworkDhcpRoutesConfigurationArgs'] dhcp_routes_configuration: DHCP routes auto-population configuration.
         :param pulumi.Input[_builtins.str] gateway: Gateway address given by DHCP
         """
         pulumi.set(__self__, "address", address)
@@ -14508,6 +14576,8 @@ class NetworkIpNetworkArgs:
             pulumi.set(__self__, "dhcp_dns", dhcp_dns)
         if dhcp_routes is not None:
             pulumi.set(__self__, "dhcp_routes", dhcp_routes)
+        if dhcp_routes_configuration is not None:
+            pulumi.set(__self__, "dhcp_routes_configuration", dhcp_routes_configuration)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
 
@@ -14584,6 +14654,18 @@ class NetworkIpNetworkArgs:
         pulumi.set(self, "dhcp_routes", value)
 
     @_builtins.property
+    @pulumi.getter(name="dhcpRoutesConfiguration")
+    def dhcp_routes_configuration(self) -> Optional[pulumi.Input['NetworkIpNetworkDhcpRoutesConfigurationArgs']]:
+        """
+        DHCP routes auto-population configuration.
+        """
+        return pulumi.get(self, "dhcp_routes_configuration")
+
+    @dhcp_routes_configuration.setter
+    def dhcp_routes_configuration(self, value: Optional[pulumi.Input['NetworkIpNetworkDhcpRoutesConfigurationArgs']]):
+        pulumi.set(self, "dhcp_routes_configuration", value)
+
+    @_builtins.property
     @pulumi.getter
     def gateway(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -14594,6 +14676,130 @@ class NetworkIpNetworkArgs:
     @gateway.setter
     def gateway(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "gateway", value)
+
+
+if not MYPY:
+    class NetworkIpNetworkDhcpRoutesConfigurationArgsDict(TypedDict):
+        effective_routes_auto_population: NotRequired[pulumi.Input['NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgsDict']]
+        """
+        Automatically populate effective routes.
+        """
+elif False:
+    NetworkIpNetworkDhcpRoutesConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NetworkIpNetworkDhcpRoutesConfigurationArgs:
+    def __init__(__self__, *,
+                 effective_routes_auto_population: Optional[pulumi.Input['NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs']] = None):
+        """
+        :param pulumi.Input['NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs'] effective_routes_auto_population: Automatically populate effective routes.
+        """
+        if effective_routes_auto_population is not None:
+            pulumi.set(__self__, "effective_routes_auto_population", effective_routes_auto_population)
+
+    @_builtins.property
+    @pulumi.getter(name="effectiveRoutesAutoPopulation")
+    def effective_routes_auto_population(self) -> Optional[pulumi.Input['NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs']]:
+        """
+        Automatically populate effective routes.
+        """
+        return pulumi.get(self, "effective_routes_auto_population")
+
+    @effective_routes_auto_population.setter
+    def effective_routes_auto_population(self, value: Optional[pulumi.Input['NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs']]):
+        pulumi.set(self, "effective_routes_auto_population", value)
+
+
+if not MYPY:
+    class NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Enable or disable route auto-population.
+        """
+        exclude_by_sources: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        Exclude routes coming from specific sources (router-connected-networks, static-route).
+        """
+        filter_by_destinations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        CIDR destinations to include when auto-populating routes.
+        """
+        filter_by_route_types: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        Include only routes of given types (service, user).
+        """
+elif False:
+    NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 exclude_by_sources: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 filter_by_destinations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 filter_by_route_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] enabled: Enable or disable route auto-population.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] exclude_by_sources: Exclude routes coming from specific sources (router-connected-networks, static-route).
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] filter_by_destinations: CIDR destinations to include when auto-populating routes.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] filter_by_route_types: Include only routes of given types (service, user).
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if exclude_by_sources is not None:
+            pulumi.set(__self__, "exclude_by_sources", exclude_by_sources)
+        if filter_by_destinations is not None:
+            pulumi.set(__self__, "filter_by_destinations", filter_by_destinations)
+        if filter_by_route_types is not None:
+            pulumi.set(__self__, "filter_by_route_types", filter_by_route_types)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable or disable route auto-population.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="excludeBySources")
+    def exclude_by_sources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Exclude routes coming from specific sources (router-connected-networks, static-route).
+        """
+        return pulumi.get(self, "exclude_by_sources")
+
+    @exclude_by_sources.setter
+    def exclude_by_sources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "exclude_by_sources", value)
+
+    @_builtins.property
+    @pulumi.getter(name="filterByDestinations")
+    def filter_by_destinations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        CIDR destinations to include when auto-populating routes.
+        """
+        return pulumi.get(self, "filter_by_destinations")
+
+    @filter_by_destinations.setter
+    def filter_by_destinations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "filter_by_destinations", value)
+
+    @_builtins.property
+    @pulumi.getter(name="filterByRouteTypes")
+    def filter_by_route_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Include only routes of given types (service, user).
+        """
+        return pulumi.get(self, "filter_by_route_types")
+
+    @filter_by_route_types.setter
+    def filter_by_route_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "filter_by_route_types", value)
 
 
 if not MYPY:

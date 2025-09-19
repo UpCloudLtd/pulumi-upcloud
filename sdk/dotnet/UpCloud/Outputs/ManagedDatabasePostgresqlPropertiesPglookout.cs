@@ -15,7 +15,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
     public sealed class ManagedDatabasePostgresqlPropertiesPglookout
     {
         /// <summary>
-        /// Number of seconds of master unavailability before triggering database failover to standby.
+        /// Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
         /// </summary>
         public readonly int? MaxFailoverReplicationTimeLag;
 
