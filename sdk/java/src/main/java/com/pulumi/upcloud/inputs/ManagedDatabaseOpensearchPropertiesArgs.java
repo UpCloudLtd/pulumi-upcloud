@@ -182,6 +182,36 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
     }
 
     /**
+     * OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+     * 
+     */
+    @Import(name="customKeystores")
+    private @Nullable Output<List<String>> customKeystores;
+
+    /**
+     * @return OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+     * 
+     */
+    public Optional<Output<List<String>>> customKeystores() {
+        return Optional.ofNullable(this.customKeystores);
+    }
+
+    /**
+     * OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+     * 
+     */
+    @Import(name="customRepos")
+    private @Nullable Output<List<String>> customRepos;
+
+    /**
+     * @return OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+     * 
+     */
+    public Optional<Output<List<String>>> customRepos() {
+        return Optional.ofNullable(this.customRepos);
+    }
+
+    /**
      * Watermark settings.
      * 
      */
@@ -197,14 +227,14 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Elasticsearch major version.
+     * Elasticsearch version.
      * 
      */
     @Import(name="elasticsearchVersion")
     private @Nullable Output<String> elasticsearchVersion;
 
     /**
-     * @return Elasticsearch major version.
+     * @return Elasticsearch version.
      * 
      */
     public Optional<Output<String>> elasticsearchVersion() {
@@ -1066,14 +1096,14 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * OpenSearch major version.
+     * OpenSearch version.
      * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
-     * @return OpenSearch major version.
+     * @return OpenSearch version.
      * 
      */
     public Optional<Output<String>> version() {
@@ -1094,6 +1124,8 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         this.clusterRoutingAllocationNodeConcurrentRecoveries = $.clusterRoutingAllocationNodeConcurrentRecoveries;
         this.clusterSearchRequestSlowlog = $.clusterSearchRequestSlowlog;
         this.customDomain = $.customDomain;
+        this.customKeystores = $.customKeystores;
+        this.customRepos = $.customRepos;
         this.diskWatermarks = $.diskWatermarks;
         this.elasticsearchVersion = $.elasticsearchVersion;
         this.emailSenderName = $.emailSenderName;
@@ -1383,6 +1415,68 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
+         * @param customKeystores OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customKeystores(@Nullable Output<List<String>> customKeystores) {
+            $.customKeystores = customKeystores;
+            return this;
+        }
+
+        /**
+         * @param customKeystores OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customKeystores(List<String> customKeystores) {
+            return customKeystores(Output.of(customKeystores));
+        }
+
+        /**
+         * @param customKeystores OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customKeystores(String... customKeystores) {
+            return customKeystores(List.of(customKeystores));
+        }
+
+        /**
+         * @param customRepos OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customRepos(@Nullable Output<List<String>> customRepos) {
+            $.customRepos = customRepos;
+            return this;
+        }
+
+        /**
+         * @param customRepos OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customRepos(List<String> customRepos) {
+            return customRepos(Output.of(customRepos));
+        }
+
+        /**
+         * @param customRepos OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customRepos(String... customRepos) {
+            return customRepos(List.of(customRepos));
+        }
+
+        /**
          * @param diskWatermarks Watermark settings.
          * 
          * @return builder
@@ -1404,7 +1498,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param elasticsearchVersion Elasticsearch major version.
+         * @param elasticsearchVersion Elasticsearch version.
          * 
          * @return builder
          * 
@@ -1415,7 +1509,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param elasticsearchVersion Elasticsearch major version.
+         * @param elasticsearchVersion Elasticsearch version.
          * 
          * @return builder
          * 
@@ -2649,7 +2743,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param version OpenSearch major version.
+         * @param version OpenSearch version.
          * 
          * @return builder
          * 
@@ -2660,7 +2754,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param version OpenSearch major version.
+         * @param version OpenSearch version.
          * 
          * @return builder
          * 

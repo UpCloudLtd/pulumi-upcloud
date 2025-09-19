@@ -126,7 +126,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly state: pulumi.Output<string>;
     /**
-     * Set default storage encryption strategy for all nodes in the cluster.
+     * Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
      */
     declare public readonly storageEncryption: pulumi.Output<string | undefined>;
     /**
@@ -241,7 +241,7 @@ export interface KubernetesClusterState {
      */
     state?: pulumi.Input<string>;
     /**
-     * Set default storage encryption strategy for all nodes in the cluster.
+     * Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
      */
     storageEncryption?: pulumi.Input<string>;
     /**
@@ -289,7 +289,7 @@ export interface KubernetesClusterArgs {
      */
     privateNodeGroups?: pulumi.Input<boolean>;
     /**
-     * Set default storage encryption strategy for all nodes in the cluster.
+     * Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
      */
     storageEncryption?: pulumi.Input<string>;
     /**

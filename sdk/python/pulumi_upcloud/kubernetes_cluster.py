@@ -38,7 +38,7 @@ class KubernetesClusterArgs:
         :param pulumi.Input[_builtins.str] name: Cluster name. Needs to be unique within the account.
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         :param pulumi.Input[_builtins.bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
-        :param pulumi.Input[_builtins.str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
+        :param pulumi.Input[_builtins.str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
         :param pulumi.Input[_builtins.str] upgrade_strategy_type: The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
         :param pulumi.Input[_builtins.str] version: Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
                
@@ -150,7 +150,7 @@ class KubernetesClusterArgs:
     @pulumi.getter(name="storageEncryption")
     def storage_encryption(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Set default storage encryption strategy for all nodes in the cluster.
+        Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
         """
         return pulumi.get(self, "storage_encryption")
 
@@ -212,7 +212,7 @@ class _KubernetesClusterState:
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         :param pulumi.Input[_builtins.bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         :param pulumi.Input[_builtins.str] state: Operational state of the cluster.
-        :param pulumi.Input[_builtins.str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
+        :param pulumi.Input[_builtins.str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
         :param pulumi.Input[_builtins.str] upgrade_strategy_type: The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
         :param pulumi.Input[_builtins.str] version: Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
                
@@ -358,7 +358,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="storageEncryption")
     def storage_encryption(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Set default storage encryption strategy for all nodes in the cluster.
+        Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
         """
         return pulumi.get(self, "storage_encryption")
 
@@ -482,7 +482,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] network: Network ID for the cluster to run in.
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         :param pulumi.Input[_builtins.bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
-        :param pulumi.Input[_builtins.str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
+        :param pulumi.Input[_builtins.str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
         :param pulumi.Input[_builtins.str] upgrade_strategy_type: The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
         :param pulumi.Input[_builtins.str] version: Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
                
@@ -639,7 +639,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         :param pulumi.Input[_builtins.bool] private_node_groups: Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         :param pulumi.Input[_builtins.str] state: Operational state of the cluster.
-        :param pulumi.Input[_builtins.str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster.
+        :param pulumi.Input[_builtins.str] storage_encryption: Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
         :param pulumi.Input[_builtins.str] upgrade_strategy_type: The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
         :param pulumi.Input[_builtins.str] version: Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
                
@@ -741,7 +741,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="storageEncryption")
     def storage_encryption(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Set default storage encryption strategy for all nodes in the cluster.
+        Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
         """
         return pulumi.get(self, "storage_encryption")
 

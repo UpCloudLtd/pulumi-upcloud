@@ -1728,11 +1728,19 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     customDomain: string;
     /**
+     * OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+     */
+    customKeystores: string[];
+    /**
+     * OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+     */
+    customRepos: string[];
+    /**
      * Watermark settings.
      */
     diskWatermarks: outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks;
     /**
-     * Elasticsearch major version.
+     * Elasticsearch version.
      */
     elasticsearchVersion: string;
     /**
@@ -1962,7 +1970,7 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     threadPoolWriteSize: number;
     /**
-     * OpenSearch major version.
+     * OpenSearch version.
      */
     version: string;
 }
@@ -2088,15 +2096,15 @@ export interface ManagedDatabaseOpensearchPropertiesIndexRollup {
 
 export interface ManagedDatabaseOpensearchPropertiesIndexTemplate {
     /**
-     * index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+     * (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
      */
     mappingNestedObjectsLimit: number;
     /**
-     * The number of replicas each primary shard has.
+     * The number of replicas each primary shard has. Deprecated, use an index template instead.
      */
     numberOfReplicas: number;
     /**
-     * The number of primary shards that an index should have.
+     * The number of primary shards that an index should have. Deprecated, use an index template instead.
      */
     numberOfShards: number;
 }
@@ -2654,7 +2662,7 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     logTempFiles: number;
     /**
-     * PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+     * Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
      */
     maxConnections: number;
     /**
@@ -2859,7 +2867,7 @@ export interface ManagedDatabasePostgresqlPropertiesMigration {
     /**
      * The server where to migrate data from is secured with SSL.
      */
-    ssl: boolean;
+    ssl?: boolean;
     /**
      * User name for authentication with the server where to migrate data from.
      */
@@ -2870,57 +2878,63 @@ export interface ManagedDatabasePostgresqlPropertiesPgaudit {
     /**
      * Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
      */
-    featureEnabled: boolean;
+    featureEnabled?: boolean;
     /**
-     * Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+     * Log Catalog. Specifies that session logging should be enabled in the case where all relations
+     * in a statement are in pg_catalog.
      */
-    logCatalog: boolean;
+    logCatalog?: boolean;
     /**
-     * Specifies whether log messages will be visible to a client process such as psql.
+     * Log Client. Specifies whether log messages will be visible to a client process such as psql.
      */
-    logClient: boolean;
+    logClient?: boolean;
     /**
-     * Specifies the log level that will be used for log entries.
+     * Log level. Specifies the log level that will be used for log entries.
      */
     logLevel: string;
     /**
-     * Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+     * Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+     * A (default) value of -1 disable the truncation.
      */
     logMaxStringLength: number;
     /**
-     * This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+     * Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+     * executed as part of another ExecutorRun.
      */
-    logNestedStatements: boolean;
+    logNestedStatements?: boolean;
     /**
-     * Specifies that audit logging should include the parameters that were passed with the statement.
+     * Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
      */
-    logParameter: boolean;
+    logParameter?: boolean;
     /**
-     * Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
+     * Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+     * but replaced with <long param suppressed>.
      */
     logParameterMaxSize: number;
     /**
-     * Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+     * Log Relation. Specifies whether session audit logging should create a separate log entry
+     * for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
      */
-    logRelation: boolean;
+    logRelation?: boolean;
     /**
-     * Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+     * Log Rows.
      */
-    logRows: boolean;
+    logRows?: boolean;
     /**
-     * Specifies whether logging will include the statement text and parameters (if enabled).
+     * Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
      */
-    logStatement: boolean;
+    logStatement?: boolean;
     /**
-     * Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+     * Log Statement Once. Specifies whether logging will include the statement text and parameters with
+     * the first log entry for a statement/substatement combination or with every entry.
      */
-    logStatementOnce: boolean;
+    logStatementOnce?: boolean;
     /**
-     * Specifies which classes of statements will be logged by session audit logging.
+     * Log. Specifies which classes of statements will be logged by session audit logging.
      */
     logs: string[];
     /**
-     * Specifies the master role to use for object audit logging.
+     * Role. Specifies the master role to use for object audit logging.
      */
     role: string;
 }
@@ -2965,12 +2979,12 @@ export interface ManagedDatabasePostgresqlPropertiesPgbouncer {
     /**
      * Run serverResetQuery (DISCARD ALL) in all pooling modes.
      */
-    serverResetQueryAlways: boolean;
+    serverResetQueryAlways?: boolean;
 }
 
 export interface ManagedDatabasePostgresqlPropertiesPglookout {
     /**
-     * Number of seconds of master unavailability before triggering database failover to standby.
+     * Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
      */
     maxFailoverReplicationTimeLag: number;
 }
@@ -3459,6 +3473,10 @@ export interface NetworkIpNetwork {
      */
     dhcpRoutes: string[];
     /**
+     * DHCP routes auto-population configuration.
+     */
+    dhcpRoutesConfiguration?: outputs.NetworkIpNetworkDhcpRoutesConfiguration;
+    /**
      * IP address family
      */
     family: string;
@@ -3466,6 +3484,32 @@ export interface NetworkIpNetwork {
      * Gateway address given by DHCP
      */
     gateway: string;
+}
+
+export interface NetworkIpNetworkDhcpRoutesConfiguration {
+    /**
+     * Automatically populate effective routes.
+     */
+    effectiveRoutesAutoPopulation?: outputs.NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation;
+}
+
+export interface NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation {
+    /**
+     * Enable or disable route auto-population.
+     */
+    enabled?: boolean;
+    /**
+     * Exclude routes coming from specific sources (router-connected-networks, static-route).
+     */
+    excludeBySources?: string[];
+    /**
+     * CIDR destinations to include when auto-populating routes.
+     */
+    filterByDestinations?: string[];
+    /**
+     * Include only routes of given types (service, user).
+     */
+    filterByRouteTypes?: string[];
 }
 
 export interface NetworkPeeringNetwork {

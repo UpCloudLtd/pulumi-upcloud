@@ -34,14 +34,16 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
     }
 
     /**
-     * Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+     * Log Catalog. Specifies that session logging should be enabled in the case where all relations
+     * in a statement are in pg_catalog.
      * 
      */
     @Import(name="logCatalog")
     private @Nullable Output<Boolean> logCatalog;
 
     /**
-     * @return Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+     * @return Log Catalog. Specifies that session logging should be enabled in the case where all relations
+     * in a statement are in pg_catalog.
      * 
      */
     public Optional<Output<Boolean>> logCatalog() {
@@ -49,14 +51,14 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
     }
 
     /**
-     * Specifies whether log messages will be visible to a client process such as psql.
+     * Log Client. Specifies whether log messages will be visible to a client process such as psql.
      * 
      */
     @Import(name="logClient")
     private @Nullable Output<Boolean> logClient;
 
     /**
-     * @return Specifies whether log messages will be visible to a client process such as psql.
+     * @return Log Client. Specifies whether log messages will be visible to a client process such as psql.
      * 
      */
     public Optional<Output<Boolean>> logClient() {
@@ -64,14 +66,14 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
     }
 
     /**
-     * Specifies the log level that will be used for log entries.
+     * Log level. Specifies the log level that will be used for log entries.
      * 
      */
     @Import(name="logLevel")
     private @Nullable Output<String> logLevel;
 
     /**
-     * @return Specifies the log level that will be used for log entries.
+     * @return Log level. Specifies the log level that will be used for log entries.
      * 
      */
     public Optional<Output<String>> logLevel() {
@@ -79,14 +81,16 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
     }
 
     /**
-     * Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+     * Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+     * A (default) value of -1 disable the truncation.
      * 
      */
     @Import(name="logMaxStringLength")
     private @Nullable Output<Integer> logMaxStringLength;
 
     /**
-     * @return Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+     * @return Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+     * A (default) value of -1 disable the truncation.
      * 
      */
     public Optional<Output<Integer>> logMaxStringLength() {
@@ -94,14 +98,16 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
     }
 
     /**
-     * This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+     * Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+     * executed as part of another ExecutorRun.
      * 
      */
     @Import(name="logNestedStatements")
     private @Nullable Output<Boolean> logNestedStatements;
 
     /**
-     * @return This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+     * @return Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+     * executed as part of another ExecutorRun.
      * 
      */
     public Optional<Output<Boolean>> logNestedStatements() {
@@ -109,14 +115,14 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
     }
 
     /**
-     * Specifies that audit logging should include the parameters that were passed with the statement.
+     * Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
      * 
      */
     @Import(name="logParameter")
     private @Nullable Output<Boolean> logParameter;
 
     /**
-     * @return Specifies that audit logging should include the parameters that were passed with the statement.
+     * @return Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
      * 
      */
     public Optional<Output<Boolean>> logParameter() {
@@ -124,14 +130,16 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
     }
 
     /**
-     * Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with &lt;long param suppressed&gt;.
+     * Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+     * but replaced with &lt;long param suppressed&gt;.
      * 
      */
     @Import(name="logParameterMaxSize")
     private @Nullable Output<Integer> logParameterMaxSize;
 
     /**
-     * @return Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with &lt;long param suppressed&gt;.
+     * @return Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+     * but replaced with &lt;long param suppressed&gt;.
      * 
      */
     public Optional<Output<Integer>> logParameterMaxSize() {
@@ -139,14 +147,16 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
     }
 
     /**
-     * Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+     * Log Relation. Specifies whether session audit logging should create a separate log entry
+     * for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
      * 
      */
     @Import(name="logRelation")
     private @Nullable Output<Boolean> logRelation;
 
     /**
-     * @return Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+     * @return Log Relation. Specifies whether session audit logging should create a separate log entry
+     * for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
      * 
      */
     public Optional<Output<Boolean>> logRelation() {
@@ -154,14 +164,14 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
     }
 
     /**
-     * Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+     * Log Rows.
      * 
      */
     @Import(name="logRows")
     private @Nullable Output<Boolean> logRows;
 
     /**
-     * @return Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+     * @return Log Rows.
      * 
      */
     public Optional<Output<Boolean>> logRows() {
@@ -169,14 +179,14 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
     }
 
     /**
-     * Specifies whether logging will include the statement text and parameters (if enabled).
+     * Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
      * 
      */
     @Import(name="logStatement")
     private @Nullable Output<Boolean> logStatement;
 
     /**
-     * @return Specifies whether logging will include the statement text and parameters (if enabled).
+     * @return Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
      * 
      */
     public Optional<Output<Boolean>> logStatement() {
@@ -184,14 +194,16 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
     }
 
     /**
-     * Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+     * Log Statement Once. Specifies whether logging will include the statement text and parameters with
+     * the first log entry for a statement/substatement combination or with every entry.
      * 
      */
     @Import(name="logStatementOnce")
     private @Nullable Output<Boolean> logStatementOnce;
 
     /**
-     * @return Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+     * @return Log Statement Once. Specifies whether logging will include the statement text and parameters with
+     * the first log entry for a statement/substatement combination or with every entry.
      * 
      */
     public Optional<Output<Boolean>> logStatementOnce() {
@@ -199,14 +211,14 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
     }
 
     /**
-     * Specifies which classes of statements will be logged by session audit logging.
+     * Log. Specifies which classes of statements will be logged by session audit logging.
      * 
      */
     @Import(name="logs")
     private @Nullable Output<List<String>> logs;
 
     /**
-     * @return Specifies which classes of statements will be logged by session audit logging.
+     * @return Log. Specifies which classes of statements will be logged by session audit logging.
      * 
      */
     public Optional<Output<List<String>>> logs() {
@@ -214,14 +226,14 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
     }
 
     /**
-     * Specifies the master role to use for object audit logging.
+     * Role. Specifies the master role to use for object audit logging.
      * 
      */
     @Import(name="role")
     private @Nullable Output<String> role;
 
     /**
-     * @return Specifies the master role to use for object audit logging.
+     * @return Role. Specifies the master role to use for object audit logging.
      * 
      */
     public Optional<Output<String>> role() {
@@ -287,7 +299,8 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logCatalog Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+         * @param logCatalog Log Catalog. Specifies that session logging should be enabled in the case where all relations
+         * in a statement are in pg_catalog.
          * 
          * @return builder
          * 
@@ -298,7 +311,8 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logCatalog Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+         * @param logCatalog Log Catalog. Specifies that session logging should be enabled in the case where all relations
+         * in a statement are in pg_catalog.
          * 
          * @return builder
          * 
@@ -308,7 +322,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logClient Specifies whether log messages will be visible to a client process such as psql.
+         * @param logClient Log Client. Specifies whether log messages will be visible to a client process such as psql.
          * 
          * @return builder
          * 
@@ -319,7 +333,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logClient Specifies whether log messages will be visible to a client process such as psql.
+         * @param logClient Log Client. Specifies whether log messages will be visible to a client process such as psql.
          * 
          * @return builder
          * 
@@ -329,7 +343,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logLevel Specifies the log level that will be used for log entries.
+         * @param logLevel Log level. Specifies the log level that will be used for log entries.
          * 
          * @return builder
          * 
@@ -340,7 +354,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logLevel Specifies the log level that will be used for log entries.
+         * @param logLevel Log level. Specifies the log level that will be used for log entries.
          * 
          * @return builder
          * 
@@ -350,7 +364,8 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logMaxStringLength Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+         * @param logMaxStringLength Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+         * A (default) value of -1 disable the truncation.
          * 
          * @return builder
          * 
@@ -361,7 +376,8 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logMaxStringLength Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+         * @param logMaxStringLength Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+         * A (default) value of -1 disable the truncation.
          * 
          * @return builder
          * 
@@ -371,7 +387,8 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logNestedStatements This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+         * @param logNestedStatements Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+         * executed as part of another ExecutorRun.
          * 
          * @return builder
          * 
@@ -382,7 +399,8 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logNestedStatements This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+         * @param logNestedStatements Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+         * executed as part of another ExecutorRun.
          * 
          * @return builder
          * 
@@ -392,7 +410,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logParameter Specifies that audit logging should include the parameters that were passed with the statement.
+         * @param logParameter Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
          * 
          * @return builder
          * 
@@ -403,7 +421,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logParameter Specifies that audit logging should include the parameters that were passed with the statement.
+         * @param logParameter Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
          * 
          * @return builder
          * 
@@ -413,7 +431,8 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logParameterMaxSize Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with &lt;long param suppressed&gt;.
+         * @param logParameterMaxSize Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+         * but replaced with &lt;long param suppressed&gt;.
          * 
          * @return builder
          * 
@@ -424,7 +443,8 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logParameterMaxSize Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with &lt;long param suppressed&gt;.
+         * @param logParameterMaxSize Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+         * but replaced with &lt;long param suppressed&gt;.
          * 
          * @return builder
          * 
@@ -434,7 +454,8 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logRelation Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+         * @param logRelation Log Relation. Specifies whether session audit logging should create a separate log entry
+         * for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
          * 
          * @return builder
          * 
@@ -445,7 +466,8 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logRelation Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+         * @param logRelation Log Relation. Specifies whether session audit logging should create a separate log entry
+         * for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
          * 
          * @return builder
          * 
@@ -455,7 +477,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logRows Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+         * @param logRows Log Rows.
          * 
          * @return builder
          * 
@@ -466,7 +488,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logRows Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+         * @param logRows Log Rows.
          * 
          * @return builder
          * 
@@ -476,7 +498,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logStatement Specifies whether logging will include the statement text and parameters (if enabled).
+         * @param logStatement Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
          * 
          * @return builder
          * 
@@ -487,7 +509,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logStatement Specifies whether logging will include the statement text and parameters (if enabled).
+         * @param logStatement Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
          * 
          * @return builder
          * 
@@ -497,7 +519,8 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logStatementOnce Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+         * @param logStatementOnce Log Statement Once. Specifies whether logging will include the statement text and parameters with
+         * the first log entry for a statement/substatement combination or with every entry.
          * 
          * @return builder
          * 
@@ -508,7 +531,8 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logStatementOnce Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+         * @param logStatementOnce Log Statement Once. Specifies whether logging will include the statement text and parameters with
+         * the first log entry for a statement/substatement combination or with every entry.
          * 
          * @return builder
          * 
@@ -518,7 +542,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logs Specifies which classes of statements will be logged by session audit logging.
+         * @param logs Log. Specifies which classes of statements will be logged by session audit logging.
          * 
          * @return builder
          * 
@@ -529,7 +553,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logs Specifies which classes of statements will be logged by session audit logging.
+         * @param logs Log. Specifies which classes of statements will be logged by session audit logging.
          * 
          * @return builder
          * 
@@ -539,7 +563,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param logs Specifies which classes of statements will be logged by session audit logging.
+         * @param logs Log. Specifies which classes of statements will be logged by session audit logging.
          * 
          * @return builder
          * 
@@ -549,7 +573,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param role Specifies the master role to use for object audit logging.
+         * @param role Role. Specifies the master role to use for object audit logging.
          * 
          * @return builder
          * 
@@ -560,7 +584,7 @@ public final class ManagedDatabasePostgresqlPropertiesPgauditArgs extends com.pu
         }
 
         /**
-         * @param role Specifies the master role to use for object audit logging.
+         * @param role Role. Specifies the master role to use for object audit logging.
          * 
          * @return builder
          * 

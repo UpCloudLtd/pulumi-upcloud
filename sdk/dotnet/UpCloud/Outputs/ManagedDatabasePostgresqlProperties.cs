@@ -127,7 +127,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? LogTempFiles;
         /// <summary>
-        /// PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+        /// Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
         /// </summary>
         public readonly int? MaxConnections;
         /// <summary>

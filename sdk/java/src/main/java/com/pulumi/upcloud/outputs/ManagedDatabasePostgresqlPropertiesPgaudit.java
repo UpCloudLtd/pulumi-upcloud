@@ -20,67 +20,73 @@ public final class ManagedDatabasePostgresqlPropertiesPgaudit {
      */
     private @Nullable Boolean featureEnabled;
     /**
-     * @return Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+     * @return Log Catalog. Specifies that session logging should be enabled in the case where all relations
+     * in a statement are in pg_catalog.
      * 
      */
     private @Nullable Boolean logCatalog;
     /**
-     * @return Specifies whether log messages will be visible to a client process such as psql.
+     * @return Log Client. Specifies whether log messages will be visible to a client process such as psql.
      * 
      */
     private @Nullable Boolean logClient;
     /**
-     * @return Specifies the log level that will be used for log entries.
+     * @return Log level. Specifies the log level that will be used for log entries.
      * 
      */
     private @Nullable String logLevel;
     /**
-     * @return Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+     * @return Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+     * A (default) value of -1 disable the truncation.
      * 
      */
     private @Nullable Integer logMaxStringLength;
     /**
-     * @return This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+     * @return Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+     * executed as part of another ExecutorRun.
      * 
      */
     private @Nullable Boolean logNestedStatements;
     /**
-     * @return Specifies that audit logging should include the parameters that were passed with the statement.
+     * @return Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
      * 
      */
     private @Nullable Boolean logParameter;
     /**
-     * @return Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with &lt;long param suppressed&gt;.
+     * @return Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+     * but replaced with &lt;long param suppressed&gt;.
      * 
      */
     private @Nullable Integer logParameterMaxSize;
     /**
-     * @return Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+     * @return Log Relation. Specifies whether session audit logging should create a separate log entry
+     * for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
      * 
      */
     private @Nullable Boolean logRelation;
     /**
-     * @return Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+     * @return Log Rows.
      * 
      */
     private @Nullable Boolean logRows;
     /**
-     * @return Specifies whether logging will include the statement text and parameters (if enabled).
+     * @return Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
      * 
      */
     private @Nullable Boolean logStatement;
     /**
-     * @return Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+     * @return Log Statement Once. Specifies whether logging will include the statement text and parameters with
+     * the first log entry for a statement/substatement combination or with every entry.
      * 
      */
     private @Nullable Boolean logStatementOnce;
     /**
-     * @return Specifies which classes of statements will be logged by session audit logging.
+     * @return Log. Specifies which classes of statements will be logged by session audit logging.
      * 
      */
     private @Nullable List<String> logs;
     /**
-     * @return Specifies the master role to use for object audit logging.
+     * @return Role. Specifies the master role to use for object audit logging.
      * 
      */
     private @Nullable String role;
@@ -94,91 +100,97 @@ public final class ManagedDatabasePostgresqlPropertiesPgaudit {
         return Optional.ofNullable(this.featureEnabled);
     }
     /**
-     * @return Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+     * @return Log Catalog. Specifies that session logging should be enabled in the case where all relations
+     * in a statement are in pg_catalog.
      * 
      */
     public Optional<Boolean> logCatalog() {
         return Optional.ofNullable(this.logCatalog);
     }
     /**
-     * @return Specifies whether log messages will be visible to a client process such as psql.
+     * @return Log Client. Specifies whether log messages will be visible to a client process such as psql.
      * 
      */
     public Optional<Boolean> logClient() {
         return Optional.ofNullable(this.logClient);
     }
     /**
-     * @return Specifies the log level that will be used for log entries.
+     * @return Log level. Specifies the log level that will be used for log entries.
      * 
      */
     public Optional<String> logLevel() {
         return Optional.ofNullable(this.logLevel);
     }
     /**
-     * @return Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+     * @return Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+     * A (default) value of -1 disable the truncation.
      * 
      */
     public Optional<Integer> logMaxStringLength() {
         return Optional.ofNullable(this.logMaxStringLength);
     }
     /**
-     * @return This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+     * @return Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+     * executed as part of another ExecutorRun.
      * 
      */
     public Optional<Boolean> logNestedStatements() {
         return Optional.ofNullable(this.logNestedStatements);
     }
     /**
-     * @return Specifies that audit logging should include the parameters that were passed with the statement.
+     * @return Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
      * 
      */
     public Optional<Boolean> logParameter() {
         return Optional.ofNullable(this.logParameter);
     }
     /**
-     * @return Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with &lt;long param suppressed&gt;.
+     * @return Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+     * but replaced with &lt;long param suppressed&gt;.
      * 
      */
     public Optional<Integer> logParameterMaxSize() {
         return Optional.ofNullable(this.logParameterMaxSize);
     }
     /**
-     * @return Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+     * @return Log Relation. Specifies whether session audit logging should create a separate log entry
+     * for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
      * 
      */
     public Optional<Boolean> logRelation() {
         return Optional.ofNullable(this.logRelation);
     }
     /**
-     * @return Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+     * @return Log Rows.
      * 
      */
     public Optional<Boolean> logRows() {
         return Optional.ofNullable(this.logRows);
     }
     /**
-     * @return Specifies whether logging will include the statement text and parameters (if enabled).
+     * @return Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
      * 
      */
     public Optional<Boolean> logStatement() {
         return Optional.ofNullable(this.logStatement);
     }
     /**
-     * @return Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+     * @return Log Statement Once. Specifies whether logging will include the statement text and parameters with
+     * the first log entry for a statement/substatement combination or with every entry.
      * 
      */
     public Optional<Boolean> logStatementOnce() {
         return Optional.ofNullable(this.logStatementOnce);
     }
     /**
-     * @return Specifies which classes of statements will be logged by session audit logging.
+     * @return Log. Specifies which classes of statements will be logged by session audit logging.
      * 
      */
     public List<String> logs() {
         return this.logs == null ? List.of() : this.logs;
     }
     /**
-     * @return Specifies the master role to use for object audit logging.
+     * @return Role. Specifies the master role to use for object audit logging.
      * 
      */
     public Optional<String> role() {

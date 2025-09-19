@@ -445,14 +445,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+     * Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
      * 
      */
     @Import(name="maxConnections")
     private @Nullable Output<Integer> maxConnections;
 
     /**
-     * @return PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+     * @return Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> maxConnections() {
@@ -1782,7 +1782,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxConnections PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+         * @param maxConnections Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -1793,7 +1793,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxConnections PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+         * @param maxConnections Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 

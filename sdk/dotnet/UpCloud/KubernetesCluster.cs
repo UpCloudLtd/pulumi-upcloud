@@ -156,7 +156,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> State { get; private set; } = null!;
 
         /// <summary>
-        /// Set default storage encryption strategy for all nodes in the cluster.
+        /// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
         /// </summary>
         [Output("storageEncryption")]
         public Output<string?> StorageEncryption { get; private set; } = null!;
@@ -277,7 +277,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<bool>? PrivateNodeGroups { get; set; }
 
         /// <summary>
-        /// Set default storage encryption strategy for all nodes in the cluster.
+        /// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
         /// </summary>
         [Input("storageEncryption")]
         public Input<string>? StorageEncryption { get; set; }
@@ -383,7 +383,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? State { get; set; }
 
         /// <summary>
-        /// Set default storage encryption strategy for all nodes in the cluster.
+        /// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
         /// </summary>
         [Input("storageEncryption")]
         public Input<string>? StorageEncryption { get; set; }

@@ -14,7 +14,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
     public sealed class ManagedDatabasePostgresqlPropertiesPglookoutGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Number of seconds of master unavailability before triggering database failover to standby.
+        /// Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
         /// </summary>
         [Input("maxFailoverReplicationTimeLag")]
         public Input<int>? MaxFailoverReplicationTimeLag { get; set; }

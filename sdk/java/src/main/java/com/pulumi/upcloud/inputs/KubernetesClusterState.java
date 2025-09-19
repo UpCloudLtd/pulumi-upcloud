@@ -154,14 +154,14 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Set default storage encryption strategy for all nodes in the cluster.
+     * Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
      * 
      */
     @Import(name="storageEncryption")
     private @Nullable Output<String> storageEncryption;
 
     /**
-     * @return Set default storage encryption strategy for all nodes in the cluster.
+     * @return Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
      * 
      */
     public Optional<Output<String>> storageEncryption() {
@@ -463,7 +463,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param storageEncryption Set default storage encryption strategy for all nodes in the cluster.
+         * @param storageEncryption Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
          * 
          * @return builder
          * 
@@ -474,7 +474,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param storageEncryption Set default storage encryption strategy for all nodes in the cluster.
+         * @param storageEncryption Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
          * 
          * @return builder
          * 

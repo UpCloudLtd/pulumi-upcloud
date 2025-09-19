@@ -53,11 +53,19 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? CustomDomain;
         /// <summary>
+        /// OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+        /// </summary>
+        public readonly ImmutableArray<string> CustomKeystores;
+        /// <summary>
+        /// OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+        /// </summary>
+        public readonly ImmutableArray<string> CustomRepos;
+        /// <summary>
         /// Watermark settings.
         /// </summary>
         public readonly Outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks? DiskWatermarks;
         /// <summary>
-        /// Elasticsearch major version.
+        /// Elasticsearch version.
         /// </summary>
         public readonly string? ElasticsearchVersion;
         /// <summary>
@@ -287,7 +295,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? ThreadPoolWriteSize;
         /// <summary>
-        /// OpenSearch major version.
+        /// OpenSearch version.
         /// </summary>
         public readonly string? Version;
 
@@ -314,6 +322,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             Outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog? clusterSearchRequestSlowlog,
 
             string? customDomain,
+
+            ImmutableArray<string> customKeystores,
+
+            ImmutableArray<string> customRepos,
 
             Outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks? diskWatermarks,
 
@@ -448,6 +460,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             ClusterRoutingAllocationNodeConcurrentRecoveries = clusterRoutingAllocationNodeConcurrentRecoveries;
             ClusterSearchRequestSlowlog = clusterSearchRequestSlowlog;
             CustomDomain = customDomain;
+            CustomKeystores = customKeystores;
+            CustomRepos = customRepos;
             DiskWatermarks = diskWatermarks;
             ElasticsearchVersion = elasticsearchVersion;
             EmailSenderName = emailSenderName;

@@ -378,6 +378,12 @@
                                         }
                                     }
                                 },
+                                "custom_keystores": {
+                                    "maxItemsOne": false
+                                },
+                                "custom_repos": {
+                                    "maxItemsOne": false
+                                },
                                 "disk_watermarks": {
                                     "maxItemsOne": true
                                 },
@@ -675,6 +681,23 @@
                                 },
                                 "dhcp_routes": {
                                     "maxItemsOne": false
+                                },
+                                "dhcp_routes_configuration": {
+                                    "fields": {
+                                        "effective_routes_auto_population": {
+                                            "fields": {
+                                                "exclude_by_source": {
+                                                    "maxItemsOne": false
+                                                },
+                                                "filter_by_destination": {
+                                                    "maxItemsOne": false
+                                                },
+                                                "filter_by_route_type": {
+                                                    "maxItemsOne": false
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }

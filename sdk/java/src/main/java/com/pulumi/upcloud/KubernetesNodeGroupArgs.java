@@ -195,14 +195,14 @@ public final class KubernetesNodeGroupArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable.
+     * The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
      * 
      */
     @Import(name="storageEncryption")
     private @Nullable Output<String> storageEncryption;
 
     /**
-     * @return The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable.
+     * @return The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
      * 
      */
     public Optional<Output<String>> storageEncryption() {
@@ -534,7 +534,7 @@ public final class KubernetesNodeGroupArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param storageEncryption The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable.
+         * @param storageEncryption The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
          * 
          * @return builder
          * 
@@ -545,7 +545,7 @@ public final class KubernetesNodeGroupArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param storageEncryption The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable.
+         * @param storageEncryption The storage encryption strategy to use for the nodes in this group. If not set, the cluster&#39;s storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
          * 
          * @return builder
          * 

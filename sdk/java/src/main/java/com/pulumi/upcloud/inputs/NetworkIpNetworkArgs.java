@@ -6,6 +6,7 @@ package com.pulumi.upcloud.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.upcloud.inputs.NetworkIpNetworkDhcpRoutesConfigurationArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -94,6 +95,21 @@ public final class NetworkIpNetworkArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * DHCP routes auto-population configuration.
+     * 
+     */
+    @Import(name="dhcpRoutesConfiguration")
+    private @Nullable Output<NetworkIpNetworkDhcpRoutesConfigurationArgs> dhcpRoutesConfiguration;
+
+    /**
+     * @return DHCP routes auto-population configuration.
+     * 
+     */
+    public Optional<Output<NetworkIpNetworkDhcpRoutesConfigurationArgs>> dhcpRoutesConfiguration() {
+        return Optional.ofNullable(this.dhcpRoutesConfiguration);
+    }
+
+    /**
      * IP address family
      * 
      */
@@ -131,6 +147,7 @@ public final class NetworkIpNetworkArgs extends com.pulumi.resources.ResourceArg
         this.dhcpDefaultRoute = $.dhcpDefaultRoute;
         this.dhcpDns = $.dhcpDns;
         this.dhcpRoutes = $.dhcpRoutes;
+        this.dhcpRoutesConfiguration = $.dhcpRoutesConfiguration;
         this.family = $.family;
         this.gateway = $.gateway;
     }
@@ -276,6 +293,27 @@ public final class NetworkIpNetworkArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder dhcpRoutes(String... dhcpRoutes) {
             return dhcpRoutes(List.of(dhcpRoutes));
+        }
+
+        /**
+         * @param dhcpRoutesConfiguration DHCP routes auto-population configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dhcpRoutesConfiguration(@Nullable Output<NetworkIpNetworkDhcpRoutesConfigurationArgs> dhcpRoutesConfiguration) {
+            $.dhcpRoutesConfiguration = dhcpRoutesConfiguration;
+            return this;
+        }
+
+        /**
+         * @param dhcpRoutesConfiguration DHCP routes auto-population configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dhcpRoutesConfiguration(NetworkIpNetworkDhcpRoutesConfigurationArgs dhcpRoutesConfiguration) {
+            return dhcpRoutesConfiguration(Output.of(dhcpRoutesConfiguration));
         }
 
         /**

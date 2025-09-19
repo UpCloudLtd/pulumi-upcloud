@@ -5,6 +5,7 @@ package com.pulumi.upcloud.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.upcloud.outputs.NetworkIpNetworkDhcpRoutesConfiguration;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -39,6 +40,11 @@ public final class NetworkIpNetwork {
      * 
      */
     private @Nullable List<String> dhcpRoutes;
+    /**
+     * @return DHCP routes auto-population configuration.
+     * 
+     */
+    private @Nullable NetworkIpNetworkDhcpRoutesConfiguration dhcpRoutesConfiguration;
     /**
      * @return IP address family
      * 
@@ -87,6 +93,13 @@ public final class NetworkIpNetwork {
         return this.dhcpRoutes == null ? List.of() : this.dhcpRoutes;
     }
     /**
+     * @return DHCP routes auto-population configuration.
+     * 
+     */
+    public Optional<NetworkIpNetworkDhcpRoutesConfiguration> dhcpRoutesConfiguration() {
+        return Optional.ofNullable(this.dhcpRoutesConfiguration);
+    }
+    /**
      * @return IP address family
      * 
      */
@@ -115,6 +128,7 @@ public final class NetworkIpNetwork {
         private @Nullable Boolean dhcpDefaultRoute;
         private @Nullable List<String> dhcpDns;
         private @Nullable List<String> dhcpRoutes;
+        private @Nullable NetworkIpNetworkDhcpRoutesConfiguration dhcpRoutesConfiguration;
         private String family;
         private @Nullable String gateway;
         public Builder() {}
@@ -125,6 +139,7 @@ public final class NetworkIpNetwork {
     	      this.dhcpDefaultRoute = defaults.dhcpDefaultRoute;
     	      this.dhcpDns = defaults.dhcpDns;
     	      this.dhcpRoutes = defaults.dhcpRoutes;
+    	      this.dhcpRoutesConfiguration = defaults.dhcpRoutesConfiguration;
     	      this.family = defaults.family;
     	      this.gateway = defaults.gateway;
         }
@@ -170,6 +185,12 @@ public final class NetworkIpNetwork {
             return dhcpRoutes(List.of(dhcpRoutes));
         }
         @CustomType.Setter
+        public Builder dhcpRoutesConfiguration(@Nullable NetworkIpNetworkDhcpRoutesConfiguration dhcpRoutesConfiguration) {
+
+            this.dhcpRoutesConfiguration = dhcpRoutesConfiguration;
+            return this;
+        }
+        @CustomType.Setter
         public Builder family(String family) {
             if (family == null) {
               throw new MissingRequiredPropertyException("NetworkIpNetwork", "family");
@@ -190,6 +211,7 @@ public final class NetworkIpNetwork {
             _resultValue.dhcpDefaultRoute = dhcpDefaultRoute;
             _resultValue.dhcpDns = dhcpDns;
             _resultValue.dhcpRoutes = dhcpRoutes;
+            _resultValue.dhcpRoutesConfiguration = dhcpRoutesConfiguration;
             _resultValue.family = family;
             _resultValue.gateway = gateway;
             return _resultValue;

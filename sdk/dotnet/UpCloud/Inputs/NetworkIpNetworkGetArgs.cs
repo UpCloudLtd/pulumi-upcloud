@@ -56,6 +56,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         }
 
         /// <summary>
+        /// DHCP routes auto-population configuration.
+        /// </summary>
+        [Input("dhcpRoutesConfiguration")]
+        public Input<Inputs.NetworkIpNetworkDhcpRoutesConfigurationGetArgs>? DhcpRoutesConfiguration { get; set; }
+
+        /// <summary>
         /// IP address family
         /// </summary>
         [Input("family", required: true)]

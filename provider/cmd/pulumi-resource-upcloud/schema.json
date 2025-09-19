@@ -2054,13 +2054,27 @@
                     "type": "string",
                     "description": "Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.\n"
                 },
+                "customKeystores": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.\n"
+                },
+                "customRepos": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.\n"
+                },
                 "diskWatermarks": {
                     "$ref": "#/types/upcloud:index/ManagedDatabaseOpensearchPropertiesDiskWatermarks:ManagedDatabaseOpensearchPropertiesDiskWatermarks",
                     "description": "Watermark settings.\n"
                 },
                 "elasticsearchVersion": {
                     "type": "string",
-                    "description": "Elasticsearch major version.\n"
+                    "description": "Elasticsearch version.\n"
                 },
                 "emailSenderName": {
                     "type": "string",
@@ -2304,7 +2318,7 @@
                 },
                 "version": {
                     "type": "string",
-                    "description": "OpenSearch major version.\n"
+                    "description": "OpenSearch version.\n"
                 }
             },
             "type": "object",
@@ -2321,6 +2335,8 @@
                         "clusterRoutingAllocationNodeConcurrentRecoveries",
                         "clusterSearchRequestSlowlog",
                         "customDomain",
+                        "customKeystores",
+                        "customRepos",
                         "diskWatermarks",
                         "elasticsearchVersion",
                         "emailSenderName",
@@ -2583,15 +2599,15 @@
             "properties": {
                 "mappingNestedObjectsLimit": {
                     "type": "integer",
-                    "description": "index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.\n"
+                    "description": "(DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.\n"
                 },
                 "numberOfReplicas": {
                     "type": "integer",
-                    "description": "The number of replicas each primary shard has.\n"
+                    "description": "The number of replicas each primary shard has. Deprecated, use an index template instead.\n"
                 },
                 "numberOfShards": {
                     "type": "integer",
-                    "description": "The number of primary shards that an index should have.\n"
+                    "description": "The number of primary shards that an index should have. Deprecated, use an index template instead.\n"
                 }
             },
             "type": "object",
@@ -3400,7 +3416,7 @@
                 },
                 "maxConnections": {
                     "type": "integer",
-                    "description": "PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.\n"
+                    "description": "Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.\n"
                 },
                 "maxFilesPerProcess": {
                     "type": "integer",
@@ -3698,7 +3714,6 @@
                         "method",
                         "password",
                         "port",
-                        "ssl",
                         "username"
                     ]
                 }
@@ -3712,76 +3727,67 @@
                 },
                 "logCatalog": {
                     "type": "boolean",
-                    "description": "Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.\n"
+                    "description": "Log Catalog. Specifies that session logging should be enabled in the case where all relations\nin a statement are in pg_catalog.\n"
                 },
                 "logClient": {
                     "type": "boolean",
-                    "description": "Specifies whether log messages will be visible to a client process such as psql.\n"
+                    "description": "Log Client. Specifies whether log messages will be visible to a client process such as psql.\n"
                 },
                 "logLevel": {
                     "type": "string",
-                    "description": "Specifies the log level that will be used for log entries.\n"
+                    "description": "Log level. Specifies the log level that will be used for log entries.\n"
                 },
                 "logMaxStringLength": {
                     "type": "integer",
-                    "description": "Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.\n"
+                    "description": "Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.\nA (default) value of -1 disable the truncation.\n"
                 },
                 "logNestedStatements": {
                     "type": "boolean",
-                    "description": "This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.\n"
+                    "description": "Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are\nexecuted as part of another ExecutorRun.\n"
                 },
                 "logParameter": {
                     "type": "boolean",
-                    "description": "Specifies that audit logging should include the parameters that were passed with the statement.\n"
+                    "description": "Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.\n"
                 },
                 "logParameterMaxSize": {
                     "type": "integer",
-                    "description": "Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with \u003clong param suppressed\u003e.\n"
+                    "description": "Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,\nbut replaced with \u003clong param suppressed\u003e.\n"
                 },
                 "logRelation": {
                     "type": "boolean",
-                    "description": "Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.\n"
+                    "description": "Log Relation. Specifies whether session audit logging should create a separate log entry\nfor each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.\n"
                 },
                 "logRows": {
                     "type": "boolean",
-                    "description": "Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.\n"
+                    "description": "Log Rows.\n"
                 },
                 "logStatement": {
                     "type": "boolean",
-                    "description": "Specifies whether logging will include the statement text and parameters (if enabled).\n"
+                    "description": "Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).\n"
                 },
                 "logStatementOnce": {
                     "type": "boolean",
-                    "description": "Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.\n"
+                    "description": "Log Statement Once. Specifies whether logging will include the statement text and parameters with\nthe first log entry for a statement/substatement combination or with every entry.\n"
                 },
                 "logs": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Specifies which classes of statements will be logged by session audit logging.\n"
+                    "description": "Log. Specifies which classes of statements will be logged by session audit logging.\n"
                 },
                 "role": {
                     "type": "string",
-                    "description": "Specifies the master role to use for object audit logging.\n"
+                    "description": "Role. Specifies the master role to use for object audit logging.\n"
                 }
             },
             "type": "object",
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "featureEnabled",
-                        "logCatalog",
-                        "logClient",
                         "logLevel",
                         "logMaxStringLength",
-                        "logNestedStatements",
-                        "logParameter",
                         "logParameterMaxSize",
-                        "logRelation",
-                        "logRows",
-                        "logStatement",
-                        "logStatementOnce",
                         "logs",
                         "role"
                     ]
@@ -3846,8 +3852,7 @@
                         "maxPreparedStatements",
                         "minPoolSize",
                         "serverIdleTimeout",
-                        "serverLifetime",
-                        "serverResetQueryAlways"
+                        "serverLifetime"
                     ]
                 }
             }
@@ -3856,7 +3861,7 @@
             "properties": {
                 "maxFailoverReplicationTimeLag": {
                     "type": "integer",
-                    "description": "Number of seconds of master unavailability before triggering database failover to standby.\n"
+                    "description": "Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.\n"
                 }
             },
             "type": "object",
@@ -4558,6 +4563,10 @@
                     },
                     "description": "The additional DHCP classless static routes given by DHCP\n"
                 },
+                "dhcpRoutesConfiguration": {
+                    "$ref": "#/types/upcloud:index/NetworkIpNetworkDhcpRoutesConfiguration:NetworkIpNetworkDhcpRoutesConfiguration",
+                    "description": "DHCP routes auto-population configuration.\n"
+                },
                 "family": {
                     "type": "string",
                     "description": "IP address family\n"
@@ -4586,6 +4595,45 @@
                     ]
                 }
             }
+        },
+        "upcloud:index/NetworkIpNetworkDhcpRoutesConfiguration:NetworkIpNetworkDhcpRoutesConfiguration": {
+            "properties": {
+                "effectiveRoutesAutoPopulation": {
+                    "$ref": "#/types/upcloud:index/NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation:NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation",
+                    "description": "Automatically populate effective routes.\n"
+                }
+            },
+            "type": "object"
+        },
+        "upcloud:index/NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation:NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable or disable route auto-population.\n"
+                },
+                "excludeBySources": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Exclude routes coming from specific sources (router-connected-networks, static-route).\n"
+                },
+                "filterByDestinations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "CIDR destinations to include when auto-populating routes.\n"
+                },
+                "filterByRouteTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Include only routes of given types (service, user).\n"
+                }
+            },
+            "type": "object"
         },
         "upcloud:index/NetworkPeeringNetwork:NetworkPeeringNetwork": {
             "properties": {
@@ -6498,7 +6546,7 @@
                 },
                 "storageEncryption": {
                     "type": "string",
-                    "description": "Set default storage encryption strategy for all nodes in the cluster."
+                    "description": "Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`."
                 },
                 "upgradeStrategyType": {
                     "type": "string",
@@ -6559,7 +6607,7 @@
                 },
                 "storageEncryption": {
                     "type": "string",
-                    "description": "Set default storage encryption strategy for all nodes in the cluster."
+                    "description": "Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`."
                 },
                 "upgradeStrategyType": {
                     "type": "string",
@@ -6629,7 +6677,7 @@
                     },
                     "storageEncryption": {
                         "type": "string",
-                        "description": "Set default storage encryption strategy for all nodes in the cluster."
+                        "description": "Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`."
                     },
                     "upgradeStrategyType": {
                         "type": "string",
@@ -6705,7 +6753,7 @@
                 },
                 "storageEncryption": {
                     "type": "string",
-                    "description": "The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable."
+                    "description": "The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`."
                 },
                 "taints": {
                     "type": "array",
@@ -6786,7 +6834,7 @@
                 },
                 "storageEncryption": {
                     "type": "string",
-                    "description": "The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable."
+                    "description": "The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`."
                 },
                 "taints": {
                     "type": "array",
@@ -6863,7 +6911,7 @@
                     },
                     "storageEncryption": {
                         "type": "string",
-                        "description": "The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable."
+                        "description": "The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`."
                     },
                     "taints": {
                         "type": "array",

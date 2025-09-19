@@ -243,14 +243,14 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return this.state;
     }
     /**
-     * Set default storage encryption strategy for all nodes in the cluster.
+     * Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
      * 
      */
     @Export(name="storageEncryption", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> storageEncryption;
 
     /**
-     * @return Set default storage encryption strategy for all nodes in the cluster.
+     * @return Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
      * 
      */
     public Output<Optional<String>> storageEncryption() {

@@ -135,7 +135,7 @@ type KubernetesNodeGroup struct {
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
 	SshKeys pulumi.StringArrayOutput `pulumi:"sshKeys"`
-	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
 	StorageEncryption pulumi.StringOutput `pulumi:"storageEncryption"`
 	// Taints for the nodes in this group.
 	Taints KubernetesNodeGroupTaintArrayOutput `pulumi:"taints"`
@@ -206,7 +206,7 @@ type kubernetesNodeGroupState struct {
 	Plan *string `pulumi:"plan"`
 	// You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
 	SshKeys []string `pulumi:"sshKeys"`
-	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
 	StorageEncryption *string `pulumi:"storageEncryption"`
 	// Taints for the nodes in this group.
 	Taints []KubernetesNodeGroupTaint `pulumi:"taints"`
@@ -239,7 +239,7 @@ type KubernetesNodeGroupState struct {
 	Plan pulumi.StringPtrInput
 	// You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
 	SshKeys pulumi.StringArrayInput
-	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
 	StorageEncryption pulumi.StringPtrInput
 	// Taints for the nodes in this group.
 	Taints KubernetesNodeGroupTaintArrayInput
@@ -276,7 +276,7 @@ type kubernetesNodeGroupArgs struct {
 	Plan string `pulumi:"plan"`
 	// You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
 	SshKeys []string `pulumi:"sshKeys"`
-	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
 	StorageEncryption *string `pulumi:"storageEncryption"`
 	// Taints for the nodes in this group.
 	Taints []KubernetesNodeGroupTaint `pulumi:"taints"`
@@ -310,7 +310,7 @@ type KubernetesNodeGroupArgs struct {
 	Plan pulumi.StringInput
 	// You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
 	SshKeys pulumi.StringArrayInput
-	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+	// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
 	StorageEncryption pulumi.StringPtrInput
 	// Taints for the nodes in this group.
 	Taints KubernetesNodeGroupTaintArrayInput
@@ -462,7 +462,7 @@ func (o KubernetesNodeGroupOutput) SshKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.StringArrayOutput { return v.SshKeys }).(pulumi.StringArrayOutput)
 }
 
-// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable.
+// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
 func (o KubernetesNodeGroupOutput) StorageEncryption() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.StringOutput { return v.StorageEncryption }).(pulumi.StringOutput)
 }

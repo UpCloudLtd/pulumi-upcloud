@@ -12,14 +12,14 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ManagedDatabasePostgresqlPropertiesPglookout {
     /**
-     * @return Number of seconds of master unavailability before triggering database failover to standby.
+     * @return Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
      * 
      */
     private @Nullable Integer maxFailoverReplicationTimeLag;
 
     private ManagedDatabasePostgresqlPropertiesPglookout() {}
     /**
-     * @return Number of seconds of master unavailability before triggering database failover to standby.
+     * @return Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
      * 
      */
     public Optional<Integer> maxFailoverReplicationTimeLag() {

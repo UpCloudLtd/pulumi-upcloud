@@ -8823,9 +8823,13 @@ type ManagedDatabaseOpensearchProperties struct {
 	ClusterSearchRequestSlowlog                      *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog `pulumi:"clusterSearchRequestSlowlog"`
 	// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
 	CustomDomain *string `pulumi:"customDomain"`
+	// OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+	CustomKeystores []string `pulumi:"customKeystores"`
+	// OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+	CustomRepos []string `pulumi:"customRepos"`
 	// Watermark settings.
 	DiskWatermarks *ManagedDatabaseOpensearchPropertiesDiskWatermarks `pulumi:"diskWatermarks"`
-	// Elasticsearch major version.
+	// Elasticsearch version.
 	ElasticsearchVersion *string `pulumi:"elasticsearchVersion"`
 	// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
 	EmailSenderName *string `pulumi:"emailSenderName"`
@@ -8941,7 +8945,7 @@ type ManagedDatabaseOpensearchProperties struct {
 	ThreadPoolWriteQueueSize *int `pulumi:"threadPoolWriteQueueSize"`
 	// write thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
 	ThreadPoolWriteSize *int `pulumi:"threadPoolWriteSize"`
-	// OpenSearch major version.
+	// OpenSearch version.
 	Version *string `pulumi:"version"`
 }
 
@@ -8977,9 +8981,13 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	ClusterSearchRequestSlowlog                      ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrInput `pulumi:"clusterSearchRequestSlowlog"`
 	// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
 	CustomDomain pulumi.StringPtrInput `pulumi:"customDomain"`
+	// OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+	CustomKeystores pulumi.StringArrayInput `pulumi:"customKeystores"`
+	// OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+	CustomRepos pulumi.StringArrayInput `pulumi:"customRepos"`
 	// Watermark settings.
 	DiskWatermarks ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrInput `pulumi:"diskWatermarks"`
-	// Elasticsearch major version.
+	// Elasticsearch version.
 	ElasticsearchVersion pulumi.StringPtrInput `pulumi:"elasticsearchVersion"`
 	// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
 	EmailSenderName pulumi.StringPtrInput `pulumi:"emailSenderName"`
@@ -9095,7 +9103,7 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	ThreadPoolWriteQueueSize pulumi.IntPtrInput `pulumi:"threadPoolWriteQueueSize"`
 	// write thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
 	ThreadPoolWriteSize pulumi.IntPtrInput `pulumi:"threadPoolWriteSize"`
-	// OpenSearch major version.
+	// OpenSearch version.
 	Version pulumi.StringPtrInput `pulumi:"version"`
 }
 
@@ -9239,6 +9247,16 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) CustomDomain() pulumi.StringP
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *string { return v.CustomDomain }).(pulumi.StringPtrOutput)
 }
 
+// OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+func (o ManagedDatabaseOpensearchPropertiesOutput) CustomKeystores() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) []string { return v.CustomKeystores }).(pulumi.StringArrayOutput)
+}
+
+// OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+func (o ManagedDatabaseOpensearchPropertiesOutput) CustomRepos() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) []string { return v.CustomRepos }).(pulumi.StringArrayOutput)
+}
+
 // Watermark settings.
 func (o ManagedDatabaseOpensearchPropertiesOutput) DiskWatermarks() ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesDiskWatermarks {
@@ -9246,7 +9264,7 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) DiskWatermarks() ManagedDatab
 	}).(ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput)
 }
 
-// Elasticsearch major version.
+// Elasticsearch version.
 func (o ManagedDatabaseOpensearchPropertiesOutput) ElasticsearchVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *string { return v.ElasticsearchVersion }).(pulumi.StringPtrOutput)
 }
@@ -9557,7 +9575,7 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) ThreadPoolWriteSize() pulumi.
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.ThreadPoolWriteSize }).(pulumi.IntPtrOutput)
 }
 
-// OpenSearch major version.
+// OpenSearch version.
 func (o ManagedDatabaseOpensearchPropertiesOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
@@ -9694,6 +9712,26 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) CustomDomain() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
+// OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) CustomKeystores() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) []string {
+		if v == nil {
+			return nil
+		}
+		return v.CustomKeystores
+	}).(pulumi.StringArrayOutput)
+}
+
+// OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) CustomRepos() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) []string {
+		if v == nil {
+			return nil
+		}
+		return v.CustomRepos
+	}).(pulumi.StringArrayOutput)
+}
+
 // Watermark settings.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) DiskWatermarks() ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesDiskWatermarks {
@@ -9704,7 +9742,7 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) DiskWatermarks() ManagedDa
 	}).(ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput)
 }
 
-// Elasticsearch major version.
+// Elasticsearch version.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ElasticsearchVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *string {
 		if v == nil {
@@ -10292,7 +10330,7 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ThreadPoolWriteSize() pulu
 	}).(pulumi.IntPtrOutput)
 }
 
-// OpenSearch major version.
+// OpenSearch version.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *string {
 		if v == nil {
@@ -11641,11 +11679,11 @@ func (o ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput) RollupSearchSea
 }
 
 type ManagedDatabaseOpensearchPropertiesIndexTemplate struct {
-	// index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+	// (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
 	MappingNestedObjectsLimit *int `pulumi:"mappingNestedObjectsLimit"`
-	// The number of replicas each primary shard has.
+	// The number of replicas each primary shard has. Deprecated, use an index template instead.
 	NumberOfReplicas *int `pulumi:"numberOfReplicas"`
-	// The number of primary shards that an index should have.
+	// The number of primary shards that an index should have. Deprecated, use an index template instead.
 	NumberOfShards *int `pulumi:"numberOfShards"`
 }
 
@@ -11661,11 +11699,11 @@ type ManagedDatabaseOpensearchPropertiesIndexTemplateInput interface {
 }
 
 type ManagedDatabaseOpensearchPropertiesIndexTemplateArgs struct {
-	// index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+	// (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
 	MappingNestedObjectsLimit pulumi.IntPtrInput `pulumi:"mappingNestedObjectsLimit"`
-	// The number of replicas each primary shard has.
+	// The number of replicas each primary shard has. Deprecated, use an index template instead.
 	NumberOfReplicas pulumi.IntPtrInput `pulumi:"numberOfReplicas"`
-	// The number of primary shards that an index should have.
+	// The number of primary shards that an index should have. Deprecated, use an index template instead.
 	NumberOfShards pulumi.IntPtrInput `pulumi:"numberOfShards"`
 }
 
@@ -11746,17 +11784,17 @@ func (o ManagedDatabaseOpensearchPropertiesIndexTemplateOutput) ToManagedDatabas
 	}).(ManagedDatabaseOpensearchPropertiesIndexTemplatePtrOutput)
 }
 
-// index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+// (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
 func (o ManagedDatabaseOpensearchPropertiesIndexTemplateOutput) MappingNestedObjectsLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesIndexTemplate) *int { return v.MappingNestedObjectsLimit }).(pulumi.IntPtrOutput)
 }
 
-// The number of replicas each primary shard has.
+// The number of replicas each primary shard has. Deprecated, use an index template instead.
 func (o ManagedDatabaseOpensearchPropertiesIndexTemplateOutput) NumberOfReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesIndexTemplate) *int { return v.NumberOfReplicas }).(pulumi.IntPtrOutput)
 }
 
-// The number of primary shards that an index should have.
+// The number of primary shards that an index should have. Deprecated, use an index template instead.
 func (o ManagedDatabaseOpensearchPropertiesIndexTemplateOutput) NumberOfShards() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesIndexTemplate) *int { return v.NumberOfShards }).(pulumi.IntPtrOutput)
 }
@@ -11785,7 +11823,7 @@ func (o ManagedDatabaseOpensearchPropertiesIndexTemplatePtrOutput) Elem() Manage
 	}).(ManagedDatabaseOpensearchPropertiesIndexTemplateOutput)
 }
 
-// index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000.
+// (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
 func (o ManagedDatabaseOpensearchPropertiesIndexTemplatePtrOutput) MappingNestedObjectsLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesIndexTemplate) *int {
 		if v == nil {
@@ -11795,7 +11833,7 @@ func (o ManagedDatabaseOpensearchPropertiesIndexTemplatePtrOutput) MappingNested
 	}).(pulumi.IntPtrOutput)
 }
 
-// The number of replicas each primary shard has.
+// The number of replicas each primary shard has. Deprecated, use an index template instead.
 func (o ManagedDatabaseOpensearchPropertiesIndexTemplatePtrOutput) NumberOfReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesIndexTemplate) *int {
 		if v == nil {
@@ -11805,7 +11843,7 @@ func (o ManagedDatabaseOpensearchPropertiesIndexTemplatePtrOutput) NumberOfRepli
 	}).(pulumi.IntPtrOutput)
 }
 
-// The number of primary shards that an index should have.
+// The number of primary shards that an index should have. Deprecated, use an index template instead.
 func (o ManagedDatabaseOpensearchPropertiesIndexTemplatePtrOutput) NumberOfShards() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesIndexTemplate) *int {
 		if v == nil {
@@ -16029,7 +16067,7 @@ type ManagedDatabasePostgresqlProperties struct {
 	LogMinDurationStatement *int `pulumi:"logMinDurationStatement"`
 	// Log statements for each temporary file created larger than this number of kilobytes, -1 disables.
 	LogTempFiles *int `pulumi:"logTempFiles"`
-	// PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+	// Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
 	MaxConnections *int `pulumi:"maxConnections"`
 	// PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
 	MaxFilesPerProcess *int `pulumi:"maxFilesPerProcess"`
@@ -16185,7 +16223,7 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	LogMinDurationStatement pulumi.IntPtrInput `pulumi:"logMinDurationStatement"`
 	// Log statements for each temporary file created larger than this number of kilobytes, -1 disables.
 	LogTempFiles pulumi.IntPtrInput `pulumi:"logTempFiles"`
-	// PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+	// Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
 	MaxConnections pulumi.IntPtrInput `pulumi:"maxConnections"`
 	// PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
 	MaxFilesPerProcess pulumi.IntPtrInput `pulumi:"maxFilesPerProcess"`
@@ -16490,7 +16528,7 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) LogTempFiles() pulumi.IntPtrO
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.LogTempFiles }).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+// Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxConnections }).(pulumi.IntPtrOutput)
 }
@@ -17019,7 +17057,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) LogTempFiles() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum number of concurrent connections to the database server. Changing this parameter causes a service restart.
+// Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -17741,31 +17779,37 @@ func (o ManagedDatabasePostgresqlPropertiesMigrationPtrOutput) Username() pulumi
 type ManagedDatabasePostgresqlPropertiesPgaudit struct {
 	// Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
 	FeatureEnabled *bool `pulumi:"featureEnabled"`
-	// Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+	// Log Catalog. Specifies that session logging should be enabled in the case where all relations
+	// in a statement are in pg_catalog.
 	LogCatalog *bool `pulumi:"logCatalog"`
-	// Specifies whether log messages will be visible to a client process such as psql.
+	// Log Client. Specifies whether log messages will be visible to a client process such as psql.
 	LogClient *bool `pulumi:"logClient"`
-	// Specifies the log level that will be used for log entries.
+	// Log level. Specifies the log level that will be used for log entries.
 	LogLevel *string `pulumi:"logLevel"`
-	// Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+	// Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+	// A (default) value of -1 disable the truncation.
 	LogMaxStringLength *int `pulumi:"logMaxStringLength"`
-	// This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+	// Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+	// executed as part of another ExecutorRun.
 	LogNestedStatements *bool `pulumi:"logNestedStatements"`
-	// Specifies that audit logging should include the parameters that were passed with the statement.
+	// Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
 	LogParameter *bool `pulumi:"logParameter"`
-	// Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
+	// Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+	// but replaced with <long param suppressed>.
 	LogParameterMaxSize *int `pulumi:"logParameterMaxSize"`
-	// Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+	// Log Relation. Specifies whether session audit logging should create a separate log entry
+	// for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
 	LogRelation *bool `pulumi:"logRelation"`
-	// Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+	// Log Rows.
 	LogRows *bool `pulumi:"logRows"`
-	// Specifies whether logging will include the statement text and parameters (if enabled).
+	// Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
 	LogStatement *bool `pulumi:"logStatement"`
-	// Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+	// Log Statement Once. Specifies whether logging will include the statement text and parameters with
+	// the first log entry for a statement/substatement combination or with every entry.
 	LogStatementOnce *bool `pulumi:"logStatementOnce"`
-	// Specifies which classes of statements will be logged by session audit logging.
+	// Log. Specifies which classes of statements will be logged by session audit logging.
 	Logs []string `pulumi:"logs"`
-	// Specifies the master role to use for object audit logging.
+	// Role. Specifies the master role to use for object audit logging.
 	Role *string `pulumi:"role"`
 }
 
@@ -17783,31 +17827,37 @@ type ManagedDatabasePostgresqlPropertiesPgauditInput interface {
 type ManagedDatabasePostgresqlPropertiesPgauditArgs struct {
 	// Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
 	FeatureEnabled pulumi.BoolPtrInput `pulumi:"featureEnabled"`
-	// Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+	// Log Catalog. Specifies that session logging should be enabled in the case where all relations
+	// in a statement are in pg_catalog.
 	LogCatalog pulumi.BoolPtrInput `pulumi:"logCatalog"`
-	// Specifies whether log messages will be visible to a client process such as psql.
+	// Log Client. Specifies whether log messages will be visible to a client process such as psql.
 	LogClient pulumi.BoolPtrInput `pulumi:"logClient"`
-	// Specifies the log level that will be used for log entries.
+	// Log level. Specifies the log level that will be used for log entries.
 	LogLevel pulumi.StringPtrInput `pulumi:"logLevel"`
-	// Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+	// Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+	// A (default) value of -1 disable the truncation.
 	LogMaxStringLength pulumi.IntPtrInput `pulumi:"logMaxStringLength"`
-	// This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+	// Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+	// executed as part of another ExecutorRun.
 	LogNestedStatements pulumi.BoolPtrInput `pulumi:"logNestedStatements"`
-	// Specifies that audit logging should include the parameters that were passed with the statement.
+	// Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
 	LogParameter pulumi.BoolPtrInput `pulumi:"logParameter"`
-	// Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
+	// Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+	// but replaced with <long param suppressed>.
 	LogParameterMaxSize pulumi.IntPtrInput `pulumi:"logParameterMaxSize"`
-	// Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+	// Log Relation. Specifies whether session audit logging should create a separate log entry
+	// for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
 	LogRelation pulumi.BoolPtrInput `pulumi:"logRelation"`
-	// Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+	// Log Rows.
 	LogRows pulumi.BoolPtrInput `pulumi:"logRows"`
-	// Specifies whether logging will include the statement text and parameters (if enabled).
+	// Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
 	LogStatement pulumi.BoolPtrInput `pulumi:"logStatement"`
-	// Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+	// Log Statement Once. Specifies whether logging will include the statement text and parameters with
+	// the first log entry for a statement/substatement combination or with every entry.
 	LogStatementOnce pulumi.BoolPtrInput `pulumi:"logStatementOnce"`
-	// Specifies which classes of statements will be logged by session audit logging.
+	// Log. Specifies which classes of statements will be logged by session audit logging.
 	Logs pulumi.StringArrayInput `pulumi:"logs"`
-	// Specifies the master role to use for object audit logging.
+	// Role. Specifies the master role to use for object audit logging.
 	Role pulumi.StringPtrInput `pulumi:"role"`
 }
 
@@ -17893,67 +17943,73 @@ func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) FeatureEnabled() pulum
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.FeatureEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+// Log Catalog. Specifies that session logging should be enabled in the case where all relations
+// in a statement are in pg_catalog.
 func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogCatalog() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogCatalog }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies whether log messages will be visible to a client process such as psql.
+// Log Client. Specifies whether log messages will be visible to a client process such as psql.
 func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogClient() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogClient }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies the log level that will be used for log entries.
+// Log level. Specifies the log level that will be used for log entries.
 func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *string { return v.LogLevel }).(pulumi.StringPtrOutput)
 }
 
-// Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+// Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+// A (default) value of -1 disable the truncation.
 func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogMaxStringLength() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *int { return v.LogMaxStringLength }).(pulumi.IntPtrOutput)
 }
 
-// This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+// Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+// executed as part of another ExecutorRun.
 func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogNestedStatements() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogNestedStatements }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies that audit logging should include the parameters that were passed with the statement.
+// Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
 func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogParameter() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogParameter }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
+// Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+// but replaced with <long param suppressed>.
 func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogParameterMaxSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *int { return v.LogParameterMaxSize }).(pulumi.IntPtrOutput)
 }
 
-// Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+// Log Relation. Specifies whether session audit logging should create a separate log entry
+// for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
 func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogRelation() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogRelation }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+// Log Rows.
 func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogRows() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogRows }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies whether logging will include the statement text and parameters (if enabled).
+// Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
 func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogStatement() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogStatement }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+// Log Statement Once. Specifies whether logging will include the statement text and parameters with
+// the first log entry for a statement/substatement combination or with every entry.
 func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) LogStatementOnce() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *bool { return v.LogStatementOnce }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies which classes of statements will be logged by session audit logging.
+// Log. Specifies which classes of statements will be logged by session audit logging.
 func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) Logs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) []string { return v.Logs }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the master role to use for object audit logging.
+// Role. Specifies the master role to use for object audit logging.
 func (o ManagedDatabasePostgresqlPropertiesPgauditOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgaudit) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
@@ -17992,7 +18048,8 @@ func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) FeatureEnabled() pu
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Specifies that session logging should be enabled in the casewhere all relations in a statement are in pg_catalog.
+// Log Catalog. Specifies that session logging should be enabled in the case where all relations
+// in a statement are in pg_catalog.
 func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogCatalog() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
 		if v == nil {
@@ -18002,7 +18059,7 @@ func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogCatalog() pulumi
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Specifies whether log messages will be visible to a client process such as psql.
+// Log Client. Specifies whether log messages will be visible to a client process such as psql.
 func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogClient() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
 		if v == nil {
@@ -18012,7 +18069,7 @@ func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogClient() pulumi.
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Specifies the log level that will be used for log entries.
+// Log level. Specifies the log level that will be used for log entries.
 func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *string {
 		if v == nil {
@@ -18022,7 +18079,8 @@ func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogLevel() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
-// Crop parameters representation and whole statements if they exceed this threshold. A (default) value of -1 disable the truncation.
+// Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
+// A (default) value of -1 disable the truncation.
 func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogMaxStringLength() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *int {
 		if v == nil {
@@ -18032,7 +18090,8 @@ func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogMaxStringLength(
 	}).(pulumi.IntPtrOutput)
 }
 
-// This GUC allows to turn off logging nested statements, that is, statements that are executed as part of another ExecutorRun.
+// Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
+// executed as part of another ExecutorRun.
 func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogNestedStatements() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
 		if v == nil {
@@ -18042,7 +18101,7 @@ func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogNestedStatements
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Specifies that audit logging should include the parameters that were passed with the statement.
+// Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
 func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogParameter() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
 		if v == nil {
@@ -18052,7 +18111,8 @@ func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogParameter() pulu
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Specifies that parameter values longer than this setting (in bytes) should not be logged, but replaced with <long param suppressed>.
+// Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
+// but replaced with <long param suppressed>.
 func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogParameterMaxSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *int {
 		if v == nil {
@@ -18062,7 +18122,8 @@ func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogParameterMaxSize
 	}).(pulumi.IntPtrOutput)
 }
 
-// Specifies whether session audit logging should create a separate log entry for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
+// Log Relation. Specifies whether session audit logging should create a separate log entry
+// for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
 func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogRelation() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
 		if v == nil {
@@ -18072,7 +18133,7 @@ func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogRelation() pulum
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Specifies that audit logging should include the rows retrieved or affected by a statement. When enabled the rows field will be included after the parameter field.
+// Log Rows.
 func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogRows() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
 		if v == nil {
@@ -18082,7 +18143,7 @@ func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogRows() pulumi.Bo
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Specifies whether logging will include the statement text and parameters (if enabled).
+// Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
 func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogStatement() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
 		if v == nil {
@@ -18092,7 +18153,8 @@ func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogStatement() pulu
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Specifies whether logging will include the statement text and parameters with the first log entry for a statement/substatement combination or with every entry.
+// Log Statement Once. Specifies whether logging will include the statement text and parameters with
+// the first log entry for a statement/substatement combination or with every entry.
 func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogStatementOnce() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *bool {
 		if v == nil {
@@ -18102,7 +18164,7 @@ func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) LogStatementOnce() 
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Specifies which classes of statements will be logged by session audit logging.
+// Log. Specifies which classes of statements will be logged by session audit logging.
 func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) Logs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) []string {
 		if v == nil {
@@ -18112,7 +18174,7 @@ func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) Logs() pulumi.Strin
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the master role to use for object audit logging.
+// Role. Specifies the master role to use for object audit logging.
 func (o ManagedDatabasePostgresqlPropertiesPgauditPtrOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgaudit) *string {
 		if v == nil {
@@ -18431,7 +18493,7 @@ func (o ManagedDatabasePostgresqlPropertiesPgbouncerPtrOutput) ServerResetQueryA
 }
 
 type ManagedDatabasePostgresqlPropertiesPglookout struct {
-	// Number of seconds of master unavailability before triggering database failover to standby.
+	// Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
 	MaxFailoverReplicationTimeLag *int `pulumi:"maxFailoverReplicationTimeLag"`
 }
 
@@ -18447,7 +18509,7 @@ type ManagedDatabasePostgresqlPropertiesPglookoutInput interface {
 }
 
 type ManagedDatabasePostgresqlPropertiesPglookoutArgs struct {
-	// Number of seconds of master unavailability before triggering database failover to standby.
+	// Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
 	MaxFailoverReplicationTimeLag pulumi.IntPtrInput `pulumi:"maxFailoverReplicationTimeLag"`
 }
 
@@ -18528,7 +18590,7 @@ func (o ManagedDatabasePostgresqlPropertiesPglookoutOutput) ToManagedDatabasePos
 	}).(ManagedDatabasePostgresqlPropertiesPglookoutPtrOutput)
 }
 
-// Number of seconds of master unavailability before triggering database failover to standby.
+// Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
 func (o ManagedDatabasePostgresqlPropertiesPglookoutOutput) MaxFailoverReplicationTimeLag() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPglookout) *int { return v.MaxFailoverReplicationTimeLag }).(pulumi.IntPtrOutput)
 }
@@ -18557,7 +18619,7 @@ func (o ManagedDatabasePostgresqlPropertiesPglookoutPtrOutput) Elem() ManagedDat
 	}).(ManagedDatabasePostgresqlPropertiesPglookoutOutput)
 }
 
-// Number of seconds of master unavailability before triggering database failover to standby.
+// Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
 func (o ManagedDatabasePostgresqlPropertiesPglookoutPtrOutput) MaxFailoverReplicationTimeLag() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPglookout) *int {
 		if v == nil {
@@ -22032,6 +22094,8 @@ type NetworkIpNetwork struct {
 	DhcpDns []string `pulumi:"dhcpDns"`
 	// The additional DHCP classless static routes given by DHCP
 	DhcpRoutes []string `pulumi:"dhcpRoutes"`
+	// DHCP routes auto-population configuration.
+	DhcpRoutesConfiguration *NetworkIpNetworkDhcpRoutesConfiguration `pulumi:"dhcpRoutesConfiguration"`
 	// IP address family
 	Family string `pulumi:"family"`
 	// Gateway address given by DHCP
@@ -22060,6 +22124,8 @@ type NetworkIpNetworkArgs struct {
 	DhcpDns pulumi.StringArrayInput `pulumi:"dhcpDns"`
 	// The additional DHCP classless static routes given by DHCP
 	DhcpRoutes pulumi.StringArrayInput `pulumi:"dhcpRoutes"`
+	// DHCP routes auto-population configuration.
+	DhcpRoutesConfiguration NetworkIpNetworkDhcpRoutesConfigurationPtrInput `pulumi:"dhcpRoutesConfiguration"`
 	// IP address family
 	Family pulumi.StringInput `pulumi:"family"`
 	// Gateway address given by DHCP
@@ -22168,6 +22234,11 @@ func (o NetworkIpNetworkOutput) DhcpRoutes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NetworkIpNetwork) []string { return v.DhcpRoutes }).(pulumi.StringArrayOutput)
 }
 
+// DHCP routes auto-population configuration.
+func (o NetworkIpNetworkOutput) DhcpRoutesConfiguration() NetworkIpNetworkDhcpRoutesConfigurationPtrOutput {
+	return o.ApplyT(func(v NetworkIpNetwork) *NetworkIpNetworkDhcpRoutesConfiguration { return v.DhcpRoutesConfiguration }).(NetworkIpNetworkDhcpRoutesConfigurationPtrOutput)
+}
+
 // IP address family
 func (o NetworkIpNetworkOutput) Family() pulumi.StringOutput {
 	return o.ApplyT(func(v NetworkIpNetwork) string { return v.Family }).(pulumi.StringOutput)
@@ -22252,6 +22323,16 @@ func (o NetworkIpNetworkPtrOutput) DhcpRoutes() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
+// DHCP routes auto-population configuration.
+func (o NetworkIpNetworkPtrOutput) DhcpRoutesConfiguration() NetworkIpNetworkDhcpRoutesConfigurationPtrOutput {
+	return o.ApplyT(func(v *NetworkIpNetwork) *NetworkIpNetworkDhcpRoutesConfiguration {
+		if v == nil {
+			return nil
+		}
+		return v.DhcpRoutesConfiguration
+	}).(NetworkIpNetworkDhcpRoutesConfigurationPtrOutput)
+}
+
 // IP address family
 func (o NetworkIpNetworkPtrOutput) Family() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NetworkIpNetwork) *string {
@@ -22270,6 +22351,345 @@ func (o NetworkIpNetworkPtrOutput) Gateway() pulumi.StringPtrOutput {
 		}
 		return v.Gateway
 	}).(pulumi.StringPtrOutput)
+}
+
+type NetworkIpNetworkDhcpRoutesConfiguration struct {
+	// Automatically populate effective routes.
+	EffectiveRoutesAutoPopulation *NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation `pulumi:"effectiveRoutesAutoPopulation"`
+}
+
+// NetworkIpNetworkDhcpRoutesConfigurationInput is an input type that accepts NetworkIpNetworkDhcpRoutesConfigurationArgs and NetworkIpNetworkDhcpRoutesConfigurationOutput values.
+// You can construct a concrete instance of `NetworkIpNetworkDhcpRoutesConfigurationInput` via:
+//
+//	NetworkIpNetworkDhcpRoutesConfigurationArgs{...}
+type NetworkIpNetworkDhcpRoutesConfigurationInput interface {
+	pulumi.Input
+
+	ToNetworkIpNetworkDhcpRoutesConfigurationOutput() NetworkIpNetworkDhcpRoutesConfigurationOutput
+	ToNetworkIpNetworkDhcpRoutesConfigurationOutputWithContext(context.Context) NetworkIpNetworkDhcpRoutesConfigurationOutput
+}
+
+type NetworkIpNetworkDhcpRoutesConfigurationArgs struct {
+	// Automatically populate effective routes.
+	EffectiveRoutesAutoPopulation NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrInput `pulumi:"effectiveRoutesAutoPopulation"`
+}
+
+func (NetworkIpNetworkDhcpRoutesConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkIpNetworkDhcpRoutesConfiguration)(nil)).Elem()
+}
+
+func (i NetworkIpNetworkDhcpRoutesConfigurationArgs) ToNetworkIpNetworkDhcpRoutesConfigurationOutput() NetworkIpNetworkDhcpRoutesConfigurationOutput {
+	return i.ToNetworkIpNetworkDhcpRoutesConfigurationOutputWithContext(context.Background())
+}
+
+func (i NetworkIpNetworkDhcpRoutesConfigurationArgs) ToNetworkIpNetworkDhcpRoutesConfigurationOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpRoutesConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkIpNetworkDhcpRoutesConfigurationOutput)
+}
+
+func (i NetworkIpNetworkDhcpRoutesConfigurationArgs) ToNetworkIpNetworkDhcpRoutesConfigurationPtrOutput() NetworkIpNetworkDhcpRoutesConfigurationPtrOutput {
+	return i.ToNetworkIpNetworkDhcpRoutesConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i NetworkIpNetworkDhcpRoutesConfigurationArgs) ToNetworkIpNetworkDhcpRoutesConfigurationPtrOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpRoutesConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkIpNetworkDhcpRoutesConfigurationOutput).ToNetworkIpNetworkDhcpRoutesConfigurationPtrOutputWithContext(ctx)
+}
+
+// NetworkIpNetworkDhcpRoutesConfigurationPtrInput is an input type that accepts NetworkIpNetworkDhcpRoutesConfigurationArgs, NetworkIpNetworkDhcpRoutesConfigurationPtr and NetworkIpNetworkDhcpRoutesConfigurationPtrOutput values.
+// You can construct a concrete instance of `NetworkIpNetworkDhcpRoutesConfigurationPtrInput` via:
+//
+//	        NetworkIpNetworkDhcpRoutesConfigurationArgs{...}
+//
+//	or:
+//
+//	        nil
+type NetworkIpNetworkDhcpRoutesConfigurationPtrInput interface {
+	pulumi.Input
+
+	ToNetworkIpNetworkDhcpRoutesConfigurationPtrOutput() NetworkIpNetworkDhcpRoutesConfigurationPtrOutput
+	ToNetworkIpNetworkDhcpRoutesConfigurationPtrOutputWithContext(context.Context) NetworkIpNetworkDhcpRoutesConfigurationPtrOutput
+}
+
+type networkIpNetworkDhcpRoutesConfigurationPtrType NetworkIpNetworkDhcpRoutesConfigurationArgs
+
+func NetworkIpNetworkDhcpRoutesConfigurationPtr(v *NetworkIpNetworkDhcpRoutesConfigurationArgs) NetworkIpNetworkDhcpRoutesConfigurationPtrInput {
+	return (*networkIpNetworkDhcpRoutesConfigurationPtrType)(v)
+}
+
+func (*networkIpNetworkDhcpRoutesConfigurationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NetworkIpNetworkDhcpRoutesConfiguration)(nil)).Elem()
+}
+
+func (i *networkIpNetworkDhcpRoutesConfigurationPtrType) ToNetworkIpNetworkDhcpRoutesConfigurationPtrOutput() NetworkIpNetworkDhcpRoutesConfigurationPtrOutput {
+	return i.ToNetworkIpNetworkDhcpRoutesConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i *networkIpNetworkDhcpRoutesConfigurationPtrType) ToNetworkIpNetworkDhcpRoutesConfigurationPtrOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpRoutesConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkIpNetworkDhcpRoutesConfigurationPtrOutput)
+}
+
+type NetworkIpNetworkDhcpRoutesConfigurationOutput struct{ *pulumi.OutputState }
+
+func (NetworkIpNetworkDhcpRoutesConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkIpNetworkDhcpRoutesConfiguration)(nil)).Elem()
+}
+
+func (o NetworkIpNetworkDhcpRoutesConfigurationOutput) ToNetworkIpNetworkDhcpRoutesConfigurationOutput() NetworkIpNetworkDhcpRoutesConfigurationOutput {
+	return o
+}
+
+func (o NetworkIpNetworkDhcpRoutesConfigurationOutput) ToNetworkIpNetworkDhcpRoutesConfigurationOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpRoutesConfigurationOutput {
+	return o
+}
+
+func (o NetworkIpNetworkDhcpRoutesConfigurationOutput) ToNetworkIpNetworkDhcpRoutesConfigurationPtrOutput() NetworkIpNetworkDhcpRoutesConfigurationPtrOutput {
+	return o.ToNetworkIpNetworkDhcpRoutesConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (o NetworkIpNetworkDhcpRoutesConfigurationOutput) ToNetworkIpNetworkDhcpRoutesConfigurationPtrOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpRoutesConfigurationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NetworkIpNetworkDhcpRoutesConfiguration) *NetworkIpNetworkDhcpRoutesConfiguration {
+		return &v
+	}).(NetworkIpNetworkDhcpRoutesConfigurationPtrOutput)
+}
+
+// Automatically populate effective routes.
+func (o NetworkIpNetworkDhcpRoutesConfigurationOutput) EffectiveRoutesAutoPopulation() NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput {
+	return o.ApplyT(func(v NetworkIpNetworkDhcpRoutesConfiguration) *NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation {
+		return v.EffectiveRoutesAutoPopulation
+	}).(NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput)
+}
+
+type NetworkIpNetworkDhcpRoutesConfigurationPtrOutput struct{ *pulumi.OutputState }
+
+func (NetworkIpNetworkDhcpRoutesConfigurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NetworkIpNetworkDhcpRoutesConfiguration)(nil)).Elem()
+}
+
+func (o NetworkIpNetworkDhcpRoutesConfigurationPtrOutput) ToNetworkIpNetworkDhcpRoutesConfigurationPtrOutput() NetworkIpNetworkDhcpRoutesConfigurationPtrOutput {
+	return o
+}
+
+func (o NetworkIpNetworkDhcpRoutesConfigurationPtrOutput) ToNetworkIpNetworkDhcpRoutesConfigurationPtrOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpRoutesConfigurationPtrOutput {
+	return o
+}
+
+func (o NetworkIpNetworkDhcpRoutesConfigurationPtrOutput) Elem() NetworkIpNetworkDhcpRoutesConfigurationOutput {
+	return o.ApplyT(func(v *NetworkIpNetworkDhcpRoutesConfiguration) NetworkIpNetworkDhcpRoutesConfiguration {
+		if v != nil {
+			return *v
+		}
+		var ret NetworkIpNetworkDhcpRoutesConfiguration
+		return ret
+	}).(NetworkIpNetworkDhcpRoutesConfigurationOutput)
+}
+
+// Automatically populate effective routes.
+func (o NetworkIpNetworkDhcpRoutesConfigurationPtrOutput) EffectiveRoutesAutoPopulation() NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput {
+	return o.ApplyT(func(v *NetworkIpNetworkDhcpRoutesConfiguration) *NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation {
+		if v == nil {
+			return nil
+		}
+		return v.EffectiveRoutesAutoPopulation
+	}).(NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput)
+}
+
+type NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation struct {
+	// Enable or disable route auto-population.
+	Enabled *bool `pulumi:"enabled"`
+	// Exclude routes coming from specific sources (router-connected-networks, static-route).
+	ExcludeBySources []string `pulumi:"excludeBySources"`
+	// CIDR destinations to include when auto-populating routes.
+	FilterByDestinations []string `pulumi:"filterByDestinations"`
+	// Include only routes of given types (service, user).
+	FilterByRouteTypes []string `pulumi:"filterByRouteTypes"`
+}
+
+// NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationInput is an input type that accepts NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs and NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput values.
+// You can construct a concrete instance of `NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationInput` via:
+//
+//	NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs{...}
+type NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationInput interface {
+	pulumi.Input
+
+	ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput() NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput
+	ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutputWithContext(context.Context) NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput
+}
+
+type NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs struct {
+	// Enable or disable route auto-population.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Exclude routes coming from specific sources (router-connected-networks, static-route).
+	ExcludeBySources pulumi.StringArrayInput `pulumi:"excludeBySources"`
+	// CIDR destinations to include when auto-populating routes.
+	FilterByDestinations pulumi.StringArrayInput `pulumi:"filterByDestinations"`
+	// Include only routes of given types (service, user).
+	FilterByRouteTypes pulumi.StringArrayInput `pulumi:"filterByRouteTypes"`
+}
+
+func (NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation)(nil)).Elem()
+}
+
+func (i NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs) ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput() NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput {
+	return i.ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutputWithContext(context.Background())
+}
+
+func (i NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs) ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput)
+}
+
+func (i NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs) ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput() NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput {
+	return i.ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutputWithContext(context.Background())
+}
+
+func (i NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs) ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput).ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutputWithContext(ctx)
+}
+
+// NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrInput is an input type that accepts NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs, NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtr and NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput values.
+// You can construct a concrete instance of `NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrInput` via:
+//
+//	        NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs{...}
+//
+//	or:
+//
+//	        nil
+type NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrInput interface {
+	pulumi.Input
+
+	ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput() NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput
+	ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutputWithContext(context.Context) NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput
+}
+
+type networkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrType NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs
+
+func NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtr(v *NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs) NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrInput {
+	return (*networkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrType)(v)
+}
+
+func (*networkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation)(nil)).Elem()
+}
+
+func (i *networkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrType) ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput() NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput {
+	return i.ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutputWithContext(context.Background())
+}
+
+func (i *networkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrType) ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput)
+}
+
+type NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput struct{ *pulumi.OutputState }
+
+func (NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation)(nil)).Elem()
+}
+
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput) ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput() NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput {
+	return o
+}
+
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput) ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput {
+	return o
+}
+
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput) ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput() NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput {
+	return o.ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutputWithContext(context.Background())
+}
+
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput) ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation) *NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation {
+		return &v
+	}).(NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput)
+}
+
+// Enable or disable route auto-population.
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Exclude routes coming from specific sources (router-connected-networks, static-route).
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput) ExcludeBySources() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation) []string {
+		return v.ExcludeBySources
+	}).(pulumi.StringArrayOutput)
+}
+
+// CIDR destinations to include when auto-populating routes.
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput) FilterByDestinations() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation) []string {
+		return v.FilterByDestinations
+	}).(pulumi.StringArrayOutput)
+}
+
+// Include only routes of given types (service, user).
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput) FilterByRouteTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation) []string {
+		return v.FilterByRouteTypes
+	}).(pulumi.StringArrayOutput)
+}
+
+type NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput struct{ *pulumi.OutputState }
+
+func (NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation)(nil)).Elem()
+}
+
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput) ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput() NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput {
+	return o
+}
+
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput) ToNetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput {
+	return o
+}
+
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput) Elem() NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput {
+	return o.ApplyT(func(v *NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation) NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation {
+		if v != nil {
+			return *v
+		}
+		var ret NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation
+		return ret
+	}).(NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput)
+}
+
+// Enable or disable route auto-population.
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Exclude routes coming from specific sources (router-connected-networks, static-route).
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput) ExcludeBySources() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ExcludeBySources
+	}).(pulumi.StringArrayOutput)
+}
+
+// CIDR destinations to include when auto-populating routes.
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput) FilterByDestinations() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation) []string {
+		if v == nil {
+			return nil
+		}
+		return v.FilterByDestinations
+	}).(pulumi.StringArrayOutput)
+}
+
+// Include only routes of given types (service, user).
+func (o NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput) FilterByRouteTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation) []string {
+		if v == nil {
+			return nil
+		}
+		return v.FilterByRouteTypes
+	}).(pulumi.StringArrayOutput)
 }
 
 type NetworkPeeringNetwork struct {
@@ -27315,6 +27735,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedObjectStorageNetworkArrayInput)(nil)).Elem(), ManagedObjectStorageNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkIpNetworkInput)(nil)).Elem(), NetworkIpNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkIpNetworkPtrInput)(nil)).Elem(), NetworkIpNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkIpNetworkDhcpRoutesConfigurationInput)(nil)).Elem(), NetworkIpNetworkDhcpRoutesConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkIpNetworkDhcpRoutesConfigurationPtrInput)(nil)).Elem(), NetworkIpNetworkDhcpRoutesConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationInput)(nil)).Elem(), NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrInput)(nil)).Elem(), NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkPeeringNetworkInput)(nil)).Elem(), NetworkPeeringNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkPeeringNetworkPtrInput)(nil)).Elem(), NetworkPeeringNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkPeeringPeerNetworkInput)(nil)).Elem(), NetworkPeeringPeerNetworkArgs{})
@@ -27592,6 +28016,10 @@ func init() {
 	pulumi.RegisterOutputType(ManagedObjectStorageNetworkArrayOutput{})
 	pulumi.RegisterOutputType(NetworkIpNetworkOutput{})
 	pulumi.RegisterOutputType(NetworkIpNetworkPtrOutput{})
+	pulumi.RegisterOutputType(NetworkIpNetworkDhcpRoutesConfigurationOutput{})
+	pulumi.RegisterOutputType(NetworkIpNetworkDhcpRoutesConfigurationPtrOutput{})
+	pulumi.RegisterOutputType(NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput{})
+	pulumi.RegisterOutputType(NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationPtrOutput{})
 	pulumi.RegisterOutputType(NetworkPeeringNetworkOutput{})
 	pulumi.RegisterOutputType(NetworkPeeringNetworkPtrOutput{})
 	pulumi.RegisterOutputType(NetworkPeeringPeerNetworkOutput{})
