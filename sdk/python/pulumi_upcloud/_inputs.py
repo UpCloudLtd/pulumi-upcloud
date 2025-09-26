@@ -6037,7 +6037,7 @@ if not MYPY:
         """
         knn_memory_circuit_breaker_limit: NotRequired[pulumi.Input[_builtins.int]]
         """
-        Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+        Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
         """
         node_search_cache_size: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -6269,7 +6269,7 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         :param pulumi.Input[_builtins.int] ism_history_rollover_retention_period: How long audit history indices are kept in days.
         :param pulumi.Input[_builtins.bool] keep_index_refresh_interval: Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
         :param pulumi.Input[_builtins.bool] knn_memory_circuit_breaker_enabled: Enable or disable KNN memory circuit breaker. Defaults to true.
-        :param pulumi.Input[_builtins.int] knn_memory_circuit_breaker_limit: Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+        :param pulumi.Input[_builtins.int] knn_memory_circuit_breaker_limit: Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
         :param pulumi.Input[_builtins.str] node_search_cache_size: The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
         :param pulumi.Input['ManagedDatabaseOpensearchPropertiesOpenidArgs'] openid: OpenSearch OpenID Connect Configuration.
         :param pulumi.Input['ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs'] opensearch_dashboards: OpenSearch Dashboards settings.
@@ -6984,7 +6984,7 @@ class ManagedDatabaseOpensearchPropertiesArgs:
     @pulumi.getter(name="knnMemoryCircuitBreakerLimit")
     def knn_memory_circuit_breaker_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+        Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
         """
         return pulumi.get(self, "knn_memory_circuit_breaker_limit")
 

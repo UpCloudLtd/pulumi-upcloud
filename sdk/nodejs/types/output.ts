@@ -1613,7 +1613,7 @@ export interface ManagedDatabaseMysqlPropertiesMigration {
     /**
      * The server where to migrate data from is secured with SSL.
      */
-    ssl: boolean;
+    ssl?: boolean;
     /**
      * User name for authentication with the server where to migrate data from.
      */
@@ -1864,7 +1864,7 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     knnMemoryCircuitBreakerEnabled: boolean;
     /**
-     * Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+     * Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
      */
     knnMemoryCircuitBreakerLimit: number;
     /**
@@ -3164,7 +3164,7 @@ export interface ManagedDatabaseRedisPropertiesMigration {
     /**
      * The server where to migrate data from is secured with SSL.
      */
-    ssl: boolean;
+    ssl?: boolean;
     /**
      * User name for authentication with the server where to migrate data from.
      */
@@ -3406,7 +3406,7 @@ export interface ManagedDatabaseValkeyPropertiesMigration {
     /**
      * The server where to migrate data from is secured with SSL.
      */
-    ssl: boolean;
+    ssl?: boolean;
     /**
      * User name for authentication with the server where to migrate data from.
      */

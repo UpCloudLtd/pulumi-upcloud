@@ -692,14 +692,14 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+     * Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
      * 
      */
     @Import(name="knnMemoryCircuitBreakerLimit")
     private @Nullable Output<Integer> knnMemoryCircuitBreakerLimit;
 
     /**
-     * @return Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+     * @return Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
      * 
      */
     public Optional<Output<Integer>> knnMemoryCircuitBreakerLimit() {
@@ -2169,7 +2169,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param knnMemoryCircuitBreakerLimit Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+         * @param knnMemoryCircuitBreakerLimit Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
          * 
          * @return builder
          * 
@@ -2180,7 +2180,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param knnMemoryCircuitBreakerLimit Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+         * @param knnMemoryCircuitBreakerLimit Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
          * 
          * @return builder
          * 

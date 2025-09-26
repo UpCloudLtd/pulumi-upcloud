@@ -1894,7 +1894,6 @@
                         "method",
                         "password",
                         "port",
-                        "ssl",
                         "username"
                     ]
                 }
@@ -2205,7 +2204,7 @@
                 },
                 "knnMemoryCircuitBreakerLimit": {
                     "type": "integer",
-                    "description": "Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.\n"
+                    "description": "Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.\n"
                 },
                 "nodeSearchCacheSize": {
                     "type": "string",
@@ -4134,7 +4133,6 @@
                         "method",
                         "password",
                         "port",
-                        "ssl",
                         "username"
                     ]
                 }
@@ -4472,7 +4470,6 @@
                         "method",
                         "password",
                         "port",
-                        "ssl",
                         "username"
                     ]
                 }
