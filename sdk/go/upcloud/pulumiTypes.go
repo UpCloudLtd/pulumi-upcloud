@@ -8891,7 +8891,7 @@ type ManagedDatabaseOpensearchProperties struct {
 	KeepIndexRefreshInterval *bool `pulumi:"keepIndexRefreshInterval"`
 	// Enable or disable KNN memory circuit breaker. Defaults to true.
 	KnnMemoryCircuitBreakerEnabled *bool `pulumi:"knnMemoryCircuitBreakerEnabled"`
-	// Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+	// Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
 	KnnMemoryCircuitBreakerLimit *int `pulumi:"knnMemoryCircuitBreakerLimit"`
 	// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
 	NodeSearchCacheSize *string `pulumi:"nodeSearchCacheSize"`
@@ -9049,7 +9049,7 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	KeepIndexRefreshInterval pulumi.BoolPtrInput `pulumi:"keepIndexRefreshInterval"`
 	// Enable or disable KNN memory circuit breaker. Defaults to true.
 	KnnMemoryCircuitBreakerEnabled pulumi.BoolPtrInput `pulumi:"knnMemoryCircuitBreakerEnabled"`
-	// Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+	// Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
 	KnnMemoryCircuitBreakerLimit pulumi.IntPtrInput `pulumi:"knnMemoryCircuitBreakerLimit"`
 	// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
 	NodeSearchCacheSize pulumi.StringPtrInput `pulumi:"nodeSearchCacheSize"`
@@ -9423,7 +9423,7 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) KnnMemoryCircuitBreakerEnable
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.KnnMemoryCircuitBreakerEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+// Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
 func (o ManagedDatabaseOpensearchPropertiesOutput) KnnMemoryCircuitBreakerLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.KnnMemoryCircuitBreakerLimit }).(pulumi.IntPtrOutput)
 }
@@ -10052,7 +10052,7 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) KnnMemoryCircuitBreakerEna
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+// Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) KnnMemoryCircuitBreakerLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *int {
 		if v == nil {

@@ -246,7 +246,7 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     private @Nullable Boolean knnMemoryCircuitBreakerEnabled;
     /**
-     * @return Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+     * @return Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
      * 
      */
     private @Nullable Integer knnMemoryCircuitBreakerLimit;
@@ -692,7 +692,7 @@ public final class ManagedDatabaseOpensearchProperties {
         return Optional.ofNullable(this.knnMemoryCircuitBreakerEnabled);
     }
     /**
-     * @return Maximum amount of memory that can be used for KNN index. Defaults to 50% of the JVM heap size.
+     * @return Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
      * 
      */
     public Optional<Integer> knnMemoryCircuitBreakerLimit() {
