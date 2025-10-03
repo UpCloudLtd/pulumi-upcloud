@@ -39,9 +39,12 @@ import (
 //				Hostname: pulumi.String("terraform.example.tld"),
 //				Zone:     pulumi.String("de-fra1"),
 //				Plan:     pulumi.String("1xCPU-1GB"),
+//				Metadata: pulumi.Bool(true),
+//				Login: &upcloud.ServerLoginArgs{
+//					PasswordDelivery: pulumi.String("none"),
+//				},
 //				Template: &upcloud.ServerTemplateArgs{
-//					Storage: pulumi.String("Ubuntu Server 20.04 LTS (Focal Fossa)"),
-//					Size:    pulumi.Int(25),
+//					Storage: pulumi.String("Ubuntu Server 24.04 LTS (Noble Numbat)"),
 //				},
 //				NetworkInterfaces: upcloud.ServerNetworkInterfaceArray{
 //					&upcloud.ServerNetworkInterfaceArgs{

@@ -35,10 +35,14 @@ namespace UpCloud.Pulumi.UpCloud
     ///         Hostname = "terraform.example.tld",
     ///         Zone = "de-fra1",
     ///         Plan = "1xCPU-1GB",
+    ///         Metadata = true,
+    ///         Login = new UpCloud.Inputs.ServerLoginArgs
+    ///         {
+    ///             PasswordDelivery = "none",
+    ///         },
     ///         Template = new UpCloud.Inputs.ServerTemplateArgs
     ///         {
-    ///             Storage = "Ubuntu Server 20.04 LTS (Focal Fossa)",
-    ///             Size = 25,
+    ///             Storage = "Ubuntu Server 24.04 LTS (Noble Numbat)",
     ///         },
     ///         NetworkInterfaces = new[]
     ///         {

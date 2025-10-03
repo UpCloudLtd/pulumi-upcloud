@@ -32,6 +32,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.upcloud.Server;
  * import com.pulumi.upcloud.ServerArgs;
+ * import com.pulumi.upcloud.inputs.ServerLoginArgs;
  * import com.pulumi.upcloud.inputs.ServerTemplateArgs;
  * import com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;
  * import com.pulumi.upcloud.ServerFirewallRules;
@@ -57,9 +58,12 @@ import javax.annotation.Nullable;
  *             .hostname("terraform.example.tld")
  *             .zone("de-fra1")
  *             .plan("1xCPU-1GB")
+ *             .metadata(true)
+ *             .login(ServerLoginArgs.builder()
+ *                 .passwordDelivery("none")
+ *                 .build())
  *             .template(ServerTemplateArgs.builder()
- *                 .storage("Ubuntu Server 20.04 LTS (Focal Fossa)")
- *                 .size(25)
+ *                 .storage("Ubuntu Server 24.04 LTS (Noble Numbat)")
  *                 .build())
  *             .networkInterfaces(ServerNetworkInterfaceArgs.builder()
  *                 .type("utility")
