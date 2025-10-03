@@ -155,9 +155,12 @@ class ServerFirewallRules(pulumi.CustomResource):
             hostname="terraform.example.tld",
             zone="de-fra1",
             plan="1xCPU-1GB",
+            metadata=True,
+            login={
+                "password_delivery": "none",
+            },
             template={
-                "storage": "Ubuntu Server 20.04 LTS (Focal Fossa)",
-                "size": 25,
+                "storage": "Ubuntu Server 24.04 LTS (Noble Numbat)",
             },
             network_interfaces=[{
                 "type": "utility",
@@ -219,9 +222,12 @@ class ServerFirewallRules(pulumi.CustomResource):
             hostname="terraform.example.tld",
             zone="de-fra1",
             plan="1xCPU-1GB",
+            metadata=True,
+            login={
+                "password_delivery": "none",
+            },
             template={
-                "storage": "Ubuntu Server 20.04 LTS (Focal Fossa)",
-                "size": 25,
+                "storage": "Ubuntu Server 24.04 LTS (Noble Numbat)",
             },
             network_interfaces=[{
                 "type": "utility",

@@ -1373,8 +1373,8 @@ github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAE
 github.com/ProtonMail/go-crypto v1.1.5/go.mod h1:rA3QumHc/FZ8pAHreoekgiAbzpNsfQAosU5td4SnOrE=
 github.com/ProtonMail/go-crypto v1.1.6 h1:ZcV+Ropw6Qn0AX9brlQLAUXfqLBc7Bl+f/DmNxpLfdw=
 github.com/ProtonMail/go-crypto v1.1.6/go.mod h1:rA3QumHc/FZ8pAHreoekgiAbzpNsfQAosU5td4SnOrE=
-github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20250925075714-c5c1fd37038c h1:cEv60/6Z3qy/qz9w9Z0AIXTLIPfaPNwA62GH6IfIvCc=
-github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20250925075714-c5c1fd37038c/go.mod h1:6beMiTLwVXTHtTqxk2QrjDCTkfYuXPJ2ed+jtQVPEV0=
+github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20251003080254-97fce42a51d3 h1:ddg8LY/lvictVzvbEj1XMHcWl7ArftLt51b1qJsMM9A=
+github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20251003080254-97fce42a51d3/go.mod h1:6beMiTLwVXTHtTqxk2QrjDCTkfYuXPJ2ed+jtQVPEV0=
 github.com/UpCloudLtd/upcloud-go-api v0.0.0-20210930073303-cc664e35078d h1:6BwkQbF6Xqg4xNeWTROsyeBAIqwRRYY4aqP4nI6ZO1A=
 github.com/UpCloudLtd/upcloud-go-api v0.0.0-20210930073303-cc664e35078d/go.mod h1:yx8f2CdUKkjXJt76aNDdemyOI7egZkEBsnWH3EARWWo=
 github.com/UpCloudLtd/upcloud-go-api/credentials v0.1.1 h1:eTfQsv58ufALOk9BZ7WbS/i7pMUD11RnYYpRPsz0LdI=

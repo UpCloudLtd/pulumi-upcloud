@@ -20,9 +20,12 @@ import * as utilities from "./utilities";
  *     hostname: "terraform.example.tld",
  *     zone: "de-fra1",
  *     plan: "1xCPU-1GB",
+ *     metadata: true,
+ *     login: {
+ *         passwordDelivery: "none",
+ *     },
  *     template: {
- *         storage: "Ubuntu Server 20.04 LTS (Focal Fossa)",
- *         size: 25,
+ *         storage: "Ubuntu Server 24.04 LTS (Noble Numbat)",
  *     },
  *     networkInterfaces: [{
  *         type: "public",
