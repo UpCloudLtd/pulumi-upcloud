@@ -20,19 +20,19 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? Sha256sum { get; set; }
 
         /// <summary>
-        /// The mode of the import task. One of `http_import` or `direct_upload`.
+        /// The mode of the import task. One of `HttpImport` or `DirectUpload`.
         /// </summary>
         [Input("source", required: true)]
         public Input<string> Source { get; set; } = null!;
 
         /// <summary>
-        /// SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
+        /// SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `Sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
         /// </summary>
         [Input("sourceHash")]
         public Input<string>? SourceHash { get; set; }
 
         /// <summary>
-        /// The location of the file to import. For `http_import` an accessible URL. For `direct_upload` a local file. When direct uploading a compressed image, `Content-Type` header of the PUT request is set automatically based on the file extension (`.gz` or `.xz`, case-insensitive).
+        /// The location of the file to import. For `HttpImport` an accessible URL. For `DirectUpload` a local file. When direct uploading a compressed image, `Content-Type` header of the PUT request is set automatically based on the file extension (`.gz` or `.xz`, case-insensitive).
         /// </summary>
         [Input("sourceLocation", required: true)]
         public Input<string> SourceLocation { get; set; } = null!;

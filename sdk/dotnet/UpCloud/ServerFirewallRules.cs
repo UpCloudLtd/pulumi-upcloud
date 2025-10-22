@@ -85,9 +85,9 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
         /// 
-        /// 	Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one destination/source-address/port range.
+        /// 	Typical firewall rule should have `Action`, `Direction`, `Protocol`, `Family` and at least one destination/source-address/port range.
         /// 
-        /// 	A default rule can be created by providing only `action` and `direction` attributes. Default rule should be defined last.
+        /// 	A default rule can be created by providing only `Action` and `Direction` attributes. Default rule should be defined last.
         /// 
         /// 	If used, IP address and port ranges must have both start and end values specified. These can be the same value if only one IP address or port number is specified.
         /// 	Source and destination port numbers can only be set if the protocol is TCP or UDP.
@@ -155,9 +155,9 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
         /// 
-        /// 	Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one destination/source-address/port range.
+        /// 	Typical firewall rule should have `Action`, `Direction`, `Protocol`, `Family` and at least one destination/source-address/port range.
         /// 
-        /// 	A default rule can be created by providing only `action` and `direction` attributes. Default rule should be defined last.
+        /// 	A default rule can be created by providing only `Action` and `Direction` attributes. Default rule should be defined last.
         /// 
         /// 	If used, IP address and port ranges must have both start and end values specified. These can be the same value if only one IP address or port number is specified.
         /// 	Source and destination port numbers can only be set if the protocol is TCP or UDP.
@@ -189,9 +189,9 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
         /// 
-        /// 	Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one destination/source-address/port range.
+        /// 	Typical firewall rule should have `Action`, `Direction`, `Protocol`, `Family` and at least one destination/source-address/port range.
         /// 
-        /// 	A default rule can be created by providing only `action` and `direction` attributes. Default rule should be defined last.
+        /// 	A default rule can be created by providing only `Action` and `Direction` attributes. Default rule should be defined last.
         /// 
         /// 	If used, IP address and port ranges must have both start and end values specified. These can be the same value if only one IP address or port number is specified.
         /// 	Source and destination port numbers can only be set if the protocol is TCP or UDP.

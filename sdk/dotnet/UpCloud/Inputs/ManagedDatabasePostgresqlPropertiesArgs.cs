@@ -42,7 +42,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<bool>? AutomaticUtilityNetworkIpFilter { get; set; }
 
         /// <summary>
-        /// Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
+        /// Specifies a fraction of the table size to add to AutovacuumAnalyzeThreshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
         /// </summary>
         [Input("autovacuumAnalyzeScaleFactor")]
         public Input<double>? AutovacuumAnalyzeScaleFactor { get; set; }
@@ -72,19 +72,19 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? AutovacuumNaptime { get; set; }
 
         /// <summary>
-        /// Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_delay value will be used. The default is `2` (upstream default).
+        /// Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular VacuumCostDelay value will be used. The default is `2` (upstream default).
         /// </summary>
         [Input("autovacuumVacuumCostDelay")]
         public Input<int>? AutovacuumVacuumCostDelay { get; set; }
 
         /// <summary>
-        /// Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuum_cost_limit value will be used. The default is `-1` (upstream default).
+        /// Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular VacuumCostLimit value will be used. The default is `-1` (upstream default).
         /// </summary>
         [Input("autovacuumVacuumCostLimit")]
         public Input<int>? AutovacuumVacuumCostLimit { get; set; }
 
         /// <summary>
-        /// Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
+        /// Specifies a fraction of the table size to add to AutovacuumVacuumThreshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
         /// </summary>
         [Input("autovacuumVacuumScaleFactor")]
         public Input<double>? AutovacuumVacuumScaleFactor { get; set; }
@@ -114,7 +114,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? BgwriterDelay { get; set; }
 
         /// <summary>
-        /// Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
+        /// Whenever more than BgwriterFlushAfter bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
         /// </summary>
         [Input("bgwriterFlushAfter")]
         public Input<int>? BgwriterFlushAfter { get; set; }
@@ -126,7 +126,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? BgwriterLruMaxpages { get; set; }
 
         /// <summary>
-        /// The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
+        /// The average recent need for new buffers is multiplied by BgwriterLruMultiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
         /// </summary>
         [Input("bgwriterLruMultiplier")]
         public Input<double>? BgwriterLruMultiplier { get; set; }
@@ -138,7 +138,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? DeadlockTimeout { get; set; }
 
         /// <summary>
-        /// Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
+        /// Specifies the default TOAST compression method for values of compressible columns. The default is `Lz4`. Only available for PostgreSQL 14+.
         /// </summary>
         [Input("defaultToastCompression")]
         public Input<string>? DefaultToastCompression { get; set; }
@@ -252,7 +252,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? MaxReplicationSlots { get; set; }
 
         /// <summary>
-        /// PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). wal_keep_size minimum WAL size setting takes precedence over this.
+        /// PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). WalKeepSize minimum WAL size setting takes precedence over this.
         /// </summary>
         [Input("maxSlotWalKeepSize")]
         public Input<int>? MaxSlotWalKeepSize { get; set; }
@@ -328,7 +328,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? PgPartmanBgwRole { get; set; }
 
         /// <summary>
-        /// Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Changing this parameter causes a service restart. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
+        /// Enable PgStatMonitor extension if available for the current cluster. Enable the PgStatMonitor extension. Changing this parameter causes a service restart. When this extension is enabled, PgStatStatements results for utility commands are unreliable.
         /// </summary>
         [Input("pgStatMonitorEnable")]
         public Input<bool>? PgStatMonitorEnable { get; set; }
@@ -346,7 +346,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? PgStatMonitorPgsmMaxBuckets { get; set; }
 
         /// <summary>
-        /// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
+        /// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `Top`.
         /// </summary>
         [Input("pgStatStatementsTrack")]
         public Input<string>? PgStatStatementsTrack { get; set; }
@@ -382,7 +382,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<bool>? ServiceLog { get; set; }
 
         /// <summary>
-        /// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
+        /// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the SharedBuffers configuration value. Changing this parameter causes a service restart.
         /// </summary>
         [Input("sharedBuffersPercentage")]
         public Input<double>? SharedBuffersPercentage { get; set; }
@@ -430,7 +430,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? TrackFunctions { get; set; }
 
         /// <summary>
-        /// Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+        /// Enables timing of database I/O calls. The default is `Off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
         /// </summary>
         [Input("trackIoTiming")]
         public Input<string>? TrackIoTiming { get; set; }

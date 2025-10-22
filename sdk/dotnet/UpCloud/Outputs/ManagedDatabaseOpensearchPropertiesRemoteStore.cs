@@ -23,7 +23,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? SegmentPressureConsecutiveFailuresLimit;
         /// <summary>
-        /// Enables remote segment backpressure. Enables remote segment backpressure. Default is `true`.
+        /// Enables remote segment backpressure. Enables remote segment backpressure. Default is `True`.
         /// </summary>
         public readonly bool? SegmentPressureEnabled;
         /// <summary>

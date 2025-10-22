@@ -47,7 +47,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<string>> Hostnames { get; private set; } = null!;
 
         /// <summary>
-        /// Private key type (`rsa` / `ecdsa`).
+        /// Private key type (`Rsa` / `Ecdsa`).
         /// </summary>
         [Output("keyType")]
         public Output<string> KeyType { get; private set; } = null!;
@@ -136,7 +136,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// Private key type (`rsa` / `ecdsa`).
+        /// Private key type (`Rsa` / `Ecdsa`).
         /// </summary>
         [Input("keyType", required: true)]
         public Input<string> KeyType { get; set; } = null!;
@@ -168,7 +168,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// Private key type (`rsa` / `ecdsa`).
+        /// Private key type (`Rsa` / `Ecdsa`).
         /// </summary>
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }

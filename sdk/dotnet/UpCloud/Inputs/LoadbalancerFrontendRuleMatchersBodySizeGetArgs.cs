@@ -20,7 +20,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<bool>? Inverse { get; set; }
 
         /// <summary>
-        /// Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
+        /// Match method (`Equal`, `Greater`, `GreaterOrEqual`, `Less`, `LessOrEqual`).
         /// </summary>
         [Input("method", required: true)]
         public Input<string> Method { get; set; } = null!;

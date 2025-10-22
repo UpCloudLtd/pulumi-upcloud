@@ -55,7 +55,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         /// <summary>
         /// Matches by HTTP header value. Header name must be provided.
         /// </summary>
-        [Obsolete(@"Use `request_header` instead.")]
+        [Obsolete(@"Use `RequestHeader` instead.")]
         public InputList<Inputs.LoadbalancerFrontendRuleMatchersHeaderGetArgs> Headers
         {
             get => _headers ?? (_headers = new InputList<Inputs.LoadbalancerFrontendRuleMatchersHeaderGetArgs>());

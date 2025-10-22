@@ -156,13 +156,13 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> State { get; private set; } = null!;
 
         /// <summary>
-        /// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
+        /// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `None`.
         /// </summary>
         [Output("storageEncryption")]
         public Output<string?> StorageEncryption { get; private set; } = null!;
 
         /// <summary>
-        /// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
+        /// The upgrade strategy to use when changing the cluster `Version`. If not set, `Manual` strategy will be used by default. When using `Manual` strategy, you must replace the existing node-groups to update them.
         /// </summary>
         [Output("upgradeStrategyType")]
         public Output<string?> UpgradeStrategyType { get; private set; } = null!;
@@ -170,7 +170,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
         /// 
-        ///     Note that when changing the cluster version, `upgrade_strategy` will be taken into account.
+        ///     Note that when changing the cluster version, `UpgradeStrategy` will be taken into account.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -277,13 +277,13 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<bool>? PrivateNodeGroups { get; set; }
 
         /// <summary>
-        /// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
+        /// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `None`.
         /// </summary>
         [Input("storageEncryption")]
         public Input<string>? StorageEncryption { get; set; }
 
         /// <summary>
-        /// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
+        /// The upgrade strategy to use when changing the cluster `Version`. If not set, `Manual` strategy will be used by default. When using `Manual` strategy, you must replace the existing node-groups to update them.
         /// </summary>
         [Input("upgradeStrategyType")]
         public Input<string>? UpgradeStrategyType { get; set; }
@@ -291,7 +291,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
         /// 
-        ///     Note that when changing the cluster version, `upgrade_strategy` will be taken into account.
+        ///     Note that when changing the cluster version, `UpgradeStrategy` will be taken into account.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
@@ -383,13 +383,13 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? State { get; set; }
 
         /// <summary>
-        /// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
+        /// Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `None`.
         /// </summary>
         [Input("storageEncryption")]
         public Input<string>? StorageEncryption { get; set; }
 
         /// <summary>
-        /// The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
+        /// The upgrade strategy to use when changing the cluster `Version`. If not set, `Manual` strategy will be used by default. When using `Manual` strategy, you must replace the existing node-groups to update them.
         /// </summary>
         [Input("upgradeStrategyType")]
         public Input<string>? UpgradeStrategyType { get; set; }
@@ -397,7 +397,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
         /// 
-        ///     Note that when changing the cluster version, `upgrade_strategy` will be taken into account.
+        ///     Note that when changing the cluster version, `UpgradeStrategy` will be taken into account.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

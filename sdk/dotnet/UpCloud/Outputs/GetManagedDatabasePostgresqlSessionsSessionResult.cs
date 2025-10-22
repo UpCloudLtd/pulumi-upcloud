@@ -39,7 +39,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string ClientAddr;
         /// <summary>
-        /// Host name of the connected client, as reported by a reverse DNS lookup of `client_addr`.
+        /// Host name of the connected client, as reported by a reverse DNS lookup of `ClientAddr`.
         /// </summary>
         public readonly string ClientHostname;
         /// <summary>

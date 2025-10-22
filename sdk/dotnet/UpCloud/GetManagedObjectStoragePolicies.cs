@@ -13,19 +13,19 @@ namespace UpCloud.Pulumi.UpCloud
     public static class GetManagedObjectStoragePolicies
     {
         /// <summary>
-        /// Policies available for a Managed Object Storage resource. See `managed_object_storage_user_policy` for attaching to a user.
+        /// Policies available for a Managed Object Storage resource. See `ManagedObjectStorageUserPolicy` for attaching to a user.
         /// </summary>
         public static Task<GetManagedObjectStoragePoliciesResult> InvokeAsync(GetManagedObjectStoragePoliciesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetManagedObjectStoragePoliciesResult>("upcloud:index/getManagedObjectStoragePolicies:getManagedObjectStoragePolicies", args ?? new GetManagedObjectStoragePoliciesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Policies available for a Managed Object Storage resource. See `managed_object_storage_user_policy` for attaching to a user.
+        /// Policies available for a Managed Object Storage resource. See `ManagedObjectStorageUserPolicy` for attaching to a user.
         /// </summary>
         public static Output<GetManagedObjectStoragePoliciesResult> Invoke(GetManagedObjectStoragePoliciesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetManagedObjectStoragePoliciesResult>("upcloud:index/getManagedObjectStoragePolicies:getManagedObjectStoragePolicies", args ?? new GetManagedObjectStoragePoliciesInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Policies available for a Managed Object Storage resource. See `managed_object_storage_user_policy` for attaching to a user.
+        /// Policies available for a Managed Object Storage resource. See `ManagedObjectStorageUserPolicy` for attaching to a user.
         /// </summary>
         public static Output<GetManagedObjectStoragePoliciesResult> Invoke(GetManagedObjectStoragePoliciesInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetManagedObjectStoragePoliciesResult>("upcloud:index/getManagedObjectStoragePolicies:getManagedObjectStoragePolicies", args ?? new GetManagedObjectStoragePoliciesInvokeArgs(), options.WithDefaults());

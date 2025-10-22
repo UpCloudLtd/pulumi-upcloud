@@ -50,7 +50,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public string ClientAddr { get; set; } = null!;
 
         /// <summary>
-        /// Host name of the connected client, as reported by a reverse DNS lookup of `client_addr`.
+        /// Host name of the connected client, as reported by a reverse DNS lookup of `ClientAddr`.
         /// </summary>
         [Input("clientHostname", required: true)]
         public string ClientHostname { get; set; } = null!;

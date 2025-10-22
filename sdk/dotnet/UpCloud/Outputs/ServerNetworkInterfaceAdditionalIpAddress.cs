@@ -23,7 +23,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? IpAddressFamily;
         /// <summary>
-        /// `true` indicates that the additional IP address is a floating IP address.
+        /// `True` indicates that the additional IP address is a floating IP address.
         /// </summary>
         public readonly bool? IpAddressFloating;
 

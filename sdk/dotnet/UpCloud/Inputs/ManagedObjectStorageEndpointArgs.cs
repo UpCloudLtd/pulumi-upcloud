@@ -32,7 +32,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? StsUrl { get; set; }
 
         /// <summary>
-        /// Type of the endpoint (`private` / `public`).
+        /// Type of the endpoint (`Private` / `Public`).
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

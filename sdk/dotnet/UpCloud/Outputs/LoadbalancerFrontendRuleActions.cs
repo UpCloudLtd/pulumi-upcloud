@@ -39,7 +39,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsTcpReject> TcpRejects;
         /// <summary>
-        /// Routes traffic to specified `backend`.
+        /// Routes traffic to specified `Backend`.
         /// </summary>
         public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsUseBackend> UseBackends;
 

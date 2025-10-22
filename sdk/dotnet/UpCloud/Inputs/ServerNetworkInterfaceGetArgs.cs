@@ -17,7 +17,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         private InputList<Inputs.ServerNetworkInterfaceAdditionalIpAddressGetArgs>? _additionalIpAddresses;
 
         /// <summary>
-        /// 0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+        /// 0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `Private`
         /// </summary>
         public InputList<Inputs.ServerNetworkInterfaceAdditionalIpAddressGetArgs> AdditionalIpAddresses
         {
@@ -26,7 +26,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         }
 
         /// <summary>
-        /// `true` if this interface should be used for network booting.
+        /// `True` if this interface should be used for network booting.
         /// </summary>
         [Input("bootable")]
         public Input<bool>? Bootable { get; set; }
@@ -50,7 +50,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? IpAddressFamily { get; set; }
 
         /// <summary>
-        /// `true` indicates that the primary IP address is a floating IP address.
+        /// `True` indicates that the primary IP address is a floating IP address.
         /// </summary>
         [Input("ipAddressFloating")]
         public Input<bool>? IpAddressFloating { get; set; }
@@ -68,7 +68,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? Network { get; set; }
 
         /// <summary>
-        /// `true` if source IP should be filtered.
+        /// `True` if source IP should be filtered.
         /// </summary>
         [Input("sourceIpFiltering")]
         public Input<bool>? SourceIpFiltering { get; set; }

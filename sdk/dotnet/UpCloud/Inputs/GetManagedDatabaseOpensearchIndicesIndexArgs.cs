@@ -26,7 +26,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int> Docs { get; set; } = null!;
 
         /// <summary>
-        /// Health status of the index e.g. `green`, `yellow`, or `red`.
+        /// Health status of the index e.g. `Green`, `Yellow`, or `Red`.
         /// </summary>
         [Input("health", required: true)]
         public Input<string> Health { get; set; } = null!;
@@ -62,7 +62,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int> Size { get; set; } = null!;
 
         /// <summary>
-        /// Status of the index e.g. `open` or `closed`.
+        /// Status of the index e.g. `Open` or `Closed`.
         /// </summary>
         [Input("status", required: true)]
         public Input<string> Status { get; set; } = null!;

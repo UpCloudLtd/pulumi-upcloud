@@ -14,7 +14,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
     public sealed class LoadbalancerFrontendRuleMatchersCookieArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defines if case should be ignored. Defaults to `false`.
+        /// Defines if case should be ignored. Defaults to `False`.
         /// </summary>
         [Input("ignoreCase")]
         public Input<bool>? IgnoreCase { get; set; }
@@ -26,7 +26,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<bool>? Inverse { get; set; }
 
         /// <summary>
-        /// Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignore_case` fields.
+        /// Match method (`Exact`, `Substring`, `Regexp`, `Starts`, `Ends`, `Domain`, `Ip`, `Exists`). Matcher with `Exists` and `Ip` methods must be used without `Value` and `IgnoreCase` fields.
         /// </summary>
         [Input("method", required: true)]
         public Input<string> Method { get; set; } = null!;

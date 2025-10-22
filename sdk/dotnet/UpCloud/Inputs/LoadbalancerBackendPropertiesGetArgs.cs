@@ -14,7 +14,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
     public sealed class LoadbalancerBackendPropertiesGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `tcp` `health_check_type`.
+        /// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `Tcp` `HealthCheckType`.
         /// </summary>
         [Input("healthCheckExpectedStatus")]
         public Input<int>? HealthCheckExpectedStatus { get; set; }
@@ -50,13 +50,13 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? HealthCheckType { get; set; }
 
         /// <summary>
-        /// Target path for health check HTTP GET requests. Ignored for `tcp` `health_check_type`.
+        /// Target path for health check HTTP GET requests. Ignored for `Tcp` `HealthCheckType`.
         /// </summary>
         [Input("healthCheckUrl")]
         public Input<string>? HealthCheckUrl { get; set; }
 
         /// <summary>
-        /// Allow HTTP/2 connections to backend members by utilizing ALPN extension of TLS protocol, therefore it can only be enabled when tls_enabled is set to true. Note: members should support HTTP/2 for this setting to work.
+        /// Allow HTTP/2 connections to backend members by utilizing ALPN extension of TLS protocol, therefore it can only be enabled when TlsEnabled is set to true. Note: members should support HTTP/2 for this setting to work.
         /// </summary>
         [Input("http2Enabled")]
         public Input<bool>? Http2Enabled { get; set; }
@@ -98,7 +98,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<bool>? TlsUseSystemCa { get; set; }
 
         /// <summary>
-        /// Enables backend servers certificate verification. Please make sure that TLS config with the certificate bundle of type authority attached to the backend or `tls_use_system_ca` enabled. Note: `tls_verify` has preference over `health_check_tls_verify` when `tls_enabled` in true.
+        /// Enables backend servers certificate verification. Please make sure that TLS config with the certificate bundle of type authority attached to the backend or `TlsUseSystemCa` enabled. Note: `TlsVerify` has preference over `HealthCheckTlsVerify` when `TlsEnabled` in true.
         /// </summary>
         [Input("tlsVerify")]
         public Input<bool>? TlsVerify { get; set; }

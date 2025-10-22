@@ -27,7 +27,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? StsUrl;
         /// <summary>
-        /// Type of the endpoint (`private` / `public`).
+        /// Type of the endpoint (`Private` / `Public`).
         /// </summary>
         public readonly string? Type;
 

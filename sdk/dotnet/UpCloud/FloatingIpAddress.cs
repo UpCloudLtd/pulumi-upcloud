@@ -71,7 +71,7 @@ namespace UpCloud.Pulumi.UpCloud
     public partial class FloatingIpAddress : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Network access for the floating IP address. Supported value: `public`.
+        /// Network access for the floating IP address. Supported value: `Public`.
         /// </summary>
         [Output("access")]
         public Output<string> Access { get; private set; } = null!;
@@ -154,7 +154,7 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class FloatingIpAddressArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Network access for the floating IP address. Supported value: `public`.
+        /// Network access for the floating IP address. Supported value: `Public`.
         /// </summary>
         [Input("access")]
         public Input<string>? Access { get; set; }
@@ -192,7 +192,7 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class FloatingIpAddressState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Network access for the floating IP address. Supported value: `public`.
+        /// Network access for the floating IP address. Supported value: `Public`.
         /// </summary>
         [Input("access")]
         public Input<string>? Access { get; set; }

@@ -20,7 +20,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? AllowedTries { get; set; }
 
         /// <summary>
-        /// The internal backend. Enter `internal`.
+        /// The internal backend. Enter `Internal`.
         /// </summary>
         [Input("authenticationBackend")]
         public Input<string>? AuthenticationBackend { get; set; }
@@ -44,7 +44,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? MaxTrackedClients { get; set; }
 
         /// <summary>
-        /// The window of time in which the value for `allowed_tries` is enforced.
+        /// The window of time in which the value for `AllowedTries` is enforced.
         /// </summary>
         [Input("timeWindowSeconds")]
         public Input<int>? TimeWindowSeconds { get; set; }

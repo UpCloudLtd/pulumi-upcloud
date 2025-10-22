@@ -15,7 +15,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
     public sealed class LoadbalancerFrontendRuleMatchersNumMembersUp
     {
         /// <summary>
-        /// The name of the `backend`.
+        /// The name of the `Backend`.
         /// </summary>
         public readonly string BackendName;
         /// <summary>
@@ -23,7 +23,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? Inverse;
         /// <summary>
-        /// Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
+        /// Match method (`Equal`, `Greater`, `GreaterOrEqual`, `Less`, `LessOrEqual`).
         /// </summary>
         public readonly string Method;
         /// <summary>

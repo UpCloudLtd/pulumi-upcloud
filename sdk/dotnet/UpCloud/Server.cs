@@ -15,6 +15,8 @@ namespace UpCloud.Pulumi.UpCloud
     /// 
     /// &gt; To deploy a GPU server, select a plan with `GPU-` prefix, e.g., `GPU-8xCPU-64GB-1xL40S`. Use `upctl zone devices` command to list per zone GPU availability.
     /// 
+    /// ## Example Usage
+    /// 
     /// ## Import
     /// 
     /// ```sh
@@ -25,7 +27,7 @@ namespace UpCloud.Pulumi.UpCloud
     public partial class Server : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
+        /// The boot device order, `Cdrom`|`Disk`|`Network` or comma separated combination of those values. Defaults to `Disk`
         /// </summary>
         [Output("bootOrder")]
         public Output<string> BootOrder { get; private set; } = null!;
@@ -87,9 +89,9 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// One or more blocks describing the network interfaces of the server.
         /// 
-        ///     In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
+        ///     In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `Index` and `IpAddress` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
         /// 
-        ///     We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
+        ///     We recommend explicitly setting the value for `Index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
         /// </summary>
         [Output("networkInterfaces")]
         public Output<ImmutableArray<Outputs.ServerNetworkInterface>> NetworkInterfaces { get; private set; } = null!;
@@ -107,7 +109,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> Plan { get; private set; } = null!;
 
         /// <summary>
-        /// The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
+        /// The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `Members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
         /// </summary>
         [Output("serverGroup")]
         public Output<string?> ServerGroup { get; private set; } = null!;
@@ -211,7 +213,7 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class ServerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
+        /// The boot device order, `Cdrom`|`Disk`|`Network` or comma separated combination of those values. Defaults to `Disk`
         /// </summary>
         [Input("bootOrder")]
         public Input<string>? BootOrder { get; set; }
@@ -282,9 +284,9 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// One or more blocks describing the network interfaces of the server.
         /// 
-        ///     In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
+        ///     In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `Index` and `IpAddress` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
         /// 
-        ///     We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
+        ///     We recommend explicitly setting the value for `Index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
         /// </summary>
         public InputList<Inputs.ServerNetworkInterfaceArgs> NetworkInterfaces
         {
@@ -305,7 +307,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? Plan { get; set; }
 
         /// <summary>
-        /// The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
+        /// The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `Members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
         /// </summary>
         [Input("serverGroup")]
         public Input<string>? ServerGroup { get; set; }
@@ -382,7 +384,7 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class ServerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
+        /// The boot device order, `Cdrom`|`Disk`|`Network` or comma separated combination of those values. Defaults to `Disk`
         /// </summary>
         [Input("bootOrder")]
         public Input<string>? BootOrder { get; set; }
@@ -453,9 +455,9 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// One or more blocks describing the network interfaces of the server.
         /// 
-        ///     In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
+        ///     In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `Index` and `IpAddress` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
         /// 
-        ///     We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
+        ///     We recommend explicitly setting the value for `Index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
         /// </summary>
         public InputList<Inputs.ServerNetworkInterfaceGetArgs> NetworkInterfaces
         {
@@ -476,7 +478,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? Plan { get; set; }
 
         /// <summary>
-        /// The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
+        /// The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `Members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
         /// </summary>
         [Input("serverGroup")]
         public Input<string>? ServerGroup { get; set; }

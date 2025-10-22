@@ -65,7 +65,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<Outputs.RouterStaticRoute>> StaticRoute { get; private set; } = null!;
 
         /// <summary>
-        /// A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `static_route` blocks.
+        /// A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `StaticRoute` blocks.
         /// </summary>
         [Output("staticRoutes")]
         public Output<ImmutableArray<Outputs.RouterStaticRoute>> StaticRoutes { get; private set; } = null!;
@@ -207,7 +207,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputList<Inputs.RouterStaticRouteGetArgs>? _staticRoutes;
 
         /// <summary>
-        /// A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `static_route` blocks.
+        /// A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `StaticRoute` blocks.
         /// </summary>
         public InputList<Inputs.RouterStaticRouteGetArgs> StaticRoutes
         {

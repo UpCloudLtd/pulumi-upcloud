@@ -92,7 +92,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
         /// 
-        /// 	Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the resources are created and destroyed in the correct order.
+        /// 	Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
         /// </summary>
         [Output("defaultBackendName")]
         public Output<string> DefaultBackendName { get; private set; } = null!;
@@ -104,7 +104,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> Loadbalancer { get; private set; } = null!;
 
         /// <summary>
-        /// When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
+        /// When load balancer operating in `Tcp` mode it acts as a layer 4 proxy. In `Http` mode it acts as a layer 7 proxy.
         /// </summary>
         [Output("mode")]
         public Output<string> Mode { get; private set; } = null!;
@@ -116,7 +116,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
+        /// Networks that frontend will be listening. Networks are required if load balancer has `Networks` defined. This field will be required when deprecated field `Network` is removed from load balancer resource.
         /// </summary>
         [Output("networks")]
         public Output<ImmutableArray<Outputs.LoadbalancerFrontendNetwork>> Networks { get; private set; } = null!;
@@ -192,7 +192,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
         /// 
-        /// 	Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the resources are created and destroyed in the correct order.
+        /// 	Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
         /// </summary>
         [Input("defaultBackendName", required: true)]
         public Input<string> DefaultBackendName { get; set; } = null!;
@@ -204,7 +204,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string> Loadbalancer { get; set; } = null!;
 
         /// <summary>
-        /// When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
+        /// When load balancer operating in `Tcp` mode it acts as a layer 4 proxy. In `Http` mode it acts as a layer 7 proxy.
         /// </summary>
         [Input("mode", required: true)]
         public Input<string> Mode { get; set; } = null!;
@@ -219,7 +219,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputList<Inputs.LoadbalancerFrontendNetworkArgs>? _networks;
 
         /// <summary>
-        /// Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
+        /// Networks that frontend will be listening. Networks are required if load balancer has `Networks` defined. This field will be required when deprecated field `Network` is removed from load balancer resource.
         /// </summary>
         public InputList<Inputs.LoadbalancerFrontendNetworkArgs> Networks
         {
@@ -247,7 +247,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
         /// 
-        /// 	Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `depends_on` meta argument to ensure the resources are created and destroyed in the correct order.
+        /// 	Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
         /// </summary>
         [Input("defaultBackendName")]
         public Input<string>? DefaultBackendName { get; set; }
@@ -259,7 +259,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? Loadbalancer { get; set; }
 
         /// <summary>
-        /// When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
+        /// When load balancer operating in `Tcp` mode it acts as a layer 4 proxy. In `Http` mode it acts as a layer 7 proxy.
         /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
@@ -274,7 +274,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputList<Inputs.LoadbalancerFrontendNetworkGetArgs>? _networks;
 
         /// <summary>
-        /// Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
+        /// Networks that frontend will be listening. Networks are required if load balancer has `Networks` defined. This field will be required when deprecated field `Network` is removed from load balancer resource.
         /// </summary>
         public InputList<Inputs.LoadbalancerFrontendNetworkGetArgs> Networks
         {

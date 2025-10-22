@@ -811,6 +811,8 @@ class Server(pulumi.CustomResource):
 
         > To deploy a GPU server, select a plan with `GPU-` prefix, e.g., `GPU-8xCPU-64GB-1xL40S`. Use `upctl zone devices` command to list per zone GPU availability.
 
+        ## Example Usage
+
         ## Import
 
         ```sh
@@ -856,6 +858,8 @@ class Server(pulumi.CustomResource):
         The UpCloud server resource allows the creation, update and deletion of [cloud servers](https://upcloud.com/products/cloud-servers).
 
         > To deploy a GPU server, select a plan with `GPU-` prefix, e.g., `GPU-8xCPU-64GB-1xL40S`. Use `upctl zone devices` command to list per zone GPU availability.
+
+        ## Example Usage
 
         ## Import
 

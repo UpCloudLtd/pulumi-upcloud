@@ -54,12 +54,12 @@ namespace UpCloud.Pulumi.UpCloud
     public partial class ServerGroup : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
-        /// 	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
+        /// Defines if a server group is an anti-affinity group. Setting this to `Strict` or `Yes` will
+        /// 	result in all servers in the group being placed on separate compute hosts. The value can be `Strict`, `Yes`, or `No`.
         /// 
-        /// 	* `strict` policy doesn't allow servers in the same server group to be on the same host
-        /// 	* `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-        /// 	* `no` refers to having no policy and thus no effect on server host affinity
+        /// 	* `Strict` policy doesn't allow servers in the same server group to be on the same host
+        /// 	* `Yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+        /// 	* `No` refers to having no policy and thus no effect on server host affinity
         /// 
         /// 	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
         /// 	please see UpCloud API documentation on server groups.
@@ -78,7 +78,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group` property of `upcloud.Server`. See also `track_members` property.
+        /// UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `ServerGroup` property of `upcloud.Server`. See also `TrackMembers` property.
         /// </summary>
         [Output("members")]
         public Output<ImmutableArray<string>> Members { get; private set; } = null!;
@@ -90,7 +90,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> Title { get; private set; } = null!;
 
         /// <summary>
-        /// Controls if members of the server group are being tracked in this resource. Set to `false` when using `server_group` property of `upcloud.Server` to attach servers to the server group to avoid delayed state updates.
+        /// Controls if members of the server group are being tracked in this resource. Set to `False` when using `ServerGroup` property of `upcloud.Server` to attach servers to the server group to avoid delayed state updates.
         /// </summary>
         [Output("trackMembers")]
         public Output<bool> TrackMembers { get; private set; } = null!;
@@ -143,12 +143,12 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class ServerGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
-        /// 	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
+        /// Defines if a server group is an anti-affinity group. Setting this to `Strict` or `Yes` will
+        /// 	result in all servers in the group being placed on separate compute hosts. The value can be `Strict`, `Yes`, or `No`.
         /// 
-        /// 	* `strict` policy doesn't allow servers in the same server group to be on the same host
-        /// 	* `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-        /// 	* `no` refers to having no policy and thus no effect on server host affinity
+        /// 	* `Strict` policy doesn't allow servers in the same server group to be on the same host
+        /// 	* `Yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+        /// 	* `No` refers to having no policy and thus no effect on server host affinity
         /// 
         /// 	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
         /// 	please see UpCloud API documentation on server groups.
@@ -176,7 +176,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputList<string>? _members;
 
         /// <summary>
-        /// UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group` property of `upcloud.Server`. See also `track_members` property.
+        /// UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `ServerGroup` property of `upcloud.Server`. See also `TrackMembers` property.
         /// </summary>
         public InputList<string> Members
         {
@@ -191,7 +191,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string> Title { get; set; } = null!;
 
         /// <summary>
-        /// Controls if members of the server group are being tracked in this resource. Set to `false` when using `server_group` property of `upcloud.Server` to attach servers to the server group to avoid delayed state updates.
+        /// Controls if members of the server group are being tracked in this resource. Set to `False` when using `ServerGroup` property of `upcloud.Server` to attach servers to the server group to avoid delayed state updates.
         /// </summary>
         [Input("trackMembers")]
         public Input<bool>? TrackMembers { get; set; }
@@ -205,12 +205,12 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class ServerGroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
-        /// 	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
+        /// Defines if a server group is an anti-affinity group. Setting this to `Strict` or `Yes` will
+        /// 	result in all servers in the group being placed on separate compute hosts. The value can be `Strict`, `Yes`, or `No`.
         /// 
-        /// 	* `strict` policy doesn't allow servers in the same server group to be on the same host
-        /// 	* `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-        /// 	* `no` refers to having no policy and thus no effect on server host affinity
+        /// 	* `Strict` policy doesn't allow servers in the same server group to be on the same host
+        /// 	* `Yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+        /// 	* `No` refers to having no policy and thus no effect on server host affinity
         /// 
         /// 	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
         /// 	please see UpCloud API documentation on server groups.
@@ -238,7 +238,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputList<string>? _members;
 
         /// <summary>
-        /// UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group` property of `upcloud.Server`. See also `track_members` property.
+        /// UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `ServerGroup` property of `upcloud.Server`. See also `TrackMembers` property.
         /// </summary>
         public InputList<string> Members
         {
@@ -253,7 +253,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? Title { get; set; }
 
         /// <summary>
-        /// Controls if members of the server group are being tracked in this resource. Set to `false` when using `server_group` property of `upcloud.Server` to attach servers to the server group to avoid delayed state updates.
+        /// Controls if members of the server group are being tracked in this resource. Set to `False` when using `ServerGroup` property of `upcloud.Server` to attach servers to the server group to avoid delayed state updates.
         /// </summary>
         [Input("trackMembers")]
         public Input<bool>? TrackMembers { get; set; }
