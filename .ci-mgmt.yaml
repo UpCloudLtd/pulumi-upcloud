@@ -7,12 +7,12 @@ provider: upcloud
 providerDefaultBranch: main
 publishRegistry: false # This would require bot access to pulumi/registry
 publish:
-  sdk: all,!java
-  cdn: false
+    sdk: all,!java
+    cdn: false
 upstreamProviderOrg: UpCloudLtd
 upstream-provider-repo: terraform-provider-upcloud
 pulumiConvert: 1
 plugins:
-  - name: terraform
-    version: "1.0.23"
-    kind: converter
+    - name: terraform
+      version: "1.0.23"
+      kind: converter
