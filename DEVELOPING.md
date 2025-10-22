@@ -4,14 +4,16 @@
 
 Current configuration was created based on [pulumi-azuread](https://github.com/pulumi/pulumi-azuread) and [pulumi-cloudflare](https://github.com/pulumi/pulumi-cloudflare) providers. Look examples from these or other working providers instead of the boilerplate or example repositories.
 
-## Generate CI workflows
+## Common fixes to issues with workflows
 
-Run:
+### `make ci-mgmt`
+
+Re-generate the workflows and other build configuration (e.g., Makefile):
 
 ```sh
-go run github.com/pulumi/ci-mgmt/provider-ci@master generate \
-  --name UpCloudLtd/pulumi-upcloud \
-  --out . \
-  --template bridged-provider \
-  --config .ci-mgmt.yaml
+make ci-mgmt
 ```
+
+### Upgrade bridge
+
+Upgrade TF bridge version by triggering _Upgrade bridge_ workflow from _Actions_ tab in GitHub. Default values should be fine in the trigger form.
