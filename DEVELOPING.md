@@ -16,4 +16,4 @@ make ci-mgmt
 
 ### Upgrade bridge
 
-Upgrade TF bridge version by triggering Upgrade bridge workflow from Actions tab in GitHub. Default values should be fine in the trigger form.
+Upgrade TF bridge version by triggering _Upgrade bridge_ workflow from _Actions_ tab in GitHub. Default values should be fine in the trigger form.
