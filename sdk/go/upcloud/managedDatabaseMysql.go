@@ -76,6 +76,8 @@ import (
 type ManagedDatabaseMysql struct {
 	pulumi.CustomResourceState
 
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib pulumi.IntOutput `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components ManagedDatabaseMysqlComponentArrayOutput `pulumi:"components"`
 	// User defined key-value pairs to classify the managed database.
@@ -90,7 +92,7 @@ type ManagedDatabaseMysql struct {
 	Networks ManagedDatabaseMysqlNetworkArrayOutput `pulumi:"networks"`
 	// Information about nodes providing the managed service
 	NodeStates ManagedDatabaseMysqlNodeStateArrayOutput `pulumi:"nodeStates"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrOutput `pulumi:"powered"`
@@ -164,6 +166,8 @@ func GetManagedDatabaseMysql(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ManagedDatabaseMysql resources.
 type managedDatabaseMysqlState struct {
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components []ManagedDatabaseMysqlComponent `pulumi:"components"`
 	// User defined key-value pairs to classify the managed database.
@@ -178,7 +182,7 @@ type managedDatabaseMysqlState struct {
 	Networks []ManagedDatabaseMysqlNetwork `pulumi:"networks"`
 	// Information about nodes providing the managed service
 	NodeStates []ManagedDatabaseMysqlNodeState `pulumi:"nodeStates"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
 	Plan *string `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
@@ -209,6 +213,8 @@ type managedDatabaseMysqlState struct {
 }
 
 type ManagedDatabaseMysqlState struct {
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// Service component information
 	Components ManagedDatabaseMysqlComponentArrayInput
 	// User defined key-value pairs to classify the managed database.
@@ -223,7 +229,7 @@ type ManagedDatabaseMysqlState struct {
 	Networks ManagedDatabaseMysqlNetworkArrayInput
 	// Information about nodes providing the managed service
 	NodeStates ManagedDatabaseMysqlNodeStateArrayInput
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
 	Plan pulumi.StringPtrInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
@@ -258,6 +264,8 @@ func (ManagedDatabaseMysqlState) ElementType() reflect.Type {
 }
 
 type managedDatabaseMysqlArgs struct {
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// User defined key-value pairs to classify the managed database.
 	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -268,7 +276,7 @@ type managedDatabaseMysqlArgs struct {
 	Name *string `pulumi:"name"`
 	// Private networks attached to the managed database
 	Networks []ManagedDatabaseMysqlNetwork `pulumi:"networks"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
 	Plan string `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
@@ -284,6 +292,8 @@ type managedDatabaseMysqlArgs struct {
 
 // The set of arguments for constructing a ManagedDatabaseMysql resource.
 type ManagedDatabaseMysqlArgs struct {
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// User defined key-value pairs to classify the managed database.
 	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -294,7 +304,7 @@ type ManagedDatabaseMysqlArgs struct {
 	Name pulumi.StringPtrInput
 	// Private networks attached to the managed database
 	Networks ManagedDatabaseMysqlNetworkArrayInput
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
 	Plan pulumi.StringInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
@@ -395,6 +405,11 @@ func (o ManagedDatabaseMysqlOutput) ToManagedDatabaseMysqlOutputWithContext(ctx 
 	return o
 }
 
+// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+func (o ManagedDatabaseMysqlOutput) AdditionalDiskSpaceGib() pulumi.IntOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysql) pulumi.IntOutput { return v.AdditionalDiskSpaceGib }).(pulumi.IntOutput)
+}
+
 // Service component information
 func (o ManagedDatabaseMysqlOutput) Components() ManagedDatabaseMysqlComponentArrayOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysql) ManagedDatabaseMysqlComponentArrayOutput { return v.Components }).(ManagedDatabaseMysqlComponentArrayOutput)
@@ -430,7 +445,7 @@ func (o ManagedDatabaseMysqlOutput) NodeStates() ManagedDatabaseMysqlNodeStateAr
 	return o.ApplyT(func(v *ManagedDatabaseMysql) ManagedDatabaseMysqlNodeStateArrayOutput { return v.NodeStates }).(ManagedDatabaseMysqlNodeStateArrayOutput)
 }
 
-// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
 func (o ManagedDatabaseMysqlOutput) Plan() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysql) pulumi.StringOutput { return v.Plan }).(pulumi.StringOutput)
 }

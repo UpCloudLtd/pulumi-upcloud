@@ -54,6 +54,12 @@ namespace UpCloud.Pulumi.UpCloud
     public partial class ManagedDatabaseRedis : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Not supported for `Redis` databases. Should be left unconfigured.
+        /// </summary>
+        [Output("additionalDiskSpaceGib")]
+        public Output<int> AdditionalDiskSpaceGib { get; private set; } = null!;
+
+        /// <summary>
         /// Service component information
         /// </summary>
         [Output("components")]
@@ -96,7 +102,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<Outputs.ManagedDatabaseRedisNodeState>> NodeStates { get; private set; } = null!;
 
         /// <summary>
-        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
         /// </summary>
         [Output("plan")]
         public Output<string> Plan { get; private set; } = null!;
@@ -231,6 +237,12 @@ namespace UpCloud.Pulumi.UpCloud
 
     public sealed class ManagedDatabaseRedisArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Not supported for `Redis` databases. Should be left unconfigured.
+        /// </summary>
+        [Input("additionalDiskSpaceGib")]
+        public Input<int>? AdditionalDiskSpaceGib { get; set; }
+
         [Input("labels")]
         private InputMap<string>? _labels;
 
@@ -274,7 +286,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
         /// </summary>
         [Input("plan", required: true)]
         public Input<string> Plan { get; set; } = null!;
@@ -317,6 +329,12 @@ namespace UpCloud.Pulumi.UpCloud
 
     public sealed class ManagedDatabaseRedisState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Not supported for `Redis` databases. Should be left unconfigured.
+        /// </summary>
+        [Input("additionalDiskSpaceGib")]
+        public Input<int>? AdditionalDiskSpaceGib { get; set; }
+
         [Input("components")]
         private InputList<Inputs.ManagedDatabaseRedisComponentGetArgs>? _components;
 
@@ -384,7 +402,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }

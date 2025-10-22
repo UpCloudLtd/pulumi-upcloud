@@ -10,6 +10,7 @@ import com.pulumi.upcloud.inputs.ManagedDatabaseRedisNetworkArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseRedisNodeStateArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseRedisPropertiesArgs;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,21 @@ import javax.annotation.Nullable;
 public final class ManagedDatabaseRedisState extends com.pulumi.resources.ResourceArgs {
 
     public static final ManagedDatabaseRedisState Empty = new ManagedDatabaseRedisState();
+
+    /**
+     * Not supported for `redis` databases. Should be left unconfigured.
+     * 
+     */
+    @Import(name="additionalDiskSpaceGib")
+    private @Nullable Output<Integer> additionalDiskSpaceGib;
+
+    /**
+     * @return Not supported for `redis` databases. Should be left unconfigured.
+     * 
+     */
+    public Optional<Output<Integer>> additionalDiskSpaceGib() {
+        return Optional.ofNullable(this.additionalDiskSpaceGib);
+    }
 
     /**
      * Service component information
@@ -128,14 +144,14 @@ public final class ManagedDatabaseRedisState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
      * 
      */
     @Import(name="plan")
     private @Nullable Output<String> plan;
 
     /**
-     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
      * 
      */
     public Optional<Output<String>> plan() {
@@ -340,6 +356,7 @@ public final class ManagedDatabaseRedisState extends com.pulumi.resources.Resour
     private ManagedDatabaseRedisState() {}
 
     private ManagedDatabaseRedisState(ManagedDatabaseRedisState $) {
+        this.additionalDiskSpaceGib = $.additionalDiskSpaceGib;
         this.components = $.components;
         this.labels = $.labels;
         this.maintenanceWindowDow = $.maintenanceWindowDow;
@@ -379,6 +396,27 @@ public final class ManagedDatabaseRedisState extends com.pulumi.resources.Resour
 
         public Builder(ManagedDatabaseRedisState defaults) {
             $ = new ManagedDatabaseRedisState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param additionalDiskSpaceGib Not supported for `redis` databases. Should be left unconfigured.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder additionalDiskSpaceGib(@Nullable Output<Integer> additionalDiskSpaceGib) {
+            $.additionalDiskSpaceGib = additionalDiskSpaceGib;
+            return this;
+        }
+
+        /**
+         * @param additionalDiskSpaceGib Not supported for `redis` databases. Should be left unconfigured.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder additionalDiskSpaceGib(Integer additionalDiskSpaceGib) {
+            return additionalDiskSpaceGib(Output.of(additionalDiskSpaceGib));
         }
 
         /**
@@ -559,7 +597,7 @@ public final class ManagedDatabaseRedisState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
          * 
          * @return builder
          * 
@@ -570,7 +608,7 @@ public final class ManagedDatabaseRedisState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
          * 
          * @return builder
          * 

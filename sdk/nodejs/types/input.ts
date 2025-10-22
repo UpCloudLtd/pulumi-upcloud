@@ -3795,13 +3795,6 @@ export interface NetworkPeeringPeerNetwork {
     uuid: pulumi.Input<string>;
 }
 
-export interface ObjectStorageBucket {
-    /**
-     * The name of the bucket
-     */
-    name: pulumi.Input<string>;
-}
-
 export interface RouterStaticRoute {
     name: pulumi.Input<string>;
     nexthop: pulumi.Input<string>;

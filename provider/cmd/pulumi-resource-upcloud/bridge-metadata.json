@@ -715,14 +715,6 @@
                     }
                 }
             },
-            "upcloud_object_storage": {
-                "current": "upcloud:index/objectStorage:ObjectStorage",
-                "fields": {
-                    "bucket": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
             "upcloud_router": {
                 "current": "upcloud:index/router:Router",
                 "fields": {
@@ -1045,7 +1037,6 @@
             "upcloud:index/managedObjectStorageUserPolicy:ManagedObjectStorageUserPolicy": 0,
             "upcloud:index/network:Network": 1,
             "upcloud:index/networkPeering:NetworkPeering": 1,
-            "upcloud:index/objectStorage:ObjectStorage": 0,
             "upcloud:index/router:Router": 1,
             "upcloud:index/server:Server": 1,
             "upcloud:index/serverFirewallRules:ServerFirewallRules": 1,

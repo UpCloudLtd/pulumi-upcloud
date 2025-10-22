@@ -4656,18 +4656,6 @@
                 "uuid"
             ]
         },
-        "upcloud:index/ObjectStorageBucket:ObjectStorageBucket": {
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "description": "The name of the bucket\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name"
-            ]
-        },
         "upcloud:index/RouterStaticRoute:RouterStaticRoute": {
             "properties": {
                 "name": {
@@ -8270,6 +8258,10 @@
         "upcloud:index/managedDatabaseMysql:ManagedDatabaseMysql": {
             "description": "This resource represents MySQL managed database. See UpCloud [Managed Databases](https://upcloud.com/products/managed-databases) product page for more details about the service.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\n// Minimal config\nconst example1 = new upcloud.ManagedDatabaseMysql(\"example_1\", {\n    name: \"mysql-1\",\n    title: \"mysql-1-example-1\",\n    plan: \"1x1xCPU-2GB-25GB\",\n    zone: \"fi-hel1\",\n});\n// Shutdown instance after creation\nconst example2 = new upcloud.ManagedDatabaseMysql(\"example_2\", {\n    name: \"mysql-2\",\n    title: \"mysql-2-example-2\",\n    plan: \"1x1xCPU-2GB-25GB\",\n    zone: \"fi-hel1\",\n    powered: false,\n});\n// Service with custom properties\n// Note that this basically sets strict mode off which is not normally recommended\nconst example3 = new upcloud.ManagedDatabaseMysql(\"example_3\", {\n    name: \"mysql-3\",\n    title: \"mysql-3-example-3\",\n    plan: \"1x1xCPU-2GB-25GB\",\n    zone: \"fi-hel1\",\n    properties: {\n        sqlMode: \"NO_ENGINE_SUBSTITUTION\",\n        waitTimeout: 300,\n        sortBufferSize: 4000000,\n        maxAllowedPacket: 16000000,\n        adminUsername: \"admin\",\n        adminPassword: \"\u003cADMIN_PASSWORD\u003e\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# Minimal config\nexample1 = upcloud.ManagedDatabaseMysql(\"example_1\",\n    name=\"mysql-1\",\n    title=\"mysql-1-example-1\",\n    plan=\"1x1xCPU-2GB-25GB\",\n    zone=\"fi-hel1\")\n# Shutdown instance after creation\nexample2 = upcloud.ManagedDatabaseMysql(\"example_2\",\n    name=\"mysql-2\",\n    title=\"mysql-2-example-2\",\n    plan=\"1x1xCPU-2GB-25GB\",\n    zone=\"fi-hel1\",\n    powered=False)\n# Service with custom properties\n# Note that this basically sets strict mode off which is not normally recommended\nexample3 = upcloud.ManagedDatabaseMysql(\"example_3\",\n    name=\"mysql-3\",\n    title=\"mysql-3-example-3\",\n    plan=\"1x1xCPU-2GB-25GB\",\n    zone=\"fi-hel1\",\n    properties={\n        \"sql_mode\": \"NO_ENGINE_SUBSTITUTION\",\n        \"wait_timeout\": 300,\n        \"sort_buffer_size\": 4000000,\n        \"max_allowed_packet\": 16000000,\n        \"admin_username\": \"admin\",\n        \"admin_password\": \"\u003cADMIN_PASSWORD\u003e\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Minimal config\n    var example1 = new UpCloud.ManagedDatabaseMysql(\"example_1\", new()\n    {\n        Name = \"mysql-1\",\n        Title = \"mysql-1-example-1\",\n        Plan = \"1x1xCPU-2GB-25GB\",\n        Zone = \"fi-hel1\",\n    });\n\n    // Shutdown instance after creation\n    var example2 = new UpCloud.ManagedDatabaseMysql(\"example_2\", new()\n    {\n        Name = \"mysql-2\",\n        Title = \"mysql-2-example-2\",\n        Plan = \"1x1xCPU-2GB-25GB\",\n        Zone = \"fi-hel1\",\n        Powered = false,\n    });\n\n    // Service with custom properties\n    // Note that this basically sets strict mode off which is not normally recommended\n    var example3 = new UpCloud.ManagedDatabaseMysql(\"example_3\", new()\n    {\n        Name = \"mysql-3\",\n        Title = \"mysql-3-example-3\",\n        Plan = \"1x1xCPU-2GB-25GB\",\n        Zone = \"fi-hel1\",\n        Properties = new UpCloud.Inputs.ManagedDatabaseMysqlPropertiesArgs\n        {\n            SqlMode = \"NO_ENGINE_SUBSTITUTION\",\n            WaitTimeout = 300,\n            SortBufferSize = 4000000,\n            MaxAllowedPacket = 16000000,\n            AdminUsername = \"admin\",\n            AdminPassword = \"\u003cADMIN_PASSWORD\u003e\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Minimal config\n\t\t_, err := upcloud.NewManagedDatabaseMysql(ctx, \"example_1\", \u0026upcloud.ManagedDatabaseMysqlArgs{\n\t\t\tName:  pulumi.String(\"mysql-1\"),\n\t\t\tTitle: pulumi.String(\"mysql-1-example-1\"),\n\t\t\tPlan:  pulumi.String(\"1x1xCPU-2GB-25GB\"),\n\t\t\tZone:  pulumi.String(\"fi-hel1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Shutdown instance after creation\n\t\t_, err = upcloud.NewManagedDatabaseMysql(ctx, \"example_2\", \u0026upcloud.ManagedDatabaseMysqlArgs{\n\t\t\tName:    pulumi.String(\"mysql-2\"),\n\t\t\tTitle:   pulumi.String(\"mysql-2-example-2\"),\n\t\t\tPlan:    pulumi.String(\"1x1xCPU-2GB-25GB\"),\n\t\t\tZone:    pulumi.String(\"fi-hel1\"),\n\t\t\tPowered: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Service with custom properties\n\t\t// Note that this basically sets strict mode off which is not normally recommended\n\t\t_, err = upcloud.NewManagedDatabaseMysql(ctx, \"example_3\", \u0026upcloud.ManagedDatabaseMysqlArgs{\n\t\t\tName:  pulumi.String(\"mysql-3\"),\n\t\t\tTitle: pulumi.String(\"mysql-3-example-3\"),\n\t\t\tPlan:  pulumi.String(\"1x1xCPU-2GB-25GB\"),\n\t\t\tZone:  pulumi.String(\"fi-hel1\"),\n\t\t\tProperties: \u0026upcloud.ManagedDatabaseMysqlPropertiesArgs{\n\t\t\t\tSqlMode:          pulumi.String(\"NO_ENGINE_SUBSTITUTION\"),\n\t\t\t\tWaitTimeout:      pulumi.Int(300),\n\t\t\t\tSortBufferSize:   pulumi.Int(4000000),\n\t\t\t\tMaxAllowedPacket: pulumi.Int(16000000),\n\t\t\t\tAdminUsername:    pulumi.String(\"admin\"),\n\t\t\t\tAdminPassword:    pulumi.String(\"\u003cADMIN_PASSWORD\u003e\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.ManagedDatabaseMysql;\nimport com.pulumi.upcloud.ManagedDatabaseMysqlArgs;\nimport com.pulumi.upcloud.inputs.ManagedDatabaseMysqlPropertiesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Minimal config\n        var example1 = new ManagedDatabaseMysql(\"example1\", ManagedDatabaseMysqlArgs.builder()\n            .name(\"mysql-1\")\n            .title(\"mysql-1-example-1\")\n            .plan(\"1x1xCPU-2GB-25GB\")\n            .zone(\"fi-hel1\")\n            .build());\n\n        // Shutdown instance after creation\n        var example2 = new ManagedDatabaseMysql(\"example2\", ManagedDatabaseMysqlArgs.builder()\n            .name(\"mysql-2\")\n            .title(\"mysql-2-example-2\")\n            .plan(\"1x1xCPU-2GB-25GB\")\n            .zone(\"fi-hel1\")\n            .powered(false)\n            .build());\n\n        // Service with custom properties\n        // Note that this basically sets strict mode off which is not normally recommended\n        var example3 = new ManagedDatabaseMysql(\"example3\", ManagedDatabaseMysqlArgs.builder()\n            .name(\"mysql-3\")\n            .title(\"mysql-3-example-3\")\n            .plan(\"1x1xCPU-2GB-25GB\")\n            .zone(\"fi-hel1\")\n            .properties(ManagedDatabaseMysqlPropertiesArgs.builder()\n                .sqlMode(\"NO_ENGINE_SUBSTITUTION\")\n                .waitTimeout(300)\n                .sortBufferSize(4000000)\n                .maxAllowedPacket(16000000)\n                .adminUsername(\"admin\")\n                .adminPassword(\"\u003cADMIN_PASSWORD\u003e\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Minimal config\n  example1:\n    type: upcloud:ManagedDatabaseMysql\n    name: example_1\n    properties:\n      name: mysql-1\n      title: mysql-1-example-1\n      plan: 1x1xCPU-2GB-25GB\n      zone: fi-hel1\n  # Shutdown instance after creation\n  example2:\n    type: upcloud:ManagedDatabaseMysql\n    name: example_2\n    properties:\n      name: mysql-2\n      title: mysql-2-example-2\n      plan: 1x1xCPU-2GB-25GB\n      zone: fi-hel1\n      powered: false\n  # Service with custom properties\n  # Note that this basically sets strict mode off which is not normally recommended\n  example3:\n    type: upcloud:ManagedDatabaseMysql\n    name: example_3\n    properties:\n      name: mysql-3\n      title: mysql-3-example-3\n      plan: 1x1xCPU-2GB-25GB\n      zone: fi-hel1\n      properties:\n        sqlMode: NO_ENGINE_SUBSTITUTION\n        waitTimeout: 300\n        sortBufferSize: 4e+06\n        maxAllowedPacket: 1.6e+07\n        adminUsername: admin\n        adminPassword: \u003cADMIN_PASSWORD\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
+                "additionalDiskSpaceGib": {
+                    "type": "integer",
+                    "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed."
+                },
                 "components": {
                     "type": "array",
                     "items": {
@@ -8312,7 +8304,7 @@
                 },
                 "plan": {
                     "type": "string",
-                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`."
                 },
                 "powered": {
                     "type": "boolean",
@@ -8370,6 +8362,7 @@
                 }
             },
             "required": [
+                "additionalDiskSpaceGib",
                 "components",
                 "maintenanceWindowDow",
                 "maintenanceWindowTime",
@@ -8389,6 +8382,10 @@
                 "zone"
             ],
             "inputProperties": {
+                "additionalDiskSpaceGib": {
+                    "type": "integer",
+                    "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed."
+                },
                 "labels": {
                     "type": "object",
                     "additionalProperties": {
@@ -8418,7 +8415,7 @@
                 },
                 "plan": {
                     "type": "string",
-                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`."
                 },
                 "powered": {
                     "type": "boolean",
@@ -8449,6 +8446,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ManagedDatabaseMysql resources.\n",
                 "properties": {
+                    "additionalDiskSpaceGib": {
+                        "type": "integer",
+                        "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed."
+                    },
                     "components": {
                         "type": "array",
                         "items": {
@@ -8492,7 +8493,7 @@
                     },
                     "plan": {
                         "type": "string",
-                        "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                        "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`."
                     },
                     "powered": {
                         "type": "boolean",
@@ -8559,6 +8560,10 @@
                     "type": "boolean",
                     "description": "Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled."
                 },
+                "additionalDiskSpaceGib": {
+                    "type": "integer",
+                    "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed."
+                },
                 "components": {
                     "type": "array",
                     "items": {
@@ -8605,7 +8610,7 @@
                 },
                 "plan": {
                     "type": "string",
-                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`."
                 },
                 "powered": {
                     "type": "boolean",
@@ -8664,6 +8669,7 @@
             },
             "required": [
                 "accessControl",
+                "additionalDiskSpaceGib",
                 "components",
                 "extendedAccessControl",
                 "maintenanceWindowDow",
@@ -8687,6 +8693,10 @@
                 "accessControl": {
                     "type": "boolean",
                     "description": "Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled."
+                },
+                "additionalDiskSpaceGib": {
+                    "type": "integer",
+                    "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed."
                 },
                 "extendedAccessControl": {
                     "type": "boolean",
@@ -8721,7 +8731,7 @@
                 },
                 "plan": {
                     "type": "string",
-                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`."
                 },
                 "powered": {
                     "type": "boolean",
@@ -8755,6 +8765,10 @@
                     "accessControl": {
                         "type": "boolean",
                         "description": "Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled."
+                    },
+                    "additionalDiskSpaceGib": {
+                        "type": "integer",
+                        "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed."
                     },
                     "components": {
                         "type": "array",
@@ -8803,7 +8817,7 @@
                     },
                     "plan": {
                         "type": "string",
-                        "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                        "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`."
                     },
                     "powered": {
                         "type": "boolean",
@@ -8866,6 +8880,10 @@
         "upcloud:index/managedDatabasePostgresql:ManagedDatabasePostgresql": {
             "description": "This resource represents PostgreSQL managed database. See UpCloud [Managed Databases](https://upcloud.com/products/managed-databases) product page for more details about the service.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\n// Minimal config\nconst example1 = new upcloud.ManagedDatabasePostgresql(\"example_1\", {\n    name: \"postgres-1\",\n    plan: \"1x1xCPU-2GB-25GB\",\n    title: \"postgres\",\n    zone: \"fi-hel1\",\n});\n// Service with custom properties\nconst example2 = new upcloud.ManagedDatabasePostgresql(\"example_2\", {\n    name: \"postgres-2\",\n    plan: \"1x1xCPU-2GB-25GB\",\n    title: \"postgres\",\n    zone: \"fi-hel1\",\n    properties: {\n        timezone: \"Europe/Helsinki\",\n        adminUsername: \"admin\",\n        adminPassword: \"\u003cADMIN_PASSWORD\u003e\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# Minimal config\nexample1 = upcloud.ManagedDatabasePostgresql(\"example_1\",\n    name=\"postgres-1\",\n    plan=\"1x1xCPU-2GB-25GB\",\n    title=\"postgres\",\n    zone=\"fi-hel1\")\n# Service with custom properties\nexample2 = upcloud.ManagedDatabasePostgresql(\"example_2\",\n    name=\"postgres-2\",\n    plan=\"1x1xCPU-2GB-25GB\",\n    title=\"postgres\",\n    zone=\"fi-hel1\",\n    properties={\n        \"timezone\": \"Europe/Helsinki\",\n        \"admin_username\": \"admin\",\n        \"admin_password\": \"\u003cADMIN_PASSWORD\u003e\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Minimal config\n    var example1 = new UpCloud.ManagedDatabasePostgresql(\"example_1\", new()\n    {\n        Name = \"postgres-1\",\n        Plan = \"1x1xCPU-2GB-25GB\",\n        Title = \"postgres\",\n        Zone = \"fi-hel1\",\n    });\n\n    // Service with custom properties\n    var example2 = new UpCloud.ManagedDatabasePostgresql(\"example_2\", new()\n    {\n        Name = \"postgres-2\",\n        Plan = \"1x1xCPU-2GB-25GB\",\n        Title = \"postgres\",\n        Zone = \"fi-hel1\",\n        Properties = new UpCloud.Inputs.ManagedDatabasePostgresqlPropertiesArgs\n        {\n            Timezone = \"Europe/Helsinki\",\n            AdminUsername = \"admin\",\n            AdminPassword = \"\u003cADMIN_PASSWORD\u003e\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Minimal config\n\t\t_, err := upcloud.NewManagedDatabasePostgresql(ctx, \"example_1\", \u0026upcloud.ManagedDatabasePostgresqlArgs{\n\t\t\tName:  pulumi.String(\"postgres-1\"),\n\t\t\tPlan:  pulumi.String(\"1x1xCPU-2GB-25GB\"),\n\t\t\tTitle: pulumi.String(\"postgres\"),\n\t\t\tZone:  pulumi.String(\"fi-hel1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Service with custom properties\n\t\t_, err = upcloud.NewManagedDatabasePostgresql(ctx, \"example_2\", \u0026upcloud.ManagedDatabasePostgresqlArgs{\n\t\t\tName:  pulumi.String(\"postgres-2\"),\n\t\t\tPlan:  pulumi.String(\"1x1xCPU-2GB-25GB\"),\n\t\t\tTitle: pulumi.String(\"postgres\"),\n\t\t\tZone:  pulumi.String(\"fi-hel1\"),\n\t\t\tProperties: \u0026upcloud.ManagedDatabasePostgresqlPropertiesArgs{\n\t\t\t\tTimezone:      pulumi.String(\"Europe/Helsinki\"),\n\t\t\t\tAdminUsername: pulumi.String(\"admin\"),\n\t\t\t\tAdminPassword: pulumi.String(\"\u003cADMIN_PASSWORD\u003e\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.ManagedDatabasePostgresql;\nimport com.pulumi.upcloud.ManagedDatabasePostgresqlArgs;\nimport com.pulumi.upcloud.inputs.ManagedDatabasePostgresqlPropertiesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Minimal config\n        var example1 = new ManagedDatabasePostgresql(\"example1\", ManagedDatabasePostgresqlArgs.builder()\n            .name(\"postgres-1\")\n            .plan(\"1x1xCPU-2GB-25GB\")\n            .title(\"postgres\")\n            .zone(\"fi-hel1\")\n            .build());\n\n        // Service with custom properties\n        var example2 = new ManagedDatabasePostgresql(\"example2\", ManagedDatabasePostgresqlArgs.builder()\n            .name(\"postgres-2\")\n            .plan(\"1x1xCPU-2GB-25GB\")\n            .title(\"postgres\")\n            .zone(\"fi-hel1\")\n            .properties(ManagedDatabasePostgresqlPropertiesArgs.builder()\n                .timezone(\"Europe/Helsinki\")\n                .adminUsername(\"admin\")\n                .adminPassword(\"\u003cADMIN_PASSWORD\u003e\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Minimal config\n  example1:\n    type: upcloud:ManagedDatabasePostgresql\n    name: example_1\n    properties:\n      name: postgres-1\n      plan: 1x1xCPU-2GB-25GB\n      title: postgres\n      zone: fi-hel1\n  # Service with custom properties\n  example2:\n    type: upcloud:ManagedDatabasePostgresql\n    name: example_2\n    properties:\n      name: postgres-2\n      plan: 1x1xCPU-2GB-25GB\n      title: postgres\n      zone: fi-hel1\n      properties:\n        timezone: Europe/Helsinki\n        adminUsername: admin\n        adminPassword: \u003cADMIN_PASSWORD\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
+                "additionalDiskSpaceGib": {
+                    "type": "integer",
+                    "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed."
+                },
                 "components": {
                     "type": "array",
                     "items": {
@@ -8908,7 +8926,7 @@
                 },
                 "plan": {
                     "type": "string",
-                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`."
                 },
                 "powered": {
                     "type": "boolean",
@@ -8970,6 +8988,7 @@
                 }
             },
             "required": [
+                "additionalDiskSpaceGib",
                 "components",
                 "maintenanceWindowDow",
                 "maintenanceWindowTime",
@@ -8990,6 +9009,10 @@
                 "zone"
             ],
             "inputProperties": {
+                "additionalDiskSpaceGib": {
+                    "type": "integer",
+                    "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed."
+                },
                 "labels": {
                     "type": "object",
                     "additionalProperties": {
@@ -9019,7 +9042,7 @@
                 },
                 "plan": {
                     "type": "string",
-                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`."
                 },
                 "powered": {
                     "type": "boolean",
@@ -9050,6 +9073,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ManagedDatabasePostgresql resources.\n",
                 "properties": {
+                    "additionalDiskSpaceGib": {
+                        "type": "integer",
+                        "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed."
+                    },
                     "components": {
                         "type": "array",
                         "items": {
@@ -9093,7 +9120,7 @@
                     },
                     "plan": {
                         "type": "string",
-                        "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                        "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`."
                     },
                     "powered": {
                         "type": "boolean",
@@ -9160,6 +9187,10 @@
         "upcloud:index/managedDatabaseRedis:ManagedDatabaseRedis": {
             "description": "\u003e Redis is deprecated in favor of Valkey. Please use Valkey for new key value store instances.\n\nThis resource represents Redis managed database. See UpCloud [Managed Databases](https://upcloud.com/products/managed-databases) product page for more details about the service.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\n// Minimal config\nconst example1 = new upcloud.ManagedDatabaseRedis(\"example_1\", {\n    name: \"redis-1\",\n    title: \"redis-1-example-2\",\n    plan: \"1x1xCPU-2GB\",\n    zone: \"fi-hel2\",\n});\n// Service with custom properties\nconst example2 = new upcloud.ManagedDatabaseRedis(\"example_2\", {\n    name: \"redis-2\",\n    title: \"redis-2-example-2\",\n    plan: \"1x1xCPU-2GB\",\n    zone: \"fi-hel1\",\n    properties: {\n        publicAccess: false,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# Minimal config\nexample1 = upcloud.ManagedDatabaseRedis(\"example_1\",\n    name=\"redis-1\",\n    title=\"redis-1-example-2\",\n    plan=\"1x1xCPU-2GB\",\n    zone=\"fi-hel2\")\n# Service with custom properties\nexample2 = upcloud.ManagedDatabaseRedis(\"example_2\",\n    name=\"redis-2\",\n    title=\"redis-2-example-2\",\n    plan=\"1x1xCPU-2GB\",\n    zone=\"fi-hel1\",\n    properties={\n        \"public_access\": False,\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Minimal config\n    var example1 = new UpCloud.ManagedDatabaseRedis(\"example_1\", new()\n    {\n        Name = \"redis-1\",\n        Title = \"redis-1-example-2\",\n        Plan = \"1x1xCPU-2GB\",\n        Zone = \"fi-hel2\",\n    });\n\n    // Service with custom properties\n    var example2 = new UpCloud.ManagedDatabaseRedis(\"example_2\", new()\n    {\n        Name = \"redis-2\",\n        Title = \"redis-2-example-2\",\n        Plan = \"1x1xCPU-2GB\",\n        Zone = \"fi-hel1\",\n        Properties = new UpCloud.Inputs.ManagedDatabaseRedisPropertiesArgs\n        {\n            PublicAccess = false,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Minimal config\n\t\t_, err := upcloud.NewManagedDatabaseRedis(ctx, \"example_1\", \u0026upcloud.ManagedDatabaseRedisArgs{\n\t\t\tName:  pulumi.String(\"redis-1\"),\n\t\t\tTitle: pulumi.String(\"redis-1-example-2\"),\n\t\t\tPlan:  pulumi.String(\"1x1xCPU-2GB\"),\n\t\t\tZone:  pulumi.String(\"fi-hel2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Service with custom properties\n\t\t_, err = upcloud.NewManagedDatabaseRedis(ctx, \"example_2\", \u0026upcloud.ManagedDatabaseRedisArgs{\n\t\t\tName:  pulumi.String(\"redis-2\"),\n\t\t\tTitle: pulumi.String(\"redis-2-example-2\"),\n\t\t\tPlan:  pulumi.String(\"1x1xCPU-2GB\"),\n\t\t\tZone:  pulumi.String(\"fi-hel1\"),\n\t\t\tProperties: \u0026upcloud.ManagedDatabaseRedisPropertiesArgs{\n\t\t\t\tPublicAccess: pulumi.Bool(false),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.ManagedDatabaseRedis;\nimport com.pulumi.upcloud.ManagedDatabaseRedisArgs;\nimport com.pulumi.upcloud.inputs.ManagedDatabaseRedisPropertiesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Minimal config\n        var example1 = new ManagedDatabaseRedis(\"example1\", ManagedDatabaseRedisArgs.builder()\n            .name(\"redis-1\")\n            .title(\"redis-1-example-2\")\n            .plan(\"1x1xCPU-2GB\")\n            .zone(\"fi-hel2\")\n            .build());\n\n        // Service with custom properties\n        var example2 = new ManagedDatabaseRedis(\"example2\", ManagedDatabaseRedisArgs.builder()\n            .name(\"redis-2\")\n            .title(\"redis-2-example-2\")\n            .plan(\"1x1xCPU-2GB\")\n            .zone(\"fi-hel1\")\n            .properties(ManagedDatabaseRedisPropertiesArgs.builder()\n                .publicAccess(false)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Minimal config\n  example1:\n    type: upcloud:ManagedDatabaseRedis\n    name: example_1\n    properties:\n      name: redis-1\n      title: redis-1-example-2\n      plan: 1x1xCPU-2GB\n      zone: fi-hel2\n  # Service with custom properties\n  example2:\n    type: upcloud:ManagedDatabaseRedis\n    name: example_2\n    properties:\n      name: redis-2\n      title: redis-2-example-2\n      plan: 1x1xCPU-2GB\n      zone: fi-hel1\n      properties:\n        publicAccess: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
+                "additionalDiskSpaceGib": {
+                    "type": "integer",
+                    "description": "Not supported for \u003cspan pulumi-lang-nodejs=\"`redis`\" pulumi-lang-dotnet=\"`Redis`\" pulumi-lang-go=\"`redis`\" pulumi-lang-python=\"`redis`\" pulumi-lang-yaml=\"`redis`\" pulumi-lang-java=\"`redis`\"\u003e`redis`\u003c/span\u003e databases. Should be left unconfigured."
+                },
                 "components": {
                     "type": "array",
                     "items": {
@@ -9202,7 +9233,7 @@
                 },
                 "plan": {
                     "type": "string",
-                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`."
                 },
                 "powered": {
                     "type": "boolean",
@@ -9260,6 +9291,7 @@
                 }
             },
             "required": [
+                "additionalDiskSpaceGib",
                 "components",
                 "maintenanceWindowDow",
                 "maintenanceWindowTime",
@@ -9279,6 +9311,10 @@
                 "zone"
             ],
             "inputProperties": {
+                "additionalDiskSpaceGib": {
+                    "type": "integer",
+                    "description": "Not supported for \u003cspan pulumi-lang-nodejs=\"`redis`\" pulumi-lang-dotnet=\"`Redis`\" pulumi-lang-go=\"`redis`\" pulumi-lang-python=\"`redis`\" pulumi-lang-yaml=\"`redis`\" pulumi-lang-java=\"`redis`\"\u003e`redis`\u003c/span\u003e databases. Should be left unconfigured."
+                },
                 "labels": {
                     "type": "object",
                     "additionalProperties": {
@@ -9308,7 +9344,7 @@
                 },
                 "plan": {
                     "type": "string",
-                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`."
                 },
                 "powered": {
                     "type": "boolean",
@@ -9339,6 +9375,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ManagedDatabaseRedis resources.\n",
                 "properties": {
+                    "additionalDiskSpaceGib": {
+                        "type": "integer",
+                        "description": "Not supported for \u003cspan pulumi-lang-nodejs=\"`redis`\" pulumi-lang-dotnet=\"`Redis`\" pulumi-lang-go=\"`redis`\" pulumi-lang-python=\"`redis`\" pulumi-lang-yaml=\"`redis`\" pulumi-lang-java=\"`redis`\"\u003e`redis`\u003c/span\u003e databases. Should be left unconfigured."
+                    },
                     "components": {
                         "type": "array",
                         "items": {
@@ -9382,7 +9422,7 @@
                     },
                     "plan": {
                         "type": "string",
-                        "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                        "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`."
                     },
                     "powered": {
                         "type": "boolean",
@@ -9579,6 +9619,10 @@
         "upcloud:index/managedDatabaseValkey:ManagedDatabaseValkey": {
             "description": "This resource represents Valkey managed database. See UpCloud [Managed Databases](https://upcloud.com/products/managed-databases) product page for more details about the service.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\n// Minimal config\nconst example1 = new upcloud.ManagedDatabaseValkey(\"example_1\", {\n    name: \"valkey-1\",\n    title: \"valkey-example-1\",\n    plan: \"1x1xCPU-2GB\",\n    zone: \"fi-hel2\",\n});\n// Service with custom properties\nconst example2 = new upcloud.ManagedDatabaseValkey(\"example_2\", {\n    name: \"valkey-2\",\n    title: \"valkey-example-2\",\n    plan: \"1x1xCPU-2GB\",\n    zone: \"fi-hel1\",\n    properties: {\n        publicAccess: false,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# Minimal config\nexample1 = upcloud.ManagedDatabaseValkey(\"example_1\",\n    name=\"valkey-1\",\n    title=\"valkey-example-1\",\n    plan=\"1x1xCPU-2GB\",\n    zone=\"fi-hel2\")\n# Service with custom properties\nexample2 = upcloud.ManagedDatabaseValkey(\"example_2\",\n    name=\"valkey-2\",\n    title=\"valkey-example-2\",\n    plan=\"1x1xCPU-2GB\",\n    zone=\"fi-hel1\",\n    properties={\n        \"public_access\": False,\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Minimal config\n    var example1 = new UpCloud.ManagedDatabaseValkey(\"example_1\", new()\n    {\n        Name = \"valkey-1\",\n        Title = \"valkey-example-1\",\n        Plan = \"1x1xCPU-2GB\",\n        Zone = \"fi-hel2\",\n    });\n\n    // Service with custom properties\n    var example2 = new UpCloud.ManagedDatabaseValkey(\"example_2\", new()\n    {\n        Name = \"valkey-2\",\n        Title = \"valkey-example-2\",\n        Plan = \"1x1xCPU-2GB\",\n        Zone = \"fi-hel1\",\n        Properties = new UpCloud.Inputs.ManagedDatabaseValkeyPropertiesArgs\n        {\n            PublicAccess = false,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Minimal config\n\t\t_, err := upcloud.NewManagedDatabaseValkey(ctx, \"example_1\", \u0026upcloud.ManagedDatabaseValkeyArgs{\n\t\t\tName:  pulumi.String(\"valkey-1\"),\n\t\t\tTitle: pulumi.String(\"valkey-example-1\"),\n\t\t\tPlan:  pulumi.String(\"1x1xCPU-2GB\"),\n\t\t\tZone:  pulumi.String(\"fi-hel2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Service with custom properties\n\t\t_, err = upcloud.NewManagedDatabaseValkey(ctx, \"example_2\", \u0026upcloud.ManagedDatabaseValkeyArgs{\n\t\t\tName:  pulumi.String(\"valkey-2\"),\n\t\t\tTitle: pulumi.String(\"valkey-example-2\"),\n\t\t\tPlan:  pulumi.String(\"1x1xCPU-2GB\"),\n\t\t\tZone:  pulumi.String(\"fi-hel1\"),\n\t\t\tProperties: \u0026upcloud.ManagedDatabaseValkeyPropertiesArgs{\n\t\t\t\tPublicAccess: pulumi.Bool(false),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.ManagedDatabaseValkey;\nimport com.pulumi.upcloud.ManagedDatabaseValkeyArgs;\nimport com.pulumi.upcloud.inputs.ManagedDatabaseValkeyPropertiesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Minimal config\n        var example1 = new ManagedDatabaseValkey(\"example1\", ManagedDatabaseValkeyArgs.builder()\n            .name(\"valkey-1\")\n            .title(\"valkey-example-1\")\n            .plan(\"1x1xCPU-2GB\")\n            .zone(\"fi-hel2\")\n            .build());\n\n        // Service with custom properties\n        var example2 = new ManagedDatabaseValkey(\"example2\", ManagedDatabaseValkeyArgs.builder()\n            .name(\"valkey-2\")\n            .title(\"valkey-example-2\")\n            .plan(\"1x1xCPU-2GB\")\n            .zone(\"fi-hel1\")\n            .properties(ManagedDatabaseValkeyPropertiesArgs.builder()\n                .publicAccess(false)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Minimal config\n  example1:\n    type: upcloud:ManagedDatabaseValkey\n    name: example_1\n    properties:\n      name: valkey-1\n      title: valkey-example-1\n      plan: 1x1xCPU-2GB\n      zone: fi-hel2\n  # Service with custom properties\n  example2:\n    type: upcloud:ManagedDatabaseValkey\n    name: example_2\n    properties:\n      name: valkey-2\n      title: valkey-example-2\n      plan: 1x1xCPU-2GB\n      zone: fi-hel1\n      properties:\n        publicAccess: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
+                "additionalDiskSpaceGib": {
+                    "type": "integer",
+                    "description": "Not supported for \u003cspan pulumi-lang-nodejs=\"`valkey`\" pulumi-lang-dotnet=\"`Valkey`\" pulumi-lang-go=\"`valkey`\" pulumi-lang-python=\"`valkey`\" pulumi-lang-yaml=\"`valkey`\" pulumi-lang-java=\"`valkey`\"\u003e`valkey`\u003c/span\u003e databases. Should be left unconfigured."
+                },
                 "components": {
                     "type": "array",
                     "items": {
@@ -9621,7 +9665,7 @@
                 },
                 "plan": {
                     "type": "string",
-                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`."
                 },
                 "powered": {
                     "type": "boolean",
@@ -9679,6 +9723,7 @@
                 }
             },
             "required": [
+                "additionalDiskSpaceGib",
                 "components",
                 "maintenanceWindowDow",
                 "maintenanceWindowTime",
@@ -9698,6 +9743,10 @@
                 "zone"
             ],
             "inputProperties": {
+                "additionalDiskSpaceGib": {
+                    "type": "integer",
+                    "description": "Not supported for \u003cspan pulumi-lang-nodejs=\"`valkey`\" pulumi-lang-dotnet=\"`Valkey`\" pulumi-lang-go=\"`valkey`\" pulumi-lang-python=\"`valkey`\" pulumi-lang-yaml=\"`valkey`\" pulumi-lang-java=\"`valkey`\"\u003e`valkey`\u003c/span\u003e databases. Should be left unconfigured."
+                },
                 "labels": {
                     "type": "object",
                     "additionalProperties": {
@@ -9727,7 +9776,7 @@
                 },
                 "plan": {
                     "type": "string",
-                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`."
                 },
                 "powered": {
                     "type": "boolean",
@@ -9758,6 +9807,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ManagedDatabaseValkey resources.\n",
                 "properties": {
+                    "additionalDiskSpaceGib": {
+                        "type": "integer",
+                        "description": "Not supported for \u003cspan pulumi-lang-nodejs=\"`valkey`\" pulumi-lang-dotnet=\"`Valkey`\" pulumi-lang-go=\"`valkey`\" pulumi-lang-python=\"`valkey`\" pulumi-lang-yaml=\"`valkey`\" pulumi-lang-java=\"`valkey`\"\u003e`valkey`\u003c/span\u003e databases. Should be left unconfigured."
+                    },
                     "components": {
                         "type": "array",
                         "items": {
@@ -9801,7 +9854,7 @@
                     },
                     "plan": {
                         "type": "string",
-                        "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans \u003ctype\u003e`."
+                        "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`."
                     },
                     "powered": {
                         "type": "boolean",
@@ -10670,153 +10723,6 @@
                     "peerNetwork": {
                         "$ref": "#/types/upcloud:index/NetworkPeeringPeerNetwork:NetworkPeeringPeerNetwork",
                         "description": "Peer network of the network peering."
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "upcloud:index/objectStorage:ObjectStorage": {
-            "description": "\u003e The \u003cspan pulumi-lang-nodejs=\"`upcloud.ObjectStorage`\" pulumi-lang-dotnet=\"`upcloud.ObjectStorage`\" pulumi-lang-go=\"`ObjectStorage`\" pulumi-lang-python=\"`ObjectStorage`\" pulumi-lang-yaml=\"`upcloud.ObjectStorage`\" pulumi-lang-java=\"`upcloud.ObjectStorage`\"\u003e`upcloud.ObjectStorage`\u003c/span\u003e resource manages previous generatation object storage instances that will reach end of life (EOL) by the end of 2024. For new instances, consider using the new Object Storage product managed with \u003cspan pulumi-lang-nodejs=\"`upcloud.ManagedObjectStorage`\" pulumi-lang-dotnet=\"`upcloud.ManagedObjectStorage`\" pulumi-lang-go=\"`ManagedObjectStorage`\" pulumi-lang-python=\"`ManagedObjectStorage`\" pulumi-lang-yaml=\"`upcloud.ManagedObjectStorage`\" pulumi-lang-java=\"`upcloud.ManagedObjectStorage`\"\u003e`upcloud.ManagedObjectStorage`\u003c/span\u003e resource.\n\nThis resource represents an UpCloud Object Storage instance, which provides S3 compatible storage.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\n// Object storage instance called storage-name in the fi-hel2 zone, with 2 buckets called \"products\" and \"images\".\nconst myObjectStorage = new upcloud.ObjectStorage(\"my_object_storage\", {\n    size: 250,\n    name: \"storage-name\",\n    zone: \"fi-hel2\",\n    accessKey: \"admin\",\n    secretKey: \"changeme\",\n    description: \"catalogue\",\n    buckets: [\n        {\n            name: \"products\",\n        },\n        {\n            name: \"images\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# Object storage instance called storage-name in the fi-hel2 zone, with 2 buckets called \"products\" and \"images\".\nmy_object_storage = upcloud.ObjectStorage(\"my_object_storage\",\n    size=250,\n    name=\"storage-name\",\n    zone=\"fi-hel2\",\n    access_key=\"admin\",\n    secret_key=\"changeme\",\n    description=\"catalogue\",\n    buckets=[\n        {\n            \"name\": \"products\",\n        },\n        {\n            \"name\": \"images\",\n        },\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Object storage instance called storage-name in the fi-hel2 zone, with 2 buckets called \"products\" and \"images\".\n    var myObjectStorage = new UpCloud.ObjectStorage(\"my_object_storage\", new()\n    {\n        Size = 250,\n        Name = \"storage-name\",\n        Zone = \"fi-hel2\",\n        AccessKey = \"admin\",\n        SecretKey = \"changeme\",\n        Description = \"catalogue\",\n        Buckets = new[]\n        {\n            new UpCloud.Inputs.ObjectStorageBucketArgs\n            {\n                Name = \"products\",\n            },\n            new UpCloud.Inputs.ObjectStorageBucketArgs\n            {\n                Name = \"images\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Object storage instance called storage-name in the fi-hel2 zone, with 2 buckets called \"products\" and \"images\".\n\t\t_, err := upcloud.NewObjectStorage(ctx, \"my_object_storage\", \u0026upcloud.ObjectStorageArgs{\n\t\t\tSize:        pulumi.Int(250),\n\t\t\tName:        pulumi.String(\"storage-name\"),\n\t\t\tZone:        pulumi.String(\"fi-hel2\"),\n\t\t\tAccessKey:   pulumi.String(\"admin\"),\n\t\t\tSecretKey:   pulumi.String(\"changeme\"),\n\t\t\tDescription: pulumi.String(\"catalogue\"),\n\t\t\tBuckets: upcloud.ObjectStorageBucketArray{\n\t\t\t\t\u0026upcloud.ObjectStorageBucketArgs{\n\t\t\t\t\tName: pulumi.String(\"products\"),\n\t\t\t\t},\n\t\t\t\t\u0026upcloud.ObjectStorageBucketArgs{\n\t\t\t\t\tName: pulumi.String(\"images\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.ObjectStorage;\nimport com.pulumi.upcloud.ObjectStorageArgs;\nimport com.pulumi.upcloud.inputs.ObjectStorageBucketArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Object storage instance called storage-name in the fi-hel2 zone, with 2 buckets called \"products\" and \"images\".\n        var myObjectStorage = new ObjectStorage(\"myObjectStorage\", ObjectStorageArgs.builder()\n            .size(250)\n            .name(\"storage-name\")\n            .zone(\"fi-hel2\")\n            .accessKey(\"admin\")\n            .secretKey(\"changeme\")\n            .description(\"catalogue\")\n            .buckets(            \n                ObjectStorageBucketArgs.builder()\n                    .name(\"products\")\n                    .build(),\n                ObjectStorageBucketArgs.builder()\n                    .name(\"images\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Object storage instance called storage-name in the fi-hel2 zone, with 2 buckets called \"products\" and \"images\".\n  myObjectStorage:\n    type: upcloud:ObjectStorage\n    name: my_object_storage\n    properties:\n      size: 250 # allocate up to 250GB of storage\n      name: storage-name\n      zone: fi-hel2\n      accessKey: admin\n      secretKey: changeme\n      description: catalogue\n      buckets:\n        - name: products\n        - name: images\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nFor object storage import to work properly, you need to set environment variables for access and secret key.\n\nThe environment variables names are UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_{name} and UPCLOUD_OBJECT_STORAGE_SECRET_KEY_{name}\n\nwhere {name} is the name of your object storage instance (not the resource label!), all uppercased, and with all dashes (-)\n\nreplaced with underscores (_). So importing an object storage that is named \"my-storage\" will look like this:\n\nUPCLOUD_OBJECT_STORAGE_ACCESS_KEY_MY_STORAGE=accesskey \\\n\nUPCLOUD_OBJECT_STORAGE_SECRET_KEY_MY_STORAGE=supersecret \\\n\n```sh\n$ pulumi import upcloud:index/objectStorage:ObjectStorage example_storage 06c1f4b6-faf2-47d0-8896-1d941092b009\n```\n\n",
-            "properties": {
-                "accessKey": {
-                    "type": "string",
-                    "description": "The access key used to identify user.\n\t\t\t\tCan be set to an empty string, which will tell the provider to get the access key from environment variable.\n\t\t\t\tThe environment variable should be \"UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_{name}\".\n\t\t\t\t{name} is the name given to object storage instance (so not the resource label), it should be all uppercased\n\t\t\t\tand all dashes (-) should be replaced with underscores (_). For example, object storage named \"my-files\" would\n\t\t\t\tuse environment variable named \"UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_MY_FILES\"."
-                },
-                "buckets": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/upcloud:index/ObjectStorageBucket:ObjectStorageBucket"
-                    }
-                },
-                "created": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "The description of the object storage instance to be created"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The name of the object storage instance to be created"
-                },
-                "secretKey": {
-                    "type": "string",
-                    "description": "The secret key used to authenticate user.\n\t\t\t\tCan be set to an empty string, which will tell the provider to get the secret key from environment variable.\n\t\t\t\tThe environment variable should be \"UPCLOUD_OBJECT_STORAGE_SECRET_KEY_{name}\".\n\t\t\t\t{name} is the name given to object storage instance (so not the resource label), it should be all uppercased\n\t\t\t\tand all dashes (-) should be replaced with underscores (_). For example, object storage named \"my-files\" would\n\t\t\t\tuse environment variable named \"UPCLOUD_OBJECT_STORAGE_SECRET_KEY_MY_FILES\"."
-                },
-                "size": {
-                    "type": "integer",
-                    "description": "The size of the object storage instance in gigabytes"
-                },
-                "state": {
-                    "type": "string"
-                },
-                "url": {
-                    "type": "string"
-                },
-                "usedSpace": {
-                    "type": "integer"
-                },
-                "zone": {
-                    "type": "string",
-                    "description": "The zone in which the object storage instance will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`."
-                }
-            },
-            "required": [
-                "accessKey",
-                "created",
-                "description",
-                "name",
-                "secretKey",
-                "size",
-                "state",
-                "url",
-                "usedSpace",
-                "zone"
-            ],
-            "inputProperties": {
-                "accessKey": {
-                    "type": "string",
-                    "description": "The access key used to identify user.\n\t\t\t\tCan be set to an empty string, which will tell the provider to get the access key from environment variable.\n\t\t\t\tThe environment variable should be \"UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_{name}\".\n\t\t\t\t{name} is the name given to object storage instance (so not the resource label), it should be all uppercased\n\t\t\t\tand all dashes (-) should be replaced with underscores (_). For example, object storage named \"my-files\" would\n\t\t\t\tuse environment variable named \"UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_MY_FILES\"."
-                },
-                "buckets": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/upcloud:index/ObjectStorageBucket:ObjectStorageBucket"
-                    }
-                },
-                "description": {
-                    "type": "string",
-                    "description": "The description of the object storage instance to be created"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The name of the object storage instance to be created"
-                },
-                "secretKey": {
-                    "type": "string",
-                    "description": "The secret key used to authenticate user.\n\t\t\t\tCan be set to an empty string, which will tell the provider to get the secret key from environment variable.\n\t\t\t\tThe environment variable should be \"UPCLOUD_OBJECT_STORAGE_SECRET_KEY_{name}\".\n\t\t\t\t{name} is the name given to object storage instance (so not the resource label), it should be all uppercased\n\t\t\t\tand all dashes (-) should be replaced with underscores (_). For example, object storage named \"my-files\" would\n\t\t\t\tuse environment variable named \"UPCLOUD_OBJECT_STORAGE_SECRET_KEY_MY_FILES\"."
-                },
-                "size": {
-                    "type": "integer",
-                    "description": "The size of the object storage instance in gigabytes"
-                },
-                "zone": {
-                    "type": "string",
-                    "description": "The zone in which the object storage instance will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "requiredInputs": [
-                "accessKey",
-                "secretKey",
-                "size",
-                "zone"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering ObjectStorage resources.\n",
-                "properties": {
-                    "accessKey": {
-                        "type": "string",
-                        "description": "The access key used to identify user.\n\t\t\t\tCan be set to an empty string, which will tell the provider to get the access key from environment variable.\n\t\t\t\tThe environment variable should be \"UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_{name}\".\n\t\t\t\t{name} is the name given to object storage instance (so not the resource label), it should be all uppercased\n\t\t\t\tand all dashes (-) should be replaced with underscores (_). For example, object storage named \"my-files\" would\n\t\t\t\tuse environment variable named \"UPCLOUD_OBJECT_STORAGE_ACCESS_KEY_MY_FILES\"."
-                    },
-                    "buckets": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/upcloud:index/ObjectStorageBucket:ObjectStorageBucket"
-                        }
-                    },
-                    "created": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "The description of the object storage instance to be created"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "The name of the object storage instance to be created"
-                    },
-                    "secretKey": {
-                        "type": "string",
-                        "description": "The secret key used to authenticate user.\n\t\t\t\tCan be set to an empty string, which will tell the provider to get the secret key from environment variable.\n\t\t\t\tThe environment variable should be \"UPCLOUD_OBJECT_STORAGE_SECRET_KEY_{name}\".\n\t\t\t\t{name} is the name given to object storage instance (so not the resource label), it should be all uppercased\n\t\t\t\tand all dashes (-) should be replaced with underscores (_). For example, object storage named \"my-files\" would\n\t\t\t\tuse environment variable named \"UPCLOUD_OBJECT_STORAGE_SECRET_KEY_MY_FILES\"."
-                    },
-                    "size": {
-                        "type": "integer",
-                        "description": "The size of the object storage instance in gigabytes"
-                    },
-                    "state": {
-                        "type": "string"
-                    },
-                    "url": {
-                        "type": "string"
-                    },
-                    "usedSpace": {
-                        "type": "integer"
-                    },
-                    "zone": {
-                        "type": "string",
-                        "description": "The zone in which the object storage instance will be created, e.g. `de-fra1`. You can list available zones with `upctl zone list`.",
-                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"

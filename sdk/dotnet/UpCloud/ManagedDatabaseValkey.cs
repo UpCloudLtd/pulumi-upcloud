@@ -52,6 +52,12 @@ namespace UpCloud.Pulumi.UpCloud
     public partial class ManagedDatabaseValkey : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Not supported for `Valkey` databases. Should be left unconfigured.
+        /// </summary>
+        [Output("additionalDiskSpaceGib")]
+        public Output<int> AdditionalDiskSpaceGib { get; private set; } = null!;
+
+        /// <summary>
         /// Service component information
         /// </summary>
         [Output("components")]
@@ -94,7 +100,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<Outputs.ManagedDatabaseValkeyNodeState>> NodeStates { get; private set; } = null!;
 
         /// <summary>
-        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
         /// </summary>
         [Output("plan")]
         public Output<string> Plan { get; private set; } = null!;
@@ -229,6 +235,12 @@ namespace UpCloud.Pulumi.UpCloud
 
     public sealed class ManagedDatabaseValkeyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Not supported for `Valkey` databases. Should be left unconfigured.
+        /// </summary>
+        [Input("additionalDiskSpaceGib")]
+        public Input<int>? AdditionalDiskSpaceGib { get; set; }
+
         [Input("labels")]
         private InputMap<string>? _labels;
 
@@ -272,7 +284,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
         /// </summary>
         [Input("plan", required: true)]
         public Input<string> Plan { get; set; } = null!;
@@ -315,6 +327,12 @@ namespace UpCloud.Pulumi.UpCloud
 
     public sealed class ManagedDatabaseValkeyState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Not supported for `Valkey` databases. Should be left unconfigured.
+        /// </summary>
+        [Input("additionalDiskSpaceGib")]
+        public Input<int>? AdditionalDiskSpaceGib { get; set; }
+
         [Input("components")]
         private InputList<Inputs.ManagedDatabaseValkeyComponentGetArgs>? _components;
 
@@ -382,7 +400,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }

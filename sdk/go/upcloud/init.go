@@ -87,8 +87,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Network{}
 	case "upcloud:index/networkPeering:NetworkPeering":
 		r = &NetworkPeering{}
-	case "upcloud:index/objectStorage:ObjectStorage":
-		r = &ObjectStorage{}
 	case "upcloud:index/router:Router":
 		r = &Router{}
 	case "upcloud:index/server:Server":
@@ -299,11 +297,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"upcloud",
 		"index/networkPeering",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"upcloud",
-		"index/objectStorage",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

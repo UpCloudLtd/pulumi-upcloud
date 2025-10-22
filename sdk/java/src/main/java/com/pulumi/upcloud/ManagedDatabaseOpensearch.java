@@ -15,6 +15,7 @@ import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchNetwork;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchNodeState;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchProperties;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -91,6 +92,20 @@ public class ManagedDatabaseOpensearch extends com.pulumi.resources.CustomResour
      */
     public Output<Boolean> accessControl() {
         return this.accessControl;
+    }
+    /**
+     * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     * 
+     */
+    @Export(name="additionalDiskSpaceGib", refs={Integer.class}, tree="[0]")
+    private Output<Integer> additionalDiskSpaceGib;
+
+    /**
+     * @return Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     * 
+     */
+    public Output<Integer> additionalDiskSpaceGib() {
+        return this.additionalDiskSpaceGib;
     }
     /**
      * Service component information
@@ -205,14 +220,14 @@ public class ManagedDatabaseOpensearch extends com.pulumi.resources.CustomResour
         return this.nodeStates;
     }
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
      * 
      */
     @Export(name="plan", refs={String.class}, tree="[0]")
     private Output<String> plan;
 
     /**
-     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
      * 
      */
     public Output<String> plan() {

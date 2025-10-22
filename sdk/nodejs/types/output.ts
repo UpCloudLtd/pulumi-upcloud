@@ -3526,13 +3526,6 @@ export interface NetworkPeeringPeerNetwork {
     uuid: string;
 }
 
-export interface ObjectStorageBucket {
-    /**
-     * The name of the bucket
-     */
-    name: string;
-}
-
 export interface RouterStaticRoute {
     name: string;
     nexthop: string;

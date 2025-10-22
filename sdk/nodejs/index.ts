@@ -250,11 +250,6 @@ export type NetworkPeering = import("./networkPeering").NetworkPeering;
 export const NetworkPeering: typeof import("./networkPeering").NetworkPeering = null as any;
 utilities.lazyLoad(exports, ["NetworkPeering"], () => require("./networkPeering"));
 
-export { ObjectStorageArgs, ObjectStorageState } from "./objectStorage";
-export type ObjectStorage = import("./objectStorage").ObjectStorage;
-export const ObjectStorage: typeof import("./objectStorage").ObjectStorage = null as any;
-utilities.lazyLoad(exports, ["ObjectStorage"], () => require("./objectStorage"));
-
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -378,8 +373,6 @@ const _module = {
                 return new Network(name, <any>undefined, { urn })
             case "upcloud:index/networkPeering:NetworkPeering":
                 return new NetworkPeering(name, <any>undefined, { urn })
-            case "upcloud:index/objectStorage:ObjectStorage":
-                return new ObjectStorage(name, <any>undefined, { urn })
             case "upcloud:index/router:Router":
                 return new Router(name, <any>undefined, { urn })
             case "upcloud:index/server:Server":
@@ -434,7 +427,6 @@ pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorageUser
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorageUserPolicy", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/network", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/networkPeering", _module)
-pulumi.runtime.registerResourceModule("upcloud", "index/objectStorage", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/router", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/server", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/serverFirewallRules", _module)

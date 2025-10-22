@@ -24,6 +24,7 @@ class ManagedDatabasePostgresqlArgs:
                  plan: pulumi.Input[_builtins.str],
                  title: pulumi.Input[_builtins.str],
                  zone: pulumi.Input[_builtins.str],
+                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -34,9 +35,10 @@ class ManagedDatabasePostgresqlArgs:
                  termination_protection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ManagedDatabasePostgresql resource.
-        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
         :param pulumi.Input[_builtins.str] title: Title of a managed database instance
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[_builtins.str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
@@ -49,6 +51,8 @@ class ManagedDatabasePostgresqlArgs:
         pulumi.set(__self__, "plan", plan)
         pulumi.set(__self__, "title", title)
         pulumi.set(__self__, "zone", zone)
+        if additional_disk_space_gib is not None:
+            pulumi.set(__self__, "additional_disk_space_gib", additional_disk_space_gib)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if maintenance_window_dow is not None:
@@ -70,7 +74,7 @@ class ManagedDatabasePostgresqlArgs:
     @pulumi.getter
     def plan(self) -> pulumi.Input[_builtins.str]:
         """
-        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
         """
         return pulumi.get(self, "plan")
 
@@ -101,6 +105,18 @@ class ManagedDatabasePostgresqlArgs:
     @zone.setter
     def zone(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "zone", value)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalDiskSpaceGib")
+    def additional_disk_space_gib(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        """
+        return pulumi.get(self, "additional_disk_space_gib")
+
+    @additional_disk_space_gib.setter
+    def additional_disk_space_gib(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "additional_disk_space_gib", value)
 
     @_builtins.property
     @pulumi.getter
@@ -202,6 +218,7 @@ class ManagedDatabasePostgresqlArgs:
 @pulumi.input_type
 class _ManagedDatabasePostgresqlState:
     def __init__(__self__, *,
+                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  components: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabasePostgresqlComponentArgs']]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -226,6 +243,7 @@ class _ManagedDatabasePostgresqlState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ManagedDatabasePostgresql resources.
+        :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabasePostgresqlComponentArgs']]] components: Service component information
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -233,7 +251,7 @@ class _ManagedDatabasePostgresqlState:
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabasePostgresqlNetworkArgs']]] networks: Private networks attached to the managed database
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabasePostgresqlNodeStateArgs']]] node_states: Information about nodes providing the managed service
-        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[_builtins.str] primary_database: Primary database name
         :param pulumi.Input['ManagedDatabasePostgresqlPropertiesArgs'] properties: Database Engine properties for PostgreSQL
@@ -249,6 +267,8 @@ class _ManagedDatabasePostgresqlState:
         :param pulumi.Input[_builtins.str] type: Type of the service
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
+        if additional_disk_space_gib is not None:
+            pulumi.set(__self__, "additional_disk_space_gib", additional_disk_space_gib)
         if components is not None:
             pulumi.set(__self__, "components", components)
         if labels is not None:
@@ -293,6 +313,18 @@ class _ManagedDatabasePostgresqlState:
             pulumi.set(__self__, "type", type)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalDiskSpaceGib")
+    def additional_disk_space_gib(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        """
+        return pulumi.get(self, "additional_disk_space_gib")
+
+    @additional_disk_space_gib.setter
+    def additional_disk_space_gib(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "additional_disk_space_gib", value)
 
     @_builtins.property
     @pulumi.getter
@@ -382,7 +414,7 @@ class _ManagedDatabasePostgresqlState:
     @pulumi.getter
     def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
         """
         return pulumi.get(self, "plan")
 
@@ -565,6 +597,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -607,12 +640,13 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[_builtins.str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabasePostgresqlNetworkArgs', 'ManagedDatabasePostgresqlNetworkArgsDict']]]] networks: Private networks attached to the managed database
-        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[Union['ManagedDatabasePostgresqlPropertiesArgs', 'ManagedDatabasePostgresqlPropertiesArgsDict']] properties: Database Engine properties for PostgreSQL
         :param pulumi.Input[_builtins.bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
@@ -668,6 +702,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -688,6 +723,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ManagedDatabasePostgresqlArgs.__new__(ManagedDatabasePostgresqlArgs)
 
+            __props__.__dict__["additional_disk_space_gib"] = additional_disk_space_gib
             __props__.__dict__["labels"] = labels
             __props__.__dict__["maintenance_window_dow"] = maintenance_window_dow
             __props__.__dict__["maintenance_window_time"] = maintenance_window_time
@@ -728,6 +764,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
             components: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabasePostgresqlComponentArgs', 'ManagedDatabasePostgresqlComponentArgsDict']]]]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -757,6 +794,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabasePostgresqlComponentArgs', 'ManagedDatabasePostgresqlComponentArgsDict']]]] components: Service component information
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -764,7 +802,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabasePostgresqlNetworkArgs', 'ManagedDatabasePostgresqlNetworkArgsDict']]]] networks: Private networks attached to the managed database
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabasePostgresqlNodeStateArgs', 'ManagedDatabasePostgresqlNodeStateArgsDict']]]] node_states: Information about nodes providing the managed service
-        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[_builtins.str] primary_database: Primary database name
         :param pulumi.Input[Union['ManagedDatabasePostgresqlPropertiesArgs', 'ManagedDatabasePostgresqlPropertiesArgsDict']] properties: Database Engine properties for PostgreSQL
@@ -784,6 +822,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
 
         __props__ = _ManagedDatabasePostgresqlState.__new__(_ManagedDatabasePostgresqlState)
 
+        __props__.__dict__["additional_disk_space_gib"] = additional_disk_space_gib
         __props__.__dict__["components"] = components
         __props__.__dict__["labels"] = labels
         __props__.__dict__["maintenance_window_dow"] = maintenance_window_dow
@@ -807,6 +846,14 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["zone"] = zone
         return ManagedDatabasePostgresql(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalDiskSpaceGib")
+    def additional_disk_space_gib(self) -> pulumi.Output[_builtins.int]:
+        """
+        Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        """
+        return pulumi.get(self, "additional_disk_space_gib")
 
     @_builtins.property
     @pulumi.getter
@@ -868,7 +915,7 @@ class ManagedDatabasePostgresql(pulumi.CustomResource):
     @pulumi.getter
     def plan(self) -> pulumi.Output[_builtins.str]:
         """
-        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
         """
         return pulumi.get(self, "plan")
 

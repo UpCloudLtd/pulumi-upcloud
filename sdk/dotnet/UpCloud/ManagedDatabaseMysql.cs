@@ -68,6 +68,12 @@ namespace UpCloud.Pulumi.UpCloud
     public partial class ManagedDatabaseMysql : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        /// </summary>
+        [Output("additionalDiskSpaceGib")]
+        public Output<int> AdditionalDiskSpaceGib { get; private set; } = null!;
+
+        /// <summary>
         /// Service component information
         /// </summary>
         [Output("components")]
@@ -110,7 +116,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<Outputs.ManagedDatabaseMysqlNodeState>> NodeStates { get; private set; } = null!;
 
         /// <summary>
-        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
         /// </summary>
         [Output("plan")]
         public Output<string> Plan { get; private set; } = null!;
@@ -245,6 +251,12 @@ namespace UpCloud.Pulumi.UpCloud
 
     public sealed class ManagedDatabaseMysqlArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        /// </summary>
+        [Input("additionalDiskSpaceGib")]
+        public Input<int>? AdditionalDiskSpaceGib { get; set; }
+
         [Input("labels")]
         private InputMap<string>? _labels;
 
@@ -288,7 +300,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
         /// </summary>
         [Input("plan", required: true)]
         public Input<string> Plan { get; set; } = null!;
@@ -331,6 +343,12 @@ namespace UpCloud.Pulumi.UpCloud
 
     public sealed class ManagedDatabaseMysqlState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        /// </summary>
+        [Input("additionalDiskSpaceGib")]
+        public Input<int>? AdditionalDiskSpaceGib { get; set; }
+
         [Input("components")]
         private InputList<Inputs.ManagedDatabaseMysqlComponentGetArgs>? _components;
 
@@ -398,7 +416,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }

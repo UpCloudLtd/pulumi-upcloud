@@ -61,6 +61,8 @@ import (
 type ManagedDatabaseRedis struct {
 	pulumi.CustomResourceState
 
+	// Not supported for `redis` databases. Should be left unconfigured.
+	AdditionalDiskSpaceGib pulumi.IntOutput `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components ManagedDatabaseRedisComponentArrayOutput `pulumi:"components"`
 	// User defined key-value pairs to classify the managed database.
@@ -75,7 +77,7 @@ type ManagedDatabaseRedis struct {
 	Networks ManagedDatabaseRedisNetworkArrayOutput `pulumi:"networks"`
 	// Information about nodes providing the managed service
 	NodeStates ManagedDatabaseRedisNodeStateArrayOutput `pulumi:"nodeStates"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrOutput `pulumi:"powered"`
@@ -149,6 +151,8 @@ func GetManagedDatabaseRedis(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ManagedDatabaseRedis resources.
 type managedDatabaseRedisState struct {
+	// Not supported for `redis` databases. Should be left unconfigured.
+	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components []ManagedDatabaseRedisComponent `pulumi:"components"`
 	// User defined key-value pairs to classify the managed database.
@@ -163,7 +167,7 @@ type managedDatabaseRedisState struct {
 	Networks []ManagedDatabaseRedisNetwork `pulumi:"networks"`
 	// Information about nodes providing the managed service
 	NodeStates []ManagedDatabaseRedisNodeState `pulumi:"nodeStates"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
 	Plan *string `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
@@ -194,6 +198,8 @@ type managedDatabaseRedisState struct {
 }
 
 type ManagedDatabaseRedisState struct {
+	// Not supported for `redis` databases. Should be left unconfigured.
+	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// Service component information
 	Components ManagedDatabaseRedisComponentArrayInput
 	// User defined key-value pairs to classify the managed database.
@@ -208,7 +214,7 @@ type ManagedDatabaseRedisState struct {
 	Networks ManagedDatabaseRedisNetworkArrayInput
 	// Information about nodes providing the managed service
 	NodeStates ManagedDatabaseRedisNodeStateArrayInput
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
 	Plan pulumi.StringPtrInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
@@ -243,6 +249,8 @@ func (ManagedDatabaseRedisState) ElementType() reflect.Type {
 }
 
 type managedDatabaseRedisArgs struct {
+	// Not supported for `redis` databases. Should be left unconfigured.
+	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// User defined key-value pairs to classify the managed database.
 	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -253,7 +261,7 @@ type managedDatabaseRedisArgs struct {
 	Name *string `pulumi:"name"`
 	// Private networks attached to the managed database
 	Networks []ManagedDatabaseRedisNetwork `pulumi:"networks"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
 	Plan string `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
@@ -269,6 +277,8 @@ type managedDatabaseRedisArgs struct {
 
 // The set of arguments for constructing a ManagedDatabaseRedis resource.
 type ManagedDatabaseRedisArgs struct {
+	// Not supported for `redis` databases. Should be left unconfigured.
+	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// User defined key-value pairs to classify the managed database.
 	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -279,7 +289,7 @@ type ManagedDatabaseRedisArgs struct {
 	Name pulumi.StringPtrInput
 	// Private networks attached to the managed database
 	Networks ManagedDatabaseRedisNetworkArrayInput
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
 	Plan pulumi.StringInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
@@ -380,6 +390,11 @@ func (o ManagedDatabaseRedisOutput) ToManagedDatabaseRedisOutputWithContext(ctx 
 	return o
 }
 
+// Not supported for `redis` databases. Should be left unconfigured.
+func (o ManagedDatabaseRedisOutput) AdditionalDiskSpaceGib() pulumi.IntOutput {
+	return o.ApplyT(func(v *ManagedDatabaseRedis) pulumi.IntOutput { return v.AdditionalDiskSpaceGib }).(pulumi.IntOutput)
+}
+
 // Service component information
 func (o ManagedDatabaseRedisOutput) Components() ManagedDatabaseRedisComponentArrayOutput {
 	return o.ApplyT(func(v *ManagedDatabaseRedis) ManagedDatabaseRedisComponentArrayOutput { return v.Components }).(ManagedDatabaseRedisComponentArrayOutput)
@@ -415,7 +430,7 @@ func (o ManagedDatabaseRedisOutput) NodeStates() ManagedDatabaseRedisNodeStateAr
 	return o.ApplyT(func(v *ManagedDatabaseRedis) ManagedDatabaseRedisNodeStateArrayOutput { return v.NodeStates }).(ManagedDatabaseRedisNodeStateArrayOutput)
 }
 
-// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
 func (o ManagedDatabaseRedisOutput) Plan() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseRedis) pulumi.StringOutput { return v.Plan }).(pulumi.StringOutput)
 }

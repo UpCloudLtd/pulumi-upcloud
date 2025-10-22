@@ -15,6 +15,7 @@ import com.pulumi.upcloud.outputs.ManagedDatabasePostgresqlNetwork;
 import com.pulumi.upcloud.outputs.ManagedDatabasePostgresqlNodeState;
 import com.pulumi.upcloud.outputs.ManagedDatabasePostgresqlProperties;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -78,6 +79,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="upcloud:index/managedDatabasePostgresql:ManagedDatabasePostgresql")
 public class ManagedDatabasePostgresql extends com.pulumi.resources.CustomResource {
+    /**
+     * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     * 
+     */
+    @Export(name="additionalDiskSpaceGib", refs={Integer.class}, tree="[0]")
+    private Output<Integer> additionalDiskSpaceGib;
+
+    /**
+     * @return Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     * 
+     */
+    public Output<Integer> additionalDiskSpaceGib() {
+        return this.additionalDiskSpaceGib;
+    }
     /**
      * Service component information
      * 
@@ -177,14 +192,14 @@ public class ManagedDatabasePostgresql extends com.pulumi.resources.CustomResour
         return this.nodeStates;
     }
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
      * 
      */
     @Export(name="plan", refs={String.class}, tree="[0]")
     private Output<String> plan;
 
     /**
-     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
      * 
      */
     public Output<String> plan() {

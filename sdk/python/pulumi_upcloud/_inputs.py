@@ -241,8 +241,6 @@ __all__ = [
     'NetworkPeeringNetworkArgsDict',
     'NetworkPeeringPeerNetworkArgs',
     'NetworkPeeringPeerNetworkArgsDict',
-    'ObjectStorageBucketArgs',
-    'ObjectStorageBucketArgsDict',
     'RouterStaticRouteArgs',
     'RouterStaticRouteArgsDict',
     'ServerFirewallRulesFirewallRuleArgs',
@@ -14862,37 +14860,6 @@ class NetworkPeeringPeerNetworkArgs:
     @uuid.setter
     def uuid(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "uuid", value)
-
-
-if not MYPY:
-    class ObjectStorageBucketArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the bucket
-        """
-elif False:
-    ObjectStorageBucketArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class ObjectStorageBucketArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[_builtins.str]):
-        """
-        :param pulumi.Input[_builtins.str] name: The name of the bucket
-        """
-        pulumi.set(__self__, "name", name)
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[_builtins.str]:
-        """
-        The name of the bucket
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "name", value)
 
 
 if not MYPY:

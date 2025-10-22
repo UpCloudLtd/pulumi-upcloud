@@ -15,6 +15,7 @@ import com.pulumi.upcloud.outputs.ManagedDatabaseRedisNetwork;
 import com.pulumi.upcloud.outputs.ManagedDatabaseRedisNodeState;
 import com.pulumi.upcloud.outputs.ManagedDatabaseRedisProperties;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -78,6 +79,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="upcloud:index/managedDatabaseRedis:ManagedDatabaseRedis")
 public class ManagedDatabaseRedis extends com.pulumi.resources.CustomResource {
+    /**
+     * Not supported for `redis` databases. Should be left unconfigured.
+     * 
+     */
+    @Export(name="additionalDiskSpaceGib", refs={Integer.class}, tree="[0]")
+    private Output<Integer> additionalDiskSpaceGib;
+
+    /**
+     * @return Not supported for `redis` databases. Should be left unconfigured.
+     * 
+     */
+    public Output<Integer> additionalDiskSpaceGib() {
+        return this.additionalDiskSpaceGib;
+    }
     /**
      * Service component information
      * 
@@ -177,14 +192,14 @@ public class ManagedDatabaseRedis extends com.pulumi.resources.CustomResource {
         return this.nodeStates;
     }
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
      * 
      */
     @Export(name="plan", refs={String.class}, tree="[0]")
     private Output<String> plan;
 
     /**
-     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
      * 
      */
     public Output<String> plan() {

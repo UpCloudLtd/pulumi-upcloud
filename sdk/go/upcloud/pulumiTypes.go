@@ -22966,103 +22966,6 @@ func (o NetworkPeeringPeerNetworkPtrOutput) Uuid() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type ObjectStorageBucket struct {
-	// The name of the bucket
-	Name string `pulumi:"name"`
-}
-
-// ObjectStorageBucketInput is an input type that accepts ObjectStorageBucketArgs and ObjectStorageBucketOutput values.
-// You can construct a concrete instance of `ObjectStorageBucketInput` via:
-//
-//	ObjectStorageBucketArgs{...}
-type ObjectStorageBucketInput interface {
-	pulumi.Input
-
-	ToObjectStorageBucketOutput() ObjectStorageBucketOutput
-	ToObjectStorageBucketOutputWithContext(context.Context) ObjectStorageBucketOutput
-}
-
-type ObjectStorageBucketArgs struct {
-	// The name of the bucket
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (ObjectStorageBucketArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ObjectStorageBucket)(nil)).Elem()
-}
-
-func (i ObjectStorageBucketArgs) ToObjectStorageBucketOutput() ObjectStorageBucketOutput {
-	return i.ToObjectStorageBucketOutputWithContext(context.Background())
-}
-
-func (i ObjectStorageBucketArgs) ToObjectStorageBucketOutputWithContext(ctx context.Context) ObjectStorageBucketOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ObjectStorageBucketOutput)
-}
-
-// ObjectStorageBucketArrayInput is an input type that accepts ObjectStorageBucketArray and ObjectStorageBucketArrayOutput values.
-// You can construct a concrete instance of `ObjectStorageBucketArrayInput` via:
-//
-//	ObjectStorageBucketArray{ ObjectStorageBucketArgs{...} }
-type ObjectStorageBucketArrayInput interface {
-	pulumi.Input
-
-	ToObjectStorageBucketArrayOutput() ObjectStorageBucketArrayOutput
-	ToObjectStorageBucketArrayOutputWithContext(context.Context) ObjectStorageBucketArrayOutput
-}
-
-type ObjectStorageBucketArray []ObjectStorageBucketInput
-
-func (ObjectStorageBucketArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ObjectStorageBucket)(nil)).Elem()
-}
-
-func (i ObjectStorageBucketArray) ToObjectStorageBucketArrayOutput() ObjectStorageBucketArrayOutput {
-	return i.ToObjectStorageBucketArrayOutputWithContext(context.Background())
-}
-
-func (i ObjectStorageBucketArray) ToObjectStorageBucketArrayOutputWithContext(ctx context.Context) ObjectStorageBucketArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ObjectStorageBucketArrayOutput)
-}
-
-type ObjectStorageBucketOutput struct{ *pulumi.OutputState }
-
-func (ObjectStorageBucketOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ObjectStorageBucket)(nil)).Elem()
-}
-
-func (o ObjectStorageBucketOutput) ToObjectStorageBucketOutput() ObjectStorageBucketOutput {
-	return o
-}
-
-func (o ObjectStorageBucketOutput) ToObjectStorageBucketOutputWithContext(ctx context.Context) ObjectStorageBucketOutput {
-	return o
-}
-
-// The name of the bucket
-func (o ObjectStorageBucketOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v ObjectStorageBucket) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type ObjectStorageBucketArrayOutput struct{ *pulumi.OutputState }
-
-func (ObjectStorageBucketArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ObjectStorageBucket)(nil)).Elem()
-}
-
-func (o ObjectStorageBucketArrayOutput) ToObjectStorageBucketArrayOutput() ObjectStorageBucketArrayOutput {
-	return o
-}
-
-func (o ObjectStorageBucketArrayOutput) ToObjectStorageBucketArrayOutputWithContext(ctx context.Context) ObjectStorageBucketArrayOutput {
-	return o
-}
-
-func (o ObjectStorageBucketArrayOutput) Index(i pulumi.IntInput) ObjectStorageBucketOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ObjectStorageBucket {
-		return vs[0].([]ObjectStorageBucket)[vs[1].(int)]
-	}).(ObjectStorageBucketOutput)
-}
-
 type RouterStaticRoute struct {
 	Name    string `pulumi:"name"`
 	Nexthop string `pulumi:"nexthop"`
@@ -27743,8 +27646,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkPeeringNetworkPtrInput)(nil)).Elem(), NetworkPeeringNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkPeeringPeerNetworkInput)(nil)).Elem(), NetworkPeeringPeerNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkPeeringPeerNetworkPtrInput)(nil)).Elem(), NetworkPeeringPeerNetworkArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ObjectStorageBucketInput)(nil)).Elem(), ObjectStorageBucketArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ObjectStorageBucketArrayInput)(nil)).Elem(), ObjectStorageBucketArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouterStaticRouteInput)(nil)).Elem(), RouterStaticRouteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouterStaticRouteArrayInput)(nil)).Elem(), RouterStaticRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerFirewallRulesFirewallRuleInput)(nil)).Elem(), ServerFirewallRulesFirewallRuleArgs{})
@@ -28024,8 +27925,6 @@ func init() {
 	pulumi.RegisterOutputType(NetworkPeeringNetworkPtrOutput{})
 	pulumi.RegisterOutputType(NetworkPeeringPeerNetworkOutput{})
 	pulumi.RegisterOutputType(NetworkPeeringPeerNetworkPtrOutput{})
-	pulumi.RegisterOutputType(ObjectStorageBucketOutput{})
-	pulumi.RegisterOutputType(ObjectStorageBucketArrayOutput{})
 	pulumi.RegisterOutputType(RouterStaticRouteOutput{})
 	pulumi.RegisterOutputType(RouterStaticRouteArrayOutput{})
 	pulumi.RegisterOutputType(ServerFirewallRulesFirewallRuleOutput{})

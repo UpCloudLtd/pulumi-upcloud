@@ -24,6 +24,7 @@ class ManagedDatabaseRedisArgs:
                  plan: pulumi.Input[_builtins.str],
                  title: pulumi.Input[_builtins.str],
                  zone: pulumi.Input[_builtins.str],
+                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -34,9 +35,10 @@ class ManagedDatabaseRedisArgs:
                  termination_protection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ManagedDatabaseRedis resource.
-        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
         :param pulumi.Input[_builtins.str] title: Title of a managed database instance
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        :param pulumi.Input[_builtins.int] additional_disk_space_gib: Not supported for `redis` databases. Should be left unconfigured.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[_builtins.str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
@@ -49,6 +51,8 @@ class ManagedDatabaseRedisArgs:
         pulumi.set(__self__, "plan", plan)
         pulumi.set(__self__, "title", title)
         pulumi.set(__self__, "zone", zone)
+        if additional_disk_space_gib is not None:
+            pulumi.set(__self__, "additional_disk_space_gib", additional_disk_space_gib)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if maintenance_window_dow is not None:
@@ -70,7 +74,7 @@ class ManagedDatabaseRedisArgs:
     @pulumi.getter
     def plan(self) -> pulumi.Input[_builtins.str]:
         """
-        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
         """
         return pulumi.get(self, "plan")
 
@@ -101,6 +105,18 @@ class ManagedDatabaseRedisArgs:
     @zone.setter
     def zone(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "zone", value)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalDiskSpaceGib")
+    def additional_disk_space_gib(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Not supported for `redis` databases. Should be left unconfigured.
+        """
+        return pulumi.get(self, "additional_disk_space_gib")
+
+    @additional_disk_space_gib.setter
+    def additional_disk_space_gib(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "additional_disk_space_gib", value)
 
     @_builtins.property
     @pulumi.getter
@@ -202,6 +218,7 @@ class ManagedDatabaseRedisArgs:
 @pulumi.input_type
 class _ManagedDatabaseRedisState:
     def __init__(__self__, *,
+                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  components: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseRedisComponentArgs']]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -225,6 +242,7 @@ class _ManagedDatabaseRedisState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ManagedDatabaseRedis resources.
+        :param pulumi.Input[_builtins.int] additional_disk_space_gib: Not supported for `redis` databases. Should be left unconfigured.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseRedisComponentArgs']]] components: Service component information
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -232,7 +250,7 @@ class _ManagedDatabaseRedisState:
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseRedisNetworkArgs']]] networks: Private networks attached to the managed database
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseRedisNodeStateArgs']]] node_states: Information about nodes providing the managed service
-        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[_builtins.str] primary_database: Primary database name
         :param pulumi.Input['ManagedDatabaseRedisPropertiesArgs'] properties: Database Engine properties for Redis
@@ -247,6 +265,8 @@ class _ManagedDatabaseRedisState:
         :param pulumi.Input[_builtins.str] type: Type of the service
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
+        if additional_disk_space_gib is not None:
+            pulumi.set(__self__, "additional_disk_space_gib", additional_disk_space_gib)
         if components is not None:
             pulumi.set(__self__, "components", components)
         if labels is not None:
@@ -289,6 +309,18 @@ class _ManagedDatabaseRedisState:
             pulumi.set(__self__, "type", type)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalDiskSpaceGib")
+    def additional_disk_space_gib(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Not supported for `redis` databases. Should be left unconfigured.
+        """
+        return pulumi.get(self, "additional_disk_space_gib")
+
+    @additional_disk_space_gib.setter
+    def additional_disk_space_gib(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "additional_disk_space_gib", value)
 
     @_builtins.property
     @pulumi.getter
@@ -378,7 +410,7 @@ class _ManagedDatabaseRedisState:
     @pulumi.getter
     def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
         """
         return pulumi.get(self, "plan")
 
@@ -549,6 +581,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -591,12 +624,13 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.int] additional_disk_space_gib: Not supported for `redis` databases. Should be left unconfigured.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[_builtins.str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseRedisNetworkArgs', 'ManagedDatabaseRedisNetworkArgsDict']]]] networks: Private networks attached to the managed database
-        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[Union['ManagedDatabaseRedisPropertiesArgs', 'ManagedDatabaseRedisPropertiesArgsDict']] properties: Database Engine properties for Redis
         :param pulumi.Input[_builtins.bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
@@ -652,6 +686,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -672,6 +707,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ManagedDatabaseRedisArgs.__new__(ManagedDatabaseRedisArgs)
 
+            __props__.__dict__["additional_disk_space_gib"] = additional_disk_space_gib
             __props__.__dict__["labels"] = labels
             __props__.__dict__["maintenance_window_dow"] = maintenance_window_dow
             __props__.__dict__["maintenance_window_time"] = maintenance_window_time
@@ -711,6 +747,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
             components: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseRedisComponentArgs', 'ManagedDatabaseRedisComponentArgsDict']]]]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -739,6 +776,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.int] additional_disk_space_gib: Not supported for `redis` databases. Should be left unconfigured.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseRedisComponentArgs', 'ManagedDatabaseRedisComponentArgsDict']]]] components: Service component information
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -746,7 +784,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseRedisNetworkArgs', 'ManagedDatabaseRedisNetworkArgsDict']]]] networks: Private networks attached to the managed database
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseRedisNodeStateArgs', 'ManagedDatabaseRedisNodeStateArgsDict']]]] node_states: Information about nodes providing the managed service
-        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[_builtins.str] primary_database: Primary database name
         :param pulumi.Input[Union['ManagedDatabaseRedisPropertiesArgs', 'ManagedDatabaseRedisPropertiesArgsDict']] properties: Database Engine properties for Redis
@@ -765,6 +803,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
 
         __props__ = _ManagedDatabaseRedisState.__new__(_ManagedDatabaseRedisState)
 
+        __props__.__dict__["additional_disk_space_gib"] = additional_disk_space_gib
         __props__.__dict__["components"] = components
         __props__.__dict__["labels"] = labels
         __props__.__dict__["maintenance_window_dow"] = maintenance_window_dow
@@ -787,6 +826,14 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["zone"] = zone
         return ManagedDatabaseRedis(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalDiskSpaceGib")
+    def additional_disk_space_gib(self) -> pulumi.Output[_builtins.int]:
+        """
+        Not supported for `redis` databases. Should be left unconfigured.
+        """
+        return pulumi.get(self, "additional_disk_space_gib")
 
     @_builtins.property
     @pulumi.getter
@@ -848,7 +895,7 @@ class ManagedDatabaseRedis(pulumi.CustomResource):
     @pulumi.getter
     def plan(self) -> pulumi.Output[_builtins.str]:
         """
-        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
         """
         return pulumi.get(self, "plan")
 

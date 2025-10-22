@@ -77,6 +77,10 @@ export class ManagedDatabaseMysql extends pulumi.CustomResource {
     }
 
     /**
+     * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     */
+    declare public readonly additionalDiskSpaceGib: pulumi.Output<number>;
+    /**
      * Service component information
      */
     declare public /*out*/ readonly components: pulumi.Output<outputs.ManagedDatabaseMysqlComponent[]>;
@@ -105,7 +109,7 @@ export class ManagedDatabaseMysql extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly nodeStates: pulumi.Output<outputs.ManagedDatabaseMysqlNodeState[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
      */
     declare public readonly plan: pulumi.Output<string>;
     /**
@@ -174,6 +178,7 @@ export class ManagedDatabaseMysql extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ManagedDatabaseMysqlState | undefined;
+            resourceInputs["additionalDiskSpaceGib"] = state?.additionalDiskSpaceGib;
             resourceInputs["components"] = state?.components;
             resourceInputs["labels"] = state?.labels;
             resourceInputs["maintenanceWindowDow"] = state?.maintenanceWindowDow;
@@ -206,6 +211,7 @@ export class ManagedDatabaseMysql extends pulumi.CustomResource {
             if (args?.zone === undefined && !opts.urn) {
                 throw new Error("Missing required property 'zone'");
             }
+            resourceInputs["additionalDiskSpaceGib"] = args?.additionalDiskSpaceGib;
             resourceInputs["labels"] = args?.labels;
             resourceInputs["maintenanceWindowDow"] = args?.maintenanceWindowDow;
             resourceInputs["maintenanceWindowTime"] = args?.maintenanceWindowTime;
@@ -240,6 +246,10 @@ export class ManagedDatabaseMysql extends pulumi.CustomResource {
  */
 export interface ManagedDatabaseMysqlState {
     /**
+     * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     */
+    additionalDiskSpaceGib?: pulumi.Input<number>;
+    /**
      * Service component information
      */
     components?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseMysqlComponent>[]>;
@@ -268,7 +278,7 @@ export interface ManagedDatabaseMysqlState {
      */
     nodeStates?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseMysqlNodeState>[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
      */
     plan?: pulumi.Input<string>;
     /**
@@ -330,6 +340,10 @@ export interface ManagedDatabaseMysqlState {
  */
 export interface ManagedDatabaseMysqlArgs {
     /**
+     * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     */
+    additionalDiskSpaceGib?: pulumi.Input<number>;
+    /**
      * User defined key-value pairs to classify the managed database.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -350,7 +364,7 @@ export interface ManagedDatabaseMysqlArgs {
      */
     networks?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseMysqlNetwork>[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
      */
     plan: pulumi.Input<string>;
     /**
