@@ -65,7 +65,6 @@
         "managedObjectStorageUserPolicy.ts",
         "network.ts",
         "networkPeering.ts",
-        "objectStorage.ts",
         "provider.ts",
         "router.ts",
         "server.ts",

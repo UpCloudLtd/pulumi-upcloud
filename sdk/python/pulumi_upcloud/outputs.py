@@ -129,7 +129,6 @@ __all__ = [
     'NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation',
     'NetworkPeeringNetwork',
     'NetworkPeeringPeerNetwork',
-    'ObjectStorageBucket',
     'RouterStaticRoute',
     'ServerFirewallRulesFirewallRule',
     'ServerLogin',
@@ -10692,24 +10691,6 @@ class NetworkPeeringPeerNetwork(dict):
         The UUID of the network.
         """
         return pulumi.get(self, "uuid")
-
-
-@pulumi.output_type
-class ObjectStorageBucket(dict):
-    def __init__(__self__, *,
-                 name: _builtins.str):
-        """
-        :param _builtins.str name: The name of the bucket
-        """
-        pulumi.set(__self__, "name", name)
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> _builtins.str:
-        """
-        The name of the bucket
-        """
-        return pulumi.get(self, "name")
 
 
 @pulumi.output_type

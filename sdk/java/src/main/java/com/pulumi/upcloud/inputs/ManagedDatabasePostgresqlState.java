@@ -10,6 +10,7 @@ import com.pulumi.upcloud.inputs.ManagedDatabasePostgresqlNetworkArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabasePostgresqlNodeStateArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabasePostgresqlPropertiesArgs;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,21 @@ import javax.annotation.Nullable;
 public final class ManagedDatabasePostgresqlState extends com.pulumi.resources.ResourceArgs {
 
     public static final ManagedDatabasePostgresqlState Empty = new ManagedDatabasePostgresqlState();
+
+    /**
+     * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     * 
+     */
+    @Import(name="additionalDiskSpaceGib")
+    private @Nullable Output<Integer> additionalDiskSpaceGib;
+
+    /**
+     * @return Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     * 
+     */
+    public Optional<Output<Integer>> additionalDiskSpaceGib() {
+        return Optional.ofNullable(this.additionalDiskSpaceGib);
+    }
 
     /**
      * Service component information
@@ -128,14 +144,14 @@ public final class ManagedDatabasePostgresqlState extends com.pulumi.resources.R
     }
 
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
      * 
      */
     @Import(name="plan")
     private @Nullable Output<String> plan;
 
     /**
-     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
      * 
      */
     public Optional<Output<String>> plan() {
@@ -355,6 +371,7 @@ public final class ManagedDatabasePostgresqlState extends com.pulumi.resources.R
     private ManagedDatabasePostgresqlState() {}
 
     private ManagedDatabasePostgresqlState(ManagedDatabasePostgresqlState $) {
+        this.additionalDiskSpaceGib = $.additionalDiskSpaceGib;
         this.components = $.components;
         this.labels = $.labels;
         this.maintenanceWindowDow = $.maintenanceWindowDow;
@@ -395,6 +412,27 @@ public final class ManagedDatabasePostgresqlState extends com.pulumi.resources.R
 
         public Builder(ManagedDatabasePostgresqlState defaults) {
             $ = new ManagedDatabasePostgresqlState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param additionalDiskSpaceGib Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder additionalDiskSpaceGib(@Nullable Output<Integer> additionalDiskSpaceGib) {
+            $.additionalDiskSpaceGib = additionalDiskSpaceGib;
+            return this;
+        }
+
+        /**
+         * @param additionalDiskSpaceGib Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder additionalDiskSpaceGib(Integer additionalDiskSpaceGib) {
+            return additionalDiskSpaceGib(Output.of(additionalDiskSpaceGib));
         }
 
         /**
@@ -575,7 +613,7 @@ public final class ManagedDatabasePostgresqlState extends com.pulumi.resources.R
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
          * 
          * @return builder
          * 
@@ -586,7 +624,7 @@ public final class ManagedDatabasePostgresqlState extends com.pulumi.resources.R
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
          * 
          * @return builder
          * 

@@ -10,6 +10,7 @@ import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchNetworkArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchNodeStateArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesArgs;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,21 @@ public final class ManagedDatabaseOpensearchState extends com.pulumi.resources.R
      */
     public Optional<Output<Boolean>> accessControl() {
         return Optional.ofNullable(this.accessControl);
+    }
+
+    /**
+     * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     * 
+     */
+    @Import(name="additionalDiskSpaceGib")
+    private @Nullable Output<Integer> additionalDiskSpaceGib;
+
+    /**
+     * @return Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     * 
+     */
+    public Optional<Output<Integer>> additionalDiskSpaceGib() {
+        return Optional.ofNullable(this.additionalDiskSpaceGib);
     }
 
     /**
@@ -158,14 +174,14 @@ public final class ManagedDatabaseOpensearchState extends com.pulumi.resources.R
     }
 
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
      * 
      */
     @Import(name="plan")
     private @Nullable Output<String> plan;
 
     /**
-     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
      * 
      */
     public Optional<Output<String>> plan() {
@@ -371,6 +387,7 @@ public final class ManagedDatabaseOpensearchState extends com.pulumi.resources.R
 
     private ManagedDatabaseOpensearchState(ManagedDatabaseOpensearchState $) {
         this.accessControl = $.accessControl;
+        this.additionalDiskSpaceGib = $.additionalDiskSpaceGib;
         this.components = $.components;
         this.extendedAccessControl = $.extendedAccessControl;
         this.labels = $.labels;
@@ -432,6 +449,27 @@ public final class ManagedDatabaseOpensearchState extends com.pulumi.resources.R
          */
         public Builder accessControl(Boolean accessControl) {
             return accessControl(Output.of(accessControl));
+        }
+
+        /**
+         * @param additionalDiskSpaceGib Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder additionalDiskSpaceGib(@Nullable Output<Integer> additionalDiskSpaceGib) {
+            $.additionalDiskSpaceGib = additionalDiskSpaceGib;
+            return this;
+        }
+
+        /**
+         * @param additionalDiskSpaceGib Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder additionalDiskSpaceGib(Integer additionalDiskSpaceGib) {
+            return additionalDiskSpaceGib(Output.of(additionalDiskSpaceGib));
         }
 
         /**
@@ -633,7 +671,7 @@ public final class ManagedDatabaseOpensearchState extends com.pulumi.resources.R
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
          * 
          * @return builder
          * 
@@ -644,7 +682,7 @@ public final class ManagedDatabaseOpensearchState extends com.pulumi.resources.R
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
          * 
          * @return builder
          * 

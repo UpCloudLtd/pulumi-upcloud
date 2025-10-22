@@ -63,6 +63,8 @@ type ManagedDatabaseOpensearch struct {
 
 	// Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
 	AccessControl pulumi.BoolOutput `pulumi:"accessControl"`
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib pulumi.IntOutput `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components ManagedDatabaseOpensearchComponentArrayOutput `pulumi:"components"`
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
@@ -79,7 +81,7 @@ type ManagedDatabaseOpensearch struct {
 	Networks ManagedDatabaseOpensearchNetworkArrayOutput `pulumi:"networks"`
 	// Information about nodes providing the managed service
 	NodeStates ManagedDatabaseOpensearchNodeStateArrayOutput `pulumi:"nodeStates"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrOutput `pulumi:"powered"`
@@ -155,6 +157,8 @@ func GetManagedDatabaseOpensearch(ctx *pulumi.Context,
 type managedDatabaseOpensearchState struct {
 	// Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
 	AccessControl *bool `pulumi:"accessControl"`
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components []ManagedDatabaseOpensearchComponent `pulumi:"components"`
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
@@ -171,7 +175,7 @@ type managedDatabaseOpensearchState struct {
 	Networks []ManagedDatabaseOpensearchNetwork `pulumi:"networks"`
 	// Information about nodes providing the managed service
 	NodeStates []ManagedDatabaseOpensearchNodeState `pulumi:"nodeStates"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
 	Plan *string `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
@@ -204,6 +208,8 @@ type managedDatabaseOpensearchState struct {
 type ManagedDatabaseOpensearchState struct {
 	// Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
 	AccessControl pulumi.BoolPtrInput
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// Service component information
 	Components ManagedDatabaseOpensearchComponentArrayInput
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
@@ -220,7 +226,7 @@ type ManagedDatabaseOpensearchState struct {
 	Networks ManagedDatabaseOpensearchNetworkArrayInput
 	// Information about nodes providing the managed service
 	NodeStates ManagedDatabaseOpensearchNodeStateArrayInput
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
 	Plan pulumi.StringPtrInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
@@ -257,6 +263,8 @@ func (ManagedDatabaseOpensearchState) ElementType() reflect.Type {
 type managedDatabaseOpensearchArgs struct {
 	// Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
 	AccessControl *bool `pulumi:"accessControl"`
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
 	ExtendedAccessControl *bool `pulumi:"extendedAccessControl"`
 	// User defined key-value pairs to classify the managed database.
@@ -269,7 +277,7 @@ type managedDatabaseOpensearchArgs struct {
 	Name *string `pulumi:"name"`
 	// Private networks attached to the managed database
 	Networks []ManagedDatabaseOpensearchNetwork `pulumi:"networks"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
 	Plan string `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
@@ -287,6 +295,8 @@ type managedDatabaseOpensearchArgs struct {
 type ManagedDatabaseOpensearchArgs struct {
 	// Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
 	AccessControl pulumi.BoolPtrInput
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
 	ExtendedAccessControl pulumi.BoolPtrInput
 	// User defined key-value pairs to classify the managed database.
@@ -299,7 +309,7 @@ type ManagedDatabaseOpensearchArgs struct {
 	Name pulumi.StringPtrInput
 	// Private networks attached to the managed database
 	Networks ManagedDatabaseOpensearchNetworkArrayInput
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
 	Plan pulumi.StringInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
@@ -405,6 +415,11 @@ func (o ManagedDatabaseOpensearchOutput) AccessControl() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.BoolOutput { return v.AccessControl }).(pulumi.BoolOutput)
 }
 
+// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+func (o ManagedDatabaseOpensearchOutput) AdditionalDiskSpaceGib() pulumi.IntOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.IntOutput { return v.AdditionalDiskSpaceGib }).(pulumi.IntOutput)
+}
+
 // Service component information
 func (o ManagedDatabaseOpensearchOutput) Components() ManagedDatabaseOpensearchComponentArrayOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) ManagedDatabaseOpensearchComponentArrayOutput { return v.Components }).(ManagedDatabaseOpensearchComponentArrayOutput)
@@ -445,7 +460,7 @@ func (o ManagedDatabaseOpensearchOutput) NodeStates() ManagedDatabaseOpensearchN
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) ManagedDatabaseOpensearchNodeStateArrayOutput { return v.NodeStates }).(ManagedDatabaseOpensearchNodeStateArrayOutput)
 }
 
-// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
 func (o ManagedDatabaseOpensearchOutput) Plan() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.StringOutput { return v.Plan }).(pulumi.StringOutput)
 }

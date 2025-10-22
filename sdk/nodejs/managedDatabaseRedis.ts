@@ -65,6 +65,10 @@ export class ManagedDatabaseRedis extends pulumi.CustomResource {
     }
 
     /**
+     * Not supported for `redis` databases. Should be left unconfigured.
+     */
+    declare public readonly additionalDiskSpaceGib: pulumi.Output<number>;
+    /**
      * Service component information
      */
     declare public /*out*/ readonly components: pulumi.Output<outputs.ManagedDatabaseRedisComponent[]>;
@@ -93,7 +97,7 @@ export class ManagedDatabaseRedis extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly nodeStates: pulumi.Output<outputs.ManagedDatabaseRedisNodeState[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
      */
     declare public readonly plan: pulumi.Output<string>;
     /**
@@ -162,6 +166,7 @@ export class ManagedDatabaseRedis extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ManagedDatabaseRedisState | undefined;
+            resourceInputs["additionalDiskSpaceGib"] = state?.additionalDiskSpaceGib;
             resourceInputs["components"] = state?.components;
             resourceInputs["labels"] = state?.labels;
             resourceInputs["maintenanceWindowDow"] = state?.maintenanceWindowDow;
@@ -194,6 +199,7 @@ export class ManagedDatabaseRedis extends pulumi.CustomResource {
             if (args?.zone === undefined && !opts.urn) {
                 throw new Error("Missing required property 'zone'");
             }
+            resourceInputs["additionalDiskSpaceGib"] = args?.additionalDiskSpaceGib;
             resourceInputs["labels"] = args?.labels;
             resourceInputs["maintenanceWindowDow"] = args?.maintenanceWindowDow;
             resourceInputs["maintenanceWindowTime"] = args?.maintenanceWindowTime;
@@ -228,6 +234,10 @@ export class ManagedDatabaseRedis extends pulumi.CustomResource {
  */
 export interface ManagedDatabaseRedisState {
     /**
+     * Not supported for `redis` databases. Should be left unconfigured.
+     */
+    additionalDiskSpaceGib?: pulumi.Input<number>;
+    /**
      * Service component information
      */
     components?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseRedisComponent>[]>;
@@ -256,7 +266,7 @@ export interface ManagedDatabaseRedisState {
      */
     nodeStates?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseRedisNodeState>[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
      */
     plan?: pulumi.Input<string>;
     /**
@@ -318,6 +328,10 @@ export interface ManagedDatabaseRedisState {
  */
 export interface ManagedDatabaseRedisArgs {
     /**
+     * Not supported for `redis` databases. Should be left unconfigured.
+     */
+    additionalDiskSpaceGib?: pulumi.Input<number>;
+    /**
      * User defined key-value pairs to classify the managed database.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -338,7 +352,7 @@ export interface ManagedDatabaseRedisArgs {
      */
     networks?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseRedisNetwork>[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`.
      */
     plan: pulumi.Input<string>;
     /**

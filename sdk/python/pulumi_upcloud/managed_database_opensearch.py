@@ -25,6 +25,7 @@ class ManagedDatabaseOpensearchArgs:
                  title: pulumi.Input[_builtins.str],
                  zone: pulumi.Input[_builtins.str],
                  access_control: Optional[pulumi.Input[_builtins.bool]] = None,
+                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  extended_access_control: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -36,10 +37,11 @@ class ManagedDatabaseOpensearchArgs:
                  termination_protection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ManagedDatabaseOpensearch resource.
-        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
         :param pulumi.Input[_builtins.str] title: Title of a managed database instance
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         :param pulumi.Input[_builtins.bool] access_control: Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
+        :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
         :param pulumi.Input[_builtins.bool] extended_access_control: Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -55,6 +57,8 @@ class ManagedDatabaseOpensearchArgs:
         pulumi.set(__self__, "zone", zone)
         if access_control is not None:
             pulumi.set(__self__, "access_control", access_control)
+        if additional_disk_space_gib is not None:
+            pulumi.set(__self__, "additional_disk_space_gib", additional_disk_space_gib)
         if extended_access_control is not None:
             pulumi.set(__self__, "extended_access_control", extended_access_control)
         if labels is not None:
@@ -78,7 +82,7 @@ class ManagedDatabaseOpensearchArgs:
     @pulumi.getter
     def plan(self) -> pulumi.Input[_builtins.str]:
         """
-        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
         """
         return pulumi.get(self, "plan")
 
@@ -121,6 +125,18 @@ class ManagedDatabaseOpensearchArgs:
     @access_control.setter
     def access_control(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "access_control", value)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalDiskSpaceGib")
+    def additional_disk_space_gib(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        """
+        return pulumi.get(self, "additional_disk_space_gib")
+
+    @additional_disk_space_gib.setter
+    def additional_disk_space_gib(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "additional_disk_space_gib", value)
 
     @_builtins.property
     @pulumi.getter(name="extendedAccessControl")
@@ -235,6 +251,7 @@ class ManagedDatabaseOpensearchArgs:
 class _ManagedDatabaseOpensearchState:
     def __init__(__self__, *,
                  access_control: Optional[pulumi.Input[_builtins.bool]] = None,
+                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  components: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseOpensearchComponentArgs']]]] = None,
                  extended_access_control: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -260,6 +277,7 @@ class _ManagedDatabaseOpensearchState:
         """
         Input properties used for looking up and filtering ManagedDatabaseOpensearch resources.
         :param pulumi.Input[_builtins.bool] access_control: Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
+        :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseOpensearchComponentArgs']]] components: Service component information
         :param pulumi.Input[_builtins.bool] extended_access_control: Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
@@ -268,7 +286,7 @@ class _ManagedDatabaseOpensearchState:
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseOpensearchNetworkArgs']]] networks: Private networks attached to the managed database
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseOpensearchNodeStateArgs']]] node_states: Information about nodes providing the managed service
-        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[_builtins.str] primary_database: Primary database name
         :param pulumi.Input['ManagedDatabaseOpensearchPropertiesArgs'] properties: Database Engine properties for OpenSearch
@@ -285,6 +303,8 @@ class _ManagedDatabaseOpensearchState:
         """
         if access_control is not None:
             pulumi.set(__self__, "access_control", access_control)
+        if additional_disk_space_gib is not None:
+            pulumi.set(__self__, "additional_disk_space_gib", additional_disk_space_gib)
         if components is not None:
             pulumi.set(__self__, "components", components)
         if extended_access_control is not None:
@@ -341,6 +361,18 @@ class _ManagedDatabaseOpensearchState:
     @access_control.setter
     def access_control(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "access_control", value)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalDiskSpaceGib")
+    def additional_disk_space_gib(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        """
+        return pulumi.get(self, "additional_disk_space_gib")
+
+    @additional_disk_space_gib.setter
+    def additional_disk_space_gib(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "additional_disk_space_gib", value)
 
     @_builtins.property
     @pulumi.getter
@@ -442,7 +474,7 @@ class _ManagedDatabaseOpensearchState:
     @pulumi.getter
     def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
         """
         return pulumi.get(self, "plan")
 
@@ -614,6 +646,7 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_control: Optional[pulumi.Input[_builtins.bool]] = None,
+                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  extended_access_control: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -658,13 +691,14 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] access_control: Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
+        :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
         :param pulumi.Input[_builtins.bool] extended_access_control: Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[_builtins.str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchNetworkArgs', 'ManagedDatabaseOpensearchNetworkArgsDict']]]] networks: Private networks attached to the managed database
-        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[Union['ManagedDatabaseOpensearchPropertiesArgs', 'ManagedDatabaseOpensearchPropertiesArgsDict']] properties: Database Engine properties for OpenSearch
         :param pulumi.Input[_builtins.bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
@@ -721,6 +755,7 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_control: Optional[pulumi.Input[_builtins.bool]] = None,
+                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  extended_access_control: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -743,6 +778,7 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
             __props__ = ManagedDatabaseOpensearchArgs.__new__(ManagedDatabaseOpensearchArgs)
 
             __props__.__dict__["access_control"] = access_control
+            __props__.__dict__["additional_disk_space_gib"] = additional_disk_space_gib
             __props__.__dict__["extended_access_control"] = extended_access_control
             __props__.__dict__["labels"] = labels
             __props__.__dict__["maintenance_window_dow"] = maintenance_window_dow
@@ -784,6 +820,7 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             access_control: Optional[pulumi.Input[_builtins.bool]] = None,
+            additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
             components: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchComponentArgs', 'ManagedDatabaseOpensearchComponentArgsDict']]]]] = None,
             extended_access_control: Optional[pulumi.Input[_builtins.bool]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -814,6 +851,7 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] access_control: Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
+        :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchComponentArgs', 'ManagedDatabaseOpensearchComponentArgsDict']]]] components: Service component information
         :param pulumi.Input[_builtins.bool] extended_access_control: Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
@@ -822,7 +860,7 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchNetworkArgs', 'ManagedDatabaseOpensearchNetworkArgsDict']]]] networks: Private networks attached to the managed database
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchNodeStateArgs', 'ManagedDatabaseOpensearchNodeStateArgsDict']]]] node_states: Information about nodes providing the managed service
-        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[_builtins.str] primary_database: Primary database name
         :param pulumi.Input[Union['ManagedDatabaseOpensearchPropertiesArgs', 'ManagedDatabaseOpensearchPropertiesArgsDict']] properties: Database Engine properties for OpenSearch
@@ -842,6 +880,7 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
         __props__ = _ManagedDatabaseOpensearchState.__new__(_ManagedDatabaseOpensearchState)
 
         __props__.__dict__["access_control"] = access_control
+        __props__.__dict__["additional_disk_space_gib"] = additional_disk_space_gib
         __props__.__dict__["components"] = components
         __props__.__dict__["extended_access_control"] = extended_access_control
         __props__.__dict__["labels"] = labels
@@ -873,6 +912,14 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
         Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
         """
         return pulumi.get(self, "access_control")
+
+    @_builtins.property
+    @pulumi.getter(name="additionalDiskSpaceGib")
+    def additional_disk_space_gib(self) -> pulumi.Output[_builtins.int]:
+        """
+        Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        """
+        return pulumi.get(self, "additional_disk_space_gib")
 
     @_builtins.property
     @pulumi.getter
@@ -942,7 +989,7 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
     @pulumi.getter
     def plan(self) -> pulumi.Output[_builtins.str]:
         """
-        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
         """
         return pulumi.get(self, "plan")
 

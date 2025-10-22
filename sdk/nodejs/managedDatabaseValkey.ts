@@ -63,6 +63,10 @@ export class ManagedDatabaseValkey extends pulumi.CustomResource {
     }
 
     /**
+     * Not supported for `valkey` databases. Should be left unconfigured.
+     */
+    declare public readonly additionalDiskSpaceGib: pulumi.Output<number>;
+    /**
      * Service component information
      */
     declare public /*out*/ readonly components: pulumi.Output<outputs.ManagedDatabaseValkeyComponent[]>;
@@ -91,7 +95,7 @@ export class ManagedDatabaseValkey extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly nodeStates: pulumi.Output<outputs.ManagedDatabaseValkeyNodeState[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
      */
     declare public readonly plan: pulumi.Output<string>;
     /**
@@ -160,6 +164,7 @@ export class ManagedDatabaseValkey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ManagedDatabaseValkeyState | undefined;
+            resourceInputs["additionalDiskSpaceGib"] = state?.additionalDiskSpaceGib;
             resourceInputs["components"] = state?.components;
             resourceInputs["labels"] = state?.labels;
             resourceInputs["maintenanceWindowDow"] = state?.maintenanceWindowDow;
@@ -192,6 +197,7 @@ export class ManagedDatabaseValkey extends pulumi.CustomResource {
             if (args?.zone === undefined && !opts.urn) {
                 throw new Error("Missing required property 'zone'");
             }
+            resourceInputs["additionalDiskSpaceGib"] = args?.additionalDiskSpaceGib;
             resourceInputs["labels"] = args?.labels;
             resourceInputs["maintenanceWindowDow"] = args?.maintenanceWindowDow;
             resourceInputs["maintenanceWindowTime"] = args?.maintenanceWindowTime;
@@ -226,6 +232,10 @@ export class ManagedDatabaseValkey extends pulumi.CustomResource {
  */
 export interface ManagedDatabaseValkeyState {
     /**
+     * Not supported for `valkey` databases. Should be left unconfigured.
+     */
+    additionalDiskSpaceGib?: pulumi.Input<number>;
+    /**
      * Service component information
      */
     components?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseValkeyComponent>[]>;
@@ -254,7 +264,7 @@ export interface ManagedDatabaseValkeyState {
      */
     nodeStates?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseValkeyNodeState>[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
      */
     plan?: pulumi.Input<string>;
     /**
@@ -316,6 +326,10 @@ export interface ManagedDatabaseValkeyState {
  */
 export interface ManagedDatabaseValkeyArgs {
     /**
+     * Not supported for `valkey` databases. Should be left unconfigured.
+     */
+    additionalDiskSpaceGib?: pulumi.Input<number>;
+    /**
      * User defined key-value pairs to classify the managed database.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -336,7 +350,7 @@ export interface ManagedDatabaseValkeyArgs {
      */
     networks?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseValkeyNetwork>[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
      */
     plan: pulumi.Input<string>;
     /**

@@ -65,6 +65,10 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
     }
 
     /**
+     * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     */
+    declare public readonly additionalDiskSpaceGib: pulumi.Output<number>;
+    /**
      * Service component information
      */
     declare public /*out*/ readonly components: pulumi.Output<outputs.ManagedDatabasePostgresqlComponent[]>;
@@ -93,7 +97,7 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly nodeStates: pulumi.Output<outputs.ManagedDatabasePostgresqlNodeState[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
      */
     declare public readonly plan: pulumi.Output<string>;
     /**
@@ -166,6 +170,7 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ManagedDatabasePostgresqlState | undefined;
+            resourceInputs["additionalDiskSpaceGib"] = state?.additionalDiskSpaceGib;
             resourceInputs["components"] = state?.components;
             resourceInputs["labels"] = state?.labels;
             resourceInputs["maintenanceWindowDow"] = state?.maintenanceWindowDow;
@@ -199,6 +204,7 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
             if (args?.zone === undefined && !opts.urn) {
                 throw new Error("Missing required property 'zone'");
             }
+            resourceInputs["additionalDiskSpaceGib"] = args?.additionalDiskSpaceGib;
             resourceInputs["labels"] = args?.labels;
             resourceInputs["maintenanceWindowDow"] = args?.maintenanceWindowDow;
             resourceInputs["maintenanceWindowTime"] = args?.maintenanceWindowTime;
@@ -234,6 +240,10 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
  */
 export interface ManagedDatabasePostgresqlState {
     /**
+     * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     */
+    additionalDiskSpaceGib?: pulumi.Input<number>;
+    /**
      * Service component information
      */
     components?: pulumi.Input<pulumi.Input<inputs.ManagedDatabasePostgresqlComponent>[]>;
@@ -262,7 +272,7 @@ export interface ManagedDatabasePostgresqlState {
      */
     nodeStates?: pulumi.Input<pulumi.Input<inputs.ManagedDatabasePostgresqlNodeState>[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
      */
     plan?: pulumi.Input<string>;
     /**
@@ -328,6 +338,10 @@ export interface ManagedDatabasePostgresqlState {
  */
 export interface ManagedDatabasePostgresqlArgs {
     /**
+     * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     */
+    additionalDiskSpaceGib?: pulumi.Input<number>;
+    /**
      * User defined key-value pairs to classify the managed database.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -348,7 +362,7 @@ export interface ManagedDatabasePostgresqlArgs {
      */
     networks?: pulumi.Input<pulumi.Input<inputs.ManagedDatabasePostgresqlNetwork>[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
      */
     plan: pulumi.Input<string>;
     /**

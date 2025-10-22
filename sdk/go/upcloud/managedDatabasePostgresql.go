@@ -61,6 +61,8 @@ import (
 type ManagedDatabasePostgresql struct {
 	pulumi.CustomResourceState
 
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib pulumi.IntOutput `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components ManagedDatabasePostgresqlComponentArrayOutput `pulumi:"components"`
 	// User defined key-value pairs to classify the managed database.
@@ -75,7 +77,7 @@ type ManagedDatabasePostgresql struct {
 	Networks ManagedDatabasePostgresqlNetworkArrayOutput `pulumi:"networks"`
 	// Information about nodes providing the managed service
 	NodeStates ManagedDatabasePostgresqlNodeStateArrayOutput `pulumi:"nodeStates"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrOutput `pulumi:"powered"`
@@ -151,6 +153,8 @@ func GetManagedDatabasePostgresql(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ManagedDatabasePostgresql resources.
 type managedDatabasePostgresqlState struct {
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components []ManagedDatabasePostgresqlComponent `pulumi:"components"`
 	// User defined key-value pairs to classify the managed database.
@@ -165,7 +169,7 @@ type managedDatabasePostgresqlState struct {
 	Networks []ManagedDatabasePostgresqlNetwork `pulumi:"networks"`
 	// Information about nodes providing the managed service
 	NodeStates []ManagedDatabasePostgresqlNodeState `pulumi:"nodeStates"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
 	Plan *string `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
@@ -198,6 +202,8 @@ type managedDatabasePostgresqlState struct {
 }
 
 type ManagedDatabasePostgresqlState struct {
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// Service component information
 	Components ManagedDatabasePostgresqlComponentArrayInput
 	// User defined key-value pairs to classify the managed database.
@@ -212,7 +218,7 @@ type ManagedDatabasePostgresqlState struct {
 	Networks ManagedDatabasePostgresqlNetworkArrayInput
 	// Information about nodes providing the managed service
 	NodeStates ManagedDatabasePostgresqlNodeStateArrayInput
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
 	Plan pulumi.StringPtrInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
@@ -249,6 +255,8 @@ func (ManagedDatabasePostgresqlState) ElementType() reflect.Type {
 }
 
 type managedDatabasePostgresqlArgs struct {
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// User defined key-value pairs to classify the managed database.
 	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -259,7 +267,7 @@ type managedDatabasePostgresqlArgs struct {
 	Name *string `pulumi:"name"`
 	// Private networks attached to the managed database
 	Networks []ManagedDatabasePostgresqlNetwork `pulumi:"networks"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
 	Plan string `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
@@ -275,6 +283,8 @@ type managedDatabasePostgresqlArgs struct {
 
 // The set of arguments for constructing a ManagedDatabasePostgresql resource.
 type ManagedDatabasePostgresqlArgs struct {
+	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// User defined key-value pairs to classify the managed database.
 	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -285,7 +295,7 @@ type ManagedDatabasePostgresqlArgs struct {
 	Name pulumi.StringPtrInput
 	// Private networks attached to the managed database
 	Networks ManagedDatabasePostgresqlNetworkArrayInput
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
 	Plan pulumi.StringInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
@@ -386,6 +396,11 @@ func (o ManagedDatabasePostgresqlOutput) ToManagedDatabasePostgresqlOutputWithCo
 	return o
 }
 
+// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+func (o ManagedDatabasePostgresqlOutput) AdditionalDiskSpaceGib() pulumi.IntOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.IntOutput { return v.AdditionalDiskSpaceGib }).(pulumi.IntOutput)
+}
+
 // Service component information
 func (o ManagedDatabasePostgresqlOutput) Components() ManagedDatabasePostgresqlComponentArrayOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresql) ManagedDatabasePostgresqlComponentArrayOutput { return v.Components }).(ManagedDatabasePostgresqlComponentArrayOutput)
@@ -421,7 +436,7 @@ func (o ManagedDatabasePostgresqlOutput) NodeStates() ManagedDatabasePostgresqlN
 	return o.ApplyT(func(v *ManagedDatabasePostgresql) ManagedDatabasePostgresqlNodeStateArrayOutput { return v.NodeStates }).(ManagedDatabasePostgresqlNodeStateArrayOutput)
 }
 
-// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
 func (o ManagedDatabasePostgresqlOutput) Plan() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.StringOutput { return v.Plan }).(pulumi.StringOutput)
 }

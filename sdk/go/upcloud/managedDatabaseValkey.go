@@ -59,6 +59,8 @@ import (
 type ManagedDatabaseValkey struct {
 	pulumi.CustomResourceState
 
+	// Not supported for `valkey` databases. Should be left unconfigured.
+	AdditionalDiskSpaceGib pulumi.IntOutput `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components ManagedDatabaseValkeyComponentArrayOutput `pulumi:"components"`
 	// User defined key-value pairs to classify the managed database.
@@ -73,7 +75,7 @@ type ManagedDatabaseValkey struct {
 	Networks ManagedDatabaseValkeyNetworkArrayOutput `pulumi:"networks"`
 	// Information about nodes providing the managed service
 	NodeStates ManagedDatabaseValkeyNodeStateArrayOutput `pulumi:"nodeStates"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrOutput `pulumi:"powered"`
@@ -147,6 +149,8 @@ func GetManagedDatabaseValkey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ManagedDatabaseValkey resources.
 type managedDatabaseValkeyState struct {
+	// Not supported for `valkey` databases. Should be left unconfigured.
+	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components []ManagedDatabaseValkeyComponent `pulumi:"components"`
 	// User defined key-value pairs to classify the managed database.
@@ -161,7 +165,7 @@ type managedDatabaseValkeyState struct {
 	Networks []ManagedDatabaseValkeyNetwork `pulumi:"networks"`
 	// Information about nodes providing the managed service
 	NodeStates []ManagedDatabaseValkeyNodeState `pulumi:"nodeStates"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
 	Plan *string `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
@@ -192,6 +196,8 @@ type managedDatabaseValkeyState struct {
 }
 
 type ManagedDatabaseValkeyState struct {
+	// Not supported for `valkey` databases. Should be left unconfigured.
+	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// Service component information
 	Components ManagedDatabaseValkeyComponentArrayInput
 	// User defined key-value pairs to classify the managed database.
@@ -206,7 +212,7 @@ type ManagedDatabaseValkeyState struct {
 	Networks ManagedDatabaseValkeyNetworkArrayInput
 	// Information about nodes providing the managed service
 	NodeStates ManagedDatabaseValkeyNodeStateArrayInput
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
 	Plan pulumi.StringPtrInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
@@ -241,6 +247,8 @@ func (ManagedDatabaseValkeyState) ElementType() reflect.Type {
 }
 
 type managedDatabaseValkeyArgs struct {
+	// Not supported for `valkey` databases. Should be left unconfigured.
+	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// User defined key-value pairs to classify the managed database.
 	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -251,7 +259,7 @@ type managedDatabaseValkeyArgs struct {
 	Name *string `pulumi:"name"`
 	// Private networks attached to the managed database
 	Networks []ManagedDatabaseValkeyNetwork `pulumi:"networks"`
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
 	Plan string `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
@@ -267,6 +275,8 @@ type managedDatabaseValkeyArgs struct {
 
 // The set of arguments for constructing a ManagedDatabaseValkey resource.
 type ManagedDatabaseValkeyArgs struct {
+	// Not supported for `valkey` databases. Should be left unconfigured.
+	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// User defined key-value pairs to classify the managed database.
 	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -277,7 +287,7 @@ type ManagedDatabaseValkeyArgs struct {
 	Name pulumi.StringPtrInput
 	// Private networks attached to the managed database
 	Networks ManagedDatabaseValkeyNetworkArrayInput
-	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
 	Plan pulumi.StringInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
@@ -378,6 +388,11 @@ func (o ManagedDatabaseValkeyOutput) ToManagedDatabaseValkeyOutputWithContext(ct
 	return o
 }
 
+// Not supported for `valkey` databases. Should be left unconfigured.
+func (o ManagedDatabaseValkeyOutput) AdditionalDiskSpaceGib() pulumi.IntOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.IntOutput { return v.AdditionalDiskSpaceGib }).(pulumi.IntOutput)
+}
+
 // Service component information
 func (o ManagedDatabaseValkeyOutput) Components() ManagedDatabaseValkeyComponentArrayOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkey) ManagedDatabaseValkeyComponentArrayOutput { return v.Components }).(ManagedDatabaseValkeyComponentArrayOutput)
@@ -413,7 +428,7 @@ func (o ManagedDatabaseValkeyOutput) NodeStates() ManagedDatabaseValkeyNodeState
 	return o.ApplyT(func(v *ManagedDatabaseValkey) ManagedDatabaseValkeyNodeStateArrayOutput { return v.NodeStates }).(ManagedDatabaseValkeyNodeStateArrayOutput)
 }
 
-// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
 func (o ManagedDatabaseValkeyOutput) Plan() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.StringOutput { return v.Plan }).(pulumi.StringOutput)
 }

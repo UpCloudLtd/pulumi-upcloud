@@ -10,6 +10,7 @@ import com.pulumi.upcloud.inputs.ManagedDatabaseMysqlNetworkArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseMysqlNodeStateArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseMysqlPropertiesArgs;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,21 @@ import javax.annotation.Nullable;
 public final class ManagedDatabaseMysqlState extends com.pulumi.resources.ResourceArgs {
 
     public static final ManagedDatabaseMysqlState Empty = new ManagedDatabaseMysqlState();
+
+    /**
+     * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     * 
+     */
+    @Import(name="additionalDiskSpaceGib")
+    private @Nullable Output<Integer> additionalDiskSpaceGib;
+
+    /**
+     * @return Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     * 
+     */
+    public Optional<Output<Integer>> additionalDiskSpaceGib() {
+        return Optional.ofNullable(this.additionalDiskSpaceGib);
+    }
 
     /**
      * Service component information
@@ -128,14 +144,14 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
      * 
      */
     @Import(name="plan")
     private @Nullable Output<String> plan;
 
     /**
-     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
      * 
      */
     public Optional<Output<String>> plan() {
@@ -340,6 +356,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
     private ManagedDatabaseMysqlState() {}
 
     private ManagedDatabaseMysqlState(ManagedDatabaseMysqlState $) {
+        this.additionalDiskSpaceGib = $.additionalDiskSpaceGib;
         this.components = $.components;
         this.labels = $.labels;
         this.maintenanceWindowDow = $.maintenanceWindowDow;
@@ -379,6 +396,27 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
 
         public Builder(ManagedDatabaseMysqlState defaults) {
             $ = new ManagedDatabaseMysqlState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param additionalDiskSpaceGib Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder additionalDiskSpaceGib(@Nullable Output<Integer> additionalDiskSpaceGib) {
+            $.additionalDiskSpaceGib = additionalDiskSpaceGib;
+            return this;
+        }
+
+        /**
+         * @param additionalDiskSpaceGib Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder additionalDiskSpaceGib(Integer additionalDiskSpaceGib) {
+            return additionalDiskSpaceGib(Output.of(additionalDiskSpaceGib));
         }
 
         /**
@@ -559,7 +597,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
          * 
          * @return builder
          * 
@@ -570,7 +608,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
          * 
          * @return builder
          * 

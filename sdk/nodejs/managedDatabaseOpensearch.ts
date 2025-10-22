@@ -69,6 +69,10 @@ export class ManagedDatabaseOpensearch extends pulumi.CustomResource {
      */
     declare public readonly accessControl: pulumi.Output<boolean>;
     /**
+     * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     */
+    declare public readonly additionalDiskSpaceGib: pulumi.Output<number>;
+    /**
      * Service component information
      */
     declare public /*out*/ readonly components: pulumi.Output<outputs.ManagedDatabaseOpensearchComponent[]>;
@@ -101,7 +105,7 @@ export class ManagedDatabaseOpensearch extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly nodeStates: pulumi.Output<outputs.ManagedDatabaseOpensearchNodeState[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
      */
     declare public readonly plan: pulumi.Output<string>;
     /**
@@ -171,6 +175,7 @@ export class ManagedDatabaseOpensearch extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ManagedDatabaseOpensearchState | undefined;
             resourceInputs["accessControl"] = state?.accessControl;
+            resourceInputs["additionalDiskSpaceGib"] = state?.additionalDiskSpaceGib;
             resourceInputs["components"] = state?.components;
             resourceInputs["extendedAccessControl"] = state?.extendedAccessControl;
             resourceInputs["labels"] = state?.labels;
@@ -205,6 +210,7 @@ export class ManagedDatabaseOpensearch extends pulumi.CustomResource {
                 throw new Error("Missing required property 'zone'");
             }
             resourceInputs["accessControl"] = args?.accessControl;
+            resourceInputs["additionalDiskSpaceGib"] = args?.additionalDiskSpaceGib;
             resourceInputs["extendedAccessControl"] = args?.extendedAccessControl;
             resourceInputs["labels"] = args?.labels;
             resourceInputs["maintenanceWindowDow"] = args?.maintenanceWindowDow;
@@ -244,6 +250,10 @@ export interface ManagedDatabaseOpensearchState {
      */
     accessControl?: pulumi.Input<boolean>;
     /**
+     * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     */
+    additionalDiskSpaceGib?: pulumi.Input<number>;
+    /**
      * Service component information
      */
     components?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseOpensearchComponent>[]>;
@@ -276,7 +286,7 @@ export interface ManagedDatabaseOpensearchState {
      */
     nodeStates?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseOpensearchNodeState>[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
      */
     plan?: pulumi.Input<string>;
     /**
@@ -342,6 +352,10 @@ export interface ManagedDatabaseOpensearchArgs {
      */
     accessControl?: pulumi.Input<boolean>;
     /**
+     * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     */
+    additionalDiskSpaceGib?: pulumi.Input<number>;
+    /**
      * Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
      */
     extendedAccessControl?: pulumi.Input<boolean>;
@@ -366,7 +380,7 @@ export interface ManagedDatabaseOpensearchArgs {
      */
     networks?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseOpensearchNetwork>[]>;
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans <type>`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
      */
     plan: pulumi.Input<string>;
     /**

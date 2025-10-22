@@ -60,6 +60,12 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<bool> AccessControl { get; private set; } = null!;
 
         /// <summary>
+        /// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        /// </summary>
+        [Output("additionalDiskSpaceGib")]
+        public Output<int> AdditionalDiskSpaceGib { get; private set; } = null!;
+
+        /// <summary>
         /// Service component information
         /// </summary>
         [Output("components")]
@@ -108,7 +114,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<Outputs.ManagedDatabaseOpensearchNodeState>> NodeStates { get; private set; } = null!;
 
         /// <summary>
-        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
         /// </summary>
         [Output("plan")]
         public Output<string> Plan { get; private set; } = null!;
@@ -250,6 +256,12 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<bool>? AccessControl { get; set; }
 
         /// <summary>
+        /// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        /// </summary>
+        [Input("additionalDiskSpaceGib")]
+        public Input<int>? AdditionalDiskSpaceGib { get; set; }
+
+        /// <summary>
         /// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
         /// </summary>
         [Input("extendedAccessControl")]
@@ -298,7 +310,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
         /// </summary>
         [Input("plan", required: true)]
         public Input<string> Plan { get; set; } = null!;
@@ -346,6 +358,12 @@ namespace UpCloud.Pulumi.UpCloud
         /// </summary>
         [Input("accessControl")]
         public Input<bool>? AccessControl { get; set; }
+
+        /// <summary>
+        /// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        /// </summary>
+        [Input("additionalDiskSpaceGib")]
+        public Input<int>? AdditionalDiskSpaceGib { get; set; }
 
         [Input("components")]
         private InputList<Inputs.ManagedDatabaseOpensearchComponentGetArgs>? _components;
@@ -420,7 +438,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+        /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }

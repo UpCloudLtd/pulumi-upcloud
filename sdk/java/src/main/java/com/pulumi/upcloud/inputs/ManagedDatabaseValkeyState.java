@@ -10,6 +10,7 @@ import com.pulumi.upcloud.inputs.ManagedDatabaseValkeyNetworkArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseValkeyNodeStateArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseValkeyPropertiesArgs;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,21 @@ import javax.annotation.Nullable;
 public final class ManagedDatabaseValkeyState extends com.pulumi.resources.ResourceArgs {
 
     public static final ManagedDatabaseValkeyState Empty = new ManagedDatabaseValkeyState();
+
+    /**
+     * Not supported for `valkey` databases. Should be left unconfigured.
+     * 
+     */
+    @Import(name="additionalDiskSpaceGib")
+    private @Nullable Output<Integer> additionalDiskSpaceGib;
+
+    /**
+     * @return Not supported for `valkey` databases. Should be left unconfigured.
+     * 
+     */
+    public Optional<Output<Integer>> additionalDiskSpaceGib() {
+        return Optional.ofNullable(this.additionalDiskSpaceGib);
+    }
 
     /**
      * Service component information
@@ -128,14 +144,14 @@ public final class ManagedDatabaseValkeyState extends com.pulumi.resources.Resou
     }
 
     /**
-     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
      * 
      */
     @Import(name="plan")
     private @Nullable Output<String> plan;
 
     /**
-     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+     * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
      * 
      */
     public Optional<Output<String>> plan() {
@@ -340,6 +356,7 @@ public final class ManagedDatabaseValkeyState extends com.pulumi.resources.Resou
     private ManagedDatabaseValkeyState() {}
 
     private ManagedDatabaseValkeyState(ManagedDatabaseValkeyState $) {
+        this.additionalDiskSpaceGib = $.additionalDiskSpaceGib;
         this.components = $.components;
         this.labels = $.labels;
         this.maintenanceWindowDow = $.maintenanceWindowDow;
@@ -379,6 +396,27 @@ public final class ManagedDatabaseValkeyState extends com.pulumi.resources.Resou
 
         public Builder(ManagedDatabaseValkeyState defaults) {
             $ = new ManagedDatabaseValkeyState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param additionalDiskSpaceGib Not supported for `valkey` databases. Should be left unconfigured.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder additionalDiskSpaceGib(@Nullable Output<Integer> additionalDiskSpaceGib) {
+            $.additionalDiskSpaceGib = additionalDiskSpaceGib;
+            return this;
+        }
+
+        /**
+         * @param additionalDiskSpaceGib Not supported for `valkey` databases. Should be left unconfigured.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder additionalDiskSpaceGib(Integer additionalDiskSpaceGib) {
+            return additionalDiskSpaceGib(Output.of(additionalDiskSpaceGib));
         }
 
         /**
@@ -559,7 +597,7 @@ public final class ManagedDatabaseValkeyState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
          * 
          * @return builder
          * 
@@ -570,7 +608,7 @@ public final class ManagedDatabaseValkeyState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans &lt;type&gt;`.
+         * @param plan Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
          * 
          * @return builder
          * 

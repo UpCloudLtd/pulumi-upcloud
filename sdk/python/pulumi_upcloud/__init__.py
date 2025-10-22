@@ -55,7 +55,6 @@ from .managed_object_storage_user_access_key import *
 from .managed_object_storage_user_policy import *
 from .network import *
 from .network_peering import *
-from .object_storage import *
 from .provider import *
 from .router import *
 from .server import *
@@ -340,14 +339,6 @@ _utilities.register(
   "fqn": "pulumi_upcloud",
   "classes": {
    "upcloud:index/networkPeering:NetworkPeering": "NetworkPeering"
-  }
- },
- {
-  "pkg": "upcloud",
-  "mod": "index/objectStorage",
-  "fqn": "pulumi_upcloud",
-  "classes": {
-   "upcloud:index/objectStorage:ObjectStorage": "ObjectStorage"
   }
  },
  {
