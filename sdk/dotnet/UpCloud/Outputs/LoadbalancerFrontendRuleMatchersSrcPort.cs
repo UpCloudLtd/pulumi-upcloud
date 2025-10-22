@@ -19,7 +19,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? Inverse;
         /// <summary>
-        /// Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
+        /// Match method (`Equal`, `Greater`, `GreaterOrEqual`, `Less`, `LessOrEqual`).
         /// </summary>
         public readonly string Method;
         /// <summary>

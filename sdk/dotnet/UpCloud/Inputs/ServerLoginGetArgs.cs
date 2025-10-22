@@ -32,7 +32,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         }
 
         /// <summary>
-        /// The delivery method for the server's root password (one of `none`, `email` or `sms`)
+        /// The delivery method for the server's root password (one of `None`, `Email` or `Sms`)
         /// </summary>
         [Input("passwordDelivery")]
         public Input<string>? PasswordDelivery { get; set; }

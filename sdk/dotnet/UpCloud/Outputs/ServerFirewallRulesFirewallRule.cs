@@ -39,7 +39,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? DestinationPortStart;
         /// <summary>
-        /// The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
+        /// The direction of network traffic this rule will be applied to. Valid values are `In` and `Out`.
         /// </summary>
         public readonly string Direction;
         /// <summary>
@@ -51,7 +51,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? IcmpType;
         /// <summary>
-        /// The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
+        /// The protocol of the rule. Possible values are `` (empty), `Tcp`, `Udp`, `Icmp`.
         /// </summary>
         public readonly string? Protocol;
         /// <summary>

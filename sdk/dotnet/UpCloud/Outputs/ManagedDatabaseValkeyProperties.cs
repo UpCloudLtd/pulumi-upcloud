@@ -27,7 +27,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? BackupMinute;
         /// <summary>
-        /// Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkey_persistence` is set to `off`.
+        /// Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `ValkeyPersistence` is set to `Off`.
         /// </summary>
         public readonly bool? FrequentSnapshots;
         /// <summary>
@@ -47,7 +47,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? ServiceLog;
         /// <summary>
-        /// Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+        /// Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, AllChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
         /// </summary>
         public readonly string? ValkeyAclChannelsDefault;
         /// <summary>

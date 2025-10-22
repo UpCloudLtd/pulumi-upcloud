@@ -23,7 +23,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Keys;
         /// <summary>
-        /// The delivery method for the server's root password (one of `none`, `email` or `sms`)
+        /// The delivery method for the server's root password (one of `None`, `Email` or `Sms`)
         /// </summary>
         public readonly string? PasswordDelivery;
         /// <summary>

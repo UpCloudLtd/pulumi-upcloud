@@ -56,7 +56,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<bool>? PublicAccess { get; set; }
 
         /// <summary>
-        /// Default ACL for pub/sub channels used when Redis user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Redis configuration acl-pubsub-default.
+        /// Default ACL for pub/sub channels used when Redis user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, AllChannels is assumed to keep backward compatibility. This option doesn't affect Redis configuration acl-pubsub-default.
         /// </summary>
         [Input("redisAclChannelsDefault")]
         public Input<string>? RedisAclChannelsDefault { get; set; }

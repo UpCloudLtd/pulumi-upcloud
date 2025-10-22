@@ -15,7 +15,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// Provides information on UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.
         /// 
-        /// Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `normal`, `backup`, `cdrom`, and `template`.
+        /// Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `Normal`, `Backup`, `Cdrom`, and `Template`.
         /// 
         /// ## Example Usage
         /// 
@@ -86,7 +86,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// Provides information on UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.
         /// 
-        /// Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `normal`, `backup`, `cdrom`, and `template`.
+        /// Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `Normal`, `Backup`, `Cdrom`, and `Template`.
         /// 
         /// ## Example Usage
         /// 
@@ -157,7 +157,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// Provides information on UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.
         /// 
-        /// Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `normal`, `backup`, `cdrom`, and `template`.
+        /// Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `Normal`, `Backup`, `Cdrom`, and `Template`.
         /// 
         /// ## Example Usage
         /// 

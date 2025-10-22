@@ -15,7 +15,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
     public sealed class LoadbalancerBackendProperties
     {
         /// <summary>
-        /// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `tcp` `health_check_type`.
+        /// Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `Tcp` `HealthCheckType`.
         /// </summary>
         public readonly int? HealthCheckExpectedStatus;
         /// <summary>
@@ -39,11 +39,11 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? HealthCheckType;
         /// <summary>
-        /// Target path for health check HTTP GET requests. Ignored for `tcp` `health_check_type`.
+        /// Target path for health check HTTP GET requests. Ignored for `Tcp` `HealthCheckType`.
         /// </summary>
         public readonly string? HealthCheckUrl;
         /// <summary>
-        /// Allow HTTP/2 connections to backend members by utilizing ALPN extension of TLS protocol, therefore it can only be enabled when tls_enabled is set to true. Note: members should support HTTP/2 for this setting to work.
+        /// Allow HTTP/2 connections to backend members by utilizing ALPN extension of TLS protocol, therefore it can only be enabled when TlsEnabled is set to true. Note: members should support HTTP/2 for this setting to work.
         /// </summary>
         public readonly bool? Http2Enabled;
         /// <summary>
@@ -71,7 +71,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? TlsUseSystemCa;
         /// <summary>
-        /// Enables backend servers certificate verification. Please make sure that TLS config with the certificate bundle of type authority attached to the backend or `tls_use_system_ca` enabled. Note: `tls_verify` has preference over `health_check_tls_verify` when `tls_enabled` in true.
+        /// Enables backend servers certificate verification. Please make sure that TLS config with the certificate bundle of type authority attached to the backend or `TlsUseSystemCa` enabled. Note: `TlsVerify` has preference over `HealthCheckTlsVerify` when `TlsEnabled` in true.
         /// </summary>
         public readonly bool? TlsVerify;
 

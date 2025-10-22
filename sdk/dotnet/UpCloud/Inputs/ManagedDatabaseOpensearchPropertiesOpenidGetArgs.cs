@@ -80,7 +80,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? Scope { get; set; }
 
         /// <summary>
-        /// The key in the JSON payload that stores the user’s name. The key in the JSON payload that stores the user’s name. If not defined, the subject registered claim is used. Most IdP providers use the preferred_username claim. Optional.
+        /// The key in the JSON payload that stores the user’s name. The key in the JSON payload that stores the user’s name. If not defined, the subject registered claim is used. Most IdP providers use the PreferredUsername claim. Optional.
         /// </summary>
         [Input("subjectKey")]
         public Input<string>? SubjectKey { get; set; }

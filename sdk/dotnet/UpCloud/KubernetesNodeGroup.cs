@@ -126,7 +126,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> Cluster { get; private set; } = null!;
 
         /// <summary>
-        /// Resource properties for custom plan. This block is required for `custom` plans only.
+        /// Resource properties for custom plan. This block is required for `Custom` plans only.
         /// </summary>
         [Output("customPlan")]
         public Output<Outputs.KubernetesNodeGroupCustomPlan?> CustomPlan { get; private set; } = null!;
@@ -176,7 +176,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<string>> SshKeys { get; private set; } = null!;
 
         /// <summary>
-        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
+        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `None`.
         /// </summary>
         [Output("storageEncryption")]
         public Output<string> StorageEncryption { get; private set; } = null!;
@@ -259,7 +259,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string> Cluster { get; set; } = null!;
 
         /// <summary>
-        /// Resource properties for custom plan. This block is required for `custom` plans only.
+        /// Resource properties for custom plan. This block is required for `Custom` plans only.
         /// </summary>
         [Input("customPlan")]
         public Input<Inputs.KubernetesNodeGroupCustomPlanArgs>? CustomPlan { get; set; }
@@ -327,7 +327,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
+        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `None`.
         /// </summary>
         [Input("storageEncryption")]
         public Input<string>? StorageEncryption { get; set; }
@@ -377,7 +377,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? Cluster { get; set; }
 
         /// <summary>
-        /// Resource properties for custom plan. This block is required for `custom` plans only.
+        /// Resource properties for custom plan. This block is required for `Custom` plans only.
         /// </summary>
         [Input("customPlan")]
         public Input<Inputs.KubernetesNodeGroupCustomPlanGetArgs>? CustomPlan { get; set; }
@@ -445,7 +445,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
+        /// The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `None`.
         /// </summary>
         [Input("storageEncryption")]
         public Input<string>? StorageEncryption { get; set; }

@@ -26,7 +26,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? IpAddressFamily { get; set; }
 
         /// <summary>
-        /// `true` indicates that the additional IP address is a floating IP address.
+        /// `True` indicates that the additional IP address is a floating IP address.
         /// </summary>
         [Input("ipAddressFloating")]
         public Input<bool>? IpAddressFloating { get; set; }

@@ -19,7 +19,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
-        /// Limits the maximum amount of memory (in MiB) the OpenSearch Dashboards process can use. This sets the max_old_space_size option of the nodejs running the OpenSearch Dashboards. Note: the memory reserved by OpenSearch Dashboards is not available for OpenSearch.
+        /// Limits the maximum amount of memory (in MiB) the OpenSearch Dashboards process can use. This sets the MaxOldSpaceSize option of the nodejs running the OpenSearch Dashboards. Note: the memory reserved by OpenSearch Dashboards is not available for OpenSearch.
         /// </summary>
         public readonly int? MaxOldSpaceSize;
         /// <summary>

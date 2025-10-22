@@ -71,7 +71,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> ServiceUuid { get; private set; } = null!;
 
         /// <summary>
-        /// At the moment only `public` is accepted.
+        /// At the moment only `Public` is accepted.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -136,7 +136,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string> ServiceUuid { get; set; } = null!;
 
         /// <summary>
-        /// At the moment only `public` is accepted.
+        /// At the moment only `Public` is accepted.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -162,7 +162,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? ServiceUuid { get; set; }
 
         /// <summary>
-        /// At the moment only `public` is accepted.
+        /// At the moment only `Public` is accepted.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

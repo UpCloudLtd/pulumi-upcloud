@@ -11,7 +11,7 @@ using Pulumi;
 namespace UpCloud.Pulumi.UpCloud
 {
     /// <summary>
-    /// Manages UpCloud storage templates. The storage templates are stored in the system as storages with `template` type.
+    /// Manages UpCloud storage templates. The storage templates are stored in the system as storages with `Template` type.
     /// 
     /// ## Example Usage
     /// 

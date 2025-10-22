@@ -14,7 +14,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
     public sealed class LoadbalancerFrontendRuleMatchersNumMembersUpGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the `backend`.
+        /// The name of the `Backend`.
         /// </summary>
         [Input("backendName", required: true)]
         public Input<string> BackendName { get; set; } = null!;
@@ -26,7 +26,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<bool>? Inverse { get; set; }
 
         /// <summary>
-        /// Match method (`equal`, `greater`, `greater_or_equal`, `less`, `less_or_equal`).
+        /// Match method (`Equal`, `Greater`, `GreaterOrEqual`, `Less`, `LessOrEqual`).
         /// </summary>
         [Input("method", required: true)]
         public Input<string> Method { get; set; } = null!;

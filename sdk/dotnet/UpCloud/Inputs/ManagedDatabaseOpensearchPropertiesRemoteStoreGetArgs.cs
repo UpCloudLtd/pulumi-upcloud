@@ -26,7 +26,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? SegmentPressureConsecutiveFailuresLimit { get; set; }
 
         /// <summary>
-        /// Enables remote segment backpressure. Enables remote segment backpressure. Default is `true`.
+        /// Enables remote segment backpressure. Enables remote segment backpressure. Default is `True`.
         /// </summary>
         [Input("segmentPressureEnabled")]
         public Input<bool>? SegmentPressureEnabled { get; set; }

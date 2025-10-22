@@ -16,6 +16,8 @@ import (
 //
 // > To deploy a GPU server, select a plan with `GPU-` prefix, e.g., `GPU-8xCPU-64GB-1xL40S`. Use `upctl zone devices` command to list per zone GPU availability.
 //
+// ## Example Usage
+//
 // ## Import
 //
 // ```sh

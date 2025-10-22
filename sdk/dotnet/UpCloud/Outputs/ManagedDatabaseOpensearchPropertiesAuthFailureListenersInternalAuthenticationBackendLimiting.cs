@@ -19,7 +19,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? AllowedTries;
         /// <summary>
-        /// The internal backend. Enter `internal`.
+        /// The internal backend. Enter `Internal`.
         /// </summary>
         public readonly string? AuthenticationBackend;
         /// <summary>
@@ -35,7 +35,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? MaxTrackedClients;
         /// <summary>
-        /// The window of time in which the value for `allowed_tries` is enforced.
+        /// The window of time in which the value for `AllowedTries` is enforced.
         /// </summary>
         public readonly int? TimeWindowSeconds;
         /// <summary>

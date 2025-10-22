@@ -15,11 +15,11 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
     public sealed class ServerStorageDevice
     {
         /// <summary>
-        /// The device address the storage will be attached to (`scsi`|`virtio`|`ide`). Leave `address_position` field empty to auto-select next available address from that bus.
+        /// The device address the storage will be attached to (`Scsi`|`Virtio`|`Ide`). Leave `AddressPosition` field empty to auto-select next available address from that bus.
         /// </summary>
         public readonly string? Address;
         /// <summary>
-        /// The device position in the given bus (defined via field `address`). Valid values for address `virtio` are `0-15` (`0`, for example). Valid values for `scsi` or `ide` are `0-1:0-1` (`0:0`, for example). Leave empty to auto-select next available address in the given bus.
+        /// The device position in the given bus (defined via field `Address`). Valid values for address `Virtio` are `0-15` (`0`, for example). Valid values for `Scsi` or `Ide` are `0-1:0-1` (`0:0`, for example). Leave empty to auto-select next available address in the given bus.
         /// </summary>
         public readonly string? AddressPosition;
         /// <summary>

@@ -180,13 +180,13 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         }
 
         /// <summary>
-        /// The slow log output destination when slow_query_log is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
+        /// The slow log output destination when SlowQueryLog is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
         /// </summary>
         [Input("logOutput")]
         public Input<string>? LogOutput { get; set; }
 
         /// <summary>
-        /// The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute.
+        /// The SlowQueryLogs work as SQL statements that take more than LongQueryTime seconds to execute.
         /// </summary>
         [Input("longQueryTime")]
         public Input<double>? LongQueryTime { get; set; }
@@ -246,7 +246,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<bool>? ServiceLog { get; set; }
 
         /// <summary>
-        /// Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table.
+        /// Slow query log enables capturing of slow queries. Setting SlowQueryLog to false also truncates the mysql.slow_log table.
         /// </summary>
         [Input("slowQueryLog")]
         public Input<bool>? SlowQueryLog { get; set; }

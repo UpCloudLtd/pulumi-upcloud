@@ -15,11 +15,11 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
     public sealed class ServerNetworkInterface
     {
         /// <summary>
-        /// 0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
+        /// 0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `Private`
         /// </summary>
         public readonly ImmutableArray<Outputs.ServerNetworkInterfaceAdditionalIpAddress> AdditionalIpAddresses;
         /// <summary>
-        /// `true` if this interface should be used for network booting.
+        /// `True` if this interface should be used for network booting.
         /// </summary>
         public readonly bool? Bootable;
         /// <summary>
@@ -35,7 +35,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? IpAddressFamily;
         /// <summary>
-        /// `true` indicates that the primary IP address is a floating IP address.
+        /// `True` indicates that the primary IP address is a floating IP address.
         /// </summary>
         public readonly bool? IpAddressFloating;
         /// <summary>
@@ -47,7 +47,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? Network;
         /// <summary>
-        /// `true` if source IP should be filtered.
+        /// `True` if source IP should be filtered.
         /// </summary>
         public readonly bool? SourceIpFiltering;
         /// <summary>

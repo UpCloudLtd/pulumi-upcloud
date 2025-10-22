@@ -89,7 +89,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         private InputList<Inputs.LoadbalancerFrontendRuleActionsUseBackendArgs>? _useBackends;
 
         /// <summary>
-        /// Routes traffic to specified `backend`.
+        /// Routes traffic to specified `Backend`.
         /// </summary>
         public InputList<Inputs.LoadbalancerFrontendRuleActionsUseBackendArgs> UseBackends
         {

@@ -128,7 +128,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<Outputs.LoadbalancerFrontendRuleMatchers?> Matchers { get; private set; } = null!;
 
         /// <summary>
-        /// Defines boolean operator used to combine multiple matchers. Defaults to `and`.
+        /// Defines boolean operator used to combine multiple matchers. Defaults to `And`.
         /// </summary>
         [Output("matchingCondition")]
         public Output<string> MatchingCondition { get; private set; } = null!;
@@ -211,7 +211,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<Inputs.LoadbalancerFrontendRuleMatchersArgs>? Matchers { get; set; }
 
         /// <summary>
-        /// Defines boolean operator used to combine multiple matchers. Defaults to `and`.
+        /// Defines boolean operator used to combine multiple matchers. Defaults to `And`.
         /// </summary>
         [Input("matchingCondition")]
         public Input<string>? MatchingCondition { get; set; }
@@ -255,7 +255,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<Inputs.LoadbalancerFrontendRuleMatchersGetArgs>? Matchers { get; set; }
 
         /// <summary>
-        /// Defines boolean operator used to combine multiple matchers. Defaults to `and`.
+        /// Defines boolean operator used to combine multiple matchers. Defaults to `And`.
         /// </summary>
         [Input("matchingCondition")]
         public Input<string>? MatchingCondition { get; set; }

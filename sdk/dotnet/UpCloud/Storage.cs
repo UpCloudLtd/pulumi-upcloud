@@ -44,7 +44,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<bool> Encrypt { get; private set; } = null!;
 
         /// <summary>
-        /// If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `delete_autoresize_backup` option is set to true).
+        /// If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `DeleteAutoresizeBackup` option is set to true).
         /// 				Taking and keeping backups incure costs.
         /// </summary>
         [Output("filesystemAutoresize")]
@@ -167,7 +167,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<bool>? Encrypt { get; set; }
 
         /// <summary>
-        /// If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `delete_autoresize_backup` option is set to true).
+        /// If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `DeleteAutoresizeBackup` option is set to true).
         /// 				Taking and keeping backups incure costs.
         /// </summary>
         [Input("filesystemAutoresize")]
@@ -245,7 +245,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<bool>? Encrypt { get; set; }
 
         /// <summary>
-        /// If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `delete_autoresize_backup` option is set to true).
+        /// If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `DeleteAutoresizeBackup` option is set to true).
         /// 				Taking and keeping backups incure costs.
         /// </summary>
         [Input("filesystemAutoresize")]

@@ -14,13 +14,13 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
     public sealed class ServerTemplateGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The device address the storage will be attached to (`scsi`|`virtio`|`ide`). Leave `address_position` field empty to auto-select next available address from that bus.
+        /// The device address the storage will be attached to (`Scsi`|`Virtio`|`Ide`). Leave `AddressPosition` field empty to auto-select next available address from that bus.
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// The device position in the given bus (defined via field `address`). For example `0:0`, or `0`. Leave empty to auto-select next available address in the given bus.
+        /// The device position in the given bus (defined via field `Address`). For example `0:0`, or `0`. Leave empty to auto-select next available address in the given bus.
         /// </summary>
         [Input("addressPosition")]
         public Input<string>? AddressPosition { get; set; }
@@ -43,7 +43,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         /// <summary>
         /// If set to true, provider will attempt to resize partition and filesystem when the size of template storage changes.
         /// 							Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used
-        /// 							to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless delete_autoresize_backup option is set to true).
+        /// 							to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless DeleteAutoresizeBackup option is set to true).
         /// 							Taking and keeping backups incure costs.
         /// </summary>
         [Input("filesystemAutoresize")]

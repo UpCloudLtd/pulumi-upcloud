@@ -50,7 +50,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         }
 
         /// <summary>
-        /// PgBouncer tracks protocol-level named prepared statements related commands sent by the client in transaction and statement pooling modes when max_prepared_statements is set to a non-zero value. Setting it to 0 disables prepared statements. max_prepared_statements defaults to 100, and its maximum is 3000.
+        /// PgBouncer tracks protocol-level named prepared statements related commands sent by the client in transaction and statement pooling modes when MaxPreparedStatements is set to a non-zero value. Setting it to 0 disables prepared statements. MaxPreparedStatements defaults to 100, and its maximum is 3000.
         /// </summary>
         [Input("maxPreparedStatements")]
         public Input<int>? MaxPreparedStatements { get; set; }
@@ -74,7 +74,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? ServerLifetime { get; set; }
 
         /// <summary>
-        /// Run server_reset_query (DISCARD ALL) in all pooling modes.
+        /// Run ServerResetQuery (DISCARD ALL) in all pooling modes.
         /// </summary>
         [Input("serverResetQueryAlways")]
         public Input<bool>? ServerResetQueryAlways { get; set; }

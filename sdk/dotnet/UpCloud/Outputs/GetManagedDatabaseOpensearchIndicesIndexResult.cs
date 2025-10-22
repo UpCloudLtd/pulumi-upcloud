@@ -23,7 +23,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int Docs;
         /// <summary>
-        /// Health status of the index e.g. `green`, `yellow`, or `red`.
+        /// Health status of the index e.g. `Green`, `Yellow`, or `Red`.
         /// </summary>
         public readonly string Health;
         /// <summary>
@@ -47,7 +47,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int Size;
         /// <summary>
-        /// Status of the index e.g. `open` or `closed`.
+        /// Status of the index e.g. `Open` or `Closed`.
         /// </summary>
         public readonly string Status;
 
