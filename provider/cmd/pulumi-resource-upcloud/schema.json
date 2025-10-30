@@ -89,6 +89,83 @@
         }
     },
     "types": {
+        "upcloud:index/FileStorageNetwork:FileStorageNetwork": {
+            "properties": {
+                "family": {
+                    "type": "string",
+                    "description": "IP family, e.g. IPv4.\n"
+                },
+                "ipAddress": {
+                    "type": "string",
+                    "description": "IP address to assign (optional, auto-assign otherwise).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Attachment name (unique per this service).\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "UUID of an existing private network to attach.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "family",
+                "name",
+                "uuid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "family",
+                        "ipAddress",
+                        "name",
+                        "uuid"
+                    ]
+                }
+            }
+        },
+        "upcloud:index/FileStorageShare:FileStorageShare": {
+            "properties": {
+                "acls": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/upcloud:index/FileStorageShareAcl:FileStorageShareAcl"
+                    },
+                    "description": "Access control entries (1–50).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the share (1–64 chars).\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Absolute path exported by the share (e.g. `/public`).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "path"
+            ]
+        },
+        "upcloud:index/FileStorageShareAcl:FileStorageShareAcl": {
+            "properties": {
+                "permission": {
+                    "type": "string",
+                    "description": "Access level: 'ro' or 'rw'.\n"
+                },
+                "target": {
+                    "type": "string",
+                    "description": "Target IP/CIDR or '*'.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "permission",
+                "target"
+            ]
+        },
         "upcloud:index/GatewayAddress:GatewayAddress": {
             "properties": {
                 "address": {
@@ -5954,6 +6031,142 @@
         }
     },
     "resources": {
+        "upcloud:index/fileStorage:FileStorage": {
+            "description": "Resource for managing UpCloud file storages (EXPERIMENTAL)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\n// Create network for the File Storage\nconst _this = new upcloud.Network(\"this\", {\n    name: \"file-storage-net-test\",\n    zone: \"fi-hel2\",\n    ipNetwork: {\n        address: \"172.16.8.0/24\",\n        dhcp: true,\n        family: \"IPv4\",\n    },\n});\nconst example = new upcloud.FileStorage(\"example\", {\n    name: \"example-file-storage-test\",\n    size: 250,\n    zone: \"fi-hel2\",\n    configuredStatus: \"stopped\",\n    labels: {\n        environment: \"staging\",\n        customer: \"example-customer\",\n    },\n    shares: [{\n        name: \"write-to-project\",\n        path: \"/project\",\n        acls: [{\n            target: \"172.16.8.12\",\n            permission: \"rw\",\n        }],\n    }],\n    networks: [{\n        family: \"IPv4\",\n        name: \"example-private-net\",\n        uuid: _this.id,\n        ipAddress: \"172.16.8.11\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# Create network for the File Storage\nthis = upcloud.Network(\"this\",\n    name=\"file-storage-net-test\",\n    zone=\"fi-hel2\",\n    ip_network={\n        \"address\": \"172.16.8.0/24\",\n        \"dhcp\": True,\n        \"family\": \"IPv4\",\n    })\nexample = upcloud.FileStorage(\"example\",\n    name=\"example-file-storage-test\",\n    size=250,\n    zone=\"fi-hel2\",\n    configured_status=\"stopped\",\n    labels={\n        \"environment\": \"staging\",\n        \"customer\": \"example-customer\",\n    },\n    shares=[{\n        \"name\": \"write-to-project\",\n        \"path\": \"/project\",\n        \"acls\": [{\n            \"target\": \"172.16.8.12\",\n            \"permission\": \"rw\",\n        }],\n    }],\n    networks=[{\n        \"family\": \"IPv4\",\n        \"name\": \"example-private-net\",\n        \"uuid\": this.id,\n        \"ip_address\": \"172.16.8.11\",\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create network for the File Storage\n    var @this = new UpCloud.Network(\"this\", new()\n    {\n        Name = \"file-storage-net-test\",\n        Zone = \"fi-hel2\",\n        IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs\n        {\n            Address = \"172.16.8.0/24\",\n            Dhcp = true,\n            Family = \"IPv4\",\n        },\n    });\n\n    var example = new UpCloud.FileStorage(\"example\", new()\n    {\n        Name = \"example-file-storage-test\",\n        Size = 250,\n        Zone = \"fi-hel2\",\n        ConfiguredStatus = \"stopped\",\n        Labels = \n        {\n            { \"environment\", \"staging\" },\n            { \"customer\", \"example-customer\" },\n        },\n        Shares = new[]\n        {\n            new UpCloud.Inputs.FileStorageShareArgs\n            {\n                Name = \"write-to-project\",\n                Path = \"/project\",\n                Acls = new[]\n                {\n                    new UpCloud.Inputs.FileStorageShareAclArgs\n                    {\n                        Target = \"172.16.8.12\",\n                        Permission = \"rw\",\n                    },\n                },\n            },\n        },\n        Networks = new[]\n        {\n            new UpCloud.Inputs.FileStorageNetworkArgs\n            {\n                Family = \"IPv4\",\n                Name = \"example-private-net\",\n                Uuid = @this.Id,\n                IpAddress = \"172.16.8.11\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create network for the File Storage\n\t\tthis, err := upcloud.NewNetwork(ctx, \"this\", \u0026upcloud.NetworkArgs{\n\t\t\tName: pulumi.String(\"file-storage-net-test\"),\n\t\t\tZone: pulumi.String(\"fi-hel2\"),\n\t\t\tIpNetwork: \u0026upcloud.NetworkIpNetworkArgs{\n\t\t\t\tAddress: pulumi.String(\"172.16.8.0/24\"),\n\t\t\t\tDhcp:    pulumi.Bool(true),\n\t\t\t\tFamily:  pulumi.String(\"IPv4\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewFileStorage(ctx, \"example\", \u0026upcloud.FileStorageArgs{\n\t\t\tName:             pulumi.String(\"example-file-storage-test\"),\n\t\t\tSize:             pulumi.Int(250),\n\t\t\tZone:             pulumi.String(\"fi-hel2\"),\n\t\t\tConfiguredStatus: pulumi.String(\"stopped\"),\n\t\t\tLabels: pulumi.StringMap{\n\t\t\t\t\"environment\": pulumi.String(\"staging\"),\n\t\t\t\t\"customer\":    pulumi.String(\"example-customer\"),\n\t\t\t},\n\t\t\tShares: upcloud.FileStorageShareArray{\n\t\t\t\t\u0026upcloud.FileStorageShareArgs{\n\t\t\t\t\tName: pulumi.String(\"write-to-project\"),\n\t\t\t\t\tPath: pulumi.String(\"/project\"),\n\t\t\t\t\tAcls: upcloud.FileStorageShareAclArray{\n\t\t\t\t\t\t\u0026upcloud.FileStorageShareAclArgs{\n\t\t\t\t\t\t\tTarget:     pulumi.String(\"172.16.8.12\"),\n\t\t\t\t\t\t\tPermission: pulumi.String(\"rw\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tNetworks: upcloud.FileStorageNetworkArray{\n\t\t\t\t\u0026upcloud.FileStorageNetworkArgs{\n\t\t\t\t\tFamily:    pulumi.String(\"IPv4\"),\n\t\t\t\t\tName:      pulumi.String(\"example-private-net\"),\n\t\t\t\t\tUuid:      this.ID(),\n\t\t\t\t\tIpAddress: pulumi.String(\"172.16.8.11\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.Network;\nimport com.pulumi.upcloud.NetworkArgs;\nimport com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;\nimport com.pulumi.upcloud.FileStorage;\nimport com.pulumi.upcloud.FileStorageArgs;\nimport com.pulumi.upcloud.inputs.FileStorageShareArgs;\nimport com.pulumi.upcloud.inputs.FileStorageNetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create network for the File Storage\n        var this_ = new Network(\"this\", NetworkArgs.builder()\n            .name(\"file-storage-net-test\")\n            .zone(\"fi-hel2\")\n            .ipNetwork(NetworkIpNetworkArgs.builder()\n                .address(\"172.16.8.0/24\")\n                .dhcp(true)\n                .family(\"IPv4\")\n                .build())\n            .build());\n\n        var example = new FileStorage(\"example\", FileStorageArgs.builder()\n            .name(\"example-file-storage-test\")\n            .size(250)\n            .zone(\"fi-hel2\")\n            .configuredStatus(\"stopped\")\n            .labels(Map.ofEntries(\n                Map.entry(\"environment\", \"staging\"),\n                Map.entry(\"customer\", \"example-customer\")\n            ))\n            .shares(FileStorageShareArgs.builder()\n                .name(\"write-to-project\")\n                .path(\"/project\")\n                .acls(FileStorageShareAclArgs.builder()\n                    .target(\"172.16.8.12\")\n                    .permission(\"rw\")\n                    .build())\n                .build())\n            .networks(FileStorageNetworkArgs.builder()\n                .family(\"IPv4\")\n                .name(\"example-private-net\")\n                .uuid(this_.id())\n                .ipAddress(\"172.16.8.11\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create network for the File Storage\n  this:\n    type: upcloud:Network\n    properties:\n      name: file-storage-net-test\n      zone: fi-hel2\n      ipNetwork:\n        address: 172.16.8.0/24\n        dhcp: true\n        family: IPv4\n  example:\n    type: upcloud:FileStorage\n    properties:\n      name: example-file-storage-test\n      size: 250\n      zone: fi-hel2\n      configuredStatus: stopped\n      labels:\n        environment: staging\n        customer: example-customer\n      shares:\n        - name: write-to-project\n          path: /project\n          acls:\n            - target: 172.16.8.12\n              permission: rw\n      networks:\n        - family: IPv4\n          name: example-private-net\n          uuid: ${this.id}\n          ipAddress: 172.16.8.11\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "configuredStatus": {
+                    "type": "string",
+                    "description": "The service configured status indicates the service's current intended status. Managed by the customer."
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "User defined key-value pairs to classify the file storage."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the file storage service."
+                },
+                "networks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/upcloud:index/FileStorageNetwork:FileStorageNetwork"
+                    },
+                    "description": "Network attached to this file storage (currently supports at most one of these blocks)."
+                },
+                "shares": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/upcloud:index/FileStorageShare:FileStorageShare"
+                    },
+                    "description": "List of shares exported by this file storage."
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "Size of the file storage in GB."
+                },
+                "zone": {
+                    "type": "string",
+                    "description": "Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`."
+                }
+            },
+            "required": [
+                "configuredStatus",
+                "labels",
+                "name",
+                "size",
+                "zone"
+            ],
+            "inputProperties": {
+                "configuredStatus": {
+                    "type": "string",
+                    "description": "The service configured status indicates the service's current intended status. Managed by the customer."
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "User defined key-value pairs to classify the file storage."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the file storage service."
+                },
+                "networks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/upcloud:index/FileStorageNetwork:FileStorageNetwork"
+                    },
+                    "description": "Network attached to this file storage (currently supports at most one of these blocks)."
+                },
+                "shares": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/upcloud:index/FileStorageShare:FileStorageShare"
+                    },
+                    "description": "List of shares exported by this file storage."
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "Size of the file storage in GB."
+                },
+                "zone": {
+                    "type": "string",
+                    "description": "Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`."
+                }
+            },
+            "requiredInputs": [
+                "configuredStatus",
+                "size",
+                "zone"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering FileStorage resources.\n",
+                "properties": {
+                    "configuredStatus": {
+                        "type": "string",
+                        "description": "The service configured status indicates the service's current intended status. Managed by the customer."
+                    },
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "User defined key-value pairs to classify the file storage."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the file storage service."
+                    },
+                    "networks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/upcloud:index/FileStorageNetwork:FileStorageNetwork"
+                        },
+                        "description": "Network attached to this file storage (currently supports at most one of these blocks)."
+                    },
+                    "shares": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/upcloud:index/FileStorageShare:FileStorageShare"
+                        },
+                        "description": "List of shares exported by this file storage."
+                    },
+                    "size": {
+                        "type": "integer",
+                        "description": "Size of the file storage in GB."
+                    },
+                    "zone": {
+                        "type": "string",
+                        "description": "Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`."
+                    }
+                },
+                "type": "object"
+            }
+        },
         "upcloud:index/floatingIpAddress:FloatingIpAddress": {
             "description": "This resource represents a UpCloud floating IP address resource.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\n// Create a detached floating IP address.\nconst myFloatingAddress = new upcloud.FloatingIpAddress(\"my_floating_address\", {zone: \"de-fra1\"});\n// Floating IP address assigned to a server resource.\nconst example = new upcloud.Server(\"example\", {\n    hostname: \"terraform.example.tld\",\n    zone: \"de-fra1\",\n    plan: \"1xCPU-1GB\",\n    metadata: true,\n    login: {\n        passwordDelivery: \"none\",\n    },\n    template: {\n        storage: \"Ubuntu Server 24.04 LTS (Noble Numbat)\",\n    },\n    networkInterfaces: [{\n        type: \"public\",\n    }],\n});\nconst myNewFloatingAddress = new upcloud.FloatingIpAddress(\"my_new_floating_address\", {macAddress: example.networkInterfaces.apply(networkInterfaces =\u003e networkInterfaces?.[0]?.macAddress)});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# Create a detached floating IP address.\nmy_floating_address = upcloud.FloatingIpAddress(\"my_floating_address\", zone=\"de-fra1\")\n# Floating IP address assigned to a server resource.\nexample = upcloud.Server(\"example\",\n    hostname=\"terraform.example.tld\",\n    zone=\"de-fra1\",\n    plan=\"1xCPU-1GB\",\n    metadata=True,\n    login={\n        \"password_delivery\": \"none\",\n    },\n    template={\n        \"storage\": \"Ubuntu Server 24.04 LTS (Noble Numbat)\",\n    },\n    network_interfaces=[{\n        \"type\": \"public\",\n    }])\nmy_new_floating_address = upcloud.FloatingIpAddress(\"my_new_floating_address\", mac_address=example.network_interfaces[0].mac_address)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a detached floating IP address.\n    var myFloatingAddress = new UpCloud.FloatingIpAddress(\"my_floating_address\", new()\n    {\n        Zone = \"de-fra1\",\n    });\n\n    // Floating IP address assigned to a server resource.\n    var example = new UpCloud.Server(\"example\", new()\n    {\n        Hostname = \"terraform.example.tld\",\n        Zone = \"de-fra1\",\n        Plan = \"1xCPU-1GB\",\n        Metadata = true,\n        Login = new UpCloud.Inputs.ServerLoginArgs\n        {\n            PasswordDelivery = \"none\",\n        },\n        Template = new UpCloud.Inputs.ServerTemplateArgs\n        {\n            Storage = \"Ubuntu Server 24.04 LTS (Noble Numbat)\",\n        },\n        NetworkInterfaces = new[]\n        {\n            new UpCloud.Inputs.ServerNetworkInterfaceArgs\n            {\n                Type = \"public\",\n            },\n        },\n    });\n\n    var myNewFloatingAddress = new UpCloud.FloatingIpAddress(\"my_new_floating_address\", new()\n    {\n        MacAddress = example.NetworkInterfaces.Apply(networkInterfaces =\u003e networkInterfaces[0]?.MacAddress),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a detached floating IP address.\n\t\t_, err := upcloud.NewFloatingIpAddress(ctx, \"my_floating_address\", \u0026upcloud.FloatingIpAddressArgs{\n\t\t\tZone: pulumi.String(\"de-fra1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Floating IP address assigned to a server resource.\n\t\texample, err := upcloud.NewServer(ctx, \"example\", \u0026upcloud.ServerArgs{\n\t\t\tHostname: pulumi.String(\"terraform.example.tld\"),\n\t\t\tZone:     pulumi.String(\"de-fra1\"),\n\t\t\tPlan:     pulumi.String(\"1xCPU-1GB\"),\n\t\t\tMetadata: pulumi.Bool(true),\n\t\t\tLogin: \u0026upcloud.ServerLoginArgs{\n\t\t\t\tPasswordDelivery: pulumi.String(\"none\"),\n\t\t\t},\n\t\t\tTemplate: \u0026upcloud.ServerTemplateArgs{\n\t\t\t\tStorage: pulumi.String(\"Ubuntu Server 24.04 LTS (Noble Numbat)\"),\n\t\t\t},\n\t\t\tNetworkInterfaces: upcloud.ServerNetworkInterfaceArray{\n\t\t\t\t\u0026upcloud.ServerNetworkInterfaceArgs{\n\t\t\t\t\tType: pulumi.String(\"public\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewFloatingIpAddress(ctx, \"my_new_floating_address\", \u0026upcloud.FloatingIpAddressArgs{\n\t\t\tMacAddress: pulumi.String(example.NetworkInterfaces.ApplyT(func(networkInterfaces []upcloud.ServerNetworkInterface) (*string, error) {\n\t\t\t\treturn \u0026networkInterfaces[0].MacAddress, nil\n\t\t\t}).(pulumi.StringPtrOutput)),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.FloatingIpAddress;\nimport com.pulumi.upcloud.FloatingIpAddressArgs;\nimport com.pulumi.upcloud.Server;\nimport com.pulumi.upcloud.ServerArgs;\nimport com.pulumi.upcloud.inputs.ServerLoginArgs;\nimport com.pulumi.upcloud.inputs.ServerTemplateArgs;\nimport com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a detached floating IP address.\n        var myFloatingAddress = new FloatingIpAddress(\"myFloatingAddress\", FloatingIpAddressArgs.builder()\n            .zone(\"de-fra1\")\n            .build());\n\n        // Floating IP address assigned to a server resource.\n        var example = new Server(\"example\", ServerArgs.builder()\n            .hostname(\"terraform.example.tld\")\n            .zone(\"de-fra1\")\n            .plan(\"1xCPU-1GB\")\n            .metadata(true)\n            .login(ServerLoginArgs.builder()\n                .passwordDelivery(\"none\")\n                .build())\n            .template(ServerTemplateArgs.builder()\n                .storage(\"Ubuntu Server 24.04 LTS (Noble Numbat)\")\n                .build())\n            .networkInterfaces(ServerNetworkInterfaceArgs.builder()\n                .type(\"public\")\n                .build())\n            .build());\n\n        var myNewFloatingAddress = new FloatingIpAddress(\"myNewFloatingAddress\", FloatingIpAddressArgs.builder()\n            .macAddress(example.networkInterfaces().applyValue(_networkInterfaces -\u003e _networkInterfaces[0].macAddress()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a detached floating IP address.\n  myFloatingAddress:\n    type: upcloud:FloatingIpAddress\n    name: my_floating_address\n    properties:\n      zone: de-fra1\n  # Floating IP address assigned to a server resource.\n  example:\n    type: upcloud:Server\n    properties:\n      hostname: terraform.example.tld\n      zone: de-fra1\n      plan: 1xCPU-1GB\n      metadata: true\n      login:\n        passwordDelivery: none\n      template:\n        storage: Ubuntu Server 24.04 LTS (Noble Numbat)\n      networkInterfaces:\n        - type: public\n  myNewFloatingAddress:\n    type: upcloud:FloatingIpAddress\n    name: my_new_floating_address\n    properties:\n      macAddress: ${example.networkInterfaces[0].macAddress}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import upcloud:index/floatingIpAddress:FloatingIpAddress my_new_floating_address 94.237.114.205\n```\n\n",
             "properties": {
@@ -6074,7 +6287,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways."
+                    "description": "Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways)."
                 },
                 "labels": {
                     "type": "object",
@@ -6129,7 +6342,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.",
+                    "description": "Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).",
                     "willReplaceOnChanges": true
                 },
                 "labels": {
@@ -6194,7 +6407,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.",
+                        "description": "Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).",
                         "willReplaceOnChanges": true
                     },
                     "labels": {

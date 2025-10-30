@@ -1403,8 +1403,8 @@ github.com/ProtonMail/go-crypto v1.1.6 h1:ZcV+Ropw6Qn0AX9brlQLAUXfqLBc7Bl+f/DmNx
 github.com/ProtonMail/go-crypto v1.1.6/go.mod h1:rA3QumHc/FZ8pAHreoekgiAbzpNsfQAosU5td4SnOrE=
 github.com/Shopify/sarama v1.19.0/go.mod h1:FVkBWblsNy7DGZRfXLU0O9RCGt5g3g3yEuWXgklEdEo=
 github.com/Shopify/toxiproxy v2.1.4+incompatible/go.mod h1:OXgGpZ6Cli1/URJOF1DMxUHB2q5Ap20/P/eIdh4G0pI=
-github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20251022135822-169ea317673d h1:2pMpcnM2ImgkFfAQbllXfT61IUZ4htxTEZa6HAeqtec=
-github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20251022135822-169ea317673d/go.mod h1:BKV84/aV9USj4Ajz+3Rtk02olxHKL1Oalya9MrCKvus=
+github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20251029083240-83f7882b2df9 h1:Xm3BiTupqb8TVg9Etc3uPi0zuSXR9oqkz8aQdF6akAw=
+github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20251029083240-83f7882b2df9/go.mod h1:1j3ux51N5wQAVEIy5WD7SxNhNZKxLCJNowcAWEIk+vM=
 github.com/UpCloudLtd/upcloud-go-api v0.0.0-20210930073303-cc664e35078d h1:6BwkQbF6Xqg4xNeWTROsyeBAIqwRRYY4aqP4nI6ZO1A=
 github.com/UpCloudLtd/upcloud-go-api v0.0.0-20210930073303-cc664e35078d/go.mod h1:yx8f2CdUKkjXJt76aNDdemyOI7egZkEBsnWH3EARWWo=
 github.com/UpCloudLtd/upcloud-go-api/credentials v0.1.1 h1:eTfQsv58ufALOk9BZ7WbS/i7pMUD11RnYYpRPsz0LdI=
