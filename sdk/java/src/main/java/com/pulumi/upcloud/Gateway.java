@@ -147,14 +147,14 @@ public class Gateway extends com.pulumi.resources.CustomResource {
         return this.connections;
     }
     /**
-     * Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+     * Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
      * 
      */
     @Export(name="features", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> features;
 
     /**
-     * @return Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+     * @return Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
      * 
      */
     public Output<List<String>> features() {

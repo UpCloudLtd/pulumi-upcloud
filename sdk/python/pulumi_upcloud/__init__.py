@@ -6,6 +6,7 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .file_storage import *
 from .floating_ip_address import *
 from .gateway import *
 from .gateway_connection import *
@@ -77,6 +78,14 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "upcloud",
+  "mod": "index/fileStorage",
+  "fqn": "pulumi_upcloud",
+  "classes": {
+   "upcloud:index/fileStorage:FileStorage": "FileStorage"
+  }
+ },
  {
   "pkg": "upcloud",
   "mod": "index/floatingIpAddress",

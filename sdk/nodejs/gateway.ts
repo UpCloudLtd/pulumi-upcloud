@@ -88,7 +88,7 @@ export class Gateway extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly connections: pulumi.Output<string[]>;
     /**
-     * Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+     * Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
      */
     declare public readonly features: pulumi.Output<string[]>;
     /**
@@ -191,7 +191,7 @@ export interface GatewayState {
      */
     connections?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+     * Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
      */
     features?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -233,7 +233,7 @@ export interface GatewayArgs {
      */
     configuredStatus?: pulumi.Input<string>;
     /**
-     * Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+     * Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
      */
     features: pulumi.Input<pulumi.Input<string>[]>;
     /**

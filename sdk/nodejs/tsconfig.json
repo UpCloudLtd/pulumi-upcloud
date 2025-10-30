@@ -15,6 +15,7 @@
     "files": [
         "config/index.ts",
         "config/vars.ts",
+        "fileStorage.ts",
         "floatingIpAddress.ts",
         "gateway.ts",
         "gatewayConnection.ts",

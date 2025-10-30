@@ -83,7 +83,7 @@ type Gateway struct {
 	ConfiguredStatus pulumi.StringPtrOutput `pulumi:"configuredStatus"`
 	// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
 	Connections pulumi.StringArrayOutput `pulumi:"connections"`
-	// Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+	// Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
 	Features pulumi.StringArrayOutput `pulumi:"features"`
 	// User defined key-value pairs to classify the network gateway.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
@@ -148,7 +148,7 @@ type gatewayState struct {
 	ConfiguredStatus *string `pulumi:"configuredStatus"`
 	// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
 	Connections []string `pulumi:"connections"`
-	// Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+	// Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
 	Features []string `pulumi:"features"`
 	// User defined key-value pairs to classify the network gateway.
 	Labels map[string]string `pulumi:"labels"`
@@ -175,7 +175,7 @@ type GatewayState struct {
 	ConfiguredStatus pulumi.StringPtrInput
 	// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
 	Connections pulumi.StringArrayInput
-	// Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+	// Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
 	Features pulumi.StringArrayInput
 	// User defined key-value pairs to classify the network gateway.
 	Labels pulumi.StringMapInput
@@ -200,7 +200,7 @@ type gatewayArgs struct {
 	Address *GatewayAddress `pulumi:"address"`
 	// The service configured status indicates the service's current intended status. Managed by the customer.
 	ConfiguredStatus *string `pulumi:"configuredStatus"`
-	// Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+	// Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
 	Features []string `pulumi:"features"`
 	// User defined key-value pairs to classify the network gateway.
 	Labels map[string]string `pulumi:"labels"`
@@ -220,7 +220,7 @@ type GatewayArgs struct {
 	Address GatewayAddressPtrInput
 	// The service configured status indicates the service's current intended status. Managed by the customer.
 	ConfiguredStatus pulumi.StringPtrInput
-	// Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+	// Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
 	Features pulumi.StringArrayInput
 	// User defined key-value pairs to classify the network gateway.
 	Labels pulumi.StringMapInput
@@ -343,7 +343,7 @@ func (o GatewayOutput) Connections() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringArrayOutput { return v.Connections }).(pulumi.StringArrayOutput)
 }
 
-// Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+// Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
 func (o GatewayOutput) Features() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringArrayOutput { return v.Features }).(pulumi.StringArrayOutput)
 }

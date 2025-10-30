@@ -5,6 +5,51 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface FileStorageNetwork {
+    /**
+     * IP family, e.g. IPv4.
+     */
+    family: string;
+    /**
+     * IP address to assign (optional, auto-assign otherwise).
+     */
+    ipAddress: string;
+    /**
+     * Attachment name (unique per this service).
+     */
+    name: string;
+    /**
+     * UUID of an existing private network to attach.
+     */
+    uuid: string;
+}
+
+export interface FileStorageShare {
+    /**
+     * Access control entries (1–50).
+     */
+    acls?: outputs.FileStorageShareAcl[];
+    /**
+     * Unique name of the share (1–64 chars).
+     */
+    name: string;
+    /**
+     * Absolute path exported by the share (e.g. `/public`).
+     */
+    path: string;
+}
+
+export interface FileStorageShareAcl {
+    /**
+     * Access level: 'ro' or 'rw'.
+     */
+    permission: string;
+    /**
+     * Target IP/CIDR or '*'.
+     */
+    target: string;
+}
+
 export interface GatewayAddress {
     /**
      * IP addresss
