@@ -31,7 +31,7 @@ class GatewayArgs:
                  plan: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Gateway resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
         :param pulumi.Input['GatewayRouterArgs'] router: Attached Router from where traffic is routed towards the network gateway service.
         :param pulumi.Input[_builtins.str] zone: Zone in which the gateway will be hosted, e.g. `de-fra1`.
         :param pulumi.Input['GatewayAddressArgs'] address: IP addresses assigned to the gateway.
@@ -58,7 +58,7 @@ class GatewayArgs:
     @pulumi.getter
     def features(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+        Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
         """
         return pulumi.get(self, "features")
 
@@ -171,7 +171,7 @@ class _GatewayState:
         :param pulumi.Input[Sequence[pulumi.Input['GatewayAddressArgs']]] addresses: IP addresses assigned to the gateway.
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] connections: Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the network gateway.
         :param pulumi.Input[_builtins.str] name: Gateway name. Needs to be unique within the account.
         :param pulumi.Input[_builtins.str] operational_state: The service operational state indicates the service's current operational, effective state. Managed by the system.
@@ -258,7 +258,7 @@ class _GatewayState:
     @pulumi.getter
     def features(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+        Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
         """
         return pulumi.get(self, "features")
 
@@ -391,7 +391,7 @@ class Gateway(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['GatewayAddressArgs', 'GatewayAddressArgsDict']] address: IP addresses assigned to the gateway.
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the network gateway.
         :param pulumi.Input[_builtins.str] name: Gateway name. Needs to be unique within the account.
         :param pulumi.Input[_builtins.str] plan: Gateway pricing plan.
@@ -518,7 +518,7 @@ class Gateway(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayAddressArgs', 'GatewayAddressArgsDict']]]] addresses: IP addresses assigned to the gateway.
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] connections: Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the network gateway.
         :param pulumi.Input[_builtins.str] name: Gateway name. Needs to be unique within the account.
         :param pulumi.Input[_builtins.str] operational_state: The service operational state indicates the service's current operational, effective state. Managed by the system.
@@ -580,7 +580,7 @@ class Gateway(pulumi.CustomResource):
     @pulumi.getter
     def features(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        Features enabled for the gateway. Note that VPN feature is currently in beta, for more details see https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways.
+        Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
         """
         return pulumi.get(self, "features")
 

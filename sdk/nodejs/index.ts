@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { FileStorageArgs, FileStorageState } from "./fileStorage";
+export type FileStorage = import("./fileStorage").FileStorage;
+export const FileStorage: typeof import("./fileStorage").FileStorage = null as any;
+utilities.lazyLoad(exports, ["FileStorage"], () => require("./fileStorage"));
+
 export { FloatingIpAddressArgs, FloatingIpAddressState } from "./floatingIpAddress";
 export type FloatingIpAddress = import("./floatingIpAddress").FloatingIpAddress;
 export const FloatingIpAddress: typeof import("./floatingIpAddress").FloatingIpAddress = null as any;
@@ -307,6 +312,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "upcloud:index/fileStorage:FileStorage":
+                return new FileStorage(name, <any>undefined, { urn })
             case "upcloud:index/floatingIpAddress:FloatingIpAddress":
                 return new FloatingIpAddress(name, <any>undefined, { urn })
             case "upcloud:index/gateway:Gateway":
@@ -394,6 +401,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("upcloud", "index/fileStorage", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/floatingIpAddress", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/gateway", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/gatewayConnection", _module)

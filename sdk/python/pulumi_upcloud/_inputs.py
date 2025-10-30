@@ -15,6 +15,12 @@ else:
 from . import _utilities
 
 __all__ = [
+    'FileStorageNetworkArgs',
+    'FileStorageNetworkArgsDict',
+    'FileStorageShareArgs',
+    'FileStorageShareArgsDict',
+    'FileStorageShareAclArgs',
+    'FileStorageShareAclArgsDict',
     'GatewayAddressArgs',
     'GatewayAddressArgsDict',
     'GatewayConnectionLocalRouteArgs',
@@ -286,6 +292,215 @@ __all__ = [
 ]
 
 MYPY = False
+
+if not MYPY:
+    class FileStorageNetworkArgsDict(TypedDict):
+        family: pulumi.Input[_builtins.str]
+        """
+        IP family, e.g. IPv4.
+        """
+        name: pulumi.Input[_builtins.str]
+        """
+        Attachment name (unique per this service).
+        """
+        uuid: pulumi.Input[_builtins.str]
+        """
+        UUID of an existing private network to attach.
+        """
+        ip_address: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        IP address to assign (optional, auto-assign otherwise).
+        """
+elif False:
+    FileStorageNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class FileStorageNetworkArgs:
+    def __init__(__self__, *,
+                 family: pulumi.Input[_builtins.str],
+                 name: pulumi.Input[_builtins.str],
+                 uuid: pulumi.Input[_builtins.str],
+                 ip_address: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] family: IP family, e.g. IPv4.
+        :param pulumi.Input[_builtins.str] name: Attachment name (unique per this service).
+        :param pulumi.Input[_builtins.str] uuid: UUID of an existing private network to attach.
+        :param pulumi.Input[_builtins.str] ip_address: IP address to assign (optional, auto-assign otherwise).
+        """
+        pulumi.set(__self__, "family", family)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "uuid", uuid)
+        if ip_address is not None:
+            pulumi.set(__self__, "ip_address", ip_address)
+
+    @_builtins.property
+    @pulumi.getter
+    def family(self) -> pulumi.Input[_builtins.str]:
+        """
+        IP family, e.g. IPv4.
+        """
+        return pulumi.get(self, "family")
+
+    @family.setter
+    def family(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "family", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Attachment name (unique per this service).
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> pulumi.Input[_builtins.str]:
+        """
+        UUID of an existing private network to attach.
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "uuid", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        IP address to assign (optional, auto-assign otherwise).
+        """
+        return pulumi.get(self, "ip_address")
+
+    @ip_address.setter
+    def ip_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ip_address", value)
+
+
+if not MYPY:
+    class FileStorageShareArgsDict(TypedDict):
+        name: pulumi.Input[_builtins.str]
+        """
+        Unique name of the share (1–64 chars).
+        """
+        path: pulumi.Input[_builtins.str]
+        """
+        Absolute path exported by the share (e.g. `/public`).
+        """
+        acls: NotRequired[pulumi.Input[Sequence[pulumi.Input['FileStorageShareAclArgsDict']]]]
+        """
+        Access control entries (1–50).
+        """
+elif False:
+    FileStorageShareArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class FileStorageShareArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 path: pulumi.Input[_builtins.str],
+                 acls: Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageShareAclArgs']]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: Unique name of the share (1–64 chars).
+        :param pulumi.Input[_builtins.str] path: Absolute path exported by the share (e.g. `/public`).
+        :param pulumi.Input[Sequence[pulumi.Input['FileStorageShareAclArgs']]] acls: Access control entries (1–50).
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
+        if acls is not None:
+            pulumi.set(__self__, "acls", acls)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Unique name of the share (1–64 chars).
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[_builtins.str]:
+        """
+        Absolute path exported by the share (e.g. `/public`).
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageShareAclArgs']]]]:
+        """
+        Access control entries (1–50).
+        """
+        return pulumi.get(self, "acls")
+
+    @acls.setter
+    def acls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageShareAclArgs']]]]):
+        pulumi.set(self, "acls", value)
+
+
+if not MYPY:
+    class FileStorageShareAclArgsDict(TypedDict):
+        permission: pulumi.Input[_builtins.str]
+        """
+        Access level: 'ro' or 'rw'.
+        """
+        target: pulumi.Input[_builtins.str]
+        """
+        Target IP/CIDR or '*'.
+        """
+elif False:
+    FileStorageShareAclArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class FileStorageShareAclArgs:
+    def __init__(__self__, *,
+                 permission: pulumi.Input[_builtins.str],
+                 target: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] permission: Access level: 'ro' or 'rw'.
+        :param pulumi.Input[_builtins.str] target: Target IP/CIDR or '*'.
+        """
+        pulumi.set(__self__, "permission", permission)
+        pulumi.set(__self__, "target", target)
+
+    @_builtins.property
+    @pulumi.getter
+    def permission(self) -> pulumi.Input[_builtins.str]:
+        """
+        Access level: 'ro' or 'rw'.
+        """
+        return pulumi.get(self, "permission")
+
+    @permission.setter
+    def permission(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "permission", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def target(self) -> pulumi.Input[_builtins.str]:
+        """
+        Target IP/CIDR or '*'.
+        """
+        return pulumi.get(self, "target")
+
+    @target.setter
+    def target(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "target", value)
+
 
 if not MYPY:
     class GatewayAddressArgsDict(TypedDict):

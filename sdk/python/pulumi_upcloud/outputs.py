@@ -16,6 +16,9 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'FileStorageNetwork',
+    'FileStorageShare',
+    'FileStorageShareAcl',
     'GatewayAddress',
     'GatewayConnectionLocalRoute',
     'GatewayConnectionRemoteRoute',
@@ -156,6 +159,145 @@ __all__ = [
     'GetNetworksNetworkServerResult',
     'GetTagsTagResult',
 ]
+
+@pulumi.output_type
+class FileStorageNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ipAddress":
+            suggest = "ip_address"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FileStorageNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FileStorageNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FileStorageNetwork.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 family: _builtins.str,
+                 name: _builtins.str,
+                 uuid: _builtins.str,
+                 ip_address: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str family: IP family, e.g. IPv4.
+        :param _builtins.str name: Attachment name (unique per this service).
+        :param _builtins.str uuid: UUID of an existing private network to attach.
+        :param _builtins.str ip_address: IP address to assign (optional, auto-assign otherwise).
+        """
+        pulumi.set(__self__, "family", family)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "uuid", uuid)
+        if ip_address is not None:
+            pulumi.set(__self__, "ip_address", ip_address)
+
+    @_builtins.property
+    @pulumi.getter
+    def family(self) -> _builtins.str:
+        """
+        IP family, e.g. IPv4.
+        """
+        return pulumi.get(self, "family")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Attachment name (unique per this service).
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> _builtins.str:
+        """
+        UUID of an existing private network to attach.
+        """
+        return pulumi.get(self, "uuid")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> Optional[_builtins.str]:
+        """
+        IP address to assign (optional, auto-assign otherwise).
+        """
+        return pulumi.get(self, "ip_address")
+
+
+@pulumi.output_type
+class FileStorageShare(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 path: _builtins.str,
+                 acls: Optional[Sequence['outputs.FileStorageShareAcl']] = None):
+        """
+        :param _builtins.str name: Unique name of the share (1–64 chars).
+        :param _builtins.str path: Absolute path exported by the share (e.g. `/public`).
+        :param Sequence['FileStorageShareAclArgs'] acls: Access control entries (1–50).
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
+        if acls is not None:
+            pulumi.set(__self__, "acls", acls)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Unique name of the share (1–64 chars).
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        Absolute path exported by the share (e.g. `/public`).
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter
+    def acls(self) -> Optional[Sequence['outputs.FileStorageShareAcl']]:
+        """
+        Access control entries (1–50).
+        """
+        return pulumi.get(self, "acls")
+
+
+@pulumi.output_type
+class FileStorageShareAcl(dict):
+    def __init__(__self__, *,
+                 permission: _builtins.str,
+                 target: _builtins.str):
+        """
+        :param _builtins.str permission: Access level: 'ro' or 'rw'.
+        :param _builtins.str target: Target IP/CIDR or '*'.
+        """
+        pulumi.set(__self__, "permission", permission)
+        pulumi.set(__self__, "target", target)
+
+    @_builtins.property
+    @pulumi.getter
+    def permission(self) -> _builtins.str:
+        """
+        Access level: 'ro' or 'rw'.
+        """
+        return pulumi.get(self, "permission")
+
+    @_builtins.property
+    @pulumi.getter
+    def target(self) -> _builtins.str:
+        """
+        Target IP/CIDR or '*'.
+        """
+        return pulumi.get(self, "target")
+
 
 @pulumi.output_type
 class GatewayAddress(dict):

@@ -13,6 +13,351 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type FileStorageNetwork struct {
+	// IP family, e.g. IPv4.
+	Family string `pulumi:"family"`
+	// IP address to assign (optional, auto-assign otherwise).
+	IpAddress *string `pulumi:"ipAddress"`
+	// Attachment name (unique per this service).
+	Name string `pulumi:"name"`
+	// UUID of an existing private network to attach.
+	Uuid string `pulumi:"uuid"`
+}
+
+// FileStorageNetworkInput is an input type that accepts FileStorageNetworkArgs and FileStorageNetworkOutput values.
+// You can construct a concrete instance of `FileStorageNetworkInput` via:
+//
+//	FileStorageNetworkArgs{...}
+type FileStorageNetworkInput interface {
+	pulumi.Input
+
+	ToFileStorageNetworkOutput() FileStorageNetworkOutput
+	ToFileStorageNetworkOutputWithContext(context.Context) FileStorageNetworkOutput
+}
+
+type FileStorageNetworkArgs struct {
+	// IP family, e.g. IPv4.
+	Family pulumi.StringInput `pulumi:"family"`
+	// IP address to assign (optional, auto-assign otherwise).
+	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
+	// Attachment name (unique per this service).
+	Name pulumi.StringInput `pulumi:"name"`
+	// UUID of an existing private network to attach.
+	Uuid pulumi.StringInput `pulumi:"uuid"`
+}
+
+func (FileStorageNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FileStorageNetwork)(nil)).Elem()
+}
+
+func (i FileStorageNetworkArgs) ToFileStorageNetworkOutput() FileStorageNetworkOutput {
+	return i.ToFileStorageNetworkOutputWithContext(context.Background())
+}
+
+func (i FileStorageNetworkArgs) ToFileStorageNetworkOutputWithContext(ctx context.Context) FileStorageNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FileStorageNetworkOutput)
+}
+
+// FileStorageNetworkArrayInput is an input type that accepts FileStorageNetworkArray and FileStorageNetworkArrayOutput values.
+// You can construct a concrete instance of `FileStorageNetworkArrayInput` via:
+//
+//	FileStorageNetworkArray{ FileStorageNetworkArgs{...} }
+type FileStorageNetworkArrayInput interface {
+	pulumi.Input
+
+	ToFileStorageNetworkArrayOutput() FileStorageNetworkArrayOutput
+	ToFileStorageNetworkArrayOutputWithContext(context.Context) FileStorageNetworkArrayOutput
+}
+
+type FileStorageNetworkArray []FileStorageNetworkInput
+
+func (FileStorageNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FileStorageNetwork)(nil)).Elem()
+}
+
+func (i FileStorageNetworkArray) ToFileStorageNetworkArrayOutput() FileStorageNetworkArrayOutput {
+	return i.ToFileStorageNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i FileStorageNetworkArray) ToFileStorageNetworkArrayOutputWithContext(ctx context.Context) FileStorageNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FileStorageNetworkArrayOutput)
+}
+
+type FileStorageNetworkOutput struct{ *pulumi.OutputState }
+
+func (FileStorageNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FileStorageNetwork)(nil)).Elem()
+}
+
+func (o FileStorageNetworkOutput) ToFileStorageNetworkOutput() FileStorageNetworkOutput {
+	return o
+}
+
+func (o FileStorageNetworkOutput) ToFileStorageNetworkOutputWithContext(ctx context.Context) FileStorageNetworkOutput {
+	return o
+}
+
+// IP family, e.g. IPv4.
+func (o FileStorageNetworkOutput) Family() pulumi.StringOutput {
+	return o.ApplyT(func(v FileStorageNetwork) string { return v.Family }).(pulumi.StringOutput)
+}
+
+// IP address to assign (optional, auto-assign otherwise).
+func (o FileStorageNetworkOutput) IpAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FileStorageNetwork) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
+}
+
+// Attachment name (unique per this service).
+func (o FileStorageNetworkOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v FileStorageNetwork) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// UUID of an existing private network to attach.
+func (o FileStorageNetworkOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v FileStorageNetwork) string { return v.Uuid }).(pulumi.StringOutput)
+}
+
+type FileStorageNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (FileStorageNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FileStorageNetwork)(nil)).Elem()
+}
+
+func (o FileStorageNetworkArrayOutput) ToFileStorageNetworkArrayOutput() FileStorageNetworkArrayOutput {
+	return o
+}
+
+func (o FileStorageNetworkArrayOutput) ToFileStorageNetworkArrayOutputWithContext(ctx context.Context) FileStorageNetworkArrayOutput {
+	return o
+}
+
+func (o FileStorageNetworkArrayOutput) Index(i pulumi.IntInput) FileStorageNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FileStorageNetwork {
+		return vs[0].([]FileStorageNetwork)[vs[1].(int)]
+	}).(FileStorageNetworkOutput)
+}
+
+type FileStorageShare struct {
+	// Access control entries (1–50).
+	Acls []FileStorageShareAcl `pulumi:"acls"`
+	// Unique name of the share (1–64 chars).
+	Name string `pulumi:"name"`
+	// Absolute path exported by the share (e.g. `/public`).
+	Path string `pulumi:"path"`
+}
+
+// FileStorageShareInput is an input type that accepts FileStorageShareArgs and FileStorageShareOutput values.
+// You can construct a concrete instance of `FileStorageShareInput` via:
+//
+//	FileStorageShareArgs{...}
+type FileStorageShareInput interface {
+	pulumi.Input
+
+	ToFileStorageShareOutput() FileStorageShareOutput
+	ToFileStorageShareOutputWithContext(context.Context) FileStorageShareOutput
+}
+
+type FileStorageShareArgs struct {
+	// Access control entries (1–50).
+	Acls FileStorageShareAclArrayInput `pulumi:"acls"`
+	// Unique name of the share (1–64 chars).
+	Name pulumi.StringInput `pulumi:"name"`
+	// Absolute path exported by the share (e.g. `/public`).
+	Path pulumi.StringInput `pulumi:"path"`
+}
+
+func (FileStorageShareArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FileStorageShare)(nil)).Elem()
+}
+
+func (i FileStorageShareArgs) ToFileStorageShareOutput() FileStorageShareOutput {
+	return i.ToFileStorageShareOutputWithContext(context.Background())
+}
+
+func (i FileStorageShareArgs) ToFileStorageShareOutputWithContext(ctx context.Context) FileStorageShareOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FileStorageShareOutput)
+}
+
+// FileStorageShareArrayInput is an input type that accepts FileStorageShareArray and FileStorageShareArrayOutput values.
+// You can construct a concrete instance of `FileStorageShareArrayInput` via:
+//
+//	FileStorageShareArray{ FileStorageShareArgs{...} }
+type FileStorageShareArrayInput interface {
+	pulumi.Input
+
+	ToFileStorageShareArrayOutput() FileStorageShareArrayOutput
+	ToFileStorageShareArrayOutputWithContext(context.Context) FileStorageShareArrayOutput
+}
+
+type FileStorageShareArray []FileStorageShareInput
+
+func (FileStorageShareArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FileStorageShare)(nil)).Elem()
+}
+
+func (i FileStorageShareArray) ToFileStorageShareArrayOutput() FileStorageShareArrayOutput {
+	return i.ToFileStorageShareArrayOutputWithContext(context.Background())
+}
+
+func (i FileStorageShareArray) ToFileStorageShareArrayOutputWithContext(ctx context.Context) FileStorageShareArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FileStorageShareArrayOutput)
+}
+
+type FileStorageShareOutput struct{ *pulumi.OutputState }
+
+func (FileStorageShareOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FileStorageShare)(nil)).Elem()
+}
+
+func (o FileStorageShareOutput) ToFileStorageShareOutput() FileStorageShareOutput {
+	return o
+}
+
+func (o FileStorageShareOutput) ToFileStorageShareOutputWithContext(ctx context.Context) FileStorageShareOutput {
+	return o
+}
+
+// Access control entries (1–50).
+func (o FileStorageShareOutput) Acls() FileStorageShareAclArrayOutput {
+	return o.ApplyT(func(v FileStorageShare) []FileStorageShareAcl { return v.Acls }).(FileStorageShareAclArrayOutput)
+}
+
+// Unique name of the share (1–64 chars).
+func (o FileStorageShareOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v FileStorageShare) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Absolute path exported by the share (e.g. `/public`).
+func (o FileStorageShareOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v FileStorageShare) string { return v.Path }).(pulumi.StringOutput)
+}
+
+type FileStorageShareArrayOutput struct{ *pulumi.OutputState }
+
+func (FileStorageShareArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FileStorageShare)(nil)).Elem()
+}
+
+func (o FileStorageShareArrayOutput) ToFileStorageShareArrayOutput() FileStorageShareArrayOutput {
+	return o
+}
+
+func (o FileStorageShareArrayOutput) ToFileStorageShareArrayOutputWithContext(ctx context.Context) FileStorageShareArrayOutput {
+	return o
+}
+
+func (o FileStorageShareArrayOutput) Index(i pulumi.IntInput) FileStorageShareOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FileStorageShare {
+		return vs[0].([]FileStorageShare)[vs[1].(int)]
+	}).(FileStorageShareOutput)
+}
+
+type FileStorageShareAcl struct {
+	// Access level: 'ro' or 'rw'.
+	Permission string `pulumi:"permission"`
+	// Target IP/CIDR or '*'.
+	Target string `pulumi:"target"`
+}
+
+// FileStorageShareAclInput is an input type that accepts FileStorageShareAclArgs and FileStorageShareAclOutput values.
+// You can construct a concrete instance of `FileStorageShareAclInput` via:
+//
+//	FileStorageShareAclArgs{...}
+type FileStorageShareAclInput interface {
+	pulumi.Input
+
+	ToFileStorageShareAclOutput() FileStorageShareAclOutput
+	ToFileStorageShareAclOutputWithContext(context.Context) FileStorageShareAclOutput
+}
+
+type FileStorageShareAclArgs struct {
+	// Access level: 'ro' or 'rw'.
+	Permission pulumi.StringInput `pulumi:"permission"`
+	// Target IP/CIDR or '*'.
+	Target pulumi.StringInput `pulumi:"target"`
+}
+
+func (FileStorageShareAclArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FileStorageShareAcl)(nil)).Elem()
+}
+
+func (i FileStorageShareAclArgs) ToFileStorageShareAclOutput() FileStorageShareAclOutput {
+	return i.ToFileStorageShareAclOutputWithContext(context.Background())
+}
+
+func (i FileStorageShareAclArgs) ToFileStorageShareAclOutputWithContext(ctx context.Context) FileStorageShareAclOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FileStorageShareAclOutput)
+}
+
+// FileStorageShareAclArrayInput is an input type that accepts FileStorageShareAclArray and FileStorageShareAclArrayOutput values.
+// You can construct a concrete instance of `FileStorageShareAclArrayInput` via:
+//
+//	FileStorageShareAclArray{ FileStorageShareAclArgs{...} }
+type FileStorageShareAclArrayInput interface {
+	pulumi.Input
+
+	ToFileStorageShareAclArrayOutput() FileStorageShareAclArrayOutput
+	ToFileStorageShareAclArrayOutputWithContext(context.Context) FileStorageShareAclArrayOutput
+}
+
+type FileStorageShareAclArray []FileStorageShareAclInput
+
+func (FileStorageShareAclArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FileStorageShareAcl)(nil)).Elem()
+}
+
+func (i FileStorageShareAclArray) ToFileStorageShareAclArrayOutput() FileStorageShareAclArrayOutput {
+	return i.ToFileStorageShareAclArrayOutputWithContext(context.Background())
+}
+
+func (i FileStorageShareAclArray) ToFileStorageShareAclArrayOutputWithContext(ctx context.Context) FileStorageShareAclArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FileStorageShareAclArrayOutput)
+}
+
+type FileStorageShareAclOutput struct{ *pulumi.OutputState }
+
+func (FileStorageShareAclOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FileStorageShareAcl)(nil)).Elem()
+}
+
+func (o FileStorageShareAclOutput) ToFileStorageShareAclOutput() FileStorageShareAclOutput {
+	return o
+}
+
+func (o FileStorageShareAclOutput) ToFileStorageShareAclOutputWithContext(ctx context.Context) FileStorageShareAclOutput {
+	return o
+}
+
+// Access level: 'ro' or 'rw'.
+func (o FileStorageShareAclOutput) Permission() pulumi.StringOutput {
+	return o.ApplyT(func(v FileStorageShareAcl) string { return v.Permission }).(pulumi.StringOutput)
+}
+
+// Target IP/CIDR or '*'.
+func (o FileStorageShareAclOutput) Target() pulumi.StringOutput {
+	return o.ApplyT(func(v FileStorageShareAcl) string { return v.Target }).(pulumi.StringOutput)
+}
+
+type FileStorageShareAclArrayOutput struct{ *pulumi.OutputState }
+
+func (FileStorageShareAclArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FileStorageShareAcl)(nil)).Elem()
+}
+
+func (o FileStorageShareAclArrayOutput) ToFileStorageShareAclArrayOutput() FileStorageShareAclArrayOutput {
+	return o
+}
+
+func (o FileStorageShareAclArrayOutput) ToFileStorageShareAclArrayOutputWithContext(ctx context.Context) FileStorageShareAclArrayOutput {
+	return o
+}
+
+func (o FileStorageShareAclArrayOutput) Index(i pulumi.IntInput) FileStorageShareAclOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FileStorageShareAcl {
+		return vs[0].([]FileStorageShareAcl)[vs[1].(int)]
+	}).(FileStorageShareAclOutput)
+}
+
 type GatewayAddress struct {
 	// IP addresss
 	Address *string `pulumi:"address"`
@@ -27419,6 +27764,12 @@ func (o GetTagsTagArrayOutput) Index(i pulumi.IntInput) GetTagsTagOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FileStorageNetworkInput)(nil)).Elem(), FileStorageNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FileStorageNetworkArrayInput)(nil)).Elem(), FileStorageNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FileStorageShareInput)(nil)).Elem(), FileStorageShareArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FileStorageShareArrayInput)(nil)).Elem(), FileStorageShareArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FileStorageShareAclInput)(nil)).Elem(), FileStorageShareAclArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FileStorageShareAclArrayInput)(nil)).Elem(), FileStorageShareAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayAddressInput)(nil)).Elem(), GatewayAddressArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayAddressPtrInput)(nil)).Elem(), GatewayAddressArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayAddressArrayInput)(nil)).Elem(), GatewayAddressArray{})
@@ -27698,6 +28049,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworksNetworkServerArrayInput)(nil)).Elem(), GetNetworksNetworkServerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsTagInput)(nil)).Elem(), GetTagsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsTagArrayInput)(nil)).Elem(), GetTagsTagArray{})
+	pulumi.RegisterOutputType(FileStorageNetworkOutput{})
+	pulumi.RegisterOutputType(FileStorageNetworkArrayOutput{})
+	pulumi.RegisterOutputType(FileStorageShareOutput{})
+	pulumi.RegisterOutputType(FileStorageShareArrayOutput{})
+	pulumi.RegisterOutputType(FileStorageShareAclOutput{})
+	pulumi.RegisterOutputType(FileStorageShareAclArrayOutput{})
 	pulumi.RegisterOutputType(GatewayAddressOutput{})
 	pulumi.RegisterOutputType(GatewayAddressPtrOutput{})
 	pulumi.RegisterOutputType(GatewayAddressArrayOutput{})
