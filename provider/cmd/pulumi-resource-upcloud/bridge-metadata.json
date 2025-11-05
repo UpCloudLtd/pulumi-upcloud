@@ -417,6 +417,9 @@
                                 "ip_filter": {
                                     "maxItemsOne": false
                                 },
+                                "jwt": {
+                                    "maxItemsOne": true
+                                },
                                 "openid": {
                                     "maxItemsOne": true
                                 },
@@ -548,33 +551,6 @@
                     }
                 }
             },
-            "upcloud_managed_database_redis": {
-                "current": "upcloud:index/managedDatabaseRedis:ManagedDatabaseRedis",
-                "fields": {
-                    "components": {
-                        "maxItemsOne": false
-                    },
-                    "network": {
-                        "maxItemsOne": false
-                    },
-                    "node_states": {
-                        "maxItemsOne": false
-                    },
-                    "properties": {
-                        "maxItemsOne": true,
-                        "elem": {
-                            "fields": {
-                                "ip_filter": {
-                                    "maxItemsOne": false
-                                },
-                                "migration": {
-                                    "maxItemsOne": true
-                                }
-                            }
-                        }
-                    }
-                }
-            },
             "upcloud_managed_database_user": {
                 "current": "upcloud:index/managedDatabaseUser:ManagedDatabaseUser",
                 "fields": {
@@ -590,25 +566,6 @@
                     },
                     "pg_access_control": {
                         "maxItemsOne": true
-                    },
-                    "redis_access_control": {
-                        "maxItemsOne": true,
-                        "elem": {
-                            "fields": {
-                                "categories": {
-                                    "maxItemsOne": true
-                                },
-                                "channels": {
-                                    "maxItemsOne": true
-                                },
-                                "commands": {
-                                    "maxItemsOne": true
-                                },
-                                "keys": {
-                                    "maxItemsOne": true
-                                }
-                            }
-                        }
                     },
                     "valkey_access_control": {
                         "maxItemsOne": true,
@@ -882,21 +839,6 @@
                     }
                 }
             },
-            "upcloud_managed_database_redis_sessions": {
-                "current": "upcloud:index/getManagedDatabaseRedisSessions:getManagedDatabaseRedisSessions",
-                "fields": {
-                    "sessions": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "flags": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    }
-                }
-            },
             "upcloud_managed_database_valkey_sessions": {
                 "current": "upcloud:index/getManagedDatabaseValkeySessions:getManagedDatabaseValkeySessions",
                 "fields": {
@@ -1044,7 +986,6 @@
             "upcloud:index/managedDatabaseMysql:ManagedDatabaseMysql": 0,
             "upcloud:index/managedDatabaseOpensearch:ManagedDatabaseOpensearch": 0,
             "upcloud:index/managedDatabasePostgresql:ManagedDatabasePostgresql": 0,
-            "upcloud:index/managedDatabaseRedis:ManagedDatabaseRedis": 0,
             "upcloud:index/managedDatabaseUser:ManagedDatabaseUser": 0,
             "upcloud:index/managedDatabaseValkey:ManagedDatabaseValkey": 0,
             "upcloud:index/managedObjectStorage:ManagedObjectStorage": 0,
@@ -1073,7 +1014,6 @@
             "upcloud:index/getManagedDatabaseMysqlSessions:getManagedDatabaseMysqlSessions": 0,
             "upcloud:index/getManagedDatabaseOpensearchIndices:getManagedDatabaseOpensearchIndices": 0,
             "upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions": 0,
-            "upcloud:index/getManagedDatabaseRedisSessions:getManagedDatabaseRedisSessions": 0,
             "upcloud:index/getManagedDatabaseValkeySessions:getManagedDatabaseValkeySessions": 0,
             "upcloud:index/getManagedObjectStoragePolicies:getManagedObjectStoragePolicies": 0,
             "upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions": 1,

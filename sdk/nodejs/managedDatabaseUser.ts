@@ -73,10 +73,6 @@ export class ManagedDatabaseUser extends pulumi.CustomResource {
      */
     declare public readonly pgAccessControl: pulumi.Output<outputs.ManagedDatabaseUserPgAccessControl | undefined>;
     /**
-     * Redis access control object.
-     */
-    declare public readonly redisAccessControl: pulumi.Output<outputs.ManagedDatabaseUserRedisAccessControl | undefined>;
-    /**
      * Service's UUID for which this user belongs to
      */
     declare public readonly service: pulumi.Output<string>;
@@ -110,7 +106,6 @@ export class ManagedDatabaseUser extends pulumi.CustomResource {
             resourceInputs["opensearchAccessControl"] = state?.opensearchAccessControl;
             resourceInputs["password"] = state?.password;
             resourceInputs["pgAccessControl"] = state?.pgAccessControl;
-            resourceInputs["redisAccessControl"] = state?.redisAccessControl;
             resourceInputs["service"] = state?.service;
             resourceInputs["type"] = state?.type;
             resourceInputs["username"] = state?.username;
@@ -127,7 +122,6 @@ export class ManagedDatabaseUser extends pulumi.CustomResource {
             resourceInputs["opensearchAccessControl"] = args?.opensearchAccessControl;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["pgAccessControl"] = args?.pgAccessControl;
-            resourceInputs["redisAccessControl"] = args?.redisAccessControl;
             resourceInputs["service"] = args?.service;
             resourceInputs["username"] = args?.username;
             resourceInputs["valkeyAccessControl"] = args?.valkeyAccessControl;
@@ -160,10 +154,6 @@ export interface ManagedDatabaseUserState {
      * PostgreSQL access control object.
      */
     pgAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserPgAccessControl>;
-    /**
-     * Redis access control object.
-     */
-    redisAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserRedisAccessControl>;
     /**
      * Service's UUID for which this user belongs to
      */
@@ -202,10 +192,6 @@ export interface ManagedDatabaseUserArgs {
      * PostgreSQL access control object.
      */
     pgAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserPgAccessControl>;
-    /**
-     * Redis access control object.
-     */
-    redisAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserRedisAccessControl>;
     /**
      * Service's UUID for which this user belongs to
      */

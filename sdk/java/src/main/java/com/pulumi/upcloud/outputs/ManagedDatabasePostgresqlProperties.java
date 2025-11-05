@@ -126,6 +126,31 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable Integer idleInTransactionSessionTimeout;
     /**
+     * @return EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+     * 
+     */
+    private @Nullable Integer ioCombineLimit;
+    /**
+     * @return EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    private @Nullable Integer ioMaxCombineLimit;
+    /**
+     * @return EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    private @Nullable Integer ioMaxConcurrency;
+    /**
+     * @return EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    private @Nullable String ioMethod;
+    /**
+     * @return io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    private @Nullable Integer ioWorkers;
+    /**
      * @return IP filter. Allow incoming connections from CIDR address block, e.g. &#39;10.20.0.0/16&#39;.
      * 
      */
@@ -245,6 +270,11 @@ public final class ManagedDatabasePostgresqlProperties {
      * 
      */
     private @Nullable ManagedDatabasePostgresqlPropertiesMigration migration;
+    /**
+     * @return Number of nodes for the service.
+     * 
+     */
+    private @Nullable Integer nodeCount;
     /**
      * @return Chooses the algorithm for encrypting passwords.
      * 
@@ -525,6 +555,41 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.idleInTransactionSessionTimeout);
     }
     /**
+     * @return EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+     * 
+     */
+    public Optional<Integer> ioCombineLimit() {
+        return Optional.ofNullable(this.ioCombineLimit);
+    }
+    /**
+     * @return EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    public Optional<Integer> ioMaxCombineLimit() {
+        return Optional.ofNullable(this.ioMaxCombineLimit);
+    }
+    /**
+     * @return EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    public Optional<Integer> ioMaxConcurrency() {
+        return Optional.ofNullable(this.ioMaxConcurrency);
+    }
+    /**
+     * @return EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    public Optional<String> ioMethod() {
+        return Optional.ofNullable(this.ioMethod);
+    }
+    /**
+     * @return io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    public Optional<Integer> ioWorkers() {
+        return Optional.ofNullable(this.ioWorkers);
+    }
+    /**
      * @return IP filter. Allow incoming connections from CIDR address block, e.g. &#39;10.20.0.0/16&#39;.
      * 
      */
@@ -691,6 +756,13 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     public Optional<ManagedDatabasePostgresqlPropertiesMigration> migration() {
         return Optional.ofNullable(this.migration);
+    }
+    /**
+     * @return Number of nodes for the service.
+     * 
+     */
+    public Optional<Integer> nodeCount() {
+        return Optional.ofNullable(this.nodeCount);
     }
     /**
      * @return Chooses the algorithm for encrypting passwords.
@@ -905,6 +977,11 @@ public final class ManagedDatabasePostgresqlProperties {
         private @Nullable Integer deadlockTimeout;
         private @Nullable String defaultToastCompression;
         private @Nullable Integer idleInTransactionSessionTimeout;
+        private @Nullable Integer ioCombineLimit;
+        private @Nullable Integer ioMaxCombineLimit;
+        private @Nullable Integer ioMaxConcurrency;
+        private @Nullable String ioMethod;
+        private @Nullable Integer ioWorkers;
         private @Nullable List<String> ipFilters;
         private @Nullable Boolean jit;
         private @Nullable Integer logAutovacuumMinDuration;
@@ -929,6 +1006,7 @@ public final class ManagedDatabasePostgresqlProperties {
         private @Nullable Integer maxWalSenders;
         private @Nullable Integer maxWorkerProcesses;
         private @Nullable ManagedDatabasePostgresqlPropertiesMigration migration;
+        private @Nullable Integer nodeCount;
         private @Nullable String passwordEncryption;
         private @Nullable Integer pgPartmanBgwInterval;
         private @Nullable String pgPartmanBgwRole;
@@ -979,6 +1057,11 @@ public final class ManagedDatabasePostgresqlProperties {
     	      this.deadlockTimeout = defaults.deadlockTimeout;
     	      this.defaultToastCompression = defaults.defaultToastCompression;
     	      this.idleInTransactionSessionTimeout = defaults.idleInTransactionSessionTimeout;
+    	      this.ioCombineLimit = defaults.ioCombineLimit;
+    	      this.ioMaxCombineLimit = defaults.ioMaxCombineLimit;
+    	      this.ioMaxConcurrency = defaults.ioMaxConcurrency;
+    	      this.ioMethod = defaults.ioMethod;
+    	      this.ioWorkers = defaults.ioWorkers;
     	      this.ipFilters = defaults.ipFilters;
     	      this.jit = defaults.jit;
     	      this.logAutovacuumMinDuration = defaults.logAutovacuumMinDuration;
@@ -1003,6 +1086,7 @@ public final class ManagedDatabasePostgresqlProperties {
     	      this.maxWalSenders = defaults.maxWalSenders;
     	      this.maxWorkerProcesses = defaults.maxWorkerProcesses;
     	      this.migration = defaults.migration;
+    	      this.nodeCount = defaults.nodeCount;
     	      this.passwordEncryption = defaults.passwordEncryption;
     	      this.pgPartmanBgwInterval = defaults.pgPartmanBgwInterval;
     	      this.pgPartmanBgwRole = defaults.pgPartmanBgwRole;
@@ -1158,6 +1242,36 @@ public final class ManagedDatabasePostgresqlProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder ioCombineLimit(@Nullable Integer ioCombineLimit) {
+
+            this.ioCombineLimit = ioCombineLimit;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder ioMaxCombineLimit(@Nullable Integer ioMaxCombineLimit) {
+
+            this.ioMaxCombineLimit = ioMaxCombineLimit;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder ioMaxConcurrency(@Nullable Integer ioMaxConcurrency) {
+
+            this.ioMaxConcurrency = ioMaxConcurrency;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder ioMethod(@Nullable String ioMethod) {
+
+            this.ioMethod = ioMethod;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder ioWorkers(@Nullable Integer ioWorkers) {
+
+            this.ioWorkers = ioWorkers;
+            return this;
+        }
+        @CustomType.Setter
         public Builder ipFilters(@Nullable List<String> ipFilters) {
 
             this.ipFilters = ipFilters;
@@ -1302,6 +1416,12 @@ public final class ManagedDatabasePostgresqlProperties {
         public Builder migration(@Nullable ManagedDatabasePostgresqlPropertiesMigration migration) {
 
             this.migration = migration;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder nodeCount(@Nullable Integer nodeCount) {
+
+            this.nodeCount = nodeCount;
             return this;
         }
         @CustomType.Setter
@@ -1483,6 +1603,11 @@ public final class ManagedDatabasePostgresqlProperties {
             _resultValue.deadlockTimeout = deadlockTimeout;
             _resultValue.defaultToastCompression = defaultToastCompression;
             _resultValue.idleInTransactionSessionTimeout = idleInTransactionSessionTimeout;
+            _resultValue.ioCombineLimit = ioCombineLimit;
+            _resultValue.ioMaxCombineLimit = ioMaxCombineLimit;
+            _resultValue.ioMaxConcurrency = ioMaxConcurrency;
+            _resultValue.ioMethod = ioMethod;
+            _resultValue.ioWorkers = ioWorkers;
             _resultValue.ipFilters = ipFilters;
             _resultValue.jit = jit;
             _resultValue.logAutovacuumMinDuration = logAutovacuumMinDuration;
@@ -1507,6 +1632,7 @@ public final class ManagedDatabasePostgresqlProperties {
             _resultValue.maxWalSenders = maxWalSenders;
             _resultValue.maxWorkerProcesses = maxWorkerProcesses;
             _resultValue.migration = migration;
+            _resultValue.nodeCount = nodeCount;
             _resultValue.passwordEncryption = passwordEncryption;
             _resultValue.pgPartmanBgwInterval = pgPartmanBgwInterval;
             _resultValue.pgPartmanBgwRole = pgPartmanBgwRole;

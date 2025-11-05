@@ -1971,6 +1971,7 @@
                         "method",
                         "password",
                         "port",
+                        "ssl",
                         "username"
                     ]
                 }
@@ -2128,7 +2129,7 @@
                 },
                 "customDomain": {
                     "type": "string",
-                    "description": "Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.\n"
+                    "description": "Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.\n"
                 },
                 "customKeystores": {
                     "type": "array",
@@ -2270,6 +2271,10 @@
                 "ismHistoryRolloverRetentionPeriod": {
                     "type": "integer",
                     "description": "How long audit history indices are kept in days.\n"
+                },
+                "jwt": {
+                    "$ref": "#/types/upcloud:index/ManagedDatabaseOpensearchPropertiesJwt:ManagedDatabaseOpensearchPropertiesJwt",
+                    "description": "OpenSearch JWT Configuration.\n"
                 },
                 "keepIndexRefreshInterval": {
                     "type": "boolean",
@@ -2443,6 +2448,7 @@
                         "ismHistoryMaxDocs",
                         "ismHistoryRolloverCheckPeriod",
                         "ismHistoryRolloverRetentionPeriod",
+                        "jwt",
                         "keepIndexRefreshInterval",
                         "knnMemoryCircuitBreakerEnabled",
                         "knnMemoryCircuitBreakerLimit",
@@ -2693,6 +2699,62 @@
                         "mappingNestedObjectsLimit",
                         "numberOfReplicas",
                         "numberOfShards"
+                    ]
+                }
+            }
+        },
+        "upcloud:index/ManagedDatabaseOpensearchPropertiesJwt:ManagedDatabaseOpensearchPropertiesJwt": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable or disable OpenSearch JWT authentication. Enables or disables JWT-based authentication for OpenSearch. When enabled, users can authenticate using JWT tokens.\n"
+                },
+                "jwtClockSkewToleranceSeconds": {
+                    "type": "integer",
+                    "description": "JWT clock skew tolerance in seconds. The maximum allowed time difference in seconds between the JWT issuer's clock and the OpenSearch server's clock. This helps prevent token validation failures due to minor time synchronization issues.\n"
+                },
+                "jwtHeader": {
+                    "type": "string",
+                    "description": "HTTP header name for JWT token. The HTTP header name where the JWT token is transmitted. Typically 'Authorization' for Bearer tokens.\n"
+                },
+                "jwtUrlParameter": {
+                    "type": "string",
+                    "description": "URL parameter name for JWT token. If the JWT token is transmitted as a URL parameter instead of an HTTP header, specify the parameter name here.\n"
+                },
+                "requiredAudience": {
+                    "type": "string",
+                    "description": "Required JWT audience. If specified, the JWT must contain an 'aud' claim that matches this value. This provides additional security by ensuring the JWT was issued for the expected audience.\n"
+                },
+                "requiredIssuer": {
+                    "type": "string",
+                    "description": "Required JWT issuer. If specified, the JWT must contain an 'iss' claim that matches this value. This provides additional security by ensuring the JWT was issued by the expected issuer.\n"
+                },
+                "rolesKey": {
+                    "type": "string",
+                    "description": "JWT claim key for roles. The key in the JWT payload that contains the user's roles. If specified, roles will be extracted from the JWT for authorization.\n"
+                },
+                "signingKey": {
+                    "type": "string",
+                    "description": "JWT signing key. The secret key used to sign and verify JWT tokens. This should be a secure, randomly generated key HMAC key or public RSA/ECDSA key.\n"
+                },
+                "subjectKey": {
+                    "type": "string",
+                    "description": "JWT claim key for subject. The key in the JWT payload that contains the user's subject identifier. If not specified, the 'sub' claim is used by default.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "enabled",
+                        "jwtClockSkewToleranceSeconds",
+                        "jwtHeader",
+                        "jwtUrlParameter",
+                        "requiredAudience",
+                        "requiredIssuer",
+                        "rolesKey",
+                        "signingKey",
+                        "subjectKey"
                     ]
                 }
             }
@@ -3459,6 +3521,26 @@
                     "type": "integer",
                     "description": "Time out sessions with open transactions after this number of milliseconds.\n"
                 },
+                "ioCombineLimit": {
+                    "type": "integer",
+                    "description": "EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.\n"
+                },
+                "ioMaxCombineLimit": {
+                    "type": "integer",
+                    "description": "EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.\n"
+                },
+                "ioMaxConcurrency": {
+                    "type": "integer",
+                    "description": "EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.\n"
+                },
+                "ioMethod": {
+                    "type": "string",
+                    "description": "EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.\n"
+                },
+                "ioWorkers": {
+                    "type": "integer",
+                    "description": "io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.\n"
+                },
                 "ipFilters": {
                     "type": "array",
                     "items": {
@@ -3557,6 +3639,10 @@
                 "migration": {
                     "$ref": "#/types/upcloud:index/ManagedDatabasePostgresqlPropertiesMigration:ManagedDatabasePostgresqlPropertiesMigration",
                     "description": "Migrate data from existing server.\n"
+                },
+                "nodeCount": {
+                    "type": "integer",
+                    "description": "Number of nodes for the service.\n"
                 },
                 "passwordEncryption": {
                     "type": "string",
@@ -3688,6 +3774,11 @@
                         "deadlockTimeout",
                         "defaultToastCompression",
                         "idleInTransactionSessionTimeout",
+                        "ioCombineLimit",
+                        "ioMaxCombineLimit",
+                        "ioMaxConcurrency",
+                        "ioMethod",
+                        "ioWorkers",
                         "ipFilters",
                         "jit",
                         "logAutovacuumMinDuration",
@@ -3712,6 +3803,7 @@
                         "maxWalSenders",
                         "maxWorkerProcesses",
                         "migration",
+                        "nodeCount",
                         "passwordEncryption",
                         "pgPartmanBgwInterval",
                         "pgPartmanBgwRole",
@@ -3790,6 +3882,7 @@
                         "method",
                         "password",
                         "port",
+                        "ssl",
                         "username"
                     ]
                 }
@@ -3861,9 +3954,18 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
+                        "featureEnabled",
+                        "logCatalog",
+                        "logClient",
                         "logLevel",
                         "logMaxStringLength",
+                        "logNestedStatements",
+                        "logParameter",
                         "logParameterMaxSize",
+                        "logRelation",
+                        "logRows",
+                        "logStatement",
+                        "logStatementOnce",
                         "logs",
                         "role"
                     ]
@@ -3928,7 +4030,8 @@
                         "maxPreparedStatements",
                         "minPoolSize",
                         "serverIdleTimeout",
-                        "serverLifetime"
+                        "serverLifetime",
+                        "serverResetQueryAlways"
                     ]
                 }
             }
@@ -3961,256 +4064,6 @@
                 "nodejs": {
                     "requiredOutputs": [
                         "maxBackgroundWorkers"
-                    ]
-                }
-            }
-        },
-        "upcloud:index/ManagedDatabaseRedisComponent:ManagedDatabaseRedisComponent": {
-            "properties": {
-                "component": {
-                    "type": "string",
-                    "description": "Type of the component\n"
-                },
-                "host": {
-                    "type": "string",
-                    "description": "Hostname of the component\n"
-                },
-                "port": {
-                    "type": "integer",
-                    "description": "Port number of the component\n"
-                },
-                "route": {
-                    "type": "string",
-                    "description": "Component network route type\n"
-                },
-                "usage": {
-                    "type": "string",
-                    "description": "Usage of the component\n"
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "component",
-                        "host",
-                        "port",
-                        "route",
-                        "usage"
-                    ]
-                }
-            }
-        },
-        "upcloud:index/ManagedDatabaseRedisNetwork:ManagedDatabaseRedisNetwork": {
-            "properties": {
-                "family": {
-                    "type": "string",
-                    "description": "Network family. Currently only `IPv4` is supported.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The name of the network. Must be unique within the service.\n"
-                },
-                "type": {
-                    "type": "string",
-                    "description": "The type of the network. Must be private.\n"
-                },
-                "uuid": {
-                    "type": "string",
-                    "description": "Private network UUID. Must reside in the same zone as the database.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "family",
-                "name",
-                "type",
-                "uuid"
-            ]
-        },
-        "upcloud:index/ManagedDatabaseRedisNodeState:ManagedDatabaseRedisNodeState": {
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "description": "Name plus a node iteration\n"
-                },
-                "role": {
-                    "type": "string",
-                    "description": "Role of the node\n"
-                },
-                "state": {
-                    "type": "string",
-                    "description": "State of the node\n"
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "name",
-                        "role",
-                        "state"
-                    ]
-                }
-            }
-        },
-        "upcloud:index/ManagedDatabaseRedisProperties:ManagedDatabaseRedisProperties": {
-            "properties": {
-                "automaticUtilityNetworkIpFilter": {
-                    "type": "boolean",
-                    "description": "Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.\n"
-                },
-                "backupHour": {
-                    "type": "integer",
-                    "description": "The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.\n"
-                },
-                "backupMinute": {
-                    "type": "integer",
-                    "description": "The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.\n"
-                },
-                "ipFilters": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.\n"
-                },
-                "migration": {
-                    "$ref": "#/types/upcloud:index/ManagedDatabaseRedisPropertiesMigration:ManagedDatabaseRedisPropertiesMigration",
-                    "description": "Migrate data from existing server.\n"
-                },
-                "publicAccess": {
-                    "type": "boolean",
-                    "description": "Public Access. Allow access to the service from the public Internet.\n"
-                },
-                "redisAclChannelsDefault": {
-                    "type": "string",
-                    "description": "Default ACL for pub/sub channels used when Redis user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined,\u003cspan pulumi-lang-nodejs=\" allChannels \" pulumi-lang-dotnet=\" AllChannels \" pulumi-lang-go=\" allChannels \" pulumi-lang-python=\" all_channels \" pulumi-lang-yaml=\" allChannels \" pulumi-lang-java=\" allChannels \"\u003e all_channels \u003c/span\u003eis assumed to keep backward compatibility. This option doesn't affect Redis configuration acl-pubsub-default.\n"
-                },
-                "redisIoThreads": {
-                    "type": "integer",
-                    "description": "Redis IO thread count. Set Redis IO thread count. Changing this will cause a restart of the Redis service.\n"
-                },
-                "redisLfuDecayTime": {
-                    "type": "integer",
-                    "description": "LFU maxmemory-policy counter decay time in minutes.\n"
-                },
-                "redisLfuLogFactor": {
-                    "type": "integer",
-                    "description": "Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.\n"
-                },
-                "redisMaxmemoryPolicy": {
-                    "type": "string",
-                    "description": "Redis maxmemory-policy.\n"
-                },
-                "redisNotifyKeyspaceEvents": {
-                    "type": "string",
-                    "description": "Set notify-keyspace-events option.\n"
-                },
-                "redisNumberOfDatabases": {
-                    "type": "integer",
-                    "description": "Number of Redis databases. Set number of Redis databases. Changing this will cause a restart of the Redis service.\n"
-                },
-                "redisPersistence": {
-                    "type": "string",
-                    "description": "Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.\n"
-                },
-                "redisPubsubClientOutputBufferLimit": {
-                    "type": "integer",
-                    "description": "Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.\n"
-                },
-                "redisSsl": {
-                    "type": "boolean",
-                    "description": "Require SSL to access Redis.\n"
-                },
-                "redisTimeout": {
-                    "type": "integer",
-                    "description": "Redis idle connection timeout in seconds.\n"
-                },
-                "redisVersion": {
-                    "type": "string",
-                    "description": "Redis major version.\n"
-                },
-                "serviceLog": {
-                    "type": "boolean",
-                    "description": "Service logging. Store logs for the service so that they are available in the HTTP API and console.\n"
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "backupHour",
-                        "backupMinute",
-                        "ipFilters",
-                        "migration",
-                        "redisAclChannelsDefault",
-                        "redisIoThreads",
-                        "redisLfuDecayTime",
-                        "redisLfuLogFactor",
-                        "redisMaxmemoryPolicy",
-                        "redisNumberOfDatabases",
-                        "redisPersistence",
-                        "redisPubsubClientOutputBufferLimit",
-                        "redisTimeout",
-                        "redisVersion",
-                        "serviceLog"
-                    ]
-                }
-            }
-        },
-        "upcloud:index/ManagedDatabaseRedisPropertiesMigration:ManagedDatabaseRedisPropertiesMigration": {
-            "properties": {
-                "dbname": {
-                    "type": "string",
-                    "description": "Database name for bootstrapping the initial connection.\n"
-                },
-                "host": {
-                    "type": "string",
-                    "description": "Hostname or IP address of the server where to migrate data from.\n"
-                },
-                "ignoreDbs": {
-                    "type": "string",
-                    "description": "Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).\n"
-                },
-                "ignoreRoles": {
-                    "type": "string",
-                    "description": "Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).\n"
-                },
-                "method": {
-                    "type": "string",
-                    "description": "The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).\n"
-                },
-                "password": {
-                    "type": "string",
-                    "description": "Password for authentication with the server where to migrate data from.\n",
-                    "secret": true
-                },
-                "port": {
-                    "type": "integer",
-                    "description": "Port number of the server where to migrate data from.\n"
-                },
-                "ssl": {
-                    "type": "boolean",
-                    "description": "The server where to migrate data from is secured with SSL.\n"
-                },
-                "username": {
-                    "type": "string",
-                    "description": "User name for authentication with the server where to migrate data from.\n"
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "dbname",
-                        "host",
-                        "ignoreDbs",
-                        "ignoreRoles",
-                        "method",
-                        "password",
-                        "port",
-                        "username"
                     ]
                 }
             }
@@ -4252,27 +4105,6 @@
                 "allowReplication": {
                     "type": "boolean",
                     "description": "Grant replication privilege\n"
-                }
-            },
-            "type": "object"
-        },
-        "upcloud:index/ManagedDatabaseUserRedisAccessControl:ManagedDatabaseUserRedisAccessControl": {
-            "properties": {
-                "categories": {
-                    "type": "string",
-                    "description": "Set access control to all commands in specified categories.\n"
-                },
-                "channels": {
-                    "type": "string",
-                    "description": "Set access control to Pub/Sub channels.\n"
-                },
-                "commands": {
-                    "type": "string",
-                    "description": "Set access control to commands.\n"
-                },
-                "keys": {
-                    "type": "string",
-                    "description": "Set access control to keys.\n"
                 }
             },
             "type": "object"
@@ -4547,6 +4379,7 @@
                         "method",
                         "password",
                         "port",
+                        "ssl",
                         "username"
                     ]
                 }
@@ -5512,106 +5345,6 @@
                 "waitEvent",
                 "waitEventType",
                 "xactStart"
-            ],
-            "language": {
-                "nodejs": {
-                    "requiredInputs": []
-                }
-            }
-        },
-        "upcloud:index/getManagedDatabaseRedisSessionsSession:getManagedDatabaseRedisSessionsSession": {
-            "properties": {
-                "activeChannelSubscriptions": {
-                    "type": "integer",
-                    "description": "Number of active channel subscriptions\n"
-                },
-                "activeDatabase": {
-                    "type": "string",
-                    "description": "Current database ID\n"
-                },
-                "activePatternMatchingChannelSubscriptions": {
-                    "type": "integer",
-                    "description": "Number of pattern matching subscriptions.\n"
-                },
-                "applicationName": {
-                    "type": "string",
-                    "description": "Name of the application that is connected to this service.\n"
-                },
-                "clientAddr": {
-                    "type": "string",
-                    "description": "Number of pattern matching subscriptions.\n"
-                },
-                "connectionAge": {
-                    "type": "integer",
-                    "description": "Total duration of the connection in nanoseconds.\n"
-                },
-                "connectionIdle": {
-                    "type": "integer",
-                    "description": "Idle time of the connection in nanoseconds.\n"
-                },
-                "flags": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "A set containing flags' descriptions.\n"
-                },
-                "flagsRaw": {
-                    "type": "string",
-                    "description": "Client connection flags in raw string format.\n"
-                },
-                "id": {
-                    "type": "string",
-                    "description": "Process ID of this session.\n"
-                },
-                "multiExecCommands": {
-                    "type": "integer",
-                    "description": "Number of commands in a MULTI/EXEC context.\n"
-                },
-                "outputBuffer": {
-                    "type": "integer",
-                    "description": "Output buffer length.\n"
-                },
-                "outputBufferMemory": {
-                    "type": "integer",
-                    "description": "Output buffer memory usage.\n"
-                },
-                "outputListLength": {
-                    "type": "integer",
-                    "description": "Output list length (replies are queued in this list when the buffer is full).\n"
-                },
-                "query": {
-                    "type": "string",
-                    "description": "The last executed command.\n"
-                },
-                "queryBuffer": {
-                    "type": "integer",
-                    "description": "Query buffer length (0 means no query pending).\n"
-                },
-                "queryBufferFree": {
-                    "type": "integer",
-                    "description": "Free space of the query buffer (0 means the buffer is full).\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "activeChannelSubscriptions",
-                "activeDatabase",
-                "activePatternMatchingChannelSubscriptions",
-                "applicationName",
-                "clientAddr",
-                "connectionAge",
-                "connectionIdle",
-                "flags",
-                "flagsRaw",
-                "id",
-                "multiExecCommands",
-                "outputBuffer",
-                "outputBufferMemory",
-                "outputListLength",
-                "query",
-                "queryBuffer",
-                "queryBufferFree"
             ],
             "language": {
                 "nodejs": {
@@ -9397,304 +9130,6 @@
                 "type": "object"
             }
         },
-        "upcloud:index/managedDatabaseRedis:ManagedDatabaseRedis": {
-            "description": "\u003e Redis is deprecated in favor of Valkey. Please use Valkey for new key value store instances.\n\nThis resource represents Redis managed database. See UpCloud [Managed Databases](https://upcloud.com/products/managed-databases) product page for more details about the service.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\n// Minimal config\nconst example1 = new upcloud.ManagedDatabaseRedis(\"example_1\", {\n    name: \"redis-1\",\n    title: \"redis-1-example-2\",\n    plan: \"1x1xCPU-2GB\",\n    zone: \"fi-hel2\",\n});\n// Service with custom properties\nconst example2 = new upcloud.ManagedDatabaseRedis(\"example_2\", {\n    name: \"redis-2\",\n    title: \"redis-2-example-2\",\n    plan: \"1x1xCPU-2GB\",\n    zone: \"fi-hel1\",\n    properties: {\n        publicAccess: false,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# Minimal config\nexample1 = upcloud.ManagedDatabaseRedis(\"example_1\",\n    name=\"redis-1\",\n    title=\"redis-1-example-2\",\n    plan=\"1x1xCPU-2GB\",\n    zone=\"fi-hel2\")\n# Service with custom properties\nexample2 = upcloud.ManagedDatabaseRedis(\"example_2\",\n    name=\"redis-2\",\n    title=\"redis-2-example-2\",\n    plan=\"1x1xCPU-2GB\",\n    zone=\"fi-hel1\",\n    properties={\n        \"public_access\": False,\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Minimal config\n    var example1 = new UpCloud.ManagedDatabaseRedis(\"example_1\", new()\n    {\n        Name = \"redis-1\",\n        Title = \"redis-1-example-2\",\n        Plan = \"1x1xCPU-2GB\",\n        Zone = \"fi-hel2\",\n    });\n\n    // Service with custom properties\n    var example2 = new UpCloud.ManagedDatabaseRedis(\"example_2\", new()\n    {\n        Name = \"redis-2\",\n        Title = \"redis-2-example-2\",\n        Plan = \"1x1xCPU-2GB\",\n        Zone = \"fi-hel1\",\n        Properties = new UpCloud.Inputs.ManagedDatabaseRedisPropertiesArgs\n        {\n            PublicAccess = false,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Minimal config\n\t\t_, err := upcloud.NewManagedDatabaseRedis(ctx, \"example_1\", \u0026upcloud.ManagedDatabaseRedisArgs{\n\t\t\tName:  pulumi.String(\"redis-1\"),\n\t\t\tTitle: pulumi.String(\"redis-1-example-2\"),\n\t\t\tPlan:  pulumi.String(\"1x1xCPU-2GB\"),\n\t\t\tZone:  pulumi.String(\"fi-hel2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Service with custom properties\n\t\t_, err = upcloud.NewManagedDatabaseRedis(ctx, \"example_2\", \u0026upcloud.ManagedDatabaseRedisArgs{\n\t\t\tName:  pulumi.String(\"redis-2\"),\n\t\t\tTitle: pulumi.String(\"redis-2-example-2\"),\n\t\t\tPlan:  pulumi.String(\"1x1xCPU-2GB\"),\n\t\t\tZone:  pulumi.String(\"fi-hel1\"),\n\t\t\tProperties: \u0026upcloud.ManagedDatabaseRedisPropertiesArgs{\n\t\t\t\tPublicAccess: pulumi.Bool(false),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.ManagedDatabaseRedis;\nimport com.pulumi.upcloud.ManagedDatabaseRedisArgs;\nimport com.pulumi.upcloud.inputs.ManagedDatabaseRedisPropertiesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Minimal config\n        var example1 = new ManagedDatabaseRedis(\"example1\", ManagedDatabaseRedisArgs.builder()\n            .name(\"redis-1\")\n            .title(\"redis-1-example-2\")\n            .plan(\"1x1xCPU-2GB\")\n            .zone(\"fi-hel2\")\n            .build());\n\n        // Service with custom properties\n        var example2 = new ManagedDatabaseRedis(\"example2\", ManagedDatabaseRedisArgs.builder()\n            .name(\"redis-2\")\n            .title(\"redis-2-example-2\")\n            .plan(\"1x1xCPU-2GB\")\n            .zone(\"fi-hel1\")\n            .properties(ManagedDatabaseRedisPropertiesArgs.builder()\n                .publicAccess(false)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Minimal config\n  example1:\n    type: upcloud:ManagedDatabaseRedis\n    name: example_1\n    properties:\n      name: redis-1\n      title: redis-1-example-2\n      plan: 1x1xCPU-2GB\n      zone: fi-hel2\n  # Service with custom properties\n  example2:\n    type: upcloud:ManagedDatabaseRedis\n    name: example_2\n    properties:\n      name: redis-2\n      title: redis-2-example-2\n      plan: 1x1xCPU-2GB\n      zone: fi-hel1\n      properties:\n        publicAccess: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
-            "properties": {
-                "additionalDiskSpaceGib": {
-                    "type": "integer",
-                    "description": "Not supported for \u003cspan pulumi-lang-nodejs=\"`redis`\" pulumi-lang-dotnet=\"`Redis`\" pulumi-lang-go=\"`redis`\" pulumi-lang-python=\"`redis`\" pulumi-lang-yaml=\"`redis`\" pulumi-lang-java=\"`redis`\"\u003e`redis`\u003c/span\u003e databases. Should be left unconfigured."
-                },
-                "components": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/upcloud:index/ManagedDatabaseRedisComponent:ManagedDatabaseRedisComponent"
-                    },
-                    "description": "Service component information"
-                },
-                "labels": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "User defined key-value pairs to classify the managed database."
-                },
-                "maintenanceWindowDow": {
-                    "type": "string",
-                    "description": "Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)"
-                },
-                "maintenanceWindowTime": {
-                    "type": "string",
-                    "description": "Maintenance window UTC time in hh:mm:ss format"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account"
-                },
-                "networks": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/upcloud:index/ManagedDatabaseRedisNetwork:ManagedDatabaseRedisNetwork"
-                    },
-                    "description": "Private networks attached to the managed database"
-                },
-                "nodeStates": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/upcloud:index/ManagedDatabaseRedisNodeState:ManagedDatabaseRedisNodeState"
-                    },
-                    "description": "Information about nodes providing the managed service"
-                },
-                "plan": {
-                    "type": "string",
-                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`."
-                },
-                "powered": {
-                    "type": "boolean",
-                    "description": "The administrative power state of the service"
-                },
-                "primaryDatabase": {
-                    "type": "string",
-                    "description": "Primary database name"
-                },
-                "properties": {
-                    "$ref": "#/types/upcloud:index/ManagedDatabaseRedisProperties:ManagedDatabaseRedisProperties",
-                    "description": "Database Engine properties for Redis"
-                },
-                "serviceHost": {
-                    "type": "string",
-                    "description": "Hostname to the service instance"
-                },
-                "servicePassword": {
-                    "type": "string",
-                    "description": "Primary username's password to the service instance",
-                    "secret": true
-                },
-                "servicePort": {
-                    "type": "string",
-                    "description": "Port to the service instance"
-                },
-                "serviceUri": {
-                    "type": "string",
-                    "description": "URI to the service instance",
-                    "secret": true
-                },
-                "serviceUsername": {
-                    "type": "string",
-                    "description": "Primary username to the service instance"
-                },
-                "state": {
-                    "type": "string",
-                    "description": "State of the service"
-                },
-                "terminationProtection": {
-                    "type": "boolean",
-                    "description": "If set to true, prevents the managed service from being powered off, or deleted."
-                },
-                "title": {
-                    "type": "string",
-                    "description": "Title of a managed database instance"
-                },
-                "type": {
-                    "type": "string",
-                    "description": "Type of the service"
-                },
-                "zone": {
-                    "type": "string",
-                    "description": "Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`."
-                }
-            },
-            "required": [
-                "additionalDiskSpaceGib",
-                "components",
-                "maintenanceWindowDow",
-                "maintenanceWindowTime",
-                "name",
-                "nodeStates",
-                "plan",
-                "primaryDatabase",
-                "properties",
-                "serviceHost",
-                "servicePassword",
-                "servicePort",
-                "serviceUri",
-                "serviceUsername",
-                "state",
-                "title",
-                "type",
-                "zone"
-            ],
-            "inputProperties": {
-                "additionalDiskSpaceGib": {
-                    "type": "integer",
-                    "description": "Not supported for \u003cspan pulumi-lang-nodejs=\"`redis`\" pulumi-lang-dotnet=\"`Redis`\" pulumi-lang-go=\"`redis`\" pulumi-lang-python=\"`redis`\" pulumi-lang-yaml=\"`redis`\" pulumi-lang-java=\"`redis`\"\u003e`redis`\u003c/span\u003e databases. Should be left unconfigured."
-                },
-                "labels": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "User defined key-value pairs to classify the managed database."
-                },
-                "maintenanceWindowDow": {
-                    "type": "string",
-                    "description": "Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)"
-                },
-                "maintenanceWindowTime": {
-                    "type": "string",
-                    "description": "Maintenance window UTC time in hh:mm:ss format"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account",
-                    "willReplaceOnChanges": true
-                },
-                "networks": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/upcloud:index/ManagedDatabaseRedisNetwork:ManagedDatabaseRedisNetwork"
-                    },
-                    "description": "Private networks attached to the managed database"
-                },
-                "plan": {
-                    "type": "string",
-                    "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`."
-                },
-                "powered": {
-                    "type": "boolean",
-                    "description": "The administrative power state of the service"
-                },
-                "properties": {
-                    "$ref": "#/types/upcloud:index/ManagedDatabaseRedisProperties:ManagedDatabaseRedisProperties",
-                    "description": "Database Engine properties for Redis"
-                },
-                "terminationProtection": {
-                    "type": "boolean",
-                    "description": "If set to true, prevents the managed service from being powered off, or deleted."
-                },
-                "title": {
-                    "type": "string",
-                    "description": "Title of a managed database instance"
-                },
-                "zone": {
-                    "type": "string",
-                    "description": "Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`."
-                }
-            },
-            "requiredInputs": [
-                "plan",
-                "title",
-                "zone"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering ManagedDatabaseRedis resources.\n",
-                "properties": {
-                    "additionalDiskSpaceGib": {
-                        "type": "integer",
-                        "description": "Not supported for \u003cspan pulumi-lang-nodejs=\"`redis`\" pulumi-lang-dotnet=\"`Redis`\" pulumi-lang-go=\"`redis`\" pulumi-lang-python=\"`redis`\" pulumi-lang-yaml=\"`redis`\" pulumi-lang-java=\"`redis`\"\u003e`redis`\u003c/span\u003e databases. Should be left unconfigured."
-                    },
-                    "components": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/upcloud:index/ManagedDatabaseRedisComponent:ManagedDatabaseRedisComponent"
-                        },
-                        "description": "Service component information"
-                    },
-                    "labels": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string"
-                        },
-                        "description": "User defined key-value pairs to classify the managed database."
-                    },
-                    "maintenanceWindowDow": {
-                        "type": "string",
-                        "description": "Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)"
-                    },
-                    "maintenanceWindowTime": {
-                        "type": "string",
-                        "description": "Maintenance window UTC time in hh:mm:ss format"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account",
-                        "willReplaceOnChanges": true
-                    },
-                    "networks": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/upcloud:index/ManagedDatabaseRedisNetwork:ManagedDatabaseRedisNetwork"
-                        },
-                        "description": "Private networks attached to the managed database"
-                    },
-                    "nodeStates": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/upcloud:index/ManagedDatabaseRedisNodeState:ManagedDatabaseRedisNodeState"
-                        },
-                        "description": "Information about nodes providing the managed service"
-                    },
-                    "plan": {
-                        "type": "string",
-                        "description": "Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans redis`."
-                    },
-                    "powered": {
-                        "type": "boolean",
-                        "description": "The administrative power state of the service"
-                    },
-                    "primaryDatabase": {
-                        "type": "string",
-                        "description": "Primary database name"
-                    },
-                    "properties": {
-                        "$ref": "#/types/upcloud:index/ManagedDatabaseRedisProperties:ManagedDatabaseRedisProperties",
-                        "description": "Database Engine properties for Redis"
-                    },
-                    "serviceHost": {
-                        "type": "string",
-                        "description": "Hostname to the service instance"
-                    },
-                    "servicePassword": {
-                        "type": "string",
-                        "description": "Primary username's password to the service instance",
-                        "secret": true
-                    },
-                    "servicePort": {
-                        "type": "string",
-                        "description": "Port to the service instance"
-                    },
-                    "serviceUri": {
-                        "type": "string",
-                        "description": "URI to the service instance",
-                        "secret": true
-                    },
-                    "serviceUsername": {
-                        "type": "string",
-                        "description": "Primary username to the service instance"
-                    },
-                    "state": {
-                        "type": "string",
-                        "description": "State of the service"
-                    },
-                    "terminationProtection": {
-                        "type": "boolean",
-                        "description": "If set to true, prevents the managed service from being powered off, or deleted."
-                    },
-                    "title": {
-                        "type": "string",
-                        "description": "Title of a managed database instance"
-                    },
-                    "type": {
-                        "type": "string",
-                        "description": "Type of the service"
-                    },
-                    "zone": {
-                        "type": "string",
-                        "description": "Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`."
-                    }
-                },
-                "type": "object"
-            }
-        },
         "upcloud:index/managedDatabaseUser:ManagedDatabaseUser": {
             "description": "This resource represents a user in managed database\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\nconst example = new upcloud.ManagedDatabasePostgresql(\"example\", {\n    name: \"postgres\",\n    plan: \"1x1xCPU-2GB-25GB\",\n    title: \"postgres\",\n    zone: \"fi-hel1\",\n});\nconst exampleUser = new upcloud.ManagedDatabaseUser(\"example_user\", {\n    service: example.id,\n    username: \"example_user\",\n    password: \"\u003cUSER_PASSWORD\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\nexample = upcloud.ManagedDatabasePostgresql(\"example\",\n    name=\"postgres\",\n    plan=\"1x1xCPU-2GB-25GB\",\n    title=\"postgres\",\n    zone=\"fi-hel1\")\nexample_user = upcloud.ManagedDatabaseUser(\"example_user\",\n    service=example.id,\n    username=\"example_user\",\n    password=\"\u003cUSER_PASSWORD\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new UpCloud.ManagedDatabasePostgresql(\"example\", new()\n    {\n        Name = \"postgres\",\n        Plan = \"1x1xCPU-2GB-25GB\",\n        Title = \"postgres\",\n        Zone = \"fi-hel1\",\n    });\n\n    var exampleUser = new UpCloud.ManagedDatabaseUser(\"example_user\", new()\n    {\n        Service = example.Id,\n        Username = \"example_user\",\n        Password = \"\u003cUSER_PASSWORD\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := upcloud.NewManagedDatabasePostgresql(ctx, \"example\", \u0026upcloud.ManagedDatabasePostgresqlArgs{\n\t\t\tName:  pulumi.String(\"postgres\"),\n\t\t\tPlan:  pulumi.String(\"1x1xCPU-2GB-25GB\"),\n\t\t\tTitle: pulumi.String(\"postgres\"),\n\t\t\tZone:  pulumi.String(\"fi-hel1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewManagedDatabaseUser(ctx, \"example_user\", \u0026upcloud.ManagedDatabaseUserArgs{\n\t\t\tService:  example.ID(),\n\t\t\tUsername: pulumi.String(\"example_user\"),\n\t\t\tPassword: pulumi.String(\"\u003cUSER_PASSWORD\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.ManagedDatabasePostgresql;\nimport com.pulumi.upcloud.ManagedDatabasePostgresqlArgs;\nimport com.pulumi.upcloud.ManagedDatabaseUser;\nimport com.pulumi.upcloud.ManagedDatabaseUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new ManagedDatabasePostgresql(\"example\", ManagedDatabasePostgresqlArgs.builder()\n            .name(\"postgres\")\n            .plan(\"1x1xCPU-2GB-25GB\")\n            .title(\"postgres\")\n            .zone(\"fi-hel1\")\n            .build());\n\n        var exampleUser = new ManagedDatabaseUser(\"exampleUser\", ManagedDatabaseUserArgs.builder()\n            .service(example.id())\n            .username(\"example_user\")\n            .password(\"\u003cUSER_PASSWORD\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: upcloud:ManagedDatabasePostgresql\n    properties:\n      name: postgres\n      plan: 1x1xCPU-2GB-25GB\n      title: postgres\n      zone: fi-hel1\n  exampleUser:\n    type: upcloud:ManagedDatabaseUser\n    name: example_user\n    properties:\n      service: ${example.id}\n      username: example_user\n      password: \u003cUSER_PASSWORD\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
@@ -9714,10 +9149,6 @@
                 "pgAccessControl": {
                     "$ref": "#/types/upcloud:index/ManagedDatabaseUserPgAccessControl:ManagedDatabaseUserPgAccessControl",
                     "description": "PostgreSQL access control object."
-                },
-                "redisAccessControl": {
-                    "$ref": "#/types/upcloud:index/ManagedDatabaseUserRedisAccessControl:ManagedDatabaseUserRedisAccessControl",
-                    "description": "Redis access control object."
                 },
                 "service": {
                     "type": "string",
@@ -9760,10 +9191,6 @@
                     "$ref": "#/types/upcloud:index/ManagedDatabaseUserPgAccessControl:ManagedDatabaseUserPgAccessControl",
                     "description": "PostgreSQL access control object."
                 },
-                "redisAccessControl": {
-                    "$ref": "#/types/upcloud:index/ManagedDatabaseUserRedisAccessControl:ManagedDatabaseUserRedisAccessControl",
-                    "description": "Redis access control object."
-                },
                 "service": {
                     "type": "string",
                     "description": "Service's UUID for which this user belongs to",
@@ -9802,10 +9229,6 @@
                     "pgAccessControl": {
                         "$ref": "#/types/upcloud:index/ManagedDatabaseUserPgAccessControl:ManagedDatabaseUserPgAccessControl",
                         "description": "PostgreSQL access control object."
-                    },
-                    "redisAccessControl": {
-                        "$ref": "#/types/upcloud:index/ManagedDatabaseUserRedisAccessControl:ManagedDatabaseUserRedisAccessControl",
-                        "description": "Redis access control object."
                     },
                     "service": {
                         "type": "string",
@@ -12394,69 +11817,6 @@
                     "sessions": {
                         "items": {
                             "$ref": "#/types/upcloud:index/getManagedDatabasePostgresqlSessionsSession:getManagedDatabasePostgresqlSessionsSession"
-                        },
-                        "type": "array"
-                    }
-                },
-                "required": [
-                    "service",
-                    "sessions",
-                    "id"
-                ],
-                "type": "object"
-            }
-        },
-        "upcloud:index/getManagedDatabaseRedisSessions:getManagedDatabaseRedisSessions": {
-            "description": "\u003e Redis is deprecated in favor of Valkey. Please use Valkey for new key value store instances.\n\nCurrent sessions of a Redis managed database\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\n// Use data source to gather a list of the active sessions for a Managed Redis Database\n// Create a Managed Redis resource\nconst exampleManagedDatabaseRedis = new upcloud.ManagedDatabaseRedis(\"example\", {\n    name: \"example\",\n    title: \"example\",\n    plan: \"1x1xCPU-2GB\",\n    zone: \"fi-hel2\",\n});\n// Read the active sessions of the newly created service\nconst example = upcloud.getManagedDatabaseRedisSessionsOutput({\n    service: exampleManagedDatabaseRedis.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# Use data source to gather a list of the active sessions for a Managed Redis Database\n# Create a Managed Redis resource\nexample_managed_database_redis = upcloud.ManagedDatabaseRedis(\"example\",\n    name=\"example\",\n    title=\"example\",\n    plan=\"1x1xCPU-2GB\",\n    zone=\"fi-hel2\")\n# Read the active sessions of the newly created service\nexample = upcloud.get_managed_database_redis_sessions_output(service=example_managed_database_redis.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = Pulumi.UpCloud;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Use data source to gather a list of the active sessions for a Managed Redis Database\n    // Create a Managed Redis resource\n    var exampleManagedDatabaseRedis = new UpCloud.ManagedDatabaseRedis(\"example\", new()\n    {\n        Name = \"example\",\n        Title = \"example\",\n        Plan = \"1x1xCPU-2GB\",\n        Zone = \"fi-hel2\",\n    });\n\n    // Read the active sessions of the newly created service\n    var example = UpCloud.GetManagedDatabaseRedisSessions.Invoke(new()\n    {\n        Service = exampleManagedDatabaseRedis.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Use data source to gather a list of the active sessions for a Managed Redis Database\n\t\t// Create a Managed Redis resource\n\t\texampleManagedDatabaseRedis, err := upcloud.NewManagedDatabaseRedis(ctx, \"example\", \u0026upcloud.ManagedDatabaseRedisArgs{\n\t\t\tName:  pulumi.String(\"example\"),\n\t\t\tTitle: pulumi.String(\"example\"),\n\t\t\tPlan:  pulumi.String(\"1x1xCPU-2GB\"),\n\t\t\tZone:  pulumi.String(\"fi-hel2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Read the active sessions of the newly created service\n\t\t_ = upcloud.GetManagedDatabaseRedisSessionsOutput(ctx, upcloud.GetManagedDatabaseRedisSessionsOutputArgs{\n\t\t\tService: exampleManagedDatabaseRedis.ID(),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.ManagedDatabaseRedis;\nimport com.pulumi.upcloud.ManagedDatabaseRedisArgs;\nimport com.pulumi.upcloud.UpcloudFunctions;\nimport com.pulumi.upcloud.inputs.GetManagedDatabaseRedisSessionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Use data source to gather a list of the active sessions for a Managed Redis Database\n        // Create a Managed Redis resource\n        var exampleManagedDatabaseRedis = new ManagedDatabaseRedis(\"exampleManagedDatabaseRedis\", ManagedDatabaseRedisArgs.builder()\n            .name(\"example\")\n            .title(\"example\")\n            .plan(\"1x1xCPU-2GB\")\n            .zone(\"fi-hel2\")\n            .build());\n\n        // Read the active sessions of the newly created service\n        final var example = UpcloudFunctions.getManagedDatabaseRedisSessions(GetManagedDatabaseRedisSessionsArgs.builder()\n            .service(exampleManagedDatabaseRedis.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Use data source to gather a list of the active sessions for a Managed Redis Database\n\n  # Create a Managed Redis resource\n  exampleManagedDatabaseRedis:\n    type: upcloud:ManagedDatabaseRedis\n    name: example\n    properties:\n      name: example\n      title: example\n      plan: 1x1xCPU-2GB\n      zone: fi-hel2\nvariables:\n  # Read the active sessions of the newly created service\n  example:\n    fn::invoke:\n      function: upcloud:getManagedDatabaseRedisSessions\n      arguments:\n        service: ${exampleManagedDatabaseRedis.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
-            "inputs": {
-                "description": "A collection of arguments for invoking getManagedDatabaseRedisSessions.\n",
-                "properties": {
-                    "limit": {
-                        "type": "integer"
-                    },
-                    "offset": {
-                        "type": "integer"
-                    },
-                    "order": {
-                        "type": "string"
-                    },
-                    "service": {
-                        "type": "string"
-                    },
-                    "sessions": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/upcloud:index/getManagedDatabaseRedisSessionsSession:getManagedDatabaseRedisSessionsSession"
-                        }
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "service"
-                ]
-            },
-            "outputs": {
-                "description": "A collection of values returned by getManagedDatabaseRedisSessions.\n",
-                "properties": {
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
-                    "limit": {
-                        "type": "integer"
-                    },
-                    "offset": {
-                        "type": "integer"
-                    },
-                    "order": {
-                        "type": "string"
-                    },
-                    "service": {
-                        "type": "string"
-                    },
-                    "sessions": {
-                        "items": {
-                            "$ref": "#/types/upcloud:index/getManagedDatabaseRedisSessionsSession:getManagedDatabaseRedisSessionsSession"
                         },
                         "type": "array"
                     }

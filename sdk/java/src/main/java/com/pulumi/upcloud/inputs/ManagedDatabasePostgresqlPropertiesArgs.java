@@ -340,6 +340,81 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
+     * EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+     * 
+     */
+    @Import(name="ioCombineLimit")
+    private @Nullable Output<Integer> ioCombineLimit;
+
+    /**
+     * @return EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+     * 
+     */
+    public Optional<Output<Integer>> ioCombineLimit() {
+        return Optional.ofNullable(this.ioCombineLimit);
+    }
+
+    /**
+     * EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    @Import(name="ioMaxCombineLimit")
+    private @Nullable Output<Integer> ioMaxCombineLimit;
+
+    /**
+     * @return EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    public Optional<Output<Integer>> ioMaxCombineLimit() {
+        return Optional.ofNullable(this.ioMaxCombineLimit);
+    }
+
+    /**
+     * EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    @Import(name="ioMaxConcurrency")
+    private @Nullable Output<Integer> ioMaxConcurrency;
+
+    /**
+     * @return EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    public Optional<Output<Integer>> ioMaxConcurrency() {
+        return Optional.ofNullable(this.ioMaxConcurrency);
+    }
+
+    /**
+     * EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    @Import(name="ioMethod")
+    private @Nullable Output<String> ioMethod;
+
+    /**
+     * @return EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    public Optional<Output<String>> ioMethod() {
+        return Optional.ofNullable(this.ioMethod);
+    }
+
+    /**
+     * io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    @Import(name="ioWorkers")
+    private @Nullable Output<Integer> ioWorkers;
+
+    /**
+     * @return io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+     * 
+     */
+    public Optional<Output<Integer>> ioWorkers() {
+        return Optional.ofNullable(this.ioWorkers);
+    }
+
+    /**
      * IP filter. Allow incoming connections from CIDR address block, e.g. &#39;10.20.0.0/16&#39;.
      * 
      */
@@ -697,6 +772,21 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
      */
     public Optional<Output<ManagedDatabasePostgresqlPropertiesMigrationArgs>> migration() {
         return Optional.ofNullable(this.migration);
+    }
+
+    /**
+     * Number of nodes for the service.
+     * 
+     */
+    @Import(name="nodeCount")
+    private @Nullable Output<Integer> nodeCount;
+
+    /**
+     * @return Number of nodes for the service.
+     * 
+     */
+    public Optional<Output<Integer>> nodeCount() {
+        return Optional.ofNullable(this.nodeCount);
     }
 
     /**
@@ -1113,6 +1203,11 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         this.deadlockTimeout = $.deadlockTimeout;
         this.defaultToastCompression = $.defaultToastCompression;
         this.idleInTransactionSessionTimeout = $.idleInTransactionSessionTimeout;
+        this.ioCombineLimit = $.ioCombineLimit;
+        this.ioMaxCombineLimit = $.ioMaxCombineLimit;
+        this.ioMaxConcurrency = $.ioMaxConcurrency;
+        this.ioMethod = $.ioMethod;
+        this.ioWorkers = $.ioWorkers;
         this.ipFilters = $.ipFilters;
         this.jit = $.jit;
         this.logAutovacuumMinDuration = $.logAutovacuumMinDuration;
@@ -1137,6 +1232,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         this.maxWalSenders = $.maxWalSenders;
         this.maxWorkerProcesses = $.maxWorkerProcesses;
         this.migration = $.migration;
+        this.nodeCount = $.nodeCount;
         this.passwordEncryption = $.passwordEncryption;
         this.pgPartmanBgwInterval = $.pgPartmanBgwInterval;
         this.pgPartmanBgwRole = $.pgPartmanBgwRole;
@@ -1622,6 +1718,111 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
          */
         public Builder idleInTransactionSessionTimeout(Integer idleInTransactionSessionTimeout) {
             return idleInTransactionSessionTimeout(Output.of(idleInTransactionSessionTimeout));
+        }
+
+        /**
+         * @param ioCombineLimit EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ioCombineLimit(@Nullable Output<Integer> ioCombineLimit) {
+            $.ioCombineLimit = ioCombineLimit;
+            return this;
+        }
+
+        /**
+         * @param ioCombineLimit EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ioCombineLimit(Integer ioCombineLimit) {
+            return ioCombineLimit(Output.of(ioCombineLimit));
+        }
+
+        /**
+         * @param ioMaxCombineLimit EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ioMaxCombineLimit(@Nullable Output<Integer> ioMaxCombineLimit) {
+            $.ioMaxCombineLimit = ioMaxCombineLimit;
+            return this;
+        }
+
+        /**
+         * @param ioMaxCombineLimit EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ioMaxCombineLimit(Integer ioMaxCombineLimit) {
+            return ioMaxCombineLimit(Output.of(ioMaxCombineLimit));
+        }
+
+        /**
+         * @param ioMaxConcurrency EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ioMaxConcurrency(@Nullable Output<Integer> ioMaxConcurrency) {
+            $.ioMaxConcurrency = ioMaxConcurrency;
+            return this;
+        }
+
+        /**
+         * @param ioMaxConcurrency EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ioMaxConcurrency(Integer ioMaxConcurrency) {
+            return ioMaxConcurrency(Output.of(ioMaxConcurrency));
+        }
+
+        /**
+         * @param ioMethod EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ioMethod(@Nullable Output<String> ioMethod) {
+            $.ioMethod = ioMethod;
+            return this;
+        }
+
+        /**
+         * @param ioMethod EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ioMethod(String ioMethod) {
+            return ioMethod(Output.of(ioMethod));
+        }
+
+        /**
+         * @param ioWorkers io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ioWorkers(@Nullable Output<Integer> ioWorkers) {
+            $.ioWorkers = ioWorkers;
+            return this;
+        }
+
+        /**
+         * @param ioWorkers io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ioWorkers(Integer ioWorkers) {
+            return ioWorkers(Output.of(ioWorkers));
         }
 
         /**
@@ -2136,6 +2337,27 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
          */
         public Builder migration(ManagedDatabasePostgresqlPropertiesMigrationArgs migration) {
             return migration(Output.of(migration));
+        }
+
+        /**
+         * @param nodeCount Number of nodes for the service.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nodeCount(@Nullable Output<Integer> nodeCount) {
+            $.nodeCount = nodeCount;
+            return this;
+        }
+
+        /**
+         * @param nodeCount Number of nodes for the service.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nodeCount(Integer nodeCount) {
+            return nodeCount(Output.of(nodeCount));
         }
 
         /**

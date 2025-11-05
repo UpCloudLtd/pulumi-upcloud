@@ -61,8 +61,6 @@ type ManagedDatabaseUser struct {
 	Password pulumi.StringOutput `pulumi:"password"`
 	// PostgreSQL access control object.
 	PgAccessControl ManagedDatabaseUserPgAccessControlPtrOutput `pulumi:"pgAccessControl"`
-	// Redis access control object.
-	RedisAccessControl ManagedDatabaseUserRedisAccessControlPtrOutput `pulumi:"redisAccessControl"`
 	// Service's UUID for which this user belongs to
 	Service pulumi.StringOutput `pulumi:"service"`
 	// Type of the user. Only normal type users can be created
@@ -124,8 +122,6 @@ type managedDatabaseUserState struct {
 	Password *string `pulumi:"password"`
 	// PostgreSQL access control object.
 	PgAccessControl *ManagedDatabaseUserPgAccessControl `pulumi:"pgAccessControl"`
-	// Redis access control object.
-	RedisAccessControl *ManagedDatabaseUserRedisAccessControl `pulumi:"redisAccessControl"`
 	// Service's UUID for which this user belongs to
 	Service *string `pulumi:"service"`
 	// Type of the user. Only normal type users can be created
@@ -145,8 +141,6 @@ type ManagedDatabaseUserState struct {
 	Password pulumi.StringPtrInput
 	// PostgreSQL access control object.
 	PgAccessControl ManagedDatabaseUserPgAccessControlPtrInput
-	// Redis access control object.
-	RedisAccessControl ManagedDatabaseUserRedisAccessControlPtrInput
 	// Service's UUID for which this user belongs to
 	Service pulumi.StringPtrInput
 	// Type of the user. Only normal type users can be created
@@ -170,8 +164,6 @@ type managedDatabaseUserArgs struct {
 	Password *string `pulumi:"password"`
 	// PostgreSQL access control object.
 	PgAccessControl *ManagedDatabaseUserPgAccessControl `pulumi:"pgAccessControl"`
-	// Redis access control object.
-	RedisAccessControl *ManagedDatabaseUserRedisAccessControl `pulumi:"redisAccessControl"`
 	// Service's UUID for which this user belongs to
 	Service string `pulumi:"service"`
 	// Name of the database user
@@ -190,8 +182,6 @@ type ManagedDatabaseUserArgs struct {
 	Password pulumi.StringPtrInput
 	// PostgreSQL access control object.
 	PgAccessControl ManagedDatabaseUserPgAccessControlPtrInput
-	// Redis access control object.
-	RedisAccessControl ManagedDatabaseUserRedisAccessControlPtrInput
 	// Service's UUID for which this user belongs to
 	Service pulumi.StringInput
 	// Name of the database user
@@ -307,13 +297,6 @@ func (o ManagedDatabaseUserOutput) Password() pulumi.StringOutput {
 // PostgreSQL access control object.
 func (o ManagedDatabaseUserOutput) PgAccessControl() ManagedDatabaseUserPgAccessControlPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseUser) ManagedDatabaseUserPgAccessControlPtrOutput { return v.PgAccessControl }).(ManagedDatabaseUserPgAccessControlPtrOutput)
-}
-
-// Redis access control object.
-func (o ManagedDatabaseUserOutput) RedisAccessControl() ManagedDatabaseUserRedisAccessControlPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseUser) ManagedDatabaseUserRedisAccessControlPtrOutput {
-		return v.RedisAccessControl
-	}).(ManagedDatabaseUserRedisAccessControlPtrOutput)
 }
 
 // Service's UUID for which this user belongs to

@@ -65,8 +65,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ManagedDatabaseOpensearch{}
 	case "upcloud:index/managedDatabasePostgresql:ManagedDatabasePostgresql":
 		r = &ManagedDatabasePostgresql{}
-	case "upcloud:index/managedDatabaseRedis:ManagedDatabaseRedis":
-		r = &ManagedDatabaseRedis{}
 	case "upcloud:index/managedDatabaseUser:ManagedDatabaseUser":
 		r = &ManagedDatabaseUser{}
 	case "upcloud:index/managedDatabaseValkey:ManagedDatabaseValkey":
@@ -244,11 +242,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"upcloud",
 		"index/managedDatabasePostgresql",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"upcloud",
-		"index/managedDatabaseRedis",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

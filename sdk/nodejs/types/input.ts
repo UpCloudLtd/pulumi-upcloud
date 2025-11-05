@@ -630,148 +630,6 @@ export interface GetManagedDatabasePostgresqlSessionsSessionArgs {
     xactStart?: pulumi.Input<string>;
 }
 
-export interface GetManagedDatabaseRedisSessionsSession {
-    /**
-     * Number of active channel subscriptions
-     */
-    activeChannelSubscriptions?: number;
-    /**
-     * Current database ID
-     */
-    activeDatabase?: string;
-    /**
-     * Number of pattern matching subscriptions.
-     */
-    activePatternMatchingChannelSubscriptions?: number;
-    /**
-     * Name of the application that is connected to this service.
-     */
-    applicationName?: string;
-    /**
-     * Number of pattern matching subscriptions.
-     */
-    clientAddr?: string;
-    /**
-     * Total duration of the connection in nanoseconds.
-     */
-    connectionAge?: number;
-    /**
-     * Idle time of the connection in nanoseconds.
-     */
-    connectionIdle?: number;
-    /**
-     * A set containing flags' descriptions.
-     */
-    flags?: string[];
-    /**
-     * Client connection flags in raw string format.
-     */
-    flagsRaw?: string;
-    /**
-     * Process ID of this session.
-     */
-    id?: string;
-    /**
-     * Number of commands in a MULTI/EXEC context.
-     */
-    multiExecCommands?: number;
-    /**
-     * Output buffer length.
-     */
-    outputBuffer?: number;
-    /**
-     * Output buffer memory usage.
-     */
-    outputBufferMemory?: number;
-    /**
-     * Output list length (replies are queued in this list when the buffer is full).
-     */
-    outputListLength?: number;
-    /**
-     * The last executed command.
-     */
-    query?: string;
-    /**
-     * Query buffer length (0 means no query pending).
-     */
-    queryBuffer?: number;
-    /**
-     * Free space of the query buffer (0 means the buffer is full).
-     */
-    queryBufferFree?: number;
-}
-
-export interface GetManagedDatabaseRedisSessionsSessionArgs {
-    /**
-     * Number of active channel subscriptions
-     */
-    activeChannelSubscriptions?: pulumi.Input<number>;
-    /**
-     * Current database ID
-     */
-    activeDatabase?: pulumi.Input<string>;
-    /**
-     * Number of pattern matching subscriptions.
-     */
-    activePatternMatchingChannelSubscriptions?: pulumi.Input<number>;
-    /**
-     * Name of the application that is connected to this service.
-     */
-    applicationName?: pulumi.Input<string>;
-    /**
-     * Number of pattern matching subscriptions.
-     */
-    clientAddr?: pulumi.Input<string>;
-    /**
-     * Total duration of the connection in nanoseconds.
-     */
-    connectionAge?: pulumi.Input<number>;
-    /**
-     * Idle time of the connection in nanoseconds.
-     */
-    connectionIdle?: pulumi.Input<number>;
-    /**
-     * A set containing flags' descriptions.
-     */
-    flags?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Client connection flags in raw string format.
-     */
-    flagsRaw?: pulumi.Input<string>;
-    /**
-     * Process ID of this session.
-     */
-    id?: pulumi.Input<string>;
-    /**
-     * Number of commands in a MULTI/EXEC context.
-     */
-    multiExecCommands?: pulumi.Input<number>;
-    /**
-     * Output buffer length.
-     */
-    outputBuffer?: pulumi.Input<number>;
-    /**
-     * Output buffer memory usage.
-     */
-    outputBufferMemory?: pulumi.Input<number>;
-    /**
-     * Output list length (replies are queued in this list when the buffer is full).
-     */
-    outputListLength?: pulumi.Input<number>;
-    /**
-     * The last executed command.
-     */
-    query?: pulumi.Input<string>;
-    /**
-     * Query buffer length (0 means no query pending).
-     */
-    queryBuffer?: pulumi.Input<number>;
-    /**
-     * Free space of the query buffer (0 means the buffer is full).
-     */
-    queryBufferFree?: pulumi.Input<number>;
-}
-
 export interface GetManagedDatabaseValkeySessionsSession {
     /**
      * Number of active channel subscriptions
@@ -2038,7 +1896,7 @@ export interface ManagedDatabaseOpensearchProperties {
     clusterRoutingAllocationNodeConcurrentRecoveries?: pulumi.Input<number>;
     clusterSearchRequestSlowlog?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog>;
     /**
-     * Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+     * Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
      */
     customDomain?: pulumi.Input<string>;
     /**
@@ -2169,6 +2027,10 @@ export interface ManagedDatabaseOpensearchProperties {
      * How long audit history indices are kept in days.
      */
     ismHistoryRolloverRetentionPeriod?: pulumi.Input<number>;
+    /**
+     * OpenSearch JWT Configuration.
+     */
+    jwt?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesJwt>;
     /**
      * Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
      */
@@ -2421,6 +2283,45 @@ export interface ManagedDatabaseOpensearchPropertiesIndexTemplate {
      * The number of primary shards that an index should have. Deprecated, use an index template instead.
      */
     numberOfShards?: pulumi.Input<number>;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesJwt {
+    /**
+     * Enable or disable OpenSearch JWT authentication. Enables or disables JWT-based authentication for OpenSearch. When enabled, users can authenticate using JWT tokens.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * JWT clock skew tolerance in seconds. The maximum allowed time difference in seconds between the JWT issuer's clock and the OpenSearch server's clock. This helps prevent token validation failures due to minor time synchronization issues.
+     */
+    jwtClockSkewToleranceSeconds?: pulumi.Input<number>;
+    /**
+     * HTTP header name for JWT token. The HTTP header name where the JWT token is transmitted. Typically 'Authorization' for Bearer tokens.
+     */
+    jwtHeader?: pulumi.Input<string>;
+    /**
+     * URL parameter name for JWT token. If the JWT token is transmitted as a URL parameter instead of an HTTP header, specify the parameter name here.
+     */
+    jwtUrlParameter?: pulumi.Input<string>;
+    /**
+     * Required JWT audience. If specified, the JWT must contain an 'aud' claim that matches this value. This provides additional security by ensuring the JWT was issued for the expected audience.
+     */
+    requiredAudience?: pulumi.Input<string>;
+    /**
+     * Required JWT issuer. If specified, the JWT must contain an 'iss' claim that matches this value. This provides additional security by ensuring the JWT was issued by the expected issuer.
+     */
+    requiredIssuer?: pulumi.Input<string>;
+    /**
+     * JWT claim key for roles. The key in the JWT payload that contains the user's roles. If specified, roles will be extracted from the JWT for authorization.
+     */
+    rolesKey?: pulumi.Input<string>;
+    /**
+     * JWT signing key. The secret key used to sign and verify JWT tokens. This should be a secure, randomly generated key HMAC key or public RSA/ECDSA key.
+     */
+    signingKey?: pulumi.Input<string>;
+    /**
+     * JWT claim key for subject. The key in the JWT payload that contains the user's subject identifier. If not specified, the 'sub' claim is used by default.
+     */
+    subjectKey?: pulumi.Input<string>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesOpenid {
@@ -2948,6 +2849,26 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     idleInTransactionSessionTimeout?: pulumi.Input<number>;
     /**
+     * EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+     */
+    ioCombineLimit?: pulumi.Input<number>;
+    /**
+     * EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+     */
+    ioMaxCombineLimit?: pulumi.Input<number>;
+    /**
+     * EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+     */
+    ioMaxConcurrency?: pulumi.Input<number>;
+    /**
+     * EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+     */
+    ioMethod?: pulumi.Input<string>;
+    /**
+     * io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+     */
+    ioWorkers?: pulumi.Input<number>;
+    /**
      * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
      */
     ipFilters?: pulumi.Input<pulumi.Input<string>[]>;
@@ -3043,6 +2964,10 @@ export interface ManagedDatabasePostgresqlProperties {
      * Migrate data from existing server.
      */
     migration?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesMigration>;
+    /**
+     * Number of nodes for the service.
+     */
+    nodeCount?: pulumi.Input<number>;
     /**
      * Chooses the algorithm for encrypting passwords.
      */
@@ -3310,181 +3235,6 @@ export interface ManagedDatabasePostgresqlPropertiesTimescaledb {
     maxBackgroundWorkers?: pulumi.Input<number>;
 }
 
-export interface ManagedDatabaseRedisComponent {
-    /**
-     * Type of the component
-     */
-    component?: pulumi.Input<string>;
-    /**
-     * Hostname of the component
-     */
-    host?: pulumi.Input<string>;
-    /**
-     * Port number of the component
-     */
-    port?: pulumi.Input<number>;
-    /**
-     * Component network route type
-     */
-    route?: pulumi.Input<string>;
-    /**
-     * Usage of the component
-     */
-    usage?: pulumi.Input<string>;
-}
-
-export interface ManagedDatabaseRedisNetwork {
-    /**
-     * Network family. Currently only `IPv4` is supported.
-     */
-    family: pulumi.Input<string>;
-    /**
-     * The name of the network. Must be unique within the service.
-     */
-    name: pulumi.Input<string>;
-    /**
-     * The type of the network. Must be private.
-     */
-    type: pulumi.Input<string>;
-    /**
-     * Private network UUID. Must reside in the same zone as the database.
-     */
-    uuid: pulumi.Input<string>;
-}
-
-export interface ManagedDatabaseRedisNodeState {
-    /**
-     * Name plus a node iteration
-     */
-    name?: pulumi.Input<string>;
-    /**
-     * Role of the node
-     */
-    role?: pulumi.Input<string>;
-    /**
-     * State of the node
-     */
-    state?: pulumi.Input<string>;
-}
-
-export interface ManagedDatabaseRedisProperties {
-    /**
-     * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
-     */
-    automaticUtilityNetworkIpFilter?: pulumi.Input<boolean>;
-    /**
-     * The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
-     */
-    backupHour?: pulumi.Input<number>;
-    /**
-     * The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
-     */
-    backupMinute?: pulumi.Input<number>;
-    /**
-     * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
-     */
-    ipFilters?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Migrate data from existing server.
-     */
-    migration?: pulumi.Input<inputs.ManagedDatabaseRedisPropertiesMigration>;
-    /**
-     * Public Access. Allow access to the service from the public Internet.
-     */
-    publicAccess?: pulumi.Input<boolean>;
-    /**
-     * Default ACL for pub/sub channels used when Redis user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Redis configuration acl-pubsub-default.
-     */
-    redisAclChannelsDefault?: pulumi.Input<string>;
-    /**
-     * Redis IO thread count. Set Redis IO thread count. Changing this will cause a restart of the Redis service.
-     */
-    redisIoThreads?: pulumi.Input<number>;
-    /**
-     * LFU maxmemory-policy counter decay time in minutes.
-     */
-    redisLfuDecayTime?: pulumi.Input<number>;
-    /**
-     * Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
-     */
-    redisLfuLogFactor?: pulumi.Input<number>;
-    /**
-     * Redis maxmemory-policy.
-     */
-    redisMaxmemoryPolicy?: pulumi.Input<string>;
-    /**
-     * Set notify-keyspace-events option.
-     */
-    redisNotifyKeyspaceEvents?: pulumi.Input<string>;
-    /**
-     * Number of Redis databases. Set number of Redis databases. Changing this will cause a restart of the Redis service.
-     */
-    redisNumberOfDatabases?: pulumi.Input<number>;
-    /**
-     * Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.
-     */
-    redisPersistence?: pulumi.Input<string>;
-    /**
-     * Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
-     */
-    redisPubsubClientOutputBufferLimit?: pulumi.Input<number>;
-    /**
-     * Require SSL to access Redis.
-     */
-    redisSsl?: pulumi.Input<boolean>;
-    /**
-     * Redis idle connection timeout in seconds.
-     */
-    redisTimeout?: pulumi.Input<number>;
-    /**
-     * Redis major version.
-     */
-    redisVersion?: pulumi.Input<string>;
-    /**
-     * Service logging. Store logs for the service so that they are available in the HTTP API and console.
-     */
-    serviceLog?: pulumi.Input<boolean>;
-}
-
-export interface ManagedDatabaseRedisPropertiesMigration {
-    /**
-     * Database name for bootstrapping the initial connection.
-     */
-    dbname?: pulumi.Input<string>;
-    /**
-     * Hostname or IP address of the server where to migrate data from.
-     */
-    host?: pulumi.Input<string>;
-    /**
-     * Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
-     */
-    ignoreDbs?: pulumi.Input<string>;
-    /**
-     * Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
-     */
-    ignoreRoles?: pulumi.Input<string>;
-    /**
-     * The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
-     */
-    method?: pulumi.Input<string>;
-    /**
-     * Password for authentication with the server where to migrate data from.
-     */
-    password?: pulumi.Input<string>;
-    /**
-     * Port number of the server where to migrate data from.
-     */
-    port?: pulumi.Input<number>;
-    /**
-     * The server where to migrate data from is secured with SSL.
-     */
-    ssl?: pulumi.Input<boolean>;
-    /**
-     * User name for authentication with the server where to migrate data from.
-     */
-    username?: pulumi.Input<string>;
-}
-
 export interface ManagedDatabaseUserOpensearchAccessControl {
     /**
      * Set user access control rules.
@@ -3508,25 +3258,6 @@ export interface ManagedDatabaseUserPgAccessControl {
      * Grant replication privilege
      */
     allowReplication?: pulumi.Input<boolean>;
-}
-
-export interface ManagedDatabaseUserRedisAccessControl {
-    /**
-     * Set access control to all commands in specified categories.
-     */
-    categories?: pulumi.Input<string>;
-    /**
-     * Set access control to Pub/Sub channels.
-     */
-    channels?: pulumi.Input<string>;
-    /**
-     * Set access control to commands.
-     */
-    commands?: pulumi.Input<string>;
-    /**
-     * Set access control to keys.
-     */
-    keys?: pulumi.Input<string>;
 }
 
 export interface ManagedDatabaseUserValkeyAccessControl {

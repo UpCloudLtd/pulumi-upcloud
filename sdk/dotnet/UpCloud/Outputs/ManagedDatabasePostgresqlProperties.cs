@@ -99,6 +99,26 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? IdleInTransactionSessionTimeout;
         /// <summary>
+        /// EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+        /// </summary>
+        public readonly int? IoCombineLimit;
+        /// <summary>
+        /// EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+        /// </summary>
+        public readonly int? IoMaxCombineLimit;
+        /// <summary>
+        /// EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+        /// </summary>
+        public readonly int? IoMaxConcurrency;
+        /// <summary>
+        /// EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+        /// </summary>
+        public readonly string? IoMethod;
+        /// <summary>
+        /// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+        /// </summary>
+        public readonly int? IoWorkers;
+        /// <summary>
         /// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
         /// </summary>
         public readonly ImmutableArray<string> IpFilters;
@@ -194,6 +214,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// Migrate data from existing server.
         /// </summary>
         public readonly Outputs.ManagedDatabasePostgresqlPropertiesMigration? Migration;
+        /// <summary>
+        /// Number of nodes for the service.
+        /// </summary>
+        public readonly int? NodeCount;
         /// <summary>
         /// Chooses the algorithm for encrypting passwords.
         /// </summary>
@@ -343,6 +367,16 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             int? idleInTransactionSessionTimeout,
 
+            int? ioCombineLimit,
+
+            int? ioMaxCombineLimit,
+
+            int? ioMaxConcurrency,
+
+            string? ioMethod,
+
+            int? ioWorkers,
+
             ImmutableArray<string> ipFilters,
 
             bool? jit,
@@ -390,6 +424,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             int? maxWorkerProcesses,
 
             Outputs.ManagedDatabasePostgresqlPropertiesMigration? migration,
+
+            int? nodeCount,
 
             string? passwordEncryption,
 
@@ -464,6 +500,11 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             DeadlockTimeout = deadlockTimeout;
             DefaultToastCompression = defaultToastCompression;
             IdleInTransactionSessionTimeout = idleInTransactionSessionTimeout;
+            IoCombineLimit = ioCombineLimit;
+            IoMaxCombineLimit = ioMaxCombineLimit;
+            IoMaxConcurrency = ioMaxConcurrency;
+            IoMethod = ioMethod;
+            IoWorkers = ioWorkers;
             IpFilters = ipFilters;
             Jit = jit;
             LogAutovacuumMinDuration = logAutovacuumMinDuration;
@@ -488,6 +529,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             MaxWalSenders = maxWalSenders;
             MaxWorkerProcesses = maxWorkerProcesses;
             Migration = migration;
+            NodeCount = nodeCount;
             PasswordEncryption = passwordEncryption;
             PgPartmanBgwInterval = pgPartmanBgwInterval;
             PgPartmanBgwRole = pgPartmanBgwRole;
