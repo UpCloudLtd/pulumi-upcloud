@@ -12,7 +12,6 @@ import com.pulumi.upcloud.Utilities;
 import com.pulumi.upcloud.inputs.ManagedDatabaseUserState;
 import com.pulumi.upcloud.outputs.ManagedDatabaseUserOpensearchAccessControl;
 import com.pulumi.upcloud.outputs.ManagedDatabaseUserPgAccessControl;
-import com.pulumi.upcloud.outputs.ManagedDatabaseUserRedisAccessControl;
 import com.pulumi.upcloud.outputs.ManagedDatabaseUserValkeyAccessControl;
 import java.lang.String;
 import java.util.List;
@@ -124,20 +123,6 @@ public class ManagedDatabaseUser extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<ManagedDatabaseUserPgAccessControl>> pgAccessControl() {
         return Codegen.optional(this.pgAccessControl);
-    }
-    /**
-     * Redis access control object.
-     * 
-     */
-    @Export(name="redisAccessControl", refs={ManagedDatabaseUserRedisAccessControl.class}, tree="[0]")
-    private Output</* @Nullable */ ManagedDatabaseUserRedisAccessControl> redisAccessControl;
-
-    /**
-     * @return Redis access control object.
-     * 
-     */
-    public Output<Optional<ManagedDatabaseUserRedisAccessControl>> redisAccessControl() {
-        return Codegen.optional(this.redisAccessControl);
     }
     /**
      * Service&#39;s UUID for which this user belongs to

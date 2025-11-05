@@ -11,6 +11,7 @@ import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesClusterSearc
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesIndexRollupArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesIndexTemplateArgs;
+import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesJwtArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesOpenidArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesRemoteStoreArgs;
@@ -167,14 +168,14 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+     * Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
      * 
      */
     @Import(name="customDomain")
     private @Nullable Output<String> customDomain;
 
     /**
-     * @return Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+     * @return Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
      * 
      */
     public Optional<Output<String>> customDomain() {
@@ -659,6 +660,21 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
      */
     public Optional<Output<Integer>> ismHistoryRolloverRetentionPeriod() {
         return Optional.ofNullable(this.ismHistoryRolloverRetentionPeriod);
+    }
+
+    /**
+     * OpenSearch JWT Configuration.
+     * 
+     */
+    @Import(name="jwt")
+    private @Nullable Output<ManagedDatabaseOpensearchPropertiesJwtArgs> jwt;
+
+    /**
+     * @return OpenSearch JWT Configuration.
+     * 
+     */
+    public Optional<Output<ManagedDatabaseOpensearchPropertiesJwtArgs>> jwt() {
+        return Optional.ofNullable(this.jwt);
     }
 
     /**
@@ -1156,6 +1172,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         this.ismHistoryMaxDocs = $.ismHistoryMaxDocs;
         this.ismHistoryRolloverCheckPeriod = $.ismHistoryRolloverCheckPeriod;
         this.ismHistoryRolloverRetentionPeriod = $.ismHistoryRolloverRetentionPeriod;
+        this.jwt = $.jwt;
         this.keepIndexRefreshInterval = $.keepIndexRefreshInterval;
         this.knnMemoryCircuitBreakerEnabled = $.knnMemoryCircuitBreakerEnabled;
         this.knnMemoryCircuitBreakerLimit = $.knnMemoryCircuitBreakerLimit;
@@ -1394,7 +1411,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param customDomain Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+         * @param customDomain Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
          * 
          * @return builder
          * 
@@ -1405,7 +1422,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param customDomain Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+         * @param customDomain Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
          * 
          * @return builder
          * 
@@ -2124,6 +2141,27 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
          */
         public Builder ismHistoryRolloverRetentionPeriod(Integer ismHistoryRolloverRetentionPeriod) {
             return ismHistoryRolloverRetentionPeriod(Output.of(ismHistoryRolloverRetentionPeriod));
+        }
+
+        /**
+         * @param jwt OpenSearch JWT Configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwt(@Nullable Output<ManagedDatabaseOpensearchPropertiesJwtArgs> jwt) {
+            $.jwt = jwt;
+            return this;
+        }
+
+        /**
+         * @param jwt OpenSearch JWT Configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwt(ManagedDatabaseOpensearchPropertiesJwtArgs jwt) {
+            return jwt(Output.of(jwt));
         }
 
         /**

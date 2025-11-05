@@ -83,6 +83,7 @@ __all__ = [
     'ManagedDatabaseOpensearchPropertiesDiskWatermarks',
     'ManagedDatabaseOpensearchPropertiesIndexRollup',
     'ManagedDatabaseOpensearchPropertiesIndexTemplate',
+    'ManagedDatabaseOpensearchPropertiesJwt',
     'ManagedDatabaseOpensearchPropertiesOpenid',
     'ManagedDatabaseOpensearchPropertiesOpensearchDashboards',
     'ManagedDatabaseOpensearchPropertiesRemoteStore',
@@ -110,15 +111,9 @@ __all__ = [
     'ManagedDatabasePostgresqlPropertiesPgbouncer',
     'ManagedDatabasePostgresqlPropertiesPglookout',
     'ManagedDatabasePostgresqlPropertiesTimescaledb',
-    'ManagedDatabaseRedisComponent',
-    'ManagedDatabaseRedisNetwork',
-    'ManagedDatabaseRedisNodeState',
-    'ManagedDatabaseRedisProperties',
-    'ManagedDatabaseRedisPropertiesMigration',
     'ManagedDatabaseUserOpensearchAccessControl',
     'ManagedDatabaseUserOpensearchAccessControlRule',
     'ManagedDatabaseUserPgAccessControl',
-    'ManagedDatabaseUserRedisAccessControl',
     'ManagedDatabaseUserValkeyAccessControl',
     'ManagedDatabaseValkeyComponent',
     'ManagedDatabaseValkeyNetwork',
@@ -150,7 +145,6 @@ __all__ = [
     'GetManagedDatabaseMysqlSessionsSessionResult',
     'GetManagedDatabaseOpensearchIndicesIndexResult',
     'GetManagedDatabasePostgresqlSessionsSessionResult',
-    'GetManagedDatabaseRedisSessionsSessionResult',
     'GetManagedDatabaseValkeySessionsSessionResult',
     'GetManagedObjectStoragePoliciesPolicyResult',
     'GetManagedObjectStorageRegionsRegionResult',
@@ -4512,6 +4506,7 @@ class ManagedDatabaseOpensearchProperties(dict):
                  ism_history_max_docs: Optional[_builtins.int] = None,
                  ism_history_rollover_check_period: Optional[_builtins.int] = None,
                  ism_history_rollover_retention_period: Optional[_builtins.int] = None,
+                 jwt: Optional['outputs.ManagedDatabaseOpensearchPropertiesJwt'] = None,
                  keep_index_refresh_interval: Optional[_builtins.bool] = None,
                  knn_memory_circuit_breaker_enabled: Optional[_builtins.bool] = None,
                  knn_memory_circuit_breaker_limit: Optional[_builtins.int] = None,
@@ -4552,7 +4547,7 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param _builtins.int cluster_max_shards_per_node: Controls the number of shards allowed in the cluster per data node.
         :param _builtins.bool cluster_routing_allocation_balance_prefer_primary: When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
         :param _builtins.int cluster_routing_allocation_node_concurrent_recoveries: Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
-        :param _builtins.str custom_domain: Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+        :param _builtins.str custom_domain: Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
         :param Sequence[_builtins.str] custom_keystores: OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
         :param Sequence[_builtins.str] custom_repos: OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
         :param 'ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs' disk_watermarks: Watermark settings.
@@ -4585,6 +4580,7 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param _builtins.int ism_history_max_docs: The maximum number of documents before rolling over the audit history index.
         :param _builtins.int ism_history_rollover_check_period: The time between rollover checks for the audit history index in hours.
         :param _builtins.int ism_history_rollover_retention_period: How long audit history indices are kept in days.
+        :param 'ManagedDatabaseOpensearchPropertiesJwtArgs' jwt: OpenSearch JWT Configuration.
         :param _builtins.bool keep_index_refresh_interval: Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
         :param _builtins.bool knn_memory_circuit_breaker_enabled: Enable or disable KNN memory circuit breaker. Defaults to true.
         :param _builtins.int knn_memory_circuit_breaker_limit: Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
@@ -4701,6 +4697,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "ism_history_rollover_check_period", ism_history_rollover_check_period)
         if ism_history_rollover_retention_period is not None:
             pulumi.set(__self__, "ism_history_rollover_retention_period", ism_history_rollover_retention_period)
+        if jwt is not None:
+            pulumi.set(__self__, "jwt", jwt)
         if keep_index_refresh_interval is not None:
             pulumi.set(__self__, "keep_index_refresh_interval", keep_index_refresh_interval)
         if knn_memory_circuit_breaker_enabled is not None:
@@ -4842,7 +4840,7 @@ class ManagedDatabaseOpensearchProperties(dict):
     @pulumi.getter(name="customDomain")
     def custom_domain(self) -> Optional[_builtins.str]:
         """
-        Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+        Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
         """
         return pulumi.get(self, "custom_domain")
 
@@ -5101,6 +5099,14 @@ class ManagedDatabaseOpensearchProperties(dict):
         How long audit history indices are kept in days.
         """
         return pulumi.get(self, "ism_history_rollover_retention_period")
+
+    @_builtins.property
+    @pulumi.getter
+    def jwt(self) -> Optional['outputs.ManagedDatabaseOpensearchPropertiesJwt']:
+        """
+        OpenSearch JWT Configuration.
+        """
+        return pulumi.get(self, "jwt")
 
     @_builtins.property
     @pulumi.getter(name="keepIndexRefreshInterval")
@@ -5867,6 +5873,152 @@ class ManagedDatabaseOpensearchPropertiesIndexTemplate(dict):
         The number of primary shards that an index should have. Deprecated, use an index template instead.
         """
         return pulumi.get(self, "number_of_shards")
+
+
+@pulumi.output_type
+class ManagedDatabaseOpensearchPropertiesJwt(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "jwtClockSkewToleranceSeconds":
+            suggest = "jwt_clock_skew_tolerance_seconds"
+        elif key == "jwtHeader":
+            suggest = "jwt_header"
+        elif key == "jwtUrlParameter":
+            suggest = "jwt_url_parameter"
+        elif key == "requiredAudience":
+            suggest = "required_audience"
+        elif key == "requiredIssuer":
+            suggest = "required_issuer"
+        elif key == "rolesKey":
+            suggest = "roles_key"
+        elif key == "signingKey":
+            suggest = "signing_key"
+        elif key == "subjectKey":
+            suggest = "subject_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesJwt. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedDatabaseOpensearchPropertiesJwt.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedDatabaseOpensearchPropertiesJwt.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: Optional[_builtins.bool] = None,
+                 jwt_clock_skew_tolerance_seconds: Optional[_builtins.int] = None,
+                 jwt_header: Optional[_builtins.str] = None,
+                 jwt_url_parameter: Optional[_builtins.str] = None,
+                 required_audience: Optional[_builtins.str] = None,
+                 required_issuer: Optional[_builtins.str] = None,
+                 roles_key: Optional[_builtins.str] = None,
+                 signing_key: Optional[_builtins.str] = None,
+                 subject_key: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool enabled: Enable or disable OpenSearch JWT authentication. Enables or disables JWT-based authentication for OpenSearch. When enabled, users can authenticate using JWT tokens.
+        :param _builtins.int jwt_clock_skew_tolerance_seconds: JWT clock skew tolerance in seconds. The maximum allowed time difference in seconds between the JWT issuer's clock and the OpenSearch server's clock. This helps prevent token validation failures due to minor time synchronization issues.
+        :param _builtins.str jwt_header: HTTP header name for JWT token. The HTTP header name where the JWT token is transmitted. Typically 'Authorization' for Bearer tokens.
+        :param _builtins.str jwt_url_parameter: URL parameter name for JWT token. If the JWT token is transmitted as a URL parameter instead of an HTTP header, specify the parameter name here.
+        :param _builtins.str required_audience: Required JWT audience. If specified, the JWT must contain an 'aud' claim that matches this value. This provides additional security by ensuring the JWT was issued for the expected audience.
+        :param _builtins.str required_issuer: Required JWT issuer. If specified, the JWT must contain an 'iss' claim that matches this value. This provides additional security by ensuring the JWT was issued by the expected issuer.
+        :param _builtins.str roles_key: JWT claim key for roles. The key in the JWT payload that contains the user's roles. If specified, roles will be extracted from the JWT for authorization.
+        :param _builtins.str signing_key: JWT signing key. The secret key used to sign and verify JWT tokens. This should be a secure, randomly generated key HMAC key or public RSA/ECDSA key.
+        :param _builtins.str subject_key: JWT claim key for subject. The key in the JWT payload that contains the user's subject identifier. If not specified, the 'sub' claim is used by default.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if jwt_clock_skew_tolerance_seconds is not None:
+            pulumi.set(__self__, "jwt_clock_skew_tolerance_seconds", jwt_clock_skew_tolerance_seconds)
+        if jwt_header is not None:
+            pulumi.set(__self__, "jwt_header", jwt_header)
+        if jwt_url_parameter is not None:
+            pulumi.set(__self__, "jwt_url_parameter", jwt_url_parameter)
+        if required_audience is not None:
+            pulumi.set(__self__, "required_audience", required_audience)
+        if required_issuer is not None:
+            pulumi.set(__self__, "required_issuer", required_issuer)
+        if roles_key is not None:
+            pulumi.set(__self__, "roles_key", roles_key)
+        if signing_key is not None:
+            pulumi.set(__self__, "signing_key", signing_key)
+        if subject_key is not None:
+            pulumi.set(__self__, "subject_key", subject_key)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> Optional[_builtins.bool]:
+        """
+        Enable or disable OpenSearch JWT authentication. Enables or disables JWT-based authentication for OpenSearch. When enabled, users can authenticate using JWT tokens.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="jwtClockSkewToleranceSeconds")
+    def jwt_clock_skew_tolerance_seconds(self) -> Optional[_builtins.int]:
+        """
+        JWT clock skew tolerance in seconds. The maximum allowed time difference in seconds between the JWT issuer's clock and the OpenSearch server's clock. This helps prevent token validation failures due to minor time synchronization issues.
+        """
+        return pulumi.get(self, "jwt_clock_skew_tolerance_seconds")
+
+    @_builtins.property
+    @pulumi.getter(name="jwtHeader")
+    def jwt_header(self) -> Optional[_builtins.str]:
+        """
+        HTTP header name for JWT token. The HTTP header name where the JWT token is transmitted. Typically 'Authorization' for Bearer tokens.
+        """
+        return pulumi.get(self, "jwt_header")
+
+    @_builtins.property
+    @pulumi.getter(name="jwtUrlParameter")
+    def jwt_url_parameter(self) -> Optional[_builtins.str]:
+        """
+        URL parameter name for JWT token. If the JWT token is transmitted as a URL parameter instead of an HTTP header, specify the parameter name here.
+        """
+        return pulumi.get(self, "jwt_url_parameter")
+
+    @_builtins.property
+    @pulumi.getter(name="requiredAudience")
+    def required_audience(self) -> Optional[_builtins.str]:
+        """
+        Required JWT audience. If specified, the JWT must contain an 'aud' claim that matches this value. This provides additional security by ensuring the JWT was issued for the expected audience.
+        """
+        return pulumi.get(self, "required_audience")
+
+    @_builtins.property
+    @pulumi.getter(name="requiredIssuer")
+    def required_issuer(self) -> Optional[_builtins.str]:
+        """
+        Required JWT issuer. If specified, the JWT must contain an 'iss' claim that matches this value. This provides additional security by ensuring the JWT was issued by the expected issuer.
+        """
+        return pulumi.get(self, "required_issuer")
+
+    @_builtins.property
+    @pulumi.getter(name="rolesKey")
+    def roles_key(self) -> Optional[_builtins.str]:
+        """
+        JWT claim key for roles. The key in the JWT payload that contains the user's roles. If specified, roles will be extracted from the JWT for authorization.
+        """
+        return pulumi.get(self, "roles_key")
+
+    @_builtins.property
+    @pulumi.getter(name="signingKey")
+    def signing_key(self) -> Optional[_builtins.str]:
+        """
+        JWT signing key. The secret key used to sign and verify JWT tokens. This should be a secure, randomly generated key HMAC key or public RSA/ECDSA key.
+        """
+        return pulumi.get(self, "signing_key")
+
+    @_builtins.property
+    @pulumi.getter(name="subjectKey")
+    def subject_key(self) -> Optional[_builtins.str]:
+        """
+        JWT claim key for subject. The key in the JWT payload that contains the user's subject identifier. If not specified, the 'sub' claim is used by default.
+        """
+        return pulumi.get(self, "subject_key")
 
 
 @pulumi.output_type
@@ -7522,6 +7674,16 @@ class ManagedDatabasePostgresqlProperties(dict):
             suggest = "default_toast_compression"
         elif key == "idleInTransactionSessionTimeout":
             suggest = "idle_in_transaction_session_timeout"
+        elif key == "ioCombineLimit":
+            suggest = "io_combine_limit"
+        elif key == "ioMaxCombineLimit":
+            suggest = "io_max_combine_limit"
+        elif key == "ioMaxConcurrency":
+            suggest = "io_max_concurrency"
+        elif key == "ioMethod":
+            suggest = "io_method"
+        elif key == "ioWorkers":
+            suggest = "io_workers"
         elif key == "ipFilters":
             suggest = "ip_filters"
         elif key == "logAutovacuumMinDuration":
@@ -7566,6 +7728,8 @@ class ManagedDatabasePostgresqlProperties(dict):
             suggest = "max_wal_senders"
         elif key == "maxWorkerProcesses":
             suggest = "max_worker_processes"
+        elif key == "nodeCount":
+            suggest = "node_count"
         elif key == "passwordEncryption":
             suggest = "password_encryption"
         elif key == "pgPartmanBgwInterval":
@@ -7638,6 +7802,11 @@ class ManagedDatabasePostgresqlProperties(dict):
                  deadlock_timeout: Optional[_builtins.int] = None,
                  default_toast_compression: Optional[_builtins.str] = None,
                  idle_in_transaction_session_timeout: Optional[_builtins.int] = None,
+                 io_combine_limit: Optional[_builtins.int] = None,
+                 io_max_combine_limit: Optional[_builtins.int] = None,
+                 io_max_concurrency: Optional[_builtins.int] = None,
+                 io_method: Optional[_builtins.str] = None,
+                 io_workers: Optional[_builtins.int] = None,
                  ip_filters: Optional[Sequence[_builtins.str]] = None,
                  jit: Optional[_builtins.bool] = None,
                  log_autovacuum_min_duration: Optional[_builtins.int] = None,
@@ -7662,6 +7831,7 @@ class ManagedDatabasePostgresqlProperties(dict):
                  max_wal_senders: Optional[_builtins.int] = None,
                  max_worker_processes: Optional[_builtins.int] = None,
                  migration: Optional['outputs.ManagedDatabasePostgresqlPropertiesMigration'] = None,
+                 node_count: Optional[_builtins.int] = None,
                  password_encryption: Optional[_builtins.str] = None,
                  pg_partman_bgw_interval: Optional[_builtins.int] = None,
                  pg_partman_bgw_role: Optional[_builtins.str] = None,
@@ -7710,6 +7880,11 @@ class ManagedDatabasePostgresqlProperties(dict):
         :param _builtins.int deadlock_timeout: This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
         :param _builtins.str default_toast_compression: Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
         :param _builtins.int idle_in_transaction_session_timeout: Time out sessions with open transactions after this number of milliseconds.
+        :param _builtins.int io_combine_limit: EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+        :param _builtins.int io_max_combine_limit: EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+        :param _builtins.int io_max_concurrency: EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+        :param _builtins.str io_method: EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+        :param _builtins.int io_workers: io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
         :param Sequence[_builtins.str] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
         :param _builtins.bool jit: Controls system-wide use of Just-in-Time Compilation (JIT).
         :param _builtins.int log_autovacuum_min_duration: Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
@@ -7734,6 +7909,7 @@ class ManagedDatabasePostgresqlProperties(dict):
         :param _builtins.int max_wal_senders: PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
         :param _builtins.int max_worker_processes: Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
         :param 'ManagedDatabasePostgresqlPropertiesMigrationArgs' migration: Migrate data from existing server.
+        :param _builtins.int node_count: Number of nodes for the service.
         :param _builtins.str password_encryption: Chooses the algorithm for encrypting passwords.
         :param _builtins.int pg_partman_bgw_interval: Sets the time interval in seconds to run pg_partman's scheduled tasks. The default is `3600`.
         :param _builtins.str pg_partman_bgw_role: Controls which role to use for pg_partman's scheduled background tasks.
@@ -7803,6 +7979,16 @@ class ManagedDatabasePostgresqlProperties(dict):
             pulumi.set(__self__, "default_toast_compression", default_toast_compression)
         if idle_in_transaction_session_timeout is not None:
             pulumi.set(__self__, "idle_in_transaction_session_timeout", idle_in_transaction_session_timeout)
+        if io_combine_limit is not None:
+            pulumi.set(__self__, "io_combine_limit", io_combine_limit)
+        if io_max_combine_limit is not None:
+            pulumi.set(__self__, "io_max_combine_limit", io_max_combine_limit)
+        if io_max_concurrency is not None:
+            pulumi.set(__self__, "io_max_concurrency", io_max_concurrency)
+        if io_method is not None:
+            pulumi.set(__self__, "io_method", io_method)
+        if io_workers is not None:
+            pulumi.set(__self__, "io_workers", io_workers)
         if ip_filters is not None:
             pulumi.set(__self__, "ip_filters", ip_filters)
         if jit is not None:
@@ -7851,6 +8037,8 @@ class ManagedDatabasePostgresqlProperties(dict):
             pulumi.set(__self__, "max_worker_processes", max_worker_processes)
         if migration is not None:
             pulumi.set(__self__, "migration", migration)
+        if node_count is not None:
+            pulumi.set(__self__, "node_count", node_count)
         if password_encryption is not None:
             pulumi.set(__self__, "password_encryption", password_encryption)
         if pg_partman_bgw_interval is not None:
@@ -8073,6 +8261,46 @@ class ManagedDatabasePostgresqlProperties(dict):
         return pulumi.get(self, "idle_in_transaction_session_timeout")
 
     @_builtins.property
+    @pulumi.getter(name="ioCombineLimit")
+    def io_combine_limit(self) -> Optional[_builtins.int]:
+        """
+        EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+        """
+        return pulumi.get(self, "io_combine_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="ioMaxCombineLimit")
+    def io_max_combine_limit(self) -> Optional[_builtins.int]:
+        """
+        EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+        """
+        return pulumi.get(self, "io_max_combine_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="ioMaxConcurrency")
+    def io_max_concurrency(self) -> Optional[_builtins.int]:
+        """
+        EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+        """
+        return pulumi.get(self, "io_max_concurrency")
+
+    @_builtins.property
+    @pulumi.getter(name="ioMethod")
+    def io_method(self) -> Optional[_builtins.str]:
+        """
+        EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+        """
+        return pulumi.get(self, "io_method")
+
+    @_builtins.property
+    @pulumi.getter(name="ioWorkers")
+    def io_workers(self) -> Optional[_builtins.int]:
+        """
+        io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+        """
+        return pulumi.get(self, "io_workers")
+
+    @_builtins.property
     @pulumi.getter(name="ipFilters")
     def ip_filters(self) -> Optional[Sequence[_builtins.str]]:
         """
@@ -8263,6 +8491,14 @@ class ManagedDatabasePostgresqlProperties(dict):
         Migrate data from existing server.
         """
         return pulumi.get(self, "migration")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> Optional[_builtins.int]:
+        """
+        Number of nodes for the service.
+        """
+        return pulumi.get(self, "node_count")
 
     @_builtins.property
     @pulumi.getter(name="passwordEncryption")
@@ -9068,587 +9304,6 @@ class ManagedDatabasePostgresqlPropertiesTimescaledb(dict):
 
 
 @pulumi.output_type
-class ManagedDatabaseRedisComponent(dict):
-    def __init__(__self__, *,
-                 component: Optional[_builtins.str] = None,
-                 host: Optional[_builtins.str] = None,
-                 port: Optional[_builtins.int] = None,
-                 route: Optional[_builtins.str] = None,
-                 usage: Optional[_builtins.str] = None):
-        """
-        :param _builtins.str component: Type of the component
-        :param _builtins.str host: Hostname of the component
-        :param _builtins.int port: Port number of the component
-        :param _builtins.str route: Component network route type
-        :param _builtins.str usage: Usage of the component
-        """
-        if component is not None:
-            pulumi.set(__self__, "component", component)
-        if host is not None:
-            pulumi.set(__self__, "host", host)
-        if port is not None:
-            pulumi.set(__self__, "port", port)
-        if route is not None:
-            pulumi.set(__self__, "route", route)
-        if usage is not None:
-            pulumi.set(__self__, "usage", usage)
-
-    @_builtins.property
-    @pulumi.getter
-    def component(self) -> Optional[_builtins.str]:
-        """
-        Type of the component
-        """
-        return pulumi.get(self, "component")
-
-    @_builtins.property
-    @pulumi.getter
-    def host(self) -> Optional[_builtins.str]:
-        """
-        Hostname of the component
-        """
-        return pulumi.get(self, "host")
-
-    @_builtins.property
-    @pulumi.getter
-    def port(self) -> Optional[_builtins.int]:
-        """
-        Port number of the component
-        """
-        return pulumi.get(self, "port")
-
-    @_builtins.property
-    @pulumi.getter
-    def route(self) -> Optional[_builtins.str]:
-        """
-        Component network route type
-        """
-        return pulumi.get(self, "route")
-
-    @_builtins.property
-    @pulumi.getter
-    def usage(self) -> Optional[_builtins.str]:
-        """
-        Usage of the component
-        """
-        return pulumi.get(self, "usage")
-
-
-@pulumi.output_type
-class ManagedDatabaseRedisNetwork(dict):
-    def __init__(__self__, *,
-                 family: _builtins.str,
-                 name: _builtins.str,
-                 type: _builtins.str,
-                 uuid: _builtins.str):
-        """
-        :param _builtins.str family: Network family. Currently only `IPv4` is supported.
-        :param _builtins.str name: The name of the network. Must be unique within the service.
-        :param _builtins.str type: The type of the network. Must be private.
-        :param _builtins.str uuid: Private network UUID. Must reside in the same zone as the database.
-        """
-        pulumi.set(__self__, "family", family)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "uuid", uuid)
-
-    @_builtins.property
-    @pulumi.getter
-    def family(self) -> _builtins.str:
-        """
-        Network family. Currently only `IPv4` is supported.
-        """
-        return pulumi.get(self, "family")
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> _builtins.str:
-        """
-        The name of the network. Must be unique within the service.
-        """
-        return pulumi.get(self, "name")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> _builtins.str:
-        """
-        The type of the network. Must be private.
-        """
-        return pulumi.get(self, "type")
-
-    @_builtins.property
-    @pulumi.getter
-    def uuid(self) -> _builtins.str:
-        """
-        Private network UUID. Must reside in the same zone as the database.
-        """
-        return pulumi.get(self, "uuid")
-
-
-@pulumi.output_type
-class ManagedDatabaseRedisNodeState(dict):
-    def __init__(__self__, *,
-                 name: Optional[_builtins.str] = None,
-                 role: Optional[_builtins.str] = None,
-                 state: Optional[_builtins.str] = None):
-        """
-        :param _builtins.str name: Name plus a node iteration
-        :param _builtins.str role: Role of the node
-        :param _builtins.str state: State of the node
-        """
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if role is not None:
-            pulumi.set(__self__, "role", role)
-        if state is not None:
-            pulumi.set(__self__, "state", state)
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> Optional[_builtins.str]:
-        """
-        Name plus a node iteration
-        """
-        return pulumi.get(self, "name")
-
-    @_builtins.property
-    @pulumi.getter
-    def role(self) -> Optional[_builtins.str]:
-        """
-        Role of the node
-        """
-        return pulumi.get(self, "role")
-
-    @_builtins.property
-    @pulumi.getter
-    def state(self) -> Optional[_builtins.str]:
-        """
-        State of the node
-        """
-        return pulumi.get(self, "state")
-
-
-@pulumi.output_type
-class ManagedDatabaseRedisProperties(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "automaticUtilityNetworkIpFilter":
-            suggest = "automatic_utility_network_ip_filter"
-        elif key == "backupHour":
-            suggest = "backup_hour"
-        elif key == "backupMinute":
-            suggest = "backup_minute"
-        elif key == "ipFilters":
-            suggest = "ip_filters"
-        elif key == "publicAccess":
-            suggest = "public_access"
-        elif key == "redisAclChannelsDefault":
-            suggest = "redis_acl_channels_default"
-        elif key == "redisIoThreads":
-            suggest = "redis_io_threads"
-        elif key == "redisLfuDecayTime":
-            suggest = "redis_lfu_decay_time"
-        elif key == "redisLfuLogFactor":
-            suggest = "redis_lfu_log_factor"
-        elif key == "redisMaxmemoryPolicy":
-            suggest = "redis_maxmemory_policy"
-        elif key == "redisNotifyKeyspaceEvents":
-            suggest = "redis_notify_keyspace_events"
-        elif key == "redisNumberOfDatabases":
-            suggest = "redis_number_of_databases"
-        elif key == "redisPersistence":
-            suggest = "redis_persistence"
-        elif key == "redisPubsubClientOutputBufferLimit":
-            suggest = "redis_pubsub_client_output_buffer_limit"
-        elif key == "redisSsl":
-            suggest = "redis_ssl"
-        elif key == "redisTimeout":
-            suggest = "redis_timeout"
-        elif key == "redisVersion":
-            suggest = "redis_version"
-        elif key == "serviceLog":
-            suggest = "service_log"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseRedisProperties. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ManagedDatabaseRedisProperties.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ManagedDatabaseRedisProperties.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 automatic_utility_network_ip_filter: Optional[_builtins.bool] = None,
-                 backup_hour: Optional[_builtins.int] = None,
-                 backup_minute: Optional[_builtins.int] = None,
-                 ip_filters: Optional[Sequence[_builtins.str]] = None,
-                 migration: Optional['outputs.ManagedDatabaseRedisPropertiesMigration'] = None,
-                 public_access: Optional[_builtins.bool] = None,
-                 redis_acl_channels_default: Optional[_builtins.str] = None,
-                 redis_io_threads: Optional[_builtins.int] = None,
-                 redis_lfu_decay_time: Optional[_builtins.int] = None,
-                 redis_lfu_log_factor: Optional[_builtins.int] = None,
-                 redis_maxmemory_policy: Optional[_builtins.str] = None,
-                 redis_notify_keyspace_events: Optional[_builtins.str] = None,
-                 redis_number_of_databases: Optional[_builtins.int] = None,
-                 redis_persistence: Optional[_builtins.str] = None,
-                 redis_pubsub_client_output_buffer_limit: Optional[_builtins.int] = None,
-                 redis_ssl: Optional[_builtins.bool] = None,
-                 redis_timeout: Optional[_builtins.int] = None,
-                 redis_version: Optional[_builtins.str] = None,
-                 service_log: Optional[_builtins.bool] = None):
-        """
-        :param _builtins.bool automatic_utility_network_ip_filter: Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
-        :param _builtins.int backup_hour: The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
-        :param _builtins.int backup_minute: The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
-        :param Sequence[_builtins.str] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
-        :param 'ManagedDatabaseRedisPropertiesMigrationArgs' migration: Migrate data from existing server.
-        :param _builtins.bool public_access: Public Access. Allow access to the service from the public Internet.
-        :param _builtins.str redis_acl_channels_default: Default ACL for pub/sub channels used when Redis user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Redis configuration acl-pubsub-default.
-        :param _builtins.int redis_io_threads: Redis IO thread count. Set Redis IO thread count. Changing this will cause a restart of the Redis service.
-        :param _builtins.int redis_lfu_decay_time: LFU maxmemory-policy counter decay time in minutes.
-        :param _builtins.int redis_lfu_log_factor: Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
-        :param _builtins.str redis_maxmemory_policy: Redis maxmemory-policy.
-        :param _builtins.str redis_notify_keyspace_events: Set notify-keyspace-events option.
-        :param _builtins.int redis_number_of_databases: Number of Redis databases. Set number of Redis databases. Changing this will cause a restart of the Redis service.
-        :param _builtins.str redis_persistence: Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.
-        :param _builtins.int redis_pubsub_client_output_buffer_limit: Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
-        :param _builtins.bool redis_ssl: Require SSL to access Redis.
-        :param _builtins.int redis_timeout: Redis idle connection timeout in seconds.
-        :param _builtins.str redis_version: Redis major version.
-        :param _builtins.bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
-        """
-        if automatic_utility_network_ip_filter is not None:
-            pulumi.set(__self__, "automatic_utility_network_ip_filter", automatic_utility_network_ip_filter)
-        if backup_hour is not None:
-            pulumi.set(__self__, "backup_hour", backup_hour)
-        if backup_minute is not None:
-            pulumi.set(__self__, "backup_minute", backup_minute)
-        if ip_filters is not None:
-            pulumi.set(__self__, "ip_filters", ip_filters)
-        if migration is not None:
-            pulumi.set(__self__, "migration", migration)
-        if public_access is not None:
-            pulumi.set(__self__, "public_access", public_access)
-        if redis_acl_channels_default is not None:
-            pulumi.set(__self__, "redis_acl_channels_default", redis_acl_channels_default)
-        if redis_io_threads is not None:
-            pulumi.set(__self__, "redis_io_threads", redis_io_threads)
-        if redis_lfu_decay_time is not None:
-            pulumi.set(__self__, "redis_lfu_decay_time", redis_lfu_decay_time)
-        if redis_lfu_log_factor is not None:
-            pulumi.set(__self__, "redis_lfu_log_factor", redis_lfu_log_factor)
-        if redis_maxmemory_policy is not None:
-            pulumi.set(__self__, "redis_maxmemory_policy", redis_maxmemory_policy)
-        if redis_notify_keyspace_events is not None:
-            pulumi.set(__self__, "redis_notify_keyspace_events", redis_notify_keyspace_events)
-        if redis_number_of_databases is not None:
-            pulumi.set(__self__, "redis_number_of_databases", redis_number_of_databases)
-        if redis_persistence is not None:
-            pulumi.set(__self__, "redis_persistence", redis_persistence)
-        if redis_pubsub_client_output_buffer_limit is not None:
-            pulumi.set(__self__, "redis_pubsub_client_output_buffer_limit", redis_pubsub_client_output_buffer_limit)
-        if redis_ssl is not None:
-            pulumi.set(__self__, "redis_ssl", redis_ssl)
-        if redis_timeout is not None:
-            pulumi.set(__self__, "redis_timeout", redis_timeout)
-        if redis_version is not None:
-            pulumi.set(__self__, "redis_version", redis_version)
-        if service_log is not None:
-            pulumi.set(__self__, "service_log", service_log)
-
-    @_builtins.property
-    @pulumi.getter(name="automaticUtilityNetworkIpFilter")
-    def automatic_utility_network_ip_filter(self) -> Optional[_builtins.bool]:
-        """
-        Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
-        """
-        return pulumi.get(self, "automatic_utility_network_ip_filter")
-
-    @_builtins.property
-    @pulumi.getter(name="backupHour")
-    def backup_hour(self) -> Optional[_builtins.int]:
-        """
-        The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
-        """
-        return pulumi.get(self, "backup_hour")
-
-    @_builtins.property
-    @pulumi.getter(name="backupMinute")
-    def backup_minute(self) -> Optional[_builtins.int]:
-        """
-        The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
-        """
-        return pulumi.get(self, "backup_minute")
-
-    @_builtins.property
-    @pulumi.getter(name="ipFilters")
-    def ip_filters(self) -> Optional[Sequence[_builtins.str]]:
-        """
-        IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
-        """
-        return pulumi.get(self, "ip_filters")
-
-    @_builtins.property
-    @pulumi.getter
-    def migration(self) -> Optional['outputs.ManagedDatabaseRedisPropertiesMigration']:
-        """
-        Migrate data from existing server.
-        """
-        return pulumi.get(self, "migration")
-
-    @_builtins.property
-    @pulumi.getter(name="publicAccess")
-    def public_access(self) -> Optional[_builtins.bool]:
-        """
-        Public Access. Allow access to the service from the public Internet.
-        """
-        return pulumi.get(self, "public_access")
-
-    @_builtins.property
-    @pulumi.getter(name="redisAclChannelsDefault")
-    def redis_acl_channels_default(self) -> Optional[_builtins.str]:
-        """
-        Default ACL for pub/sub channels used when Redis user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Redis configuration acl-pubsub-default.
-        """
-        return pulumi.get(self, "redis_acl_channels_default")
-
-    @_builtins.property
-    @pulumi.getter(name="redisIoThreads")
-    def redis_io_threads(self) -> Optional[_builtins.int]:
-        """
-        Redis IO thread count. Set Redis IO thread count. Changing this will cause a restart of the Redis service.
-        """
-        return pulumi.get(self, "redis_io_threads")
-
-    @_builtins.property
-    @pulumi.getter(name="redisLfuDecayTime")
-    def redis_lfu_decay_time(self) -> Optional[_builtins.int]:
-        """
-        LFU maxmemory-policy counter decay time in minutes.
-        """
-        return pulumi.get(self, "redis_lfu_decay_time")
-
-    @_builtins.property
-    @pulumi.getter(name="redisLfuLogFactor")
-    def redis_lfu_log_factor(self) -> Optional[_builtins.int]:
-        """
-        Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
-        """
-        return pulumi.get(self, "redis_lfu_log_factor")
-
-    @_builtins.property
-    @pulumi.getter(name="redisMaxmemoryPolicy")
-    def redis_maxmemory_policy(self) -> Optional[_builtins.str]:
-        """
-        Redis maxmemory-policy.
-        """
-        return pulumi.get(self, "redis_maxmemory_policy")
-
-    @_builtins.property
-    @pulumi.getter(name="redisNotifyKeyspaceEvents")
-    def redis_notify_keyspace_events(self) -> Optional[_builtins.str]:
-        """
-        Set notify-keyspace-events option.
-        """
-        return pulumi.get(self, "redis_notify_keyspace_events")
-
-    @_builtins.property
-    @pulumi.getter(name="redisNumberOfDatabases")
-    def redis_number_of_databases(self) -> Optional[_builtins.int]:
-        """
-        Number of Redis databases. Set number of Redis databases. Changing this will cause a restart of the Redis service.
-        """
-        return pulumi.get(self, "redis_number_of_databases")
-
-    @_builtins.property
-    @pulumi.getter(name="redisPersistence")
-    def redis_persistence(self) -> Optional[_builtins.str]:
-        """
-        Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.
-        """
-        return pulumi.get(self, "redis_persistence")
-
-    @_builtins.property
-    @pulumi.getter(name="redisPubsubClientOutputBufferLimit")
-    def redis_pubsub_client_output_buffer_limit(self) -> Optional[_builtins.int]:
-        """
-        Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
-        """
-        return pulumi.get(self, "redis_pubsub_client_output_buffer_limit")
-
-    @_builtins.property
-    @pulumi.getter(name="redisSsl")
-    def redis_ssl(self) -> Optional[_builtins.bool]:
-        """
-        Require SSL to access Redis.
-        """
-        return pulumi.get(self, "redis_ssl")
-
-    @_builtins.property
-    @pulumi.getter(name="redisTimeout")
-    def redis_timeout(self) -> Optional[_builtins.int]:
-        """
-        Redis idle connection timeout in seconds.
-        """
-        return pulumi.get(self, "redis_timeout")
-
-    @_builtins.property
-    @pulumi.getter(name="redisVersion")
-    def redis_version(self) -> Optional[_builtins.str]:
-        """
-        Redis major version.
-        """
-        return pulumi.get(self, "redis_version")
-
-    @_builtins.property
-    @pulumi.getter(name="serviceLog")
-    def service_log(self) -> Optional[_builtins.bool]:
-        """
-        Service logging. Store logs for the service so that they are available in the HTTP API and console.
-        """
-        return pulumi.get(self, "service_log")
-
-
-@pulumi.output_type
-class ManagedDatabaseRedisPropertiesMigration(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "ignoreDbs":
-            suggest = "ignore_dbs"
-        elif key == "ignoreRoles":
-            suggest = "ignore_roles"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseRedisPropertiesMigration. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ManagedDatabaseRedisPropertiesMigration.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ManagedDatabaseRedisPropertiesMigration.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 dbname: Optional[_builtins.str] = None,
-                 host: Optional[_builtins.str] = None,
-                 ignore_dbs: Optional[_builtins.str] = None,
-                 ignore_roles: Optional[_builtins.str] = None,
-                 method: Optional[_builtins.str] = None,
-                 password: Optional[_builtins.str] = None,
-                 port: Optional[_builtins.int] = None,
-                 ssl: Optional[_builtins.bool] = None,
-                 username: Optional[_builtins.str] = None):
-        """
-        :param _builtins.str dbname: Database name for bootstrapping the initial connection.
-        :param _builtins.str host: Hostname or IP address of the server where to migrate data from.
-        :param _builtins.str ignore_dbs: Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
-        :param _builtins.str ignore_roles: Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
-        :param _builtins.str method: The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
-        :param _builtins.str password: Password for authentication with the server where to migrate data from.
-        :param _builtins.int port: Port number of the server where to migrate data from.
-        :param _builtins.bool ssl: The server where to migrate data from is secured with SSL.
-        :param _builtins.str username: User name for authentication with the server where to migrate data from.
-        """
-        if dbname is not None:
-            pulumi.set(__self__, "dbname", dbname)
-        if host is not None:
-            pulumi.set(__self__, "host", host)
-        if ignore_dbs is not None:
-            pulumi.set(__self__, "ignore_dbs", ignore_dbs)
-        if ignore_roles is not None:
-            pulumi.set(__self__, "ignore_roles", ignore_roles)
-        if method is not None:
-            pulumi.set(__self__, "method", method)
-        if password is not None:
-            pulumi.set(__self__, "password", password)
-        if port is not None:
-            pulumi.set(__self__, "port", port)
-        if ssl is not None:
-            pulumi.set(__self__, "ssl", ssl)
-        if username is not None:
-            pulumi.set(__self__, "username", username)
-
-    @_builtins.property
-    @pulumi.getter
-    def dbname(self) -> Optional[_builtins.str]:
-        """
-        Database name for bootstrapping the initial connection.
-        """
-        return pulumi.get(self, "dbname")
-
-    @_builtins.property
-    @pulumi.getter
-    def host(self) -> Optional[_builtins.str]:
-        """
-        Hostname or IP address of the server where to migrate data from.
-        """
-        return pulumi.get(self, "host")
-
-    @_builtins.property
-    @pulumi.getter(name="ignoreDbs")
-    def ignore_dbs(self) -> Optional[_builtins.str]:
-        """
-        Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
-        """
-        return pulumi.get(self, "ignore_dbs")
-
-    @_builtins.property
-    @pulumi.getter(name="ignoreRoles")
-    def ignore_roles(self) -> Optional[_builtins.str]:
-        """
-        Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
-        """
-        return pulumi.get(self, "ignore_roles")
-
-    @_builtins.property
-    @pulumi.getter
-    def method(self) -> Optional[_builtins.str]:
-        """
-        The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
-        """
-        return pulumi.get(self, "method")
-
-    @_builtins.property
-    @pulumi.getter
-    def password(self) -> Optional[_builtins.str]:
-        """
-        Password for authentication with the server where to migrate data from.
-        """
-        return pulumi.get(self, "password")
-
-    @_builtins.property
-    @pulumi.getter
-    def port(self) -> Optional[_builtins.int]:
-        """
-        Port number of the server where to migrate data from.
-        """
-        return pulumi.get(self, "port")
-
-    @_builtins.property
-    @pulumi.getter
-    def ssl(self) -> Optional[_builtins.bool]:
-        """
-        The server where to migrate data from is secured with SSL.
-        """
-        return pulumi.get(self, "ssl")
-
-    @_builtins.property
-    @pulumi.getter
-    def username(self) -> Optional[_builtins.str]:
-        """
-        User name for authentication with the server where to migrate data from.
-        """
-        return pulumi.get(self, "username")
-
-
-@pulumi.output_type
 class ManagedDatabaseUserOpensearchAccessControl(dict):
     def __init__(__self__, *,
                  rules: Sequence['outputs.ManagedDatabaseUserOpensearchAccessControlRule']):
@@ -9729,61 +9384,6 @@ class ManagedDatabaseUserPgAccessControl(dict):
         Grant replication privilege
         """
         return pulumi.get(self, "allow_replication")
-
-
-@pulumi.output_type
-class ManagedDatabaseUserRedisAccessControl(dict):
-    def __init__(__self__, *,
-                 categories: Optional[_builtins.str] = None,
-                 channels: Optional[_builtins.str] = None,
-                 commands: Optional[_builtins.str] = None,
-                 keys: Optional[_builtins.str] = None):
-        """
-        :param _builtins.str categories: Set access control to all commands in specified categories.
-        :param _builtins.str channels: Set access control to Pub/Sub channels.
-        :param _builtins.str commands: Set access control to commands.
-        :param _builtins.str keys: Set access control to keys.
-        """
-        if categories is not None:
-            pulumi.set(__self__, "categories", categories)
-        if channels is not None:
-            pulumi.set(__self__, "channels", channels)
-        if commands is not None:
-            pulumi.set(__self__, "commands", commands)
-        if keys is not None:
-            pulumi.set(__self__, "keys", keys)
-
-    @_builtins.property
-    @pulumi.getter
-    def categories(self) -> Optional[_builtins.str]:
-        """
-        Set access control to all commands in specified categories.
-        """
-        return pulumi.get(self, "categories")
-
-    @_builtins.property
-    @pulumi.getter
-    def channels(self) -> Optional[_builtins.str]:
-        """
-        Set access control to Pub/Sub channels.
-        """
-        return pulumi.get(self, "channels")
-
-    @_builtins.property
-    @pulumi.getter
-    def commands(self) -> Optional[_builtins.str]:
-        """
-        Set access control to commands.
-        """
-        return pulumi.get(self, "commands")
-
-    @_builtins.property
-    @pulumi.getter
-    def keys(self) -> Optional[_builtins.str]:
-        """
-        Set access control to keys.
-        """
-        return pulumi.get(self, "keys")
 
 
 @pulumi.output_type
@@ -12469,200 +12069,6 @@ class GetManagedDatabasePostgresqlSessionsSessionResult(dict):
         Time when this process' current transaction was started, or null if no transaction is active.
         """
         return pulumi.get(self, "xact_start")
-
-
-@pulumi.output_type
-class GetManagedDatabaseRedisSessionsSessionResult(dict):
-    def __init__(__self__, *,
-                 active_channel_subscriptions: _builtins.int,
-                 active_database: _builtins.str,
-                 active_pattern_matching_channel_subscriptions: _builtins.int,
-                 application_name: _builtins.str,
-                 client_addr: _builtins.str,
-                 connection_age: _builtins.int,
-                 connection_idle: _builtins.int,
-                 flags: Sequence[_builtins.str],
-                 flags_raw: _builtins.str,
-                 id: _builtins.str,
-                 multi_exec_commands: _builtins.int,
-                 output_buffer: _builtins.int,
-                 output_buffer_memory: _builtins.int,
-                 output_list_length: _builtins.int,
-                 query: _builtins.str,
-                 query_buffer: _builtins.int,
-                 query_buffer_free: _builtins.int):
-        """
-        :param _builtins.int active_channel_subscriptions: Number of active channel subscriptions
-        :param _builtins.str active_database: Current database ID
-        :param _builtins.int active_pattern_matching_channel_subscriptions: Number of pattern matching subscriptions.
-        :param _builtins.str application_name: Name of the application that is connected to this service.
-        :param _builtins.str client_addr: Number of pattern matching subscriptions.
-        :param _builtins.int connection_age: Total duration of the connection in nanoseconds.
-        :param _builtins.int connection_idle: Idle time of the connection in nanoseconds.
-        :param Sequence[_builtins.str] flags: A set containing flags' descriptions.
-        :param _builtins.str flags_raw: Client connection flags in raw string format.
-        :param _builtins.str id: Process ID of this session.
-        :param _builtins.int multi_exec_commands: Number of commands in a MULTI/EXEC context.
-        :param _builtins.int output_buffer: Output buffer length.
-        :param _builtins.int output_buffer_memory: Output buffer memory usage.
-        :param _builtins.int output_list_length: Output list length (replies are queued in this list when the buffer is full).
-        :param _builtins.str query: The last executed command.
-        :param _builtins.int query_buffer: Query buffer length (0 means no query pending).
-        :param _builtins.int query_buffer_free: Free space of the query buffer (0 means the buffer is full).
-        """
-        pulumi.set(__self__, "active_channel_subscriptions", active_channel_subscriptions)
-        pulumi.set(__self__, "active_database", active_database)
-        pulumi.set(__self__, "active_pattern_matching_channel_subscriptions", active_pattern_matching_channel_subscriptions)
-        pulumi.set(__self__, "application_name", application_name)
-        pulumi.set(__self__, "client_addr", client_addr)
-        pulumi.set(__self__, "connection_age", connection_age)
-        pulumi.set(__self__, "connection_idle", connection_idle)
-        pulumi.set(__self__, "flags", flags)
-        pulumi.set(__self__, "flags_raw", flags_raw)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "multi_exec_commands", multi_exec_commands)
-        pulumi.set(__self__, "output_buffer", output_buffer)
-        pulumi.set(__self__, "output_buffer_memory", output_buffer_memory)
-        pulumi.set(__self__, "output_list_length", output_list_length)
-        pulumi.set(__self__, "query", query)
-        pulumi.set(__self__, "query_buffer", query_buffer)
-        pulumi.set(__self__, "query_buffer_free", query_buffer_free)
-
-    @_builtins.property
-    @pulumi.getter(name="activeChannelSubscriptions")
-    def active_channel_subscriptions(self) -> _builtins.int:
-        """
-        Number of active channel subscriptions
-        """
-        return pulumi.get(self, "active_channel_subscriptions")
-
-    @_builtins.property
-    @pulumi.getter(name="activeDatabase")
-    def active_database(self) -> _builtins.str:
-        """
-        Current database ID
-        """
-        return pulumi.get(self, "active_database")
-
-    @_builtins.property
-    @pulumi.getter(name="activePatternMatchingChannelSubscriptions")
-    def active_pattern_matching_channel_subscriptions(self) -> _builtins.int:
-        """
-        Number of pattern matching subscriptions.
-        """
-        return pulumi.get(self, "active_pattern_matching_channel_subscriptions")
-
-    @_builtins.property
-    @pulumi.getter(name="applicationName")
-    def application_name(self) -> _builtins.str:
-        """
-        Name of the application that is connected to this service.
-        """
-        return pulumi.get(self, "application_name")
-
-    @_builtins.property
-    @pulumi.getter(name="clientAddr")
-    def client_addr(self) -> _builtins.str:
-        """
-        Number of pattern matching subscriptions.
-        """
-        return pulumi.get(self, "client_addr")
-
-    @_builtins.property
-    @pulumi.getter(name="connectionAge")
-    def connection_age(self) -> _builtins.int:
-        """
-        Total duration of the connection in nanoseconds.
-        """
-        return pulumi.get(self, "connection_age")
-
-    @_builtins.property
-    @pulumi.getter(name="connectionIdle")
-    def connection_idle(self) -> _builtins.int:
-        """
-        Idle time of the connection in nanoseconds.
-        """
-        return pulumi.get(self, "connection_idle")
-
-    @_builtins.property
-    @pulumi.getter
-    def flags(self) -> Sequence[_builtins.str]:
-        """
-        A set containing flags' descriptions.
-        """
-        return pulumi.get(self, "flags")
-
-    @_builtins.property
-    @pulumi.getter(name="flagsRaw")
-    def flags_raw(self) -> _builtins.str:
-        """
-        Client connection flags in raw string format.
-        """
-        return pulumi.get(self, "flags_raw")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        Process ID of this session.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter(name="multiExecCommands")
-    def multi_exec_commands(self) -> _builtins.int:
-        """
-        Number of commands in a MULTI/EXEC context.
-        """
-        return pulumi.get(self, "multi_exec_commands")
-
-    @_builtins.property
-    @pulumi.getter(name="outputBuffer")
-    def output_buffer(self) -> _builtins.int:
-        """
-        Output buffer length.
-        """
-        return pulumi.get(self, "output_buffer")
-
-    @_builtins.property
-    @pulumi.getter(name="outputBufferMemory")
-    def output_buffer_memory(self) -> _builtins.int:
-        """
-        Output buffer memory usage.
-        """
-        return pulumi.get(self, "output_buffer_memory")
-
-    @_builtins.property
-    @pulumi.getter(name="outputListLength")
-    def output_list_length(self) -> _builtins.int:
-        """
-        Output list length (replies are queued in this list when the buffer is full).
-        """
-        return pulumi.get(self, "output_list_length")
-
-    @_builtins.property
-    @pulumi.getter
-    def query(self) -> _builtins.str:
-        """
-        The last executed command.
-        """
-        return pulumi.get(self, "query")
-
-    @_builtins.property
-    @pulumi.getter(name="queryBuffer")
-    def query_buffer(self) -> _builtins.int:
-        """
-        Query buffer length (0 means no query pending).
-        """
-        return pulumi.get(self, "query_buffer")
-
-    @_builtins.property
-    @pulumi.getter(name="queryBufferFree")
-    def query_buffer_free(self) -> _builtins.int:
-        """
-        Free space of the query buffer (0 means the buffer is full).
-        """
-        return pulumi.get(self, "query_buffer_free")
 
 
 @pulumi.output_type

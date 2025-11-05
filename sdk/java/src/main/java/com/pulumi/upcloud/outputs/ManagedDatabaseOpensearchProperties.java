@@ -10,6 +10,7 @@ import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesClusterSear
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesIndexRollup;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesIndexTemplate;
+import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesJwt;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesOpenid;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesOpensearchDashboards;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesRemoteStore;
@@ -71,7 +72,7 @@ public final class ManagedDatabaseOpensearchProperties {
     private @Nullable Integer clusterRoutingAllocationNodeConcurrentRecoveries;
     private @Nullable ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog clusterSearchRequestSlowlog;
     /**
-     * @return Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+     * @return Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
      * 
      */
     private @Nullable String customDomain;
@@ -235,6 +236,11 @@ public final class ManagedDatabaseOpensearchProperties {
      * 
      */
     private @Nullable Integer ismHistoryRolloverRetentionPeriod;
+    /**
+     * @return OpenSearch JWT Configuration.
+     * 
+     */
+    private @Nullable ManagedDatabaseOpensearchPropertiesJwt jwt;
     /**
      * @return Don&#39;t reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn&#39;t fit your case, you can disable this by setting up this flag to true.
      * 
@@ -447,7 +453,7 @@ public final class ManagedDatabaseOpensearchProperties {
         return Optional.ofNullable(this.clusterSearchRequestSlowlog);
     }
     /**
-     * @return Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+     * @return Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
      * 
      */
     public Optional<String> customDomain() {
@@ -676,6 +682,13 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     public Optional<Integer> ismHistoryRolloverRetentionPeriod() {
         return Optional.ofNullable(this.ismHistoryRolloverRetentionPeriod);
+    }
+    /**
+     * @return OpenSearch JWT Configuration.
+     * 
+     */
+    public Optional<ManagedDatabaseOpensearchPropertiesJwt> jwt() {
+        return Optional.ofNullable(this.jwt);
     }
     /**
      * @return Don&#39;t reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn&#39;t fit your case, you can disable this by setting up this flag to true.
@@ -939,6 +952,7 @@ public final class ManagedDatabaseOpensearchProperties {
         private @Nullable Integer ismHistoryMaxDocs;
         private @Nullable Integer ismHistoryRolloverCheckPeriod;
         private @Nullable Integer ismHistoryRolloverRetentionPeriod;
+        private @Nullable ManagedDatabaseOpensearchPropertiesJwt jwt;
         private @Nullable Boolean keepIndexRefreshInterval;
         private @Nullable Boolean knnMemoryCircuitBreakerEnabled;
         private @Nullable Integer knnMemoryCircuitBreakerLimit;
@@ -1016,6 +1030,7 @@ public final class ManagedDatabaseOpensearchProperties {
     	      this.ismHistoryMaxDocs = defaults.ismHistoryMaxDocs;
     	      this.ismHistoryRolloverCheckPeriod = defaults.ismHistoryRolloverCheckPeriod;
     	      this.ismHistoryRolloverRetentionPeriod = defaults.ismHistoryRolloverRetentionPeriod;
+    	      this.jwt = defaults.jwt;
     	      this.keepIndexRefreshInterval = defaults.keepIndexRefreshInterval;
     	      this.knnMemoryCircuitBreakerEnabled = defaults.knnMemoryCircuitBreakerEnabled;
     	      this.knnMemoryCircuitBreakerLimit = defaults.knnMemoryCircuitBreakerLimit;
@@ -1320,6 +1335,12 @@ public final class ManagedDatabaseOpensearchProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder jwt(@Nullable ManagedDatabaseOpensearchPropertiesJwt jwt) {
+
+            this.jwt = jwt;
+            return this;
+        }
+        @CustomType.Setter
         public Builder keepIndexRefreshInterval(@Nullable Boolean keepIndexRefreshInterval) {
 
             this.keepIndexRefreshInterval = keepIndexRefreshInterval;
@@ -1553,6 +1574,7 @@ public final class ManagedDatabaseOpensearchProperties {
             _resultValue.ismHistoryMaxDocs = ismHistoryMaxDocs;
             _resultValue.ismHistoryRolloverCheckPeriod = ismHistoryRolloverCheckPeriod;
             _resultValue.ismHistoryRolloverRetentionPeriod = ismHistoryRolloverRetentionPeriod;
+            _resultValue.jwt = jwt;
             _resultValue.keepIndexRefreshInterval = keepIndexRefreshInterval;
             _resultValue.knnMemoryCircuitBreakerEnabled = knnMemoryCircuitBreakerEnabled;
             _resultValue.knnMemoryCircuitBreakerLimit = knnMemoryCircuitBreakerLimit;

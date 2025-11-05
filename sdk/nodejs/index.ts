@@ -65,11 +65,6 @@ export const getManagedDatabasePostgresqlSessions: typeof import("./getManagedDa
 export const getManagedDatabasePostgresqlSessionsOutput: typeof import("./getManagedDatabasePostgresqlSessions").getManagedDatabasePostgresqlSessionsOutput = null as any;
 utilities.lazyLoad(exports, ["getManagedDatabasePostgresqlSessions","getManagedDatabasePostgresqlSessionsOutput"], () => require("./getManagedDatabasePostgresqlSessions"));
 
-export { GetManagedDatabaseRedisSessionsArgs, GetManagedDatabaseRedisSessionsResult, GetManagedDatabaseRedisSessionsOutputArgs } from "./getManagedDatabaseRedisSessions";
-export const getManagedDatabaseRedisSessions: typeof import("./getManagedDatabaseRedisSessions").getManagedDatabaseRedisSessions = null as any;
-export const getManagedDatabaseRedisSessionsOutput: typeof import("./getManagedDatabaseRedisSessions").getManagedDatabaseRedisSessionsOutput = null as any;
-utilities.lazyLoad(exports, ["getManagedDatabaseRedisSessions","getManagedDatabaseRedisSessionsOutput"], () => require("./getManagedDatabaseRedisSessions"));
-
 export { GetManagedDatabaseValkeySessionsArgs, GetManagedDatabaseValkeySessionsResult, GetManagedDatabaseValkeySessionsOutputArgs } from "./getManagedDatabaseValkeySessions";
 export const getManagedDatabaseValkeySessions: typeof import("./getManagedDatabaseValkeySessions").getManagedDatabaseValkeySessions = null as any;
 export const getManagedDatabaseValkeySessionsOutput: typeof import("./getManagedDatabaseValkeySessions").getManagedDatabaseValkeySessionsOutput = null as any;
@@ -194,11 +189,6 @@ export { ManagedDatabasePostgresqlArgs, ManagedDatabasePostgresqlState } from ".
 export type ManagedDatabasePostgresql = import("./managedDatabasePostgresql").ManagedDatabasePostgresql;
 export const ManagedDatabasePostgresql: typeof import("./managedDatabasePostgresql").ManagedDatabasePostgresql = null as any;
 utilities.lazyLoad(exports, ["ManagedDatabasePostgresql"], () => require("./managedDatabasePostgresql"));
-
-export { ManagedDatabaseRedisArgs, ManagedDatabaseRedisState } from "./managedDatabaseRedis";
-export type ManagedDatabaseRedis = import("./managedDatabaseRedis").ManagedDatabaseRedis;
-export const ManagedDatabaseRedis: typeof import("./managedDatabaseRedis").ManagedDatabaseRedis = null as any;
-utilities.lazyLoad(exports, ["ManagedDatabaseRedis"], () => require("./managedDatabaseRedis"));
 
 export { ManagedDatabaseUserArgs, ManagedDatabaseUserState } from "./managedDatabaseUser";
 export type ManagedDatabaseUser = import("./managedDatabaseUser").ManagedDatabaseUser;
@@ -356,8 +346,6 @@ const _module = {
                 return new ManagedDatabaseOpensearch(name, <any>undefined, { urn })
             case "upcloud:index/managedDatabasePostgresql:ManagedDatabasePostgresql":
                 return new ManagedDatabasePostgresql(name, <any>undefined, { urn })
-            case "upcloud:index/managedDatabaseRedis:ManagedDatabaseRedis":
-                return new ManagedDatabaseRedis(name, <any>undefined, { urn })
             case "upcloud:index/managedDatabaseUser:ManagedDatabaseUser":
                 return new ManagedDatabaseUser(name, <any>undefined, { urn })
             case "upcloud:index/managedDatabaseValkey:ManagedDatabaseValkey":
@@ -423,7 +411,6 @@ pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseLogicalDa
 pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseMysql", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseOpensearch", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabasePostgresql", _module)
-pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseRedis", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseUser", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseValkey", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorage", _module)

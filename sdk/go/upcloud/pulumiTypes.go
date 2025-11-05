@@ -9166,7 +9166,7 @@ type ManagedDatabaseOpensearchProperties struct {
 	// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
 	ClusterRoutingAllocationNodeConcurrentRecoveries *int                                                            `pulumi:"clusterRoutingAllocationNodeConcurrentRecoveries"`
 	ClusterSearchRequestSlowlog                      *ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog `pulumi:"clusterSearchRequestSlowlog"`
-	// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+	// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
 	CustomDomain *string `pulumi:"customDomain"`
 	// OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
 	CustomKeystores []string `pulumi:"customKeystores"`
@@ -9232,6 +9232,8 @@ type ManagedDatabaseOpensearchProperties struct {
 	IsmHistoryRolloverCheckPeriod *int `pulumi:"ismHistoryRolloverCheckPeriod"`
 	// How long audit history indices are kept in days.
 	IsmHistoryRolloverRetentionPeriod *int `pulumi:"ismHistoryRolloverRetentionPeriod"`
+	// OpenSearch JWT Configuration.
+	Jwt *ManagedDatabaseOpensearchPropertiesJwt `pulumi:"jwt"`
 	// Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
 	KeepIndexRefreshInterval *bool `pulumi:"keepIndexRefreshInterval"`
 	// Enable or disable KNN memory circuit breaker. Defaults to true.
@@ -9324,7 +9326,7 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	// Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
 	ClusterRoutingAllocationNodeConcurrentRecoveries pulumi.IntPtrInput                                                     `pulumi:"clusterRoutingAllocationNodeConcurrentRecoveries"`
 	ClusterSearchRequestSlowlog                      ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrInput `pulumi:"clusterSearchRequestSlowlog"`
-	// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+	// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
 	CustomDomain pulumi.StringPtrInput `pulumi:"customDomain"`
 	// OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
 	CustomKeystores pulumi.StringArrayInput `pulumi:"customKeystores"`
@@ -9390,6 +9392,8 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	IsmHistoryRolloverCheckPeriod pulumi.IntPtrInput `pulumi:"ismHistoryRolloverCheckPeriod"`
 	// How long audit history indices are kept in days.
 	IsmHistoryRolloverRetentionPeriod pulumi.IntPtrInput `pulumi:"ismHistoryRolloverRetentionPeriod"`
+	// OpenSearch JWT Configuration.
+	Jwt ManagedDatabaseOpensearchPropertiesJwtPtrInput `pulumi:"jwt"`
 	// Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
 	KeepIndexRefreshInterval pulumi.BoolPtrInput `pulumi:"keepIndexRefreshInterval"`
 	// Enable or disable KNN memory circuit breaker. Defaults to true.
@@ -9587,7 +9591,7 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) ClusterSearchRequestSlowlog()
 	}).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput)
 }
 
-// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
 func (o ManagedDatabaseOpensearchPropertiesOutput) CustomDomain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *string { return v.CustomDomain }).(pulumi.StringPtrOutput)
 }
@@ -9756,6 +9760,11 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) IsmHistoryRolloverCheckPeriod
 // How long audit history indices are kept in days.
 func (o ManagedDatabaseOpensearchPropertiesOutput) IsmHistoryRolloverRetentionPeriod() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.IsmHistoryRolloverRetentionPeriod }).(pulumi.IntPtrOutput)
+}
+
+// OpenSearch JWT Configuration.
+func (o ManagedDatabaseOpensearchPropertiesOutput) Jwt() ManagedDatabaseOpensearchPropertiesJwtPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesJwt { return v.Jwt }).(ManagedDatabaseOpensearchPropertiesJwtPtrOutput)
 }
 
 // Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
@@ -10047,7 +10056,7 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ClusterSearchRequestSlowlo
 	}).(ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogPtrOutput)
 }
 
-// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) CustomDomain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *string {
 		if v == nil {
@@ -10375,6 +10384,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) IsmHistoryRolloverRetentio
 		}
 		return v.IsmHistoryRolloverRetentionPeriod
 	}).(pulumi.IntPtrOutput)
+}
+
+// OpenSearch JWT Configuration.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) Jwt() ManagedDatabaseOpensearchPropertiesJwtPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesJwt {
+		if v == nil {
+			return nil
+		}
+		return v.Jwt
+	}).(ManagedDatabaseOpensearchPropertiesJwtPtrOutput)
 }
 
 // Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
@@ -12196,6 +12215,295 @@ func (o ManagedDatabaseOpensearchPropertiesIndexTemplatePtrOutput) NumberOfShard
 		}
 		return v.NumberOfShards
 	}).(pulumi.IntPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesJwt struct {
+	// Enable or disable OpenSearch JWT authentication. Enables or disables JWT-based authentication for OpenSearch. When enabled, users can authenticate using JWT tokens.
+	Enabled *bool `pulumi:"enabled"`
+	// JWT clock skew tolerance in seconds. The maximum allowed time difference in seconds between the JWT issuer's clock and the OpenSearch server's clock. This helps prevent token validation failures due to minor time synchronization issues.
+	JwtClockSkewToleranceSeconds *int `pulumi:"jwtClockSkewToleranceSeconds"`
+	// HTTP header name for JWT token. The HTTP header name where the JWT token is transmitted. Typically 'Authorization' for Bearer tokens.
+	JwtHeader *string `pulumi:"jwtHeader"`
+	// URL parameter name for JWT token. If the JWT token is transmitted as a URL parameter instead of an HTTP header, specify the parameter name here.
+	JwtUrlParameter *string `pulumi:"jwtUrlParameter"`
+	// Required JWT audience. If specified, the JWT must contain an 'aud' claim that matches this value. This provides additional security by ensuring the JWT was issued for the expected audience.
+	RequiredAudience *string `pulumi:"requiredAudience"`
+	// Required JWT issuer. If specified, the JWT must contain an 'iss' claim that matches this value. This provides additional security by ensuring the JWT was issued by the expected issuer.
+	RequiredIssuer *string `pulumi:"requiredIssuer"`
+	// JWT claim key for roles. The key in the JWT payload that contains the user's roles. If specified, roles will be extracted from the JWT for authorization.
+	RolesKey *string `pulumi:"rolesKey"`
+	// JWT signing key. The secret key used to sign and verify JWT tokens. This should be a secure, randomly generated key HMAC key or public RSA/ECDSA key.
+	SigningKey *string `pulumi:"signingKey"`
+	// JWT claim key for subject. The key in the JWT payload that contains the user's subject identifier. If not specified, the 'sub' claim is used by default.
+	SubjectKey *string `pulumi:"subjectKey"`
+}
+
+// ManagedDatabaseOpensearchPropertiesJwtInput is an input type that accepts ManagedDatabaseOpensearchPropertiesJwtArgs and ManagedDatabaseOpensearchPropertiesJwtOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesJwtInput` via:
+//
+//	ManagedDatabaseOpensearchPropertiesJwtArgs{...}
+type ManagedDatabaseOpensearchPropertiesJwtInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesJwtOutput() ManagedDatabaseOpensearchPropertiesJwtOutput
+	ToManagedDatabaseOpensearchPropertiesJwtOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesJwtOutput
+}
+
+type ManagedDatabaseOpensearchPropertiesJwtArgs struct {
+	// Enable or disable OpenSearch JWT authentication. Enables or disables JWT-based authentication for OpenSearch. When enabled, users can authenticate using JWT tokens.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// JWT clock skew tolerance in seconds. The maximum allowed time difference in seconds between the JWT issuer's clock and the OpenSearch server's clock. This helps prevent token validation failures due to minor time synchronization issues.
+	JwtClockSkewToleranceSeconds pulumi.IntPtrInput `pulumi:"jwtClockSkewToleranceSeconds"`
+	// HTTP header name for JWT token. The HTTP header name where the JWT token is transmitted. Typically 'Authorization' for Bearer tokens.
+	JwtHeader pulumi.StringPtrInput `pulumi:"jwtHeader"`
+	// URL parameter name for JWT token. If the JWT token is transmitted as a URL parameter instead of an HTTP header, specify the parameter name here.
+	JwtUrlParameter pulumi.StringPtrInput `pulumi:"jwtUrlParameter"`
+	// Required JWT audience. If specified, the JWT must contain an 'aud' claim that matches this value. This provides additional security by ensuring the JWT was issued for the expected audience.
+	RequiredAudience pulumi.StringPtrInput `pulumi:"requiredAudience"`
+	// Required JWT issuer. If specified, the JWT must contain an 'iss' claim that matches this value. This provides additional security by ensuring the JWT was issued by the expected issuer.
+	RequiredIssuer pulumi.StringPtrInput `pulumi:"requiredIssuer"`
+	// JWT claim key for roles. The key in the JWT payload that contains the user's roles. If specified, roles will be extracted from the JWT for authorization.
+	RolesKey pulumi.StringPtrInput `pulumi:"rolesKey"`
+	// JWT signing key. The secret key used to sign and verify JWT tokens. This should be a secure, randomly generated key HMAC key or public RSA/ECDSA key.
+	SigningKey pulumi.StringPtrInput `pulumi:"signingKey"`
+	// JWT claim key for subject. The key in the JWT payload that contains the user's subject identifier. If not specified, the 'sub' claim is used by default.
+	SubjectKey pulumi.StringPtrInput `pulumi:"subjectKey"`
+}
+
+func (ManagedDatabaseOpensearchPropertiesJwtArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesJwt)(nil)).Elem()
+}
+
+func (i ManagedDatabaseOpensearchPropertiesJwtArgs) ToManagedDatabaseOpensearchPropertiesJwtOutput() ManagedDatabaseOpensearchPropertiesJwtOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesJwtOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesJwtArgs) ToManagedDatabaseOpensearchPropertiesJwtOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesJwtOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesJwtOutput)
+}
+
+func (i ManagedDatabaseOpensearchPropertiesJwtArgs) ToManagedDatabaseOpensearchPropertiesJwtPtrOutput() ManagedDatabaseOpensearchPropertiesJwtPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesJwtPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedDatabaseOpensearchPropertiesJwtArgs) ToManagedDatabaseOpensearchPropertiesJwtPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesJwtPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesJwtOutput).ToManagedDatabaseOpensearchPropertiesJwtPtrOutputWithContext(ctx)
+}
+
+// ManagedDatabaseOpensearchPropertiesJwtPtrInput is an input type that accepts ManagedDatabaseOpensearchPropertiesJwtArgs, ManagedDatabaseOpensearchPropertiesJwtPtr and ManagedDatabaseOpensearchPropertiesJwtPtrOutput values.
+// You can construct a concrete instance of `ManagedDatabaseOpensearchPropertiesJwtPtrInput` via:
+//
+//	        ManagedDatabaseOpensearchPropertiesJwtArgs{...}
+//
+//	or:
+//
+//	        nil
+type ManagedDatabaseOpensearchPropertiesJwtPtrInput interface {
+	pulumi.Input
+
+	ToManagedDatabaseOpensearchPropertiesJwtPtrOutput() ManagedDatabaseOpensearchPropertiesJwtPtrOutput
+	ToManagedDatabaseOpensearchPropertiesJwtPtrOutputWithContext(context.Context) ManagedDatabaseOpensearchPropertiesJwtPtrOutput
+}
+
+type managedDatabaseOpensearchPropertiesJwtPtrType ManagedDatabaseOpensearchPropertiesJwtArgs
+
+func ManagedDatabaseOpensearchPropertiesJwtPtr(v *ManagedDatabaseOpensearchPropertiesJwtArgs) ManagedDatabaseOpensearchPropertiesJwtPtrInput {
+	return (*managedDatabaseOpensearchPropertiesJwtPtrType)(v)
+}
+
+func (*managedDatabaseOpensearchPropertiesJwtPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesJwt)(nil)).Elem()
+}
+
+func (i *managedDatabaseOpensearchPropertiesJwtPtrType) ToManagedDatabaseOpensearchPropertiesJwtPtrOutput() ManagedDatabaseOpensearchPropertiesJwtPtrOutput {
+	return i.ToManagedDatabaseOpensearchPropertiesJwtPtrOutputWithContext(context.Background())
+}
+
+func (i *managedDatabaseOpensearchPropertiesJwtPtrType) ToManagedDatabaseOpensearchPropertiesJwtPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesJwtPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseOpensearchPropertiesJwtPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesJwtOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesJwtOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesJwt)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesJwtOutput) ToManagedDatabaseOpensearchPropertiesJwtOutput() ManagedDatabaseOpensearchPropertiesJwtOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesJwtOutput) ToManagedDatabaseOpensearchPropertiesJwtOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesJwtOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesJwtOutput) ToManagedDatabaseOpensearchPropertiesJwtPtrOutput() ManagedDatabaseOpensearchPropertiesJwtPtrOutput {
+	return o.ToManagedDatabaseOpensearchPropertiesJwtPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedDatabaseOpensearchPropertiesJwtOutput) ToManagedDatabaseOpensearchPropertiesJwtPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesJwtPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseOpensearchPropertiesJwt) *ManagedDatabaseOpensearchPropertiesJwt {
+		return &v
+	}).(ManagedDatabaseOpensearchPropertiesJwtPtrOutput)
+}
+
+// Enable or disable OpenSearch JWT authentication. Enables or disables JWT-based authentication for OpenSearch. When enabled, users can authenticate using JWT tokens.
+func (o ManagedDatabaseOpensearchPropertiesJwtOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesJwt) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// JWT clock skew tolerance in seconds. The maximum allowed time difference in seconds between the JWT issuer's clock and the OpenSearch server's clock. This helps prevent token validation failures due to minor time synchronization issues.
+func (o ManagedDatabaseOpensearchPropertiesJwtOutput) JwtClockSkewToleranceSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesJwt) *int { return v.JwtClockSkewToleranceSeconds }).(pulumi.IntPtrOutput)
+}
+
+// HTTP header name for JWT token. The HTTP header name where the JWT token is transmitted. Typically 'Authorization' for Bearer tokens.
+func (o ManagedDatabaseOpensearchPropertiesJwtOutput) JwtHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesJwt) *string { return v.JwtHeader }).(pulumi.StringPtrOutput)
+}
+
+// URL parameter name for JWT token. If the JWT token is transmitted as a URL parameter instead of an HTTP header, specify the parameter name here.
+func (o ManagedDatabaseOpensearchPropertiesJwtOutput) JwtUrlParameter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesJwt) *string { return v.JwtUrlParameter }).(pulumi.StringPtrOutput)
+}
+
+// Required JWT audience. If specified, the JWT must contain an 'aud' claim that matches this value. This provides additional security by ensuring the JWT was issued for the expected audience.
+func (o ManagedDatabaseOpensearchPropertiesJwtOutput) RequiredAudience() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesJwt) *string { return v.RequiredAudience }).(pulumi.StringPtrOutput)
+}
+
+// Required JWT issuer. If specified, the JWT must contain an 'iss' claim that matches this value. This provides additional security by ensuring the JWT was issued by the expected issuer.
+func (o ManagedDatabaseOpensearchPropertiesJwtOutput) RequiredIssuer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesJwt) *string { return v.RequiredIssuer }).(pulumi.StringPtrOutput)
+}
+
+// JWT claim key for roles. The key in the JWT payload that contains the user's roles. If specified, roles will be extracted from the JWT for authorization.
+func (o ManagedDatabaseOpensearchPropertiesJwtOutput) RolesKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesJwt) *string { return v.RolesKey }).(pulumi.StringPtrOutput)
+}
+
+// JWT signing key. The secret key used to sign and verify JWT tokens. This should be a secure, randomly generated key HMAC key or public RSA/ECDSA key.
+func (o ManagedDatabaseOpensearchPropertiesJwtOutput) SigningKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesJwt) *string { return v.SigningKey }).(pulumi.StringPtrOutput)
+}
+
+// JWT claim key for subject. The key in the JWT payload that contains the user's subject identifier. If not specified, the 'sub' claim is used by default.
+func (o ManagedDatabaseOpensearchPropertiesJwtOutput) SubjectKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesJwt) *string { return v.SubjectKey }).(pulumi.StringPtrOutput)
+}
+
+type ManagedDatabaseOpensearchPropertiesJwtPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedDatabaseOpensearchPropertiesJwtPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedDatabaseOpensearchPropertiesJwt)(nil)).Elem()
+}
+
+func (o ManagedDatabaseOpensearchPropertiesJwtPtrOutput) ToManagedDatabaseOpensearchPropertiesJwtPtrOutput() ManagedDatabaseOpensearchPropertiesJwtPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesJwtPtrOutput) ToManagedDatabaseOpensearchPropertiesJwtPtrOutputWithContext(ctx context.Context) ManagedDatabaseOpensearchPropertiesJwtPtrOutput {
+	return o
+}
+
+func (o ManagedDatabaseOpensearchPropertiesJwtPtrOutput) Elem() ManagedDatabaseOpensearchPropertiesJwtOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesJwt) ManagedDatabaseOpensearchPropertiesJwt {
+		if v != nil {
+			return *v
+		}
+		var ret ManagedDatabaseOpensearchPropertiesJwt
+		return ret
+	}).(ManagedDatabaseOpensearchPropertiesJwtOutput)
+}
+
+// Enable or disable OpenSearch JWT authentication. Enables or disables JWT-based authentication for OpenSearch. When enabled, users can authenticate using JWT tokens.
+func (o ManagedDatabaseOpensearchPropertiesJwtPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesJwt) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// JWT clock skew tolerance in seconds. The maximum allowed time difference in seconds between the JWT issuer's clock and the OpenSearch server's clock. This helps prevent token validation failures due to minor time synchronization issues.
+func (o ManagedDatabaseOpensearchPropertiesJwtPtrOutput) JwtClockSkewToleranceSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesJwt) *int {
+		if v == nil {
+			return nil
+		}
+		return v.JwtClockSkewToleranceSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
+// HTTP header name for JWT token. The HTTP header name where the JWT token is transmitted. Typically 'Authorization' for Bearer tokens.
+func (o ManagedDatabaseOpensearchPropertiesJwtPtrOutput) JwtHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesJwt) *string {
+		if v == nil {
+			return nil
+		}
+		return v.JwtHeader
+	}).(pulumi.StringPtrOutput)
+}
+
+// URL parameter name for JWT token. If the JWT token is transmitted as a URL parameter instead of an HTTP header, specify the parameter name here.
+func (o ManagedDatabaseOpensearchPropertiesJwtPtrOutput) JwtUrlParameter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesJwt) *string {
+		if v == nil {
+			return nil
+		}
+		return v.JwtUrlParameter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Required JWT audience. If specified, the JWT must contain an 'aud' claim that matches this value. This provides additional security by ensuring the JWT was issued for the expected audience.
+func (o ManagedDatabaseOpensearchPropertiesJwtPtrOutput) RequiredAudience() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesJwt) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RequiredAudience
+	}).(pulumi.StringPtrOutput)
+}
+
+// Required JWT issuer. If specified, the JWT must contain an 'iss' claim that matches this value. This provides additional security by ensuring the JWT was issued by the expected issuer.
+func (o ManagedDatabaseOpensearchPropertiesJwtPtrOutput) RequiredIssuer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesJwt) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RequiredIssuer
+	}).(pulumi.StringPtrOutput)
+}
+
+// JWT claim key for roles. The key in the JWT payload that contains the user's roles. If specified, roles will be extracted from the JWT for authorization.
+func (o ManagedDatabaseOpensearchPropertiesJwtPtrOutput) RolesKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesJwt) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RolesKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// JWT signing key. The secret key used to sign and verify JWT tokens. This should be a secure, randomly generated key HMAC key or public RSA/ECDSA key.
+func (o ManagedDatabaseOpensearchPropertiesJwtPtrOutput) SigningKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesJwt) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SigningKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// JWT claim key for subject. The key in the JWT payload that contains the user's subject identifier. If not specified, the 'sub' claim is used by default.
+func (o ManagedDatabaseOpensearchPropertiesJwtPtrOutput) SubjectKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesJwt) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectKey
+	}).(pulumi.StringPtrOutput)
 }
 
 type ManagedDatabaseOpensearchPropertiesOpenid struct {
@@ -16398,6 +16706,16 @@ type ManagedDatabasePostgresqlProperties struct {
 	DefaultToastCompression *string `pulumi:"defaultToastCompression"`
 	// Time out sessions with open transactions after this number of milliseconds.
 	IdleInTransactionSessionTimeout *int `pulumi:"idleInTransactionSessionTimeout"`
+	// EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+	IoCombineLimit *int `pulumi:"ioCombineLimit"`
+	// EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+	IoMaxCombineLimit *int `pulumi:"ioMaxCombineLimit"`
+	// EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+	IoMaxConcurrency *int `pulumi:"ioMaxConcurrency"`
+	// EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+	IoMethod *string `pulumi:"ioMethod"`
+	// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+	IoWorkers *int `pulumi:"ioWorkers"`
 	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 	IpFilters []string `pulumi:"ipFilters"`
 	// Controls system-wide use of Just-in-Time Compilation (JIT).
@@ -16446,6 +16764,8 @@ type ManagedDatabasePostgresqlProperties struct {
 	MaxWorkerProcesses *int `pulumi:"maxWorkerProcesses"`
 	// Migrate data from existing server.
 	Migration *ManagedDatabasePostgresqlPropertiesMigration `pulumi:"migration"`
+	// Number of nodes for the service.
+	NodeCount *int `pulumi:"nodeCount"`
 	// Chooses the algorithm for encrypting passwords.
 	PasswordEncryption *string `pulumi:"passwordEncryption"`
 	// Sets the time interval in seconds to run pg_partman's scheduled tasks. The default is `3600`.
@@ -16554,6 +16874,16 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	DefaultToastCompression pulumi.StringPtrInput `pulumi:"defaultToastCompression"`
 	// Time out sessions with open transactions after this number of milliseconds.
 	IdleInTransactionSessionTimeout pulumi.IntPtrInput `pulumi:"idleInTransactionSessionTimeout"`
+	// EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+	IoCombineLimit pulumi.IntPtrInput `pulumi:"ioCombineLimit"`
+	// EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+	IoMaxCombineLimit pulumi.IntPtrInput `pulumi:"ioMaxCombineLimit"`
+	// EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+	IoMaxConcurrency pulumi.IntPtrInput `pulumi:"ioMaxConcurrency"`
+	// EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+	IoMethod pulumi.StringPtrInput `pulumi:"ioMethod"`
+	// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+	IoWorkers pulumi.IntPtrInput `pulumi:"ioWorkers"`
 	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 	IpFilters pulumi.StringArrayInput `pulumi:"ipFilters"`
 	// Controls system-wide use of Just-in-Time Compilation (JIT).
@@ -16602,6 +16932,8 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	MaxWorkerProcesses pulumi.IntPtrInput `pulumi:"maxWorkerProcesses"`
 	// Migrate data from existing server.
 	Migration ManagedDatabasePostgresqlPropertiesMigrationPtrInput `pulumi:"migration"`
+	// Number of nodes for the service.
+	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
 	// Chooses the algorithm for encrypting passwords.
 	PasswordEncryption pulumi.StringPtrInput `pulumi:"passwordEncryption"`
 	// Sets the time interval in seconds to run pg_partman's scheduled tasks. The default is `3600`.
@@ -16838,6 +17170,31 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) IdleInTransactionSessionTimeo
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.IdleInTransactionSessionTimeout }).(pulumi.IntPtrOutput)
 }
 
+// EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+func (o ManagedDatabasePostgresqlPropertiesOutput) IoCombineLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.IoCombineLimit }).(pulumi.IntPtrOutput)
+}
+
+// EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+func (o ManagedDatabasePostgresqlPropertiesOutput) IoMaxCombineLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.IoMaxCombineLimit }).(pulumi.IntPtrOutput)
+}
+
+// EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+func (o ManagedDatabasePostgresqlPropertiesOutput) IoMaxConcurrency() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.IoMaxConcurrency }).(pulumi.IntPtrOutput)
+}
+
+// EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+func (o ManagedDatabasePostgresqlPropertiesOutput) IoMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.IoMethod }).(pulumi.StringPtrOutput)
+}
+
+// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+func (o ManagedDatabasePostgresqlPropertiesOutput) IoWorkers() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.IoWorkers }).(pulumi.IntPtrOutput)
+}
+
 // IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 func (o ManagedDatabasePostgresqlPropertiesOutput) IpFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) []string { return v.IpFilters }).(pulumi.StringArrayOutput)
@@ -16958,6 +17315,11 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) Migration() ManagedDatabasePo
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *ManagedDatabasePostgresqlPropertiesMigration {
 		return v.Migration
 	}).(ManagedDatabasePostgresqlPropertiesMigrationPtrOutput)
+}
+
+// Number of nodes for the service.
+func (o ManagedDatabasePostgresqlPropertiesOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
 }
 
 // Chooses the algorithm for encrypting passwords.
@@ -17332,6 +17694,56 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) IdleInTransactionSessionTi
 	}).(pulumi.IntPtrOutput)
 }
 
+// EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) IoCombineLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.IoCombineLimit
+	}).(pulumi.IntPtrOutput)
+}
+
+// EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) IoMaxCombineLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.IoMaxCombineLimit
+	}).(pulumi.IntPtrOutput)
+}
+
+// EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) IoMaxConcurrency() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.IoMaxConcurrency
+	}).(pulumi.IntPtrOutput)
+}
+
+// EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) IoMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IoMethod
+	}).(pulumi.StringPtrOutput)
+}
+
+// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) IoWorkers() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.IoWorkers
+	}).(pulumi.IntPtrOutput)
+}
+
 // IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) IpFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) []string {
@@ -17570,6 +17982,16 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) Migration() ManagedDatabas
 		}
 		return v.Migration
 	}).(ManagedDatabasePostgresqlPropertiesMigrationPtrOutput)
+}
+
+// Number of nodes for the service.
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NodeCount
+	}).(pulumi.IntPtrOutput)
 }
 
 // Chooses the algorithm for encrypting passwords.
@@ -19111,1146 +19533,6 @@ func (o ManagedDatabasePostgresqlPropertiesTimescaledbPtrOutput) MaxBackgroundWo
 	}).(pulumi.IntPtrOutput)
 }
 
-type ManagedDatabaseRedisComponent struct {
-	// Type of the component
-	Component *string `pulumi:"component"`
-	// Hostname of the component
-	Host *string `pulumi:"host"`
-	// Port number of the component
-	Port *int `pulumi:"port"`
-	// Component network route type
-	Route *string `pulumi:"route"`
-	// Usage of the component
-	Usage *string `pulumi:"usage"`
-}
-
-// ManagedDatabaseRedisComponentInput is an input type that accepts ManagedDatabaseRedisComponentArgs and ManagedDatabaseRedisComponentOutput values.
-// You can construct a concrete instance of `ManagedDatabaseRedisComponentInput` via:
-//
-//	ManagedDatabaseRedisComponentArgs{...}
-type ManagedDatabaseRedisComponentInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseRedisComponentOutput() ManagedDatabaseRedisComponentOutput
-	ToManagedDatabaseRedisComponentOutputWithContext(context.Context) ManagedDatabaseRedisComponentOutput
-}
-
-type ManagedDatabaseRedisComponentArgs struct {
-	// Type of the component
-	Component pulumi.StringPtrInput `pulumi:"component"`
-	// Hostname of the component
-	Host pulumi.StringPtrInput `pulumi:"host"`
-	// Port number of the component
-	Port pulumi.IntPtrInput `pulumi:"port"`
-	// Component network route type
-	Route pulumi.StringPtrInput `pulumi:"route"`
-	// Usage of the component
-	Usage pulumi.StringPtrInput `pulumi:"usage"`
-}
-
-func (ManagedDatabaseRedisComponentArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseRedisComponent)(nil)).Elem()
-}
-
-func (i ManagedDatabaseRedisComponentArgs) ToManagedDatabaseRedisComponentOutput() ManagedDatabaseRedisComponentOutput {
-	return i.ToManagedDatabaseRedisComponentOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseRedisComponentArgs) ToManagedDatabaseRedisComponentOutputWithContext(ctx context.Context) ManagedDatabaseRedisComponentOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseRedisComponentOutput)
-}
-
-// ManagedDatabaseRedisComponentArrayInput is an input type that accepts ManagedDatabaseRedisComponentArray and ManagedDatabaseRedisComponentArrayOutput values.
-// You can construct a concrete instance of `ManagedDatabaseRedisComponentArrayInput` via:
-//
-//	ManagedDatabaseRedisComponentArray{ ManagedDatabaseRedisComponentArgs{...} }
-type ManagedDatabaseRedisComponentArrayInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseRedisComponentArrayOutput() ManagedDatabaseRedisComponentArrayOutput
-	ToManagedDatabaseRedisComponentArrayOutputWithContext(context.Context) ManagedDatabaseRedisComponentArrayOutput
-}
-
-type ManagedDatabaseRedisComponentArray []ManagedDatabaseRedisComponentInput
-
-func (ManagedDatabaseRedisComponentArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ManagedDatabaseRedisComponent)(nil)).Elem()
-}
-
-func (i ManagedDatabaseRedisComponentArray) ToManagedDatabaseRedisComponentArrayOutput() ManagedDatabaseRedisComponentArrayOutput {
-	return i.ToManagedDatabaseRedisComponentArrayOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseRedisComponentArray) ToManagedDatabaseRedisComponentArrayOutputWithContext(ctx context.Context) ManagedDatabaseRedisComponentArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseRedisComponentArrayOutput)
-}
-
-type ManagedDatabaseRedisComponentOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseRedisComponentOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseRedisComponent)(nil)).Elem()
-}
-
-func (o ManagedDatabaseRedisComponentOutput) ToManagedDatabaseRedisComponentOutput() ManagedDatabaseRedisComponentOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisComponentOutput) ToManagedDatabaseRedisComponentOutputWithContext(ctx context.Context) ManagedDatabaseRedisComponentOutput {
-	return o
-}
-
-// Type of the component
-func (o ManagedDatabaseRedisComponentOutput) Component() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisComponent) *string { return v.Component }).(pulumi.StringPtrOutput)
-}
-
-// Hostname of the component
-func (o ManagedDatabaseRedisComponentOutput) Host() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisComponent) *string { return v.Host }).(pulumi.StringPtrOutput)
-}
-
-// Port number of the component
-func (o ManagedDatabaseRedisComponentOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisComponent) *int { return v.Port }).(pulumi.IntPtrOutput)
-}
-
-// Component network route type
-func (o ManagedDatabaseRedisComponentOutput) Route() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisComponent) *string { return v.Route }).(pulumi.StringPtrOutput)
-}
-
-// Usage of the component
-func (o ManagedDatabaseRedisComponentOutput) Usage() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisComponent) *string { return v.Usage }).(pulumi.StringPtrOutput)
-}
-
-type ManagedDatabaseRedisComponentArrayOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseRedisComponentArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ManagedDatabaseRedisComponent)(nil)).Elem()
-}
-
-func (o ManagedDatabaseRedisComponentArrayOutput) ToManagedDatabaseRedisComponentArrayOutput() ManagedDatabaseRedisComponentArrayOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisComponentArrayOutput) ToManagedDatabaseRedisComponentArrayOutputWithContext(ctx context.Context) ManagedDatabaseRedisComponentArrayOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisComponentArrayOutput) Index(i pulumi.IntInput) ManagedDatabaseRedisComponentOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedDatabaseRedisComponent {
-		return vs[0].([]ManagedDatabaseRedisComponent)[vs[1].(int)]
-	}).(ManagedDatabaseRedisComponentOutput)
-}
-
-type ManagedDatabaseRedisNetwork struct {
-	// Network family. Currently only `IPv4` is supported.
-	Family string `pulumi:"family"`
-	// The name of the network. Must be unique within the service.
-	Name string `pulumi:"name"`
-	// The type of the network. Must be private.
-	Type string `pulumi:"type"`
-	// Private network UUID. Must reside in the same zone as the database.
-	Uuid string `pulumi:"uuid"`
-}
-
-// ManagedDatabaseRedisNetworkInput is an input type that accepts ManagedDatabaseRedisNetworkArgs and ManagedDatabaseRedisNetworkOutput values.
-// You can construct a concrete instance of `ManagedDatabaseRedisNetworkInput` via:
-//
-//	ManagedDatabaseRedisNetworkArgs{...}
-type ManagedDatabaseRedisNetworkInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseRedisNetworkOutput() ManagedDatabaseRedisNetworkOutput
-	ToManagedDatabaseRedisNetworkOutputWithContext(context.Context) ManagedDatabaseRedisNetworkOutput
-}
-
-type ManagedDatabaseRedisNetworkArgs struct {
-	// Network family. Currently only `IPv4` is supported.
-	Family pulumi.StringInput `pulumi:"family"`
-	// The name of the network. Must be unique within the service.
-	Name pulumi.StringInput `pulumi:"name"`
-	// The type of the network. Must be private.
-	Type pulumi.StringInput `pulumi:"type"`
-	// Private network UUID. Must reside in the same zone as the database.
-	Uuid pulumi.StringInput `pulumi:"uuid"`
-}
-
-func (ManagedDatabaseRedisNetworkArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseRedisNetwork)(nil)).Elem()
-}
-
-func (i ManagedDatabaseRedisNetworkArgs) ToManagedDatabaseRedisNetworkOutput() ManagedDatabaseRedisNetworkOutput {
-	return i.ToManagedDatabaseRedisNetworkOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseRedisNetworkArgs) ToManagedDatabaseRedisNetworkOutputWithContext(ctx context.Context) ManagedDatabaseRedisNetworkOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseRedisNetworkOutput)
-}
-
-// ManagedDatabaseRedisNetworkArrayInput is an input type that accepts ManagedDatabaseRedisNetworkArray and ManagedDatabaseRedisNetworkArrayOutput values.
-// You can construct a concrete instance of `ManagedDatabaseRedisNetworkArrayInput` via:
-//
-//	ManagedDatabaseRedisNetworkArray{ ManagedDatabaseRedisNetworkArgs{...} }
-type ManagedDatabaseRedisNetworkArrayInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseRedisNetworkArrayOutput() ManagedDatabaseRedisNetworkArrayOutput
-	ToManagedDatabaseRedisNetworkArrayOutputWithContext(context.Context) ManagedDatabaseRedisNetworkArrayOutput
-}
-
-type ManagedDatabaseRedisNetworkArray []ManagedDatabaseRedisNetworkInput
-
-func (ManagedDatabaseRedisNetworkArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ManagedDatabaseRedisNetwork)(nil)).Elem()
-}
-
-func (i ManagedDatabaseRedisNetworkArray) ToManagedDatabaseRedisNetworkArrayOutput() ManagedDatabaseRedisNetworkArrayOutput {
-	return i.ToManagedDatabaseRedisNetworkArrayOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseRedisNetworkArray) ToManagedDatabaseRedisNetworkArrayOutputWithContext(ctx context.Context) ManagedDatabaseRedisNetworkArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseRedisNetworkArrayOutput)
-}
-
-type ManagedDatabaseRedisNetworkOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseRedisNetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseRedisNetwork)(nil)).Elem()
-}
-
-func (o ManagedDatabaseRedisNetworkOutput) ToManagedDatabaseRedisNetworkOutput() ManagedDatabaseRedisNetworkOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisNetworkOutput) ToManagedDatabaseRedisNetworkOutputWithContext(ctx context.Context) ManagedDatabaseRedisNetworkOutput {
-	return o
-}
-
-// Network family. Currently only `IPv4` is supported.
-func (o ManagedDatabaseRedisNetworkOutput) Family() pulumi.StringOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisNetwork) string { return v.Family }).(pulumi.StringOutput)
-}
-
-// The name of the network. Must be unique within the service.
-func (o ManagedDatabaseRedisNetworkOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisNetwork) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// The type of the network. Must be private.
-func (o ManagedDatabaseRedisNetworkOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisNetwork) string { return v.Type }).(pulumi.StringOutput)
-}
-
-// Private network UUID. Must reside in the same zone as the database.
-func (o ManagedDatabaseRedisNetworkOutput) Uuid() pulumi.StringOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisNetwork) string { return v.Uuid }).(pulumi.StringOutput)
-}
-
-type ManagedDatabaseRedisNetworkArrayOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseRedisNetworkArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ManagedDatabaseRedisNetwork)(nil)).Elem()
-}
-
-func (o ManagedDatabaseRedisNetworkArrayOutput) ToManagedDatabaseRedisNetworkArrayOutput() ManagedDatabaseRedisNetworkArrayOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisNetworkArrayOutput) ToManagedDatabaseRedisNetworkArrayOutputWithContext(ctx context.Context) ManagedDatabaseRedisNetworkArrayOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisNetworkArrayOutput) Index(i pulumi.IntInput) ManagedDatabaseRedisNetworkOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedDatabaseRedisNetwork {
-		return vs[0].([]ManagedDatabaseRedisNetwork)[vs[1].(int)]
-	}).(ManagedDatabaseRedisNetworkOutput)
-}
-
-type ManagedDatabaseRedisNodeState struct {
-	// Name plus a node iteration
-	Name *string `pulumi:"name"`
-	// Role of the node
-	Role *string `pulumi:"role"`
-	// State of the node
-	State *string `pulumi:"state"`
-}
-
-// ManagedDatabaseRedisNodeStateInput is an input type that accepts ManagedDatabaseRedisNodeStateArgs and ManagedDatabaseRedisNodeStateOutput values.
-// You can construct a concrete instance of `ManagedDatabaseRedisNodeStateInput` via:
-//
-//	ManagedDatabaseRedisNodeStateArgs{...}
-type ManagedDatabaseRedisNodeStateInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseRedisNodeStateOutput() ManagedDatabaseRedisNodeStateOutput
-	ToManagedDatabaseRedisNodeStateOutputWithContext(context.Context) ManagedDatabaseRedisNodeStateOutput
-}
-
-type ManagedDatabaseRedisNodeStateArgs struct {
-	// Name plus a node iteration
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Role of the node
-	Role pulumi.StringPtrInput `pulumi:"role"`
-	// State of the node
-	State pulumi.StringPtrInput `pulumi:"state"`
-}
-
-func (ManagedDatabaseRedisNodeStateArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseRedisNodeState)(nil)).Elem()
-}
-
-func (i ManagedDatabaseRedisNodeStateArgs) ToManagedDatabaseRedisNodeStateOutput() ManagedDatabaseRedisNodeStateOutput {
-	return i.ToManagedDatabaseRedisNodeStateOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseRedisNodeStateArgs) ToManagedDatabaseRedisNodeStateOutputWithContext(ctx context.Context) ManagedDatabaseRedisNodeStateOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseRedisNodeStateOutput)
-}
-
-// ManagedDatabaseRedisNodeStateArrayInput is an input type that accepts ManagedDatabaseRedisNodeStateArray and ManagedDatabaseRedisNodeStateArrayOutput values.
-// You can construct a concrete instance of `ManagedDatabaseRedisNodeStateArrayInput` via:
-//
-//	ManagedDatabaseRedisNodeStateArray{ ManagedDatabaseRedisNodeStateArgs{...} }
-type ManagedDatabaseRedisNodeStateArrayInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseRedisNodeStateArrayOutput() ManagedDatabaseRedisNodeStateArrayOutput
-	ToManagedDatabaseRedisNodeStateArrayOutputWithContext(context.Context) ManagedDatabaseRedisNodeStateArrayOutput
-}
-
-type ManagedDatabaseRedisNodeStateArray []ManagedDatabaseRedisNodeStateInput
-
-func (ManagedDatabaseRedisNodeStateArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ManagedDatabaseRedisNodeState)(nil)).Elem()
-}
-
-func (i ManagedDatabaseRedisNodeStateArray) ToManagedDatabaseRedisNodeStateArrayOutput() ManagedDatabaseRedisNodeStateArrayOutput {
-	return i.ToManagedDatabaseRedisNodeStateArrayOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseRedisNodeStateArray) ToManagedDatabaseRedisNodeStateArrayOutputWithContext(ctx context.Context) ManagedDatabaseRedisNodeStateArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseRedisNodeStateArrayOutput)
-}
-
-type ManagedDatabaseRedisNodeStateOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseRedisNodeStateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseRedisNodeState)(nil)).Elem()
-}
-
-func (o ManagedDatabaseRedisNodeStateOutput) ToManagedDatabaseRedisNodeStateOutput() ManagedDatabaseRedisNodeStateOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisNodeStateOutput) ToManagedDatabaseRedisNodeStateOutputWithContext(ctx context.Context) ManagedDatabaseRedisNodeStateOutput {
-	return o
-}
-
-// Name plus a node iteration
-func (o ManagedDatabaseRedisNodeStateOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisNodeState) *string { return v.Name }).(pulumi.StringPtrOutput)
-}
-
-// Role of the node
-func (o ManagedDatabaseRedisNodeStateOutput) Role() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisNodeState) *string { return v.Role }).(pulumi.StringPtrOutput)
-}
-
-// State of the node
-func (o ManagedDatabaseRedisNodeStateOutput) State() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisNodeState) *string { return v.State }).(pulumi.StringPtrOutput)
-}
-
-type ManagedDatabaseRedisNodeStateArrayOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseRedisNodeStateArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ManagedDatabaseRedisNodeState)(nil)).Elem()
-}
-
-func (o ManagedDatabaseRedisNodeStateArrayOutput) ToManagedDatabaseRedisNodeStateArrayOutput() ManagedDatabaseRedisNodeStateArrayOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisNodeStateArrayOutput) ToManagedDatabaseRedisNodeStateArrayOutputWithContext(ctx context.Context) ManagedDatabaseRedisNodeStateArrayOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisNodeStateArrayOutput) Index(i pulumi.IntInput) ManagedDatabaseRedisNodeStateOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedDatabaseRedisNodeState {
-		return vs[0].([]ManagedDatabaseRedisNodeState)[vs[1].(int)]
-	}).(ManagedDatabaseRedisNodeStateOutput)
-}
-
-type ManagedDatabaseRedisProperties struct {
-	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
-	AutomaticUtilityNetworkIpFilter *bool `pulumi:"automaticUtilityNetworkIpFilter"`
-	// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
-	BackupHour *int `pulumi:"backupHour"`
-	// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
-	BackupMinute *int `pulumi:"backupMinute"`
-	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
-	IpFilters []string `pulumi:"ipFilters"`
-	// Migrate data from existing server.
-	Migration *ManagedDatabaseRedisPropertiesMigration `pulumi:"migration"`
-	// Public Access. Allow access to the service from the public Internet.
-	PublicAccess *bool `pulumi:"publicAccess"`
-	// Default ACL for pub/sub channels used when Redis user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Redis configuration acl-pubsub-default.
-	RedisAclChannelsDefault *string `pulumi:"redisAclChannelsDefault"`
-	// Redis IO thread count. Set Redis IO thread count. Changing this will cause a restart of the Redis service.
-	RedisIoThreads *int `pulumi:"redisIoThreads"`
-	// LFU maxmemory-policy counter decay time in minutes.
-	RedisLfuDecayTime *int `pulumi:"redisLfuDecayTime"`
-	// Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
-	RedisLfuLogFactor *int `pulumi:"redisLfuLogFactor"`
-	// Redis maxmemory-policy.
-	RedisMaxmemoryPolicy *string `pulumi:"redisMaxmemoryPolicy"`
-	// Set notify-keyspace-events option.
-	RedisNotifyKeyspaceEvents *string `pulumi:"redisNotifyKeyspaceEvents"`
-	// Number of Redis databases. Set number of Redis databases. Changing this will cause a restart of the Redis service.
-	RedisNumberOfDatabases *int `pulumi:"redisNumberOfDatabases"`
-	// Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.
-	RedisPersistence *string `pulumi:"redisPersistence"`
-	// Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
-	RedisPubsubClientOutputBufferLimit *int `pulumi:"redisPubsubClientOutputBufferLimit"`
-	// Require SSL to access Redis.
-	RedisSsl *bool `pulumi:"redisSsl"`
-	// Redis idle connection timeout in seconds.
-	RedisTimeout *int `pulumi:"redisTimeout"`
-	// Redis major version.
-	RedisVersion *string `pulumi:"redisVersion"`
-	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
-	ServiceLog *bool `pulumi:"serviceLog"`
-}
-
-// ManagedDatabaseRedisPropertiesInput is an input type that accepts ManagedDatabaseRedisPropertiesArgs and ManagedDatabaseRedisPropertiesOutput values.
-// You can construct a concrete instance of `ManagedDatabaseRedisPropertiesInput` via:
-//
-//	ManagedDatabaseRedisPropertiesArgs{...}
-type ManagedDatabaseRedisPropertiesInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseRedisPropertiesOutput() ManagedDatabaseRedisPropertiesOutput
-	ToManagedDatabaseRedisPropertiesOutputWithContext(context.Context) ManagedDatabaseRedisPropertiesOutput
-}
-
-type ManagedDatabaseRedisPropertiesArgs struct {
-	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
-	AutomaticUtilityNetworkIpFilter pulumi.BoolPtrInput `pulumi:"automaticUtilityNetworkIpFilter"`
-	// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
-	BackupHour pulumi.IntPtrInput `pulumi:"backupHour"`
-	// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
-	BackupMinute pulumi.IntPtrInput `pulumi:"backupMinute"`
-	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
-	IpFilters pulumi.StringArrayInput `pulumi:"ipFilters"`
-	// Migrate data from existing server.
-	Migration ManagedDatabaseRedisPropertiesMigrationPtrInput `pulumi:"migration"`
-	// Public Access. Allow access to the service from the public Internet.
-	PublicAccess pulumi.BoolPtrInput `pulumi:"publicAccess"`
-	// Default ACL for pub/sub channels used when Redis user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Redis configuration acl-pubsub-default.
-	RedisAclChannelsDefault pulumi.StringPtrInput `pulumi:"redisAclChannelsDefault"`
-	// Redis IO thread count. Set Redis IO thread count. Changing this will cause a restart of the Redis service.
-	RedisIoThreads pulumi.IntPtrInput `pulumi:"redisIoThreads"`
-	// LFU maxmemory-policy counter decay time in minutes.
-	RedisLfuDecayTime pulumi.IntPtrInput `pulumi:"redisLfuDecayTime"`
-	// Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
-	RedisLfuLogFactor pulumi.IntPtrInput `pulumi:"redisLfuLogFactor"`
-	// Redis maxmemory-policy.
-	RedisMaxmemoryPolicy pulumi.StringPtrInput `pulumi:"redisMaxmemoryPolicy"`
-	// Set notify-keyspace-events option.
-	RedisNotifyKeyspaceEvents pulumi.StringPtrInput `pulumi:"redisNotifyKeyspaceEvents"`
-	// Number of Redis databases. Set number of Redis databases. Changing this will cause a restart of the Redis service.
-	RedisNumberOfDatabases pulumi.IntPtrInput `pulumi:"redisNumberOfDatabases"`
-	// Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.
-	RedisPersistence pulumi.StringPtrInput `pulumi:"redisPersistence"`
-	// Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
-	RedisPubsubClientOutputBufferLimit pulumi.IntPtrInput `pulumi:"redisPubsubClientOutputBufferLimit"`
-	// Require SSL to access Redis.
-	RedisSsl pulumi.BoolPtrInput `pulumi:"redisSsl"`
-	// Redis idle connection timeout in seconds.
-	RedisTimeout pulumi.IntPtrInput `pulumi:"redisTimeout"`
-	// Redis major version.
-	RedisVersion pulumi.StringPtrInput `pulumi:"redisVersion"`
-	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
-	ServiceLog pulumi.BoolPtrInput `pulumi:"serviceLog"`
-}
-
-func (ManagedDatabaseRedisPropertiesArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseRedisProperties)(nil)).Elem()
-}
-
-func (i ManagedDatabaseRedisPropertiesArgs) ToManagedDatabaseRedisPropertiesOutput() ManagedDatabaseRedisPropertiesOutput {
-	return i.ToManagedDatabaseRedisPropertiesOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseRedisPropertiesArgs) ToManagedDatabaseRedisPropertiesOutputWithContext(ctx context.Context) ManagedDatabaseRedisPropertiesOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseRedisPropertiesOutput)
-}
-
-func (i ManagedDatabaseRedisPropertiesArgs) ToManagedDatabaseRedisPropertiesPtrOutput() ManagedDatabaseRedisPropertiesPtrOutput {
-	return i.ToManagedDatabaseRedisPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseRedisPropertiesArgs) ToManagedDatabaseRedisPropertiesPtrOutputWithContext(ctx context.Context) ManagedDatabaseRedisPropertiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseRedisPropertiesOutput).ToManagedDatabaseRedisPropertiesPtrOutputWithContext(ctx)
-}
-
-// ManagedDatabaseRedisPropertiesPtrInput is an input type that accepts ManagedDatabaseRedisPropertiesArgs, ManagedDatabaseRedisPropertiesPtr and ManagedDatabaseRedisPropertiesPtrOutput values.
-// You can construct a concrete instance of `ManagedDatabaseRedisPropertiesPtrInput` via:
-//
-//	        ManagedDatabaseRedisPropertiesArgs{...}
-//
-//	or:
-//
-//	        nil
-type ManagedDatabaseRedisPropertiesPtrInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseRedisPropertiesPtrOutput() ManagedDatabaseRedisPropertiesPtrOutput
-	ToManagedDatabaseRedisPropertiesPtrOutputWithContext(context.Context) ManagedDatabaseRedisPropertiesPtrOutput
-}
-
-type managedDatabaseRedisPropertiesPtrType ManagedDatabaseRedisPropertiesArgs
-
-func ManagedDatabaseRedisPropertiesPtr(v *ManagedDatabaseRedisPropertiesArgs) ManagedDatabaseRedisPropertiesPtrInput {
-	return (*managedDatabaseRedisPropertiesPtrType)(v)
-}
-
-func (*managedDatabaseRedisPropertiesPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ManagedDatabaseRedisProperties)(nil)).Elem()
-}
-
-func (i *managedDatabaseRedisPropertiesPtrType) ToManagedDatabaseRedisPropertiesPtrOutput() ManagedDatabaseRedisPropertiesPtrOutput {
-	return i.ToManagedDatabaseRedisPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (i *managedDatabaseRedisPropertiesPtrType) ToManagedDatabaseRedisPropertiesPtrOutputWithContext(ctx context.Context) ManagedDatabaseRedisPropertiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseRedisPropertiesPtrOutput)
-}
-
-type ManagedDatabaseRedisPropertiesOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseRedisPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseRedisProperties)(nil)).Elem()
-}
-
-func (o ManagedDatabaseRedisPropertiesOutput) ToManagedDatabaseRedisPropertiesOutput() ManagedDatabaseRedisPropertiesOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisPropertiesOutput) ToManagedDatabaseRedisPropertiesOutputWithContext(ctx context.Context) ManagedDatabaseRedisPropertiesOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisPropertiesOutput) ToManagedDatabaseRedisPropertiesPtrOutput() ManagedDatabaseRedisPropertiesPtrOutput {
-	return o.ToManagedDatabaseRedisPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (o ManagedDatabaseRedisPropertiesOutput) ToManagedDatabaseRedisPropertiesPtrOutputWithContext(ctx context.Context) ManagedDatabaseRedisPropertiesPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseRedisProperties) *ManagedDatabaseRedisProperties {
-		return &v
-	}).(ManagedDatabaseRedisPropertiesPtrOutput)
-}
-
-// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
-func (o ManagedDatabaseRedisPropertiesOutput) AutomaticUtilityNetworkIpFilter() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *bool { return v.AutomaticUtilityNetworkIpFilter }).(pulumi.BoolPtrOutput)
-}
-
-// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
-func (o ManagedDatabaseRedisPropertiesOutput) BackupHour() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *int { return v.BackupHour }).(pulumi.IntPtrOutput)
-}
-
-// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
-func (o ManagedDatabaseRedisPropertiesOutput) BackupMinute() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *int { return v.BackupMinute }).(pulumi.IntPtrOutput)
-}
-
-// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
-func (o ManagedDatabaseRedisPropertiesOutput) IpFilters() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) []string { return v.IpFilters }).(pulumi.StringArrayOutput)
-}
-
-// Migrate data from existing server.
-func (o ManagedDatabaseRedisPropertiesOutput) Migration() ManagedDatabaseRedisPropertiesMigrationPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *ManagedDatabaseRedisPropertiesMigration { return v.Migration }).(ManagedDatabaseRedisPropertiesMigrationPtrOutput)
-}
-
-// Public Access. Allow access to the service from the public Internet.
-func (o ManagedDatabaseRedisPropertiesOutput) PublicAccess() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *bool { return v.PublicAccess }).(pulumi.BoolPtrOutput)
-}
-
-// Default ACL for pub/sub channels used when Redis user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Redis configuration acl-pubsub-default.
-func (o ManagedDatabaseRedisPropertiesOutput) RedisAclChannelsDefault() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *string { return v.RedisAclChannelsDefault }).(pulumi.StringPtrOutput)
-}
-
-// Redis IO thread count. Set Redis IO thread count. Changing this will cause a restart of the Redis service.
-func (o ManagedDatabaseRedisPropertiesOutput) RedisIoThreads() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *int { return v.RedisIoThreads }).(pulumi.IntPtrOutput)
-}
-
-// LFU maxmemory-policy counter decay time in minutes.
-func (o ManagedDatabaseRedisPropertiesOutput) RedisLfuDecayTime() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *int { return v.RedisLfuDecayTime }).(pulumi.IntPtrOutput)
-}
-
-// Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
-func (o ManagedDatabaseRedisPropertiesOutput) RedisLfuLogFactor() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *int { return v.RedisLfuLogFactor }).(pulumi.IntPtrOutput)
-}
-
-// Redis maxmemory-policy.
-func (o ManagedDatabaseRedisPropertiesOutput) RedisMaxmemoryPolicy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *string { return v.RedisMaxmemoryPolicy }).(pulumi.StringPtrOutput)
-}
-
-// Set notify-keyspace-events option.
-func (o ManagedDatabaseRedisPropertiesOutput) RedisNotifyKeyspaceEvents() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *string { return v.RedisNotifyKeyspaceEvents }).(pulumi.StringPtrOutput)
-}
-
-// Number of Redis databases. Set number of Redis databases. Changing this will cause a restart of the Redis service.
-func (o ManagedDatabaseRedisPropertiesOutput) RedisNumberOfDatabases() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *int { return v.RedisNumberOfDatabases }).(pulumi.IntPtrOutput)
-}
-
-// Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.
-func (o ManagedDatabaseRedisPropertiesOutput) RedisPersistence() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *string { return v.RedisPersistence }).(pulumi.StringPtrOutput)
-}
-
-// Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
-func (o ManagedDatabaseRedisPropertiesOutput) RedisPubsubClientOutputBufferLimit() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *int { return v.RedisPubsubClientOutputBufferLimit }).(pulumi.IntPtrOutput)
-}
-
-// Require SSL to access Redis.
-func (o ManagedDatabaseRedisPropertiesOutput) RedisSsl() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *bool { return v.RedisSsl }).(pulumi.BoolPtrOutput)
-}
-
-// Redis idle connection timeout in seconds.
-func (o ManagedDatabaseRedisPropertiesOutput) RedisTimeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *int { return v.RedisTimeout }).(pulumi.IntPtrOutput)
-}
-
-// Redis major version.
-func (o ManagedDatabaseRedisPropertiesOutput) RedisVersion() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *string { return v.RedisVersion }).(pulumi.StringPtrOutput)
-}
-
-// Service logging. Store logs for the service so that they are available in the HTTP API and console.
-func (o ManagedDatabaseRedisPropertiesOutput) ServiceLog() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisProperties) *bool { return v.ServiceLog }).(pulumi.BoolPtrOutput)
-}
-
-type ManagedDatabaseRedisPropertiesPtrOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseRedisPropertiesPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ManagedDatabaseRedisProperties)(nil)).Elem()
-}
-
-func (o ManagedDatabaseRedisPropertiesPtrOutput) ToManagedDatabaseRedisPropertiesPtrOutput() ManagedDatabaseRedisPropertiesPtrOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisPropertiesPtrOutput) ToManagedDatabaseRedisPropertiesPtrOutputWithContext(ctx context.Context) ManagedDatabaseRedisPropertiesPtrOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisPropertiesPtrOutput) Elem() ManagedDatabaseRedisPropertiesOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) ManagedDatabaseRedisProperties {
-		if v != nil {
-			return *v
-		}
-		var ret ManagedDatabaseRedisProperties
-		return ret
-	}).(ManagedDatabaseRedisPropertiesOutput)
-}
-
-// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) AutomaticUtilityNetworkIpFilter() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.AutomaticUtilityNetworkIpFilter
-	}).(pulumi.BoolPtrOutput)
-}
-
-// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) BackupHour() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *int {
-		if v == nil {
-			return nil
-		}
-		return v.BackupHour
-	}).(pulumi.IntPtrOutput)
-}
-
-// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) BackupMinute() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *int {
-		if v == nil {
-			return nil
-		}
-		return v.BackupMinute
-	}).(pulumi.IntPtrOutput)
-}
-
-// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) IpFilters() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) []string {
-		if v == nil {
-			return nil
-		}
-		return v.IpFilters
-	}).(pulumi.StringArrayOutput)
-}
-
-// Migrate data from existing server.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) Migration() ManagedDatabaseRedisPropertiesMigrationPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *ManagedDatabaseRedisPropertiesMigration {
-		if v == nil {
-			return nil
-		}
-		return v.Migration
-	}).(ManagedDatabaseRedisPropertiesMigrationPtrOutput)
-}
-
-// Public Access. Allow access to the service from the public Internet.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) PublicAccess() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.PublicAccess
-	}).(pulumi.BoolPtrOutput)
-}
-
-// Default ACL for pub/sub channels used when Redis user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Redis configuration acl-pubsub-default.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) RedisAclChannelsDefault() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *string {
-		if v == nil {
-			return nil
-		}
-		return v.RedisAclChannelsDefault
-	}).(pulumi.StringPtrOutput)
-}
-
-// Redis IO thread count. Set Redis IO thread count. Changing this will cause a restart of the Redis service.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) RedisIoThreads() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *int {
-		if v == nil {
-			return nil
-		}
-		return v.RedisIoThreads
-	}).(pulumi.IntPtrOutput)
-}
-
-// LFU maxmemory-policy counter decay time in minutes.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) RedisLfuDecayTime() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *int {
-		if v == nil {
-			return nil
-		}
-		return v.RedisLfuDecayTime
-	}).(pulumi.IntPtrOutput)
-}
-
-// Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) RedisLfuLogFactor() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *int {
-		if v == nil {
-			return nil
-		}
-		return v.RedisLfuLogFactor
-	}).(pulumi.IntPtrOutput)
-}
-
-// Redis maxmemory-policy.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) RedisMaxmemoryPolicy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *string {
-		if v == nil {
-			return nil
-		}
-		return v.RedisMaxmemoryPolicy
-	}).(pulumi.StringPtrOutput)
-}
-
-// Set notify-keyspace-events option.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) RedisNotifyKeyspaceEvents() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *string {
-		if v == nil {
-			return nil
-		}
-		return v.RedisNotifyKeyspaceEvents
-	}).(pulumi.StringPtrOutput)
-}
-
-// Number of Redis databases. Set number of Redis databases. Changing this will cause a restart of the Redis service.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) RedisNumberOfDatabases() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *int {
-		if v == nil {
-			return nil
-		}
-		return v.RedisNumberOfDatabases
-	}).(pulumi.IntPtrOutput)
-}
-
-// Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) RedisPersistence() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *string {
-		if v == nil {
-			return nil
-		}
-		return v.RedisPersistence
-	}).(pulumi.StringPtrOutput)
-}
-
-// Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) RedisPubsubClientOutputBufferLimit() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *int {
-		if v == nil {
-			return nil
-		}
-		return v.RedisPubsubClientOutputBufferLimit
-	}).(pulumi.IntPtrOutput)
-}
-
-// Require SSL to access Redis.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) RedisSsl() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.RedisSsl
-	}).(pulumi.BoolPtrOutput)
-}
-
-// Redis idle connection timeout in seconds.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) RedisTimeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *int {
-		if v == nil {
-			return nil
-		}
-		return v.RedisTimeout
-	}).(pulumi.IntPtrOutput)
-}
-
-// Redis major version.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) RedisVersion() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *string {
-		if v == nil {
-			return nil
-		}
-		return v.RedisVersion
-	}).(pulumi.StringPtrOutput)
-}
-
-// Service logging. Store logs for the service so that they are available in the HTTP API and console.
-func (o ManagedDatabaseRedisPropertiesPtrOutput) ServiceLog() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisProperties) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.ServiceLog
-	}).(pulumi.BoolPtrOutput)
-}
-
-type ManagedDatabaseRedisPropertiesMigration struct {
-	// Database name for bootstrapping the initial connection.
-	Dbname *string `pulumi:"dbname"`
-	// Hostname or IP address of the server where to migrate data from.
-	Host *string `pulumi:"host"`
-	// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
-	IgnoreDbs *string `pulumi:"ignoreDbs"`
-	// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
-	IgnoreRoles *string `pulumi:"ignoreRoles"`
-	// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
-	Method *string `pulumi:"method"`
-	// Password for authentication with the server where to migrate data from.
-	Password *string `pulumi:"password"`
-	// Port number of the server where to migrate data from.
-	Port *int `pulumi:"port"`
-	// The server where to migrate data from is secured with SSL.
-	Ssl *bool `pulumi:"ssl"`
-	// User name for authentication with the server where to migrate data from.
-	Username *string `pulumi:"username"`
-}
-
-// ManagedDatabaseRedisPropertiesMigrationInput is an input type that accepts ManagedDatabaseRedisPropertiesMigrationArgs and ManagedDatabaseRedisPropertiesMigrationOutput values.
-// You can construct a concrete instance of `ManagedDatabaseRedisPropertiesMigrationInput` via:
-//
-//	ManagedDatabaseRedisPropertiesMigrationArgs{...}
-type ManagedDatabaseRedisPropertiesMigrationInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseRedisPropertiesMigrationOutput() ManagedDatabaseRedisPropertiesMigrationOutput
-	ToManagedDatabaseRedisPropertiesMigrationOutputWithContext(context.Context) ManagedDatabaseRedisPropertiesMigrationOutput
-}
-
-type ManagedDatabaseRedisPropertiesMigrationArgs struct {
-	// Database name for bootstrapping the initial connection.
-	Dbname pulumi.StringPtrInput `pulumi:"dbname"`
-	// Hostname or IP address of the server where to migrate data from.
-	Host pulumi.StringPtrInput `pulumi:"host"`
-	// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
-	IgnoreDbs pulumi.StringPtrInput `pulumi:"ignoreDbs"`
-	// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
-	IgnoreRoles pulumi.StringPtrInput `pulumi:"ignoreRoles"`
-	// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
-	Method pulumi.StringPtrInput `pulumi:"method"`
-	// Password for authentication with the server where to migrate data from.
-	Password pulumi.StringPtrInput `pulumi:"password"`
-	// Port number of the server where to migrate data from.
-	Port pulumi.IntPtrInput `pulumi:"port"`
-	// The server where to migrate data from is secured with SSL.
-	Ssl pulumi.BoolPtrInput `pulumi:"ssl"`
-	// User name for authentication with the server where to migrate data from.
-	Username pulumi.StringPtrInput `pulumi:"username"`
-}
-
-func (ManagedDatabaseRedisPropertiesMigrationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseRedisPropertiesMigration)(nil)).Elem()
-}
-
-func (i ManagedDatabaseRedisPropertiesMigrationArgs) ToManagedDatabaseRedisPropertiesMigrationOutput() ManagedDatabaseRedisPropertiesMigrationOutput {
-	return i.ToManagedDatabaseRedisPropertiesMigrationOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseRedisPropertiesMigrationArgs) ToManagedDatabaseRedisPropertiesMigrationOutputWithContext(ctx context.Context) ManagedDatabaseRedisPropertiesMigrationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseRedisPropertiesMigrationOutput)
-}
-
-func (i ManagedDatabaseRedisPropertiesMigrationArgs) ToManagedDatabaseRedisPropertiesMigrationPtrOutput() ManagedDatabaseRedisPropertiesMigrationPtrOutput {
-	return i.ToManagedDatabaseRedisPropertiesMigrationPtrOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseRedisPropertiesMigrationArgs) ToManagedDatabaseRedisPropertiesMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseRedisPropertiesMigrationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseRedisPropertiesMigrationOutput).ToManagedDatabaseRedisPropertiesMigrationPtrOutputWithContext(ctx)
-}
-
-// ManagedDatabaseRedisPropertiesMigrationPtrInput is an input type that accepts ManagedDatabaseRedisPropertiesMigrationArgs, ManagedDatabaseRedisPropertiesMigrationPtr and ManagedDatabaseRedisPropertiesMigrationPtrOutput values.
-// You can construct a concrete instance of `ManagedDatabaseRedisPropertiesMigrationPtrInput` via:
-//
-//	        ManagedDatabaseRedisPropertiesMigrationArgs{...}
-//
-//	or:
-//
-//	        nil
-type ManagedDatabaseRedisPropertiesMigrationPtrInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseRedisPropertiesMigrationPtrOutput() ManagedDatabaseRedisPropertiesMigrationPtrOutput
-	ToManagedDatabaseRedisPropertiesMigrationPtrOutputWithContext(context.Context) ManagedDatabaseRedisPropertiesMigrationPtrOutput
-}
-
-type managedDatabaseRedisPropertiesMigrationPtrType ManagedDatabaseRedisPropertiesMigrationArgs
-
-func ManagedDatabaseRedisPropertiesMigrationPtr(v *ManagedDatabaseRedisPropertiesMigrationArgs) ManagedDatabaseRedisPropertiesMigrationPtrInput {
-	return (*managedDatabaseRedisPropertiesMigrationPtrType)(v)
-}
-
-func (*managedDatabaseRedisPropertiesMigrationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ManagedDatabaseRedisPropertiesMigration)(nil)).Elem()
-}
-
-func (i *managedDatabaseRedisPropertiesMigrationPtrType) ToManagedDatabaseRedisPropertiesMigrationPtrOutput() ManagedDatabaseRedisPropertiesMigrationPtrOutput {
-	return i.ToManagedDatabaseRedisPropertiesMigrationPtrOutputWithContext(context.Background())
-}
-
-func (i *managedDatabaseRedisPropertiesMigrationPtrType) ToManagedDatabaseRedisPropertiesMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseRedisPropertiesMigrationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseRedisPropertiesMigrationPtrOutput)
-}
-
-type ManagedDatabaseRedisPropertiesMigrationOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseRedisPropertiesMigrationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseRedisPropertiesMigration)(nil)).Elem()
-}
-
-func (o ManagedDatabaseRedisPropertiesMigrationOutput) ToManagedDatabaseRedisPropertiesMigrationOutput() ManagedDatabaseRedisPropertiesMigrationOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisPropertiesMigrationOutput) ToManagedDatabaseRedisPropertiesMigrationOutputWithContext(ctx context.Context) ManagedDatabaseRedisPropertiesMigrationOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisPropertiesMigrationOutput) ToManagedDatabaseRedisPropertiesMigrationPtrOutput() ManagedDatabaseRedisPropertiesMigrationPtrOutput {
-	return o.ToManagedDatabaseRedisPropertiesMigrationPtrOutputWithContext(context.Background())
-}
-
-func (o ManagedDatabaseRedisPropertiesMigrationOutput) ToManagedDatabaseRedisPropertiesMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseRedisPropertiesMigrationPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseRedisPropertiesMigration) *ManagedDatabaseRedisPropertiesMigration {
-		return &v
-	}).(ManagedDatabaseRedisPropertiesMigrationPtrOutput)
-}
-
-// Database name for bootstrapping the initial connection.
-func (o ManagedDatabaseRedisPropertiesMigrationOutput) Dbname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisPropertiesMigration) *string { return v.Dbname }).(pulumi.StringPtrOutput)
-}
-
-// Hostname or IP address of the server where to migrate data from.
-func (o ManagedDatabaseRedisPropertiesMigrationOutput) Host() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisPropertiesMigration) *string { return v.Host }).(pulumi.StringPtrOutput)
-}
-
-// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
-func (o ManagedDatabaseRedisPropertiesMigrationOutput) IgnoreDbs() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisPropertiesMigration) *string { return v.IgnoreDbs }).(pulumi.StringPtrOutput)
-}
-
-// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
-func (o ManagedDatabaseRedisPropertiesMigrationOutput) IgnoreRoles() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisPropertiesMigration) *string { return v.IgnoreRoles }).(pulumi.StringPtrOutput)
-}
-
-// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
-func (o ManagedDatabaseRedisPropertiesMigrationOutput) Method() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisPropertiesMigration) *string { return v.Method }).(pulumi.StringPtrOutput)
-}
-
-// Password for authentication with the server where to migrate data from.
-func (o ManagedDatabaseRedisPropertiesMigrationOutput) Password() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisPropertiesMigration) *string { return v.Password }).(pulumi.StringPtrOutput)
-}
-
-// Port number of the server where to migrate data from.
-func (o ManagedDatabaseRedisPropertiesMigrationOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisPropertiesMigration) *int { return v.Port }).(pulumi.IntPtrOutput)
-}
-
-// The server where to migrate data from is secured with SSL.
-func (o ManagedDatabaseRedisPropertiesMigrationOutput) Ssl() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisPropertiesMigration) *bool { return v.Ssl }).(pulumi.BoolPtrOutput)
-}
-
-// User name for authentication with the server where to migrate data from.
-func (o ManagedDatabaseRedisPropertiesMigrationOutput) Username() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseRedisPropertiesMigration) *string { return v.Username }).(pulumi.StringPtrOutput)
-}
-
-type ManagedDatabaseRedisPropertiesMigrationPtrOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseRedisPropertiesMigrationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ManagedDatabaseRedisPropertiesMigration)(nil)).Elem()
-}
-
-func (o ManagedDatabaseRedisPropertiesMigrationPtrOutput) ToManagedDatabaseRedisPropertiesMigrationPtrOutput() ManagedDatabaseRedisPropertiesMigrationPtrOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisPropertiesMigrationPtrOutput) ToManagedDatabaseRedisPropertiesMigrationPtrOutputWithContext(ctx context.Context) ManagedDatabaseRedisPropertiesMigrationPtrOutput {
-	return o
-}
-
-func (o ManagedDatabaseRedisPropertiesMigrationPtrOutput) Elem() ManagedDatabaseRedisPropertiesMigrationOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisPropertiesMigration) ManagedDatabaseRedisPropertiesMigration {
-		if v != nil {
-			return *v
-		}
-		var ret ManagedDatabaseRedisPropertiesMigration
-		return ret
-	}).(ManagedDatabaseRedisPropertiesMigrationOutput)
-}
-
-// Database name for bootstrapping the initial connection.
-func (o ManagedDatabaseRedisPropertiesMigrationPtrOutput) Dbname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisPropertiesMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Dbname
-	}).(pulumi.StringPtrOutput)
-}
-
-// Hostname or IP address of the server where to migrate data from.
-func (o ManagedDatabaseRedisPropertiesMigrationPtrOutput) Host() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisPropertiesMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Host
-	}).(pulumi.StringPtrOutput)
-}
-
-// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
-func (o ManagedDatabaseRedisPropertiesMigrationPtrOutput) IgnoreDbs() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisPropertiesMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.IgnoreDbs
-	}).(pulumi.StringPtrOutput)
-}
-
-// Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
-func (o ManagedDatabaseRedisPropertiesMigrationPtrOutput) IgnoreRoles() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisPropertiesMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.IgnoreRoles
-	}).(pulumi.StringPtrOutput)
-}
-
-// The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
-func (o ManagedDatabaseRedisPropertiesMigrationPtrOutput) Method() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisPropertiesMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Method
-	}).(pulumi.StringPtrOutput)
-}
-
-// Password for authentication with the server where to migrate data from.
-func (o ManagedDatabaseRedisPropertiesMigrationPtrOutput) Password() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisPropertiesMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Password
-	}).(pulumi.StringPtrOutput)
-}
-
-// Port number of the server where to migrate data from.
-func (o ManagedDatabaseRedisPropertiesMigrationPtrOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisPropertiesMigration) *int {
-		if v == nil {
-			return nil
-		}
-		return v.Port
-	}).(pulumi.IntPtrOutput)
-}
-
-// The server where to migrate data from is secured with SSL.
-func (o ManagedDatabaseRedisPropertiesMigrationPtrOutput) Ssl() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisPropertiesMigration) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.Ssl
-	}).(pulumi.BoolPtrOutput)
-}
-
-// User name for authentication with the server where to migrate data from.
-func (o ManagedDatabaseRedisPropertiesMigrationPtrOutput) Username() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseRedisPropertiesMigration) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Username
-	}).(pulumi.StringPtrOutput)
-}
-
 type ManagedDatabaseUserOpensearchAccessControl struct {
 	// Set user access control rules.
 	Rules []ManagedDatabaseUserOpensearchAccessControlRule `pulumi:"rules"`
@@ -20631,200 +19913,6 @@ func (o ManagedDatabaseUserPgAccessControlPtrOutput) AllowReplication() pulumi.B
 		}
 		return v.AllowReplication
 	}).(pulumi.BoolPtrOutput)
-}
-
-type ManagedDatabaseUserRedisAccessControl struct {
-	// Set access control to all commands in specified categories.
-	Categories *string `pulumi:"categories"`
-	// Set access control to Pub/Sub channels.
-	Channels *string `pulumi:"channels"`
-	// Set access control to commands.
-	Commands *string `pulumi:"commands"`
-	// Set access control to keys.
-	Keys *string `pulumi:"keys"`
-}
-
-// ManagedDatabaseUserRedisAccessControlInput is an input type that accepts ManagedDatabaseUserRedisAccessControlArgs and ManagedDatabaseUserRedisAccessControlOutput values.
-// You can construct a concrete instance of `ManagedDatabaseUserRedisAccessControlInput` via:
-//
-//	ManagedDatabaseUserRedisAccessControlArgs{...}
-type ManagedDatabaseUserRedisAccessControlInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseUserRedisAccessControlOutput() ManagedDatabaseUserRedisAccessControlOutput
-	ToManagedDatabaseUserRedisAccessControlOutputWithContext(context.Context) ManagedDatabaseUserRedisAccessControlOutput
-}
-
-type ManagedDatabaseUserRedisAccessControlArgs struct {
-	// Set access control to all commands in specified categories.
-	Categories pulumi.StringPtrInput `pulumi:"categories"`
-	// Set access control to Pub/Sub channels.
-	Channels pulumi.StringPtrInput `pulumi:"channels"`
-	// Set access control to commands.
-	Commands pulumi.StringPtrInput `pulumi:"commands"`
-	// Set access control to keys.
-	Keys pulumi.StringPtrInput `pulumi:"keys"`
-}
-
-func (ManagedDatabaseUserRedisAccessControlArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseUserRedisAccessControl)(nil)).Elem()
-}
-
-func (i ManagedDatabaseUserRedisAccessControlArgs) ToManagedDatabaseUserRedisAccessControlOutput() ManagedDatabaseUserRedisAccessControlOutput {
-	return i.ToManagedDatabaseUserRedisAccessControlOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseUserRedisAccessControlArgs) ToManagedDatabaseUserRedisAccessControlOutputWithContext(ctx context.Context) ManagedDatabaseUserRedisAccessControlOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseUserRedisAccessControlOutput)
-}
-
-func (i ManagedDatabaseUserRedisAccessControlArgs) ToManagedDatabaseUserRedisAccessControlPtrOutput() ManagedDatabaseUserRedisAccessControlPtrOutput {
-	return i.ToManagedDatabaseUserRedisAccessControlPtrOutputWithContext(context.Background())
-}
-
-func (i ManagedDatabaseUserRedisAccessControlArgs) ToManagedDatabaseUserRedisAccessControlPtrOutputWithContext(ctx context.Context) ManagedDatabaseUserRedisAccessControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseUserRedisAccessControlOutput).ToManagedDatabaseUserRedisAccessControlPtrOutputWithContext(ctx)
-}
-
-// ManagedDatabaseUserRedisAccessControlPtrInput is an input type that accepts ManagedDatabaseUserRedisAccessControlArgs, ManagedDatabaseUserRedisAccessControlPtr and ManagedDatabaseUserRedisAccessControlPtrOutput values.
-// You can construct a concrete instance of `ManagedDatabaseUserRedisAccessControlPtrInput` via:
-//
-//	        ManagedDatabaseUserRedisAccessControlArgs{...}
-//
-//	or:
-//
-//	        nil
-type ManagedDatabaseUserRedisAccessControlPtrInput interface {
-	pulumi.Input
-
-	ToManagedDatabaseUserRedisAccessControlPtrOutput() ManagedDatabaseUserRedisAccessControlPtrOutput
-	ToManagedDatabaseUserRedisAccessControlPtrOutputWithContext(context.Context) ManagedDatabaseUserRedisAccessControlPtrOutput
-}
-
-type managedDatabaseUserRedisAccessControlPtrType ManagedDatabaseUserRedisAccessControlArgs
-
-func ManagedDatabaseUserRedisAccessControlPtr(v *ManagedDatabaseUserRedisAccessControlArgs) ManagedDatabaseUserRedisAccessControlPtrInput {
-	return (*managedDatabaseUserRedisAccessControlPtrType)(v)
-}
-
-func (*managedDatabaseUserRedisAccessControlPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ManagedDatabaseUserRedisAccessControl)(nil)).Elem()
-}
-
-func (i *managedDatabaseUserRedisAccessControlPtrType) ToManagedDatabaseUserRedisAccessControlPtrOutput() ManagedDatabaseUserRedisAccessControlPtrOutput {
-	return i.ToManagedDatabaseUserRedisAccessControlPtrOutputWithContext(context.Background())
-}
-
-func (i *managedDatabaseUserRedisAccessControlPtrType) ToManagedDatabaseUserRedisAccessControlPtrOutputWithContext(ctx context.Context) ManagedDatabaseUserRedisAccessControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedDatabaseUserRedisAccessControlPtrOutput)
-}
-
-type ManagedDatabaseUserRedisAccessControlOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseUserRedisAccessControlOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ManagedDatabaseUserRedisAccessControl)(nil)).Elem()
-}
-
-func (o ManagedDatabaseUserRedisAccessControlOutput) ToManagedDatabaseUserRedisAccessControlOutput() ManagedDatabaseUserRedisAccessControlOutput {
-	return o
-}
-
-func (o ManagedDatabaseUserRedisAccessControlOutput) ToManagedDatabaseUserRedisAccessControlOutputWithContext(ctx context.Context) ManagedDatabaseUserRedisAccessControlOutput {
-	return o
-}
-
-func (o ManagedDatabaseUserRedisAccessControlOutput) ToManagedDatabaseUserRedisAccessControlPtrOutput() ManagedDatabaseUserRedisAccessControlPtrOutput {
-	return o.ToManagedDatabaseUserRedisAccessControlPtrOutputWithContext(context.Background())
-}
-
-func (o ManagedDatabaseUserRedisAccessControlOutput) ToManagedDatabaseUserRedisAccessControlPtrOutputWithContext(ctx context.Context) ManagedDatabaseUserRedisAccessControlPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ManagedDatabaseUserRedisAccessControl) *ManagedDatabaseUserRedisAccessControl {
-		return &v
-	}).(ManagedDatabaseUserRedisAccessControlPtrOutput)
-}
-
-// Set access control to all commands in specified categories.
-func (o ManagedDatabaseUserRedisAccessControlOutput) Categories() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseUserRedisAccessControl) *string { return v.Categories }).(pulumi.StringPtrOutput)
-}
-
-// Set access control to Pub/Sub channels.
-func (o ManagedDatabaseUserRedisAccessControlOutput) Channels() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseUserRedisAccessControl) *string { return v.Channels }).(pulumi.StringPtrOutput)
-}
-
-// Set access control to commands.
-func (o ManagedDatabaseUserRedisAccessControlOutput) Commands() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseUserRedisAccessControl) *string { return v.Commands }).(pulumi.StringPtrOutput)
-}
-
-// Set access control to keys.
-func (o ManagedDatabaseUserRedisAccessControlOutput) Keys() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseUserRedisAccessControl) *string { return v.Keys }).(pulumi.StringPtrOutput)
-}
-
-type ManagedDatabaseUserRedisAccessControlPtrOutput struct{ *pulumi.OutputState }
-
-func (ManagedDatabaseUserRedisAccessControlPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ManagedDatabaseUserRedisAccessControl)(nil)).Elem()
-}
-
-func (o ManagedDatabaseUserRedisAccessControlPtrOutput) ToManagedDatabaseUserRedisAccessControlPtrOutput() ManagedDatabaseUserRedisAccessControlPtrOutput {
-	return o
-}
-
-func (o ManagedDatabaseUserRedisAccessControlPtrOutput) ToManagedDatabaseUserRedisAccessControlPtrOutputWithContext(ctx context.Context) ManagedDatabaseUserRedisAccessControlPtrOutput {
-	return o
-}
-
-func (o ManagedDatabaseUserRedisAccessControlPtrOutput) Elem() ManagedDatabaseUserRedisAccessControlOutput {
-	return o.ApplyT(func(v *ManagedDatabaseUserRedisAccessControl) ManagedDatabaseUserRedisAccessControl {
-		if v != nil {
-			return *v
-		}
-		var ret ManagedDatabaseUserRedisAccessControl
-		return ret
-	}).(ManagedDatabaseUserRedisAccessControlOutput)
-}
-
-// Set access control to all commands in specified categories.
-func (o ManagedDatabaseUserRedisAccessControlPtrOutput) Categories() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseUserRedisAccessControl) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Categories
-	}).(pulumi.StringPtrOutput)
-}
-
-// Set access control to Pub/Sub channels.
-func (o ManagedDatabaseUserRedisAccessControlPtrOutput) Channels() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseUserRedisAccessControl) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Channels
-	}).(pulumi.StringPtrOutput)
-}
-
-// Set access control to commands.
-func (o ManagedDatabaseUserRedisAccessControlPtrOutput) Commands() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseUserRedisAccessControl) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Commands
-	}).(pulumi.StringPtrOutput)
-}
-
-// Set access control to keys.
-func (o ManagedDatabaseUserRedisAccessControlPtrOutput) Keys() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseUserRedisAccessControl) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Keys
-	}).(pulumi.StringPtrOutput)
 }
 
 type ManagedDatabaseUserValkeyAccessControl struct {
@@ -26472,247 +25560,6 @@ func (o GetManagedDatabasePostgresqlSessionsSessionArrayOutput) Index(i pulumi.I
 	}).(GetManagedDatabasePostgresqlSessionsSessionOutput)
 }
 
-type GetManagedDatabaseRedisSessionsSession struct {
-	// Number of active channel subscriptions
-	ActiveChannelSubscriptions int `pulumi:"activeChannelSubscriptions"`
-	// Current database ID
-	ActiveDatabase string `pulumi:"activeDatabase"`
-	// Number of pattern matching subscriptions.
-	ActivePatternMatchingChannelSubscriptions int `pulumi:"activePatternMatchingChannelSubscriptions"`
-	// Name of the application that is connected to this service.
-	ApplicationName string `pulumi:"applicationName"`
-	// Number of pattern matching subscriptions.
-	ClientAddr string `pulumi:"clientAddr"`
-	// Total duration of the connection in nanoseconds.
-	ConnectionAge int `pulumi:"connectionAge"`
-	// Idle time of the connection in nanoseconds.
-	ConnectionIdle int `pulumi:"connectionIdle"`
-	// A set containing flags' descriptions.
-	Flags []string `pulumi:"flags"`
-	// Client connection flags in raw string format.
-	FlagsRaw string `pulumi:"flagsRaw"`
-	// Process ID of this session.
-	Id string `pulumi:"id"`
-	// Number of commands in a MULTI/EXEC context.
-	MultiExecCommands int `pulumi:"multiExecCommands"`
-	// Output buffer length.
-	OutputBuffer int `pulumi:"outputBuffer"`
-	// Output buffer memory usage.
-	OutputBufferMemory int `pulumi:"outputBufferMemory"`
-	// Output list length (replies are queued in this list when the buffer is full).
-	OutputListLength int `pulumi:"outputListLength"`
-	// The last executed command.
-	Query string `pulumi:"query"`
-	// Query buffer length (0 means no query pending).
-	QueryBuffer int `pulumi:"queryBuffer"`
-	// Free space of the query buffer (0 means the buffer is full).
-	QueryBufferFree int `pulumi:"queryBufferFree"`
-}
-
-// GetManagedDatabaseRedisSessionsSessionInput is an input type that accepts GetManagedDatabaseRedisSessionsSessionArgs and GetManagedDatabaseRedisSessionsSessionOutput values.
-// You can construct a concrete instance of `GetManagedDatabaseRedisSessionsSessionInput` via:
-//
-//	GetManagedDatabaseRedisSessionsSessionArgs{...}
-type GetManagedDatabaseRedisSessionsSessionInput interface {
-	pulumi.Input
-
-	ToGetManagedDatabaseRedisSessionsSessionOutput() GetManagedDatabaseRedisSessionsSessionOutput
-	ToGetManagedDatabaseRedisSessionsSessionOutputWithContext(context.Context) GetManagedDatabaseRedisSessionsSessionOutput
-}
-
-type GetManagedDatabaseRedisSessionsSessionArgs struct {
-	// Number of active channel subscriptions
-	ActiveChannelSubscriptions pulumi.IntInput `pulumi:"activeChannelSubscriptions"`
-	// Current database ID
-	ActiveDatabase pulumi.StringInput `pulumi:"activeDatabase"`
-	// Number of pattern matching subscriptions.
-	ActivePatternMatchingChannelSubscriptions pulumi.IntInput `pulumi:"activePatternMatchingChannelSubscriptions"`
-	// Name of the application that is connected to this service.
-	ApplicationName pulumi.StringInput `pulumi:"applicationName"`
-	// Number of pattern matching subscriptions.
-	ClientAddr pulumi.StringInput `pulumi:"clientAddr"`
-	// Total duration of the connection in nanoseconds.
-	ConnectionAge pulumi.IntInput `pulumi:"connectionAge"`
-	// Idle time of the connection in nanoseconds.
-	ConnectionIdle pulumi.IntInput `pulumi:"connectionIdle"`
-	// A set containing flags' descriptions.
-	Flags pulumi.StringArrayInput `pulumi:"flags"`
-	// Client connection flags in raw string format.
-	FlagsRaw pulumi.StringInput `pulumi:"flagsRaw"`
-	// Process ID of this session.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Number of commands in a MULTI/EXEC context.
-	MultiExecCommands pulumi.IntInput `pulumi:"multiExecCommands"`
-	// Output buffer length.
-	OutputBuffer pulumi.IntInput `pulumi:"outputBuffer"`
-	// Output buffer memory usage.
-	OutputBufferMemory pulumi.IntInput `pulumi:"outputBufferMemory"`
-	// Output list length (replies are queued in this list when the buffer is full).
-	OutputListLength pulumi.IntInput `pulumi:"outputListLength"`
-	// The last executed command.
-	Query pulumi.StringInput `pulumi:"query"`
-	// Query buffer length (0 means no query pending).
-	QueryBuffer pulumi.IntInput `pulumi:"queryBuffer"`
-	// Free space of the query buffer (0 means the buffer is full).
-	QueryBufferFree pulumi.IntInput `pulumi:"queryBufferFree"`
-}
-
-func (GetManagedDatabaseRedisSessionsSessionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetManagedDatabaseRedisSessionsSession)(nil)).Elem()
-}
-
-func (i GetManagedDatabaseRedisSessionsSessionArgs) ToGetManagedDatabaseRedisSessionsSessionOutput() GetManagedDatabaseRedisSessionsSessionOutput {
-	return i.ToGetManagedDatabaseRedisSessionsSessionOutputWithContext(context.Background())
-}
-
-func (i GetManagedDatabaseRedisSessionsSessionArgs) ToGetManagedDatabaseRedisSessionsSessionOutputWithContext(ctx context.Context) GetManagedDatabaseRedisSessionsSessionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetManagedDatabaseRedisSessionsSessionOutput)
-}
-
-// GetManagedDatabaseRedisSessionsSessionArrayInput is an input type that accepts GetManagedDatabaseRedisSessionsSessionArray and GetManagedDatabaseRedisSessionsSessionArrayOutput values.
-// You can construct a concrete instance of `GetManagedDatabaseRedisSessionsSessionArrayInput` via:
-//
-//	GetManagedDatabaseRedisSessionsSessionArray{ GetManagedDatabaseRedisSessionsSessionArgs{...} }
-type GetManagedDatabaseRedisSessionsSessionArrayInput interface {
-	pulumi.Input
-
-	ToGetManagedDatabaseRedisSessionsSessionArrayOutput() GetManagedDatabaseRedisSessionsSessionArrayOutput
-	ToGetManagedDatabaseRedisSessionsSessionArrayOutputWithContext(context.Context) GetManagedDatabaseRedisSessionsSessionArrayOutput
-}
-
-type GetManagedDatabaseRedisSessionsSessionArray []GetManagedDatabaseRedisSessionsSessionInput
-
-func (GetManagedDatabaseRedisSessionsSessionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetManagedDatabaseRedisSessionsSession)(nil)).Elem()
-}
-
-func (i GetManagedDatabaseRedisSessionsSessionArray) ToGetManagedDatabaseRedisSessionsSessionArrayOutput() GetManagedDatabaseRedisSessionsSessionArrayOutput {
-	return i.ToGetManagedDatabaseRedisSessionsSessionArrayOutputWithContext(context.Background())
-}
-
-func (i GetManagedDatabaseRedisSessionsSessionArray) ToGetManagedDatabaseRedisSessionsSessionArrayOutputWithContext(ctx context.Context) GetManagedDatabaseRedisSessionsSessionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetManagedDatabaseRedisSessionsSessionArrayOutput)
-}
-
-type GetManagedDatabaseRedisSessionsSessionOutput struct{ *pulumi.OutputState }
-
-func (GetManagedDatabaseRedisSessionsSessionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetManagedDatabaseRedisSessionsSession)(nil)).Elem()
-}
-
-func (o GetManagedDatabaseRedisSessionsSessionOutput) ToGetManagedDatabaseRedisSessionsSessionOutput() GetManagedDatabaseRedisSessionsSessionOutput {
-	return o
-}
-
-func (o GetManagedDatabaseRedisSessionsSessionOutput) ToGetManagedDatabaseRedisSessionsSessionOutputWithContext(ctx context.Context) GetManagedDatabaseRedisSessionsSessionOutput {
-	return o
-}
-
-// Number of active channel subscriptions
-func (o GetManagedDatabaseRedisSessionsSessionOutput) ActiveChannelSubscriptions() pulumi.IntOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) int { return v.ActiveChannelSubscriptions }).(pulumi.IntOutput)
-}
-
-// Current database ID
-func (o GetManagedDatabaseRedisSessionsSessionOutput) ActiveDatabase() pulumi.StringOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) string { return v.ActiveDatabase }).(pulumi.StringOutput)
-}
-
-// Number of pattern matching subscriptions.
-func (o GetManagedDatabaseRedisSessionsSessionOutput) ActivePatternMatchingChannelSubscriptions() pulumi.IntOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) int { return v.ActivePatternMatchingChannelSubscriptions }).(pulumi.IntOutput)
-}
-
-// Name of the application that is connected to this service.
-func (o GetManagedDatabaseRedisSessionsSessionOutput) ApplicationName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) string { return v.ApplicationName }).(pulumi.StringOutput)
-}
-
-// Number of pattern matching subscriptions.
-func (o GetManagedDatabaseRedisSessionsSessionOutput) ClientAddr() pulumi.StringOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) string { return v.ClientAddr }).(pulumi.StringOutput)
-}
-
-// Total duration of the connection in nanoseconds.
-func (o GetManagedDatabaseRedisSessionsSessionOutput) ConnectionAge() pulumi.IntOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) int { return v.ConnectionAge }).(pulumi.IntOutput)
-}
-
-// Idle time of the connection in nanoseconds.
-func (o GetManagedDatabaseRedisSessionsSessionOutput) ConnectionIdle() pulumi.IntOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) int { return v.ConnectionIdle }).(pulumi.IntOutput)
-}
-
-// A set containing flags' descriptions.
-func (o GetManagedDatabaseRedisSessionsSessionOutput) Flags() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) []string { return v.Flags }).(pulumi.StringArrayOutput)
-}
-
-// Client connection flags in raw string format.
-func (o GetManagedDatabaseRedisSessionsSessionOutput) FlagsRaw() pulumi.StringOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) string { return v.FlagsRaw }).(pulumi.StringOutput)
-}
-
-// Process ID of this session.
-func (o GetManagedDatabaseRedisSessionsSessionOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Number of commands in a MULTI/EXEC context.
-func (o GetManagedDatabaseRedisSessionsSessionOutput) MultiExecCommands() pulumi.IntOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) int { return v.MultiExecCommands }).(pulumi.IntOutput)
-}
-
-// Output buffer length.
-func (o GetManagedDatabaseRedisSessionsSessionOutput) OutputBuffer() pulumi.IntOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) int { return v.OutputBuffer }).(pulumi.IntOutput)
-}
-
-// Output buffer memory usage.
-func (o GetManagedDatabaseRedisSessionsSessionOutput) OutputBufferMemory() pulumi.IntOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) int { return v.OutputBufferMemory }).(pulumi.IntOutput)
-}
-
-// Output list length (replies are queued in this list when the buffer is full).
-func (o GetManagedDatabaseRedisSessionsSessionOutput) OutputListLength() pulumi.IntOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) int { return v.OutputListLength }).(pulumi.IntOutput)
-}
-
-// The last executed command.
-func (o GetManagedDatabaseRedisSessionsSessionOutput) Query() pulumi.StringOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) string { return v.Query }).(pulumi.StringOutput)
-}
-
-// Query buffer length (0 means no query pending).
-func (o GetManagedDatabaseRedisSessionsSessionOutput) QueryBuffer() pulumi.IntOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) int { return v.QueryBuffer }).(pulumi.IntOutput)
-}
-
-// Free space of the query buffer (0 means the buffer is full).
-func (o GetManagedDatabaseRedisSessionsSessionOutput) QueryBufferFree() pulumi.IntOutput {
-	return o.ApplyT(func(v GetManagedDatabaseRedisSessionsSession) int { return v.QueryBufferFree }).(pulumi.IntOutput)
-}
-
-type GetManagedDatabaseRedisSessionsSessionArrayOutput struct{ *pulumi.OutputState }
-
-func (GetManagedDatabaseRedisSessionsSessionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetManagedDatabaseRedisSessionsSession)(nil)).Elem()
-}
-
-func (o GetManagedDatabaseRedisSessionsSessionArrayOutput) ToGetManagedDatabaseRedisSessionsSessionArrayOutput() GetManagedDatabaseRedisSessionsSessionArrayOutput {
-	return o
-}
-
-func (o GetManagedDatabaseRedisSessionsSessionArrayOutput) ToGetManagedDatabaseRedisSessionsSessionArrayOutputWithContext(ctx context.Context) GetManagedDatabaseRedisSessionsSessionArrayOutput {
-	return o
-}
-
-func (o GetManagedDatabaseRedisSessionsSessionArrayOutput) Index(i pulumi.IntInput) GetManagedDatabaseRedisSessionsSessionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetManagedDatabaseRedisSessionsSession {
-		return vs[0].([]GetManagedDatabaseRedisSessionsSession)[vs[1].(int)]
-	}).(GetManagedDatabaseRedisSessionsSessionOutput)
-}
-
 type GetManagedDatabaseValkeySessionsSession struct {
 	// Number of active channel subscriptions
 	ActiveChannelSubscriptions int `pulumi:"activeChannelSubscriptions"`
@@ -27899,6 +26746,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexRollupPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesIndexRollupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexTemplateInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesIndexTemplateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesIndexTemplatePtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesIndexTemplateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesJwtInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesJwtArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesJwtPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesJwtArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesOpenidInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesOpenidArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesOpenidPtrInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesOpenidArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseOpensearchPropertiesOpensearchDashboardsInput)(nil)).Elem(), ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs{})
@@ -27953,24 +26802,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlPropertiesPglookoutPtrInput)(nil)).Elem(), ManagedDatabasePostgresqlPropertiesPglookoutArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlPropertiesTimescaledbInput)(nil)).Elem(), ManagedDatabasePostgresqlPropertiesTimescaledbArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabasePostgresqlPropertiesTimescaledbPtrInput)(nil)).Elem(), ManagedDatabasePostgresqlPropertiesTimescaledbArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseRedisComponentInput)(nil)).Elem(), ManagedDatabaseRedisComponentArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseRedisComponentArrayInput)(nil)).Elem(), ManagedDatabaseRedisComponentArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseRedisNetworkInput)(nil)).Elem(), ManagedDatabaseRedisNetworkArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseRedisNetworkArrayInput)(nil)).Elem(), ManagedDatabaseRedisNetworkArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseRedisNodeStateInput)(nil)).Elem(), ManagedDatabaseRedisNodeStateArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseRedisNodeStateArrayInput)(nil)).Elem(), ManagedDatabaseRedisNodeStateArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseRedisPropertiesInput)(nil)).Elem(), ManagedDatabaseRedisPropertiesArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseRedisPropertiesPtrInput)(nil)).Elem(), ManagedDatabaseRedisPropertiesArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseRedisPropertiesMigrationInput)(nil)).Elem(), ManagedDatabaseRedisPropertiesMigrationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseRedisPropertiesMigrationPtrInput)(nil)).Elem(), ManagedDatabaseRedisPropertiesMigrationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserOpensearchAccessControlInput)(nil)).Elem(), ManagedDatabaseUserOpensearchAccessControlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserOpensearchAccessControlPtrInput)(nil)).Elem(), ManagedDatabaseUserOpensearchAccessControlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserOpensearchAccessControlRuleInput)(nil)).Elem(), ManagedDatabaseUserOpensearchAccessControlRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserOpensearchAccessControlRuleArrayInput)(nil)).Elem(), ManagedDatabaseUserOpensearchAccessControlRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserPgAccessControlInput)(nil)).Elem(), ManagedDatabaseUserPgAccessControlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserPgAccessControlPtrInput)(nil)).Elem(), ManagedDatabaseUserPgAccessControlArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserRedisAccessControlInput)(nil)).Elem(), ManagedDatabaseUserRedisAccessControlArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserRedisAccessControlPtrInput)(nil)).Elem(), ManagedDatabaseUserRedisAccessControlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserValkeyAccessControlInput)(nil)).Elem(), ManagedDatabaseUserValkeyAccessControlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseUserValkeyAccessControlPtrInput)(nil)).Elem(), ManagedDatabaseUserValkeyAccessControlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedDatabaseValkeyComponentInput)(nil)).Elem(), ManagedDatabaseValkeyComponentArgs{})
@@ -28033,8 +26870,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedDatabaseOpensearchIndicesIndexArrayInput)(nil)).Elem(), GetManagedDatabaseOpensearchIndicesIndexArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedDatabasePostgresqlSessionsSessionInput)(nil)).Elem(), GetManagedDatabasePostgresqlSessionsSessionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedDatabasePostgresqlSessionsSessionArrayInput)(nil)).Elem(), GetManagedDatabasePostgresqlSessionsSessionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedDatabaseRedisSessionsSessionInput)(nil)).Elem(), GetManagedDatabaseRedisSessionsSessionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedDatabaseRedisSessionsSessionArrayInput)(nil)).Elem(), GetManagedDatabaseRedisSessionsSessionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedDatabaseValkeySessionsSessionInput)(nil)).Elem(), GetManagedDatabaseValkeySessionsSessionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedDatabaseValkeySessionsSessionArrayInput)(nil)).Elem(), GetManagedDatabaseValkeySessionsSessionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetManagedObjectStoragePoliciesPolicyInput)(nil)).Elem(), GetManagedObjectStoragePoliciesPolicyArgs{})
@@ -28184,6 +27019,8 @@ func init() {
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesIndexRollupPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesIndexTemplateOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesIndexTemplatePtrOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesJwtOutput{})
+	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesJwtPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesOpenidOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesOpenidPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseOpensearchPropertiesOpensearchDashboardsOutput{})
@@ -28238,24 +27075,12 @@ func init() {
 	pulumi.RegisterOutputType(ManagedDatabasePostgresqlPropertiesPglookoutPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabasePostgresqlPropertiesTimescaledbOutput{})
 	pulumi.RegisterOutputType(ManagedDatabasePostgresqlPropertiesTimescaledbPtrOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseRedisComponentOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseRedisComponentArrayOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseRedisNetworkOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseRedisNetworkArrayOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseRedisNodeStateOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseRedisNodeStateArrayOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseRedisPropertiesOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseRedisPropertiesPtrOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseRedisPropertiesMigrationOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseRedisPropertiesMigrationPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseUserOpensearchAccessControlOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseUserOpensearchAccessControlPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseUserOpensearchAccessControlRuleOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseUserOpensearchAccessControlRuleArrayOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseUserPgAccessControlOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseUserPgAccessControlPtrOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseUserRedisAccessControlOutput{})
-	pulumi.RegisterOutputType(ManagedDatabaseUserRedisAccessControlPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseUserValkeyAccessControlOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseUserValkeyAccessControlPtrOutput{})
 	pulumi.RegisterOutputType(ManagedDatabaseValkeyComponentOutput{})
@@ -28318,8 +27143,6 @@ func init() {
 	pulumi.RegisterOutputType(GetManagedDatabaseOpensearchIndicesIndexArrayOutput{})
 	pulumi.RegisterOutputType(GetManagedDatabasePostgresqlSessionsSessionOutput{})
 	pulumi.RegisterOutputType(GetManagedDatabasePostgresqlSessionsSessionArrayOutput{})
-	pulumi.RegisterOutputType(GetManagedDatabaseRedisSessionsSessionOutput{})
-	pulumi.RegisterOutputType(GetManagedDatabaseRedisSessionsSessionArrayOutput{})
 	pulumi.RegisterOutputType(GetManagedDatabaseValkeySessionsSessionOutput{})
 	pulumi.RegisterOutputType(GetManagedDatabaseValkeySessionsSessionArrayOutput{})
 	pulumi.RegisterOutputType(GetManagedObjectStoragePoliciesPolicyOutput{})

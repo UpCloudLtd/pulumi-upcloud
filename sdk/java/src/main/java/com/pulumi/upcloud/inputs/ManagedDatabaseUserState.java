@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.upcloud.inputs.ManagedDatabaseUserOpensearchAccessControlArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseUserPgAccessControlArgs;
-import com.pulumi.upcloud.inputs.ManagedDatabaseUserRedisAccessControlArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseUserValkeyAccessControlArgs;
 import java.lang.String;
 import java.util.Objects;
@@ -80,21 +79,6 @@ public final class ManagedDatabaseUserState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Redis access control object.
-     * 
-     */
-    @Import(name="redisAccessControl")
-    private @Nullable Output<ManagedDatabaseUserRedisAccessControlArgs> redisAccessControl;
-
-    /**
-     * @return Redis access control object.
-     * 
-     */
-    public Optional<Output<ManagedDatabaseUserRedisAccessControlArgs>> redisAccessControl() {
-        return Optional.ofNullable(this.redisAccessControl);
-    }
-
-    /**
      * Service&#39;s UUID for which this user belongs to
      * 
      */
@@ -161,7 +145,6 @@ public final class ManagedDatabaseUserState extends com.pulumi.resources.Resourc
         this.opensearchAccessControl = $.opensearchAccessControl;
         this.password = $.password;
         this.pgAccessControl = $.pgAccessControl;
-        this.redisAccessControl = $.redisAccessControl;
         this.service = $.service;
         this.type = $.type;
         this.username = $.username;
@@ -268,27 +251,6 @@ public final class ManagedDatabaseUserState extends com.pulumi.resources.Resourc
          */
         public Builder pgAccessControl(ManagedDatabaseUserPgAccessControlArgs pgAccessControl) {
             return pgAccessControl(Output.of(pgAccessControl));
-        }
-
-        /**
-         * @param redisAccessControl Redis access control object.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder redisAccessControl(@Nullable Output<ManagedDatabaseUserRedisAccessControlArgs> redisAccessControl) {
-            $.redisAccessControl = redisAccessControl;
-            return this;
-        }
-
-        /**
-         * @param redisAccessControl Redis access control object.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder redisAccessControl(ManagedDatabaseUserRedisAccessControlArgs redisAccessControl) {
-            return redisAccessControl(Output.of(redisAccessControl));
         }
 
         /**

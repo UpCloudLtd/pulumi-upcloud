@@ -49,7 +49,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         public readonly int? ClusterRoutingAllocationNodeConcurrentRecoveries;
         public readonly Outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog? ClusterSearchRequestSlowlog;
         /// <summary>
-        /// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+        /// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
         /// </summary>
         public readonly string? CustomDomain;
         /// <summary>
@@ -180,6 +180,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// How long audit history indices are kept in days.
         /// </summary>
         public readonly int? IsmHistoryRolloverRetentionPeriod;
+        /// <summary>
+        /// OpenSearch JWT Configuration.
+        /// </summary>
+        public readonly Outputs.ManagedDatabaseOpensearchPropertiesJwt? Jwt;
         /// <summary>
         /// Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
         /// </summary>
@@ -387,6 +391,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             int? ismHistoryRolloverRetentionPeriod,
 
+            Outputs.ManagedDatabaseOpensearchPropertiesJwt? jwt,
+
             bool? keepIndexRefreshInterval,
 
             bool? knnMemoryCircuitBreakerEnabled,
@@ -492,6 +498,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             IsmHistoryMaxDocs = ismHistoryMaxDocs;
             IsmHistoryRolloverCheckPeriod = ismHistoryRolloverCheckPeriod;
             IsmHistoryRolloverRetentionPeriod = ismHistoryRolloverRetentionPeriod;
+            Jwt = jwt;
             KeepIndexRefreshInterval = keepIndexRefreshInterval;
             KnnMemoryCircuitBreakerEnabled = knnMemoryCircuitBreakerEnabled;
             KnnMemoryCircuitBreakerLimit = knnMemoryCircuitBreakerLimit;

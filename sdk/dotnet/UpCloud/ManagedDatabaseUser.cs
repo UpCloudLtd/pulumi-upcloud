@@ -69,12 +69,6 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<Outputs.ManagedDatabaseUserPgAccessControl?> PgAccessControl { get; private set; } = null!;
 
         /// <summary>
-        /// Redis access control object.
-        /// </summary>
-        [Output("redisAccessControl")]
-        public Output<Outputs.ManagedDatabaseUserRedisAccessControl?> RedisAccessControl { get; private set; } = null!;
-
-        /// <summary>
         /// Service's UUID for which this user belongs to
         /// </summary>
         [Output("service")]
@@ -184,12 +178,6 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<Inputs.ManagedDatabaseUserPgAccessControlArgs>? PgAccessControl { get; set; }
 
         /// <summary>
-        /// Redis access control object.
-        /// </summary>
-        [Input("redisAccessControl")]
-        public Input<Inputs.ManagedDatabaseUserRedisAccessControlArgs>? RedisAccessControl { get; set; }
-
-        /// <summary>
         /// Service's UUID for which this user belongs to
         /// </summary>
         [Input("service", required: true)]
@@ -248,12 +236,6 @@ namespace UpCloud.Pulumi.UpCloud
         /// </summary>
         [Input("pgAccessControl")]
         public Input<Inputs.ManagedDatabaseUserPgAccessControlGetArgs>? PgAccessControl { get; set; }
-
-        /// <summary>
-        /// Redis access control object.
-        /// </summary>
-        [Input("redisAccessControl")]
-        public Input<Inputs.ManagedDatabaseUserRedisAccessControlGetArgs>? RedisAccessControl { get; set; }
 
         /// <summary>
         /// Service's UUID for which this user belongs to

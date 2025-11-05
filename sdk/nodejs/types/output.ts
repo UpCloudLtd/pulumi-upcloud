@@ -391,77 +391,6 @@ export interface GetManagedDatabasePostgresqlSessionsSession {
     xactStart: string;
 }
 
-export interface GetManagedDatabaseRedisSessionsSession {
-    /**
-     * Number of active channel subscriptions
-     */
-    activeChannelSubscriptions: number;
-    /**
-     * Current database ID
-     */
-    activeDatabase: string;
-    /**
-     * Number of pattern matching subscriptions.
-     */
-    activePatternMatchingChannelSubscriptions: number;
-    /**
-     * Name of the application that is connected to this service.
-     */
-    applicationName: string;
-    /**
-     * Number of pattern matching subscriptions.
-     */
-    clientAddr: string;
-    /**
-     * Total duration of the connection in nanoseconds.
-     */
-    connectionAge: number;
-    /**
-     * Idle time of the connection in nanoseconds.
-     */
-    connectionIdle: number;
-    /**
-     * A set containing flags' descriptions.
-     */
-    flags: string[];
-    /**
-     * Client connection flags in raw string format.
-     */
-    flagsRaw: string;
-    /**
-     * Process ID of this session.
-     */
-    id: string;
-    /**
-     * Number of commands in a MULTI/EXEC context.
-     */
-    multiExecCommands: number;
-    /**
-     * Output buffer length.
-     */
-    outputBuffer: number;
-    /**
-     * Output buffer memory usage.
-     */
-    outputBufferMemory: number;
-    /**
-     * Output list length (replies are queued in this list when the buffer is full).
-     */
-    outputListLength: number;
-    /**
-     * The last executed command.
-     */
-    query: string;
-    /**
-     * Query buffer length (0 means no query pending).
-     */
-    queryBuffer: number;
-    /**
-     * Free space of the query buffer (0 means the buffer is full).
-     */
-    queryBufferFree: number;
-}
-
 export interface GetManagedDatabaseValkeySessionsSession {
     /**
      * Number of active channel subscriptions
@@ -1658,7 +1587,7 @@ export interface ManagedDatabaseMysqlPropertiesMigration {
     /**
      * The server where to migrate data from is secured with SSL.
      */
-    ssl?: boolean;
+    ssl: boolean;
     /**
      * User name for authentication with the server where to migrate data from.
      */
@@ -1769,7 +1698,7 @@ export interface ManagedDatabaseOpensearchProperties {
     clusterRoutingAllocationNodeConcurrentRecoveries: number;
     clusterSearchRequestSlowlog: outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog;
     /**
-     * Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+     * Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
      */
     customDomain: string;
     /**
@@ -1900,6 +1829,10 @@ export interface ManagedDatabaseOpensearchProperties {
      * How long audit history indices are kept in days.
      */
     ismHistoryRolloverRetentionPeriod: number;
+    /**
+     * OpenSearch JWT Configuration.
+     */
+    jwt: outputs.ManagedDatabaseOpensearchPropertiesJwt;
     /**
      * Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
      */
@@ -2152,6 +2085,45 @@ export interface ManagedDatabaseOpensearchPropertiesIndexTemplate {
      * The number of primary shards that an index should have. Deprecated, use an index template instead.
      */
     numberOfShards: number;
+}
+
+export interface ManagedDatabaseOpensearchPropertiesJwt {
+    /**
+     * Enable or disable OpenSearch JWT authentication. Enables or disables JWT-based authentication for OpenSearch. When enabled, users can authenticate using JWT tokens.
+     */
+    enabled: boolean;
+    /**
+     * JWT clock skew tolerance in seconds. The maximum allowed time difference in seconds between the JWT issuer's clock and the OpenSearch server's clock. This helps prevent token validation failures due to minor time synchronization issues.
+     */
+    jwtClockSkewToleranceSeconds: number;
+    /**
+     * HTTP header name for JWT token. The HTTP header name where the JWT token is transmitted. Typically 'Authorization' for Bearer tokens.
+     */
+    jwtHeader: string;
+    /**
+     * URL parameter name for JWT token. If the JWT token is transmitted as a URL parameter instead of an HTTP header, specify the parameter name here.
+     */
+    jwtUrlParameter: string;
+    /**
+     * Required JWT audience. If specified, the JWT must contain an 'aud' claim that matches this value. This provides additional security by ensuring the JWT was issued for the expected audience.
+     */
+    requiredAudience: string;
+    /**
+     * Required JWT issuer. If specified, the JWT must contain an 'iss' claim that matches this value. This provides additional security by ensuring the JWT was issued by the expected issuer.
+     */
+    requiredIssuer: string;
+    /**
+     * JWT claim key for roles. The key in the JWT payload that contains the user's roles. If specified, roles will be extracted from the JWT for authorization.
+     */
+    rolesKey: string;
+    /**
+     * JWT signing key. The secret key used to sign and verify JWT tokens. This should be a secure, randomly generated key HMAC key or public RSA/ECDSA key.
+     */
+    signingKey: string;
+    /**
+     * JWT claim key for subject. The key in the JWT payload that contains the user's subject identifier. If not specified, the 'sub' claim is used by default.
+     */
+    subjectKey: string;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesOpenid {
@@ -2679,6 +2651,26 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     idleInTransactionSessionTimeout: number;
     /**
+     * EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
+     */
+    ioCombineLimit: number;
+    /**
+     * EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
+     */
+    ioMaxCombineLimit: number;
+    /**
+     * EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+     */
+    ioMaxConcurrency: number;
+    /**
+     * EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
+     */
+    ioMethod: string;
+    /**
+     * io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+     */
+    ioWorkers: number;
+    /**
      * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
      */
     ipFilters: string[];
@@ -2774,6 +2766,10 @@ export interface ManagedDatabasePostgresqlProperties {
      * Migrate data from existing server.
      */
     migration: outputs.ManagedDatabasePostgresqlPropertiesMigration;
+    /**
+     * Number of nodes for the service.
+     */
+    nodeCount: number;
     /**
      * Chooses the algorithm for encrypting passwords.
      */
@@ -2912,7 +2908,7 @@ export interface ManagedDatabasePostgresqlPropertiesMigration {
     /**
      * The server where to migrate data from is secured with SSL.
      */
-    ssl?: boolean;
+    ssl: boolean;
     /**
      * User name for authentication with the server where to migrate data from.
      */
@@ -2923,16 +2919,16 @@ export interface ManagedDatabasePostgresqlPropertiesPgaudit {
     /**
      * Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
      */
-    featureEnabled?: boolean;
+    featureEnabled: boolean;
     /**
      * Log Catalog. Specifies that session logging should be enabled in the case where all relations
      * in a statement are in pg_catalog.
      */
-    logCatalog?: boolean;
+    logCatalog: boolean;
     /**
      * Log Client. Specifies whether log messages will be visible to a client process such as psql.
      */
-    logClient?: boolean;
+    logClient: boolean;
     /**
      * Log level. Specifies the log level that will be used for log entries.
      */
@@ -2946,11 +2942,11 @@ export interface ManagedDatabasePostgresqlPropertiesPgaudit {
      * Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
      * executed as part of another ExecutorRun.
      */
-    logNestedStatements?: boolean;
+    logNestedStatements: boolean;
     /**
      * Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
      */
-    logParameter?: boolean;
+    logParameter: boolean;
     /**
      * Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
      * but replaced with <long param suppressed>.
@@ -2960,20 +2956,20 @@ export interface ManagedDatabasePostgresqlPropertiesPgaudit {
      * Log Relation. Specifies whether session audit logging should create a separate log entry
      * for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
      */
-    logRelation?: boolean;
+    logRelation: boolean;
     /**
      * Log Rows.
      */
-    logRows?: boolean;
+    logRows: boolean;
     /**
      * Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
      */
-    logStatement?: boolean;
+    logStatement: boolean;
     /**
      * Log Statement Once. Specifies whether logging will include the statement text and parameters with
      * the first log entry for a statement/substatement combination or with every entry.
      */
-    logStatementOnce?: boolean;
+    logStatementOnce: boolean;
     /**
      * Log. Specifies which classes of statements will be logged by session audit logging.
      */
@@ -3024,7 +3020,7 @@ export interface ManagedDatabasePostgresqlPropertiesPgbouncer {
     /**
      * Run serverResetQuery (DISCARD ALL) in all pooling modes.
      */
-    serverResetQueryAlways?: boolean;
+    serverResetQueryAlways: boolean;
 }
 
 export interface ManagedDatabasePostgresqlPropertiesPglookout {
@@ -3039,181 +3035,6 @@ export interface ManagedDatabasePostgresqlPropertiesTimescaledb {
      * The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time. Changing this parameter causes a service restart.
      */
     maxBackgroundWorkers: number;
-}
-
-export interface ManagedDatabaseRedisComponent {
-    /**
-     * Type of the component
-     */
-    component: string;
-    /**
-     * Hostname of the component
-     */
-    host: string;
-    /**
-     * Port number of the component
-     */
-    port: number;
-    /**
-     * Component network route type
-     */
-    route: string;
-    /**
-     * Usage of the component
-     */
-    usage: string;
-}
-
-export interface ManagedDatabaseRedisNetwork {
-    /**
-     * Network family. Currently only `IPv4` is supported.
-     */
-    family: string;
-    /**
-     * The name of the network. Must be unique within the service.
-     */
-    name: string;
-    /**
-     * The type of the network. Must be private.
-     */
-    type: string;
-    /**
-     * Private network UUID. Must reside in the same zone as the database.
-     */
-    uuid: string;
-}
-
-export interface ManagedDatabaseRedisNodeState {
-    /**
-     * Name plus a node iteration
-     */
-    name: string;
-    /**
-     * Role of the node
-     */
-    role: string;
-    /**
-     * State of the node
-     */
-    state: string;
-}
-
-export interface ManagedDatabaseRedisProperties {
-    /**
-     * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
-     */
-    automaticUtilityNetworkIpFilter?: boolean;
-    /**
-     * The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
-     */
-    backupHour: number;
-    /**
-     * The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
-     */
-    backupMinute: number;
-    /**
-     * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
-     */
-    ipFilters: string[];
-    /**
-     * Migrate data from existing server.
-     */
-    migration: outputs.ManagedDatabaseRedisPropertiesMigration;
-    /**
-     * Public Access. Allow access to the service from the public Internet.
-     */
-    publicAccess?: boolean;
-    /**
-     * Default ACL for pub/sub channels used when Redis user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Redis configuration acl-pubsub-default.
-     */
-    redisAclChannelsDefault: string;
-    /**
-     * Redis IO thread count. Set Redis IO thread count. Changing this will cause a restart of the Redis service.
-     */
-    redisIoThreads: number;
-    /**
-     * LFU maxmemory-policy counter decay time in minutes.
-     */
-    redisLfuDecayTime: number;
-    /**
-     * Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
-     */
-    redisLfuLogFactor: number;
-    /**
-     * Redis maxmemory-policy.
-     */
-    redisMaxmemoryPolicy: string;
-    /**
-     * Set notify-keyspace-events option.
-     */
-    redisNotifyKeyspaceEvents?: string;
-    /**
-     * Number of Redis databases. Set number of Redis databases. Changing this will cause a restart of the Redis service.
-     */
-    redisNumberOfDatabases: number;
-    /**
-     * Redis persistence. When persistence is 'rdb', Redis does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to the backup schedule for backup purposes. When persistence is 'off', no RDB dumps or backups are done, so data can be lost at any moment if the service is restarted for any reason, or if the service is powered off. Also, the service can't be forked.
-     */
-    redisPersistence: string;
-    /**
-     * Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
-     */
-    redisPubsubClientOutputBufferLimit: number;
-    /**
-     * Require SSL to access Redis.
-     */
-    redisSsl?: boolean;
-    /**
-     * Redis idle connection timeout in seconds.
-     */
-    redisTimeout: number;
-    /**
-     * Redis major version.
-     */
-    redisVersion: string;
-    /**
-     * Service logging. Store logs for the service so that they are available in the HTTP API and console.
-     */
-    serviceLog: boolean;
-}
-
-export interface ManagedDatabaseRedisPropertiesMigration {
-    /**
-     * Database name for bootstrapping the initial connection.
-     */
-    dbname: string;
-    /**
-     * Hostname or IP address of the server where to migrate data from.
-     */
-    host: string;
-    /**
-     * Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
-     */
-    ignoreDbs: string;
-    /**
-     * Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
-     */
-    ignoreRoles: string;
-    /**
-     * The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
-     */
-    method: string;
-    /**
-     * Password for authentication with the server where to migrate data from.
-     */
-    password: string;
-    /**
-     * Port number of the server where to migrate data from.
-     */
-    port: number;
-    /**
-     * The server where to migrate data from is secured with SSL.
-     */
-    ssl?: boolean;
-    /**
-     * User name for authentication with the server where to migrate data from.
-     */
-    username: string;
 }
 
 export interface ManagedDatabaseUserOpensearchAccessControl {
@@ -3239,25 +3060,6 @@ export interface ManagedDatabaseUserPgAccessControl {
      * Grant replication privilege
      */
     allowReplication?: boolean;
-}
-
-export interface ManagedDatabaseUserRedisAccessControl {
-    /**
-     * Set access control to all commands in specified categories.
-     */
-    categories?: string;
-    /**
-     * Set access control to Pub/Sub channels.
-     */
-    channels?: string;
-    /**
-     * Set access control to commands.
-     */
-    commands?: string;
-    /**
-     * Set access control to keys.
-     */
-    keys?: string;
 }
 
 export interface ManagedDatabaseUserValkeyAccessControl {
@@ -3451,7 +3253,7 @@ export interface ManagedDatabaseValkeyPropertiesMigration {
     /**
      * The server where to migrate data from is secured with SSL.
      */
-    ssl?: boolean;
+    ssl: boolean;
     /**
      * User name for authentication with the server where to migrate data from.
      */

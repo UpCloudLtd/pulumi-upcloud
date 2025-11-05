@@ -18,7 +18,6 @@ from .get_load_balancer_dns_challenge_domain import *
 from .get_managed_database_mysql_sessions import *
 from .get_managed_database_opensearch_indices import *
 from .get_managed_database_postgresql_sessions import *
-from .get_managed_database_redis_sessions import *
 from .get_managed_database_valkey_sessions import *
 from .get_managed_object_storage_policies import *
 from .get_managed_object_storage_regions import *
@@ -44,7 +43,6 @@ from .managed_database_logical_database import *
 from .managed_database_mysql import *
 from .managed_database_opensearch import *
 from .managed_database_postgresql import *
-from .managed_database_redis import *
 from .managed_database_user import *
 from .managed_database_valkey import *
 from .managed_object_storage import *
@@ -252,14 +250,6 @@ _utilities.register(
   "fqn": "pulumi_upcloud",
   "classes": {
    "upcloud:index/managedDatabasePostgresql:ManagedDatabasePostgresql": "ManagedDatabasePostgresql"
-  }
- },
- {
-  "pkg": "upcloud",
-  "mod": "index/managedDatabaseRedis",
-  "fqn": "pulumi_upcloud",
-  "classes": {
-   "upcloud:index/managedDatabaseRedis:ManagedDatabaseRedis": "ManagedDatabaseRedis"
   }
  },
  {

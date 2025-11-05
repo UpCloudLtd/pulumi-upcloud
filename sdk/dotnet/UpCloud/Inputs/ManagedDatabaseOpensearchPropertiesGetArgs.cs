@@ -68,7 +68,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<Inputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogGetArgs>? ClusterSearchRequestSlowlog { get; set; }
 
         /// <summary>
-        /// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name.
+        /// Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
         /// </summary>
         [Input("customDomain")]
         public Input<string>? CustomDomain { get; set; }
@@ -298,6 +298,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         /// </summary>
         [Input("ismHistoryRolloverRetentionPeriod")]
         public Input<int>? IsmHistoryRolloverRetentionPeriod { get; set; }
+
+        /// <summary>
+        /// OpenSearch JWT Configuration.
+        /// </summary>
+        [Input("jwt")]
+        public Input<Inputs.ManagedDatabaseOpensearchPropertiesJwtGetArgs>? Jwt { get; set; }
 
         /// <summary>
         /// Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
