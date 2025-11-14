@@ -10120,7 +10120,7 @@ class ManagedObjectStorageNetwork(dict):
                  type: _builtins.str,
                  uuid: Optional[_builtins.str] = None):
         """
-        :param _builtins.str family: Network family. IPv6 currently not supported.
+        :param _builtins.str family: Network family. Currently only `IPv4` is supported.
         :param _builtins.str name: Network name. Must be unique within the service.
         :param _builtins.str type: Network type.
         :param _builtins.str uuid: Private network uuid. For public networks the field should be omitted.
@@ -10135,7 +10135,7 @@ class ManagedObjectStorageNetwork(dict):
     @pulumi.getter
     def family(self) -> _builtins.str:
         """
-        Network family. IPv6 currently not supported.
+        Network family. Currently only `IPv4` is supported.
         """
         return pulumi.get(self, "family")
 
@@ -12272,35 +12272,34 @@ class GetManagedObjectStoragePoliciesPolicyResult(dict):
                  attachment_count: _builtins.int,
                  created_at: _builtins.str,
                  default_version_id: _builtins.str,
+                 description: _builtins.str,
                  document: _builtins.str,
                  name: _builtins.str,
                  service_uuid: _builtins.str,
                  system: _builtins.bool,
-                 updated_at: _builtins.str,
-                 description: Optional[_builtins.str] = None):
+                 updated_at: _builtins.str):
         """
         :param _builtins.str arn: Policy ARN.
-        :param _builtins.int attachment_count: Attachment count.
+        :param _builtins.int attachment_count: Number of attachments.
         :param _builtins.str created_at: Creation time.
-        :param _builtins.str default_version_id: Default version id.
-        :param _builtins.str document: Policy document, URL-encoded compliant with RFC 3986.
+        :param _builtins.str default_version_id: Default version ID.
+        :param _builtins.str description: Policy description.
+        :param _builtins.str document: Policy document.
         :param _builtins.str name: Policy name.
-        :param _builtins.str service_uuid: Managed Object Storage service UUID.
-        :param _builtins.bool system: Defines whether the policy was set up by the system.
-        :param _builtins.str updated_at: Update time.
-        :param _builtins.str description: Description of the policy.
+        :param _builtins.str service_uuid: Service UUID.
+        :param _builtins.bool system: Whether the policy is a system policy.
+        :param _builtins.str updated_at: Last updated time.
         """
         pulumi.set(__self__, "arn", arn)
         pulumi.set(__self__, "attachment_count", attachment_count)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "default_version_id", default_version_id)
+        pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "document", document)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "service_uuid", service_uuid)
         pulumi.set(__self__, "system", system)
         pulumi.set(__self__, "updated_at", updated_at)
-        if description is not None:
-            pulumi.set(__self__, "description", description)
 
     @_builtins.property
     @pulumi.getter
@@ -12314,7 +12313,7 @@ class GetManagedObjectStoragePoliciesPolicyResult(dict):
     @pulumi.getter(name="attachmentCount")
     def attachment_count(self) -> _builtins.int:
         """
-        Attachment count.
+        Number of attachments.
         """
         return pulumi.get(self, "attachment_count")
 
@@ -12330,15 +12329,23 @@ class GetManagedObjectStoragePoliciesPolicyResult(dict):
     @pulumi.getter(name="defaultVersionId")
     def default_version_id(self) -> _builtins.str:
         """
-        Default version id.
+        Default version ID.
         """
         return pulumi.get(self, "default_version_id")
 
     @_builtins.property
     @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Policy description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
     def document(self) -> _builtins.str:
         """
-        Policy document, URL-encoded compliant with RFC 3986.
+        Policy document.
         """
         return pulumi.get(self, "document")
 
@@ -12354,7 +12361,7 @@ class GetManagedObjectStoragePoliciesPolicyResult(dict):
     @pulumi.getter(name="serviceUuid")
     def service_uuid(self) -> _builtins.str:
         """
-        Managed Object Storage service UUID.
+        Service UUID.
         """
         return pulumi.get(self, "service_uuid")
 
@@ -12362,7 +12369,7 @@ class GetManagedObjectStoragePoliciesPolicyResult(dict):
     @pulumi.getter
     def system(self) -> _builtins.bool:
         """
-        Defines whether the policy was set up by the system.
+        Whether the policy is a system policy.
         """
         return pulumi.get(self, "system")
 
@@ -12370,17 +12377,9 @@ class GetManagedObjectStoragePoliciesPolicyResult(dict):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> _builtins.str:
         """
-        Update time.
+        Last updated time.
         """
         return pulumi.get(self, "updated_at")
-
-    @_builtins.property
-    @pulumi.getter
-    def description(self) -> Optional[_builtins.str]:
-        """
-        Description of the policy.
-        """
-        return pulumi.get(self, "description")
 
 
 @pulumi.output_type

@@ -29,7 +29,7 @@ type GetManagedObjectStoragePoliciesArgs struct {
 
 // A collection of values returned by getManagedObjectStoragePolicies.
 type GetManagedObjectStoragePoliciesResult struct {
-	// The provider-assigned unique ID for this managed resource.
+	// Deprecated: Contains the same value as `serviceUuid`. Use `serviceUuid` instead.
 	Id          string                                  `pulumi:"id"`
 	Policies    []GetManagedObjectStoragePoliciesPolicy `pulumi:"policies"`
 	ServiceUuid string                                  `pulumi:"serviceUuid"`
@@ -68,7 +68,7 @@ func (o GetManagedObjectStoragePoliciesResultOutput) ToGetManagedObjectStoragePo
 	return o
 }
 
-// The provider-assigned unique ID for this managed resource.
+// Deprecated: Contains the same value as `serviceUuid`. Use `serviceUuid` instead.
 func (o GetManagedObjectStoragePoliciesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetManagedObjectStoragePoliciesResult) string { return v.Id }).(pulumi.StringOutput)
 }

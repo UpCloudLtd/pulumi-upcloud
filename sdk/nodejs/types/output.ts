@@ -468,7 +468,7 @@ export interface GetManagedObjectStoragePoliciesPolicy {
      */
     arn: string;
     /**
-     * Attachment count.
+     * Number of attachments.
      */
     attachmentCount: number;
     /**
@@ -476,15 +476,15 @@ export interface GetManagedObjectStoragePoliciesPolicy {
      */
     createdAt: string;
     /**
-     * Default version id.
+     * Default version ID.
      */
     defaultVersionId: string;
     /**
-     * Description of the policy.
+     * Policy description.
      */
-    description?: string;
+    description: string;
     /**
-     * Policy document, URL-encoded compliant with RFC 3986.
+     * Policy document.
      */
     document: string;
     /**
@@ -492,15 +492,15 @@ export interface GetManagedObjectStoragePoliciesPolicy {
      */
     name: string;
     /**
-     * Managed Object Storage service UUID.
+     * Service UUID.
      */
     serviceUuid: string;
     /**
-     * Defines whether the policy was set up by the system.
+     * Whether the policy is a system policy.
      */
     system: boolean;
     /**
-     * Update time.
+     * Last updated time.
      */
     updatedAt: string;
 }
@@ -3281,7 +3281,7 @@ export interface ManagedObjectStorageEndpoint {
 
 export interface ManagedObjectStorageNetwork {
     /**
-     * Network family. IPv6 currently not supported.
+     * Network family. Currently only `IPv4` is supported.
      */
     family: string;
     /**

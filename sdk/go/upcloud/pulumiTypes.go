@@ -21393,7 +21393,7 @@ func (o ManagedObjectStorageEndpointArrayOutput) Index(i pulumi.IntInput) Manage
 }
 
 type ManagedObjectStorageNetwork struct {
-	// Network family. IPv6 currently not supported.
+	// Network family. Currently only `IPv4` is supported.
 	Family string `pulumi:"family"`
 	// Network name. Must be unique within the service.
 	Name string `pulumi:"name"`
@@ -21415,7 +21415,7 @@ type ManagedObjectStorageNetworkInput interface {
 }
 
 type ManagedObjectStorageNetworkArgs struct {
-	// Network family. IPv6 currently not supported.
+	// Network family. Currently only `IPv4` is supported.
 	Family pulumi.StringInput `pulumi:"family"`
 	// Network name. Must be unique within the service.
 	Name pulumi.StringInput `pulumi:"name"`
@@ -21476,7 +21476,7 @@ func (o ManagedObjectStorageNetworkOutput) ToManagedObjectStorageNetworkOutputWi
 	return o
 }
 
-// Network family. IPv6 currently not supported.
+// Network family. Currently only `IPv4` is supported.
 func (o ManagedObjectStorageNetworkOutput) Family() pulumi.StringOutput {
 	return o.ApplyT(func(v ManagedObjectStorageNetwork) string { return v.Family }).(pulumi.StringOutput)
 }
@@ -25806,23 +25806,23 @@ func (o GetManagedDatabaseValkeySessionsSessionArrayOutput) Index(i pulumi.IntIn
 type GetManagedObjectStoragePoliciesPolicy struct {
 	// Policy ARN.
 	Arn string `pulumi:"arn"`
-	// Attachment count.
+	// Number of attachments.
 	AttachmentCount int `pulumi:"attachmentCount"`
 	// Creation time.
 	CreatedAt string `pulumi:"createdAt"`
-	// Default version id.
+	// Default version ID.
 	DefaultVersionId string `pulumi:"defaultVersionId"`
-	// Description of the policy.
-	Description *string `pulumi:"description"`
-	// Policy document, URL-encoded compliant with RFC 3986.
+	// Policy description.
+	Description string `pulumi:"description"`
+	// Policy document.
 	Document string `pulumi:"document"`
 	// Policy name.
 	Name string `pulumi:"name"`
-	// Managed Object Storage service UUID.
+	// Service UUID.
 	ServiceUuid string `pulumi:"serviceUuid"`
-	// Defines whether the policy was set up by the system.
+	// Whether the policy is a system policy.
 	System bool `pulumi:"system"`
-	// Update time.
+	// Last updated time.
 	UpdatedAt string `pulumi:"updatedAt"`
 }
 
@@ -25840,23 +25840,23 @@ type GetManagedObjectStoragePoliciesPolicyInput interface {
 type GetManagedObjectStoragePoliciesPolicyArgs struct {
 	// Policy ARN.
 	Arn pulumi.StringInput `pulumi:"arn"`
-	// Attachment count.
+	// Number of attachments.
 	AttachmentCount pulumi.IntInput `pulumi:"attachmentCount"`
 	// Creation time.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	// Default version id.
+	// Default version ID.
 	DefaultVersionId pulumi.StringInput `pulumi:"defaultVersionId"`
-	// Description of the policy.
-	Description pulumi.StringPtrInput `pulumi:"description"`
-	// Policy document, URL-encoded compliant with RFC 3986.
+	// Policy description.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Policy document.
 	Document pulumi.StringInput `pulumi:"document"`
 	// Policy name.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Managed Object Storage service UUID.
+	// Service UUID.
 	ServiceUuid pulumi.StringInput `pulumi:"serviceUuid"`
-	// Defines whether the policy was set up by the system.
+	// Whether the policy is a system policy.
 	System pulumi.BoolInput `pulumi:"system"`
-	// Update time.
+	// Last updated time.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 }
 
@@ -25916,7 +25916,7 @@ func (o GetManagedObjectStoragePoliciesPolicyOutput) Arn() pulumi.StringOutput {
 	return o.ApplyT(func(v GetManagedObjectStoragePoliciesPolicy) string { return v.Arn }).(pulumi.StringOutput)
 }
 
-// Attachment count.
+// Number of attachments.
 func (o GetManagedObjectStoragePoliciesPolicyOutput) AttachmentCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetManagedObjectStoragePoliciesPolicy) int { return v.AttachmentCount }).(pulumi.IntOutput)
 }
@@ -25926,17 +25926,17 @@ func (o GetManagedObjectStoragePoliciesPolicyOutput) CreatedAt() pulumi.StringOu
 	return o.ApplyT(func(v GetManagedObjectStoragePoliciesPolicy) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Default version id.
+// Default version ID.
 func (o GetManagedObjectStoragePoliciesPolicyOutput) DefaultVersionId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetManagedObjectStoragePoliciesPolicy) string { return v.DefaultVersionId }).(pulumi.StringOutput)
 }
 
-// Description of the policy.
-func (o GetManagedObjectStoragePoliciesPolicyOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetManagedObjectStoragePoliciesPolicy) *string { return v.Description }).(pulumi.StringPtrOutput)
+// Policy description.
+func (o GetManagedObjectStoragePoliciesPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetManagedObjectStoragePoliciesPolicy) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// Policy document, URL-encoded compliant with RFC 3986.
+// Policy document.
 func (o GetManagedObjectStoragePoliciesPolicyOutput) Document() pulumi.StringOutput {
 	return o.ApplyT(func(v GetManagedObjectStoragePoliciesPolicy) string { return v.Document }).(pulumi.StringOutput)
 }
@@ -25946,17 +25946,17 @@ func (o GetManagedObjectStoragePoliciesPolicyOutput) Name() pulumi.StringOutput 
 	return o.ApplyT(func(v GetManagedObjectStoragePoliciesPolicy) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Managed Object Storage service UUID.
+// Service UUID.
 func (o GetManagedObjectStoragePoliciesPolicyOutput) ServiceUuid() pulumi.StringOutput {
 	return o.ApplyT(func(v GetManagedObjectStoragePoliciesPolicy) string { return v.ServiceUuid }).(pulumi.StringOutput)
 }
 
-// Defines whether the policy was set up by the system.
+// Whether the policy is a system policy.
 func (o GetManagedObjectStoragePoliciesPolicyOutput) System() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetManagedObjectStoragePoliciesPolicy) bool { return v.System }).(pulumi.BoolOutput)
 }
 
-// Update time.
+// Last updated time.
 func (o GetManagedObjectStoragePoliciesPolicyOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetManagedObjectStoragePoliciesPolicy) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }

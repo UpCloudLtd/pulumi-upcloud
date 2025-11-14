@@ -19,7 +19,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string Arn;
         /// <summary>
-        /// Attachment count.
+        /// Number of attachments.
         /// </summary>
         public readonly int AttachmentCount;
         /// <summary>
@@ -27,15 +27,15 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// Default version id.
+        /// Default version ID.
         /// </summary>
         public readonly string DefaultVersionId;
         /// <summary>
-        /// Description of the policy.
+        /// Policy description.
         /// </summary>
-        public readonly string? Description;
+        public readonly string Description;
         /// <summary>
-        /// Policy document, URL-encoded compliant with RFC 3986.
+        /// Policy document.
         /// </summary>
         public readonly string Document;
         /// <summary>
@@ -43,15 +43,15 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Managed Object Storage service UUID.
+        /// Service UUID.
         /// </summary>
         public readonly string ServiceUuid;
         /// <summary>
-        /// Defines whether the policy was set up by the system.
+        /// Whether the policy is a system policy.
         /// </summary>
         public readonly bool System;
         /// <summary>
-        /// Update time.
+        /// Last updated time.
         /// </summary>
         public readonly string UpdatedAt;
 
@@ -65,7 +65,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             string defaultVersionId,
 
-            string? description,
+            string description,
 
             string document,
 

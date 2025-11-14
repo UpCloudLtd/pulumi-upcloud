@@ -29,7 +29,7 @@ class ManagedObjectStorageArgs:
         """
         The set of arguments for constructing a ManagedObjectStorage resource.
         :param pulumi.Input[_builtins.str] configured_status: Service status managed by the end user.
-        :param pulumi.Input[_builtins.str] region: Region in which the service will be hosted, see `get_managed_object_storage_regions` data source.
+        :param pulumi.Input[_builtins.str] region: Region in which the service will be hosted, see `get_managed_object_storage_regions` data source or use `upctl object-storage regions` to list available regions.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed object storage.
         :param pulumi.Input[_builtins.str] name: Name of the Managed Object Storage service. Must be unique within account.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]] networks: Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
@@ -59,7 +59,7 @@ class ManagedObjectStorageArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[_builtins.str]:
         """
-        Region in which the service will be hosted, see `get_managed_object_storage_regions` data source.
+        Region in which the service will be hosted, see `get_managed_object_storage_regions` data source or use `upctl object-storage regions` to list available regions.
         """
         return pulumi.get(self, "region")
 
@@ -125,8 +125,8 @@ class _ManagedObjectStorageState:
         :param pulumi.Input[_builtins.str] name: Name of the Managed Object Storage service. Must be unique within account.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]] networks: Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
         :param pulumi.Input[_builtins.str] operational_state: Operational state of the Managed Object Storage service.
-        :param pulumi.Input[_builtins.str] region: Region in which the service will be hosted, see `get_managed_object_storage_regions` data source.
-        :param pulumi.Input[_builtins.str] updated_at: Creation time.
+        :param pulumi.Input[_builtins.str] region: Region in which the service will be hosted, see `get_managed_object_storage_regions` data source or use `upctl object-storage regions` to list available regions.
+        :param pulumi.Input[_builtins.str] updated_at: Update time.
         """
         if configured_status is not None:
             pulumi.set(__self__, "configured_status", configured_status)
@@ -235,7 +235,7 @@ class _ManagedObjectStorageState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Region in which the service will be hosted, see `get_managed_object_storage_regions` data source.
+        Region in which the service will be hosted, see `get_managed_object_storage_regions` data source or use `upctl object-storage regions` to list available regions.
         """
         return pulumi.get(self, "region")
 
@@ -247,7 +247,7 @@ class _ManagedObjectStorageState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Creation time.
+        Update time.
         """
         return pulumi.get(self, "updated_at")
 
@@ -310,7 +310,7 @@ class ManagedObjectStorage(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed object storage.
         :param pulumi.Input[_builtins.str] name: Name of the Managed Object Storage service. Must be unique within account.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict']]]] networks: Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
-        :param pulumi.Input[_builtins.str] region: Region in which the service will be hosted, see `get_managed_object_storage_regions` data source.
+        :param pulumi.Input[_builtins.str] region: Region in which the service will be hosted, see `get_managed_object_storage_regions` data source or use `upctl object-storage regions` to list available regions.
         """
         ...
     @overload
@@ -429,8 +429,8 @@ class ManagedObjectStorage(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the Managed Object Storage service. Must be unique within account.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict']]]] networks: Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
         :param pulumi.Input[_builtins.str] operational_state: Operational state of the Managed Object Storage service.
-        :param pulumi.Input[_builtins.str] region: Region in which the service will be hosted, see `get_managed_object_storage_regions` data source.
-        :param pulumi.Input[_builtins.str] updated_at: Creation time.
+        :param pulumi.Input[_builtins.str] region: Region in which the service will be hosted, see `get_managed_object_storage_regions` data source or use `upctl object-storage regions` to list available regions.
+        :param pulumi.Input[_builtins.str] updated_at: Update time.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -473,7 +473,7 @@ class ManagedObjectStorage(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+    def labels(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
         User defined key-value pairs to classify the managed object storage.
         """
@@ -507,7 +507,7 @@ class ManagedObjectStorage(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        Region in which the service will be hosted, see `get_managed_object_storage_regions` data source.
+        Region in which the service will be hosted, see `get_managed_object_storage_regions` data source or use `upctl object-storage regions` to list available regions.
         """
         return pulumi.get(self, "region")
 
@@ -515,7 +515,7 @@ class ManagedObjectStorage(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[_builtins.str]:
         """
-        Creation time.
+        Update time.
         """
         return pulumi.get(self, "updated_at")
 

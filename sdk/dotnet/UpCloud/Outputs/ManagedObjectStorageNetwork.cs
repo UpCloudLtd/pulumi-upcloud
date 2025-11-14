@@ -15,7 +15,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
     public sealed class ManagedObjectStorageNetwork
     {
         /// <summary>
-        /// Network family. IPv6 currently not supported.
+        /// Network family. Currently only `IPv4` is supported.
         /// </summary>
         public readonly string Family;
         /// <summary>

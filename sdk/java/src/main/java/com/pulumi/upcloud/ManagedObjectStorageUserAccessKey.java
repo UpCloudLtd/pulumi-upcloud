@@ -71,14 +71,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="upcloud:index/managedObjectStorageUserAccessKey:ManagedObjectStorageUserAccessKey")
 public class ManagedObjectStorageUserAccessKey extends com.pulumi.resources.CustomResource {
     /**
-     * Access key id.
+     * Access key ID.
      * 
      */
     @Export(name="accessKeyId", refs={String.class}, tree="[0]")
     private Output<String> accessKeyId;
 
     /**
-     * @return Access key id.
+     * @return Access key ID.
      * 
      */
     public Output<String> accessKeyId() {

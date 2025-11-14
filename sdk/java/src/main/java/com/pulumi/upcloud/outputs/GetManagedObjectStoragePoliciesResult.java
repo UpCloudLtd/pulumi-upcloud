@@ -13,18 +13,22 @@ import java.util.Objects;
 @CustomType
 public final class GetManagedObjectStoragePoliciesResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @deprecated
+     * Contains the same value as `serviceUuid`. Use `serviceUuid` instead.
      * 
      */
+    @Deprecated /* Contains the same value as `serviceUuid`. Use `serviceUuid` instead. */
     private String id;
     private List<GetManagedObjectStoragePoliciesPolicy> policies;
     private String serviceUuid;
 
     private GetManagedObjectStoragePoliciesResult() {}
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @deprecated
+     * Contains the same value as `serviceUuid`. Use `serviceUuid` instead.
      * 
      */
+    @Deprecated /* Contains the same value as `serviceUuid`. Use `serviceUuid` instead. */
     public String id() {
         return this.id;
     }

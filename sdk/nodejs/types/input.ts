@@ -3479,7 +3479,7 @@ export interface ManagedObjectStorageEndpoint {
 
 export interface ManagedObjectStorageNetwork {
     /**
-     * Network family. IPv6 currently not supported.
+     * Network family. Currently only `IPv4` is supported.
      */
     family: pulumi.Input<string>;
     /**

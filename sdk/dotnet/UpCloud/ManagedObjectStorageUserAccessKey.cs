@@ -50,7 +50,7 @@ namespace UpCloud.Pulumi.UpCloud
     public partial class ManagedObjectStorageUserAccessKey : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Access key id.
+        /// Access key ID.
         /// </summary>
         [Output("accessKeyId")]
         public Output<string> AccessKeyId { get; private set; } = null!;
@@ -169,7 +169,7 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class ManagedObjectStorageUserAccessKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Access key id.
+        /// Access key ID.
         /// </summary>
         [Input("accessKeyId")]
         public Input<string>? AccessKeyId { get; set; }

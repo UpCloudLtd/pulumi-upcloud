@@ -136,14 +136,14 @@ public class ManagedObjectStorage extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="labels", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output</* @Nullable */ Map<String,String>> labels;
+    private Output<Map<String,String>> labels;
 
     /**
      * @return User defined key-value pairs to classify the managed object storage.
      * 
      */
-    public Output<Optional<Map<String,String>>> labels() {
-        return Codegen.optional(this.labels);
+    public Output<Map<String,String>> labels() {
+        return this.labels;
     }
     /**
      * Name of the Managed Object Storage service. Must be unique within account.
@@ -188,28 +188,28 @@ public class ManagedObjectStorage extends com.pulumi.resources.CustomResource {
         return this.operationalState;
     }
     /**
-     * Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+     * Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+     * @return Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
      * 
      */
     public Output<String> region() {
         return this.region;
     }
     /**
-     * Creation time.
+     * Update time.
      * 
      */
     @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
-     * @return Creation time.
+     * @return Update time.
      * 
      */
     public Output<String> updatedAt() {

@@ -16,14 +16,14 @@ public final class ManagedObjectStorageUserAccessKeyState extends com.pulumi.res
     public static final ManagedObjectStorageUserAccessKeyState Empty = new ManagedObjectStorageUserAccessKeyState();
 
     /**
-     * Access key id.
+     * Access key ID.
      * 
      */
     @Import(name="accessKeyId")
     private @Nullable Output<String> accessKeyId;
 
     /**
-     * @return Access key id.
+     * @return Access key ID.
      * 
      */
     public Optional<Output<String>> accessKeyId() {
@@ -151,7 +151,7 @@ public final class ManagedObjectStorageUserAccessKeyState extends com.pulumi.res
         }
 
         /**
-         * @param accessKeyId Access key id.
+         * @param accessKeyId Access key ID.
          * 
          * @return builder
          * 
@@ -162,7 +162,7 @@ public final class ManagedObjectStorageUserAccessKeyState extends com.pulumi.res
         }
 
         /**
-         * @param accessKeyId Access key id.
+         * @param accessKeyId Access key ID.
          * 
          * @return builder
          * 

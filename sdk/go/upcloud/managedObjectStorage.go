@@ -90,9 +90,9 @@ type ManagedObjectStorage struct {
 	Networks ManagedObjectStorageNetworkArrayOutput `pulumi:"networks"`
 	// Operational state of the Managed Object Storage service.
 	OperationalState pulumi.StringOutput `pulumi:"operationalState"`
-	// Region in which the service will be hosted, see `getManagedObjectStorageRegions` data source.
+	// Region in which the service will be hosted, see `getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Creation time.
+	// Update time.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
@@ -146,9 +146,9 @@ type managedObjectStorageState struct {
 	Networks []ManagedObjectStorageNetwork `pulumi:"networks"`
 	// Operational state of the Managed Object Storage service.
 	OperationalState *string `pulumi:"operationalState"`
-	// Region in which the service will be hosted, see `getManagedObjectStorageRegions` data source.
+	// Region in which the service will be hosted, see `getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
 	Region *string `pulumi:"region"`
-	// Creation time.
+	// Update time.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
@@ -167,9 +167,9 @@ type ManagedObjectStorageState struct {
 	Networks ManagedObjectStorageNetworkArrayInput
 	// Operational state of the Managed Object Storage service.
 	OperationalState pulumi.StringPtrInput
-	// Region in which the service will be hosted, see `getManagedObjectStorageRegions` data source.
+	// Region in which the service will be hosted, see `getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
 	Region pulumi.StringPtrInput
-	// Creation time.
+	// Update time.
 	UpdatedAt pulumi.StringPtrInput
 }
 
@@ -186,7 +186,7 @@ type managedObjectStorageArgs struct {
 	Name *string `pulumi:"name"`
 	// Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
 	Networks []ManagedObjectStorageNetwork `pulumi:"networks"`
-	// Region in which the service will be hosted, see `getManagedObjectStorageRegions` data source.
+	// Region in which the service will be hosted, see `getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
 	Region string `pulumi:"region"`
 }
 
@@ -200,7 +200,7 @@ type ManagedObjectStorageArgs struct {
 	Name pulumi.StringPtrInput
 	// Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
 	Networks ManagedObjectStorageNetworkArrayInput
-	// Region in which the service will be hosted, see `getManagedObjectStorageRegions` data source.
+	// Region in which the service will be hosted, see `getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
 	Region pulumi.StringInput
 }
 
@@ -326,12 +326,12 @@ func (o ManagedObjectStorageOutput) OperationalState() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedObjectStorage) pulumi.StringOutput { return v.OperationalState }).(pulumi.StringOutput)
 }
 
-// Region in which the service will be hosted, see `getManagedObjectStorageRegions` data source.
+// Region in which the service will be hosted, see `getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
 func (o ManagedObjectStorageOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedObjectStorage) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Creation time.
+// Update time.
 func (o ManagedObjectStorageOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedObjectStorage) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
