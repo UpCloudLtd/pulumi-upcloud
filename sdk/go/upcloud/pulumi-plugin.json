@@ -1,6 +1,6 @@
 {
   "resource": true,
   "name": "upcloud",
-  "version": "0.0.0-alpha.0+dev",
+  "version": "0.8.1",
   "server": "github://api.github.com/UpCloudLtd/pulumi-upcloud"
 }
