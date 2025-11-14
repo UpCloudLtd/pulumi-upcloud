@@ -92,7 +92,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// User defined key-value pairs to classify the managed object storage.
         /// </summary>
         [Output("labels")]
-        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
         /// <summary>
         /// Name of the Managed Object Storage service. Must be unique within account.
@@ -113,13 +113,13 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> OperationalState { get; private set; } = null!;
 
         /// <summary>
-        /// Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+        /// Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Creation time.
+        /// Update time.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -208,7 +208,7 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+        /// Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
@@ -282,13 +282,13 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? OperationalState { get; set; }
 
         /// <summary>
-        /// Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+        /// Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Creation time.
+        /// Update time.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }

@@ -14,7 +14,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
     public sealed class ManagedObjectStorageNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Network family. IPv6 currently not supported.
+        /// Network family. Currently only `IPv4` is supported.
         /// </summary>
         [Input("family", required: true)]
         public Input<string> Family { get; set; } = null!;

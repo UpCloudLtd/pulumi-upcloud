@@ -80,14 +80,14 @@ public final class ManagedObjectStorageArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+     * Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
      * 
      */
     @Import(name="region", required=true)
     private Output<String> region;
 
     /**
-     * @return Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+     * @return Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
      * 
      */
     public Output<String> region() {
@@ -217,7 +217,7 @@ public final class ManagedObjectStorageArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param region Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+         * @param region Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
          * 
          * @return builder
          * 
@@ -228,7 +228,7 @@ public final class ManagedObjectStorageArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param region Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+         * @param region Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
          * 
          * @return builder
          * 

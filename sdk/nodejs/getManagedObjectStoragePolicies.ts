@@ -28,7 +28,7 @@ export interface GetManagedObjectStoragePoliciesArgs {
  */
 export interface GetManagedObjectStoragePoliciesResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * @deprecated Contains the same value as `serviceUuid`. Use `serviceUuid` instead.
      */
     readonly id: string;
     readonly policies: outputs.GetManagedObjectStoragePoliciesPolicy[];

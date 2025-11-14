@@ -9,8 +9,6 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetManagedObjectStoragePoliciesPolicy {
@@ -20,7 +18,7 @@ public final class GetManagedObjectStoragePoliciesPolicy {
      */
     private String arn;
     /**
-     * @return Attachment count.
+     * @return Number of attachments.
      * 
      */
     private Integer attachmentCount;
@@ -30,17 +28,17 @@ public final class GetManagedObjectStoragePoliciesPolicy {
      */
     private String createdAt;
     /**
-     * @return Default version id.
+     * @return Default version ID.
      * 
      */
     private String defaultVersionId;
     /**
-     * @return Description of the policy.
+     * @return Policy description.
      * 
      */
-    private @Nullable String description;
+    private String description;
     /**
-     * @return Policy document, URL-encoded compliant with RFC 3986.
+     * @return Policy document.
      * 
      */
     private String document;
@@ -50,17 +48,17 @@ public final class GetManagedObjectStoragePoliciesPolicy {
      */
     private String name;
     /**
-     * @return Managed Object Storage service UUID.
+     * @return Service UUID.
      * 
      */
     private String serviceUuid;
     /**
-     * @return Defines whether the policy was set up by the system.
+     * @return Whether the policy is a system policy.
      * 
      */
     private Boolean system;
     /**
-     * @return Update time.
+     * @return Last updated time.
      * 
      */
     private String updatedAt;
@@ -74,7 +72,7 @@ public final class GetManagedObjectStoragePoliciesPolicy {
         return this.arn;
     }
     /**
-     * @return Attachment count.
+     * @return Number of attachments.
      * 
      */
     public Integer attachmentCount() {
@@ -88,21 +86,21 @@ public final class GetManagedObjectStoragePoliciesPolicy {
         return this.createdAt;
     }
     /**
-     * @return Default version id.
+     * @return Default version ID.
      * 
      */
     public String defaultVersionId() {
         return this.defaultVersionId;
     }
     /**
-     * @return Description of the policy.
+     * @return Policy description.
      * 
      */
-    public Optional<String> description() {
-        return Optional.ofNullable(this.description);
+    public String description() {
+        return this.description;
     }
     /**
-     * @return Policy document, URL-encoded compliant with RFC 3986.
+     * @return Policy document.
      * 
      */
     public String document() {
@@ -116,21 +114,21 @@ public final class GetManagedObjectStoragePoliciesPolicy {
         return this.name;
     }
     /**
-     * @return Managed Object Storage service UUID.
+     * @return Service UUID.
      * 
      */
     public String serviceUuid() {
         return this.serviceUuid;
     }
     /**
-     * @return Defines whether the policy was set up by the system.
+     * @return Whether the policy is a system policy.
      * 
      */
     public Boolean system() {
         return this.system;
     }
     /**
-     * @return Update time.
+     * @return Last updated time.
      * 
      */
     public String updatedAt() {
@@ -150,7 +148,7 @@ public final class GetManagedObjectStoragePoliciesPolicy {
         private Integer attachmentCount;
         private String createdAt;
         private String defaultVersionId;
-        private @Nullable String description;
+        private String description;
         private String document;
         private String name;
         private String serviceUuid;
@@ -204,8 +202,10 @@ public final class GetManagedObjectStoragePoliciesPolicy {
             return this;
         }
         @CustomType.Setter
-        public Builder description(@Nullable String description) {
-
+        public Builder description(String description) {
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetManagedObjectStoragePoliciesPolicy", "description");
+            }
             this.description = description;
             return this;
         }

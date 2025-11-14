@@ -40,10 +40,8 @@ class GetManagedObjectStoragePoliciesResult:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""Contains the same value as `service_uuid`. Use `service_uuid` instead.""")
     def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
         return pulumi.get(self, "id")
 
     @_builtins.property

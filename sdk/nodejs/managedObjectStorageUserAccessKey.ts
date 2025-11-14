@@ -58,7 +58,7 @@ export class ManagedObjectStorageUserAccessKey extends pulumi.CustomResource {
     }
 
     /**
-     * Access key id.
+     * Access key ID.
      */
     declare public /*out*/ readonly accessKeyId: pulumi.Output<string>;
     /**
@@ -137,7 +137,7 @@ export class ManagedObjectStorageUserAccessKey extends pulumi.CustomResource {
  */
 export interface ManagedObjectStorageUserAccessKeyState {
     /**
-     * Access key id.
+     * Access key ID.
      */
     accessKeyId?: pulumi.Input<string>;
     /**

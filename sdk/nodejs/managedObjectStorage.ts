@@ -87,7 +87,7 @@ export class ManagedObjectStorage extends pulumi.CustomResource {
     /**
      * User defined key-value pairs to classify the managed object storage.
      */
-    declare public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly labels: pulumi.Output<{[key: string]: string}>;
     /**
      * Name of the Managed Object Storage service. Must be unique within account.
      */
@@ -101,11 +101,11 @@ export class ManagedObjectStorage extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly operationalState: pulumi.Output<string>;
     /**
-     * Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+     * Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
      */
     declare public readonly region: pulumi.Output<string>;
     /**
-     * Creation time.
+     * Update time.
      */
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
@@ -187,11 +187,11 @@ export interface ManagedObjectStorageState {
      */
     operationalState?: pulumi.Input<string>;
     /**
-     * Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+     * Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
      */
     region?: pulumi.Input<string>;
     /**
-     * Creation time.
+     * Update time.
      */
     updatedAt?: pulumi.Input<string>;
 }
@@ -217,7 +217,7 @@ export interface ManagedObjectStorageArgs {
      */
     networks?: pulumi.Input<pulumi.Input<inputs.ManagedObjectStorageNetwork>[]>;
     /**
-     * Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+     * Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
      */
     region: pulumi.Input<string>;
 }

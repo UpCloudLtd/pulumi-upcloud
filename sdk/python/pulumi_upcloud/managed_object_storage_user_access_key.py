@@ -81,7 +81,7 @@ class _ManagedObjectStorageUserAccessKeyState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ManagedObjectStorageUserAccessKey resources.
-        :param pulumi.Input[_builtins.str] access_key_id: Access key id.
+        :param pulumi.Input[_builtins.str] access_key_id: Access key ID.
         :param pulumi.Input[_builtins.str] created_at: Creation time.
         :param pulumi.Input[_builtins.str] last_used_at: Last used.
         :param pulumi.Input[_builtins.str] secret_access_key: Secret access key.
@@ -108,7 +108,7 @@ class _ManagedObjectStorageUserAccessKeyState:
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Access key id.
+        Access key ID.
         """
         return pulumi.get(self, "access_key_id")
 
@@ -321,7 +321,7 @@ class ManagedObjectStorageUserAccessKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] access_key_id: Access key id.
+        :param pulumi.Input[_builtins.str] access_key_id: Access key ID.
         :param pulumi.Input[_builtins.str] created_at: Creation time.
         :param pulumi.Input[_builtins.str] last_used_at: Last used.
         :param pulumi.Input[_builtins.str] secret_access_key: Secret access key.
@@ -346,7 +346,7 @@ class ManagedObjectStorageUserAccessKey(pulumi.CustomResource):
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Access key id.
+        Access key ID.
         """
         return pulumi.get(self, "access_key_id")
 

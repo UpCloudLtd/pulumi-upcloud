@@ -14009,7 +14009,7 @@ if not MYPY:
     class ManagedObjectStorageNetworkArgsDict(TypedDict):
         family: pulumi.Input[_builtins.str]
         """
-        Network family. IPv6 currently not supported.
+        Network family. Currently only `IPv4` is supported.
         """
         name: pulumi.Input[_builtins.str]
         """
@@ -14034,7 +14034,7 @@ class ManagedObjectStorageNetworkArgs:
                  type: pulumi.Input[_builtins.str],
                  uuid: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] family: Network family. IPv6 currently not supported.
+        :param pulumi.Input[_builtins.str] family: Network family. Currently only `IPv4` is supported.
         :param pulumi.Input[_builtins.str] name: Network name. Must be unique within the service.
         :param pulumi.Input[_builtins.str] type: Network type.
         :param pulumi.Input[_builtins.str] uuid: Private network uuid. For public networks the field should be omitted.
@@ -14049,7 +14049,7 @@ class ManagedObjectStorageNetworkArgs:
     @pulumi.getter
     def family(self) -> pulumi.Input[_builtins.str]:
         """
-        Network family. IPv6 currently not supported.
+        Network family. Currently only `IPv4` is supported.
         """
         return pulumi.get(self, "family")
 

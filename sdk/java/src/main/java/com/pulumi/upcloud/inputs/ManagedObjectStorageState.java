@@ -125,14 +125,14 @@ public final class ManagedObjectStorageState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+     * Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+     * @return Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
      * 
      */
     public Optional<Output<String>> region() {
@@ -140,14 +140,14 @@ public final class ManagedObjectStorageState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Creation time.
+     * Update time.
      * 
      */
     @Import(name="updatedAt")
     private @Nullable Output<String> updatedAt;
 
     /**
-     * @return Creation time.
+     * @return Update time.
      * 
      */
     public Optional<Output<String>> updatedAt() {
@@ -354,7 +354,7 @@ public final class ManagedObjectStorageState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param region Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+         * @param region Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
          * 
          * @return builder
          * 
@@ -365,7 +365,7 @@ public final class ManagedObjectStorageState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param region Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source.
+         * @param region Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
          * 
          * @return builder
          * 
@@ -375,7 +375,7 @@ public final class ManagedObjectStorageState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param updatedAt Creation time.
+         * @param updatedAt Update time.
          * 
          * @return builder
          * 
@@ -386,7 +386,7 @@ public final class ManagedObjectStorageState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param updatedAt Creation time.
+         * @param updatedAt Update time.
          * 
          * @return builder
          * 

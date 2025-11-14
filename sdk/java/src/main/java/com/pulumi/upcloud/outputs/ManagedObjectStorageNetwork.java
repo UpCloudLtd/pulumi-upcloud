@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ManagedObjectStorageNetwork {
     /**
-     * @return Network family. IPv6 currently not supported.
+     * @return Network family. Currently only `IPv4` is supported.
      * 
      */
     private String family;
@@ -35,7 +35,7 @@ public final class ManagedObjectStorageNetwork {
 
     private ManagedObjectStorageNetwork() {}
     /**
-     * @return Network family. IPv6 currently not supported.
+     * @return Network family. Currently only `IPv4` is supported.
      * 
      */
     public String family() {

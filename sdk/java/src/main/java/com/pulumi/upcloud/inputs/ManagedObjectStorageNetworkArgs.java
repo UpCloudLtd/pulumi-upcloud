@@ -17,14 +17,14 @@ public final class ManagedObjectStorageNetworkArgs extends com.pulumi.resources.
     public static final ManagedObjectStorageNetworkArgs Empty = new ManagedObjectStorageNetworkArgs();
 
     /**
-     * Network family. IPv6 currently not supported.
+     * Network family. Currently only `IPv4` is supported.
      * 
      */
     @Import(name="family", required=true)
     private Output<String> family;
 
     /**
-     * @return Network family. IPv6 currently not supported.
+     * @return Network family. Currently only `IPv4` is supported.
      * 
      */
     public Output<String> family() {
@@ -104,7 +104,7 @@ public final class ManagedObjectStorageNetworkArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param family Network family. IPv6 currently not supported.
+         * @param family Network family. Currently only `IPv4` is supported.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class ManagedObjectStorageNetworkArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param family Network family. IPv6 currently not supported.
+         * @param family Network family. Currently only `IPv4` is supported.
          * 
          * @return builder
          * 

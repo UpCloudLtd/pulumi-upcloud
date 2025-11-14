@@ -59,7 +59,7 @@ import (
 type ManagedObjectStorageUserAccessKey struct {
 	pulumi.CustomResourceState
 
-	// Access key id.
+	// Access key ID.
 	AccessKeyId pulumi.StringOutput `pulumi:"accessKeyId"`
 	// Creation time.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
@@ -118,7 +118,7 @@ func GetManagedObjectStorageUserAccessKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ManagedObjectStorageUserAccessKey resources.
 type managedObjectStorageUserAccessKeyState struct {
-	// Access key id.
+	// Access key ID.
 	AccessKeyId *string `pulumi:"accessKeyId"`
 	// Creation time.
 	CreatedAt *string `pulumi:"createdAt"`
@@ -135,7 +135,7 @@ type managedObjectStorageUserAccessKeyState struct {
 }
 
 type ManagedObjectStorageUserAccessKeyState struct {
-	// Access key id.
+	// Access key ID.
 	AccessKeyId pulumi.StringPtrInput
 	// Creation time.
 	CreatedAt pulumi.StringPtrInput
@@ -261,7 +261,7 @@ func (o ManagedObjectStorageUserAccessKeyOutput) ToManagedObjectStorageUserAcces
 	return o
 }
 
-// Access key id.
+// Access key ID.
 func (o ManagedObjectStorageUserAccessKeyOutput) AccessKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedObjectStorageUserAccessKey) pulumi.StringOutput { return v.AccessKeyId }).(pulumi.StringOutput)
 }

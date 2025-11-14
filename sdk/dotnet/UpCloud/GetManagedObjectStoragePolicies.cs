@@ -58,9 +58,6 @@ namespace UpCloud.Pulumi.UpCloud
     [OutputType]
     public sealed class GetManagedObjectStoragePoliciesResult
     {
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetManagedObjectStoragePoliciesPolicyResult> Policies;
         public readonly string ServiceUuid;
