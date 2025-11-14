@@ -4420,7 +4420,7 @@
             "properties": {
                 "family": {
                     "type": "string",
-                    "description": "Network family. IPv6 currently not supported.\n"
+                    "description": "Network family. Currently only `IPv4` is supported.\n"
                 },
                 "name": {
                     "type": "string",
@@ -5460,7 +5460,7 @@
                 },
                 "attachmentCount": {
                     "type": "integer",
-                    "description": "Attachment count.\n"
+                    "description": "Number of attachments.\n"
                 },
                 "createdAt": {
                     "type": "string",
@@ -5468,15 +5468,15 @@
                 },
                 "defaultVersionId": {
                     "type": "string",
-                    "description": "Default version id.\n"
+                    "description": "Default version ID.\n"
                 },
                 "description": {
                     "type": "string",
-                    "description": "Description of the policy.\n"
+                    "description": "Policy description.\n"
                 },
                 "document": {
                     "type": "string",
-                    "description": "Policy document, URL-encoded compliant with RFC 3986.\n"
+                    "description": "Policy document.\n"
                 },
                 "name": {
                     "type": "string",
@@ -5484,15 +5484,15 @@
                 },
                 "serviceUuid": {
                     "type": "string",
-                    "description": "Managed Object Storage service UUID.\n"
+                    "description": "Service UUID.\n"
                 },
                 "system": {
                     "type": "boolean",
-                    "description": "Defines whether the policy was set up by the system.\n"
+                    "description": "Whether the policy is a system policy.\n"
                 },
                 "updatedAt": {
                     "type": "string",
-                    "description": "Update time.\n"
+                    "description": "Last updated time.\n"
                 }
             },
             "type": "object",
@@ -5501,6 +5501,7 @@
                 "attachmentCount",
                 "createdAt",
                 "defaultVersionId",
+                "description",
                 "document",
                 "name",
                 "serviceUuid",
@@ -9592,17 +9593,18 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "Region in which the service will be hosted, see \u003cspan pulumi-lang-nodejs=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-dotnet=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-go=\"`getManagedObjectStorageRegions`\" pulumi-lang-python=\"`get_managed_object_storage_regions`\" pulumi-lang-yaml=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-java=\"`upcloud.getManagedObjectStorageRegions`\"\u003e`upcloud.getManagedObjectStorageRegions`\u003c/span\u003e data source."
+                    "description": "Region in which the service will be hosted, see \u003cspan pulumi-lang-nodejs=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-dotnet=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-go=\"`getManagedObjectStorageRegions`\" pulumi-lang-python=\"`get_managed_object_storage_regions`\" pulumi-lang-yaml=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-java=\"`upcloud.getManagedObjectStorageRegions`\"\u003e`upcloud.getManagedObjectStorageRegions`\u003c/span\u003e data source or use `upctl object-storage regions` to list available regions."
                 },
                 "updatedAt": {
                     "type": "string",
-                    "description": "Creation time."
+                    "description": "Update time."
                 }
             },
             "required": [
                 "configuredStatus",
                 "createdAt",
                 "endpoints",
+                "labels",
                 "name",
                 "operationalState",
                 "region",
@@ -9633,8 +9635,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "Region in which the service will be hosted, see \u003cspan pulumi-lang-nodejs=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-dotnet=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-go=\"`getManagedObjectStorageRegions`\" pulumi-lang-python=\"`get_managed_object_storage_regions`\" pulumi-lang-yaml=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-java=\"`upcloud.getManagedObjectStorageRegions`\"\u003e`upcloud.getManagedObjectStorageRegions`\u003c/span\u003e data source.",
-                    "willReplaceOnChanges": true
+                    "description": "Region in which the service will be hosted, see \u003cspan pulumi-lang-nodejs=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-dotnet=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-go=\"`getManagedObjectStorageRegions`\" pulumi-lang-python=\"`get_managed_object_storage_regions`\" pulumi-lang-yaml=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-java=\"`upcloud.getManagedObjectStorageRegions`\"\u003e`upcloud.getManagedObjectStorageRegions`\u003c/span\u003e data source or use `upctl object-storage regions` to list available regions."
                 }
             },
             "requiredInputs": [
@@ -9683,12 +9684,11 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "Region in which the service will be hosted, see \u003cspan pulumi-lang-nodejs=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-dotnet=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-go=\"`getManagedObjectStorageRegions`\" pulumi-lang-python=\"`get_managed_object_storage_regions`\" pulumi-lang-yaml=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-java=\"`upcloud.getManagedObjectStorageRegions`\"\u003e`upcloud.getManagedObjectStorageRegions`\u003c/span\u003e data source.",
-                        "willReplaceOnChanges": true
+                        "description": "Region in which the service will be hosted, see \u003cspan pulumi-lang-nodejs=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-dotnet=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-go=\"`getManagedObjectStorageRegions`\" pulumi-lang-python=\"`get_managed_object_storage_regions`\" pulumi-lang-yaml=\"`upcloud.getManagedObjectStorageRegions`\" pulumi-lang-java=\"`upcloud.getManagedObjectStorageRegions`\"\u003e`upcloud.getManagedObjectStorageRegions`\u003c/span\u003e data source or use `upctl object-storage regions` to list available regions."
                     },
                     "updatedAt": {
                         "type": "string",
-                        "description": "Creation time."
+                        "description": "Update time."
                     }
                 },
                 "type": "object"
@@ -9967,13 +9967,11 @@
             "inputProperties": {
                 "serviceUuid": {
                     "type": "string",
-                    "description": "Managed Object Storage service UUID.",
-                    "willReplaceOnChanges": true
+                    "description": "Managed Object Storage service UUID."
                 },
                 "username": {
                     "type": "string",
-                    "description": "Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See \u003cspan pulumi-lang-nodejs=\"`upcloud.ManagedObjectStorageUserAccessKey`\" pulumi-lang-dotnet=\"`upcloud.ManagedObjectStorageUserAccessKey`\" pulumi-lang-go=\"`ManagedObjectStorageUserAccessKey`\" pulumi-lang-python=\"`ManagedObjectStorageUserAccessKey`\" pulumi-lang-yaml=\"`upcloud.ManagedObjectStorageUserAccessKey`\" pulumi-lang-java=\"`upcloud.ManagedObjectStorageUserAccessKey`\"\u003e`upcloud.ManagedObjectStorageUserAccessKey`\u003c/span\u003e for managing access keys and \u003cspan pulumi-lang-nodejs=\"`upcloud.ManagedObjectStorageUserPolicy`\" pulumi-lang-dotnet=\"`upcloud.ManagedObjectStorageUserPolicy`\" pulumi-lang-go=\"`ManagedObjectStorageUserPolicy`\" pulumi-lang-python=\"`ManagedObjectStorageUserPolicy`\" pulumi-lang-yaml=\"`upcloud.ManagedObjectStorageUserPolicy`\" pulumi-lang-java=\"`upcloud.ManagedObjectStorageUserPolicy`\"\u003e`upcloud.ManagedObjectStorageUserPolicy`\u003c/span\u003e for managing policies.",
-                    "willReplaceOnChanges": true
+                    "description": "Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See \u003cspan pulumi-lang-nodejs=\"`upcloud.ManagedObjectStorageUserAccessKey`\" pulumi-lang-dotnet=\"`upcloud.ManagedObjectStorageUserAccessKey`\" pulumi-lang-go=\"`ManagedObjectStorageUserAccessKey`\" pulumi-lang-python=\"`ManagedObjectStorageUserAccessKey`\" pulumi-lang-yaml=\"`upcloud.ManagedObjectStorageUserAccessKey`\" pulumi-lang-java=\"`upcloud.ManagedObjectStorageUserAccessKey`\"\u003e`upcloud.ManagedObjectStorageUserAccessKey`\u003c/span\u003e for managing access keys and \u003cspan pulumi-lang-nodejs=\"`upcloud.ManagedObjectStorageUserPolicy`\" pulumi-lang-dotnet=\"`upcloud.ManagedObjectStorageUserPolicy`\" pulumi-lang-go=\"`ManagedObjectStorageUserPolicy`\" pulumi-lang-python=\"`ManagedObjectStorageUserPolicy`\" pulumi-lang-yaml=\"`upcloud.ManagedObjectStorageUserPolicy`\" pulumi-lang-java=\"`upcloud.ManagedObjectStorageUserPolicy`\"\u003e`upcloud.ManagedObjectStorageUserPolicy`\u003c/span\u003e for managing policies."
                 }
             },
             "requiredInputs": [
@@ -9993,13 +9991,11 @@
                     },
                     "serviceUuid": {
                         "type": "string",
-                        "description": "Managed Object Storage service UUID.",
-                        "willReplaceOnChanges": true
+                        "description": "Managed Object Storage service UUID."
                     },
                     "username": {
                         "type": "string",
-                        "description": "Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See \u003cspan pulumi-lang-nodejs=\"`upcloud.ManagedObjectStorageUserAccessKey`\" pulumi-lang-dotnet=\"`upcloud.ManagedObjectStorageUserAccessKey`\" pulumi-lang-go=\"`ManagedObjectStorageUserAccessKey`\" pulumi-lang-python=\"`ManagedObjectStorageUserAccessKey`\" pulumi-lang-yaml=\"`upcloud.ManagedObjectStorageUserAccessKey`\" pulumi-lang-java=\"`upcloud.ManagedObjectStorageUserAccessKey`\"\u003e`upcloud.ManagedObjectStorageUserAccessKey`\u003c/span\u003e for managing access keys and \u003cspan pulumi-lang-nodejs=\"`upcloud.ManagedObjectStorageUserPolicy`\" pulumi-lang-dotnet=\"`upcloud.ManagedObjectStorageUserPolicy`\" pulumi-lang-go=\"`ManagedObjectStorageUserPolicy`\" pulumi-lang-python=\"`ManagedObjectStorageUserPolicy`\" pulumi-lang-yaml=\"`upcloud.ManagedObjectStorageUserPolicy`\" pulumi-lang-java=\"`upcloud.ManagedObjectStorageUserPolicy`\"\u003e`upcloud.ManagedObjectStorageUserPolicy`\u003c/span\u003e for managing policies.",
-                        "willReplaceOnChanges": true
+                        "description": "Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See \u003cspan pulumi-lang-nodejs=\"`upcloud.ManagedObjectStorageUserAccessKey`\" pulumi-lang-dotnet=\"`upcloud.ManagedObjectStorageUserAccessKey`\" pulumi-lang-go=\"`ManagedObjectStorageUserAccessKey`\" pulumi-lang-python=\"`ManagedObjectStorageUserAccessKey`\" pulumi-lang-yaml=\"`upcloud.ManagedObjectStorageUserAccessKey`\" pulumi-lang-java=\"`upcloud.ManagedObjectStorageUserAccessKey`\"\u003e`upcloud.ManagedObjectStorageUserAccessKey`\u003c/span\u003e for managing access keys and \u003cspan pulumi-lang-nodejs=\"`upcloud.ManagedObjectStorageUserPolicy`\" pulumi-lang-dotnet=\"`upcloud.ManagedObjectStorageUserPolicy`\" pulumi-lang-go=\"`ManagedObjectStorageUserPolicy`\" pulumi-lang-python=\"`ManagedObjectStorageUserPolicy`\" pulumi-lang-yaml=\"`upcloud.ManagedObjectStorageUserPolicy`\" pulumi-lang-java=\"`upcloud.ManagedObjectStorageUserPolicy`\"\u003e`upcloud.ManagedObjectStorageUserPolicy`\u003c/span\u003e for managing policies."
                     }
                 },
                 "type": "object"
@@ -10010,7 +10006,7 @@
             "properties": {
                 "accessKeyId": {
                     "type": "string",
-                    "description": "Access key id."
+                    "description": "Access key ID."
                 },
                 "createdAt": {
                     "type": "string",
@@ -10050,8 +10046,7 @@
             "inputProperties": {
                 "serviceUuid": {
                     "type": "string",
-                    "description": "Managed Object Storage service UUID.",
-                    "willReplaceOnChanges": true
+                    "description": "Managed Object Storage service UUID."
                 },
                 "status": {
                     "type": "string",
@@ -10059,8 +10054,7 @@
                 },
                 "username": {
                     "type": "string",
-                    "description": "Username.",
-                    "willReplaceOnChanges": true
+                    "description": "Username."
                 }
             },
             "requiredInputs": [
@@ -10073,7 +10067,7 @@
                 "properties": {
                     "accessKeyId": {
                         "type": "string",
-                        "description": "Access key id."
+                        "description": "Access key ID."
                     },
                     "createdAt": {
                         "type": "string",
@@ -10090,8 +10084,7 @@
                     },
                     "serviceUuid": {
                         "type": "string",
-                        "description": "Managed Object Storage service UUID.",
-                        "willReplaceOnChanges": true
+                        "description": "Managed Object Storage service UUID."
                     },
                     "status": {
                         "type": "string",
@@ -10099,8 +10092,7 @@
                     },
                     "username": {
                         "type": "string",
-                        "description": "Username.",
-                        "willReplaceOnChanges": true
+                        "description": "Username."
                     }
                 },
                 "type": "object"
@@ -10130,18 +10122,15 @@
             "inputProperties": {
                 "name": {
                     "type": "string",
-                    "description": "Policy name.",
-                    "willReplaceOnChanges": true
+                    "description": "Policy name."
                 },
                 "serviceUuid": {
                     "type": "string",
-                    "description": "Managed Object Storage service UUID.",
-                    "willReplaceOnChanges": true
+                    "description": "Managed Object Storage service UUID."
                 },
                 "username": {
                     "type": "string",
-                    "description": "Username.",
-                    "willReplaceOnChanges": true
+                    "description": "Username."
                 }
             },
             "requiredInputs": [
@@ -10153,18 +10142,15 @@
                 "properties": {
                     "name": {
                         "type": "string",
-                        "description": "Policy name.",
-                        "willReplaceOnChanges": true
+                        "description": "Policy name."
                     },
                     "serviceUuid": {
                         "type": "string",
-                        "description": "Managed Object Storage service UUID.",
-                        "willReplaceOnChanges": true
+                        "description": "Managed Object Storage service UUID."
                     },
                     "username": {
                         "type": "string",
-                        "description": "Username.",
-                        "willReplaceOnChanges": true
+                        "description": "Username."
                     }
                 },
                 "type": "object"
@@ -11910,7 +11896,7 @@
                 "description": "A collection of values returned by getManagedObjectStoragePolicies.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "deprecationMessage": "Contains the same value as \u003cspan pulumi-lang-nodejs=\"`serviceUuid`\" pulumi-lang-dotnet=\"`ServiceUuid`\" pulumi-lang-go=\"`serviceUuid`\" pulumi-lang-python=\"`service_uuid`\" pulumi-lang-yaml=\"`serviceUuid`\" pulumi-lang-java=\"`serviceUuid`\"\u003e`service_uuid`\u003c/span\u003e. Use \u003cspan pulumi-lang-nodejs=\"`serviceUuid`\" pulumi-lang-dotnet=\"`ServiceUuid`\" pulumi-lang-go=\"`serviceUuid`\" pulumi-lang-python=\"`service_uuid`\" pulumi-lang-yaml=\"`serviceUuid`\" pulumi-lang-java=\"`serviceUuid`\"\u003e`service_uuid`\u003c/span\u003e instead.",
                         "type": "string"
                     },
                     "policies": {
@@ -11924,9 +11910,9 @@
                     }
                 },
                 "required": [
+                    "id",
                     "policies",
-                    "serviceUuid",
-                    "id"
+                    "serviceUuid"
                 ],
                 "type": "object"
             }
