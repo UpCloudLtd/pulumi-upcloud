@@ -12,7 +12,3 @@ publish:
 upstreamProviderOrg: UpCloudLtd
 upstream-provider-repo: terraform-provider-upcloud
 pulumiConvert: 1
-plugins:
-    - name: terraform
-      version: "1.0.23"
-      kind: converter
