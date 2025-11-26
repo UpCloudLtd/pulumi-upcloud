@@ -64,6 +64,8 @@ import (
 type Network struct {
 	pulumi.CustomResourceState
 
+	// Effective routes applied to this network (read-only).
+	EffectiveRoutes NetworkEffectiveRouteArrayOutput `pulumi:"effectiveRoutes"`
 	// IP subnet within the network. Network must have exactly one IP subnet.
 	IpNetwork NetworkIpNetworkOutput `pulumi:"ipNetwork"`
 	// User defined key-value pairs to classify the network.
@@ -114,6 +116,8 @@ func GetNetwork(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Network resources.
 type networkState struct {
+	// Effective routes applied to this network (read-only).
+	EffectiveRoutes []NetworkEffectiveRoute `pulumi:"effectiveRoutes"`
 	// IP subnet within the network. Network must have exactly one IP subnet.
 	IpNetwork *NetworkIpNetwork `pulumi:"ipNetwork"`
 	// User defined key-value pairs to classify the network.
@@ -129,6 +133,8 @@ type networkState struct {
 }
 
 type NetworkState struct {
+	// Effective routes applied to this network (read-only).
+	EffectiveRoutes NetworkEffectiveRouteArrayInput
 	// IP subnet within the network. Network must have exactly one IP subnet.
 	IpNetwork NetworkIpNetworkPtrInput
 	// User defined key-value pairs to classify the network.
@@ -259,6 +265,11 @@ func (o NetworkOutput) ToNetworkOutput() NetworkOutput {
 
 func (o NetworkOutput) ToNetworkOutputWithContext(ctx context.Context) NetworkOutput {
 	return o
+}
+
+// Effective routes applied to this network (read-only).
+func (o NetworkOutput) EffectiveRoutes() NetworkEffectiveRouteArrayOutput {
+	return o.ApplyT(func(v *Network) NetworkEffectiveRouteArrayOutput { return v.EffectiveRoutes }).(NetworkEffectiveRouteArrayOutput)
 }
 
 // IP subnet within the network. Network must have exactly one IP subnet.

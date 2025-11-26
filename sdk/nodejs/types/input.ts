@@ -3496,6 +3496,29 @@ export interface ManagedObjectStorageNetwork {
     uuid?: pulumi.Input<string>;
 }
 
+export interface NetworkEffectiveRoute {
+    /**
+     * Next hop address for this route.
+     */
+    nexthop?: pulumi.Input<string>;
+    /**
+     * Destination CIDR of the route.
+     */
+    route?: pulumi.Input<string>;
+    /**
+     * Origin of the route (e.g., static-route, router-connected-networks).
+     */
+    source?: pulumi.Input<string>;
+    /**
+     * UUID of the source resource that provided this route, if applicable.
+     */
+    sourceResourceId?: pulumi.Input<string>;
+    /**
+     * Route type (service or user).
+     */
+    type?: pulumi.Input<string>;
+}
+
 export interface NetworkIpNetwork {
     /**
      * The CIDR range of the subnet
@@ -3514,6 +3537,10 @@ export interface NetworkIpNetwork {
      */
     dhcpDns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * Routes provided to DHCP clients in this subnet (read-only).
+     */
+    dhcpEffectiveRoutes?: pulumi.Input<pulumi.Input<inputs.NetworkIpNetworkDhcpEffectiveRoute>[]>;
+    /**
      * The additional DHCP classless static routes given by DHCP
      */
     dhcpRoutes?: pulumi.Input<pulumi.Input<string>[]>;
@@ -3529,6 +3556,21 @@ export interface NetworkIpNetwork {
      * Gateway address given by DHCP
      */
     gateway?: pulumi.Input<string>;
+}
+
+export interface NetworkIpNetworkDhcpEffectiveRoute {
+    /**
+     * Whether the route was auto-populated by DHCP.
+     */
+    autoPopulated?: pulumi.Input<boolean>;
+    /**
+     * Next hop address for this DHCP route.
+     */
+    nexthop?: pulumi.Input<string>;
+    /**
+     * Destination prefix (CIDR) of the DHCP route.
+     */
+    route?: pulumi.Input<string>;
 }
 
 export interface NetworkIpNetworkDhcpRoutesConfiguration {

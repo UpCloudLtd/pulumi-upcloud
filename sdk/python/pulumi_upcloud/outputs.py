@@ -122,7 +122,9 @@ __all__ = [
     'ManagedDatabaseValkeyPropertiesMigration',
     'ManagedObjectStorageEndpoint',
     'ManagedObjectStorageNetwork',
+    'NetworkEffectiveRoute',
     'NetworkIpNetwork',
+    'NetworkIpNetworkDhcpEffectiveRoute',
     'NetworkIpNetworkDhcpRoutesConfiguration',
     'NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation',
     'NetworkPeeringNetwork',
@@ -10165,6 +10167,90 @@ class ManagedObjectStorageNetwork(dict):
 
 
 @pulumi.output_type
+class NetworkEffectiveRoute(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sourceResourceId":
+            suggest = "source_resource_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NetworkEffectiveRoute. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NetworkEffectiveRoute.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NetworkEffectiveRoute.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 nexthop: Optional[_builtins.str] = None,
+                 route: Optional[_builtins.str] = None,
+                 source: Optional[_builtins.str] = None,
+                 source_resource_id: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str nexthop: Next hop address for this route.
+        :param _builtins.str route: Destination CIDR of the route.
+        :param _builtins.str source: Origin of the route (e.g., static-route, router-connected-networks).
+        :param _builtins.str source_resource_id: UUID of the source resource that provided this route, if applicable.
+        :param _builtins.str type: Route type (service or user).
+        """
+        if nexthop is not None:
+            pulumi.set(__self__, "nexthop", nexthop)
+        if route is not None:
+            pulumi.set(__self__, "route", route)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+        if source_resource_id is not None:
+            pulumi.set(__self__, "source_resource_id", source_resource_id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def nexthop(self) -> Optional[_builtins.str]:
+        """
+        Next hop address for this route.
+        """
+        return pulumi.get(self, "nexthop")
+
+    @_builtins.property
+    @pulumi.getter
+    def route(self) -> Optional[_builtins.str]:
+        """
+        Destination CIDR of the route.
+        """
+        return pulumi.get(self, "route")
+
+    @_builtins.property
+    @pulumi.getter
+    def source(self) -> Optional[_builtins.str]:
+        """
+        Origin of the route (e.g., static-route, router-connected-networks).
+        """
+        return pulumi.get(self, "source")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceResourceId")
+    def source_resource_id(self) -> Optional[_builtins.str]:
+        """
+        UUID of the source resource that provided this route, if applicable.
+        """
+        return pulumi.get(self, "source_resource_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Route type (service or user).
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class NetworkIpNetwork(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -10173,6 +10259,8 @@ class NetworkIpNetwork(dict):
             suggest = "dhcp_default_route"
         elif key == "dhcpDns":
             suggest = "dhcp_dns"
+        elif key == "dhcpEffectiveRoutes":
+            suggest = "dhcp_effective_routes"
         elif key == "dhcpRoutes":
             suggest = "dhcp_routes"
         elif key == "dhcpRoutesConfiguration":
@@ -10195,6 +10283,7 @@ class NetworkIpNetwork(dict):
                  family: _builtins.str,
                  dhcp_default_route: Optional[_builtins.bool] = None,
                  dhcp_dns: Optional[Sequence[_builtins.str]] = None,
+                 dhcp_effective_routes: Optional[Sequence['outputs.NetworkIpNetworkDhcpEffectiveRoute']] = None,
                  dhcp_routes: Optional[Sequence[_builtins.str]] = None,
                  dhcp_routes_configuration: Optional['outputs.NetworkIpNetworkDhcpRoutesConfiguration'] = None,
                  gateway: Optional[_builtins.str] = None):
@@ -10204,6 +10293,7 @@ class NetworkIpNetwork(dict):
         :param _builtins.str family: IP address family
         :param _builtins.bool dhcp_default_route: Is the gateway the DHCP default route?
         :param Sequence[_builtins.str] dhcp_dns: The DNS servers given by DHCP
+        :param Sequence['NetworkIpNetworkDhcpEffectiveRouteArgs'] dhcp_effective_routes: Routes provided to DHCP clients in this subnet (read-only).
         :param Sequence[_builtins.str] dhcp_routes: The additional DHCP classless static routes given by DHCP
         :param 'NetworkIpNetworkDhcpRoutesConfigurationArgs' dhcp_routes_configuration: DHCP routes auto-population configuration.
         :param _builtins.str gateway: Gateway address given by DHCP
@@ -10215,6 +10305,8 @@ class NetworkIpNetwork(dict):
             pulumi.set(__self__, "dhcp_default_route", dhcp_default_route)
         if dhcp_dns is not None:
             pulumi.set(__self__, "dhcp_dns", dhcp_dns)
+        if dhcp_effective_routes is not None:
+            pulumi.set(__self__, "dhcp_effective_routes", dhcp_effective_routes)
         if dhcp_routes is not None:
             pulumi.set(__self__, "dhcp_routes", dhcp_routes)
         if dhcp_routes_configuration is not None:
@@ -10263,6 +10355,14 @@ class NetworkIpNetwork(dict):
         return pulumi.get(self, "dhcp_dns")
 
     @_builtins.property
+    @pulumi.getter(name="dhcpEffectiveRoutes")
+    def dhcp_effective_routes(self) -> Optional[Sequence['outputs.NetworkIpNetworkDhcpEffectiveRoute']]:
+        """
+        Routes provided to DHCP clients in this subnet (read-only).
+        """
+        return pulumi.get(self, "dhcp_effective_routes")
+
+    @_builtins.property
     @pulumi.getter(name="dhcpRoutes")
     def dhcp_routes(self) -> Optional[Sequence[_builtins.str]]:
         """
@@ -10285,6 +10385,66 @@ class NetworkIpNetwork(dict):
         Gateway address given by DHCP
         """
         return pulumi.get(self, "gateway")
+
+
+@pulumi.output_type
+class NetworkIpNetworkDhcpEffectiveRoute(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "autoPopulated":
+            suggest = "auto_populated"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NetworkIpNetworkDhcpEffectiveRoute. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NetworkIpNetworkDhcpEffectiveRoute.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NetworkIpNetworkDhcpEffectiveRoute.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auto_populated: Optional[_builtins.bool] = None,
+                 nexthop: Optional[_builtins.str] = None,
+                 route: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool auto_populated: Whether the route was auto-populated by DHCP.
+        :param _builtins.str nexthop: Next hop address for this DHCP route.
+        :param _builtins.str route: Destination prefix (CIDR) of the DHCP route.
+        """
+        if auto_populated is not None:
+            pulumi.set(__self__, "auto_populated", auto_populated)
+        if nexthop is not None:
+            pulumi.set(__self__, "nexthop", nexthop)
+        if route is not None:
+            pulumi.set(__self__, "route", route)
+
+    @_builtins.property
+    @pulumi.getter(name="autoPopulated")
+    def auto_populated(self) -> Optional[_builtins.bool]:
+        """
+        Whether the route was auto-populated by DHCP.
+        """
+        return pulumi.get(self, "auto_populated")
+
+    @_builtins.property
+    @pulumi.getter
+    def nexthop(self) -> Optional[_builtins.str]:
+        """
+        Next hop address for this DHCP route.
+        """
+        return pulumi.get(self, "nexthop")
+
+    @_builtins.property
+    @pulumi.getter
+    def route(self) -> Optional[_builtins.str]:
+        """
+        Destination prefix (CIDR) of the DHCP route.
+        """
+        return pulumi.get(self, "route")
 
 
 @pulumi.output_type

@@ -10,8 +10,10 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.upcloud.NetworkArgs;
 import com.pulumi.upcloud.Utilities;
 import com.pulumi.upcloud.inputs.NetworkState;
+import com.pulumi.upcloud.outputs.NetworkEffectiveRoute;
 import com.pulumi.upcloud.outputs.NetworkIpNetwork;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -78,6 +80,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="upcloud:index/network:Network")
 public class Network extends com.pulumi.resources.CustomResource {
+    /**
+     * Effective routes applied to this network (read-only).
+     * 
+     */
+    @Export(name="effectiveRoutes", refs={List.class,NetworkEffectiveRoute.class}, tree="[0,1]")
+    private Output<List<NetworkEffectiveRoute>> effectiveRoutes;
+
+    /**
+     * @return Effective routes applied to this network (read-only).
+     * 
+     */
+    public Output<List<NetworkEffectiveRoute>> effectiveRoutes() {
+        return this.effectiveRoutes;
+    }
     /**
      * IP subnet within the network. Network must have exactly one IP subnet.
      * 

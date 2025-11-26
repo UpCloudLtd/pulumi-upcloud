@@ -57,6 +57,12 @@ namespace UpCloud.Pulumi.UpCloud
     public partial class Network : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Effective routes applied to this network (read-only).
+        /// </summary>
+        [Output("effectiveRoutes")]
+        public Output<ImmutableArray<Outputs.NetworkEffectiveRoute>> EffectiveRoutes { get; private set; } = null!;
+
+        /// <summary>
         /// IP subnet within the network. Network must have exactly one IP subnet.
         /// </summary>
         [Output("ipNetwork")]
@@ -183,6 +189,18 @@ namespace UpCloud.Pulumi.UpCloud
 
     public sealed class NetworkState : global::Pulumi.ResourceArgs
     {
+        [Input("effectiveRoutes")]
+        private InputList<Inputs.NetworkEffectiveRouteGetArgs>? _effectiveRoutes;
+
+        /// <summary>
+        /// Effective routes applied to this network (read-only).
+        /// </summary>
+        public InputList<Inputs.NetworkEffectiveRouteGetArgs> EffectiveRoutes
+        {
+            get => _effectiveRoutes ?? (_effectiveRoutes = new InputList<Inputs.NetworkEffectiveRouteGetArgs>());
+            set => _effectiveRoutes = value;
+        }
+
         /// <summary>
         /// IP subnet within the network. Network must have exactly one IP subnet.
         /// </summary>

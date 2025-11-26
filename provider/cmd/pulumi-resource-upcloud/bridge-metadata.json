@@ -647,11 +647,17 @@
             "upcloud_network": {
                 "current": "upcloud:index/network:Network",
                 "fields": {
+                    "effective_routes": {
+                        "maxItemsOne": false
+                    },
                     "ip_network": {
                         "maxItemsOne": true,
                         "elem": {
                             "fields": {
                                 "dhcp_dns": {
+                                    "maxItemsOne": false
+                                },
+                                "dhcp_effective_routes": {
                                     "maxItemsOne": false
                                 },
                                 "dhcp_routes": {
