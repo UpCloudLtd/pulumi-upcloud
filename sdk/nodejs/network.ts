@@ -66,6 +66,10 @@ export class Network extends pulumi.CustomResource {
     }
 
     /**
+     * Effective routes applied to this network (read-only).
+     */
+    declare public /*out*/ readonly effectiveRoutes: pulumi.Output<outputs.NetworkEffectiveRoute[]>;
+    /**
      * IP subnet within the network. Network must have exactly one IP subnet.
      */
     declare public readonly ipNetwork: pulumi.Output<outputs.NetworkIpNetwork>;
@@ -103,6 +107,7 @@ export class Network extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NetworkState | undefined;
+            resourceInputs["effectiveRoutes"] = state?.effectiveRoutes;
             resourceInputs["ipNetwork"] = state?.ipNetwork;
             resourceInputs["labels"] = state?.labels;
             resourceInputs["name"] = state?.name;
@@ -122,6 +127,7 @@ export class Network extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["router"] = args?.router;
             resourceInputs["zone"] = args?.zone;
+            resourceInputs["effectiveRoutes"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -133,6 +139,10 @@ export class Network extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Network resources.
  */
 export interface NetworkState {
+    /**
+     * Effective routes applied to this network (read-only).
+     */
+    effectiveRoutes?: pulumi.Input<pulumi.Input<inputs.NetworkEffectiveRoute>[]>;
     /**
      * IP subnet within the network. Network must have exactly one IP subnet.
      */

@@ -43,6 +43,18 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
             set => _dhcpDns = value;
         }
 
+        [Input("dhcpEffectiveRoutes")]
+        private InputList<Inputs.NetworkIpNetworkDhcpEffectiveRouteArgs>? _dhcpEffectiveRoutes;
+
+        /// <summary>
+        /// Routes provided to DHCP clients in this subnet (read-only).
+        /// </summary>
+        public InputList<Inputs.NetworkIpNetworkDhcpEffectiveRouteArgs> DhcpEffectiveRoutes
+        {
+            get => _dhcpEffectiveRoutes ?? (_dhcpEffectiveRoutes = new InputList<Inputs.NetworkIpNetworkDhcpEffectiveRouteArgs>());
+            set => _dhcpEffectiveRoutes = value;
+        }
+
         [Input("dhcpRoutes")]
         private InputList<string>? _dhcpRoutes;
 

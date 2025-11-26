@@ -5,6 +5,7 @@ package com.pulumi.upcloud.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.upcloud.outputs.NetworkIpNetworkDhcpEffectiveRoute;
 import com.pulumi.upcloud.outputs.NetworkIpNetworkDhcpRoutesConfiguration;
 import java.lang.Boolean;
 import java.lang.String;
@@ -35,6 +36,11 @@ public final class NetworkIpNetwork {
      * 
      */
     private @Nullable List<String> dhcpDns;
+    /**
+     * @return Routes provided to DHCP clients in this subnet (read-only).
+     * 
+     */
+    private @Nullable List<NetworkIpNetworkDhcpEffectiveRoute> dhcpEffectiveRoutes;
     /**
      * @return The additional DHCP classless static routes given by DHCP
      * 
@@ -86,6 +92,13 @@ public final class NetworkIpNetwork {
         return this.dhcpDns == null ? List.of() : this.dhcpDns;
     }
     /**
+     * @return Routes provided to DHCP clients in this subnet (read-only).
+     * 
+     */
+    public List<NetworkIpNetworkDhcpEffectiveRoute> dhcpEffectiveRoutes() {
+        return this.dhcpEffectiveRoutes == null ? List.of() : this.dhcpEffectiveRoutes;
+    }
+    /**
      * @return The additional DHCP classless static routes given by DHCP
      * 
      */
@@ -127,6 +140,7 @@ public final class NetworkIpNetwork {
         private Boolean dhcp;
         private @Nullable Boolean dhcpDefaultRoute;
         private @Nullable List<String> dhcpDns;
+        private @Nullable List<NetworkIpNetworkDhcpEffectiveRoute> dhcpEffectiveRoutes;
         private @Nullable List<String> dhcpRoutes;
         private @Nullable NetworkIpNetworkDhcpRoutesConfiguration dhcpRoutesConfiguration;
         private String family;
@@ -138,6 +152,7 @@ public final class NetworkIpNetwork {
     	      this.dhcp = defaults.dhcp;
     	      this.dhcpDefaultRoute = defaults.dhcpDefaultRoute;
     	      this.dhcpDns = defaults.dhcpDns;
+    	      this.dhcpEffectiveRoutes = defaults.dhcpEffectiveRoutes;
     	      this.dhcpRoutes = defaults.dhcpRoutes;
     	      this.dhcpRoutesConfiguration = defaults.dhcpRoutesConfiguration;
     	      this.family = defaults.family;
@@ -176,6 +191,15 @@ public final class NetworkIpNetwork {
             return dhcpDns(List.of(dhcpDns));
         }
         @CustomType.Setter
+        public Builder dhcpEffectiveRoutes(@Nullable List<NetworkIpNetworkDhcpEffectiveRoute> dhcpEffectiveRoutes) {
+
+            this.dhcpEffectiveRoutes = dhcpEffectiveRoutes;
+            return this;
+        }
+        public Builder dhcpEffectiveRoutes(NetworkIpNetworkDhcpEffectiveRoute... dhcpEffectiveRoutes) {
+            return dhcpEffectiveRoutes(List.of(dhcpEffectiveRoutes));
+        }
+        @CustomType.Setter
         public Builder dhcpRoutes(@Nullable List<String> dhcpRoutes) {
 
             this.dhcpRoutes = dhcpRoutes;
@@ -210,6 +234,7 @@ public final class NetworkIpNetwork {
             _resultValue.dhcp = dhcp;
             _resultValue.dhcpDefaultRoute = dhcpDefaultRoute;
             _resultValue.dhcpDns = dhcpDns;
+            _resultValue.dhcpEffectiveRoutes = dhcpEffectiveRoutes;
             _resultValue.dhcpRoutes = dhcpRoutes;
             _resultValue.dhcpRoutesConfiguration = dhcpRoutesConfiguration;
             _resultValue.family = family;

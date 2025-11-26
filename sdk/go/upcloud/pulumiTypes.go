@@ -21516,6 +21516,139 @@ func (o ManagedObjectStorageNetworkArrayOutput) Index(i pulumi.IntInput) Managed
 	}).(ManagedObjectStorageNetworkOutput)
 }
 
+type NetworkEffectiveRoute struct {
+	// Next hop address for this route.
+	Nexthop *string `pulumi:"nexthop"`
+	// Destination CIDR of the route.
+	Route *string `pulumi:"route"`
+	// Origin of the route (e.g., static-route, router-connected-networks).
+	Source *string `pulumi:"source"`
+	// UUID of the source resource that provided this route, if applicable.
+	SourceResourceId *string `pulumi:"sourceResourceId"`
+	// Route type (service or user).
+	Type *string `pulumi:"type"`
+}
+
+// NetworkEffectiveRouteInput is an input type that accepts NetworkEffectiveRouteArgs and NetworkEffectiveRouteOutput values.
+// You can construct a concrete instance of `NetworkEffectiveRouteInput` via:
+//
+//	NetworkEffectiveRouteArgs{...}
+type NetworkEffectiveRouteInput interface {
+	pulumi.Input
+
+	ToNetworkEffectiveRouteOutput() NetworkEffectiveRouteOutput
+	ToNetworkEffectiveRouteOutputWithContext(context.Context) NetworkEffectiveRouteOutput
+}
+
+type NetworkEffectiveRouteArgs struct {
+	// Next hop address for this route.
+	Nexthop pulumi.StringPtrInput `pulumi:"nexthop"`
+	// Destination CIDR of the route.
+	Route pulumi.StringPtrInput `pulumi:"route"`
+	// Origin of the route (e.g., static-route, router-connected-networks).
+	Source pulumi.StringPtrInput `pulumi:"source"`
+	// UUID of the source resource that provided this route, if applicable.
+	SourceResourceId pulumi.StringPtrInput `pulumi:"sourceResourceId"`
+	// Route type (service or user).
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (NetworkEffectiveRouteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkEffectiveRoute)(nil)).Elem()
+}
+
+func (i NetworkEffectiveRouteArgs) ToNetworkEffectiveRouteOutput() NetworkEffectiveRouteOutput {
+	return i.ToNetworkEffectiveRouteOutputWithContext(context.Background())
+}
+
+func (i NetworkEffectiveRouteArgs) ToNetworkEffectiveRouteOutputWithContext(ctx context.Context) NetworkEffectiveRouteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkEffectiveRouteOutput)
+}
+
+// NetworkEffectiveRouteArrayInput is an input type that accepts NetworkEffectiveRouteArray and NetworkEffectiveRouteArrayOutput values.
+// You can construct a concrete instance of `NetworkEffectiveRouteArrayInput` via:
+//
+//	NetworkEffectiveRouteArray{ NetworkEffectiveRouteArgs{...} }
+type NetworkEffectiveRouteArrayInput interface {
+	pulumi.Input
+
+	ToNetworkEffectiveRouteArrayOutput() NetworkEffectiveRouteArrayOutput
+	ToNetworkEffectiveRouteArrayOutputWithContext(context.Context) NetworkEffectiveRouteArrayOutput
+}
+
+type NetworkEffectiveRouteArray []NetworkEffectiveRouteInput
+
+func (NetworkEffectiveRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetworkEffectiveRoute)(nil)).Elem()
+}
+
+func (i NetworkEffectiveRouteArray) ToNetworkEffectiveRouteArrayOutput() NetworkEffectiveRouteArrayOutput {
+	return i.ToNetworkEffectiveRouteArrayOutputWithContext(context.Background())
+}
+
+func (i NetworkEffectiveRouteArray) ToNetworkEffectiveRouteArrayOutputWithContext(ctx context.Context) NetworkEffectiveRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkEffectiveRouteArrayOutput)
+}
+
+type NetworkEffectiveRouteOutput struct{ *pulumi.OutputState }
+
+func (NetworkEffectiveRouteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkEffectiveRoute)(nil)).Elem()
+}
+
+func (o NetworkEffectiveRouteOutput) ToNetworkEffectiveRouteOutput() NetworkEffectiveRouteOutput {
+	return o
+}
+
+func (o NetworkEffectiveRouteOutput) ToNetworkEffectiveRouteOutputWithContext(ctx context.Context) NetworkEffectiveRouteOutput {
+	return o
+}
+
+// Next hop address for this route.
+func (o NetworkEffectiveRouteOutput) Nexthop() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NetworkEffectiveRoute) *string { return v.Nexthop }).(pulumi.StringPtrOutput)
+}
+
+// Destination CIDR of the route.
+func (o NetworkEffectiveRouteOutput) Route() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NetworkEffectiveRoute) *string { return v.Route }).(pulumi.StringPtrOutput)
+}
+
+// Origin of the route (e.g., static-route, router-connected-networks).
+func (o NetworkEffectiveRouteOutput) Source() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NetworkEffectiveRoute) *string { return v.Source }).(pulumi.StringPtrOutput)
+}
+
+// UUID of the source resource that provided this route, if applicable.
+func (o NetworkEffectiveRouteOutput) SourceResourceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NetworkEffectiveRoute) *string { return v.SourceResourceId }).(pulumi.StringPtrOutput)
+}
+
+// Route type (service or user).
+func (o NetworkEffectiveRouteOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NetworkEffectiveRoute) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type NetworkEffectiveRouteArrayOutput struct{ *pulumi.OutputState }
+
+func (NetworkEffectiveRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetworkEffectiveRoute)(nil)).Elem()
+}
+
+func (o NetworkEffectiveRouteArrayOutput) ToNetworkEffectiveRouteArrayOutput() NetworkEffectiveRouteArrayOutput {
+	return o
+}
+
+func (o NetworkEffectiveRouteArrayOutput) ToNetworkEffectiveRouteArrayOutputWithContext(ctx context.Context) NetworkEffectiveRouteArrayOutput {
+	return o
+}
+
+func (o NetworkEffectiveRouteArrayOutput) Index(i pulumi.IntInput) NetworkEffectiveRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NetworkEffectiveRoute {
+		return vs[0].([]NetworkEffectiveRoute)[vs[1].(int)]
+	}).(NetworkEffectiveRouteOutput)
+}
+
 type NetworkIpNetwork struct {
 	// The CIDR range of the subnet
 	Address string `pulumi:"address"`
@@ -21525,6 +21658,8 @@ type NetworkIpNetwork struct {
 	DhcpDefaultRoute *bool `pulumi:"dhcpDefaultRoute"`
 	// The DNS servers given by DHCP
 	DhcpDns []string `pulumi:"dhcpDns"`
+	// Routes provided to DHCP clients in this subnet (read-only).
+	DhcpEffectiveRoutes []NetworkIpNetworkDhcpEffectiveRoute `pulumi:"dhcpEffectiveRoutes"`
 	// The additional DHCP classless static routes given by DHCP
 	DhcpRoutes []string `pulumi:"dhcpRoutes"`
 	// DHCP routes auto-population configuration.
@@ -21555,6 +21690,8 @@ type NetworkIpNetworkArgs struct {
 	DhcpDefaultRoute pulumi.BoolPtrInput `pulumi:"dhcpDefaultRoute"`
 	// The DNS servers given by DHCP
 	DhcpDns pulumi.StringArrayInput `pulumi:"dhcpDns"`
+	// Routes provided to DHCP clients in this subnet (read-only).
+	DhcpEffectiveRoutes NetworkIpNetworkDhcpEffectiveRouteArrayInput `pulumi:"dhcpEffectiveRoutes"`
 	// The additional DHCP classless static routes given by DHCP
 	DhcpRoutes pulumi.StringArrayInput `pulumi:"dhcpRoutes"`
 	// DHCP routes auto-population configuration.
@@ -21662,6 +21799,11 @@ func (o NetworkIpNetworkOutput) DhcpDns() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NetworkIpNetwork) []string { return v.DhcpDns }).(pulumi.StringArrayOutput)
 }
 
+// Routes provided to DHCP clients in this subnet (read-only).
+func (o NetworkIpNetworkOutput) DhcpEffectiveRoutes() NetworkIpNetworkDhcpEffectiveRouteArrayOutput {
+	return o.ApplyT(func(v NetworkIpNetwork) []NetworkIpNetworkDhcpEffectiveRoute { return v.DhcpEffectiveRoutes }).(NetworkIpNetworkDhcpEffectiveRouteArrayOutput)
+}
+
 // The additional DHCP classless static routes given by DHCP
 func (o NetworkIpNetworkOutput) DhcpRoutes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NetworkIpNetwork) []string { return v.DhcpRoutes }).(pulumi.StringArrayOutput)
@@ -21746,6 +21888,16 @@ func (o NetworkIpNetworkPtrOutput) DhcpDns() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
+// Routes provided to DHCP clients in this subnet (read-only).
+func (o NetworkIpNetworkPtrOutput) DhcpEffectiveRoutes() NetworkIpNetworkDhcpEffectiveRouteArrayOutput {
+	return o.ApplyT(func(v *NetworkIpNetwork) []NetworkIpNetworkDhcpEffectiveRoute {
+		if v == nil {
+			return nil
+		}
+		return v.DhcpEffectiveRoutes
+	}).(NetworkIpNetworkDhcpEffectiveRouteArrayOutput)
+}
+
 // The additional DHCP classless static routes given by DHCP
 func (o NetworkIpNetworkPtrOutput) DhcpRoutes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *NetworkIpNetwork) []string {
@@ -21784,6 +21936,121 @@ func (o NetworkIpNetworkPtrOutput) Gateway() pulumi.StringPtrOutput {
 		}
 		return v.Gateway
 	}).(pulumi.StringPtrOutput)
+}
+
+type NetworkIpNetworkDhcpEffectiveRoute struct {
+	// Whether the route was auto-populated by DHCP.
+	AutoPopulated *bool `pulumi:"autoPopulated"`
+	// Next hop address for this DHCP route.
+	Nexthop *string `pulumi:"nexthop"`
+	// Destination prefix (CIDR) of the DHCP route.
+	Route *string `pulumi:"route"`
+}
+
+// NetworkIpNetworkDhcpEffectiveRouteInput is an input type that accepts NetworkIpNetworkDhcpEffectiveRouteArgs and NetworkIpNetworkDhcpEffectiveRouteOutput values.
+// You can construct a concrete instance of `NetworkIpNetworkDhcpEffectiveRouteInput` via:
+//
+//	NetworkIpNetworkDhcpEffectiveRouteArgs{...}
+type NetworkIpNetworkDhcpEffectiveRouteInput interface {
+	pulumi.Input
+
+	ToNetworkIpNetworkDhcpEffectiveRouteOutput() NetworkIpNetworkDhcpEffectiveRouteOutput
+	ToNetworkIpNetworkDhcpEffectiveRouteOutputWithContext(context.Context) NetworkIpNetworkDhcpEffectiveRouteOutput
+}
+
+type NetworkIpNetworkDhcpEffectiveRouteArgs struct {
+	// Whether the route was auto-populated by DHCP.
+	AutoPopulated pulumi.BoolPtrInput `pulumi:"autoPopulated"`
+	// Next hop address for this DHCP route.
+	Nexthop pulumi.StringPtrInput `pulumi:"nexthop"`
+	// Destination prefix (CIDR) of the DHCP route.
+	Route pulumi.StringPtrInput `pulumi:"route"`
+}
+
+func (NetworkIpNetworkDhcpEffectiveRouteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkIpNetworkDhcpEffectiveRoute)(nil)).Elem()
+}
+
+func (i NetworkIpNetworkDhcpEffectiveRouteArgs) ToNetworkIpNetworkDhcpEffectiveRouteOutput() NetworkIpNetworkDhcpEffectiveRouteOutput {
+	return i.ToNetworkIpNetworkDhcpEffectiveRouteOutputWithContext(context.Background())
+}
+
+func (i NetworkIpNetworkDhcpEffectiveRouteArgs) ToNetworkIpNetworkDhcpEffectiveRouteOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpEffectiveRouteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkIpNetworkDhcpEffectiveRouteOutput)
+}
+
+// NetworkIpNetworkDhcpEffectiveRouteArrayInput is an input type that accepts NetworkIpNetworkDhcpEffectiveRouteArray and NetworkIpNetworkDhcpEffectiveRouteArrayOutput values.
+// You can construct a concrete instance of `NetworkIpNetworkDhcpEffectiveRouteArrayInput` via:
+//
+//	NetworkIpNetworkDhcpEffectiveRouteArray{ NetworkIpNetworkDhcpEffectiveRouteArgs{...} }
+type NetworkIpNetworkDhcpEffectiveRouteArrayInput interface {
+	pulumi.Input
+
+	ToNetworkIpNetworkDhcpEffectiveRouteArrayOutput() NetworkIpNetworkDhcpEffectiveRouteArrayOutput
+	ToNetworkIpNetworkDhcpEffectiveRouteArrayOutputWithContext(context.Context) NetworkIpNetworkDhcpEffectiveRouteArrayOutput
+}
+
+type NetworkIpNetworkDhcpEffectiveRouteArray []NetworkIpNetworkDhcpEffectiveRouteInput
+
+func (NetworkIpNetworkDhcpEffectiveRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetworkIpNetworkDhcpEffectiveRoute)(nil)).Elem()
+}
+
+func (i NetworkIpNetworkDhcpEffectiveRouteArray) ToNetworkIpNetworkDhcpEffectiveRouteArrayOutput() NetworkIpNetworkDhcpEffectiveRouteArrayOutput {
+	return i.ToNetworkIpNetworkDhcpEffectiveRouteArrayOutputWithContext(context.Background())
+}
+
+func (i NetworkIpNetworkDhcpEffectiveRouteArray) ToNetworkIpNetworkDhcpEffectiveRouteArrayOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpEffectiveRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkIpNetworkDhcpEffectiveRouteArrayOutput)
+}
+
+type NetworkIpNetworkDhcpEffectiveRouteOutput struct{ *pulumi.OutputState }
+
+func (NetworkIpNetworkDhcpEffectiveRouteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkIpNetworkDhcpEffectiveRoute)(nil)).Elem()
+}
+
+func (o NetworkIpNetworkDhcpEffectiveRouteOutput) ToNetworkIpNetworkDhcpEffectiveRouteOutput() NetworkIpNetworkDhcpEffectiveRouteOutput {
+	return o
+}
+
+func (o NetworkIpNetworkDhcpEffectiveRouteOutput) ToNetworkIpNetworkDhcpEffectiveRouteOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpEffectiveRouteOutput {
+	return o
+}
+
+// Whether the route was auto-populated by DHCP.
+func (o NetworkIpNetworkDhcpEffectiveRouteOutput) AutoPopulated() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NetworkIpNetworkDhcpEffectiveRoute) *bool { return v.AutoPopulated }).(pulumi.BoolPtrOutput)
+}
+
+// Next hop address for this DHCP route.
+func (o NetworkIpNetworkDhcpEffectiveRouteOutput) Nexthop() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NetworkIpNetworkDhcpEffectiveRoute) *string { return v.Nexthop }).(pulumi.StringPtrOutput)
+}
+
+// Destination prefix (CIDR) of the DHCP route.
+func (o NetworkIpNetworkDhcpEffectiveRouteOutput) Route() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NetworkIpNetworkDhcpEffectiveRoute) *string { return v.Route }).(pulumi.StringPtrOutput)
+}
+
+type NetworkIpNetworkDhcpEffectiveRouteArrayOutput struct{ *pulumi.OutputState }
+
+func (NetworkIpNetworkDhcpEffectiveRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetworkIpNetworkDhcpEffectiveRoute)(nil)).Elem()
+}
+
+func (o NetworkIpNetworkDhcpEffectiveRouteArrayOutput) ToNetworkIpNetworkDhcpEffectiveRouteArrayOutput() NetworkIpNetworkDhcpEffectiveRouteArrayOutput {
+	return o
+}
+
+func (o NetworkIpNetworkDhcpEffectiveRouteArrayOutput) ToNetworkIpNetworkDhcpEffectiveRouteArrayOutputWithContext(ctx context.Context) NetworkIpNetworkDhcpEffectiveRouteArrayOutput {
+	return o
+}
+
+func (o NetworkIpNetworkDhcpEffectiveRouteArrayOutput) Index(i pulumi.IntInput) NetworkIpNetworkDhcpEffectiveRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NetworkIpNetworkDhcpEffectiveRoute {
+		return vs[0].([]NetworkIpNetworkDhcpEffectiveRoute)[vs[1].(int)]
+	}).(NetworkIpNetworkDhcpEffectiveRouteOutput)
 }
 
 type NetworkIpNetworkDhcpRoutesConfiguration struct {
@@ -26824,8 +27091,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedObjectStorageEndpointArrayInput)(nil)).Elem(), ManagedObjectStorageEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedObjectStorageNetworkInput)(nil)).Elem(), ManagedObjectStorageNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedObjectStorageNetworkArrayInput)(nil)).Elem(), ManagedObjectStorageNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkEffectiveRouteInput)(nil)).Elem(), NetworkEffectiveRouteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkEffectiveRouteArrayInput)(nil)).Elem(), NetworkEffectiveRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkIpNetworkInput)(nil)).Elem(), NetworkIpNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkIpNetworkPtrInput)(nil)).Elem(), NetworkIpNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkIpNetworkDhcpEffectiveRouteInput)(nil)).Elem(), NetworkIpNetworkDhcpEffectiveRouteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkIpNetworkDhcpEffectiveRouteArrayInput)(nil)).Elem(), NetworkIpNetworkDhcpEffectiveRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkIpNetworkDhcpRoutesConfigurationInput)(nil)).Elem(), NetworkIpNetworkDhcpRoutesConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkIpNetworkDhcpRoutesConfigurationPtrInput)(nil)).Elem(), NetworkIpNetworkDhcpRoutesConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationInput)(nil)).Elem(), NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationArgs{})
@@ -27097,8 +27368,12 @@ func init() {
 	pulumi.RegisterOutputType(ManagedObjectStorageEndpointArrayOutput{})
 	pulumi.RegisterOutputType(ManagedObjectStorageNetworkOutput{})
 	pulumi.RegisterOutputType(ManagedObjectStorageNetworkArrayOutput{})
+	pulumi.RegisterOutputType(NetworkEffectiveRouteOutput{})
+	pulumi.RegisterOutputType(NetworkEffectiveRouteArrayOutput{})
 	pulumi.RegisterOutputType(NetworkIpNetworkOutput{})
 	pulumi.RegisterOutputType(NetworkIpNetworkPtrOutput{})
+	pulumi.RegisterOutputType(NetworkIpNetworkDhcpEffectiveRouteOutput{})
+	pulumi.RegisterOutputType(NetworkIpNetworkDhcpEffectiveRouteArrayOutput{})
 	pulumi.RegisterOutputType(NetworkIpNetworkDhcpRoutesConfigurationOutput{})
 	pulumi.RegisterOutputType(NetworkIpNetworkDhcpRoutesConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulationOutput{})

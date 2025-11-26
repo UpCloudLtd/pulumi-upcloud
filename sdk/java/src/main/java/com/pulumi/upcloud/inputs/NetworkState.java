@@ -5,8 +5,10 @@ package com.pulumi.upcloud.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.upcloud.inputs.NetworkEffectiveRouteArgs;
 import com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,6 +18,21 @@ import javax.annotation.Nullable;
 public final class NetworkState extends com.pulumi.resources.ResourceArgs {
 
     public static final NetworkState Empty = new NetworkState();
+
+    /**
+     * Effective routes applied to this network (read-only).
+     * 
+     */
+    @Import(name="effectiveRoutes")
+    private @Nullable Output<List<NetworkEffectiveRouteArgs>> effectiveRoutes;
+
+    /**
+     * @return Effective routes applied to this network (read-only).
+     * 
+     */
+    public Optional<Output<List<NetworkEffectiveRouteArgs>>> effectiveRoutes() {
+        return Optional.ofNullable(this.effectiveRoutes);
+    }
 
     /**
      * IP subnet within the network. Network must have exactly one IP subnet.
@@ -110,6 +127,7 @@ public final class NetworkState extends com.pulumi.resources.ResourceArgs {
     private NetworkState() {}
 
     private NetworkState(NetworkState $) {
+        this.effectiveRoutes = $.effectiveRoutes;
         this.ipNetwork = $.ipNetwork;
         this.labels = $.labels;
         this.name = $.name;
@@ -134,6 +152,37 @@ public final class NetworkState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(NetworkState defaults) {
             $ = new NetworkState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param effectiveRoutes Effective routes applied to this network (read-only).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder effectiveRoutes(@Nullable Output<List<NetworkEffectiveRouteArgs>> effectiveRoutes) {
+            $.effectiveRoutes = effectiveRoutes;
+            return this;
+        }
+
+        /**
+         * @param effectiveRoutes Effective routes applied to this network (read-only).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder effectiveRoutes(List<NetworkEffectiveRouteArgs> effectiveRoutes) {
+            return effectiveRoutes(Output.of(effectiveRoutes));
+        }
+
+        /**
+         * @param effectiveRoutes Effective routes applied to this network (read-only).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder effectiveRoutes(NetworkEffectiveRouteArgs... effectiveRoutes) {
+            return effectiveRoutes(List.of(effectiveRoutes));
         }
 
         /**

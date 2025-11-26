@@ -6,6 +6,7 @@ package com.pulumi.upcloud.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.upcloud.inputs.NetworkIpNetworkDhcpEffectiveRouteArgs;
 import com.pulumi.upcloud.inputs.NetworkIpNetworkDhcpRoutesConfigurationArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -80,6 +81,21 @@ public final class NetworkIpNetworkArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * Routes provided to DHCP clients in this subnet (read-only).
+     * 
+     */
+    @Import(name="dhcpEffectiveRoutes")
+    private @Nullable Output<List<NetworkIpNetworkDhcpEffectiveRouteArgs>> dhcpEffectiveRoutes;
+
+    /**
+     * @return Routes provided to DHCP clients in this subnet (read-only).
+     * 
+     */
+    public Optional<Output<List<NetworkIpNetworkDhcpEffectiveRouteArgs>>> dhcpEffectiveRoutes() {
+        return Optional.ofNullable(this.dhcpEffectiveRoutes);
+    }
+
+    /**
      * The additional DHCP classless static routes given by DHCP
      * 
      */
@@ -146,6 +162,7 @@ public final class NetworkIpNetworkArgs extends com.pulumi.resources.ResourceArg
         this.dhcp = $.dhcp;
         this.dhcpDefaultRoute = $.dhcpDefaultRoute;
         this.dhcpDns = $.dhcpDns;
+        this.dhcpEffectiveRoutes = $.dhcpEffectiveRoutes;
         this.dhcpRoutes = $.dhcpRoutes;
         this.dhcpRoutesConfiguration = $.dhcpRoutesConfiguration;
         this.family = $.family;
@@ -262,6 +279,37 @@ public final class NetworkIpNetworkArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder dhcpDns(String... dhcpDns) {
             return dhcpDns(List.of(dhcpDns));
+        }
+
+        /**
+         * @param dhcpEffectiveRoutes Routes provided to DHCP clients in this subnet (read-only).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dhcpEffectiveRoutes(@Nullable Output<List<NetworkIpNetworkDhcpEffectiveRouteArgs>> dhcpEffectiveRoutes) {
+            $.dhcpEffectiveRoutes = dhcpEffectiveRoutes;
+            return this;
+        }
+
+        /**
+         * @param dhcpEffectiveRoutes Routes provided to DHCP clients in this subnet (read-only).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dhcpEffectiveRoutes(List<NetworkIpNetworkDhcpEffectiveRouteArgs> dhcpEffectiveRoutes) {
+            return dhcpEffectiveRoutes(Output.of(dhcpEffectiveRoutes));
+        }
+
+        /**
+         * @param dhcpEffectiveRoutes Routes provided to DHCP clients in this subnet (read-only).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dhcpEffectiveRoutes(NetworkIpNetworkDhcpEffectiveRouteArgs... dhcpEffectiveRoutes) {
+            return dhcpEffectiveRoutes(List.of(dhcpEffectiveRoutes));
         }
 
         /**

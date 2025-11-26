@@ -3298,6 +3298,29 @@ export interface ManagedObjectStorageNetwork {
     uuid?: string;
 }
 
+export interface NetworkEffectiveRoute {
+    /**
+     * Next hop address for this route.
+     */
+    nexthop: string;
+    /**
+     * Destination CIDR of the route.
+     */
+    route: string;
+    /**
+     * Origin of the route (e.g., static-route, router-connected-networks).
+     */
+    source: string;
+    /**
+     * UUID of the source resource that provided this route, if applicable.
+     */
+    sourceResourceId: string;
+    /**
+     * Route type (service or user).
+     */
+    type: string;
+}
+
 export interface NetworkIpNetwork {
     /**
      * The CIDR range of the subnet
@@ -3316,6 +3339,10 @@ export interface NetworkIpNetwork {
      */
     dhcpDns: string[];
     /**
+     * Routes provided to DHCP clients in this subnet (read-only).
+     */
+    dhcpEffectiveRoutes: outputs.NetworkIpNetworkDhcpEffectiveRoute[];
+    /**
      * The additional DHCP classless static routes given by DHCP
      */
     dhcpRoutes: string[];
@@ -3331,6 +3358,21 @@ export interface NetworkIpNetwork {
      * Gateway address given by DHCP
      */
     gateway: string;
+}
+
+export interface NetworkIpNetworkDhcpEffectiveRoute {
+    /**
+     * Whether the route was auto-populated by DHCP.
+     */
+    autoPopulated: boolean;
+    /**
+     * Next hop address for this DHCP route.
+     */
+    nexthop: string;
+    /**
+     * Destination prefix (CIDR) of the DHCP route.
+     */
+    route: string;
 }
 
 export interface NetworkIpNetworkDhcpRoutesConfiguration {

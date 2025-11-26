@@ -31,6 +31,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly ImmutableArray<string> DhcpDns;
         /// <summary>
+        /// Routes provided to DHCP clients in this subnet (read-only).
+        /// </summary>
+        public readonly ImmutableArray<Outputs.NetworkIpNetworkDhcpEffectiveRoute> DhcpEffectiveRoutes;
+        /// <summary>
         /// The additional DHCP classless static routes given by DHCP
         /// </summary>
         public readonly ImmutableArray<string> DhcpRoutes;
@@ -57,6 +61,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             ImmutableArray<string> dhcpDns,
 
+            ImmutableArray<Outputs.NetworkIpNetworkDhcpEffectiveRoute> dhcpEffectiveRoutes,
+
             ImmutableArray<string> dhcpRoutes,
 
             Outputs.NetworkIpNetworkDhcpRoutesConfiguration? dhcpRoutesConfiguration,
@@ -69,6 +75,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             Dhcp = dhcp;
             DhcpDefaultRoute = dhcpDefaultRoute;
             DhcpDns = dhcpDns;
+            DhcpEffectiveRoutes = dhcpEffectiveRoutes;
             DhcpRoutes = dhcpRoutes;
             DhcpRoutesConfiguration = dhcpRoutesConfiguration;
             Family = family;
