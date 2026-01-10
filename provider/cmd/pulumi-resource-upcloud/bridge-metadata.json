@@ -6,18 +6,14 @@
                 "fields": {
                     "network": {
                         "maxItemsOne": false
-                    },
-                    "share": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "acl": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
                     }
                 }
+            },
+            "upcloud_file_storage_share": {
+                "current": "upcloud:index/fileStorageShare:FileStorageShare"
+            },
+            "upcloud_file_storage_share_acl": {
+                "current": "upcloud:index/fileStorageShareAcl:FileStorageShareAcl"
             },
             "upcloud_firewall_rules": {
                 "current": "upcloud:index/serverFirewallRules:ServerFirewallRules",
@@ -971,6 +967,8 @@
     "mux": {
         "resources": {
             "upcloud:index/fileStorage:FileStorage": 1,
+            "upcloud:index/fileStorageShare:FileStorageShare": 1,
+            "upcloud:index/fileStorageShareAcl:FileStorageShareAcl": 1,
             "upcloud:index/floatingIpAddress:FloatingIpAddress": 1,
             "upcloud:index/gateway:Gateway": 0,
             "upcloud:index/gatewayConnection:GatewayConnection": 0,
@@ -989,11 +987,11 @@
             "upcloud:index/loadbalancerResolver:LoadbalancerResolver": 1,
             "upcloud:index/loadbalancerStaticBackendMember:LoadbalancerStaticBackendMember": 1,
             "upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase": 0,
-            "upcloud:index/managedDatabaseMysql:ManagedDatabaseMysql": 0,
-            "upcloud:index/managedDatabaseOpensearch:ManagedDatabaseOpensearch": 0,
-            "upcloud:index/managedDatabasePostgresql:ManagedDatabasePostgresql": 0,
+            "upcloud:index/managedDatabaseMysql:ManagedDatabaseMysql": 1,
+            "upcloud:index/managedDatabaseOpensearch:ManagedDatabaseOpensearch": 1,
+            "upcloud:index/managedDatabasePostgresql:ManagedDatabasePostgresql": 1,
             "upcloud:index/managedDatabaseUser:ManagedDatabaseUser": 0,
-            "upcloud:index/managedDatabaseValkey:ManagedDatabaseValkey": 0,
+            "upcloud:index/managedDatabaseValkey:ManagedDatabaseValkey": 1,
             "upcloud:index/managedObjectStorage:ManagedObjectStorage": 1,
             "upcloud:index/managedObjectStorageBucket:ManagedObjectStorageBucket": 1,
             "upcloud:index/managedObjectStorageCustomDomain:ManagedObjectStorageCustomDomain": 1,
