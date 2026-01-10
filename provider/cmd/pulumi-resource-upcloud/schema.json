@@ -125,47 +125,6 @@
                 }
             }
         },
-        "upcloud:index/FileStorageShare:FileStorageShare": {
-            "properties": {
-                "acls": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/upcloud:index/FileStorageShareAcl:FileStorageShareAcl"
-                    },
-                    "description": "Access control entries (1–50).\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Unique name of the share (1–64 chars).\n"
-                },
-                "path": {
-                    "type": "string",
-                    "description": "Absolute path exported by the share (e.g. `/public`).\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "path"
-            ]
-        },
-        "upcloud:index/FileStorageShareAcl:FileStorageShareAcl": {
-            "properties": {
-                "permission": {
-                    "type": "string",
-                    "description": "Access level: 'ro' or 'rw'.\n"
-                },
-                "target": {
-                    "type": "string",
-                    "description": "Target IP/CIDR or '*'.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "permission",
-                "target"
-            ]
-        },
         "upcloud:index/GatewayAddress:GatewayAddress": {
             "properties": {
                 "address": {
@@ -1606,7 +1565,7 @@
             "properties": {
                 "component": {
                     "type": "string",
-                    "description": "Type of the component\n"
+                    "description": "Component name.\n"
                 },
                 "host": {
                     "type": "string",
@@ -1677,7 +1636,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "State of the node\n"
+                    "description": "Current state of the node\n"
                 }
             },
             "type": "object",
@@ -1696,13 +1655,11 @@
                 "adminPassword": {
                     "type": "string",
                     "description": "Custom password for admin user. Defaults to random string. This must be set only when a new service is being created.\n",
-                    "secret": true,
-                    "willReplaceOnChanges": true
+                    "secret": true
                 },
                 "adminUsername": {
                     "type": "string",
-                    "description": "Custom username for admin user. This must be set only when a new service is being created.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Custom username for admin user. This must be set only when a new service is being created.\n"
                 },
                 "automaticUtilityNetworkIpFilter": {
                     "type": "boolean",
@@ -1878,6 +1835,7 @@
                     "requiredOutputs": [
                         "adminPassword",
                         "adminUsername",
+                        "automaticUtilityNetworkIpFilter",
                         "backupHour",
                         "backupMinute",
                         "binlogRetentionPeriod",
@@ -1904,14 +1862,14 @@
                         "longQueryTime",
                         "maxAllowedPacket",
                         "maxHeapTableSize",
-                        "migration",
-                        "mysqlIncrementalBackup",
                         "netBufferLength",
                         "netReadTimeout",
                         "netWriteTimeout",
+                        "publicAccess",
                         "serviceLog",
                         "slowQueryLog",
                         "sortBufferSize",
+                        "sqlMode",
                         "sqlRequirePrimaryKey",
                         "tmpTableSize",
                         "version",
@@ -1925,6 +1883,10 @@
                 "dbname": {
                     "type": "string",
                     "description": "Database name for bootstrapping the initial connection.\n"
+                },
+                "dumpTool": {
+                    "type": "string",
+                    "description": "MySQL migration dump tool. Experimental! Tool to use for database dump and restore during migration. Default: mysqldump.\n"
                 },
                 "host": {
                     "type": "string",
@@ -1951,6 +1913,10 @@
                     "type": "integer",
                     "description": "Port number of the server where to migrate data from.\n"
                 },
+                "reestablishReplication": {
+                    "type": "boolean",
+                    "description": "Skip dump-restore part and start replication.\n"
+                },
                 "ssl": {
                     "type": "boolean",
                     "description": "The server where to migrate data from is secured with SSL.\n"
@@ -1965,12 +1931,14 @@
                 "nodejs": {
                     "requiredOutputs": [
                         "dbname",
+                        "dumpTool",
                         "host",
                         "ignoreDbs",
                         "ignoreRoles",
                         "method",
                         "password",
                         "port",
+                        "reestablishReplication",
                         "ssl",
                         "username"
                     ]
@@ -2002,7 +1970,7 @@
             "properties": {
                 "component": {
                     "type": "string",
-                    "description": "Type of the component\n"
+                    "description": "Component name.\n"
                 },
                 "host": {
                     "type": "string",
@@ -2073,7 +2041,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "State of the node\n"
+                    "description": "Current state of the node\n"
                 }
             },
             "type": "object",
@@ -2288,6 +2256,18 @@
                     "type": "integer",
                     "description": "Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.\n"
                 },
+                "mlCommonsModelAccessControlEnabled": {
+                    "type": "boolean",
+                    "description": "plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.\n"
+                },
+                "mlCommonsNativeMemoryThreshold": {
+                    "type": "integer",
+                    "description": "plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.\n"
+                },
+                "mlCommonsOnlyRunOnMlNode": {
+                    "type": "boolean",
+                    "description": "plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.\n"
+                },
                 "nodeSearchCacheSize": {
                     "type": "string",
                     "description": "The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.\n"
@@ -2408,17 +2388,14 @@
                     "requiredOutputs": [
                         "actionAutoCreateIndexEnabled",
                         "actionDestructiveRequiresName",
-                        "authFailureListeners",
+                        "automaticUtilityNetworkIpFilter",
                         "clusterFilecacheRemoteDataRatio",
                         "clusterMaxShardsPerNode",
-                        "clusterRemoteStore",
                         "clusterRoutingAllocationBalancePreferPrimary",
                         "clusterRoutingAllocationNodeConcurrentRecoveries",
-                        "clusterSearchRequestSlowlog",
                         "customDomain",
                         "customKeystores",
                         "customRepos",
-                        "diskWatermarks",
                         "elasticsearchVersion",
                         "emailSenderName",
                         "emailSenderPassword",
@@ -2431,8 +2408,6 @@
                         "httpMaxHeaderSize",
                         "httpMaxInitialLineLength",
                         "indexPatterns",
-                        "indexRollup",
-                        "indexTemplate",
                         "indicesFielddataCacheSize",
                         "indicesMemoryIndexBufferSize",
                         "indicesMemoryMaxIndexBufferSize",
@@ -2448,24 +2423,20 @@
                         "ismHistoryMaxDocs",
                         "ismHistoryRolloverCheckPeriod",
                         "ismHistoryRolloverRetentionPeriod",
-                        "jwt",
                         "keepIndexRefreshInterval",
                         "knnMemoryCircuitBreakerEnabled",
                         "knnMemoryCircuitBreakerLimit",
+                        "mlCommonsModelAccessControlEnabled",
+                        "mlCommonsNativeMemoryThreshold",
+                        "mlCommonsOnlyRunOnMlNode",
                         "nodeSearchCacheSize",
-                        "openid",
-                        "opensearchDashboards",
                         "overrideMainResponseVersion",
                         "pluginsAlertingFilterByBackendRoles",
+                        "publicAccess",
                         "reindexRemoteWhitelists",
-                        "remoteStore",
-                        "saml",
-                        "searchBackpressure",
-                        "searchInsightsTopQueries",
+                        "scriptMaxCompilationsRate",
                         "searchMaxBuckets",
-                        "segrep",
                         "serviceLog",
-                        "shardIndexingPressure",
                         "threadPoolAnalyzeQueueSize",
                         "threadPoolAnalyzeSize",
                         "threadPoolForceMergeSize",
@@ -2488,14 +2459,7 @@
                     "$ref": "#/types/upcloud:index/ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting:ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting"
                 }
             },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "internalAuthenticationBackendLimiting"
-                    ]
-                }
-            }
+            "type": "object"
         },
         "upcloud:index/ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting:ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting": {
             "properties": {
@@ -2588,8 +2552,7 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "level",
-                        "threshold"
+                        "level"
                     ]
                 }
             }
@@ -2613,7 +2576,17 @@
                     "description": "Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.\n"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "debug",
+                        "info",
+                        "trace",
+                        "warn"
+                    ]
+                }
+            }
         },
         "upcloud:index/ManagedDatabaseOpensearchPropertiesDiskWatermarks:ManagedDatabaseOpensearchPropertiesDiskWatermarks": {
             "properties": {
@@ -2816,6 +2789,7 @@
                     "requiredOutputs": [
                         "clientId",
                         "clientSecret",
+                        "connectUrl",
                         "enabled",
                         "header",
                         "jwtHeader",
@@ -2960,10 +2934,7 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "mode",
-                        "nodeDuress",
-                        "searchShardTask",
-                        "searchTask"
+                        "mode"
                     ]
                 }
             }
@@ -3121,16 +3092,7 @@
                     "description": "Top N queries monitoring by memory.\n"
                 }
             },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "cpu",
-                        "latency",
-                        "memory"
-                    ]
-                }
-            }
+            "type": "object"
         },
         "upcloud:index/ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu:ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu": {
             "properties": {
@@ -3151,7 +3113,9 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "topNSize"
+                        "enabled",
+                        "topNSize",
+                        "windowSize"
                     ]
                 }
             }
@@ -3175,7 +3139,9 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "topNSize"
+                        "enabled",
+                        "topNSize",
+                        "windowSize"
                     ]
                 }
             }
@@ -3199,7 +3165,9 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "topNSize"
+                        "enabled",
+                        "topNSize",
+                        "windowSize"
                     ]
                 }
             }
@@ -3259,9 +3227,7 @@
                 "nodejs": {
                     "requiredOutputs": [
                         "enabled",
-                        "enforced",
-                        "operatingFactor",
-                        "primaryParameter"
+                        "enforced"
                     ]
                 }
             }
@@ -3301,15 +3267,7 @@
                     "$ref": "#/types/upcloud:index/ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard:ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard"
                 }
             },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "node",
-                        "shard"
-                    ]
-                }
-            }
+            "type": "object"
         },
         "upcloud:index/ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode:ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode": {
             "properties": {
@@ -3347,7 +3305,7 @@
             "properties": {
                 "component": {
                     "type": "string",
-                    "description": "Type of the component\n"
+                    "description": "Component name.\n"
                 },
                 "host": {
                     "type": "string",
@@ -3418,7 +3376,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "State of the node\n"
+                    "description": "Current state of the node\n"
                 }
             },
             "type": "object",
@@ -3437,13 +3395,11 @@
                 "adminPassword": {
                     "type": "string",
                     "description": "Custom password for admin user. Defaults to random string. This must be set only when a new service is being created.\n",
-                    "secret": true,
-                    "willReplaceOnChanges": true
+                    "secret": true
                 },
                 "adminUsername": {
                     "type": "string",
-                    "description": "Custom username for admin user. This must be set only when a new service is being created.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Custom username for admin user. This must be set only when a new service is being created.\n"
                 },
                 "automaticUtilityNetworkIpFilter": {
                     "type": "boolean",
@@ -3516,6 +3472,10 @@
                 "defaultToastCompression": {
                     "type": "string",
                     "description": "Specifies the default TOAST compression method for values of compressible columns. The default is \u003cspan pulumi-lang-nodejs=\"`lz4`\" pulumi-lang-dotnet=\"`Lz4`\" pulumi-lang-go=\"`lz4`\" pulumi-lang-python=\"`lz4`\" pulumi-lang-yaml=\"`lz4`\" pulumi-lang-java=\"`lz4`\"\u003e`lz4`\u003c/span\u003e. Only available for PostgreSQL 14+.\n"
+                },
+                "enableHaReplicaDns": {
+                    "type": "boolean",
+                    "description": "Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.\n"
                 },
                 "idleInTransactionSessionTimeout": {
                     "type": "integer",
@@ -3756,6 +3716,7 @@
                     "requiredOutputs": [
                         "adminPassword",
                         "adminUsername",
+                        "automaticUtilityNetworkIpFilter",
                         "autovacuumAnalyzeScaleFactor",
                         "autovacuumAnalyzeThreshold",
                         "autovacuumFreezeMaxAge",
@@ -3773,6 +3734,7 @@
                         "bgwriterLruMultiplier",
                         "deadlockTimeout",
                         "defaultToastCompression",
+                        "enableHaReplicaDns",
                         "idleInTransactionSessionTimeout",
                         "ioCombineLimit",
                         "ioMaxCombineLimit",
@@ -3802,22 +3764,20 @@
                         "maxSyncWorkersPerSubscription",
                         "maxWalSenders",
                         "maxWorkerProcesses",
-                        "migration",
                         "nodeCount",
                         "passwordEncryption",
                         "pgPartmanBgwInterval",
                         "pgPartmanBgwRole",
+                        "pgStatMonitorEnable",
                         "pgStatMonitorPgsmEnableQueryPlan",
                         "pgStatMonitorPgsmMaxBuckets",
                         "pgStatStatementsTrack",
-                        "pgaudit",
-                        "pgbouncer",
-                        "pglookout",
+                        "publicAccess",
                         "serviceLog",
                         "sharedBuffersPercentage",
                         "synchronousReplication",
                         "tempFileLimit",
-                        "timescaledb",
+                        "timezone",
                         "trackActivityQuerySize",
                         "trackCommitTimestamp",
                         "trackFunctions",
@@ -4134,7 +4094,7 @@
             "properties": {
                 "component": {
                     "type": "string",
-                    "description": "Type of the component\n"
+                    "description": "Component name.\n"
                 },
                 "host": {
                     "type": "string",
@@ -4205,7 +4165,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "State of the node\n"
+                    "description": "Current state of the node\n"
                 }
             },
             "type": "object",
@@ -4309,10 +4269,12 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
+                        "automaticUtilityNetworkIpFilter",
                         "backupHour",
                         "backupMinute",
+                        "frequentSnapshots",
                         "ipFilters",
-                        "migration",
+                        "publicAccess",
                         "serviceLog",
                         "valkeyAclChannelsDefault",
                         "valkeyActiveExpireEffort",
@@ -4320,9 +4282,11 @@
                         "valkeyLfuDecayTime",
                         "valkeyLfuLogFactor",
                         "valkeyMaxmemoryPolicy",
+                        "valkeyNotifyKeyspaceEvents",
                         "valkeyNumberOfDatabases",
                         "valkeyPersistence",
                         "valkeyPubsubClientOutputBufferLimit",
+                        "valkeySsl",
                         "valkeyTimeout"
                     ]
                 }
@@ -5836,7 +5800,7 @@
     },
     "resources": {
         "upcloud:index/fileStorage:FileStorage": {
-            "description": "Resource for managing UpCloud file storages (EXPERIMENTAL)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\n// Create network for the File Storage\nconst _this = new upcloud.Network(\"this\", {\n    name: \"file-storage-net-test\",\n    zone: \"fi-hel2\",\n    ipNetwork: {\n        address: \"172.16.8.0/24\",\n        dhcp: true,\n        family: \"IPv4\",\n    },\n});\nconst example = new upcloud.FileStorage(\"example\", {\n    name: \"example-file-storage-test\",\n    size: 250,\n    zone: \"fi-hel2\",\n    configuredStatus: \"stopped\",\n    labels: {\n        environment: \"staging\",\n        customer: \"example-customer\",\n    },\n    shares: [{\n        name: \"write-to-project\",\n        path: \"/project\",\n        acls: [{\n            target: \"172.16.8.12\",\n            permission: \"rw\",\n        }],\n    }],\n    networks: [{\n        family: \"IPv4\",\n        name: \"example-private-net\",\n        uuid: _this.id,\n        ipAddress: \"172.16.8.11\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# Create network for the File Storage\nthis = upcloud.Network(\"this\",\n    name=\"file-storage-net-test\",\n    zone=\"fi-hel2\",\n    ip_network={\n        \"address\": \"172.16.8.0/24\",\n        \"dhcp\": True,\n        \"family\": \"IPv4\",\n    })\nexample = upcloud.FileStorage(\"example\",\n    name=\"example-file-storage-test\",\n    size=250,\n    zone=\"fi-hel2\",\n    configured_status=\"stopped\",\n    labels={\n        \"environment\": \"staging\",\n        \"customer\": \"example-customer\",\n    },\n    shares=[{\n        \"name\": \"write-to-project\",\n        \"path\": \"/project\",\n        \"acls\": [{\n            \"target\": \"172.16.8.12\",\n            \"permission\": \"rw\",\n        }],\n    }],\n    networks=[{\n        \"family\": \"IPv4\",\n        \"name\": \"example-private-net\",\n        \"uuid\": this.id,\n        \"ip_address\": \"172.16.8.11\",\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create network for the File Storage\n    var @this = new UpCloud.Network(\"this\", new()\n    {\n        Name = \"file-storage-net-test\",\n        Zone = \"fi-hel2\",\n        IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs\n        {\n            Address = \"172.16.8.0/24\",\n            Dhcp = true,\n            Family = \"IPv4\",\n        },\n    });\n\n    var example = new UpCloud.FileStorage(\"example\", new()\n    {\n        Name = \"example-file-storage-test\",\n        Size = 250,\n        Zone = \"fi-hel2\",\n        ConfiguredStatus = \"stopped\",\n        Labels = \n        {\n            { \"environment\", \"staging\" },\n            { \"customer\", \"example-customer\" },\n        },\n        Shares = new[]\n        {\n            new UpCloud.Inputs.FileStorageShareArgs\n            {\n                Name = \"write-to-project\",\n                Path = \"/project\",\n                Acls = new[]\n                {\n                    new UpCloud.Inputs.FileStorageShareAclArgs\n                    {\n                        Target = \"172.16.8.12\",\n                        Permission = \"rw\",\n                    },\n                },\n            },\n        },\n        Networks = new[]\n        {\n            new UpCloud.Inputs.FileStorageNetworkArgs\n            {\n                Family = \"IPv4\",\n                Name = \"example-private-net\",\n                Uuid = @this.Id,\n                IpAddress = \"172.16.8.11\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create network for the File Storage\n\t\tthis, err := upcloud.NewNetwork(ctx, \"this\", \u0026upcloud.NetworkArgs{\n\t\t\tName: pulumi.String(\"file-storage-net-test\"),\n\t\t\tZone: pulumi.String(\"fi-hel2\"),\n\t\t\tIpNetwork: \u0026upcloud.NetworkIpNetworkArgs{\n\t\t\t\tAddress: pulumi.String(\"172.16.8.0/24\"),\n\t\t\t\tDhcp:    pulumi.Bool(true),\n\t\t\t\tFamily:  pulumi.String(\"IPv4\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewFileStorage(ctx, \"example\", \u0026upcloud.FileStorageArgs{\n\t\t\tName:             pulumi.String(\"example-file-storage-test\"),\n\t\t\tSize:             pulumi.Int(250),\n\t\t\tZone:             pulumi.String(\"fi-hel2\"),\n\t\t\tConfiguredStatus: pulumi.String(\"stopped\"),\n\t\t\tLabels: pulumi.StringMap{\n\t\t\t\t\"environment\": pulumi.String(\"staging\"),\n\t\t\t\t\"customer\":    pulumi.String(\"example-customer\"),\n\t\t\t},\n\t\t\tShares: upcloud.FileStorageShareArray{\n\t\t\t\t\u0026upcloud.FileStorageShareArgs{\n\t\t\t\t\tName: pulumi.String(\"write-to-project\"),\n\t\t\t\t\tPath: pulumi.String(\"/project\"),\n\t\t\t\t\tAcls: upcloud.FileStorageShareAclArray{\n\t\t\t\t\t\t\u0026upcloud.FileStorageShareAclArgs{\n\t\t\t\t\t\t\tTarget:     pulumi.String(\"172.16.8.12\"),\n\t\t\t\t\t\t\tPermission: pulumi.String(\"rw\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tNetworks: upcloud.FileStorageNetworkArray{\n\t\t\t\t\u0026upcloud.FileStorageNetworkArgs{\n\t\t\t\t\tFamily:    pulumi.String(\"IPv4\"),\n\t\t\t\t\tName:      pulumi.String(\"example-private-net\"),\n\t\t\t\t\tUuid:      this.ID(),\n\t\t\t\t\tIpAddress: pulumi.String(\"172.16.8.11\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.Network;\nimport com.pulumi.upcloud.NetworkArgs;\nimport com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;\nimport com.pulumi.upcloud.FileStorage;\nimport com.pulumi.upcloud.FileStorageArgs;\nimport com.pulumi.upcloud.inputs.FileStorageShareArgs;\nimport com.pulumi.upcloud.inputs.FileStorageNetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create network for the File Storage\n        var this_ = new Network(\"this\", NetworkArgs.builder()\n            .name(\"file-storage-net-test\")\n            .zone(\"fi-hel2\")\n            .ipNetwork(NetworkIpNetworkArgs.builder()\n                .address(\"172.16.8.0/24\")\n                .dhcp(true)\n                .family(\"IPv4\")\n                .build())\n            .build());\n\n        var example = new FileStorage(\"example\", FileStorageArgs.builder()\n            .name(\"example-file-storage-test\")\n            .size(250)\n            .zone(\"fi-hel2\")\n            .configuredStatus(\"stopped\")\n            .labels(Map.ofEntries(\n                Map.entry(\"environment\", \"staging\"),\n                Map.entry(\"customer\", \"example-customer\")\n            ))\n            .shares(FileStorageShareArgs.builder()\n                .name(\"write-to-project\")\n                .path(\"/project\")\n                .acls(FileStorageShareAclArgs.builder()\n                    .target(\"172.16.8.12\")\n                    .permission(\"rw\")\n                    .build())\n                .build())\n            .networks(FileStorageNetworkArgs.builder()\n                .family(\"IPv4\")\n                .name(\"example-private-net\")\n                .uuid(this_.id())\n                .ipAddress(\"172.16.8.11\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create network for the File Storage\n  this:\n    type: upcloud:Network\n    properties:\n      name: file-storage-net-test\n      zone: fi-hel2\n      ipNetwork:\n        address: 172.16.8.0/24\n        dhcp: true\n        family: IPv4\n  example:\n    type: upcloud:FileStorage\n    properties:\n      name: example-file-storage-test\n      size: 250\n      zone: fi-hel2\n      configuredStatus: stopped\n      labels:\n        environment: staging\n        customer: example-customer\n      shares:\n        - name: write-to-project\n          path: /project\n          acls:\n            - target: 172.16.8.12\n              permission: rw\n      networks:\n        - family: IPv4\n          name: example-private-net\n          uuid: ${this.id}\n          ipAddress: 172.16.8.11\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Resource for managing UpCloud file storages (EXPERIMENTAL)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\n// Create network for the File Storage\nconst _this = new upcloud.Network(\"this\", {\n    name: \"file-storage-net-test\",\n    zone: \"fi-hel2\",\n    ipNetwork: {\n        address: \"172.16.8.0/24\",\n        dhcp: true,\n        family: \"IPv4\",\n    },\n});\nconst example = new upcloud.FileStorage(\"example\", {\n    name: \"example-file-storage-test\",\n    size: 250,\n    zone: \"fi-hel2\",\n    configuredStatus: \"stopped\",\n    labels: {\n        environment: \"staging\",\n        customer: \"example-customer\",\n    },\n    networks: [{\n        family: \"IPv4\",\n        name: \"example-private-net\",\n        uuid: _this.id,\n        ipAddress: \"172.16.8.11\",\n    }],\n});\nconst exampleFileStorageShare = new upcloud.FileStorageShare(\"example\", {\n    fileStorage: example.id,\n    name: \"write-to-project\",\n    path: \"/project\",\n});\nconst exampleFileStorageShareAcl = new upcloud.FileStorageShareAcl(\"example\", {\n    fileStorage: example.id,\n    shareName: exampleFileStorageShare.name,\n    name: \"acl-for-project\",\n    target: \"172.16.8.12\",\n    permission: \"rw\",\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# Create network for the File Storage\nthis = upcloud.Network(\"this\",\n    name=\"file-storage-net-test\",\n    zone=\"fi-hel2\",\n    ip_network={\n        \"address\": \"172.16.8.0/24\",\n        \"dhcp\": True,\n        \"family\": \"IPv4\",\n    })\nexample = upcloud.FileStorage(\"example\",\n    name=\"example-file-storage-test\",\n    size=250,\n    zone=\"fi-hel2\",\n    configured_status=\"stopped\",\n    labels={\n        \"environment\": \"staging\",\n        \"customer\": \"example-customer\",\n    },\n    networks=[{\n        \"family\": \"IPv4\",\n        \"name\": \"example-private-net\",\n        \"uuid\": this.id,\n        \"ip_address\": \"172.16.8.11\",\n    }])\nexample_file_storage_share = upcloud.FileStorageShare(\"example\",\n    file_storage=example.id,\n    name=\"write-to-project\",\n    path=\"/project\")\nexample_file_storage_share_acl = upcloud.FileStorageShareAcl(\"example\",\n    file_storage=example.id,\n    share_name=example_file_storage_share.name,\n    name=\"acl-for-project\",\n    target=\"172.16.8.12\",\n    permission=\"rw\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create network for the File Storage\n    var @this = new UpCloud.Network(\"this\", new()\n    {\n        Name = \"file-storage-net-test\",\n        Zone = \"fi-hel2\",\n        IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs\n        {\n            Address = \"172.16.8.0/24\",\n            Dhcp = true,\n            Family = \"IPv4\",\n        },\n    });\n\n    var example = new UpCloud.FileStorage(\"example\", new()\n    {\n        Name = \"example-file-storage-test\",\n        Size = 250,\n        Zone = \"fi-hel2\",\n        ConfiguredStatus = \"stopped\",\n        Labels = \n        {\n            { \"environment\", \"staging\" },\n            { \"customer\", \"example-customer\" },\n        },\n        Networks = new[]\n        {\n            new UpCloud.Inputs.FileStorageNetworkArgs\n            {\n                Family = \"IPv4\",\n                Name = \"example-private-net\",\n                Uuid = @this.Id,\n                IpAddress = \"172.16.8.11\",\n            },\n        },\n    });\n\n    var exampleFileStorageShare = new UpCloud.FileStorageShare(\"example\", new()\n    {\n        FileStorage = example.Id,\n        Name = \"write-to-project\",\n        Path = \"/project\",\n    });\n\n    var exampleFileStorageShareAcl = new UpCloud.FileStorageShareAcl(\"example\", new()\n    {\n        FileStorage = example.Id,\n        ShareName = exampleFileStorageShare.Name,\n        Name = \"acl-for-project\",\n        Target = \"172.16.8.12\",\n        Permission = \"rw\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create network for the File Storage\n\t\tthis, err := upcloud.NewNetwork(ctx, \"this\", \u0026upcloud.NetworkArgs{\n\t\t\tName: pulumi.String(\"file-storage-net-test\"),\n\t\t\tZone: pulumi.String(\"fi-hel2\"),\n\t\t\tIpNetwork: \u0026upcloud.NetworkIpNetworkArgs{\n\t\t\t\tAddress: pulumi.String(\"172.16.8.0/24\"),\n\t\t\t\tDhcp:    pulumi.Bool(true),\n\t\t\t\tFamily:  pulumi.String(\"IPv4\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample, err := upcloud.NewFileStorage(ctx, \"example\", \u0026upcloud.FileStorageArgs{\n\t\t\tName:             pulumi.String(\"example-file-storage-test\"),\n\t\t\tSize:             pulumi.Int(250),\n\t\t\tZone:             pulumi.String(\"fi-hel2\"),\n\t\t\tConfiguredStatus: pulumi.String(\"stopped\"),\n\t\t\tLabels: pulumi.StringMap{\n\t\t\t\t\"environment\": pulumi.String(\"staging\"),\n\t\t\t\t\"customer\":    pulumi.String(\"example-customer\"),\n\t\t\t},\n\t\t\tNetworks: upcloud.FileStorageNetworkArray{\n\t\t\t\t\u0026upcloud.FileStorageNetworkArgs{\n\t\t\t\t\tFamily:    pulumi.String(\"IPv4\"),\n\t\t\t\t\tName:      pulumi.String(\"example-private-net\"),\n\t\t\t\t\tUuid:      this.ID(),\n\t\t\t\t\tIpAddress: pulumi.String(\"172.16.8.11\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleFileStorageShare, err := upcloud.NewFileStorageShare(ctx, \"example\", \u0026upcloud.FileStorageShareArgs{\n\t\t\tFileStorage: example.ID(),\n\t\t\tName:        pulumi.String(\"write-to-project\"),\n\t\t\tPath:        pulumi.String(\"/project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewFileStorageShareAcl(ctx, \"example\", \u0026upcloud.FileStorageShareAclArgs{\n\t\t\tFileStorage: example.ID(),\n\t\t\tShareName:   exampleFileStorageShare.Name,\n\t\t\tName:        pulumi.String(\"acl-for-project\"),\n\t\t\tTarget:      pulumi.String(\"172.16.8.12\"),\n\t\t\tPermission:  pulumi.String(\"rw\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.Network;\nimport com.pulumi.upcloud.NetworkArgs;\nimport com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;\nimport com.pulumi.upcloud.FileStorage;\nimport com.pulumi.upcloud.FileStorageArgs;\nimport com.pulumi.upcloud.inputs.FileStorageNetworkArgs;\nimport com.pulumi.upcloud.FileStorageShare;\nimport com.pulumi.upcloud.FileStorageShareArgs;\nimport com.pulumi.upcloud.FileStorageShareAcl;\nimport com.pulumi.upcloud.FileStorageShareAclArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create network for the File Storage\n        var this_ = new Network(\"this\", NetworkArgs.builder()\n            .name(\"file-storage-net-test\")\n            .zone(\"fi-hel2\")\n            .ipNetwork(NetworkIpNetworkArgs.builder()\n                .address(\"172.16.8.0/24\")\n                .dhcp(true)\n                .family(\"IPv4\")\n                .build())\n            .build());\n\n        var example = new FileStorage(\"example\", FileStorageArgs.builder()\n            .name(\"example-file-storage-test\")\n            .size(250)\n            .zone(\"fi-hel2\")\n            .configuredStatus(\"stopped\")\n            .labels(Map.ofEntries(\n                Map.entry(\"environment\", \"staging\"),\n                Map.entry(\"customer\", \"example-customer\")\n            ))\n            .networks(FileStorageNetworkArgs.builder()\n                .family(\"IPv4\")\n                .name(\"example-private-net\")\n                .uuid(this_.id())\n                .ipAddress(\"172.16.8.11\")\n                .build())\n            .build());\n\n        var exampleFileStorageShare = new FileStorageShare(\"exampleFileStorageShare\", FileStorageShareArgs.builder()\n            .fileStorage(example.id())\n            .name(\"write-to-project\")\n            .path(\"/project\")\n            .build());\n\n        var exampleFileStorageShareAcl = new FileStorageShareAcl(\"exampleFileStorageShareAcl\", FileStorageShareAclArgs.builder()\n            .fileStorage(example.id())\n            .shareName(exampleFileStorageShare.name())\n            .name(\"acl-for-project\")\n            .target(\"172.16.8.12\")\n            .permission(\"rw\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create network for the File Storage\n  this:\n    type: upcloud:Network\n    properties:\n      name: file-storage-net-test\n      zone: fi-hel2\n      ipNetwork:\n        address: 172.16.8.0/24\n        dhcp: true\n        family: IPv4\n  example:\n    type: upcloud:FileStorage\n    properties:\n      name: example-file-storage-test\n      size: 250\n      zone: fi-hel2\n      configuredStatus: stopped\n      labels:\n        environment: staging\n        customer: example-customer\n      networks:\n        - family: IPv4\n          name: example-private-net\n          uuid: ${this.id}\n          ipAddress: 172.16.8.11\n  exampleFileStorageShare:\n    type: upcloud:FileStorageShare\n    name: example\n    properties:\n      fileStorage: ${example.id}\n      name: write-to-project\n      path: /project\n  exampleFileStorageShareAcl:\n    type: upcloud:FileStorageShareAcl\n    name: example\n    properties:\n      fileStorage: ${example.id}\n      shareName: ${exampleFileStorageShare.name}\n      name: acl-for-project\n      target: 172.16.8.12\n      permission: rw\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "configuredStatus": {
                     "type": "string",
@@ -5859,13 +5823,6 @@
                         "$ref": "#/types/upcloud:index/FileStorageNetwork:FileStorageNetwork"
                     },
                     "description": "Network attached to this file storage (currently supports at most one of these blocks)."
-                },
-                "shares": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/upcloud:index/FileStorageShare:FileStorageShare"
-                    },
-                    "description": "List of shares exported by this file storage."
                 },
                 "size": {
                     "type": "integer",
@@ -5906,13 +5863,6 @@
                     },
                     "description": "Network attached to this file storage (currently supports at most one of these blocks)."
                 },
-                "shares": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/upcloud:index/FileStorageShare:FileStorageShare"
-                    },
-                    "description": "List of shares exported by this file storage."
-                },
                 "size": {
                     "type": "integer",
                     "description": "Size of the file storage in GB."
@@ -5952,13 +5902,6 @@
                         },
                         "description": "Network attached to this file storage (currently supports at most one of these blocks)."
                     },
-                    "shares": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/upcloud:index/FileStorageShare:FileStorageShare"
-                        },
-                        "description": "List of shares exported by this file storage."
-                    },
                     "size": {
                         "type": "integer",
                         "description": "Size of the file storage in GB."
@@ -5966,6 +5909,150 @@
                     "zone": {
                         "type": "string",
                         "description": "Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`."
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "upcloud:index/fileStorageShare:FileStorageShare": {
+            "description": "This resource represents a File Storage service.\n",
+            "properties": {
+                "fileStorage": {
+                    "type": "string",
+                    "description": "UUID of the file storage service."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the share (1–64 chars)."
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Absolute path exported by the share (e.g. `/public`)."
+                }
+            },
+            "required": [
+                "fileStorage",
+                "name",
+                "path"
+            ],
+            "inputProperties": {
+                "fileStorage": {
+                    "type": "string",
+                    "description": "UUID of the file storage service."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the share (1–64 chars)."
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Absolute path exported by the share (e.g. `/public`)."
+                }
+            },
+            "requiredInputs": [
+                "fileStorage",
+                "path"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering FileStorageShare resources.\n",
+                "properties": {
+                    "fileStorage": {
+                        "type": "string",
+                        "description": "UUID of the file storage service."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Unique name of the share (1–64 chars)."
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "Absolute path exported by the share (e.g. `/public`)."
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "upcloud:index/fileStorageShareAcl:FileStorageShareAcl": {
+            "description": "This resource represents a File Storage Share ACL entry.\n",
+            "properties": {
+                "fileStorage": {
+                    "type": "string",
+                    "description": "UUID of the file storage service."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the ACL entry (1–64 chars)."
+                },
+                "permission": {
+                    "type": "string",
+                    "description": "Access level: 'ro' or 'rw'."
+                },
+                "shareName": {
+                    "type": "string",
+                    "description": "Name of the share."
+                },
+                "target": {
+                    "type": "string",
+                    "description": "Target IP/CIDR or '*'."
+                }
+            },
+            "required": [
+                "fileStorage",
+                "name",
+                "permission",
+                "shareName",
+                "target"
+            ],
+            "inputProperties": {
+                "fileStorage": {
+                    "type": "string",
+                    "description": "UUID of the file storage service."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the ACL entry (1–64 chars)."
+                },
+                "permission": {
+                    "type": "string",
+                    "description": "Access level: 'ro' or 'rw'."
+                },
+                "shareName": {
+                    "type": "string",
+                    "description": "Name of the share."
+                },
+                "target": {
+                    "type": "string",
+                    "description": "Target IP/CIDR or '*'."
+                }
+            },
+            "requiredInputs": [
+                "fileStorage",
+                "permission",
+                "shareName",
+                "target"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering FileStorageShareAcl resources.\n",
+                "properties": {
+                    "fileStorage": {
+                        "type": "string",
+                        "description": "UUID of the file storage service."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Unique name of the ACL entry (1–64 chars)."
+                    },
+                    "permission": {
+                        "type": "string",
+                        "description": "Access level: 'ro' or 'rw'."
+                    },
+                    "shareName": {
+                        "type": "string",
+                        "description": "Name of the share."
+                    },
+                    "target": {
+                        "type": "string",
+                        "description": "Target IP/CIDR or '*'."
                     }
                 },
                 "type": "object"
@@ -8291,7 +8378,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "User defined key-value pairs to classify the managed database."
+                    "description": "User defined key-value pairs to classify the database."
                 },
                 "maintenanceWindowDow": {
                     "type": "string",
@@ -8333,7 +8420,7 @@
                 },
                 "properties": {
                     "$ref": "#/types/upcloud:index/ManagedDatabaseMysqlProperties:ManagedDatabaseMysqlProperties",
-                    "description": "Database Engine properties for MySQL"
+                    "description": "Database engine properties."
                 },
                 "serviceHost": {
                     "type": "string",
@@ -8341,7 +8428,7 @@
                 },
                 "servicePassword": {
                     "type": "string",
-                    "description": "Primary username's password to the service instance",
+                    "description": "Primary password to the service instance",
                     "secret": true
                 },
                 "servicePort": {
@@ -8359,7 +8446,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "State of the service"
+                    "description": "The current state of the service"
                 },
                 "terminationProtection": {
                     "type": "boolean",
@@ -8367,11 +8454,11 @@
                 },
                 "title": {
                     "type": "string",
-                    "description": "Title of a managed database instance"
+                    "description": "Title of the managed database instance"
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of the service"
+                    "description": "Type of the managed database instance"
                 },
                 "zone": {
                     "type": "string",
@@ -8381,19 +8468,21 @@
             "required": [
                 "additionalDiskSpaceGib",
                 "components",
+                "labels",
                 "maintenanceWindowDow",
                 "maintenanceWindowTime",
                 "name",
                 "nodeStates",
                 "plan",
+                "powered",
                 "primaryDatabase",
-                "properties",
                 "serviceHost",
                 "servicePassword",
                 "servicePort",
                 "serviceUri",
                 "serviceUsername",
                 "state",
+                "terminationProtection",
                 "title",
                 "type",
                 "zone"
@@ -8408,7 +8497,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "User defined key-value pairs to classify the managed database."
+                    "description": "User defined key-value pairs to classify the database."
                 },
                 "maintenanceWindowDow": {
                     "type": "string",
@@ -8420,8 +8509,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account",
-                    "willReplaceOnChanges": true
+                    "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account"
                 },
                 "networks": {
                     "type": "array",
@@ -8440,7 +8528,7 @@
                 },
                 "properties": {
                     "$ref": "#/types/upcloud:index/ManagedDatabaseMysqlProperties:ManagedDatabaseMysqlProperties",
-                    "description": "Database Engine properties for MySQL"
+                    "description": "Database engine properties."
                 },
                 "terminationProtection": {
                     "type": "boolean",
@@ -8448,7 +8536,7 @@
                 },
                 "title": {
                     "type": "string",
-                    "description": "Title of a managed database instance"
+                    "description": "Title of the managed database instance"
                 },
                 "zone": {
                     "type": "string",
@@ -8479,7 +8567,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "User defined key-value pairs to classify the managed database."
+                        "description": "User defined key-value pairs to classify the database."
                     },
                     "maintenanceWindowDow": {
                         "type": "string",
@@ -8491,8 +8579,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account",
-                        "willReplaceOnChanges": true
+                        "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account"
                     },
                     "networks": {
                         "type": "array",
@@ -8522,7 +8609,7 @@
                     },
                     "properties": {
                         "$ref": "#/types/upcloud:index/ManagedDatabaseMysqlProperties:ManagedDatabaseMysqlProperties",
-                        "description": "Database Engine properties for MySQL"
+                        "description": "Database engine properties."
                     },
                     "serviceHost": {
                         "type": "string",
@@ -8530,7 +8617,7 @@
                     },
                     "servicePassword": {
                         "type": "string",
-                        "description": "Primary username's password to the service instance",
+                        "description": "Primary password to the service instance",
                         "secret": true
                     },
                     "servicePort": {
@@ -8548,7 +8635,7 @@
                     },
                     "state": {
                         "type": "string",
-                        "description": "State of the service"
+                        "description": "The current state of the service"
                     },
                     "terminationProtection": {
                         "type": "boolean",
@@ -8556,11 +8643,11 @@
                     },
                     "title": {
                         "type": "string",
-                        "description": "Title of a managed database instance"
+                        "description": "Title of the managed database instance"
                     },
                     "type": {
                         "type": "string",
-                        "description": "Type of the service"
+                        "description": "Type of the managed database instance"
                     },
                     "zone": {
                         "type": "string",
@@ -8597,7 +8684,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "User defined key-value pairs to classify the managed database."
+                    "description": "User defined key-value pairs to classify the database."
                 },
                 "maintenanceWindowDow": {
                     "type": "string",
@@ -8639,7 +8726,7 @@
                 },
                 "properties": {
                     "$ref": "#/types/upcloud:index/ManagedDatabaseOpensearchProperties:ManagedDatabaseOpensearchProperties",
-                    "description": "Database Engine properties for OpenSearch"
+                    "description": "Database engine properties."
                 },
                 "serviceHost": {
                     "type": "string",
@@ -8647,7 +8734,7 @@
                 },
                 "servicePassword": {
                     "type": "string",
-                    "description": "Primary username's password to the service instance",
+                    "description": "Primary password to the service instance",
                     "secret": true
                 },
                 "servicePort": {
@@ -8665,7 +8752,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "State of the service"
+                    "description": "The current state of the service"
                 },
                 "terminationProtection": {
                     "type": "boolean",
@@ -8673,11 +8760,11 @@
                 },
                 "title": {
                     "type": "string",
-                    "description": "Title of a managed database instance"
+                    "description": "Title of the managed database instance"
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of the service"
+                    "description": "Type of the managed database instance"
                 },
                 "zone": {
                     "type": "string",
@@ -8689,19 +8776,21 @@
                 "additionalDiskSpaceGib",
                 "components",
                 "extendedAccessControl",
+                "labels",
                 "maintenanceWindowDow",
                 "maintenanceWindowTime",
                 "name",
                 "nodeStates",
                 "plan",
+                "powered",
                 "primaryDatabase",
-                "properties",
                 "serviceHost",
                 "servicePassword",
                 "servicePort",
                 "serviceUri",
                 "serviceUsername",
                 "state",
+                "terminationProtection",
                 "title",
                 "type",
                 "zone"
@@ -8724,7 +8813,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "User defined key-value pairs to classify the managed database."
+                    "description": "User defined key-value pairs to classify the database."
                 },
                 "maintenanceWindowDow": {
                     "type": "string",
@@ -8736,8 +8825,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account",
-                    "willReplaceOnChanges": true
+                    "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account"
                 },
                 "networks": {
                     "type": "array",
@@ -8756,7 +8844,7 @@
                 },
                 "properties": {
                     "$ref": "#/types/upcloud:index/ManagedDatabaseOpensearchProperties:ManagedDatabaseOpensearchProperties",
-                    "description": "Database Engine properties for OpenSearch"
+                    "description": "Database engine properties."
                 },
                 "terminationProtection": {
                     "type": "boolean",
@@ -8764,7 +8852,7 @@
                 },
                 "title": {
                     "type": "string",
-                    "description": "Title of a managed database instance"
+                    "description": "Title of the managed database instance"
                 },
                 "zone": {
                     "type": "string",
@@ -8803,7 +8891,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "User defined key-value pairs to classify the managed database."
+                        "description": "User defined key-value pairs to classify the database."
                     },
                     "maintenanceWindowDow": {
                         "type": "string",
@@ -8815,8 +8903,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account",
-                        "willReplaceOnChanges": true
+                        "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account"
                     },
                     "networks": {
                         "type": "array",
@@ -8846,7 +8933,7 @@
                     },
                     "properties": {
                         "$ref": "#/types/upcloud:index/ManagedDatabaseOpensearchProperties:ManagedDatabaseOpensearchProperties",
-                        "description": "Database Engine properties for OpenSearch"
+                        "description": "Database engine properties."
                     },
                     "serviceHost": {
                         "type": "string",
@@ -8854,7 +8941,7 @@
                     },
                     "servicePassword": {
                         "type": "string",
-                        "description": "Primary username's password to the service instance",
+                        "description": "Primary password to the service instance",
                         "secret": true
                     },
                     "servicePort": {
@@ -8872,7 +8959,7 @@
                     },
                     "state": {
                         "type": "string",
-                        "description": "State of the service"
+                        "description": "The current state of the service"
                     },
                     "terminationProtection": {
                         "type": "boolean",
@@ -8880,11 +8967,11 @@
                     },
                     "title": {
                         "type": "string",
-                        "description": "Title of a managed database instance"
+                        "description": "Title of the managed database instance"
                     },
                     "type": {
                         "type": "string",
-                        "description": "Type of the service"
+                        "description": "Type of the managed database instance"
                     },
                     "zone": {
                         "type": "string",
@@ -8913,7 +9000,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "User defined key-value pairs to classify the managed database."
+                    "description": "User defined key-value pairs to classify the database."
                 },
                 "maintenanceWindowDow": {
                     "type": "string",
@@ -8955,7 +9042,7 @@
                 },
                 "properties": {
                     "$ref": "#/types/upcloud:index/ManagedDatabasePostgresqlProperties:ManagedDatabasePostgresqlProperties",
-                    "description": "Database Engine properties for PostgreSQL"
+                    "description": "Database engine properties."
                 },
                 "serviceHost": {
                     "type": "string",
@@ -8963,7 +9050,7 @@
                 },
                 "servicePassword": {
                     "type": "string",
-                    "description": "Primary username's password to the service instance",
+                    "description": "Primary password to the service instance",
                     "secret": true
                 },
                 "servicePort": {
@@ -8985,7 +9072,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "State of the service"
+                    "description": "The current state of the service"
                 },
                 "terminationProtection": {
                     "type": "boolean",
@@ -8993,11 +9080,11 @@
                 },
                 "title": {
                     "type": "string",
-                    "description": "Title of a managed database instance"
+                    "description": "Title of the managed database instance"
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of the service"
+                    "description": "Type of the managed database instance"
                 },
                 "zone": {
                     "type": "string",
@@ -9007,13 +9094,14 @@
             "required": [
                 "additionalDiskSpaceGib",
                 "components",
+                "labels",
                 "maintenanceWindowDow",
                 "maintenanceWindowTime",
                 "name",
                 "nodeStates",
                 "plan",
+                "powered",
                 "primaryDatabase",
-                "properties",
                 "serviceHost",
                 "servicePassword",
                 "servicePort",
@@ -9021,6 +9109,7 @@
                 "serviceUsername",
                 "sslmode",
                 "state",
+                "terminationProtection",
                 "title",
                 "type",
                 "zone"
@@ -9035,7 +9124,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "User defined key-value pairs to classify the managed database."
+                    "description": "User defined key-value pairs to classify the database."
                 },
                 "maintenanceWindowDow": {
                     "type": "string",
@@ -9047,8 +9136,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account",
-                    "willReplaceOnChanges": true
+                    "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account"
                 },
                 "networks": {
                     "type": "array",
@@ -9067,7 +9155,7 @@
                 },
                 "properties": {
                     "$ref": "#/types/upcloud:index/ManagedDatabasePostgresqlProperties:ManagedDatabasePostgresqlProperties",
-                    "description": "Database Engine properties for PostgreSQL"
+                    "description": "Database engine properties."
                 },
                 "terminationProtection": {
                     "type": "boolean",
@@ -9075,7 +9163,7 @@
                 },
                 "title": {
                     "type": "string",
-                    "description": "Title of a managed database instance"
+                    "description": "Title of the managed database instance"
                 },
                 "zone": {
                     "type": "string",
@@ -9106,7 +9194,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "User defined key-value pairs to classify the managed database."
+                        "description": "User defined key-value pairs to classify the database."
                     },
                     "maintenanceWindowDow": {
                         "type": "string",
@@ -9118,8 +9206,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account",
-                        "willReplaceOnChanges": true
+                        "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account"
                     },
                     "networks": {
                         "type": "array",
@@ -9149,7 +9236,7 @@
                     },
                     "properties": {
                         "$ref": "#/types/upcloud:index/ManagedDatabasePostgresqlProperties:ManagedDatabasePostgresqlProperties",
-                        "description": "Database Engine properties for PostgreSQL"
+                        "description": "Database engine properties."
                     },
                     "serviceHost": {
                         "type": "string",
@@ -9157,7 +9244,7 @@
                     },
                     "servicePassword": {
                         "type": "string",
-                        "description": "Primary username's password to the service instance",
+                        "description": "Primary password to the service instance",
                         "secret": true
                     },
                     "servicePort": {
@@ -9179,7 +9266,7 @@
                     },
                     "state": {
                         "type": "string",
-                        "description": "State of the service"
+                        "description": "The current state of the service"
                     },
                     "terminationProtection": {
                         "type": "boolean",
@@ -9187,11 +9274,11 @@
                     },
                     "title": {
                         "type": "string",
-                        "description": "Title of a managed database instance"
+                        "description": "Title of the managed database instance"
                     },
                     "type": {
                         "type": "string",
-                        "description": "Type of the service"
+                        "description": "Type of the managed database instance"
                     },
                     "zone": {
                         "type": "string",
@@ -9342,7 +9429,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "User defined key-value pairs to classify the managed database."
+                    "description": "User defined key-value pairs to classify the database."
                 },
                 "maintenanceWindowDow": {
                     "type": "string",
@@ -9384,7 +9471,7 @@
                 },
                 "properties": {
                     "$ref": "#/types/upcloud:index/ManagedDatabaseValkeyProperties:ManagedDatabaseValkeyProperties",
-                    "description": "Database Engine properties for Valkey"
+                    "description": "Database engine properties."
                 },
                 "serviceHost": {
                     "type": "string",
@@ -9392,7 +9479,7 @@
                 },
                 "servicePassword": {
                     "type": "string",
-                    "description": "Primary username's password to the service instance",
+                    "description": "Primary password to the service instance",
                     "secret": true
                 },
                 "servicePort": {
@@ -9410,7 +9497,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "State of the service"
+                    "description": "The current state of the service"
                 },
                 "terminationProtection": {
                     "type": "boolean",
@@ -9418,11 +9505,11 @@
                 },
                 "title": {
                     "type": "string",
-                    "description": "Title of a managed database instance"
+                    "description": "Title of the managed database instance"
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of the service"
+                    "description": "Type of the managed database instance"
                 },
                 "zone": {
                     "type": "string",
@@ -9432,19 +9519,21 @@
             "required": [
                 "additionalDiskSpaceGib",
                 "components",
+                "labels",
                 "maintenanceWindowDow",
                 "maintenanceWindowTime",
                 "name",
                 "nodeStates",
                 "plan",
+                "powered",
                 "primaryDatabase",
-                "properties",
                 "serviceHost",
                 "servicePassword",
                 "servicePort",
                 "serviceUri",
                 "serviceUsername",
                 "state",
+                "terminationProtection",
                 "title",
                 "type",
                 "zone"
@@ -9459,7 +9548,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "User defined key-value pairs to classify the managed database."
+                    "description": "User defined key-value pairs to classify the database."
                 },
                 "maintenanceWindowDow": {
                     "type": "string",
@@ -9471,8 +9560,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account",
-                    "willReplaceOnChanges": true
+                    "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account"
                 },
                 "networks": {
                     "type": "array",
@@ -9491,7 +9579,7 @@
                 },
                 "properties": {
                     "$ref": "#/types/upcloud:index/ManagedDatabaseValkeyProperties:ManagedDatabaseValkeyProperties",
-                    "description": "Database Engine properties for Valkey"
+                    "description": "Database engine properties."
                 },
                 "terminationProtection": {
                     "type": "boolean",
@@ -9499,7 +9587,7 @@
                 },
                 "title": {
                     "type": "string",
-                    "description": "Title of a managed database instance"
+                    "description": "Title of the managed database instance"
                 },
                 "zone": {
                     "type": "string",
@@ -9530,7 +9618,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "User defined key-value pairs to classify the managed database."
+                        "description": "User defined key-value pairs to classify the database."
                     },
                     "maintenanceWindowDow": {
                         "type": "string",
@@ -9542,8 +9630,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account",
-                        "willReplaceOnChanges": true
+                        "description": "Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account"
                     },
                     "networks": {
                         "type": "array",
@@ -9573,7 +9660,7 @@
                     },
                     "properties": {
                         "$ref": "#/types/upcloud:index/ManagedDatabaseValkeyProperties:ManagedDatabaseValkeyProperties",
-                        "description": "Database Engine properties for Valkey"
+                        "description": "Database engine properties."
                     },
                     "serviceHost": {
                         "type": "string",
@@ -9581,7 +9668,7 @@
                     },
                     "servicePassword": {
                         "type": "string",
-                        "description": "Primary username's password to the service instance",
+                        "description": "Primary password to the service instance",
                         "secret": true
                     },
                     "servicePort": {
@@ -9599,7 +9686,7 @@
                     },
                     "state": {
                         "type": "string",
-                        "description": "State of the service"
+                        "description": "The current state of the service"
                     },
                     "terminationProtection": {
                         "type": "boolean",
@@ -9607,11 +9694,11 @@
                     },
                     "title": {
                         "type": "string",
-                        "description": "Title of a managed database instance"
+                        "description": "Title of the managed database instance"
                     },
                     "type": {
                         "type": "string",
-                        "description": "Type of the service"
+                        "description": "Type of the managed database instance"
                     },
                     "zone": {
                         "type": "string",
@@ -9905,7 +9992,7 @@
                 },
                 "description": {
                     "type": "string",
-                    "description": "Description of the policy."
+                    "description": "Description of the policy. This property is immutable after creation."
                 },
                 "document": {
                     "type": "string",
@@ -9942,7 +10029,7 @@
             "inputProperties": {
                 "description": {
                     "type": "string",
-                    "description": "Description of the policy."
+                    "description": "Description of the policy. This property is immutable after creation."
                 },
                 "document": {
                     "type": "string",
@@ -9982,7 +10069,7 @@
                     },
                     "description": {
                         "type": "string",
-                        "description": "Description of the policy."
+                        "description": "Description of the policy. This property is immutable after creation."
                     },
                     "document": {
                         "type": "string",

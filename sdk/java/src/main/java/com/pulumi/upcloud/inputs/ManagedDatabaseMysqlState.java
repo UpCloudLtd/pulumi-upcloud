@@ -54,14 +54,14 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
     }
 
     /**
-     * User defined key-value pairs to classify the managed database.
+     * User defined key-value pairs to classify the database.
      * 
      */
     @Import(name="labels")
     private @Nullable Output<Map<String,String>> labels;
 
     /**
-     * @return User defined key-value pairs to classify the managed database.
+     * @return User defined key-value pairs to classify the database.
      * 
      */
     public Optional<Output<Map<String,String>>> labels() {
@@ -189,14 +189,14 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Database Engine properties for MySQL
+     * Database engine properties.
      * 
      */
     @Import(name="properties")
     private @Nullable Output<ManagedDatabaseMysqlPropertiesArgs> properties;
 
     /**
-     * @return Database Engine properties for MySQL
+     * @return Database engine properties.
      * 
      */
     public Optional<Output<ManagedDatabaseMysqlPropertiesArgs>> properties() {
@@ -219,14 +219,14 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Primary username&#39;s password to the service instance
+     * Primary password to the service instance
      * 
      */
     @Import(name="servicePassword")
     private @Nullable Output<String> servicePassword;
 
     /**
-     * @return Primary username&#39;s password to the service instance
+     * @return Primary password to the service instance
      * 
      */
     public Optional<Output<String>> servicePassword() {
@@ -279,14 +279,14 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
     }
 
     /**
-     * State of the service
+     * The current state of the service
      * 
      */
     @Import(name="state")
     private @Nullable Output<String> state;
 
     /**
-     * @return State of the service
+     * @return The current state of the service
      * 
      */
     public Optional<Output<String>> state() {
@@ -309,14 +309,14 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Title of a managed database instance
+     * Title of the managed database instance
      * 
      */
     @Import(name="title")
     private @Nullable Output<String> title;
 
     /**
-     * @return Title of a managed database instance
+     * @return Title of the managed database instance
      * 
      */
     public Optional<Output<String>> title() {
@@ -324,14 +324,14 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Type of the service
+     * Type of the managed database instance
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Type of the service
+     * @return Type of the managed database instance
      * 
      */
     public Optional<Output<String>> type() {
@@ -451,7 +451,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param labels User defined key-value pairs to classify the managed database.
+         * @param labels User defined key-value pairs to classify the database.
          * 
          * @return builder
          * 
@@ -462,7 +462,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param labels User defined key-value pairs to classify the managed database.
+         * @param labels User defined key-value pairs to classify the database.
          * 
          * @return builder
          * 
@@ -660,7 +660,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param properties Database Engine properties for MySQL
+         * @param properties Database engine properties.
          * 
          * @return builder
          * 
@@ -671,7 +671,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param properties Database Engine properties for MySQL
+         * @param properties Database engine properties.
          * 
          * @return builder
          * 
@@ -702,7 +702,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param servicePassword Primary username&#39;s password to the service instance
+         * @param servicePassword Primary password to the service instance
          * 
          * @return builder
          * 
@@ -713,7 +713,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param servicePassword Primary username&#39;s password to the service instance
+         * @param servicePassword Primary password to the service instance
          * 
          * @return builder
          * 
@@ -786,7 +786,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param state State of the service
+         * @param state The current state of the service
          * 
          * @return builder
          * 
@@ -797,7 +797,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param state State of the service
+         * @param state The current state of the service
          * 
          * @return builder
          * 
@@ -828,7 +828,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param title Title of a managed database instance
+         * @param title Title of the managed database instance
          * 
          * @return builder
          * 
@@ -839,7 +839,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param title Title of a managed database instance
+         * @param title Title of the managed database instance
          * 
          * @return builder
          * 
@@ -849,7 +849,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param type Type of the service
+         * @param type Type of the managed database instance
          * 
          * @return builder
          * 
@@ -860,7 +860,7 @@ public final class ManagedDatabaseMysqlState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param type Type of the service
+         * @param type Type of the managed database instance
          * 
          * @return builder
          * 

@@ -11,7 +11,6 @@ import com.pulumi.upcloud.FileStorageArgs;
 import com.pulumi.upcloud.Utilities;
 import com.pulumi.upcloud.inputs.FileStorageState;
 import com.pulumi.upcloud.outputs.FileStorageNetwork;
-import com.pulumi.upcloud.outputs.FileStorageShare;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -36,8 +35,11 @@ import javax.annotation.Nullable;
  * import com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;
  * import com.pulumi.upcloud.FileStorage;
  * import com.pulumi.upcloud.FileStorageArgs;
- * import com.pulumi.upcloud.inputs.FileStorageShareArgs;
  * import com.pulumi.upcloud.inputs.FileStorageNetworkArgs;
+ * import com.pulumi.upcloud.FileStorageShare;
+ * import com.pulumi.upcloud.FileStorageShareArgs;
+ * import com.pulumi.upcloud.FileStorageShareAcl;
+ * import com.pulumi.upcloud.FileStorageShareAclArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -71,20 +73,26 @@ import javax.annotation.Nullable;
  *                 Map.entry("environment", "staging"),
  *                 Map.entry("customer", "example-customer")
  *             ))
- *             .shares(FileStorageShareArgs.builder()
- *                 .name("write-to-project")
- *                 .path("/project")
- *                 .acls(FileStorageShareAclArgs.builder()
- *                     .target("172.16.8.12")
- *                     .permission("rw")
- *                     .build())
- *                 .build())
  *             .networks(FileStorageNetworkArgs.builder()
  *                 .family("IPv4")
  *                 .name("example-private-net")
  *                 .uuid(this_.id())
  *                 .ipAddress("172.16.8.11")
  *                 .build())
+ *             .build());
+ * 
+ *         var exampleFileStorageShare = new FileStorageShare("exampleFileStorageShare", FileStorageShareArgs.builder()
+ *             .fileStorage(example.id())
+ *             .name("write-to-project")
+ *             .path("/project")
+ *             .build());
+ * 
+ *         var exampleFileStorageShareAcl = new FileStorageShareAcl("exampleFileStorageShareAcl", FileStorageShareAclArgs.builder()
+ *             .fileStorage(example.id())
+ *             .shareName(exampleFileStorageShare.name())
+ *             .name("acl-for-project")
+ *             .target("172.16.8.12")
+ *             .permission("rw")
  *             .build());
  * 
  *     }
@@ -150,20 +158,6 @@ public class FileStorage extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<FileStorageNetwork>>> networks() {
         return Codegen.optional(this.networks);
-    }
-    /**
-     * List of shares exported by this file storage.
-     * 
-     */
-    @Export(name="shares", refs={List.class,FileStorageShare.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<FileStorageShare>> shares;
-
-    /**
-     * @return List of shares exported by this file storage.
-     * 
-     */
-    public Output<Optional<List<FileStorageShare>>> shares() {
-        return Codegen.optional(this.shares);
     }
     /**
      * Size of the file storage in GB.

@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ManagedDatabaseMysqlComponent {
     /**
-     * @return Type of the component
+     * @return Component name.
      * 
      */
     private @Nullable String component;
@@ -40,7 +40,7 @@ public final class ManagedDatabaseMysqlComponent {
 
     private ManagedDatabaseMysqlComponent() {}
     /**
-     * @return Type of the component
+     * @return Component name.
      * 
      */
     public Optional<String> component() {

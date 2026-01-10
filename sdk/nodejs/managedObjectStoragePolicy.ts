@@ -71,7 +71,7 @@ export class ManagedObjectStoragePolicy extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly defaultVersionId: pulumi.Output<string>;
     /**
-     * Description of the policy.
+     * Description of the policy. This property is immutable after creation.
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
@@ -163,7 +163,7 @@ export interface ManagedObjectStoragePolicyState {
      */
     defaultVersionId?: pulumi.Input<string>;
     /**
-     * Description of the policy.
+     * Description of the policy. This property is immutable after creation.
      */
     description?: pulumi.Input<string>;
     /**
@@ -193,7 +193,7 @@ export interface ManagedObjectStoragePolicyState {
  */
 export interface ManagedObjectStoragePolicyArgs {
     /**
-     * Description of the policy.
+     * Description of the policy. This property is immutable after creation.
      */
     description?: pulumi.Input<string>;
     /**

@@ -61,7 +61,7 @@ type ManagedObjectStoragePolicy struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Default version id.
 	DefaultVersionId pulumi.StringOutput `pulumi:"defaultVersionId"`
-	// Description of the policy.
+	// Description of the policy. This property is immutable after creation.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
 	Document pulumi.StringOutput `pulumi:"document"`
@@ -119,7 +119,7 @@ type managedObjectStoragePolicyState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Default version id.
 	DefaultVersionId *string `pulumi:"defaultVersionId"`
-	// Description of the policy.
+	// Description of the policy. This property is immutable after creation.
 	Description *string `pulumi:"description"`
 	// Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
 	Document *string `pulumi:"document"`
@@ -142,7 +142,7 @@ type ManagedObjectStoragePolicyState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Default version id.
 	DefaultVersionId pulumi.StringPtrInput
-	// Description of the policy.
+	// Description of the policy. This property is immutable after creation.
 	Description pulumi.StringPtrInput
 	// Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
 	Document pulumi.StringPtrInput
@@ -161,7 +161,7 @@ func (ManagedObjectStoragePolicyState) ElementType() reflect.Type {
 }
 
 type managedObjectStoragePolicyArgs struct {
-	// Description of the policy.
+	// Description of the policy. This property is immutable after creation.
 	Description *string `pulumi:"description"`
 	// Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
 	Document string `pulumi:"document"`
@@ -173,7 +173,7 @@ type managedObjectStoragePolicyArgs struct {
 
 // The set of arguments for constructing a ManagedObjectStoragePolicy resource.
 type ManagedObjectStoragePolicyArgs struct {
-	// Description of the policy.
+	// Description of the policy. This property is immutable after creation.
 	Description pulumi.StringPtrInput
 	// Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
 	Document pulumi.StringInput
@@ -290,7 +290,7 @@ func (o ManagedObjectStoragePolicyOutput) DefaultVersionId() pulumi.StringOutput
 	return o.ApplyT(func(v *ManagedObjectStoragePolicy) pulumi.StringOutput { return v.DefaultVersionId }).(pulumi.StringOutput)
 }
 
-// Description of the policy.
+// Description of the policy. This property is immutable after creation.
 func (o ManagedObjectStoragePolicyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedObjectStoragePolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }

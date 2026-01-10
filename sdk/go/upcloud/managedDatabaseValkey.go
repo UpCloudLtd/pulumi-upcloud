@@ -63,7 +63,7 @@ type ManagedDatabaseValkey struct {
 	AdditionalDiskSpaceGib pulumi.IntOutput `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components ManagedDatabaseValkeyComponentArrayOutput `pulumi:"components"`
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringOutput `pulumi:"maintenanceWindowDow"`
@@ -78,14 +78,14 @@ type ManagedDatabaseValkey struct {
 	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// The administrative power state of the service
-	Powered pulumi.BoolPtrOutput `pulumi:"powered"`
+	Powered pulumi.BoolOutput `pulumi:"powered"`
 	// Primary database name
 	PrimaryDatabase pulumi.StringOutput `pulumi:"primaryDatabase"`
-	// Database Engine properties for Valkey
-	Properties ManagedDatabaseValkeyPropertiesOutput `pulumi:"properties"`
+	// Database engine properties.
+	Properties ManagedDatabaseValkeyPropertiesPtrOutput `pulumi:"properties"`
 	// Hostname to the service instance
 	ServiceHost pulumi.StringOutput `pulumi:"serviceHost"`
-	// Primary username's password to the service instance
+	// Primary password to the service instance
 	ServicePassword pulumi.StringOutput `pulumi:"servicePassword"`
 	// Port to the service instance
 	ServicePort pulumi.StringOutput `pulumi:"servicePort"`
@@ -93,13 +93,13 @@ type ManagedDatabaseValkey struct {
 	ServiceUri pulumi.StringOutput `pulumi:"serviceUri"`
 	// Primary username to the service instance
 	ServiceUsername pulumi.StringOutput `pulumi:"serviceUsername"`
-	// State of the service
+	// The current state of the service
 	State pulumi.StringOutput `pulumi:"state"`
 	// If set to true, prevents the managed service from being powered off, or deleted.
-	TerminationProtection pulumi.BoolPtrOutput `pulumi:"terminationProtection"`
-	// Title of a managed database instance
+	TerminationProtection pulumi.BoolOutput `pulumi:"terminationProtection"`
+	// Title of the managed database instance
 	Title pulumi.StringOutput `pulumi:"title"`
-	// Type of the service
+	// Type of the managed database instance
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -153,7 +153,7 @@ type managedDatabaseValkeyState struct {
 	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components []ManagedDatabaseValkeyComponent `pulumi:"components"`
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow *string `pulumi:"maintenanceWindowDow"`
@@ -171,11 +171,11 @@ type managedDatabaseValkeyState struct {
 	Powered *bool `pulumi:"powered"`
 	// Primary database name
 	PrimaryDatabase *string `pulumi:"primaryDatabase"`
-	// Database Engine properties for Valkey
+	// Database engine properties.
 	Properties *ManagedDatabaseValkeyProperties `pulumi:"properties"`
 	// Hostname to the service instance
 	ServiceHost *string `pulumi:"serviceHost"`
-	// Primary username's password to the service instance
+	// Primary password to the service instance
 	ServicePassword *string `pulumi:"servicePassword"`
 	// Port to the service instance
 	ServicePort *string `pulumi:"servicePort"`
@@ -183,13 +183,13 @@ type managedDatabaseValkeyState struct {
 	ServiceUri *string `pulumi:"serviceUri"`
 	// Primary username to the service instance
 	ServiceUsername *string `pulumi:"serviceUsername"`
-	// State of the service
+	// The current state of the service
 	State *string `pulumi:"state"`
 	// If set to true, prevents the managed service from being powered off, or deleted.
 	TerminationProtection *bool `pulumi:"terminationProtection"`
-	// Title of a managed database instance
+	// Title of the managed database instance
 	Title *string `pulumi:"title"`
-	// Type of the service
+	// Type of the managed database instance
 	Type *string `pulumi:"type"`
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone *string `pulumi:"zone"`
@@ -200,7 +200,7 @@ type ManagedDatabaseValkeyState struct {
 	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// Service component information
 	Components ManagedDatabaseValkeyComponentArrayInput
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringPtrInput
@@ -218,11 +218,11 @@ type ManagedDatabaseValkeyState struct {
 	Powered pulumi.BoolPtrInput
 	// Primary database name
 	PrimaryDatabase pulumi.StringPtrInput
-	// Database Engine properties for Valkey
+	// Database engine properties.
 	Properties ManagedDatabaseValkeyPropertiesPtrInput
 	// Hostname to the service instance
 	ServiceHost pulumi.StringPtrInput
-	// Primary username's password to the service instance
+	// Primary password to the service instance
 	ServicePassword pulumi.StringPtrInput
 	// Port to the service instance
 	ServicePort pulumi.StringPtrInput
@@ -230,13 +230,13 @@ type ManagedDatabaseValkeyState struct {
 	ServiceUri pulumi.StringPtrInput
 	// Primary username to the service instance
 	ServiceUsername pulumi.StringPtrInput
-	// State of the service
+	// The current state of the service
 	State pulumi.StringPtrInput
 	// If set to true, prevents the managed service from being powered off, or deleted.
 	TerminationProtection pulumi.BoolPtrInput
-	// Title of a managed database instance
+	// Title of the managed database instance
 	Title pulumi.StringPtrInput
-	// Type of the service
+	// Type of the managed database instance
 	Type pulumi.StringPtrInput
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringPtrInput
@@ -249,7 +249,7 @@ func (ManagedDatabaseValkeyState) ElementType() reflect.Type {
 type managedDatabaseValkeyArgs struct {
 	// Not supported for `valkey` databases. Should be left unconfigured.
 	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow *string `pulumi:"maintenanceWindowDow"`
@@ -263,11 +263,11 @@ type managedDatabaseValkeyArgs struct {
 	Plan string `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
-	// Database Engine properties for Valkey
+	// Database engine properties.
 	Properties *ManagedDatabaseValkeyProperties `pulumi:"properties"`
 	// If set to true, prevents the managed service from being powered off, or deleted.
 	TerminationProtection *bool `pulumi:"terminationProtection"`
-	// Title of a managed database instance
+	// Title of the managed database instance
 	Title string `pulumi:"title"`
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone string `pulumi:"zone"`
@@ -277,7 +277,7 @@ type managedDatabaseValkeyArgs struct {
 type ManagedDatabaseValkeyArgs struct {
 	// Not supported for `valkey` databases. Should be left unconfigured.
 	AdditionalDiskSpaceGib pulumi.IntPtrInput
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringPtrInput
@@ -291,11 +291,11 @@ type ManagedDatabaseValkeyArgs struct {
 	Plan pulumi.StringInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
-	// Database Engine properties for Valkey
+	// Database engine properties.
 	Properties ManagedDatabaseValkeyPropertiesPtrInput
 	// If set to true, prevents the managed service from being powered off, or deleted.
 	TerminationProtection pulumi.BoolPtrInput
-	// Title of a managed database instance
+	// Title of the managed database instance
 	Title pulumi.StringInput
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringInput
@@ -398,7 +398,7 @@ func (o ManagedDatabaseValkeyOutput) Components() ManagedDatabaseValkeyComponent
 	return o.ApplyT(func(v *ManagedDatabaseValkey) ManagedDatabaseValkeyComponentArrayOutput { return v.Components }).(ManagedDatabaseValkeyComponentArrayOutput)
 }
 
-// User defined key-value pairs to classify the managed database.
+// User defined key-value pairs to classify the database.
 func (o ManagedDatabaseValkeyOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -434,8 +434,8 @@ func (o ManagedDatabaseValkeyOutput) Plan() pulumi.StringOutput {
 }
 
 // The administrative power state of the service
-func (o ManagedDatabaseValkeyOutput) Powered() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.BoolPtrOutput { return v.Powered }).(pulumi.BoolPtrOutput)
+func (o ManagedDatabaseValkeyOutput) Powered() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.BoolOutput { return v.Powered }).(pulumi.BoolOutput)
 }
 
 // Primary database name
@@ -443,9 +443,9 @@ func (o ManagedDatabaseValkeyOutput) PrimaryDatabase() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.StringOutput { return v.PrimaryDatabase }).(pulumi.StringOutput)
 }
 
-// Database Engine properties for Valkey
-func (o ManagedDatabaseValkeyOutput) Properties() ManagedDatabaseValkeyPropertiesOutput {
-	return o.ApplyT(func(v *ManagedDatabaseValkey) ManagedDatabaseValkeyPropertiesOutput { return v.Properties }).(ManagedDatabaseValkeyPropertiesOutput)
+// Database engine properties.
+func (o ManagedDatabaseValkeyOutput) Properties() ManagedDatabaseValkeyPropertiesPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkey) ManagedDatabaseValkeyPropertiesPtrOutput { return v.Properties }).(ManagedDatabaseValkeyPropertiesPtrOutput)
 }
 
 // Hostname to the service instance
@@ -453,7 +453,7 @@ func (o ManagedDatabaseValkeyOutput) ServiceHost() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.StringOutput { return v.ServiceHost }).(pulumi.StringOutput)
 }
 
-// Primary username's password to the service instance
+// Primary password to the service instance
 func (o ManagedDatabaseValkeyOutput) ServicePassword() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.StringOutput { return v.ServicePassword }).(pulumi.StringOutput)
 }
@@ -473,22 +473,22 @@ func (o ManagedDatabaseValkeyOutput) ServiceUsername() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.StringOutput { return v.ServiceUsername }).(pulumi.StringOutput)
 }
 
-// State of the service
+// The current state of the service
 func (o ManagedDatabaseValkeyOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
 // If set to true, prevents the managed service from being powered off, or deleted.
-func (o ManagedDatabaseValkeyOutput) TerminationProtection() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.BoolPtrOutput { return v.TerminationProtection }).(pulumi.BoolPtrOutput)
+func (o ManagedDatabaseValkeyOutput) TerminationProtection() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.BoolOutput { return v.TerminationProtection }).(pulumi.BoolOutput)
 }
 
-// Title of a managed database instance
+// Title of the managed database instance
 func (o ManagedDatabaseValkeyOutput) Title() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.StringOutput { return v.Title }).(pulumi.StringOutput)
 }
 
-// Type of the service
+// Type of the managed database instance
 func (o ManagedDatabaseValkeyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

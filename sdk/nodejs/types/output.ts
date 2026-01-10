@@ -24,32 +24,6 @@ export interface FileStorageNetwork {
     uuid: string;
 }
 
-export interface FileStorageShare {
-    /**
-     * Access control entries (1–50).
-     */
-    acls?: outputs.FileStorageShareAcl[];
-    /**
-     * Unique name of the share (1–64 chars).
-     */
-    name: string;
-    /**
-     * Absolute path exported by the share (e.g. `/public`).
-     */
-    path: string;
-}
-
-export interface FileStorageShareAcl {
-    /**
-     * Access level: 'ro' or 'rw'.
-     */
-    permission: string;
-    /**
-     * Target IP/CIDR or '*'.
-     */
-    target: string;
-}
-
 export interface GatewayAddress {
     /**
      * IP addresss
@@ -1325,7 +1299,7 @@ export interface LoadbalancerNodeNetworkIpAddress {
 
 export interface ManagedDatabaseMysqlComponent {
     /**
-     * Type of the component
+     * Component name.
      */
     component: string;
     /**
@@ -1375,7 +1349,7 @@ export interface ManagedDatabaseMysqlNodeState {
      */
     role: string;
     /**
-     * State of the node
+     * Current state of the node
      */
     state: string;
 }
@@ -1392,7 +1366,7 @@ export interface ManagedDatabaseMysqlProperties {
     /**
      * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
      */
-    automaticUtilityNetworkIpFilter?: boolean;
+    automaticUtilityNetworkIpFilter: boolean;
     /**
      * The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
      */
@@ -1500,11 +1474,11 @@ export interface ManagedDatabaseMysqlProperties {
     /**
      * Migrate data from existing server.
      */
-    migration: outputs.ManagedDatabaseMysqlPropertiesMigration;
+    migration?: outputs.ManagedDatabaseMysqlPropertiesMigration;
     /**
      * MySQL incremental backup configuration.
      */
-    mysqlIncrementalBackup: outputs.ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup;
+    mysqlIncrementalBackup?: outputs.ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup;
     /**
      * Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
      */
@@ -1520,7 +1494,7 @@ export interface ManagedDatabaseMysqlProperties {
     /**
      * Public Access. Allow access to the service from the public Internet.
      */
-    publicAccess?: boolean;
+    publicAccess: boolean;
     /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      */
@@ -1536,7 +1510,7 @@ export interface ManagedDatabaseMysqlProperties {
     /**
      * Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned.
      */
-    sqlMode?: string;
+    sqlMode: string;
     /**
      * Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them.
      */
@@ -1560,6 +1534,10 @@ export interface ManagedDatabaseMysqlPropertiesMigration {
      * Database name for bootstrapping the initial connection.
      */
     dbname: string;
+    /**
+     * MySQL migration dump tool. Experimental! Tool to use for database dump and restore during migration. Default: mysqldump.
+     */
+    dumpTool: string;
     /**
      * Hostname or IP address of the server where to migrate data from.
      */
@@ -1585,6 +1563,10 @@ export interface ManagedDatabaseMysqlPropertiesMigration {
      */
     port: number;
     /**
+     * Skip dump-restore part and start replication.
+     */
+    reestablishReplication: boolean;
+    /**
      * The server where to migrate data from is secured with SSL.
      */
     ssl: boolean;
@@ -1607,7 +1589,7 @@ export interface ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup {
 
 export interface ManagedDatabaseOpensearchComponent {
     /**
-     * Type of the component
+     * Component name.
      */
     component: string;
     /**
@@ -1657,7 +1639,7 @@ export interface ManagedDatabaseOpensearchNodeState {
      */
     role: string;
     /**
-     * State of the node
+     * Current state of the node
      */
     state: string;
 }
@@ -1674,11 +1656,11 @@ export interface ManagedDatabaseOpensearchProperties {
     /**
      * Opensearch Security Plugin Settings.
      */
-    authFailureListeners: outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListeners;
+    authFailureListeners?: outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListeners;
     /**
      * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
      */
-    automaticUtilityNetworkIpFilter?: boolean;
+    automaticUtilityNetworkIpFilter: boolean;
     /**
      * The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
      */
@@ -1687,7 +1669,7 @@ export interface ManagedDatabaseOpensearchProperties {
      * Controls the number of shards allowed in the cluster per data node.
      */
     clusterMaxShardsPerNode: number;
-    clusterRemoteStore: outputs.ManagedDatabaseOpensearchPropertiesClusterRemoteStore;
+    clusterRemoteStore?: outputs.ManagedDatabaseOpensearchPropertiesClusterRemoteStore;
     /**
      * When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
      */
@@ -1696,7 +1678,7 @@ export interface ManagedDatabaseOpensearchProperties {
      * Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
      */
     clusterRoutingAllocationNodeConcurrentRecoveries: number;
-    clusterSearchRequestSlowlog: outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog;
+    clusterSearchRequestSlowlog?: outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog;
     /**
      * Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
      */
@@ -1712,7 +1694,7 @@ export interface ManagedDatabaseOpensearchProperties {
     /**
      * Watermark settings.
      */
-    diskWatermarks: outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks;
+    diskWatermarks?: outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks;
     /**
      * Elasticsearch version.
      */
@@ -1764,11 +1746,11 @@ export interface ManagedDatabaseOpensearchProperties {
     /**
      * Index rollup settings.
      */
-    indexRollup: outputs.ManagedDatabaseOpensearchPropertiesIndexRollup;
+    indexRollup?: outputs.ManagedDatabaseOpensearchPropertiesIndexRollup;
     /**
      * Template settings for all new indexes.
      */
-    indexTemplate: outputs.ManagedDatabaseOpensearchPropertiesIndexTemplate;
+    indexTemplate?: outputs.ManagedDatabaseOpensearchPropertiesIndexTemplate;
     /**
      * Relative amount. Maximum amount of heap memory used for field data cache. This is an expert setting; decreasing the value too much will increase overhead of loading field data; too much memory used for field data cache will decrease amount of heap available for other operations.
      */
@@ -1832,7 +1814,7 @@ export interface ManagedDatabaseOpensearchProperties {
     /**
      * OpenSearch JWT Configuration.
      */
-    jwt: outputs.ManagedDatabaseOpensearchPropertiesJwt;
+    jwt?: outputs.ManagedDatabaseOpensearchPropertiesJwt;
     /**
      * Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
      */
@@ -1846,17 +1828,29 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     knnMemoryCircuitBreakerLimit: number;
     /**
+     * plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
+     */
+    mlCommonsModelAccessControlEnabled: boolean;
+    /**
+     * plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
+     */
+    mlCommonsNativeMemoryThreshold: number;
+    /**
+     * plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
+     */
+    mlCommonsOnlyRunOnMlNode: boolean;
+    /**
      * The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
      */
     nodeSearchCacheSize: string;
     /**
      * OpenSearch OpenID Connect Configuration.
      */
-    openid: outputs.ManagedDatabaseOpensearchPropertiesOpenid;
+    openid?: outputs.ManagedDatabaseOpensearchPropertiesOpenid;
     /**
      * OpenSearch Dashboards settings.
      */
-    opensearchDashboards: outputs.ManagedDatabaseOpensearchPropertiesOpensearchDashboards;
+    opensearchDashboards?: outputs.ManagedDatabaseOpensearchPropertiesOpensearchDashboards;
     /**
      * Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false.
      */
@@ -1868,25 +1862,25 @@ export interface ManagedDatabaseOpensearchProperties {
     /**
      * Public Access. Allow access to the service from the public Internet.
      */
-    publicAccess?: boolean;
+    publicAccess: boolean;
     /**
      * Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
      */
     reindexRemoteWhitelists: string[];
-    remoteStore: outputs.ManagedDatabaseOpensearchPropertiesRemoteStore;
+    remoteStore?: outputs.ManagedDatabaseOpensearchPropertiesRemoteStore;
     /**
      * OpenSearch SAML configuration.
      */
-    saml: outputs.ManagedDatabaseOpensearchPropertiesSaml;
+    saml?: outputs.ManagedDatabaseOpensearchPropertiesSaml;
     /**
      * Script max compilation rate - circuit breaker to prevent/minimize OOMs. Script compilation circuit breaker limits the number of inline script compilations within a period of time. Default is use-context.
      */
-    scriptMaxCompilationsRate?: string;
+    scriptMaxCompilationsRate: string;
     /**
      * Search Backpressure Settings.
      */
-    searchBackpressure: outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressure;
-    searchInsightsTopQueries: outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries;
+    searchBackpressure?: outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressure;
+    searchInsightsTopQueries?: outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries;
     /**
      * Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
      */
@@ -1894,7 +1888,7 @@ export interface ManagedDatabaseOpensearchProperties {
     /**
      * Segment Replication Backpressure Settings.
      */
-    segrep: outputs.ManagedDatabaseOpensearchPropertiesSegrep;
+    segrep?: outputs.ManagedDatabaseOpensearchPropertiesSegrep;
     /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      */
@@ -1902,7 +1896,7 @@ export interface ManagedDatabaseOpensearchProperties {
     /**
      * Shard indexing back pressure settings.
      */
-    shardIndexingPressure: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressure;
+    shardIndexingPressure?: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressure;
     /**
      * analyze thread pool queue size. Size for the thread pool queue. See documentation for exact details.
      */
@@ -1954,7 +1948,7 @@ export interface ManagedDatabaseOpensearchProperties {
 }
 
 export interface ManagedDatabaseOpensearchPropertiesAuthFailureListeners {
-    internalAuthenticationBackendLimiting: outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting;
+    internalAuthenticationBackendLimiting?: outputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting {
@@ -2012,26 +2006,26 @@ export interface ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog 
      * Log level.
      */
     level: string;
-    threshold: outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold;
+    threshold?: outputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold {
     /**
      * Debug threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    debug?: string;
+    debug: string;
     /**
      * Info threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    info?: string;
+    info: string;
     /**
      * Trace threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    trace?: string;
+    trace: string;
     /**
      * Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    warn?: string;
+    warn: string;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesDiskWatermarks {
@@ -2138,7 +2132,7 @@ export interface ManagedDatabaseOpensearchPropertiesOpenid {
     /**
      * OpenID Connect metadata/configuration URL. The URL of your IdP where the Security plugin can find the OpenID Connect metadata/configuration settings.
      */
-    connectUrl?: string;
+    connectUrl: string;
     /**
      * Enable or disable OpenSearch OpenID Connect authentication. Enables or disables OpenID Connect authentication for OpenSearch. When enabled, users can authenticate using OpenID Connect with an Identity Provider.
      */
@@ -2254,15 +2248,15 @@ export interface ManagedDatabaseOpensearchPropertiesSearchBackpressure {
     /**
      * Node duress settings.
      */
-    nodeDuress: outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress;
+    nodeDuress?: outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress;
     /**
      * Search shard settings.
      */
-    searchShardTask: outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask;
+    searchShardTask?: outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask;
     /**
      * Search task settings.
      */
-    searchTask: outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask;
+    searchTask?: outputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress {
@@ -2362,22 +2356,22 @@ export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries {
     /**
      * Top N queries monitoring by CPU.
      */
-    cpu: outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu;
+    cpu?: outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu;
     /**
      * Top N queries monitoring by latency.
      */
-    latency: outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency;
+    latency?: outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency;
     /**
      * Top N queries monitoring by memory.
      */
-    memory: outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory;
+    memory?: outputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu {
     /**
      * Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
      */
-    enabled?: boolean;
+    enabled: boolean;
     /**
      * Specify the value of N for the top N queries by the metric.
      */
@@ -2385,14 +2379,14 @@ export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu 
     /**
      * The window size of the top N queries by the metric. Configure the window size of the top N queries.
      */
-    windowSize?: string;
+    windowSize: string;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency {
     /**
      * Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
      */
-    enabled?: boolean;
+    enabled: boolean;
     /**
      * Specify the value of N for the top N queries by the metric.
      */
@@ -2400,14 +2394,14 @@ export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLate
     /**
      * The window size of the top N queries by the metric. Configure the window size of the top N queries.
      */
-    windowSize?: string;
+    windowSize: string;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory {
     /**
      * Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
      */
-    enabled?: boolean;
+    enabled: boolean;
     /**
      * Specify the value of N for the top N queries by the metric.
      */
@@ -2415,7 +2409,7 @@ export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemo
     /**
      * The window size of the top N queries by the metric. Configure the window size of the top N queries.
      */
-    windowSize?: string;
+    windowSize: string;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSegrep {
@@ -2454,11 +2448,11 @@ export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressure {
     /**
      * Operating factor.
      */
-    operatingFactor: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor;
+    operatingFactor?: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor;
     /**
      * Primary parameter.
      */
-    primaryParameter: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter;
+    primaryParameter?: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor {
@@ -2486,8 +2480,8 @@ export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperati
 }
 
 export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter {
-    node: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode;
-    shard: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard;
+    node?: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode;
+    shard?: outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode {
@@ -2510,7 +2504,7 @@ export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimary
 
 export interface ManagedDatabasePostgresqlComponent {
     /**
-     * Type of the component
+     * Component name.
      */
     component: string;
     /**
@@ -2560,7 +2554,7 @@ export interface ManagedDatabasePostgresqlNodeState {
      */
     role: string;
     /**
-     * State of the node
+     * Current state of the node
      */
     state: string;
 }
@@ -2577,7 +2571,7 @@ export interface ManagedDatabasePostgresqlProperties {
     /**
      * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
      */
-    automaticUtilityNetworkIpFilter?: boolean;
+    automaticUtilityNetworkIpFilter: boolean;
     /**
      * Specifies a fraction of the table size to add to autovacuumAnalyzeThreshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
      */
@@ -2646,6 +2640,10 @@ export interface ManagedDatabasePostgresqlProperties {
      * Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
      */
     defaultToastCompression: string;
+    /**
+     * Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.
+     */
+    enableHaReplicaDns: boolean;
     /**
      * Time out sessions with open transactions after this number of milliseconds.
      */
@@ -2765,7 +2763,7 @@ export interface ManagedDatabasePostgresqlProperties {
     /**
      * Migrate data from existing server.
      */
-    migration: outputs.ManagedDatabasePostgresqlPropertiesMigration;
+    migration?: outputs.ManagedDatabasePostgresqlPropertiesMigration;
     /**
      * Number of nodes for the service.
      */
@@ -2785,7 +2783,7 @@ export interface ManagedDatabasePostgresqlProperties {
     /**
      * Enable pgStatMonitor extension if available for the current cluster. Enable the pgStatMonitor extension. Changing this parameter causes a service restart. When this extension is enabled, pgStatStatements results for utility commands are unreliable.
      */
-    pgStatMonitorEnable?: boolean;
+    pgStatMonitorEnable: boolean;
     /**
      * Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
      */
@@ -2801,19 +2799,19 @@ export interface ManagedDatabasePostgresqlProperties {
     /**
      * PGAudit settings. System-wide settings for the pgaudit extension.
      */
-    pgaudit: outputs.ManagedDatabasePostgresqlPropertiesPgaudit;
+    pgaudit?: outputs.ManagedDatabasePostgresqlPropertiesPgaudit;
     /**
      * PGBouncer connection pooling settings. System-wide settings for pgbouncer.
      */
-    pgbouncer: outputs.ManagedDatabasePostgresqlPropertiesPgbouncer;
+    pgbouncer?: outputs.ManagedDatabasePostgresqlPropertiesPgbouncer;
     /**
      * PGLookout settings. System-wide settings for pglookout.
      */
-    pglookout: outputs.ManagedDatabasePostgresqlPropertiesPglookout;
+    pglookout?: outputs.ManagedDatabasePostgresqlPropertiesPglookout;
     /**
      * Public Access. Allow access to the service from the public Internet.
      */
-    publicAccess?: boolean;
+    publicAccess: boolean;
     /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      */
@@ -2833,11 +2831,11 @@ export interface ManagedDatabasePostgresqlProperties {
     /**
      * TimescaleDB extension configuration values. System-wide settings for the timescaledb extension.
      */
-    timescaledb: outputs.ManagedDatabasePostgresqlPropertiesTimescaledb;
+    timescaledb?: outputs.ManagedDatabasePostgresqlPropertiesTimescaledb;
     /**
      * PostgreSQL service timezone.
      */
-    timezone?: string;
+    timezone: string;
     /**
      * Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
      */
@@ -3083,7 +3081,7 @@ export interface ManagedDatabaseUserValkeyAccessControl {
 
 export interface ManagedDatabaseValkeyComponent {
     /**
-     * Type of the component
+     * Component name.
      */
     component: string;
     /**
@@ -3133,7 +3131,7 @@ export interface ManagedDatabaseValkeyNodeState {
      */
     role: string;
     /**
-     * State of the node
+     * Current state of the node
      */
     state: string;
 }
@@ -3142,7 +3140,7 @@ export interface ManagedDatabaseValkeyProperties {
     /**
      * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
      */
-    automaticUtilityNetworkIpFilter?: boolean;
+    automaticUtilityNetworkIpFilter: boolean;
     /**
      * The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
      */
@@ -3154,7 +3152,7 @@ export interface ManagedDatabaseValkeyProperties {
     /**
      * Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkeyPersistence` is set to `off`.
      */
-    frequentSnapshots?: boolean;
+    frequentSnapshots: boolean;
     /**
      * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
      */
@@ -3162,11 +3160,11 @@ export interface ManagedDatabaseValkeyProperties {
     /**
      * Migrate data from existing server.
      */
-    migration: outputs.ManagedDatabaseValkeyPropertiesMigration;
+    migration?: outputs.ManagedDatabaseValkeyPropertiesMigration;
     /**
      * Public Access. Allow access to the service from the public Internet.
      */
-    publicAccess?: boolean;
+    publicAccess: boolean;
     /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      */
@@ -3198,7 +3196,7 @@ export interface ManagedDatabaseValkeyProperties {
     /**
      * Set notify-keyspace-events option.
      */
-    valkeyNotifyKeyspaceEvents?: string;
+    valkeyNotifyKeyspaceEvents: string;
     /**
      * Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
      */
@@ -3214,7 +3212,7 @@ export interface ManagedDatabaseValkeyProperties {
     /**
      * Require SSL to access Valkey.
      */
-    valkeySsl?: boolean;
+    valkeySsl: boolean;
     /**
      * Valkey idle connection timeout in seconds.
      */

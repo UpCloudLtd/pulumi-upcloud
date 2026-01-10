@@ -36,16 +36,16 @@ class ManagedDatabaseMysqlArgs:
         """
         The set of arguments for constructing a ManagedDatabaseMysql resource.
         :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
-        :param pulumi.Input[_builtins.str] title: Title of a managed database instance
+        :param pulumi.Input[_builtins.str] title: Title of the managed database instance
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[_builtins.str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseMysqlNetworkArgs']]] networks: Private networks attached to the managed database
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
-        :param pulumi.Input['ManagedDatabaseMysqlPropertiesArgs'] properties: Database Engine properties for MySQL
+        :param pulumi.Input['ManagedDatabaseMysqlPropertiesArgs'] properties: Database engine properties.
         :param pulumi.Input[_builtins.bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
         """
         pulumi.set(__self__, "plan", plan)
@@ -86,7 +86,7 @@ class ManagedDatabaseMysqlArgs:
     @pulumi.getter
     def title(self) -> pulumi.Input[_builtins.str]:
         """
-        Title of a managed database instance
+        Title of the managed database instance
         """
         return pulumi.get(self, "title")
 
@@ -122,7 +122,7 @@ class ManagedDatabaseMysqlArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        User defined key-value pairs to classify the managed database.
+        User defined key-value pairs to classify the database.
         """
         return pulumi.get(self, "labels")
 
@@ -194,7 +194,7 @@ class ManagedDatabaseMysqlArgs:
     @pulumi.getter
     def properties(self) -> Optional[pulumi.Input['ManagedDatabaseMysqlPropertiesArgs']]:
         """
-        Database Engine properties for MySQL
+        Database engine properties.
         """
         return pulumi.get(self, "properties")
 
@@ -244,7 +244,7 @@ class _ManagedDatabaseMysqlState:
         Input properties used for looking up and filtering ManagedDatabaseMysql resources.
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseMysqlComponentArgs']]] components: Service component information
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[_builtins.str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
@@ -253,16 +253,16 @@ class _ManagedDatabaseMysqlState:
         :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[_builtins.str] primary_database: Primary database name
-        :param pulumi.Input['ManagedDatabaseMysqlPropertiesArgs'] properties: Database Engine properties for MySQL
+        :param pulumi.Input['ManagedDatabaseMysqlPropertiesArgs'] properties: Database engine properties.
         :param pulumi.Input[_builtins.str] service_host: Hostname to the service instance
-        :param pulumi.Input[_builtins.str] service_password: Primary username's password to the service instance
+        :param pulumi.Input[_builtins.str] service_password: Primary password to the service instance
         :param pulumi.Input[_builtins.str] service_port: Port to the service instance
         :param pulumi.Input[_builtins.str] service_uri: URI to the service instance
         :param pulumi.Input[_builtins.str] service_username: Primary username to the service instance
-        :param pulumi.Input[_builtins.str] state: State of the service
+        :param pulumi.Input[_builtins.str] state: The current state of the service
         :param pulumi.Input[_builtins.bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
-        :param pulumi.Input[_builtins.str] title: Title of a managed database instance
-        :param pulumi.Input[_builtins.str] type: Type of the service
+        :param pulumi.Input[_builtins.str] title: Title of the managed database instance
+        :param pulumi.Input[_builtins.str] type: Type of the managed database instance
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         if additional_disk_space_gib is not None:
@@ -338,7 +338,7 @@ class _ManagedDatabaseMysqlState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        User defined key-value pairs to classify the managed database.
+        User defined key-value pairs to classify the database.
         """
         return pulumi.get(self, "labels")
 
@@ -446,7 +446,7 @@ class _ManagedDatabaseMysqlState:
     @pulumi.getter
     def properties(self) -> Optional[pulumi.Input['ManagedDatabaseMysqlPropertiesArgs']]:
         """
-        Database Engine properties for MySQL
+        Database engine properties.
         """
         return pulumi.get(self, "properties")
 
@@ -470,7 +470,7 @@ class _ManagedDatabaseMysqlState:
     @pulumi.getter(name="servicePassword")
     def service_password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Primary username's password to the service instance
+        Primary password to the service instance
         """
         return pulumi.get(self, "service_password")
 
@@ -518,7 +518,7 @@ class _ManagedDatabaseMysqlState:
     @pulumi.getter
     def state(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        State of the service
+        The current state of the service
         """
         return pulumi.get(self, "state")
 
@@ -542,7 +542,7 @@ class _ManagedDatabaseMysqlState:
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Title of a managed database instance
+        Title of the managed database instance
         """
         return pulumi.get(self, "title")
 
@@ -554,7 +554,7 @@ class _ManagedDatabaseMysqlState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Type of the service
+        Type of the managed database instance
         """
         return pulumi.get(self, "type")
 
@@ -636,16 +636,16 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[_builtins.str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNetworkArgs', 'ManagedDatabaseMysqlNetworkArgsDict']]]] networks: Private networks attached to the managed database
         :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
-        :param pulumi.Input[Union['ManagedDatabaseMysqlPropertiesArgs', 'ManagedDatabaseMysqlPropertiesArgsDict']] properties: Database Engine properties for MySQL
+        :param pulumi.Input[Union['ManagedDatabaseMysqlPropertiesArgs', 'ManagedDatabaseMysqlPropertiesArgsDict']] properties: Database engine properties.
         :param pulumi.Input[_builtins.bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
-        :param pulumi.Input[_builtins.str] title: Title of a managed database instance
+        :param pulumi.Input[_builtins.str] title: Title of the managed database instance
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         ...
@@ -800,7 +800,7 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlComponentArgs', 'ManagedDatabaseMysqlComponentArgsDict']]]] components: Service component information
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed database.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[_builtins.str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
@@ -809,16 +809,16 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[_builtins.str] primary_database: Primary database name
-        :param pulumi.Input[Union['ManagedDatabaseMysqlPropertiesArgs', 'ManagedDatabaseMysqlPropertiesArgsDict']] properties: Database Engine properties for MySQL
+        :param pulumi.Input[Union['ManagedDatabaseMysqlPropertiesArgs', 'ManagedDatabaseMysqlPropertiesArgsDict']] properties: Database engine properties.
         :param pulumi.Input[_builtins.str] service_host: Hostname to the service instance
-        :param pulumi.Input[_builtins.str] service_password: Primary username's password to the service instance
+        :param pulumi.Input[_builtins.str] service_password: Primary password to the service instance
         :param pulumi.Input[_builtins.str] service_port: Port to the service instance
         :param pulumi.Input[_builtins.str] service_uri: URI to the service instance
         :param pulumi.Input[_builtins.str] service_username: Primary username to the service instance
-        :param pulumi.Input[_builtins.str] state: State of the service
+        :param pulumi.Input[_builtins.str] state: The current state of the service
         :param pulumi.Input[_builtins.bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
-        :param pulumi.Input[_builtins.str] title: Title of a managed database instance
-        :param pulumi.Input[_builtins.str] type: Type of the service
+        :param pulumi.Input[_builtins.str] title: Title of the managed database instance
+        :param pulumi.Input[_builtins.str] type: Type of the managed database instance
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -867,9 +867,9 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+    def labels(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
-        User defined key-value pairs to classify the managed database.
+        User defined key-value pairs to classify the database.
         """
         return pulumi.get(self, "labels")
 
@@ -923,7 +923,7 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def powered(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def powered(self) -> pulumi.Output[_builtins.bool]:
         """
         The administrative power state of the service
         """
@@ -939,9 +939,9 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def properties(self) -> pulumi.Output['outputs.ManagedDatabaseMysqlProperties']:
+    def properties(self) -> pulumi.Output[Optional['outputs.ManagedDatabaseMysqlProperties']]:
         """
-        Database Engine properties for MySQL
+        Database engine properties.
         """
         return pulumi.get(self, "properties")
 
@@ -957,7 +957,7 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
     @pulumi.getter(name="servicePassword")
     def service_password(self) -> pulumi.Output[_builtins.str]:
         """
-        Primary username's password to the service instance
+        Primary password to the service instance
         """
         return pulumi.get(self, "service_password")
 
@@ -989,13 +989,13 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
     @pulumi.getter
     def state(self) -> pulumi.Output[_builtins.str]:
         """
-        State of the service
+        The current state of the service
         """
         return pulumi.get(self, "state")
 
     @_builtins.property
     @pulumi.getter(name="terminationProtection")
-    def termination_protection(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def termination_protection(self) -> pulumi.Output[_builtins.bool]:
         """
         If set to true, prevents the managed service from being powered off, or deleted.
         """
@@ -1005,7 +1005,7 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
     @pulumi.getter
     def title(self) -> pulumi.Output[_builtins.str]:
         """
-        Title of a managed database instance
+        Title of the managed database instance
         """
         return pulumi.get(self, "title")
 
@@ -1013,7 +1013,7 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        Type of the service
+        Type of the managed database instance
         """
         return pulumi.get(self, "type")
 

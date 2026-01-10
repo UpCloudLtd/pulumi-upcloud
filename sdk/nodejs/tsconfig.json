@@ -16,6 +16,8 @@
         "config/index.ts",
         "config/vars.ts",
         "fileStorage.ts",
+        "fileStorageShare.ts",
+        "fileStorageShareAcl.ts",
         "floatingIpAddress.ts",
         "gateway.ts",
         "gatewayConnection.ts",

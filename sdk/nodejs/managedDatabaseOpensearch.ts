@@ -81,9 +81,9 @@ export class ManagedDatabaseOpensearch extends pulumi.CustomResource {
      */
     declare public readonly extendedAccessControl: pulumi.Output<boolean>;
     /**
-     * User defined key-value pairs to classify the managed database.
+     * User defined key-value pairs to classify the database.
      */
-    declare public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly labels: pulumi.Output<{[key: string]: string}>;
     /**
      * Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
      */
@@ -111,21 +111,21 @@ export class ManagedDatabaseOpensearch extends pulumi.CustomResource {
     /**
      * The administrative power state of the service
      */
-    declare public readonly powered: pulumi.Output<boolean | undefined>;
+    declare public readonly powered: pulumi.Output<boolean>;
     /**
      * Primary database name
      */
     declare public /*out*/ readonly primaryDatabase: pulumi.Output<string>;
     /**
-     * Database Engine properties for OpenSearch
+     * Database engine properties.
      */
-    declare public readonly properties: pulumi.Output<outputs.ManagedDatabaseOpensearchProperties>;
+    declare public readonly properties: pulumi.Output<outputs.ManagedDatabaseOpensearchProperties | undefined>;
     /**
      * Hostname to the service instance
      */
     declare public /*out*/ readonly serviceHost: pulumi.Output<string>;
     /**
-     * Primary username's password to the service instance
+     * Primary password to the service instance
      */
     declare public /*out*/ readonly servicePassword: pulumi.Output<string>;
     /**
@@ -141,19 +141,19 @@ export class ManagedDatabaseOpensearch extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly serviceUsername: pulumi.Output<string>;
     /**
-     * State of the service
+     * The current state of the service
      */
     declare public /*out*/ readonly state: pulumi.Output<string>;
     /**
      * If set to true, prevents the managed service from being powered off, or deleted.
      */
-    declare public readonly terminationProtection: pulumi.Output<boolean | undefined>;
+    declare public readonly terminationProtection: pulumi.Output<boolean>;
     /**
-     * Title of a managed database instance
+     * Title of the managed database instance
      */
     declare public readonly title: pulumi.Output<string>;
     /**
-     * Type of the service
+     * Type of the managed database instance
      */
     declare public /*out*/ readonly type: pulumi.Output<string>;
     /**
@@ -262,7 +262,7 @@ export interface ManagedDatabaseOpensearchState {
      */
     extendedAccessControl?: pulumi.Input<boolean>;
     /**
-     * User defined key-value pairs to classify the managed database.
+     * User defined key-value pairs to classify the database.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -298,7 +298,7 @@ export interface ManagedDatabaseOpensearchState {
      */
     primaryDatabase?: pulumi.Input<string>;
     /**
-     * Database Engine properties for OpenSearch
+     * Database engine properties.
      */
     properties?: pulumi.Input<inputs.ManagedDatabaseOpensearchProperties>;
     /**
@@ -306,7 +306,7 @@ export interface ManagedDatabaseOpensearchState {
      */
     serviceHost?: pulumi.Input<string>;
     /**
-     * Primary username's password to the service instance
+     * Primary password to the service instance
      */
     servicePassword?: pulumi.Input<string>;
     /**
@@ -322,7 +322,7 @@ export interface ManagedDatabaseOpensearchState {
      */
     serviceUsername?: pulumi.Input<string>;
     /**
-     * State of the service
+     * The current state of the service
      */
     state?: pulumi.Input<string>;
     /**
@@ -330,11 +330,11 @@ export interface ManagedDatabaseOpensearchState {
      */
     terminationProtection?: pulumi.Input<boolean>;
     /**
-     * Title of a managed database instance
+     * Title of the managed database instance
      */
     title?: pulumi.Input<string>;
     /**
-     * Type of the service
+     * Type of the managed database instance
      */
     type?: pulumi.Input<string>;
     /**
@@ -360,7 +360,7 @@ export interface ManagedDatabaseOpensearchArgs {
      */
     extendedAccessControl?: pulumi.Input<boolean>;
     /**
-     * User defined key-value pairs to classify the managed database.
+     * User defined key-value pairs to classify the database.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -388,7 +388,7 @@ export interface ManagedDatabaseOpensearchArgs {
      */
     powered?: pulumi.Input<boolean>;
     /**
-     * Database Engine properties for OpenSearch
+     * Database engine properties.
      */
     properties?: pulumi.Input<inputs.ManagedDatabaseOpensearchProperties>;
     /**
@@ -396,7 +396,7 @@ export interface ManagedDatabaseOpensearchArgs {
      */
     terminationProtection?: pulumi.Input<boolean>;
     /**
-     * Title of a managed database instance
+     * Title of the managed database instance
      */
     title: pulumi.Input<string>;
     /**

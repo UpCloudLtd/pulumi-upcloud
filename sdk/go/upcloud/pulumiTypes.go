@@ -137,227 +137,6 @@ func (o FileStorageNetworkArrayOutput) Index(i pulumi.IntInput) FileStorageNetwo
 	}).(FileStorageNetworkOutput)
 }
 
-type FileStorageShare struct {
-	// Access control entries (1–50).
-	Acls []FileStorageShareAcl `pulumi:"acls"`
-	// Unique name of the share (1–64 chars).
-	Name string `pulumi:"name"`
-	// Absolute path exported by the share (e.g. `/public`).
-	Path string `pulumi:"path"`
-}
-
-// FileStorageShareInput is an input type that accepts FileStorageShareArgs and FileStorageShareOutput values.
-// You can construct a concrete instance of `FileStorageShareInput` via:
-//
-//	FileStorageShareArgs{...}
-type FileStorageShareInput interface {
-	pulumi.Input
-
-	ToFileStorageShareOutput() FileStorageShareOutput
-	ToFileStorageShareOutputWithContext(context.Context) FileStorageShareOutput
-}
-
-type FileStorageShareArgs struct {
-	// Access control entries (1–50).
-	Acls FileStorageShareAclArrayInput `pulumi:"acls"`
-	// Unique name of the share (1–64 chars).
-	Name pulumi.StringInput `pulumi:"name"`
-	// Absolute path exported by the share (e.g. `/public`).
-	Path pulumi.StringInput `pulumi:"path"`
-}
-
-func (FileStorageShareArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*FileStorageShare)(nil)).Elem()
-}
-
-func (i FileStorageShareArgs) ToFileStorageShareOutput() FileStorageShareOutput {
-	return i.ToFileStorageShareOutputWithContext(context.Background())
-}
-
-func (i FileStorageShareArgs) ToFileStorageShareOutputWithContext(ctx context.Context) FileStorageShareOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FileStorageShareOutput)
-}
-
-// FileStorageShareArrayInput is an input type that accepts FileStorageShareArray and FileStorageShareArrayOutput values.
-// You can construct a concrete instance of `FileStorageShareArrayInput` via:
-//
-//	FileStorageShareArray{ FileStorageShareArgs{...} }
-type FileStorageShareArrayInput interface {
-	pulumi.Input
-
-	ToFileStorageShareArrayOutput() FileStorageShareArrayOutput
-	ToFileStorageShareArrayOutputWithContext(context.Context) FileStorageShareArrayOutput
-}
-
-type FileStorageShareArray []FileStorageShareInput
-
-func (FileStorageShareArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FileStorageShare)(nil)).Elem()
-}
-
-func (i FileStorageShareArray) ToFileStorageShareArrayOutput() FileStorageShareArrayOutput {
-	return i.ToFileStorageShareArrayOutputWithContext(context.Background())
-}
-
-func (i FileStorageShareArray) ToFileStorageShareArrayOutputWithContext(ctx context.Context) FileStorageShareArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FileStorageShareArrayOutput)
-}
-
-type FileStorageShareOutput struct{ *pulumi.OutputState }
-
-func (FileStorageShareOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FileStorageShare)(nil)).Elem()
-}
-
-func (o FileStorageShareOutput) ToFileStorageShareOutput() FileStorageShareOutput {
-	return o
-}
-
-func (o FileStorageShareOutput) ToFileStorageShareOutputWithContext(ctx context.Context) FileStorageShareOutput {
-	return o
-}
-
-// Access control entries (1–50).
-func (o FileStorageShareOutput) Acls() FileStorageShareAclArrayOutput {
-	return o.ApplyT(func(v FileStorageShare) []FileStorageShareAcl { return v.Acls }).(FileStorageShareAclArrayOutput)
-}
-
-// Unique name of the share (1–64 chars).
-func (o FileStorageShareOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v FileStorageShare) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Absolute path exported by the share (e.g. `/public`).
-func (o FileStorageShareOutput) Path() pulumi.StringOutput {
-	return o.ApplyT(func(v FileStorageShare) string { return v.Path }).(pulumi.StringOutput)
-}
-
-type FileStorageShareArrayOutput struct{ *pulumi.OutputState }
-
-func (FileStorageShareArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FileStorageShare)(nil)).Elem()
-}
-
-func (o FileStorageShareArrayOutput) ToFileStorageShareArrayOutput() FileStorageShareArrayOutput {
-	return o
-}
-
-func (o FileStorageShareArrayOutput) ToFileStorageShareArrayOutputWithContext(ctx context.Context) FileStorageShareArrayOutput {
-	return o
-}
-
-func (o FileStorageShareArrayOutput) Index(i pulumi.IntInput) FileStorageShareOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FileStorageShare {
-		return vs[0].([]FileStorageShare)[vs[1].(int)]
-	}).(FileStorageShareOutput)
-}
-
-type FileStorageShareAcl struct {
-	// Access level: 'ro' or 'rw'.
-	Permission string `pulumi:"permission"`
-	// Target IP/CIDR or '*'.
-	Target string `pulumi:"target"`
-}
-
-// FileStorageShareAclInput is an input type that accepts FileStorageShareAclArgs and FileStorageShareAclOutput values.
-// You can construct a concrete instance of `FileStorageShareAclInput` via:
-//
-//	FileStorageShareAclArgs{...}
-type FileStorageShareAclInput interface {
-	pulumi.Input
-
-	ToFileStorageShareAclOutput() FileStorageShareAclOutput
-	ToFileStorageShareAclOutputWithContext(context.Context) FileStorageShareAclOutput
-}
-
-type FileStorageShareAclArgs struct {
-	// Access level: 'ro' or 'rw'.
-	Permission pulumi.StringInput `pulumi:"permission"`
-	// Target IP/CIDR or '*'.
-	Target pulumi.StringInput `pulumi:"target"`
-}
-
-func (FileStorageShareAclArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*FileStorageShareAcl)(nil)).Elem()
-}
-
-func (i FileStorageShareAclArgs) ToFileStorageShareAclOutput() FileStorageShareAclOutput {
-	return i.ToFileStorageShareAclOutputWithContext(context.Background())
-}
-
-func (i FileStorageShareAclArgs) ToFileStorageShareAclOutputWithContext(ctx context.Context) FileStorageShareAclOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FileStorageShareAclOutput)
-}
-
-// FileStorageShareAclArrayInput is an input type that accepts FileStorageShareAclArray and FileStorageShareAclArrayOutput values.
-// You can construct a concrete instance of `FileStorageShareAclArrayInput` via:
-//
-//	FileStorageShareAclArray{ FileStorageShareAclArgs{...} }
-type FileStorageShareAclArrayInput interface {
-	pulumi.Input
-
-	ToFileStorageShareAclArrayOutput() FileStorageShareAclArrayOutput
-	ToFileStorageShareAclArrayOutputWithContext(context.Context) FileStorageShareAclArrayOutput
-}
-
-type FileStorageShareAclArray []FileStorageShareAclInput
-
-func (FileStorageShareAclArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FileStorageShareAcl)(nil)).Elem()
-}
-
-func (i FileStorageShareAclArray) ToFileStorageShareAclArrayOutput() FileStorageShareAclArrayOutput {
-	return i.ToFileStorageShareAclArrayOutputWithContext(context.Background())
-}
-
-func (i FileStorageShareAclArray) ToFileStorageShareAclArrayOutputWithContext(ctx context.Context) FileStorageShareAclArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FileStorageShareAclArrayOutput)
-}
-
-type FileStorageShareAclOutput struct{ *pulumi.OutputState }
-
-func (FileStorageShareAclOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FileStorageShareAcl)(nil)).Elem()
-}
-
-func (o FileStorageShareAclOutput) ToFileStorageShareAclOutput() FileStorageShareAclOutput {
-	return o
-}
-
-func (o FileStorageShareAclOutput) ToFileStorageShareAclOutputWithContext(ctx context.Context) FileStorageShareAclOutput {
-	return o
-}
-
-// Access level: 'ro' or 'rw'.
-func (o FileStorageShareAclOutput) Permission() pulumi.StringOutput {
-	return o.ApplyT(func(v FileStorageShareAcl) string { return v.Permission }).(pulumi.StringOutput)
-}
-
-// Target IP/CIDR or '*'.
-func (o FileStorageShareAclOutput) Target() pulumi.StringOutput {
-	return o.ApplyT(func(v FileStorageShareAcl) string { return v.Target }).(pulumi.StringOutput)
-}
-
-type FileStorageShareAclArrayOutput struct{ *pulumi.OutputState }
-
-func (FileStorageShareAclArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FileStorageShareAcl)(nil)).Elem()
-}
-
-func (o FileStorageShareAclArrayOutput) ToFileStorageShareAclArrayOutput() FileStorageShareAclArrayOutput {
-	return o
-}
-
-func (o FileStorageShareAclArrayOutput) ToFileStorageShareAclArrayOutputWithContext(ctx context.Context) FileStorageShareAclArrayOutput {
-	return o
-}
-
-func (o FileStorageShareAclArrayOutput) Index(i pulumi.IntInput) FileStorageShareAclOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FileStorageShareAcl {
-		return vs[0].([]FileStorageShareAcl)[vs[1].(int)]
-	}).(FileStorageShareAclOutput)
-}
-
 type GatewayAddress struct {
 	// IP addresss
 	Address *string `pulumi:"address"`
@@ -7022,7 +6801,7 @@ func (o LoadbalancerNodeNetworkIpAddressArrayOutput) Index(i pulumi.IntInput) Lo
 }
 
 type ManagedDatabaseMysqlComponent struct {
-	// Type of the component
+	// Component name.
 	Component *string `pulumi:"component"`
 	// Hostname of the component
 	Host *string `pulumi:"host"`
@@ -7046,7 +6825,7 @@ type ManagedDatabaseMysqlComponentInput interface {
 }
 
 type ManagedDatabaseMysqlComponentArgs struct {
-	// Type of the component
+	// Component name.
 	Component pulumi.StringPtrInput `pulumi:"component"`
 	// Hostname of the component
 	Host pulumi.StringPtrInput `pulumi:"host"`
@@ -7109,7 +6888,7 @@ func (o ManagedDatabaseMysqlComponentOutput) ToManagedDatabaseMysqlComponentOutp
 	return o
 }
 
-// Type of the component
+// Component name.
 func (o ManagedDatabaseMysqlComponentOutput) Component() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlComponent) *string { return v.Component }).(pulumi.StringPtrOutput)
 }
@@ -7283,7 +7062,7 @@ type ManagedDatabaseMysqlNodeState struct {
 	Name *string `pulumi:"name"`
 	// Role of the node
 	Role *string `pulumi:"role"`
-	// State of the node
+	// Current state of the node
 	State *string `pulumi:"state"`
 }
 
@@ -7303,7 +7082,7 @@ type ManagedDatabaseMysqlNodeStateArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Role of the node
 	Role pulumi.StringPtrInput `pulumi:"role"`
-	// State of the node
+	// Current state of the node
 	State pulumi.StringPtrInput `pulumi:"state"`
 }
 
@@ -7368,7 +7147,7 @@ func (o ManagedDatabaseMysqlNodeStateOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlNodeState) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
 
-// State of the node
+// Current state of the node
 func (o ManagedDatabaseMysqlNodeStateOutput) State() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlNodeState) *string { return v.State }).(pulumi.StringPtrOutput)
 }
@@ -8333,6 +8112,8 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) WaitTimeout() pulumi.IntPtrOutp
 type ManagedDatabaseMysqlPropertiesMigration struct {
 	// Database name for bootstrapping the initial connection.
 	Dbname *string `pulumi:"dbname"`
+	// MySQL migration dump tool. Experimental! Tool to use for database dump and restore during migration. Default: mysqldump.
+	DumpTool *string `pulumi:"dumpTool"`
 	// Hostname or IP address of the server where to migrate data from.
 	Host *string `pulumi:"host"`
 	// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
@@ -8345,6 +8126,8 @@ type ManagedDatabaseMysqlPropertiesMigration struct {
 	Password *string `pulumi:"password"`
 	// Port number of the server where to migrate data from.
 	Port *int `pulumi:"port"`
+	// Skip dump-restore part and start replication.
+	ReestablishReplication *bool `pulumi:"reestablishReplication"`
 	// The server where to migrate data from is secured with SSL.
 	Ssl *bool `pulumi:"ssl"`
 	// User name for authentication with the server where to migrate data from.
@@ -8365,6 +8148,8 @@ type ManagedDatabaseMysqlPropertiesMigrationInput interface {
 type ManagedDatabaseMysqlPropertiesMigrationArgs struct {
 	// Database name for bootstrapping the initial connection.
 	Dbname pulumi.StringPtrInput `pulumi:"dbname"`
+	// MySQL migration dump tool. Experimental! Tool to use for database dump and restore during migration. Default: mysqldump.
+	DumpTool pulumi.StringPtrInput `pulumi:"dumpTool"`
 	// Hostname or IP address of the server where to migrate data from.
 	Host pulumi.StringPtrInput `pulumi:"host"`
 	// Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
@@ -8377,6 +8162,8 @@ type ManagedDatabaseMysqlPropertiesMigrationArgs struct {
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Port number of the server where to migrate data from.
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Skip dump-restore part and start replication.
+	ReestablishReplication pulumi.BoolPtrInput `pulumi:"reestablishReplication"`
 	// The server where to migrate data from is secured with SSL.
 	Ssl pulumi.BoolPtrInput `pulumi:"ssl"`
 	// User name for authentication with the server where to migrate data from.
@@ -8465,6 +8252,11 @@ func (o ManagedDatabaseMysqlPropertiesMigrationOutput) Dbname() pulumi.StringPtr
 	return o.ApplyT(func(v ManagedDatabaseMysqlPropertiesMigration) *string { return v.Dbname }).(pulumi.StringPtrOutput)
 }
 
+// MySQL migration dump tool. Experimental! Tool to use for database dump and restore during migration. Default: mysqldump.
+func (o ManagedDatabaseMysqlPropertiesMigrationOutput) DumpTool() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlPropertiesMigration) *string { return v.DumpTool }).(pulumi.StringPtrOutput)
+}
+
 // Hostname or IP address of the server where to migrate data from.
 func (o ManagedDatabaseMysqlPropertiesMigrationOutput) Host() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlPropertiesMigration) *string { return v.Host }).(pulumi.StringPtrOutput)
@@ -8493,6 +8285,11 @@ func (o ManagedDatabaseMysqlPropertiesMigrationOutput) Password() pulumi.StringP
 // Port number of the server where to migrate data from.
 func (o ManagedDatabaseMysqlPropertiesMigrationOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlPropertiesMigration) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Skip dump-restore part and start replication.
+func (o ManagedDatabaseMysqlPropertiesMigrationOutput) ReestablishReplication() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlPropertiesMigration) *bool { return v.ReestablishReplication }).(pulumi.BoolPtrOutput)
 }
 
 // The server where to migrate data from is secured with SSL.
@@ -8536,6 +8333,16 @@ func (o ManagedDatabaseMysqlPropertiesMigrationPtrOutput) Dbname() pulumi.String
 			return nil
 		}
 		return v.Dbname
+	}).(pulumi.StringPtrOutput)
+}
+
+// MySQL migration dump tool. Experimental! Tool to use for database dump and restore during migration. Default: mysqldump.
+func (o ManagedDatabaseMysqlPropertiesMigrationPtrOutput) DumpTool() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlPropertiesMigration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DumpTool
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -8597,6 +8404,16 @@ func (o ManagedDatabaseMysqlPropertiesMigrationPtrOutput) Port() pulumi.IntPtrOu
 		}
 		return v.Port
 	}).(pulumi.IntPtrOutput)
+}
+
+// Skip dump-restore part and start replication.
+func (o ManagedDatabaseMysqlPropertiesMigrationPtrOutput) ReestablishReplication() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlPropertiesMigration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ReestablishReplication
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The server where to migrate data from is secured with SSL.
@@ -8776,7 +8593,7 @@ func (o ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupPtrOutput) FullBacku
 }
 
 type ManagedDatabaseOpensearchComponent struct {
-	// Type of the component
+	// Component name.
 	Component *string `pulumi:"component"`
 	// Hostname of the component
 	Host *string `pulumi:"host"`
@@ -8800,7 +8617,7 @@ type ManagedDatabaseOpensearchComponentInput interface {
 }
 
 type ManagedDatabaseOpensearchComponentArgs struct {
-	// Type of the component
+	// Component name.
 	Component pulumi.StringPtrInput `pulumi:"component"`
 	// Hostname of the component
 	Host pulumi.StringPtrInput `pulumi:"host"`
@@ -8863,7 +8680,7 @@ func (o ManagedDatabaseOpensearchComponentOutput) ToManagedDatabaseOpensearchCom
 	return o
 }
 
-// Type of the component
+// Component name.
 func (o ManagedDatabaseOpensearchComponentOutput) Component() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchComponent) *string { return v.Component }).(pulumi.StringPtrOutput)
 }
@@ -9037,7 +8854,7 @@ type ManagedDatabaseOpensearchNodeState struct {
 	Name *string `pulumi:"name"`
 	// Role of the node
 	Role *string `pulumi:"role"`
-	// State of the node
+	// Current state of the node
 	State *string `pulumi:"state"`
 }
 
@@ -9057,7 +8874,7 @@ type ManagedDatabaseOpensearchNodeStateArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Role of the node
 	Role pulumi.StringPtrInput `pulumi:"role"`
-	// State of the node
+	// Current state of the node
 	State pulumi.StringPtrInput `pulumi:"state"`
 }
 
@@ -9122,7 +8939,7 @@ func (o ManagedDatabaseOpensearchNodeStateOutput) Role() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v ManagedDatabaseOpensearchNodeState) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
 
-// State of the node
+// Current state of the node
 func (o ManagedDatabaseOpensearchNodeStateOutput) State() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchNodeState) *string { return v.State }).(pulumi.StringPtrOutput)
 }
@@ -9240,6 +9057,12 @@ type ManagedDatabaseOpensearchProperties struct {
 	KnnMemoryCircuitBreakerEnabled *bool `pulumi:"knnMemoryCircuitBreakerEnabled"`
 	// Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
 	KnnMemoryCircuitBreakerLimit *int `pulumi:"knnMemoryCircuitBreakerLimit"`
+	// plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
+	MlCommonsModelAccessControlEnabled *bool `pulumi:"mlCommonsModelAccessControlEnabled"`
+	// plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
+	MlCommonsNativeMemoryThreshold *int `pulumi:"mlCommonsNativeMemoryThreshold"`
+	// plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
+	MlCommonsOnlyRunOnMlNode *bool `pulumi:"mlCommonsOnlyRunOnMlNode"`
 	// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
 	NodeSearchCacheSize *string `pulumi:"nodeSearchCacheSize"`
 	// OpenSearch OpenID Connect Configuration.
@@ -9400,6 +9223,12 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	KnnMemoryCircuitBreakerEnabled pulumi.BoolPtrInput `pulumi:"knnMemoryCircuitBreakerEnabled"`
 	// Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
 	KnnMemoryCircuitBreakerLimit pulumi.IntPtrInput `pulumi:"knnMemoryCircuitBreakerLimit"`
+	// plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
+	MlCommonsModelAccessControlEnabled pulumi.BoolPtrInput `pulumi:"mlCommonsModelAccessControlEnabled"`
+	// plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
+	MlCommonsNativeMemoryThreshold pulumi.IntPtrInput `pulumi:"mlCommonsNativeMemoryThreshold"`
+	// plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
+	MlCommonsOnlyRunOnMlNode pulumi.BoolPtrInput `pulumi:"mlCommonsOnlyRunOnMlNode"`
 	// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
 	NodeSearchCacheSize pulumi.StringPtrInput `pulumi:"nodeSearchCacheSize"`
 	// OpenSearch OpenID Connect Configuration.
@@ -9780,6 +9609,21 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) KnnMemoryCircuitBreakerEnable
 // Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
 func (o ManagedDatabaseOpensearchPropertiesOutput) KnnMemoryCircuitBreakerLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.KnnMemoryCircuitBreakerLimit }).(pulumi.IntPtrOutput)
+}
+
+// plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
+func (o ManagedDatabaseOpensearchPropertiesOutput) MlCommonsModelAccessControlEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.MlCommonsModelAccessControlEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
+func (o ManagedDatabaseOpensearchPropertiesOutput) MlCommonsNativeMemoryThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.MlCommonsNativeMemoryThreshold }).(pulumi.IntPtrOutput)
+}
+
+// plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
+func (o ManagedDatabaseOpensearchPropertiesOutput) MlCommonsOnlyRunOnMlNode() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.MlCommonsOnlyRunOnMlNode }).(pulumi.BoolPtrOutput)
 }
 
 // The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
@@ -10424,6 +10268,36 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) KnnMemoryCircuitBreakerLim
 		}
 		return v.KnnMemoryCircuitBreakerLimit
 	}).(pulumi.IntPtrOutput)
+}
+
+// plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) MlCommonsModelAccessControlEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.MlCommonsModelAccessControlEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) MlCommonsNativeMemoryThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MlCommonsNativeMemoryThreshold
+	}).(pulumi.IntPtrOutput)
+}
+
+// plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) MlCommonsOnlyRunOnMlNode() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.MlCommonsOnlyRunOnMlNode
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
@@ -16292,7 +16166,7 @@ func (o ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter
 }
 
 type ManagedDatabasePostgresqlComponent struct {
-	// Type of the component
+	// Component name.
 	Component *string `pulumi:"component"`
 	// Hostname of the component
 	Host *string `pulumi:"host"`
@@ -16316,7 +16190,7 @@ type ManagedDatabasePostgresqlComponentInput interface {
 }
 
 type ManagedDatabasePostgresqlComponentArgs struct {
-	// Type of the component
+	// Component name.
 	Component pulumi.StringPtrInput `pulumi:"component"`
 	// Hostname of the component
 	Host pulumi.StringPtrInput `pulumi:"host"`
@@ -16379,7 +16253,7 @@ func (o ManagedDatabasePostgresqlComponentOutput) ToManagedDatabasePostgresqlCom
 	return o
 }
 
-// Type of the component
+// Component name.
 func (o ManagedDatabasePostgresqlComponentOutput) Component() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlComponent) *string { return v.Component }).(pulumi.StringPtrOutput)
 }
@@ -16553,7 +16427,7 @@ type ManagedDatabasePostgresqlNodeState struct {
 	Name *string `pulumi:"name"`
 	// Role of the node
 	Role *string `pulumi:"role"`
-	// State of the node
+	// Current state of the node
 	State *string `pulumi:"state"`
 }
 
@@ -16573,7 +16447,7 @@ type ManagedDatabasePostgresqlNodeStateArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Role of the node
 	Role pulumi.StringPtrInput `pulumi:"role"`
-	// State of the node
+	// Current state of the node
 	State pulumi.StringPtrInput `pulumi:"state"`
 }
 
@@ -16638,7 +16512,7 @@ func (o ManagedDatabasePostgresqlNodeStateOutput) Role() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v ManagedDatabasePostgresqlNodeState) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
 
-// State of the node
+// Current state of the node
 func (o ManagedDatabasePostgresqlNodeStateOutput) State() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlNodeState) *string { return v.State }).(pulumi.StringPtrOutput)
 }
@@ -16704,6 +16578,8 @@ type ManagedDatabasePostgresqlProperties struct {
 	DeadlockTimeout *int `pulumi:"deadlockTimeout"`
 	// Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
 	DefaultToastCompression *string `pulumi:"defaultToastCompression"`
+	// Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.
+	EnableHaReplicaDns *bool `pulumi:"enableHaReplicaDns"`
 	// Time out sessions with open transactions after this number of milliseconds.
 	IdleInTransactionSessionTimeout *int `pulumi:"idleInTransactionSessionTimeout"`
 	// EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
@@ -16872,6 +16748,8 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	DeadlockTimeout pulumi.IntPtrInput `pulumi:"deadlockTimeout"`
 	// Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
 	DefaultToastCompression pulumi.StringPtrInput `pulumi:"defaultToastCompression"`
+	// Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.
+	EnableHaReplicaDns pulumi.BoolPtrInput `pulumi:"enableHaReplicaDns"`
 	// Time out sessions with open transactions after this number of milliseconds.
 	IdleInTransactionSessionTimeout pulumi.IntPtrInput `pulumi:"idleInTransactionSessionTimeout"`
 	// EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
@@ -17163,6 +17041,11 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) DeadlockTimeout() pulumi.IntP
 // Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
 func (o ManagedDatabasePostgresqlPropertiesOutput) DefaultToastCompression() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.DefaultToastCompression }).(pulumi.StringPtrOutput)
+}
+
+// Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.
+func (o ManagedDatabasePostgresqlPropertiesOutput) EnableHaReplicaDns() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *bool { return v.EnableHaReplicaDns }).(pulumi.BoolPtrOutput)
 }
 
 // Time out sessions with open transactions after this number of milliseconds.
@@ -17682,6 +17565,16 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) DefaultToastCompression() 
 		}
 		return v.DefaultToastCompression
 	}).(pulumi.StringPtrOutput)
+}
+
+// Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) EnableHaReplicaDns() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.EnableHaReplicaDns
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Time out sessions with open transactions after this number of milliseconds.
@@ -20110,7 +20003,7 @@ func (o ManagedDatabaseUserValkeyAccessControlPtrOutput) Keys() pulumi.StringPtr
 }
 
 type ManagedDatabaseValkeyComponent struct {
-	// Type of the component
+	// Component name.
 	Component *string `pulumi:"component"`
 	// Hostname of the component
 	Host *string `pulumi:"host"`
@@ -20134,7 +20027,7 @@ type ManagedDatabaseValkeyComponentInput interface {
 }
 
 type ManagedDatabaseValkeyComponentArgs struct {
-	// Type of the component
+	// Component name.
 	Component pulumi.StringPtrInput `pulumi:"component"`
 	// Hostname of the component
 	Host pulumi.StringPtrInput `pulumi:"host"`
@@ -20197,7 +20090,7 @@ func (o ManagedDatabaseValkeyComponentOutput) ToManagedDatabaseValkeyComponentOu
 	return o
 }
 
-// Type of the component
+// Component name.
 func (o ManagedDatabaseValkeyComponentOutput) Component() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseValkeyComponent) *string { return v.Component }).(pulumi.StringPtrOutput)
 }
@@ -20371,7 +20264,7 @@ type ManagedDatabaseValkeyNodeState struct {
 	Name *string `pulumi:"name"`
 	// Role of the node
 	Role *string `pulumi:"role"`
-	// State of the node
+	// Current state of the node
 	State *string `pulumi:"state"`
 }
 
@@ -20391,7 +20284,7 @@ type ManagedDatabaseValkeyNodeStateArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Role of the node
 	Role pulumi.StringPtrInput `pulumi:"role"`
-	// State of the node
+	// Current state of the node
 	State pulumi.StringPtrInput `pulumi:"state"`
 }
 
@@ -20456,7 +20349,7 @@ func (o ManagedDatabaseValkeyNodeStateOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseValkeyNodeState) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
 
-// State of the node
+// Current state of the node
 func (o ManagedDatabaseValkeyNodeStateOutput) State() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseValkeyNodeState) *string { return v.State }).(pulumi.StringPtrOutput)
 }
@@ -26880,10 +26773,6 @@ func (o GetTagsTagArrayOutput) Index(i pulumi.IntInput) GetTagsTagOutput {
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FileStorageNetworkInput)(nil)).Elem(), FileStorageNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FileStorageNetworkArrayInput)(nil)).Elem(), FileStorageNetworkArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*FileStorageShareInput)(nil)).Elem(), FileStorageShareArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*FileStorageShareArrayInput)(nil)).Elem(), FileStorageShareArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*FileStorageShareAclInput)(nil)).Elem(), FileStorageShareAclArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*FileStorageShareAclArrayInput)(nil)).Elem(), FileStorageShareAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayAddressInput)(nil)).Elem(), GatewayAddressArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayAddressPtrInput)(nil)).Elem(), GatewayAddressArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayAddressArrayInput)(nil)).Elem(), GatewayAddressArray{})
@@ -27157,10 +27046,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsTagArrayInput)(nil)).Elem(), GetTagsTagArray{})
 	pulumi.RegisterOutputType(FileStorageNetworkOutput{})
 	pulumi.RegisterOutputType(FileStorageNetworkArrayOutput{})
-	pulumi.RegisterOutputType(FileStorageShareOutput{})
-	pulumi.RegisterOutputType(FileStorageShareArrayOutput{})
-	pulumi.RegisterOutputType(FileStorageShareAclOutput{})
-	pulumi.RegisterOutputType(FileStorageShareAclArrayOutput{})
 	pulumi.RegisterOutputType(GatewayAddressOutput{})
 	pulumi.RegisterOutputType(GatewayAddressPtrOutput{})
 	pulumi.RegisterOutputType(GatewayAddressArrayOutput{})

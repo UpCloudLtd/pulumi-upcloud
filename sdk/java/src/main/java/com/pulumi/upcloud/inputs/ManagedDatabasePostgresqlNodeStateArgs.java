@@ -46,14 +46,14 @@ public final class ManagedDatabasePostgresqlNodeStateArgs extends com.pulumi.res
     }
 
     /**
-     * State of the node
+     * Current state of the node
      * 
      */
     @Import(name="state")
     private @Nullable Output<String> state;
 
     /**
-     * @return State of the node
+     * @return Current state of the node
      * 
      */
     public Optional<Output<String>> state() {
@@ -129,7 +129,7 @@ public final class ManagedDatabasePostgresqlNodeStateArgs extends com.pulumi.res
         }
 
         /**
-         * @param state State of the node
+         * @param state Current state of the node
          * 
          * @return builder
          * 
@@ -140,7 +140,7 @@ public final class ManagedDatabasePostgresqlNodeStateArgs extends com.pulumi.res
         }
 
         /**
-         * @param state State of the node
+         * @param state Current state of the node
          * 
          * @return builder
          * 

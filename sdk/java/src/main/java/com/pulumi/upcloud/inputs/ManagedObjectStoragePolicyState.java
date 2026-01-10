@@ -78,14 +78,14 @@ public final class ManagedObjectStoragePolicyState extends com.pulumi.resources.
     }
 
     /**
-     * Description of the policy.
+     * Description of the policy. This property is immutable after creation.
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return Description of the policy.
+     * @return Description of the policy. This property is immutable after creation.
      * 
      */
     public Optional<Output<String>> description() {
@@ -285,7 +285,7 @@ public final class ManagedObjectStoragePolicyState extends com.pulumi.resources.
         }
 
         /**
-         * @param description Description of the policy.
+         * @param description Description of the policy. This property is immutable after creation.
          * 
          * @return builder
          * 
@@ -296,7 +296,7 @@ public final class ManagedObjectStoragePolicyState extends com.pulumi.resources.
         }
 
         /**
-         * @param description Description of the policy.
+         * @param description Description of the policy. This property is immutable after creation.
          * 
          * @return builder
          * 

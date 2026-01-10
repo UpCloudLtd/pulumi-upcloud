@@ -123,14 +123,14 @@ public class ManagedObjectStoragePolicy extends com.pulumi.resources.CustomResou
         return this.defaultVersionId;
     }
     /**
-     * Description of the policy.
+     * Description of the policy. This property is immutable after creation.
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
-     * @return Description of the policy.
+     * @return Description of the policy. This property is immutable after creation.
      * 
      */
     public Output<Optional<String>> description() {

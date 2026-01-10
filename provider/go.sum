@@ -1402,12 +1402,12 @@ github.com/ProtonMail/go-crypto v1.1.6 h1:ZcV+Ropw6Qn0AX9brlQLAUXfqLBc7Bl+f/DmNx
 github.com/ProtonMail/go-crypto v1.1.6/go.mod h1:rA3QumHc/FZ8pAHreoekgiAbzpNsfQAosU5td4SnOrE=
 github.com/Shopify/sarama v1.19.0/go.mod h1:FVkBWblsNy7DGZRfXLU0O9RCGt5g3g3yEuWXgklEdEo=
 github.com/Shopify/toxiproxy v2.1.4+incompatible/go.mod h1:OXgGpZ6Cli1/URJOF1DMxUHB2q5Ap20/P/eIdh4G0pI=
-github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20251125152553-35e061c24b60 h1:l6VVu4NulvnXW7Wived0/NhskxTZ39GBt0UpK4Juin4=
-github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20251125152553-35e061c24b60/go.mod h1:QGaezkdu71GKvJ00WQKnqPeU2/1mhZjpetM2j0j6wnM=
+github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20260109095802-a7091e856ae2 h1:b3AkuyAoEp6C9dyy1dyWkPxWNlYRgWgP15eHAZxkyAc=
+github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20260109095802-a7091e856ae2/go.mod h1:zgQmBRCewsGKet6VA7T/tfnbl3dmj9A8A7Nl5gTeDKU=
 github.com/UpCloudLtd/upcloud-go-api/credentials v0.1.1 h1:eTfQsv58ufALOk9BZ7WbS/i7pMUD11RnYYpRPsz0LdI=
 github.com/UpCloudLtd/upcloud-go-api/credentials v0.1.1/go.mod h1:7OtVs2UqtfvjkC1HfE+Oud0MnbMv7qUWnbEgxnTAqts=
-github.com/UpCloudLtd/upcloud-go-api/v8 v8.31.1 h1:fp+yFy61TlgFVEQZnleoxfR+5ApMJ4H7OCtJaBBwhf8=
-github.com/UpCloudLtd/upcloud-go-api/v8 v8.31.1/go.mod h1:NBh1d/ip1bhdAIhuPWbyPme7tbLzDTV7dhutUmU1vg8=
+github.com/UpCloudLtd/upcloud-go-api/v8 v8.33.0 h1:18MDgUePzdapCSKwLWVL+WRawyT25yMxmV9TQ32KQJQ=
+github.com/UpCloudLtd/upcloud-go-api/v8 v8.33.0/go.mod h1:NBh1d/ip1bhdAIhuPWbyPme7tbLzDTV7dhutUmU1vg8=
 github.com/VividCortex/gohistogram v1.0.0/go.mod h1:Pf5mBqqDxYaXu3hDrrU+w6nw50o/4+TcAqDqk/vUH7g=
 github.com/afex/hystrix-go v0.0.0-20180502004556-fa1af6a1f4f5/go.mod h1:SkGFH1ia65gfNATL8TAiHDNxPzPdmEL5uirI2Uyuz6c=
 github.com/agext/levenshtein v1.2.1/go.mod h1:JEDfjyjHDjOF/1e4FlBE/PkbqA9OfWu2ki2W0IB5558=
@@ -2657,6 +2657,8 @@ go.uber.org/tools v0.0.0-20190618225709-2cfd321de3ee/go.mod h1:vJERXedbb3MVM5f9E
 go.uber.org/zap v1.10.0/go.mod h1:vwi/ZaCAaUcBkycHslxD9B2zi4UTXhF60s6SWpuDF0Q=
 go.uber.org/zap v1.13.0/go.mod h1:zwrFLgMcdUuIBviXEYEH1YKNaOBnKXsx2IPda5bBwHM=
 go.uber.org/zap v1.16.0/go.mod h1:MA8QOfq0BHJwdXa996Y4dYkAqRKB8/1K1QMMZVaNZjQ=
+go.yaml.in/yaml/v3 v3.0.4 h1:tfq32ie2Jv2UxXFdLJdh3jXuOzWiL1fo0bu/FbuKpbc=
+go.yaml.in/yaml/v3 v3.0.4/go.mod h1:DhzuOOF2ATzADvBadXxruRBLzYTpT36CKvDb3+aBEFg=
 gocloud.dev v0.37.0 h1:XF1rN6R0qZI/9DYjN16Uy0durAmSlf58DHOcb28GPro=
 gocloud.dev v0.37.0/go.mod h1:7/O4kqdInCNsc6LqgmuFnS0GRew4XNNYWpA44yQnwco=
 gocloud.dev/secrets/hashivault v0.37.0 h1:5ehGtUBP29DFAgAs6bPw7fVSgqQ3TxaoK2xVcLp1x+c=

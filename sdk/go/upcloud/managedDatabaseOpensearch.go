@@ -69,7 +69,7 @@ type ManagedDatabaseOpensearch struct {
 	Components ManagedDatabaseOpensearchComponentArrayOutput `pulumi:"components"`
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
 	ExtendedAccessControl pulumi.BoolOutput `pulumi:"extendedAccessControl"`
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringOutput `pulumi:"maintenanceWindowDow"`
@@ -84,14 +84,14 @@ type ManagedDatabaseOpensearch struct {
 	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans opensearch`.
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// The administrative power state of the service
-	Powered pulumi.BoolPtrOutput `pulumi:"powered"`
+	Powered pulumi.BoolOutput `pulumi:"powered"`
 	// Primary database name
 	PrimaryDatabase pulumi.StringOutput `pulumi:"primaryDatabase"`
-	// Database Engine properties for OpenSearch
-	Properties ManagedDatabaseOpensearchPropertiesOutput `pulumi:"properties"`
+	// Database engine properties.
+	Properties ManagedDatabaseOpensearchPropertiesPtrOutput `pulumi:"properties"`
 	// Hostname to the service instance
 	ServiceHost pulumi.StringOutput `pulumi:"serviceHost"`
-	// Primary username's password to the service instance
+	// Primary password to the service instance
 	ServicePassword pulumi.StringOutput `pulumi:"servicePassword"`
 	// Port to the service instance
 	ServicePort pulumi.StringOutput `pulumi:"servicePort"`
@@ -99,13 +99,13 @@ type ManagedDatabaseOpensearch struct {
 	ServiceUri pulumi.StringOutput `pulumi:"serviceUri"`
 	// Primary username to the service instance
 	ServiceUsername pulumi.StringOutput `pulumi:"serviceUsername"`
-	// State of the service
+	// The current state of the service
 	State pulumi.StringOutput `pulumi:"state"`
 	// If set to true, prevents the managed service from being powered off, or deleted.
-	TerminationProtection pulumi.BoolPtrOutput `pulumi:"terminationProtection"`
-	// Title of a managed database instance
+	TerminationProtection pulumi.BoolOutput `pulumi:"terminationProtection"`
+	// Title of the managed database instance
 	Title pulumi.StringOutput `pulumi:"title"`
-	// Type of the service
+	// Type of the managed database instance
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -163,7 +163,7 @@ type managedDatabaseOpensearchState struct {
 	Components []ManagedDatabaseOpensearchComponent `pulumi:"components"`
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
 	ExtendedAccessControl *bool `pulumi:"extendedAccessControl"`
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow *string `pulumi:"maintenanceWindowDow"`
@@ -181,11 +181,11 @@ type managedDatabaseOpensearchState struct {
 	Powered *bool `pulumi:"powered"`
 	// Primary database name
 	PrimaryDatabase *string `pulumi:"primaryDatabase"`
-	// Database Engine properties for OpenSearch
+	// Database engine properties.
 	Properties *ManagedDatabaseOpensearchProperties `pulumi:"properties"`
 	// Hostname to the service instance
 	ServiceHost *string `pulumi:"serviceHost"`
-	// Primary username's password to the service instance
+	// Primary password to the service instance
 	ServicePassword *string `pulumi:"servicePassword"`
 	// Port to the service instance
 	ServicePort *string `pulumi:"servicePort"`
@@ -193,13 +193,13 @@ type managedDatabaseOpensearchState struct {
 	ServiceUri *string `pulumi:"serviceUri"`
 	// Primary username to the service instance
 	ServiceUsername *string `pulumi:"serviceUsername"`
-	// State of the service
+	// The current state of the service
 	State *string `pulumi:"state"`
 	// If set to true, prevents the managed service from being powered off, or deleted.
 	TerminationProtection *bool `pulumi:"terminationProtection"`
-	// Title of a managed database instance
+	// Title of the managed database instance
 	Title *string `pulumi:"title"`
-	// Type of the service
+	// Type of the managed database instance
 	Type *string `pulumi:"type"`
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone *string `pulumi:"zone"`
@@ -214,7 +214,7 @@ type ManagedDatabaseOpensearchState struct {
 	Components ManagedDatabaseOpensearchComponentArrayInput
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
 	ExtendedAccessControl pulumi.BoolPtrInput
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringPtrInput
@@ -232,11 +232,11 @@ type ManagedDatabaseOpensearchState struct {
 	Powered pulumi.BoolPtrInput
 	// Primary database name
 	PrimaryDatabase pulumi.StringPtrInput
-	// Database Engine properties for OpenSearch
+	// Database engine properties.
 	Properties ManagedDatabaseOpensearchPropertiesPtrInput
 	// Hostname to the service instance
 	ServiceHost pulumi.StringPtrInput
-	// Primary username's password to the service instance
+	// Primary password to the service instance
 	ServicePassword pulumi.StringPtrInput
 	// Port to the service instance
 	ServicePort pulumi.StringPtrInput
@@ -244,13 +244,13 @@ type ManagedDatabaseOpensearchState struct {
 	ServiceUri pulumi.StringPtrInput
 	// Primary username to the service instance
 	ServiceUsername pulumi.StringPtrInput
-	// State of the service
+	// The current state of the service
 	State pulumi.StringPtrInput
 	// If set to true, prevents the managed service from being powered off, or deleted.
 	TerminationProtection pulumi.BoolPtrInput
-	// Title of a managed database instance
+	// Title of the managed database instance
 	Title pulumi.StringPtrInput
-	// Type of the service
+	// Type of the managed database instance
 	Type pulumi.StringPtrInput
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringPtrInput
@@ -267,7 +267,7 @@ type managedDatabaseOpensearchArgs struct {
 	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
 	ExtendedAccessControl *bool `pulumi:"extendedAccessControl"`
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow *string `pulumi:"maintenanceWindowDow"`
@@ -281,11 +281,11 @@ type managedDatabaseOpensearchArgs struct {
 	Plan string `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
-	// Database Engine properties for OpenSearch
+	// Database engine properties.
 	Properties *ManagedDatabaseOpensearchProperties `pulumi:"properties"`
 	// If set to true, prevents the managed service from being powered off, or deleted.
 	TerminationProtection *bool `pulumi:"terminationProtection"`
-	// Title of a managed database instance
+	// Title of the managed database instance
 	Title string `pulumi:"title"`
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone string `pulumi:"zone"`
@@ -299,7 +299,7 @@ type ManagedDatabaseOpensearchArgs struct {
 	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
 	ExtendedAccessControl pulumi.BoolPtrInput
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringPtrInput
@@ -313,11 +313,11 @@ type ManagedDatabaseOpensearchArgs struct {
 	Plan pulumi.StringInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
-	// Database Engine properties for OpenSearch
+	// Database engine properties.
 	Properties ManagedDatabaseOpensearchPropertiesPtrInput
 	// If set to true, prevents the managed service from being powered off, or deleted.
 	TerminationProtection pulumi.BoolPtrInput
-	// Title of a managed database instance
+	// Title of the managed database instance
 	Title pulumi.StringInput
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringInput
@@ -430,7 +430,7 @@ func (o ManagedDatabaseOpensearchOutput) ExtendedAccessControl() pulumi.BoolOutp
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.BoolOutput { return v.ExtendedAccessControl }).(pulumi.BoolOutput)
 }
 
-// User defined key-value pairs to classify the managed database.
+// User defined key-value pairs to classify the database.
 func (o ManagedDatabaseOpensearchOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -466,8 +466,8 @@ func (o ManagedDatabaseOpensearchOutput) Plan() pulumi.StringOutput {
 }
 
 // The administrative power state of the service
-func (o ManagedDatabaseOpensearchOutput) Powered() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.BoolPtrOutput { return v.Powered }).(pulumi.BoolPtrOutput)
+func (o ManagedDatabaseOpensearchOutput) Powered() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.BoolOutput { return v.Powered }).(pulumi.BoolOutput)
 }
 
 // Primary database name
@@ -475,9 +475,9 @@ func (o ManagedDatabaseOpensearchOutput) PrimaryDatabase() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.StringOutput { return v.PrimaryDatabase }).(pulumi.StringOutput)
 }
 
-// Database Engine properties for OpenSearch
-func (o ManagedDatabaseOpensearchOutput) Properties() ManagedDatabaseOpensearchPropertiesOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearch) ManagedDatabaseOpensearchPropertiesOutput { return v.Properties }).(ManagedDatabaseOpensearchPropertiesOutput)
+// Database engine properties.
+func (o ManagedDatabaseOpensearchOutput) Properties() ManagedDatabaseOpensearchPropertiesPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearch) ManagedDatabaseOpensearchPropertiesPtrOutput { return v.Properties }).(ManagedDatabaseOpensearchPropertiesPtrOutput)
 }
 
 // Hostname to the service instance
@@ -485,7 +485,7 @@ func (o ManagedDatabaseOpensearchOutput) ServiceHost() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.StringOutput { return v.ServiceHost }).(pulumi.StringOutput)
 }
 
-// Primary username's password to the service instance
+// Primary password to the service instance
 func (o ManagedDatabaseOpensearchOutput) ServicePassword() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.StringOutput { return v.ServicePassword }).(pulumi.StringOutput)
 }
@@ -505,22 +505,22 @@ func (o ManagedDatabaseOpensearchOutput) ServiceUsername() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.StringOutput { return v.ServiceUsername }).(pulumi.StringOutput)
 }
 
-// State of the service
+// The current state of the service
 func (o ManagedDatabaseOpensearchOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
 // If set to true, prevents the managed service from being powered off, or deleted.
-func (o ManagedDatabaseOpensearchOutput) TerminationProtection() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.BoolPtrOutput { return v.TerminationProtection }).(pulumi.BoolPtrOutput)
+func (o ManagedDatabaseOpensearchOutput) TerminationProtection() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.BoolOutput { return v.TerminationProtection }).(pulumi.BoolOutput)
 }
 
-// Title of a managed database instance
+// Title of the managed database instance
 func (o ManagedDatabaseOpensearchOutput) Title() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.StringOutput { return v.Title }).(pulumi.StringOutput)
 }
 
-// Type of the service
+// Type of the managed database instance
 func (o ManagedDatabaseOpensearchOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

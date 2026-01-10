@@ -38,14 +38,14 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * User defined key-value pairs to classify the managed database.
+     * User defined key-value pairs to classify the database.
      * 
      */
     @Import(name="labels")
     private @Nullable Output<Map<String,String>> labels;
 
     /**
-     * @return User defined key-value pairs to classify the managed database.
+     * @return User defined key-value pairs to classify the database.
      * 
      */
     public Optional<Output<Map<String,String>>> labels() {
@@ -143,14 +143,14 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Database Engine properties for PostgreSQL
+     * Database engine properties.
      * 
      */
     @Import(name="properties")
     private @Nullable Output<ManagedDatabasePostgresqlPropertiesArgs> properties;
 
     /**
-     * @return Database Engine properties for PostgreSQL
+     * @return Database engine properties.
      * 
      */
     public Optional<Output<ManagedDatabasePostgresqlPropertiesArgs>> properties() {
@@ -173,14 +173,14 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Title of a managed database instance
+     * Title of the managed database instance
      * 
      */
     @Import(name="title", required=true)
     private Output<String> title;
 
     /**
-     * @return Title of a managed database instance
+     * @return Title of the managed database instance
      * 
      */
     public Output<String> title() {
@@ -259,7 +259,7 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param labels User defined key-value pairs to classify the managed database.
+         * @param labels User defined key-value pairs to classify the database.
          * 
          * @return builder
          * 
@@ -270,7 +270,7 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param labels User defined key-value pairs to classify the managed database.
+         * @param labels User defined key-value pairs to classify the database.
          * 
          * @return builder
          * 
@@ -416,7 +416,7 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param properties Database Engine properties for PostgreSQL
+         * @param properties Database engine properties.
          * 
          * @return builder
          * 
@@ -427,7 +427,7 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param properties Database Engine properties for PostgreSQL
+         * @param properties Database engine properties.
          * 
          * @return builder
          * 
@@ -458,7 +458,7 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param title Title of a managed database instance
+         * @param title Title of the managed database instance
          * 
          * @return builder
          * 
@@ -469,7 +469,7 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param title Title of a managed database instance
+         * @param title Title of the managed database instance
          * 
          * @return builder
          * 

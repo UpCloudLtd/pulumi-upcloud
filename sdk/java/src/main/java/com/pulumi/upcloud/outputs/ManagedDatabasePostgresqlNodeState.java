@@ -22,7 +22,7 @@ public final class ManagedDatabasePostgresqlNodeState {
      */
     private @Nullable String role;
     /**
-     * @return State of the node
+     * @return Current state of the node
      * 
      */
     private @Nullable String state;
@@ -43,7 +43,7 @@ public final class ManagedDatabasePostgresqlNodeState {
         return Optional.ofNullable(this.role);
     }
     /**
-     * @return State of the node
+     * @return Current state of the node
      * 
      */
     public Optional<String> state() {

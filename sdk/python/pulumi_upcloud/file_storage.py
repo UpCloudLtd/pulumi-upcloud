@@ -26,8 +26,7 @@ class FileStorageArgs:
                  zone: pulumi.Input[_builtins.str],
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageNetworkArgs']]]] = None,
-                 shares: Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageShareArgs']]]] = None):
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageNetworkArgs']]]] = None):
         """
         The set of arguments for constructing a FileStorage resource.
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
@@ -36,7 +35,6 @@ class FileStorageArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the file storage.
         :param pulumi.Input[_builtins.str] name: Name of the file storage service.
         :param pulumi.Input[Sequence[pulumi.Input['FileStorageNetworkArgs']]] networks: Network attached to this file storage (currently supports at most one of these blocks).
-        :param pulumi.Input[Sequence[pulumi.Input['FileStorageShareArgs']]] shares: List of shares exported by this file storage.
         """
         pulumi.set(__self__, "configured_status", configured_status)
         pulumi.set(__self__, "size", size)
@@ -47,8 +45,6 @@ class FileStorageArgs:
             pulumi.set(__self__, "name", name)
         if networks is not None:
             pulumi.set(__self__, "networks", networks)
-        if shares is not None:
-            pulumi.set(__self__, "shares", shares)
 
     @_builtins.property
     @pulumi.getter(name="configuredStatus")
@@ -122,18 +118,6 @@ class FileStorageArgs:
     def networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageNetworkArgs']]]]):
         pulumi.set(self, "networks", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def shares(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageShareArgs']]]]:
-        """
-        List of shares exported by this file storage.
-        """
-        return pulumi.get(self, "shares")
-
-    @shares.setter
-    def shares(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageShareArgs']]]]):
-        pulumi.set(self, "shares", value)
-
 
 @pulumi.input_type
 class _FileStorageState:
@@ -142,7 +126,6 @@ class _FileStorageState:
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageNetworkArgs']]]] = None,
-                 shares: Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageShareArgs']]]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None,
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -151,7 +134,6 @@ class _FileStorageState:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the file storage.
         :param pulumi.Input[_builtins.str] name: Name of the file storage service.
         :param pulumi.Input[Sequence[pulumi.Input['FileStorageNetworkArgs']]] networks: Network attached to this file storage (currently supports at most one of these blocks).
-        :param pulumi.Input[Sequence[pulumi.Input['FileStorageShareArgs']]] shares: List of shares exported by this file storage.
         :param pulumi.Input[_builtins.int] size: Size of the file storage in GB.
         :param pulumi.Input[_builtins.str] zone: Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
         """
@@ -163,8 +145,6 @@ class _FileStorageState:
             pulumi.set(__self__, "name", name)
         if networks is not None:
             pulumi.set(__self__, "networks", networks)
-        if shares is not None:
-            pulumi.set(__self__, "shares", shares)
         if size is not None:
             pulumi.set(__self__, "size", size)
         if zone is not None:
@@ -220,18 +200,6 @@ class _FileStorageState:
 
     @_builtins.property
     @pulumi.getter
-    def shares(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageShareArgs']]]]:
-        """
-        List of shares exported by this file storage.
-        """
-        return pulumi.get(self, "shares")
-
-    @shares.setter
-    def shares(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageShareArgs']]]]):
-        pulumi.set(self, "shares", value)
-
-    @_builtins.property
-    @pulumi.getter
     def size(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Size of the file storage in GB.
@@ -265,7 +233,6 @@ class FileStorage(pulumi.CustomResource):
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FileStorageNetworkArgs', 'FileStorageNetworkArgsDict']]]]] = None,
-                 shares: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FileStorageShareArgs', 'FileStorageShareArgsDict']]]]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None,
                  zone: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -296,20 +263,22 @@ class FileStorage(pulumi.CustomResource):
                 "environment": "staging",
                 "customer": "example-customer",
             },
-            shares=[{
-                "name": "write-to-project",
-                "path": "/project",
-                "acls": [{
-                    "target": "172.16.8.12",
-                    "permission": "rw",
-                }],
-            }],
             networks=[{
                 "family": "IPv4",
                 "name": "example-private-net",
                 "uuid": this.id,
                 "ip_address": "172.16.8.11",
             }])
+        example_file_storage_share = upcloud.FileStorageShare("example",
+            file_storage=example.id,
+            name="write-to-project",
+            path="/project")
+        example_file_storage_share_acl = upcloud.FileStorageShareAcl("example",
+            file_storage=example.id,
+            share_name=example_file_storage_share.name,
+            name="acl-for-project",
+            target="172.16.8.12",
+            permission="rw")
         ```
 
         :param str resource_name: The name of the resource.
@@ -318,7 +287,6 @@ class FileStorage(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the file storage.
         :param pulumi.Input[_builtins.str] name: Name of the file storage service.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FileStorageNetworkArgs', 'FileStorageNetworkArgsDict']]]] networks: Network attached to this file storage (currently supports at most one of these blocks).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['FileStorageShareArgs', 'FileStorageShareArgsDict']]]] shares: List of shares exported by this file storage.
         :param pulumi.Input[_builtins.int] size: Size of the file storage in GB.
         :param pulumi.Input[_builtins.str] zone: Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
         """
@@ -355,20 +323,22 @@ class FileStorage(pulumi.CustomResource):
                 "environment": "staging",
                 "customer": "example-customer",
             },
-            shares=[{
-                "name": "write-to-project",
-                "path": "/project",
-                "acls": [{
-                    "target": "172.16.8.12",
-                    "permission": "rw",
-                }],
-            }],
             networks=[{
                 "family": "IPv4",
                 "name": "example-private-net",
                 "uuid": this.id,
                 "ip_address": "172.16.8.11",
             }])
+        example_file_storage_share = upcloud.FileStorageShare("example",
+            file_storage=example.id,
+            name="write-to-project",
+            path="/project")
+        example_file_storage_share_acl = upcloud.FileStorageShareAcl("example",
+            file_storage=example.id,
+            share_name=example_file_storage_share.name,
+            name="acl-for-project",
+            target="172.16.8.12",
+            permission="rw")
         ```
 
         :param str resource_name: The name of the resource.
@@ -390,7 +360,6 @@ class FileStorage(pulumi.CustomResource):
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FileStorageNetworkArgs', 'FileStorageNetworkArgsDict']]]]] = None,
-                 shares: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FileStorageShareArgs', 'FileStorageShareArgsDict']]]]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None,
                  zone: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -408,7 +377,6 @@ class FileStorage(pulumi.CustomResource):
             __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
             __props__.__dict__["networks"] = networks
-            __props__.__dict__["shares"] = shares
             if size is None and not opts.urn:
                 raise TypeError("Missing required property 'size'")
             __props__.__dict__["size"] = size
@@ -429,7 +397,6 @@ class FileStorage(pulumi.CustomResource):
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FileStorageNetworkArgs', 'FileStorageNetworkArgsDict']]]]] = None,
-            shares: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FileStorageShareArgs', 'FileStorageShareArgsDict']]]]] = None,
             size: Optional[pulumi.Input[_builtins.int]] = None,
             zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'FileStorage':
         """
@@ -443,7 +410,6 @@ class FileStorage(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the file storage.
         :param pulumi.Input[_builtins.str] name: Name of the file storage service.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FileStorageNetworkArgs', 'FileStorageNetworkArgsDict']]]] networks: Network attached to this file storage (currently supports at most one of these blocks).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['FileStorageShareArgs', 'FileStorageShareArgsDict']]]] shares: List of shares exported by this file storage.
         :param pulumi.Input[_builtins.int] size: Size of the file storage in GB.
         :param pulumi.Input[_builtins.str] zone: Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
         """
@@ -455,7 +421,6 @@ class FileStorage(pulumi.CustomResource):
         __props__.__dict__["labels"] = labels
         __props__.__dict__["name"] = name
         __props__.__dict__["networks"] = networks
-        __props__.__dict__["shares"] = shares
         __props__.__dict__["size"] = size
         __props__.__dict__["zone"] = zone
         return FileStorage(resource_name, opts=opts, __props__=__props__)
@@ -491,14 +456,6 @@ class FileStorage(pulumi.CustomResource):
         Network attached to this file storage (currently supports at most one of these blocks).
         """
         return pulumi.get(self, "networks")
-
-    @_builtins.property
-    @pulumi.getter
-    def shares(self) -> pulumi.Output[Optional[Sequence['outputs.FileStorageShare']]]:
-        """
-        List of shares exported by this file storage.
-        """
-        return pulumi.get(self, "shares")
 
     @_builtins.property
     @pulumi.getter

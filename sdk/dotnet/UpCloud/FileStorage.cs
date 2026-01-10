@@ -47,22 +47,6 @@ namespace UpCloud.Pulumi.UpCloud
     ///             { "environment", "staging" },
     ///             { "customer", "example-customer" },
     ///         },
-    ///         Shares = new[]
-    ///         {
-    ///             new UpCloud.Inputs.FileStorageShareArgs
-    ///             {
-    ///                 Name = "write-to-project",
-    ///                 Path = "/project",
-    ///                 Acls = new[]
-    ///                 {
-    ///                     new UpCloud.Inputs.FileStorageShareAclArgs
-    ///                     {
-    ///                         Target = "172.16.8.12",
-    ///                         Permission = "rw",
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
     ///         Networks = new[]
     ///         {
     ///             new UpCloud.Inputs.FileStorageNetworkArgs
@@ -73,6 +57,22 @@ namespace UpCloud.Pulumi.UpCloud
     ///                 IpAddress = "172.16.8.11",
     ///             },
     ///         },
+    ///     });
+    /// 
+    ///     var exampleFileStorageShare = new UpCloud.FileStorageShare("example", new()
+    ///     {
+    ///         FileStorage = example.Id,
+    ///         Name = "write-to-project",
+    ///         Path = "/project",
+    ///     });
+    /// 
+    ///     var exampleFileStorageShareAcl = new UpCloud.FileStorageShareAcl("example", new()
+    ///     {
+    ///         FileStorage = example.Id,
+    ///         ShareName = exampleFileStorageShare.Name,
+    ///         Name = "acl-for-project",
+    ///         Target = "172.16.8.12",
+    ///         Permission = "rw",
     ///     });
     /// 
     /// });
@@ -104,12 +104,6 @@ namespace UpCloud.Pulumi.UpCloud
         /// </summary>
         [Output("networks")]
         public Output<ImmutableArray<Outputs.FileStorageNetwork>> Networks { get; private set; } = null!;
-
-        /// <summary>
-        /// List of shares exported by this file storage.
-        /// </summary>
-        [Output("shares")]
-        public Output<ImmutableArray<Outputs.FileStorageShare>> Shares { get; private set; } = null!;
 
         /// <summary>
         /// Size of the file storage in GB.
@@ -206,18 +200,6 @@ namespace UpCloud.Pulumi.UpCloud
             set => _networks = value;
         }
 
-        [Input("shares")]
-        private InputList<Inputs.FileStorageShareArgs>? _shares;
-
-        /// <summary>
-        /// List of shares exported by this file storage.
-        /// </summary>
-        public InputList<Inputs.FileStorageShareArgs> Shares
-        {
-            get => _shares ?? (_shares = new InputList<Inputs.FileStorageShareArgs>());
-            set => _shares = value;
-        }
-
         /// <summary>
         /// Size of the file storage in GB.
         /// </summary>
@@ -272,18 +254,6 @@ namespace UpCloud.Pulumi.UpCloud
         {
             get => _networks ?? (_networks = new InputList<Inputs.FileStorageNetworkGetArgs>());
             set => _networks = value;
-        }
-
-        [Input("shares")]
-        private InputList<Inputs.FileStorageShareGetArgs>? _shares;
-
-        /// <summary>
-        /// List of shares exported by this file storage.
-        /// </summary>
-        public InputList<Inputs.FileStorageShareGetArgs> Shares
-        {
-            get => _shares ?? (_shares = new InputList<Inputs.FileStorageShareGetArgs>());
-            set => _shares = value;
         }
 
         /// <summary>

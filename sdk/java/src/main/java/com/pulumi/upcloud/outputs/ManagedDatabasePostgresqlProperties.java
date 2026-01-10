@@ -121,6 +121,11 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable String defaultToastCompression;
     /**
+     * @return Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.
+     * 
+     */
+    private @Nullable Boolean enableHaReplicaDns;
+    /**
      * @return Time out sessions with open transactions after this number of milliseconds.
      * 
      */
@@ -546,6 +551,13 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     public Optional<String> defaultToastCompression() {
         return Optional.ofNullable(this.defaultToastCompression);
+    }
+    /**
+     * @return Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.
+     * 
+     */
+    public Optional<Boolean> enableHaReplicaDns() {
+        return Optional.ofNullable(this.enableHaReplicaDns);
     }
     /**
      * @return Time out sessions with open transactions after this number of milliseconds.
@@ -976,6 +988,7 @@ public final class ManagedDatabasePostgresqlProperties {
         private @Nullable Double bgwriterLruMultiplier;
         private @Nullable Integer deadlockTimeout;
         private @Nullable String defaultToastCompression;
+        private @Nullable Boolean enableHaReplicaDns;
         private @Nullable Integer idleInTransactionSessionTimeout;
         private @Nullable Integer ioCombineLimit;
         private @Nullable Integer ioMaxCombineLimit;
@@ -1056,6 +1069,7 @@ public final class ManagedDatabasePostgresqlProperties {
     	      this.bgwriterLruMultiplier = defaults.bgwriterLruMultiplier;
     	      this.deadlockTimeout = defaults.deadlockTimeout;
     	      this.defaultToastCompression = defaults.defaultToastCompression;
+    	      this.enableHaReplicaDns = defaults.enableHaReplicaDns;
     	      this.idleInTransactionSessionTimeout = defaults.idleInTransactionSessionTimeout;
     	      this.ioCombineLimit = defaults.ioCombineLimit;
     	      this.ioMaxCombineLimit = defaults.ioMaxCombineLimit;
@@ -1233,6 +1247,12 @@ public final class ManagedDatabasePostgresqlProperties {
         public Builder defaultToastCompression(@Nullable String defaultToastCompression) {
 
             this.defaultToastCompression = defaultToastCompression;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder enableHaReplicaDns(@Nullable Boolean enableHaReplicaDns) {
+
+            this.enableHaReplicaDns = enableHaReplicaDns;
             return this;
         }
         @CustomType.Setter
@@ -1602,6 +1622,7 @@ public final class ManagedDatabasePostgresqlProperties {
             _resultValue.bgwriterLruMultiplier = bgwriterLruMultiplier;
             _resultValue.deadlockTimeout = deadlockTimeout;
             _resultValue.defaultToastCompression = defaultToastCompression;
+            _resultValue.enableHaReplicaDns = enableHaReplicaDns;
             _resultValue.idleInTransactionSessionTimeout = idleInTransactionSessionTimeout;
             _resultValue.ioCombineLimit = ioCombineLimit;
             _resultValue.ioMaxCombineLimit = ioMaxCombineLimit;

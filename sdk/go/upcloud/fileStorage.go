@@ -41,7 +41,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = upcloud.NewFileStorage(ctx, "example", &upcloud.FileStorageArgs{
+//			example, err := upcloud.NewFileStorage(ctx, "example", &upcloud.FileStorageArgs{
 //				Name:             pulumi.String("example-file-storage-test"),
 //				Size:             pulumi.Int(250),
 //				Zone:             pulumi.String("fi-hel2"),
@@ -49,18 +49,6 @@ import (
 //				Labels: pulumi.StringMap{
 //					"environment": pulumi.String("staging"),
 //					"customer":    pulumi.String("example-customer"),
-//				},
-//				Shares: upcloud.FileStorageShareArray{
-//					&upcloud.FileStorageShareArgs{
-//						Name: pulumi.String("write-to-project"),
-//						Path: pulumi.String("/project"),
-//						Acls: upcloud.FileStorageShareAclArray{
-//							&upcloud.FileStorageShareAclArgs{
-//								Target:     pulumi.String("172.16.8.12"),
-//								Permission: pulumi.String("rw"),
-//							},
-//						},
-//					},
 //				},
 //				Networks: upcloud.FileStorageNetworkArray{
 //					&upcloud.FileStorageNetworkArgs{
@@ -70,6 +58,24 @@ import (
 //						IpAddress: pulumi.String("172.16.8.11"),
 //					},
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleFileStorageShare, err := upcloud.NewFileStorageShare(ctx, "example", &upcloud.FileStorageShareArgs{
+//				FileStorage: example.ID(),
+//				Name:        pulumi.String("write-to-project"),
+//				Path:        pulumi.String("/project"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = upcloud.NewFileStorageShareAcl(ctx, "example", &upcloud.FileStorageShareAclArgs{
+//				FileStorage: example.ID(),
+//				ShareName:   exampleFileStorageShare.Name,
+//				Name:        pulumi.String("acl-for-project"),
+//				Target:      pulumi.String("172.16.8.12"),
+//				Permission:  pulumi.String("rw"),
 //			})
 //			if err != nil {
 //				return err
@@ -90,8 +96,6 @@ type FileStorage struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Network attached to this file storage (currently supports at most one of these blocks).
 	Networks FileStorageNetworkArrayOutput `pulumi:"networks"`
-	// List of shares exported by this file storage.
-	Shares FileStorageShareArrayOutput `pulumi:"shares"`
 	// Size of the file storage in GB.
 	Size pulumi.IntOutput `pulumi:"size"`
 	// Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
@@ -145,8 +149,6 @@ type fileStorageState struct {
 	Name *string `pulumi:"name"`
 	// Network attached to this file storage (currently supports at most one of these blocks).
 	Networks []FileStorageNetwork `pulumi:"networks"`
-	// List of shares exported by this file storage.
-	Shares []FileStorageShare `pulumi:"shares"`
 	// Size of the file storage in GB.
 	Size *int `pulumi:"size"`
 	// Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
@@ -162,8 +164,6 @@ type FileStorageState struct {
 	Name pulumi.StringPtrInput
 	// Network attached to this file storage (currently supports at most one of these blocks).
 	Networks FileStorageNetworkArrayInput
-	// List of shares exported by this file storage.
-	Shares FileStorageShareArrayInput
 	// Size of the file storage in GB.
 	Size pulumi.IntPtrInput
 	// Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
@@ -183,8 +183,6 @@ type fileStorageArgs struct {
 	Name *string `pulumi:"name"`
 	// Network attached to this file storage (currently supports at most one of these blocks).
 	Networks []FileStorageNetwork `pulumi:"networks"`
-	// List of shares exported by this file storage.
-	Shares []FileStorageShare `pulumi:"shares"`
 	// Size of the file storage in GB.
 	Size int `pulumi:"size"`
 	// Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
@@ -201,8 +199,6 @@ type FileStorageArgs struct {
 	Name pulumi.StringPtrInput
 	// Network attached to this file storage (currently supports at most one of these blocks).
 	Networks FileStorageNetworkArrayInput
-	// List of shares exported by this file storage.
-	Shares FileStorageShareArrayInput
 	// Size of the file storage in GB.
 	Size pulumi.IntInput
 	// Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
@@ -314,11 +310,6 @@ func (o FileStorageOutput) Name() pulumi.StringOutput {
 // Network attached to this file storage (currently supports at most one of these blocks).
 func (o FileStorageOutput) Networks() FileStorageNetworkArrayOutput {
 	return o.ApplyT(func(v *FileStorage) FileStorageNetworkArrayOutput { return v.Networks }).(FileStorageNetworkArrayOutput)
-}
-
-// List of shares exported by this file storage.
-func (o FileStorageOutput) Shares() FileStorageShareArrayOutput {
-	return o.ApplyT(func(v *FileStorage) FileStorageShareArrayOutput { return v.Shares }).(FileStorageShareArrayOutput)
 }
 
 // Size of the file storage in GB.

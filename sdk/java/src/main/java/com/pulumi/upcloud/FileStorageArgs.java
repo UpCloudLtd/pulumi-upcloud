@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.upcloud.inputs.FileStorageNetworkArgs;
-import com.pulumi.upcloud.inputs.FileStorageShareArgs;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -82,21 +81,6 @@ public final class FileStorageArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * List of shares exported by this file storage.
-     * 
-     */
-    @Import(name="shares")
-    private @Nullable Output<List<FileStorageShareArgs>> shares;
-
-    /**
-     * @return List of shares exported by this file storage.
-     * 
-     */
-    public Optional<Output<List<FileStorageShareArgs>>> shares() {
-        return Optional.ofNullable(this.shares);
-    }
-
-    /**
      * Size of the file storage in GB.
      * 
      */
@@ -133,7 +117,6 @@ public final class FileStorageArgs extends com.pulumi.resources.ResourceArgs {
         this.labels = $.labels;
         this.name = $.name;
         this.networks = $.networks;
-        this.shares = $.shares;
         this.size = $.size;
         this.zone = $.zone;
     }
@@ -248,37 +231,6 @@ public final class FileStorageArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder networks(FileStorageNetworkArgs... networks) {
             return networks(List.of(networks));
-        }
-
-        /**
-         * @param shares List of shares exported by this file storage.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder shares(@Nullable Output<List<FileStorageShareArgs>> shares) {
-            $.shares = shares;
-            return this;
-        }
-
-        /**
-         * @param shares List of shares exported by this file storage.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder shares(List<FileStorageShareArgs> shares) {
-            return shares(Output.of(shares));
-        }
-
-        /**
-         * @param shares List of shares exported by this file storage.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder shares(FileStorageShareArgs... shares) {
-            return shares(List.of(shares));
         }
 
         /**
