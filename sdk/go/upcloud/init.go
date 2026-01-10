@@ -23,6 +23,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "upcloud:index/fileStorage:FileStorage":
 		r = &FileStorage{}
+	case "upcloud:index/fileStorageShare:FileStorageShare":
+		r = &FileStorageShare{}
+	case "upcloud:index/fileStorageShareAcl:FileStorageShareAcl":
+		r = &FileStorageShareAcl{}
 	case "upcloud:index/floatingIpAddress:FloatingIpAddress":
 		r = &FloatingIpAddress{}
 	case "upcloud:index/gateway:Gateway":
@@ -137,6 +141,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"upcloud",
 		"index/fileStorage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upcloud",
+		"index/fileStorageShare",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upcloud",
+		"index/fileStorageShareAcl",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

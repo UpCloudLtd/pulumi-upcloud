@@ -7,6 +7,8 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .file_storage import *
+from .file_storage_share import *
+from .file_storage_share_acl import *
 from .floating_ip_address import *
 from .gateway import *
 from .gateway_connection import *
@@ -82,6 +84,22 @@ _utilities.register(
   "fqn": "pulumi_upcloud",
   "classes": {
    "upcloud:index/fileStorage:FileStorage": "FileStorage"
+  }
+ },
+ {
+  "pkg": "upcloud",
+  "mod": "index/fileStorageShare",
+  "fqn": "pulumi_upcloud",
+  "classes": {
+   "upcloud:index/fileStorageShare:FileStorageShare": "FileStorageShare"
+  }
+ },
+ {
+  "pkg": "upcloud",
+  "mod": "index/fileStorageShareAcl",
+  "fqn": "pulumi_upcloud",
+  "classes": {
+   "upcloud:index/fileStorageShareAcl:FileStorageShareAcl": "FileStorageShareAcl"
   }
  },
  {

@@ -14,7 +14,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
     public sealed class ManagedDatabasePostgresqlComponentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Type of the component
+        /// Component name.
         /// </summary>
         [Input("component")]
         public Input<string>? Component { get; set; }

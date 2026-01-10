@@ -24,32 +24,6 @@ export interface FileStorageNetwork {
     uuid: pulumi.Input<string>;
 }
 
-export interface FileStorageShare {
-    /**
-     * Access control entries (1–50).
-     */
-    acls?: pulumi.Input<pulumi.Input<inputs.FileStorageShareAcl>[]>;
-    /**
-     * Unique name of the share (1–64 chars).
-     */
-    name: pulumi.Input<string>;
-    /**
-     * Absolute path exported by the share (e.g. `/public`).
-     */
-    path: pulumi.Input<string>;
-}
-
-export interface FileStorageShareAcl {
-    /**
-     * Access level: 'ro' or 'rw'.
-     */
-    permission: pulumi.Input<string>;
-    /**
-     * Target IP/CIDR or '*'.
-     */
-    target: pulumi.Input<string>;
-}
-
 export interface GatewayAddress {
     /**
      * IP addresss
@@ -1523,7 +1497,7 @@ export interface LoadbalancerNodeNetworkIpAddress {
 
 export interface ManagedDatabaseMysqlComponent {
     /**
-     * Type of the component
+     * Component name.
      */
     component?: pulumi.Input<string>;
     /**
@@ -1573,7 +1547,7 @@ export interface ManagedDatabaseMysqlNodeState {
      */
     role?: pulumi.Input<string>;
     /**
-     * State of the node
+     * Current state of the node
      */
     state?: pulumi.Input<string>;
 }
@@ -1759,6 +1733,10 @@ export interface ManagedDatabaseMysqlPropertiesMigration {
      */
     dbname?: pulumi.Input<string>;
     /**
+     * MySQL migration dump tool. Experimental! Tool to use for database dump and restore during migration. Default: mysqldump.
+     */
+    dumpTool?: pulumi.Input<string>;
+    /**
      * Hostname or IP address of the server where to migrate data from.
      */
     host?: pulumi.Input<string>;
@@ -1783,6 +1761,10 @@ export interface ManagedDatabaseMysqlPropertiesMigration {
      */
     port?: pulumi.Input<number>;
     /**
+     * Skip dump-restore part and start replication.
+     */
+    reestablishReplication?: pulumi.Input<boolean>;
+    /**
      * The server where to migrate data from is secured with SSL.
      */
     ssl?: pulumi.Input<boolean>;
@@ -1805,7 +1787,7 @@ export interface ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup {
 
 export interface ManagedDatabaseOpensearchComponent {
     /**
-     * Type of the component
+     * Component name.
      */
     component?: pulumi.Input<string>;
     /**
@@ -1855,7 +1837,7 @@ export interface ManagedDatabaseOpensearchNodeState {
      */
     role?: pulumi.Input<string>;
     /**
-     * State of the node
+     * Current state of the node
      */
     state?: pulumi.Input<string>;
 }
@@ -2043,6 +2025,18 @@ export interface ManagedDatabaseOpensearchProperties {
      * Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
      */
     knnMemoryCircuitBreakerLimit?: pulumi.Input<number>;
+    /**
+     * plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
+     */
+    mlCommonsModelAccessControlEnabled?: pulumi.Input<boolean>;
+    /**
+     * plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
+     */
+    mlCommonsNativeMemoryThreshold?: pulumi.Input<number>;
+    /**
+     * plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
+     */
+    mlCommonsOnlyRunOnMlNode?: pulumi.Input<boolean>;
     /**
      * The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
      */
@@ -2708,7 +2702,7 @@ export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimary
 
 export interface ManagedDatabasePostgresqlComponent {
     /**
-     * Type of the component
+     * Component name.
      */
     component?: pulumi.Input<string>;
     /**
@@ -2758,7 +2752,7 @@ export interface ManagedDatabasePostgresqlNodeState {
      */
     role?: pulumi.Input<string>;
     /**
-     * State of the node
+     * Current state of the node
      */
     state?: pulumi.Input<string>;
 }
@@ -2844,6 +2838,10 @@ export interface ManagedDatabasePostgresqlProperties {
      * Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
      */
     defaultToastCompression?: pulumi.Input<string>;
+    /**
+     * Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.
+     */
+    enableHaReplicaDns?: pulumi.Input<boolean>;
     /**
      * Time out sessions with open transactions after this number of milliseconds.
      */
@@ -3281,7 +3279,7 @@ export interface ManagedDatabaseUserValkeyAccessControl {
 
 export interface ManagedDatabaseValkeyComponent {
     /**
-     * Type of the component
+     * Component name.
      */
     component?: pulumi.Input<string>;
     /**
@@ -3331,7 +3329,7 @@ export interface ManagedDatabaseValkeyNodeState {
      */
     role?: pulumi.Input<string>;
     /**
-     * State of the node
+     * Current state of the node
      */
     state?: pulumi.Input<string>;
 }

@@ -20,6 +20,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? Dbname { get; set; }
 
         /// <summary>
+        /// MySQL migration dump tool. Experimental! Tool to use for database dump and restore during migration. Default: mysqldump.
+        /// </summary>
+        [Input("dumpTool")]
+        public Input<string>? DumpTool { get; set; }
+
+        /// <summary>
         /// Hostname or IP address of the server where to migrate data from.
         /// </summary>
         [Input("host")]
@@ -64,6 +70,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
+
+        /// <summary>
+        /// Skip dump-restore part and start replication.
+        /// </summary>
+        [Input("reestablishReplication")]
+        public Input<bool>? ReestablishReplication { get; set; }
 
         /// <summary>
         /// The server where to migrate data from is secured with SSL.

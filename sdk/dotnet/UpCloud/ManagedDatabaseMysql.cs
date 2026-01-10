@@ -80,10 +80,10 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<Outputs.ManagedDatabaseMysqlComponent>> Components { get; private set; } = null!;
 
         /// <summary>
-        /// User defined key-value pairs to classify the managed database.
+        /// User defined key-value pairs to classify the database.
         /// </summary>
         [Output("labels")]
-        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
         /// <summary>
         /// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -125,7 +125,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// The administrative power state of the service
         /// </summary>
         [Output("powered")]
-        public Output<bool?> Powered { get; private set; } = null!;
+        public Output<bool> Powered { get; private set; } = null!;
 
         /// <summary>
         /// Primary database name
@@ -134,10 +134,10 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> PrimaryDatabase { get; private set; } = null!;
 
         /// <summary>
-        /// Database Engine properties for MySQL
+        /// Database engine properties.
         /// </summary>
         [Output("properties")]
-        public Output<Outputs.ManagedDatabaseMysqlProperties> Properties { get; private set; } = null!;
+        public Output<Outputs.ManagedDatabaseMysqlProperties?> Properties { get; private set; } = null!;
 
         /// <summary>
         /// Hostname to the service instance
@@ -146,7 +146,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> ServiceHost { get; private set; } = null!;
 
         /// <summary>
-        /// Primary username's password to the service instance
+        /// Primary password to the service instance
         /// </summary>
         [Output("servicePassword")]
         public Output<string> ServicePassword { get; private set; } = null!;
@@ -170,7 +170,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> ServiceUsername { get; private set; } = null!;
 
         /// <summary>
-        /// State of the service
+        /// The current state of the service
         /// </summary>
         [Output("state")]
         public Output<string> State { get; private set; } = null!;
@@ -179,16 +179,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// If set to true, prevents the managed service from being powered off, or deleted.
         /// </summary>
         [Output("terminationProtection")]
-        public Output<bool?> TerminationProtection { get; private set; } = null!;
+        public Output<bool> TerminationProtection { get; private set; } = null!;
 
         /// <summary>
-        /// Title of a managed database instance
+        /// Title of the managed database instance
         /// </summary>
         [Output("title")]
         public Output<string> Title { get; private set; } = null!;
 
         /// <summary>
-        /// Type of the service
+        /// Type of the managed database instance
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -261,7 +261,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// User defined key-value pairs to classify the managed database.
+        /// User defined key-value pairs to classify the database.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -312,7 +312,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<bool>? Powered { get; set; }
 
         /// <summary>
-        /// Database Engine properties for MySQL
+        /// Database engine properties.
         /// </summary>
         [Input("properties")]
         public Input<Inputs.ManagedDatabaseMysqlPropertiesArgs>? Properties { get; set; }
@@ -324,7 +324,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<bool>? TerminationProtection { get; set; }
 
         /// <summary>
-        /// Title of a managed database instance
+        /// Title of the managed database instance
         /// </summary>
         [Input("title", required: true)]
         public Input<string> Title { get; set; } = null!;
@@ -365,7 +365,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// User defined key-value pairs to classify the managed database.
+        /// User defined key-value pairs to classify the database.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -434,7 +434,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? PrimaryDatabase { get; set; }
 
         /// <summary>
-        /// Database Engine properties for MySQL
+        /// Database engine properties.
         /// </summary>
         [Input("properties")]
         public Input<Inputs.ManagedDatabaseMysqlPropertiesGetArgs>? Properties { get; set; }
@@ -449,7 +449,7 @@ namespace UpCloud.Pulumi.UpCloud
         private Input<string>? _servicePassword;
 
         /// <summary>
-        /// Primary username's password to the service instance
+        /// Primary password to the service instance
         /// </summary>
         public Input<string>? ServicePassword
         {
@@ -490,7 +490,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? ServiceUsername { get; set; }
 
         /// <summary>
-        /// State of the service
+        /// The current state of the service
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
@@ -502,13 +502,13 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<bool>? TerminationProtection { get; set; }
 
         /// <summary>
-        /// Title of a managed database instance
+        /// Title of the managed database instance
         /// </summary>
         [Input("title")]
         public Input<string>? Title { get; set; }
 
         /// <summary>
-        /// Type of the service
+        /// Type of the managed database instance
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

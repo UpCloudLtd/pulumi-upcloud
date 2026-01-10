@@ -17,10 +17,6 @@ from . import _utilities
 __all__ = [
     'FileStorageNetworkArgs',
     'FileStorageNetworkArgsDict',
-    'FileStorageShareArgs',
-    'FileStorageShareArgsDict',
-    'FileStorageShareAclArgs',
-    'FileStorageShareAclArgsDict',
     'GatewayAddressArgs',
     'GatewayAddressArgsDict',
     'GatewayConnectionLocalRouteArgs',
@@ -372,126 +368,6 @@ class FileStorageNetworkArgs:
     @ip_address.setter
     def ip_address(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "ip_address", value)
-
-
-if not MYPY:
-    class FileStorageShareArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Unique name of the share (1–64 chars).
-        """
-        path: pulumi.Input[_builtins.str]
-        """
-        Absolute path exported by the share (e.g. `/public`).
-        """
-        acls: NotRequired[pulumi.Input[Sequence[pulumi.Input['FileStorageShareAclArgsDict']]]]
-        """
-        Access control entries (1–50).
-        """
-elif False:
-    FileStorageShareArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class FileStorageShareArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[_builtins.str],
-                 path: pulumi.Input[_builtins.str],
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageShareAclArgs']]]] = None):
-        """
-        :param pulumi.Input[_builtins.str] name: Unique name of the share (1–64 chars).
-        :param pulumi.Input[_builtins.str] path: Absolute path exported by the share (e.g. `/public`).
-        :param pulumi.Input[Sequence[pulumi.Input['FileStorageShareAclArgs']]] acls: Access control entries (1–50).
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "path", path)
-        if acls is not None:
-            pulumi.set(__self__, "acls", acls)
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[_builtins.str]:
-        """
-        Unique name of the share (1–64 chars).
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "name", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def path(self) -> pulumi.Input[_builtins.str]:
-        """
-        Absolute path exported by the share (e.g. `/public`).
-        """
-        return pulumi.get(self, "path")
-
-    @path.setter
-    def path(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "path", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageShareAclArgs']]]]:
-        """
-        Access control entries (1–50).
-        """
-        return pulumi.get(self, "acls")
-
-    @acls.setter
-    def acls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageShareAclArgs']]]]):
-        pulumi.set(self, "acls", value)
-
-
-if not MYPY:
-    class FileStorageShareAclArgsDict(TypedDict):
-        permission: pulumi.Input[_builtins.str]
-        """
-        Access level: 'ro' or 'rw'.
-        """
-        target: pulumi.Input[_builtins.str]
-        """
-        Target IP/CIDR or '*'.
-        """
-elif False:
-    FileStorageShareAclArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class FileStorageShareAclArgs:
-    def __init__(__self__, *,
-                 permission: pulumi.Input[_builtins.str],
-                 target: pulumi.Input[_builtins.str]):
-        """
-        :param pulumi.Input[_builtins.str] permission: Access level: 'ro' or 'rw'.
-        :param pulumi.Input[_builtins.str] target: Target IP/CIDR or '*'.
-        """
-        pulumi.set(__self__, "permission", permission)
-        pulumi.set(__self__, "target", target)
-
-    @_builtins.property
-    @pulumi.getter
-    def permission(self) -> pulumi.Input[_builtins.str]:
-        """
-        Access level: 'ro' or 'rw'.
-        """
-        return pulumi.get(self, "permission")
-
-    @permission.setter
-    def permission(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "permission", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def target(self) -> pulumi.Input[_builtins.str]:
-        """
-        Target IP/CIDR or '*'.
-        """
-        return pulumi.get(self, "target")
-
-    @target.setter
-    def target(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "target", value)
 
 
 if not MYPY:
@@ -4408,7 +4284,7 @@ if not MYPY:
     class ManagedDatabaseMysqlComponentArgsDict(TypedDict):
         component: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Type of the component
+        Component name.
         """
         host: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -4438,7 +4314,7 @@ class ManagedDatabaseMysqlComponentArgs:
                  route: Optional[pulumi.Input[_builtins.str]] = None,
                  usage: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] component: Type of the component
+        :param pulumi.Input[_builtins.str] component: Component name.
         :param pulumi.Input[_builtins.str] host: Hostname of the component
         :param pulumi.Input[_builtins.int] port: Port number of the component
         :param pulumi.Input[_builtins.str] route: Component network route type
@@ -4459,7 +4335,7 @@ class ManagedDatabaseMysqlComponentArgs:
     @pulumi.getter
     def component(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Type of the component
+        Component name.
         """
         return pulumi.get(self, "component")
 
@@ -4616,7 +4492,7 @@ if not MYPY:
         """
         state: NotRequired[pulumi.Input[_builtins.str]]
         """
-        State of the node
+        Current state of the node
         """
 elif False:
     ManagedDatabaseMysqlNodeStateArgsDict: TypeAlias = Mapping[str, Any]
@@ -4630,7 +4506,7 @@ class ManagedDatabaseMysqlNodeStateArgs:
         """
         :param pulumi.Input[_builtins.str] name: Name plus a node iteration
         :param pulumi.Input[_builtins.str] role: Role of the node
-        :param pulumi.Input[_builtins.str] state: State of the node
+        :param pulumi.Input[_builtins.str] state: Current state of the node
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -4667,7 +4543,7 @@ class ManagedDatabaseMysqlNodeStateArgs:
     @pulumi.getter
     def state(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        State of the node
+        Current state of the node
         """
         return pulumi.get(self, "state")
 
@@ -5554,6 +5430,10 @@ if not MYPY:
         """
         Database name for bootstrapping the initial connection.
         """
+        dump_tool: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        MySQL migration dump tool. Experimental! Tool to use for database dump and restore during migration. Default: mysqldump.
+        """
         host: NotRequired[pulumi.Input[_builtins.str]]
         """
         Hostname or IP address of the server where to migrate data from.
@@ -5578,6 +5458,10 @@ if not MYPY:
         """
         Port number of the server where to migrate data from.
         """
+        reestablish_replication: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Skip dump-restore part and start replication.
+        """
         ssl: NotRequired[pulumi.Input[_builtins.bool]]
         """
         The server where to migrate data from is secured with SSL.
@@ -5593,27 +5477,33 @@ elif False:
 class ManagedDatabaseMysqlPropertiesMigrationArgs:
     def __init__(__self__, *,
                  dbname: Optional[pulumi.Input[_builtins.str]] = None,
+                 dump_tool: Optional[pulumi.Input[_builtins.str]] = None,
                  host: Optional[pulumi.Input[_builtins.str]] = None,
                  ignore_dbs: Optional[pulumi.Input[_builtins.str]] = None,
                  ignore_roles: Optional[pulumi.Input[_builtins.str]] = None,
                  method: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
+                 reestablish_replication: Optional[pulumi.Input[_builtins.bool]] = None,
                  ssl: Optional[pulumi.Input[_builtins.bool]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] dbname: Database name for bootstrapping the initial connection.
+        :param pulumi.Input[_builtins.str] dump_tool: MySQL migration dump tool. Experimental! Tool to use for database dump and restore during migration. Default: mysqldump.
         :param pulumi.Input[_builtins.str] host: Hostname or IP address of the server where to migrate data from.
         :param pulumi.Input[_builtins.str] ignore_dbs: Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
         :param pulumi.Input[_builtins.str] ignore_roles: Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
         :param pulumi.Input[_builtins.str] method: The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
         :param pulumi.Input[_builtins.str] password: Password for authentication with the server where to migrate data from.
         :param pulumi.Input[_builtins.int] port: Port number of the server where to migrate data from.
+        :param pulumi.Input[_builtins.bool] reestablish_replication: Skip dump-restore part and start replication.
         :param pulumi.Input[_builtins.bool] ssl: The server where to migrate data from is secured with SSL.
         :param pulumi.Input[_builtins.str] username: User name for authentication with the server where to migrate data from.
         """
         if dbname is not None:
             pulumi.set(__self__, "dbname", dbname)
+        if dump_tool is not None:
+            pulumi.set(__self__, "dump_tool", dump_tool)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if ignore_dbs is not None:
@@ -5626,6 +5516,8 @@ class ManagedDatabaseMysqlPropertiesMigrationArgs:
             pulumi.set(__self__, "password", password)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if reestablish_replication is not None:
+            pulumi.set(__self__, "reestablish_replication", reestablish_replication)
         if ssl is not None:
             pulumi.set(__self__, "ssl", ssl)
         if username is not None:
@@ -5642,6 +5534,18 @@ class ManagedDatabaseMysqlPropertiesMigrationArgs:
     @dbname.setter
     def dbname(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "dbname", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dumpTool")
+    def dump_tool(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        MySQL migration dump tool. Experimental! Tool to use for database dump and restore during migration. Default: mysqldump.
+        """
+        return pulumi.get(self, "dump_tool")
+
+    @dump_tool.setter
+    def dump_tool(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dump_tool", value)
 
     @_builtins.property
     @pulumi.getter
@@ -5714,6 +5618,18 @@ class ManagedDatabaseMysqlPropertiesMigrationArgs:
     @port.setter
     def port(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "port", value)
+
+    @_builtins.property
+    @pulumi.getter(name="reestablishReplication")
+    def reestablish_replication(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Skip dump-restore part and start replication.
+        """
+        return pulumi.get(self, "reestablish_replication")
+
+    @reestablish_replication.setter
+    def reestablish_replication(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "reestablish_replication", value)
 
     @_builtins.property
     @pulumi.getter
@@ -5796,7 +5712,7 @@ if not MYPY:
     class ManagedDatabaseOpensearchComponentArgsDict(TypedDict):
         component: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Type of the component
+        Component name.
         """
         host: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -5826,7 +5742,7 @@ class ManagedDatabaseOpensearchComponentArgs:
                  route: Optional[pulumi.Input[_builtins.str]] = None,
                  usage: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] component: Type of the component
+        :param pulumi.Input[_builtins.str] component: Component name.
         :param pulumi.Input[_builtins.str] host: Hostname of the component
         :param pulumi.Input[_builtins.int] port: Port number of the component
         :param pulumi.Input[_builtins.str] route: Component network route type
@@ -5847,7 +5763,7 @@ class ManagedDatabaseOpensearchComponentArgs:
     @pulumi.getter
     def component(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Type of the component
+        Component name.
         """
         return pulumi.get(self, "component")
 
@@ -6004,7 +5920,7 @@ if not MYPY:
         """
         state: NotRequired[pulumi.Input[_builtins.str]]
         """
-        State of the node
+        Current state of the node
         """
 elif False:
     ManagedDatabaseOpensearchNodeStateArgsDict: TypeAlias = Mapping[str, Any]
@@ -6018,7 +5934,7 @@ class ManagedDatabaseOpensearchNodeStateArgs:
         """
         :param pulumi.Input[_builtins.str] name: Name plus a node iteration
         :param pulumi.Input[_builtins.str] role: Role of the node
-        :param pulumi.Input[_builtins.str] state: State of the node
+        :param pulumi.Input[_builtins.str] state: Current state of the node
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -6055,7 +5971,7 @@ class ManagedDatabaseOpensearchNodeStateArgs:
     @pulumi.getter
     def state(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        State of the node
+        Current state of the node
         """
         return pulumi.get(self, "state")
 
@@ -6248,6 +6164,18 @@ if not MYPY:
         """
         Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
         """
+        ml_commons_model_access_control_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
+        """
+        ml_commons_native_memory_threshold: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
+        """
+        ml_commons_only_run_on_ml_node: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
+        """
         node_search_cache_size: NotRequired[pulumi.Input[_builtins.str]]
         """
         The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
@@ -6407,6 +6335,9 @@ class ManagedDatabaseOpensearchPropertiesArgs:
                  keep_index_refresh_interval: Optional[pulumi.Input[_builtins.bool]] = None,
                  knn_memory_circuit_breaker_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  knn_memory_circuit_breaker_limit: Optional[pulumi.Input[_builtins.int]] = None,
+                 ml_commons_model_access_control_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 ml_commons_native_memory_threshold: Optional[pulumi.Input[_builtins.int]] = None,
+                 ml_commons_only_run_on_ml_node: Optional[pulumi.Input[_builtins.bool]] = None,
                  node_search_cache_size: Optional[pulumi.Input[_builtins.str]] = None,
                  openid: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesOpenidArgs']] = None,
                  opensearch_dashboards: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs']] = None,
@@ -6481,6 +6412,9 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         :param pulumi.Input[_builtins.bool] keep_index_refresh_interval: Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
         :param pulumi.Input[_builtins.bool] knn_memory_circuit_breaker_enabled: Enable or disable KNN memory circuit breaker. Defaults to true.
         :param pulumi.Input[_builtins.int] knn_memory_circuit_breaker_limit: Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
+        :param pulumi.Input[_builtins.bool] ml_commons_model_access_control_enabled: plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
+        :param pulumi.Input[_builtins.int] ml_commons_native_memory_threshold: plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
+        :param pulumi.Input[_builtins.bool] ml_commons_only_run_on_ml_node: plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
         :param pulumi.Input[_builtins.str] node_search_cache_size: The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
         :param pulumi.Input['ManagedDatabaseOpensearchPropertiesOpenidArgs'] openid: OpenSearch OpenID Connect Configuration.
         :param pulumi.Input['ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs'] opensearch_dashboards: OpenSearch Dashboards settings.
@@ -6602,6 +6536,12 @@ class ManagedDatabaseOpensearchPropertiesArgs:
             pulumi.set(__self__, "knn_memory_circuit_breaker_enabled", knn_memory_circuit_breaker_enabled)
         if knn_memory_circuit_breaker_limit is not None:
             pulumi.set(__self__, "knn_memory_circuit_breaker_limit", knn_memory_circuit_breaker_limit)
+        if ml_commons_model_access_control_enabled is not None:
+            pulumi.set(__self__, "ml_commons_model_access_control_enabled", ml_commons_model_access_control_enabled)
+        if ml_commons_native_memory_threshold is not None:
+            pulumi.set(__self__, "ml_commons_native_memory_threshold", ml_commons_native_memory_threshold)
+        if ml_commons_only_run_on_ml_node is not None:
+            pulumi.set(__self__, "ml_commons_only_run_on_ml_node", ml_commons_only_run_on_ml_node)
         if node_search_cache_size is not None:
             pulumi.set(__self__, "node_search_cache_size", node_search_cache_size)
         if openid is not None:
@@ -7216,6 +7156,42 @@ class ManagedDatabaseOpensearchPropertiesArgs:
     @knn_memory_circuit_breaker_limit.setter
     def knn_memory_circuit_breaker_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "knn_memory_circuit_breaker_limit", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mlCommonsModelAccessControlEnabled")
+    def ml_commons_model_access_control_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
+        """
+        return pulumi.get(self, "ml_commons_model_access_control_enabled")
+
+    @ml_commons_model_access_control_enabled.setter
+    def ml_commons_model_access_control_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "ml_commons_model_access_control_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mlCommonsNativeMemoryThreshold")
+    def ml_commons_native_memory_threshold(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
+        """
+        return pulumi.get(self, "ml_commons_native_memory_threshold")
+
+    @ml_commons_native_memory_threshold.setter
+    def ml_commons_native_memory_threshold(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "ml_commons_native_memory_threshold", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mlCommonsOnlyRunOnMlNode")
+    def ml_commons_only_run_on_ml_node(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
+        """
+        return pulumi.get(self, "ml_commons_only_run_on_ml_node")
+
+    @ml_commons_only_run_on_ml_node.setter
+    def ml_commons_only_run_on_ml_node(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "ml_commons_only_run_on_ml_node", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeSearchCacheSize")
@@ -10238,7 +10214,7 @@ if not MYPY:
     class ManagedDatabasePostgresqlComponentArgsDict(TypedDict):
         component: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Type of the component
+        Component name.
         """
         host: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -10268,7 +10244,7 @@ class ManagedDatabasePostgresqlComponentArgs:
                  route: Optional[pulumi.Input[_builtins.str]] = None,
                  usage: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] component: Type of the component
+        :param pulumi.Input[_builtins.str] component: Component name.
         :param pulumi.Input[_builtins.str] host: Hostname of the component
         :param pulumi.Input[_builtins.int] port: Port number of the component
         :param pulumi.Input[_builtins.str] route: Component network route type
@@ -10289,7 +10265,7 @@ class ManagedDatabasePostgresqlComponentArgs:
     @pulumi.getter
     def component(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Type of the component
+        Component name.
         """
         return pulumi.get(self, "component")
 
@@ -10446,7 +10422,7 @@ if not MYPY:
         """
         state: NotRequired[pulumi.Input[_builtins.str]]
         """
-        State of the node
+        Current state of the node
         """
 elif False:
     ManagedDatabasePostgresqlNodeStateArgsDict: TypeAlias = Mapping[str, Any]
@@ -10460,7 +10436,7 @@ class ManagedDatabasePostgresqlNodeStateArgs:
         """
         :param pulumi.Input[_builtins.str] name: Name plus a node iteration
         :param pulumi.Input[_builtins.str] role: Role of the node
-        :param pulumi.Input[_builtins.str] state: State of the node
+        :param pulumi.Input[_builtins.str] state: Current state of the node
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -10497,7 +10473,7 @@ class ManagedDatabasePostgresqlNodeStateArgs:
     @pulumi.getter
     def state(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        State of the node
+        Current state of the node
         """
         return pulumi.get(self, "state")
 
@@ -10587,6 +10563,10 @@ if not MYPY:
         default_toast_compression: NotRequired[pulumi.Input[_builtins.str]]
         """
         Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
+        """
+        enable_ha_replica_dns: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.
         """
         idle_in_transaction_session_timeout: NotRequired[pulumi.Input[_builtins.int]]
         """
@@ -10842,6 +10822,7 @@ class ManagedDatabasePostgresqlPropertiesArgs:
                  bgwriter_lru_multiplier: Optional[pulumi.Input[_builtins.float]] = None,
                  deadlock_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  default_toast_compression: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_ha_replica_dns: Optional[pulumi.Input[_builtins.bool]] = None,
                  idle_in_transaction_session_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  io_combine_limit: Optional[pulumi.Input[_builtins.int]] = None,
                  io_max_combine_limit: Optional[pulumi.Input[_builtins.int]] = None,
@@ -10920,6 +10901,7 @@ class ManagedDatabasePostgresqlPropertiesArgs:
         :param pulumi.Input[_builtins.float] bgwriter_lru_multiplier: The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
         :param pulumi.Input[_builtins.int] deadlock_timeout: This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
         :param pulumi.Input[_builtins.str] default_toast_compression: Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
+        :param pulumi.Input[_builtins.bool] enable_ha_replica_dns: Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.
         :param pulumi.Input[_builtins.int] idle_in_transaction_session_timeout: Time out sessions with open transactions after this number of milliseconds.
         :param pulumi.Input[_builtins.int] io_combine_limit: EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
         :param pulumi.Input[_builtins.int] io_max_combine_limit: EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
@@ -11018,6 +11000,8 @@ class ManagedDatabasePostgresqlPropertiesArgs:
             pulumi.set(__self__, "deadlock_timeout", deadlock_timeout)
         if default_toast_compression is not None:
             pulumi.set(__self__, "default_toast_compression", default_toast_compression)
+        if enable_ha_replica_dns is not None:
+            pulumi.set(__self__, "enable_ha_replica_dns", enable_ha_replica_dns)
         if idle_in_transaction_session_timeout is not None:
             pulumi.set(__self__, "idle_in_transaction_session_timeout", idle_in_transaction_session_timeout)
         if io_combine_limit is not None:
@@ -11372,6 +11356,18 @@ class ManagedDatabasePostgresqlPropertiesArgs:
     @default_toast_compression.setter
     def default_toast_compression(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "default_toast_compression", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableHaReplicaDns")
+    def enable_ha_replica_dns(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.
+        """
+        return pulumi.get(self, "enable_ha_replica_dns")
+
+    @enable_ha_replica_dns.setter
+    def enable_ha_replica_dns(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enable_ha_replica_dns", value)
 
     @_builtins.property
     @pulumi.getter(name="idleInTransactionSessionTimeout")
@@ -13045,7 +13041,7 @@ if not MYPY:
     class ManagedDatabaseValkeyComponentArgsDict(TypedDict):
         component: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Type of the component
+        Component name.
         """
         host: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -13075,7 +13071,7 @@ class ManagedDatabaseValkeyComponentArgs:
                  route: Optional[pulumi.Input[_builtins.str]] = None,
                  usage: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] component: Type of the component
+        :param pulumi.Input[_builtins.str] component: Component name.
         :param pulumi.Input[_builtins.str] host: Hostname of the component
         :param pulumi.Input[_builtins.int] port: Port number of the component
         :param pulumi.Input[_builtins.str] route: Component network route type
@@ -13096,7 +13092,7 @@ class ManagedDatabaseValkeyComponentArgs:
     @pulumi.getter
     def component(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Type of the component
+        Component name.
         """
         return pulumi.get(self, "component")
 
@@ -13253,7 +13249,7 @@ if not MYPY:
         """
         state: NotRequired[pulumi.Input[_builtins.str]]
         """
-        State of the node
+        Current state of the node
         """
 elif False:
     ManagedDatabaseValkeyNodeStateArgsDict: TypeAlias = Mapping[str, Any]
@@ -13267,7 +13263,7 @@ class ManagedDatabaseValkeyNodeStateArgs:
         """
         :param pulumi.Input[_builtins.str] name: Name plus a node iteration
         :param pulumi.Input[_builtins.str] role: Role of the node
-        :param pulumi.Input[_builtins.str] state: State of the node
+        :param pulumi.Input[_builtins.str] state: Current state of the node
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -13304,7 +13300,7 @@ class ManagedDatabaseValkeyNodeStateArgs:
     @pulumi.getter
     def state(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        State of the node
+        Current state of the node
         """
         return pulumi.get(self, "state")
 

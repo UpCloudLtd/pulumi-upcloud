@@ -65,7 +65,7 @@ type ManagedDatabasePostgresql struct {
 	AdditionalDiskSpaceGib pulumi.IntOutput `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components ManagedDatabasePostgresqlComponentArrayOutput `pulumi:"components"`
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringOutput `pulumi:"maintenanceWindowDow"`
@@ -80,14 +80,14 @@ type ManagedDatabasePostgresql struct {
 	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// The administrative power state of the service
-	Powered pulumi.BoolPtrOutput `pulumi:"powered"`
+	Powered pulumi.BoolOutput `pulumi:"powered"`
 	// Primary database name
 	PrimaryDatabase pulumi.StringOutput `pulumi:"primaryDatabase"`
-	// Database Engine properties for PostgreSQL
-	Properties ManagedDatabasePostgresqlPropertiesOutput `pulumi:"properties"`
+	// Database engine properties.
+	Properties ManagedDatabasePostgresqlPropertiesPtrOutput `pulumi:"properties"`
 	// Hostname to the service instance
 	ServiceHost pulumi.StringOutput `pulumi:"serviceHost"`
-	// Primary username's password to the service instance
+	// Primary password to the service instance
 	ServicePassword pulumi.StringOutput `pulumi:"servicePassword"`
 	// Port to the service instance
 	ServicePort pulumi.StringOutput `pulumi:"servicePort"`
@@ -97,13 +97,13 @@ type ManagedDatabasePostgresql struct {
 	ServiceUsername pulumi.StringOutput `pulumi:"serviceUsername"`
 	// SSL Connection Mode for PostgreSQL
 	Sslmode pulumi.StringOutput `pulumi:"sslmode"`
-	// State of the service
+	// The current state of the service
 	State pulumi.StringOutput `pulumi:"state"`
 	// If set to true, prevents the managed service from being powered off, or deleted.
-	TerminationProtection pulumi.BoolPtrOutput `pulumi:"terminationProtection"`
-	// Title of a managed database instance
+	TerminationProtection pulumi.BoolOutput `pulumi:"terminationProtection"`
+	// Title of the managed database instance
 	Title pulumi.StringOutput `pulumi:"title"`
-	// Type of the service
+	// Type of the managed database instance
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -157,7 +157,7 @@ type managedDatabasePostgresqlState struct {
 	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components []ManagedDatabasePostgresqlComponent `pulumi:"components"`
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow *string `pulumi:"maintenanceWindowDow"`
@@ -175,11 +175,11 @@ type managedDatabasePostgresqlState struct {
 	Powered *bool `pulumi:"powered"`
 	// Primary database name
 	PrimaryDatabase *string `pulumi:"primaryDatabase"`
-	// Database Engine properties for PostgreSQL
+	// Database engine properties.
 	Properties *ManagedDatabasePostgresqlProperties `pulumi:"properties"`
 	// Hostname to the service instance
 	ServiceHost *string `pulumi:"serviceHost"`
-	// Primary username's password to the service instance
+	// Primary password to the service instance
 	ServicePassword *string `pulumi:"servicePassword"`
 	// Port to the service instance
 	ServicePort *string `pulumi:"servicePort"`
@@ -189,13 +189,13 @@ type managedDatabasePostgresqlState struct {
 	ServiceUsername *string `pulumi:"serviceUsername"`
 	// SSL Connection Mode for PostgreSQL
 	Sslmode *string `pulumi:"sslmode"`
-	// State of the service
+	// The current state of the service
 	State *string `pulumi:"state"`
 	// If set to true, prevents the managed service from being powered off, or deleted.
 	TerminationProtection *bool `pulumi:"terminationProtection"`
-	// Title of a managed database instance
+	// Title of the managed database instance
 	Title *string `pulumi:"title"`
-	// Type of the service
+	// Type of the managed database instance
 	Type *string `pulumi:"type"`
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone *string `pulumi:"zone"`
@@ -206,7 +206,7 @@ type ManagedDatabasePostgresqlState struct {
 	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// Service component information
 	Components ManagedDatabasePostgresqlComponentArrayInput
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringPtrInput
@@ -224,11 +224,11 @@ type ManagedDatabasePostgresqlState struct {
 	Powered pulumi.BoolPtrInput
 	// Primary database name
 	PrimaryDatabase pulumi.StringPtrInput
-	// Database Engine properties for PostgreSQL
+	// Database engine properties.
 	Properties ManagedDatabasePostgresqlPropertiesPtrInput
 	// Hostname to the service instance
 	ServiceHost pulumi.StringPtrInput
-	// Primary username's password to the service instance
+	// Primary password to the service instance
 	ServicePassword pulumi.StringPtrInput
 	// Port to the service instance
 	ServicePort pulumi.StringPtrInput
@@ -238,13 +238,13 @@ type ManagedDatabasePostgresqlState struct {
 	ServiceUsername pulumi.StringPtrInput
 	// SSL Connection Mode for PostgreSQL
 	Sslmode pulumi.StringPtrInput
-	// State of the service
+	// The current state of the service
 	State pulumi.StringPtrInput
 	// If set to true, prevents the managed service from being powered off, or deleted.
 	TerminationProtection pulumi.BoolPtrInput
-	// Title of a managed database instance
+	// Title of the managed database instance
 	Title pulumi.StringPtrInput
-	// Type of the service
+	// Type of the managed database instance
 	Type pulumi.StringPtrInput
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringPtrInput
@@ -257,7 +257,7 @@ func (ManagedDatabasePostgresqlState) ElementType() reflect.Type {
 type managedDatabasePostgresqlArgs struct {
 	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
 	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow *string `pulumi:"maintenanceWindowDow"`
@@ -271,11 +271,11 @@ type managedDatabasePostgresqlArgs struct {
 	Plan string `pulumi:"plan"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
-	// Database Engine properties for PostgreSQL
+	// Database engine properties.
 	Properties *ManagedDatabasePostgresqlProperties `pulumi:"properties"`
 	// If set to true, prevents the managed service from being powered off, or deleted.
 	TerminationProtection *bool `pulumi:"terminationProtection"`
-	// Title of a managed database instance
+	// Title of the managed database instance
 	Title string `pulumi:"title"`
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone string `pulumi:"zone"`
@@ -285,7 +285,7 @@ type managedDatabasePostgresqlArgs struct {
 type ManagedDatabasePostgresqlArgs struct {
 	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
 	AdditionalDiskSpaceGib pulumi.IntPtrInput
-	// User defined key-value pairs to classify the managed database.
+	// User defined key-value pairs to classify the database.
 	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
 	MaintenanceWindowDow pulumi.StringPtrInput
@@ -299,11 +299,11 @@ type ManagedDatabasePostgresqlArgs struct {
 	Plan pulumi.StringInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
-	// Database Engine properties for PostgreSQL
+	// Database engine properties.
 	Properties ManagedDatabasePostgresqlPropertiesPtrInput
 	// If set to true, prevents the managed service from being powered off, or deleted.
 	TerminationProtection pulumi.BoolPtrInput
-	// Title of a managed database instance
+	// Title of the managed database instance
 	Title pulumi.StringInput
 	// Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
 	Zone pulumi.StringInput
@@ -406,7 +406,7 @@ func (o ManagedDatabasePostgresqlOutput) Components() ManagedDatabasePostgresqlC
 	return o.ApplyT(func(v *ManagedDatabasePostgresql) ManagedDatabasePostgresqlComponentArrayOutput { return v.Components }).(ManagedDatabasePostgresqlComponentArrayOutput)
 }
 
-// User defined key-value pairs to classify the managed database.
+// User defined key-value pairs to classify the database.
 func (o ManagedDatabasePostgresqlOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -442,8 +442,8 @@ func (o ManagedDatabasePostgresqlOutput) Plan() pulumi.StringOutput {
 }
 
 // The administrative power state of the service
-func (o ManagedDatabasePostgresqlOutput) Powered() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.BoolPtrOutput { return v.Powered }).(pulumi.BoolPtrOutput)
+func (o ManagedDatabasePostgresqlOutput) Powered() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.BoolOutput { return v.Powered }).(pulumi.BoolOutput)
 }
 
 // Primary database name
@@ -451,9 +451,9 @@ func (o ManagedDatabasePostgresqlOutput) PrimaryDatabase() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.StringOutput { return v.PrimaryDatabase }).(pulumi.StringOutput)
 }
 
-// Database Engine properties for PostgreSQL
-func (o ManagedDatabasePostgresqlOutput) Properties() ManagedDatabasePostgresqlPropertiesOutput {
-	return o.ApplyT(func(v *ManagedDatabasePostgresql) ManagedDatabasePostgresqlPropertiesOutput { return v.Properties }).(ManagedDatabasePostgresqlPropertiesOutput)
+// Database engine properties.
+func (o ManagedDatabasePostgresqlOutput) Properties() ManagedDatabasePostgresqlPropertiesPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresql) ManagedDatabasePostgresqlPropertiesPtrOutput { return v.Properties }).(ManagedDatabasePostgresqlPropertiesPtrOutput)
 }
 
 // Hostname to the service instance
@@ -461,7 +461,7 @@ func (o ManagedDatabasePostgresqlOutput) ServiceHost() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.StringOutput { return v.ServiceHost }).(pulumi.StringOutput)
 }
 
-// Primary username's password to the service instance
+// Primary password to the service instance
 func (o ManagedDatabasePostgresqlOutput) ServicePassword() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.StringOutput { return v.ServicePassword }).(pulumi.StringOutput)
 }
@@ -486,22 +486,22 @@ func (o ManagedDatabasePostgresqlOutput) Sslmode() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.StringOutput { return v.Sslmode }).(pulumi.StringOutput)
 }
 
-// State of the service
+// The current state of the service
 func (o ManagedDatabasePostgresqlOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
 // If set to true, prevents the managed service from being powered off, or deleted.
-func (o ManagedDatabasePostgresqlOutput) TerminationProtection() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.BoolPtrOutput { return v.TerminationProtection }).(pulumi.BoolPtrOutput)
+func (o ManagedDatabasePostgresqlOutput) TerminationProtection() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.BoolOutput { return v.TerminationProtection }).(pulumi.BoolOutput)
 }
 
-// Title of a managed database instance
+// Title of the managed database instance
 func (o ManagedDatabasePostgresqlOutput) Title() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.StringOutput { return v.Title }).(pulumi.StringOutput)
 }
 
-// Type of the service
+// Type of the managed database instance
 func (o ManagedDatabasePostgresqlOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

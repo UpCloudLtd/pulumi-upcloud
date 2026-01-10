@@ -69,7 +69,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> DefaultVersionId { get; private set; } = null!;
 
         /// <summary>
-        /// Description of the policy.
+        /// Description of the policy. This property is immutable after creation.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -152,7 +152,7 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class ManagedObjectStoragePolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Description of the policy.
+        /// Description of the policy. This property is immutable after creation.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -208,7 +208,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? DefaultVersionId { get; set; }
 
         /// <summary>
-        /// Description of the policy.
+        /// Description of the policy. This property is immutable after creation.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }

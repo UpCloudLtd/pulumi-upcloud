@@ -121,18 +121,18 @@ public class ManagedDatabaseMysql extends com.pulumi.resources.CustomResource {
         return this.components;
     }
     /**
-     * User defined key-value pairs to classify the managed database.
+     * User defined key-value pairs to classify the database.
      * 
      */
     @Export(name="labels", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output</* @Nullable */ Map<String,String>> labels;
+    private Output<Map<String,String>> labels;
 
     /**
-     * @return User defined key-value pairs to classify the managed database.
+     * @return User defined key-value pairs to classify the database.
      * 
      */
-    public Output<Optional<Map<String,String>>> labels() {
-        return Codegen.optional(this.labels);
+    public Output<Map<String,String>> labels() {
+        return this.labels;
     }
     /**
      * Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -223,14 +223,14 @@ public class ManagedDatabaseMysql extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="powered", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> powered;
+    private Output<Boolean> powered;
 
     /**
      * @return The administrative power state of the service
      * 
      */
-    public Output<Optional<Boolean>> powered() {
-        return Codegen.optional(this.powered);
+    public Output<Boolean> powered() {
+        return this.powered;
     }
     /**
      * Primary database name
@@ -247,18 +247,18 @@ public class ManagedDatabaseMysql extends com.pulumi.resources.CustomResource {
         return this.primaryDatabase;
     }
     /**
-     * Database Engine properties for MySQL
+     * Database engine properties.
      * 
      */
     @Export(name="properties", refs={ManagedDatabaseMysqlProperties.class}, tree="[0]")
-    private Output<ManagedDatabaseMysqlProperties> properties;
+    private Output</* @Nullable */ ManagedDatabaseMysqlProperties> properties;
 
     /**
-     * @return Database Engine properties for MySQL
+     * @return Database engine properties.
      * 
      */
-    public Output<ManagedDatabaseMysqlProperties> properties() {
-        return this.properties;
+    public Output<Optional<ManagedDatabaseMysqlProperties>> properties() {
+        return Codegen.optional(this.properties);
     }
     /**
      * Hostname to the service instance
@@ -275,14 +275,14 @@ public class ManagedDatabaseMysql extends com.pulumi.resources.CustomResource {
         return this.serviceHost;
     }
     /**
-     * Primary username&#39;s password to the service instance
+     * Primary password to the service instance
      * 
      */
     @Export(name="servicePassword", refs={String.class}, tree="[0]")
     private Output<String> servicePassword;
 
     /**
-     * @return Primary username&#39;s password to the service instance
+     * @return Primary password to the service instance
      * 
      */
     public Output<String> servicePassword() {
@@ -331,14 +331,14 @@ public class ManagedDatabaseMysql extends com.pulumi.resources.CustomResource {
         return this.serviceUsername;
     }
     /**
-     * State of the service
+     * The current state of the service
      * 
      */
     @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
-     * @return State of the service
+     * @return The current state of the service
      * 
      */
     public Output<String> state() {
@@ -349,38 +349,38 @@ public class ManagedDatabaseMysql extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="terminationProtection", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> terminationProtection;
+    private Output<Boolean> terminationProtection;
 
     /**
      * @return If set to true, prevents the managed service from being powered off, or deleted.
      * 
      */
-    public Output<Optional<Boolean>> terminationProtection() {
-        return Codegen.optional(this.terminationProtection);
+    public Output<Boolean> terminationProtection() {
+        return this.terminationProtection;
     }
     /**
-     * Title of a managed database instance
+     * Title of the managed database instance
      * 
      */
     @Export(name="title", refs={String.class}, tree="[0]")
     private Output<String> title;
 
     /**
-     * @return Title of a managed database instance
+     * @return Title of the managed database instance
      * 
      */
     public Output<String> title() {
         return this.title;
     }
     /**
-     * Type of the service
+     * Type of the managed database instance
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return Type of the service
+     * @return Type of the managed database instance
      * 
      */
     public Output<String> type() {

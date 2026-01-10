@@ -144,6 +144,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? DefaultToastCompression { get; set; }
 
         /// <summary>
+        /// Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.
+        /// </summary>
+        [Input("enableHaReplicaDns")]
+        public Input<bool>? EnableHaReplicaDns { get; set; }
+
+        /// <summary>
         /// Time out sessions with open transactions after this number of milliseconds.
         /// </summary>
         [Input("idleInTransactionSessionTimeout")]

@@ -10,6 +10,16 @@ export type FileStorage = import("./fileStorage").FileStorage;
 export const FileStorage: typeof import("./fileStorage").FileStorage = null as any;
 utilities.lazyLoad(exports, ["FileStorage"], () => require("./fileStorage"));
 
+export { FileStorageShareArgs, FileStorageShareState } from "./fileStorageShare";
+export type FileStorageShare = import("./fileStorageShare").FileStorageShare;
+export const FileStorageShare: typeof import("./fileStorageShare").FileStorageShare = null as any;
+utilities.lazyLoad(exports, ["FileStorageShare"], () => require("./fileStorageShare"));
+
+export { FileStorageShareAclArgs, FileStorageShareAclState } from "./fileStorageShareAcl";
+export type FileStorageShareAcl = import("./fileStorageShareAcl").FileStorageShareAcl;
+export const FileStorageShareAcl: typeof import("./fileStorageShareAcl").FileStorageShareAcl = null as any;
+utilities.lazyLoad(exports, ["FileStorageShareAcl"], () => require("./fileStorageShareAcl"));
+
 export { FloatingIpAddressArgs, FloatingIpAddressState } from "./floatingIpAddress";
 export type FloatingIpAddress = import("./floatingIpAddress").FloatingIpAddress;
 export const FloatingIpAddress: typeof import("./floatingIpAddress").FloatingIpAddress = null as any;
@@ -304,6 +314,10 @@ const _module = {
         switch (type) {
             case "upcloud:index/fileStorage:FileStorage":
                 return new FileStorage(name, <any>undefined, { urn })
+            case "upcloud:index/fileStorageShare:FileStorageShare":
+                return new FileStorageShare(name, <any>undefined, { urn })
+            case "upcloud:index/fileStorageShareAcl:FileStorageShareAcl":
+                return new FileStorageShareAcl(name, <any>undefined, { urn })
             case "upcloud:index/floatingIpAddress:FloatingIpAddress":
                 return new FloatingIpAddress(name, <any>undefined, { urn })
             case "upcloud:index/gateway:Gateway":
@@ -390,6 +404,8 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("upcloud", "index/fileStorage", _module)
+pulumi.runtime.registerResourceModule("upcloud", "index/fileStorageShare", _module)
+pulumi.runtime.registerResourceModule("upcloud", "index/fileStorageShareAcl", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/floatingIpAddress", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/gateway", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/gatewayConnection", _module)

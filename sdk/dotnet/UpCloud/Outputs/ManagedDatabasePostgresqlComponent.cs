@@ -15,7 +15,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
     public sealed class ManagedDatabasePostgresqlComponent
     {
         /// <summary>
-        /// Type of the component
+        /// Component name.
         /// </summary>
         public readonly string? Component;
         /// <summary>

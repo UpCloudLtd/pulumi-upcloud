@@ -34,20 +34,24 @@ import * as utilities from "./utilities";
  *         environment: "staging",
  *         customer: "example-customer",
  *     },
- *     shares: [{
- *         name: "write-to-project",
- *         path: "/project",
- *         acls: [{
- *             target: "172.16.8.12",
- *             permission: "rw",
- *         }],
- *     }],
  *     networks: [{
  *         family: "IPv4",
  *         name: "example-private-net",
  *         uuid: _this.id,
  *         ipAddress: "172.16.8.11",
  *     }],
+ * });
+ * const exampleFileStorageShare = new upcloud.FileStorageShare("example", {
+ *     fileStorage: example.id,
+ *     name: "write-to-project",
+ *     path: "/project",
+ * });
+ * const exampleFileStorageShareAcl = new upcloud.FileStorageShareAcl("example", {
+ *     fileStorage: example.id,
+ *     shareName: exampleFileStorageShare.name,
+ *     name: "acl-for-project",
+ *     target: "172.16.8.12",
+ *     permission: "rw",
  * });
  * ```
  */
@@ -96,10 +100,6 @@ export class FileStorage extends pulumi.CustomResource {
      */
     declare public readonly networks: pulumi.Output<outputs.FileStorageNetwork[] | undefined>;
     /**
-     * List of shares exported by this file storage.
-     */
-    declare public readonly shares: pulumi.Output<outputs.FileStorageShare[] | undefined>;
-    /**
      * Size of the file storage in GB.
      */
     declare public readonly size: pulumi.Output<number>;
@@ -125,7 +125,6 @@ export class FileStorage extends pulumi.CustomResource {
             resourceInputs["labels"] = state?.labels;
             resourceInputs["name"] = state?.name;
             resourceInputs["networks"] = state?.networks;
-            resourceInputs["shares"] = state?.shares;
             resourceInputs["size"] = state?.size;
             resourceInputs["zone"] = state?.zone;
         } else {
@@ -143,7 +142,6 @@ export class FileStorage extends pulumi.CustomResource {
             resourceInputs["labels"] = args?.labels;
             resourceInputs["name"] = args?.name;
             resourceInputs["networks"] = args?.networks;
-            resourceInputs["shares"] = args?.shares;
             resourceInputs["size"] = args?.size;
             resourceInputs["zone"] = args?.zone;
         }
@@ -172,10 +170,6 @@ export interface FileStorageState {
      * Network attached to this file storage (currently supports at most one of these blocks).
      */
     networks?: pulumi.Input<pulumi.Input<inputs.FileStorageNetwork>[]>;
-    /**
-     * List of shares exported by this file storage.
-     */
-    shares?: pulumi.Input<pulumi.Input<inputs.FileStorageShare>[]>;
     /**
      * Size of the file storage in GB.
      */
@@ -206,10 +200,6 @@ export interface FileStorageArgs {
      * Network attached to this file storage (currently supports at most one of these blocks).
      */
     networks?: pulumi.Input<pulumi.Input<inputs.FileStorageNetwork>[]>;
-    /**
-     * List of shares exported by this file storage.
-     */
-    shares?: pulumi.Input<pulumi.Input<inputs.FileStorageShare>[]>;
     /**
      * Size of the file storage in GB.
      */

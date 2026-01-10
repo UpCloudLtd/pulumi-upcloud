@@ -197,6 +197,18 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? KnnMemoryCircuitBreakerLimit;
         /// <summary>
+        /// plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
+        /// </summary>
+        public readonly bool? MlCommonsModelAccessControlEnabled;
+        /// <summary>
+        /// plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
+        /// </summary>
+        public readonly int? MlCommonsNativeMemoryThreshold;
+        /// <summary>
+        /// plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
+        /// </summary>
+        public readonly bool? MlCommonsOnlyRunOnMlNode;
+        /// <summary>
         /// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
         /// </summary>
         public readonly string? NodeSearchCacheSize;
@@ -399,6 +411,12 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             int? knnMemoryCircuitBreakerLimit,
 
+            bool? mlCommonsModelAccessControlEnabled,
+
+            int? mlCommonsNativeMemoryThreshold,
+
+            bool? mlCommonsOnlyRunOnMlNode,
+
             string? nodeSearchCacheSize,
 
             Outputs.ManagedDatabaseOpensearchPropertiesOpenid? openid,
@@ -502,6 +520,9 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             KeepIndexRefreshInterval = keepIndexRefreshInterval;
             KnnMemoryCircuitBreakerEnabled = knnMemoryCircuitBreakerEnabled;
             KnnMemoryCircuitBreakerLimit = knnMemoryCircuitBreakerLimit;
+            MlCommonsModelAccessControlEnabled = mlCommonsModelAccessControlEnabled;
+            MlCommonsNativeMemoryThreshold = mlCommonsNativeMemoryThreshold;
+            MlCommonsOnlyRunOnMlNode = mlCommonsOnlyRunOnMlNode;
             NodeSearchCacheSize = nodeSearchCacheSize;
             Openid = openid;
             OpensearchDashboards = opensearchDashboards;

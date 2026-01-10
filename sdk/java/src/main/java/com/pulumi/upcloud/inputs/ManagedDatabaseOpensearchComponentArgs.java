@@ -17,14 +17,14 @@ public final class ManagedDatabaseOpensearchComponentArgs extends com.pulumi.res
     public static final ManagedDatabaseOpensearchComponentArgs Empty = new ManagedDatabaseOpensearchComponentArgs();
 
     /**
-     * Type of the component
+     * Component name.
      * 
      */
     @Import(name="component")
     private @Nullable Output<String> component;
 
     /**
-     * @return Type of the component
+     * @return Component name.
      * 
      */
     public Optional<Output<String>> component() {
@@ -120,7 +120,7 @@ public final class ManagedDatabaseOpensearchComponentArgs extends com.pulumi.res
         }
 
         /**
-         * @param component Type of the component
+         * @param component Component name.
          * 
          * @return builder
          * 
@@ -131,7 +131,7 @@ public final class ManagedDatabaseOpensearchComponentArgs extends com.pulumi.res
         }
 
         /**
-         * @param component Type of the component
+         * @param component Component name.
          * 
          * @return builder
          * 

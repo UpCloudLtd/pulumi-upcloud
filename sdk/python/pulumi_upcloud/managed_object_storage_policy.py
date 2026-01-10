@@ -27,7 +27,7 @@ class ManagedObjectStoragePolicyArgs:
         The set of arguments for constructing a ManagedObjectStoragePolicy resource.
         :param pulumi.Input[_builtins.str] document: Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
-        :param pulumi.Input[_builtins.str] description: Description of the policy.
+        :param pulumi.Input[_builtins.str] description: Description of the policy. This property is immutable after creation.
         :param pulumi.Input[_builtins.str] name: Policy name.
         """
         pulumi.set(__self__, "document", document)
@@ -65,7 +65,7 @@ class ManagedObjectStoragePolicyArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Description of the policy.
+        Description of the policy. This property is immutable after creation.
         """
         return pulumi.get(self, "description")
 
@@ -105,7 +105,7 @@ class _ManagedObjectStoragePolicyState:
         :param pulumi.Input[_builtins.int] attachment_count: Attachment count.
         :param pulumi.Input[_builtins.str] created_at: Creation time.
         :param pulumi.Input[_builtins.str] default_version_id: Default version id.
-        :param pulumi.Input[_builtins.str] description: Description of the policy.
+        :param pulumi.Input[_builtins.str] description: Description of the policy. This property is immutable after creation.
         :param pulumi.Input[_builtins.str] document: Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
         :param pulumi.Input[_builtins.str] name: Policy name.
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
@@ -185,7 +185,7 @@ class _ManagedObjectStoragePolicyState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Description of the policy.
+        Description of the policy. This property is immutable after creation.
         """
         return pulumi.get(self, "description")
 
@@ -287,7 +287,7 @@ class ManagedObjectStoragePolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] description: Description of the policy.
+        :param pulumi.Input[_builtins.str] description: Description of the policy. This property is immutable after creation.
         :param pulumi.Input[_builtins.str] document: Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
         :param pulumi.Input[_builtins.str] name: Policy name.
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
@@ -391,7 +391,7 @@ class ManagedObjectStoragePolicy(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] attachment_count: Attachment count.
         :param pulumi.Input[_builtins.str] created_at: Creation time.
         :param pulumi.Input[_builtins.str] default_version_id: Default version id.
-        :param pulumi.Input[_builtins.str] description: Description of the policy.
+        :param pulumi.Input[_builtins.str] description: Description of the policy. This property is immutable after creation.
         :param pulumi.Input[_builtins.str] document: Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
         :param pulumi.Input[_builtins.str] name: Policy name.
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
@@ -450,7 +450,7 @@ class ManagedObjectStoragePolicy(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Description of the policy.
+        Description of the policy. This property is immutable after creation.
         """
         return pulumi.get(self, "description")
 

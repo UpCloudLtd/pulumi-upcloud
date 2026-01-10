@@ -17,14 +17,14 @@ public final class ManagedObjectStoragePolicyArgs extends com.pulumi.resources.R
     public static final ManagedObjectStoragePolicyArgs Empty = new ManagedObjectStoragePolicyArgs();
 
     /**
-     * Description of the policy.
+     * Description of the policy. This property is immutable after creation.
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return Description of the policy.
+     * @return Description of the policy. This property is immutable after creation.
      * 
      */
     public Optional<Output<String>> description() {
@@ -104,7 +104,7 @@ public final class ManagedObjectStoragePolicyArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param description Description of the policy.
+         * @param description Description of the policy. This property is immutable after creation.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class ManagedObjectStoragePolicyArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param description Description of the policy.
+         * @param description Description of the policy. This property is immutable after creation.
          * 
          * @return builder
          * 

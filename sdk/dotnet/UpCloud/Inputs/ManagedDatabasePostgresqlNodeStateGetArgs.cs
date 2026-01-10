@@ -26,7 +26,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? Role { get; set; }
 
         /// <summary>
-        /// State of the node
+        /// Current state of the node
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }

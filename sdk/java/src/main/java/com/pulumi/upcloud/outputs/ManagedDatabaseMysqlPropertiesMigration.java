@@ -19,6 +19,11 @@ public final class ManagedDatabaseMysqlPropertiesMigration {
      */
     private @Nullable String dbname;
     /**
+     * @return MySQL migration dump tool. Experimental! Tool to use for database dump and restore during migration. Default: mysqldump.
+     * 
+     */
+    private @Nullable String dumpTool;
+    /**
      * @return Hostname or IP address of the server where to migrate data from.
      * 
      */
@@ -49,6 +54,11 @@ public final class ManagedDatabaseMysqlPropertiesMigration {
      */
     private @Nullable Integer port;
     /**
+     * @return Skip dump-restore part and start replication.
+     * 
+     */
+    private @Nullable Boolean reestablishReplication;
+    /**
      * @return The server where to migrate data from is secured with SSL.
      * 
      */
@@ -66,6 +76,13 @@ public final class ManagedDatabaseMysqlPropertiesMigration {
      */
     public Optional<String> dbname() {
         return Optional.ofNullable(this.dbname);
+    }
+    /**
+     * @return MySQL migration dump tool. Experimental! Tool to use for database dump and restore during migration. Default: mysqldump.
+     * 
+     */
+    public Optional<String> dumpTool() {
+        return Optional.ofNullable(this.dumpTool);
     }
     /**
      * @return Hostname or IP address of the server where to migrate data from.
@@ -110,6 +127,13 @@ public final class ManagedDatabaseMysqlPropertiesMigration {
         return Optional.ofNullable(this.port);
     }
     /**
+     * @return Skip dump-restore part and start replication.
+     * 
+     */
+    public Optional<Boolean> reestablishReplication() {
+        return Optional.ofNullable(this.reestablishReplication);
+    }
+    /**
      * @return The server where to migrate data from is secured with SSL.
      * 
      */
@@ -134,24 +158,28 @@ public final class ManagedDatabaseMysqlPropertiesMigration {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String dbname;
+        private @Nullable String dumpTool;
         private @Nullable String host;
         private @Nullable String ignoreDbs;
         private @Nullable String ignoreRoles;
         private @Nullable String method;
         private @Nullable String password;
         private @Nullable Integer port;
+        private @Nullable Boolean reestablishReplication;
         private @Nullable Boolean ssl;
         private @Nullable String username;
         public Builder() {}
         public Builder(ManagedDatabaseMysqlPropertiesMigration defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.dbname = defaults.dbname;
+    	      this.dumpTool = defaults.dumpTool;
     	      this.host = defaults.host;
     	      this.ignoreDbs = defaults.ignoreDbs;
     	      this.ignoreRoles = defaults.ignoreRoles;
     	      this.method = defaults.method;
     	      this.password = defaults.password;
     	      this.port = defaults.port;
+    	      this.reestablishReplication = defaults.reestablishReplication;
     	      this.ssl = defaults.ssl;
     	      this.username = defaults.username;
         }
@@ -160,6 +188,12 @@ public final class ManagedDatabaseMysqlPropertiesMigration {
         public Builder dbname(@Nullable String dbname) {
 
             this.dbname = dbname;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder dumpTool(@Nullable String dumpTool) {
+
+            this.dumpTool = dumpTool;
             return this;
         }
         @CustomType.Setter
@@ -199,6 +233,12 @@ public final class ManagedDatabaseMysqlPropertiesMigration {
             return this;
         }
         @CustomType.Setter
+        public Builder reestablishReplication(@Nullable Boolean reestablishReplication) {
+
+            this.reestablishReplication = reestablishReplication;
+            return this;
+        }
+        @CustomType.Setter
         public Builder ssl(@Nullable Boolean ssl) {
 
             this.ssl = ssl;
@@ -213,12 +253,14 @@ public final class ManagedDatabaseMysqlPropertiesMigration {
         public ManagedDatabaseMysqlPropertiesMigration build() {
             final var _resultValue = new ManagedDatabaseMysqlPropertiesMigration();
             _resultValue.dbname = dbname;
+            _resultValue.dumpTool = dumpTool;
             _resultValue.host = host;
             _resultValue.ignoreDbs = ignoreDbs;
             _resultValue.ignoreRoles = ignoreRoles;
             _resultValue.method = method;
             _resultValue.password = password;
             _resultValue.port = port;
+            _resultValue.reestablishReplication = reestablishReplication;
             _resultValue.ssl = ssl;
             _resultValue.username = username;
             return _resultValue;

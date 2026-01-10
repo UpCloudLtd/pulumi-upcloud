@@ -257,6 +257,21 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     private @Nullable Integer knnMemoryCircuitBreakerLimit;
     /**
+     * @return plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
+     * 
+     */
+    private @Nullable Boolean mlCommonsModelAccessControlEnabled;
+    /**
+     * @return plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
+     * 
+     */
+    private @Nullable Integer mlCommonsNativeMemoryThreshold;
+    /**
+     * @return plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
+     * 
+     */
+    private @Nullable Boolean mlCommonsOnlyRunOnMlNode;
+    /**
      * @return The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
      * 
      */
@@ -712,6 +727,27 @@ public final class ManagedDatabaseOpensearchProperties {
         return Optional.ofNullable(this.knnMemoryCircuitBreakerLimit);
     }
     /**
+     * @return plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
+     * 
+     */
+    public Optional<Boolean> mlCommonsModelAccessControlEnabled() {
+        return Optional.ofNullable(this.mlCommonsModelAccessControlEnabled);
+    }
+    /**
+     * @return plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
+     * 
+     */
+    public Optional<Integer> mlCommonsNativeMemoryThreshold() {
+        return Optional.ofNullable(this.mlCommonsNativeMemoryThreshold);
+    }
+    /**
+     * @return plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
+     * 
+     */
+    public Optional<Boolean> mlCommonsOnlyRunOnMlNode() {
+        return Optional.ofNullable(this.mlCommonsOnlyRunOnMlNode);
+    }
+    /**
      * @return The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
      * 
      */
@@ -956,6 +992,9 @@ public final class ManagedDatabaseOpensearchProperties {
         private @Nullable Boolean keepIndexRefreshInterval;
         private @Nullable Boolean knnMemoryCircuitBreakerEnabled;
         private @Nullable Integer knnMemoryCircuitBreakerLimit;
+        private @Nullable Boolean mlCommonsModelAccessControlEnabled;
+        private @Nullable Integer mlCommonsNativeMemoryThreshold;
+        private @Nullable Boolean mlCommonsOnlyRunOnMlNode;
         private @Nullable String nodeSearchCacheSize;
         private @Nullable ManagedDatabaseOpensearchPropertiesOpenid openid;
         private @Nullable ManagedDatabaseOpensearchPropertiesOpensearchDashboards opensearchDashboards;
@@ -1034,6 +1073,9 @@ public final class ManagedDatabaseOpensearchProperties {
     	      this.keepIndexRefreshInterval = defaults.keepIndexRefreshInterval;
     	      this.knnMemoryCircuitBreakerEnabled = defaults.knnMemoryCircuitBreakerEnabled;
     	      this.knnMemoryCircuitBreakerLimit = defaults.knnMemoryCircuitBreakerLimit;
+    	      this.mlCommonsModelAccessControlEnabled = defaults.mlCommonsModelAccessControlEnabled;
+    	      this.mlCommonsNativeMemoryThreshold = defaults.mlCommonsNativeMemoryThreshold;
+    	      this.mlCommonsOnlyRunOnMlNode = defaults.mlCommonsOnlyRunOnMlNode;
     	      this.nodeSearchCacheSize = defaults.nodeSearchCacheSize;
     	      this.openid = defaults.openid;
     	      this.opensearchDashboards = defaults.opensearchDashboards;
@@ -1359,6 +1401,24 @@ public final class ManagedDatabaseOpensearchProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder mlCommonsModelAccessControlEnabled(@Nullable Boolean mlCommonsModelAccessControlEnabled) {
+
+            this.mlCommonsModelAccessControlEnabled = mlCommonsModelAccessControlEnabled;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder mlCommonsNativeMemoryThreshold(@Nullable Integer mlCommonsNativeMemoryThreshold) {
+
+            this.mlCommonsNativeMemoryThreshold = mlCommonsNativeMemoryThreshold;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder mlCommonsOnlyRunOnMlNode(@Nullable Boolean mlCommonsOnlyRunOnMlNode) {
+
+            this.mlCommonsOnlyRunOnMlNode = mlCommonsOnlyRunOnMlNode;
+            return this;
+        }
+        @CustomType.Setter
         public Builder nodeSearchCacheSize(@Nullable String nodeSearchCacheSize) {
 
             this.nodeSearchCacheSize = nodeSearchCacheSize;
@@ -1578,6 +1638,9 @@ public final class ManagedDatabaseOpensearchProperties {
             _resultValue.keepIndexRefreshInterval = keepIndexRefreshInterval;
             _resultValue.knnMemoryCircuitBreakerEnabled = knnMemoryCircuitBreakerEnabled;
             _resultValue.knnMemoryCircuitBreakerLimit = knnMemoryCircuitBreakerLimit;
+            _resultValue.mlCommonsModelAccessControlEnabled = mlCommonsModelAccessControlEnabled;
+            _resultValue.mlCommonsNativeMemoryThreshold = mlCommonsNativeMemoryThreshold;
+            _resultValue.mlCommonsOnlyRunOnMlNode = mlCommonsOnlyRunOnMlNode;
             _resultValue.nodeSearchCacheSize = nodeSearchCacheSize;
             _resultValue.openid = openid;
             _resultValue.opensearchDashboards = opensearchDashboards;

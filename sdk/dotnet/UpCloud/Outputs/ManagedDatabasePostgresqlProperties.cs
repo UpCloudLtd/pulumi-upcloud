@@ -95,6 +95,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? DefaultToastCompression;
         /// <summary>
+        /// Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.
+        /// </summary>
+        public readonly bool? EnableHaReplicaDns;
+        /// <summary>
         /// Time out sessions with open transactions after this number of milliseconds.
         /// </summary>
         public readonly int? IdleInTransactionSessionTimeout;
@@ -365,6 +369,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             string? defaultToastCompression,
 
+            bool? enableHaReplicaDns,
+
             int? idleInTransactionSessionTimeout,
 
             int? ioCombineLimit,
@@ -499,6 +505,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             BgwriterLruMultiplier = bgwriterLruMultiplier;
             DeadlockTimeout = deadlockTimeout;
             DefaultToastCompression = defaultToastCompression;
+            EnableHaReplicaDns = enableHaReplicaDns;
             IdleInTransactionSessionTimeout = idleInTransactionSessionTimeout;
             IoCombineLimit = ioCombineLimit;
             IoMaxCombineLimit = ioMaxCombineLimit;

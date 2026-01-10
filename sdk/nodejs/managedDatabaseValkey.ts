@@ -71,9 +71,9 @@ export class ManagedDatabaseValkey extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly components: pulumi.Output<outputs.ManagedDatabaseValkeyComponent[]>;
     /**
-     * User defined key-value pairs to classify the managed database.
+     * User defined key-value pairs to classify the database.
      */
-    declare public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly labels: pulumi.Output<{[key: string]: string}>;
     /**
      * Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
      */
@@ -101,21 +101,21 @@ export class ManagedDatabaseValkey extends pulumi.CustomResource {
     /**
      * The administrative power state of the service
      */
-    declare public readonly powered: pulumi.Output<boolean | undefined>;
+    declare public readonly powered: pulumi.Output<boolean>;
     /**
      * Primary database name
      */
     declare public /*out*/ readonly primaryDatabase: pulumi.Output<string>;
     /**
-     * Database Engine properties for Valkey
+     * Database engine properties.
      */
-    declare public readonly properties: pulumi.Output<outputs.ManagedDatabaseValkeyProperties>;
+    declare public readonly properties: pulumi.Output<outputs.ManagedDatabaseValkeyProperties | undefined>;
     /**
      * Hostname to the service instance
      */
     declare public /*out*/ readonly serviceHost: pulumi.Output<string>;
     /**
-     * Primary username's password to the service instance
+     * Primary password to the service instance
      */
     declare public /*out*/ readonly servicePassword: pulumi.Output<string>;
     /**
@@ -131,19 +131,19 @@ export class ManagedDatabaseValkey extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly serviceUsername: pulumi.Output<string>;
     /**
-     * State of the service
+     * The current state of the service
      */
     declare public /*out*/ readonly state: pulumi.Output<string>;
     /**
      * If set to true, prevents the managed service from being powered off, or deleted.
      */
-    declare public readonly terminationProtection: pulumi.Output<boolean | undefined>;
+    declare public readonly terminationProtection: pulumi.Output<boolean>;
     /**
-     * Title of a managed database instance
+     * Title of the managed database instance
      */
     declare public readonly title: pulumi.Output<string>;
     /**
-     * Type of the service
+     * Type of the managed database instance
      */
     declare public /*out*/ readonly type: pulumi.Output<string>;
     /**
@@ -240,7 +240,7 @@ export interface ManagedDatabaseValkeyState {
      */
     components?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseValkeyComponent>[]>;
     /**
-     * User defined key-value pairs to classify the managed database.
+     * User defined key-value pairs to classify the database.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -276,7 +276,7 @@ export interface ManagedDatabaseValkeyState {
      */
     primaryDatabase?: pulumi.Input<string>;
     /**
-     * Database Engine properties for Valkey
+     * Database engine properties.
      */
     properties?: pulumi.Input<inputs.ManagedDatabaseValkeyProperties>;
     /**
@@ -284,7 +284,7 @@ export interface ManagedDatabaseValkeyState {
      */
     serviceHost?: pulumi.Input<string>;
     /**
-     * Primary username's password to the service instance
+     * Primary password to the service instance
      */
     servicePassword?: pulumi.Input<string>;
     /**
@@ -300,7 +300,7 @@ export interface ManagedDatabaseValkeyState {
      */
     serviceUsername?: pulumi.Input<string>;
     /**
-     * State of the service
+     * The current state of the service
      */
     state?: pulumi.Input<string>;
     /**
@@ -308,11 +308,11 @@ export interface ManagedDatabaseValkeyState {
      */
     terminationProtection?: pulumi.Input<boolean>;
     /**
-     * Title of a managed database instance
+     * Title of the managed database instance
      */
     title?: pulumi.Input<string>;
     /**
-     * Type of the service
+     * Type of the managed database instance
      */
     type?: pulumi.Input<string>;
     /**
@@ -330,7 +330,7 @@ export interface ManagedDatabaseValkeyArgs {
      */
     additionalDiskSpaceGib?: pulumi.Input<number>;
     /**
-     * User defined key-value pairs to classify the managed database.
+     * User defined key-value pairs to classify the database.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -358,7 +358,7 @@ export interface ManagedDatabaseValkeyArgs {
      */
     powered?: pulumi.Input<boolean>;
     /**
-     * Database Engine properties for Valkey
+     * Database engine properties.
      */
     properties?: pulumi.Input<inputs.ManagedDatabaseValkeyProperties>;
     /**
@@ -366,7 +366,7 @@ export interface ManagedDatabaseValkeyArgs {
      */
     terminationProtection?: pulumi.Input<boolean>;
     /**
-     * Title of a managed database instance
+     * Title of the managed database instance
      */
     title: pulumi.Input<string>;
     /**
