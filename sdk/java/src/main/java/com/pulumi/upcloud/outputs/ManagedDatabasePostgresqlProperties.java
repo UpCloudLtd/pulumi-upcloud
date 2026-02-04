@@ -86,10 +86,20 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable Integer backupHour;
     /**
+     * @return Backup interval in hours. Interval in hours between automatic backups. Minimum value is 3 hours. Must be a divisor of 24 (3, 4, 6, 8, 12, 24).  (Applicable to ACU plans only).
+     * 
+     */
+    private @Nullable Integer backupIntervalHours;
+    /**
      * @return The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
      * 
      */
     private @Nullable Integer backupMinute;
+    /**
+     * @return Backup retention in days. Number of days to retain automatic backups. Backups older than this value will be automatically deleted. (Applicable to ACU plans only).
+     * 
+     */
+    private @Nullable Integer backupRetentionDays;
     /**
      * @return Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
      * 
@@ -504,11 +514,25 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.backupHour);
     }
     /**
+     * @return Backup interval in hours. Interval in hours between automatic backups. Minimum value is 3 hours. Must be a divisor of 24 (3, 4, 6, 8, 12, 24).  (Applicable to ACU plans only).
+     * 
+     */
+    public Optional<Integer> backupIntervalHours() {
+        return Optional.ofNullable(this.backupIntervalHours);
+    }
+    /**
      * @return The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
      * 
      */
     public Optional<Integer> backupMinute() {
         return Optional.ofNullable(this.backupMinute);
+    }
+    /**
+     * @return Backup retention in days. Number of days to retain automatic backups. Backups older than this value will be automatically deleted. (Applicable to ACU plans only).
+     * 
+     */
+    public Optional<Integer> backupRetentionDays() {
+        return Optional.ofNullable(this.backupRetentionDays);
     }
     /**
      * @return Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
@@ -981,7 +1005,9 @@ public final class ManagedDatabasePostgresqlProperties {
         private @Nullable Double autovacuumVacuumScaleFactor;
         private @Nullable Integer autovacuumVacuumThreshold;
         private @Nullable Integer backupHour;
+        private @Nullable Integer backupIntervalHours;
         private @Nullable Integer backupMinute;
+        private @Nullable Integer backupRetentionDays;
         private @Nullable Integer bgwriterDelay;
         private @Nullable Integer bgwriterFlushAfter;
         private @Nullable Integer bgwriterLruMaxpages;
@@ -1062,7 +1088,9 @@ public final class ManagedDatabasePostgresqlProperties {
     	      this.autovacuumVacuumScaleFactor = defaults.autovacuumVacuumScaleFactor;
     	      this.autovacuumVacuumThreshold = defaults.autovacuumVacuumThreshold;
     	      this.backupHour = defaults.backupHour;
+    	      this.backupIntervalHours = defaults.backupIntervalHours;
     	      this.backupMinute = defaults.backupMinute;
+    	      this.backupRetentionDays = defaults.backupRetentionDays;
     	      this.bgwriterDelay = defaults.bgwriterDelay;
     	      this.bgwriterFlushAfter = defaults.bgwriterFlushAfter;
     	      this.bgwriterLruMaxpages = defaults.bgwriterLruMaxpages;
@@ -1208,9 +1236,21 @@ public final class ManagedDatabasePostgresqlProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder backupIntervalHours(@Nullable Integer backupIntervalHours) {
+
+            this.backupIntervalHours = backupIntervalHours;
+            return this;
+        }
+        @CustomType.Setter
         public Builder backupMinute(@Nullable Integer backupMinute) {
 
             this.backupMinute = backupMinute;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder backupRetentionDays(@Nullable Integer backupRetentionDays) {
+
+            this.backupRetentionDays = backupRetentionDays;
             return this;
         }
         @CustomType.Setter
@@ -1615,7 +1655,9 @@ public final class ManagedDatabasePostgresqlProperties {
             _resultValue.autovacuumVacuumScaleFactor = autovacuumVacuumScaleFactor;
             _resultValue.autovacuumVacuumThreshold = autovacuumVacuumThreshold;
             _resultValue.backupHour = backupHour;
+            _resultValue.backupIntervalHours = backupIntervalHours;
             _resultValue.backupMinute = backupMinute;
+            _resultValue.backupRetentionDays = backupRetentionDays;
             _resultValue.bgwriterDelay = bgwriterDelay;
             _resultValue.bgwriterFlushAfter = bgwriterFlushAfter;
             _resultValue.bgwriterLruMaxpages = bgwriterLruMaxpages;

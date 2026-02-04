@@ -10536,9 +10536,17 @@ if not MYPY:
         """
         The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
         """
+        backup_interval_hours: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        Backup interval in hours. Interval in hours between automatic backups. Minimum value is 3 hours. Must be a divisor of 24 (3, 4, 6, 8, 12, 24).  (Applicable to ACU plans only).
+        """
         backup_minute: NotRequired[pulumi.Input[_builtins.int]]
         """
         The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        """
+        backup_retention_days: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        Backup retention in days. Number of days to retain automatic backups. Backups older than this value will be automatically deleted. (Applicable to ACU plans only).
         """
         bgwriter_delay: NotRequired[pulumi.Input[_builtins.int]]
         """
@@ -10815,7 +10823,9 @@ class ManagedDatabasePostgresqlPropertiesArgs:
                  autovacuum_vacuum_scale_factor: Optional[pulumi.Input[_builtins.float]] = None,
                  autovacuum_vacuum_threshold: Optional[pulumi.Input[_builtins.int]] = None,
                  backup_hour: Optional[pulumi.Input[_builtins.int]] = None,
+                 backup_interval_hours: Optional[pulumi.Input[_builtins.int]] = None,
                  backup_minute: Optional[pulumi.Input[_builtins.int]] = None,
+                 backup_retention_days: Optional[pulumi.Input[_builtins.int]] = None,
                  bgwriter_delay: Optional[pulumi.Input[_builtins.int]] = None,
                  bgwriter_flush_after: Optional[pulumi.Input[_builtins.int]] = None,
                  bgwriter_lru_maxpages: Optional[pulumi.Input[_builtins.int]] = None,
@@ -10894,7 +10904,9 @@ class ManagedDatabasePostgresqlPropertiesArgs:
         :param pulumi.Input[_builtins.float] autovacuum_vacuum_scale_factor: Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
         :param pulumi.Input[_builtins.int] autovacuum_vacuum_threshold: Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
         :param pulumi.Input[_builtins.int] backup_hour: The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        :param pulumi.Input[_builtins.int] backup_interval_hours: Backup interval in hours. Interval in hours between automatic backups. Minimum value is 3 hours. Must be a divisor of 24 (3, 4, 6, 8, 12, 24).  (Applicable to ACU plans only).
         :param pulumi.Input[_builtins.int] backup_minute: The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        :param pulumi.Input[_builtins.int] backup_retention_days: Backup retention in days. Number of days to retain automatic backups. Backups older than this value will be automatically deleted. (Applicable to ACU plans only).
         :param pulumi.Input[_builtins.int] bgwriter_delay: Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
         :param pulumi.Input[_builtins.int] bgwriter_flush_after: Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
         :param pulumi.Input[_builtins.int] bgwriter_lru_maxpages: In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
@@ -10986,8 +10998,12 @@ class ManagedDatabasePostgresqlPropertiesArgs:
             pulumi.set(__self__, "autovacuum_vacuum_threshold", autovacuum_vacuum_threshold)
         if backup_hour is not None:
             pulumi.set(__self__, "backup_hour", backup_hour)
+        if backup_interval_hours is not None:
+            pulumi.set(__self__, "backup_interval_hours", backup_interval_hours)
         if backup_minute is not None:
             pulumi.set(__self__, "backup_minute", backup_minute)
+        if backup_retention_days is not None:
+            pulumi.set(__self__, "backup_retention_days", backup_retention_days)
         if bgwriter_delay is not None:
             pulumi.set(__self__, "bgwriter_delay", bgwriter_delay)
         if bgwriter_flush_after is not None:
@@ -11274,6 +11290,18 @@ class ManagedDatabasePostgresqlPropertiesArgs:
         pulumi.set(self, "backup_hour", value)
 
     @_builtins.property
+    @pulumi.getter(name="backupIntervalHours")
+    def backup_interval_hours(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Backup interval in hours. Interval in hours between automatic backups. Minimum value is 3 hours. Must be a divisor of 24 (3, 4, 6, 8, 12, 24).  (Applicable to ACU plans only).
+        """
+        return pulumi.get(self, "backup_interval_hours")
+
+    @backup_interval_hours.setter
+    def backup_interval_hours(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "backup_interval_hours", value)
+
+    @_builtins.property
     @pulumi.getter(name="backupMinute")
     def backup_minute(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -11284,6 +11312,18 @@ class ManagedDatabasePostgresqlPropertiesArgs:
     @backup_minute.setter
     def backup_minute(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "backup_minute", value)
+
+    @_builtins.property
+    @pulumi.getter(name="backupRetentionDays")
+    def backup_retention_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Backup retention in days. Number of days to retain automatic backups. Backups older than this value will be automatically deleted. (Applicable to ACU plans only).
+        """
+        return pulumi.get(self, "backup_retention_days")
+
+    @backup_retention_days.setter
+    def backup_retention_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "backup_retention_days", value)
 
     @_builtins.property
     @pulumi.getter(name="bgwriterDelay")
