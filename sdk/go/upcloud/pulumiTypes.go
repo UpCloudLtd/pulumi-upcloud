@@ -16564,8 +16564,12 @@ type ManagedDatabasePostgresqlProperties struct {
 	AutovacuumVacuumThreshold *int `pulumi:"autovacuumVacuumThreshold"`
 	// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
 	BackupHour *int `pulumi:"backupHour"`
+	// Backup interval in hours. Interval in hours between automatic backups. Minimum value is 3 hours. Must be a divisor of 24 (3, 4, 6, 8, 12, 24).  (Applicable to ACU plans only).
+	BackupIntervalHours *int `pulumi:"backupIntervalHours"`
 	// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
 	BackupMinute *int `pulumi:"backupMinute"`
+	// Backup retention in days. Number of days to retain automatic backups. Backups older than this value will be automatically deleted. (Applicable to ACU plans only).
+	BackupRetentionDays *int `pulumi:"backupRetentionDays"`
 	// Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
 	BgwriterDelay *int `pulumi:"bgwriterDelay"`
 	// Whenever more than bgwriterFlushAfter bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
@@ -16734,8 +16738,12 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	AutovacuumVacuumThreshold pulumi.IntPtrInput `pulumi:"autovacuumVacuumThreshold"`
 	// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
 	BackupHour pulumi.IntPtrInput `pulumi:"backupHour"`
+	// Backup interval in hours. Interval in hours between automatic backups. Minimum value is 3 hours. Must be a divisor of 24 (3, 4, 6, 8, 12, 24).  (Applicable to ACU plans only).
+	BackupIntervalHours pulumi.IntPtrInput `pulumi:"backupIntervalHours"`
 	// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
 	BackupMinute pulumi.IntPtrInput `pulumi:"backupMinute"`
+	// Backup retention in days. Number of days to retain automatic backups. Backups older than this value will be automatically deleted. (Applicable to ACU plans only).
+	BackupRetentionDays pulumi.IntPtrInput `pulumi:"backupRetentionDays"`
 	// Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
 	BgwriterDelay pulumi.IntPtrInput `pulumi:"bgwriterDelay"`
 	// Whenever more than bgwriterFlushAfter bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
@@ -17008,9 +17016,19 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) BackupHour() pulumi.IntPtrOut
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.BackupHour }).(pulumi.IntPtrOutput)
 }
 
+// Backup interval in hours. Interval in hours between automatic backups. Minimum value is 3 hours. Must be a divisor of 24 (3, 4, 6, 8, 12, 24).  (Applicable to ACU plans only).
+func (o ManagedDatabasePostgresqlPropertiesOutput) BackupIntervalHours() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.BackupIntervalHours }).(pulumi.IntPtrOutput)
+}
+
 // The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
 func (o ManagedDatabasePostgresqlPropertiesOutput) BackupMinute() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.BackupMinute }).(pulumi.IntPtrOutput)
+}
+
+// Backup retention in days. Number of days to retain automatic backups. Backups older than this value will be automatically deleted. (Applicable to ACU plans only).
+func (o ManagedDatabasePostgresqlPropertiesOutput) BackupRetentionDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.BackupRetentionDays }).(pulumi.IntPtrOutput)
 }
 
 // Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
@@ -17497,6 +17515,16 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) BackupHour() pulumi.IntPtr
 	}).(pulumi.IntPtrOutput)
 }
 
+// Backup interval in hours. Interval in hours between automatic backups. Minimum value is 3 hours. Must be a divisor of 24 (3, 4, 6, 8, 12, 24).  (Applicable to ACU plans only).
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) BackupIntervalHours() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.BackupIntervalHours
+	}).(pulumi.IntPtrOutput)
+}
+
 // The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) BackupMinute() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
@@ -17504,6 +17532,16 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) BackupMinute() pulumi.IntP
 			return nil
 		}
 		return v.BackupMinute
+	}).(pulumi.IntPtrOutput)
+}
+
+// Backup retention in days. Number of days to retain automatic backups. Backups older than this value will be automatically deleted. (Applicable to ACU plans only).
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) BackupRetentionDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.BackupRetentionDays
 	}).(pulumi.IntPtrOutput)
 }
 

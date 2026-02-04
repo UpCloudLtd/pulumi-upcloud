@@ -7658,8 +7658,12 @@ class ManagedDatabasePostgresqlProperties(dict):
             suggest = "autovacuum_vacuum_threshold"
         elif key == "backupHour":
             suggest = "backup_hour"
+        elif key == "backupIntervalHours":
+            suggest = "backup_interval_hours"
         elif key == "backupMinute":
             suggest = "backup_minute"
+        elif key == "backupRetentionDays":
+            suggest = "backup_retention_days"
         elif key == "bgwriterDelay":
             suggest = "bgwriter_delay"
         elif key == "bgwriterFlushAfter":
@@ -7796,7 +7800,9 @@ class ManagedDatabasePostgresqlProperties(dict):
                  autovacuum_vacuum_scale_factor: Optional[_builtins.float] = None,
                  autovacuum_vacuum_threshold: Optional[_builtins.int] = None,
                  backup_hour: Optional[_builtins.int] = None,
+                 backup_interval_hours: Optional[_builtins.int] = None,
                  backup_minute: Optional[_builtins.int] = None,
+                 backup_retention_days: Optional[_builtins.int] = None,
                  bgwriter_delay: Optional[_builtins.int] = None,
                  bgwriter_flush_after: Optional[_builtins.int] = None,
                  bgwriter_lru_maxpages: Optional[_builtins.int] = None,
@@ -7875,7 +7881,9 @@ class ManagedDatabasePostgresqlProperties(dict):
         :param _builtins.float autovacuum_vacuum_scale_factor: Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
         :param _builtins.int autovacuum_vacuum_threshold: Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
         :param _builtins.int backup_hour: The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
+        :param _builtins.int backup_interval_hours: Backup interval in hours. Interval in hours between automatic backups. Minimum value is 3 hours. Must be a divisor of 24 (3, 4, 6, 8, 12, 24).  (Applicable to ACU plans only).
         :param _builtins.int backup_minute: The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
+        :param _builtins.int backup_retention_days: Backup retention in days. Number of days to retain automatic backups. Backups older than this value will be automatically deleted. (Applicable to ACU plans only).
         :param _builtins.int bgwriter_delay: Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
         :param _builtins.int bgwriter_flush_after: Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
         :param _builtins.int bgwriter_lru_maxpages: In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
@@ -7967,8 +7975,12 @@ class ManagedDatabasePostgresqlProperties(dict):
             pulumi.set(__self__, "autovacuum_vacuum_threshold", autovacuum_vacuum_threshold)
         if backup_hour is not None:
             pulumi.set(__self__, "backup_hour", backup_hour)
+        if backup_interval_hours is not None:
+            pulumi.set(__self__, "backup_interval_hours", backup_interval_hours)
         if backup_minute is not None:
             pulumi.set(__self__, "backup_minute", backup_minute)
+        if backup_retention_days is not None:
+            pulumi.set(__self__, "backup_retention_days", backup_retention_days)
         if bgwriter_delay is not None:
             pulumi.set(__self__, "bgwriter_delay", bgwriter_delay)
         if bgwriter_flush_after is not None:
@@ -8203,12 +8215,28 @@ class ManagedDatabasePostgresqlProperties(dict):
         return pulumi.get(self, "backup_hour")
 
     @_builtins.property
+    @pulumi.getter(name="backupIntervalHours")
+    def backup_interval_hours(self) -> Optional[_builtins.int]:
+        """
+        Backup interval in hours. Interval in hours between automatic backups. Minimum value is 3 hours. Must be a divisor of 24 (3, 4, 6, 8, 12, 24).  (Applicable to ACU plans only).
+        """
+        return pulumi.get(self, "backup_interval_hours")
+
+    @_builtins.property
     @pulumi.getter(name="backupMinute")
     def backup_minute(self) -> Optional[_builtins.int]:
         """
         The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
         """
         return pulumi.get(self, "backup_minute")
+
+    @_builtins.property
+    @pulumi.getter(name="backupRetentionDays")
+    def backup_retention_days(self) -> Optional[_builtins.int]:
+        """
+        Backup retention in days. Number of days to retain automatic backups. Backups older than this value will be automatically deleted. (Applicable to ACU plans only).
+        """
+        return pulumi.get(self, "backup_retention_days")
 
     @_builtins.property
     @pulumi.getter(name="bgwriterDelay")

@@ -2613,9 +2613,17 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     backupHour: number;
     /**
+     * Backup interval in hours. Interval in hours between automatic backups. Minimum value is 3 hours. Must be a divisor of 24 (3, 4, 6, 8, 12, 24).  (Applicable to ACU plans only).
+     */
+    backupIntervalHours: number;
+    /**
      * The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
      */
     backupMinute: number;
+    /**
+     * Backup retention in days. Number of days to retain automatic backups. Backups older than this value will be automatically deleted. (Applicable to ACU plans only).
+     */
+    backupRetentionDays: number;
     /**
      * Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
      */
