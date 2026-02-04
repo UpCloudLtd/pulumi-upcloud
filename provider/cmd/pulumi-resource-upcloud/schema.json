@@ -3445,9 +3445,17 @@
                     "type": "integer",
                     "description": "The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.\n"
                 },
+                "backupIntervalHours": {
+                    "type": "integer",
+                    "description": "Backup interval in hours. Interval in hours between automatic backups. Minimum value is 3 hours. Must be a divisor of 24 (3, 4, 6, 8, 12, 24).  (Applicable to ACU plans only).\n"
+                },
                 "backupMinute": {
                     "type": "integer",
                     "description": "The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.\n"
+                },
+                "backupRetentionDays": {
+                    "type": "integer",
+                    "description": "Backup retention in days. Number of days to retain automatic backups. Backups older than this value will be automatically deleted. (Applicable to ACU plans only).\n"
                 },
                 "bgwriterDelay": {
                     "type": "integer",
@@ -3727,7 +3735,9 @@
                         "autovacuumVacuumScaleFactor",
                         "autovacuumVacuumThreshold",
                         "backupHour",
+                        "backupIntervalHours",
                         "backupMinute",
+                        "backupRetentionDays",
                         "bgwriterDelay",
                         "bgwriterFlushAfter",
                         "bgwriterLruMaxpages",
