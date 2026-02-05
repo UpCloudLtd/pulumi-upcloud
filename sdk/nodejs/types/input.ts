@@ -2575,7 +2575,7 @@ export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu 
      */
     topNSize?: pulumi.Input<number>;
     /**
-     * The window size of the top N queries by the metric. Configure the window size of the top N queries.
+     * The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
      */
     windowSize?: pulumi.Input<string>;
 }
@@ -2590,7 +2590,7 @@ export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLate
      */
     topNSize?: pulumi.Input<number>;
     /**
-     * The window size of the top N queries by the metric. Configure the window size of the top N queries.
+     * The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
      */
     windowSize?: pulumi.Input<string>;
 }
@@ -2605,7 +2605,7 @@ export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemo
      */
     topNSize?: pulumi.Input<number>;
     /**
-     * The window size of the top N queries by the metric. Configure the window size of the top N queries.
+     * The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
      */
     windowSize?: pulumi.Input<string>;
 }

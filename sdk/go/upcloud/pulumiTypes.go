@@ -14556,7 +14556,7 @@ type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu struct {
 	Enabled *bool `pulumi:"enabled"`
 	// Specify the value of N for the top N queries by the metric.
 	TopNSize *int `pulumi:"topNSize"`
-	// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+	// The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
 	WindowSize *string `pulumi:"windowSize"`
 }
 
@@ -14576,7 +14576,7 @@ type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuArgs struct {
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Specify the value of N for the top N queries by the metric.
 	TopNSize pulumi.IntPtrInput `pulumi:"topNSize"`
-	// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+	// The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
 	WindowSize pulumi.StringPtrInput `pulumi:"windowSize"`
 }
 
@@ -14667,7 +14667,7 @@ func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput) To
 	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu) *int { return v.TopNSize }).(pulumi.IntPtrOutput)
 }
 
-// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+// The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
 func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuOutput) WindowSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu) *string { return v.WindowSize }).(pulumi.StringPtrOutput)
 }
@@ -14716,7 +14716,7 @@ func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput)
 	}).(pulumi.IntPtrOutput)
 }
 
-// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+// The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
 func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpuPtrOutput) WindowSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu) *string {
 		if v == nil {
@@ -14731,7 +14731,7 @@ type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency struct {
 	Enabled *bool `pulumi:"enabled"`
 	// Specify the value of N for the top N queries by the metric.
 	TopNSize *int `pulumi:"topNSize"`
-	// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+	// The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
 	WindowSize *string `pulumi:"windowSize"`
 }
 
@@ -14751,7 +14751,7 @@ type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyArgs stru
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Specify the value of N for the top N queries by the metric.
 	TopNSize pulumi.IntPtrInput `pulumi:"topNSize"`
-	// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+	// The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
 	WindowSize pulumi.StringPtrInput `pulumi:"windowSize"`
 }
 
@@ -14842,7 +14842,7 @@ func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput
 	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency) *int { return v.TopNSize }).(pulumi.IntPtrOutput)
 }
 
-// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+// The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
 func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyOutput) WindowSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency) *string {
 		return v.WindowSize
@@ -14893,7 +14893,7 @@ func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOut
 	}).(pulumi.IntPtrOutput)
 }
 
-// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+// The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
 func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatencyPtrOutput) WindowSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency) *string {
 		if v == nil {
@@ -14908,7 +14908,7 @@ type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory struct {
 	Enabled *bool `pulumi:"enabled"`
 	// Specify the value of N for the top N queries by the metric.
 	TopNSize *int `pulumi:"topNSize"`
-	// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+	// The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
 	WindowSize *string `pulumi:"windowSize"`
 }
 
@@ -14928,7 +14928,7 @@ type ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryArgs struc
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Specify the value of N for the top N queries by the metric.
 	TopNSize pulumi.IntPtrInput `pulumi:"topNSize"`
-	// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+	// The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
 	WindowSize pulumi.StringPtrInput `pulumi:"windowSize"`
 }
 
@@ -15019,7 +15019,7 @@ func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput)
 	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory) *int { return v.TopNSize }).(pulumi.IntPtrOutput)
 }
 
-// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+// The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
 func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryOutput) WindowSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory) *string { return v.WindowSize }).(pulumi.StringPtrOutput)
 }
@@ -15068,7 +15068,7 @@ func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutp
 	}).(pulumi.IntPtrOutput)
 }
 
-// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+// The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
 func (o ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemoryPtrOutput) WindowSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory) *string {
 		if v == nil {

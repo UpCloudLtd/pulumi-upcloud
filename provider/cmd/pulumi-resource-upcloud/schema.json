@@ -3106,7 +3106,7 @@
                 },
                 "windowSize": {
                     "type": "string",
-                    "description": "The window size of the top N queries by the metric. Configure the window size of the top N queries.\n"
+                    "description": "The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.\n"
                 }
             },
             "type": "object",
@@ -3132,7 +3132,7 @@
                 },
                 "windowSize": {
                     "type": "string",
-                    "description": "The window size of the top N queries by the metric. Configure the window size of the top N queries.\n"
+                    "description": "The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.\n"
                 }
             },
             "type": "object",
@@ -3158,7 +3158,7 @@
                 },
                 "windowSize": {
                     "type": "string",
-                    "description": "The window size of the top N queries by the metric. Configure the window size of the top N queries.\n"
+                    "description": "The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.\n"
                 }
             },
             "type": "object",

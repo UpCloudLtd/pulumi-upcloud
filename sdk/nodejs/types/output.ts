@@ -2377,7 +2377,7 @@ export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu 
      */
     topNSize: number;
     /**
-     * The window size of the top N queries by the metric. Configure the window size of the top N queries.
+     * The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
      */
     windowSize: string;
 }
@@ -2392,7 +2392,7 @@ export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLate
      */
     topNSize: number;
     /**
-     * The window size of the top N queries by the metric. Configure the window size of the top N queries.
+     * The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
      */
     windowSize: string;
 }
@@ -2407,7 +2407,7 @@ export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemo
      */
     topNSize: number;
     /**
-     * The window size of the top N queries by the metric. Configure the window size of the top N queries.
+     * The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
      */
     windowSize: string;
 }
