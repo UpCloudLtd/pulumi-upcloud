@@ -6984,7 +6984,7 @@ class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu(dict):
         """
         :param _builtins.bool enabled: Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
         :param _builtins.int top_n_size: Specify the value of N for the top N queries by the metric.
-        :param _builtins.str window_size: The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        :param _builtins.str window_size: The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
         """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
@@ -7013,7 +7013,7 @@ class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu(dict):
     @pulumi.getter(name="windowSize")
     def window_size(self) -> Optional[_builtins.str]:
         """
-        The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
         """
         return pulumi.get(self, "window_size")
 
@@ -7046,7 +7046,7 @@ class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency(dict):
         """
         :param _builtins.bool enabled: Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
         :param _builtins.int top_n_size: Specify the value of N for the top N queries by the metric.
-        :param _builtins.str window_size: The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        :param _builtins.str window_size: The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
         """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
@@ -7075,7 +7075,7 @@ class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency(dict):
     @pulumi.getter(name="windowSize")
     def window_size(self) -> Optional[_builtins.str]:
         """
-        The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
         """
         return pulumi.get(self, "window_size")
 
@@ -7108,7 +7108,7 @@ class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory(dict):
         """
         :param _builtins.bool enabled: Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
         :param _builtins.int top_n_size: Specify the value of N for the top N queries by the metric.
-        :param _builtins.str window_size: The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        :param _builtins.str window_size: The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
         """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
@@ -7137,7 +7137,7 @@ class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory(dict):
     @pulumi.getter(name="windowSize")
     def window_size(self) -> Optional[_builtins.str]:
         """
-        The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
         """
         return pulumi.get(self, "window_size")
 

@@ -23,7 +23,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? TopNSize;
         /// <summary>
-        /// The window size of the top N queries by the metric. Configure the window size of the top N queries.
+        /// The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
         /// </summary>
         public readonly string? WindowSize;
 

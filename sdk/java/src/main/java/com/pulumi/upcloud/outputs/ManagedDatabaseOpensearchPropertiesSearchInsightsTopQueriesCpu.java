@@ -24,7 +24,7 @@ public final class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCp
      */
     private @Nullable Integer topNSize;
     /**
-     * @return The window size of the top N queries by the metric. Configure the window size of the top N queries.
+     * @return The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
      * 
      */
     private @Nullable String windowSize;
@@ -45,7 +45,7 @@ public final class ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCp
         return Optional.ofNullable(this.topNSize);
     }
     /**
-     * @return The window size of the top N queries by the metric. Configure the window size of the top N queries.
+     * @return The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
      * 
      */
     public Optional<String> windowSize() {
