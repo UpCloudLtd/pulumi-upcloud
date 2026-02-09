@@ -3493,7 +3493,7 @@ export interface ManagedObjectStorageNetwork {
      */
     name: pulumi.Input<string>;
     /**
-     * Network type.
+     * Network type (`private` or `public`).
      */
     type: pulumi.Input<string>;
     /**

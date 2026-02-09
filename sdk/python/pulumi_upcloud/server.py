@@ -815,6 +815,8 @@ class Server(pulumi.CustomResource):
 
         ## Import
 
+        The `pulumi import` command can be used, for example:
+
         ```sh
         $ pulumi import upcloud:index/server:Server example_server ead4544f-10bf-42a3-b98a-a0fea2e2ad14
         ```
@@ -862,6 +864,8 @@ class Server(pulumi.CustomResource):
         ## Example Usage
 
         ## Import
+
+        The `pulumi import` command can be used, for example:
 
         ```sh
         $ pulumi import upcloud:index/server:Server example_server ead4544f-10bf-42a3-b98a-a0fea2e2ad14

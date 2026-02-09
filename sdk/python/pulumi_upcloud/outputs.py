@@ -10164,7 +10164,7 @@ class ManagedObjectStorageNetwork(dict):
         """
         :param _builtins.str family: Network family. Currently only `IPv4` is supported.
         :param _builtins.str name: Network name. Must be unique within the service.
-        :param _builtins.str type: Network type.
+        :param _builtins.str type: Network type (`private` or `public`).
         :param _builtins.str uuid: Private network uuid. For public networks the field should be omitted.
         """
         pulumi.set(__self__, "family", family)
@@ -10193,7 +10193,7 @@ class ManagedObjectStorageNetwork(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Network type.
+        Network type (`private` or `public`).
         """
         return pulumi.get(self, "type")
 

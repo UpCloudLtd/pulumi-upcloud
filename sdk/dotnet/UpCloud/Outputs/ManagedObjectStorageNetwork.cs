@@ -23,7 +23,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Network type.
+        /// Network type (`Private` or `Public`).
         /// </summary>
         public readonly string Type;
         /// <summary>

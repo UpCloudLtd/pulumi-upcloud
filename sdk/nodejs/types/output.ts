@@ -3295,7 +3295,7 @@ export interface ManagedObjectStorageNetwork {
      */
     name: string;
     /**
-     * Network type.
+     * Network type (`private` or `public`).
      */
     type: string;
     /**
