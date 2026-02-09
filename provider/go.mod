@@ -5,7 +5,7 @@ go 1.25.3
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250923233607-7f1981c8674a
 
 require (
-	github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20260204114130-1d4cf1872d50
+	github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20260209143932-eb01bda96e81
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.37.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.115.0
 )
