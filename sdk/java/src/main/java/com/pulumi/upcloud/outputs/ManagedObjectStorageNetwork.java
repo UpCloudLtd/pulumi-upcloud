@@ -23,7 +23,7 @@ public final class ManagedObjectStorageNetwork {
      */
     private String name;
     /**
-     * @return Network type.
+     * @return Network type (`private` or `public`).
      * 
      */
     private String type;
@@ -49,7 +49,7 @@ public final class ManagedObjectStorageNetwork {
         return this.name;
     }
     /**
-     * @return Network type.
+     * @return Network type (`private` or `public`).
      * 
      */
     public String type() {

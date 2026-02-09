@@ -26,7 +26,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Network type.
+        /// Network type (`Private` or `Public`).
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

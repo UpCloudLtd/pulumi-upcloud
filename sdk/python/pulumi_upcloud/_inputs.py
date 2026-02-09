@@ -14057,7 +14057,7 @@ if not MYPY:
         """
         type: pulumi.Input[_builtins.str]
         """
-        Network type.
+        Network type (`private` or `public`).
         """
         uuid: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -14076,7 +14076,7 @@ class ManagedObjectStorageNetworkArgs:
         """
         :param pulumi.Input[_builtins.str] family: Network family. Currently only `IPv4` is supported.
         :param pulumi.Input[_builtins.str] name: Network name. Must be unique within the service.
-        :param pulumi.Input[_builtins.str] type: Network type.
+        :param pulumi.Input[_builtins.str] type: Network type (`private` or `public`).
         :param pulumi.Input[_builtins.str] uuid: Private network uuid. For public networks the field should be omitted.
         """
         pulumi.set(__self__, "family", family)
@@ -14113,7 +14113,7 @@ class ManagedObjectStorageNetworkArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Network type.
+        Network type (`private` or `public`).
         """
         return pulumi.get(self, "type")
 

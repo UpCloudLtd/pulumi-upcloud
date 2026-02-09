@@ -202,6 +202,8 @@ class Router(pulumi.CustomResource):
 
         ## Import
 
+        The `pulumi import` command can be used, for example:
+
         ```sh
         $ pulumi import upcloud:index/router:Router my_example_router 049d7ca2-757e-4fb1-a833-f87ee056547a
         ```
@@ -231,6 +233,8 @@ class Router(pulumi.CustomResource):
         ```
 
         ## Import
+
+        The `pulumi import` command can be used, for example:
 
         ```sh
         $ pulumi import upcloud:index/router:Router my_example_router 049d7ca2-757e-4fb1-a833-f87ee056547a

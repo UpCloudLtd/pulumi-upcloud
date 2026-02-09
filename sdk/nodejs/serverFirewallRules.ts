@@ -52,6 +52,8 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
+ * The `pulumi import` command can be used, for example:
+ *
  * ```sh
  * $ pulumi import upcloud:index/serverFirewallRules:ServerFirewallRules my_example_rules 049d7ca2-757e-4fb1-a833-f87ee056547a
  * ```

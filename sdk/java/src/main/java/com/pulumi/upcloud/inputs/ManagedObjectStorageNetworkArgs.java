@@ -47,14 +47,14 @@ public final class ManagedObjectStorageNetworkArgs extends com.pulumi.resources.
     }
 
     /**
-     * Network type.
+     * Network type (`private` or `public`).
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return Network type.
+     * @return Network type (`private` or `public`).
      * 
      */
     public Output<String> type() {
@@ -146,7 +146,7 @@ public final class ManagedObjectStorageNetworkArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param type Network type.
+         * @param type Network type (`private` or `public`).
          * 
          * @return builder
          * 
@@ -157,7 +157,7 @@ public final class ManagedObjectStorageNetworkArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param type Network type.
+         * @param type Network type (`private` or `public`).
          * 
          * @return builder
          * 

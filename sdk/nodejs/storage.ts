@@ -11,6 +11,8 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
+ * The `pulumi import` command can be used, for example:
+ *
  * ```sh
  * $ pulumi import upcloud:index/storage:Storage example_storage 0128ae5a-91dd-4ebf-bd1e-304c47f2c652
  * ```

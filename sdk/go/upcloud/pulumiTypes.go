@@ -21328,7 +21328,7 @@ type ManagedObjectStorageNetwork struct {
 	Family string `pulumi:"family"`
 	// Network name. Must be unique within the service.
 	Name string `pulumi:"name"`
-	// Network type.
+	// Network type (`private` or `public`).
 	Type string `pulumi:"type"`
 	// Private network uuid. For public networks the field should be omitted.
 	Uuid *string `pulumi:"uuid"`
@@ -21350,7 +21350,7 @@ type ManagedObjectStorageNetworkArgs struct {
 	Family pulumi.StringInput `pulumi:"family"`
 	// Network name. Must be unique within the service.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Network type.
+	// Network type (`private` or `public`).
 	Type pulumi.StringInput `pulumi:"type"`
 	// Private network uuid. For public networks the field should be omitted.
 	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
@@ -21417,7 +21417,7 @@ func (o ManagedObjectStorageNetworkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ManagedObjectStorageNetwork) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Network type.
+// Network type (`private` or `public`).
 func (o ManagedObjectStorageNetworkOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v ManagedObjectStorageNetwork) string { return v.Type }).(pulumi.StringOutput)
 }
