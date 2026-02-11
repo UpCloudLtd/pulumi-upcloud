@@ -18,6 +18,97 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.upcloud.Router;
+ * import com.pulumi.upcloud.RouterArgs;
+ * import com.pulumi.upcloud.Network;
+ * import com.pulumi.upcloud.NetworkArgs;
+ * import com.pulumi.upcloud.inputs.NetworkIpNetworkArgs;
+ * import com.pulumi.upcloud.Gateway;
+ * import com.pulumi.upcloud.GatewayArgs;
+ * import com.pulumi.upcloud.inputs.GatewayRouterArgs;
+ * import com.pulumi.upcloud.GatewayConnection;
+ * import com.pulumi.upcloud.GatewayConnectionArgs;
+ * import com.pulumi.upcloud.inputs.GatewayConnectionLocalRouteArgs;
+ * import com.pulumi.upcloud.inputs.GatewayConnectionRemoteRouteArgs;
+ * import com.pulumi.upcloud.GatewayConnectionTunnel;
+ * import com.pulumi.upcloud.GatewayConnectionTunnelArgs;
+ * import com.pulumi.upcloud.inputs.GatewayConnectionTunnelIpsecAuthPskArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new Router("this", RouterArgs.builder()
+ *             .name("gateway-example-router")
+ *             .build());
+ * 
+ *         var thisNetwork = new Network("thisNetwork", NetworkArgs.builder()
+ *             .name("gateway-example-net")
+ *             .zone("pl-waw1")
+ *             .ipNetwork(NetworkIpNetworkArgs.builder()
+ *                 .address("172.16.2.0/24")
+ *                 .dhcp(true)
+ *                 .family("IPv4")
+ *                 .build())
+ *             .router(this_.id())
+ *             .build());
+ * 
+ *         var thisGateway = new Gateway("thisGateway", GatewayArgs.builder()
+ *             .name("gateway-example-gw")
+ *             .zone("pl-waw1")
+ *             .features("vpn")
+ *             .plan("advanced")
+ *             .router(GatewayRouterArgs.builder()
+ *                 .id(this_.id())
+ *                 .build())
+ *             .build());
+ * 
+ *         var thisGatewayConnection = new GatewayConnection("thisGatewayConnection", GatewayConnectionArgs.builder()
+ *             .gateway(thisGateway.id())
+ *             .name("test-connection")
+ *             .type("ipsec")
+ *             .localRoutes(GatewayConnectionLocalRouteArgs.builder()
+ *                 .name("local-route")
+ *                 .type("static")
+ *                 .staticNetwork("10.123.123.0/24")
+ *                 .build())
+ *             .remoteRoutes(GatewayConnectionRemoteRouteArgs.builder()
+ *                 .name("remote-route")
+ *                 .type("static")
+ *                 .staticNetwork("100.123.123.0/24")
+ *                 .build())
+ *             .build());
+ * 
+ *         var thisGatewayConnectionTunnel = new GatewayConnectionTunnel("thisGatewayConnectionTunnel", GatewayConnectionTunnelArgs.builder()
+ *             .connectionId(thisGatewayConnection.id())
+ *             .name("test-tunnel")
+ *             .localAddressName(thisGateway.address().applyValue(_address -> _address[0].name()))
+ *             .remoteAddress("100.123.123.10")
+ *             .ipsecAuthPsk(GatewayConnectionTunnelIpsecAuthPskArgs.builder()
+ *                 .psk("you_probably_want_to_use_env_vars_here")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  */
 @ResourceType(type="upcloud:index/gatewayConnectionTunnel:GatewayConnectionTunnel")
 public class GatewayConnectionTunnel extends com.pulumi.resources.CustomResource {

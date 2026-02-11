@@ -270,6 +270,52 @@ class GatewayConnectionTunnel(pulumi.CustomResource):
         """
         ## Example Usage
 
+        ```python
+        import pulumi
+        import pulumi_upcloud as upcloud
+
+        this = upcloud.Router("this", name="gateway-example-router")
+        this_network = upcloud.Network("this",
+            name="gateway-example-net",
+            zone="pl-waw1",
+            ip_network={
+                "address": "172.16.2.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            },
+            router=this.id)
+        this_gateway = upcloud.Gateway("this",
+            name="gateway-example-gw",
+            zone="pl-waw1",
+            features=["vpn"],
+            plan="advanced",
+            router={
+                "id": this.id,
+            })
+        this_gateway_connection = upcloud.GatewayConnection("this",
+            gateway=this_gateway.id,
+            name="test-connection",
+            type="ipsec",
+            local_routes=[{
+                "name": "local-route",
+                "type": "static",
+                "static_network": "10.123.123.0/24",
+            }],
+            remote_routes=[{
+                "name": "remote-route",
+                "type": "static",
+                "static_network": "100.123.123.0/24",
+            }])
+        this_gateway_connection_tunnel = upcloud.GatewayConnectionTunnel("this",
+            connection_id=this_gateway_connection.id,
+            name="test-tunnel",
+            local_address_name=this_gateway.address[0]["name"],
+            remote_address="100.123.123.10",
+            ipsec_auth_psk={
+                "psk": "you_probably_want_to_use_env_vars_here",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] connection_id: ID of the GatewayConnection resource to which the tunnel belongs
@@ -287,6 +333,52 @@ class GatewayConnectionTunnel(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_upcloud as upcloud
+
+        this = upcloud.Router("this", name="gateway-example-router")
+        this_network = upcloud.Network("this",
+            name="gateway-example-net",
+            zone="pl-waw1",
+            ip_network={
+                "address": "172.16.2.0/24",
+                "dhcp": True,
+                "family": "IPv4",
+            },
+            router=this.id)
+        this_gateway = upcloud.Gateway("this",
+            name="gateway-example-gw",
+            zone="pl-waw1",
+            features=["vpn"],
+            plan="advanced",
+            router={
+                "id": this.id,
+            })
+        this_gateway_connection = upcloud.GatewayConnection("this",
+            gateway=this_gateway.id,
+            name="test-connection",
+            type="ipsec",
+            local_routes=[{
+                "name": "local-route",
+                "type": "static",
+                "static_network": "10.123.123.0/24",
+            }],
+            remote_routes=[{
+                "name": "remote-route",
+                "type": "static",
+                "static_network": "100.123.123.0/24",
+            }])
+        this_gateway_connection_tunnel = upcloud.GatewayConnectionTunnel("this",
+            connection_id=this_gateway_connection.id,
+            name="test-tunnel",
+            local_address_name=this_gateway.address[0]["name"],
+            remote_address="100.123.123.10",
+            ipsec_auth_psk={
+                "psk": "you_probably_want_to_use_env_vars_here",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param GatewayConnectionTunnelArgs args: The arguments to use to populate this resource's properties.

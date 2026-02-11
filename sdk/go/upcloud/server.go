@@ -18,6 +18,59 @@ import (
 //
 // ## Example Usage
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := upcloud.NewServer(ctx, "example", &upcloud.ServerArgs{
+//				Hostname: pulumi.String("terraform.example.tld"),
+//				Zone:     pulumi.String("de-fra1"),
+//				Plan:     pulumi.String("1xCPU-1GB"),
+//				Metadata: pulumi.Bool(true),
+//				Template: &upcloud.ServerTemplateArgs{
+//					Storage: pulumi.String("Ubuntu Server 24.04 LTS (Noble Numbat)"),
+//					Size:    pulumi.Int(25),
+//					BackupRules: []map[string]interface{}{
+//						map[string]interface{}{
+//							"interval":  "daily",
+//							"time":      "0100",
+//							"retention": 8,
+//						},
+//					},
+//				},
+//				NetworkInterfaces: upcloud.ServerNetworkInterfaceArray{
+//					&upcloud.ServerNetworkInterfaceArgs{
+//						Type: pulumi.String("public"),
+//					},
+//				},
+//				Labels: pulumi.StringMap{
+//					"env":        pulumi.String("dev"),
+//					"production": pulumi.String("false"),
+//				},
+//				Login: &upcloud.ServerLoginArgs{
+//					User: pulumi.String("myusername"),
+//					Keys: pulumi.StringArray{
+//						pulumi.String("<YOUR SSH PUBLIC KEY>"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // The `pulumi import` command can be used, for example:

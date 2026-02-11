@@ -12,6 +12,87 @@ namespace UpCloud.Pulumi.UpCloud
 {
     /// <summary>
     /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using UpCloud = UpCloud.Pulumi.UpCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var @this = new UpCloud.Router("this", new()
+    ///     {
+    ///         Name = "gateway-example-router",
+    ///     });
+    /// 
+    ///     var thisNetwork = new UpCloud.Network("this", new()
+    ///     {
+    ///         Name = "gateway-example-net",
+    ///         Zone = "pl-waw1",
+    ///         IpNetwork = new UpCloud.Inputs.NetworkIpNetworkArgs
+    ///         {
+    ///             Address = "172.16.2.0/24",
+    ///             Dhcp = true,
+    ///             Family = "IPv4",
+    ///         },
+    ///         Router = @this.Id,
+    ///     });
+    /// 
+    ///     var thisGateway = new UpCloud.Gateway("this", new()
+    ///     {
+    ///         Name = "gateway-example-gw",
+    ///         Zone = "pl-waw1",
+    ///         Features = new[]
+    ///         {
+    ///             "vpn",
+    ///         },
+    ///         Plan = "advanced",
+    ///         Router = new UpCloud.Inputs.GatewayRouterArgs
+    ///         {
+    ///             Id = @this.Id,
+    ///         },
+    ///     });
+    /// 
+    ///     var thisGatewayConnection = new UpCloud.GatewayConnection("this", new()
+    ///     {
+    ///         Gateway = thisGateway.Id,
+    ///         Name = "test-connection",
+    ///         Type = "ipsec",
+    ///         LocalRoutes = new[]
+    ///         {
+    ///             new UpCloud.Inputs.GatewayConnectionLocalRouteArgs
+    ///             {
+    ///                 Name = "local-route",
+    ///                 Type = "static",
+    ///                 StaticNetwork = "10.123.123.0/24",
+    ///             },
+    ///         },
+    ///         RemoteRoutes = new[]
+    ///         {
+    ///             new UpCloud.Inputs.GatewayConnectionRemoteRouteArgs
+    ///             {
+    ///                 Name = "remote-route",
+    ///                 Type = "static",
+    ///                 StaticNetwork = "100.123.123.0/24",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var thisGatewayConnectionTunnel = new UpCloud.GatewayConnectionTunnel("this", new()
+    ///     {
+    ///         ConnectionId = thisGatewayConnection.Id,
+    ///         Name = "test-tunnel",
+    ///         LocalAddressName = thisGateway.Address.Apply(address =&gt; address[0].Name),
+    ///         RemoteAddress = "100.123.123.10",
+    ///         IpsecAuthPsk = new UpCloud.Inputs.GatewayConnectionTunnelIpsecAuthPskArgs
+    ///         {
+    ///             Psk = "you_probably_want_to_use_env_vars_here",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [UpCloudResourceType("upcloud:index/gatewayConnectionTunnel:GatewayConnectionTunnel")]
     public partial class GatewayConnectionTunnel : global::Pulumi.CustomResource

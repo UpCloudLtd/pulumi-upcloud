@@ -813,6 +813,37 @@ class Server(pulumi.CustomResource):
 
         ## Example Usage
 
+        ```python
+        import pulumi
+        import pulumi_upcloud as upcloud
+
+        example = upcloud.Server("example",
+            hostname="terraform.example.tld",
+            zone="de-fra1",
+            plan="1xCPU-1GB",
+            metadata=True,
+            template={
+                "storage": "Ubuntu Server 24.04 LTS (Noble Numbat)",
+                "size": 25,
+                "backup_rules": [{
+                    "interval": "daily",
+                    "time": "0100",
+                    "retention": 8,
+                }],
+            },
+            network_interfaces=[{
+                "type": "public",
+            }],
+            labels={
+                "env": "dev",
+                "production": "false",
+            },
+            login={
+                "user": "myusername",
+                "keys": ["<YOUR SSH PUBLIC KEY>"],
+            })
+        ```
+
         ## Import
 
         The `pulumi import` command can be used, for example:
@@ -862,6 +893,37 @@ class Server(pulumi.CustomResource):
         > To deploy a GPU server, select a plan with `GPU-` prefix, e.g., `GPU-8xCPU-64GB-1xL40S`. Use `upctl zone devices` command to list per zone GPU availability.
 
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_upcloud as upcloud
+
+        example = upcloud.Server("example",
+            hostname="terraform.example.tld",
+            zone="de-fra1",
+            plan="1xCPU-1GB",
+            metadata=True,
+            template={
+                "storage": "Ubuntu Server 24.04 LTS (Noble Numbat)",
+                "size": 25,
+                "backup_rules": [{
+                    "interval": "daily",
+                    "time": "0100",
+                    "retention": 8,
+                }],
+            },
+            network_interfaces=[{
+                "type": "public",
+            }],
+            labels={
+                "env": "dev",
+                "production": "false",
+            },
+            login={
+                "user": "myusername",
+                "keys": ["<YOUR SSH PUBLIC KEY>"],
+            })
+        ```
 
         ## Import
 

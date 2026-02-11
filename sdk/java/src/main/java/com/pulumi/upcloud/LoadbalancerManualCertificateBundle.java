@@ -17,6 +17,45 @@ import javax.annotation.Nullable;
 /**
  * This resource represents manual certificate bundle
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.upcloud.LoadbalancerManualCertificateBundle;
+ * import com.pulumi.upcloud.LoadbalancerManualCertificateBundleArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         final var certificatePath = config.get("certificatePath");
+ *         final var privateKeyPath = config.get("privateKeyPath");
+ *         var lbCbM1 = new LoadbalancerManualCertificateBundle("lbCbM1", LoadbalancerManualCertificateBundleArgs.builder()
+ *             .name("lb-cb-m1-test")
+ *             .certificate(StdFunctions.base64encode(Map.of("input", StdFunctions.file(Map.of("input", certificatePath)).result())).result())
+ *             .privateKey(StdFunctions.base64encode(Map.of("input", StdFunctions.file(Map.of("input", privateKeyPath)).result())).result())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  */
 @ResourceType(type="upcloud:index/loadbalancerManualCertificateBundle:LoadbalancerManualCertificateBundle")
 public class LoadbalancerManualCertificateBundle extends com.pulumi.resources.CustomResource {

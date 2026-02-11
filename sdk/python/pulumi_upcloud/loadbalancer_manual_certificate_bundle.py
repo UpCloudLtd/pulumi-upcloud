@@ -220,6 +220,22 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
         """
         This resource represents manual certificate bundle
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_upcloud as upcloud
+
+        config = pulumi.Config()
+        certificate_path = config.require("certificatePath")
+        private_key_path = config.require("privateKeyPath")
+        lb_cb_m1 = upcloud.LoadbalancerManualCertificateBundle("lb_cb_m1",
+            name="lb-cb-m1-test",
+            certificate=std.index.base64encode(input=std.index.file(input=certificate_path)["result"])["result"],
+            private_key=std.index.base64encode(input=std.index.file(input=private_key_path)["result"])["result"])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] certificate: Certificate as base64 encoded string. Must be in PEM format.
@@ -235,6 +251,22 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         This resource represents manual certificate bundle
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_upcloud as upcloud
+
+        config = pulumi.Config()
+        certificate_path = config.require("certificatePath")
+        private_key_path = config.require("privateKeyPath")
+        lb_cb_m1 = upcloud.LoadbalancerManualCertificateBundle("lb_cb_m1",
+            name="lb-cb-m1-test",
+            certificate=std.index.base64encode(input=std.index.file(input=certificate_path)["result"])["result"],
+            private_key=std.index.base64encode(input=std.index.file(input=private_key_path)["result"])["result"])
+        ```
 
         :param str resource_name: The name of the resource.
         :param LoadbalancerManualCertificateBundleArgs args: The arguments to use to populate this resource's properties.

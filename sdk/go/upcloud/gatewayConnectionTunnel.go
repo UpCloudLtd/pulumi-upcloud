@@ -13,6 +13,91 @@ import (
 )
 
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// this, err := upcloud.NewRouter(ctx, "this", &upcloud.RouterArgs{
+// Name: pulumi.String("gateway-example-router"),
+// })
+// if err != nil {
+// return err
+// }
+// _, err = upcloud.NewNetwork(ctx, "this", &upcloud.NetworkArgs{
+// Name: pulumi.String("gateway-example-net"),
+// Zone: pulumi.String("pl-waw1"),
+// IpNetwork: &upcloud.NetworkIpNetworkArgs{
+// Address: pulumi.String("172.16.2.0/24"),
+// Dhcp: pulumi.Bool(true),
+// Family: pulumi.String("IPv4"),
+// },
+// Router: this.ID(),
+// })
+// if err != nil {
+// return err
+// }
+// thisGateway, err := upcloud.NewGateway(ctx, "this", &upcloud.GatewayArgs{
+// Name: pulumi.String("gateway-example-gw"),
+// Zone: pulumi.String("pl-waw1"),
+// Features: pulumi.StringArray{
+// pulumi.String("vpn"),
+// },
+// Plan: pulumi.String("advanced"),
+// Router: &upcloud.GatewayRouterArgs{
+// Id: this.ID(),
+// },
+// })
+// if err != nil {
+// return err
+// }
+// thisGatewayConnection, err := upcloud.NewGatewayConnection(ctx, "this", &upcloud.GatewayConnectionArgs{
+// Gateway: thisGateway.ID(),
+// Name: pulumi.String("test-connection"),
+// Type: pulumi.String("ipsec"),
+// LocalRoutes: upcloud.GatewayConnectionLocalRouteArray{
+// &upcloud.GatewayConnectionLocalRouteArgs{
+// Name: pulumi.String("local-route"),
+// Type: pulumi.String("static"),
+// StaticNetwork: pulumi.String("10.123.123.0/24"),
+// },
+// },
+// RemoteRoutes: upcloud.GatewayConnectionRemoteRouteArray{
+// &upcloud.GatewayConnectionRemoteRouteArgs{
+// Name: pulumi.String("remote-route"),
+// Type: pulumi.String("static"),
+// StaticNetwork: pulumi.String("100.123.123.0/24"),
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// _, err = upcloud.NewGatewayConnectionTunnel(ctx, "this", &upcloud.GatewayConnectionTunnelArgs{
+// ConnectionId: thisGatewayConnection.ID(),
+// Name: pulumi.String("test-tunnel"),
+// LocalAddressName: pulumi.String(thisGateway.Address.ApplyT(func(address upcloud.GatewayAddress) (interface{}, error) {
+// return address[0].Name, nil
+// }).(pulumi.Interface{}Output)),
+// RemoteAddress: pulumi.String("100.123.123.10"),
+// IpsecAuthPsk: &upcloud.GatewayConnectionTunnelIpsecAuthPskArgs{
+// Psk: pulumi.String("you_probably_want_to_use_env_vars_here"),
+// },
+// })
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 type GatewayConnectionTunnel struct {
 	pulumi.CustomResourceState
 

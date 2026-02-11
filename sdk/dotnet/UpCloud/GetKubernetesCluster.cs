@@ -21,7 +21,6 @@ namespace UpCloud.Pulumi.UpCloud
         /// using Pulumi;
         /// using Kubernetes = Pulumi.Kubernetes;
         /// using Local = Pulumi.Local;
-        /// using UpCloud = Pulumi.UpCloud;
         /// using UpCloud = UpCloud.Pulumi.UpCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -92,7 +91,6 @@ namespace UpCloud.Pulumi.UpCloud
         /// using Pulumi;
         /// using Kubernetes = Pulumi.Kubernetes;
         /// using Local = Pulumi.Local;
-        /// using UpCloud = Pulumi.UpCloud;
         /// using UpCloud = UpCloud.Pulumi.UpCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -163,7 +161,6 @@ namespace UpCloud.Pulumi.UpCloud
         /// using Pulumi;
         /// using Kubernetes = Pulumi.Kubernetes;
         /// using Local = Pulumi.Local;
-        /// using UpCloud = Pulumi.UpCloud;
         /// using UpCloud = UpCloud.Pulumi.UpCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
