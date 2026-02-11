@@ -12,6 +12,42 @@ namespace UpCloud.Pulumi.UpCloud
 {
     /// <summary>
     /// This resource represents manual certificate bundle
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using UpCloud = UpCloud.Pulumi.UpCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var certificatePath = config.Require("certificatePath");
+    ///     var privateKeyPath = config.Require("privateKeyPath");
+    ///     var lbCbM1 = new UpCloud.LoadbalancerManualCertificateBundle("lb_cb_m1", new()
+    ///     {
+    ///         Name = "lb-cb-m1-test",
+    ///         Certificate = Std.Index.Base64encode.Invoke(new()
+    ///         {
+    ///             Input = Std.Index.File.Invoke(new()
+    ///             {
+    ///                 Input = certificatePath,
+    ///             }).Result,
+    ///         }).Result,
+    ///         PrivateKey = Std.Index.Base64encode.Invoke(new()
+    ///         {
+    ///             Input = Std.Index.File.Invoke(new()
+    ///             {
+    ///                 Input = privateKeyPath,
+    ///             }).Result,
+    ///         }).Result,
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [UpCloudResourceType("upcloud:index/loadbalancerManualCertificateBundle:LoadbalancerManualCertificateBundle")]
     public partial class LoadbalancerManualCertificateBundle : global::Pulumi.CustomResource

@@ -13,6 +13,38 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as upcloud from "@upcloud/pulumi-upcloud";
+ *
+ * const example = new upcloud.Server("example", {
+ *     hostname: "terraform.example.tld",
+ *     zone: "de-fra1",
+ *     plan: "1xCPU-1GB",
+ *     metadata: true,
+ *     template: {
+ *         storage: "Ubuntu Server 24.04 LTS (Noble Numbat)",
+ *         size: 25,
+ *         backupRules: [{
+ *             interval: "daily",
+ *             time: "0100",
+ *             retention: 8,
+ *         }],
+ *     },
+ *     networkInterfaces: [{
+ *         type: "public",
+ *     }],
+ *     labels: {
+ *         env: "dev",
+ *         production: "false",
+ *     },
+ *     login: {
+ *         user: "myusername",
+ *         keys: ["<YOUR SSH PUBLIC KEY>"],
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * The `pulumi import` command can be used, for example:

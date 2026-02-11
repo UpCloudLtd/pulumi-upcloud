@@ -8,6 +8,56 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as upcloud from "@upcloud/pulumi-upcloud";
+ *
+ * const _this = new upcloud.Router("this", {name: "gateway-example-router"});
+ * const thisNetwork = new upcloud.Network("this", {
+ *     name: "gateway-example-net",
+ *     zone: "pl-waw1",
+ *     ipNetwork: {
+ *         address: "172.16.2.0/24",
+ *         dhcp: true,
+ *         family: "IPv4",
+ *     },
+ *     router: _this.id,
+ * });
+ * const thisGateway = new upcloud.Gateway("this", {
+ *     name: "gateway-example-gw",
+ *     zone: "pl-waw1",
+ *     features: ["vpn"],
+ *     plan: "advanced",
+ *     router: {
+ *         id: _this.id,
+ *     },
+ * });
+ * const thisGatewayConnection = new upcloud.GatewayConnection("this", {
+ *     gateway: thisGateway.id,
+ *     name: "test-connection",
+ *     type: "ipsec",
+ *     localRoutes: [{
+ *         name: "local-route",
+ *         type: "static",
+ *         staticNetwork: "10.123.123.0/24",
+ *     }],
+ *     remoteRoutes: [{
+ *         name: "remote-route",
+ *         type: "static",
+ *         staticNetwork: "100.123.123.0/24",
+ *     }],
+ * });
+ * const thisGatewayConnectionTunnel = new upcloud.GatewayConnectionTunnel("this", {
+ *     connectionId: thisGatewayConnection.id,
+ *     name: "test-tunnel",
+ *     localAddressName: thisGateway.address[0].name,
+ *     remoteAddress: "100.123.123.10",
+ *     ipsecAuthPsk: {
+ *         psk: "you_probably_want_to_use_env_vars_here",
+ *     },
+ * });
+ * ```
  */
 export class GatewayConnectionTunnel extends pulumi.CustomResource {
     /**

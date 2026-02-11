@@ -21,7 +21,6 @@ namespace UpCloud.Pulumi.UpCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using UpCloud = Pulumi.UpCloud;
         /// using UpCloud = UpCloud.Pulumi.UpCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -62,7 +61,6 @@ namespace UpCloud.Pulumi.UpCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using UpCloud = Pulumi.UpCloud;
         /// using UpCloud = UpCloud.Pulumi.UpCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -103,7 +101,6 @@ namespace UpCloud.Pulumi.UpCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using UpCloud = Pulumi.UpCloud;
         /// using UpCloud = UpCloud.Pulumi.UpCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 

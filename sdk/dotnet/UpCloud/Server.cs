@@ -17,6 +17,59 @@ namespace UpCloud.Pulumi.UpCloud
     /// 
     /// ## Example Usage
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using UpCloud = UpCloud.Pulumi.UpCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new UpCloud.Server("example", new()
+    ///     {
+    ///         Hostname = "terraform.example.tld",
+    ///         Zone = "de-fra1",
+    ///         Plan = "1xCPU-1GB",
+    ///         Metadata = true,
+    ///         Template = new UpCloud.Inputs.ServerTemplateArgs
+    ///         {
+    ///             Storage = "Ubuntu Server 24.04 LTS (Noble Numbat)",
+    ///             Size = 25,
+    ///             BackupRules = new[]
+    ///             {
+    ///                 
+    ///                 {
+    ///                     { "interval", "daily" },
+    ///                     { "time", "0100" },
+    ///                     { "retention", 8 },
+    ///                 },
+    ///             },
+    ///         },
+    ///         NetworkInterfaces = new[]
+    ///         {
+    ///             new UpCloud.Inputs.ServerNetworkInterfaceArgs
+    ///             {
+    ///                 Type = "public",
+    ///             },
+    ///         },
+    ///         Labels = 
+    ///         {
+    ///             { "env", "dev" },
+    ///             { "production", "false" },
+    ///         },
+    ///         Login = new UpCloud.Inputs.ServerLoginArgs
+    ///         {
+    ///             User = "myusername",
+    ///             Keys = new[]
+    ///             {
+    ///                 "&lt;YOUR SSH PUBLIC KEY&gt;",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// The `pulumi import` command can be used, for example:

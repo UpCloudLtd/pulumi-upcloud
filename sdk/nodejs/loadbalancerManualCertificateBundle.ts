@@ -6,6 +6,31 @@ import * as utilities from "./utilities";
 
 /**
  * This resource represents manual certificate bundle
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as upcloud from "@upcloud/pulumi-upcloud";
+ *
+ * const config = new pulumi.Config();
+ * const certificatePath = config.require("certificatePath");
+ * const privateKeyPath = config.require("privateKeyPath");
+ * const lbCbM1 = new upcloud.LoadbalancerManualCertificateBundle("lb_cb_m1", {
+ *     name: "lb-cb-m1-test",
+ *     certificate: std.index.base64encode({
+ *         input: std.index.file({
+ *             input: certificatePath,
+ *         }).result,
+ *     }).result,
+ *     privateKey: std.index.base64encode({
+ *         input: std.index.file({
+ *             input: privateKeyPath,
+ *         }).result,
+ *     }).result,
+ * });
+ * ```
  */
 export class LoadbalancerManualCertificateBundle extends pulumi.CustomResource {
     /**

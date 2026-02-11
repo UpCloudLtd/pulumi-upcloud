@@ -30,6 +30,63 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.upcloud.Server;
+ * import com.pulumi.upcloud.ServerArgs;
+ * import com.pulumi.upcloud.inputs.ServerTemplateArgs;
+ * import com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;
+ * import com.pulumi.upcloud.inputs.ServerLoginArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new Server("example", ServerArgs.builder()
+ *             .hostname("terraform.example.tld")
+ *             .zone("de-fra1")
+ *             .plan("1xCPU-1GB")
+ *             .metadata(true)
+ *             .template(ServerTemplateArgs.builder()
+ *                 .storage("Ubuntu Server 24.04 LTS (Noble Numbat)")
+ *                 .size(25)
+ *                 .backupRules(List.of(Map.ofEntries(
+ *                     Map.entry("interval", "daily"),
+ *                     Map.entry("time", "0100"),
+ *                     Map.entry("retention", 8)
+ *                 )))
+ *                 .build())
+ *             .networkInterfaces(ServerNetworkInterfaceArgs.builder()
+ *                 .type("public")
+ *                 .build())
+ *             .labels(Map.ofEntries(
+ *                 Map.entry("env", "dev"),
+ *                 Map.entry("production", "false")
+ *             ))
+ *             .login(ServerLoginArgs.builder()
+ *                 .user("myusername")
+ *                 .keys("<YOUR SSH PUBLIC KEY>")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * The `pulumi import` command can be used, for example:
