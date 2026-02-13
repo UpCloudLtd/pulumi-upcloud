@@ -1,0 +1,12 @@
+# Snyk policy file
+# https://snyk.io/docs/snyk-config-file/
+version: v1.25.0
+ignore:
+  'snyk:lic:npm:spdx-exceptions:CC-BY-3.0':
+    - '*':
+        reason: >-
+          spdx-exceptions is a metadata-only package containing SPDX license
+          exception identifiers. CC-BY-3.0 is appropriate for documentation/data,
+          not functional code. This is a transitive dependency of @pulumi/pulumi
+          and poses no licensing risk.
+        expires: 2027-02-13T00:00:00.000Z
