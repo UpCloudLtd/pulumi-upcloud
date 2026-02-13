@@ -1,8 +1,6 @@
 module upcloud-object-storage-template-go
 
-go 1.24.0
-
-toolchain go1.24.2
+go 1.24.12
 
 require github.com/pulumi/pulumi/sdk/v3 v3.220.0
 

@@ -1,8 +1,6 @@
 module upcloud-storage
 
-go 1.24.0
-
-toolchain go1.24.2
+go 1.24.12
 
 require (
 	github.com/UpCloudLtd/pulumi-upcloud/sdk v0.0.0-20240822133050-b437fa9cdd8a
