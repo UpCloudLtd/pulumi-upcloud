@@ -179,7 +179,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<Outputs.ServerStorageDevice>> StorageDevices { get; private set; } = null!;
 
         /// <summary>
-        /// The server related tags
+        /// Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
@@ -386,7 +386,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The server related tags
+        /// Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         /// </summary>
         public InputList<string> Tags
         {
@@ -557,7 +557,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The server related tags
+        /// Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         /// </summary>
         public InputList<string> Tags
         {

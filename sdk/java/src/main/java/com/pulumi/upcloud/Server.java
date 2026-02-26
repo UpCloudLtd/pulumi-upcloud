@@ -323,14 +323,14 @@ public class Server extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.storageDevices);
     }
     /**
-     * The server related tags
+     * Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      * 
      */
     @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> tags;
 
     /**
-     * @return The server related tags
+     * @return Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      * 
      */
     public Output<List<String>> tags() {

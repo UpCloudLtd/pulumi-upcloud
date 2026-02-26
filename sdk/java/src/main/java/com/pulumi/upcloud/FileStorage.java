@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Resource for managing UpCloud file storages (EXPERIMENTAL)
+ * Resource for managing UpCloud file storages. See UpCloud [File Storage](https://upcloud.com/products/file-storage/) product page for more details about the service.
  * 
  * ## Example Usage
  * 

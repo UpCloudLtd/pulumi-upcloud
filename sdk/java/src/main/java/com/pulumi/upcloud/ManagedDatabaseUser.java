@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This resource represents a user in managed database
+ * This resource represents a user in managed database.
  * 
  * ## Example Usage
  * 

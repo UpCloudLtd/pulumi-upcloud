@@ -37,6 +37,18 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         [Input("opensearchRequestTimeout")]
         public Input<int>? OpensearchRequestTimeout { get; set; }
 
+        /// <summary>
+        /// Determines whether the session TTL resets (is “kept alive”) on each user activity. Optional. Default is true.
+        /// </summary>
+        [Input("sessionKeepalive")]
+        public Input<bool>? SessionKeepalive { get; set; }
+
+        /// <summary>
+        /// Defines the time-to-live (TTL) for user sessions. The value should be a time value with unit, e.g. 1m, 5s, 1h, 3d, 100ms. Default is 1 hour.
+        /// </summary>
+        [Input("sessionTtl")]
+        public Input<string>? SessionTtl { get; set; }
+
         public ManagedDatabaseOpensearchPropertiesOpensearchDashboardsGetArgs()
         {
         }

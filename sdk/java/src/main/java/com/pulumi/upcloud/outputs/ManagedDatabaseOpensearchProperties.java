@@ -287,7 +287,7 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     private @Nullable ManagedDatabaseOpensearchPropertiesOpensearchDashboards opensearchDashboards;
     /**
-     * @return Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false.
+     * @return Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false. Deprecated and ignored for service version 3.3 and higher.
      * 
      */
     private @Nullable Boolean overrideMainResponseVersion;
@@ -769,7 +769,7 @@ public final class ManagedDatabaseOpensearchProperties {
         return Optional.ofNullable(this.opensearchDashboards);
     }
     /**
-     * @return Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false.
+     * @return Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false. Deprecated and ignored for service version 3.3 and higher.
      * 
      */
     public Optional<Boolean> overrideMainResponseVersion() {

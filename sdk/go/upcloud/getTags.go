@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+//
 // Data-source is deprecated.
 func GetTags(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetTagsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

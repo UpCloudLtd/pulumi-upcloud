@@ -139,6 +139,8 @@ class Tag(pulumi.CustomResource):
                  servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
+        > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+
         This resource is deprecated, use tags schema in server resource
 
         :param str resource_name: The name of the resource.
@@ -154,6 +156,8 @@ class Tag(pulumi.CustomResource):
                  args: Optional[TagArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+
         This resource is deprecated, use tags schema in server resource
 
         :param str resource_name: The name of the resource.

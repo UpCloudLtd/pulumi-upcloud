@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource represents a user in managed database
+// This resource represents a user in managed database.
 //
 // ## Example Usage
 //

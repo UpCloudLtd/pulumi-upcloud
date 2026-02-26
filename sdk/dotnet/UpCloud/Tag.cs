@@ -11,6 +11,8 @@ using Pulumi;
 namespace UpCloud.Pulumi.UpCloud
 {
     /// <summary>
+    /// &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+    /// 
     /// This resource is deprecated, use tags schema in server resource
     /// </summary>
     [UpCloudResourceType("upcloud:index/tag:Tag")]

@@ -66,7 +66,7 @@ class ServerArgs:
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[_builtins.str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
         :param pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]] storage_devices: A set of storage devices associated with the server
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The server related tags
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         :param pulumi.Input['ServerTemplateArgs'] template: Block describing the preconfigured operating system
         :param pulumi.Input[_builtins.str] timezone: The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
         :param pulumi.Input[_builtins.str] title: A short, informational description of the server.
@@ -327,7 +327,7 @@ class ServerArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        The server related tags
+        Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         """
         return pulumi.get(self, "tags")
 
@@ -443,7 +443,7 @@ class _ServerState:
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[_builtins.str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
         :param pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]] storage_devices: A set of storage devices associated with the server
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The server related tags
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         :param pulumi.Input['ServerTemplateArgs'] template: Block describing the preconfigured operating system
         :param pulumi.Input[_builtins.str] timezone: The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
         :param pulumi.Input[_builtins.str] title: A short, informational description of the server.
@@ -695,7 +695,7 @@ class _ServerState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        The server related tags
+        Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         """
         return pulumi.get(self, "tags")
 
@@ -873,7 +873,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[_builtins.str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]] storage_devices: A set of storage devices associated with the server
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The server related tags
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         :param pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict']] template: Block describing the preconfigured operating system
         :param pulumi.Input[_builtins.str] timezone: The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
         :param pulumi.Input[_builtins.str] title: A short, informational description of the server.
@@ -1066,7 +1066,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[_builtins.str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]] storage_devices: A set of storage devices associated with the server
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The server related tags
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         :param pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict']] template: Block describing the preconfigured operating system
         :param pulumi.Input[_builtins.str] timezone: The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
         :param pulumi.Input[_builtins.str] title: A short, informational description of the server.
@@ -1236,7 +1236,7 @@ class Server(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        The server related tags
+        Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         """
         return pulumi.get(self, "tags")
 

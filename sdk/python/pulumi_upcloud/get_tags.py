@@ -61,6 +61,8 @@ class AwaitableGetTagsResult(GetTagsResult):
 
 def get_tags(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTagsResult:
     """
+    > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+
     Data-source is deprecated.
     """
     __args__ = dict()
@@ -72,6 +74,8 @@ def get_tags(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTagsRes
         tags=pulumi.get(__ret__, 'tags'))
 def get_tags_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTagsResult]:
     """
+    > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+
     Data-source is deprecated.
     """
     __args__ = dict()

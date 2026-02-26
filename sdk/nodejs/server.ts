@@ -147,7 +147,7 @@ export class Server extends pulumi.CustomResource {
      */
     declare public readonly storageDevices: pulumi.Output<outputs.ServerStorageDevice[] | undefined>;
     /**
-     * The server related tags
+     * Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      */
     declare public readonly tags: pulumi.Output<string[]>;
     /**
@@ -318,7 +318,7 @@ export interface ServerState {
      */
     storageDevices?: pulumi.Input<pulumi.Input<inputs.ServerStorageDevice>[]>;
     /**
-     * The server related tags
+     * Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -417,7 +417,7 @@ export interface ServerArgs {
      */
     storageDevices?: pulumi.Input<pulumi.Input<inputs.ServerStorageDevice>[]>;
     /**
-     * The server related tags
+     * Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**

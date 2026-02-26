@@ -4,10 +4,10 @@
 package com.pulumi.upcloud.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.upcloud.outputs.ManagedDatabaseUserOpensearchAccessControlRule;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class ManagedDatabaseUserOpensearchAccessControl {
@@ -15,7 +15,7 @@ public final class ManagedDatabaseUserOpensearchAccessControl {
      * @return Set user access control rules.
      * 
      */
-    private List<ManagedDatabaseUserOpensearchAccessControlRule> rules;
+    private @Nullable List<ManagedDatabaseUserOpensearchAccessControlRule> rules;
 
     private ManagedDatabaseUserOpensearchAccessControl() {}
     /**
@@ -23,7 +23,7 @@ public final class ManagedDatabaseUserOpensearchAccessControl {
      * 
      */
     public List<ManagedDatabaseUserOpensearchAccessControlRule> rules() {
-        return this.rules;
+        return this.rules == null ? List.of() : this.rules;
     }
 
     public static Builder builder() {
@@ -35,7 +35,7 @@ public final class ManagedDatabaseUserOpensearchAccessControl {
     }
     @CustomType.Builder
     public static final class Builder {
-        private List<ManagedDatabaseUserOpensearchAccessControlRule> rules;
+        private @Nullable List<ManagedDatabaseUserOpensearchAccessControlRule> rules;
         public Builder() {}
         public Builder(ManagedDatabaseUserOpensearchAccessControl defaults) {
     	      Objects.requireNonNull(defaults);
@@ -43,10 +43,8 @@ public final class ManagedDatabaseUserOpensearchAccessControl {
         }
 
         @CustomType.Setter
-        public Builder rules(List<ManagedDatabaseUserOpensearchAccessControlRule> rules) {
-            if (rules == null) {
-              throw new MissingRequiredPropertyException("ManagedDatabaseUserOpensearchAccessControl", "rules");
-            }
+        public Builder rules(@Nullable List<ManagedDatabaseUserOpensearchAccessControlRule> rules) {
+
             this.rules = rules;
             return this;
         }

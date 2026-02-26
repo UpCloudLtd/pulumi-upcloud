@@ -30,6 +30,14 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
         /// </summary>
         public readonly int? OpensearchRequestTimeout;
+        /// <summary>
+        /// Determines whether the session TTL resets (is “kept alive”) on each user activity. Optional. Default is true.
+        /// </summary>
+        public readonly bool? SessionKeepalive;
+        /// <summary>
+        /// Defines the time-to-live (TTL) for user sessions. The value should be a time value with unit, e.g. 1m, 5s, 1h, 3d, 100ms. Default is 1 hour.
+        /// </summary>
+        public readonly string? SessionTtl;
 
         [OutputConstructor]
         private ManagedDatabaseOpensearchPropertiesOpensearchDashboards(
@@ -39,12 +47,18 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             bool? multipleDataSourceEnabled,
 
-            int? opensearchRequestTimeout)
+            int? opensearchRequestTimeout,
+
+            bool? sessionKeepalive,
+
+            string? sessionTtl)
         {
             Enabled = enabled;
             MaxOldSpaceSize = maxOldSpaceSize;
             MultipleDataSourceEnabled = multipleDataSourceEnabled;
             OpensearchRequestTimeout = opensearchRequestTimeout;
+            SessionKeepalive = sessionKeepalive;
+            SessionTtl = sessionTtl;
         }
     }
 }

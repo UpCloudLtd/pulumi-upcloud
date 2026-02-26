@@ -3013,6 +3013,8 @@ public final class UpcloudFunctions {
         return Deployment.getInstance().invokeAsync("upcloud:index/getStorage:getStorage", TypeShape.of(GetStorageResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+     * 
      * Data-source is deprecated.
      * 
      */
@@ -3020,6 +3022,8 @@ public final class UpcloudFunctions {
         return getTags(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+     * 
      * Data-source is deprecated.
      * 
      */
@@ -3027,6 +3031,8 @@ public final class UpcloudFunctions {
         return getTagsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+     * 
      * Data-source is deprecated.
      * 
      */
@@ -3034,6 +3040,8 @@ public final class UpcloudFunctions {
         return getTags(args, InvokeOptions.Empty);
     }
     /**
+     * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+     * 
      * Data-source is deprecated.
      * 
      */
@@ -3041,6 +3049,8 @@ public final class UpcloudFunctions {
         return getTagsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+     * 
      * Data-source is deprecated.
      * 
      */
@@ -3048,6 +3058,8 @@ public final class UpcloudFunctions {
         return Deployment.getInstance().invoke("upcloud:index/getTags:getTags", TypeShape.of(GetTagsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+     * 
      * Data-source is deprecated.
      * 
      */
@@ -3055,6 +3067,8 @@ public final class UpcloudFunctions {
         return Deployment.getInstance().invoke("upcloud:index/getTags:getTags", TypeShape.of(GetTagsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+     * 
      * Data-source is deprecated.
      * 
      */

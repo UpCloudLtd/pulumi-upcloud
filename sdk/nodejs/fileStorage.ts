@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Resource for managing UpCloud file storages (EXPERIMENTAL)
+ * Resource for managing UpCloud file storages. See UpCloud [File Storage](https://upcloud.com/products/file-storage/) product page for more details about the service.
  *
  * ## Example Usage
  *
