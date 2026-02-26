@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * This resource represents a user in managed database
+ * This resource represents a user in managed database.
  *
  * ## Example Usage
  *

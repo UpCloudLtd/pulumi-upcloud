@@ -990,7 +990,7 @@
             "upcloud:index/managedDatabaseMysql:ManagedDatabaseMysql": 1,
             "upcloud:index/managedDatabaseOpensearch:ManagedDatabaseOpensearch": 1,
             "upcloud:index/managedDatabasePostgresql:ManagedDatabasePostgresql": 1,
-            "upcloud:index/managedDatabaseUser:ManagedDatabaseUser": 0,
+            "upcloud:index/managedDatabaseUser:ManagedDatabaseUser": 1,
             "upcloud:index/managedDatabaseValkey:ManagedDatabaseValkey": 1,
             "upcloud:index/managedObjectStorage:ManagedObjectStorage": 1,
             "upcloud:index/managedObjectStorageBucket:ManagedObjectStorageBucket": 1,

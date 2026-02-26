@@ -13,7 +13,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
 
     public sealed class ManagedDatabaseUserOpensearchAccessControlArgs : global::Pulumi.ResourceArgs
     {
-        [Input("rules", required: true)]
+        [Input("rules")]
         private InputList<Inputs.ManagedDatabaseUserOpensearchAccessControlRuleArgs>? _rules;
 
         /// <summary>

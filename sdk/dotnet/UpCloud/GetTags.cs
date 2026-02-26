@@ -13,18 +13,24 @@ namespace UpCloud.Pulumi.UpCloud
     public static class GetTags
     {
         /// <summary>
+        /// &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+        /// 
         /// Data-source is deprecated.
         /// </summary>
         public static Task<GetTagsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTagsResult>("upcloud:index/getTags:getTags", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
+        /// &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+        /// 
         /// Data-source is deprecated.
         /// </summary>
         public static Output<GetTagsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTagsResult>("upcloud:index/getTags:getTags", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
+        /// &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+        /// 
         /// Data-source is deprecated.
         /// </summary>
         public static Output<GetTagsResult> Invoke(InvokeOutputOptions options)

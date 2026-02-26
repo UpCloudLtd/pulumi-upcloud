@@ -265,14 +265,14 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The server related tags
+     * Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      * 
      */
     @Import(name="tags")
     private @Nullable Output<List<String>> tags;
 
     /**
-     * @return The server related tags
+     * @return Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      * 
      */
     public Optional<Output<List<String>>> tags() {
@@ -772,7 +772,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tags The server related tags
+         * @param tags Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
          * 
          * @return builder
          * 
@@ -783,7 +783,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tags The server related tags
+         * @param tags Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
          * 
          * @return builder
          * 
@@ -793,7 +793,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tags The server related tags
+         * @param tags Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
          * 
          * @return builder
          * 

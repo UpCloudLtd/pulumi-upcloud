@@ -5,10 +5,11 @@ package com.pulumi.upcloud.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.upcloud.inputs.ManagedDatabaseUserOpensearchAccessControlRuleArgs;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class ManagedDatabaseUserOpensearchAccessControlArgs extends com.pulumi.resources.ResourceArgs {
@@ -19,15 +20,15 @@ public final class ManagedDatabaseUserOpensearchAccessControlArgs extends com.pu
      * Set user access control rules.
      * 
      */
-    @Import(name="rules", required=true)
-    private Output<List<ManagedDatabaseUserOpensearchAccessControlRuleArgs>> rules;
+    @Import(name="rules")
+    private @Nullable Output<List<ManagedDatabaseUserOpensearchAccessControlRuleArgs>> rules;
 
     /**
      * @return Set user access control rules.
      * 
      */
-    public Output<List<ManagedDatabaseUserOpensearchAccessControlRuleArgs>> rules() {
-        return this.rules;
+    public Optional<Output<List<ManagedDatabaseUserOpensearchAccessControlRuleArgs>>> rules() {
+        return Optional.ofNullable(this.rules);
     }
 
     private ManagedDatabaseUserOpensearchAccessControlArgs() {}
@@ -60,7 +61,7 @@ public final class ManagedDatabaseUserOpensearchAccessControlArgs extends com.pu
          * @return builder
          * 
          */
-        public Builder rules(Output<List<ManagedDatabaseUserOpensearchAccessControlRuleArgs>> rules) {
+        public Builder rules(@Nullable Output<List<ManagedDatabaseUserOpensearchAccessControlRuleArgs>> rules) {
             $.rules = rules;
             return this;
         }
@@ -86,9 +87,6 @@ public final class ManagedDatabaseUserOpensearchAccessControlArgs extends com.pu
         }
 
         public ManagedDatabaseUserOpensearchAccessControlArgs build() {
-            if ($.rules == null) {
-                throw new MissingRequiredPropertyException("ManagedDatabaseUserOpensearchAccessControlArgs", "rules");
-            }
             return $;
         }
     }

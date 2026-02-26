@@ -9069,7 +9069,7 @@ type ManagedDatabaseOpensearchProperties struct {
 	Openid *ManagedDatabaseOpensearchPropertiesOpenid `pulumi:"openid"`
 	// OpenSearch Dashboards settings.
 	OpensearchDashboards *ManagedDatabaseOpensearchPropertiesOpensearchDashboards `pulumi:"opensearchDashboards"`
-	// Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false.
+	// Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false. Deprecated and ignored for service version 3.3 and higher.
 	OverrideMainResponseVersion *bool `pulumi:"overrideMainResponseVersion"`
 	// Enable or disable filtering of alerting by backend roles. Requires Security plugin. Defaults to false.
 	PluginsAlertingFilterByBackendRoles *bool `pulumi:"pluginsAlertingFilterByBackendRoles"`
@@ -9235,7 +9235,7 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	Openid ManagedDatabaseOpensearchPropertiesOpenidPtrInput `pulumi:"openid"`
 	// OpenSearch Dashboards settings.
 	OpensearchDashboards ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrInput `pulumi:"opensearchDashboards"`
-	// Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false.
+	// Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false. Deprecated and ignored for service version 3.3 and higher.
 	OverrideMainResponseVersion pulumi.BoolPtrInput `pulumi:"overrideMainResponseVersion"`
 	// Enable or disable filtering of alerting by backend roles. Requires Security plugin. Defaults to false.
 	PluginsAlertingFilterByBackendRoles pulumi.BoolPtrInput `pulumi:"pluginsAlertingFilterByBackendRoles"`
@@ -9645,7 +9645,7 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) OpensearchDashboards() Manage
 	}).(ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput)
 }
 
-// Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false.
+// Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false. Deprecated and ignored for service version 3.3 and higher.
 func (o ManagedDatabaseOpensearchPropertiesOutput) OverrideMainResponseVersion() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.OverrideMainResponseVersion }).(pulumi.BoolPtrOutput)
 }
@@ -10330,7 +10330,7 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) OpensearchDashboards() Man
 	}).(ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput)
 }
 
-// Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false.
+// Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false. Deprecated and ignored for service version 3.3 and higher.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) OverrideMainResponseVersion() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
 		if v == nil {
@@ -12735,6 +12735,10 @@ type ManagedDatabaseOpensearchPropertiesOpensearchDashboards struct {
 	MultipleDataSourceEnabled *bool `pulumi:"multipleDataSourceEnabled"`
 	// Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
 	OpensearchRequestTimeout *int `pulumi:"opensearchRequestTimeout"`
+	// Determines whether the session TTL resets (is “kept alive”) on each user activity. Optional. Default is true.
+	SessionKeepalive *bool `pulumi:"sessionKeepalive"`
+	// Defines the time-to-live (TTL) for user sessions. The value should be a time value with unit, e.g. 1m, 5s, 1h, 3d, 100ms. Default is 1 hour.
+	SessionTtl *string `pulumi:"sessionTtl"`
 }
 
 // ManagedDatabaseOpensearchPropertiesOpensearchDashboardsInput is an input type that accepts ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs and ManagedDatabaseOpensearchPropertiesOpensearchDashboardsOutput values.
@@ -12757,6 +12761,10 @@ type ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs struct {
 	MultipleDataSourceEnabled pulumi.BoolPtrInput `pulumi:"multipleDataSourceEnabled"`
 	// Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
 	OpensearchRequestTimeout pulumi.IntPtrInput `pulumi:"opensearchRequestTimeout"`
+	// Determines whether the session TTL resets (is “kept alive”) on each user activity. Optional. Default is true.
+	SessionKeepalive pulumi.BoolPtrInput `pulumi:"sessionKeepalive"`
+	// Defines the time-to-live (TTL) for user sessions. The value should be a time value with unit, e.g. 1m, 5s, 1h, 3d, 100ms. Default is 1 hour.
+	SessionTtl pulumi.StringPtrInput `pulumi:"sessionTtl"`
 }
 
 func (ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs) ElementType() reflect.Type {
@@ -12860,6 +12868,16 @@ func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsOutput) Opensearc
 	}).(pulumi.IntPtrOutput)
 }
 
+// Determines whether the session TTL resets (is “kept alive”) on each user activity. Optional. Default is true.
+func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsOutput) SessionKeepalive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesOpensearchDashboards) *bool { return v.SessionKeepalive }).(pulumi.BoolPtrOutput)
+}
+
+// Defines the time-to-live (TTL) for user sessions. The value should be a time value with unit, e.g. 1m, 5s, 1h, 3d, 100ms. Default is 1 hour.
+func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsOutput) SessionTtl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchPropertiesOpensearchDashboards) *string { return v.SessionTtl }).(pulumi.StringPtrOutput)
+}
+
 type ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput struct{ *pulumi.OutputState }
 
 func (ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput) ElementType() reflect.Type {
@@ -12922,6 +12940,26 @@ func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput) Opense
 		}
 		return v.OpensearchRequestTimeout
 	}).(pulumi.IntPtrOutput)
+}
+
+// Determines whether the session TTL resets (is “kept alive”) on each user activity. Optional. Default is true.
+func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput) SessionKeepalive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesOpensearchDashboards) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SessionKeepalive
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Defines the time-to-live (TTL) for user sessions. The value should be a time value with unit, e.g. 1m, 5s, 1h, 3d, 100ms. Default is 1 hour.
+func (o ManagedDatabaseOpensearchPropertiesOpensearchDashboardsPtrOutput) SessionTtl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchPropertiesOpensearchDashboards) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SessionTtl
+	}).(pulumi.StringPtrOutput)
 }
 
 type ManagedDatabaseOpensearchPropertiesRemoteStore struct {

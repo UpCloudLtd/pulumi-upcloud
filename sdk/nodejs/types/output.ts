@@ -1852,7 +1852,7 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     opensearchDashboards?: outputs.ManagedDatabaseOpensearchPropertiesOpensearchDashboards;
     /**
-     * Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false.
+     * Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false. Deprecated and ignored for service version 3.3 and higher.
      */
     overrideMainResponseVersion: boolean;
     /**
@@ -2188,6 +2188,14 @@ export interface ManagedDatabaseOpensearchPropertiesOpensearchDashboards {
      * Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
      */
     opensearchRequestTimeout: number;
+    /**
+     * Determines whether the session TTL resets (is “kept alive”) on each user activity. Optional. Default is true.
+     */
+    sessionKeepalive: boolean;
+    /**
+     * Defines the time-to-live (TTL) for user sessions. The value should be a time value with unit, e.g. 1m, 5s, 1h, 3d, 100ms. Default is 1 hour.
+     */
+    sessionTtl: string;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesRemoteStore {
@@ -3047,7 +3055,7 @@ export interface ManagedDatabaseUserOpensearchAccessControl {
     /**
      * Set user access control rules.
      */
-    rules: outputs.ManagedDatabaseUserOpensearchAccessControlRule[];
+    rules?: outputs.ManagedDatabaseUserOpensearchAccessControlRule[];
 }
 
 export interface ManagedDatabaseUserOpensearchAccessControlRule {
@@ -3065,26 +3073,26 @@ export interface ManagedDatabaseUserPgAccessControl {
     /**
      * Grant replication privilege
      */
-    allowReplication?: boolean;
+    allowReplication: boolean;
 }
 
 export interface ManagedDatabaseUserValkeyAccessControl {
     /**
      * Set access control to all commands in specified categories.
      */
-    categories?: string;
+    categories: string;
     /**
      * Set access control to Pub/Sub channels.
      */
-    channels?: string;
+    channels: string;
     /**
      * Set access control to commands.
      */
-    commands?: string;
+    commands: string;
     /**
      * Set access control to keys.
      */
-    keys?: string;
+    keys: string;
 }
 
 export interface ManagedDatabaseValkeyComponent {

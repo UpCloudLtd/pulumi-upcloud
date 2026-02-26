@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+ *
  * Data-source is deprecated.
  */
 export function getTags(opts?: pulumi.InvokeOptions): Promise<GetTagsResult> {
@@ -26,6 +28,8 @@ export interface GetTagsResult {
     readonly tags: outputs.GetTagsTag[];
 }
 /**
+ * > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
+ *
  * Data-source is deprecated.
  */
 export function getTagsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTagsResult> {

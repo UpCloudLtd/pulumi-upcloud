@@ -116,7 +116,7 @@ type Server struct {
 	SimpleBackup ServerSimpleBackupPtrOutput `pulumi:"simpleBackup"`
 	// A set of storage devices associated with the server
 	StorageDevices ServerStorageDeviceArrayOutput `pulumi:"storageDevices"`
-	// The server related tags
+	// Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// Block describing the preconfigured operating system
 	Template ServerTemplatePtrOutput `pulumi:"template"`
@@ -203,7 +203,7 @@ type serverState struct {
 	SimpleBackup *ServerSimpleBackup `pulumi:"simpleBackup"`
 	// A set of storage devices associated with the server
 	StorageDevices []ServerStorageDevice `pulumi:"storageDevices"`
-	// The server related tags
+	// Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
 	Tags []string `pulumi:"tags"`
 	// Block describing the preconfigured operating system
 	Template *ServerTemplate `pulumi:"template"`
@@ -255,7 +255,7 @@ type ServerState struct {
 	SimpleBackup ServerSimpleBackupPtrInput
 	// A set of storage devices associated with the server
 	StorageDevices ServerStorageDeviceArrayInput
-	// The server related tags
+	// Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
 	Tags pulumi.StringArrayInput
 	// Block describing the preconfigured operating system
 	Template ServerTemplatePtrInput
@@ -311,7 +311,7 @@ type serverArgs struct {
 	SimpleBackup *ServerSimpleBackup `pulumi:"simpleBackup"`
 	// A set of storage devices associated with the server
 	StorageDevices []ServerStorageDevice `pulumi:"storageDevices"`
-	// The server related tags
+	// Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
 	Tags []string `pulumi:"tags"`
 	// Block describing the preconfigured operating system
 	Template *ServerTemplate `pulumi:"template"`
@@ -364,7 +364,7 @@ type ServerArgs struct {
 	SimpleBackup ServerSimpleBackupPtrInput
 	// A set of storage devices associated with the server
 	StorageDevices ServerStorageDeviceArrayInput
-	// The server related tags
+	// Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
 	Tags pulumi.StringArrayInput
 	// Block describing the preconfigured operating system
 	Template ServerTemplatePtrInput
@@ -550,7 +550,7 @@ func (o ServerOutput) StorageDevices() ServerStorageDeviceArrayOutput {
 	return o.ApplyT(func(v *Server) ServerStorageDeviceArrayOutput { return v.StorageDevices }).(ServerStorageDeviceArrayOutput)
 }
 
-// The server related tags
+// Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
 func (o ServerOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }

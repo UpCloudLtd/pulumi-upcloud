@@ -287,7 +287,7 @@ class ManagedDatabaseUser(pulumi.CustomResource):
                  valkey_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict']]] = None,
                  __props__=None):
         """
-        This resource represents a user in managed database
+        This resource represents a user in managed database.
 
         ## Example Usage
 
@@ -323,7 +323,7 @@ class ManagedDatabaseUser(pulumi.CustomResource):
                  args: ManagedDatabaseUserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource represents a user in managed database
+        This resource represents a user in managed database.
 
         ## Example Usage
 

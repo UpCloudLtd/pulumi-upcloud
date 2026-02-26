@@ -4557,7 +4557,7 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param _builtins.str node_search_cache_size: The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
         :param 'ManagedDatabaseOpensearchPropertiesOpenidArgs' openid: OpenSearch OpenID Connect Configuration.
         :param 'ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs' opensearch_dashboards: OpenSearch Dashboards settings.
-        :param _builtins.bool override_main_response_version: Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false.
+        :param _builtins.bool override_main_response_version: Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false. Deprecated and ignored for service version 3.3 and higher.
         :param _builtins.bool plugins_alerting_filter_by_backend_roles: Enable or disable filtering of alerting by backend roles. Requires Security plugin. Defaults to false.
         :param _builtins.bool public_access: Public Access. Allow access to the service from the public Internet.
         :param Sequence[_builtins.str] reindex_remote_whitelists: Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
@@ -5160,7 +5160,7 @@ class ManagedDatabaseOpensearchProperties(dict):
     @pulumi.getter(name="overrideMainResponseVersion")
     def override_main_response_version(self) -> Optional[_builtins.bool]:
         """
-        Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false.
+        Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false. Deprecated and ignored for service version 3.3 and higher.
         """
         return pulumi.get(self, "override_main_response_version")
 
@@ -6216,6 +6216,10 @@ class ManagedDatabaseOpensearchPropertiesOpensearchDashboards(dict):
             suggest = "multiple_data_source_enabled"
         elif key == "opensearchRequestTimeout":
             suggest = "opensearch_request_timeout"
+        elif key == "sessionKeepalive":
+            suggest = "session_keepalive"
+        elif key == "sessionTtl":
+            suggest = "session_ttl"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseOpensearchPropertiesOpensearchDashboards. Access the value via the '{suggest}' property getter instead.")
@@ -6232,12 +6236,16 @@ class ManagedDatabaseOpensearchPropertiesOpensearchDashboards(dict):
                  enabled: Optional[_builtins.bool] = None,
                  max_old_space_size: Optional[_builtins.int] = None,
                  multiple_data_source_enabled: Optional[_builtins.bool] = None,
-                 opensearch_request_timeout: Optional[_builtins.int] = None):
+                 opensearch_request_timeout: Optional[_builtins.int] = None,
+                 session_keepalive: Optional[_builtins.bool] = None,
+                 session_ttl: Optional[_builtins.str] = None):
         """
         :param _builtins.bool enabled: Enable or disable OpenSearch Dashboards.
         :param _builtins.int max_old_space_size: Limits the maximum amount of memory (in MiB) the OpenSearch Dashboards process can use. This sets the max_old_space_size option of the nodejs running the OpenSearch Dashboards. Note: the memory reserved by OpenSearch Dashboards is not available for OpenSearch.
         :param _builtins.bool multiple_data_source_enabled: Enable or disable multiple data sources in OpenSearch Dashboards.
         :param _builtins.int opensearch_request_timeout: Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
+        :param _builtins.bool session_keepalive: Determines whether the session TTL resets (is “kept alive”) on each user activity. Optional. Default is true.
+        :param _builtins.str session_ttl: Defines the time-to-live (TTL) for user sessions. The value should be a time value with unit, e.g. 1m, 5s, 1h, 3d, 100ms. Default is 1 hour.
         """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
@@ -6247,6 +6255,10 @@ class ManagedDatabaseOpensearchPropertiesOpensearchDashboards(dict):
             pulumi.set(__self__, "multiple_data_source_enabled", multiple_data_source_enabled)
         if opensearch_request_timeout is not None:
             pulumi.set(__self__, "opensearch_request_timeout", opensearch_request_timeout)
+        if session_keepalive is not None:
+            pulumi.set(__self__, "session_keepalive", session_keepalive)
+        if session_ttl is not None:
+            pulumi.set(__self__, "session_ttl", session_ttl)
 
     @_builtins.property
     @pulumi.getter
@@ -6279,6 +6291,22 @@ class ManagedDatabaseOpensearchPropertiesOpensearchDashboards(dict):
         Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
         """
         return pulumi.get(self, "opensearch_request_timeout")
+
+    @_builtins.property
+    @pulumi.getter(name="sessionKeepalive")
+    def session_keepalive(self) -> Optional[_builtins.bool]:
+        """
+        Determines whether the session TTL resets (is “kept alive”) on each user activity. Optional. Default is true.
+        """
+        return pulumi.get(self, "session_keepalive")
+
+    @_builtins.property
+    @pulumi.getter(name="sessionTtl")
+    def session_ttl(self) -> Optional[_builtins.str]:
+        """
+        Defines the time-to-live (TTL) for user sessions. The value should be a time value with unit, e.g. 1m, 5s, 1h, 3d, 100ms. Default is 1 hour.
+        """
+        return pulumi.get(self, "session_ttl")
 
 
 @pulumi.output_type
@@ -9348,15 +9376,16 @@ class ManagedDatabasePostgresqlPropertiesTimescaledb(dict):
 @pulumi.output_type
 class ManagedDatabaseUserOpensearchAccessControl(dict):
     def __init__(__self__, *,
-                 rules: Sequence['outputs.ManagedDatabaseUserOpensearchAccessControlRule']):
+                 rules: Optional[Sequence['outputs.ManagedDatabaseUserOpensearchAccessControlRule']] = None):
         """
         :param Sequence['ManagedDatabaseUserOpensearchAccessControlRuleArgs'] rules: Set user access control rules.
         """
-        pulumi.set(__self__, "rules", rules)
+        if rules is not None:
+            pulumi.set(__self__, "rules", rules)
 
     @_builtins.property
     @pulumi.getter
-    def rules(self) -> Sequence['outputs.ManagedDatabaseUserOpensearchAccessControlRule']:
+    def rules(self) -> Optional[Sequence['outputs.ManagedDatabaseUserOpensearchAccessControlRule']]:
         """
         Set user access control rules.
         """

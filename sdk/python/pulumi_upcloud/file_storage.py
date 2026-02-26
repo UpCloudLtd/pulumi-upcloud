@@ -237,7 +237,7 @@ class FileStorage(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Resource for managing UpCloud file storages (EXPERIMENTAL)
+        Resource for managing UpCloud file storages. See UpCloud [File Storage](https://upcloud.com/products/file-storage/) product page for more details about the service.
 
         ## Example Usage
 
@@ -297,7 +297,7 @@ class FileStorage(pulumi.CustomResource):
                  args: FileStorageArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Resource for managing UpCloud file storages (EXPERIMENTAL)
+        Resource for managing UpCloud file storages. See UpCloud [File Storage](https://upcloud.com/products/file-storage/) product page for more details about the service.
 
         ## Example Usage
 
