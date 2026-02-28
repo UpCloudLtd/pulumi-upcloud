@@ -57,7 +57,7 @@ export function getKubernetesCluster(args: GetKubernetesClusterArgs, opts?: pulu
  * A collection of arguments for invoking getKubernetesCluster.
  */
 export interface GetKubernetesClusterArgs {
-    id: string;
+    id: pulumi.Input<string>;
 }
 
 /**
