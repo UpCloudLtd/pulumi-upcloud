@@ -1,14 +1,15 @@
 {
     "name": "upcloud-typescript",
     "main": "index.ts",
+    "type": "module",
     "devDependencies": {
-        "@types/node": "^18.0.0",
-        "typescript": "^5.0.0"
+        "@types/node": "^18.19.130",
+        "typescript": "^5.9.3"
     },
     "dependencies": {
-        "@kubernetes/client-node": "^1.1.2",
-        "@pulumi/kubernetes": "^4.25.0",
-        "@pulumi/pulumi": "^3.0.0",
-        "@upcloud/pulumi-upcloud": "^0.2.0"
+        "@kubernetes/client-node": "^1.4.0",
+        "@pulumi/kubernetes": "^4.26.0",
+        "@pulumi/pulumi": "^3.224.0",
+        "@upcloud/pulumi-upcloud": "^0.11.1"
     }
 }
