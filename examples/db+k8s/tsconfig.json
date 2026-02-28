@@ -1,18 +1,14 @@
 {
     "compilerOptions": {
+        "target": "esnext",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
+
         "strict": true,
-        "outDir": "bin",
-        "target": "es2020",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "experimentalDecorators": true,
-        "pretty": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitReturns": true,
         "forceConsistentCasingInFileNames": true
-    },
-    "files": [
-        "index.ts"
-    ]
+    }
 }
