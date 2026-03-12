@@ -6212,7 +6212,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways)."
+                    "description": "Features enabled for the gateway. Valid item values are \u003cspan pulumi-lang-nodejs=\"`nat`\" pulumi-lang-dotnet=\"`Nat`\" pulumi-lang-go=\"`nat`\" pulumi-lang-python=\"`nat`\" pulumi-lang-yaml=\"`nat`\" pulumi-lang-java=\"`nat`\"\u003e`nat`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`vpn`\" pulumi-lang-dotnet=\"`Vpn`\" pulumi-lang-go=\"`vpn`\" pulumi-lang-python=\"`vpn`\" pulumi-lang-yaml=\"`vpn`\" pulumi-lang-java=\"`vpn`\"\u003e`vpn`\u003c/span\u003e. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways."
                 },
                 "labels": {
                     "type": "object",
@@ -6267,7 +6267,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).",
+                    "description": "Features enabled for the gateway. Valid item values are \u003cspan pulumi-lang-nodejs=\"`nat`\" pulumi-lang-dotnet=\"`Nat`\" pulumi-lang-go=\"`nat`\" pulumi-lang-python=\"`nat`\" pulumi-lang-yaml=\"`nat`\" pulumi-lang-java=\"`nat`\"\u003e`nat`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`vpn`\" pulumi-lang-dotnet=\"`Vpn`\" pulumi-lang-go=\"`vpn`\" pulumi-lang-python=\"`vpn`\" pulumi-lang-yaml=\"`vpn`\" pulumi-lang-java=\"`vpn`\"\u003e`vpn`\u003c/span\u003e. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.",
                     "willReplaceOnChanges": true
                 },
                 "labels": {
@@ -6332,7 +6332,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).",
+                        "description": "Features enabled for the gateway. Valid item values are \u003cspan pulumi-lang-nodejs=\"`nat`\" pulumi-lang-dotnet=\"`Nat`\" pulumi-lang-go=\"`nat`\" pulumi-lang-python=\"`nat`\" pulumi-lang-yaml=\"`nat`\" pulumi-lang-java=\"`nat`\"\u003e`nat`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`vpn`\" pulumi-lang-dotnet=\"`Vpn`\" pulumi-lang-go=\"`vpn`\" pulumi-lang-python=\"`vpn`\" pulumi-lang-yaml=\"`vpn`\" pulumi-lang-java=\"`vpn`\"\u003e`vpn`\u003c/span\u003e. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.",
                         "willReplaceOnChanges": true
                     },
                     "labels": {

@@ -51,14 +51,14 @@ public final class GatewayArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
+     * Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
      * 
      */
     @Import(name="features", required=true)
     private Output<List<String>> features;
 
     /**
-     * @return Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
+     * @return Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
      * 
      */
     public Output<List<String>> features() {
@@ -214,7 +214,7 @@ public final class GatewayArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param features Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
+         * @param features Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
          * 
          * @return builder
          * 
@@ -225,7 +225,7 @@ public final class GatewayArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param features Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
+         * @param features Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
          * 
          * @return builder
          * 
@@ -235,7 +235,7 @@ public final class GatewayArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param features Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
+         * @param features Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
          * 
          * @return builder
          * 
