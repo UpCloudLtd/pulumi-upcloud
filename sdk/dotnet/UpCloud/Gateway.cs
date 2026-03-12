@@ -92,7 +92,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<string>> Connections { get; private set; } = null!;
 
         /// <summary>
-        /// Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
+        /// Features enabled for the gateway. Valid item values are `Nat` and `Vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
         /// </summary>
         [Output("features")]
         public Output<ImmutableArray<string>> Features { get; private set; } = null!;
@@ -196,7 +196,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputList<string>? _features;
 
         /// <summary>
-        /// Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
+        /// Features enabled for the gateway. Valid item values are `Nat` and `Vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
         /// </summary>
         public InputList<string> Features
         {
@@ -289,7 +289,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputList<string>? _features;
 
         /// <summary>
-        /// Features enabled for the gateway. For more details, see [documentation](https://upcloud.com/resources/docs/networking#nat-and-vpn-gateways).
+        /// Features enabled for the gateway. Valid item values are `Nat` and `Vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
         /// </summary>
         public InputList<string> Features
         {
