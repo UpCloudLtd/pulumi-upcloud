@@ -37,6 +37,30 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
             set => _httpReturns = value;
         }
 
+        [Input("httpRewritePaths")]
+        private InputList<Inputs.LoadbalancerFrontendRuleActionsHttpRewritePathGetArgs>? _httpRewritePaths;
+
+        /// <summary>
+        /// Rewrites the HTTP request path using regex pattern matching.
+        /// </summary>
+        public InputList<Inputs.LoadbalancerFrontendRuleActionsHttpRewritePathGetArgs> HttpRewritePaths
+        {
+            get => _httpRewritePaths ?? (_httpRewritePaths = new InputList<Inputs.LoadbalancerFrontendRuleActionsHttpRewritePathGetArgs>());
+            set => _httpRewritePaths = value;
+        }
+
+        [Input("httpRewriteUris")]
+        private InputList<Inputs.LoadbalancerFrontendRuleActionsHttpRewriteUriGetArgs>? _httpRewriteUris;
+
+        /// <summary>
+        /// Rewrites the entire HTTP request URI using regex pattern matching.
+        /// </summary>
+        public InputList<Inputs.LoadbalancerFrontendRuleActionsHttpRewriteUriGetArgs> HttpRewriteUris
+        {
+            get => _httpRewriteUris ?? (_httpRewriteUris = new InputList<Inputs.LoadbalancerFrontendRuleActionsHttpRewriteUriGetArgs>());
+            set => _httpRewriteUris = value;
+        }
+
         [Input("setForwardedHeaders")]
         private InputList<Inputs.LoadbalancerFrontendRuleActionsSetForwardedHeaderGetArgs>? _setForwardedHeaders;
 

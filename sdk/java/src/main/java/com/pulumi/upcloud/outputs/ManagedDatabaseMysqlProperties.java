@@ -153,6 +153,11 @@ public final class ManagedDatabaseMysqlProperties {
      */
     private @Nullable Double longQueryTime;
     /**
+     * @return Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
+     * 
+     */
+    private @Nullable Integer lowerCaseTableNames;
+    /**
      * @return Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
      * 
      */
@@ -192,6 +197,11 @@ public final class ManagedDatabaseMysqlProperties {
      * 
      */
     private @Nullable Boolean publicAccess;
+    /**
+     * @return Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    private @Nullable Boolean publicAccessPrometheus;
     /**
      * @return Service logging. Store logs for the service so that they are available in the HTTP API and console.
      * 
@@ -424,6 +434,13 @@ public final class ManagedDatabaseMysqlProperties {
         return Optional.ofNullable(this.longQueryTime);
     }
     /**
+     * @return Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
+     * 
+     */
+    public Optional<Integer> lowerCaseTableNames() {
+        return Optional.ofNullable(this.lowerCaseTableNames);
+    }
+    /**
      * @return Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
      * 
      */
@@ -478,6 +495,13 @@ public final class ManagedDatabaseMysqlProperties {
      */
     public Optional<Boolean> publicAccess() {
         return Optional.ofNullable(this.publicAccess);
+    }
+    /**
+     * @return Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    public Optional<Boolean> publicAccessPrometheus() {
+        return Optional.ofNullable(this.publicAccessPrometheus);
     }
     /**
      * @return Service logging. Store logs for the service so that they are available in the HTTP API and console.
@@ -572,6 +596,7 @@ public final class ManagedDatabaseMysqlProperties {
         private @Nullable List<String> ipFilters;
         private @Nullable String logOutput;
         private @Nullable Double longQueryTime;
+        private @Nullable Integer lowerCaseTableNames;
         private @Nullable Integer maxAllowedPacket;
         private @Nullable Integer maxHeapTableSize;
         private @Nullable ManagedDatabaseMysqlPropertiesMigration migration;
@@ -580,6 +605,7 @@ public final class ManagedDatabaseMysqlProperties {
         private @Nullable Integer netReadTimeout;
         private @Nullable Integer netWriteTimeout;
         private @Nullable Boolean publicAccess;
+        private @Nullable Boolean publicAccessPrometheus;
         private @Nullable Boolean serviceLog;
         private @Nullable Boolean slowQueryLog;
         private @Nullable Integer sortBufferSize;
@@ -618,6 +644,7 @@ public final class ManagedDatabaseMysqlProperties {
     	      this.ipFilters = defaults.ipFilters;
     	      this.logOutput = defaults.logOutput;
     	      this.longQueryTime = defaults.longQueryTime;
+    	      this.lowerCaseTableNames = defaults.lowerCaseTableNames;
     	      this.maxAllowedPacket = defaults.maxAllowedPacket;
     	      this.maxHeapTableSize = defaults.maxHeapTableSize;
     	      this.migration = defaults.migration;
@@ -626,6 +653,7 @@ public final class ManagedDatabaseMysqlProperties {
     	      this.netReadTimeout = defaults.netReadTimeout;
     	      this.netWriteTimeout = defaults.netWriteTimeout;
     	      this.publicAccess = defaults.publicAccess;
+    	      this.publicAccessPrometheus = defaults.publicAccessPrometheus;
     	      this.serviceLog = defaults.serviceLog;
     	      this.slowQueryLog = defaults.slowQueryLog;
     	      this.sortBufferSize = defaults.sortBufferSize;
@@ -802,6 +830,12 @@ public final class ManagedDatabaseMysqlProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder lowerCaseTableNames(@Nullable Integer lowerCaseTableNames) {
+
+            this.lowerCaseTableNames = lowerCaseTableNames;
+            return this;
+        }
+        @CustomType.Setter
         public Builder maxAllowedPacket(@Nullable Integer maxAllowedPacket) {
 
             this.maxAllowedPacket = maxAllowedPacket;
@@ -847,6 +881,12 @@ public final class ManagedDatabaseMysqlProperties {
         public Builder publicAccess(@Nullable Boolean publicAccess) {
 
             this.publicAccess = publicAccess;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder publicAccessPrometheus(@Nullable Boolean publicAccessPrometheus) {
+
+            this.publicAccessPrometheus = publicAccessPrometheus;
             return this;
         }
         @CustomType.Setter
@@ -926,6 +966,7 @@ public final class ManagedDatabaseMysqlProperties {
             _resultValue.ipFilters = ipFilters;
             _resultValue.logOutput = logOutput;
             _resultValue.longQueryTime = longQueryTime;
+            _resultValue.lowerCaseTableNames = lowerCaseTableNames;
             _resultValue.maxAllowedPacket = maxAllowedPacket;
             _resultValue.maxHeapTableSize = maxHeapTableSize;
             _resultValue.migration = migration;
@@ -934,6 +975,7 @@ public final class ManagedDatabaseMysqlProperties {
             _resultValue.netReadTimeout = netReadTimeout;
             _resultValue.netWriteTimeout = netWriteTimeout;
             _resultValue.publicAccess = publicAccess;
+            _resultValue.publicAccessPrometheus = publicAccessPrometheus;
             _resultValue.serviceLog = serviceLog;
             _resultValue.slowQueryLog = slowQueryLog;
             _resultValue.sortBufferSize = sortBufferSize;

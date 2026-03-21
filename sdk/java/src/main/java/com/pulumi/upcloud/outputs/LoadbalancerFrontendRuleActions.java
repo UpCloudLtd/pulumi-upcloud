@@ -6,6 +6,8 @@ package com.pulumi.upcloud.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.upcloud.outputs.LoadbalancerFrontendRuleActionsHttpRedirect;
 import com.pulumi.upcloud.outputs.LoadbalancerFrontendRuleActionsHttpReturn;
+import com.pulumi.upcloud.outputs.LoadbalancerFrontendRuleActionsHttpRewritePath;
+import com.pulumi.upcloud.outputs.LoadbalancerFrontendRuleActionsHttpRewriteUri;
 import com.pulumi.upcloud.outputs.LoadbalancerFrontendRuleActionsSetForwardedHeader;
 import com.pulumi.upcloud.outputs.LoadbalancerFrontendRuleActionsSetRequestHeader;
 import com.pulumi.upcloud.outputs.LoadbalancerFrontendRuleActionsSetResponseHeader;
@@ -27,6 +29,16 @@ public final class LoadbalancerFrontendRuleActions {
      * 
      */
     private @Nullable List<LoadbalancerFrontendRuleActionsHttpReturn> httpReturns;
+    /**
+     * @return Rewrites the HTTP request path using regex pattern matching.
+     * 
+     */
+    private @Nullable List<LoadbalancerFrontendRuleActionsHttpRewritePath> httpRewritePaths;
+    /**
+     * @return Rewrites the entire HTTP request URI using regex pattern matching.
+     * 
+     */
+    private @Nullable List<LoadbalancerFrontendRuleActionsHttpRewriteUri> httpRewriteUris;
     /**
      * @return Adds &#39;X-Forwarded-For / -Proto / -Port&#39; headers in your forwarded requests
      * 
@@ -67,6 +79,20 @@ public final class LoadbalancerFrontendRuleActions {
      */
     public List<LoadbalancerFrontendRuleActionsHttpReturn> httpReturns() {
         return this.httpReturns == null ? List.of() : this.httpReturns;
+    }
+    /**
+     * @return Rewrites the HTTP request path using regex pattern matching.
+     * 
+     */
+    public List<LoadbalancerFrontendRuleActionsHttpRewritePath> httpRewritePaths() {
+        return this.httpRewritePaths == null ? List.of() : this.httpRewritePaths;
+    }
+    /**
+     * @return Rewrites the entire HTTP request URI using regex pattern matching.
+     * 
+     */
+    public List<LoadbalancerFrontendRuleActionsHttpRewriteUri> httpRewriteUris() {
+        return this.httpRewriteUris == null ? List.of() : this.httpRewriteUris;
     }
     /**
      * @return Adds &#39;X-Forwarded-For / -Proto / -Port&#39; headers in your forwarded requests
@@ -115,6 +141,8 @@ public final class LoadbalancerFrontendRuleActions {
     public static final class Builder {
         private @Nullable List<LoadbalancerFrontendRuleActionsHttpRedirect> httpRedirects;
         private @Nullable List<LoadbalancerFrontendRuleActionsHttpReturn> httpReturns;
+        private @Nullable List<LoadbalancerFrontendRuleActionsHttpRewritePath> httpRewritePaths;
+        private @Nullable List<LoadbalancerFrontendRuleActionsHttpRewriteUri> httpRewriteUris;
         private @Nullable List<LoadbalancerFrontendRuleActionsSetForwardedHeader> setForwardedHeaders;
         private @Nullable List<LoadbalancerFrontendRuleActionsSetRequestHeader> setRequestHeaders;
         private @Nullable List<LoadbalancerFrontendRuleActionsSetResponseHeader> setResponseHeaders;
@@ -125,6 +153,8 @@ public final class LoadbalancerFrontendRuleActions {
     	      Objects.requireNonNull(defaults);
     	      this.httpRedirects = defaults.httpRedirects;
     	      this.httpReturns = defaults.httpReturns;
+    	      this.httpRewritePaths = defaults.httpRewritePaths;
+    	      this.httpRewriteUris = defaults.httpRewriteUris;
     	      this.setForwardedHeaders = defaults.setForwardedHeaders;
     	      this.setRequestHeaders = defaults.setRequestHeaders;
     	      this.setResponseHeaders = defaults.setResponseHeaders;
@@ -149,6 +179,24 @@ public final class LoadbalancerFrontendRuleActions {
         }
         public Builder httpReturns(LoadbalancerFrontendRuleActionsHttpReturn... httpReturns) {
             return httpReturns(List.of(httpReturns));
+        }
+        @CustomType.Setter
+        public Builder httpRewritePaths(@Nullable List<LoadbalancerFrontendRuleActionsHttpRewritePath> httpRewritePaths) {
+
+            this.httpRewritePaths = httpRewritePaths;
+            return this;
+        }
+        public Builder httpRewritePaths(LoadbalancerFrontendRuleActionsHttpRewritePath... httpRewritePaths) {
+            return httpRewritePaths(List.of(httpRewritePaths));
+        }
+        @CustomType.Setter
+        public Builder httpRewriteUris(@Nullable List<LoadbalancerFrontendRuleActionsHttpRewriteUri> httpRewriteUris) {
+
+            this.httpRewriteUris = httpRewriteUris;
+            return this;
+        }
+        public Builder httpRewriteUris(LoadbalancerFrontendRuleActionsHttpRewriteUri... httpRewriteUris) {
+            return httpRewriteUris(List.of(httpRewriteUris));
         }
         @CustomType.Setter
         public Builder setForwardedHeaders(@Nullable List<LoadbalancerFrontendRuleActionsSetForwardedHeader> setForwardedHeaders) {
@@ -199,6 +247,8 @@ public final class LoadbalancerFrontendRuleActions {
             final var _resultValue = new LoadbalancerFrontendRuleActions();
             _resultValue.httpRedirects = httpRedirects;
             _resultValue.httpReturns = httpReturns;
+            _resultValue.httpRewritePaths = httpRewritePaths;
+            _resultValue.httpRewriteUris = httpRewriteUris;
             _resultValue.setForwardedHeaders = setForwardedHeaders;
             _resultValue.setRequestHeaders = setRequestHeaders;
             _resultValue.setResponseHeaders = setResponseHeaders;

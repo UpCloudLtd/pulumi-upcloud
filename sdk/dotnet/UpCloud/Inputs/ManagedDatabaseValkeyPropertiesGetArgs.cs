@@ -62,6 +62,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<bool>? PublicAccess { get; set; }
 
         /// <summary>
+        /// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        /// </summary>
+        [Input("publicAccessPrometheus")]
+        public Input<bool>? PublicAccessPrometheus { get; set; }
+
+        /// <summary>
         /// Service logging. Store logs for the service so that they are available in the HTTP API and console.
         /// </summary>
         [Input("serviceLog")]
@@ -138,6 +144,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         /// </summary>
         [Input("valkeyTimeout")]
         public Input<int>? ValkeyTimeout { get; set; }
+
+        /// <summary>
+        /// Valkey major version.
+        /// </summary>
+        [Input("valkeyVersion")]
+        public Input<string>? ValkeyVersion { get; set; }
 
         public ManagedDatabaseValkeyPropertiesGetArgs()
         {

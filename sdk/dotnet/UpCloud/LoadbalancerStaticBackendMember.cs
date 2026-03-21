@@ -58,7 +58,7 @@ namespace UpCloud.Pulumi.UpCloud
     ///         Name = "lb-be-1-sm-1-test",
     ///         Ip = "10.0.0.10",
     ///         Port = 8000,
-    ///         Weight = 0,
+    ///         Weight = 10,
     ///         MaxSessions = 0,
     ///         Enabled = true,
     ///     });

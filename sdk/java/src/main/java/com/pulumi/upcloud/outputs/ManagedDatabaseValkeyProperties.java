@@ -51,6 +51,11 @@ public final class ManagedDatabaseValkeyProperties {
      */
     private @Nullable Boolean publicAccess;
     /**
+     * @return Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    private @Nullable Boolean publicAccessPrometheus;
+    /**
      * @return Service logging. Store logs for the service so that they are available in the HTTP API and console.
      * 
      */
@@ -115,6 +120,11 @@ public final class ManagedDatabaseValkeyProperties {
      * 
      */
     private @Nullable Integer valkeyTimeout;
+    /**
+     * @return Valkey major version.
+     * 
+     */
+    private @Nullable String valkeyVersion;
 
     private ManagedDatabaseValkeyProperties() {}
     /**
@@ -165,6 +175,13 @@ public final class ManagedDatabaseValkeyProperties {
      */
     public Optional<Boolean> publicAccess() {
         return Optional.ofNullable(this.publicAccess);
+    }
+    /**
+     * @return Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    public Optional<Boolean> publicAccessPrometheus() {
+        return Optional.ofNullable(this.publicAccessPrometheus);
     }
     /**
      * @return Service logging. Store logs for the service so that they are available in the HTTP API and console.
@@ -257,6 +274,13 @@ public final class ManagedDatabaseValkeyProperties {
     public Optional<Integer> valkeyTimeout() {
         return Optional.ofNullable(this.valkeyTimeout);
     }
+    /**
+     * @return Valkey major version.
+     * 
+     */
+    public Optional<String> valkeyVersion() {
+        return Optional.ofNullable(this.valkeyVersion);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -274,6 +298,7 @@ public final class ManagedDatabaseValkeyProperties {
         private @Nullable List<String> ipFilters;
         private @Nullable ManagedDatabaseValkeyPropertiesMigration migration;
         private @Nullable Boolean publicAccess;
+        private @Nullable Boolean publicAccessPrometheus;
         private @Nullable Boolean serviceLog;
         private @Nullable String valkeyAclChannelsDefault;
         private @Nullable Integer valkeyActiveExpireEffort;
@@ -287,6 +312,7 @@ public final class ManagedDatabaseValkeyProperties {
         private @Nullable Integer valkeyPubsubClientOutputBufferLimit;
         private @Nullable Boolean valkeySsl;
         private @Nullable Integer valkeyTimeout;
+        private @Nullable String valkeyVersion;
         public Builder() {}
         public Builder(ManagedDatabaseValkeyProperties defaults) {
     	      Objects.requireNonNull(defaults);
@@ -297,6 +323,7 @@ public final class ManagedDatabaseValkeyProperties {
     	      this.ipFilters = defaults.ipFilters;
     	      this.migration = defaults.migration;
     	      this.publicAccess = defaults.publicAccess;
+    	      this.publicAccessPrometheus = defaults.publicAccessPrometheus;
     	      this.serviceLog = defaults.serviceLog;
     	      this.valkeyAclChannelsDefault = defaults.valkeyAclChannelsDefault;
     	      this.valkeyActiveExpireEffort = defaults.valkeyActiveExpireEffort;
@@ -310,6 +337,7 @@ public final class ManagedDatabaseValkeyProperties {
     	      this.valkeyPubsubClientOutputBufferLimit = defaults.valkeyPubsubClientOutputBufferLimit;
     	      this.valkeySsl = defaults.valkeySsl;
     	      this.valkeyTimeout = defaults.valkeyTimeout;
+    	      this.valkeyVersion = defaults.valkeyVersion;
         }
 
         @CustomType.Setter
@@ -355,6 +383,12 @@ public final class ManagedDatabaseValkeyProperties {
         public Builder publicAccess(@Nullable Boolean publicAccess) {
 
             this.publicAccess = publicAccess;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder publicAccessPrometheus(@Nullable Boolean publicAccessPrometheus) {
+
+            this.publicAccessPrometheus = publicAccessPrometheus;
             return this;
         }
         @CustomType.Setter
@@ -435,6 +469,12 @@ public final class ManagedDatabaseValkeyProperties {
             this.valkeyTimeout = valkeyTimeout;
             return this;
         }
+        @CustomType.Setter
+        public Builder valkeyVersion(@Nullable String valkeyVersion) {
+
+            this.valkeyVersion = valkeyVersion;
+            return this;
+        }
         public ManagedDatabaseValkeyProperties build() {
             final var _resultValue = new ManagedDatabaseValkeyProperties();
             _resultValue.automaticUtilityNetworkIpFilter = automaticUtilityNetworkIpFilter;
@@ -444,6 +484,7 @@ public final class ManagedDatabaseValkeyProperties {
             _resultValue.ipFilters = ipFilters;
             _resultValue.migration = migration;
             _resultValue.publicAccess = publicAccess;
+            _resultValue.publicAccessPrometheus = publicAccessPrometheus;
             _resultValue.serviceLog = serviceLog;
             _resultValue.valkeyAclChannelsDefault = valkeyAclChannelsDefault;
             _resultValue.valkeyActiveExpireEffort = valkeyActiveExpireEffort;
@@ -457,6 +498,7 @@ public final class ManagedDatabaseValkeyProperties {
             _resultValue.valkeyPubsubClientOutputBufferLimit = valkeyPubsubClientOutputBufferLimit;
             _resultValue.valkeySsl = valkeySsl;
             _resultValue.valkeyTimeout = valkeyTimeout;
+            _resultValue.valkeyVersion = valkeyVersion;
             return _resultValue;
         }
     }

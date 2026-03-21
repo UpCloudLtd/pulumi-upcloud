@@ -377,11 +377,17 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         [Input("publicAccess")]
         public Input<bool>? PublicAccess { get; set; }
 
+        /// <summary>
+        /// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        /// </summary>
+        [Input("publicAccessPrometheus")]
+        public Input<bool>? PublicAccessPrometheus { get; set; }
+
         [Input("reindexRemoteWhitelists")]
         private InputList<string>? _reindexRemoteWhitelists;
 
         /// <summary>
-        /// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+        /// reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
         /// </summary>
         public InputList<string> ReindexRemoteWhitelists
         {

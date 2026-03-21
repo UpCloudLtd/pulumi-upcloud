@@ -125,6 +125,21 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
     }
 
     /**
+     * Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    @Import(name="publicAccessPrometheus")
+    private @Nullable Output<Boolean> publicAccessPrometheus;
+
+    /**
+     * @return Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    public Optional<Output<Boolean>> publicAccessPrometheus() {
+        return Optional.ofNullable(this.publicAccessPrometheus);
+    }
+
+    /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      * 
      */
@@ -319,6 +334,21 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
         return Optional.ofNullable(this.valkeyTimeout);
     }
 
+    /**
+     * Valkey major version.
+     * 
+     */
+    @Import(name="valkeyVersion")
+    private @Nullable Output<String> valkeyVersion;
+
+    /**
+     * @return Valkey major version.
+     * 
+     */
+    public Optional<Output<String>> valkeyVersion() {
+        return Optional.ofNullable(this.valkeyVersion);
+    }
+
     private ManagedDatabaseValkeyPropertiesArgs() {}
 
     private ManagedDatabaseValkeyPropertiesArgs(ManagedDatabaseValkeyPropertiesArgs $) {
@@ -329,6 +359,7 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
         this.ipFilters = $.ipFilters;
         this.migration = $.migration;
         this.publicAccess = $.publicAccess;
+        this.publicAccessPrometheus = $.publicAccessPrometheus;
         this.serviceLog = $.serviceLog;
         this.valkeyAclChannelsDefault = $.valkeyAclChannelsDefault;
         this.valkeyActiveExpireEffort = $.valkeyActiveExpireEffort;
@@ -342,6 +373,7 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
         this.valkeyPubsubClientOutputBufferLimit = $.valkeyPubsubClientOutputBufferLimit;
         this.valkeySsl = $.valkeySsl;
         this.valkeyTimeout = $.valkeyTimeout;
+        this.valkeyVersion = $.valkeyVersion;
     }
 
     public static Builder builder() {
@@ -517,6 +549,27 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
          */
         public Builder publicAccess(Boolean publicAccess) {
             return publicAccess(Output.of(publicAccess));
+        }
+
+        /**
+         * @param publicAccessPrometheus Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicAccessPrometheus(@Nullable Output<Boolean> publicAccessPrometheus) {
+            $.publicAccessPrometheus = publicAccessPrometheus;
+            return this;
+        }
+
+        /**
+         * @param publicAccessPrometheus Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicAccessPrometheus(Boolean publicAccessPrometheus) {
+            return publicAccessPrometheus(Output.of(publicAccessPrometheus));
         }
 
         /**
@@ -790,6 +843,27 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
          */
         public Builder valkeyTimeout(Integer valkeyTimeout) {
             return valkeyTimeout(Output.of(valkeyTimeout));
+        }
+
+        /**
+         * @param valkeyVersion Valkey major version.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valkeyVersion(@Nullable Output<String> valkeyVersion) {
+            $.valkeyVersion = valkeyVersion;
+            return this;
+        }
+
+        /**
+         * @param valkeyVersion Valkey major version.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valkeyVersion(String valkeyVersion) {
+            return valkeyVersion(Output.of(valkeyVersion));
         }
 
         public ManagedDatabaseValkeyPropertiesArgs build() {

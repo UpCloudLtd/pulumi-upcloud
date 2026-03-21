@@ -427,6 +427,21 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
     }
 
     /**
+     * Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
+     * 
+     */
+    @Import(name="lowerCaseTableNames")
+    private @Nullable Output<Integer> lowerCaseTableNames;
+
+    /**
+     * @return Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
+     * 
+     */
+    public Optional<Output<Integer>> lowerCaseTableNames() {
+        return Optional.ofNullable(this.lowerCaseTableNames);
+    }
+
+    /**
      * Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
      * 
      */
@@ -544,6 +559,21 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
      */
     public Optional<Output<Boolean>> publicAccess() {
         return Optional.ofNullable(this.publicAccess);
+    }
+
+    /**
+     * Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    @Import(name="publicAccessPrometheus")
+    private @Nullable Output<Boolean> publicAccessPrometheus;
+
+    /**
+     * @return Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    public Optional<Output<Boolean>> publicAccessPrometheus() {
+        return Optional.ofNullable(this.publicAccessPrometheus);
     }
 
     /**
@@ -696,6 +726,7 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         this.ipFilters = $.ipFilters;
         this.logOutput = $.logOutput;
         this.longQueryTime = $.longQueryTime;
+        this.lowerCaseTableNames = $.lowerCaseTableNames;
         this.maxAllowedPacket = $.maxAllowedPacket;
         this.maxHeapTableSize = $.maxHeapTableSize;
         this.migration = $.migration;
@@ -704,6 +735,7 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         this.netReadTimeout = $.netReadTimeout;
         this.netWriteTimeout = $.netWriteTimeout;
         this.publicAccess = $.publicAccess;
+        this.publicAccessPrometheus = $.publicAccessPrometheus;
         this.serviceLog = $.serviceLog;
         this.slowQueryLog = $.slowQueryLog;
         this.sortBufferSize = $.sortBufferSize;
@@ -1310,6 +1342,27 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         }
 
         /**
+         * @param lowerCaseTableNames Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder lowerCaseTableNames(@Nullable Output<Integer> lowerCaseTableNames) {
+            $.lowerCaseTableNames = lowerCaseTableNames;
+            return this;
+        }
+
+        /**
+         * @param lowerCaseTableNames Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder lowerCaseTableNames(Integer lowerCaseTableNames) {
+            return lowerCaseTableNames(Output.of(lowerCaseTableNames));
+        }
+
+        /**
          * @param maxAllowedPacket Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
          * 
          * @return builder
@@ -1475,6 +1528,27 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
          */
         public Builder publicAccess(Boolean publicAccess) {
             return publicAccess(Output.of(publicAccess));
+        }
+
+        /**
+         * @param publicAccessPrometheus Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicAccessPrometheus(@Nullable Output<Boolean> publicAccessPrometheus) {
+            $.publicAccessPrometheus = publicAccessPrometheus;
+            return this;
+        }
+
+        /**
+         * @param publicAccessPrometheus Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicAccessPrometheus(Boolean publicAccessPrometheus) {
+            return publicAccessPrometheus(Output.of(publicAccessPrometheus));
         }
 
         /**

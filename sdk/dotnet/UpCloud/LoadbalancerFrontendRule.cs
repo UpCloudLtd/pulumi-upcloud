@@ -54,6 +54,14 @@ namespace UpCloud.Pulumi.UpCloud
     ///         },
     ///         Actions = new UpCloud.Inputs.LoadbalancerFrontendRuleActionsArgs
     ///         {
+    ///             HttpRewritePaths = new[]
+    ///             {
+    ///                 new UpCloud.Inputs.LoadbalancerFrontendRuleActionsHttpRewritePathArgs
+    ///                 {
+    ///                     MatchPattern = "^/old/(.*)$",
+    ///                     RewriteTo = "/new/\\1",
+    ///                 },
+    ///             },
     ///             UseBackends = new[]
     ///             {
     ///                 new UpCloud.Inputs.LoadbalancerFrontendRuleActionsUseBackendArgs

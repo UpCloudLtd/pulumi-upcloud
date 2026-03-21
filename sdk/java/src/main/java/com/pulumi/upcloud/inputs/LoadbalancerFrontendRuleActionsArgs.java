@@ -7,6 +7,8 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.upcloud.inputs.LoadbalancerFrontendRuleActionsHttpRedirectArgs;
 import com.pulumi.upcloud.inputs.LoadbalancerFrontendRuleActionsHttpReturnArgs;
+import com.pulumi.upcloud.inputs.LoadbalancerFrontendRuleActionsHttpRewritePathArgs;
+import com.pulumi.upcloud.inputs.LoadbalancerFrontendRuleActionsHttpRewriteUriArgs;
 import com.pulumi.upcloud.inputs.LoadbalancerFrontendRuleActionsSetForwardedHeaderArgs;
 import com.pulumi.upcloud.inputs.LoadbalancerFrontendRuleActionsSetRequestHeaderArgs;
 import com.pulumi.upcloud.inputs.LoadbalancerFrontendRuleActionsSetResponseHeaderArgs;
@@ -50,6 +52,36 @@ public final class LoadbalancerFrontendRuleActionsArgs extends com.pulumi.resour
      */
     public Optional<Output<List<LoadbalancerFrontendRuleActionsHttpReturnArgs>>> httpReturns() {
         return Optional.ofNullable(this.httpReturns);
+    }
+
+    /**
+     * Rewrites the HTTP request path using regex pattern matching.
+     * 
+     */
+    @Import(name="httpRewritePaths")
+    private @Nullable Output<List<LoadbalancerFrontendRuleActionsHttpRewritePathArgs>> httpRewritePaths;
+
+    /**
+     * @return Rewrites the HTTP request path using regex pattern matching.
+     * 
+     */
+    public Optional<Output<List<LoadbalancerFrontendRuleActionsHttpRewritePathArgs>>> httpRewritePaths() {
+        return Optional.ofNullable(this.httpRewritePaths);
+    }
+
+    /**
+     * Rewrites the entire HTTP request URI using regex pattern matching.
+     * 
+     */
+    @Import(name="httpRewriteUris")
+    private @Nullable Output<List<LoadbalancerFrontendRuleActionsHttpRewriteUriArgs>> httpRewriteUris;
+
+    /**
+     * @return Rewrites the entire HTTP request URI using regex pattern matching.
+     * 
+     */
+    public Optional<Output<List<LoadbalancerFrontendRuleActionsHttpRewriteUriArgs>>> httpRewriteUris() {
+        return Optional.ofNullable(this.httpRewriteUris);
     }
 
     /**
@@ -132,6 +164,8 @@ public final class LoadbalancerFrontendRuleActionsArgs extends com.pulumi.resour
     private LoadbalancerFrontendRuleActionsArgs(LoadbalancerFrontendRuleActionsArgs $) {
         this.httpRedirects = $.httpRedirects;
         this.httpReturns = $.httpReturns;
+        this.httpRewritePaths = $.httpRewritePaths;
+        this.httpRewriteUris = $.httpRewriteUris;
         this.setForwardedHeaders = $.setForwardedHeaders;
         this.setRequestHeaders = $.setRequestHeaders;
         this.setResponseHeaders = $.setResponseHeaders;
@@ -217,6 +251,68 @@ public final class LoadbalancerFrontendRuleActionsArgs extends com.pulumi.resour
          */
         public Builder httpReturns(LoadbalancerFrontendRuleActionsHttpReturnArgs... httpReturns) {
             return httpReturns(List.of(httpReturns));
+        }
+
+        /**
+         * @param httpRewritePaths Rewrites the HTTP request path using regex pattern matching.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpRewritePaths(@Nullable Output<List<LoadbalancerFrontendRuleActionsHttpRewritePathArgs>> httpRewritePaths) {
+            $.httpRewritePaths = httpRewritePaths;
+            return this;
+        }
+
+        /**
+         * @param httpRewritePaths Rewrites the HTTP request path using regex pattern matching.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpRewritePaths(List<LoadbalancerFrontendRuleActionsHttpRewritePathArgs> httpRewritePaths) {
+            return httpRewritePaths(Output.of(httpRewritePaths));
+        }
+
+        /**
+         * @param httpRewritePaths Rewrites the HTTP request path using regex pattern matching.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpRewritePaths(LoadbalancerFrontendRuleActionsHttpRewritePathArgs... httpRewritePaths) {
+            return httpRewritePaths(List.of(httpRewritePaths));
+        }
+
+        /**
+         * @param httpRewriteUris Rewrites the entire HTTP request URI using regex pattern matching.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpRewriteUris(@Nullable Output<List<LoadbalancerFrontendRuleActionsHttpRewriteUriArgs>> httpRewriteUris) {
+            $.httpRewriteUris = httpRewriteUris;
+            return this;
+        }
+
+        /**
+         * @param httpRewriteUris Rewrites the entire HTTP request URI using regex pattern matching.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpRewriteUris(List<LoadbalancerFrontendRuleActionsHttpRewriteUriArgs> httpRewriteUris) {
+            return httpRewriteUris(Output.of(httpRewriteUris));
+        }
+
+        /**
+         * @param httpRewriteUris Rewrites the entire HTTP request URI using regex pattern matching.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpRewriteUris(LoadbalancerFrontendRuleActionsHttpRewriteUriArgs... httpRewriteUris) {
+            return httpRewriteUris(List.of(httpRewriteUris));
         }
 
         /**

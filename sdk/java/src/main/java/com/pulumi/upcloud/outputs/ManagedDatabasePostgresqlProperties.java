@@ -201,7 +201,7 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable Integer logTempFiles;
     /**
-     * @return Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
+     * @return Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
      * 
      */
     private @Nullable Integer maxConnections;
@@ -216,7 +216,7 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable Integer maxLocksPerTransaction;
     /**
-     * @return PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+     * @return PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     private @Nullable Integer maxLogicalReplicationWorkers;
@@ -346,6 +346,11 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable Boolean publicAccess;
     /**
+     * @return Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    private @Nullable Boolean publicAccessPrometheus;
+    /**
      * @return Service logging. Store logs for the service so that they are available in the HTTP API and console.
      * 
      */
@@ -355,6 +360,7 @@ public final class ManagedDatabasePostgresqlProperties {
      * 
      */
     private @Nullable Double sharedBuffersPercentage;
+    private @Nullable List<String> switchoverWindows;
     /**
      * @return Synchronous replication type. Note that the service plan also needs to support synchronous replication.
      * 
@@ -675,7 +681,7 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.logTempFiles);
     }
     /**
-     * @return Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
+     * @return Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Integer> maxConnections() {
@@ -696,7 +702,7 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.maxLocksPerTransaction);
     }
     /**
-     * @return PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+     * @return PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     public Optional<Integer> maxLogicalReplicationWorkers() {
@@ -878,6 +884,13 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.publicAccess);
     }
     /**
+     * @return Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    public Optional<Boolean> publicAccessPrometheus() {
+        return Optional.ofNullable(this.publicAccessPrometheus);
+    }
+    /**
      * @return Service logging. Store logs for the service so that they are available in the HTTP API and console.
      * 
      */
@@ -890,6 +903,9 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     public Optional<Double> sharedBuffersPercentage() {
         return Optional.ofNullable(this.sharedBuffersPercentage);
+    }
+    public List<String> switchoverWindows() {
+        return this.switchoverWindows == null ? List.of() : this.switchoverWindows;
     }
     /**
      * @return Synchronous replication type. Note that the service plan also needs to support synchronous replication.
@@ -1057,8 +1073,10 @@ public final class ManagedDatabasePostgresqlProperties {
         private @Nullable ManagedDatabasePostgresqlPropertiesPgbouncer pgbouncer;
         private @Nullable ManagedDatabasePostgresqlPropertiesPglookout pglookout;
         private @Nullable Boolean publicAccess;
+        private @Nullable Boolean publicAccessPrometheus;
         private @Nullable Boolean serviceLog;
         private @Nullable Double sharedBuffersPercentage;
+        private @Nullable List<String> switchoverWindows;
         private @Nullable String synchronousReplication;
         private @Nullable Integer tempFileLimit;
         private @Nullable ManagedDatabasePostgresqlPropertiesTimescaledb timescaledb;
@@ -1140,8 +1158,10 @@ public final class ManagedDatabasePostgresqlProperties {
     	      this.pgbouncer = defaults.pgbouncer;
     	      this.pglookout = defaults.pglookout;
     	      this.publicAccess = defaults.publicAccess;
+    	      this.publicAccessPrometheus = defaults.publicAccessPrometheus;
     	      this.serviceLog = defaults.serviceLog;
     	      this.sharedBuffersPercentage = defaults.sharedBuffersPercentage;
+    	      this.switchoverWindows = defaults.switchoverWindows;
     	      this.synchronousReplication = defaults.synchronousReplication;
     	      this.tempFileLimit = defaults.tempFileLimit;
     	      this.timescaledb = defaults.timescaledb;
@@ -1551,6 +1571,12 @@ public final class ManagedDatabasePostgresqlProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder publicAccessPrometheus(@Nullable Boolean publicAccessPrometheus) {
+
+            this.publicAccessPrometheus = publicAccessPrometheus;
+            return this;
+        }
+        @CustomType.Setter
         public Builder serviceLog(@Nullable Boolean serviceLog) {
 
             this.serviceLog = serviceLog;
@@ -1561,6 +1587,15 @@ public final class ManagedDatabasePostgresqlProperties {
 
             this.sharedBuffersPercentage = sharedBuffersPercentage;
             return this;
+        }
+        @CustomType.Setter
+        public Builder switchoverWindows(@Nullable List<String> switchoverWindows) {
+
+            this.switchoverWindows = switchoverWindows;
+            return this;
+        }
+        public Builder switchoverWindows(String... switchoverWindows) {
+            return switchoverWindows(List.of(switchoverWindows));
         }
         @CustomType.Setter
         public Builder synchronousReplication(@Nullable String synchronousReplication) {
@@ -1707,8 +1742,10 @@ public final class ManagedDatabasePostgresqlProperties {
             _resultValue.pgbouncer = pgbouncer;
             _resultValue.pglookout = pglookout;
             _resultValue.publicAccess = publicAccess;
+            _resultValue.publicAccessPrometheus = publicAccessPrometheus;
             _resultValue.serviceLog = serviceLog;
             _resultValue.sharedBuffersPercentage = sharedBuffersPercentage;
+            _resultValue.switchoverWindows = switchoverWindows;
             _resultValue.synchronousReplication = synchronousReplication;
             _resultValue.tempFileLimit = tempFileLimit;
             _resultValue.timescaledb = timescaledb;

@@ -192,6 +192,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<double>? LongQueryTime { get; set; }
 
         /// <summary>
+        /// Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
+        /// </summary>
+        [Input("lowerCaseTableNames")]
+        public Input<int>? LowerCaseTableNames { get; set; }
+
+        /// <summary>
         /// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
         /// </summary>
         [Input("maxAllowedPacket")]
@@ -238,6 +244,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         /// </summary>
         [Input("publicAccess")]
         public Input<bool>? PublicAccess { get; set; }
+
+        /// <summary>
+        /// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        /// </summary>
+        [Input("publicAccessPrometheus")]
+        public Input<bool>? PublicAccessPrometheus { get; set; }
 
         /// <summary>
         /// Service logging. Store logs for the service so that they are available in the HTTP API and console.

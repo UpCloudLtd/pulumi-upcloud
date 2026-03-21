@@ -740,6 +740,14 @@ export interface LoadbalancerFrontendRuleActions {
      */
     httpReturns?: outputs.LoadbalancerFrontendRuleActionsHttpReturn[];
     /**
+     * Rewrites the HTTP request path using regex pattern matching.
+     */
+    httpRewritePaths?: outputs.LoadbalancerFrontendRuleActionsHttpRewritePath[];
+    /**
+     * Rewrites the entire HTTP request URI using regex pattern matching.
+     */
+    httpRewriteUris?: outputs.LoadbalancerFrontendRuleActionsHttpRewriteUri[];
+    /**
      * Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
      */
     setForwardedHeaders?: outputs.LoadbalancerFrontendRuleActionsSetForwardedHeader[];
@@ -789,6 +797,28 @@ export interface LoadbalancerFrontendRuleActionsHttpReturn {
      * HTTP status code.
      */
     status: number;
+}
+
+export interface LoadbalancerFrontendRuleActionsHttpRewritePath {
+    /**
+     * Regex pattern to match against the request path.
+     */
+    matchPattern: string;
+    /**
+     * Replacement pattern.
+     */
+    rewriteTo: string;
+}
+
+export interface LoadbalancerFrontendRuleActionsHttpRewriteUri {
+    /**
+     * Regex pattern to match against the request URI.
+     */
+    matchPattern: string;
+    /**
+     * Replacement pattern.
+     */
+    rewriteTo: string;
 }
 
 export interface LoadbalancerFrontendRuleActionsSetForwardedHeader {
@@ -1464,6 +1494,10 @@ export interface ManagedDatabaseMysqlProperties {
      */
     longQueryTime: number;
     /**
+     * Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
+     */
+    lowerCaseTableNames: number;
+    /**
      * Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
      */
     maxAllowedPacket: number;
@@ -1495,6 +1529,10 @@ export interface ManagedDatabaseMysqlProperties {
      * Public Access. Allow access to the service from the public Internet.
      */
     publicAccess: boolean;
+    /**
+     * Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     */
+    publicAccessPrometheus: boolean;
     /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      */
@@ -1864,7 +1902,11 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     publicAccess: boolean;
     /**
-     * Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+     * Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     */
+    publicAccessPrometheus: boolean;
+    /**
+     * reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
      */
     reindexRemoteWhitelists: string[];
     remoteStore?: outputs.ManagedDatabaseOpensearchPropertiesRemoteStore;
@@ -2713,7 +2755,7 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     logTempFiles: number;
     /**
-     * Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
+     * Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
      */
     maxConnections: number;
     /**
@@ -2725,7 +2767,7 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     maxLocksPerTransaction: number;
     /**
-     * PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+     * PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
      */
     maxLogicalReplicationWorkers: number;
     /**
@@ -2829,6 +2871,10 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     publicAccess: boolean;
     /**
+     * Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     */
+    publicAccessPrometheus: boolean;
+    /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      */
     serviceLog: boolean;
@@ -2836,6 +2882,7 @@ export interface ManagedDatabasePostgresqlProperties {
      * Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value. Changing this parameter causes a service restart.
      */
     sharedBuffersPercentage: number;
+    switchoverWindows: string[];
     /**
      * Synchronous replication type. Note that the service plan also needs to support synchronous replication.
      */
@@ -3182,6 +3229,10 @@ export interface ManagedDatabaseValkeyProperties {
      */
     publicAccess: boolean;
     /**
+     * Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     */
+    publicAccessPrometheus: boolean;
+    /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      */
     serviceLog: boolean;
@@ -3233,6 +3284,10 @@ export interface ManagedDatabaseValkeyProperties {
      * Valkey idle connection timeout in seconds.
      */
     valkeyTimeout: number;
+    /**
+     * Valkey major version.
+     */
+    valkeyVersion: string;
 }
 
 export interface ManagedDatabaseValkeyPropertiesMigration {

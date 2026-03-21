@@ -68,7 +68,7 @@ import (
 //				Name:        pulumi.String("lb-be-1-sm-1-test"),
 //				Ip:          pulumi.String("10.0.0.10"),
 //				Port:        pulumi.Int(8000),
-//				Weight:      pulumi.Int(0),
+//				Weight:      pulumi.Int(10),
 //				MaxSessions: pulumi.Int(0),
 //				Enabled:     pulumi.Bool(true),
 //			})

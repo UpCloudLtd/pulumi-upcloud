@@ -565,14 +565,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
+     * Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
      * 
      */
     @Import(name="maxConnections")
     private @Nullable Output<Integer> maxConnections;
 
     /**
-     * @return Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
+     * @return Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> maxConnections() {
@@ -610,14 +610,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+     * PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     @Import(name="maxLogicalReplicationWorkers")
     private @Nullable Output<Integer> maxLogicalReplicationWorkers;
 
     /**
-     * @return PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+     * @return PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
      * 
      */
     public Optional<Output<Integer>> maxLogicalReplicationWorkers() {
@@ -1000,6 +1000,21 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
+     * Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    @Import(name="publicAccessPrometheus")
+    private @Nullable Output<Boolean> publicAccessPrometheus;
+
+    /**
+     * @return Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    public Optional<Output<Boolean>> publicAccessPrometheus() {
+        return Optional.ofNullable(this.publicAccessPrometheus);
+    }
+
+    /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      * 
      */
@@ -1027,6 +1042,13 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
      */
     public Optional<Output<Double>> sharedBuffersPercentage() {
         return Optional.ofNullable(this.sharedBuffersPercentage);
+    }
+
+    @Import(name="switchoverWindows")
+    private @Nullable Output<List<String>> switchoverWindows;
+
+    public Optional<Output<List<String>>> switchoverWindows() {
+        return Optional.ofNullable(this.switchoverWindows);
     }
 
     /**
@@ -1292,8 +1314,10 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         this.pgbouncer = $.pgbouncer;
         this.pglookout = $.pglookout;
         this.publicAccess = $.publicAccess;
+        this.publicAccessPrometheus = $.publicAccessPrometheus;
         this.serviceLog = $.serviceLog;
         this.sharedBuffersPercentage = $.sharedBuffersPercentage;
+        this.switchoverWindows = $.switchoverWindows;
         this.synchronousReplication = $.synchronousReplication;
         this.tempFileLimit = $.tempFileLimit;
         this.timescaledb = $.timescaledb;
@@ -2094,7 +2118,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxConnections Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
+         * @param maxConnections Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -2105,7 +2129,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxConnections Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
+         * @param maxConnections Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica&#39;s value. After the change is applied to the replica, you can increase the primary service&#39;s value. Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -2157,7 +2181,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxLogicalReplicationWorkers PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+         * @param maxLogicalReplicationWorkers PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -2168,7 +2192,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param maxLogicalReplicationWorkers PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+         * @param maxLogicalReplicationWorkers PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
          * 
          * @return builder
          * 
@@ -2703,6 +2727,27 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
+         * @param publicAccessPrometheus Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicAccessPrometheus(@Nullable Output<Boolean> publicAccessPrometheus) {
+            $.publicAccessPrometheus = publicAccessPrometheus;
+            return this;
+        }
+
+        /**
+         * @param publicAccessPrometheus Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicAccessPrometheus(Boolean publicAccessPrometheus) {
+            return publicAccessPrometheus(Output.of(publicAccessPrometheus));
+        }
+
+        /**
          * @param serviceLog Service logging. Store logs for the service so that they are available in the HTTP API and console.
          * 
          * @return builder
@@ -2742,6 +2787,19 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
          */
         public Builder sharedBuffersPercentage(Double sharedBuffersPercentage) {
             return sharedBuffersPercentage(Output.of(sharedBuffersPercentage));
+        }
+
+        public Builder switchoverWindows(@Nullable Output<List<String>> switchoverWindows) {
+            $.switchoverWindows = switchoverWindows;
+            return this;
+        }
+
+        public Builder switchoverWindows(List<String> switchoverWindows) {
+            return switchoverWindows(Output.of(switchoverWindows));
+        }
+
+        public Builder switchoverWindows(String... switchoverWindows) {
+            return switchoverWindows(List.of(switchoverWindows));
         }
 
         /**
