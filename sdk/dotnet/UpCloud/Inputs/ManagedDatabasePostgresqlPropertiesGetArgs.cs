@@ -246,7 +246,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? LogTempFiles { get; set; }
 
         /// <summary>
-        /// Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
+        /// Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
         /// </summary>
         [Input("maxConnections")]
         public Input<int>? MaxConnections { get; set; }
@@ -264,7 +264,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? MaxLocksPerTransaction { get; set; }
 
         /// <summary>
-        /// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+        /// PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
         /// </summary>
         [Input("maxLogicalReplicationWorkers")]
         public Input<int>? MaxLogicalReplicationWorkers { get; set; }
@@ -430,6 +430,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<bool>? PublicAccess { get; set; }
 
         /// <summary>
+        /// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        /// </summary>
+        [Input("publicAccessPrometheus")]
+        public Input<bool>? PublicAccessPrometheus { get; set; }
+
+        /// <summary>
         /// Service logging. Store logs for the service so that they are available in the HTTP API and console.
         /// </summary>
         [Input("serviceLog")]
@@ -440,6 +446,14 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         /// </summary>
         [Input("sharedBuffersPercentage")]
         public Input<double>? SharedBuffersPercentage { get; set; }
+
+        [Input("switchoverWindows")]
+        private InputList<string>? _switchoverWindows;
+        public InputList<string> SwitchoverWindows
+        {
+            get => _switchoverWindows ?? (_switchoverWindows = new InputList<string>());
+            set => _switchoverWindows = value;
+        }
 
         /// <summary>
         /// Synchronous replication type. Note that the service plan also needs to support synchronous replication.

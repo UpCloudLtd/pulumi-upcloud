@@ -43,6 +43,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? PublicAccess;
         /// <summary>
+        /// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        /// </summary>
+        public readonly bool? PublicAccessPrometheus;
+        /// <summary>
         /// Service logging. Store logs for the service so that they are available in the HTTP API and console.
         /// </summary>
         public readonly bool? ServiceLog;
@@ -94,6 +98,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// Valkey idle connection timeout in seconds.
         /// </summary>
         public readonly int? ValkeyTimeout;
+        /// <summary>
+        /// Valkey major version.
+        /// </summary>
+        public readonly string? ValkeyVersion;
 
         [OutputConstructor]
         private ManagedDatabaseValkeyProperties(
@@ -110,6 +118,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             Outputs.ManagedDatabaseValkeyPropertiesMigration? migration,
 
             bool? publicAccess,
+
+            bool? publicAccessPrometheus,
 
             bool? serviceLog,
 
@@ -135,7 +145,9 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             bool? valkeySsl,
 
-            int? valkeyTimeout)
+            int? valkeyTimeout,
+
+            string? valkeyVersion)
         {
             AutomaticUtilityNetworkIpFilter = automaticUtilityNetworkIpFilter;
             BackupHour = backupHour;
@@ -144,6 +156,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             IpFilters = ipFilters;
             Migration = migration;
             PublicAccess = publicAccess;
+            PublicAccessPrometheus = publicAccessPrometheus;
             ServiceLog = serviceLog;
             ValkeyAclChannelsDefault = valkeyAclChannelsDefault;
             ValkeyActiveExpireEffort = valkeyActiveExpireEffort;
@@ -157,6 +170,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             ValkeyPubsubClientOutputBufferLimit = valkeyPubsubClientOutputBufferLimit;
             ValkeySsl = valkeySsl;
             ValkeyTimeout = valkeyTimeout;
+            ValkeyVersion = valkeyVersion;
         }
     }
 }

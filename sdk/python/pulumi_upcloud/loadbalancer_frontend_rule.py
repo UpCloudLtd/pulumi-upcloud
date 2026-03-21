@@ -268,6 +268,10 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
                 }],
             },
             actions={
+                "http_rewrite_paths": [{
+                    "match_pattern": "^/old/(.*)$",
+                    "rewrite_to": "/new/\\\\1",
+                }],
                 "use_backends": [{
                     "backend_name": upcloud_loadbalancer_backend["lbBe1"]["name"],
                 }],
@@ -347,6 +351,10 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
                 }],
             },
             actions={
+                "http_rewrite_paths": [{
+                    "match_pattern": "^/old/(.*)$",
+                    "rewrite_to": "/new/\\\\1",
+                }],
                 "use_backends": [{
                     "backend_name": upcloud_loadbalancer_backend["lbBe1"]["name"],
                 }],

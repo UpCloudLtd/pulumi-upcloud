@@ -159,7 +159,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? LogTempFiles;
         /// <summary>
-        /// Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
+        /// Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
         /// </summary>
         public readonly int? MaxConnections;
         /// <summary>
@@ -171,7 +171,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? MaxLocksPerTransaction;
         /// <summary>
-        /// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+        /// PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
         /// </summary>
         public readonly int? MaxLogicalReplicationWorkers;
         /// <summary>
@@ -275,6 +275,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? PublicAccess;
         /// <summary>
+        /// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        /// </summary>
+        public readonly bool? PublicAccessPrometheus;
+        /// <summary>
         /// Service logging. Store logs for the service so that they are available in the HTTP API and console.
         /// </summary>
         public readonly bool? ServiceLog;
@@ -282,6 +286,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the SharedBuffers configuration value. Changing this parameter causes a service restart.
         /// </summary>
         public readonly double? SharedBuffersPercentage;
+        public readonly ImmutableArray<string> SwitchoverWindows;
         /// <summary>
         /// Synchronous replication type. Note that the service plan also needs to support synchronous replication.
         /// </summary>
@@ -467,9 +472,13 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             bool? publicAccess,
 
+            bool? publicAccessPrometheus,
+
             bool? serviceLog,
 
             double? sharedBuffersPercentage,
+
+            ImmutableArray<string> switchoverWindows,
 
             string? synchronousReplication,
 
@@ -562,8 +571,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             Pgbouncer = pgbouncer;
             Pglookout = pglookout;
             PublicAccess = publicAccess;
+            PublicAccessPrometheus = publicAccessPrometheus;
             ServiceLog = serviceLog;
             SharedBuffersPercentage = sharedBuffersPercentage;
+            SwitchoverWindows = switchoverWindows;
             SynchronousReplication = synchronousReplication;
             TempFileLimit = tempFileLimit;
             Timescaledb = timescaledb;

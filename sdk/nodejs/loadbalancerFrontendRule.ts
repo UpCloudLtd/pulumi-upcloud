@@ -36,6 +36,10 @@ import * as utilities from "./utilities";
  *         }],
  *     },
  *     actions: {
+ *         httpRewritePaths: [{
+ *             matchPattern: "^/old/(.*)$",
+ *             rewriteTo: "/new/\\1",
+ *         }],
  *         useBackends: [{
  *             backendName: upcloudLoadbalancerBackend.lbBe1.name,
  *         }],

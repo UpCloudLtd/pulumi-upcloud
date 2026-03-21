@@ -23,6 +23,14 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsHttpReturn> HttpReturns;
         /// <summary>
+        /// Rewrites the HTTP request path using regex pattern matching.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsHttpRewritePath> HttpRewritePaths;
+        /// <summary>
+        /// Rewrites the entire HTTP request URI using regex pattern matching.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsHttpRewriteUri> HttpRewriteUris;
+        /// <summary>
         /// Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
         /// </summary>
         public readonly ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsSetForwardedHeader> SetForwardedHeaders;
@@ -49,6 +57,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsHttpReturn> httpReturns,
 
+            ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsHttpRewritePath> httpRewritePaths,
+
+            ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsHttpRewriteUri> httpRewriteUris,
+
             ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsSetForwardedHeader> setForwardedHeaders,
 
             ImmutableArray<Outputs.LoadbalancerFrontendRuleActionsSetRequestHeader> setRequestHeaders,
@@ -61,6 +73,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         {
             HttpRedirects = httpRedirects;
             HttpReturns = httpReturns;
+            HttpRewritePaths = httpRewritePaths;
+            HttpRewriteUris = httpRewriteUris;
             SetForwardedHeaders = setForwardedHeaders;
             SetRequestHeaders = setRequestHeaders;
             SetResponseHeaders = setResponseHeaders;

@@ -858,14 +858,29 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+     * Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    @Import(name="publicAccessPrometheus")
+    private @Nullable Output<Boolean> publicAccessPrometheus;
+
+    /**
+     * @return Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    public Optional<Output<Boolean>> publicAccessPrometheus() {
+        return Optional.ofNullable(this.publicAccessPrometheus);
+    }
+
+    /**
+     * reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
      * 
      */
     @Import(name="reindexRemoteWhitelists")
     private @Nullable Output<List<String>> reindexRemoteWhitelists;
 
     /**
-     * @return Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+     * @return reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
      * 
      */
     public Optional<Output<List<String>>> reindexRemoteWhitelists() {
@@ -1230,6 +1245,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         this.overrideMainResponseVersion = $.overrideMainResponseVersion;
         this.pluginsAlertingFilterByBackendRoles = $.pluginsAlertingFilterByBackendRoles;
         this.publicAccess = $.publicAccess;
+        this.publicAccessPrometheus = $.publicAccessPrometheus;
         this.reindexRemoteWhitelists = $.reindexRemoteWhitelists;
         this.remoteStore = $.remoteStore;
         this.saml = $.saml;
@@ -2465,7 +2481,28 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param reindexRemoteWhitelists Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+         * @param publicAccessPrometheus Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicAccessPrometheus(@Nullable Output<Boolean> publicAccessPrometheus) {
+            $.publicAccessPrometheus = publicAccessPrometheus;
+            return this;
+        }
+
+        /**
+         * @param publicAccessPrometheus Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicAccessPrometheus(Boolean publicAccessPrometheus) {
+            return publicAccessPrometheus(Output.of(publicAccessPrometheus));
+        }
+
+        /**
+         * @param reindexRemoteWhitelists reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
          * 
          * @return builder
          * 
@@ -2476,7 +2513,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param reindexRemoteWhitelists Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+         * @param reindexRemoteWhitelists reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
          * 
          * @return builder
          * 
@@ -2486,7 +2523,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param reindexRemoteWhitelists Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+         * @param reindexRemoteWhitelists reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
          * 
          * @return builder
          * 

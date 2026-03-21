@@ -58,6 +58,12 @@ import (
 //					},
 //				},
 //				Actions: &upcloud.LoadbalancerFrontendRuleActionsArgs{
+//					HttpRewritePaths: upcloud.LoadbalancerFrontendRuleActionsHttpRewritePathArray{
+//						&upcloud.LoadbalancerFrontendRuleActionsHttpRewritePathArgs{
+//							MatchPattern: pulumi.String("^/old/(.*)$"),
+//							RewriteTo:    pulumi.String("/new/\\1"),
+//						},
+//					},
 //					UseBackends: upcloud.LoadbalancerFrontendRuleActionsUseBackendArray{
 //						&upcloud.LoadbalancerFrontendRuleActionsUseBackendArgs{
 //							BackendName: pulumi.Any(upcloudLoadbalancerBackend.LbBe1.Name),

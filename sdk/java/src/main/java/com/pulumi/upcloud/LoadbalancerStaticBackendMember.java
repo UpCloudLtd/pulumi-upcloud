@@ -79,7 +79,7 @@ import javax.annotation.Nullable;
  *             .name("lb-be-1-sm-1-test")
  *             .ip("10.0.0.10")
  *             .port(8000)
- *             .weight(0)
+ *             .weight(10)
  *             .maxSessions(0)
  *             .enabled(true)
  *             .build());

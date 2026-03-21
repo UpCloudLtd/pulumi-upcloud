@@ -233,7 +233,11 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? PublicAccess;
         /// <summary>
-        /// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+        /// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        /// </summary>
+        public readonly bool? PublicAccessPrometheus;
+        /// <summary>
+        /// reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
         /// </summary>
         public readonly ImmutableArray<string> ReindexRemoteWhitelists;
         public readonly Outputs.ManagedDatabaseOpensearchPropertiesRemoteStore? RemoteStore;
@@ -429,6 +433,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             bool? publicAccess,
 
+            bool? publicAccessPrometheus,
+
             ImmutableArray<string> reindexRemoteWhitelists,
 
             Outputs.ManagedDatabaseOpensearchPropertiesRemoteStore? remoteStore,
@@ -529,6 +535,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             OverrideMainResponseVersion = overrideMainResponseVersion;
             PluginsAlertingFilterByBackendRoles = pluginsAlertingFilterByBackendRoles;
             PublicAccess = publicAccess;
+            PublicAccessPrometheus = publicAccessPrometheus;
             ReindexRemoteWhitelists = reindexRemoteWhitelists;
             RemoteStore = remoteStore;
             Saml = saml;

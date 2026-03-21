@@ -123,6 +123,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly double? LongQueryTime;
         /// <summary>
+        /// Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
+        /// </summary>
+        public readonly int? LowerCaseTableNames;
+        /// <summary>
         /// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
         /// </summary>
         public readonly int? MaxAllowedPacket;
@@ -154,6 +158,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// Public Access. Allow access to the service from the public Internet.
         /// </summary>
         public readonly bool? PublicAccess;
+        /// <summary>
+        /// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        /// </summary>
+        public readonly bool? PublicAccessPrometheus;
         /// <summary>
         /// Service logging. Store logs for the service so that they are available in the HTTP API and console.
         /// </summary>
@@ -243,6 +251,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             double? longQueryTime,
 
+            int? lowerCaseTableNames,
+
             int? maxAllowedPacket,
 
             int? maxHeapTableSize,
@@ -258,6 +268,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             int? netWriteTimeout,
 
             bool? publicAccess,
+
+            bool? publicAccessPrometheus,
 
             bool? serviceLog,
 
@@ -302,6 +314,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             IpFilters = ipFilters;
             LogOutput = logOutput;
             LongQueryTime = longQueryTime;
+            LowerCaseTableNames = lowerCaseTableNames;
             MaxAllowedPacket = maxAllowedPacket;
             MaxHeapTableSize = maxHeapTableSize;
             Migration = migration;
@@ -310,6 +323,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             NetReadTimeout = netReadTimeout;
             NetWriteTimeout = netWriteTimeout;
             PublicAccess = publicAccess;
+            PublicAccessPrometheus = publicAccessPrometheus;
             ServiceLog = serviceLog;
             SlowQueryLog = slowQueryLog;
             SortBufferSize = sortBufferSize;

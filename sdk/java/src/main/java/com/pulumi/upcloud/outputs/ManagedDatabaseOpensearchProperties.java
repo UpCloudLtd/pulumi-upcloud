@@ -302,7 +302,12 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     private @Nullable Boolean publicAccess;
     /**
-     * @return Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+     * @return Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    private @Nullable Boolean publicAccessPrometheus;
+    /**
+     * @return reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
      * 
      */
     private @Nullable List<String> reindexRemoteWhitelists;
@@ -790,7 +795,14 @@ public final class ManagedDatabaseOpensearchProperties {
         return Optional.ofNullable(this.publicAccess);
     }
     /**
-     * @return Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+     * @return Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+     * 
+     */
+    public Optional<Boolean> publicAccessPrometheus() {
+        return Optional.ofNullable(this.publicAccessPrometheus);
+    }
+    /**
+     * @return reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
      * 
      */
     public List<String> reindexRemoteWhitelists() {
@@ -1001,6 +1013,7 @@ public final class ManagedDatabaseOpensearchProperties {
         private @Nullable Boolean overrideMainResponseVersion;
         private @Nullable Boolean pluginsAlertingFilterByBackendRoles;
         private @Nullable Boolean publicAccess;
+        private @Nullable Boolean publicAccessPrometheus;
         private @Nullable List<String> reindexRemoteWhitelists;
         private @Nullable ManagedDatabaseOpensearchPropertiesRemoteStore remoteStore;
         private @Nullable ManagedDatabaseOpensearchPropertiesSaml saml;
@@ -1082,6 +1095,7 @@ public final class ManagedDatabaseOpensearchProperties {
     	      this.overrideMainResponseVersion = defaults.overrideMainResponseVersion;
     	      this.pluginsAlertingFilterByBackendRoles = defaults.pluginsAlertingFilterByBackendRoles;
     	      this.publicAccess = defaults.publicAccess;
+    	      this.publicAccessPrometheus = defaults.publicAccessPrometheus;
     	      this.reindexRemoteWhitelists = defaults.reindexRemoteWhitelists;
     	      this.remoteStore = defaults.remoteStore;
     	      this.saml = defaults.saml;
@@ -1455,6 +1469,12 @@ public final class ManagedDatabaseOpensearchProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder publicAccessPrometheus(@Nullable Boolean publicAccessPrometheus) {
+
+            this.publicAccessPrometheus = publicAccessPrometheus;
+            return this;
+        }
+        @CustomType.Setter
         public Builder reindexRemoteWhitelists(@Nullable List<String> reindexRemoteWhitelists) {
 
             this.reindexRemoteWhitelists = reindexRemoteWhitelists;
@@ -1647,6 +1667,7 @@ public final class ManagedDatabaseOpensearchProperties {
             _resultValue.overrideMainResponseVersion = overrideMainResponseVersion;
             _resultValue.pluginsAlertingFilterByBackendRoles = pluginsAlertingFilterByBackendRoles;
             _resultValue.publicAccess = publicAccess;
+            _resultValue.publicAccessPrometheus = publicAccessPrometheus;
             _resultValue.reindexRemoteWhitelists = reindexRemoteWhitelists;
             _resultValue.remoteStore = remoteStore;
             _resultValue.saml = saml;

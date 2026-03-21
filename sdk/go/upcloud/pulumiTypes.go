@@ -2576,6 +2576,10 @@ type LoadbalancerFrontendRuleActions struct {
 	HttpRedirects []LoadbalancerFrontendRuleActionsHttpRedirect `pulumi:"httpRedirects"`
 	// Returns HTTP response with specified HTTP status.
 	HttpReturns []LoadbalancerFrontendRuleActionsHttpReturn `pulumi:"httpReturns"`
+	// Rewrites the HTTP request path using regex pattern matching.
+	HttpRewritePaths []LoadbalancerFrontendRuleActionsHttpRewritePath `pulumi:"httpRewritePaths"`
+	// Rewrites the entire HTTP request URI using regex pattern matching.
+	HttpRewriteUris []LoadbalancerFrontendRuleActionsHttpRewriteUri `pulumi:"httpRewriteUris"`
 	// Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
 	SetForwardedHeaders []LoadbalancerFrontendRuleActionsSetForwardedHeader `pulumi:"setForwardedHeaders"`
 	// Set request header
@@ -2604,6 +2608,10 @@ type LoadbalancerFrontendRuleActionsArgs struct {
 	HttpRedirects LoadbalancerFrontendRuleActionsHttpRedirectArrayInput `pulumi:"httpRedirects"`
 	// Returns HTTP response with specified HTTP status.
 	HttpReturns LoadbalancerFrontendRuleActionsHttpReturnArrayInput `pulumi:"httpReturns"`
+	// Rewrites the HTTP request path using regex pattern matching.
+	HttpRewritePaths LoadbalancerFrontendRuleActionsHttpRewritePathArrayInput `pulumi:"httpRewritePaths"`
+	// Rewrites the entire HTTP request URI using regex pattern matching.
+	HttpRewriteUris LoadbalancerFrontendRuleActionsHttpRewriteUriArrayInput `pulumi:"httpRewriteUris"`
 	// Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
 	SetForwardedHeaders LoadbalancerFrontendRuleActionsSetForwardedHeaderArrayInput `pulumi:"setForwardedHeaders"`
 	// Set request header
@@ -2707,6 +2715,20 @@ func (o LoadbalancerFrontendRuleActionsOutput) HttpReturns() LoadbalancerFronten
 	}).(LoadbalancerFrontendRuleActionsHttpReturnArrayOutput)
 }
 
+// Rewrites the HTTP request path using regex pattern matching.
+func (o LoadbalancerFrontendRuleActionsOutput) HttpRewritePaths() LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleActions) []LoadbalancerFrontendRuleActionsHttpRewritePath {
+		return v.HttpRewritePaths
+	}).(LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput)
+}
+
+// Rewrites the entire HTTP request URI using regex pattern matching.
+func (o LoadbalancerFrontendRuleActionsOutput) HttpRewriteUris() LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleActions) []LoadbalancerFrontendRuleActionsHttpRewriteUri {
+		return v.HttpRewriteUris
+	}).(LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput)
+}
+
 // Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
 func (o LoadbalancerFrontendRuleActionsOutput) SetForwardedHeaders() LoadbalancerFrontendRuleActionsSetForwardedHeaderArrayOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendRuleActions) []LoadbalancerFrontendRuleActionsSetForwardedHeader {
@@ -2784,6 +2806,26 @@ func (o LoadbalancerFrontendRuleActionsPtrOutput) HttpReturns() LoadbalancerFron
 		}
 		return v.HttpReturns
 	}).(LoadbalancerFrontendRuleActionsHttpReturnArrayOutput)
+}
+
+// Rewrites the HTTP request path using regex pattern matching.
+func (o LoadbalancerFrontendRuleActionsPtrOutput) HttpRewritePaths() LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontendRuleActions) []LoadbalancerFrontendRuleActionsHttpRewritePath {
+		if v == nil {
+			return nil
+		}
+		return v.HttpRewritePaths
+	}).(LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput)
+}
+
+// Rewrites the entire HTTP request URI using regex pattern matching.
+func (o LoadbalancerFrontendRuleActionsPtrOutput) HttpRewriteUris() LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontendRuleActions) []LoadbalancerFrontendRuleActionsHttpRewriteUri {
+		if v == nil {
+			return nil
+		}
+		return v.HttpRewriteUris
+	}).(LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput)
 }
 
 // Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
@@ -3064,6 +3106,218 @@ func (o LoadbalancerFrontendRuleActionsHttpReturnArrayOutput) Index(i pulumi.Int
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadbalancerFrontendRuleActionsHttpReturn {
 		return vs[0].([]LoadbalancerFrontendRuleActionsHttpReturn)[vs[1].(int)]
 	}).(LoadbalancerFrontendRuleActionsHttpReturnOutput)
+}
+
+type LoadbalancerFrontendRuleActionsHttpRewritePath struct {
+	// Regex pattern to match against the request path.
+	MatchPattern string `pulumi:"matchPattern"`
+	// Replacement pattern.
+	RewriteTo string `pulumi:"rewriteTo"`
+}
+
+// LoadbalancerFrontendRuleActionsHttpRewritePathInput is an input type that accepts LoadbalancerFrontendRuleActionsHttpRewritePathArgs and LoadbalancerFrontendRuleActionsHttpRewritePathOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleActionsHttpRewritePathInput` via:
+//
+//	LoadbalancerFrontendRuleActionsHttpRewritePathArgs{...}
+type LoadbalancerFrontendRuleActionsHttpRewritePathInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleActionsHttpRewritePathOutput() LoadbalancerFrontendRuleActionsHttpRewritePathOutput
+	ToLoadbalancerFrontendRuleActionsHttpRewritePathOutputWithContext(context.Context) LoadbalancerFrontendRuleActionsHttpRewritePathOutput
+}
+
+type LoadbalancerFrontendRuleActionsHttpRewritePathArgs struct {
+	// Regex pattern to match against the request path.
+	MatchPattern pulumi.StringInput `pulumi:"matchPattern"`
+	// Replacement pattern.
+	RewriteTo pulumi.StringInput `pulumi:"rewriteTo"`
+}
+
+func (LoadbalancerFrontendRuleActionsHttpRewritePathArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleActionsHttpRewritePath)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleActionsHttpRewritePathArgs) ToLoadbalancerFrontendRuleActionsHttpRewritePathOutput() LoadbalancerFrontendRuleActionsHttpRewritePathOutput {
+	return i.ToLoadbalancerFrontendRuleActionsHttpRewritePathOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleActionsHttpRewritePathArgs) ToLoadbalancerFrontendRuleActionsHttpRewritePathOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsHttpRewritePathOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleActionsHttpRewritePathOutput)
+}
+
+// LoadbalancerFrontendRuleActionsHttpRewritePathArrayInput is an input type that accepts LoadbalancerFrontendRuleActionsHttpRewritePathArray and LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleActionsHttpRewritePathArrayInput` via:
+//
+//	LoadbalancerFrontendRuleActionsHttpRewritePathArray{ LoadbalancerFrontendRuleActionsHttpRewritePathArgs{...} }
+type LoadbalancerFrontendRuleActionsHttpRewritePathArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput() LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput
+	ToLoadbalancerFrontendRuleActionsHttpRewritePathArrayOutputWithContext(context.Context) LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput
+}
+
+type LoadbalancerFrontendRuleActionsHttpRewritePathArray []LoadbalancerFrontendRuleActionsHttpRewritePathInput
+
+func (LoadbalancerFrontendRuleActionsHttpRewritePathArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleActionsHttpRewritePath)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleActionsHttpRewritePathArray) ToLoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput() LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput {
+	return i.ToLoadbalancerFrontendRuleActionsHttpRewritePathArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleActionsHttpRewritePathArray) ToLoadbalancerFrontendRuleActionsHttpRewritePathArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput)
+}
+
+type LoadbalancerFrontendRuleActionsHttpRewritePathOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleActionsHttpRewritePathOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleActionsHttpRewritePath)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleActionsHttpRewritePathOutput) ToLoadbalancerFrontendRuleActionsHttpRewritePathOutput() LoadbalancerFrontendRuleActionsHttpRewritePathOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleActionsHttpRewritePathOutput) ToLoadbalancerFrontendRuleActionsHttpRewritePathOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsHttpRewritePathOutput {
+	return o
+}
+
+// Regex pattern to match against the request path.
+func (o LoadbalancerFrontendRuleActionsHttpRewritePathOutput) MatchPattern() pulumi.StringOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleActionsHttpRewritePath) string { return v.MatchPattern }).(pulumi.StringOutput)
+}
+
+// Replacement pattern.
+func (o LoadbalancerFrontendRuleActionsHttpRewritePathOutput) RewriteTo() pulumi.StringOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleActionsHttpRewritePath) string { return v.RewriteTo }).(pulumi.StringOutput)
+}
+
+type LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleActionsHttpRewritePath)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput) ToLoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput() LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput) ToLoadbalancerFrontendRuleActionsHttpRewritePathArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput) Index(i pulumi.IntInput) LoadbalancerFrontendRuleActionsHttpRewritePathOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadbalancerFrontendRuleActionsHttpRewritePath {
+		return vs[0].([]LoadbalancerFrontendRuleActionsHttpRewritePath)[vs[1].(int)]
+	}).(LoadbalancerFrontendRuleActionsHttpRewritePathOutput)
+}
+
+type LoadbalancerFrontendRuleActionsHttpRewriteUri struct {
+	// Regex pattern to match against the request URI.
+	MatchPattern string `pulumi:"matchPattern"`
+	// Replacement pattern.
+	RewriteTo string `pulumi:"rewriteTo"`
+}
+
+// LoadbalancerFrontendRuleActionsHttpRewriteUriInput is an input type that accepts LoadbalancerFrontendRuleActionsHttpRewriteUriArgs and LoadbalancerFrontendRuleActionsHttpRewriteUriOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleActionsHttpRewriteUriInput` via:
+//
+//	LoadbalancerFrontendRuleActionsHttpRewriteUriArgs{...}
+type LoadbalancerFrontendRuleActionsHttpRewriteUriInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleActionsHttpRewriteUriOutput() LoadbalancerFrontendRuleActionsHttpRewriteUriOutput
+	ToLoadbalancerFrontendRuleActionsHttpRewriteUriOutputWithContext(context.Context) LoadbalancerFrontendRuleActionsHttpRewriteUriOutput
+}
+
+type LoadbalancerFrontendRuleActionsHttpRewriteUriArgs struct {
+	// Regex pattern to match against the request URI.
+	MatchPattern pulumi.StringInput `pulumi:"matchPattern"`
+	// Replacement pattern.
+	RewriteTo pulumi.StringInput `pulumi:"rewriteTo"`
+}
+
+func (LoadbalancerFrontendRuleActionsHttpRewriteUriArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleActionsHttpRewriteUri)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleActionsHttpRewriteUriArgs) ToLoadbalancerFrontendRuleActionsHttpRewriteUriOutput() LoadbalancerFrontendRuleActionsHttpRewriteUriOutput {
+	return i.ToLoadbalancerFrontendRuleActionsHttpRewriteUriOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleActionsHttpRewriteUriArgs) ToLoadbalancerFrontendRuleActionsHttpRewriteUriOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsHttpRewriteUriOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleActionsHttpRewriteUriOutput)
+}
+
+// LoadbalancerFrontendRuleActionsHttpRewriteUriArrayInput is an input type that accepts LoadbalancerFrontendRuleActionsHttpRewriteUriArray and LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendRuleActionsHttpRewriteUriArrayInput` via:
+//
+//	LoadbalancerFrontendRuleActionsHttpRewriteUriArray{ LoadbalancerFrontendRuleActionsHttpRewriteUriArgs{...} }
+type LoadbalancerFrontendRuleActionsHttpRewriteUriArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput() LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput
+	ToLoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutputWithContext(context.Context) LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput
+}
+
+type LoadbalancerFrontendRuleActionsHttpRewriteUriArray []LoadbalancerFrontendRuleActionsHttpRewriteUriInput
+
+func (LoadbalancerFrontendRuleActionsHttpRewriteUriArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleActionsHttpRewriteUri)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendRuleActionsHttpRewriteUriArray) ToLoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput() LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput {
+	return i.ToLoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendRuleActionsHttpRewriteUriArray) ToLoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput)
+}
+
+type LoadbalancerFrontendRuleActionsHttpRewriteUriOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleActionsHttpRewriteUriOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendRuleActionsHttpRewriteUri)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleActionsHttpRewriteUriOutput) ToLoadbalancerFrontendRuleActionsHttpRewriteUriOutput() LoadbalancerFrontendRuleActionsHttpRewriteUriOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleActionsHttpRewriteUriOutput) ToLoadbalancerFrontendRuleActionsHttpRewriteUriOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsHttpRewriteUriOutput {
+	return o
+}
+
+// Regex pattern to match against the request URI.
+func (o LoadbalancerFrontendRuleActionsHttpRewriteUriOutput) MatchPattern() pulumi.StringOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleActionsHttpRewriteUri) string { return v.MatchPattern }).(pulumi.StringOutput)
+}
+
+// Replacement pattern.
+func (o LoadbalancerFrontendRuleActionsHttpRewriteUriOutput) RewriteTo() pulumi.StringOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendRuleActionsHttpRewriteUri) string { return v.RewriteTo }).(pulumi.StringOutput)
+}
+
+type LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendRuleActionsHttpRewriteUri)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput) ToLoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput() LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput) ToLoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput) Index(i pulumi.IntInput) LoadbalancerFrontendRuleActionsHttpRewriteUriOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadbalancerFrontendRuleActionsHttpRewriteUri {
+		return vs[0].([]LoadbalancerFrontendRuleActionsHttpRewriteUri)[vs[1].(int)]
+	}).(LoadbalancerFrontendRuleActionsHttpRewriteUriOutput)
 }
 
 type LoadbalancerFrontendRuleActionsSetForwardedHeader struct {
@@ -7227,6 +7481,8 @@ type ManagedDatabaseMysqlProperties struct {
 	LogOutput *string `pulumi:"logOutput"`
 	// The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute.
 	LongQueryTime *float64 `pulumi:"longQueryTime"`
+	// Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
+	LowerCaseTableNames *int `pulumi:"lowerCaseTableNames"`
 	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
 	MaxAllowedPacket *int `pulumi:"maxAllowedPacket"`
 	// Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
@@ -7243,6 +7499,8 @@ type ManagedDatabaseMysqlProperties struct {
 	NetWriteTimeout *int `pulumi:"netWriteTimeout"`
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess *bool `pulumi:"publicAccess"`
+	// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+	PublicAccessPrometheus *bool `pulumi:"publicAccessPrometheus"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog *bool `pulumi:"serviceLog"`
 	// Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table.
@@ -7327,6 +7585,8 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	LogOutput pulumi.StringPtrInput `pulumi:"logOutput"`
 	// The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute.
 	LongQueryTime pulumi.Float64PtrInput `pulumi:"longQueryTime"`
+	// Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
+	LowerCaseTableNames pulumi.IntPtrInput `pulumi:"lowerCaseTableNames"`
 	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
 	MaxAllowedPacket pulumi.IntPtrInput `pulumi:"maxAllowedPacket"`
 	// Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
@@ -7343,6 +7603,8 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	NetWriteTimeout pulumi.IntPtrInput `pulumi:"netWriteTimeout"`
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess pulumi.BoolPtrInput `pulumi:"publicAccess"`
+	// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+	PublicAccessPrometheus pulumi.BoolPtrInput `pulumi:"publicAccessPrometheus"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog pulumi.BoolPtrInput `pulumi:"serviceLog"`
 	// Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table.
@@ -7573,6 +7835,11 @@ func (o ManagedDatabaseMysqlPropertiesOutput) LongQueryTime() pulumi.Float64PtrO
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *float64 { return v.LongQueryTime }).(pulumi.Float64PtrOutput)
 }
 
+// Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
+func (o ManagedDatabaseMysqlPropertiesOutput) LowerCaseTableNames() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.LowerCaseTableNames }).(pulumi.IntPtrOutput)
+}
+
 // Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
 func (o ManagedDatabaseMysqlPropertiesOutput) MaxAllowedPacket() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.MaxAllowedPacket }).(pulumi.IntPtrOutput)
@@ -7613,6 +7880,11 @@ func (o ManagedDatabaseMysqlPropertiesOutput) NetWriteTimeout() pulumi.IntPtrOut
 // Public Access. Allow access to the service from the public Internet.
 func (o ManagedDatabaseMysqlPropertiesOutput) PublicAccess() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *bool { return v.PublicAccess }).(pulumi.BoolPtrOutput)
+}
+
+// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+func (o ManagedDatabaseMysqlPropertiesOutput) PublicAccessPrometheus() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *bool { return v.PublicAccessPrometheus }).(pulumi.BoolPtrOutput)
 }
 
 // Service logging. Store logs for the service so that they are available in the HTTP API and console.
@@ -7949,6 +8221,16 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) LongQueryTime() pulumi.Float64P
 	}).(pulumi.Float64PtrOutput)
 }
 
+// Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) LowerCaseTableNames() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.LowerCaseTableNames
+	}).(pulumi.IntPtrOutput)
+}
+
 // Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
 func (o ManagedDatabaseMysqlPropertiesPtrOutput) MaxAllowedPacket() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
@@ -8026,6 +8308,16 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) PublicAccess() pulumi.BoolPtrOu
 			return nil
 		}
 		return v.PublicAccess
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) PublicAccessPrometheus() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.PublicAccessPrometheus
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -9075,7 +9367,9 @@ type ManagedDatabaseOpensearchProperties struct {
 	PluginsAlertingFilterByBackendRoles *bool `pulumi:"pluginsAlertingFilterByBackendRoles"`
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess *bool `pulumi:"publicAccess"`
-	// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+	// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+	PublicAccessPrometheus *bool `pulumi:"publicAccessPrometheus"`
+	// reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
 	ReindexRemoteWhitelists []string                                        `pulumi:"reindexRemoteWhitelists"`
 	RemoteStore             *ManagedDatabaseOpensearchPropertiesRemoteStore `pulumi:"remoteStore"`
 	// OpenSearch SAML configuration.
@@ -9241,7 +9535,9 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	PluginsAlertingFilterByBackendRoles pulumi.BoolPtrInput `pulumi:"pluginsAlertingFilterByBackendRoles"`
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess pulumi.BoolPtrInput `pulumi:"publicAccess"`
-	// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+	// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+	PublicAccessPrometheus pulumi.BoolPtrInput `pulumi:"publicAccessPrometheus"`
+	// reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
 	ReindexRemoteWhitelists pulumi.StringArrayInput                                `pulumi:"reindexRemoteWhitelists"`
 	RemoteStore             ManagedDatabaseOpensearchPropertiesRemoteStorePtrInput `pulumi:"remoteStore"`
 	// OpenSearch SAML configuration.
@@ -9660,7 +9956,12 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) PublicAccess() pulumi.BoolPtr
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.PublicAccess }).(pulumi.BoolPtrOutput)
 }
 
-// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+func (o ManagedDatabaseOpensearchPropertiesOutput) PublicAccessPrometheus() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.PublicAccessPrometheus }).(pulumi.BoolPtrOutput)
+}
+
+// reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
 func (o ManagedDatabaseOpensearchPropertiesOutput) ReindexRemoteWhitelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) []string { return v.ReindexRemoteWhitelists }).(pulumi.StringArrayOutput)
 }
@@ -10360,7 +10661,17 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) PublicAccess() pulumi.Bool
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) PublicAccessPrometheus() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.PublicAccessPrometheus
+	}).(pulumi.BoolPtrOutput)
+}
+
+// reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ReindexRemoteWhitelists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) []string {
 		if v == nil {
@@ -16648,13 +16959,13 @@ type ManagedDatabasePostgresqlProperties struct {
 	LogMinDurationStatement *int `pulumi:"logMinDurationStatement"`
 	// Log statements for each temporary file created larger than this number of kilobytes, -1 disables.
 	LogTempFiles *int `pulumi:"logTempFiles"`
-	// Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
+	// Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
 	MaxConnections *int `pulumi:"maxConnections"`
 	// PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
 	MaxFilesPerProcess *int `pulumi:"maxFilesPerProcess"`
 	// PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
 	MaxLocksPerTransaction *int `pulumi:"maxLocksPerTransaction"`
-	// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+	// PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
 	MaxLogicalReplicationWorkers *int `pulumi:"maxLogicalReplicationWorkers"`
 	// Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
 	MaxParallelWorkers *int `pulumi:"maxParallelWorkers"`
@@ -16706,10 +17017,13 @@ type ManagedDatabasePostgresqlProperties struct {
 	Pglookout *ManagedDatabasePostgresqlPropertiesPglookout `pulumi:"pglookout"`
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess *bool `pulumi:"publicAccess"`
+	// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+	PublicAccessPrometheus *bool `pulumi:"publicAccessPrometheus"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog *bool `pulumi:"serviceLog"`
 	// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value. Changing this parameter causes a service restart.
 	SharedBuffersPercentage *float64 `pulumi:"sharedBuffersPercentage"`
+	SwitchoverWindows       []string `pulumi:"switchoverWindows"`
 	// Synchronous replication type. Note that the service plan also needs to support synchronous replication.
 	SynchronousReplication *string `pulumi:"synchronousReplication"`
 	// PostgreSQL temporary file limit in KiB, -1 for unlimited.
@@ -16822,13 +17136,13 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	LogMinDurationStatement pulumi.IntPtrInput `pulumi:"logMinDurationStatement"`
 	// Log statements for each temporary file created larger than this number of kilobytes, -1 disables.
 	LogTempFiles pulumi.IntPtrInput `pulumi:"logTempFiles"`
-	// Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
+	// Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
 	MaxConnections pulumi.IntPtrInput `pulumi:"maxConnections"`
 	// PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
 	MaxFilesPerProcess pulumi.IntPtrInput `pulumi:"maxFilesPerProcess"`
 	// PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
 	MaxLocksPerTransaction pulumi.IntPtrInput `pulumi:"maxLocksPerTransaction"`
-	// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+	// PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
 	MaxLogicalReplicationWorkers pulumi.IntPtrInput `pulumi:"maxLogicalReplicationWorkers"`
 	// Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
 	MaxParallelWorkers pulumi.IntPtrInput `pulumi:"maxParallelWorkers"`
@@ -16880,10 +17194,13 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	Pglookout ManagedDatabasePostgresqlPropertiesPglookoutPtrInput `pulumi:"pglookout"`
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess pulumi.BoolPtrInput `pulumi:"publicAccess"`
+	// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+	PublicAccessPrometheus pulumi.BoolPtrInput `pulumi:"publicAccessPrometheus"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog pulumi.BoolPtrInput `pulumi:"serviceLog"`
 	// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value. Changing this parameter causes a service restart.
-	SharedBuffersPercentage pulumi.Float64PtrInput `pulumi:"sharedBuffersPercentage"`
+	SharedBuffersPercentage pulumi.Float64PtrInput  `pulumi:"sharedBuffersPercentage"`
+	SwitchoverWindows       pulumi.StringArrayInput `pulumi:"switchoverWindows"`
 	// Synchronous replication type. Note that the service plan also needs to support synchronous replication.
 	SynchronousReplication pulumi.StringPtrInput `pulumi:"synchronousReplication"`
 	// PostgreSQL temporary file limit in KiB, -1 for unlimited.
@@ -17169,7 +17486,7 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) LogTempFiles() pulumi.IntPtrO
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.LogTempFiles }).(pulumi.IntPtrOutput)
 }
 
-// Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
+// Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxConnections }).(pulumi.IntPtrOutput)
 }
@@ -17184,7 +17501,7 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) MaxLocksPerTransaction() pulu
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxLocksPerTransaction }).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+// PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) MaxLogicalReplicationWorkers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.MaxLogicalReplicationWorkers }).(pulumi.IntPtrOutput)
 }
@@ -17322,6 +17639,11 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) PublicAccess() pulumi.BoolPtr
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *bool { return v.PublicAccess }).(pulumi.BoolPtrOutput)
 }
 
+// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+func (o ManagedDatabasePostgresqlPropertiesOutput) PublicAccessPrometheus() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *bool { return v.PublicAccessPrometheus }).(pulumi.BoolPtrOutput)
+}
+
 // Service logging. Store logs for the service so that they are available in the HTTP API and console.
 func (o ManagedDatabasePostgresqlPropertiesOutput) ServiceLog() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *bool { return v.ServiceLog }).(pulumi.BoolPtrOutput)
@@ -17330,6 +17652,10 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) ServiceLog() pulumi.BoolPtrOu
 // Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) SharedBuffersPercentage() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *float64 { return v.SharedBuffersPercentage }).(pulumi.Float64PtrOutput)
+}
+
+func (o ManagedDatabasePostgresqlPropertiesOutput) SwitchoverWindows() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) []string { return v.SwitchoverWindows }).(pulumi.StringArrayOutput)
 }
 
 // Synchronous replication type. Note that the service plan also needs to support synchronous replication.
@@ -17783,7 +18109,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) LogTempFiles() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
+// Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -17813,7 +18139,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxLocksPerTransaction() p
 	}).(pulumi.IntPtrOutput)
 }
 
-// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+// PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) MaxLogicalReplicationWorkers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -18073,6 +18399,16 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PublicAccess() pulumi.Bool
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PublicAccessPrometheus() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.PublicAccessPrometheus
+	}).(pulumi.BoolPtrOutput)
+}
+
 // Service logging. Store logs for the service so that they are available in the HTTP API and console.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) ServiceLog() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *bool {
@@ -18091,6 +18427,15 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) SharedBuffersPercentage() 
 		}
 		return v.SharedBuffersPercentage
 	}).(pulumi.Float64PtrOutput)
+}
+
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) SwitchoverWindows() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SwitchoverWindows
+	}).(pulumi.StringArrayOutput)
 }
 
 // Synchronous replication type. Note that the service plan also needs to support synchronous replication.
@@ -20465,6 +20810,8 @@ type ManagedDatabaseValkeyProperties struct {
 	Migration *ManagedDatabaseValkeyPropertiesMigration `pulumi:"migration"`
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess *bool `pulumi:"publicAccess"`
+	// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+	PublicAccessPrometheus *bool `pulumi:"publicAccessPrometheus"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog *bool `pulumi:"serviceLog"`
 	// Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
@@ -20491,6 +20838,8 @@ type ManagedDatabaseValkeyProperties struct {
 	ValkeySsl *bool `pulumi:"valkeySsl"`
 	// Valkey idle connection timeout in seconds.
 	ValkeyTimeout *int `pulumi:"valkeyTimeout"`
+	// Valkey major version.
+	ValkeyVersion *string `pulumi:"valkeyVersion"`
 }
 
 // ManagedDatabaseValkeyPropertiesInput is an input type that accepts ManagedDatabaseValkeyPropertiesArgs and ManagedDatabaseValkeyPropertiesOutput values.
@@ -20519,6 +20868,8 @@ type ManagedDatabaseValkeyPropertiesArgs struct {
 	Migration ManagedDatabaseValkeyPropertiesMigrationPtrInput `pulumi:"migration"`
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess pulumi.BoolPtrInput `pulumi:"publicAccess"`
+	// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+	PublicAccessPrometheus pulumi.BoolPtrInput `pulumi:"publicAccessPrometheus"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog pulumi.BoolPtrInput `pulumi:"serviceLog"`
 	// Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
@@ -20545,6 +20896,8 @@ type ManagedDatabaseValkeyPropertiesArgs struct {
 	ValkeySsl pulumi.BoolPtrInput `pulumi:"valkeySsl"`
 	// Valkey idle connection timeout in seconds.
 	ValkeyTimeout pulumi.IntPtrInput `pulumi:"valkeyTimeout"`
+	// Valkey major version.
+	ValkeyVersion pulumi.StringPtrInput `pulumi:"valkeyVersion"`
 }
 
 func (ManagedDatabaseValkeyPropertiesArgs) ElementType() reflect.Type {
@@ -20659,6 +21012,11 @@ func (o ManagedDatabaseValkeyPropertiesOutput) PublicAccess() pulumi.BoolPtrOutp
 	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *bool { return v.PublicAccess }).(pulumi.BoolPtrOutput)
 }
 
+// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+func (o ManagedDatabaseValkeyPropertiesOutput) PublicAccessPrometheus() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *bool { return v.PublicAccessPrometheus }).(pulumi.BoolPtrOutput)
+}
+
 // Service logging. Store logs for the service so that they are available in the HTTP API and console.
 func (o ManagedDatabaseValkeyPropertiesOutput) ServiceLog() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *bool { return v.ServiceLog }).(pulumi.BoolPtrOutput)
@@ -20722,6 +21080,11 @@ func (o ManagedDatabaseValkeyPropertiesOutput) ValkeySsl() pulumi.BoolPtrOutput 
 // Valkey idle connection timeout in seconds.
 func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.ValkeyTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Valkey major version.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *string { return v.ValkeyVersion }).(pulumi.StringPtrOutput)
 }
 
 type ManagedDatabaseValkeyPropertiesPtrOutput struct{ *pulumi.OutputState }
@@ -20815,6 +21178,16 @@ func (o ManagedDatabaseValkeyPropertiesPtrOutput) PublicAccess() pulumi.BoolPtrO
 			return nil
 		}
 		return v.PublicAccess
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) PublicAccessPrometheus() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.PublicAccessPrometheus
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -20946,6 +21319,16 @@ func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyTimeout() pulumi.IntPtrO
 		}
 		return v.ValkeyTimeout
 	}).(pulumi.IntPtrOutput)
+}
+
+// Valkey major version.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyVersion
+	}).(pulumi.StringPtrOutput)
 }
 
 type ManagedDatabaseValkeyPropertiesMigration struct {
@@ -26884,6 +27267,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsHttpRedirectArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsHttpRedirectArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsHttpReturnInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsHttpReturnArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsHttpReturnArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsHttpReturnArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsHttpRewritePathInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsHttpRewritePathArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsHttpRewritePathArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsHttpRewritePathArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsHttpRewriteUriInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsHttpRewriteUriArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsHttpRewriteUriArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsHttpRewriteUriArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsSetForwardedHeaderInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsSetForwardedHeaderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsSetForwardedHeaderArrayInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsSetForwardedHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendRuleActionsSetRequestHeaderInput)(nil)).Elem(), LoadbalancerFrontendRuleActionsSetRequestHeaderArgs{})
@@ -27157,6 +27544,10 @@ func init() {
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsHttpRedirectArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsHttpReturnOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsHttpReturnArrayOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsHttpRewritePathOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsHttpRewritePathArrayOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsHttpRewriteUriOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsHttpRewriteUriArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsSetForwardedHeaderOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsSetForwardedHeaderArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendRuleActionsSetRequestHeaderOutput{})

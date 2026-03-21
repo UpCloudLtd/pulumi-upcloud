@@ -34,6 +34,8 @@ __all__ = [
     'LoadbalancerFrontendRuleActions',
     'LoadbalancerFrontendRuleActionsHttpRedirect',
     'LoadbalancerFrontendRuleActionsHttpReturn',
+    'LoadbalancerFrontendRuleActionsHttpRewritePath',
+    'LoadbalancerFrontendRuleActionsHttpRewriteUri',
     'LoadbalancerFrontendRuleActionsSetForwardedHeader',
     'LoadbalancerFrontendRuleActionsSetRequestHeader',
     'LoadbalancerFrontendRuleActionsSetResponseHeader',
@@ -1145,6 +1147,10 @@ class LoadbalancerFrontendRuleActions(dict):
             suggest = "http_redirects"
         elif key == "httpReturns":
             suggest = "http_returns"
+        elif key == "httpRewritePaths":
+            suggest = "http_rewrite_paths"
+        elif key == "httpRewriteUris":
+            suggest = "http_rewrite_uris"
         elif key == "setForwardedHeaders":
             suggest = "set_forwarded_headers"
         elif key == "setRequestHeaders":
@@ -1170,6 +1176,8 @@ class LoadbalancerFrontendRuleActions(dict):
     def __init__(__self__, *,
                  http_redirects: Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsHttpRedirect']] = None,
                  http_returns: Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsHttpReturn']] = None,
+                 http_rewrite_paths: Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsHttpRewritePath']] = None,
+                 http_rewrite_uris: Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsHttpRewriteUri']] = None,
                  set_forwarded_headers: Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsSetForwardedHeader']] = None,
                  set_request_headers: Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsSetRequestHeader']] = None,
                  set_response_headers: Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsSetResponseHeader']] = None,
@@ -1178,6 +1186,8 @@ class LoadbalancerFrontendRuleActions(dict):
         """
         :param Sequence['LoadbalancerFrontendRuleActionsHttpRedirectArgs'] http_redirects: Redirects HTTP requests to specified location or URL scheme. Only either location or scheme can be defined at a time.
         :param Sequence['LoadbalancerFrontendRuleActionsHttpReturnArgs'] http_returns: Returns HTTP response with specified HTTP status.
+        :param Sequence['LoadbalancerFrontendRuleActionsHttpRewritePathArgs'] http_rewrite_paths: Rewrites the HTTP request path using regex pattern matching.
+        :param Sequence['LoadbalancerFrontendRuleActionsHttpRewriteUriArgs'] http_rewrite_uris: Rewrites the entire HTTP request URI using regex pattern matching.
         :param Sequence['LoadbalancerFrontendRuleActionsSetForwardedHeaderArgs'] set_forwarded_headers: Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
         :param Sequence['LoadbalancerFrontendRuleActionsSetRequestHeaderArgs'] set_request_headers: Set request header
         :param Sequence['LoadbalancerFrontendRuleActionsSetResponseHeaderArgs'] set_response_headers: Set response header
@@ -1188,6 +1198,10 @@ class LoadbalancerFrontendRuleActions(dict):
             pulumi.set(__self__, "http_redirects", http_redirects)
         if http_returns is not None:
             pulumi.set(__self__, "http_returns", http_returns)
+        if http_rewrite_paths is not None:
+            pulumi.set(__self__, "http_rewrite_paths", http_rewrite_paths)
+        if http_rewrite_uris is not None:
+            pulumi.set(__self__, "http_rewrite_uris", http_rewrite_uris)
         if set_forwarded_headers is not None:
             pulumi.set(__self__, "set_forwarded_headers", set_forwarded_headers)
         if set_request_headers is not None:
@@ -1214,6 +1228,22 @@ class LoadbalancerFrontendRuleActions(dict):
         Returns HTTP response with specified HTTP status.
         """
         return pulumi.get(self, "http_returns")
+
+    @_builtins.property
+    @pulumi.getter(name="httpRewritePaths")
+    def http_rewrite_paths(self) -> Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsHttpRewritePath']]:
+        """
+        Rewrites the HTTP request path using regex pattern matching.
+        """
+        return pulumi.get(self, "http_rewrite_paths")
+
+    @_builtins.property
+    @pulumi.getter(name="httpRewriteUris")
+    def http_rewrite_uris(self) -> Optional[Sequence['outputs.LoadbalancerFrontendRuleActionsHttpRewriteUri']]:
+        """
+        Rewrites the entire HTTP request URI using regex pattern matching.
+        """
+        return pulumi.get(self, "http_rewrite_uris")
 
     @_builtins.property
     @pulumi.getter(name="setForwardedHeaders")
@@ -1354,6 +1384,102 @@ class LoadbalancerFrontendRuleActionsHttpReturn(dict):
         HTTP status code.
         """
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class LoadbalancerFrontendRuleActionsHttpRewritePath(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "matchPattern":
+            suggest = "match_pattern"
+        elif key == "rewriteTo":
+            suggest = "rewrite_to"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LoadbalancerFrontendRuleActionsHttpRewritePath. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LoadbalancerFrontendRuleActionsHttpRewritePath.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LoadbalancerFrontendRuleActionsHttpRewritePath.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 match_pattern: _builtins.str,
+                 rewrite_to: _builtins.str):
+        """
+        :param _builtins.str match_pattern: Regex pattern to match against the request path.
+        :param _builtins.str rewrite_to: Replacement pattern.
+        """
+        pulumi.set(__self__, "match_pattern", match_pattern)
+        pulumi.set(__self__, "rewrite_to", rewrite_to)
+
+    @_builtins.property
+    @pulumi.getter(name="matchPattern")
+    def match_pattern(self) -> _builtins.str:
+        """
+        Regex pattern to match against the request path.
+        """
+        return pulumi.get(self, "match_pattern")
+
+    @_builtins.property
+    @pulumi.getter(name="rewriteTo")
+    def rewrite_to(self) -> _builtins.str:
+        """
+        Replacement pattern.
+        """
+        return pulumi.get(self, "rewrite_to")
+
+
+@pulumi.output_type
+class LoadbalancerFrontendRuleActionsHttpRewriteUri(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "matchPattern":
+            suggest = "match_pattern"
+        elif key == "rewriteTo":
+            suggest = "rewrite_to"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LoadbalancerFrontendRuleActionsHttpRewriteUri. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LoadbalancerFrontendRuleActionsHttpRewriteUri.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LoadbalancerFrontendRuleActionsHttpRewriteUri.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 match_pattern: _builtins.str,
+                 rewrite_to: _builtins.str):
+        """
+        :param _builtins.str match_pattern: Regex pattern to match against the request URI.
+        :param _builtins.str rewrite_to: Replacement pattern.
+        """
+        pulumi.set(__self__, "match_pattern", match_pattern)
+        pulumi.set(__self__, "rewrite_to", rewrite_to)
+
+    @_builtins.property
+    @pulumi.getter(name="matchPattern")
+    def match_pattern(self) -> _builtins.str:
+        """
+        Regex pattern to match against the request URI.
+        """
+        return pulumi.get(self, "match_pattern")
+
+    @_builtins.property
+    @pulumi.getter(name="rewriteTo")
+    def rewrite_to(self) -> _builtins.str:
+        """
+        Replacement pattern.
+        """
+        return pulumi.get(self, "rewrite_to")
 
 
 @pulumi.output_type
@@ -3331,6 +3457,8 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "log_output"
         elif key == "longQueryTime":
             suggest = "long_query_time"
+        elif key == "lowerCaseTableNames":
+            suggest = "lower_case_table_names"
         elif key == "maxAllowedPacket":
             suggest = "max_allowed_packet"
         elif key == "maxHeapTableSize":
@@ -3345,6 +3473,8 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "net_write_timeout"
         elif key == "publicAccess":
             suggest = "public_access"
+        elif key == "publicAccessPrometheus":
+            suggest = "public_access_prometheus"
         elif key == "serviceLog":
             suggest = "service_log"
         elif key == "slowQueryLog":
@@ -3399,6 +3529,7 @@ class ManagedDatabaseMysqlProperties(dict):
                  ip_filters: Optional[Sequence[_builtins.str]] = None,
                  log_output: Optional[_builtins.str] = None,
                  long_query_time: Optional[_builtins.float] = None,
+                 lower_case_table_names: Optional[_builtins.int] = None,
                  max_allowed_packet: Optional[_builtins.int] = None,
                  max_heap_table_size: Optional[_builtins.int] = None,
                  migration: Optional['outputs.ManagedDatabaseMysqlPropertiesMigration'] = None,
@@ -3407,6 +3538,7 @@ class ManagedDatabaseMysqlProperties(dict):
                  net_read_timeout: Optional[_builtins.int] = None,
                  net_write_timeout: Optional[_builtins.int] = None,
                  public_access: Optional[_builtins.bool] = None,
+                 public_access_prometheus: Optional[_builtins.bool] = None,
                  service_log: Optional[_builtins.bool] = None,
                  slow_query_log: Optional[_builtins.bool] = None,
                  sort_buffer_size: Optional[_builtins.int] = None,
@@ -3443,6 +3575,7 @@ class ManagedDatabaseMysqlProperties(dict):
         :param Sequence[_builtins.str] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
         :param _builtins.str log_output: The slow log output destination when slow_query_log is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
         :param _builtins.float long_query_time: The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute.
+        :param _builtins.int lower_case_table_names: Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
         :param _builtins.int max_allowed_packet: Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
         :param _builtins.int max_heap_table_size: Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
         :param 'ManagedDatabaseMysqlPropertiesMigrationArgs' migration: Migrate data from existing server.
@@ -3451,6 +3584,7 @@ class ManagedDatabaseMysqlProperties(dict):
         :param _builtins.int net_read_timeout: The number of seconds to wait for more data from a connection before aborting the read.
         :param _builtins.int net_write_timeout: The number of seconds to wait for a block to be written to a connection before aborting the write.
         :param _builtins.bool public_access: Public Access. Allow access to the service from the public Internet.
+        :param _builtins.bool public_access_prometheus: Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
         :param _builtins.bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
         :param _builtins.bool slow_query_log: Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table.
         :param _builtins.int sort_buffer_size: Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
@@ -3514,6 +3648,8 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "log_output", log_output)
         if long_query_time is not None:
             pulumi.set(__self__, "long_query_time", long_query_time)
+        if lower_case_table_names is not None:
+            pulumi.set(__self__, "lower_case_table_names", lower_case_table_names)
         if max_allowed_packet is not None:
             pulumi.set(__self__, "max_allowed_packet", max_allowed_packet)
         if max_heap_table_size is not None:
@@ -3530,6 +3666,8 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "net_write_timeout", net_write_timeout)
         if public_access is not None:
             pulumi.set(__self__, "public_access", public_access)
+        if public_access_prometheus is not None:
+            pulumi.set(__self__, "public_access_prometheus", public_access_prometheus)
         if service_log is not None:
             pulumi.set(__self__, "service_log", service_log)
         if slow_query_log is not None:
@@ -3764,6 +3902,14 @@ class ManagedDatabaseMysqlProperties(dict):
         return pulumi.get(self, "long_query_time")
 
     @_builtins.property
+    @pulumi.getter(name="lowerCaseTableNames")
+    def lower_case_table_names(self) -> Optional[_builtins.int]:
+        """
+        Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
+        """
+        return pulumi.get(self, "lower_case_table_names")
+
+    @_builtins.property
     @pulumi.getter(name="maxAllowedPacket")
     def max_allowed_packet(self) -> Optional[_builtins.int]:
         """
@@ -3826,6 +3972,14 @@ class ManagedDatabaseMysqlProperties(dict):
         Public Access. Allow access to the service from the public Internet.
         """
         return pulumi.get(self, "public_access")
+
+    @_builtins.property
+    @pulumi.getter(name="publicAccessPrometheus")
+    def public_access_prometheus(self) -> Optional[_builtins.bool]:
+        """
+        Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        """
+        return pulumi.get(self, "public_access_prometheus")
 
     @_builtins.property
     @pulumi.getter(name="serviceLog")
@@ -4376,6 +4530,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "plugins_alerting_filter_by_backend_roles"
         elif key == "publicAccess":
             suggest = "public_access"
+        elif key == "publicAccessPrometheus":
+            suggest = "public_access_prometheus"
         elif key == "reindexRemoteWhitelists":
             suggest = "reindex_remote_whitelists"
         elif key == "remoteStore":
@@ -4483,6 +4639,7 @@ class ManagedDatabaseOpensearchProperties(dict):
                  override_main_response_version: Optional[_builtins.bool] = None,
                  plugins_alerting_filter_by_backend_roles: Optional[_builtins.bool] = None,
                  public_access: Optional[_builtins.bool] = None,
+                 public_access_prometheus: Optional[_builtins.bool] = None,
                  reindex_remote_whitelists: Optional[Sequence[_builtins.str]] = None,
                  remote_store: Optional['outputs.ManagedDatabaseOpensearchPropertiesRemoteStore'] = None,
                  saml: Optional['outputs.ManagedDatabaseOpensearchPropertiesSaml'] = None,
@@ -4560,7 +4717,8 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param _builtins.bool override_main_response_version: Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false. Deprecated and ignored for service version 3.3 and higher.
         :param _builtins.bool plugins_alerting_filter_by_backend_roles: Enable or disable filtering of alerting by backend roles. Requires Security plugin. Defaults to false.
         :param _builtins.bool public_access: Public Access. Allow access to the service from the public Internet.
-        :param Sequence[_builtins.str] reindex_remote_whitelists: Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+        :param _builtins.bool public_access_prometheus: Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        :param Sequence[_builtins.str] reindex_remote_whitelists: reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
         :param 'ManagedDatabaseOpensearchPropertiesSamlArgs' saml: OpenSearch SAML configuration.
         :param _builtins.str script_max_compilations_rate: Script max compilation rate - circuit breaker to prevent/minimize OOMs. Script compilation circuit breaker limits the number of inline script compilations within a period of time. Default is use-context.
         :param 'ManagedDatabaseOpensearchPropertiesSearchBackpressureArgs' search_backpressure: Search Backpressure Settings.
@@ -4693,6 +4851,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "plugins_alerting_filter_by_backend_roles", plugins_alerting_filter_by_backend_roles)
         if public_access is not None:
             pulumi.set(__self__, "public_access", public_access)
+        if public_access_prometheus is not None:
+            pulumi.set(__self__, "public_access_prometheus", public_access_prometheus)
         if reindex_remote_whitelists is not None:
             pulumi.set(__self__, "reindex_remote_whitelists", reindex_remote_whitelists)
         if remote_store is not None:
@@ -5181,10 +5341,18 @@ class ManagedDatabaseOpensearchProperties(dict):
         return pulumi.get(self, "public_access")
 
     @_builtins.property
+    @pulumi.getter(name="publicAccessPrometheus")
+    def public_access_prometheus(self) -> Optional[_builtins.bool]:
+        """
+        Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        """
+        return pulumi.get(self, "public_access_prometheus")
+
+    @_builtins.property
     @pulumi.getter(name="reindexRemoteWhitelists")
     def reindex_remote_whitelists(self) -> Optional[Sequence[_builtins.str]]:
         """
-        Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
+        reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
         """
         return pulumi.get(self, "reindex_remote_whitelists")
 
@@ -7780,10 +7948,14 @@ class ManagedDatabasePostgresqlProperties(dict):
             suggest = "pg_stat_statements_track"
         elif key == "publicAccess":
             suggest = "public_access"
+        elif key == "publicAccessPrometheus":
+            suggest = "public_access_prometheus"
         elif key == "serviceLog":
             suggest = "service_log"
         elif key == "sharedBuffersPercentage":
             suggest = "shared_buffers_percentage"
+        elif key == "switchoverWindows":
+            suggest = "switchover_windows"
         elif key == "synchronousReplication":
             suggest = "synchronous_replication"
         elif key == "tempFileLimit":
@@ -7880,8 +8052,10 @@ class ManagedDatabasePostgresqlProperties(dict):
                  pgbouncer: Optional['outputs.ManagedDatabasePostgresqlPropertiesPgbouncer'] = None,
                  pglookout: Optional['outputs.ManagedDatabasePostgresqlPropertiesPglookout'] = None,
                  public_access: Optional[_builtins.bool] = None,
+                 public_access_prometheus: Optional[_builtins.bool] = None,
                  service_log: Optional[_builtins.bool] = None,
                  shared_buffers_percentage: Optional[_builtins.float] = None,
+                 switchover_windows: Optional[Sequence[_builtins.str]] = None,
                  synchronous_replication: Optional[_builtins.str] = None,
                  temp_file_limit: Optional[_builtins.int] = None,
                  timescaledb: Optional['outputs.ManagedDatabasePostgresqlPropertiesTimescaledb'] = None,
@@ -7932,10 +8106,10 @@ class ManagedDatabasePostgresqlProperties(dict):
         :param _builtins.str log_line_prefix: Choose from one of the available log formats.
         :param _builtins.int log_min_duration_statement: Log statements that take more than this number of milliseconds to run, -1 disables.
         :param _builtins.int log_temp_files: Log statements for each temporary file created larger than this number of kilobytes, -1 disables.
-        :param _builtins.int max_connections: Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
+        :param _builtins.int max_connections: Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
         :param _builtins.int max_files_per_process: PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
         :param _builtins.int max_locks_per_transaction: PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
-        :param _builtins.int max_logical_replication_workers: PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+        :param _builtins.int max_logical_replication_workers: PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
         :param _builtins.int max_parallel_workers: Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
         :param _builtins.int max_parallel_workers_per_gather: Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
         :param _builtins.int max_pred_locks_per_transaction: PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
@@ -7961,6 +8135,7 @@ class ManagedDatabasePostgresqlProperties(dict):
         :param 'ManagedDatabasePostgresqlPropertiesPgbouncerArgs' pgbouncer: PGBouncer connection pooling settings. System-wide settings for pgbouncer.
         :param 'ManagedDatabasePostgresqlPropertiesPglookoutArgs' pglookout: PGLookout settings. System-wide settings for pglookout.
         :param _builtins.bool public_access: Public Access. Allow access to the service from the public Internet.
+        :param _builtins.bool public_access_prometheus: Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
         :param _builtins.bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
         :param _builtins.float shared_buffers_percentage: Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
         :param _builtins.str synchronous_replication: Synchronous replication type. Note that the service plan also needs to support synchronous replication.
@@ -8107,10 +8282,14 @@ class ManagedDatabasePostgresqlProperties(dict):
             pulumi.set(__self__, "pglookout", pglookout)
         if public_access is not None:
             pulumi.set(__self__, "public_access", public_access)
+        if public_access_prometheus is not None:
+            pulumi.set(__self__, "public_access_prometheus", public_access_prometheus)
         if service_log is not None:
             pulumi.set(__self__, "service_log", service_log)
         if shared_buffers_percentage is not None:
             pulumi.set(__self__, "shared_buffers_percentage", shared_buffers_percentage)
+        if switchover_windows is not None:
+            pulumi.set(__self__, "switchover_windows", switchover_windows)
         if synchronous_replication is not None:
             pulumi.set(__self__, "synchronous_replication", synchronous_replication)
         if temp_file_limit is not None:
@@ -8430,7 +8609,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="maxConnections")
     def max_connections(self) -> Optional[_builtins.int]:
         """
-        Sets the PostgreSQL maximum number of concurrent connections to the database server. This is a limited-release parameter. Contact your account team to confirm your eligibility. You cannot decrease this parameter value when set. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
+        Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "max_connections")
 
@@ -8454,7 +8633,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="maxLogicalReplicationWorkers")
     def max_logical_replication_workers(self) -> Optional[_builtins.int]:
         """
-        PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers). The default is `4` (upstream default). Changing this parameter causes a service restart.
+        PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "max_logical_replication_workers")
 
@@ -8659,6 +8838,14 @@ class ManagedDatabasePostgresqlProperties(dict):
         return pulumi.get(self, "public_access")
 
     @_builtins.property
+    @pulumi.getter(name="publicAccessPrometheus")
+    def public_access_prometheus(self) -> Optional[_builtins.bool]:
+        """
+        Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        """
+        return pulumi.get(self, "public_access_prometheus")
+
+    @_builtins.property
     @pulumi.getter(name="serviceLog")
     def service_log(self) -> Optional[_builtins.bool]:
         """
@@ -8673,6 +8860,11 @@ class ManagedDatabasePostgresqlProperties(dict):
         Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "shared_buffers_percentage")
+
+    @_builtins.property
+    @pulumi.getter(name="switchoverWindows")
+    def switchover_windows(self) -> Optional[Sequence[_builtins.str]]:
+        return pulumi.get(self, "switchover_windows")
 
     @_builtins.property
     @pulumi.getter(name="synchronousReplication")
@@ -9690,6 +9882,8 @@ class ManagedDatabaseValkeyProperties(dict):
             suggest = "ip_filters"
         elif key == "publicAccess":
             suggest = "public_access"
+        elif key == "publicAccessPrometheus":
+            suggest = "public_access_prometheus"
         elif key == "serviceLog":
             suggest = "service_log"
         elif key == "valkeyAclChannelsDefault":
@@ -9716,6 +9910,8 @@ class ManagedDatabaseValkeyProperties(dict):
             suggest = "valkey_ssl"
         elif key == "valkeyTimeout":
             suggest = "valkey_timeout"
+        elif key == "valkeyVersion":
+            suggest = "valkey_version"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseValkeyProperties. Access the value via the '{suggest}' property getter instead.")
@@ -9736,6 +9932,7 @@ class ManagedDatabaseValkeyProperties(dict):
                  ip_filters: Optional[Sequence[_builtins.str]] = None,
                  migration: Optional['outputs.ManagedDatabaseValkeyPropertiesMigration'] = None,
                  public_access: Optional[_builtins.bool] = None,
+                 public_access_prometheus: Optional[_builtins.bool] = None,
                  service_log: Optional[_builtins.bool] = None,
                  valkey_acl_channels_default: Optional[_builtins.str] = None,
                  valkey_active_expire_effort: Optional[_builtins.int] = None,
@@ -9748,7 +9945,8 @@ class ManagedDatabaseValkeyProperties(dict):
                  valkey_persistence: Optional[_builtins.str] = None,
                  valkey_pubsub_client_output_buffer_limit: Optional[_builtins.int] = None,
                  valkey_ssl: Optional[_builtins.bool] = None,
-                 valkey_timeout: Optional[_builtins.int] = None):
+                 valkey_timeout: Optional[_builtins.int] = None,
+                 valkey_version: Optional[_builtins.str] = None):
         """
         :param _builtins.bool automatic_utility_network_ip_filter: Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
         :param _builtins.int backup_hour: The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
@@ -9757,6 +9955,7 @@ class ManagedDatabaseValkeyProperties(dict):
         :param Sequence[_builtins.str] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
         :param 'ManagedDatabaseValkeyPropertiesMigrationArgs' migration: Migrate data from existing server.
         :param _builtins.bool public_access: Public Access. Allow access to the service from the public Internet.
+        :param _builtins.bool public_access_prometheus: Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
         :param _builtins.bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
         :param _builtins.str valkey_acl_channels_default: Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
         :param _builtins.int valkey_active_expire_effort: Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
@@ -9770,6 +9969,7 @@ class ManagedDatabaseValkeyProperties(dict):
         :param _builtins.int valkey_pubsub_client_output_buffer_limit: Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
         :param _builtins.bool valkey_ssl: Require SSL to access Valkey.
         :param _builtins.int valkey_timeout: Valkey idle connection timeout in seconds.
+        :param _builtins.str valkey_version: Valkey major version.
         """
         if automatic_utility_network_ip_filter is not None:
             pulumi.set(__self__, "automatic_utility_network_ip_filter", automatic_utility_network_ip_filter)
@@ -9785,6 +9985,8 @@ class ManagedDatabaseValkeyProperties(dict):
             pulumi.set(__self__, "migration", migration)
         if public_access is not None:
             pulumi.set(__self__, "public_access", public_access)
+        if public_access_prometheus is not None:
+            pulumi.set(__self__, "public_access_prometheus", public_access_prometheus)
         if service_log is not None:
             pulumi.set(__self__, "service_log", service_log)
         if valkey_acl_channels_default is not None:
@@ -9811,6 +10013,8 @@ class ManagedDatabaseValkeyProperties(dict):
             pulumi.set(__self__, "valkey_ssl", valkey_ssl)
         if valkey_timeout is not None:
             pulumi.set(__self__, "valkey_timeout", valkey_timeout)
+        if valkey_version is not None:
+            pulumi.set(__self__, "valkey_version", valkey_version)
 
     @_builtins.property
     @pulumi.getter(name="automaticUtilityNetworkIpFilter")
@@ -9867,6 +10071,14 @@ class ManagedDatabaseValkeyProperties(dict):
         Public Access. Allow access to the service from the public Internet.
         """
         return pulumi.get(self, "public_access")
+
+    @_builtins.property
+    @pulumi.getter(name="publicAccessPrometheus")
+    def public_access_prometheus(self) -> Optional[_builtins.bool]:
+        """
+        Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        """
+        return pulumi.get(self, "public_access_prometheus")
 
     @_builtins.property
     @pulumi.getter(name="serviceLog")
@@ -9971,6 +10183,14 @@ class ManagedDatabaseValkeyProperties(dict):
         Valkey idle connection timeout in seconds.
         """
         return pulumi.get(self, "valkey_timeout")
+
+    @_builtins.property
+    @pulumi.getter(name="valkeyVersion")
+    def valkey_version(self) -> Optional[_builtins.str]:
+        """
+        Valkey major version.
+        """
+        return pulumi.get(self, "valkey_version")
 
 
 @pulumi.output_type
