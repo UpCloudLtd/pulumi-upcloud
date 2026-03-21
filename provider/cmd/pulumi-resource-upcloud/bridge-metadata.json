@@ -222,6 +222,12 @@
                                 "http_return": {
                                     "maxItemsOne": false
                                 },
+                                "http_rewrite_path": {
+                                    "maxItemsOne": false
+                                },
+                                "http_rewrite_uri": {
+                                    "maxItemsOne": false
+                                },
                                 "set_forwarded_headers": {
                                     "maxItemsOne": false
                                 },
@@ -538,6 +544,9 @@
                                 },
                                 "pglookout": {
                                     "maxItemsOne": true
+                                },
+                                "switchover_windows": {
+                                    "maxItemsOne": false
                                 },
                                 "timescaledb": {
                                     "maxItemsOne": true
