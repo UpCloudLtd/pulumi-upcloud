@@ -11001,9 +11001,13 @@ if not MYPY:
         Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
         """
         switchover_windows: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        synchronous_commit: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Sets the current transaction's synchronization level. The default is `off`. This setting takes precedence over `synchronous_replication`.
+        """
         synchronous_replication: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+        Synchronous replication type. (deprecated, use synchronous_commit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronous_commit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronous_commit to remote_write, while setting it to off changes synchronous_commit to off.
         """
         temp_file_limit: NotRequired[pulumi.Input[_builtins.int]]
         """
@@ -11128,6 +11132,7 @@ class ManagedDatabasePostgresqlPropertiesArgs:
                  service_log: Optional[pulumi.Input[_builtins.bool]] = None,
                  shared_buffers_percentage: Optional[pulumi.Input[_builtins.float]] = None,
                  switchover_windows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 synchronous_commit: Optional[pulumi.Input[_builtins.str]] = None,
                  synchronous_replication: Optional[pulumi.Input[_builtins.str]] = None,
                  temp_file_limit: Optional[pulumi.Input[_builtins.int]] = None,
                  timescaledb: Optional[pulumi.Input['ManagedDatabasePostgresqlPropertiesTimescaledbArgs']] = None,
@@ -11210,7 +11215,8 @@ class ManagedDatabasePostgresqlPropertiesArgs:
         :param pulumi.Input[_builtins.bool] public_access_prometheus: Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
         :param pulumi.Input[_builtins.bool] service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
         :param pulumi.Input[_builtins.float] shared_buffers_percentage: Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
-        :param pulumi.Input[_builtins.str] synchronous_replication: Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+        :param pulumi.Input[_builtins.str] synchronous_commit: Sets the current transaction's synchronization level. The default is `off`. This setting takes precedence over `synchronous_replication`.
+        :param pulumi.Input[_builtins.str] synchronous_replication: Synchronous replication type. (deprecated, use synchronous_commit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronous_commit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronous_commit to remote_write, while setting it to off changes synchronous_commit to off.
         :param pulumi.Input[_builtins.int] temp_file_limit: PostgreSQL temporary file limit in KiB, -1 for unlimited.
         :param pulumi.Input['ManagedDatabasePostgresqlPropertiesTimescaledbArgs'] timescaledb: TimescaleDB extension configuration values. System-wide settings for the timescaledb extension.
         :param pulumi.Input[_builtins.str] timezone: PostgreSQL service timezone.
@@ -11362,6 +11368,8 @@ class ManagedDatabasePostgresqlPropertiesArgs:
             pulumi.set(__self__, "shared_buffers_percentage", shared_buffers_percentage)
         if switchover_windows is not None:
             pulumi.set(__self__, "switchover_windows", switchover_windows)
+        if synchronous_commit is not None:
+            pulumi.set(__self__, "synchronous_commit", synchronous_commit)
         if synchronous_replication is not None:
             pulumi.set(__self__, "synchronous_replication", synchronous_replication)
         if temp_file_limit is not None:
@@ -12215,10 +12223,22 @@ class ManagedDatabasePostgresqlPropertiesArgs:
         pulumi.set(self, "switchover_windows", value)
 
     @_builtins.property
+    @pulumi.getter(name="synchronousCommit")
+    def synchronous_commit(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Sets the current transaction's synchronization level. The default is `off`. This setting takes precedence over `synchronous_replication`.
+        """
+        return pulumi.get(self, "synchronous_commit")
+
+    @synchronous_commit.setter
+    def synchronous_commit(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "synchronous_commit", value)
+
+    @_builtins.property
     @pulumi.getter(name="synchronousReplication")
     def synchronous_replication(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+        Synchronous replication type. (deprecated, use synchronous_commit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronous_commit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronous_commit to remote_write, while setting it to off changes synchronous_commit to off.
         """
         return pulumi.get(self, "synchronous_replication")
 

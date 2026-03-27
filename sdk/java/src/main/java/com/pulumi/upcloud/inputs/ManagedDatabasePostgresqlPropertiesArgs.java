@@ -1052,14 +1052,29 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+     * Sets the current transaction&#39;s synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
+     * 
+     */
+    @Import(name="synchronousCommit")
+    private @Nullable Output<String> synchronousCommit;
+
+    /**
+     * @return Sets the current transaction&#39;s synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
+     * 
+     */
+    public Optional<Output<String>> synchronousCommit() {
+        return Optional.ofNullable(this.synchronousCommit);
+    }
+
+    /**
+     * Synchronous replication type. (deprecated, use synchronousCommit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronousCommit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronousCommit to remote_write, while setting it to off changes synchronousCommit to off.
      * 
      */
     @Import(name="synchronousReplication")
     private @Nullable Output<String> synchronousReplication;
 
     /**
-     * @return Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+     * @return Synchronous replication type. (deprecated, use synchronousCommit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronousCommit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronousCommit to remote_write, while setting it to off changes synchronousCommit to off.
      * 
      */
     public Optional<Output<String>> synchronousReplication() {
@@ -1318,6 +1333,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         this.serviceLog = $.serviceLog;
         this.sharedBuffersPercentage = $.sharedBuffersPercentage;
         this.switchoverWindows = $.switchoverWindows;
+        this.synchronousCommit = $.synchronousCommit;
         this.synchronousReplication = $.synchronousReplication;
         this.tempFileLimit = $.tempFileLimit;
         this.timescaledb = $.timescaledb;
@@ -2803,7 +2819,28 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param synchronousReplication Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+         * @param synchronousCommit Sets the current transaction&#39;s synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder synchronousCommit(@Nullable Output<String> synchronousCommit) {
+            $.synchronousCommit = synchronousCommit;
+            return this;
+        }
+
+        /**
+         * @param synchronousCommit Sets the current transaction&#39;s synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder synchronousCommit(String synchronousCommit) {
+            return synchronousCommit(Output.of(synchronousCommit));
+        }
+
+        /**
+         * @param synchronousReplication Synchronous replication type. (deprecated, use synchronousCommit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronousCommit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronousCommit to remote_write, while setting it to off changes synchronousCommit to off.
          * 
          * @return builder
          * 
@@ -2814,7 +2851,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param synchronousReplication Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+         * @param synchronousReplication Synchronous replication type. (deprecated, use synchronousCommit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronousCommit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronousCommit to remote_write, while setting it to off changes synchronousCommit to off.
          * 
          * @return builder
          * 

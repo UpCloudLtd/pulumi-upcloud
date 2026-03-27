@@ -7956,6 +7956,8 @@ class ManagedDatabasePostgresqlProperties(dict):
             suggest = "shared_buffers_percentage"
         elif key == "switchoverWindows":
             suggest = "switchover_windows"
+        elif key == "synchronousCommit":
+            suggest = "synchronous_commit"
         elif key == "synchronousReplication":
             suggest = "synchronous_replication"
         elif key == "tempFileLimit":
@@ -8056,6 +8058,7 @@ class ManagedDatabasePostgresqlProperties(dict):
                  service_log: Optional[_builtins.bool] = None,
                  shared_buffers_percentage: Optional[_builtins.float] = None,
                  switchover_windows: Optional[Sequence[_builtins.str]] = None,
+                 synchronous_commit: Optional[_builtins.str] = None,
                  synchronous_replication: Optional[_builtins.str] = None,
                  temp_file_limit: Optional[_builtins.int] = None,
                  timescaledb: Optional['outputs.ManagedDatabasePostgresqlPropertiesTimescaledb'] = None,
@@ -8138,7 +8141,8 @@ class ManagedDatabasePostgresqlProperties(dict):
         :param _builtins.bool public_access_prometheus: Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
         :param _builtins.bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
         :param _builtins.float shared_buffers_percentage: Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
-        :param _builtins.str synchronous_replication: Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+        :param _builtins.str synchronous_commit: Sets the current transaction's synchronization level. The default is `off`. This setting takes precedence over `synchronous_replication`.
+        :param _builtins.str synchronous_replication: Synchronous replication type. (deprecated, use synchronous_commit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronous_commit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronous_commit to remote_write, while setting it to off changes synchronous_commit to off.
         :param _builtins.int temp_file_limit: PostgreSQL temporary file limit in KiB, -1 for unlimited.
         :param 'ManagedDatabasePostgresqlPropertiesTimescaledbArgs' timescaledb: TimescaleDB extension configuration values. System-wide settings for the timescaledb extension.
         :param _builtins.str timezone: PostgreSQL service timezone.
@@ -8290,6 +8294,8 @@ class ManagedDatabasePostgresqlProperties(dict):
             pulumi.set(__self__, "shared_buffers_percentage", shared_buffers_percentage)
         if switchover_windows is not None:
             pulumi.set(__self__, "switchover_windows", switchover_windows)
+        if synchronous_commit is not None:
+            pulumi.set(__self__, "synchronous_commit", synchronous_commit)
         if synchronous_replication is not None:
             pulumi.set(__self__, "synchronous_replication", synchronous_replication)
         if temp_file_limit is not None:
@@ -8867,10 +8873,18 @@ class ManagedDatabasePostgresqlProperties(dict):
         return pulumi.get(self, "switchover_windows")
 
     @_builtins.property
+    @pulumi.getter(name="synchronousCommit")
+    def synchronous_commit(self) -> Optional[_builtins.str]:
+        """
+        Sets the current transaction's synchronization level. The default is `off`. This setting takes precedence over `synchronous_replication`.
+        """
+        return pulumi.get(self, "synchronous_commit")
+
+    @_builtins.property
     @pulumi.getter(name="synchronousReplication")
     def synchronous_replication(self) -> Optional[_builtins.str]:
         """
-        Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+        Synchronous replication type. (deprecated, use synchronous_commit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronous_commit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronous_commit to remote_write, while setting it to off changes synchronous_commit to off.
         """
         return pulumi.get(self, "synchronous_replication")
 
