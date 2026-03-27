@@ -3748,9 +3748,13 @@
                         "type": "string"
                     }
                 },
+                "synchronousCommit": {
+                    "type": "string",
+                    "description": "Sets the current transaction's synchronization level. The default is \u003cspan pulumi-lang-nodejs=\"`off`\" pulumi-lang-dotnet=\"`Off`\" pulumi-lang-go=\"`off`\" pulumi-lang-python=\"`off`\" pulumi-lang-yaml=\"`off`\" pulumi-lang-java=\"`off`\"\u003e`off`\u003c/span\u003e. This setting takes precedence over \u003cspan pulumi-lang-nodejs=\"`synchronousReplication`\" pulumi-lang-dotnet=\"`SynchronousReplication`\" pulumi-lang-go=\"`synchronousReplication`\" pulumi-lang-python=\"`synchronous_replication`\" pulumi-lang-yaml=\"`synchronousReplication`\" pulumi-lang-java=\"`synchronousReplication`\"\u003e`synchronous_replication`\u003c/span\u003e.\n"
+                },
                 "synchronousReplication": {
                     "type": "string",
-                    "description": "Synchronous replication type. Note that the service plan also needs to support synchronous replication.\n"
+                    "description": "Synchronous replication type. (deprecated, use\u003cspan pulumi-lang-nodejs=\" synchronousCommit \" pulumi-lang-dotnet=\" SynchronousCommit \" pulumi-lang-go=\" synchronousCommit \" pulumi-lang-python=\" synchronous_commit \" pulumi-lang-yaml=\" synchronousCommit \" pulumi-lang-java=\" synchronousCommit \"\u003e synchronous_commit \u003c/span\u003einstead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use\u003cspan pulumi-lang-nodejs=\" synchronousCommit \" pulumi-lang-dotnet=\" SynchronousCommit \" pulumi-lang-go=\" synchronousCommit \" pulumi-lang-python=\" synchronous_commit \" pulumi-lang-yaml=\" synchronousCommit \" pulumi-lang-java=\" synchronousCommit \"\u003e synchronous_commit \u003c/span\u003einstead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes\u003cspan pulumi-lang-nodejs=\" synchronousCommit \" pulumi-lang-dotnet=\" SynchronousCommit \" pulumi-lang-go=\" synchronousCommit \" pulumi-lang-python=\" synchronous_commit \" pulumi-lang-yaml=\" synchronousCommit \" pulumi-lang-java=\" synchronousCommit \"\u003e synchronous_commit \u003c/span\u003eto remote_write, while setting it to off changes\u003cspan pulumi-lang-nodejs=\" synchronousCommit \" pulumi-lang-dotnet=\" SynchronousCommit \" pulumi-lang-go=\" synchronousCommit \" pulumi-lang-python=\" synchronous_commit \" pulumi-lang-yaml=\" synchronousCommit \" pulumi-lang-java=\" synchronousCommit \"\u003e synchronous_commit \u003c/span\u003eto off.\n"
                 },
                 "tempFileLimit": {
                     "type": "integer",
@@ -3870,6 +3874,7 @@
                         "serviceLog",
                         "sharedBuffersPercentage",
                         "switchoverWindows",
+                        "synchronousCommit",
                         "synchronousReplication",
                         "tempFileLimit",
                         "timezone",

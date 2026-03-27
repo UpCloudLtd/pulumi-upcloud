@@ -3082,7 +3082,11 @@ export interface ManagedDatabasePostgresqlProperties {
     sharedBuffersPercentage?: pulumi.Input<number>;
     switchoverWindows?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+     * Sets the current transaction's synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
+     */
+    synchronousCommit?: pulumi.Input<string>;
+    /**
+     * Synchronous replication type. (deprecated, use synchronousCommit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronousCommit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronousCommit to remote_write, while setting it to off changes synchronousCommit to off.
      */
     synchronousReplication?: pulumi.Input<string>;
     /**

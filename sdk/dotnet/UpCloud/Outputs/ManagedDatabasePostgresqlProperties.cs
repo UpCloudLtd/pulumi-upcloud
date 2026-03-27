@@ -288,7 +288,11 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         public readonly double? SharedBuffersPercentage;
         public readonly ImmutableArray<string> SwitchoverWindows;
         /// <summary>
-        /// Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+        /// Sets the current transaction's synchronization level. The default is `Off`. This setting takes precedence over `SynchronousReplication`.
+        /// </summary>
+        public readonly string? SynchronousCommit;
+        /// <summary>
+        /// Synchronous replication type. (deprecated, use SynchronousCommit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use SynchronousCommit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes SynchronousCommit to remote_write, while setting it to off changes SynchronousCommit to off.
         /// </summary>
         public readonly string? SynchronousReplication;
         /// <summary>
@@ -480,6 +484,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             ImmutableArray<string> switchoverWindows,
 
+            string? synchronousCommit,
+
             string? synchronousReplication,
 
             int? tempFileLimit,
@@ -575,6 +581,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             ServiceLog = serviceLog;
             SharedBuffersPercentage = sharedBuffersPercentage;
             SwitchoverWindows = switchoverWindows;
+            SynchronousCommit = synchronousCommit;
             SynchronousReplication = synchronousReplication;
             TempFileLimit = tempFileLimit;
             Timescaledb = timescaledb;

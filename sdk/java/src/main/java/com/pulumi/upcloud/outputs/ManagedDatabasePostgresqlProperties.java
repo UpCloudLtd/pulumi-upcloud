@@ -362,7 +362,12 @@ public final class ManagedDatabasePostgresqlProperties {
     private @Nullable Double sharedBuffersPercentage;
     private @Nullable List<String> switchoverWindows;
     /**
-     * @return Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+     * @return Sets the current transaction&#39;s synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
+     * 
+     */
+    private @Nullable String synchronousCommit;
+    /**
+     * @return Synchronous replication type. (deprecated, use synchronousCommit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronousCommit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronousCommit to remote_write, while setting it to off changes synchronousCommit to off.
      * 
      */
     private @Nullable String synchronousReplication;
@@ -908,7 +913,14 @@ public final class ManagedDatabasePostgresqlProperties {
         return this.switchoverWindows == null ? List.of() : this.switchoverWindows;
     }
     /**
-     * @return Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+     * @return Sets the current transaction&#39;s synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
+     * 
+     */
+    public Optional<String> synchronousCommit() {
+        return Optional.ofNullable(this.synchronousCommit);
+    }
+    /**
+     * @return Synchronous replication type. (deprecated, use synchronousCommit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronousCommit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronousCommit to remote_write, while setting it to off changes synchronousCommit to off.
      * 
      */
     public Optional<String> synchronousReplication() {
@@ -1077,6 +1089,7 @@ public final class ManagedDatabasePostgresqlProperties {
         private @Nullable Boolean serviceLog;
         private @Nullable Double sharedBuffersPercentage;
         private @Nullable List<String> switchoverWindows;
+        private @Nullable String synchronousCommit;
         private @Nullable String synchronousReplication;
         private @Nullable Integer tempFileLimit;
         private @Nullable ManagedDatabasePostgresqlPropertiesTimescaledb timescaledb;
@@ -1162,6 +1175,7 @@ public final class ManagedDatabasePostgresqlProperties {
     	      this.serviceLog = defaults.serviceLog;
     	      this.sharedBuffersPercentage = defaults.sharedBuffersPercentage;
     	      this.switchoverWindows = defaults.switchoverWindows;
+    	      this.synchronousCommit = defaults.synchronousCommit;
     	      this.synchronousReplication = defaults.synchronousReplication;
     	      this.tempFileLimit = defaults.tempFileLimit;
     	      this.timescaledb = defaults.timescaledb;
@@ -1598,6 +1612,12 @@ public final class ManagedDatabasePostgresqlProperties {
             return switchoverWindows(List.of(switchoverWindows));
         }
         @CustomType.Setter
+        public Builder synchronousCommit(@Nullable String synchronousCommit) {
+
+            this.synchronousCommit = synchronousCommit;
+            return this;
+        }
+        @CustomType.Setter
         public Builder synchronousReplication(@Nullable String synchronousReplication) {
 
             this.synchronousReplication = synchronousReplication;
@@ -1746,6 +1766,7 @@ public final class ManagedDatabasePostgresqlProperties {
             _resultValue.serviceLog = serviceLog;
             _resultValue.sharedBuffersPercentage = sharedBuffersPercentage;
             _resultValue.switchoverWindows = switchoverWindows;
+            _resultValue.synchronousCommit = synchronousCommit;
             _resultValue.synchronousReplication = synchronousReplication;
             _resultValue.tempFileLimit = tempFileLimit;
             _resultValue.timescaledb = timescaledb;

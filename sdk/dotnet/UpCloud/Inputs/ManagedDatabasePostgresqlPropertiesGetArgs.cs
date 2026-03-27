@@ -456,7 +456,13 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         }
 
         /// <summary>
-        /// Synchronous replication type. Note that the service plan also needs to support synchronous replication.
+        /// Sets the current transaction's synchronization level. The default is `Off`. This setting takes precedence over `SynchronousReplication`.
+        /// </summary>
+        [Input("synchronousCommit")]
+        public Input<string>? SynchronousCommit { get; set; }
+
+        /// <summary>
+        /// Synchronous replication type. (deprecated, use SynchronousCommit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use SynchronousCommit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes SynchronousCommit to remote_write, while setting it to off changes SynchronousCommit to off.
         /// </summary>
         [Input("synchronousReplication")]
         public Input<string>? SynchronousReplication { get; set; }
