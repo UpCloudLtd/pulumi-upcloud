@@ -286,7 +286,6 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the SharedBuffers configuration value. Changing this parameter causes a service restart.
         /// </summary>
         public readonly double? SharedBuffersPercentage;
-        public readonly ImmutableArray<string> SwitchoverWindows;
         /// <summary>
         /// Sets the current transaction's synchronization level. The default is `Off`. This setting takes precedence over `SynchronousReplication`.
         /// </summary>
@@ -482,8 +481,6 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             double? sharedBuffersPercentage,
 
-            ImmutableArray<string> switchoverWindows,
-
             string? synchronousCommit,
 
             string? synchronousReplication,
@@ -580,7 +577,6 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             PublicAccessPrometheus = publicAccessPrometheus;
             ServiceLog = serviceLog;
             SharedBuffersPercentage = sharedBuffersPercentage;
-            SwitchoverWindows = switchoverWindows;
             SynchronousCommit = synchronousCommit;
             SynchronousReplication = synchronousReplication;
             TempFileLimit = tempFileLimit;

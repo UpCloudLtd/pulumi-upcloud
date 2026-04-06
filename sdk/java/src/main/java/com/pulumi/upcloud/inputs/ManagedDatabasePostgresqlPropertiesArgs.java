@@ -1044,13 +1044,6 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         return Optional.ofNullable(this.sharedBuffersPercentage);
     }
 
-    @Import(name="switchoverWindows")
-    private @Nullable Output<List<String>> switchoverWindows;
-
-    public Optional<Output<List<String>>> switchoverWindows() {
-        return Optional.ofNullable(this.switchoverWindows);
-    }
-
     /**
      * Sets the current transaction&#39;s synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
      * 
@@ -1332,7 +1325,6 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         this.publicAccessPrometheus = $.publicAccessPrometheus;
         this.serviceLog = $.serviceLog;
         this.sharedBuffersPercentage = $.sharedBuffersPercentage;
-        this.switchoverWindows = $.switchoverWindows;
         this.synchronousCommit = $.synchronousCommit;
         this.synchronousReplication = $.synchronousReplication;
         this.tempFileLimit = $.tempFileLimit;
@@ -2803,19 +2795,6 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
          */
         public Builder sharedBuffersPercentage(Double sharedBuffersPercentage) {
             return sharedBuffersPercentage(Output.of(sharedBuffersPercentage));
-        }
-
-        public Builder switchoverWindows(@Nullable Output<List<String>> switchoverWindows) {
-            $.switchoverWindows = switchoverWindows;
-            return this;
-        }
-
-        public Builder switchoverWindows(List<String> switchoverWindows) {
-            return switchoverWindows(Output.of(switchoverWindows));
-        }
-
-        public Builder switchoverWindows(String... switchoverWindows) {
-            return switchoverWindows(List.of(switchoverWindows));
         }
 
         /**

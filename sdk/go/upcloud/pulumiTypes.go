@@ -17023,7 +17023,6 @@ type ManagedDatabasePostgresqlProperties struct {
 	ServiceLog *bool `pulumi:"serviceLog"`
 	// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value. Changing this parameter causes a service restart.
 	SharedBuffersPercentage *float64 `pulumi:"sharedBuffersPercentage"`
-	SwitchoverWindows       []string `pulumi:"switchoverWindows"`
 	// Sets the current transaction's synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
 	SynchronousCommit *string `pulumi:"synchronousCommit"`
 	// Synchronous replication type. (deprecated, use synchronousCommit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronousCommit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronousCommit to remote_write, while setting it to off changes synchronousCommit to off.
@@ -17201,8 +17200,7 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog pulumi.BoolPtrInput `pulumi:"serviceLog"`
 	// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value. Changing this parameter causes a service restart.
-	SharedBuffersPercentage pulumi.Float64PtrInput  `pulumi:"sharedBuffersPercentage"`
-	SwitchoverWindows       pulumi.StringArrayInput `pulumi:"switchoverWindows"`
+	SharedBuffersPercentage pulumi.Float64PtrInput `pulumi:"sharedBuffersPercentage"`
 	// Sets the current transaction's synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
 	SynchronousCommit pulumi.StringPtrInput `pulumi:"synchronousCommit"`
 	// Synchronous replication type. (deprecated, use synchronousCommit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronousCommit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronousCommit to remote_write, while setting it to off changes synchronousCommit to off.
@@ -17656,10 +17654,6 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) ServiceLog() pulumi.BoolPtrOu
 // Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value. Changing this parameter causes a service restart.
 func (o ManagedDatabasePostgresqlPropertiesOutput) SharedBuffersPercentage() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *float64 { return v.SharedBuffersPercentage }).(pulumi.Float64PtrOutput)
-}
-
-func (o ManagedDatabasePostgresqlPropertiesOutput) SwitchoverWindows() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) []string { return v.SwitchoverWindows }).(pulumi.StringArrayOutput)
 }
 
 // Sets the current transaction's synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
@@ -18436,15 +18430,6 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) SharedBuffersPercentage() 
 		}
 		return v.SharedBuffersPercentage
 	}).(pulumi.Float64PtrOutput)
-}
-
-func (o ManagedDatabasePostgresqlPropertiesPtrOutput) SwitchoverWindows() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) []string {
-		if v == nil {
-			return nil
-		}
-		return v.SwitchoverWindows
-	}).(pulumi.StringArrayOutput)
 }
 
 // Sets the current transaction's synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.

@@ -360,7 +360,6 @@ public final class ManagedDatabasePostgresqlProperties {
      * 
      */
     private @Nullable Double sharedBuffersPercentage;
-    private @Nullable List<String> switchoverWindows;
     /**
      * @return Sets the current transaction&#39;s synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
      * 
@@ -909,9 +908,6 @@ public final class ManagedDatabasePostgresqlProperties {
     public Optional<Double> sharedBuffersPercentage() {
         return Optional.ofNullable(this.sharedBuffersPercentage);
     }
-    public List<String> switchoverWindows() {
-        return this.switchoverWindows == null ? List.of() : this.switchoverWindows;
-    }
     /**
      * @return Sets the current transaction&#39;s synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
      * 
@@ -1088,7 +1084,6 @@ public final class ManagedDatabasePostgresqlProperties {
         private @Nullable Boolean publicAccessPrometheus;
         private @Nullable Boolean serviceLog;
         private @Nullable Double sharedBuffersPercentage;
-        private @Nullable List<String> switchoverWindows;
         private @Nullable String synchronousCommit;
         private @Nullable String synchronousReplication;
         private @Nullable Integer tempFileLimit;
@@ -1174,7 +1169,6 @@ public final class ManagedDatabasePostgresqlProperties {
     	      this.publicAccessPrometheus = defaults.publicAccessPrometheus;
     	      this.serviceLog = defaults.serviceLog;
     	      this.sharedBuffersPercentage = defaults.sharedBuffersPercentage;
-    	      this.switchoverWindows = defaults.switchoverWindows;
     	      this.synchronousCommit = defaults.synchronousCommit;
     	      this.synchronousReplication = defaults.synchronousReplication;
     	      this.tempFileLimit = defaults.tempFileLimit;
@@ -1603,15 +1597,6 @@ public final class ManagedDatabasePostgresqlProperties {
             return this;
         }
         @CustomType.Setter
-        public Builder switchoverWindows(@Nullable List<String> switchoverWindows) {
-
-            this.switchoverWindows = switchoverWindows;
-            return this;
-        }
-        public Builder switchoverWindows(String... switchoverWindows) {
-            return switchoverWindows(List.of(switchoverWindows));
-        }
-        @CustomType.Setter
         public Builder synchronousCommit(@Nullable String synchronousCommit) {
 
             this.synchronousCommit = synchronousCommit;
@@ -1765,7 +1750,6 @@ public final class ManagedDatabasePostgresqlProperties {
             _resultValue.publicAccessPrometheus = publicAccessPrometheus;
             _resultValue.serviceLog = serviceLog;
             _resultValue.sharedBuffersPercentage = sharedBuffersPercentage;
-            _resultValue.switchoverWindows = switchoverWindows;
             _resultValue.synchronousCommit = synchronousCommit;
             _resultValue.synchronousReplication = synchronousReplication;
             _resultValue.tempFileLimit = tempFileLimit;

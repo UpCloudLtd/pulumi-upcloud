@@ -7954,8 +7954,6 @@ class ManagedDatabasePostgresqlProperties(dict):
             suggest = "service_log"
         elif key == "sharedBuffersPercentage":
             suggest = "shared_buffers_percentage"
-        elif key == "switchoverWindows":
-            suggest = "switchover_windows"
         elif key == "synchronousCommit":
             suggest = "synchronous_commit"
         elif key == "synchronousReplication":
@@ -8057,7 +8055,6 @@ class ManagedDatabasePostgresqlProperties(dict):
                  public_access_prometheus: Optional[_builtins.bool] = None,
                  service_log: Optional[_builtins.bool] = None,
                  shared_buffers_percentage: Optional[_builtins.float] = None,
-                 switchover_windows: Optional[Sequence[_builtins.str]] = None,
                  synchronous_commit: Optional[_builtins.str] = None,
                  synchronous_replication: Optional[_builtins.str] = None,
                  temp_file_limit: Optional[_builtins.int] = None,
@@ -8292,8 +8289,6 @@ class ManagedDatabasePostgresqlProperties(dict):
             pulumi.set(__self__, "service_log", service_log)
         if shared_buffers_percentage is not None:
             pulumi.set(__self__, "shared_buffers_percentage", shared_buffers_percentage)
-        if switchover_windows is not None:
-            pulumi.set(__self__, "switchover_windows", switchover_windows)
         if synchronous_commit is not None:
             pulumi.set(__self__, "synchronous_commit", synchronous_commit)
         if synchronous_replication is not None:
@@ -8866,11 +8861,6 @@ class ManagedDatabasePostgresqlProperties(dict):
         Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
         """
         return pulumi.get(self, "shared_buffers_percentage")
-
-    @_builtins.property
-    @pulumi.getter(name="switchoverWindows")
-    def switchover_windows(self) -> Optional[Sequence[_builtins.str]]:
-        return pulumi.get(self, "switchover_windows")
 
     @_builtins.property
     @pulumi.getter(name="synchronousCommit")

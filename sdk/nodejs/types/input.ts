@@ -3080,7 +3080,6 @@ export interface ManagedDatabasePostgresqlProperties {
      * Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value. Changing this parameter causes a service restart.
      */
     sharedBuffersPercentage?: pulumi.Input<number>;
-    switchoverWindows?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Sets the current transaction's synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
      */
