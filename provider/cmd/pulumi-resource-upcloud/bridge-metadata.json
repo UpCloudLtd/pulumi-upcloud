@@ -545,9 +545,6 @@
                                 "pglookout": {
                                     "maxItemsOne": true
                                 },
-                                "switchover_windows": {
-                                    "maxItemsOne": false
-                                },
                                 "timescaledb": {
                                     "maxItemsOne": true
                                 }
