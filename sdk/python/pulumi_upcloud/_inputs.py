@@ -11000,7 +11000,6 @@ if not MYPY:
         """
         Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value. Changing this parameter causes a service restart.
         """
-        switchover_windows: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
         synchronous_commit: NotRequired[pulumi.Input[_builtins.str]]
         """
         Sets the current transaction's synchronization level. The default is `off`. This setting takes precedence over `synchronous_replication`.
@@ -11131,7 +11130,6 @@ class ManagedDatabasePostgresqlPropertiesArgs:
                  public_access_prometheus: Optional[pulumi.Input[_builtins.bool]] = None,
                  service_log: Optional[pulumi.Input[_builtins.bool]] = None,
                  shared_buffers_percentage: Optional[pulumi.Input[_builtins.float]] = None,
-                 switchover_windows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  synchronous_commit: Optional[pulumi.Input[_builtins.str]] = None,
                  synchronous_replication: Optional[pulumi.Input[_builtins.str]] = None,
                  temp_file_limit: Optional[pulumi.Input[_builtins.int]] = None,
@@ -11366,8 +11364,6 @@ class ManagedDatabasePostgresqlPropertiesArgs:
             pulumi.set(__self__, "service_log", service_log)
         if shared_buffers_percentage is not None:
             pulumi.set(__self__, "shared_buffers_percentage", shared_buffers_percentage)
-        if switchover_windows is not None:
-            pulumi.set(__self__, "switchover_windows", switchover_windows)
         if synchronous_commit is not None:
             pulumi.set(__self__, "synchronous_commit", synchronous_commit)
         if synchronous_replication is not None:
@@ -12212,15 +12208,6 @@ class ManagedDatabasePostgresqlPropertiesArgs:
     @shared_buffers_percentage.setter
     def shared_buffers_percentage(self, value: Optional[pulumi.Input[_builtins.float]]):
         pulumi.set(self, "shared_buffers_percentage", value)
-
-    @_builtins.property
-    @pulumi.getter(name="switchoverWindows")
-    def switchover_windows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
-        return pulumi.get(self, "switchover_windows")
-
-    @switchover_windows.setter
-    def switchover_windows(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "switchover_windows", value)
 
     @_builtins.property
     @pulumi.getter(name="synchronousCommit")

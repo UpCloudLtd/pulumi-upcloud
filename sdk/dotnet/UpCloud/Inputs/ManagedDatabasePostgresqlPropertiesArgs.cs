@@ -447,14 +447,6 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         [Input("sharedBuffersPercentage")]
         public Input<double>? SharedBuffersPercentage { get; set; }
 
-        [Input("switchoverWindows")]
-        private InputList<string>? _switchoverWindows;
-        public InputList<string> SwitchoverWindows
-        {
-            get => _switchoverWindows ?? (_switchoverWindows = new InputList<string>());
-            set => _switchoverWindows = value;
-        }
-
         /// <summary>
         /// Sets the current transaction's synchronization level. The default is `Off`. This setting takes precedence over `SynchronousReplication`.
         /// </summary>

@@ -3742,12 +3742,6 @@
                     "type": "number",
                     "description": "Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the\u003cspan pulumi-lang-nodejs=\" sharedBuffers \" pulumi-lang-dotnet=\" SharedBuffers \" pulumi-lang-go=\" sharedBuffers \" pulumi-lang-python=\" shared_buffers \" pulumi-lang-yaml=\" sharedBuffers \" pulumi-lang-java=\" sharedBuffers \"\u003e shared_buffers \u003c/span\u003econfiguration value. Changing this parameter causes a service restart.\n"
                 },
-                "switchoverWindows": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
                 "synchronousCommit": {
                     "type": "string",
                     "description": "Sets the current transaction's synchronization level. The default is \u003cspan pulumi-lang-nodejs=\"`off`\" pulumi-lang-dotnet=\"`Off`\" pulumi-lang-go=\"`off`\" pulumi-lang-python=\"`off`\" pulumi-lang-yaml=\"`off`\" pulumi-lang-java=\"`off`\"\u003e`off`\u003c/span\u003e. This setting takes precedence over \u003cspan pulumi-lang-nodejs=\"`synchronousReplication`\" pulumi-lang-dotnet=\"`SynchronousReplication`\" pulumi-lang-go=\"`synchronousReplication`\" pulumi-lang-python=\"`synchronous_replication`\" pulumi-lang-yaml=\"`synchronousReplication`\" pulumi-lang-java=\"`synchronousReplication`\"\u003e`synchronous_replication`\u003c/span\u003e.\n"
@@ -3873,7 +3867,6 @@
                         "publicAccessPrometheus",
                         "serviceLog",
                         "sharedBuffersPercentage",
-                        "switchoverWindows",
                         "synchronousCommit",
                         "synchronousReplication",
                         "tempFileLimit",
