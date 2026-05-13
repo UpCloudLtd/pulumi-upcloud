@@ -9283,8 +9283,6 @@ type ManagedDatabaseOpensearchProperties struct {
 	CustomRepos []string `pulumi:"customRepos"`
 	// Watermark settings.
 	DiskWatermarks *ManagedDatabaseOpensearchPropertiesDiskWatermarks `pulumi:"diskWatermarks"`
-	// Elasticsearch version.
-	ElasticsearchVersion *string `pulumi:"elasticsearchVersion"`
 	// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
 	EmailSenderName *string `pulumi:"emailSenderName"`
 	// Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
@@ -9451,8 +9449,6 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	CustomRepos pulumi.StringArrayInput `pulumi:"customRepos"`
 	// Watermark settings.
 	DiskWatermarks ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrInput `pulumi:"diskWatermarks"`
-	// Elasticsearch version.
-	ElasticsearchVersion pulumi.StringPtrInput `pulumi:"elasticsearchVersion"`
 	// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
 	EmailSenderName pulumi.StringPtrInput `pulumi:"emailSenderName"`
 	// Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
@@ -9736,11 +9732,6 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) DiskWatermarks() ManagedDatab
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *ManagedDatabaseOpensearchPropertiesDiskWatermarks {
 		return v.DiskWatermarks
 	}).(ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput)
-}
-
-// Elasticsearch version.
-func (o ManagedDatabaseOpensearchPropertiesOutput) ElasticsearchVersion() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *string { return v.ElasticsearchVersion }).(pulumi.StringPtrOutput)
 }
 
 // Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
@@ -10239,16 +10230,6 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) DiskWatermarks() ManagedDa
 		}
 		return v.DiskWatermarks
 	}).(ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput)
-}
-
-// Elasticsearch version.
-func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ElasticsearchVersion() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *string {
-		if v == nil {
-			return nil
-		}
-		return v.ElasticsearchVersion
-	}).(pulumi.StringPtrOutput)
 }
 
 // Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.

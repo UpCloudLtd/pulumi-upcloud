@@ -1734,10 +1734,6 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     diskWatermarks?: outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks;
     /**
-     * Elasticsearch version.
-     */
-    elasticsearchVersion: string;
-    /**
      * Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
      */
     emailSenderName: string;

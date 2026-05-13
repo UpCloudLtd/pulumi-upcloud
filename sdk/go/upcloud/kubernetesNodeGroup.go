@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource represents a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster.
+// This resource represents a node group in a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster. The node groups are used to define the worker nodes of the cluster.
 //
 // ## Example Usage
 //
@@ -127,8 +127,10 @@ type KubernetesNodeGroup struct {
 	KubeletArgs KubernetesNodeGroupKubeletArgArrayOutput `pulumi:"kubeletArgs"`
 	// User defined key-value pairs to classify the node_group.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
-	// The name of the node group. Needs to be unique within a cluster.
+	// The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+	NamePrefix pulumi.StringPtrOutput `pulumi:"namePrefix"`
 	// Amount of nodes to provision in the node group.
 	NodeCount pulumi.IntOutput `pulumi:"nodeCount"`
 	// The server plan used for the node group. You can list available plans with `upctl server plans`
@@ -198,8 +200,10 @@ type kubernetesNodeGroupState struct {
 	KubeletArgs []KubernetesNodeGroupKubeletArg `pulumi:"kubeletArgs"`
 	// User defined key-value pairs to classify the node_group.
 	Labels map[string]string `pulumi:"labels"`
-	// The name of the node group. Needs to be unique within a cluster.
+	// The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
 	Name *string `pulumi:"name"`
+	// Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+	NamePrefix *string `pulumi:"namePrefix"`
 	// Amount of nodes to provision in the node group.
 	NodeCount *int `pulumi:"nodeCount"`
 	// The server plan used for the node group. You can list available plans with `upctl server plans`
@@ -231,8 +235,10 @@ type KubernetesNodeGroupState struct {
 	KubeletArgs KubernetesNodeGroupKubeletArgArrayInput
 	// User defined key-value pairs to classify the node_group.
 	Labels pulumi.StringMapInput
-	// The name of the node group. Needs to be unique within a cluster.
+	// The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
 	Name pulumi.StringPtrInput
+	// Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+	NamePrefix pulumi.StringPtrInput
 	// Amount of nodes to provision in the node group.
 	NodeCount pulumi.IntPtrInput
 	// The server plan used for the node group. You can list available plans with `upctl server plans`
@@ -268,8 +274,10 @@ type kubernetesNodeGroupArgs struct {
 	KubeletArgs []KubernetesNodeGroupKubeletArg `pulumi:"kubeletArgs"`
 	// User defined key-value pairs to classify the node_group.
 	Labels map[string]string `pulumi:"labels"`
-	// The name of the node group. Needs to be unique within a cluster.
+	// The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
 	Name *string `pulumi:"name"`
+	// Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+	NamePrefix *string `pulumi:"namePrefix"`
 	// Amount of nodes to provision in the node group.
 	NodeCount int `pulumi:"nodeCount"`
 	// The server plan used for the node group. You can list available plans with `upctl server plans`
@@ -302,8 +310,10 @@ type KubernetesNodeGroupArgs struct {
 	KubeletArgs KubernetesNodeGroupKubeletArgArrayInput
 	// User defined key-value pairs to classify the node_group.
 	Labels pulumi.StringMapInput
-	// The name of the node group. Needs to be unique within a cluster.
+	// The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
 	Name pulumi.StringPtrInput
+	// Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+	NamePrefix pulumi.StringPtrInput
 	// Amount of nodes to provision in the node group.
 	NodeCount pulumi.IntInput
 	// The server plan used for the node group. You can list available plans with `upctl server plans`
@@ -442,9 +452,14 @@ func (o KubernetesNodeGroupOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
-// The name of the node group. Needs to be unique within a cluster.
+// The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
 func (o KubernetesNodeGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+func (o KubernetesNodeGroupOutput) NamePrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.StringPtrOutput { return v.NamePrefix }).(pulumi.StringPtrOutput)
 }
 
 // Amount of nodes to provision in the node group.

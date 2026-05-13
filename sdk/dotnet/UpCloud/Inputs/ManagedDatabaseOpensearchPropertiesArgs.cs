@@ -104,12 +104,6 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<Inputs.ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs>? DiskWatermarks { get; set; }
 
         /// <summary>
-        /// Elasticsearch version.
-        /// </summary>
-        [Input("elasticsearchVersion")]
-        public Input<string>? ElasticsearchVersion { get; set; }
-
-        /// <summary>
         /// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
         /// </summary>
         [Input("emailSenderName")]

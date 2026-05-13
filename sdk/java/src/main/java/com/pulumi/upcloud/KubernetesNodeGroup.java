@@ -24,7 +24,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This resource represents a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster.
+ * This resource represents a node group in a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster. The node groups are used to define the worker nodes of the cluster.
  * 
  * ## Example Usage
  * 
@@ -226,18 +226,32 @@ public class KubernetesNodeGroup extends com.pulumi.resources.CustomResource {
         return this.labels;
     }
     /**
-     * The name of the node group. Needs to be unique within a cluster.
+     * The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The name of the node group. Needs to be unique within a cluster.
+     * @return The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
      * 
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+     * 
+     */
+    @Export(name="namePrefix", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> namePrefix;
+
+    /**
+     * @return Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+     * 
+     */
+    public Output<Optional<String>> namePrefix() {
+        return Codegen.optional(this.namePrefix);
     }
     /**
      * Amount of nodes to provision in the node group.

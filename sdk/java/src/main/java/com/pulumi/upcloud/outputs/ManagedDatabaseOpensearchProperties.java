@@ -92,11 +92,6 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     private @Nullable ManagedDatabaseOpensearchPropertiesDiskWatermarks diskWatermarks;
     /**
-     * @return Elasticsearch version.
-     * 
-     */
-    private @Nullable String elasticsearchVersion;
-    /**
      * @return Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
      * 
      */
@@ -499,13 +494,6 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     public Optional<ManagedDatabaseOpensearchPropertiesDiskWatermarks> diskWatermarks() {
         return Optional.ofNullable(this.diskWatermarks);
-    }
-    /**
-     * @return Elasticsearch version.
-     * 
-     */
-    public Optional<String> elasticsearchVersion() {
-        return Optional.ofNullable(this.elasticsearchVersion);
     }
     /**
      * @return Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
@@ -971,7 +959,6 @@ public final class ManagedDatabaseOpensearchProperties {
         private @Nullable List<String> customKeystores;
         private @Nullable List<String> customRepos;
         private @Nullable ManagedDatabaseOpensearchPropertiesDiskWatermarks diskWatermarks;
-        private @Nullable String elasticsearchVersion;
         private @Nullable String emailSenderName;
         private @Nullable String emailSenderPassword;
         private @Nullable String emailSenderUsername;
@@ -1053,7 +1040,6 @@ public final class ManagedDatabaseOpensearchProperties {
     	      this.customKeystores = defaults.customKeystores;
     	      this.customRepos = defaults.customRepos;
     	      this.diskWatermarks = defaults.diskWatermarks;
-    	      this.elasticsearchVersion = defaults.elasticsearchVersion;
     	      this.emailSenderName = defaults.emailSenderName;
     	      this.emailSenderPassword = defaults.emailSenderPassword;
     	      this.emailSenderUsername = defaults.emailSenderUsername;
@@ -1208,12 +1194,6 @@ public final class ManagedDatabaseOpensearchProperties {
         public Builder diskWatermarks(@Nullable ManagedDatabaseOpensearchPropertiesDiskWatermarks diskWatermarks) {
 
             this.diskWatermarks = diskWatermarks;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder elasticsearchVersion(@Nullable String elasticsearchVersion) {
-
-            this.elasticsearchVersion = elasticsearchVersion;
             return this;
         }
         @CustomType.Setter
@@ -1625,7 +1605,6 @@ public final class ManagedDatabaseOpensearchProperties {
             _resultValue.customKeystores = customKeystores;
             _resultValue.customRepos = customRepos;
             _resultValue.diskWatermarks = diskWatermarks;
-            _resultValue.elasticsearchVersion = elasticsearchVersion;
             _resultValue.emailSenderName = emailSenderName;
             _resultValue.emailSenderPassword = emailSenderPassword;
             _resultValue.emailSenderUsername = emailSenderUsername;

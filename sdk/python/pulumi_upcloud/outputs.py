@@ -4450,8 +4450,6 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "custom_repos"
         elif key == "diskWatermarks":
             suggest = "disk_watermarks"
-        elif key == "elasticsearchVersion":
-            suggest = "elasticsearch_version"
         elif key == "emailSenderName":
             suggest = "email_sender_name"
         elif key == "emailSenderPassword":
@@ -4597,7 +4595,6 @@ class ManagedDatabaseOpensearchProperties(dict):
                  custom_keystores: Optional[Sequence[_builtins.str]] = None,
                  custom_repos: Optional[Sequence[_builtins.str]] = None,
                  disk_watermarks: Optional['outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks'] = None,
-                 elasticsearch_version: Optional[_builtins.str] = None,
                  email_sender_name: Optional[_builtins.str] = None,
                  email_sender_password: Optional[_builtins.str] = None,
                  email_sender_username: Optional[_builtins.str] = None,
@@ -4675,7 +4672,6 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param Sequence[_builtins.str] custom_keystores: OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
         :param Sequence[_builtins.str] custom_repos: OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
         :param 'ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs' disk_watermarks: Watermark settings.
-        :param _builtins.str elasticsearch_version: Elasticsearch version.
         :param _builtins.str email_sender_name: Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
         :param _builtins.str email_sender_password: Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
         :param _builtins.str email_sender_username: Sender username for Opensearch alerts.
@@ -4767,8 +4763,6 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "custom_repos", custom_repos)
         if disk_watermarks is not None:
             pulumi.set(__self__, "disk_watermarks", disk_watermarks)
-        if elasticsearch_version is not None:
-            pulumi.set(__self__, "elasticsearch_version", elasticsearch_version)
         if email_sender_name is not None:
             pulumi.set(__self__, "email_sender_name", email_sender_name)
         if email_sender_password is not None:
@@ -5003,14 +4997,6 @@ class ManagedDatabaseOpensearchProperties(dict):
         Watermark settings.
         """
         return pulumi.get(self, "disk_watermarks")
-
-    @_builtins.property
-    @pulumi.getter(name="elasticsearchVersion")
-    def elasticsearch_version(self) -> Optional[_builtins.str]:
-        """
-        Elasticsearch version.
-        """
-        return pulumi.get(self, "elasticsearch_version")
 
     @_builtins.property
     @pulumi.getter(name="emailSenderName")
