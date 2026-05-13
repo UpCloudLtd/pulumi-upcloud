@@ -6216,10 +6216,6 @@ if not MYPY:
         """
         Watermark settings.
         """
-        elasticsearch_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Elasticsearch version.
-        """
         email_sender_name: NotRequired[pulumi.Input[_builtins.str]]
         """
         Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
@@ -6490,7 +6486,6 @@ class ManagedDatabaseOpensearchPropertiesArgs:
                  custom_keystores: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  custom_repos: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  disk_watermarks: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs']] = None,
-                 elasticsearch_version: Optional[pulumi.Input[_builtins.str]] = None,
                  email_sender_name: Optional[pulumi.Input[_builtins.str]] = None,
                  email_sender_password: Optional[pulumi.Input[_builtins.str]] = None,
                  email_sender_username: Optional[pulumi.Input[_builtins.str]] = None,
@@ -6568,7 +6563,6 @@ class ManagedDatabaseOpensearchPropertiesArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] custom_keystores: OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] custom_repos: OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
         :param pulumi.Input['ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs'] disk_watermarks: Watermark settings.
-        :param pulumi.Input[_builtins.str] elasticsearch_version: Elasticsearch version.
         :param pulumi.Input[_builtins.str] email_sender_name: Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
         :param pulumi.Input[_builtins.str] email_sender_password: Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
         :param pulumi.Input[_builtins.str] email_sender_username: Sender username for Opensearch alerts.
@@ -6660,8 +6654,6 @@ class ManagedDatabaseOpensearchPropertiesArgs:
             pulumi.set(__self__, "custom_repos", custom_repos)
         if disk_watermarks is not None:
             pulumi.set(__self__, "disk_watermarks", disk_watermarks)
-        if elasticsearch_version is not None:
-            pulumi.set(__self__, "elasticsearch_version", elasticsearch_version)
         if email_sender_name is not None:
             pulumi.set(__self__, "email_sender_name", email_sender_name)
         if email_sender_password is not None:
@@ -6952,18 +6944,6 @@ class ManagedDatabaseOpensearchPropertiesArgs:
     @disk_watermarks.setter
     def disk_watermarks(self, value: Optional[pulumi.Input['ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs']]):
         pulumi.set(self, "disk_watermarks", value)
-
-    @_builtins.property
-    @pulumi.getter(name="elasticsearchVersion")
-    def elasticsearch_version(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Elasticsearch version.
-        """
-        return pulumi.get(self, "elasticsearch_version")
-
-    @elasticsearch_version.setter
-    def elasticsearch_version(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "elasticsearch_version", value)
 
     @_builtins.property
     @pulumi.getter(name="emailSenderName")

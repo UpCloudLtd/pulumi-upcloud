@@ -65,10 +65,6 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly Outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks? DiskWatermarks;
         /// <summary>
-        /// Elasticsearch version.
-        /// </summary>
-        public readonly string? ElasticsearchVersion;
-        /// <summary>
         /// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
         /// </summary>
         public readonly string? EmailSenderName;
@@ -349,8 +345,6 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             Outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks? diskWatermarks,
 
-            string? elasticsearchVersion,
-
             string? emailSenderName,
 
             string? emailSenderPassword,
@@ -493,7 +487,6 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             CustomKeystores = customKeystores;
             CustomRepos = customRepos;
             DiskWatermarks = diskWatermarks;
-            ElasticsearchVersion = elasticsearchVersion;
             EmailSenderName = emailSenderName;
             EmailSenderPassword = emailSenderPassword;
             EmailSenderUsername = emailSenderUsername;

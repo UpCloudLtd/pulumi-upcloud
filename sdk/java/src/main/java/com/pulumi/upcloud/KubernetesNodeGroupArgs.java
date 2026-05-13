@@ -135,18 +135,33 @@ public final class KubernetesNodeGroupArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The name of the node group. Needs to be unique within a cluster.
+     * The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the node group. Needs to be unique within a cluster.
+     * @return The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
      * 
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
+    }
+
+    /**
+     * Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+     * 
+     */
+    @Import(name="namePrefix")
+    private @Nullable Output<String> namePrefix;
+
+    /**
+     * @return Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+     * 
+     */
+    public Optional<Output<String>> namePrefix() {
+        return Optional.ofNullable(this.namePrefix);
     }
 
     /**
@@ -250,6 +265,7 @@ public final class KubernetesNodeGroupArgs extends com.pulumi.resources.Resource
         this.kubeletArgs = $.kubeletArgs;
         this.labels = $.labels;
         this.name = $.name;
+        this.namePrefix = $.namePrefix;
         this.nodeCount = $.nodeCount;
         this.plan = $.plan;
         this.sshKeys = $.sshKeys;
@@ -440,7 +456,7 @@ public final class KubernetesNodeGroupArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param name The name of the node group. Needs to be unique within a cluster.
+         * @param name The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
          * 
          * @return builder
          * 
@@ -451,13 +467,34 @@ public final class KubernetesNodeGroupArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param name The name of the node group. Needs to be unique within a cluster.
+         * @param name The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
          * 
          * @return builder
          * 
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param namePrefix Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namePrefix(@Nullable Output<String> namePrefix) {
+            $.namePrefix = namePrefix;
+            return this;
+        }
+
+        /**
+         * @param namePrefix Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namePrefix(String namePrefix) {
+            return namePrefix(Output.of(namePrefix));
         }
 
         /**

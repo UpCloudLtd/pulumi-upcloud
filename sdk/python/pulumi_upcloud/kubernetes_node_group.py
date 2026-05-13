@@ -31,6 +31,7 @@ class KubernetesNodeGroupArgs:
                  kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  storage_encryption: Optional[pulumi.Input[_builtins.str]] = None,
                  taints: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]]] = None,
@@ -48,7 +49,8 @@ class KubernetesNodeGroupArgs:
                
                    Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the node_group.
-        :param pulumi.Input[_builtins.str] name: The name of the node group. Needs to be unique within a cluster.
+        :param pulumi.Input[_builtins.str] name: The name of the node group. Needs to be unique within a cluster. Either `name` or `name_prefix` must be specified.
+        :param pulumi.Input[_builtins.str] name_prefix: Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `create_before_destroy` lifecycle setting. Conflicts with `name`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
         :param pulumi.Input[_builtins.str] storage_encryption: The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]] taints: Taints for the nodes in this group.
@@ -71,6 +73,8 @@ class KubernetesNodeGroupArgs:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
         if ssh_keys is not None:
             pulumi.set(__self__, "ssh_keys", ssh_keys)
         if storage_encryption is not None:
@@ -194,13 +198,25 @@ class KubernetesNodeGroupArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The name of the node group. Needs to be unique within a cluster.
+        The name of the node group. Needs to be unique within a cluster. Either `name` or `name_prefix` must be specified.
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `create_before_destroy` lifecycle setting. Conflicts with `name`.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @name_prefix.setter
+    def name_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="sshKeys")
@@ -262,6 +278,7 @@ class _KubernetesNodeGroupState:
                  kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
                  node_count: Optional[pulumi.Input[_builtins.int]] = None,
                  plan: Optional[pulumi.Input[_builtins.str]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -279,7 +296,8 @@ class _KubernetesNodeGroupState:
                
                    Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the node_group.
-        :param pulumi.Input[_builtins.str] name: The name of the node group. Needs to be unique within a cluster.
+        :param pulumi.Input[_builtins.str] name: The name of the node group. Needs to be unique within a cluster. Either `name` or `name_prefix` must be specified.
+        :param pulumi.Input[_builtins.str] name_prefix: Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `create_before_destroy` lifecycle setting. Conflicts with `name`.
         :param pulumi.Input[_builtins.int] node_count: Amount of nodes to provision in the node group.
         :param pulumi.Input[_builtins.str] plan: The server plan used for the node group. You can list available plans with `upctl server plans`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
@@ -303,6 +321,8 @@ class _KubernetesNodeGroupState:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
         if plan is not None:
@@ -406,13 +426,25 @@ class _KubernetesNodeGroupState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The name of the node group. Needs to be unique within a cluster.
+        The name of the node group. Needs to be unique within a cluster. Either `name` or `name_prefix` must be specified.
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `create_before_destroy` lifecycle setting. Conflicts with `name`.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @name_prefix.setter
+    def name_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")
@@ -501,6 +533,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                  kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
                  node_count: Optional[pulumi.Input[_builtins.int]] = None,
                  plan: Optional[pulumi.Input[_builtins.str]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -509,7 +542,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                  utility_network_access: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
-        This resource represents a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster.
+        This resource represents a node group in a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster. The node groups are used to define the worker nodes of the cluster.
 
         ## Example Usage
 
@@ -581,7 +614,8 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                
                    Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the node_group.
-        :param pulumi.Input[_builtins.str] name: The name of the node group. Needs to be unique within a cluster.
+        :param pulumi.Input[_builtins.str] name: The name of the node group. Needs to be unique within a cluster. Either `name` or `name_prefix` must be specified.
+        :param pulumi.Input[_builtins.str] name_prefix: Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `create_before_destroy` lifecycle setting. Conflicts with `name`.
         :param pulumi.Input[_builtins.int] node_count: Amount of nodes to provision in the node group.
         :param pulumi.Input[_builtins.str] plan: The server plan used for the node group. You can list available plans with `upctl server plans`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
@@ -596,7 +630,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                  args: KubernetesNodeGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource represents a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster.
+        This resource represents a node group in a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster. The node groups are used to define the worker nodes of the cluster.
 
         ## Example Usage
 
@@ -680,6 +714,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                  kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
                  node_count: Optional[pulumi.Input[_builtins.int]] = None,
                  plan: Optional[pulumi.Input[_builtins.str]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -705,6 +740,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
             __props__.__dict__["kubelet_args"] = kubelet_args
             __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
+            __props__.__dict__["name_prefix"] = name_prefix
             if node_count is None and not opts.urn:
                 raise TypeError("Missing required property 'node_count'")
             __props__.__dict__["node_count"] = node_count
@@ -733,6 +769,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
             kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
+            name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
             node_count: Optional[pulumi.Input[_builtins.int]] = None,
             plan: Optional[pulumi.Input[_builtins.str]] = None,
             ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -755,7 +792,8 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                
                    Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the node_group.
-        :param pulumi.Input[_builtins.str] name: The name of the node group. Needs to be unique within a cluster.
+        :param pulumi.Input[_builtins.str] name: The name of the node group. Needs to be unique within a cluster. Either `name` or `name_prefix` must be specified.
+        :param pulumi.Input[_builtins.str] name_prefix: Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `create_before_destroy` lifecycle setting. Conflicts with `name`.
         :param pulumi.Input[_builtins.int] node_count: Amount of nodes to provision in the node group.
         :param pulumi.Input[_builtins.str] plan: The server plan used for the node group. You can list available plans with `upctl server plans`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
@@ -775,6 +813,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         __props__.__dict__["kubelet_args"] = kubelet_args
         __props__.__dict__["labels"] = labels
         __props__.__dict__["name"] = name
+        __props__.__dict__["name_prefix"] = name_prefix
         __props__.__dict__["node_count"] = node_count
         __props__.__dict__["plan"] = plan
         __props__.__dict__["ssh_keys"] = ssh_keys
@@ -845,9 +884,17 @@ class KubernetesNodeGroup(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        The name of the node group. Needs to be unique within a cluster.
+        The name of the node group. Needs to be unique within a cluster. Either `name` or `name_prefix` must be specified.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `create_before_destroy` lifecycle setting. Conflicts with `name`.
+        """
+        return pulumi.get(self, "name_prefix")
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")

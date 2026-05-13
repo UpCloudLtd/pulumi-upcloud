@@ -1932,10 +1932,6 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     diskWatermarks?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks>;
     /**
-     * Elasticsearch version.
-     */
-    elasticsearchVersion?: pulumi.Input<string>;
-    /**
      * Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
      */
     emailSenderName?: pulumi.Input<string>;

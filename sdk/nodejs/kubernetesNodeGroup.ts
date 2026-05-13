@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * This resource represents a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster.
+ * This resource represents a node group in a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster. The node groups are used to define the worker nodes of the cluster.
  *
  * ## Example Usage
  *
@@ -132,9 +132,13 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
      */
     declare public readonly labels: pulumi.Output<{[key: string]: string}>;
     /**
-     * The name of the node group. Needs to be unique within a cluster.
+     * The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
      */
     declare public readonly name: pulumi.Output<string>;
+    /**
+     * Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+     */
+    declare public readonly namePrefix: pulumi.Output<string | undefined>;
     /**
      * Amount of nodes to provision in the node group.
      */
@@ -181,6 +185,7 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
             resourceInputs["kubeletArgs"] = state?.kubeletArgs;
             resourceInputs["labels"] = state?.labels;
             resourceInputs["name"] = state?.name;
+            resourceInputs["namePrefix"] = state?.namePrefix;
             resourceInputs["nodeCount"] = state?.nodeCount;
             resourceInputs["plan"] = state?.plan;
             resourceInputs["sshKeys"] = state?.sshKeys;
@@ -206,6 +211,7 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
             resourceInputs["kubeletArgs"] = args?.kubeletArgs;
             resourceInputs["labels"] = args?.labels;
             resourceInputs["name"] = args?.name;
+            resourceInputs["namePrefix"] = args?.namePrefix;
             resourceInputs["nodeCount"] = args?.nodeCount;
             resourceInputs["plan"] = args?.plan;
             resourceInputs["sshKeys"] = args?.sshKeys;
@@ -253,9 +259,13 @@ export interface KubernetesNodeGroupState {
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The name of the node group. Needs to be unique within a cluster.
+     * The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+     */
+    namePrefix?: pulumi.Input<string>;
     /**
      * Amount of nodes to provision in the node group.
      */
@@ -317,9 +327,13 @@ export interface KubernetesNodeGroupArgs {
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The name of the node group. Needs to be unique within a cluster.
+     * The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
+     */
+    namePrefix?: pulumi.Input<string>;
     /**
      * Amount of nodes to provision in the node group.
      */

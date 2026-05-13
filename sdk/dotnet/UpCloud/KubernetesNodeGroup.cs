@@ -11,7 +11,7 @@ using Pulumi;
 namespace UpCloud.Pulumi.UpCloud
 {
     /// <summary>
-    /// This resource represents a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster.
+    /// This resource represents a node group in a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster. The node groups are used to define the worker nodes of the cluster.
     /// 
     /// ## Example Usage
     /// 
@@ -152,10 +152,16 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the node group. Needs to be unique within a cluster.
+        /// The name of the node group. Needs to be unique within a cluster. Either `Name` or `NamePrefix` must be specified.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `CreateBeforeDestroy` lifecycle setting. Conflicts with `Name`.
+        /// </summary>
+        [Output("namePrefix")]
+        public Output<string?> NamePrefix { get; private set; } = null!;
 
         /// <summary>
         /// Amount of nodes to provision in the node group.
@@ -297,10 +303,16 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// The name of the node group. Needs to be unique within a cluster.
+        /// The name of the node group. Needs to be unique within a cluster. Either `Name` or `NamePrefix` must be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `CreateBeforeDestroy` lifecycle setting. Conflicts with `Name`.
+        /// </summary>
+        [Input("namePrefix")]
+        public Input<string>? NamePrefix { get; set; }
 
         /// <summary>
         /// Amount of nodes to provision in the node group.
@@ -415,10 +427,16 @@ namespace UpCloud.Pulumi.UpCloud
         }
 
         /// <summary>
-        /// The name of the node group. Needs to be unique within a cluster.
+        /// The name of the node group. Needs to be unique within a cluster. Either `Name` or `NamePrefix` must be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `CreateBeforeDestroy` lifecycle setting. Conflicts with `Name`.
+        /// </summary>
+        [Input("namePrefix")]
+        public Input<string>? NamePrefix { get; set; }
 
         /// <summary>
         /// Amount of nodes to provision in the node group.

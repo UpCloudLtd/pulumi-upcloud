@@ -228,21 +228,6 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Elasticsearch version.
-     * 
-     */
-    @Import(name="elasticsearchVersion")
-    private @Nullable Output<String> elasticsearchVersion;
-
-    /**
-     * @return Elasticsearch version.
-     * 
-     */
-    public Optional<Output<String>> elasticsearchVersion() {
-        return Optional.ofNullable(this.elasticsearchVersion);
-    }
-
-    /**
      * Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
      * 
      */
@@ -1203,7 +1188,6 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         this.customKeystores = $.customKeystores;
         this.customRepos = $.customRepos;
         this.diskWatermarks = $.diskWatermarks;
-        this.elasticsearchVersion = $.elasticsearchVersion;
         this.emailSenderName = $.emailSenderName;
         this.emailSenderPassword = $.emailSenderPassword;
         this.emailSenderUsername = $.emailSenderUsername;
@@ -1576,27 +1560,6 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
          */
         public Builder diskWatermarks(ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs diskWatermarks) {
             return diskWatermarks(Output.of(diskWatermarks));
-        }
-
-        /**
-         * @param elasticsearchVersion Elasticsearch version.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder elasticsearchVersion(@Nullable Output<String> elasticsearchVersion) {
-            $.elasticsearchVersion = elasticsearchVersion;
-            return this;
-        }
-
-        /**
-         * @param elasticsearchVersion Elasticsearch version.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder elasticsearchVersion(String elasticsearchVersion) {
-            return elasticsearchVersion(Output.of(elasticsearchVersion));
         }
 
         /**
