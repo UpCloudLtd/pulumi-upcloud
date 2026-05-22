@@ -11,6 +11,7 @@ import com.pulumi.upcloud.FileStorageArgs;
 import com.pulumi.upcloud.Utilities;
 import com.pulumi.upcloud.inputs.FileStorageState;
 import com.pulumi.upcloud.outputs.FileStorageNetwork;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -69,6 +70,7 @@ import javax.annotation.Nullable;
  *             .size(250)
  *             .zone("fi-hel2")
  *             .configuredStatus("stopped")
+ *             .encrypt(true)
  *             .labels(Map.ofEntries(
  *                 Map.entry("environment", "staging"),
  *                 Map.entry("customer", "example-customer")
@@ -116,6 +118,20 @@ public class FileStorage extends com.pulumi.resources.CustomResource {
      */
     public Output<String> configuredStatus() {
         return this.configuredStatus;
+    }
+    /**
+     * Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+     * 
+     */
+    @Export(name="encrypt", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> encrypt;
+
+    /**
+     * @return Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+     * 
+     */
+    public Output<Boolean> encrypt() {
+        return this.encrypt;
     }
     /**
      * User defined key-value pairs to classify the file storage.

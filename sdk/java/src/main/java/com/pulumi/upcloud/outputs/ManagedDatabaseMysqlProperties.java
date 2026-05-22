@@ -193,6 +193,11 @@ public final class ManagedDatabaseMysqlProperties {
      */
     private @Nullable Integer netWriteTimeout;
     /**
+     * @return The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
+     * 
+     */
+    private @Nullable Integer performanceSchemaEventsStatementsHistorySize;
+    /**
      * @return Public Access. Allow access to the service from the public Internet.
      * 
      */
@@ -490,6 +495,13 @@ public final class ManagedDatabaseMysqlProperties {
         return Optional.ofNullable(this.netWriteTimeout);
     }
     /**
+     * @return The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
+     * 
+     */
+    public Optional<Integer> performanceSchemaEventsStatementsHistorySize() {
+        return Optional.ofNullable(this.performanceSchemaEventsStatementsHistorySize);
+    }
+    /**
      * @return Public Access. Allow access to the service from the public Internet.
      * 
      */
@@ -604,6 +616,7 @@ public final class ManagedDatabaseMysqlProperties {
         private @Nullable Integer netBufferLength;
         private @Nullable Integer netReadTimeout;
         private @Nullable Integer netWriteTimeout;
+        private @Nullable Integer performanceSchemaEventsStatementsHistorySize;
         private @Nullable Boolean publicAccess;
         private @Nullable Boolean publicAccessPrometheus;
         private @Nullable Boolean serviceLog;
@@ -652,6 +665,7 @@ public final class ManagedDatabaseMysqlProperties {
     	      this.netBufferLength = defaults.netBufferLength;
     	      this.netReadTimeout = defaults.netReadTimeout;
     	      this.netWriteTimeout = defaults.netWriteTimeout;
+    	      this.performanceSchemaEventsStatementsHistorySize = defaults.performanceSchemaEventsStatementsHistorySize;
     	      this.publicAccess = defaults.publicAccess;
     	      this.publicAccessPrometheus = defaults.publicAccessPrometheus;
     	      this.serviceLog = defaults.serviceLog;
@@ -878,6 +892,12 @@ public final class ManagedDatabaseMysqlProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder performanceSchemaEventsStatementsHistorySize(@Nullable Integer performanceSchemaEventsStatementsHistorySize) {
+
+            this.performanceSchemaEventsStatementsHistorySize = performanceSchemaEventsStatementsHistorySize;
+            return this;
+        }
+        @CustomType.Setter
         public Builder publicAccess(@Nullable Boolean publicAccess) {
 
             this.publicAccess = publicAccess;
@@ -974,6 +994,7 @@ public final class ManagedDatabaseMysqlProperties {
             _resultValue.netBufferLength = netBufferLength;
             _resultValue.netReadTimeout = netReadTimeout;
             _resultValue.netWriteTimeout = netWriteTimeout;
+            _resultValue.performanceSchemaEventsStatementsHistorySize = performanceSchemaEventsStatementsHistorySize;
             _resultValue.publicAccess = publicAccess;
             _resultValue.publicAccessPrometheus = publicAccessPrometheus;
             _resultValue.serviceLog = serviceLog;

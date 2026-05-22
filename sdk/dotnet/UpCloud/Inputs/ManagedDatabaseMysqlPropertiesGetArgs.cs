@@ -240,6 +240,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? NetWriteTimeout { get; set; }
 
         /// <summary>
+        /// The number of rows per thread in the EventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
+        /// </summary>
+        [Input("performanceSchemaEventsStatementsHistorySize")]
+        public Input<int>? PerformanceSchemaEventsStatementsHistorySize { get; set; }
+
+        /// <summary>
         /// Public Access. Allow access to the service from the public Internet.
         /// </summary>
         [Input("publicAccess")]

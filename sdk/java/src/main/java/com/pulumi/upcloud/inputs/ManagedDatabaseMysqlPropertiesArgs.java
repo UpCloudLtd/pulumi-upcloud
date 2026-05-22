@@ -547,6 +547,21 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
     }
 
     /**
+     * The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
+     * 
+     */
+    @Import(name="performanceSchemaEventsStatementsHistorySize")
+    private @Nullable Output<Integer> performanceSchemaEventsStatementsHistorySize;
+
+    /**
+     * @return The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
+     * 
+     */
+    public Optional<Output<Integer>> performanceSchemaEventsStatementsHistorySize() {
+        return Optional.ofNullable(this.performanceSchemaEventsStatementsHistorySize);
+    }
+
+    /**
      * Public Access. Allow access to the service from the public Internet.
      * 
      */
@@ -734,6 +749,7 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         this.netBufferLength = $.netBufferLength;
         this.netReadTimeout = $.netReadTimeout;
         this.netWriteTimeout = $.netWriteTimeout;
+        this.performanceSchemaEventsStatementsHistorySize = $.performanceSchemaEventsStatementsHistorySize;
         this.publicAccess = $.publicAccess;
         this.publicAccessPrometheus = $.publicAccessPrometheus;
         this.serviceLog = $.serviceLog;
@@ -1507,6 +1523,27 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
          */
         public Builder netWriteTimeout(Integer netWriteTimeout) {
             return netWriteTimeout(Output.of(netWriteTimeout));
+        }
+
+        /**
+         * @param performanceSchemaEventsStatementsHistorySize The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder performanceSchemaEventsStatementsHistorySize(@Nullable Output<Integer> performanceSchemaEventsStatementsHistorySize) {
+            $.performanceSchemaEventsStatementsHistorySize = performanceSchemaEventsStatementsHistorySize;
+            return this;
+        }
+
+        /**
+         * @param performanceSchemaEventsStatementsHistorySize The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder performanceSchemaEventsStatementsHistorySize(Integer performanceSchemaEventsStatementsHistorySize) {
+            return performanceSchemaEventsStatementsHistorySize(Output.of(performanceSchemaEventsStatementsHistorySize));
         }
 
         /**

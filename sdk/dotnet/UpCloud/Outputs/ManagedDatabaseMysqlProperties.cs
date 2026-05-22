@@ -155,6 +155,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? NetWriteTimeout;
         /// <summary>
+        /// The number of rows per thread in the EventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
+        /// </summary>
+        public readonly int? PerformanceSchemaEventsStatementsHistorySize;
+        /// <summary>
         /// Public Access. Allow access to the service from the public Internet.
         /// </summary>
         public readonly bool? PublicAccess;
@@ -267,6 +271,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             int? netWriteTimeout,
 
+            int? performanceSchemaEventsStatementsHistorySize,
+
             bool? publicAccess,
 
             bool? publicAccessPrometheus,
@@ -322,6 +328,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             NetBufferLength = netBufferLength;
             NetReadTimeout = netReadTimeout;
             NetWriteTimeout = netWriteTimeout;
+            PerformanceSchemaEventsStatementsHistorySize = performanceSchemaEventsStatementsHistorySize;
             PublicAccess = publicAccess;
             PublicAccessPrometheus = publicAccessPrometheus;
             ServiceLog = serviceLog;

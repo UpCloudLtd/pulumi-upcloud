@@ -24,6 +24,7 @@ class FileStorageArgs:
                  configured_status: pulumi.Input[_builtins.str],
                  size: pulumi.Input[_builtins.int],
                  zone: pulumi.Input[_builtins.str],
+                 encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageNetworkArgs']]]] = None):
@@ -32,6 +33,7 @@ class FileStorageArgs:
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
         :param pulumi.Input[_builtins.int] size: Size of the file storage in GB.
         :param pulumi.Input[_builtins.str] zone: Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
+        :param pulumi.Input[_builtins.bool] encrypt: Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the file storage.
         :param pulumi.Input[_builtins.str] name: Name of the file storage service.
         :param pulumi.Input[Sequence[pulumi.Input['FileStorageNetworkArgs']]] networks: Network attached to this file storage (currently supports at most one of these blocks).
@@ -39,6 +41,8 @@ class FileStorageArgs:
         pulumi.set(__self__, "configured_status", configured_status)
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "zone", zone)
+        if encrypt is not None:
+            pulumi.set(__self__, "encrypt", encrypt)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
@@ -84,6 +88,18 @@ class FileStorageArgs:
 
     @_builtins.property
     @pulumi.getter
+    def encrypt(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+        """
+        return pulumi.get(self, "encrypt")
+
+    @encrypt.setter
+    def encrypt(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "encrypt", value)
+
+    @_builtins.property
+    @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the file storage.
@@ -123,6 +139,7 @@ class FileStorageArgs:
 class _FileStorageState:
     def __init__(__self__, *,
                  configured_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input['FileStorageNetworkArgs']]]] = None,
@@ -131,6 +148,7 @@ class _FileStorageState:
         """
         Input properties used for looking up and filtering FileStorage resources.
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
+        :param pulumi.Input[_builtins.bool] encrypt: Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the file storage.
         :param pulumi.Input[_builtins.str] name: Name of the file storage service.
         :param pulumi.Input[Sequence[pulumi.Input['FileStorageNetworkArgs']]] networks: Network attached to this file storage (currently supports at most one of these blocks).
@@ -139,6 +157,8 @@ class _FileStorageState:
         """
         if configured_status is not None:
             pulumi.set(__self__, "configured_status", configured_status)
+        if encrypt is not None:
+            pulumi.set(__self__, "encrypt", encrypt)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
@@ -161,6 +181,18 @@ class _FileStorageState:
     @configured_status.setter
     def configured_status(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "configured_status", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def encrypt(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+        """
+        return pulumi.get(self, "encrypt")
+
+    @encrypt.setter
+    def encrypt(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "encrypt", value)
 
     @_builtins.property
     @pulumi.getter
@@ -230,6 +262,7 @@ class FileStorage(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  configured_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FileStorageNetworkArgs', 'FileStorageNetworkArgsDict']]]]] = None,
@@ -259,6 +292,7 @@ class FileStorage(pulumi.CustomResource):
             size=250,
             zone="fi-hel2",
             configured_status="stopped",
+            encrypt=True,
             labels={
                 "environment": "staging",
                 "customer": "example-customer",
@@ -284,6 +318,7 @@ class FileStorage(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
+        :param pulumi.Input[_builtins.bool] encrypt: Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the file storage.
         :param pulumi.Input[_builtins.str] name: Name of the file storage service.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FileStorageNetworkArgs', 'FileStorageNetworkArgsDict']]]] networks: Network attached to this file storage (currently supports at most one of these blocks).
@@ -319,6 +354,7 @@ class FileStorage(pulumi.CustomResource):
             size=250,
             zone="fi-hel2",
             configured_status="stopped",
+            encrypt=True,
             labels={
                 "environment": "staging",
                 "customer": "example-customer",
@@ -357,6 +393,7 @@ class FileStorage(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  configured_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FileStorageNetworkArgs', 'FileStorageNetworkArgsDict']]]]] = None,
@@ -374,6 +411,7 @@ class FileStorage(pulumi.CustomResource):
             if configured_status is None and not opts.urn:
                 raise TypeError("Missing required property 'configured_status'")
             __props__.__dict__["configured_status"] = configured_status
+            __props__.__dict__["encrypt"] = encrypt
             __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
             __props__.__dict__["networks"] = networks
@@ -394,6 +432,7 @@ class FileStorage(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             configured_status: Optional[pulumi.Input[_builtins.str]] = None,
+            encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FileStorageNetworkArgs', 'FileStorageNetworkArgsDict']]]]] = None,
@@ -407,6 +446,7 @@ class FileStorage(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
+        :param pulumi.Input[_builtins.bool] encrypt: Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the file storage.
         :param pulumi.Input[_builtins.str] name: Name of the file storage service.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FileStorageNetworkArgs', 'FileStorageNetworkArgsDict']]]] networks: Network attached to this file storage (currently supports at most one of these blocks).
@@ -418,6 +458,7 @@ class FileStorage(pulumi.CustomResource):
         __props__ = _FileStorageState.__new__(_FileStorageState)
 
         __props__.__dict__["configured_status"] = configured_status
+        __props__.__dict__["encrypt"] = encrypt
         __props__.__dict__["labels"] = labels
         __props__.__dict__["name"] = name
         __props__.__dict__["networks"] = networks
@@ -432,6 +473,14 @@ class FileStorage(pulumi.CustomResource):
         The service configured status indicates the service's current intended status. Managed by the customer.
         """
         return pulumi.get(self, "configured_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def encrypt(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+        """
+        return pulumi.get(self, "encrypt")
 
     @_builtins.property
     @pulumi.getter

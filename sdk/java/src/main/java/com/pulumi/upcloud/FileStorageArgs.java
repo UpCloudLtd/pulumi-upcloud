@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.upcloud.inputs.FileStorageNetworkArgs;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -33,6 +34,21 @@ public final class FileStorageArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Output<String> configuredStatus() {
         return this.configuredStatus;
+    }
+
+    /**
+     * Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+     * 
+     */
+    @Import(name="encrypt")
+    private @Nullable Output<Boolean> encrypt;
+
+    /**
+     * @return Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> encrypt() {
+        return Optional.ofNullable(this.encrypt);
     }
 
     /**
@@ -114,6 +130,7 @@ public final class FileStorageArgs extends com.pulumi.resources.ResourceArgs {
 
     private FileStorageArgs(FileStorageArgs $) {
         this.configuredStatus = $.configuredStatus;
+        this.encrypt = $.encrypt;
         this.labels = $.labels;
         this.name = $.name;
         this.networks = $.networks;
@@ -158,6 +175,27 @@ public final class FileStorageArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder configuredStatus(String configuredStatus) {
             return configuredStatus(Output.of(configuredStatus));
+        }
+
+        /**
+         * @param encrypt Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encrypt(@Nullable Output<Boolean> encrypt) {
+            $.encrypt = encrypt;
+            return this;
+        }
+
+        /**
+         * @param encrypt Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encrypt(Boolean encrypt) {
+            return encrypt(Output.of(encrypt));
         }
 
         /**

@@ -46,6 +46,7 @@ import (
 //				Size:             pulumi.Int(250),
 //				Zone:             pulumi.String("fi-hel2"),
 //				ConfiguredStatus: pulumi.String("stopped"),
+//				Encrypt:          pulumi.Bool(true),
 //				Labels: pulumi.StringMap{
 //					"environment": pulumi.String("staging"),
 //					"customer":    pulumi.String("example-customer"),
@@ -90,6 +91,8 @@ type FileStorage struct {
 
 	// The service configured status indicates the service's current intended status. Managed by the customer.
 	ConfiguredStatus pulumi.StringOutput `pulumi:"configuredStatus"`
+	// Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+	Encrypt pulumi.BoolOutput `pulumi:"encrypt"`
 	// User defined key-value pairs to classify the file storage.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Name of the file storage service.
@@ -143,6 +146,8 @@ func GetFileStorage(ctx *pulumi.Context,
 type fileStorageState struct {
 	// The service configured status indicates the service's current intended status. Managed by the customer.
 	ConfiguredStatus *string `pulumi:"configuredStatus"`
+	// Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+	Encrypt *bool `pulumi:"encrypt"`
 	// User defined key-value pairs to classify the file storage.
 	Labels map[string]string `pulumi:"labels"`
 	// Name of the file storage service.
@@ -158,6 +163,8 @@ type fileStorageState struct {
 type FileStorageState struct {
 	// The service configured status indicates the service's current intended status. Managed by the customer.
 	ConfiguredStatus pulumi.StringPtrInput
+	// Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+	Encrypt pulumi.BoolPtrInput
 	// User defined key-value pairs to classify the file storage.
 	Labels pulumi.StringMapInput
 	// Name of the file storage service.
@@ -177,6 +184,8 @@ func (FileStorageState) ElementType() reflect.Type {
 type fileStorageArgs struct {
 	// The service configured status indicates the service's current intended status. Managed by the customer.
 	ConfiguredStatus string `pulumi:"configuredStatus"`
+	// Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+	Encrypt *bool `pulumi:"encrypt"`
 	// User defined key-value pairs to classify the file storage.
 	Labels map[string]string `pulumi:"labels"`
 	// Name of the file storage service.
@@ -193,6 +202,8 @@ type fileStorageArgs struct {
 type FileStorageArgs struct {
 	// The service configured status indicates the service's current intended status. Managed by the customer.
 	ConfiguredStatus pulumi.StringInput
+	// Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+	Encrypt pulumi.BoolPtrInput
 	// User defined key-value pairs to classify the file storage.
 	Labels pulumi.StringMapInput
 	// Name of the file storage service.
@@ -295,6 +306,11 @@ func (o FileStorageOutput) ToFileStorageOutputWithContext(ctx context.Context) F
 // The service configured status indicates the service's current intended status. Managed by the customer.
 func (o FileStorageOutput) ConfiguredStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *FileStorage) pulumi.StringOutput { return v.ConfiguredStatus }).(pulumi.StringOutput)
+}
+
+// Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+func (o FileStorageOutput) Encrypt() pulumi.BoolOutput {
+	return o.ApplyT(func(v *FileStorage) pulumi.BoolOutput { return v.Encrypt }).(pulumi.BoolOutput)
 }
 
 // User defined key-value pairs to classify the file storage.

@@ -30,6 +30,7 @@ import * as utilities from "./utilities";
  *     size: 250,
  *     zone: "fi-hel2",
  *     configuredStatus: "stopped",
+ *     encrypt: true,
  *     labels: {
  *         environment: "staging",
  *         customer: "example-customer",
@@ -88,6 +89,10 @@ export class FileStorage extends pulumi.CustomResource {
      */
     declare public readonly configuredStatus: pulumi.Output<string>;
     /**
+     * Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+     */
+    declare public readonly encrypt: pulumi.Output<boolean>;
+    /**
      * User defined key-value pairs to classify the file storage.
      */
     declare public readonly labels: pulumi.Output<{[key: string]: string}>;
@@ -122,6 +127,7 @@ export class FileStorage extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as FileStorageState | undefined;
             resourceInputs["configuredStatus"] = state?.configuredStatus;
+            resourceInputs["encrypt"] = state?.encrypt;
             resourceInputs["labels"] = state?.labels;
             resourceInputs["name"] = state?.name;
             resourceInputs["networks"] = state?.networks;
@@ -139,6 +145,7 @@ export class FileStorage extends pulumi.CustomResource {
                 throw new Error("Missing required property 'zone'");
             }
             resourceInputs["configuredStatus"] = args?.configuredStatus;
+            resourceInputs["encrypt"] = args?.encrypt;
             resourceInputs["labels"] = args?.labels;
             resourceInputs["name"] = args?.name;
             resourceInputs["networks"] = args?.networks;
@@ -158,6 +165,10 @@ export interface FileStorageState {
      * The service configured status indicates the service's current intended status. Managed by the customer.
      */
     configuredStatus?: pulumi.Input<string>;
+    /**
+     * Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+     */
+    encrypt?: pulumi.Input<boolean>;
     /**
      * User defined key-value pairs to classify the file storage.
      */
@@ -188,6 +199,10 @@ export interface FileStorageArgs {
      * The service configured status indicates the service's current intended status. Managed by the customer.
      */
     configuredStatus: pulumi.Input<string>;
+    /**
+     * Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
+     */
+    encrypt?: pulumi.Input<boolean>;
     /**
      * User defined key-value pairs to classify the file storage.
      */
