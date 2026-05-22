@@ -3471,6 +3471,8 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "net_read_timeout"
         elif key == "netWriteTimeout":
             suggest = "net_write_timeout"
+        elif key == "performanceSchemaEventsStatementsHistorySize":
+            suggest = "performance_schema_events_statements_history_size"
         elif key == "publicAccess":
             suggest = "public_access"
         elif key == "publicAccessPrometheus":
@@ -3537,6 +3539,7 @@ class ManagedDatabaseMysqlProperties(dict):
                  net_buffer_length: Optional[_builtins.int] = None,
                  net_read_timeout: Optional[_builtins.int] = None,
                  net_write_timeout: Optional[_builtins.int] = None,
+                 performance_schema_events_statements_history_size: Optional[_builtins.int] = None,
                  public_access: Optional[_builtins.bool] = None,
                  public_access_prometheus: Optional[_builtins.bool] = None,
                  service_log: Optional[_builtins.bool] = None,
@@ -3583,6 +3586,7 @@ class ManagedDatabaseMysqlProperties(dict):
         :param _builtins.int net_buffer_length: Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
         :param _builtins.int net_read_timeout: The number of seconds to wait for more data from a connection before aborting the read.
         :param _builtins.int net_write_timeout: The number of seconds to wait for a block to be written to a connection before aborting the write.
+        :param _builtins.int performance_schema_events_statements_history_size: The number of rows per thread in the events_statements_history table. Changing this parameter will lead to a restart of the MySQL service.
         :param _builtins.bool public_access: Public Access. Allow access to the service from the public Internet.
         :param _builtins.bool public_access_prometheus: Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
         :param _builtins.bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
@@ -3664,6 +3668,8 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "net_read_timeout", net_read_timeout)
         if net_write_timeout is not None:
             pulumi.set(__self__, "net_write_timeout", net_write_timeout)
+        if performance_schema_events_statements_history_size is not None:
+            pulumi.set(__self__, "performance_schema_events_statements_history_size", performance_schema_events_statements_history_size)
         if public_access is not None:
             pulumi.set(__self__, "public_access", public_access)
         if public_access_prometheus is not None:
@@ -3964,6 +3970,14 @@ class ManagedDatabaseMysqlProperties(dict):
         The number of seconds to wait for a block to be written to a connection before aborting the write.
         """
         return pulumi.get(self, "net_write_timeout")
+
+    @_builtins.property
+    @pulumi.getter(name="performanceSchemaEventsStatementsHistorySize")
+    def performance_schema_events_statements_history_size(self) -> Optional[_builtins.int]:
+        """
+        The number of rows per thread in the events_statements_history table. Changing this parameter will lead to a restart of the MySQL service.
+        """
+        return pulumi.get(self, "performance_schema_events_statements_history_size")
 
     @_builtins.property
     @pulumi.getter(name="publicAccess")

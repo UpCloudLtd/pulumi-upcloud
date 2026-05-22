@@ -7497,6 +7497,8 @@ type ManagedDatabaseMysqlProperties struct {
 	NetReadTimeout *int `pulumi:"netReadTimeout"`
 	// The number of seconds to wait for a block to be written to a connection before aborting the write.
 	NetWriteTimeout *int `pulumi:"netWriteTimeout"`
+	// The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
+	PerformanceSchemaEventsStatementsHistorySize *int `pulumi:"performanceSchemaEventsStatementsHistorySize"`
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess *bool `pulumi:"publicAccess"`
 	// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
@@ -7601,6 +7603,8 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	NetReadTimeout pulumi.IntPtrInput `pulumi:"netReadTimeout"`
 	// The number of seconds to wait for a block to be written to a connection before aborting the write.
 	NetWriteTimeout pulumi.IntPtrInput `pulumi:"netWriteTimeout"`
+	// The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
+	PerformanceSchemaEventsStatementsHistorySize pulumi.IntPtrInput `pulumi:"performanceSchemaEventsStatementsHistorySize"`
 	// Public Access. Allow access to the service from the public Internet.
 	PublicAccess pulumi.BoolPtrInput `pulumi:"publicAccess"`
 	// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
@@ -7875,6 +7879,11 @@ func (o ManagedDatabaseMysqlPropertiesOutput) NetReadTimeout() pulumi.IntPtrOutp
 // The number of seconds to wait for a block to be written to a connection before aborting the write.
 func (o ManagedDatabaseMysqlPropertiesOutput) NetWriteTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.NetWriteTimeout }).(pulumi.IntPtrOutput)
+}
+
+// The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
+func (o ManagedDatabaseMysqlPropertiesOutput) PerformanceSchemaEventsStatementsHistorySize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.PerformanceSchemaEventsStatementsHistorySize }).(pulumi.IntPtrOutput)
 }
 
 // Public Access. Allow access to the service from the public Internet.
@@ -8298,6 +8307,16 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) NetWriteTimeout() pulumi.IntPtr
 			return nil
 		}
 		return v.NetWriteTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) PerformanceSchemaEventsStatementsHistorySize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PerformanceSchemaEventsStatementsHistorySize
 	}).(pulumi.IntPtrOutput)
 }
 

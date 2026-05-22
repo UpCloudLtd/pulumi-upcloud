@@ -42,6 +42,7 @@ namespace UpCloud.Pulumi.UpCloud
     ///         Size = 250,
     ///         Zone = "fi-hel2",
     ///         ConfiguredStatus = "stopped",
+    ///         Encrypt = true,
     ///         Labels = 
     ///         {
     ///             { "environment", "staging" },
@@ -86,6 +87,12 @@ namespace UpCloud.Pulumi.UpCloud
         /// </summary>
         [Output("configuredStatus")]
         public Output<string> ConfiguredStatus { get; private set; } = null!;
+
+        /// <summary>
+        /// Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `False`.
+        /// </summary>
+        [Output("encrypt")]
+        public Output<bool> Encrypt { get; private set; } = null!;
 
         /// <summary>
         /// User defined key-value pairs to classify the file storage.
@@ -170,6 +177,12 @@ namespace UpCloud.Pulumi.UpCloud
         [Input("configuredStatus", required: true)]
         public Input<string> ConfiguredStatus { get; set; } = null!;
 
+        /// <summary>
+        /// Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `False`.
+        /// </summary>
+        [Input("encrypt")]
+        public Input<bool>? Encrypt { get; set; }
+
         [Input("labels")]
         private InputMap<string>? _labels;
 
@@ -225,6 +238,12 @@ namespace UpCloud.Pulumi.UpCloud
         /// </summary>
         [Input("configuredStatus")]
         public Input<string>? ConfiguredStatus { get; set; }
+
+        /// <summary>
+        /// Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `False`.
+        /// </summary>
+        [Input("encrypt")]
+        public Input<bool>? Encrypt { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;

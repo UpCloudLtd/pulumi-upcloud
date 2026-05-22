@@ -1724,6 +1724,10 @@ export interface ManagedDatabaseMysqlProperties {
      */
     netWriteTimeout?: pulumi.Input<number>;
     /**
+     * The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
+     */
+    performanceSchemaEventsStatementsHistorySize?: pulumi.Input<number>;
+    /**
      * Public Access. Allow access to the service from the public Internet.
      */
     publicAccess?: pulumi.Input<boolean>;
