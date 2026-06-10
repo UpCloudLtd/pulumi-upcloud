@@ -11151,11 +11151,13 @@ class ServerLogin(dict):
     def __init__(__self__, *,
                  create_password: Optional[_builtins.bool] = None,
                  keys: Optional[Sequence[_builtins.str]] = None,
+                 password: Optional[_builtins.str] = None,
                  password_delivery: Optional[_builtins.str] = None,
                  user: Optional[_builtins.str] = None):
         """
         :param _builtins.bool create_password: Indicates a password should be create to allow access
         :param Sequence[_builtins.str] keys: A list of ssh keys to access the server
+        :param _builtins.str password: The generated one-time password for the server
         :param _builtins.str password_delivery: The delivery method for the server's root password (one of `none`, `email` or `sms`)
         :param _builtins.str user: Username to be create to access the server
         """
@@ -11163,6 +11165,8 @@ class ServerLogin(dict):
             pulumi.set(__self__, "create_password", create_password)
         if keys is not None:
             pulumi.set(__self__, "keys", keys)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if password_delivery is not None:
             pulumi.set(__self__, "password_delivery", password_delivery)
         if user is not None:
@@ -11183,6 +11187,14 @@ class ServerLogin(dict):
         A list of ssh keys to access the server
         """
         return pulumi.get(self, "keys")
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[_builtins.str]:
+        """
+        The generated one-time password for the server
+        """
+        return pulumi.get(self, "password")
 
     @_builtins.property
     @pulumi.getter(name="passwordDelivery")

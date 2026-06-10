@@ -4838,6 +4838,11 @@
                     },
                     "description": "A list of ssh keys to access the server\n"
                 },
+                "password": {
+                    "type": "string",
+                    "description": "The generated one-time password for the server\n",
+                    "secret": true
+                },
                 "passwordDelivery": {
                     "type": "string",
                     "description": "The delivery method for the server's root password (one of \u003cspan pulumi-lang-nodejs=\"`none`\" pulumi-lang-dotnet=\"`None`\" pulumi-lang-go=\"`none`\" pulumi-lang-python=\"`none`\" pulumi-lang-yaml=\"`none`\" pulumi-lang-java=\"`none`\"\u003e`none`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`email`\" pulumi-lang-dotnet=\"`Email`\" pulumi-lang-go=\"`email`\" pulumi-lang-python=\"`email`\" pulumi-lang-yaml=\"`email`\" pulumi-lang-java=\"`email`\"\u003e`email`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`sms`\" pulumi-lang-dotnet=\"`Sms`\" pulumi-lang-go=\"`sms`\" pulumi-lang-python=\"`sms`\" pulumi-lang-yaml=\"`sms`\" pulumi-lang-java=\"`sms`\"\u003e`sms`\u003c/span\u003e)\n"
@@ -4852,6 +4857,7 @@
                 "nodejs": {
                     "requiredOutputs": [
                         "createPassword",
+                        "password",
                         "passwordDelivery"
                     ]
                 }
@@ -12228,7 +12234,7 @@
             }
         },
         "upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions": {
-            "description": "Returns a list of available Managed Object Storage regions.\n\n",
+            "description": "Returns a list of available Managed Object Storage regions.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\nconst _this = upcloud.getManagedObjectStorageRegions({});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\nthis = upcloud.get_managed_object_storage_regions()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @this = UpCloud.GetManagedObjectStorageRegions.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upcloud.GetManagedObjectStorageRegions(ctx, \u0026upcloud.GetManagedObjectStorageRegionsArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.UpcloudFunctions;\nimport com.pulumi.upcloud.inputs.GetManagedObjectStorageRegionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var this = UpcloudFunctions.getManagedObjectStorageRegions(GetManagedObjectStorageRegionsArgs.builder()\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  this:\n    fn::invoke:\n      function: upcloud:getManagedObjectStorageRegions\n      arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getManagedObjectStorageRegions.\n",
                 "properties": {

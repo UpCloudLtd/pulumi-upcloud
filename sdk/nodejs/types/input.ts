@@ -3761,6 +3761,10 @@ export interface ServerLogin {
      */
     keys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * The generated one-time password for the server
+     */
+    password?: pulumi.Input<string>;
+    /**
      * The delivery method for the server's root password (one of `none`, `email` or `sms`)
      */
     passwordDelivery?: pulumi.Input<string>;

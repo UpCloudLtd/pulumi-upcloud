@@ -3563,6 +3563,10 @@ export interface ServerLogin {
      */
     keys?: string[];
     /**
+     * The generated one-time password for the server
+     */
+    password: string;
+    /**
      * The delivery method for the server's root password (one of `none`, `email` or `sms`)
      */
     passwordDelivery: string;

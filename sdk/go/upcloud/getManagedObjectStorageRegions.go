@@ -12,6 +12,30 @@ import (
 )
 
 // Returns a list of available Managed Object Storage regions.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := upcloud.GetManagedObjectStorageRegions(ctx, &upcloud.GetManagedObjectStorageRegionsArgs{}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetManagedObjectStorageRegions(ctx *pulumi.Context, args *GetManagedObjectStorageRegionsArgs, opts ...pulumi.InvokeOption) (*GetManagedObjectStorageRegionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetManagedObjectStorageRegionsResult

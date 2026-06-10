@@ -64,6 +64,15 @@ def get_managed_object_storage_regions(regions: Optional[Sequence[Union['GetMana
                                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetManagedObjectStorageRegionsResult:
     """
     Returns a list of available Managed Object Storage regions.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_upcloud as upcloud
+
+    this = upcloud.get_managed_object_storage_regions()
+    ```
     """
     __args__ = dict()
     __args__['regions'] = regions
@@ -77,6 +86,15 @@ def get_managed_object_storage_regions_output(regions: Optional[pulumi.Input[Opt
                                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetManagedObjectStorageRegionsResult]:
     """
     Returns a list of available Managed Object Storage regions.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_upcloud as upcloud
+
+    this = upcloud.get_managed_object_storage_regions()
+    ```
     """
     __args__ = dict()
     __args__['regions'] = regions
