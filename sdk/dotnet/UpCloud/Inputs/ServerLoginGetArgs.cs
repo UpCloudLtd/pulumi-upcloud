@@ -31,6 +31,22 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
             set => _keys = value;
         }
 
+        [Input("password")]
+        private Input<string>? _password;
+
+        /// <summary>
+        /// The generated one-time password for the server
+        /// </summary>
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         /// <summary>
         /// The delivery method for the server's root password (one of `None`, `Email` or `Sms`)
         /// </summary>

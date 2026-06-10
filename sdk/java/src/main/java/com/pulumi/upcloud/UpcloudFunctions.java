@@ -2371,12 +2371,76 @@ public final class UpcloudFunctions {
     /**
      * Returns a list of available Managed Object Storage regions.
      * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetManagedObjectStorageRegionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = UpcloudFunctions.getManagedObjectStorageRegions(GetManagedObjectStorageRegionsArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetManagedObjectStorageRegionsResult> getManagedObjectStorageRegions() {
         return getManagedObjectStorageRegions(GetManagedObjectStorageRegionsArgs.Empty, InvokeOptions.Empty);
     }
     /**
      * Returns a list of available Managed Object Storage regions.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetManagedObjectStorageRegionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = UpcloudFunctions.getManagedObjectStorageRegions(GetManagedObjectStorageRegionsArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetManagedObjectStorageRegionsResult> getManagedObjectStorageRegionsPlain() {
@@ -2385,12 +2449,76 @@ public final class UpcloudFunctions {
     /**
      * Returns a list of available Managed Object Storage regions.
      * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetManagedObjectStorageRegionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = UpcloudFunctions.getManagedObjectStorageRegions(GetManagedObjectStorageRegionsArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetManagedObjectStorageRegionsResult> getManagedObjectStorageRegions(GetManagedObjectStorageRegionsArgs args) {
         return getManagedObjectStorageRegions(args, InvokeOptions.Empty);
     }
     /**
      * Returns a list of available Managed Object Storage regions.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetManagedObjectStorageRegionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = UpcloudFunctions.getManagedObjectStorageRegions(GetManagedObjectStorageRegionsArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetManagedObjectStorageRegionsResult> getManagedObjectStorageRegionsPlain(GetManagedObjectStorageRegionsPlainArgs args) {
@@ -2399,6 +2527,38 @@ public final class UpcloudFunctions {
     /**
      * Returns a list of available Managed Object Storage regions.
      * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetManagedObjectStorageRegionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = UpcloudFunctions.getManagedObjectStorageRegions(GetManagedObjectStorageRegionsArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetManagedObjectStorageRegionsResult> getManagedObjectStorageRegions(GetManagedObjectStorageRegionsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions", TypeShape.of(GetManagedObjectStorageRegionsResult.class), args, Utilities.withVersion(options));
@@ -2406,12 +2566,76 @@ public final class UpcloudFunctions {
     /**
      * Returns a list of available Managed Object Storage regions.
      * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetManagedObjectStorageRegionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = UpcloudFunctions.getManagedObjectStorageRegions(GetManagedObjectStorageRegionsArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetManagedObjectStorageRegionsResult> getManagedObjectStorageRegions(GetManagedObjectStorageRegionsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions", TypeShape.of(GetManagedObjectStorageRegionsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Returns a list of available Managed Object Storage regions.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetManagedObjectStorageRegionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = UpcloudFunctions.getManagedObjectStorageRegions(GetManagedObjectStorageRegionsArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetManagedObjectStorageRegionsResult> getManagedObjectStorageRegionsPlain(GetManagedObjectStorageRegionsPlainArgs args, InvokeOptions options) {

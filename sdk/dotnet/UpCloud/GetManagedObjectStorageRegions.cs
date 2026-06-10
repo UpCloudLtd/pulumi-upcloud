@@ -14,18 +14,63 @@ namespace UpCloud.Pulumi.UpCloud
     {
         /// <summary>
         /// Returns a list of available Managed Object Storage regions.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using UpCloud = UpCloud.Pulumi.UpCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var @this = UpCloud.GetManagedObjectStorageRegions.Invoke();
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetManagedObjectStorageRegionsResult> InvokeAsync(GetManagedObjectStorageRegionsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetManagedObjectStorageRegionsResult>("upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions", args ?? new GetManagedObjectStorageRegionsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Returns a list of available Managed Object Storage regions.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using UpCloud = UpCloud.Pulumi.UpCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var @this = UpCloud.GetManagedObjectStorageRegions.Invoke();
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetManagedObjectStorageRegionsResult> Invoke(GetManagedObjectStorageRegionsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetManagedObjectStorageRegionsResult>("upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions", args ?? new GetManagedObjectStorageRegionsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Returns a list of available Managed Object Storage regions.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using UpCloud = UpCloud.Pulumi.UpCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var @this = UpCloud.GetManagedObjectStorageRegions.Invoke();
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetManagedObjectStorageRegionsResult> Invoke(GetManagedObjectStorageRegionsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetManagedObjectStorageRegionsResult>("upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions", args ?? new GetManagedObjectStorageRegionsInvokeArgs(), options.WithDefaults());

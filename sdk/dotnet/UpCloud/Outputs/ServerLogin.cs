@@ -23,6 +23,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Keys;
         /// <summary>
+        /// The generated one-time password for the server
+        /// </summary>
+        public readonly string? Password;
+        /// <summary>
         /// The delivery method for the server's root password (one of `None`, `Email` or `Sms`)
         /// </summary>
         public readonly string? PasswordDelivery;
@@ -37,12 +41,15 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             ImmutableArray<string> keys,
 
+            string? password,
+
             string? passwordDelivery,
 
             string? user)
         {
             CreatePassword = createPassword;
             Keys = keys;
+            Password = password;
             PasswordDelivery = passwordDelivery;
             User = user;
         }

@@ -15376,6 +15376,10 @@ if not MYPY:
         """
         A list of ssh keys to access the server
         """
+        password: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The generated one-time password for the server
+        """
         password_delivery: NotRequired[pulumi.Input[_builtins.str]]
         """
         The delivery method for the server's root password (one of `none`, `email` or `sms`)
@@ -15392,11 +15396,13 @@ class ServerLoginArgs:
     def __init__(__self__, *,
                  create_password: Optional[pulumi.Input[_builtins.bool]] = None,
                  keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 password: Optional[pulumi.Input[_builtins.str]] = None,
                  password_delivery: Optional[pulumi.Input[_builtins.str]] = None,
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] create_password: Indicates a password should be create to allow access
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] keys: A list of ssh keys to access the server
+        :param pulumi.Input[_builtins.str] password: The generated one-time password for the server
         :param pulumi.Input[_builtins.str] password_delivery: The delivery method for the server's root password (one of `none`, `email` or `sms`)
         :param pulumi.Input[_builtins.str] user: Username to be create to access the server
         """
@@ -15404,6 +15410,8 @@ class ServerLoginArgs:
             pulumi.set(__self__, "create_password", create_password)
         if keys is not None:
             pulumi.set(__self__, "keys", keys)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if password_delivery is not None:
             pulumi.set(__self__, "password_delivery", password_delivery)
         if user is not None:
@@ -15432,6 +15440,18 @@ class ServerLoginArgs:
     @keys.setter
     def keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "keys", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The generated one-time password for the server
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordDelivery")

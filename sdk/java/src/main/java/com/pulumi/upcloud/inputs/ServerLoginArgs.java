@@ -48,6 +48,21 @@ public final class ServerLoginArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The generated one-time password for the server
+     * 
+     */
+    @Import(name="password")
+    private @Nullable Output<String> password;
+
+    /**
+     * @return The generated one-time password for the server
+     * 
+     */
+    public Optional<Output<String>> password() {
+        return Optional.ofNullable(this.password);
+    }
+
+    /**
      * The delivery method for the server&#39;s root password (one of `none`, `email` or `sms`)
      * 
      */
@@ -82,6 +97,7 @@ public final class ServerLoginArgs extends com.pulumi.resources.ResourceArgs {
     private ServerLoginArgs(ServerLoginArgs $) {
         this.createPassword = $.createPassword;
         this.keys = $.keys;
+        this.password = $.password;
         this.passwordDelivery = $.passwordDelivery;
         this.user = $.user;
     }
@@ -154,6 +170,27 @@ public final class ServerLoginArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder keys(String... keys) {
             return keys(List.of(keys));
+        }
+
+        /**
+         * @param password The generated one-time password for the server
+         * 
+         * @return builder
+         * 
+         */
+        public Builder password(@Nullable Output<String> password) {
+            $.password = password;
+            return this;
+        }
+
+        /**
+         * @param password The generated one-time password for the server
+         * 
+         * @return builder
+         * 
+         */
+        public Builder password(String password) {
+            return password(Output.of(password));
         }
 
         /**

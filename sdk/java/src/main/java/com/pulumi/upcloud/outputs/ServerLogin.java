@@ -24,6 +24,11 @@ public final class ServerLogin {
      */
     private @Nullable List<String> keys;
     /**
+     * @return The generated one-time password for the server
+     * 
+     */
+    private @Nullable String password;
+    /**
      * @return The delivery method for the server&#39;s root password (one of `none`, `email` or `sms`)
      * 
      */
@@ -48,6 +53,13 @@ public final class ServerLogin {
      */
     public List<String> keys() {
         return this.keys == null ? List.of() : this.keys;
+    }
+    /**
+     * @return The generated one-time password for the server
+     * 
+     */
+    public Optional<String> password() {
+        return Optional.ofNullable(this.password);
     }
     /**
      * @return The delivery method for the server&#39;s root password (one of `none`, `email` or `sms`)
@@ -75,6 +87,7 @@ public final class ServerLogin {
     public static final class Builder {
         private @Nullable Boolean createPassword;
         private @Nullable List<String> keys;
+        private @Nullable String password;
         private @Nullable String passwordDelivery;
         private @Nullable String user;
         public Builder() {}
@@ -82,6 +95,7 @@ public final class ServerLogin {
     	      Objects.requireNonNull(defaults);
     	      this.createPassword = defaults.createPassword;
     	      this.keys = defaults.keys;
+    	      this.password = defaults.password;
     	      this.passwordDelivery = defaults.passwordDelivery;
     	      this.user = defaults.user;
         }
@@ -102,6 +116,12 @@ public final class ServerLogin {
             return keys(List.of(keys));
         }
         @CustomType.Setter
+        public Builder password(@Nullable String password) {
+
+            this.password = password;
+            return this;
+        }
+        @CustomType.Setter
         public Builder passwordDelivery(@Nullable String passwordDelivery) {
 
             this.passwordDelivery = passwordDelivery;
@@ -117,6 +137,7 @@ public final class ServerLogin {
             final var _resultValue = new ServerLogin();
             _resultValue.createPassword = createPassword;
             _resultValue.keys = keys;
+            _resultValue.password = password;
             _resultValue.passwordDelivery = passwordDelivery;
             _resultValue.user = user;
             return _resultValue;

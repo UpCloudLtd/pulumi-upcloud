@@ -23353,6 +23353,8 @@ type ServerLogin struct {
 	CreatePassword *bool `pulumi:"createPassword"`
 	// A list of ssh keys to access the server
 	Keys []string `pulumi:"keys"`
+	// The generated one-time password for the server
+	Password *string `pulumi:"password"`
 	// The delivery method for the server's root password (one of `none`, `email` or `sms`)
 	PasswordDelivery *string `pulumi:"passwordDelivery"`
 	// Username to be create to access the server
@@ -23375,6 +23377,8 @@ type ServerLoginArgs struct {
 	CreatePassword pulumi.BoolPtrInput `pulumi:"createPassword"`
 	// A list of ssh keys to access the server
 	Keys pulumi.StringArrayInput `pulumi:"keys"`
+	// The generated one-time password for the server
+	Password pulumi.StringPtrInput `pulumi:"password"`
 	// The delivery method for the server's root password (one of `none`, `email` or `sms`)
 	PasswordDelivery pulumi.StringPtrInput `pulumi:"passwordDelivery"`
 	// Username to be create to access the server
@@ -23468,6 +23472,11 @@ func (o ServerLoginOutput) Keys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ServerLogin) []string { return v.Keys }).(pulumi.StringArrayOutput)
 }
 
+// The generated one-time password for the server
+func (o ServerLoginOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerLogin) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
 // The delivery method for the server's root password (one of `none`, `email` or `sms`)
 func (o ServerLoginOutput) PasswordDelivery() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerLogin) *string { return v.PasswordDelivery }).(pulumi.StringPtrOutput)
@@ -23520,6 +23529,16 @@ func (o ServerLoginPtrOutput) Keys() pulumi.StringArrayOutput {
 		}
 		return v.Keys
 	}).(pulumi.StringArrayOutput)
+}
+
+// The generated one-time password for the server
+func (o ServerLoginPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServerLogin) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
 }
 
 // The delivery method for the server's root password (one of `none`, `email` or `sms`)
