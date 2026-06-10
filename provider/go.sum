@@ -1403,12 +1403,12 @@ github.com/ProtonMail/go-crypto v1.1.6 h1:ZcV+Ropw6Qn0AX9brlQLAUXfqLBc7Bl+f/DmNx
 github.com/ProtonMail/go-crypto v1.1.6/go.mod h1:rA3QumHc/FZ8pAHreoekgiAbzpNsfQAosU5td4SnOrE=
 github.com/Shopify/sarama v1.19.0/go.mod h1:FVkBWblsNy7DGZRfXLU0O9RCGt5g3g3yEuWXgklEdEo=
 github.com/Shopify/toxiproxy v2.1.4+incompatible/go.mod h1:OXgGpZ6Cli1/URJOF1DMxUHB2q5Ap20/P/eIdh4G0pI=
-github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20260521101939-16322c8adbed h1:If5Jwxbd50YhQvESwod/xRuwN6YDkYmz7gkN9VRGmcQ=
-github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20260521101939-16322c8adbed/go.mod h1:hPAxsx/z7HwqnY99Pd0hUQlSWerHjEv2M9fo1k/H3gs=
+github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20260609115631-e93531c0d902 h1:tuFdQEIyoyFgQNoQrsZS/aIMOgUOv++elaWjKGn3Cd8=
+github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20260609115631-e93531c0d902/go.mod h1:aIaBUilcr2+/ecWcOoKfDS+s+0ISNxISG5DcUiZ9GXg=
 github.com/UpCloudLtd/upcloud-go-api/credentials v0.1.1 h1:eTfQsv58ufALOk9BZ7WbS/i7pMUD11RnYYpRPsz0LdI=
 github.com/UpCloudLtd/upcloud-go-api/credentials v0.1.1/go.mod h1:7OtVs2UqtfvjkC1HfE+Oud0MnbMv7qUWnbEgxnTAqts=
-github.com/UpCloudLtd/upcloud-go-api/v8 v8.37.0 h1:ptUIKABcsDmopPWCFlVu2iIgzOzlanjA8QYmTLN//RQ=
-github.com/UpCloudLtd/upcloud-go-api/v8 v8.37.0/go.mod h1:sxG94uNhC31OQH+zK0RhZjVj+PdkhObsNAt5bvq2J8c=
+github.com/UpCloudLtd/upcloud-go-api/v8 v8.38.0 h1:iWgTz32bgXtX1ouFIA3JehBXOvUWnRJsH9CTaX5SzcY=
+github.com/UpCloudLtd/upcloud-go-api/v8 v8.38.0/go.mod h1:sxG94uNhC31OQH+zK0RhZjVj+PdkhObsNAt5bvq2J8c=
 github.com/VividCortex/gohistogram v1.0.0/go.mod h1:Pf5mBqqDxYaXu3hDrrU+w6nw50o/4+TcAqDqk/vUH7g=
 github.com/afex/hystrix-go v0.0.0-20180502004556-fa1af6a1f4f5/go.mod h1:SkGFH1ia65gfNATL8TAiHDNxPzPdmEL5uirI2Uyuz6c=
 github.com/agext/levenshtein v1.2.1/go.mod h1:JEDfjyjHDjOF/1e4FlBE/PkbqA9OfWu2ki2W0IB5558=

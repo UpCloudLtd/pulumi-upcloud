@@ -956,7 +956,6 @@
             },
             "upcloud_server": {
                 "maxItemsOneOverrides": {
-                    "login": true,
                     "simple_backup": true,
                     "template.$.backup_rule": true
                 }
