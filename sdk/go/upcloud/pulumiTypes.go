@@ -7503,6 +7503,8 @@ type ManagedDatabaseMysqlProperties struct {
 	PublicAccess *bool `pulumi:"publicAccess"`
 	// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
 	PublicAccessPrometheus *bool `pulumi:"publicAccessPrometheus"`
+	// The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
+	RelayLogSpaceLimit *int `pulumi:"relayLogSpaceLimit"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog *bool `pulumi:"serviceLog"`
 	// Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table.
@@ -7609,6 +7611,8 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	PublicAccess pulumi.BoolPtrInput `pulumi:"publicAccess"`
 	// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
 	PublicAccessPrometheus pulumi.BoolPtrInput `pulumi:"publicAccessPrometheus"`
+	// The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
+	RelayLogSpaceLimit pulumi.IntPtrInput `pulumi:"relayLogSpaceLimit"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog pulumi.BoolPtrInput `pulumi:"serviceLog"`
 	// Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table.
@@ -7894,6 +7898,11 @@ func (o ManagedDatabaseMysqlPropertiesOutput) PublicAccess() pulumi.BoolPtrOutpu
 // Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
 func (o ManagedDatabaseMysqlPropertiesOutput) PublicAccessPrometheus() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *bool { return v.PublicAccessPrometheus }).(pulumi.BoolPtrOutput)
+}
+
+// The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
+func (o ManagedDatabaseMysqlPropertiesOutput) RelayLogSpaceLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.RelayLogSpaceLimit }).(pulumi.IntPtrOutput)
 }
 
 // Service logging. Store logs for the service so that they are available in the HTTP API and console.
@@ -8338,6 +8347,16 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) PublicAccessPrometheus() pulumi
 		}
 		return v.PublicAccessPrometheus
 	}).(pulumi.BoolPtrOutput)
+}
+
+// The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) RelayLogSpaceLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.RelayLogSpaceLimit
+	}).(pulumi.IntPtrOutput)
 }
 
 // Service logging. Store logs for the service so that they are available in the HTTP API and console.

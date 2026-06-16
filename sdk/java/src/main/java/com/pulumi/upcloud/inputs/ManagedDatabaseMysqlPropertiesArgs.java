@@ -592,6 +592,21 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
     }
 
     /**
+     * The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
+     * 
+     */
+    @Import(name="relayLogSpaceLimit")
+    private @Nullable Output<Integer> relayLogSpaceLimit;
+
+    /**
+     * @return The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
+     * 
+     */
+    public Optional<Output<Integer>> relayLogSpaceLimit() {
+        return Optional.ofNullable(this.relayLogSpaceLimit);
+    }
+
+    /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      * 
      */
@@ -752,6 +767,7 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         this.performanceSchemaEventsStatementsHistorySize = $.performanceSchemaEventsStatementsHistorySize;
         this.publicAccess = $.publicAccess;
         this.publicAccessPrometheus = $.publicAccessPrometheus;
+        this.relayLogSpaceLimit = $.relayLogSpaceLimit;
         this.serviceLog = $.serviceLog;
         this.slowQueryLog = $.slowQueryLog;
         this.sortBufferSize = $.sortBufferSize;
@@ -1586,6 +1602,27 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
          */
         public Builder publicAccessPrometheus(Boolean publicAccessPrometheus) {
             return publicAccessPrometheus(Output.of(publicAccessPrometheus));
+        }
+
+        /**
+         * @param relayLogSpaceLimit The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder relayLogSpaceLimit(@Nullable Output<Integer> relayLogSpaceLimit) {
+            $.relayLogSpaceLimit = relayLogSpaceLimit;
+            return this;
+        }
+
+        /**
+         * @param relayLogSpaceLimit The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder relayLogSpaceLimit(Integer relayLogSpaceLimit) {
+            return relayLogSpaceLimit(Output.of(relayLogSpaceLimit));
         }
 
         /**

@@ -208,6 +208,11 @@ public final class ManagedDatabaseMysqlProperties {
      */
     private @Nullable Boolean publicAccessPrometheus;
     /**
+     * @return The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
+     * 
+     */
+    private @Nullable Integer relayLogSpaceLimit;
+    /**
      * @return Service logging. Store logs for the service so that they are available in the HTTP API and console.
      * 
      */
@@ -516,6 +521,13 @@ public final class ManagedDatabaseMysqlProperties {
         return Optional.ofNullable(this.publicAccessPrometheus);
     }
     /**
+     * @return The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
+     * 
+     */
+    public Optional<Integer> relayLogSpaceLimit() {
+        return Optional.ofNullable(this.relayLogSpaceLimit);
+    }
+    /**
      * @return Service logging. Store logs for the service so that they are available in the HTTP API and console.
      * 
      */
@@ -619,6 +631,7 @@ public final class ManagedDatabaseMysqlProperties {
         private @Nullable Integer performanceSchemaEventsStatementsHistorySize;
         private @Nullable Boolean publicAccess;
         private @Nullable Boolean publicAccessPrometheus;
+        private @Nullable Integer relayLogSpaceLimit;
         private @Nullable Boolean serviceLog;
         private @Nullable Boolean slowQueryLog;
         private @Nullable Integer sortBufferSize;
@@ -668,6 +681,7 @@ public final class ManagedDatabaseMysqlProperties {
     	      this.performanceSchemaEventsStatementsHistorySize = defaults.performanceSchemaEventsStatementsHistorySize;
     	      this.publicAccess = defaults.publicAccess;
     	      this.publicAccessPrometheus = defaults.publicAccessPrometheus;
+    	      this.relayLogSpaceLimit = defaults.relayLogSpaceLimit;
     	      this.serviceLog = defaults.serviceLog;
     	      this.slowQueryLog = defaults.slowQueryLog;
     	      this.sortBufferSize = defaults.sortBufferSize;
@@ -910,6 +924,12 @@ public final class ManagedDatabaseMysqlProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder relayLogSpaceLimit(@Nullable Integer relayLogSpaceLimit) {
+
+            this.relayLogSpaceLimit = relayLogSpaceLimit;
+            return this;
+        }
+        @CustomType.Setter
         public Builder serviceLog(@Nullable Boolean serviceLog) {
 
             this.serviceLog = serviceLog;
@@ -997,6 +1017,7 @@ public final class ManagedDatabaseMysqlProperties {
             _resultValue.performanceSchemaEventsStatementsHistorySize = performanceSchemaEventsStatementsHistorySize;
             _resultValue.publicAccess = publicAccess;
             _resultValue.publicAccessPrometheus = publicAccessPrometheus;
+            _resultValue.relayLogSpaceLimit = relayLogSpaceLimit;
             _resultValue.serviceLog = serviceLog;
             _resultValue.slowQueryLog = slowQueryLog;
             _resultValue.sortBufferSize = sortBufferSize;
