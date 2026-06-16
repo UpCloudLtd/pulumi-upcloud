@@ -3477,6 +3477,8 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "public_access"
         elif key == "publicAccessPrometheus":
             suggest = "public_access_prometheus"
+        elif key == "relayLogSpaceLimit":
+            suggest = "relay_log_space_limit"
         elif key == "serviceLog":
             suggest = "service_log"
         elif key == "slowQueryLog":
@@ -3542,6 +3544,7 @@ class ManagedDatabaseMysqlProperties(dict):
                  performance_schema_events_statements_history_size: Optional[_builtins.int] = None,
                  public_access: Optional[_builtins.bool] = None,
                  public_access_prometheus: Optional[_builtins.bool] = None,
+                 relay_log_space_limit: Optional[_builtins.int] = None,
                  service_log: Optional[_builtins.bool] = None,
                  slow_query_log: Optional[_builtins.bool] = None,
                  sort_buffer_size: Optional[_builtins.int] = None,
@@ -3589,6 +3592,7 @@ class ManagedDatabaseMysqlProperties(dict):
         :param _builtins.int performance_schema_events_statements_history_size: The number of rows per thread in the events_statements_history table. Changing this parameter will lead to a restart of the MySQL service.
         :param _builtins.bool public_access: Public Access. Allow access to the service from the public Internet.
         :param _builtins.bool public_access_prometheus: Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        :param _builtins.int relay_log_space_limit: The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
         :param _builtins.bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
         :param _builtins.bool slow_query_log: Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table.
         :param _builtins.int sort_buffer_size: Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
@@ -3674,6 +3678,8 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "public_access", public_access)
         if public_access_prometheus is not None:
             pulumi.set(__self__, "public_access_prometheus", public_access_prometheus)
+        if relay_log_space_limit is not None:
+            pulumi.set(__self__, "relay_log_space_limit", relay_log_space_limit)
         if service_log is not None:
             pulumi.set(__self__, "service_log", service_log)
         if slow_query_log is not None:
@@ -3994,6 +4000,14 @@ class ManagedDatabaseMysqlProperties(dict):
         Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
         """
         return pulumi.get(self, "public_access_prometheus")
+
+    @_builtins.property
+    @pulumi.getter(name="relayLogSpaceLimit")
+    def relay_log_space_limit(self) -> Optional[_builtins.int]:
+        """
+        The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
+        """
+        return pulumi.get(self, "relay_log_space_limit")
 
     @_builtins.property
     @pulumi.getter(name="serviceLog")

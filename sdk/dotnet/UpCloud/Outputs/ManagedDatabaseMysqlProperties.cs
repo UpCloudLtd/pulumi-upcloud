@@ -167,6 +167,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? PublicAccessPrometheus;
         /// <summary>
+        /// The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
+        /// </summary>
+        public readonly int? RelayLogSpaceLimit;
+        /// <summary>
         /// Service logging. Store logs for the service so that they are available in the HTTP API and console.
         /// </summary>
         public readonly bool? ServiceLog;
@@ -277,6 +281,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             bool? publicAccessPrometheus,
 
+            int? relayLogSpaceLimit,
+
             bool? serviceLog,
 
             bool? slowQueryLog,
@@ -331,6 +337,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             PerformanceSchemaEventsStatementsHistorySize = performanceSchemaEventsStatementsHistorySize;
             PublicAccess = publicAccess;
             PublicAccessPrometheus = publicAccessPrometheus;
+            RelayLogSpaceLimit = relayLogSpaceLimit;
             ServiceLog = serviceLog;
             SlowQueryLog = slowQueryLog;
             SortBufferSize = sortBufferSize;
