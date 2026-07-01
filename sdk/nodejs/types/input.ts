@@ -24,6 +24,81 @@ export interface FileStorageNetwork {
     uuid: pulumi.Input<string>;
 }
 
+export interface FirewallRulesetRule {
+    /**
+     * Rule action.
+     */
+    action: pulumi.Input<string>;
+    /**
+     * Rule comment.
+     */
+    comment?: pulumi.Input<string>;
+    /**
+     * Destination CIDR block.
+     */
+    destinationAddressCidr?: pulumi.Input<string>;
+    /**
+     * End of destination IP address range.
+     */
+    destinationAddressEnd?: pulumi.Input<string>;
+    /**
+     * Start of destination IP address range.
+     */
+    destinationAddressStart?: pulumi.Input<string>;
+    /**
+     * End of destination port range.
+     */
+    destinationPortEnd?: pulumi.Input<number>;
+    /**
+     * Start of destination port range.
+     */
+    destinationPortStart?: pulumi.Input<number>;
+    /**
+     * Traffic direction the rule applies to.
+     */
+    direction: pulumi.Input<string>;
+    /**
+     * Whether the rule is enabled.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * Address family.
+     */
+    family: pulumi.Input<string>;
+    /**
+     * ICMP type number.
+     */
+    icmpType?: pulumi.Input<number>;
+    /**
+     * Rule position (1-based). Computed from the rule's index in the list.
+     */
+    position?: pulumi.Input<number>;
+    /**
+     * IP protocol.
+     */
+    protocol?: pulumi.Input<string>;
+    /**
+     * Source CIDR block.
+     */
+    sourceAddressCidr?: pulumi.Input<string>;
+    /**
+     * End of source IP address range.
+     */
+    sourceAddressEnd?: pulumi.Input<string>;
+    /**
+     * Start of source IP address range.
+     */
+    sourceAddressStart?: pulumi.Input<string>;
+    /**
+     * End of source port range.
+     */
+    sourcePortEnd?: pulumi.Input<number>;
+    /**
+     * Start of source port range.
+     */
+    sourcePortStart?: pulumi.Input<number>;
+}
+
 export interface GatewayAddress {
     /**
      * IP addresss
@@ -1624,6 +1699,10 @@ export interface ManagedDatabaseMysqlProperties {
      */
     informationSchemaStatsExpiry?: pulumi.Input<number>;
     /**
+     * Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
+     */
+    innodbAdaptiveHashIndex?: pulumi.Input<boolean>;
+    /**
      * Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
      */
     innodbChangeBufferMaxSize?: pulumi.Input<number>;
@@ -1639,6 +1718,14 @@ export interface ManagedDatabaseMysqlProperties {
      * This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
      */
     innodbFtServerStopwordTable?: pulumi.Input<string>;
+    /**
+     * The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+     */
+    innodbIoCapacity?: pulumi.Input<number>;
+    /**
+     * The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
+     */
+    innodbIoCapacityMax?: pulumi.Input<number>;
     /**
      * The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
      */

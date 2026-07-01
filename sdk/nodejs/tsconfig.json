@@ -18,6 +18,7 @@
         "fileStorage.ts",
         "fileStorageShare.ts",
         "fileStorageShareAcl.ts",
+        "firewallRuleset.ts",
         "floatingIpAddress.ts",
         "gateway.ts",
         "gatewayConnection.ts",

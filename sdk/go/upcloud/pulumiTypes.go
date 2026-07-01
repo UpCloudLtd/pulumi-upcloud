@@ -137,6 +137,256 @@ func (o FileStorageNetworkArrayOutput) Index(i pulumi.IntInput) FileStorageNetwo
 	}).(FileStorageNetworkOutput)
 }
 
+type FirewallRulesetRule struct {
+	// Rule action.
+	Action string `pulumi:"action"`
+	// Rule comment.
+	Comment *string `pulumi:"comment"`
+	// Destination CIDR block.
+	DestinationAddressCidr *string `pulumi:"destinationAddressCidr"`
+	// End of destination IP address range.
+	DestinationAddressEnd *string `pulumi:"destinationAddressEnd"`
+	// Start of destination IP address range.
+	DestinationAddressStart *string `pulumi:"destinationAddressStart"`
+	// End of destination port range.
+	DestinationPortEnd *int `pulumi:"destinationPortEnd"`
+	// Start of destination port range.
+	DestinationPortStart *int `pulumi:"destinationPortStart"`
+	// Traffic direction the rule applies to.
+	Direction string `pulumi:"direction"`
+	// Whether the rule is enabled.
+	Enabled *bool `pulumi:"enabled"`
+	// Address family.
+	Family string `pulumi:"family"`
+	// ICMP type number.
+	IcmpType *int `pulumi:"icmpType"`
+	// Rule position (1-based). Computed from the rule's index in the list.
+	Position *int `pulumi:"position"`
+	// IP protocol.
+	Protocol *string `pulumi:"protocol"`
+	// Source CIDR block.
+	SourceAddressCidr *string `pulumi:"sourceAddressCidr"`
+	// End of source IP address range.
+	SourceAddressEnd *string `pulumi:"sourceAddressEnd"`
+	// Start of source IP address range.
+	SourceAddressStart *string `pulumi:"sourceAddressStart"`
+	// End of source port range.
+	SourcePortEnd *int `pulumi:"sourcePortEnd"`
+	// Start of source port range.
+	SourcePortStart *int `pulumi:"sourcePortStart"`
+}
+
+// FirewallRulesetRuleInput is an input type that accepts FirewallRulesetRuleArgs and FirewallRulesetRuleOutput values.
+// You can construct a concrete instance of `FirewallRulesetRuleInput` via:
+//
+//	FirewallRulesetRuleArgs{...}
+type FirewallRulesetRuleInput interface {
+	pulumi.Input
+
+	ToFirewallRulesetRuleOutput() FirewallRulesetRuleOutput
+	ToFirewallRulesetRuleOutputWithContext(context.Context) FirewallRulesetRuleOutput
+}
+
+type FirewallRulesetRuleArgs struct {
+	// Rule action.
+	Action pulumi.StringInput `pulumi:"action"`
+	// Rule comment.
+	Comment pulumi.StringPtrInput `pulumi:"comment"`
+	// Destination CIDR block.
+	DestinationAddressCidr pulumi.StringPtrInput `pulumi:"destinationAddressCidr"`
+	// End of destination IP address range.
+	DestinationAddressEnd pulumi.StringPtrInput `pulumi:"destinationAddressEnd"`
+	// Start of destination IP address range.
+	DestinationAddressStart pulumi.StringPtrInput `pulumi:"destinationAddressStart"`
+	// End of destination port range.
+	DestinationPortEnd pulumi.IntPtrInput `pulumi:"destinationPortEnd"`
+	// Start of destination port range.
+	DestinationPortStart pulumi.IntPtrInput `pulumi:"destinationPortStart"`
+	// Traffic direction the rule applies to.
+	Direction pulumi.StringInput `pulumi:"direction"`
+	// Whether the rule is enabled.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Address family.
+	Family pulumi.StringInput `pulumi:"family"`
+	// ICMP type number.
+	IcmpType pulumi.IntPtrInput `pulumi:"icmpType"`
+	// Rule position (1-based). Computed from the rule's index in the list.
+	Position pulumi.IntPtrInput `pulumi:"position"`
+	// IP protocol.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+	// Source CIDR block.
+	SourceAddressCidr pulumi.StringPtrInput `pulumi:"sourceAddressCidr"`
+	// End of source IP address range.
+	SourceAddressEnd pulumi.StringPtrInput `pulumi:"sourceAddressEnd"`
+	// Start of source IP address range.
+	SourceAddressStart pulumi.StringPtrInput `pulumi:"sourceAddressStart"`
+	// End of source port range.
+	SourcePortEnd pulumi.IntPtrInput `pulumi:"sourcePortEnd"`
+	// Start of source port range.
+	SourcePortStart pulumi.IntPtrInput `pulumi:"sourcePortStart"`
+}
+
+func (FirewallRulesetRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallRulesetRule)(nil)).Elem()
+}
+
+func (i FirewallRulesetRuleArgs) ToFirewallRulesetRuleOutput() FirewallRulesetRuleOutput {
+	return i.ToFirewallRulesetRuleOutputWithContext(context.Background())
+}
+
+func (i FirewallRulesetRuleArgs) ToFirewallRulesetRuleOutputWithContext(ctx context.Context) FirewallRulesetRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallRulesetRuleOutput)
+}
+
+// FirewallRulesetRuleArrayInput is an input type that accepts FirewallRulesetRuleArray and FirewallRulesetRuleArrayOutput values.
+// You can construct a concrete instance of `FirewallRulesetRuleArrayInput` via:
+//
+//	FirewallRulesetRuleArray{ FirewallRulesetRuleArgs{...} }
+type FirewallRulesetRuleArrayInput interface {
+	pulumi.Input
+
+	ToFirewallRulesetRuleArrayOutput() FirewallRulesetRuleArrayOutput
+	ToFirewallRulesetRuleArrayOutputWithContext(context.Context) FirewallRulesetRuleArrayOutput
+}
+
+type FirewallRulesetRuleArray []FirewallRulesetRuleInput
+
+func (FirewallRulesetRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallRulesetRule)(nil)).Elem()
+}
+
+func (i FirewallRulesetRuleArray) ToFirewallRulesetRuleArrayOutput() FirewallRulesetRuleArrayOutput {
+	return i.ToFirewallRulesetRuleArrayOutputWithContext(context.Background())
+}
+
+func (i FirewallRulesetRuleArray) ToFirewallRulesetRuleArrayOutputWithContext(ctx context.Context) FirewallRulesetRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallRulesetRuleArrayOutput)
+}
+
+type FirewallRulesetRuleOutput struct{ *pulumi.OutputState }
+
+func (FirewallRulesetRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallRulesetRule)(nil)).Elem()
+}
+
+func (o FirewallRulesetRuleOutput) ToFirewallRulesetRuleOutput() FirewallRulesetRuleOutput {
+	return o
+}
+
+func (o FirewallRulesetRuleOutput) ToFirewallRulesetRuleOutputWithContext(ctx context.Context) FirewallRulesetRuleOutput {
+	return o
+}
+
+// Rule action.
+func (o FirewallRulesetRuleOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// Rule comment.
+func (o FirewallRulesetRuleOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *string { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+// Destination CIDR block.
+func (o FirewallRulesetRuleOutput) DestinationAddressCidr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *string { return v.DestinationAddressCidr }).(pulumi.StringPtrOutput)
+}
+
+// End of destination IP address range.
+func (o FirewallRulesetRuleOutput) DestinationAddressEnd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *string { return v.DestinationAddressEnd }).(pulumi.StringPtrOutput)
+}
+
+// Start of destination IP address range.
+func (o FirewallRulesetRuleOutput) DestinationAddressStart() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *string { return v.DestinationAddressStart }).(pulumi.StringPtrOutput)
+}
+
+// End of destination port range.
+func (o FirewallRulesetRuleOutput) DestinationPortEnd() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *int { return v.DestinationPortEnd }).(pulumi.IntPtrOutput)
+}
+
+// Start of destination port range.
+func (o FirewallRulesetRuleOutput) DestinationPortStart() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *int { return v.DestinationPortStart }).(pulumi.IntPtrOutput)
+}
+
+// Traffic direction the rule applies to.
+func (o FirewallRulesetRuleOutput) Direction() pulumi.StringOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) string { return v.Direction }).(pulumi.StringOutput)
+}
+
+// Whether the rule is enabled.
+func (o FirewallRulesetRuleOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Address family.
+func (o FirewallRulesetRuleOutput) Family() pulumi.StringOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) string { return v.Family }).(pulumi.StringOutput)
+}
+
+// ICMP type number.
+func (o FirewallRulesetRuleOutput) IcmpType() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *int { return v.IcmpType }).(pulumi.IntPtrOutput)
+}
+
+// Rule position (1-based). Computed from the rule's index in the list.
+func (o FirewallRulesetRuleOutput) Position() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *int { return v.Position }).(pulumi.IntPtrOutput)
+}
+
+// IP protocol.
+func (o FirewallRulesetRuleOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+// Source CIDR block.
+func (o FirewallRulesetRuleOutput) SourceAddressCidr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *string { return v.SourceAddressCidr }).(pulumi.StringPtrOutput)
+}
+
+// End of source IP address range.
+func (o FirewallRulesetRuleOutput) SourceAddressEnd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *string { return v.SourceAddressEnd }).(pulumi.StringPtrOutput)
+}
+
+// Start of source IP address range.
+func (o FirewallRulesetRuleOutput) SourceAddressStart() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *string { return v.SourceAddressStart }).(pulumi.StringPtrOutput)
+}
+
+// End of source port range.
+func (o FirewallRulesetRuleOutput) SourcePortEnd() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *int { return v.SourcePortEnd }).(pulumi.IntPtrOutput)
+}
+
+// Start of source port range.
+func (o FirewallRulesetRuleOutput) SourcePortStart() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FirewallRulesetRule) *int { return v.SourcePortStart }).(pulumi.IntPtrOutput)
+}
+
+type FirewallRulesetRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (FirewallRulesetRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallRulesetRule)(nil)).Elem()
+}
+
+func (o FirewallRulesetRuleArrayOutput) ToFirewallRulesetRuleArrayOutput() FirewallRulesetRuleArrayOutput {
+	return o
+}
+
+func (o FirewallRulesetRuleArrayOutput) ToFirewallRulesetRuleArrayOutputWithContext(ctx context.Context) FirewallRulesetRuleArrayOutput {
+	return o
+}
+
+func (o FirewallRulesetRuleArrayOutput) Index(i pulumi.IntInput) FirewallRulesetRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallRulesetRule {
+		return vs[0].([]FirewallRulesetRule)[vs[1].(int)]
+	}).(FirewallRulesetRuleOutput)
+}
+
 type GatewayAddress struct {
 	// IP addresss
 	Address *string `pulumi:"address"`
@@ -7447,6 +7697,8 @@ type ManagedDatabaseMysqlProperties struct {
 	GroupConcatMaxLen *int `pulumi:"groupConcatMaxLen"`
 	// The time, in seconds, before cached statistics expire.
 	InformationSchemaStatsExpiry *int `pulumi:"informationSchemaStatsExpiry"`
+	// Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
+	InnodbAdaptiveHashIndex *bool `pulumi:"innodbAdaptiveHashIndex"`
 	// Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
 	InnodbChangeBufferMaxSize *int `pulumi:"innodbChangeBufferMaxSize"`
 	// Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
@@ -7455,6 +7707,10 @@ type ManagedDatabaseMysqlProperties struct {
 	InnodbFtMinTokenSize *int `pulumi:"innodbFtMinTokenSize"`
 	// This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
 	InnodbFtServerStopwordTable *string `pulumi:"innodbFtServerStopwordTable"`
+	// The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+	InnodbIoCapacity *int `pulumi:"innodbIoCapacity"`
+	// The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
+	InnodbIoCapacityMax *int `pulumi:"innodbIoCapacityMax"`
 	// The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
 	InnodbLockWaitTimeout *int `pulumi:"innodbLockWaitTimeout"`
 	// The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
@@ -7555,6 +7811,8 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	GroupConcatMaxLen pulumi.IntPtrInput `pulumi:"groupConcatMaxLen"`
 	// The time, in seconds, before cached statistics expire.
 	InformationSchemaStatsExpiry pulumi.IntPtrInput `pulumi:"informationSchemaStatsExpiry"`
+	// Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
+	InnodbAdaptiveHashIndex pulumi.BoolPtrInput `pulumi:"innodbAdaptiveHashIndex"`
 	// Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
 	InnodbChangeBufferMaxSize pulumi.IntPtrInput `pulumi:"innodbChangeBufferMaxSize"`
 	// Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
@@ -7563,6 +7821,10 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	InnodbFtMinTokenSize pulumi.IntPtrInput `pulumi:"innodbFtMinTokenSize"`
 	// This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
 	InnodbFtServerStopwordTable pulumi.StringPtrInput `pulumi:"innodbFtServerStopwordTable"`
+	// The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+	InnodbIoCapacity pulumi.IntPtrInput `pulumi:"innodbIoCapacity"`
+	// The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
+	InnodbIoCapacityMax pulumi.IntPtrInput `pulumi:"innodbIoCapacityMax"`
 	// The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
 	InnodbLockWaitTimeout pulumi.IntPtrInput `pulumi:"innodbLockWaitTimeout"`
 	// The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
@@ -7758,6 +8020,11 @@ func (o ManagedDatabaseMysqlPropertiesOutput) InformationSchemaStatsExpiry() pul
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InformationSchemaStatsExpiry }).(pulumi.IntPtrOutput)
 }
 
+// Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
+func (o ManagedDatabaseMysqlPropertiesOutput) InnodbAdaptiveHashIndex() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *bool { return v.InnodbAdaptiveHashIndex }).(pulumi.BoolPtrOutput)
+}
+
 // Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
 func (o ManagedDatabaseMysqlPropertiesOutput) InnodbChangeBufferMaxSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InnodbChangeBufferMaxSize }).(pulumi.IntPtrOutput)
@@ -7776,6 +8043,16 @@ func (o ManagedDatabaseMysqlPropertiesOutput) InnodbFtMinTokenSize() pulumi.IntP
 // This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
 func (o ManagedDatabaseMysqlPropertiesOutput) InnodbFtServerStopwordTable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *string { return v.InnodbFtServerStopwordTable }).(pulumi.StringPtrOutput)
+}
+
+// The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+func (o ManagedDatabaseMysqlPropertiesOutput) InnodbIoCapacity() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InnodbIoCapacity }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
+func (o ManagedDatabaseMysqlPropertiesOutput) InnodbIoCapacityMax() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InnodbIoCapacityMax }).(pulumi.IntPtrOutput)
 }
 
 // The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
@@ -8069,6 +8346,16 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) InformationSchemaStatsExpiry() 
 	}).(pulumi.IntPtrOutput)
 }
 
+// Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbAdaptiveHashIndex() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.InnodbAdaptiveHashIndex
+	}).(pulumi.BoolPtrOutput)
+}
+
 // Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
 func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbChangeBufferMaxSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
@@ -8107,6 +8394,26 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbFtServerStopwordTable() p
 		}
 		return v.InnodbFtServerStopwordTable
 	}).(pulumi.StringPtrOutput)
+}
+
+// The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbIoCapacity() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InnodbIoCapacity
+	}).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbIoCapacityMax() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InnodbIoCapacityMax
+	}).(pulumi.IntPtrOutput)
 }
 
 // The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
@@ -27274,6 +27581,8 @@ func (o GetTagsTagArrayOutput) Index(i pulumi.IntInput) GetTagsTagOutput {
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FileStorageNetworkInput)(nil)).Elem(), FileStorageNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FileStorageNetworkArrayInput)(nil)).Elem(), FileStorageNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallRulesetRuleInput)(nil)).Elem(), FirewallRulesetRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallRulesetRuleArrayInput)(nil)).Elem(), FirewallRulesetRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayAddressInput)(nil)).Elem(), GatewayAddressArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayAddressPtrInput)(nil)).Elem(), GatewayAddressArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayAddressArrayInput)(nil)).Elem(), GatewayAddressArray{})
@@ -27551,6 +27860,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsTagArrayInput)(nil)).Elem(), GetTagsTagArray{})
 	pulumi.RegisterOutputType(FileStorageNetworkOutput{})
 	pulumi.RegisterOutputType(FileStorageNetworkArrayOutput{})
+	pulumi.RegisterOutputType(FirewallRulesetRuleOutput{})
+	pulumi.RegisterOutputType(FirewallRulesetRuleArrayOutput{})
 	pulumi.RegisterOutputType(GatewayAddressOutput{})
 	pulumi.RegisterOutputType(GatewayAddressPtrOutput{})
 	pulumi.RegisterOutputType(GatewayAddressArrayOutput{})

@@ -9,6 +9,7 @@ import typing
 from .file_storage import *
 from .file_storage_share import *
 from .file_storage_share_acl import *
+from .firewall_ruleset import *
 from .floating_ip_address import *
 from .gateway import *
 from .gateway_connection import *
@@ -100,6 +101,14 @@ _utilities.register(
   "fqn": "pulumi_upcloud",
   "classes": {
    "upcloud:index/fileStorageShareAcl:FileStorageShareAcl": "FileStorageShareAcl"
+  }
+ },
+ {
+  "pkg": "upcloud",
+  "mod": "index/firewallRuleset",
+  "fqn": "pulumi_upcloud",
+  "classes": {
+   "upcloud:index/firewallRuleset:FirewallRuleset": "FirewallRuleset"
   }
  },
  {

@@ -68,6 +68,11 @@ public final class ManagedDatabaseMysqlProperties {
      */
     private @Nullable Integer informationSchemaStatsExpiry;
     /**
+     * @return Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
+     * 
+     */
+    private @Nullable Boolean innodbAdaptiveHashIndex;
+    /**
      * @return Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
      * 
      */
@@ -87,6 +92,16 @@ public final class ManagedDatabaseMysqlProperties {
      * 
      */
     private @Nullable String innodbFtServerStopwordTable;
+    /**
+     * @return The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+     * 
+     */
+    private @Nullable Integer innodbIoCapacity;
+    /**
+     * @return The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
+     * 
+     */
+    private @Nullable Integer innodbIoCapacityMax;
     /**
      * @return The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
      * 
@@ -325,6 +340,13 @@ public final class ManagedDatabaseMysqlProperties {
         return Optional.ofNullable(this.informationSchemaStatsExpiry);
     }
     /**
+     * @return Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
+     * 
+     */
+    public Optional<Boolean> innodbAdaptiveHashIndex() {
+        return Optional.ofNullable(this.innodbAdaptiveHashIndex);
+    }
+    /**
      * @return Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
      * 
      */
@@ -351,6 +373,20 @@ public final class ManagedDatabaseMysqlProperties {
      */
     public Optional<String> innodbFtServerStopwordTable() {
         return Optional.ofNullable(this.innodbFtServerStopwordTable);
+    }
+    /**
+     * @return The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+     * 
+     */
+    public Optional<Integer> innodbIoCapacity() {
+        return Optional.ofNullable(this.innodbIoCapacity);
+    }
+    /**
+     * @return The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
+     * 
+     */
+    public Optional<Integer> innodbIoCapacityMax() {
+        return Optional.ofNullable(this.innodbIoCapacityMax);
     }
     /**
      * @return The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
@@ -603,10 +639,13 @@ public final class ManagedDatabaseMysqlProperties {
         private @Nullable String defaultTimeZone;
         private @Nullable Integer groupConcatMaxLen;
         private @Nullable Integer informationSchemaStatsExpiry;
+        private @Nullable Boolean innodbAdaptiveHashIndex;
         private @Nullable Integer innodbChangeBufferMaxSize;
         private @Nullable Integer innodbFlushNeighbors;
         private @Nullable Integer innodbFtMinTokenSize;
         private @Nullable String innodbFtServerStopwordTable;
+        private @Nullable Integer innodbIoCapacity;
+        private @Nullable Integer innodbIoCapacityMax;
         private @Nullable Integer innodbLockWaitTimeout;
         private @Nullable Integer innodbLogBufferSize;
         private @Nullable Integer innodbOnlineAlterLogMaxSize;
@@ -653,10 +692,13 @@ public final class ManagedDatabaseMysqlProperties {
     	      this.defaultTimeZone = defaults.defaultTimeZone;
     	      this.groupConcatMaxLen = defaults.groupConcatMaxLen;
     	      this.informationSchemaStatsExpiry = defaults.informationSchemaStatsExpiry;
+    	      this.innodbAdaptiveHashIndex = defaults.innodbAdaptiveHashIndex;
     	      this.innodbChangeBufferMaxSize = defaults.innodbChangeBufferMaxSize;
     	      this.innodbFlushNeighbors = defaults.innodbFlushNeighbors;
     	      this.innodbFtMinTokenSize = defaults.innodbFtMinTokenSize;
     	      this.innodbFtServerStopwordTable = defaults.innodbFtServerStopwordTable;
+    	      this.innodbIoCapacity = defaults.innodbIoCapacity;
+    	      this.innodbIoCapacityMax = defaults.innodbIoCapacityMax;
     	      this.innodbLockWaitTimeout = defaults.innodbLockWaitTimeout;
     	      this.innodbLogBufferSize = defaults.innodbLogBufferSize;
     	      this.innodbOnlineAlterLogMaxSize = defaults.innodbOnlineAlterLogMaxSize;
@@ -753,6 +795,12 @@ public final class ManagedDatabaseMysqlProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder innodbAdaptiveHashIndex(@Nullable Boolean innodbAdaptiveHashIndex) {
+
+            this.innodbAdaptiveHashIndex = innodbAdaptiveHashIndex;
+            return this;
+        }
+        @CustomType.Setter
         public Builder innodbChangeBufferMaxSize(@Nullable Integer innodbChangeBufferMaxSize) {
 
             this.innodbChangeBufferMaxSize = innodbChangeBufferMaxSize;
@@ -774,6 +822,18 @@ public final class ManagedDatabaseMysqlProperties {
         public Builder innodbFtServerStopwordTable(@Nullable String innodbFtServerStopwordTable) {
 
             this.innodbFtServerStopwordTable = innodbFtServerStopwordTable;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder innodbIoCapacity(@Nullable Integer innodbIoCapacity) {
+
+            this.innodbIoCapacity = innodbIoCapacity;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder innodbIoCapacityMax(@Nullable Integer innodbIoCapacityMax) {
+
+            this.innodbIoCapacityMax = innodbIoCapacityMax;
             return this;
         }
         @CustomType.Setter
@@ -989,10 +1049,13 @@ public final class ManagedDatabaseMysqlProperties {
             _resultValue.defaultTimeZone = defaultTimeZone;
             _resultValue.groupConcatMaxLen = groupConcatMaxLen;
             _resultValue.informationSchemaStatsExpiry = informationSchemaStatsExpiry;
+            _resultValue.innodbAdaptiveHashIndex = innodbAdaptiveHashIndex;
             _resultValue.innodbChangeBufferMaxSize = innodbChangeBufferMaxSize;
             _resultValue.innodbFlushNeighbors = innodbFlushNeighbors;
             _resultValue.innodbFtMinTokenSize = innodbFtMinTokenSize;
             _resultValue.innodbFtServerStopwordTable = innodbFtServerStopwordTable;
+            _resultValue.innodbIoCapacity = innodbIoCapacity;
+            _resultValue.innodbIoCapacityMax = innodbIoCapacityMax;
             _resultValue.innodbLockWaitTimeout = innodbLockWaitTimeout;
             _resultValue.innodbLogBufferSize = innodbLogBufferSize;
             _resultValue.innodbOnlineAlterLogMaxSize = innodbOnlineAlterLogMaxSize;

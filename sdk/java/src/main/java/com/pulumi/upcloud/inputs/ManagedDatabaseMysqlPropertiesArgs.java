@@ -172,6 +172,21 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
     }
 
     /**
+     * Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
+     * 
+     */
+    @Import(name="innodbAdaptiveHashIndex")
+    private @Nullable Output<Boolean> innodbAdaptiveHashIndex;
+
+    /**
+     * @return Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
+     * 
+     */
+    public Optional<Output<Boolean>> innodbAdaptiveHashIndex() {
+        return Optional.ofNullable(this.innodbAdaptiveHashIndex);
+    }
+
+    /**
      * Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
      * 
      */
@@ -229,6 +244,36 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
      */
     public Optional<Output<String>> innodbFtServerStopwordTable() {
         return Optional.ofNullable(this.innodbFtServerStopwordTable);
+    }
+
+    /**
+     * The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+     * 
+     */
+    @Import(name="innodbIoCapacity")
+    private @Nullable Output<Integer> innodbIoCapacity;
+
+    /**
+     * @return The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+     * 
+     */
+    public Optional<Output<Integer>> innodbIoCapacity() {
+        return Optional.ofNullable(this.innodbIoCapacity);
+    }
+
+    /**
+     * The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
+     * 
+     */
+    @Import(name="innodbIoCapacityMax")
+    private @Nullable Output<Integer> innodbIoCapacityMax;
+
+    /**
+     * @return The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
+     * 
+     */
+    public Optional<Output<Integer>> innodbIoCapacityMax() {
+        return Optional.ofNullable(this.innodbIoCapacityMax);
     }
 
     /**
@@ -739,10 +784,13 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         this.defaultTimeZone = $.defaultTimeZone;
         this.groupConcatMaxLen = $.groupConcatMaxLen;
         this.informationSchemaStatsExpiry = $.informationSchemaStatsExpiry;
+        this.innodbAdaptiveHashIndex = $.innodbAdaptiveHashIndex;
         this.innodbChangeBufferMaxSize = $.innodbChangeBufferMaxSize;
         this.innodbFlushNeighbors = $.innodbFlushNeighbors;
         this.innodbFtMinTokenSize = $.innodbFtMinTokenSize;
         this.innodbFtServerStopwordTable = $.innodbFtServerStopwordTable;
+        this.innodbIoCapacity = $.innodbIoCapacity;
+        this.innodbIoCapacityMax = $.innodbIoCapacityMax;
         this.innodbLockWaitTimeout = $.innodbLockWaitTimeout;
         this.innodbLogBufferSize = $.innodbLogBufferSize;
         this.innodbOnlineAlterLogMaxSize = $.innodbOnlineAlterLogMaxSize;
@@ -1007,6 +1055,27 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         }
 
         /**
+         * @param innodbAdaptiveHashIndex Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbAdaptiveHashIndex(@Nullable Output<Boolean> innodbAdaptiveHashIndex) {
+            $.innodbAdaptiveHashIndex = innodbAdaptiveHashIndex;
+            return this;
+        }
+
+        /**
+         * @param innodbAdaptiveHashIndex Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbAdaptiveHashIndex(Boolean innodbAdaptiveHashIndex) {
+            return innodbAdaptiveHashIndex(Output.of(innodbAdaptiveHashIndex));
+        }
+
+        /**
          * @param innodbChangeBufferMaxSize Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
          * 
          * @return builder
@@ -1088,6 +1157,48 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
          */
         public Builder innodbFtServerStopwordTable(String innodbFtServerStopwordTable) {
             return innodbFtServerStopwordTable(Output.of(innodbFtServerStopwordTable));
+        }
+
+        /**
+         * @param innodbIoCapacity The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbIoCapacity(@Nullable Output<Integer> innodbIoCapacity) {
+            $.innodbIoCapacity = innodbIoCapacity;
+            return this;
+        }
+
+        /**
+         * @param innodbIoCapacity The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbIoCapacity(Integer innodbIoCapacity) {
+            return innodbIoCapacity(Output.of(innodbIoCapacity));
+        }
+
+        /**
+         * @param innodbIoCapacityMax The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbIoCapacityMax(@Nullable Output<Integer> innodbIoCapacityMax) {
+            $.innodbIoCapacityMax = innodbIoCapacityMax;
+            return this;
+        }
+
+        /**
+         * @param innodbIoCapacityMax The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbIoCapacityMax(Integer innodbIoCapacityMax) {
+            return innodbIoCapacityMax(Output.of(innodbIoCapacityMax));
         }
 
         /**

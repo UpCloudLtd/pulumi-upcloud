@@ -27,6 +27,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FileStorageShare{}
 	case "upcloud:index/fileStorageShareAcl:FileStorageShareAcl":
 		r = &FileStorageShareAcl{}
+	case "upcloud:index/firewallRuleset:FirewallRuleset":
+		r = &FirewallRuleset{}
 	case "upcloud:index/floatingIpAddress:FloatingIpAddress":
 		r = &FloatingIpAddress{}
 	case "upcloud:index/gateway:Gateway":
@@ -151,6 +153,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"upcloud",
 		"index/fileStorageShareAcl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upcloud",
+		"index/firewallRuleset",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

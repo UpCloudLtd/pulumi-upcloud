@@ -55,6 +55,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? InformationSchemaStatsExpiry;
         /// <summary>
+        /// Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
+        /// </summary>
+        public readonly bool? InnodbAdaptiveHashIndex;
+        /// <summary>
         /// Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
         /// </summary>
         public readonly int? InnodbChangeBufferMaxSize;
@@ -70,6 +74,14 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
         /// </summary>
         public readonly string? InnodbFtServerStopwordTable;
+        /// <summary>
+        /// The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+        /// </summary>
+        public readonly int? InnodbIoCapacity;
+        /// <summary>
+        /// The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice InnodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
+        /// </summary>
+        public readonly int? InnodbIoCapacityMax;
         /// <summary>
         /// The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
         /// </summary>
@@ -225,6 +237,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             int? informationSchemaStatsExpiry,
 
+            bool? innodbAdaptiveHashIndex,
+
             int? innodbChangeBufferMaxSize,
 
             int? innodbFlushNeighbors,
@@ -232,6 +246,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             int? innodbFtMinTokenSize,
 
             string? innodbFtServerStopwordTable,
+
+            int? innodbIoCapacity,
+
+            int? innodbIoCapacityMax,
 
             int? innodbLockWaitTimeout,
 
@@ -309,10 +327,13 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             DefaultTimeZone = defaultTimeZone;
             GroupConcatMaxLen = groupConcatMaxLen;
             InformationSchemaStatsExpiry = informationSchemaStatsExpiry;
+            InnodbAdaptiveHashIndex = innodbAdaptiveHashIndex;
             InnodbChangeBufferMaxSize = innodbChangeBufferMaxSize;
             InnodbFlushNeighbors = innodbFlushNeighbors;
             InnodbFtMinTokenSize = innodbFtMinTokenSize;
             InnodbFtServerStopwordTable = innodbFtServerStopwordTable;
+            InnodbIoCapacity = innodbIoCapacity;
+            InnodbIoCapacityMax = innodbIoCapacityMax;
             InnodbLockWaitTimeout = innodbLockWaitTimeout;
             InnodbLogBufferSize = innodbLogBufferSize;
             InnodbOnlineAlterLogMaxSize = innodbOnlineAlterLogMaxSize;
