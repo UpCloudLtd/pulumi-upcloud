@@ -20,6 +20,11 @@ export type FileStorageShareAcl = import("./fileStorageShareAcl").FileStorageSha
 export const FileStorageShareAcl: typeof import("./fileStorageShareAcl").FileStorageShareAcl = null as any;
 utilities.lazyLoad(exports, ["FileStorageShareAcl"], () => require("./fileStorageShareAcl"));
 
+export { FirewallRulesetArgs, FirewallRulesetState } from "./firewallRuleset";
+export type FirewallRuleset = import("./firewallRuleset").FirewallRuleset;
+export const FirewallRuleset: typeof import("./firewallRuleset").FirewallRuleset = null as any;
+utilities.lazyLoad(exports, ["FirewallRuleset"], () => require("./firewallRuleset"));
+
 export { FloatingIpAddressArgs, FloatingIpAddressState } from "./floatingIpAddress";
 export type FloatingIpAddress = import("./floatingIpAddress").FloatingIpAddress;
 export const FloatingIpAddress: typeof import("./floatingIpAddress").FloatingIpAddress = null as any;
@@ -318,6 +323,8 @@ const _module = {
                 return new FileStorageShare(name, <any>undefined, { urn })
             case "upcloud:index/fileStorageShareAcl:FileStorageShareAcl":
                 return new FileStorageShareAcl(name, <any>undefined, { urn })
+            case "upcloud:index/firewallRuleset:FirewallRuleset":
+                return new FirewallRuleset(name, <any>undefined, { urn })
             case "upcloud:index/floatingIpAddress:FloatingIpAddress":
                 return new FloatingIpAddress(name, <any>undefined, { urn })
             case "upcloud:index/gateway:Gateway":
@@ -406,6 +413,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("upcloud", "index/fileStorage", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/fileStorageShare", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/fileStorageShareAcl", _module)
+pulumi.runtime.registerResourceModule("upcloud", "index/firewallRuleset", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/floatingIpAddress", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/gateway", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/gatewayConnection", _module)

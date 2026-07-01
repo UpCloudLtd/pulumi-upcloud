@@ -17,6 +17,7 @@ from . import outputs
 
 __all__ = [
     'FileStorageNetwork',
+    'FirewallRulesetRule',
     'GatewayAddress',
     'GatewayConnectionLocalRoute',
     'GatewayConnectionRemoteRoute',
@@ -223,6 +224,263 @@ class FileStorageNetwork(dict):
         IP address to assign (optional, auto-assign otherwise).
         """
         return pulumi.get(self, "ip_address")
+
+
+@pulumi.output_type
+class FirewallRulesetRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "destinationAddressCidr":
+            suggest = "destination_address_cidr"
+        elif key == "destinationAddressEnd":
+            suggest = "destination_address_end"
+        elif key == "destinationAddressStart":
+            suggest = "destination_address_start"
+        elif key == "destinationPortEnd":
+            suggest = "destination_port_end"
+        elif key == "destinationPortStart":
+            suggest = "destination_port_start"
+        elif key == "icmpType":
+            suggest = "icmp_type"
+        elif key == "sourceAddressCidr":
+            suggest = "source_address_cidr"
+        elif key == "sourceAddressEnd":
+            suggest = "source_address_end"
+        elif key == "sourceAddressStart":
+            suggest = "source_address_start"
+        elif key == "sourcePortEnd":
+            suggest = "source_port_end"
+        elif key == "sourcePortStart":
+            suggest = "source_port_start"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FirewallRulesetRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FirewallRulesetRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FirewallRulesetRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 direction: _builtins.str,
+                 family: _builtins.str,
+                 comment: Optional[_builtins.str] = None,
+                 destination_address_cidr: Optional[_builtins.str] = None,
+                 destination_address_end: Optional[_builtins.str] = None,
+                 destination_address_start: Optional[_builtins.str] = None,
+                 destination_port_end: Optional[_builtins.int] = None,
+                 destination_port_start: Optional[_builtins.int] = None,
+                 enabled: Optional[_builtins.bool] = None,
+                 icmp_type: Optional[_builtins.int] = None,
+                 position: Optional[_builtins.int] = None,
+                 protocol: Optional[_builtins.str] = None,
+                 source_address_cidr: Optional[_builtins.str] = None,
+                 source_address_end: Optional[_builtins.str] = None,
+                 source_address_start: Optional[_builtins.str] = None,
+                 source_port_end: Optional[_builtins.int] = None,
+                 source_port_start: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str action: Rule action.
+        :param _builtins.str direction: Traffic direction the rule applies to.
+        :param _builtins.str family: Address family.
+        :param _builtins.str comment: Rule comment.
+        :param _builtins.str destination_address_cidr: Destination CIDR block.
+        :param _builtins.str destination_address_end: End of destination IP address range.
+        :param _builtins.str destination_address_start: Start of destination IP address range.
+        :param _builtins.int destination_port_end: End of destination port range.
+        :param _builtins.int destination_port_start: Start of destination port range.
+        :param _builtins.bool enabled: Whether the rule is enabled.
+        :param _builtins.int icmp_type: ICMP type number.
+        :param _builtins.int position: Rule position (1-based). Computed from the rule's index in the list.
+        :param _builtins.str protocol: IP protocol.
+        :param _builtins.str source_address_cidr: Source CIDR block.
+        :param _builtins.str source_address_end: End of source IP address range.
+        :param _builtins.str source_address_start: Start of source IP address range.
+        :param _builtins.int source_port_end: End of source port range.
+        :param _builtins.int source_port_start: Start of source port range.
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "direction", direction)
+        pulumi.set(__self__, "family", family)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if destination_address_cidr is not None:
+            pulumi.set(__self__, "destination_address_cidr", destination_address_cidr)
+        if destination_address_end is not None:
+            pulumi.set(__self__, "destination_address_end", destination_address_end)
+        if destination_address_start is not None:
+            pulumi.set(__self__, "destination_address_start", destination_address_start)
+        if destination_port_end is not None:
+            pulumi.set(__self__, "destination_port_end", destination_port_end)
+        if destination_port_start is not None:
+            pulumi.set(__self__, "destination_port_start", destination_port_start)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if icmp_type is not None:
+            pulumi.set(__self__, "icmp_type", icmp_type)
+        if position is not None:
+            pulumi.set(__self__, "position", position)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if source_address_cidr is not None:
+            pulumi.set(__self__, "source_address_cidr", source_address_cidr)
+        if source_address_end is not None:
+            pulumi.set(__self__, "source_address_end", source_address_end)
+        if source_address_start is not None:
+            pulumi.set(__self__, "source_address_start", source_address_start)
+        if source_port_end is not None:
+            pulumi.set(__self__, "source_port_end", source_port_end)
+        if source_port_start is not None:
+            pulumi.set(__self__, "source_port_start", source_port_start)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        Rule action.
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter
+    def direction(self) -> _builtins.str:
+        """
+        Traffic direction the rule applies to.
+        """
+        return pulumi.get(self, "direction")
+
+    @_builtins.property
+    @pulumi.getter
+    def family(self) -> _builtins.str:
+        """
+        Address family.
+        """
+        return pulumi.get(self, "family")
+
+    @_builtins.property
+    @pulumi.getter
+    def comment(self) -> Optional[_builtins.str]:
+        """
+        Rule comment.
+        """
+        return pulumi.get(self, "comment")
+
+    @_builtins.property
+    @pulumi.getter(name="destinationAddressCidr")
+    def destination_address_cidr(self) -> Optional[_builtins.str]:
+        """
+        Destination CIDR block.
+        """
+        return pulumi.get(self, "destination_address_cidr")
+
+    @_builtins.property
+    @pulumi.getter(name="destinationAddressEnd")
+    def destination_address_end(self) -> Optional[_builtins.str]:
+        """
+        End of destination IP address range.
+        """
+        return pulumi.get(self, "destination_address_end")
+
+    @_builtins.property
+    @pulumi.getter(name="destinationAddressStart")
+    def destination_address_start(self) -> Optional[_builtins.str]:
+        """
+        Start of destination IP address range.
+        """
+        return pulumi.get(self, "destination_address_start")
+
+    @_builtins.property
+    @pulumi.getter(name="destinationPortEnd")
+    def destination_port_end(self) -> Optional[_builtins.int]:
+        """
+        End of destination port range.
+        """
+        return pulumi.get(self, "destination_port_end")
+
+    @_builtins.property
+    @pulumi.getter(name="destinationPortStart")
+    def destination_port_start(self) -> Optional[_builtins.int]:
+        """
+        Start of destination port range.
+        """
+        return pulumi.get(self, "destination_port_start")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> Optional[_builtins.bool]:
+        """
+        Whether the rule is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="icmpType")
+    def icmp_type(self) -> Optional[_builtins.int]:
+        """
+        ICMP type number.
+        """
+        return pulumi.get(self, "icmp_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def position(self) -> Optional[_builtins.int]:
+        """
+        Rule position (1-based). Computed from the rule's index in the list.
+        """
+        return pulumi.get(self, "position")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[_builtins.str]:
+        """
+        IP protocol.
+        """
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceAddressCidr")
+    def source_address_cidr(self) -> Optional[_builtins.str]:
+        """
+        Source CIDR block.
+        """
+        return pulumi.get(self, "source_address_cidr")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceAddressEnd")
+    def source_address_end(self) -> Optional[_builtins.str]:
+        """
+        End of source IP address range.
+        """
+        return pulumi.get(self, "source_address_end")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceAddressStart")
+    def source_address_start(self) -> Optional[_builtins.str]:
+        """
+        Start of source IP address range.
+        """
+        return pulumi.get(self, "source_address_start")
+
+    @_builtins.property
+    @pulumi.getter(name="sourcePortEnd")
+    def source_port_end(self) -> Optional[_builtins.int]:
+        """
+        End of source port range.
+        """
+        return pulumi.get(self, "source_port_end")
+
+    @_builtins.property
+    @pulumi.getter(name="sourcePortStart")
+    def source_port_start(self) -> Optional[_builtins.int]:
+        """
+        Start of source port range.
+        """
+        return pulumi.get(self, "source_port_start")
 
 
 @pulumi.output_type
@@ -3423,6 +3681,8 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "group_concat_max_len"
         elif key == "informationSchemaStatsExpiry":
             suggest = "information_schema_stats_expiry"
+        elif key == "innodbAdaptiveHashIndex":
+            suggest = "innodb_adaptive_hash_index"
         elif key == "innodbChangeBufferMaxSize":
             suggest = "innodb_change_buffer_max_size"
         elif key == "innodbFlushNeighbors":
@@ -3431,6 +3691,10 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "innodb_ft_min_token_size"
         elif key == "innodbFtServerStopwordTable":
             suggest = "innodb_ft_server_stopword_table"
+        elif key == "innodbIoCapacity":
+            suggest = "innodb_io_capacity"
+        elif key == "innodbIoCapacityMax":
+            suggest = "innodb_io_capacity_max"
         elif key == "innodbLockWaitTimeout":
             suggest = "innodb_lock_wait_timeout"
         elif key == "innodbLogBufferSize":
@@ -3516,10 +3780,13 @@ class ManagedDatabaseMysqlProperties(dict):
                  default_time_zone: Optional[_builtins.str] = None,
                  group_concat_max_len: Optional[_builtins.int] = None,
                  information_schema_stats_expiry: Optional[_builtins.int] = None,
+                 innodb_adaptive_hash_index: Optional[_builtins.bool] = None,
                  innodb_change_buffer_max_size: Optional[_builtins.int] = None,
                  innodb_flush_neighbors: Optional[_builtins.int] = None,
                  innodb_ft_min_token_size: Optional[_builtins.int] = None,
                  innodb_ft_server_stopword_table: Optional[_builtins.str] = None,
+                 innodb_io_capacity: Optional[_builtins.int] = None,
+                 innodb_io_capacity_max: Optional[_builtins.int] = None,
                  innodb_lock_wait_timeout: Optional[_builtins.int] = None,
                  innodb_log_buffer_size: Optional[_builtins.int] = None,
                  innodb_online_alter_log_max_size: Optional[_builtins.int] = None,
@@ -3564,10 +3831,13 @@ class ManagedDatabaseMysqlProperties(dict):
         :param _builtins.str default_time_zone: Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or 'SYSTEM' to use the MySQL server default.
         :param _builtins.int group_concat_max_len: The maximum permitted result length in bytes for the GROUP_CONCAT() function.
         :param _builtins.int information_schema_stats_expiry: The time, in seconds, before cached statistics expire.
+        :param _builtins.bool innodb_adaptive_hash_index: Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
         :param _builtins.int innodb_change_buffer_max_size: Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
         :param _builtins.int innodb_flush_neighbors: Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
         :param _builtins.int innodb_ft_min_token_size: Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
         :param _builtins.str innodb_ft_server_stopword_table: This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
+        :param _builtins.int innodb_io_capacity: The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+        :param _builtins.int innodb_io_capacity_max: The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodb_io_capacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
         :param _builtins.int innodb_lock_wait_timeout: The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
         :param _builtins.int innodb_log_buffer_size: The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
         :param _builtins.int innodb_online_alter_log_max_size: The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
@@ -3622,6 +3892,8 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "group_concat_max_len", group_concat_max_len)
         if information_schema_stats_expiry is not None:
             pulumi.set(__self__, "information_schema_stats_expiry", information_schema_stats_expiry)
+        if innodb_adaptive_hash_index is not None:
+            pulumi.set(__self__, "innodb_adaptive_hash_index", innodb_adaptive_hash_index)
         if innodb_change_buffer_max_size is not None:
             pulumi.set(__self__, "innodb_change_buffer_max_size", innodb_change_buffer_max_size)
         if innodb_flush_neighbors is not None:
@@ -3630,6 +3902,10 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "innodb_ft_min_token_size", innodb_ft_min_token_size)
         if innodb_ft_server_stopword_table is not None:
             pulumi.set(__self__, "innodb_ft_server_stopword_table", innodb_ft_server_stopword_table)
+        if innodb_io_capacity is not None:
+            pulumi.set(__self__, "innodb_io_capacity", innodb_io_capacity)
+        if innodb_io_capacity_max is not None:
+            pulumi.set(__self__, "innodb_io_capacity_max", innodb_io_capacity_max)
         if innodb_lock_wait_timeout is not None:
             pulumi.set(__self__, "innodb_lock_wait_timeout", innodb_lock_wait_timeout)
         if innodb_log_buffer_size is not None:
@@ -3778,6 +4054,14 @@ class ManagedDatabaseMysqlProperties(dict):
         return pulumi.get(self, "information_schema_stats_expiry")
 
     @_builtins.property
+    @pulumi.getter(name="innodbAdaptiveHashIndex")
+    def innodb_adaptive_hash_index(self) -> Optional[_builtins.bool]:
+        """
+        Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
+        """
+        return pulumi.get(self, "innodb_adaptive_hash_index")
+
+    @_builtins.property
     @pulumi.getter(name="innodbChangeBufferMaxSize")
     def innodb_change_buffer_max_size(self) -> Optional[_builtins.int]:
         """
@@ -3808,6 +4092,22 @@ class ManagedDatabaseMysqlProperties(dict):
         This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
         """
         return pulumi.get(self, "innodb_ft_server_stopword_table")
+
+    @_builtins.property
+    @pulumi.getter(name="innodbIoCapacity")
+    def innodb_io_capacity(self) -> Optional[_builtins.int]:
+        """
+        The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+        """
+        return pulumi.get(self, "innodb_io_capacity")
+
+    @_builtins.property
+    @pulumi.getter(name="innodbIoCapacityMax")
+    def innodb_io_capacity_max(self) -> Optional[_builtins.int]:
+        """
+        The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodb_io_capacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
+        """
+        return pulumi.get(self, "innodb_io_capacity_max")
 
     @_builtins.property
     @pulumi.getter(name="innodbLockWaitTimeout")

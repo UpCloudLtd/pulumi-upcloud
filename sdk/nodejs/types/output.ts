@@ -24,6 +24,81 @@ export interface FileStorageNetwork {
     uuid: string;
 }
 
+export interface FirewallRulesetRule {
+    /**
+     * Rule action.
+     */
+    action: string;
+    /**
+     * Rule comment.
+     */
+    comment: string;
+    /**
+     * Destination CIDR block.
+     */
+    destinationAddressCidr: string;
+    /**
+     * End of destination IP address range.
+     */
+    destinationAddressEnd: string;
+    /**
+     * Start of destination IP address range.
+     */
+    destinationAddressStart: string;
+    /**
+     * End of destination port range.
+     */
+    destinationPortEnd: number;
+    /**
+     * Start of destination port range.
+     */
+    destinationPortStart: number;
+    /**
+     * Traffic direction the rule applies to.
+     */
+    direction: string;
+    /**
+     * Whether the rule is enabled.
+     */
+    enabled: boolean;
+    /**
+     * Address family.
+     */
+    family: string;
+    /**
+     * ICMP type number.
+     */
+    icmpType: number;
+    /**
+     * Rule position (1-based). Computed from the rule's index in the list.
+     */
+    position: number;
+    /**
+     * IP protocol.
+     */
+    protocol: string;
+    /**
+     * Source CIDR block.
+     */
+    sourceAddressCidr: string;
+    /**
+     * End of source IP address range.
+     */
+    sourceAddressEnd: string;
+    /**
+     * Start of source IP address range.
+     */
+    sourceAddressStart: string;
+    /**
+     * End of source port range.
+     */
+    sourcePortEnd: number;
+    /**
+     * Start of source port range.
+     */
+    sourcePortStart: number;
+}
+
 export interface GatewayAddress {
     /**
      * IP addresss
@@ -1426,6 +1501,10 @@ export interface ManagedDatabaseMysqlProperties {
      */
     informationSchemaStatsExpiry: number;
     /**
+     * Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
+     */
+    innodbAdaptiveHashIndex: boolean;
+    /**
      * Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
      */
     innodbChangeBufferMaxSize: number;
@@ -1441,6 +1520,14 @@ export interface ManagedDatabaseMysqlProperties {
      * This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
      */
     innodbFtServerStopwordTable: string;
+    /**
+     * The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
+     */
+    innodbIoCapacity: number;
+    /**
+     * The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
+     */
+    innodbIoCapacityMax: number;
     /**
      * The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
      */

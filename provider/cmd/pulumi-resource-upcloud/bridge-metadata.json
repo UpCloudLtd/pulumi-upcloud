@@ -23,6 +23,14 @@
                     }
                 }
             },
+            "upcloud_firewall_ruleset": {
+                "current": "upcloud:index/firewallRuleset:FirewallRuleset",
+                "fields": {
+                    "rules": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "upcloud_floating_ip_address": {
                 "current": "upcloud:index/floatingIpAddress:FloatingIpAddress"
             },
@@ -974,6 +982,7 @@
             "upcloud:index/fileStorage:FileStorage": 1,
             "upcloud:index/fileStorageShare:FileStorageShare": 1,
             "upcloud:index/fileStorageShareAcl:FileStorageShareAcl": 1,
+            "upcloud:index/firewallRuleset:FirewallRuleset": 1,
             "upcloud:index/floatingIpAddress:FloatingIpAddress": 1,
             "upcloud:index/gateway:Gateway": 0,
             "upcloud:index/gatewayConnection:GatewayConnection": 0,
