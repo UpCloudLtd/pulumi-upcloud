@@ -4,12 +4,16 @@
     "type": "module",
     "devDependencies": {
         "@types/node": "^18.19.130",
-        "typescript": "^5.9.3"
+        "typescript": "^6.0.3"
     },
     "dependencies": {
         "@kubernetes/client-node": "^1.4.0",
-        "@pulumi/kubernetes": "^4.28.0",
-        "@pulumi/pulumi": "^3.224.0",
-        "@upcloud/pulumi-upcloud": "^0.11.1"
+        "@pulumi/kubernetes": "^4.32.0",
+        "@pulumi/pulumi": "^3.250.0",
+        "@upcloud/pulumi-upcloud": "^0.15.0"
+    },
+    "allowScripts": {
+        "@pulumi/kubernetes@4.32.0": true,
+        "protobufjs@7.5.8": true
     }
 }
