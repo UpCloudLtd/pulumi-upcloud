@@ -93,18 +93,16 @@ const k8sOutput = upcloud.getKubernetesClusterOutput({
   id: k8sCluster.id,
 });
 
-const { url, initialAdminPassword } = k8sOutput.kubeconfig.apply((kubeconfig) => {
-  return createFeedbackApp({
-    appVersion,
-    kubeconfig,
-    namespaceName: namespace,
-    serviceType,
-    dbConnectUrl: db.serviceUri,
-  }, {
-    provider: new k8s.Provider("k8s", { kubeconfig }),
-    // Delete the app before deleting the cluster and the node group. While the app also depends on the database, that dependency does not prevent creating or deleting the kubernetes resources.
-    dependsOn: [k8sCluster, k8sNodeGroup],
-  });
+const { url, initialAdminPassword } = createFeedbackApp({
+  appVersion,
+  kubeconfig: k8sOutput.kubeconfig,
+  namespaceName: namespace,
+  serviceType,
+  dbConnectUrl: db.serviceUri,
+}, {
+  provider: new k8s.Provider("k8s", { kubeconfig: k8sOutput.kubeconfig }),
+  // Delete the app before deleting the cluster and the node group. While the app also depends on the database, that dependency does not prevent creating or deleting the kubernetes resources.
+  dependsOn: [k8sCluster, k8sNodeGroup],
 });
 
 export default {

@@ -5,7 +5,7 @@ import * as k8s from "@pulumi/kubernetes";
 import * as k8sClient from "@kubernetes/client-node";
 
 interface FeedbackAppArgs {
-  kubeconfig: string;
+  kubeconfig: pulumi.Output<string>;
   namespaceName?: pulumi.Input<string>;
   serviceType?: pulumi.Input<string>;
   dbConnectUrl: pulumi.Input<string>;
@@ -83,12 +83,12 @@ export function createFeedbackApp({
   // `kubeconfig` is empty when previewing the stack before the cluster has been created.
   let k8sApi: k8sClient.CoreV1Api | undefined;
   let k8sExec: k8sClient.Exec | undefined;
-  if (kubeconfig) {
+  kubeconfig?.apply((asdf) => {
     const kc = new k8sClient.KubeConfig();
-    kc.loadFromString(kubeconfig);
+    kc.loadFromString(asdf);
     k8sApi = kc.makeApiClient(k8sClient.CoreV1Api);
     k8sExec = new k8sClient.Exec(kc);
-  }
+  });
 
   const { metadata: { name: namespace } } = new k8s.core.v1.Namespace("ns", {
     metadata: {
