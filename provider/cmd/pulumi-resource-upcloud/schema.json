@@ -1829,7 +1829,7 @@
                 },
                 "binlogRetentionPeriod": {
                     "type": "integer",
-                    "description": "The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.\n"
+                    "description": "The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector. Warning: reducing this value can make a large batch of binary logs eligible for purge at once. Depending on the volume, this can sometimes stall the MySQL commit path and block writes until the purge completes. To stay on the safe side, prefer lowering the value gradually in small decrements during a low-traffic window rather than dropping it drastically in one step.\n"
                 },
                 "connectTimeout": {
                     "type": "integer",
@@ -3706,7 +3706,7 @@
                 },
                 "ioWorkers": {
                     "type": "integer",
-                    "description": "io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.\n"
+                    "description": "io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.\n"
                 },
                 "ipFilters": {
                     "type": "array",
@@ -3830,7 +3830,7 @@
                 },
                 "pgStatMonitorPgsmEnableQueryPlan": {
                     "type": "boolean",
-                    "description": "Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.\n"
+                    "description": "Enables or disables query plan monitoring. Only available for PostgreSQL 13+.\n"
                 },
                 "pgStatMonitorPgsmMaxBuckets": {
                     "type": "integer",
@@ -4647,6 +4647,30 @@
                 "family",
                 "name",
                 "type"
+            ]
+        },
+        "upcloud:index/ManagedObjectStorageStaticSiteErrorPage:ManagedObjectStorageStaticSiteErrorPage": {
+            "properties": {
+                "errorDocument": {
+                    "type": "string",
+                    "description": "Path to the error page document within the bucket.\n"
+                },
+                "statusCode": {
+                    "type": "integer",
+                    "description": "Exact HTTP status code to match. Mutually exclusive with status range.\n"
+                },
+                "statusRangeEnd": {
+                    "type": "integer",
+                    "description": "End of the status code range (inclusive). Must be greater than start.\n"
+                },
+                "statusRangeStart": {
+                    "type": "integer",
+                    "description": "Start of the status code range (inclusive).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "errorDocument"
             ]
         },
         "upcloud:index/NetworkEffectiveRoute:NetworkEffectiveRoute": {
@@ -10339,6 +10363,10 @@
                     "type": "string",
                     "description": "Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com."
                 },
+                "mode": {
+                    "type": "string",
+                    "description": "Routing mode for the domain. Defaults to \u003cspan pulumi-lang-nodejs=\"`api`\" pulumi-lang-dotnet=\"`Api`\" pulumi-lang-go=\"`api`\" pulumi-lang-python=\"`api`\" pulumi-lang-yaml=\"`api`\" pulumi-lang-java=\"`api`\"\u003e`api`\u003c/span\u003e."
+                },
                 "serviceUuid": {
                     "type": "string",
                     "description": "Managed Object Storage service UUID."
@@ -10350,6 +10378,7 @@
             },
             "required": [
                 "domainName",
+                "mode",
                 "serviceUuid",
                 "type"
             ],
@@ -10357,6 +10386,10 @@
                 "domainName": {
                     "type": "string",
                     "description": "Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com."
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "Routing mode for the domain. Defaults to \u003cspan pulumi-lang-nodejs=\"`api`\" pulumi-lang-dotnet=\"`Api`\" pulumi-lang-go=\"`api`\" pulumi-lang-python=\"`api`\" pulumi-lang-yaml=\"`api`\" pulumi-lang-java=\"`api`\"\u003e`api`\u003c/span\u003e."
                 },
                 "serviceUuid": {
                     "type": "string",
@@ -10377,6 +10410,10 @@
                     "domainName": {
                         "type": "string",
                         "description": "Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com."
+                    },
+                    "mode": {
+                        "type": "string",
+                        "description": "Routing mode for the domain. Defaults to \u003cspan pulumi-lang-nodejs=\"`api`\" pulumi-lang-dotnet=\"`Api`\" pulumi-lang-go=\"`api`\" pulumi-lang-python=\"`api`\" pulumi-lang-yaml=\"`api`\" pulumi-lang-java=\"`api`\"\u003e`api`\u003c/span\u003e."
                     },
                     "serviceUuid": {
                         "type": "string",
@@ -10509,6 +10546,138 @@
                     "updatedAt": {
                         "type": "string",
                         "description": "Update time."
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "upcloud:index/managedObjectStorageStaticSite:ManagedObjectStorageStaticSite": {
+            "description": "This resource represents an UpCloud Managed Object Storage static site.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\nconst _this = new upcloud.ManagedObjectStorage(\"this\", {\n    name: \"example\",\n    region: \"europe-1\",\n    configuredStatus: \"started\",\n});\nconst thisManagedObjectStorageStaticSite = new upcloud.ManagedObjectStorageStaticSite(\"this\", {\n    serviceUuid: \"1201cd6f-20cd-44b6-939d-ae1c861769e7\",\n    bucketName: \"example\",\n    bucketPrefix: \"public/\",\n    errorPages: [{\n        errorDocument: \"404.html\",\n        statusCode: 404,\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\nthis = upcloud.ManagedObjectStorage(\"this\",\n    name=\"example\",\n    region=\"europe-1\",\n    configured_status=\"started\")\nthis_managed_object_storage_static_site = upcloud.ManagedObjectStorageStaticSite(\"this\",\n    service_uuid=\"1201cd6f-20cd-44b6-939d-ae1c861769e7\",\n    bucket_name=\"example\",\n    bucket_prefix=\"public/\",\n    error_pages=[{\n        \"error_document\": \"404.html\",\n        \"status_code\": 404,\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @this = new UpCloud.ManagedObjectStorage(\"this\", new()\n    {\n        Name = \"example\",\n        Region = \"europe-1\",\n        ConfiguredStatus = \"started\",\n    });\n\n    var thisManagedObjectStorageStaticSite = new UpCloud.ManagedObjectStorageStaticSite(\"this\", new()\n    {\n        ServiceUuid = \"1201cd6f-20cd-44b6-939d-ae1c861769e7\",\n        BucketName = \"example\",\n        BucketPrefix = \"public/\",\n        ErrorPages = new[]\n        {\n            new UpCloud.Inputs.ManagedObjectStorageStaticSiteErrorPageArgs\n            {\n                ErrorDocument = \"404.html\",\n                StatusCode = 404,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upcloud.NewManagedObjectStorage(ctx, \"this\", \u0026upcloud.ManagedObjectStorageArgs{\n\t\t\tName:             pulumi.String(\"example\"),\n\t\t\tRegion:           pulumi.String(\"europe-1\"),\n\t\t\tConfiguredStatus: pulumi.String(\"started\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewManagedObjectStorageStaticSite(ctx, \"this\", \u0026upcloud.ManagedObjectStorageStaticSiteArgs{\n\t\t\tServiceUuid:  pulumi.String(\"1201cd6f-20cd-44b6-939d-ae1c861769e7\"),\n\t\t\tBucketName:   pulumi.String(\"example\"),\n\t\t\tBucketPrefix: pulumi.String(\"public/\"),\n\t\t\tErrorPages: upcloud.ManagedObjectStorageStaticSiteErrorPageArray{\n\t\t\t\t\u0026upcloud.ManagedObjectStorageStaticSiteErrorPageArgs{\n\t\t\t\t\tErrorDocument: pulumi.String(\"404.html\"),\n\t\t\t\t\tStatusCode:    pulumi.Int(404),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.ManagedObjectStorage;\nimport com.pulumi.upcloud.ManagedObjectStorageArgs;\nimport com.pulumi.upcloud.ManagedObjectStorageStaticSite;\nimport com.pulumi.upcloud.ManagedObjectStorageStaticSiteArgs;\nimport com.pulumi.upcloud.inputs.ManagedObjectStorageStaticSiteErrorPageArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var this_ = new ManagedObjectStorage(\"this\", ManagedObjectStorageArgs.builder()\n            .name(\"example\")\n            .region(\"europe-1\")\n            .configuredStatus(\"started\")\n            .build());\n\n        var thisManagedObjectStorageStaticSite = new ManagedObjectStorageStaticSite(\"thisManagedObjectStorageStaticSite\", ManagedObjectStorageStaticSiteArgs.builder()\n            .serviceUuid(\"1201cd6f-20cd-44b6-939d-ae1c861769e7\")\n            .bucketName(\"example\")\n            .bucketPrefix(\"public/\")\n            .errorPages(ManagedObjectStorageStaticSiteErrorPageArgs.builder()\n                .errorDocument(\"404.html\")\n                .statusCode(404)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  this:\n    type: upcloud:ManagedObjectStorage\n    properties:\n      name: example\n      region: europe-1\n      configuredStatus: started\n  thisManagedObjectStorageStaticSite:\n    type: upcloud:ManagedObjectStorageStaticSite\n    name: this\n    properties:\n      serviceUuid: 1201cd6f-20cd-44b6-939d-ae1c861769e7\n      bucketName: example\n      bucketPrefix: public/\n      errorPages:\n        - errorDocument: 404.html\n          statusCode: 404\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "bucketName": {
+                    "type": "string",
+                    "description": "S3 bucket from which static content is served. Must have a public read policy."
+                },
+                "bucketPrefix": {
+                    "type": "string",
+                    "description": "Path prefix within the bucket. For example, `dist/` serves content from the `dist/` folder. Defaults to empty string (bucket root)."
+                },
+                "domainName": {
+                    "type": "string",
+                    "description": "A custom domain in `static-website` mode attached to the service."
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable or disable serving content on this domain. Defaults to true."
+                },
+                "errorPages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/upcloud:index/ManagedObjectStorageStaticSiteErrorPage:ManagedObjectStorageStaticSiteErrorPage"
+                    },
+                    "description": "Custom error pages served when the storage backend returns an error status."
+                },
+                "indexDocument": {
+                    "type": "string",
+                    "description": "Name of the index document. Defaults to `index.html`."
+                },
+                "serviceUuid": {
+                    "type": "string",
+                    "description": "Managed Object Storage service UUID."
+                },
+                "spaMode": {
+                    "type": "boolean",
+                    "description": "Whether to enable single-page application mode. In SPA mode, the index document is served for all paths, which is useful for client-side routing."
+                }
+            },
+            "required": [
+                "bucketName",
+                "bucketPrefix",
+                "domainName",
+                "enabled",
+                "errorPages",
+                "indexDocument",
+                "serviceUuid",
+                "spaMode"
+            ],
+            "inputProperties": {
+                "bucketName": {
+                    "type": "string",
+                    "description": "S3 bucket from which static content is served. Must have a public read policy."
+                },
+                "bucketPrefix": {
+                    "type": "string",
+                    "description": "Path prefix within the bucket. For example, `dist/` serves content from the `dist/` folder. Defaults to empty string (bucket root)."
+                },
+                "domainName": {
+                    "type": "string",
+                    "description": "A custom domain in `static-website` mode attached to the service."
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable or disable serving content on this domain. Defaults to true."
+                },
+                "errorPages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/upcloud:index/ManagedObjectStorageStaticSiteErrorPage:ManagedObjectStorageStaticSiteErrorPage"
+                    },
+                    "description": "Custom error pages served when the storage backend returns an error status."
+                },
+                "indexDocument": {
+                    "type": "string",
+                    "description": "Name of the index document. Defaults to `index.html`."
+                },
+                "serviceUuid": {
+                    "type": "string",
+                    "description": "Managed Object Storage service UUID."
+                },
+                "spaMode": {
+                    "type": "boolean",
+                    "description": "Whether to enable single-page application mode. In SPA mode, the index document is served for all paths, which is useful for client-side routing."
+                }
+            },
+            "requiredInputs": [
+                "bucketName",
+                "serviceUuid"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ManagedObjectStorageStaticSite resources.\n",
+                "properties": {
+                    "bucketName": {
+                        "type": "string",
+                        "description": "S3 bucket from which static content is served. Must have a public read policy."
+                    },
+                    "bucketPrefix": {
+                        "type": "string",
+                        "description": "Path prefix within the bucket. For example, `dist/` serves content from the `dist/` folder. Defaults to empty string (bucket root)."
+                    },
+                    "domainName": {
+                        "type": "string",
+                        "description": "A custom domain in `static-website` mode attached to the service."
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "Enable or disable serving content on this domain. Defaults to true."
+                    },
+                    "errorPages": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/upcloud:index/ManagedObjectStorageStaticSiteErrorPage:ManagedObjectStorageStaticSiteErrorPage"
+                        },
+                        "description": "Custom error pages served when the storage backend returns an error status."
+                    },
+                    "indexDocument": {
+                        "type": "string",
+                        "description": "Name of the index document. Defaults to `index.html`."
+                    },
+                    "serviceUuid": {
+                        "type": "string",
+                        "description": "Managed Object Storage service UUID."
+                    },
+                    "spaMode": {
+                        "type": "boolean",
+                        "description": "Whether to enable single-page application mode. In SPA mode, the index document is served for all paths, which is useful for client-side routing."
                     }
                 },
                 "type": "object"

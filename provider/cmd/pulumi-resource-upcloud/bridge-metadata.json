@@ -645,6 +645,14 @@
             "upcloud_managed_object_storage_policy": {
                 "current": "upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy"
             },
+            "upcloud_managed_object_storage_static_site": {
+                "current": "upcloud:index/managedObjectStorageStaticSite:ManagedObjectStorageStaticSite",
+                "fields": {
+                    "error_pages": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "upcloud_managed_object_storage_user": {
                 "current": "upcloud:index/managedObjectStorageUser:ManagedObjectStorageUser"
             },
@@ -1010,6 +1018,7 @@
             "upcloud:index/managedObjectStorageBucket:ManagedObjectStorageBucket": 1,
             "upcloud:index/managedObjectStorageCustomDomain:ManagedObjectStorageCustomDomain": 1,
             "upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy": 1,
+            "upcloud:index/managedObjectStorageStaticSite:ManagedObjectStorageStaticSite": 1,
             "upcloud:index/managedObjectStorageUser:ManagedObjectStorageUser": 1,
             "upcloud:index/managedObjectStorageUserAccessKey:ManagedObjectStorageUserAccessKey": 1,
             "upcloud:index/managedObjectStorageUserPolicy:ManagedObjectStorageUserPolicy": 1,
