@@ -68,6 +68,8 @@ type ManagedObjectStorageCustomDomain struct {
 
 	// Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
 	DomainName pulumi.StringOutput `pulumi:"domainName"`
+	// Routing mode for the domain. Defaults to `api`.
+	Mode pulumi.StringOutput `pulumi:"mode"`
 	// Managed Object Storage service UUID.
 	ServiceUuid pulumi.StringOutput `pulumi:"serviceUuid"`
 	// At the moment only `public` is accepted.
@@ -112,6 +114,8 @@ func GetManagedObjectStorageCustomDomain(ctx *pulumi.Context,
 type managedObjectStorageCustomDomainState struct {
 	// Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
 	DomainName *string `pulumi:"domainName"`
+	// Routing mode for the domain. Defaults to `api`.
+	Mode *string `pulumi:"mode"`
 	// Managed Object Storage service UUID.
 	ServiceUuid *string `pulumi:"serviceUuid"`
 	// At the moment only `public` is accepted.
@@ -121,6 +125,8 @@ type managedObjectStorageCustomDomainState struct {
 type ManagedObjectStorageCustomDomainState struct {
 	// Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
 	DomainName pulumi.StringPtrInput
+	// Routing mode for the domain. Defaults to `api`.
+	Mode pulumi.StringPtrInput
 	// Managed Object Storage service UUID.
 	ServiceUuid pulumi.StringPtrInput
 	// At the moment only `public` is accepted.
@@ -134,6 +140,8 @@ func (ManagedObjectStorageCustomDomainState) ElementType() reflect.Type {
 type managedObjectStorageCustomDomainArgs struct {
 	// Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
 	DomainName string `pulumi:"domainName"`
+	// Routing mode for the domain. Defaults to `api`.
+	Mode *string `pulumi:"mode"`
 	// Managed Object Storage service UUID.
 	ServiceUuid string `pulumi:"serviceUuid"`
 	// At the moment only `public` is accepted.
@@ -144,6 +152,8 @@ type managedObjectStorageCustomDomainArgs struct {
 type ManagedObjectStorageCustomDomainArgs struct {
 	// Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
 	DomainName pulumi.StringInput
+	// Routing mode for the domain. Defaults to `api`.
+	Mode pulumi.StringPtrInput
 	// Managed Object Storage service UUID.
 	ServiceUuid pulumi.StringInput
 	// At the moment only `public` is accepted.
@@ -240,6 +250,11 @@ func (o ManagedObjectStorageCustomDomainOutput) ToManagedObjectStorageCustomDoma
 // Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
 func (o ManagedObjectStorageCustomDomainOutput) DomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedObjectStorageCustomDomain) pulumi.StringOutput { return v.DomainName }).(pulumi.StringOutput)
+}
+
+// Routing mode for the domain. Defaults to `api`.
+func (o ManagedObjectStorageCustomDomainOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *ManagedObjectStorageCustomDomain) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
 }
 
 // Managed Object Storage service UUID.

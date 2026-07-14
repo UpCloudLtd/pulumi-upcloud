@@ -161,7 +161,7 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable String ioMethod;
     /**
-     * @return io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+     * @return io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
      * 
      */
     private @Nullable Integer ioWorkers;
@@ -311,7 +311,7 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable Boolean pgStatMonitorEnable;
     /**
-     * @return Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+     * @return Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
      * 
      */
     private @Nullable Boolean pgStatMonitorPgsmEnableQueryPlan;
@@ -629,7 +629,7 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.ioMethod);
     }
     /**
-     * @return io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+     * @return io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
      * 
      */
     public Optional<Integer> ioWorkers() {
@@ -839,7 +839,7 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.pgStatMonitorEnable);
     }
     /**
-     * @return Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+     * @return Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
      * 
      */
     public Optional<Boolean> pgStatMonitorPgsmEnableQueryPlan() {

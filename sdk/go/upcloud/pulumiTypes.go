@@ -7687,7 +7687,7 @@ type ManagedDatabaseMysqlProperties struct {
 	BackupHour *int `pulumi:"backupHour"`
 	// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
 	BackupMinute *int `pulumi:"backupMinute"`
-	// The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.
+	// The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector. Warning: reducing this value can make a large batch of binary logs eligible for purge at once. Depending on the volume, this can sometimes stall the MySQL commit path and block writes until the purge completes. To stay on the safe side, prefer lowering the value gradually in small decrements during a low-traffic window rather than dropping it drastically in one step.
 	BinlogRetentionPeriod *int `pulumi:"binlogRetentionPeriod"`
 	// The number of seconds that the mysqld server waits for a connect packet before responding with Bad handshake.
 	ConnectTimeout *int `pulumi:"connectTimeout"`
@@ -7801,7 +7801,7 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	BackupHour pulumi.IntPtrInput `pulumi:"backupHour"`
 	// The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
 	BackupMinute pulumi.IntPtrInput `pulumi:"backupMinute"`
-	// The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.
+	// The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector. Warning: reducing this value can make a large batch of binary logs eligible for purge at once. Depending on the volume, this can sometimes stall the MySQL commit path and block writes until the purge completes. To stay on the safe side, prefer lowering the value gradually in small decrements during a low-traffic window rather than dropping it drastically in one step.
 	BinlogRetentionPeriod pulumi.IntPtrInput `pulumi:"binlogRetentionPeriod"`
 	// The number of seconds that the mysqld server waits for a connect packet before responding with Bad handshake.
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
@@ -7995,7 +7995,7 @@ func (o ManagedDatabaseMysqlPropertiesOutput) BackupMinute() pulumi.IntPtrOutput
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.BackupMinute }).(pulumi.IntPtrOutput)
 }
 
-// The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.
+// The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector. Warning: reducing this value can make a large batch of binary logs eligible for purge at once. Depending on the volume, this can sometimes stall the MySQL commit path and block writes until the purge completes. To stay on the safe side, prefer lowering the value gradually in small decrements during a low-traffic window rather than dropping it drastically in one step.
 func (o ManagedDatabaseMysqlPropertiesOutput) BinlogRetentionPeriod() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.BinlogRetentionPeriod }).(pulumi.IntPtrOutput)
 }
@@ -8296,7 +8296,7 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) BackupMinute() pulumi.IntPtrOut
 	}).(pulumi.IntPtrOutput)
 }
 
-// The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.
+// The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector. Warning: reducing this value can make a large batch of binary logs eligible for purge at once. Depending on the volume, this can sometimes stall the MySQL commit path and block writes until the purge completes. To stay on the safe side, prefer lowering the value gradually in small decrements during a low-traffic window rather than dropping it drastically in one step.
 func (o ManagedDatabaseMysqlPropertiesPtrOutput) BinlogRetentionPeriod() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
 		if v == nil {
@@ -17269,7 +17269,7 @@ type ManagedDatabasePostgresqlProperties struct {
 	IoMaxConcurrency *int `pulumi:"ioMaxConcurrency"`
 	// EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
 	IoMethod *string `pulumi:"ioMethod"`
-	// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+	// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
 	IoWorkers *int `pulumi:"ioWorkers"`
 	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 	IpFilters []string `pulumi:"ipFilters"`
@@ -17329,7 +17329,7 @@ type ManagedDatabasePostgresqlProperties struct {
 	PgPartmanBgwRole *string `pulumi:"pgPartmanBgwRole"`
 	// Enable pgStatMonitor extension if available for the current cluster. Enable the pgStatMonitor extension. Changing this parameter causes a service restart. When this extension is enabled, pgStatStatements results for utility commands are unreliable.
 	PgStatMonitorEnable *bool `pulumi:"pgStatMonitorEnable"`
-	// Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+	// Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
 	PgStatMonitorPgsmEnableQueryPlan *bool `pulumi:"pgStatMonitorPgsmEnableQueryPlan"`
 	// Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
 	PgStatMonitorPgsmMaxBuckets *int `pulumi:"pgStatMonitorPgsmMaxBuckets"`
@@ -17447,7 +17447,7 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	IoMaxConcurrency pulumi.IntPtrInput `pulumi:"ioMaxConcurrency"`
 	// EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
 	IoMethod pulumi.StringPtrInput `pulumi:"ioMethod"`
-	// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+	// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
 	IoWorkers pulumi.IntPtrInput `pulumi:"ioWorkers"`
 	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 	IpFilters pulumi.StringArrayInput `pulumi:"ipFilters"`
@@ -17507,7 +17507,7 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	PgPartmanBgwRole pulumi.StringPtrInput `pulumi:"pgPartmanBgwRole"`
 	// Enable pgStatMonitor extension if available for the current cluster. Enable the pgStatMonitor extension. Changing this parameter causes a service restart. When this extension is enabled, pgStatStatements results for utility commands are unreliable.
 	PgStatMonitorEnable pulumi.BoolPtrInput `pulumi:"pgStatMonitorEnable"`
-	// Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+	// Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
 	PgStatMonitorPgsmEnableQueryPlan pulumi.BoolPtrInput `pulumi:"pgStatMonitorPgsmEnableQueryPlan"`
 	// Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
 	PgStatMonitorPgsmMaxBuckets pulumi.IntPtrInput `pulumi:"pgStatMonitorPgsmMaxBuckets"`
@@ -17774,7 +17774,7 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) IoMethod() pulumi.StringPtrOu
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.IoMethod }).(pulumi.StringPtrOutput)
 }
 
-// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
 func (o ManagedDatabasePostgresqlPropertiesOutput) IoWorkers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.IoWorkers }).(pulumi.IntPtrOutput)
 }
@@ -17926,7 +17926,7 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) PgStatMonitorEnable() pulumi.
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *bool { return v.PgStatMonitorEnable }).(pulumi.BoolPtrOutput)
 }
 
-// Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+// Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
 func (o ManagedDatabasePostgresqlPropertiesOutput) PgStatMonitorPgsmEnableQueryPlan() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *bool { return v.PgStatMonitorPgsmEnableQueryPlan }).(pulumi.BoolPtrOutput)
 }
@@ -18358,7 +18358,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) IoMethod() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) IoWorkers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -18658,7 +18658,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgStatMonitorEnable() pulu
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+// Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgStatMonitorPgsmEnableQueryPlan() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *bool {
 		if v == nil {
@@ -22196,6 +22196,130 @@ func (o ManagedObjectStorageNetworkArrayOutput) Index(i pulumi.IntInput) Managed
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedObjectStorageNetwork {
 		return vs[0].([]ManagedObjectStorageNetwork)[vs[1].(int)]
 	}).(ManagedObjectStorageNetworkOutput)
+}
+
+type ManagedObjectStorageStaticSiteErrorPage struct {
+	// Path to the error page document within the bucket.
+	ErrorDocument string `pulumi:"errorDocument"`
+	// Exact HTTP status code to match. Mutually exclusive with status range.
+	StatusCode *int `pulumi:"statusCode"`
+	// End of the status code range (inclusive). Must be greater than start.
+	StatusRangeEnd *int `pulumi:"statusRangeEnd"`
+	// Start of the status code range (inclusive).
+	StatusRangeStart *int `pulumi:"statusRangeStart"`
+}
+
+// ManagedObjectStorageStaticSiteErrorPageInput is an input type that accepts ManagedObjectStorageStaticSiteErrorPageArgs and ManagedObjectStorageStaticSiteErrorPageOutput values.
+// You can construct a concrete instance of `ManagedObjectStorageStaticSiteErrorPageInput` via:
+//
+//	ManagedObjectStorageStaticSiteErrorPageArgs{...}
+type ManagedObjectStorageStaticSiteErrorPageInput interface {
+	pulumi.Input
+
+	ToManagedObjectStorageStaticSiteErrorPageOutput() ManagedObjectStorageStaticSiteErrorPageOutput
+	ToManagedObjectStorageStaticSiteErrorPageOutputWithContext(context.Context) ManagedObjectStorageStaticSiteErrorPageOutput
+}
+
+type ManagedObjectStorageStaticSiteErrorPageArgs struct {
+	// Path to the error page document within the bucket.
+	ErrorDocument pulumi.StringInput `pulumi:"errorDocument"`
+	// Exact HTTP status code to match. Mutually exclusive with status range.
+	StatusCode pulumi.IntPtrInput `pulumi:"statusCode"`
+	// End of the status code range (inclusive). Must be greater than start.
+	StatusRangeEnd pulumi.IntPtrInput `pulumi:"statusRangeEnd"`
+	// Start of the status code range (inclusive).
+	StatusRangeStart pulumi.IntPtrInput `pulumi:"statusRangeStart"`
+}
+
+func (ManagedObjectStorageStaticSiteErrorPageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedObjectStorageStaticSiteErrorPage)(nil)).Elem()
+}
+
+func (i ManagedObjectStorageStaticSiteErrorPageArgs) ToManagedObjectStorageStaticSiteErrorPageOutput() ManagedObjectStorageStaticSiteErrorPageOutput {
+	return i.ToManagedObjectStorageStaticSiteErrorPageOutputWithContext(context.Background())
+}
+
+func (i ManagedObjectStorageStaticSiteErrorPageArgs) ToManagedObjectStorageStaticSiteErrorPageOutputWithContext(ctx context.Context) ManagedObjectStorageStaticSiteErrorPageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedObjectStorageStaticSiteErrorPageOutput)
+}
+
+// ManagedObjectStorageStaticSiteErrorPageArrayInput is an input type that accepts ManagedObjectStorageStaticSiteErrorPageArray and ManagedObjectStorageStaticSiteErrorPageArrayOutput values.
+// You can construct a concrete instance of `ManagedObjectStorageStaticSiteErrorPageArrayInput` via:
+//
+//	ManagedObjectStorageStaticSiteErrorPageArray{ ManagedObjectStorageStaticSiteErrorPageArgs{...} }
+type ManagedObjectStorageStaticSiteErrorPageArrayInput interface {
+	pulumi.Input
+
+	ToManagedObjectStorageStaticSiteErrorPageArrayOutput() ManagedObjectStorageStaticSiteErrorPageArrayOutput
+	ToManagedObjectStorageStaticSiteErrorPageArrayOutputWithContext(context.Context) ManagedObjectStorageStaticSiteErrorPageArrayOutput
+}
+
+type ManagedObjectStorageStaticSiteErrorPageArray []ManagedObjectStorageStaticSiteErrorPageInput
+
+func (ManagedObjectStorageStaticSiteErrorPageArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedObjectStorageStaticSiteErrorPage)(nil)).Elem()
+}
+
+func (i ManagedObjectStorageStaticSiteErrorPageArray) ToManagedObjectStorageStaticSiteErrorPageArrayOutput() ManagedObjectStorageStaticSiteErrorPageArrayOutput {
+	return i.ToManagedObjectStorageStaticSiteErrorPageArrayOutputWithContext(context.Background())
+}
+
+func (i ManagedObjectStorageStaticSiteErrorPageArray) ToManagedObjectStorageStaticSiteErrorPageArrayOutputWithContext(ctx context.Context) ManagedObjectStorageStaticSiteErrorPageArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedObjectStorageStaticSiteErrorPageArrayOutput)
+}
+
+type ManagedObjectStorageStaticSiteErrorPageOutput struct{ *pulumi.OutputState }
+
+func (ManagedObjectStorageStaticSiteErrorPageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedObjectStorageStaticSiteErrorPage)(nil)).Elem()
+}
+
+func (o ManagedObjectStorageStaticSiteErrorPageOutput) ToManagedObjectStorageStaticSiteErrorPageOutput() ManagedObjectStorageStaticSiteErrorPageOutput {
+	return o
+}
+
+func (o ManagedObjectStorageStaticSiteErrorPageOutput) ToManagedObjectStorageStaticSiteErrorPageOutputWithContext(ctx context.Context) ManagedObjectStorageStaticSiteErrorPageOutput {
+	return o
+}
+
+// Path to the error page document within the bucket.
+func (o ManagedObjectStorageStaticSiteErrorPageOutput) ErrorDocument() pulumi.StringOutput {
+	return o.ApplyT(func(v ManagedObjectStorageStaticSiteErrorPage) string { return v.ErrorDocument }).(pulumi.StringOutput)
+}
+
+// Exact HTTP status code to match. Mutually exclusive with status range.
+func (o ManagedObjectStorageStaticSiteErrorPageOutput) StatusCode() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedObjectStorageStaticSiteErrorPage) *int { return v.StatusCode }).(pulumi.IntPtrOutput)
+}
+
+// End of the status code range (inclusive). Must be greater than start.
+func (o ManagedObjectStorageStaticSiteErrorPageOutput) StatusRangeEnd() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedObjectStorageStaticSiteErrorPage) *int { return v.StatusRangeEnd }).(pulumi.IntPtrOutput)
+}
+
+// Start of the status code range (inclusive).
+func (o ManagedObjectStorageStaticSiteErrorPageOutput) StatusRangeStart() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedObjectStorageStaticSiteErrorPage) *int { return v.StatusRangeStart }).(pulumi.IntPtrOutput)
+}
+
+type ManagedObjectStorageStaticSiteErrorPageArrayOutput struct{ *pulumi.OutputState }
+
+func (ManagedObjectStorageStaticSiteErrorPageArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedObjectStorageStaticSiteErrorPage)(nil)).Elem()
+}
+
+func (o ManagedObjectStorageStaticSiteErrorPageArrayOutput) ToManagedObjectStorageStaticSiteErrorPageArrayOutput() ManagedObjectStorageStaticSiteErrorPageArrayOutput {
+	return o
+}
+
+func (o ManagedObjectStorageStaticSiteErrorPageArrayOutput) ToManagedObjectStorageStaticSiteErrorPageArrayOutputWithContext(ctx context.Context) ManagedObjectStorageStaticSiteErrorPageArrayOutput {
+	return o
+}
+
+func (o ManagedObjectStorageStaticSiteErrorPageArrayOutput) Index(i pulumi.IntInput) ManagedObjectStorageStaticSiteErrorPageOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedObjectStorageStaticSiteErrorPage {
+		return vs[0].([]ManagedObjectStorageStaticSiteErrorPage)[vs[1].(int)]
+	}).(ManagedObjectStorageStaticSiteErrorPageOutput)
 }
 
 type NetworkEffectiveRoute struct {
@@ -27794,6 +27918,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedObjectStorageEndpointArrayInput)(nil)).Elem(), ManagedObjectStorageEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedObjectStorageNetworkInput)(nil)).Elem(), ManagedObjectStorageNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedObjectStorageNetworkArrayInput)(nil)).Elem(), ManagedObjectStorageNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedObjectStorageStaticSiteErrorPageInput)(nil)).Elem(), ManagedObjectStorageStaticSiteErrorPageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedObjectStorageStaticSiteErrorPageArrayInput)(nil)).Elem(), ManagedObjectStorageStaticSiteErrorPageArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkEffectiveRouteInput)(nil)).Elem(), NetworkEffectiveRouteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkEffectiveRouteArrayInput)(nil)).Elem(), NetworkEffectiveRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkIpNetworkInput)(nil)).Elem(), NetworkIpNetworkArgs{})
@@ -28073,6 +28199,8 @@ func init() {
 	pulumi.RegisterOutputType(ManagedObjectStorageEndpointArrayOutput{})
 	pulumi.RegisterOutputType(ManagedObjectStorageNetworkOutput{})
 	pulumi.RegisterOutputType(ManagedObjectStorageNetworkArrayOutput{})
+	pulumi.RegisterOutputType(ManagedObjectStorageStaticSiteErrorPageOutput{})
+	pulumi.RegisterOutputType(ManagedObjectStorageStaticSiteErrorPageArrayOutput{})
 	pulumi.RegisterOutputType(NetworkEffectiveRouteOutput{})
 	pulumi.RegisterOutputType(NetworkEffectiveRouteArrayOutput{})
 	pulumi.RegisterOutputType(NetworkIpNetworkOutput{})
