@@ -52,6 +52,7 @@ from .managed_object_storage import *
 from .managed_object_storage_bucket import *
 from .managed_object_storage_custom_domain import *
 from .managed_object_storage_policy import *
+from .managed_object_storage_static_site import *
 from .managed_object_storage_user import *
 from .managed_object_storage_user_access_key import *
 from .managed_object_storage_user_policy import *
@@ -325,6 +326,14 @@ _utilities.register(
   "fqn": "pulumi_upcloud",
   "classes": {
    "upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy": "ManagedObjectStoragePolicy"
+  }
+ },
+ {
+  "pkg": "upcloud",
+  "mod": "index/managedObjectStorageStaticSite",
+  "fqn": "pulumi_upcloud",
+  "classes": {
+   "upcloud:index/managedObjectStorageStaticSite:ManagedObjectStorageStaticSite": "ManagedObjectStorageStaticSite"
   }
  },
  {

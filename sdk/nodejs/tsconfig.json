@@ -62,6 +62,7 @@
         "managedObjectStorageBucket.ts",
         "managedObjectStorageCustomDomain.ts",
         "managedObjectStoragePolicy.ts",
+        "managedObjectStorageStaticSite.ts",
         "managedObjectStorageUser.ts",
         "managedObjectStorageUserAccessKey.ts",
         "managedObjectStorageUserPolicy.ts",

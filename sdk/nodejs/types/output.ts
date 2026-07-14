@@ -1481,7 +1481,7 @@ export interface ManagedDatabaseMysqlProperties {
      */
     backupMinute: number;
     /**
-     * The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.
+     * The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector. Warning: reducing this value can make a large batch of binary logs eligible for purge at once. Depending on the volume, this can sometimes stall the MySQL commit path and block writes until the purge completes. To stay on the safe side, prefer lowering the value gradually in small decrements during a low-traffic window rather than dropping it drastically in one step.
      */
     binlogRetentionPeriod: number;
     /**
@@ -2814,7 +2814,7 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     ioMethod: string;
     /**
-     * io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+     * io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
      */
     ioWorkers: number;
     /**
@@ -2934,7 +2934,7 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     pgStatMonitorEnable: boolean;
     /**
-     * Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+     * Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
      */
     pgStatMonitorPgsmEnableQueryPlan: boolean;
     /**
@@ -3459,6 +3459,25 @@ export interface ManagedObjectStorageNetwork {
      * Private network uuid. For public networks the field should be omitted.
      */
     uuid?: string;
+}
+
+export interface ManagedObjectStorageStaticSiteErrorPage {
+    /**
+     * Path to the error page document within the bucket.
+     */
+    errorDocument: string;
+    /**
+     * Exact HTTP status code to match. Mutually exclusive with status range.
+     */
+    statusCode?: number;
+    /**
+     * End of the status code range (inclusive). Must be greater than start.
+     */
+    statusRangeEnd?: number;
+    /**
+     * Start of the status code range (inclusive).
+     */
+    statusRangeStart?: number;
 }
 
 export interface NetworkEffectiveRoute {

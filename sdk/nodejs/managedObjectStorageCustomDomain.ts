@@ -67,6 +67,10 @@ export class ManagedObjectStorageCustomDomain extends pulumi.CustomResource {
      */
     declare public readonly domainName: pulumi.Output<string>;
     /**
+     * Routing mode for the domain. Defaults to `api`.
+     */
+    declare public readonly mode: pulumi.Output<string>;
+    /**
      * Managed Object Storage service UUID.
      */
     declare public readonly serviceUuid: pulumi.Output<string>;
@@ -89,6 +93,7 @@ export class ManagedObjectStorageCustomDomain extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ManagedObjectStorageCustomDomainState | undefined;
             resourceInputs["domainName"] = state?.domainName;
+            resourceInputs["mode"] = state?.mode;
             resourceInputs["serviceUuid"] = state?.serviceUuid;
             resourceInputs["type"] = state?.type;
         } else {
@@ -100,6 +105,7 @@ export class ManagedObjectStorageCustomDomain extends pulumi.CustomResource {
                 throw new Error("Missing required property 'serviceUuid'");
             }
             resourceInputs["domainName"] = args?.domainName;
+            resourceInputs["mode"] = args?.mode;
             resourceInputs["serviceUuid"] = args?.serviceUuid;
             resourceInputs["type"] = args?.type;
         }
@@ -116,6 +122,10 @@ export interface ManagedObjectStorageCustomDomainState {
      * Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
      */
     domainName?: pulumi.Input<string>;
+    /**
+     * Routing mode for the domain. Defaults to `api`.
+     */
+    mode?: pulumi.Input<string>;
     /**
      * Managed Object Storage service UUID.
      */
@@ -134,6 +144,10 @@ export interface ManagedObjectStorageCustomDomainArgs {
      * Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
      */
     domainName: pulumi.Input<string>;
+    /**
+     * Routing mode for the domain. Defaults to `api`.
+     */
+    mode?: pulumi.Input<string>;
     /**
      * Managed Object Storage service UUID.
      */

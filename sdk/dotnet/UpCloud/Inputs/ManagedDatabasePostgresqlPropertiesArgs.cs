@@ -192,7 +192,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? IoMethod { get; set; }
 
         /// <summary>
-        /// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+        /// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
         /// </summary>
         [Input("ioWorkers")]
         public Input<int>? IoWorkers { get; set; }
@@ -388,7 +388,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<bool>? PgStatMonitorEnable { get; set; }
 
         /// <summary>
-        /// Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+        /// Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
         /// </summary>
         [Input("pgStatMonitorPgsmEnableQueryPlan")]
         public Input<bool>? PgStatMonitorPgsmEnableQueryPlan { get; set; }

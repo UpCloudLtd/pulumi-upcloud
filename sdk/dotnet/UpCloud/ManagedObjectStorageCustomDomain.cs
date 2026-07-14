@@ -64,6 +64,12 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> DomainName { get; private set; } = null!;
 
         /// <summary>
+        /// Routing mode for the domain. Defaults to `Api`.
+        /// </summary>
+        [Output("mode")]
+        public Output<string> Mode { get; private set; } = null!;
+
+        /// <summary>
         /// Managed Object Storage service UUID.
         /// </summary>
         [Output("serviceUuid")]
@@ -129,6 +135,12 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string> DomainName { get; set; } = null!;
 
         /// <summary>
+        /// Routing mode for the domain. Defaults to `Api`.
+        /// </summary>
+        [Input("mode")]
+        public Input<string>? Mode { get; set; }
+
+        /// <summary>
         /// Managed Object Storage service UUID.
         /// </summary>
         [Input("serviceUuid", required: true)]
@@ -153,6 +165,12 @@ namespace UpCloud.Pulumi.UpCloud
         /// </summary>
         [Input("domainName")]
         public Input<string>? DomainName { get; set; }
+
+        /// <summary>
+        /// Routing mode for the domain. Defaults to `Api`.
+        /// </summary>
+        [Input("mode")]
+        public Input<string>? Mode { get; set; }
 
         /// <summary>
         /// Managed Object Storage service UUID.

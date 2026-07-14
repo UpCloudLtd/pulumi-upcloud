@@ -123,6 +123,7 @@ __all__ = [
     'ManagedDatabaseValkeyPropertiesMigration',
     'ManagedObjectStorageEndpoint',
     'ManagedObjectStorageNetwork',
+    'ManagedObjectStorageStaticSiteErrorPage',
     'NetworkEffectiveRoute',
     'NetworkIpNetwork',
     'NetworkIpNetworkDhcpEffectiveRoute',
@@ -3826,7 +3827,7 @@ class ManagedDatabaseMysqlProperties(dict):
         :param _builtins.bool automatic_utility_network_ip_filter: Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
         :param _builtins.int backup_hour: The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
         :param _builtins.int backup_minute: The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
-        :param _builtins.int binlog_retention_period: The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.
+        :param _builtins.int binlog_retention_period: The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector. Warning: reducing this value can make a large batch of binary logs eligible for purge at once. Depending on the volume, this can sometimes stall the MySQL commit path and block writes until the purge completes. To stay on the safe side, prefer lowering the value gradually in small decrements during a low-traffic window rather than dropping it drastically in one step.
         :param _builtins.int connect_timeout: The number of seconds that the mysqld server waits for a connect packet before responding with Bad handshake.
         :param _builtins.str default_time_zone: Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or 'SYSTEM' to use the MySQL server default.
         :param _builtins.int group_concat_max_len: The maximum permitted result length in bytes for the GROUP_CONCAT() function.
@@ -4017,7 +4018,7 @@ class ManagedDatabaseMysqlProperties(dict):
     @pulumi.getter(name="binlogRetentionPeriod")
     def binlog_retention_period(self) -> Optional[_builtins.int]:
         """
-        The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.
+        The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector. Warning: reducing this value can make a large batch of binary logs eligible for purge at once. Depending on the volume, this can sometimes stall the MySQL commit path and block writes until the purge completes. To stay on the safe side, prefer lowering the value gradually in small decrements during a low-traffic window rather than dropping it drastically in one step.
         """
         return pulumi.get(self, "binlog_retention_period")
 
@@ -8412,7 +8413,7 @@ class ManagedDatabasePostgresqlProperties(dict):
         :param _builtins.int io_max_combine_limit: EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
         :param _builtins.int io_max_concurrency: EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
         :param _builtins.str io_method: EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
-        :param _builtins.int io_workers: io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+        :param _builtins.int io_workers: io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
         :param Sequence[_builtins.str] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
         :param _builtins.bool jit: Controls system-wide use of Just-in-Time Compilation (JIT).
         :param _builtins.int log_autovacuum_min_duration: Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
@@ -8442,7 +8443,7 @@ class ManagedDatabasePostgresqlProperties(dict):
         :param _builtins.int pg_partman_bgw_interval: Sets the time interval in seconds to run pg_partman's scheduled tasks. The default is `3600`.
         :param _builtins.str pg_partman_bgw_role: Controls which role to use for pg_partman's scheduled background tasks.
         :param _builtins.bool pg_stat_monitor_enable: Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Changing this parameter causes a service restart. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
-        :param _builtins.bool pg_stat_monitor_pgsm_enable_query_plan: Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+        :param _builtins.bool pg_stat_monitor_pgsm_enable_query_plan: Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
         :param _builtins.int pg_stat_monitor_pgsm_max_buckets: Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
         :param _builtins.str pg_stat_statements_track: Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
         :param 'ManagedDatabasePostgresqlPropertiesPgauditArgs' pgaudit: PGAudit settings. System-wide settings for the pgaudit extension.
@@ -8860,7 +8861,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="ioWorkers")
     def io_workers(self) -> Optional[_builtins.int]:
         """
-        io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+        io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
         """
         return pulumi.get(self, "io_workers")
 
@@ -9100,7 +9101,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="pgStatMonitorPgsmEnableQueryPlan")
     def pg_stat_monitor_pgsm_enable_query_plan(self) -> Optional[_builtins.bool]:
         """
-        Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+        Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
         """
         return pulumi.get(self, "pg_stat_monitor_pgsm_enable_query_plan")
 
@@ -10771,6 +10772,83 @@ class ManagedObjectStorageNetwork(dict):
         Private network uuid. For public networks the field should be omitted.
         """
         return pulumi.get(self, "uuid")
+
+
+@pulumi.output_type
+class ManagedObjectStorageStaticSiteErrorPage(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "errorDocument":
+            suggest = "error_document"
+        elif key == "statusCode":
+            suggest = "status_code"
+        elif key == "statusRangeEnd":
+            suggest = "status_range_end"
+        elif key == "statusRangeStart":
+            suggest = "status_range_start"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ManagedObjectStorageStaticSiteErrorPage. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ManagedObjectStorageStaticSiteErrorPage.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ManagedObjectStorageStaticSiteErrorPage.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 error_document: _builtins.str,
+                 status_code: Optional[_builtins.int] = None,
+                 status_range_end: Optional[_builtins.int] = None,
+                 status_range_start: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str error_document: Path to the error page document within the bucket.
+        :param _builtins.int status_code: Exact HTTP status code to match. Mutually exclusive with status range.
+        :param _builtins.int status_range_end: End of the status code range (inclusive). Must be greater than start.
+        :param _builtins.int status_range_start: Start of the status code range (inclusive).
+        """
+        pulumi.set(__self__, "error_document", error_document)
+        if status_code is not None:
+            pulumi.set(__self__, "status_code", status_code)
+        if status_range_end is not None:
+            pulumi.set(__self__, "status_range_end", status_range_end)
+        if status_range_start is not None:
+            pulumi.set(__self__, "status_range_start", status_range_start)
+
+    @_builtins.property
+    @pulumi.getter(name="errorDocument")
+    def error_document(self) -> _builtins.str:
+        """
+        Path to the error page document within the bucket.
+        """
+        return pulumi.get(self, "error_document")
+
+    @_builtins.property
+    @pulumi.getter(name="statusCode")
+    def status_code(self) -> Optional[_builtins.int]:
+        """
+        Exact HTTP status code to match. Mutually exclusive with status range.
+        """
+        return pulumi.get(self, "status_code")
+
+    @_builtins.property
+    @pulumi.getter(name="statusRangeEnd")
+    def status_range_end(self) -> Optional[_builtins.int]:
+        """
+        End of the status code range (inclusive). Must be greater than start.
+        """
+        return pulumi.get(self, "status_range_end")
+
+    @_builtins.property
+    @pulumi.getter(name="statusRangeStart")
+    def status_range_start(self) -> Optional[_builtins.int]:
+        """
+        Start of the status code range (inclusive).
+        """
+        return pulumi.get(self, "status_range_start")
 
 
 @pulumi.output_type

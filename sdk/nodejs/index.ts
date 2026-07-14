@@ -235,6 +235,11 @@ export type ManagedObjectStoragePolicy = import("./managedObjectStoragePolicy").
 export const ManagedObjectStoragePolicy: typeof import("./managedObjectStoragePolicy").ManagedObjectStoragePolicy = null as any;
 utilities.lazyLoad(exports, ["ManagedObjectStoragePolicy"], () => require("./managedObjectStoragePolicy"));
 
+export { ManagedObjectStorageStaticSiteArgs, ManagedObjectStorageStaticSiteState } from "./managedObjectStorageStaticSite";
+export type ManagedObjectStorageStaticSite = import("./managedObjectStorageStaticSite").ManagedObjectStorageStaticSite;
+export const ManagedObjectStorageStaticSite: typeof import("./managedObjectStorageStaticSite").ManagedObjectStorageStaticSite = null as any;
+utilities.lazyLoad(exports, ["ManagedObjectStorageStaticSite"], () => require("./managedObjectStorageStaticSite"));
+
 export { ManagedObjectStorageUserArgs, ManagedObjectStorageUserState } from "./managedObjectStorageUser";
 export type ManagedObjectStorageUser = import("./managedObjectStorageUser").ManagedObjectStorageUser;
 export const ManagedObjectStorageUser: typeof import("./managedObjectStorageUser").ManagedObjectStorageUser = null as any;
@@ -379,6 +384,8 @@ const _module = {
                 return new ManagedObjectStorageCustomDomain(name, <any>undefined, { urn })
             case "upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy":
                 return new ManagedObjectStoragePolicy(name, <any>undefined, { urn })
+            case "upcloud:index/managedObjectStorageStaticSite:ManagedObjectStorageStaticSite":
+                return new ManagedObjectStorageStaticSite(name, <any>undefined, { urn })
             case "upcloud:index/managedObjectStorageUser:ManagedObjectStorageUser":
                 return new ManagedObjectStorageUser(name, <any>undefined, { urn })
             case "upcloud:index/managedObjectStorageUserAccessKey:ManagedObjectStorageUserAccessKey":
@@ -441,6 +448,7 @@ pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorage", _
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorageBucket", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorageCustomDomain", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStoragePolicy", _module)
+pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorageStaticSite", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorageUser", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorageUserAccessKey", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedObjectStorageUserPolicy", _module)

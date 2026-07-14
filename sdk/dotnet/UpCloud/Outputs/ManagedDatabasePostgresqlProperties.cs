@@ -127,7 +127,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? IoMethod;
         /// <summary>
-        /// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+        /// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
         /// </summary>
         public readonly int? IoWorkers;
         /// <summary>
@@ -247,7 +247,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? PgStatMonitorEnable;
         /// <summary>
-        /// Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+        /// Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
         /// </summary>
         public readonly bool? PgStatMonitorPgsmEnableQueryPlan;
         /// <summary>

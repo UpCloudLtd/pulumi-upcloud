@@ -21,15 +21,19 @@ class ManagedObjectStorageCustomDomainArgs:
     def __init__(__self__, *,
                  domain_name: pulumi.Input[_builtins.str],
                  service_uuid: pulumi.Input[_builtins.str],
+                 mode: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ManagedObjectStorageCustomDomain resource.
         :param pulumi.Input[_builtins.str] domain_name: Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
+        :param pulumi.Input[_builtins.str] mode: Routing mode for the domain. Defaults to `api`.
         :param pulumi.Input[_builtins.str] type: At the moment only `public` is accepted.
         """
         pulumi.set(__self__, "domain_name", domain_name)
         pulumi.set(__self__, "service_uuid", service_uuid)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -59,6 +63,18 @@ class ManagedObjectStorageCustomDomainArgs:
 
     @_builtins.property
     @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Routing mode for the domain. Defaults to `api`.
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mode", value)
+
+    @_builtins.property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         At the moment only `public` is accepted.
@@ -74,16 +90,20 @@ class ManagedObjectStorageCustomDomainArgs:
 class _ManagedObjectStorageCustomDomainState:
     def __init__(__self__, *,
                  domain_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 mode: Optional[pulumi.Input[_builtins.str]] = None,
                  service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ManagedObjectStorageCustomDomain resources.
         :param pulumi.Input[_builtins.str] domain_name: Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
+        :param pulumi.Input[_builtins.str] mode: Routing mode for the domain. Defaults to `api`.
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
         :param pulumi.Input[_builtins.str] type: At the moment only `public` is accepted.
         """
         if domain_name is not None:
             pulumi.set(__self__, "domain_name", domain_name)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
         if service_uuid is not None:
             pulumi.set(__self__, "service_uuid", service_uuid)
         if type is not None:
@@ -100,6 +120,18 @@ class _ManagedObjectStorageCustomDomainState:
     @domain_name.setter
     def domain_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "domain_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Routing mode for the domain. Defaults to `api`.
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mode", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceUuid")
@@ -133,6 +165,7 @@ class ManagedObjectStorageCustomDomain(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  domain_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 mode: Optional[pulumi.Input[_builtins.str]] = None,
                  service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -167,6 +200,7 @@ class ManagedObjectStorageCustomDomain(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] domain_name: Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
+        :param pulumi.Input[_builtins.str] mode: Routing mode for the domain. Defaults to `api`.
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
         :param pulumi.Input[_builtins.str] type: At the moment only `public` is accepted.
         """
@@ -220,6 +254,7 @@ class ManagedObjectStorageCustomDomain(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  domain_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 mode: Optional[pulumi.Input[_builtins.str]] = None,
                  service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -234,6 +269,7 @@ class ManagedObjectStorageCustomDomain(pulumi.CustomResource):
             if domain_name is None and not opts.urn:
                 raise TypeError("Missing required property 'domain_name'")
             __props__.__dict__["domain_name"] = domain_name
+            __props__.__dict__["mode"] = mode
             if service_uuid is None and not opts.urn:
                 raise TypeError("Missing required property 'service_uuid'")
             __props__.__dict__["service_uuid"] = service_uuid
@@ -249,6 +285,7 @@ class ManagedObjectStorageCustomDomain(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             domain_name: Optional[pulumi.Input[_builtins.str]] = None,
+            mode: Optional[pulumi.Input[_builtins.str]] = None,
             service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'ManagedObjectStorageCustomDomain':
         """
@@ -259,6 +296,7 @@ class ManagedObjectStorageCustomDomain(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] domain_name: Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
+        :param pulumi.Input[_builtins.str] mode: Routing mode for the domain. Defaults to `api`.
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
         :param pulumi.Input[_builtins.str] type: At the moment only `public` is accepted.
         """
@@ -267,6 +305,7 @@ class ManagedObjectStorageCustomDomain(pulumi.CustomResource):
         __props__ = _ManagedObjectStorageCustomDomainState.__new__(_ManagedObjectStorageCustomDomainState)
 
         __props__.__dict__["domain_name"] = domain_name
+        __props__.__dict__["mode"] = mode
         __props__.__dict__["service_uuid"] = service_uuid
         __props__.__dict__["type"] = type
         return ManagedObjectStorageCustomDomain(resource_name, opts=opts, __props__=__props__)
@@ -278,6 +317,14 @@ class ManagedObjectStorageCustomDomain(pulumi.CustomResource):
         Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
         """
         return pulumi.get(self, "domain_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> pulumi.Output[_builtins.str]:
+        """
+        Routing mode for the domain. Defaults to `api`.
+        """
+        return pulumi.get(self, "mode")
 
     @_builtins.property
     @pulumi.getter(name="serviceUuid")

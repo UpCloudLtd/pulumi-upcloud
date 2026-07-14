@@ -32,6 +32,21 @@ public final class ManagedObjectStorageCustomDomainArgs extends com.pulumi.resou
     }
 
     /**
+     * Routing mode for the domain. Defaults to `api`.
+     * 
+     */
+    @Import(name="mode")
+    private @Nullable Output<String> mode;
+
+    /**
+     * @return Routing mode for the domain. Defaults to `api`.
+     * 
+     */
+    public Optional<Output<String>> mode() {
+        return Optional.ofNullable(this.mode);
+    }
+
+    /**
      * Managed Object Storage service UUID.
      * 
      */
@@ -65,6 +80,7 @@ public final class ManagedObjectStorageCustomDomainArgs extends com.pulumi.resou
 
     private ManagedObjectStorageCustomDomainArgs(ManagedObjectStorageCustomDomainArgs $) {
         this.domainName = $.domainName;
+        this.mode = $.mode;
         this.serviceUuid = $.serviceUuid;
         this.type = $.type;
     }
@@ -106,6 +122,27 @@ public final class ManagedObjectStorageCustomDomainArgs extends com.pulumi.resou
          */
         public Builder domainName(String domainName) {
             return domainName(Output.of(domainName));
+        }
+
+        /**
+         * @param mode Routing mode for the domain. Defaults to `api`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mode(@Nullable Output<String> mode) {
+            $.mode = mode;
+            return this;
+        }
+
+        /**
+         * @param mode Routing mode for the domain. Defaults to `api`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mode(String mode) {
+            return mode(Output.of(mode));
         }
 
         /**

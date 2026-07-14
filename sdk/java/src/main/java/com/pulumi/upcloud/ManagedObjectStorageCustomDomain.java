@@ -89,6 +89,20 @@ public class ManagedObjectStorageCustomDomain extends com.pulumi.resources.Custo
         return this.domainName;
     }
     /**
+     * Routing mode for the domain. Defaults to `api`.
+     * 
+     */
+    @Export(name="mode", refs={String.class}, tree="[0]")
+    private Output<String> mode;
+
+    /**
+     * @return Routing mode for the domain. Defaults to `api`.
+     * 
+     */
+    public Output<String> mode() {
+        return this.mode;
+    }
+    /**
      * Managed Object Storage service UUID.
      * 
      */

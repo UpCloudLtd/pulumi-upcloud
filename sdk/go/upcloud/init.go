@@ -83,6 +83,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ManagedObjectStorageCustomDomain{}
 	case "upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy":
 		r = &ManagedObjectStoragePolicy{}
+	case "upcloud:index/managedObjectStorageStaticSite:ManagedObjectStorageStaticSite":
+		r = &ManagedObjectStorageStaticSite{}
 	case "upcloud:index/managedObjectStorageUser:ManagedObjectStorageUser":
 		r = &ManagedObjectStorageUser{}
 	case "upcloud:index/managedObjectStorageUserAccessKey:ManagedObjectStorageUserAccessKey":
@@ -293,6 +295,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"upcloud",
 		"index/managedObjectStoragePolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upcloud",
+		"index/managedObjectStorageStaticSite",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -445,14 +445,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+     * io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
      * 
      */
     @Import(name="ioWorkers")
     private @Nullable Output<Integer> ioWorkers;
 
     /**
-     * @return io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+     * @return io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
      * 
      */
     public Optional<Output<Integer>> ioWorkers() {
@@ -895,14 +895,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+     * Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
      * 
      */
     @Import(name="pgStatMonitorPgsmEnableQueryPlan")
     private @Nullable Output<Boolean> pgStatMonitorPgsmEnableQueryPlan;
 
     /**
-     * @return Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+     * @return Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
      * 
      */
     public Optional<Output<Boolean>> pgStatMonitorPgsmEnableQueryPlan() {
@@ -1948,7 +1948,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param ioWorkers io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+         * @param ioWorkers io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
          * 
          * @return builder
          * 
@@ -1959,7 +1959,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param ioWorkers io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only. Changing this parameter causes a service restart.
+         * @param ioWorkers io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
          * 
          * @return builder
          * 
@@ -2588,7 +2588,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param pgStatMonitorPgsmEnableQueryPlan Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+         * @param pgStatMonitorPgsmEnableQueryPlan Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
          * 
          * @return builder
          * 
@@ -2599,7 +2599,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param pgStatMonitorPgsmEnableQueryPlan Enables or disables query plan monitoring. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+         * @param pgStatMonitorPgsmEnableQueryPlan Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
          * 
          * @return builder
          * 
