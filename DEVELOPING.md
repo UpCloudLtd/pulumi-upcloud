@@ -11,7 +11,7 @@ Current configuration was created based on [pulumi-azuread](https://github.com/p
 Re-generate the workflows and other build configuration (e.g., Makefile):
 
 ```sh
-make ci-mgmt
+make -f ci-mgmt.Makefile ci-mgmt
 ```
 
 ### Upgrade bridge

@@ -12,3 +12,5 @@ publish:
 upstreamProviderOrg: UpCloudLtd
 upstream-provider-repo: terraform-provider-upcloud
 pulumiConvert: 1
+github-app:
+    enabled: false
