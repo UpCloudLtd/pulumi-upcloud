@@ -83,9 +83,9 @@ export function createFeedbackApp({
   // `kubeconfig` is empty when previewing the stack before the cluster has been created.
   let k8sApi: k8sClient.CoreV1Api | undefined;
   let k8sExec: k8sClient.Exec | undefined;
-  kubeconfig?.apply((asdf) => {
+  kubeconfig?.apply((value) => {
     const kc = new k8sClient.KubeConfig();
-    kc.loadFromString(asdf);
+    kc.loadFromString(value);
     k8sApi = kc.makeApiClient(k8sClient.CoreV1Api);
     k8sExec = new k8sClient.Exec(kc);
   });
