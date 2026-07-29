@@ -25,6 +25,7 @@ from .get_managed_database_valkey_sessions import *
 from .get_managed_object_storage_policies import *
 from .get_managed_object_storage_regions import *
 from .get_networks import *
+from .get_server import *
 from .get_storage import *
 from .get_tags import *
 from .get_zone import *

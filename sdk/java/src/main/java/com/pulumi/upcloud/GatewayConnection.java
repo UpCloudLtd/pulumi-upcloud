@@ -39,6 +39,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.upcloud.GatewayConnectionArgs;
  * import com.pulumi.upcloud.inputs.GatewayConnectionLocalRouteArgs;
  * import com.pulumi.upcloud.inputs.GatewayConnectionRemoteRouteArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -54,7 +55,9 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var this_ = new Router("this", RouterArgs.builder()
  *             .name("gateway-example-router")
- *             .build());
+ *             .build(), CustomResourceOptions.builder()
+ *                 .ignoreChanges("staticRoutes")
+ *                 .build());
  * 
  *         var thisNetwork = new Network("thisNetwork", NetworkArgs.builder()
  *             .name("gateway-example-net")

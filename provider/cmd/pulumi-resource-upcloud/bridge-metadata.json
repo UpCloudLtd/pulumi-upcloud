@@ -929,6 +929,24 @@
                     }
                 }
             },
+            "upcloud_server": {
+                "current": "upcloud:index/getServer:getServer",
+                "fields": {
+                    "network_interface": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "additional_ip_address": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "upcloud_storage": {
                 "current": "upcloud:index/getStorage:getStorage"
             },
@@ -962,6 +980,11 @@
     },
     "auto-settings": {
         "resources": {
+            "upcloud_gateway": {
+                "maxItemsOneOverrides": {
+                    "address": true
+                }
+            },
             "upcloud_managed_database_user": {
                 "maxItemsOneOverrides": {
                     "valkey_access_control.$.categories": true,
@@ -992,7 +1015,7 @@
             "upcloud:index/fileStorageShareAcl:FileStorageShareAcl": 1,
             "upcloud:index/firewallRuleset:FirewallRuleset": 1,
             "upcloud:index/floatingIpAddress:FloatingIpAddress": 1,
-            "upcloud:index/gateway:Gateway": 0,
+            "upcloud:index/gateway:Gateway": 1,
             "upcloud:index/gatewayConnection:GatewayConnection": 0,
             "upcloud:index/gatewayConnectionTunnel:GatewayConnectionTunnel": 0,
             "upcloud:index/kubernetesCluster:KubernetesCluster": 1,
@@ -1045,6 +1068,7 @@
             "upcloud:index/getManagedObjectStoragePolicies:getManagedObjectStoragePolicies": 1,
             "upcloud:index/getManagedObjectStorageRegions:getManagedObjectStorageRegions": 1,
             "upcloud:index/getNetworks:getNetworks": 0,
+            "upcloud:index/getServer:getServer": 1,
             "upcloud:index/getStorage:getStorage": 1,
             "upcloud:index/getTags:getTags": 0,
             "upcloud:index/getZone:getZone": 1,

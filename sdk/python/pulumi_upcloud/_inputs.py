@@ -751,11 +751,11 @@ if not MYPY:
     class GatewayAddressArgsDict(TypedDict):
         address: NotRequired[pulumi.Input[_builtins.str]]
         """
-        IP addresss
+        IP address.
         """
         name: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Name of the IP address
+        Name of the address.
         """
 elif False:
     GatewayAddressArgsDict: TypeAlias = Mapping[str, Any]
@@ -766,8 +766,8 @@ class GatewayAddressArgs:
                  address: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] address: IP addresss
-        :param pulumi.Input[_builtins.str] name: Name of the IP address
+        :param pulumi.Input[_builtins.str] address: IP address.
+        :param pulumi.Input[_builtins.str] name: Name of the address.
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -778,7 +778,7 @@ class GatewayAddressArgs:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        IP addresss
+        IP address.
         """
         return pulumi.get(self, "address")
 
@@ -790,7 +790,7 @@ class GatewayAddressArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Name of the IP address
+        Name of the address.
         """
         return pulumi.get(self, "name")
 

@@ -39,6 +39,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.upcloud.Gateway;
  * import com.pulumi.upcloud.GatewayArgs;
  * import com.pulumi.upcloud.inputs.GatewayRouterArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -61,7 +62,9 @@ import javax.annotation.Nullable;
  *                 .dhcp(true)
  *                 .family("IPv4")
  *                 .build())
- *             .build());
+ *             .build(), CustomResourceOptions.builder()
+ *                 .ignoreChanges("router")
+ *                 .build());
  * 
  *         // Create a Kubernetes cluster
  *         var exampleKubernetesCluster = new KubernetesCluster("exampleKubernetesCluster", KubernetesClusterArgs.builder()

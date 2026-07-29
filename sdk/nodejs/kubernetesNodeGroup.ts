@@ -24,6 +24,8 @@ import * as utilities from "./utilities";
  *         dhcp: true,
  *         family: "IPv4",
  *     },
+ * }, {
+ *     ignoreChanges: ["router"],
  * });
  * // Create a Kubernetes cluster
  * const exampleKubernetesCluster = new upcloud.KubernetesCluster("example", {

@@ -47,6 +47,8 @@ import * as utilities from "./utilities";
  *     template: {
  *         storage: appImage.then(appImage => appImage.id),
  *     },
+ * }, {
+ *     ignoreChanges: ["template.storage"],
  * });
  * ```
  */
@@ -159,6 +161,8 @@ export interface GetStorageResult {
  *     template: {
  *         storage: appImage.then(appImage => appImage.id),
  *     },
+ * }, {
+ *     ignoreChanges: ["template.storage"],
  * });
  * ```
  */

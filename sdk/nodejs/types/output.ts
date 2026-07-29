@@ -101,11 +101,11 @@ export interface FirewallRulesetRule {
 
 export interface GatewayAddress {
     /**
-     * IP addresss
+     * IP address.
      */
     address: string;
     /**
-     * Name of the IP address
+     * Name of the address.
      */
     name: string;
 }
@@ -636,6 +636,64 @@ export interface GetNetworksNetworkServer {
      * The short description of the server
      */
     title: string;
+}
+
+export interface GetServerNetworkInterface {
+    /**
+     * Additional IP addresses for this interface. Only available for private network interfaces.
+     */
+    additionalIpAddresses: outputs.GetServerNetworkInterfaceAdditionalIpAddress[];
+    /**
+     * `true` indicates that the server can boot from this interface.
+     */
+    bootable: boolean;
+    /**
+     * The interface index.
+     */
+    index: number;
+    /**
+     * The primary IP address of this interface.
+     */
+    ipAddress: string;
+    /**
+     * The type of the primary IP address (`IPv4` or `IPv6`).
+     */
+    ipAddressFamily: string;
+    /**
+     * `true` indicates that the primary IP address is a floating IP address.
+     */
+    ipAddressFloating: boolean;
+    /**
+     * The MAC address of the interface.
+     */
+    macAddress: string;
+    /**
+     * The UUID of the network the interface is attached to.
+     */
+    network: string;
+    /**
+     * `true` indicates that source IP filtering is enabled for this interface.
+     */
+    sourceIpFiltering: boolean;
+    /**
+     * The type of the network interface (`public`, `private`, or `utility`).
+     */
+    type: string;
+}
+
+export interface GetServerNetworkInterfaceAdditionalIpAddress {
+    /**
+     * An additional IP address for this interface.
+     */
+    ipAddress: string;
+    /**
+     * The type of the additional IP address (`IPv4` or `IPv6`).
+     */
+    ipAddressFamily: string;
+    /**
+     * `true` indicates that the additional IP address is a floating IP address.
+     */
+    ipAddressFloating: boolean;
 }
 
 export interface GetTagsTag {

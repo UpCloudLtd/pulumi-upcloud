@@ -34,6 +34,12 @@ namespace UpCloud.Pulumi.UpCloud
     ///             Dhcp = true,
     ///             Family = "IPv4",
     ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         IgnoreChanges =
+    ///         {
+    ///             "router",
+    ///         },
     ///     });
     /// 
     ///     // Create a Kubernetes cluster

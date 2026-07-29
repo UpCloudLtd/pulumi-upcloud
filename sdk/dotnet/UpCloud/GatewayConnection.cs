@@ -24,6 +24,12 @@ namespace UpCloud.Pulumi.UpCloud
     ///     var @this = new UpCloud.Router("this", new()
     ///     {
     ///         Name = "gateway-example-router",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         IgnoreChanges =
+    ///         {
+    ///             "staticRoutes",
+    ///         },
     ///     });
     /// 
     ///     var thisNetwork = new UpCloud.Network("this", new()

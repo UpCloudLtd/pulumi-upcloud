@@ -12,26 +12,26 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GatewayAddress {
     /**
-     * @return IP addresss
+     * @return IP address.
      * 
      */
     private @Nullable String address;
     /**
-     * @return Name of the IP address
+     * @return Name of the address.
      * 
      */
     private @Nullable String name;
 
     private GatewayAddress() {}
     /**
-     * @return IP addresss
+     * @return IP address.
      * 
      */
     public Optional<String> address() {
         return Optional.ofNullable(this.address);
     }
     /**
-     * @return Name of the IP address
+     * @return Name of the address.
      * 
      */
     public Optional<String> name() {

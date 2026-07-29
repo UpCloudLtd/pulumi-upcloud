@@ -71,7 +71,9 @@ import (
 //				Template: &upcloud.ServerTemplateArgs{
 //					Storage: pulumi.String(appImage.Id),
 //				},
-//			})
+//			}, pulumi.IgnoreChanges([]string{
+//				"template.storage",
+//			}))
 //			if err != nil {
 //				return err
 //			}

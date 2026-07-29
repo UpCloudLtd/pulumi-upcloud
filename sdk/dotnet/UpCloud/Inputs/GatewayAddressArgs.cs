@@ -14,13 +14,13 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
     public sealed class GatewayAddressArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// IP addresss
+        /// IP address.
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// Name of the IP address
+        /// Name of the address.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

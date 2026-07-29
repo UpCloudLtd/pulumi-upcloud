@@ -28,7 +28,9 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			this, err := upcloud.NewRouter(ctx, "this", &upcloud.RouterArgs{
 //				Name: pulumi.String("gateway-example-router"),
-//			})
+//			}, pulumi.IgnoreChanges([]string{
+//				staticRoutes,
+//			}))
 //			if err != nil {
 //				return err
 //			}

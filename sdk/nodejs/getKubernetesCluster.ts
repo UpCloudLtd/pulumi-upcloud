@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  * import * as local from "@pulumi/local";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * // Use Kubernetes provider to access your Kubernetes cluster
  * // Create a network for the Kubernetes cluster
  * const exampleNetwork = new upcloud.Network("example", {
  *     name: "example-network",
@@ -81,7 +80,6 @@ export interface GetKubernetesClusterResult {
  * import * as local from "@pulumi/local";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * // Use Kubernetes provider to access your Kubernetes cluster
  * // Create a network for the Kubernetes cluster
  * const exampleNetwork = new upcloud.Network("example", {
  *     name: "example-network",

@@ -25,7 +25,6 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Use Kubernetes provider to access your Kubernetes cluster
         ///     // Create a network for the Kubernetes cluster
         ///     var exampleNetwork = new UpCloud.Network("example", new()
         ///     {
@@ -95,7 +94,6 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Use Kubernetes provider to access your Kubernetes cluster
         ///     // Create a network for the Kubernetes cluster
         ///     var exampleNetwork = new UpCloud.Network("example", new()
         ///     {
@@ -165,7 +163,6 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Use Kubernetes provider to access your Kubernetes cluster
         ///     // Create a network for the Kubernetes cluster
         ///     var exampleNetwork = new UpCloud.Network("example", new()
         ///     {

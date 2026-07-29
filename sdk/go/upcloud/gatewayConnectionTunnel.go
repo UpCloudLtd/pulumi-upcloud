@@ -27,7 +27,9 @@ import (
 // pulumi.Run(func(ctx *pulumi.Context) error {
 // this, err := upcloud.NewRouter(ctx, "this", &upcloud.RouterArgs{
 // Name: pulumi.String("gateway-example-router"),
-// })
+// }, pulumi.IgnoreChanges([]string{
+// staticRoutes,
+// }))
 // if err != nil {
 // return err
 // }
@@ -83,9 +85,9 @@ import (
 // _, err = upcloud.NewGatewayConnectionTunnel(ctx, "this", &upcloud.GatewayConnectionTunnelArgs{
 // ConnectionId: thisGatewayConnection.ID(),
 // Name: pulumi.String("test-tunnel"),
-// LocalAddressName: pulumi.String(thisGateway.Address.ApplyT(func(address upcloud.GatewayAddress) (interface{}, error) {
-// return address[0].Name, nil
-// }).(pulumi.Interface{}Output)),
+// LocalAddressName: pulumi.String(thisGateway.Address.ApplyT(func(address upcloud.GatewayAddress) (*interface{}, error) {
+// return &address[0].Name, nil
+// }).(pulumi.Interface{}PtrOutput)),
 // RemoteAddress: pulumi.String("100.123.123.10"),
 // IpsecAuthPsk: &upcloud.GatewayConnectionTunnelIpsecAuthPskArgs{
 // Psk: pulumi.String("you_probably_want_to_use_env_vars_here"),

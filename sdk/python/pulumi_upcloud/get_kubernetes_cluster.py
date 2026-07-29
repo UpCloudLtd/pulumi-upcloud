@@ -111,7 +111,6 @@ def get_kubernetes_cluster(id: Optional[_builtins.str] = None,
     import pulumi_local as local
     import pulumi_upcloud as upcloud
 
-    # Use Kubernetes provider to access your Kubernetes cluster
     # Create a network for the Kubernetes cluster
     example_network = upcloud.Network("example",
         name="example-network",
@@ -163,7 +162,6 @@ def get_kubernetes_cluster_output(id: Optional[pulumi.Input[_builtins.str]] = No
     import pulumi_local as local
     import pulumi_upcloud as upcloud
 
-    # Use Kubernetes provider to access your Kubernetes cluster
     # Create a network for the Kubernetes cluster
     example_network = upcloud.Network("example",
         name="example-network",

@@ -30,6 +30,8 @@ import com.pulumi.upcloud.inputs.GetManagedObjectStorageRegionsArgs;
 import com.pulumi.upcloud.inputs.GetManagedObjectStorageRegionsPlainArgs;
 import com.pulumi.upcloud.inputs.GetNetworksArgs;
 import com.pulumi.upcloud.inputs.GetNetworksPlainArgs;
+import com.pulumi.upcloud.inputs.GetServerArgs;
+import com.pulumi.upcloud.inputs.GetServerPlainArgs;
 import com.pulumi.upcloud.inputs.GetStorageArgs;
 import com.pulumi.upcloud.inputs.GetStoragePlainArgs;
 import com.pulumi.upcloud.inputs.GetZoneArgs;
@@ -47,6 +49,7 @@ import com.pulumi.upcloud.outputs.GetManagedDatabaseValkeySessionsResult;
 import com.pulumi.upcloud.outputs.GetManagedObjectStoragePoliciesResult;
 import com.pulumi.upcloud.outputs.GetManagedObjectStorageRegionsResult;
 import com.pulumi.upcloud.outputs.GetNetworksResult;
+import com.pulumi.upcloud.outputs.GetServerResult;
 import com.pulumi.upcloud.outputs.GetStorageResult;
 import com.pulumi.upcloud.outputs.GetTagsResult;
 import com.pulumi.upcloud.outputs.GetZoneResult;
@@ -648,7 +651,6 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         // Use Kubernetes provider to access your Kubernetes cluster
      *         // Create a network for the Kubernetes cluster
      *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
      *             .name("example-network")
@@ -727,7 +729,6 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         // Use Kubernetes provider to access your Kubernetes cluster
      *         // Create a network for the Kubernetes cluster
      *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
      *             .name("example-network")
@@ -806,7 +807,6 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         // Use Kubernetes provider to access your Kubernetes cluster
      *         // Create a network for the Kubernetes cluster
      *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
      *             .name("example-network")
@@ -885,7 +885,6 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         // Use Kubernetes provider to access your Kubernetes cluster
      *         // Create a network for the Kubernetes cluster
      *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
      *             .name("example-network")
@@ -964,7 +963,6 @@ public final class UpcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         // Use Kubernetes provider to access your Kubernetes cluster
      *         // Create a network for the Kubernetes cluster
      *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
      *             .name("example-network")
@@ -2691,6 +2689,206 @@ public final class UpcloudFunctions {
         return Deployment.getInstance().invokeAsync("upcloud:index/getNetworks:getNetworks", TypeShape.of(GetNetworksResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Provides details about an existing [UpCloud cloud server](https://upcloud.com/products/cloud-servers) by UUID.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = UpcloudFunctions.getServer(GetServerArgs.builder()
+     *             .id("00f60089-7bb0-4e19-9481-fbb1cb4378ab")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServerResult> getServer(GetServerArgs args) {
+        return getServer(args, InvokeOptions.Empty);
+    }
+    /**
+     * Provides details about an existing [UpCloud cloud server](https://upcloud.com/products/cloud-servers) by UUID.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = UpcloudFunctions.getServer(GetServerArgs.builder()
+     *             .id("00f60089-7bb0-4e19-9481-fbb1cb4378ab")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetServerResult> getServerPlain(GetServerPlainArgs args) {
+        return getServerPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Provides details about an existing [UpCloud cloud server](https://upcloud.com/products/cloud-servers) by UUID.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = UpcloudFunctions.getServer(GetServerArgs.builder()
+     *             .id("00f60089-7bb0-4e19-9481-fbb1cb4378ab")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServerResult> getServer(GetServerArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("upcloud:index/getServer:getServer", TypeShape.of(GetServerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Provides details about an existing [UpCloud cloud server](https://upcloud.com/products/cloud-servers) by UUID.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = UpcloudFunctions.getServer(GetServerArgs.builder()
+     *             .id("00f60089-7bb0-4e19-9481-fbb1cb4378ab")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServerResult> getServer(GetServerArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("upcloud:index/getServer:getServer", TypeShape.of(GetServerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Provides details about an existing [UpCloud cloud server](https://upcloud.com/products/cloud-servers) by UUID.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.upcloud.UpcloudFunctions;
+     * import com.pulumi.upcloud.inputs.GetServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = UpcloudFunctions.getServer(GetServerArgs.builder()
+     *             .id("00f60089-7bb0-4e19-9481-fbb1cb4378ab")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetServerResult> getServerPlain(GetServerPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("upcloud:index/getServer:getServer", TypeShape.of(GetServerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Provides information on UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.
      * 
      * Data source can be used to map storage to other resource based on the ID or just to read some other storage property like zone information. Storage types are: `normal`, `backup`, `cdrom`, and `template`.
@@ -2710,6 +2908,7 @@ public final class UpcloudFunctions {
      * import com.pulumi.upcloud.ServerArgs;
      * import com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;
      * import com.pulumi.upcloud.inputs.ServerTemplateArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -2757,7 +2956,9 @@ public final class UpcloudFunctions {
      *             .template(ServerTemplateArgs.builder()
      *                 .storage(appImage.id())
      *                 .build())
-     *             .build());
+     *             .build(), CustomResourceOptions.builder()
+     *                 .ignoreChanges("template.storage()")
+     *                 .build());
      * 
      *     }
      * }
@@ -2788,6 +2989,7 @@ public final class UpcloudFunctions {
      * import com.pulumi.upcloud.ServerArgs;
      * import com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;
      * import com.pulumi.upcloud.inputs.ServerTemplateArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -2835,7 +3037,9 @@ public final class UpcloudFunctions {
      *             .template(ServerTemplateArgs.builder()
      *                 .storage(appImage.id())
      *                 .build())
-     *             .build());
+     *             .build(), CustomResourceOptions.builder()
+     *                 .ignoreChanges("template.storage()")
+     *                 .build());
      * 
      *     }
      * }
@@ -2866,6 +3070,7 @@ public final class UpcloudFunctions {
      * import com.pulumi.upcloud.ServerArgs;
      * import com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;
      * import com.pulumi.upcloud.inputs.ServerTemplateArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -2913,7 +3118,9 @@ public final class UpcloudFunctions {
      *             .template(ServerTemplateArgs.builder()
      *                 .storage(appImage.id())
      *                 .build())
-     *             .build());
+     *             .build(), CustomResourceOptions.builder()
+     *                 .ignoreChanges("template.storage()")
+     *                 .build());
      * 
      *     }
      * }
@@ -2944,6 +3151,7 @@ public final class UpcloudFunctions {
      * import com.pulumi.upcloud.ServerArgs;
      * import com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;
      * import com.pulumi.upcloud.inputs.ServerTemplateArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -2991,7 +3199,9 @@ public final class UpcloudFunctions {
      *             .template(ServerTemplateArgs.builder()
      *                 .storage(appImage.id())
      *                 .build())
-     *             .build());
+     *             .build(), CustomResourceOptions.builder()
+     *                 .ignoreChanges("template.storage()")
+     *                 .build());
      * 
      *     }
      * }
@@ -3022,6 +3232,7 @@ public final class UpcloudFunctions {
      * import com.pulumi.upcloud.ServerArgs;
      * import com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;
      * import com.pulumi.upcloud.inputs.ServerTemplateArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -3069,7 +3280,9 @@ public final class UpcloudFunctions {
      *             .template(ServerTemplateArgs.builder()
      *                 .storage(appImage.id())
      *                 .build())
-     *             .build());
+     *             .build(), CustomResourceOptions.builder()
+     *                 .ignoreChanges("template.storage()")
+     *                 .build());
      * 
      *     }
      * }
@@ -3100,6 +3313,7 @@ public final class UpcloudFunctions {
      * import com.pulumi.upcloud.ServerArgs;
      * import com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;
      * import com.pulumi.upcloud.inputs.ServerTemplateArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -3147,7 +3361,9 @@ public final class UpcloudFunctions {
      *             .template(ServerTemplateArgs.builder()
      *                 .storage(appImage.id())
      *                 .build())
-     *             .build());
+     *             .build(), CustomResourceOptions.builder()
+     *                 .ignoreChanges("template.storage()")
+     *                 .build());
      * 
      *     }
      * }
@@ -3178,6 +3394,7 @@ public final class UpcloudFunctions {
      * import com.pulumi.upcloud.ServerArgs;
      * import com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;
      * import com.pulumi.upcloud.inputs.ServerTemplateArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -3225,7 +3442,9 @@ public final class UpcloudFunctions {
      *             .template(ServerTemplateArgs.builder()
      *                 .storage(appImage.id())
      *                 .build())
-     *             .build());
+     *             .build(), CustomResourceOptions.builder()
+     *                 .ignoreChanges("template.storage()")
+     *                 .build());
      * 
      *     }
      * }

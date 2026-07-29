@@ -13,7 +13,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * const _this = new upcloud.Router("this", {name: "gateway-example-router"});
+ * const _this = new upcloud.Router("this", {name: "gateway-example-router"}, {
+ *     ignoreChanges: [staticRoutes],
+ * });
  * const thisNetwork = new upcloud.Network("this", {
  *     name: "gateway-example-net",
  *     zone: "pl-waw1",
@@ -51,7 +53,7 @@ import * as utilities from "./utilities";
  * const thisGatewayConnectionTunnel = new upcloud.GatewayConnectionTunnel("this", {
  *     connectionId: thisGatewayConnection.id,
  *     name: "test-tunnel",
- *     localAddressName: thisGateway.address[0].name,
+ *     localAddressName: thisGateway.address.apply(address => address?.[0]?.name),
  *     remoteAddress: "100.123.123.10",
  *     ipsecAuthPsk: {
  *         psk: "you_probably_want_to_use_env_vars_here",
