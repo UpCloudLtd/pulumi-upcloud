@@ -27,6 +27,12 @@ namespace UpCloud.Pulumi.UpCloud
     ///     var @this = new UpCloud.Router("this", new()
     ///     {
     ///         Name = "gateway-example-router",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         IgnoreChanges =
+    ///         {
+    ///             "staticRoutes",
+    ///         },
     ///     });
     /// 
     ///     // Create network for the gateway
@@ -51,6 +57,7 @@ namespace UpCloud.Pulumi.UpCloud
     ///         {
     ///             "nat",
     ///         },
+    ///         Plan = "development",
     ///         Router = new UpCloud.Inputs.GatewayRouterArgs
     ///         {
     ///             Id = @this.Id,
@@ -71,10 +78,10 @@ namespace UpCloud.Pulumi.UpCloud
         /// IP addresses assigned to the gateway.
         /// </summary>
         [Output("address")]
-        public Output<Outputs.GatewayAddress> Address { get; private set; } = null!;
+        public Output<Outputs.GatewayAddress?> Address { get; private set; } = null!;
 
         /// <summary>
-        /// IP addresses assigned to the gateway.
+        /// Use 'address' attribute instead. This attribute will be removed in the next major version of the provider.
         /// </summary>
         [Output("addresses")]
         public Output<ImmutableArray<Outputs.GatewayAddress>> Addresses { get; private set; } = null!;
@@ -83,11 +90,8 @@ namespace UpCloud.Pulumi.UpCloud
         /// The service configured status indicates the service's current intended status. Managed by the customer.
         /// </summary>
         [Output("configuredStatus")]
-        public Output<string?> ConfiguredStatus { get; private set; } = null!;
+        public Output<string> ConfiguredStatus { get; private set; } = null!;
 
-        /// <summary>
-        /// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
-        /// </summary>
         [Output("connections")]
         public Output<ImmutableArray<string>> Connections { get; private set; } = null!;
 
@@ -98,10 +102,10 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<ImmutableArray<string>> Features { get; private set; } = null!;
 
         /// <summary>
-        /// User defined key-value pairs to classify the network gateway.
+        /// User defined key-value pairs to classify the gateway.
         /// </summary>
         [Output("labels")]
-        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
         /// <summary>
         /// Gateway name. Needs to be unique within the account.
@@ -116,7 +120,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> OperationalState { get; private set; } = null!;
 
         /// <summary>
-        /// Gateway pricing plan.
+        /// Gateway pricing plan, defaults to `Development`. You can list available plans with `upctl gateway plans`.
         /// </summary>
         [Output("plan")]
         public Output<string> Plan { get; private set; } = null!;
@@ -125,7 +129,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// Attached Router from where traffic is routed towards the network gateway service.
         /// </summary>
         [Output("router")]
-        public Output<Outputs.GatewayRouter> Router { get; private set; } = null!;
+        public Output<Outputs.GatewayRouter?> Router { get; private set; } = null!;
 
         /// <summary>
         /// Zone in which the gateway will be hosted, e.g. `de-fra1`.
@@ -208,7 +212,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// User defined key-value pairs to classify the network gateway.
+        /// User defined key-value pairs to classify the gateway.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -223,7 +227,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Gateway pricing plan.
+        /// Gateway pricing plan, defaults to `Development`. You can list available plans with `upctl gateway plans`.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }
@@ -231,8 +235,8 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// Attached Router from where traffic is routed towards the network gateway service.
         /// </summary>
-        [Input("router", required: true)]
-        public Input<Inputs.GatewayRouterArgs> Router { get; set; } = null!;
+        [Input("router")]
+        public Input<Inputs.GatewayRouterArgs>? Router { get; set; }
 
         /// <summary>
         /// Zone in which the gateway will be hosted, e.g. `de-fra1`.
@@ -258,9 +262,8 @@ namespace UpCloud.Pulumi.UpCloud
         private InputList<Inputs.GatewayAddressGetArgs>? _addresses;
 
         /// <summary>
-        /// IP addresses assigned to the gateway.
+        /// Use 'address' attribute instead. This attribute will be removed in the next major version of the provider.
         /// </summary>
-        [Obsolete(@"Use 'address' attribute instead. This attribute will be removed in the next major version of the provider")]
         public InputList<Inputs.GatewayAddressGetArgs> Addresses
         {
             get => _addresses ?? (_addresses = new InputList<Inputs.GatewayAddressGetArgs>());
@@ -275,10 +278,6 @@ namespace UpCloud.Pulumi.UpCloud
 
         [Input("connections")]
         private InputList<string>? _connections;
-
-        /// <summary>
-        /// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
-        /// </summary>
         public InputList<string> Connections
         {
             get => _connections ?? (_connections = new InputList<string>());
@@ -301,7 +300,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// User defined key-value pairs to classify the network gateway.
+        /// User defined key-value pairs to classify the gateway.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -322,7 +321,7 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<string>? OperationalState { get; set; }
 
         /// <summary>
-        /// Gateway pricing plan.
+        /// Gateway pricing plan, defaults to `Development`. You can list available plans with `upctl gateway plans`.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }

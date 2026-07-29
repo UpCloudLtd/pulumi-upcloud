@@ -274,7 +274,8 @@ class GatewayConnectionTunnel(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        this = upcloud.Router("this", name="gateway-example-router")
+        this = upcloud.Router("this", name="gateway-example-router",
+        opts = pulumi.ResourceOptions(ignore_changes=[static_routes]))
         this_network = upcloud.Network("this",
             name="gateway-example-net",
             zone="pl-waw1",
@@ -338,7 +339,8 @@ class GatewayConnectionTunnel(pulumi.CustomResource):
         import pulumi
         import pulumi_upcloud as upcloud
 
-        this = upcloud.Router("this", name="gateway-example-router")
+        this = upcloud.Router("this", name="gateway-example-router",
+        opts = pulumi.ResourceOptions(ignore_changes=[static_routes]))
         this_network = upcloud.Network("this",
             name="gateway-example-net",
             zone="pl-waw1",

@@ -31,7 +31,9 @@ import (
 //			// Create router for the gateway
 //			this, err := upcloud.NewRouter(ctx, "this", &upcloud.RouterArgs{
 //				Name: pulumi.String("gateway-example-router"),
-//			})
+//			}, pulumi.IgnoreChanges([]string{
+//				staticRoutes,
+//			}))
 //			if err != nil {
 //				return err
 //			}
@@ -55,6 +57,7 @@ import (
 //				Features: pulumi.StringArray{
 //					pulumi.String("nat"),
 //				},
+//				Plan: pulumi.String("development"),
 //				Router: &upcloud.GatewayRouterArgs{
 //					Id: this.ID(),
 //				},
@@ -74,27 +77,24 @@ type Gateway struct {
 	pulumi.CustomResourceState
 
 	// IP addresses assigned to the gateway.
-	Address GatewayAddressOutput `pulumi:"address"`
-	// IP addresses assigned to the gateway.
-	//
-	// Deprecated: Use 'address' attribute instead. This attribute will be removed in the next major version of the provider
+	Address GatewayAddressPtrOutput `pulumi:"address"`
+	// Use 'address' attribute instead. This attribute will be removed in the next major version of the provider.
 	Addresses GatewayAddressArrayOutput `pulumi:"addresses"`
 	// The service configured status indicates the service's current intended status. Managed by the customer.
-	ConfiguredStatus pulumi.StringPtrOutput `pulumi:"configuredStatus"`
-	// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
-	Connections pulumi.StringArrayOutput `pulumi:"connections"`
+	ConfiguredStatus pulumi.StringOutput      `pulumi:"configuredStatus"`
+	Connections      pulumi.StringArrayOutput `pulumi:"connections"`
 	// Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
 	Features pulumi.StringArrayOutput `pulumi:"features"`
-	// User defined key-value pairs to classify the network gateway.
+	// User defined key-value pairs to classify the gateway.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Gateway name. Needs to be unique within the account.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The service operational state indicates the service's current operational, effective state. Managed by the system.
 	OperationalState pulumi.StringOutput `pulumi:"operationalState"`
-	// Gateway pricing plan.
+	// Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// Attached Router from where traffic is routed towards the network gateway service.
-	Router GatewayRouterOutput `pulumi:"router"`
+	Router GatewayRouterPtrOutput `pulumi:"router"`
 	// Zone in which the gateway will be hosted, e.g. `de-fra1`.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
@@ -108,9 +108,6 @@ func NewGateway(ctx *pulumi.Context,
 
 	if args.Features == nil {
 		return nil, errors.New("invalid value for required argument 'Features'")
-	}
-	if args.Router == nil {
-		return nil, errors.New("invalid value for required argument 'Router'")
 	}
 	if args.Zone == nil {
 		return nil, errors.New("invalid value for required argument 'Zone'")
@@ -140,23 +137,20 @@ func GetGateway(ctx *pulumi.Context,
 type gatewayState struct {
 	// IP addresses assigned to the gateway.
 	Address *GatewayAddress `pulumi:"address"`
-	// IP addresses assigned to the gateway.
-	//
-	// Deprecated: Use 'address' attribute instead. This attribute will be removed in the next major version of the provider
+	// Use 'address' attribute instead. This attribute will be removed in the next major version of the provider.
 	Addresses []GatewayAddress `pulumi:"addresses"`
 	// The service configured status indicates the service's current intended status. Managed by the customer.
-	ConfiguredStatus *string `pulumi:"configuredStatus"`
-	// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
-	Connections []string `pulumi:"connections"`
+	ConfiguredStatus *string  `pulumi:"configuredStatus"`
+	Connections      []string `pulumi:"connections"`
 	// Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
 	Features []string `pulumi:"features"`
-	// User defined key-value pairs to classify the network gateway.
+	// User defined key-value pairs to classify the gateway.
 	Labels map[string]string `pulumi:"labels"`
 	// Gateway name. Needs to be unique within the account.
 	Name *string `pulumi:"name"`
 	// The service operational state indicates the service's current operational, effective state. Managed by the system.
 	OperationalState *string `pulumi:"operationalState"`
-	// Gateway pricing plan.
+	// Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
 	Plan *string `pulumi:"plan"`
 	// Attached Router from where traffic is routed towards the network gateway service.
 	Router *GatewayRouter `pulumi:"router"`
@@ -167,23 +161,20 @@ type gatewayState struct {
 type GatewayState struct {
 	// IP addresses assigned to the gateway.
 	Address GatewayAddressPtrInput
-	// IP addresses assigned to the gateway.
-	//
-	// Deprecated: Use 'address' attribute instead. This attribute will be removed in the next major version of the provider
+	// Use 'address' attribute instead. This attribute will be removed in the next major version of the provider.
 	Addresses GatewayAddressArrayInput
 	// The service configured status indicates the service's current intended status. Managed by the customer.
 	ConfiguredStatus pulumi.StringPtrInput
-	// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
-	Connections pulumi.StringArrayInput
+	Connections      pulumi.StringArrayInput
 	// Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
 	Features pulumi.StringArrayInput
-	// User defined key-value pairs to classify the network gateway.
+	// User defined key-value pairs to classify the gateway.
 	Labels pulumi.StringMapInput
 	// Gateway name. Needs to be unique within the account.
 	Name pulumi.StringPtrInput
 	// The service operational state indicates the service's current operational, effective state. Managed by the system.
 	OperationalState pulumi.StringPtrInput
-	// Gateway pricing plan.
+	// Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
 	Plan pulumi.StringPtrInput
 	// Attached Router from where traffic is routed towards the network gateway service.
 	Router GatewayRouterPtrInput
@@ -202,14 +193,14 @@ type gatewayArgs struct {
 	ConfiguredStatus *string `pulumi:"configuredStatus"`
 	// Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
 	Features []string `pulumi:"features"`
-	// User defined key-value pairs to classify the network gateway.
+	// User defined key-value pairs to classify the gateway.
 	Labels map[string]string `pulumi:"labels"`
 	// Gateway name. Needs to be unique within the account.
 	Name *string `pulumi:"name"`
-	// Gateway pricing plan.
+	// Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
 	Plan *string `pulumi:"plan"`
 	// Attached Router from where traffic is routed towards the network gateway service.
-	Router GatewayRouter `pulumi:"router"`
+	Router *GatewayRouter `pulumi:"router"`
 	// Zone in which the gateway will be hosted, e.g. `de-fra1`.
 	Zone string `pulumi:"zone"`
 }
@@ -222,14 +213,14 @@ type GatewayArgs struct {
 	ConfiguredStatus pulumi.StringPtrInput
 	// Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
 	Features pulumi.StringArrayInput
-	// User defined key-value pairs to classify the network gateway.
+	// User defined key-value pairs to classify the gateway.
 	Labels pulumi.StringMapInput
 	// Gateway name. Needs to be unique within the account.
 	Name pulumi.StringPtrInput
-	// Gateway pricing plan.
+	// Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
 	Plan pulumi.StringPtrInput
 	// Attached Router from where traffic is routed towards the network gateway service.
-	Router GatewayRouterInput
+	Router GatewayRouterPtrInput
 	// Zone in which the gateway will be hosted, e.g. `de-fra1`.
 	Zone pulumi.StringInput
 }
@@ -322,23 +313,20 @@ func (o GatewayOutput) ToGatewayOutputWithContext(ctx context.Context) GatewayOu
 }
 
 // IP addresses assigned to the gateway.
-func (o GatewayOutput) Address() GatewayAddressOutput {
-	return o.ApplyT(func(v *Gateway) GatewayAddressOutput { return v.Address }).(GatewayAddressOutput)
+func (o GatewayOutput) Address() GatewayAddressPtrOutput {
+	return o.ApplyT(func(v *Gateway) GatewayAddressPtrOutput { return v.Address }).(GatewayAddressPtrOutput)
 }
 
-// IP addresses assigned to the gateway.
-//
-// Deprecated: Use 'address' attribute instead. This attribute will be removed in the next major version of the provider
+// Use 'address' attribute instead. This attribute will be removed in the next major version of the provider.
 func (o GatewayOutput) Addresses() GatewayAddressArrayOutput {
 	return o.ApplyT(func(v *Gateway) GatewayAddressArrayOutput { return v.Addresses }).(GatewayAddressArrayOutput)
 }
 
 // The service configured status indicates the service's current intended status. Managed by the customer.
-func (o GatewayOutput) ConfiguredStatus() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.ConfiguredStatus }).(pulumi.StringPtrOutput)
+func (o GatewayOutput) ConfiguredStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.ConfiguredStatus }).(pulumi.StringOutput)
 }
 
-// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
 func (o GatewayOutput) Connections() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringArrayOutput { return v.Connections }).(pulumi.StringArrayOutput)
 }
@@ -348,7 +336,7 @@ func (o GatewayOutput) Features() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringArrayOutput { return v.Features }).(pulumi.StringArrayOutput)
 }
 
-// User defined key-value pairs to classify the network gateway.
+// User defined key-value pairs to classify the gateway.
 func (o GatewayOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -363,14 +351,14 @@ func (o GatewayOutput) OperationalState() pulumi.StringOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.OperationalState }).(pulumi.StringOutput)
 }
 
-// Gateway pricing plan.
+// Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
 func (o GatewayOutput) Plan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.Plan }).(pulumi.StringOutput)
 }
 
 // Attached Router from where traffic is routed towards the network gateway service.
-func (o GatewayOutput) Router() GatewayRouterOutput {
-	return o.ApplyT(func(v *Gateway) GatewayRouterOutput { return v.Router }).(GatewayRouterOutput)
+func (o GatewayOutput) Router() GatewayRouterPtrOutput {
+	return o.ApplyT(func(v *Gateway) GatewayRouterPtrOutput { return v.Router }).(GatewayRouterPtrOutput)
 }
 
 // Zone in which the gateway will be hosted, e.g. `de-fra1`.

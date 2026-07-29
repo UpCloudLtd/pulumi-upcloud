@@ -100,6 +100,11 @@ export const getNetworks: typeof import("./getNetworks").getNetworks = null as a
 export const getNetworksOutput: typeof import("./getNetworks").getNetworksOutput = null as any;
 utilities.lazyLoad(exports, ["getNetworks","getNetworksOutput"], () => require("./getNetworks"));
 
+export { GetServerArgs, GetServerResult, GetServerOutputArgs } from "./getServer";
+export const getServer: typeof import("./getServer").getServer = null as any;
+export const getServerOutput: typeof import("./getServer").getServerOutput = null as any;
+utilities.lazyLoad(exports, ["getServer","getServerOutput"], () => require("./getServer"));
+
 export { GetStorageArgs, GetStorageResult, GetStorageOutputArgs } from "./getStorage";
 export const getStorage: typeof import("./getStorage").getStorage = null as any;
 export const getStorageOutput: typeof import("./getStorage").getStorageOutput = null as any;

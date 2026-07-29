@@ -16,14 +16,14 @@ public final class GatewayAddressArgs extends com.pulumi.resources.ResourceArgs 
     public static final GatewayAddressArgs Empty = new GatewayAddressArgs();
 
     /**
-     * IP addresss
+     * IP address.
      * 
      */
     @Import(name="address")
     private @Nullable Output<String> address;
 
     /**
-     * @return IP addresss
+     * @return IP address.
      * 
      */
     public Optional<Output<String>> address() {
@@ -31,14 +31,14 @@ public final class GatewayAddressArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Name of the IP address
+     * Name of the address.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Name of the IP address
+     * @return Name of the address.
      * 
      */
     public Optional<Output<String>> name() {
@@ -71,7 +71,7 @@ public final class GatewayAddressArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param address IP addresss
+         * @param address IP address.
          * 
          * @return builder
          * 
@@ -82,7 +82,7 @@ public final class GatewayAddressArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param address IP addresss
+         * @param address IP address.
          * 
          * @return builder
          * 
@@ -92,7 +92,7 @@ public final class GatewayAddressArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param name Name of the IP address
+         * @param name Name of the address.
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class GatewayAddressArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param name Name of the IP address
+         * @param name Name of the address.
          * 
          * @return builder
          * 

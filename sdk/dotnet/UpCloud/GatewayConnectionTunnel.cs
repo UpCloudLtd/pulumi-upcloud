@@ -24,6 +24,12 @@ namespace UpCloud.Pulumi.UpCloud
     ///     var @this = new UpCloud.Router("this", new()
     ///     {
     ///         Name = "gateway-example-router",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         IgnoreChanges =
+    ///         {
+    ///             "staticRoutes",
+    ///         },
     ///     });
     /// 
     ///     var thisNetwork = new UpCloud.Network("this", new()
@@ -83,7 +89,7 @@ namespace UpCloud.Pulumi.UpCloud
     ///     {
     ///         ConnectionId = thisGatewayConnection.Id,
     ///         Name = "test-tunnel",
-    ///         LocalAddressName = thisGateway.Address.Apply(address =&gt; address[0].Name),
+    ///         LocalAddressName = thisGateway.Address.Apply(address =&gt; address[0]?.Name),
     ///         RemoteAddress = "100.123.123.10",
     ///         IpsecAuthPsk = new UpCloud.Inputs.GatewayConnectionTunnelIpsecAuthPskArgs
     ///         {

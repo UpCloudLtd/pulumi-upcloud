@@ -74,6 +74,12 @@ namespace UpCloud.Pulumi.UpCloud
         ///         {
         ///             Storage = appImage.Apply(getStorageResult =&gt; getStorageResult.Id),
         ///         },
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         IgnoreChanges =
+        ///         {
+        ///             "template.Storage",
+        ///         },
         ///     });
         /// 
         /// });
@@ -144,6 +150,12 @@ namespace UpCloud.Pulumi.UpCloud
         ///         {
         ///             Storage = appImage.Apply(getStorageResult =&gt; getStorageResult.Id),
         ///         },
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         IgnoreChanges =
+        ///         {
+        ///             "template.Storage",
+        ///         },
         ///     });
         /// 
         /// });
@@ -213,6 +225,12 @@ namespace UpCloud.Pulumi.UpCloud
         ///         Template = new UpCloud.Inputs.ServerTemplateArgs
         ///         {
         ///             Storage = appImage.Apply(getStorageResult =&gt; getStorageResult.Id),
+        ///         },
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         IgnoreChanges =
+        ///         {
+        ///             "template.Storage",
         ///         },
         ///     });
         /// 

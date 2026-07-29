@@ -15,11 +15,11 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
     public sealed class GatewayAddress
     {
         /// <summary>
-        /// IP addresss
+        /// IP address.
         /// </summary>
         public readonly string? Address;
         /// <summary>
-        /// Name of the IP address
+        /// Name of the address.
         /// </summary>
         public readonly string? Name;
 

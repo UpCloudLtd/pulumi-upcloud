@@ -388,9 +388,9 @@ func (o FirewallRulesetRuleArrayOutput) Index(i pulumi.IntInput) FirewallRuleset
 }
 
 type GatewayAddress struct {
-	// IP addresss
+	// IP address.
 	Address *string `pulumi:"address"`
-	// Name of the IP address
+	// Name of the address.
 	Name *string `pulumi:"name"`
 }
 
@@ -406,9 +406,9 @@ type GatewayAddressInput interface {
 }
 
 type GatewayAddressArgs struct {
-	// IP addresss
+	// IP address.
 	Address pulumi.StringPtrInput `pulumi:"address"`
-	// Name of the IP address
+	// Name of the address.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -514,12 +514,12 @@ func (o GatewayAddressOutput) ToGatewayAddressPtrOutputWithContext(ctx context.C
 	}).(GatewayAddressPtrOutput)
 }
 
-// IP addresss
+// IP address.
 func (o GatewayAddressOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GatewayAddress) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
 
-// Name of the IP address
+// Name of the address.
 func (o GatewayAddressOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GatewayAddress) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -548,7 +548,7 @@ func (o GatewayAddressPtrOutput) Elem() GatewayAddressOutput {
 	}).(GatewayAddressOutput)
 }
 
-// IP addresss
+// IP address.
 func (o GatewayAddressPtrOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GatewayAddress) *string {
 		if v == nil {
@@ -558,7 +558,7 @@ func (o GatewayAddressPtrOutput) Address() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Name of the IP address
+// Name of the address.
 func (o GatewayAddressPtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GatewayAddress) *string {
 		if v == nil {
@@ -27587,6 +27587,301 @@ func (o GetNetworksNetworkServerArrayOutput) Index(i pulumi.IntInput) GetNetwork
 	}).(GetNetworksNetworkServerOutput)
 }
 
+type GetServerNetworkInterface struct {
+	// Additional IP addresses for this interface. Only available for private network interfaces.
+	AdditionalIpAddresses []GetServerNetworkInterfaceAdditionalIpAddress `pulumi:"additionalIpAddresses"`
+	// `true` indicates that the server can boot from this interface.
+	Bootable bool `pulumi:"bootable"`
+	// The interface index.
+	Index int `pulumi:"index"`
+	// The primary IP address of this interface.
+	IpAddress string `pulumi:"ipAddress"`
+	// The type of the primary IP address (`IPv4` or `IPv6`).
+	IpAddressFamily string `pulumi:"ipAddressFamily"`
+	// `true` indicates that the primary IP address is a floating IP address.
+	IpAddressFloating bool `pulumi:"ipAddressFloating"`
+	// The MAC address of the interface.
+	MacAddress string `pulumi:"macAddress"`
+	// The UUID of the network the interface is attached to.
+	Network string `pulumi:"network"`
+	// `true` indicates that source IP filtering is enabled for this interface.
+	SourceIpFiltering bool `pulumi:"sourceIpFiltering"`
+	// The type of the network interface (`public`, `private`, or `utility`).
+	Type string `pulumi:"type"`
+}
+
+// GetServerNetworkInterfaceInput is an input type that accepts GetServerNetworkInterfaceArgs and GetServerNetworkInterfaceOutput values.
+// You can construct a concrete instance of `GetServerNetworkInterfaceInput` via:
+//
+//	GetServerNetworkInterfaceArgs{...}
+type GetServerNetworkInterfaceInput interface {
+	pulumi.Input
+
+	ToGetServerNetworkInterfaceOutput() GetServerNetworkInterfaceOutput
+	ToGetServerNetworkInterfaceOutputWithContext(context.Context) GetServerNetworkInterfaceOutput
+}
+
+type GetServerNetworkInterfaceArgs struct {
+	// Additional IP addresses for this interface. Only available for private network interfaces.
+	AdditionalIpAddresses GetServerNetworkInterfaceAdditionalIpAddressArrayInput `pulumi:"additionalIpAddresses"`
+	// `true` indicates that the server can boot from this interface.
+	Bootable pulumi.BoolInput `pulumi:"bootable"`
+	// The interface index.
+	Index pulumi.IntInput `pulumi:"index"`
+	// The primary IP address of this interface.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// The type of the primary IP address (`IPv4` or `IPv6`).
+	IpAddressFamily pulumi.StringInput `pulumi:"ipAddressFamily"`
+	// `true` indicates that the primary IP address is a floating IP address.
+	IpAddressFloating pulumi.BoolInput `pulumi:"ipAddressFloating"`
+	// The MAC address of the interface.
+	MacAddress pulumi.StringInput `pulumi:"macAddress"`
+	// The UUID of the network the interface is attached to.
+	Network pulumi.StringInput `pulumi:"network"`
+	// `true` indicates that source IP filtering is enabled for this interface.
+	SourceIpFiltering pulumi.BoolInput `pulumi:"sourceIpFiltering"`
+	// The type of the network interface (`public`, `private`, or `utility`).
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetServerNetworkInterfaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerNetworkInterface)(nil)).Elem()
+}
+
+func (i GetServerNetworkInterfaceArgs) ToGetServerNetworkInterfaceOutput() GetServerNetworkInterfaceOutput {
+	return i.ToGetServerNetworkInterfaceOutputWithContext(context.Background())
+}
+
+func (i GetServerNetworkInterfaceArgs) ToGetServerNetworkInterfaceOutputWithContext(ctx context.Context) GetServerNetworkInterfaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerNetworkInterfaceOutput)
+}
+
+// GetServerNetworkInterfaceArrayInput is an input type that accepts GetServerNetworkInterfaceArray and GetServerNetworkInterfaceArrayOutput values.
+// You can construct a concrete instance of `GetServerNetworkInterfaceArrayInput` via:
+//
+//	GetServerNetworkInterfaceArray{ GetServerNetworkInterfaceArgs{...} }
+type GetServerNetworkInterfaceArrayInput interface {
+	pulumi.Input
+
+	ToGetServerNetworkInterfaceArrayOutput() GetServerNetworkInterfaceArrayOutput
+	ToGetServerNetworkInterfaceArrayOutputWithContext(context.Context) GetServerNetworkInterfaceArrayOutput
+}
+
+type GetServerNetworkInterfaceArray []GetServerNetworkInterfaceInput
+
+func (GetServerNetworkInterfaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerNetworkInterface)(nil)).Elem()
+}
+
+func (i GetServerNetworkInterfaceArray) ToGetServerNetworkInterfaceArrayOutput() GetServerNetworkInterfaceArrayOutput {
+	return i.ToGetServerNetworkInterfaceArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerNetworkInterfaceArray) ToGetServerNetworkInterfaceArrayOutputWithContext(ctx context.Context) GetServerNetworkInterfaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerNetworkInterfaceArrayOutput)
+}
+
+type GetServerNetworkInterfaceOutput struct{ *pulumi.OutputState }
+
+func (GetServerNetworkInterfaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerNetworkInterface)(nil)).Elem()
+}
+
+func (o GetServerNetworkInterfaceOutput) ToGetServerNetworkInterfaceOutput() GetServerNetworkInterfaceOutput {
+	return o
+}
+
+func (o GetServerNetworkInterfaceOutput) ToGetServerNetworkInterfaceOutputWithContext(ctx context.Context) GetServerNetworkInterfaceOutput {
+	return o
+}
+
+// Additional IP addresses for this interface. Only available for private network interfaces.
+func (o GetServerNetworkInterfaceOutput) AdditionalIpAddresses() GetServerNetworkInterfaceAdditionalIpAddressArrayOutput {
+	return o.ApplyT(func(v GetServerNetworkInterface) []GetServerNetworkInterfaceAdditionalIpAddress {
+		return v.AdditionalIpAddresses
+	}).(GetServerNetworkInterfaceAdditionalIpAddressArrayOutput)
+}
+
+// `true` indicates that the server can boot from this interface.
+func (o GetServerNetworkInterfaceOutput) Bootable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServerNetworkInterface) bool { return v.Bootable }).(pulumi.BoolOutput)
+}
+
+// The interface index.
+func (o GetServerNetworkInterfaceOutput) Index() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerNetworkInterface) int { return v.Index }).(pulumi.IntOutput)
+}
+
+// The primary IP address of this interface.
+func (o GetServerNetworkInterfaceOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerNetworkInterface) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// The type of the primary IP address (`IPv4` or `IPv6`).
+func (o GetServerNetworkInterfaceOutput) IpAddressFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerNetworkInterface) string { return v.IpAddressFamily }).(pulumi.StringOutput)
+}
+
+// `true` indicates that the primary IP address is a floating IP address.
+func (o GetServerNetworkInterfaceOutput) IpAddressFloating() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServerNetworkInterface) bool { return v.IpAddressFloating }).(pulumi.BoolOutput)
+}
+
+// The MAC address of the interface.
+func (o GetServerNetworkInterfaceOutput) MacAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerNetworkInterface) string { return v.MacAddress }).(pulumi.StringOutput)
+}
+
+// The UUID of the network the interface is attached to.
+func (o GetServerNetworkInterfaceOutput) Network() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerNetworkInterface) string { return v.Network }).(pulumi.StringOutput)
+}
+
+// `true` indicates that source IP filtering is enabled for this interface.
+func (o GetServerNetworkInterfaceOutput) SourceIpFiltering() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServerNetworkInterface) bool { return v.SourceIpFiltering }).(pulumi.BoolOutput)
+}
+
+// The type of the network interface (`public`, `private`, or `utility`).
+func (o GetServerNetworkInterfaceOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerNetworkInterface) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetServerNetworkInterfaceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerNetworkInterfaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerNetworkInterface)(nil)).Elem()
+}
+
+func (o GetServerNetworkInterfaceArrayOutput) ToGetServerNetworkInterfaceArrayOutput() GetServerNetworkInterfaceArrayOutput {
+	return o
+}
+
+func (o GetServerNetworkInterfaceArrayOutput) ToGetServerNetworkInterfaceArrayOutputWithContext(ctx context.Context) GetServerNetworkInterfaceArrayOutput {
+	return o
+}
+
+func (o GetServerNetworkInterfaceArrayOutput) Index(i pulumi.IntInput) GetServerNetworkInterfaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerNetworkInterface {
+		return vs[0].([]GetServerNetworkInterface)[vs[1].(int)]
+	}).(GetServerNetworkInterfaceOutput)
+}
+
+type GetServerNetworkInterfaceAdditionalIpAddress struct {
+	// An additional IP address for this interface.
+	IpAddress string `pulumi:"ipAddress"`
+	// The type of the additional IP address (`IPv4` or `IPv6`).
+	IpAddressFamily string `pulumi:"ipAddressFamily"`
+	// `true` indicates that the additional IP address is a floating IP address.
+	IpAddressFloating bool `pulumi:"ipAddressFloating"`
+}
+
+// GetServerNetworkInterfaceAdditionalIpAddressInput is an input type that accepts GetServerNetworkInterfaceAdditionalIpAddressArgs and GetServerNetworkInterfaceAdditionalIpAddressOutput values.
+// You can construct a concrete instance of `GetServerNetworkInterfaceAdditionalIpAddressInput` via:
+//
+//	GetServerNetworkInterfaceAdditionalIpAddressArgs{...}
+type GetServerNetworkInterfaceAdditionalIpAddressInput interface {
+	pulumi.Input
+
+	ToGetServerNetworkInterfaceAdditionalIpAddressOutput() GetServerNetworkInterfaceAdditionalIpAddressOutput
+	ToGetServerNetworkInterfaceAdditionalIpAddressOutputWithContext(context.Context) GetServerNetworkInterfaceAdditionalIpAddressOutput
+}
+
+type GetServerNetworkInterfaceAdditionalIpAddressArgs struct {
+	// An additional IP address for this interface.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// The type of the additional IP address (`IPv4` or `IPv6`).
+	IpAddressFamily pulumi.StringInput `pulumi:"ipAddressFamily"`
+	// `true` indicates that the additional IP address is a floating IP address.
+	IpAddressFloating pulumi.BoolInput `pulumi:"ipAddressFloating"`
+}
+
+func (GetServerNetworkInterfaceAdditionalIpAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerNetworkInterfaceAdditionalIpAddress)(nil)).Elem()
+}
+
+func (i GetServerNetworkInterfaceAdditionalIpAddressArgs) ToGetServerNetworkInterfaceAdditionalIpAddressOutput() GetServerNetworkInterfaceAdditionalIpAddressOutput {
+	return i.ToGetServerNetworkInterfaceAdditionalIpAddressOutputWithContext(context.Background())
+}
+
+func (i GetServerNetworkInterfaceAdditionalIpAddressArgs) ToGetServerNetworkInterfaceAdditionalIpAddressOutputWithContext(ctx context.Context) GetServerNetworkInterfaceAdditionalIpAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerNetworkInterfaceAdditionalIpAddressOutput)
+}
+
+// GetServerNetworkInterfaceAdditionalIpAddressArrayInput is an input type that accepts GetServerNetworkInterfaceAdditionalIpAddressArray and GetServerNetworkInterfaceAdditionalIpAddressArrayOutput values.
+// You can construct a concrete instance of `GetServerNetworkInterfaceAdditionalIpAddressArrayInput` via:
+//
+//	GetServerNetworkInterfaceAdditionalIpAddressArray{ GetServerNetworkInterfaceAdditionalIpAddressArgs{...} }
+type GetServerNetworkInterfaceAdditionalIpAddressArrayInput interface {
+	pulumi.Input
+
+	ToGetServerNetworkInterfaceAdditionalIpAddressArrayOutput() GetServerNetworkInterfaceAdditionalIpAddressArrayOutput
+	ToGetServerNetworkInterfaceAdditionalIpAddressArrayOutputWithContext(context.Context) GetServerNetworkInterfaceAdditionalIpAddressArrayOutput
+}
+
+type GetServerNetworkInterfaceAdditionalIpAddressArray []GetServerNetworkInterfaceAdditionalIpAddressInput
+
+func (GetServerNetworkInterfaceAdditionalIpAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerNetworkInterfaceAdditionalIpAddress)(nil)).Elem()
+}
+
+func (i GetServerNetworkInterfaceAdditionalIpAddressArray) ToGetServerNetworkInterfaceAdditionalIpAddressArrayOutput() GetServerNetworkInterfaceAdditionalIpAddressArrayOutput {
+	return i.ToGetServerNetworkInterfaceAdditionalIpAddressArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerNetworkInterfaceAdditionalIpAddressArray) ToGetServerNetworkInterfaceAdditionalIpAddressArrayOutputWithContext(ctx context.Context) GetServerNetworkInterfaceAdditionalIpAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerNetworkInterfaceAdditionalIpAddressArrayOutput)
+}
+
+type GetServerNetworkInterfaceAdditionalIpAddressOutput struct{ *pulumi.OutputState }
+
+func (GetServerNetworkInterfaceAdditionalIpAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerNetworkInterfaceAdditionalIpAddress)(nil)).Elem()
+}
+
+func (o GetServerNetworkInterfaceAdditionalIpAddressOutput) ToGetServerNetworkInterfaceAdditionalIpAddressOutput() GetServerNetworkInterfaceAdditionalIpAddressOutput {
+	return o
+}
+
+func (o GetServerNetworkInterfaceAdditionalIpAddressOutput) ToGetServerNetworkInterfaceAdditionalIpAddressOutputWithContext(ctx context.Context) GetServerNetworkInterfaceAdditionalIpAddressOutput {
+	return o
+}
+
+// An additional IP address for this interface.
+func (o GetServerNetworkInterfaceAdditionalIpAddressOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerNetworkInterfaceAdditionalIpAddress) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// The type of the additional IP address (`IPv4` or `IPv6`).
+func (o GetServerNetworkInterfaceAdditionalIpAddressOutput) IpAddressFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerNetworkInterfaceAdditionalIpAddress) string { return v.IpAddressFamily }).(pulumi.StringOutput)
+}
+
+// `true` indicates that the additional IP address is a floating IP address.
+func (o GetServerNetworkInterfaceAdditionalIpAddressOutput) IpAddressFloating() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServerNetworkInterfaceAdditionalIpAddress) bool { return v.IpAddressFloating }).(pulumi.BoolOutput)
+}
+
+type GetServerNetworkInterfaceAdditionalIpAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerNetworkInterfaceAdditionalIpAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerNetworkInterfaceAdditionalIpAddress)(nil)).Elem()
+}
+
+func (o GetServerNetworkInterfaceAdditionalIpAddressArrayOutput) ToGetServerNetworkInterfaceAdditionalIpAddressArrayOutput() GetServerNetworkInterfaceAdditionalIpAddressArrayOutput {
+	return o
+}
+
+func (o GetServerNetworkInterfaceAdditionalIpAddressArrayOutput) ToGetServerNetworkInterfaceAdditionalIpAddressArrayOutputWithContext(ctx context.Context) GetServerNetworkInterfaceAdditionalIpAddressArrayOutput {
+	return o
+}
+
+func (o GetServerNetworkInterfaceAdditionalIpAddressArrayOutput) Index(i pulumi.IntInput) GetServerNetworkInterfaceAdditionalIpAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerNetworkInterfaceAdditionalIpAddress {
+		return vs[0].([]GetServerNetworkInterfaceAdditionalIpAddress)[vs[1].(int)]
+	}).(GetServerNetworkInterfaceAdditionalIpAddressOutput)
+}
+
 type GetTagsTag struct {
 	// Free form text representing the meaning of the tag
 	Description string `pulumi:"description"`
@@ -27982,6 +28277,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworksNetworkIpNetworkArrayInput)(nil)).Elem(), GetNetworksNetworkIpNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworksNetworkServerInput)(nil)).Elem(), GetNetworksNetworkServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworksNetworkServerArrayInput)(nil)).Elem(), GetNetworksNetworkServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerNetworkInterfaceInput)(nil)).Elem(), GetServerNetworkInterfaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerNetworkInterfaceArrayInput)(nil)).Elem(), GetServerNetworkInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerNetworkInterfaceAdditionalIpAddressInput)(nil)).Elem(), GetServerNetworkInterfaceAdditionalIpAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerNetworkInterfaceAdditionalIpAddressArrayInput)(nil)).Elem(), GetServerNetworkInterfaceAdditionalIpAddressArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsTagInput)(nil)).Elem(), GetTagsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsTagArrayInput)(nil)).Elem(), GetTagsTagArray{})
 	pulumi.RegisterOutputType(FileStorageNetworkOutput{})
@@ -28263,6 +28562,10 @@ func init() {
 	pulumi.RegisterOutputType(GetNetworksNetworkIpNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetNetworksNetworkServerOutput{})
 	pulumi.RegisterOutputType(GetNetworksNetworkServerArrayOutput{})
+	pulumi.RegisterOutputType(GetServerNetworkInterfaceOutput{})
+	pulumi.RegisterOutputType(GetServerNetworkInterfaceArrayOutput{})
+	pulumi.RegisterOutputType(GetServerNetworkInterfaceAdditionalIpAddressOutput{})
+	pulumi.RegisterOutputType(GetServerNetworkInterfaceAdditionalIpAddressArrayOutput{})
 	pulumi.RegisterOutputType(GetTagsTagOutput{})
 	pulumi.RegisterOutputType(GetTagsTagArrayOutput{})
 }

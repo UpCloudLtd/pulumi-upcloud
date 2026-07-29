@@ -214,7 +214,8 @@ def get_storage(access_type: Optional[_builtins.str] = None,
         }],
         template={
             "storage": app_image.id,
-        })
+        },
+        opts = pulumi.ResourceOptions(ignore_changes=["template.storage"]))
     ```
     """
     __args__ = dict()
@@ -292,7 +293,8 @@ def get_storage_output(access_type: Optional[pulumi.Input[Optional[_builtins.str
         }],
         template={
             "storage": app_image.id,
-        })
+        },
+        opts = pulumi.ResourceOptions(ignore_changes=["template.storage"]))
     ```
     """
     __args__ = dict()

@@ -37,7 +37,9 @@ import (
 //					Dhcp:    pulumi.Bool(true),
 //					Family:  pulumi.String("IPv4"),
 //				},
-//			})
+//			}, pulumi.IgnoreChanges([]string{
+//				"router",
+//			}))
 //			if err != nil {
 //				return err
 //			}

@@ -35,24 +35,16 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * IP addresses assigned to the gateway.
-     * 
-     * @deprecated
-     * Use &#39;address&#39; attribute instead. This attribute will be removed in the next major version of the provider
+     * Use &#39;address&#39; attribute instead. This attribute will be removed in the next major version of the provider.
      * 
      */
-    @Deprecated /* Use 'address' attribute instead. This attribute will be removed in the next major version of the provider */
     @Import(name="addresses")
     private @Nullable Output<List<GatewayAddressArgs>> addresses;
 
     /**
-     * @return IP addresses assigned to the gateway.
-     * 
-     * @deprecated
-     * Use &#39;address&#39; attribute instead. This attribute will be removed in the next major version of the provider
+     * @return Use &#39;address&#39; attribute instead. This attribute will be removed in the next major version of the provider.
      * 
      */
-    @Deprecated /* Use 'address' attribute instead. This attribute will be removed in the next major version of the provider */
     public Optional<Output<List<GatewayAddressArgs>>> addresses() {
         return Optional.ofNullable(this.addresses);
     }
@@ -72,17 +64,9 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.configuredStatus);
     }
 
-    /**
-     * Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
-     * 
-     */
     @Import(name="connections")
     private @Nullable Output<List<String>> connections;
 
-    /**
-     * @return Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
-     * 
-     */
     public Optional<Output<List<String>>> connections() {
         return Optional.ofNullable(this.connections);
     }
@@ -103,14 +87,14 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * User defined key-value pairs to classify the network gateway.
+     * User defined key-value pairs to classify the gateway.
      * 
      */
     @Import(name="labels")
     private @Nullable Output<Map<String,String>> labels;
 
     /**
-     * @return User defined key-value pairs to classify the network gateway.
+     * @return User defined key-value pairs to classify the gateway.
      * 
      */
     public Optional<Output<Map<String,String>>> labels() {
@@ -148,14 +132,14 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Gateway pricing plan.
+     * Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
      * 
      */
     @Import(name="plan")
     private @Nullable Output<String> plan;
 
     /**
-     * @return Gateway pricing plan.
+     * @return Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
      * 
      */
     public Optional<Output<String>> plan() {
@@ -248,44 +232,32 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param addresses IP addresses assigned to the gateway.
+         * @param addresses Use &#39;address&#39; attribute instead. This attribute will be removed in the next major version of the provider.
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use &#39;address&#39; attribute instead. This attribute will be removed in the next major version of the provider
-         * 
          */
-        @Deprecated /* Use 'address' attribute instead. This attribute will be removed in the next major version of the provider */
         public Builder addresses(@Nullable Output<List<GatewayAddressArgs>> addresses) {
             $.addresses = addresses;
             return this;
         }
 
         /**
-         * @param addresses IP addresses assigned to the gateway.
+         * @param addresses Use &#39;address&#39; attribute instead. This attribute will be removed in the next major version of the provider.
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use &#39;address&#39; attribute instead. This attribute will be removed in the next major version of the provider
-         * 
          */
-        @Deprecated /* Use 'address' attribute instead. This attribute will be removed in the next major version of the provider */
         public Builder addresses(List<GatewayAddressArgs> addresses) {
             return addresses(Output.of(addresses));
         }
 
         /**
-         * @param addresses IP addresses assigned to the gateway.
+         * @param addresses Use &#39;address&#39; attribute instead. This attribute will be removed in the next major version of the provider.
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use &#39;address&#39; attribute instead. This attribute will be removed in the next major version of the provider
-         * 
          */
-        @Deprecated /* Use 'address' attribute instead. This attribute will be removed in the next major version of the provider */
         public Builder addresses(GatewayAddressArgs... addresses) {
             return addresses(List.of(addresses));
         }
@@ -311,33 +283,15 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
             return configuredStatus(Output.of(configuredStatus));
         }
 
-        /**
-         * @param connections Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
-         * 
-         * @return builder
-         * 
-         */
         public Builder connections(@Nullable Output<List<String>> connections) {
             $.connections = connections;
             return this;
         }
 
-        /**
-         * @param connections Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
-         * 
-         * @return builder
-         * 
-         */
         public Builder connections(List<String> connections) {
             return connections(Output.of(connections));
         }
 
-        /**
-         * @param connections Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
-         * 
-         * @return builder
-         * 
-         */
         public Builder connections(String... connections) {
             return connections(List.of(connections));
         }
@@ -374,7 +328,7 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels User defined key-value pairs to classify the network gateway.
+         * @param labels User defined key-value pairs to classify the gateway.
          * 
          * @return builder
          * 
@@ -385,7 +339,7 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels User defined key-value pairs to classify the network gateway.
+         * @param labels User defined key-value pairs to classify the gateway.
          * 
          * @return builder
          * 
@@ -437,7 +391,7 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param plan Gateway pricing plan.
+         * @param plan Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
          * 
          * @return builder
          * 
@@ -448,7 +402,7 @@ public final class GatewayState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param plan Gateway pricing plan.
+         * @param plan Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
          * 
          * @return builder
          * 

@@ -101,11 +101,11 @@ export interface FirewallRulesetRule {
 
 export interface GatewayAddress {
     /**
-     * IP addresss
+     * IP address.
      */
     address?: pulumi.Input<string>;
     /**
-     * Name of the IP address
+     * Name of the address.
      */
     name?: pulumi.Input<string>;
 }

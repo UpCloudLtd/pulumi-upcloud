@@ -27,7 +27,6 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Use Kubernetes provider to access your Kubernetes cluster
 //			// Create a network for the Kubernetes cluster
 //			exampleNetwork, err := upcloud.NewNetwork(ctx, "example", &upcloud.NetworkArgs{
 //				Name: pulumi.String("example-network"),

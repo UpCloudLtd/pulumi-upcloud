@@ -155,6 +155,8 @@ __all__ = [
     'GetNetworksNetworkResult',
     'GetNetworksNetworkIpNetworkResult',
     'GetNetworksNetworkServerResult',
+    'GetServerNetworkInterfaceResult',
+    'GetServerNetworkInterfaceAdditionalIpAddressResult',
     'GetTagsTagResult',
 ]
 
@@ -490,8 +492,8 @@ class GatewayAddress(dict):
                  address: Optional[_builtins.str] = None,
                  name: Optional[_builtins.str] = None):
         """
-        :param _builtins.str address: IP addresss
-        :param _builtins.str name: Name of the IP address
+        :param _builtins.str address: IP address.
+        :param _builtins.str name: Name of the address.
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -502,7 +504,7 @@ class GatewayAddress(dict):
     @pulumi.getter
     def address(self) -> Optional[_builtins.str]:
         """
-        IP addresss
+        IP address.
         """
         return pulumi.get(self, "address")
 
@@ -510,7 +512,7 @@ class GatewayAddress(dict):
     @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
         """
-        Name of the IP address
+        Name of the address.
         """
         return pulumi.get(self, "name")
 
@@ -13463,6 +13465,163 @@ class GetNetworksNetworkServerResult(dict):
         The short description of the server
         """
         return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class GetServerNetworkInterfaceResult(dict):
+    def __init__(__self__, *,
+                 additional_ip_addresses: Sequence['outputs.GetServerNetworkInterfaceAdditionalIpAddressResult'],
+                 bootable: _builtins.bool,
+                 index: _builtins.int,
+                 ip_address: _builtins.str,
+                 ip_address_family: _builtins.str,
+                 ip_address_floating: _builtins.bool,
+                 mac_address: _builtins.str,
+                 network: _builtins.str,
+                 source_ip_filtering: _builtins.bool,
+                 type: _builtins.str):
+        """
+        :param Sequence['GetServerNetworkInterfaceAdditionalIpAddressArgs'] additional_ip_addresses: Additional IP addresses for this interface. Only available for private network interfaces.
+        :param _builtins.bool bootable: `true` indicates that the server can boot from this interface.
+        :param _builtins.int index: The interface index.
+        :param _builtins.str ip_address: The primary IP address of this interface.
+        :param _builtins.str ip_address_family: The type of the primary IP address (`IPv4` or `IPv6`).
+        :param _builtins.bool ip_address_floating: `true` indicates that the primary IP address is a floating IP address.
+        :param _builtins.str mac_address: The MAC address of the interface.
+        :param _builtins.str network: The UUID of the network the interface is attached to.
+        :param _builtins.bool source_ip_filtering: `true` indicates that source IP filtering is enabled for this interface.
+        :param _builtins.str type: The type of the network interface (`public`, `private`, or `utility`).
+        """
+        pulumi.set(__self__, "additional_ip_addresses", additional_ip_addresses)
+        pulumi.set(__self__, "bootable", bootable)
+        pulumi.set(__self__, "index", index)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "ip_address_family", ip_address_family)
+        pulumi.set(__self__, "ip_address_floating", ip_address_floating)
+        pulumi.set(__self__, "mac_address", mac_address)
+        pulumi.set(__self__, "network", network)
+        pulumi.set(__self__, "source_ip_filtering", source_ip_filtering)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalIpAddresses")
+    def additional_ip_addresses(self) -> Sequence['outputs.GetServerNetworkInterfaceAdditionalIpAddressResult']:
+        """
+        Additional IP addresses for this interface. Only available for private network interfaces.
+        """
+        return pulumi.get(self, "additional_ip_addresses")
+
+    @_builtins.property
+    @pulumi.getter
+    def bootable(self) -> _builtins.bool:
+        """
+        `true` indicates that the server can boot from this interface.
+        """
+        return pulumi.get(self, "bootable")
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> _builtins.int:
+        """
+        The interface index.
+        """
+        return pulumi.get(self, "index")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        The primary IP address of this interface.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddressFamily")
+    def ip_address_family(self) -> _builtins.str:
+        """
+        The type of the primary IP address (`IPv4` or `IPv6`).
+        """
+        return pulumi.get(self, "ip_address_family")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddressFloating")
+    def ip_address_floating(self) -> _builtins.bool:
+        """
+        `true` indicates that the primary IP address is a floating IP address.
+        """
+        return pulumi.get(self, "ip_address_floating")
+
+    @_builtins.property
+    @pulumi.getter(name="macAddress")
+    def mac_address(self) -> _builtins.str:
+        """
+        The MAC address of the interface.
+        """
+        return pulumi.get(self, "mac_address")
+
+    @_builtins.property
+    @pulumi.getter
+    def network(self) -> _builtins.str:
+        """
+        The UUID of the network the interface is attached to.
+        """
+        return pulumi.get(self, "network")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceIpFiltering")
+    def source_ip_filtering(self) -> _builtins.bool:
+        """
+        `true` indicates that source IP filtering is enabled for this interface.
+        """
+        return pulumi.get(self, "source_ip_filtering")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the network interface (`public`, `private`, or `utility`).
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetServerNetworkInterfaceAdditionalIpAddressResult(dict):
+    def __init__(__self__, *,
+                 ip_address: _builtins.str,
+                 ip_address_family: _builtins.str,
+                 ip_address_floating: _builtins.bool):
+        """
+        :param _builtins.str ip_address: An additional IP address for this interface.
+        :param _builtins.str ip_address_family: The type of the additional IP address (`IPv4` or `IPv6`).
+        :param _builtins.bool ip_address_floating: `true` indicates that the additional IP address is a floating IP address.
+        """
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "ip_address_family", ip_address_family)
+        pulumi.set(__self__, "ip_address_floating", ip_address_floating)
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        An additional IP address for this interface.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddressFamily")
+    def ip_address_family(self) -> _builtins.str:
+        """
+        The type of the additional IP address (`IPv4` or `IPv6`).
+        """
+        return pulumi.get(self, "ip_address_family")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddressFloating")
+    def ip_address_floating(self) -> _builtins.bool:
+        """
+        `true` indicates that the additional IP address is a floating IP address.
+        """
+        return pulumi.get(self, "ip_address_floating")
 
 
 @pulumi.output_type

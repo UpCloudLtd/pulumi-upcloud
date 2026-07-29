@@ -66,14 +66,14 @@ public final class GatewayArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * User defined key-value pairs to classify the network gateway.
+     * User defined key-value pairs to classify the gateway.
      * 
      */
     @Import(name="labels")
     private @Nullable Output<Map<String,String>> labels;
 
     /**
-     * @return User defined key-value pairs to classify the network gateway.
+     * @return User defined key-value pairs to classify the gateway.
      * 
      */
     public Optional<Output<Map<String,String>>> labels() {
@@ -96,14 +96,14 @@ public final class GatewayArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Gateway pricing plan.
+     * Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
      * 
      */
     @Import(name="plan")
     private @Nullable Output<String> plan;
 
     /**
-     * @return Gateway pricing plan.
+     * @return Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
      * 
      */
     public Optional<Output<String>> plan() {
@@ -114,15 +114,15 @@ public final class GatewayArgs extends com.pulumi.resources.ResourceArgs {
      * Attached Router from where traffic is routed towards the network gateway service.
      * 
      */
-    @Import(name="router", required=true)
-    private Output<GatewayRouterArgs> router;
+    @Import(name="router")
+    private @Nullable Output<GatewayRouterArgs> router;
 
     /**
      * @return Attached Router from where traffic is routed towards the network gateway service.
      * 
      */
-    public Output<GatewayRouterArgs> router() {
-        return this.router;
+    public Optional<Output<GatewayRouterArgs>> router() {
+        return Optional.ofNullable(this.router);
     }
 
     /**
@@ -245,7 +245,7 @@ public final class GatewayArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels User defined key-value pairs to classify the network gateway.
+         * @param labels User defined key-value pairs to classify the gateway.
          * 
          * @return builder
          * 
@@ -256,7 +256,7 @@ public final class GatewayArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels User defined key-value pairs to classify the network gateway.
+         * @param labels User defined key-value pairs to classify the gateway.
          * 
          * @return builder
          * 
@@ -287,7 +287,7 @@ public final class GatewayArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param plan Gateway pricing plan.
+         * @param plan Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
          * 
          * @return builder
          * 
@@ -298,7 +298,7 @@ public final class GatewayArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param plan Gateway pricing plan.
+         * @param plan Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
          * 
          * @return builder
          * 
@@ -313,7 +313,7 @@ public final class GatewayArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder router(Output<GatewayRouterArgs> router) {
+        public Builder router(@Nullable Output<GatewayRouterArgs> router) {
             $.router = router;
             return this;
         }
@@ -352,9 +352,6 @@ public final class GatewayArgs extends com.pulumi.resources.ResourceArgs {
         public GatewayArgs build() {
             if ($.features == null) {
                 throw new MissingRequiredPropertyException("GatewayArgs", "features");
-            }
-            if ($.router == null) {
-                throw new MissingRequiredPropertyException("GatewayArgs", "router");
             }
             if ($.zone == null) {
                 throw new MissingRequiredPropertyException("GatewayArgs", "zone");

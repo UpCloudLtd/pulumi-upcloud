@@ -13,7 +13,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * const _this = new upcloud.Router("this", {name: "gateway-example-router"});
+ * const _this = new upcloud.Router("this", {name: "gateway-example-router"}, {
+ *     ignoreChanges: [staticRoutes],
+ * });
  * const thisNetwork = new upcloud.Network("this", {
  *     name: "gateway-example-net",
  *     zone: "pl-waw1",

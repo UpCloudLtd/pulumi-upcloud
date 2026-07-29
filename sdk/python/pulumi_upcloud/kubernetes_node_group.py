@@ -558,7 +558,8 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                 "address": "172.16.1.0/24",
                 "dhcp": True,
                 "family": "IPv4",
-            })
+            },
+            opts = pulumi.ResourceOptions(ignore_changes=["router"]))
         # Create a Kubernetes cluster
         example_kubernetes_cluster = upcloud.KubernetesCluster("example",
             control_plane_ip_filters=["0.0.0.0/0"],
@@ -646,7 +647,8 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                 "address": "172.16.1.0/24",
                 "dhcp": True,
                 "family": "IPv4",
-            })
+            },
+            opts = pulumi.ResourceOptions(ignore_changes=["router"]))
         # Create a Kubernetes cluster
         example_kubernetes_cluster = upcloud.KubernetesCluster("example",
             control_plane_ip_filters=["0.0.0.0/0"],

@@ -16,7 +16,9 @@ import * as utilities from "./utilities";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
  * // Create router for the gateway
- * const _this = new upcloud.Router("this", {name: "gateway-example-router"});
+ * const _this = new upcloud.Router("this", {name: "gateway-example-router"}, {
+ *     ignoreChanges: [staticRoutes],
+ * });
  * // Create network for the gateway
  * const thisNetwork = new upcloud.Network("this", {
  *     name: "gateway-example-net",
@@ -32,6 +34,7 @@ import * as utilities from "./utilities";
  *     name: "gateway-example-gw",
  *     zone: "pl-waw1",
  *     features: ["nat"],
+ *     plan: "development",
  *     router: {
  *         id: _this.id,
  *     },
@@ -72,29 +75,24 @@ export class Gateway extends pulumi.CustomResource {
     /**
      * IP addresses assigned to the gateway.
      */
-    declare public readonly address: pulumi.Output<outputs.GatewayAddress>;
+    declare public readonly address: pulumi.Output<outputs.GatewayAddress | undefined>;
     /**
-     * IP addresses assigned to the gateway.
-     *
-     * @deprecated Use 'address' attribute instead. This attribute will be removed in the next major version of the provider
+     * Use 'address' attribute instead. This attribute will be removed in the next major version of the provider.
      */
     declare public /*out*/ readonly addresses: pulumi.Output<outputs.GatewayAddress[]>;
     /**
      * The service configured status indicates the service's current intended status. Managed by the customer.
      */
-    declare public readonly configuredStatus: pulumi.Output<string | undefined>;
-    /**
-     * Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
-     */
+    declare public readonly configuredStatus: pulumi.Output<string>;
     declare public /*out*/ readonly connections: pulumi.Output<string[]>;
     /**
      * Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
      */
     declare public readonly features: pulumi.Output<string[]>;
     /**
-     * User defined key-value pairs to classify the network gateway.
+     * User defined key-value pairs to classify the gateway.
      */
-    declare public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly labels: pulumi.Output<{[key: string]: string}>;
     /**
      * Gateway name. Needs to be unique within the account.
      */
@@ -104,13 +102,13 @@ export class Gateway extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly operationalState: pulumi.Output<string>;
     /**
-     * Gateway pricing plan.
+     * Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
      */
     declare public readonly plan: pulumi.Output<string>;
     /**
      * Attached Router from where traffic is routed towards the network gateway service.
      */
-    declare public readonly router: pulumi.Output<outputs.GatewayRouter>;
+    declare public readonly router: pulumi.Output<outputs.GatewayRouter | undefined>;
     /**
      * Zone in which the gateway will be hosted, e.g. `de-fra1`.
      */
@@ -145,9 +143,6 @@ export class Gateway extends pulumi.CustomResource {
             if (args?.features === undefined && !opts.urn) {
                 throw new Error("Missing required property 'features'");
             }
-            if (args?.router === undefined && !opts.urn) {
-                throw new Error("Missing required property 'router'");
-            }
             if (args?.zone === undefined && !opts.urn) {
                 throw new Error("Missing required property 'zone'");
             }
@@ -177,25 +172,20 @@ export interface GatewayState {
      */
     address?: pulumi.Input<inputs.GatewayAddress>;
     /**
-     * IP addresses assigned to the gateway.
-     *
-     * @deprecated Use 'address' attribute instead. This attribute will be removed in the next major version of the provider
+     * Use 'address' attribute instead. This attribute will be removed in the next major version of the provider.
      */
     addresses?: pulumi.Input<pulumi.Input<inputs.GatewayAddress>[]>;
     /**
      * The service configured status indicates the service's current intended status. Managed by the customer.
      */
     configuredStatus?: pulumi.Input<string>;
-    /**
-     * Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
-     */
     connections?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
      */
     features?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * User defined key-value pairs to classify the network gateway.
+     * User defined key-value pairs to classify the gateway.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -207,7 +197,7 @@ export interface GatewayState {
      */
     operationalState?: pulumi.Input<string>;
     /**
-     * Gateway pricing plan.
+     * Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
      */
     plan?: pulumi.Input<string>;
     /**
@@ -237,7 +227,7 @@ export interface GatewayArgs {
      */
     features: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * User defined key-value pairs to classify the network gateway.
+     * User defined key-value pairs to classify the gateway.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -245,13 +235,13 @@ export interface GatewayArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Gateway pricing plan.
+     * Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
      */
     plan?: pulumi.Input<string>;
     /**
      * Attached Router from where traffic is routed towards the network gateway service.
      */
-    router: pulumi.Input<inputs.GatewayRouter>;
+    router?: pulumi.Input<inputs.GatewayRouter>;
     /**
      * Zone in which the gateway will be hosted, e.g. `de-fra1`.
      */

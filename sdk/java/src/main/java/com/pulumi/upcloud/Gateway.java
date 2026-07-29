@@ -38,6 +38,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.upcloud.Gateway;
  * import com.pulumi.upcloud.GatewayArgs;
  * import com.pulumi.upcloud.inputs.GatewayRouterArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -54,7 +55,9 @@ import javax.annotation.Nullable;
  *         // Create router for the gateway
  *         var this_ = new Router("this", RouterArgs.builder()
  *             .name("gateway-example-router")
- *             .build());
+ *             .build(), CustomResourceOptions.builder()
+ *                 .ignoreChanges("staticRoutes")
+ *                 .build());
  * 
  *         // Create network for the gateway
  *         var thisNetwork = new Network("thisNetwork", NetworkArgs.builder()
@@ -72,6 +75,7 @@ import javax.annotation.Nullable;
  *             .name("gateway-example-gw")
  *             .zone("pl-waw1")
  *             .features("nat")
+ *             .plan("development")
  *             .router(GatewayRouterArgs.builder()
  *                 .id(this_.id())
  *                 .build())
@@ -91,28 +95,24 @@ public class Gateway extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="address", refs={GatewayAddress.class}, tree="[0]")
-    private Output<GatewayAddress> address;
+    private Output</* @Nullable */ GatewayAddress> address;
 
     /**
      * @return IP addresses assigned to the gateway.
      * 
      */
-    public Output<GatewayAddress> address() {
-        return this.address;
+    public Output<Optional<GatewayAddress>> address() {
+        return Codegen.optional(this.address);
     }
     /**
-     * IP addresses assigned to the gateway.
-     * 
-     * @deprecated
-     * Use &#39;address&#39; attribute instead. This attribute will be removed in the next major version of the provider
+     * Use &#39;address&#39; attribute instead. This attribute will be removed in the next major version of the provider.
      * 
      */
-    @Deprecated /* Use 'address' attribute instead. This attribute will be removed in the next major version of the provider */
     @Export(name="addresses", refs={List.class,GatewayAddress.class}, tree="[0,1]")
     private Output<List<GatewayAddress>> addresses;
 
     /**
-     * @return IP addresses assigned to the gateway.
+     * @return Use &#39;address&#39; attribute instead. This attribute will be removed in the next major version of the provider.
      * 
      */
     public Output<List<GatewayAddress>> addresses() {
@@ -123,26 +123,18 @@ public class Gateway extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="configuredStatus", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> configuredStatus;
+    private Output<String> configuredStatus;
 
     /**
      * @return The service configured status indicates the service&#39;s current intended status. Managed by the customer.
      * 
      */
-    public Output<Optional<String>> configuredStatus() {
-        return Codegen.optional(this.configuredStatus);
+    public Output<String> configuredStatus() {
+        return this.configuredStatus;
     }
-    /**
-     * Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
-     * 
-     */
     @Export(name="connections", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> connections;
 
-    /**
-     * @return Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run &#39;terrafrom refresh&#39;.
-     * 
-     */
     public Output<List<String>> connections() {
         return this.connections;
     }
@@ -161,18 +153,18 @@ public class Gateway extends com.pulumi.resources.CustomResource {
         return this.features;
     }
     /**
-     * User defined key-value pairs to classify the network gateway.
+     * User defined key-value pairs to classify the gateway.
      * 
      */
     @Export(name="labels", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output</* @Nullable */ Map<String,String>> labels;
+    private Output<Map<String,String>> labels;
 
     /**
-     * @return User defined key-value pairs to classify the network gateway.
+     * @return User defined key-value pairs to classify the gateway.
      * 
      */
-    public Output<Optional<Map<String,String>>> labels() {
-        return Codegen.optional(this.labels);
+    public Output<Map<String,String>> labels() {
+        return this.labels;
     }
     /**
      * Gateway name. Needs to be unique within the account.
@@ -203,14 +195,14 @@ public class Gateway extends com.pulumi.resources.CustomResource {
         return this.operationalState;
     }
     /**
-     * Gateway pricing plan.
+     * Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
      * 
      */
     @Export(name="plan", refs={String.class}, tree="[0]")
     private Output<String> plan;
 
     /**
-     * @return Gateway pricing plan.
+     * @return Gateway pricing plan, defaults to `development`. You can list available plans with `upctl gateway plans`.
      * 
      */
     public Output<String> plan() {
@@ -221,14 +213,14 @@ public class Gateway extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="router", refs={GatewayRouter.class}, tree="[0]")
-    private Output<GatewayRouter> router;
+    private Output</* @Nullable */ GatewayRouter> router;
 
     /**
      * @return Attached Router from where traffic is routed towards the network gateway service.
      * 
      */
-    public Output<GatewayRouter> router() {
-        return this.router;
+    public Output<Optional<GatewayRouter>> router() {
+        return Codegen.optional(this.router);
     }
     /**
      * Zone in which the gateway will be hosted, e.g. `de-fra1`.
