@@ -190,6 +190,11 @@ export type LoadbalancerStaticBackendMember = import("./loadbalancerStaticBacken
 export const LoadbalancerStaticBackendMember: typeof import("./loadbalancerStaticBackendMember").LoadbalancerStaticBackendMember = null as any;
 utilities.lazyLoad(exports, ["LoadbalancerStaticBackendMember"], () => require("./loadbalancerStaticBackendMember"));
 
+export { ManagedDatabaseConnectionPoolArgs, ManagedDatabaseConnectionPoolState } from "./managedDatabaseConnectionPool";
+export type ManagedDatabaseConnectionPool = import("./managedDatabaseConnectionPool").ManagedDatabaseConnectionPool;
+export const ManagedDatabaseConnectionPool: typeof import("./managedDatabaseConnectionPool").ManagedDatabaseConnectionPool = null as any;
+utilities.lazyLoad(exports, ["ManagedDatabaseConnectionPool"], () => require("./managedDatabaseConnectionPool"));
+
 export { ManagedDatabaseLogicalDatabaseArgs, ManagedDatabaseLogicalDatabaseState } from "./managedDatabaseLogicalDatabase";
 export type ManagedDatabaseLogicalDatabase = import("./managedDatabaseLogicalDatabase").ManagedDatabaseLogicalDatabase;
 export const ManagedDatabaseLogicalDatabase: typeof import("./managedDatabaseLogicalDatabase").ManagedDatabaseLogicalDatabase = null as any;
@@ -369,6 +374,8 @@ const _module = {
                 return new LoadbalancerResolver(name, <any>undefined, { urn })
             case "upcloud:index/loadbalancerStaticBackendMember:LoadbalancerStaticBackendMember":
                 return new LoadbalancerStaticBackendMember(name, <any>undefined, { urn })
+            case "upcloud:index/managedDatabaseConnectionPool:ManagedDatabaseConnectionPool":
+                return new ManagedDatabaseConnectionPool(name, <any>undefined, { urn })
             case "upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase":
                 return new ManagedDatabaseLogicalDatabase(name, <any>undefined, { urn })
             case "upcloud:index/managedDatabaseMysql:ManagedDatabaseMysql":
@@ -443,6 +450,7 @@ pulumi.runtime.registerResourceModule("upcloud", "index/loadbalancerFrontendTlsC
 pulumi.runtime.registerResourceModule("upcloud", "index/loadbalancerManualCertificateBundle", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/loadbalancerResolver", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/loadbalancerStaticBackendMember", _module)
+pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseConnectionPool", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseLogicalDatabase", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseMysql", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/managedDatabaseOpensearch", _module)

@@ -334,6 +334,9 @@
             "upcloud_loadbalancer_static_backend_member": {
                 "current": "upcloud:index/loadbalancerStaticBackendMember:LoadbalancerStaticBackendMember"
             },
+            "upcloud_managed_database_connection_pool": {
+                "current": "upcloud:index/managedDatabaseConnectionPool:ManagedDatabaseConnectionPool"
+            },
             "upcloud_managed_database_logical_database": {
                 "current": "upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase"
             },
@@ -1031,6 +1034,7 @@
             "upcloud:index/loadbalancerManualCertificateBundle:LoadbalancerManualCertificateBundle": 1,
             "upcloud:index/loadbalancerResolver:LoadbalancerResolver": 1,
             "upcloud:index/loadbalancerStaticBackendMember:LoadbalancerStaticBackendMember": 1,
+            "upcloud:index/managedDatabaseConnectionPool:ManagedDatabaseConnectionPool": 1,
             "upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase": 0,
             "upcloud:index/managedDatabaseMysql:ManagedDatabaseMysql": 1,
             "upcloud:index/managedDatabaseOpensearch:ManagedDatabaseOpensearch": 1,

@@ -8809,6 +8809,113 @@
                 "type": "object"
             }
         },
+        "upcloud:index/managedDatabaseConnectionPool:ManagedDatabaseConnectionPool": {
+            "description": "This resource represents a connection pool in a managed database (PostgreSQL).\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\nconst example = new upcloud.ManagedDatabasePostgresql(\"example\", {\n    maintenanceWindowTime: \"10:00:00\",\n    maintenanceWindowDow: \"friday\",\n    name: \"postgres\",\n    plan: \"1x1xCPU-2GB-25GB\",\n    powered: true,\n    title: \"postgres\",\n    zone: \"pl-waw1\",\n});\nconst exampleManagedDatabaseConnectionPool = new upcloud.ManagedDatabaseConnectionPool(\"example\", {\n    service: example.id,\n    database: \"defaultdb\",\n    mode: \"session\",\n    name: \"example-2\",\n    size: 95,\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\nexample = upcloud.ManagedDatabasePostgresql(\"example\",\n    maintenance_window_time=\"10:00:00\",\n    maintenance_window_dow=\"friday\",\n    name=\"postgres\",\n    plan=\"1x1xCPU-2GB-25GB\",\n    powered=True,\n    title=\"postgres\",\n    zone=\"pl-waw1\")\nexample_managed_database_connection_pool = upcloud.ManagedDatabaseConnectionPool(\"example\",\n    service=example.id,\n    database=\"defaultdb\",\n    mode=\"session\",\n    name=\"example-2\",\n    size=95)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new UpCloud.ManagedDatabasePostgresql(\"example\", new()\n    {\n        MaintenanceWindowTime = \"10:00:00\",\n        MaintenanceWindowDow = \"friday\",\n        Name = \"postgres\",\n        Plan = \"1x1xCPU-2GB-25GB\",\n        Powered = true,\n        Title = \"postgres\",\n        Zone = \"pl-waw1\",\n    });\n\n    var exampleManagedDatabaseConnectionPool = new UpCloud.ManagedDatabaseConnectionPool(\"example\", new()\n    {\n        Service = example.Id,\n        Database = \"defaultdb\",\n        Mode = \"session\",\n        Name = \"example-2\",\n        Size = 95,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := upcloud.NewManagedDatabasePostgresql(ctx, \"example\", \u0026upcloud.ManagedDatabasePostgresqlArgs{\n\t\t\tMaintenanceWindowTime: pulumi.String(\"10:00:00\"),\n\t\t\tMaintenanceWindowDow:  pulumi.String(\"friday\"),\n\t\t\tName:                  pulumi.String(\"postgres\"),\n\t\t\tPlan:                  pulumi.String(\"1x1xCPU-2GB-25GB\"),\n\t\t\tPowered:               pulumi.Bool(true),\n\t\t\tTitle:                 pulumi.String(\"postgres\"),\n\t\t\tZone:                  pulumi.String(\"pl-waw1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewManagedDatabaseConnectionPool(ctx, \"example\", \u0026upcloud.ManagedDatabaseConnectionPoolArgs{\n\t\t\tService:  example.ID(),\n\t\t\tDatabase: pulumi.String(\"defaultdb\"),\n\t\t\tMode:     pulumi.String(\"session\"),\n\t\t\tName:     pulumi.String(\"example-2\"),\n\t\t\tSize:     pulumi.Int(95),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.ManagedDatabasePostgresql;\nimport com.pulumi.upcloud.ManagedDatabasePostgresqlArgs;\nimport com.pulumi.upcloud.ManagedDatabaseConnectionPool;\nimport com.pulumi.upcloud.ManagedDatabaseConnectionPoolArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new ManagedDatabasePostgresql(\"example\", ManagedDatabasePostgresqlArgs.builder()\n            .maintenanceWindowTime(\"10:00:00\")\n            .maintenanceWindowDow(\"friday\")\n            .name(\"postgres\")\n            .plan(\"1x1xCPU-2GB-25GB\")\n            .powered(true)\n            .title(\"postgres\")\n            .zone(\"pl-waw1\")\n            .build());\n\n        var exampleManagedDatabaseConnectionPool = new ManagedDatabaseConnectionPool(\"exampleManagedDatabaseConnectionPool\", ManagedDatabaseConnectionPoolArgs.builder()\n            .service(example.id())\n            .database(\"defaultdb\")\n            .mode(\"session\")\n            .name(\"example-2\")\n            .size(95)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: upcloud:ManagedDatabasePostgresql\n    properties:\n      maintenanceWindowTime: 10:00:00\n      maintenanceWindowDow: friday\n      name: postgres\n      plan: 1x1xCPU-2GB-25GB\n      powered: true\n      title: postgres\n      zone: pl-waw1\n  exampleManagedDatabaseConnectionPool:\n    type: upcloud:ManagedDatabaseConnectionPool\n    name: example\n    properties:\n      service: ${example.id}\n      database: defaultdb\n      mode: session\n      name: example-2\n      size: 95\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "connectionUri": {
+                    "type": "string",
+                    "description": "Connection URI for the connection pool."
+                },
+                "database": {
+                    "type": "string",
+                    "description": "Name of the database."
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "Connection pool mode."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Connection pool name."
+                },
+                "service": {
+                    "type": "string",
+                    "description": "UUID of the service to which this connection pool belongs."
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "Connection pool size."
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Service username. If not set, all users are allowed to access this connection pool."
+                }
+            },
+            "required": [
+                "connectionUri",
+                "database",
+                "mode",
+                "name",
+                "service",
+                "size"
+            ],
+            "inputProperties": {
+                "database": {
+                    "type": "string",
+                    "description": "Name of the database."
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "Connection pool mode."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Connection pool name."
+                },
+                "service": {
+                    "type": "string",
+                    "description": "UUID of the service to which this connection pool belongs."
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "Connection pool size."
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Service username. If not set, all users are allowed to access this connection pool."
+                }
+            },
+            "requiredInputs": [
+                "database",
+                "mode",
+                "service",
+                "size"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ManagedDatabaseConnectionPool resources.\n",
+                "properties": {
+                    "connectionUri": {
+                        "type": "string",
+                        "description": "Connection URI for the connection pool."
+                    },
+                    "database": {
+                        "type": "string",
+                        "description": "Name of the database."
+                    },
+                    "mode": {
+                        "type": "string",
+                        "description": "Connection pool mode."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Connection pool name."
+                    },
+                    "service": {
+                        "type": "string",
+                        "description": "UUID of the service to which this connection pool belongs."
+                    },
+                    "size": {
+                        "type": "integer",
+                        "description": "Connection pool size."
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "Service username. If not set, all users are allowed to access this connection pool."
+                    }
+                },
+                "type": "object"
+            }
+        },
         "upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase": {
             "description": "This resource represents a logical database in managed database\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upcloud from \"@upcloud/pulumi-upcloud\";\n\n// PostgreSQL managed database with additional logical database: example_db \nconst example = new upcloud.ManagedDatabasePostgresql(\"example\", {\n    name: \"postgres\",\n    plan: \"1x1xCPU-2GB-25GB\",\n    title: \"postgres\",\n    zone: \"fi-hel1\",\n});\nconst exampleDb = new upcloud.ManagedDatabaseLogicalDatabase(\"example_db\", {\n    service: example.id,\n    name: \"example_db\",\n});\n// MySQL managed database with additional logical database: example2_db \nconst exampleManagedDatabaseMysql = new upcloud.ManagedDatabaseMysql(\"example\", {\n    name: \"mysql\",\n    plan: \"1x1xCPU-2GB-25GB\",\n    title: \"mysql\",\n    zone: \"fi-hel1\",\n});\nconst example2Db = new upcloud.ManagedDatabaseLogicalDatabase(\"example2_db\", {\n    service: exampleManagedDatabaseMysql.id,\n    name: \"example2_db\",\n});\n```\n```python\nimport pulumi\nimport pulumi_upcloud as upcloud\n\n# PostgreSQL managed database with additional logical database: example_db \nexample = upcloud.ManagedDatabasePostgresql(\"example\",\n    name=\"postgres\",\n    plan=\"1x1xCPU-2GB-25GB\",\n    title=\"postgres\",\n    zone=\"fi-hel1\")\nexample_db = upcloud.ManagedDatabaseLogicalDatabase(\"example_db\",\n    service=example.id,\n    name=\"example_db\")\n# MySQL managed database with additional logical database: example2_db \nexample_managed_database_mysql = upcloud.ManagedDatabaseMysql(\"example\",\n    name=\"mysql\",\n    plan=\"1x1xCPU-2GB-25GB\",\n    title=\"mysql\",\n    zone=\"fi-hel1\")\nexample2_db = upcloud.ManagedDatabaseLogicalDatabase(\"example2_db\",\n    service=example_managed_database_mysql.id,\n    name=\"example2_db\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing UpCloud = UpCloud.Pulumi.UpCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // PostgreSQL managed database with additional logical database: example_db \n    var example = new UpCloud.ManagedDatabasePostgresql(\"example\", new()\n    {\n        Name = \"postgres\",\n        Plan = \"1x1xCPU-2GB-25GB\",\n        Title = \"postgres\",\n        Zone = \"fi-hel1\",\n    });\n\n    var exampleDb = new UpCloud.ManagedDatabaseLogicalDatabase(\"example_db\", new()\n    {\n        Service = example.Id,\n        Name = \"example_db\",\n    });\n\n    // MySQL managed database with additional logical database: example2_db \n    var exampleManagedDatabaseMysql = new UpCloud.ManagedDatabaseMysql(\"example\", new()\n    {\n        Name = \"mysql\",\n        Plan = \"1x1xCPU-2GB-25GB\",\n        Title = \"mysql\",\n        Zone = \"fi-hel1\",\n    });\n\n    var example2Db = new UpCloud.ManagedDatabaseLogicalDatabase(\"example2_db\", new()\n    {\n        Service = exampleManagedDatabaseMysql.Id,\n        Name = \"example2_db\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// PostgreSQL managed database with additional logical database: example_db\n\t\texample, err := upcloud.NewManagedDatabasePostgresql(ctx, \"example\", \u0026upcloud.ManagedDatabasePostgresqlArgs{\n\t\t\tName:  pulumi.String(\"postgres\"),\n\t\t\tPlan:  pulumi.String(\"1x1xCPU-2GB-25GB\"),\n\t\t\tTitle: pulumi.String(\"postgres\"),\n\t\t\tZone:  pulumi.String(\"fi-hel1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewManagedDatabaseLogicalDatabase(ctx, \"example_db\", \u0026upcloud.ManagedDatabaseLogicalDatabaseArgs{\n\t\t\tService: example.ID(),\n\t\t\tName:    pulumi.String(\"example_db\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// MySQL managed database with additional logical database: example2_db\n\t\texampleManagedDatabaseMysql, err := upcloud.NewManagedDatabaseMysql(ctx, \"example\", \u0026upcloud.ManagedDatabaseMysqlArgs{\n\t\t\tName:  pulumi.String(\"mysql\"),\n\t\t\tPlan:  pulumi.String(\"1x1xCPU-2GB-25GB\"),\n\t\t\tTitle: pulumi.String(\"mysql\"),\n\t\t\tZone:  pulumi.String(\"fi-hel1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upcloud.NewManagedDatabaseLogicalDatabase(ctx, \"example2_db\", \u0026upcloud.ManagedDatabaseLogicalDatabaseArgs{\n\t\t\tService: exampleManagedDatabaseMysql.ID(),\n\t\t\tName:    pulumi.String(\"example2_db\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.upcloud.ManagedDatabasePostgresql;\nimport com.pulumi.upcloud.ManagedDatabasePostgresqlArgs;\nimport com.pulumi.upcloud.ManagedDatabaseLogicalDatabase;\nimport com.pulumi.upcloud.ManagedDatabaseLogicalDatabaseArgs;\nimport com.pulumi.upcloud.ManagedDatabaseMysql;\nimport com.pulumi.upcloud.ManagedDatabaseMysqlArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // PostgreSQL managed database with additional logical database: example_db \n        var example = new ManagedDatabasePostgresql(\"example\", ManagedDatabasePostgresqlArgs.builder()\n            .name(\"postgres\")\n            .plan(\"1x1xCPU-2GB-25GB\")\n            .title(\"postgres\")\n            .zone(\"fi-hel1\")\n            .build());\n\n        var exampleDb = new ManagedDatabaseLogicalDatabase(\"exampleDb\", ManagedDatabaseLogicalDatabaseArgs.builder()\n            .service(example.id())\n            .name(\"example_db\")\n            .build());\n\n        // MySQL managed database with additional logical database: example2_db \n        var exampleManagedDatabaseMysql = new ManagedDatabaseMysql(\"exampleManagedDatabaseMysql\", ManagedDatabaseMysqlArgs.builder()\n            .name(\"mysql\")\n            .plan(\"1x1xCPU-2GB-25GB\")\n            .title(\"mysql\")\n            .zone(\"fi-hel1\")\n            .build());\n\n        var example2Db = new ManagedDatabaseLogicalDatabase(\"example2Db\", ManagedDatabaseLogicalDatabaseArgs.builder()\n            .service(exampleManagedDatabaseMysql.id())\n            .name(\"example2_db\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # PostgreSQL managed database with additional logical database: example_db\n  example:\n    type: upcloud:ManagedDatabasePostgresql\n    properties:\n      name: postgres\n      plan: 1x1xCPU-2GB-25GB\n      title: postgres\n      zone: fi-hel1\n  exampleDb:\n    type: upcloud:ManagedDatabaseLogicalDatabase\n    name: example_db\n    properties:\n      service: ${example.id}\n      name: example_db\n  # MySQL managed database with additional logical database: example2_db\n  exampleManagedDatabaseMysql:\n    type: upcloud:ManagedDatabaseMysql\n    name: example\n    properties:\n      name: mysql\n      plan: 1x1xCPU-2GB-25GB\n      title: mysql\n      zone: fi-hel1\n  example2Db:\n    type: upcloud:ManagedDatabaseLogicalDatabase\n    name: example2_db\n    properties:\n      service: ${exampleManagedDatabaseMysql.id}\n      name: example2_db\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {

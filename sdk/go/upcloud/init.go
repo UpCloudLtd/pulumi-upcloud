@@ -63,6 +63,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LoadbalancerResolver{}
 	case "upcloud:index/loadbalancerStaticBackendMember:LoadbalancerStaticBackendMember":
 		r = &LoadbalancerStaticBackendMember{}
+	case "upcloud:index/managedDatabaseConnectionPool:ManagedDatabaseConnectionPool":
+		r = &ManagedDatabaseConnectionPool{}
 	case "upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase":
 		r = &ManagedDatabaseLogicalDatabase{}
 	case "upcloud:index/managedDatabaseMysql:ManagedDatabaseMysql":
@@ -245,6 +247,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"upcloud",
 		"index/loadbalancerStaticBackendMember",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upcloud",
+		"index/managedDatabaseConnectionPool",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

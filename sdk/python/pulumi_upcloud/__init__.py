@@ -43,6 +43,7 @@ from .loadbalancer_frontend_tls_config import *
 from .loadbalancer_manual_certificate_bundle import *
 from .loadbalancer_resolver import *
 from .loadbalancer_static_backend_member import *
+from .managed_database_connection_pool import *
 from .managed_database_logical_database import *
 from .managed_database_mysql import *
 from .managed_database_opensearch import *
@@ -247,6 +248,14 @@ _utilities.register(
   "fqn": "pulumi_upcloud",
   "classes": {
    "upcloud:index/loadbalancerStaticBackendMember:LoadbalancerStaticBackendMember": "LoadbalancerStaticBackendMember"
+  }
+ },
+ {
+  "pkg": "upcloud",
+  "mod": "index/managedDatabaseConnectionPool",
+  "fqn": "pulumi_upcloud",
+  "classes": {
+   "upcloud:index/managedDatabaseConnectionPool:ManagedDatabaseConnectionPool": "ManagedDatabaseConnectionPool"
   }
  },
  {
