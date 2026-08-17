@@ -53,6 +53,7 @@
         "loadbalancerManualCertificateBundle.ts",
         "loadbalancerResolver.ts",
         "loadbalancerStaticBackendMember.ts",
+        "managedDatabaseConnectionPool.ts",
         "managedDatabaseLogicalDatabase.ts",
         "managedDatabaseMysql.ts",
         "managedDatabaseOpensearch.ts",
