@@ -25,10 +25,10 @@ class ManagedDatabaseLogicalDatabaseArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ManagedDatabaseLogicalDatabase resource.
-        :param pulumi.Input[_builtins.str] service: Service's UUID for which this user belongs to
-        :param pulumi.Input[_builtins.str] character_set: Default character set for the database (LC_CTYPE)
-        :param pulumi.Input[_builtins.str] collation: Default collation for the database (LC_COLLATE)
-        :param pulumi.Input[_builtins.str] name: Name of the logical database
+        :param pulumi.Input[_builtins.str] service: UUID of the service to which this logical database belongs.
+        :param pulumi.Input[_builtins.str] character_set: Default character set for the database (LC_CTYPE), PostgreSQL only.
+        :param pulumi.Input[_builtins.str] collation: Default collation for the database (LC_COLLATE), PostgreSQL only.
+        :param pulumi.Input[_builtins.str] name: Name of the logical database.
         """
         pulumi.set(__self__, "service", service)
         if character_set is not None:
@@ -42,7 +42,7 @@ class ManagedDatabaseLogicalDatabaseArgs:
     @pulumi.getter
     def service(self) -> pulumi.Input[_builtins.str]:
         """
-        Service's UUID for which this user belongs to
+        UUID of the service to which this logical database belongs.
         """
         return pulumi.get(self, "service")
 
@@ -54,7 +54,7 @@ class ManagedDatabaseLogicalDatabaseArgs:
     @pulumi.getter(name="characterSet")
     def character_set(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Default character set for the database (LC_CTYPE)
+        Default character set for the database (LC_CTYPE), PostgreSQL only.
         """
         return pulumi.get(self, "character_set")
 
@@ -66,7 +66,7 @@ class ManagedDatabaseLogicalDatabaseArgs:
     @pulumi.getter
     def collation(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Default collation for the database (LC_COLLATE)
+        Default collation for the database (LC_COLLATE), PostgreSQL only.
         """
         return pulumi.get(self, "collation")
 
@@ -78,7 +78,7 @@ class ManagedDatabaseLogicalDatabaseArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Name of the logical database
+        Name of the logical database.
         """
         return pulumi.get(self, "name")
 
@@ -96,10 +96,10 @@ class _ManagedDatabaseLogicalDatabaseState:
                  service: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ManagedDatabaseLogicalDatabase resources.
-        :param pulumi.Input[_builtins.str] character_set: Default character set for the database (LC_CTYPE)
-        :param pulumi.Input[_builtins.str] collation: Default collation for the database (LC_COLLATE)
-        :param pulumi.Input[_builtins.str] name: Name of the logical database
-        :param pulumi.Input[_builtins.str] service: Service's UUID for which this user belongs to
+        :param pulumi.Input[_builtins.str] character_set: Default character set for the database (LC_CTYPE), PostgreSQL only.
+        :param pulumi.Input[_builtins.str] collation: Default collation for the database (LC_COLLATE), PostgreSQL only.
+        :param pulumi.Input[_builtins.str] name: Name of the logical database.
+        :param pulumi.Input[_builtins.str] service: UUID of the service to which this logical database belongs.
         """
         if character_set is not None:
             pulumi.set(__self__, "character_set", character_set)
@@ -114,7 +114,7 @@ class _ManagedDatabaseLogicalDatabaseState:
     @pulumi.getter(name="characterSet")
     def character_set(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Default character set for the database (LC_CTYPE)
+        Default character set for the database (LC_CTYPE), PostgreSQL only.
         """
         return pulumi.get(self, "character_set")
 
@@ -126,7 +126,7 @@ class _ManagedDatabaseLogicalDatabaseState:
     @pulumi.getter
     def collation(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Default collation for the database (LC_COLLATE)
+        Default collation for the database (LC_COLLATE), PostgreSQL only.
         """
         return pulumi.get(self, "collation")
 
@@ -138,7 +138,7 @@ class _ManagedDatabaseLogicalDatabaseState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Name of the logical database
+        Name of the logical database.
         """
         return pulumi.get(self, "name")
 
@@ -150,7 +150,7 @@ class _ManagedDatabaseLogicalDatabaseState:
     @pulumi.getter
     def service(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Service's UUID for which this user belongs to
+        UUID of the service to which this logical database belongs.
         """
         return pulumi.get(self, "service")
 
@@ -171,7 +171,7 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
                  service: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        This resource represents a logical database in managed database
+        This resource represents a logical database in managed database.
 
         ## Example Usage
 
@@ -201,10 +201,10 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] character_set: Default character set for the database (LC_CTYPE)
-        :param pulumi.Input[_builtins.str] collation: Default collation for the database (LC_COLLATE)
-        :param pulumi.Input[_builtins.str] name: Name of the logical database
-        :param pulumi.Input[_builtins.str] service: Service's UUID for which this user belongs to
+        :param pulumi.Input[_builtins.str] character_set: Default character set for the database (LC_CTYPE), PostgreSQL only.
+        :param pulumi.Input[_builtins.str] collation: Default collation for the database (LC_COLLATE), PostgreSQL only.
+        :param pulumi.Input[_builtins.str] name: Name of the logical database.
+        :param pulumi.Input[_builtins.str] service: UUID of the service to which this logical database belongs.
         """
         ...
     @overload
@@ -213,7 +213,7 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
                  args: ManagedDatabaseLogicalDatabaseArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource represents a logical database in managed database
+        This resource represents a logical database in managed database.
 
         ## Example Usage
 
@@ -296,10 +296,10 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] character_set: Default character set for the database (LC_CTYPE)
-        :param pulumi.Input[_builtins.str] collation: Default collation for the database (LC_COLLATE)
-        :param pulumi.Input[_builtins.str] name: Name of the logical database
-        :param pulumi.Input[_builtins.str] service: Service's UUID for which this user belongs to
+        :param pulumi.Input[_builtins.str] character_set: Default character set for the database (LC_CTYPE), PostgreSQL only.
+        :param pulumi.Input[_builtins.str] collation: Default collation for the database (LC_COLLATE), PostgreSQL only.
+        :param pulumi.Input[_builtins.str] name: Name of the logical database.
+        :param pulumi.Input[_builtins.str] service: UUID of the service to which this logical database belongs.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -315,7 +315,7 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
     @pulumi.getter(name="characterSet")
     def character_set(self) -> pulumi.Output[_builtins.str]:
         """
-        Default character set for the database (LC_CTYPE)
+        Default character set for the database (LC_CTYPE), PostgreSQL only.
         """
         return pulumi.get(self, "character_set")
 
@@ -323,7 +323,7 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
     @pulumi.getter
     def collation(self) -> pulumi.Output[_builtins.str]:
         """
-        Default collation for the database (LC_COLLATE)
+        Default collation for the database (LC_COLLATE), PostgreSQL only.
         """
         return pulumi.get(self, "collation")
 
@@ -331,7 +331,7 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        Name of the logical database
+        Name of the logical database.
         """
         return pulumi.get(self, "name")
 
@@ -339,7 +339,7 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
     @pulumi.getter
     def service(self) -> pulumi.Output[_builtins.str]:
         """
-        Service's UUID for which this user belongs to
+        UUID of the service to which this logical database belongs.
         """
         return pulumi.get(self, "service")
 

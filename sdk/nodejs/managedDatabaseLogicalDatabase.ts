@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resource represents a logical database in managed database
+ * This resource represents a logical database in managed database.
  *
  * ## Example Usage
  *
@@ -66,19 +66,19 @@ export class ManagedDatabaseLogicalDatabase extends pulumi.CustomResource {
     }
 
     /**
-     * Default character set for the database (LC_CTYPE)
+     * Default character set for the database (LC_CTYPE), PostgreSQL only.
      */
     declare public readonly characterSet: pulumi.Output<string>;
     /**
-     * Default collation for the database (LC_COLLATE)
+     * Default collation for the database (LC_COLLATE), PostgreSQL only.
      */
     declare public readonly collation: pulumi.Output<string>;
     /**
-     * Name of the logical database
+     * Name of the logical database.
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * Service's UUID for which this user belongs to
+     * UUID of the service to which this logical database belongs.
      */
     declare public readonly service: pulumi.Output<string>;
 
@@ -119,19 +119,19 @@ export class ManagedDatabaseLogicalDatabase extends pulumi.CustomResource {
  */
 export interface ManagedDatabaseLogicalDatabaseState {
     /**
-     * Default character set for the database (LC_CTYPE)
+     * Default character set for the database (LC_CTYPE), PostgreSQL only.
      */
     characterSet?: pulumi.Input<string>;
     /**
-     * Default collation for the database (LC_COLLATE)
+     * Default collation for the database (LC_COLLATE), PostgreSQL only.
      */
     collation?: pulumi.Input<string>;
     /**
-     * Name of the logical database
+     * Name of the logical database.
      */
     name?: pulumi.Input<string>;
     /**
-     * Service's UUID for which this user belongs to
+     * UUID of the service to which this logical database belongs.
      */
     service?: pulumi.Input<string>;
 }
@@ -141,19 +141,19 @@ export interface ManagedDatabaseLogicalDatabaseState {
  */
 export interface ManagedDatabaseLogicalDatabaseArgs {
     /**
-     * Default character set for the database (LC_CTYPE)
+     * Default character set for the database (LC_CTYPE), PostgreSQL only.
      */
     characterSet?: pulumi.Input<string>;
     /**
-     * Default collation for the database (LC_COLLATE)
+     * Default collation for the database (LC_COLLATE), PostgreSQL only.
      */
     collation?: pulumi.Input<string>;
     /**
-     * Name of the logical database
+     * Name of the logical database.
      */
     name?: pulumi.Input<string>;
     /**
-     * Service's UUID for which this user belongs to
+     * UUID of the service to which this logical database belongs.
      */
     service: pulumi.Input<string>;
 }

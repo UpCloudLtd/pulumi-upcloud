@@ -14,7 +14,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * This resource represents a logical database in managed database
+ * This resource represents a logical database in managed database.
  * 
  * ## Example Usage
  * 
@@ -79,56 +79,56 @@ import javax.annotation.Nullable;
 @ResourceType(type="upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase")
 public class ManagedDatabaseLogicalDatabase extends com.pulumi.resources.CustomResource {
     /**
-     * Default character set for the database (LC_CTYPE)
+     * Default character set for the database (LC_CTYPE), PostgreSQL only.
      * 
      */
     @Export(name="characterSet", refs={String.class}, tree="[0]")
     private Output<String> characterSet;
 
     /**
-     * @return Default character set for the database (LC_CTYPE)
+     * @return Default character set for the database (LC_CTYPE), PostgreSQL only.
      * 
      */
     public Output<String> characterSet() {
         return this.characterSet;
     }
     /**
-     * Default collation for the database (LC_COLLATE)
+     * Default collation for the database (LC_COLLATE), PostgreSQL only.
      * 
      */
     @Export(name="collation", refs={String.class}, tree="[0]")
     private Output<String> collation;
 
     /**
-     * @return Default collation for the database (LC_COLLATE)
+     * @return Default collation for the database (LC_COLLATE), PostgreSQL only.
      * 
      */
     public Output<String> collation() {
         return this.collation;
     }
     /**
-     * Name of the logical database
+     * Name of the logical database.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Name of the logical database
+     * @return Name of the logical database.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * Service&#39;s UUID for which this user belongs to
+     * UUID of the service to which this logical database belongs.
      * 
      */
     @Export(name="service", refs={String.class}, tree="[0]")
     private Output<String> service;
 
     /**
-     * @return Service&#39;s UUID for which this user belongs to
+     * @return UUID of the service to which this logical database belongs.
      * 
      */
     public Output<String> service() {

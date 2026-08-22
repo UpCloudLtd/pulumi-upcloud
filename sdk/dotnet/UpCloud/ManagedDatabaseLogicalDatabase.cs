@@ -11,7 +11,7 @@ using Pulumi;
 namespace UpCloud.Pulumi.UpCloud
 {
     /// <summary>
-    /// This resource represents a logical database in managed database
+    /// This resource represents a logical database in managed database.
     /// 
     /// ## Example Usage
     /// 
@@ -60,25 +60,25 @@ namespace UpCloud.Pulumi.UpCloud
     public partial class ManagedDatabaseLogicalDatabase : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Default character set for the database (LC_CTYPE)
+        /// Default character set for the database (LC_CTYPE), PostgreSQL only.
         /// </summary>
         [Output("characterSet")]
         public Output<string> CharacterSet { get; private set; } = null!;
 
         /// <summary>
-        /// Default collation for the database (LC_COLLATE)
+        /// Default collation for the database (LC_COLLATE), PostgreSQL only.
         /// </summary>
         [Output("collation")]
         public Output<string> Collation { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the logical database
+        /// Name of the logical database.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Service's UUID for which this user belongs to
+        /// UUID of the service to which this logical database belongs.
         /// </summary>
         [Output("service")]
         public Output<string> Service { get; private set; } = null!;
@@ -131,25 +131,25 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class ManagedDatabaseLogicalDatabaseArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Default character set for the database (LC_CTYPE)
+        /// Default character set for the database (LC_CTYPE), PostgreSQL only.
         /// </summary>
         [Input("characterSet")]
         public Input<string>? CharacterSet { get; set; }
 
         /// <summary>
-        /// Default collation for the database (LC_COLLATE)
+        /// Default collation for the database (LC_COLLATE), PostgreSQL only.
         /// </summary>
         [Input("collation")]
         public Input<string>? Collation { get; set; }
 
         /// <summary>
-        /// Name of the logical database
+        /// Name of the logical database.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Service's UUID for which this user belongs to
+        /// UUID of the service to which this logical database belongs.
         /// </summary>
         [Input("service", required: true)]
         public Input<string> Service { get; set; } = null!;
@@ -163,25 +163,25 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class ManagedDatabaseLogicalDatabaseState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Default character set for the database (LC_CTYPE)
+        /// Default character set for the database (LC_CTYPE), PostgreSQL only.
         /// </summary>
         [Input("characterSet")]
         public Input<string>? CharacterSet { get; set; }
 
         /// <summary>
-        /// Default collation for the database (LC_COLLATE)
+        /// Default collation for the database (LC_COLLATE), PostgreSQL only.
         /// </summary>
         [Input("collation")]
         public Input<string>? Collation { get; set; }
 
         /// <summary>
-        /// Name of the logical database
+        /// Name of the logical database.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Service's UUID for which this user belongs to
+        /// UUID of the service to which this logical database belongs.
         /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }

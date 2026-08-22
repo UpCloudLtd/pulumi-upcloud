@@ -17,14 +17,14 @@ public final class ManagedDatabaseLogicalDatabaseArgs extends com.pulumi.resourc
     public static final ManagedDatabaseLogicalDatabaseArgs Empty = new ManagedDatabaseLogicalDatabaseArgs();
 
     /**
-     * Default character set for the database (LC_CTYPE)
+     * Default character set for the database (LC_CTYPE), PostgreSQL only.
      * 
      */
     @Import(name="characterSet")
     private @Nullable Output<String> characterSet;
 
     /**
-     * @return Default character set for the database (LC_CTYPE)
+     * @return Default character set for the database (LC_CTYPE), PostgreSQL only.
      * 
      */
     public Optional<Output<String>> characterSet() {
@@ -32,14 +32,14 @@ public final class ManagedDatabaseLogicalDatabaseArgs extends com.pulumi.resourc
     }
 
     /**
-     * Default collation for the database (LC_COLLATE)
+     * Default collation for the database (LC_COLLATE), PostgreSQL only.
      * 
      */
     @Import(name="collation")
     private @Nullable Output<String> collation;
 
     /**
-     * @return Default collation for the database (LC_COLLATE)
+     * @return Default collation for the database (LC_COLLATE), PostgreSQL only.
      * 
      */
     public Optional<Output<String>> collation() {
@@ -47,14 +47,14 @@ public final class ManagedDatabaseLogicalDatabaseArgs extends com.pulumi.resourc
     }
 
     /**
-     * Name of the logical database
+     * Name of the logical database.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Name of the logical database
+     * @return Name of the logical database.
      * 
      */
     public Optional<Output<String>> name() {
@@ -62,14 +62,14 @@ public final class ManagedDatabaseLogicalDatabaseArgs extends com.pulumi.resourc
     }
 
     /**
-     * Service&#39;s UUID for which this user belongs to
+     * UUID of the service to which this logical database belongs.
      * 
      */
     @Import(name="service", required=true)
     private Output<String> service;
 
     /**
-     * @return Service&#39;s UUID for which this user belongs to
+     * @return UUID of the service to which this logical database belongs.
      * 
      */
     public Output<String> service() {
@@ -104,7 +104,7 @@ public final class ManagedDatabaseLogicalDatabaseArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param characterSet Default character set for the database (LC_CTYPE)
+         * @param characterSet Default character set for the database (LC_CTYPE), PostgreSQL only.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class ManagedDatabaseLogicalDatabaseArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param characterSet Default character set for the database (LC_CTYPE)
+         * @param characterSet Default character set for the database (LC_CTYPE), PostgreSQL only.
          * 
          * @return builder
          * 
@@ -125,7 +125,7 @@ public final class ManagedDatabaseLogicalDatabaseArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param collation Default collation for the database (LC_COLLATE)
+         * @param collation Default collation for the database (LC_COLLATE), PostgreSQL only.
          * 
          * @return builder
          * 
@@ -136,7 +136,7 @@ public final class ManagedDatabaseLogicalDatabaseArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param collation Default collation for the database (LC_COLLATE)
+         * @param collation Default collation for the database (LC_COLLATE), PostgreSQL only.
          * 
          * @return builder
          * 
@@ -146,7 +146,7 @@ public final class ManagedDatabaseLogicalDatabaseArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param name Name of the logical database
+         * @param name Name of the logical database.
          * 
          * @return builder
          * 
@@ -157,7 +157,7 @@ public final class ManagedDatabaseLogicalDatabaseArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param name Name of the logical database
+         * @param name Name of the logical database.
          * 
          * @return builder
          * 
@@ -167,7 +167,7 @@ public final class ManagedDatabaseLogicalDatabaseArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param service Service&#39;s UUID for which this user belongs to
+         * @param service UUID of the service to which this logical database belongs.
          * 
          * @return builder
          * 
@@ -178,7 +178,7 @@ public final class ManagedDatabaseLogicalDatabaseArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param service Service&#39;s UUID for which this user belongs to
+         * @param service UUID of the service to which this logical database belongs.
          * 
          * @return builder
          * 
