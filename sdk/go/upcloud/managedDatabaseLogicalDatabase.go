@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource represents a logical database in managed database
+// This resource represents a logical database in managed database.
 //
 // ## Example Usage
 //
@@ -70,13 +70,13 @@ import (
 type ManagedDatabaseLogicalDatabase struct {
 	pulumi.CustomResourceState
 
-	// Default character set for the database (LC_CTYPE)
+	// Default character set for the database (LC_CTYPE), PostgreSQL only.
 	CharacterSet pulumi.StringOutput `pulumi:"characterSet"`
-	// Default collation for the database (LC_COLLATE)
+	// Default collation for the database (LC_COLLATE), PostgreSQL only.
 	Collation pulumi.StringOutput `pulumi:"collation"`
-	// Name of the logical database
+	// Name of the logical database.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Service's UUID for which this user belongs to
+	// UUID of the service to which this logical database belongs.
 	Service pulumi.StringOutput `pulumi:"service"`
 }
 
@@ -113,24 +113,24 @@ func GetManagedDatabaseLogicalDatabase(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ManagedDatabaseLogicalDatabase resources.
 type managedDatabaseLogicalDatabaseState struct {
-	// Default character set for the database (LC_CTYPE)
+	// Default character set for the database (LC_CTYPE), PostgreSQL only.
 	CharacterSet *string `pulumi:"characterSet"`
-	// Default collation for the database (LC_COLLATE)
+	// Default collation for the database (LC_COLLATE), PostgreSQL only.
 	Collation *string `pulumi:"collation"`
-	// Name of the logical database
+	// Name of the logical database.
 	Name *string `pulumi:"name"`
-	// Service's UUID for which this user belongs to
+	// UUID of the service to which this logical database belongs.
 	Service *string `pulumi:"service"`
 }
 
 type ManagedDatabaseLogicalDatabaseState struct {
-	// Default character set for the database (LC_CTYPE)
+	// Default character set for the database (LC_CTYPE), PostgreSQL only.
 	CharacterSet pulumi.StringPtrInput
-	// Default collation for the database (LC_COLLATE)
+	// Default collation for the database (LC_COLLATE), PostgreSQL only.
 	Collation pulumi.StringPtrInput
-	// Name of the logical database
+	// Name of the logical database.
 	Name pulumi.StringPtrInput
-	// Service's UUID for which this user belongs to
+	// UUID of the service to which this logical database belongs.
 	Service pulumi.StringPtrInput
 }
 
@@ -139,25 +139,25 @@ func (ManagedDatabaseLogicalDatabaseState) ElementType() reflect.Type {
 }
 
 type managedDatabaseLogicalDatabaseArgs struct {
-	// Default character set for the database (LC_CTYPE)
+	// Default character set for the database (LC_CTYPE), PostgreSQL only.
 	CharacterSet *string `pulumi:"characterSet"`
-	// Default collation for the database (LC_COLLATE)
+	// Default collation for the database (LC_COLLATE), PostgreSQL only.
 	Collation *string `pulumi:"collation"`
-	// Name of the logical database
+	// Name of the logical database.
 	Name *string `pulumi:"name"`
-	// Service's UUID for which this user belongs to
+	// UUID of the service to which this logical database belongs.
 	Service string `pulumi:"service"`
 }
 
 // The set of arguments for constructing a ManagedDatabaseLogicalDatabase resource.
 type ManagedDatabaseLogicalDatabaseArgs struct {
-	// Default character set for the database (LC_CTYPE)
+	// Default character set for the database (LC_CTYPE), PostgreSQL only.
 	CharacterSet pulumi.StringPtrInput
-	// Default collation for the database (LC_COLLATE)
+	// Default collation for the database (LC_COLLATE), PostgreSQL only.
 	Collation pulumi.StringPtrInput
-	// Name of the logical database
+	// Name of the logical database.
 	Name pulumi.StringPtrInput
-	// Service's UUID for which this user belongs to
+	// UUID of the service to which this logical database belongs.
 	Service pulumi.StringInput
 }
 
@@ -248,22 +248,22 @@ func (o ManagedDatabaseLogicalDatabaseOutput) ToManagedDatabaseLogicalDatabaseOu
 	return o
 }
 
-// Default character set for the database (LC_CTYPE)
+// Default character set for the database (LC_CTYPE), PostgreSQL only.
 func (o ManagedDatabaseLogicalDatabaseOutput) CharacterSet() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseLogicalDatabase) pulumi.StringOutput { return v.CharacterSet }).(pulumi.StringOutput)
 }
 
-// Default collation for the database (LC_COLLATE)
+// Default collation for the database (LC_COLLATE), PostgreSQL only.
 func (o ManagedDatabaseLogicalDatabaseOutput) Collation() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseLogicalDatabase) pulumi.StringOutput { return v.Collation }).(pulumi.StringOutput)
 }
 
-// Name of the logical database
+// Name of the logical database.
 func (o ManagedDatabaseLogicalDatabaseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseLogicalDatabase) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Service's UUID for which this user belongs to
+// UUID of the service to which this logical database belongs.
 func (o ManagedDatabaseLogicalDatabaseOutput) Service() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseLogicalDatabase) pulumi.StringOutput { return v.Service }).(pulumi.StringOutput)
 }
