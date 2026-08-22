@@ -1035,7 +1035,7 @@
             "upcloud:index/loadbalancerResolver:LoadbalancerResolver": 1,
             "upcloud:index/loadbalancerStaticBackendMember:LoadbalancerStaticBackendMember": 1,
             "upcloud:index/managedDatabaseConnectionPool:ManagedDatabaseConnectionPool": 1,
-            "upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase": 0,
+            "upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase": 1,
             "upcloud:index/managedDatabaseMysql:ManagedDatabaseMysql": 1,
             "upcloud:index/managedDatabaseOpensearch:ManagedDatabaseOpensearch": 1,
             "upcloud:index/managedDatabasePostgresql:ManagedDatabasePostgresql": 1,
