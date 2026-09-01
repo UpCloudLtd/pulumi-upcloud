@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetTagsResult',
@@ -39,13 +40,13 @@ class GetTagsResult:
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this resource.
         """
         return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Sequence['outputs.GetTagsTagResult']:
+    def tags(self) -> Optional[Sequence['outputs.GetTagsTagResult']]:
         return pulumi.get(self, "tags")
 
 
@@ -59,26 +60,30 @@ class AwaitableGetTagsResult(GetTagsResult):
             tags=self.tags)
 
 
-def get_tags(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTagsResult:
+def get_tags(tags: Optional[Sequence[Union['GetTagsTagArgs', 'GetTagsTagArgsDict']]] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTagsResult:
     """
     > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
 
-    Data-source is deprecated.
+    List tags configured in the current account.
     """
     __args__ = dict()
+    __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('upcloud:index/getTags:getTags', __args__, opts=opts, typ=GetTagsResult).value
 
     return AwaitableGetTagsResult(
         id=pulumi.get(__ret__, 'id'),
         tags=pulumi.get(__ret__, 'tags'))
-def get_tags_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTagsResult]:
+def get_tags_output(tags: Optional[pulumi.Input[Optional[Sequence[Union['GetTagsTagArgs', 'GetTagsTagArgsDict']]]]] = None,
+                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTagsResult]:
     """
     > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
 
-    Data-source is deprecated.
+    List tags configured in the current account.
     """
     __args__ = dict()
+    __args__['tags'] = tags
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('upcloud:index/getTags:getTags', __args__, opts=opts, typ=GetTagsResult)
     return __ret__.apply(lambda __response__: GetTagsResult(

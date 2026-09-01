@@ -52,6 +52,21 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
     }
 
     /**
+     * When enabled, the server automatically grants the EXECUTE and ALTER ROUTINE privileges to the creator of a stored routine and drops them when the routine is dropped.
+     * 
+     */
+    @Import(name="automaticSpPrivileges")
+    private @Nullable Output<Boolean> automaticSpPrivileges;
+
+    /**
+     * @return When enabled, the server automatically grants the EXECUTE and ALTER ROUTINE privileges to the creator of a stored routine and drops them when the routine is dropped.
+     * 
+     */
+    public Optional<Output<Boolean>> automaticSpPrivileges() {
+        return Optional.ofNullable(this.automaticSpPrivileges);
+    }
+
+    /**
      * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
      * 
      */
@@ -142,6 +157,51 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
     }
 
     /**
+     * Number of digits by which to increase the scale of the result of division operations performed with the / operator. Default is 4.
+     * 
+     */
+    @Import(name="divPrecisionIncrement")
+    private @Nullable Output<Integer> divPrecisionIncrement;
+
+    /**
+     * @return Number of digits by which to increase the scale of the result of division operations performed with the / operator. Default is 4.
+     * 
+     */
+    public Optional<Output<Integer>> divPrecisionIncrement() {
+        return Optional.ofNullable(this.divPrecisionIncrement);
+    }
+
+    /**
+     * Whether optimizer JSON output such as EXPLAIN FORMAT=JSON adds end markers that repeat a structure&#39;s key near its closing bracket, making large JSON structures easier to read.
+     * 
+     */
+    @Import(name="endMarkersInJson")
+    private @Nullable Output<Boolean> endMarkersInJson;
+
+    /**
+     * @return Whether optimizer JSON output such as EXPLAIN FORMAT=JSON adds end markers that repeat a structure&#39;s key near its closing bracket, making large JSON structures easier to read.
+     * 
+     */
+    public Optional<Output<Boolean>> endMarkersInJson() {
+        return Optional.ofNullable(this.endMarkersInJson);
+    }
+
+    /**
+     * The number of equality ranges in a query at or above which the optimizer switches from index dives to index statistics when estimating the number of qualifying rows. 0 means always use index dives. Default is 200.
+     * 
+     */
+    @Import(name="eqRangeIndexDiveLimit")
+    private @Nullable Output<Integer> eqRangeIndexDiveLimit;
+
+    /**
+     * @return The number of equality ranges in a query at or above which the optimizer switches from index dives to index statistics when estimating the number of qualifying rows. 0 means always use index dives. Default is 200.
+     * 
+     */
+    public Optional<Output<Integer>> eqRangeIndexDiveLimit() {
+        return Optional.ofNullable(this.eqRangeIndexDiveLimit);
+    }
+
+    /**
      * The maximum permitted result length in bytes for the GROUP_CONCAT() function.
      * 
      */
@@ -217,6 +277,36 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
     }
 
     /**
+     * Whether stopword processing is applied when creating or rebuilding an InnoDB FULLTEXT index. Enabled by default.
+     * 
+     */
+    @Import(name="innodbFtEnableStopword")
+    private @Nullable Output<Boolean> innodbFtEnableStopword;
+
+    /**
+     * @return Whether stopword processing is applied when creating or rebuilding an InnoDB FULLTEXT index. Enabled by default.
+     * 
+     */
+    public Optional<Output<Boolean>> innodbFtEnableStopword() {
+        return Optional.ofNullable(this.innodbFtEnableStopword);
+    }
+
+    /**
+     * Maximum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+     * 
+     */
+    @Import(name="innodbFtMaxTokenSize")
+    private @Nullable Output<Integer> innodbFtMaxTokenSize;
+
+    /**
+     * @return Maximum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+     * 
+     */
+    public Optional<Output<Integer>> innodbFtMaxTokenSize() {
+        return Optional.ofNullable(this.innodbFtMaxTokenSize);
+    }
+
+    /**
      * Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
      * 
      */
@@ -232,6 +322,36 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
     }
 
     /**
+     * Number of words processed during each OPTIMIZE TABLE operation on an InnoDB FULLTEXT index. Default is 2000.
+     * 
+     */
+    @Import(name="innodbFtNumWordOptimize")
+    private @Nullable Output<Integer> innodbFtNumWordOptimize;
+
+    /**
+     * @return Number of words processed during each OPTIMIZE TABLE operation on an InnoDB FULLTEXT index. Default is 2000.
+     * 
+     */
+    public Optional<Output<Integer>> innodbFtNumWordOptimize() {
+        return Optional.ofNullable(this.innodbFtNumWordOptimize);
+    }
+
+    /**
+     * Maximum memory in bytes used per query for the InnoDB FULLTEXT search query result cache. Aiven sizes this automatically based on the service plan&#39;s memory; setting a value overrides the calculated default.
+     * 
+     */
+    @Import(name="innodbFtResultCacheLimit")
+    private @Nullable Output<Integer> innodbFtResultCacheLimit;
+
+    /**
+     * @return Maximum memory in bytes used per query for the InnoDB FULLTEXT search query result cache. Aiven sizes this automatically based on the service plan&#39;s memory; setting a value overrides the calculated default.
+     * 
+     */
+    public Optional<Output<Integer>> innodbFtResultCacheLimit() {
+        return Optional.ofNullable(this.innodbFtResultCacheLimit);
+    }
+
+    /**
      * This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
      * 
      */
@@ -244,6 +364,21 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
      */
     public Optional<Output<String>> innodbFtServerStopwordTable() {
         return Optional.ofNullable(this.innodbFtServerStopwordTable);
+    }
+
+    /**
+     * This option is used to specify your own InnoDB FULLTEXT index stopword list for specific InnoDB tables.
+     * 
+     */
+    @Import(name="innodbFtUserStopwordTable")
+    private @Nullable Output<String> innodbFtUserStopwordTable;
+
+    /**
+     * @return This option is used to specify your own InnoDB FULLTEXT index stopword list for specific InnoDB tables.
+     * 
+     */
+    public Optional<Output<String>> innodbFtUserStopwordTable() {
+        return Optional.ofNullable(this.innodbFtUserStopwordTable);
     }
 
     /**
@@ -319,6 +454,21 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
      */
     public Optional<Output<Integer>> innodbOnlineAlterLogMaxSize() {
         return Optional.ofNullable(this.innodbOnlineAlterLogMaxSize);
+    }
+
+    /**
+     * When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
+     * 
+     */
+    @Import(name="innodbOptimizeFulltextOnly")
+    private @Nullable Output<Boolean> innodbOptimizeFulltextOnly;
+
+    /**
+     * @return When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
+     * 
+     */
+    public Optional<Output<Boolean>> innodbOptimizeFulltextOnly() {
+        return Optional.ofNullable(this.innodbOptimizeFulltextOnly);
     }
 
     /**
@@ -502,6 +652,36 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
     }
 
     /**
+     * The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
+     * 
+     */
+    @Import(name="maxConnections")
+    private @Nullable Output<Integer> maxConnections;
+
+    /**
+     * @return The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
+     * 
+     */
+    public Optional<Output<Integer>> maxConnections() {
+        return Optional.ofNullable(this.maxConnections);
+    }
+
+    /**
+     * Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.
+     * 
+     */
+    @Import(name="maxExecutionTime")
+    private @Nullable Output<Integer> maxExecutionTime;
+
+    /**
+     * @return Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.
+     * 
+     */
+    public Optional<Output<Integer>> maxExecutionTime() {
+        return Optional.ofNullable(this.maxExecutionTime);
+    }
+
+    /**
      * Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
      * 
      */
@@ -514,6 +694,36 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
      */
     public Optional<Output<Integer>> maxHeapTableSize() {
         return Optional.ofNullable(this.maxHeapTableSize);
+    }
+
+    /**
+     * Limit on the assumed maximum number of index seeks when looking up rows based on a key. Lowering this value causes the optimizer to prefer index lookups over table scans.
+     * 
+     */
+    @Import(name="maxSeeksForKey")
+    private @Nullable Output<Integer> maxSeeksForKey;
+
+    /**
+     * @return Limit on the assumed maximum number of index seeks when looking up rows based on a key. Lowering this value causes the optimizer to prefer index lookups over table scans.
+     * 
+     */
+    public Optional<Output<Integer>> maxSeeksForKey() {
+        return Optional.ofNullable(this.maxSeeksForKey);
+    }
+
+    /**
+     * The maximum number of simultaneous connections permitted to any single user account. 0, the default, means no per-account limit. Any other value must be at least 10 below max_connections, so that monitoring and your own admin sessions can still connect when an application saturates its own limit. Aiven&#39;s replication and management connections are unaffected however low you set this.
+     * 
+     */
+    @Import(name="maxUserConnections")
+    private @Nullable Output<Integer> maxUserConnections;
+
+    /**
+     * @return The maximum number of simultaneous connections permitted to any single user account. 0, the default, means no per-account limit. Any other value must be at least 10 below max_connections, so that monitoring and your own admin sessions can still connect when an application saturates its own limit. Aiven&#39;s replication and management connections are unaffected however low you set this.
+     * 
+     */
+    public Optional<Output<Integer>> maxUserConnections() {
+        return Optional.ofNullable(this.maxUserConnections);
     }
 
     /**
@@ -589,6 +799,51 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
      */
     public Optional<Output<Integer>> netWriteTimeout() {
         return Optional.ofNullable(this.netWriteTimeout);
+    }
+
+    /**
+     * Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. 0 disables heuristics (exhaustive search); 1 prunes plans based on the number of rows retrieved.
+     * 
+     */
+    @Import(name="optimizerPruneLevel")
+    private @Nullable Output<Integer> optimizerPruneLevel;
+
+    /**
+     * @return Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. 0 disables heuristics (exhaustive search); 1 prunes plans based on the number of rows retrieved.
+     * 
+     */
+    public Optional<Output<Integer>> optimizerPruneLevel() {
+        return Optional.ofNullable(this.optimizerPruneLevel);
+    }
+
+    /**
+     * Maximum depth of search performed by the query optimizer when choosing a join order. Larger values produce better plans for joins over many tables but take longer to compile; 0 lets the optimizer choose the depth automatically.
+     * 
+     */
+    @Import(name="optimizerSearchDepth")
+    private @Nullable Output<Integer> optimizerSearchDepth;
+
+    /**
+     * @return Maximum depth of search performed by the query optimizer when choosing a join order. Larger values produce better plans for joins over many tables but take longer to compile; 0 lets the optimizer choose the depth automatically.
+     * 
+     */
+    public Optional<Output<Integer>> optimizerSearchDepth() {
+        return Optional.ofNullable(this.optimizerSearchDepth);
+    }
+
+    /**
+     * Comma-separated list of optimizer flag assignments in the form flag=on|off|default, or the single value &#39;default&#39; to reset all flags. Flags not listed keep their current values. Controls query optimizer behaviors such as index merge, hash join and semijoin strategies.
+     * 
+     */
+    @Import(name="optimizerSwitch")
+    private @Nullable Output<String> optimizerSwitch;
+
+    /**
+     * @return Comma-separated list of optimizer flag assignments in the form flag=on|off|default, or the single value &#39;default&#39; to reset all flags. Flags not listed keep their current values. Controls query optimizer behaviors such as index merge, hash join and semijoin strategies.
+     * 
+     */
+    public Optional<Output<String>> optimizerSwitch() {
+        return Optional.ofNullable(this.optimizerSwitch);
     }
 
     /**
@@ -771,29 +1026,54 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         return Optional.ofNullable(this.waitTimeout);
     }
 
+    /**
+     * Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
+     * 
+     */
+    @Import(name="windowingUseHighPrecision")
+    private @Nullable Output<Boolean> windowingUseHighPrecision;
+
+    /**
+     * @return Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
+     * 
+     */
+    public Optional<Output<Boolean>> windowingUseHighPrecision() {
+        return Optional.ofNullable(this.windowingUseHighPrecision);
+    }
+
     private ManagedDatabaseMysqlPropertiesArgs() {}
 
     private ManagedDatabaseMysqlPropertiesArgs(ManagedDatabaseMysqlPropertiesArgs $) {
         this.adminPassword = $.adminPassword;
         this.adminUsername = $.adminUsername;
+        this.automaticSpPrivileges = $.automaticSpPrivileges;
         this.automaticUtilityNetworkIpFilter = $.automaticUtilityNetworkIpFilter;
         this.backupHour = $.backupHour;
         this.backupMinute = $.backupMinute;
         this.binlogRetentionPeriod = $.binlogRetentionPeriod;
         this.connectTimeout = $.connectTimeout;
         this.defaultTimeZone = $.defaultTimeZone;
+        this.divPrecisionIncrement = $.divPrecisionIncrement;
+        this.endMarkersInJson = $.endMarkersInJson;
+        this.eqRangeIndexDiveLimit = $.eqRangeIndexDiveLimit;
         this.groupConcatMaxLen = $.groupConcatMaxLen;
         this.informationSchemaStatsExpiry = $.informationSchemaStatsExpiry;
         this.innodbAdaptiveHashIndex = $.innodbAdaptiveHashIndex;
         this.innodbChangeBufferMaxSize = $.innodbChangeBufferMaxSize;
         this.innodbFlushNeighbors = $.innodbFlushNeighbors;
+        this.innodbFtEnableStopword = $.innodbFtEnableStopword;
+        this.innodbFtMaxTokenSize = $.innodbFtMaxTokenSize;
         this.innodbFtMinTokenSize = $.innodbFtMinTokenSize;
+        this.innodbFtNumWordOptimize = $.innodbFtNumWordOptimize;
+        this.innodbFtResultCacheLimit = $.innodbFtResultCacheLimit;
         this.innodbFtServerStopwordTable = $.innodbFtServerStopwordTable;
+        this.innodbFtUserStopwordTable = $.innodbFtUserStopwordTable;
         this.innodbIoCapacity = $.innodbIoCapacity;
         this.innodbIoCapacityMax = $.innodbIoCapacityMax;
         this.innodbLockWaitTimeout = $.innodbLockWaitTimeout;
         this.innodbLogBufferSize = $.innodbLogBufferSize;
         this.innodbOnlineAlterLogMaxSize = $.innodbOnlineAlterLogMaxSize;
+        this.innodbOptimizeFulltextOnly = $.innodbOptimizeFulltextOnly;
         this.innodbPrintAllDeadlocks = $.innodbPrintAllDeadlocks;
         this.innodbReadIoThreads = $.innodbReadIoThreads;
         this.innodbRollbackOnTimeout = $.innodbRollbackOnTimeout;
@@ -806,12 +1086,19 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         this.longQueryTime = $.longQueryTime;
         this.lowerCaseTableNames = $.lowerCaseTableNames;
         this.maxAllowedPacket = $.maxAllowedPacket;
+        this.maxConnections = $.maxConnections;
+        this.maxExecutionTime = $.maxExecutionTime;
         this.maxHeapTableSize = $.maxHeapTableSize;
+        this.maxSeeksForKey = $.maxSeeksForKey;
+        this.maxUserConnections = $.maxUserConnections;
         this.migration = $.migration;
         this.mysqlIncrementalBackup = $.mysqlIncrementalBackup;
         this.netBufferLength = $.netBufferLength;
         this.netReadTimeout = $.netReadTimeout;
         this.netWriteTimeout = $.netWriteTimeout;
+        this.optimizerPruneLevel = $.optimizerPruneLevel;
+        this.optimizerSearchDepth = $.optimizerSearchDepth;
+        this.optimizerSwitch = $.optimizerSwitch;
         this.performanceSchemaEventsStatementsHistorySize = $.performanceSchemaEventsStatementsHistorySize;
         this.publicAccess = $.publicAccess;
         this.publicAccessPrometheus = $.publicAccessPrometheus;
@@ -824,6 +1111,7 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         this.tmpTableSize = $.tmpTableSize;
         this.version = $.version;
         this.waitTimeout = $.waitTimeout;
+        this.windowingUseHighPrecision = $.windowingUseHighPrecision;
     }
 
     public static Builder builder() {
@@ -884,6 +1172,27 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
          */
         public Builder adminUsername(String adminUsername) {
             return adminUsername(Output.of(adminUsername));
+        }
+
+        /**
+         * @param automaticSpPrivileges When enabled, the server automatically grants the EXECUTE and ALTER ROUTINE privileges to the creator of a stored routine and drops them when the routine is dropped.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder automaticSpPrivileges(@Nullable Output<Boolean> automaticSpPrivileges) {
+            $.automaticSpPrivileges = automaticSpPrivileges;
+            return this;
+        }
+
+        /**
+         * @param automaticSpPrivileges When enabled, the server automatically grants the EXECUTE and ALTER ROUTINE privileges to the creator of a stored routine and drops them when the routine is dropped.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder automaticSpPrivileges(Boolean automaticSpPrivileges) {
+            return automaticSpPrivileges(Output.of(automaticSpPrivileges));
         }
 
         /**
@@ -1013,6 +1322,69 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         }
 
         /**
+         * @param divPrecisionIncrement Number of digits by which to increase the scale of the result of division operations performed with the / operator. Default is 4.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder divPrecisionIncrement(@Nullable Output<Integer> divPrecisionIncrement) {
+            $.divPrecisionIncrement = divPrecisionIncrement;
+            return this;
+        }
+
+        /**
+         * @param divPrecisionIncrement Number of digits by which to increase the scale of the result of division operations performed with the / operator. Default is 4.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder divPrecisionIncrement(Integer divPrecisionIncrement) {
+            return divPrecisionIncrement(Output.of(divPrecisionIncrement));
+        }
+
+        /**
+         * @param endMarkersInJson Whether optimizer JSON output such as EXPLAIN FORMAT=JSON adds end markers that repeat a structure&#39;s key near its closing bracket, making large JSON structures easier to read.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder endMarkersInJson(@Nullable Output<Boolean> endMarkersInJson) {
+            $.endMarkersInJson = endMarkersInJson;
+            return this;
+        }
+
+        /**
+         * @param endMarkersInJson Whether optimizer JSON output such as EXPLAIN FORMAT=JSON adds end markers that repeat a structure&#39;s key near its closing bracket, making large JSON structures easier to read.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder endMarkersInJson(Boolean endMarkersInJson) {
+            return endMarkersInJson(Output.of(endMarkersInJson));
+        }
+
+        /**
+         * @param eqRangeIndexDiveLimit The number of equality ranges in a query at or above which the optimizer switches from index dives to index statistics when estimating the number of qualifying rows. 0 means always use index dives. Default is 200.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder eqRangeIndexDiveLimit(@Nullable Output<Integer> eqRangeIndexDiveLimit) {
+            $.eqRangeIndexDiveLimit = eqRangeIndexDiveLimit;
+            return this;
+        }
+
+        /**
+         * @param eqRangeIndexDiveLimit The number of equality ranges in a query at or above which the optimizer switches from index dives to index statistics when estimating the number of qualifying rows. 0 means always use index dives. Default is 200.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder eqRangeIndexDiveLimit(Integer eqRangeIndexDiveLimit) {
+            return eqRangeIndexDiveLimit(Output.of(eqRangeIndexDiveLimit));
+        }
+
+        /**
          * @param groupConcatMaxLen The maximum permitted result length in bytes for the GROUP_CONCAT() function.
          * 
          * @return builder
@@ -1118,6 +1490,48 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         }
 
         /**
+         * @param innodbFtEnableStopword Whether stopword processing is applied when creating or rebuilding an InnoDB FULLTEXT index. Enabled by default.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbFtEnableStopword(@Nullable Output<Boolean> innodbFtEnableStopword) {
+            $.innodbFtEnableStopword = innodbFtEnableStopword;
+            return this;
+        }
+
+        /**
+         * @param innodbFtEnableStopword Whether stopword processing is applied when creating or rebuilding an InnoDB FULLTEXT index. Enabled by default.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbFtEnableStopword(Boolean innodbFtEnableStopword) {
+            return innodbFtEnableStopword(Output.of(innodbFtEnableStopword));
+        }
+
+        /**
+         * @param innodbFtMaxTokenSize Maximum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbFtMaxTokenSize(@Nullable Output<Integer> innodbFtMaxTokenSize) {
+            $.innodbFtMaxTokenSize = innodbFtMaxTokenSize;
+            return this;
+        }
+
+        /**
+         * @param innodbFtMaxTokenSize Maximum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbFtMaxTokenSize(Integer innodbFtMaxTokenSize) {
+            return innodbFtMaxTokenSize(Output.of(innodbFtMaxTokenSize));
+        }
+
+        /**
          * @param innodbFtMinTokenSize Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
          * 
          * @return builder
@@ -1139,6 +1553,48 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         }
 
         /**
+         * @param innodbFtNumWordOptimize Number of words processed during each OPTIMIZE TABLE operation on an InnoDB FULLTEXT index. Default is 2000.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbFtNumWordOptimize(@Nullable Output<Integer> innodbFtNumWordOptimize) {
+            $.innodbFtNumWordOptimize = innodbFtNumWordOptimize;
+            return this;
+        }
+
+        /**
+         * @param innodbFtNumWordOptimize Number of words processed during each OPTIMIZE TABLE operation on an InnoDB FULLTEXT index. Default is 2000.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbFtNumWordOptimize(Integer innodbFtNumWordOptimize) {
+            return innodbFtNumWordOptimize(Output.of(innodbFtNumWordOptimize));
+        }
+
+        /**
+         * @param innodbFtResultCacheLimit Maximum memory in bytes used per query for the InnoDB FULLTEXT search query result cache. Aiven sizes this automatically based on the service plan&#39;s memory; setting a value overrides the calculated default.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbFtResultCacheLimit(@Nullable Output<Integer> innodbFtResultCacheLimit) {
+            $.innodbFtResultCacheLimit = innodbFtResultCacheLimit;
+            return this;
+        }
+
+        /**
+         * @param innodbFtResultCacheLimit Maximum memory in bytes used per query for the InnoDB FULLTEXT search query result cache. Aiven sizes this automatically based on the service plan&#39;s memory; setting a value overrides the calculated default.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbFtResultCacheLimit(Integer innodbFtResultCacheLimit) {
+            return innodbFtResultCacheLimit(Output.of(innodbFtResultCacheLimit));
+        }
+
+        /**
          * @param innodbFtServerStopwordTable This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
          * 
          * @return builder
@@ -1157,6 +1613,27 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
          */
         public Builder innodbFtServerStopwordTable(String innodbFtServerStopwordTable) {
             return innodbFtServerStopwordTable(Output.of(innodbFtServerStopwordTable));
+        }
+
+        /**
+         * @param innodbFtUserStopwordTable This option is used to specify your own InnoDB FULLTEXT index stopword list for specific InnoDB tables.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbFtUserStopwordTable(@Nullable Output<String> innodbFtUserStopwordTable) {
+            $.innodbFtUserStopwordTable = innodbFtUserStopwordTable;
+            return this;
+        }
+
+        /**
+         * @param innodbFtUserStopwordTable This option is used to specify your own InnoDB FULLTEXT index stopword list for specific InnoDB tables.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbFtUserStopwordTable(String innodbFtUserStopwordTable) {
+            return innodbFtUserStopwordTable(Output.of(innodbFtUserStopwordTable));
         }
 
         /**
@@ -1262,6 +1739,27 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
          */
         public Builder innodbOnlineAlterLogMaxSize(Integer innodbOnlineAlterLogMaxSize) {
             return innodbOnlineAlterLogMaxSize(Output.of(innodbOnlineAlterLogMaxSize));
+        }
+
+        /**
+         * @param innodbOptimizeFulltextOnly When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbOptimizeFulltextOnly(@Nullable Output<Boolean> innodbOptimizeFulltextOnly) {
+            $.innodbOptimizeFulltextOnly = innodbOptimizeFulltextOnly;
+            return this;
+        }
+
+        /**
+         * @param innodbOptimizeFulltextOnly When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder innodbOptimizeFulltextOnly(Boolean innodbOptimizeFulltextOnly) {
+            return innodbOptimizeFulltextOnly(Output.of(innodbOptimizeFulltextOnly));
         }
 
         /**
@@ -1527,6 +2025,48 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
         }
 
         /**
+         * @param maxConnections The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxConnections(@Nullable Output<Integer> maxConnections) {
+            $.maxConnections = maxConnections;
+            return this;
+        }
+
+        /**
+         * @param maxConnections The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxConnections(Integer maxConnections) {
+            return maxConnections(Output.of(maxConnections));
+        }
+
+        /**
+         * @param maxExecutionTime Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxExecutionTime(@Nullable Output<Integer> maxExecutionTime) {
+            $.maxExecutionTime = maxExecutionTime;
+            return this;
+        }
+
+        /**
+         * @param maxExecutionTime Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxExecutionTime(Integer maxExecutionTime) {
+            return maxExecutionTime(Output.of(maxExecutionTime));
+        }
+
+        /**
          * @param maxHeapTableSize Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
          * 
          * @return builder
@@ -1545,6 +2085,48 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
          */
         public Builder maxHeapTableSize(Integer maxHeapTableSize) {
             return maxHeapTableSize(Output.of(maxHeapTableSize));
+        }
+
+        /**
+         * @param maxSeeksForKey Limit on the assumed maximum number of index seeks when looking up rows based on a key. Lowering this value causes the optimizer to prefer index lookups over table scans.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxSeeksForKey(@Nullable Output<Integer> maxSeeksForKey) {
+            $.maxSeeksForKey = maxSeeksForKey;
+            return this;
+        }
+
+        /**
+         * @param maxSeeksForKey Limit on the assumed maximum number of index seeks when looking up rows based on a key. Lowering this value causes the optimizer to prefer index lookups over table scans.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxSeeksForKey(Integer maxSeeksForKey) {
+            return maxSeeksForKey(Output.of(maxSeeksForKey));
+        }
+
+        /**
+         * @param maxUserConnections The maximum number of simultaneous connections permitted to any single user account. 0, the default, means no per-account limit. Any other value must be at least 10 below max_connections, so that monitoring and your own admin sessions can still connect when an application saturates its own limit. Aiven&#39;s replication and management connections are unaffected however low you set this.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxUserConnections(@Nullable Output<Integer> maxUserConnections) {
+            $.maxUserConnections = maxUserConnections;
+            return this;
+        }
+
+        /**
+         * @param maxUserConnections The maximum number of simultaneous connections permitted to any single user account. 0, the default, means no per-account limit. Any other value must be at least 10 below max_connections, so that monitoring and your own admin sessions can still connect when an application saturates its own limit. Aiven&#39;s replication and management connections are unaffected however low you set this.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxUserConnections(Integer maxUserConnections) {
+            return maxUserConnections(Output.of(maxUserConnections));
         }
 
         /**
@@ -1650,6 +2232,69 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
          */
         public Builder netWriteTimeout(Integer netWriteTimeout) {
             return netWriteTimeout(Output.of(netWriteTimeout));
+        }
+
+        /**
+         * @param optimizerPruneLevel Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. 0 disables heuristics (exhaustive search); 1 prunes plans based on the number of rows retrieved.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder optimizerPruneLevel(@Nullable Output<Integer> optimizerPruneLevel) {
+            $.optimizerPruneLevel = optimizerPruneLevel;
+            return this;
+        }
+
+        /**
+         * @param optimizerPruneLevel Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. 0 disables heuristics (exhaustive search); 1 prunes plans based on the number of rows retrieved.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder optimizerPruneLevel(Integer optimizerPruneLevel) {
+            return optimizerPruneLevel(Output.of(optimizerPruneLevel));
+        }
+
+        /**
+         * @param optimizerSearchDepth Maximum depth of search performed by the query optimizer when choosing a join order. Larger values produce better plans for joins over many tables but take longer to compile; 0 lets the optimizer choose the depth automatically.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder optimizerSearchDepth(@Nullable Output<Integer> optimizerSearchDepth) {
+            $.optimizerSearchDepth = optimizerSearchDepth;
+            return this;
+        }
+
+        /**
+         * @param optimizerSearchDepth Maximum depth of search performed by the query optimizer when choosing a join order. Larger values produce better plans for joins over many tables but take longer to compile; 0 lets the optimizer choose the depth automatically.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder optimizerSearchDepth(Integer optimizerSearchDepth) {
+            return optimizerSearchDepth(Output.of(optimizerSearchDepth));
+        }
+
+        /**
+         * @param optimizerSwitch Comma-separated list of optimizer flag assignments in the form flag=on|off|default, or the single value &#39;default&#39; to reset all flags. Flags not listed keep their current values. Controls query optimizer behaviors such as index merge, hash join and semijoin strategies.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder optimizerSwitch(@Nullable Output<String> optimizerSwitch) {
+            $.optimizerSwitch = optimizerSwitch;
+            return this;
+        }
+
+        /**
+         * @param optimizerSwitch Comma-separated list of optimizer flag assignments in the form flag=on|off|default, or the single value &#39;default&#39; to reset all flags. Flags not listed keep their current values. Controls query optimizer behaviors such as index merge, hash join and semijoin strategies.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder optimizerSwitch(String optimizerSwitch) {
+            return optimizerSwitch(Output.of(optimizerSwitch));
         }
 
         /**
@@ -1902,6 +2547,27 @@ public final class ManagedDatabaseMysqlPropertiesArgs extends com.pulumi.resourc
          */
         public Builder waitTimeout(Integer waitTimeout) {
             return waitTimeout(Output.of(waitTimeout));
+        }
+
+        /**
+         * @param windowingUseHighPrecision Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder windowingUseHighPrecision(@Nullable Output<Boolean> windowingUseHighPrecision) {
+            $.windowingUseHighPrecision = windowingUseHighPrecision;
+            return this;
+        }
+
+        /**
+         * @param windowingUseHighPrecision Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder windowingUseHighPrecision(Boolean windowingUseHighPrecision) {
+            return windowingUseHighPrecision(Output.of(windowingUseHighPrecision));
         }
 
         public ManagedDatabaseMysqlPropertiesArgs build() {

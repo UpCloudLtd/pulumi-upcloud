@@ -18,48 +18,48 @@ import javax.annotation.Nullable;
 /**
  * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
  * 
- * This resource is deprecated, use tags schema in server resource
+ * Resource for managing tags. When tagging multiple servers with the same tag, use this resource to create the tag and `tags` field of the server resource to tag the server.
  * 
  */
 @ResourceType(type="upcloud:index/tag:Tag")
 public class Tag extends com.pulumi.resources.CustomResource {
     /**
-     * Free form text representing the meaning of the tag
+     * Free form text representing the meaning of the tag.
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> description;
+    private Output<String> description;
 
     /**
-     * @return Free form text representing the meaning of the tag
+     * @return Free form text representing the meaning of the tag.
      * 
      */
-    public Output<Optional<String>> description() {
-        return Codegen.optional(this.description);
+    public Output<String> description() {
+        return this.description;
     }
     /**
-     * The value representing the tag
+     * The name of the tag.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The value representing the tag
+     * @return The name of the tag.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * A collection of servers that have been assigned the tag
+     * A collection of servers that have been assigned the tag.
      * 
      */
     @Export(name="servers", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> servers;
 
     /**
-     * @return A collection of servers that have been assigned the tag
+     * @return A collection of servers that have been assigned the tag.
      * 
      */
     public Output<Optional<List<String>>> servers() {

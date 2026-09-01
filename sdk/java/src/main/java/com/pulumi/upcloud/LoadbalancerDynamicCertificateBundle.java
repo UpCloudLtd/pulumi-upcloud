@@ -12,6 +12,7 @@ import com.pulumi.upcloud.Utilities;
 import com.pulumi.upcloud.inputs.LoadbalancerDynamicCertificateBundleState;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.Nullable;
 
 /**
@@ -84,6 +85,20 @@ public class LoadbalancerDynamicCertificateBundle extends com.pulumi.resources.C
      */
     public Output<String> keyType() {
         return this.keyType;
+    }
+    /**
+     * User defined key-value pairs to classify the dynamic certificate bundle.
+     * 
+     */
+    @Export(name="labels", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> labels;
+
+    /**
+     * @return User defined key-value pairs to classify the dynamic certificate bundle.
+     * 
+     */
+    public Output<Map<String,String>> labels() {
+        return this.labels;
     }
     /**
      * The name of the certificate bundle. Must be unique within customer account.

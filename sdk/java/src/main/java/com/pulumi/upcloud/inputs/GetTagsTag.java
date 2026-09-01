@@ -3,67 +3,65 @@
 
 package com.pulumi.upcloud.inputs;
 
-import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
-public final class TagState extends com.pulumi.resources.ResourceArgs {
+public final class GetTagsTag extends com.pulumi.resources.InvokeArgs {
 
-    public static final TagState Empty = new TagState();
+    public static final GetTagsTag Empty = new GetTagsTag();
 
     /**
      * Free form text representing the meaning of the tag.
      * 
      */
-    @Import(name="description")
-    private @Nullable Output<String> description;
+    @Import(name="description", required=true)
+    private String description;
 
     /**
      * @return Free form text representing the meaning of the tag.
      * 
      */
-    public Optional<Output<String>> description() {
-        return Optional.ofNullable(this.description);
+    public String description() {
+        return this.description;
     }
 
     /**
      * The name of the tag.
      * 
      */
-    @Import(name="name")
-    private @Nullable Output<String> name;
+    @Import(name="name", required=true)
+    private String name;
 
     /**
      * @return The name of the tag.
      * 
      */
-    public Optional<Output<String>> name() {
-        return Optional.ofNullable(this.name);
+    public String name() {
+        return this.name;
     }
 
     /**
      * A collection of servers that have been assigned the tag.
      * 
      */
-    @Import(name="servers")
-    private @Nullable Output<List<String>> servers;
+    @Import(name="servers", required=true)
+    private List<String> servers;
 
     /**
      * @return A collection of servers that have been assigned the tag.
      * 
      */
-    public Optional<Output<List<String>>> servers() {
-        return Optional.ofNullable(this.servers);
+    public List<String> servers() {
+        return this.servers;
     }
 
-    private TagState() {}
+    private GetTagsTag() {}
 
-    private TagState(TagState $) {
+    private GetTagsTag(GetTagsTag $) {
         this.description = $.description;
         this.name = $.name;
         this.servers = $.servers;
@@ -72,30 +70,19 @@ public final class TagState extends com.pulumi.resources.ResourceArgs {
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(TagState defaults) {
+    public static Builder builder(GetTagsTag defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private TagState $;
+        private GetTagsTag $;
 
         public Builder() {
-            $ = new TagState();
+            $ = new GetTagsTag();
         }
 
-        public Builder(TagState defaults) {
-            $ = new TagState(Objects.requireNonNull(defaults));
-        }
-
-        /**
-         * @param description Free form text representing the meaning of the tag.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder description(@Nullable Output<String> description) {
-            $.description = description;
-            return this;
+        public Builder(GetTagsTag defaults) {
+            $ = new GetTagsTag(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -105,17 +92,7 @@ public final class TagState extends com.pulumi.resources.ResourceArgs {
          * 
          */
         public Builder description(String description) {
-            return description(Output.of(description));
-        }
-
-        /**
-         * @param name The name of the tag.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder name(@Nullable Output<String> name) {
-            $.name = name;
+            $.description = description;
             return this;
         }
 
@@ -126,17 +103,7 @@ public final class TagState extends com.pulumi.resources.ResourceArgs {
          * 
          */
         public Builder name(String name) {
-            return name(Output.of(name));
-        }
-
-        /**
-         * @param servers A collection of servers that have been assigned the tag.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder servers(@Nullable Output<List<String>> servers) {
-            $.servers = servers;
+            $.name = name;
             return this;
         }
 
@@ -147,7 +114,8 @@ public final class TagState extends com.pulumi.resources.ResourceArgs {
          * 
          */
         public Builder servers(List<String> servers) {
-            return servers(Output.of(servers));
+            $.servers = servers;
+            return this;
         }
 
         /**
@@ -160,7 +128,16 @@ public final class TagState extends com.pulumi.resources.ResourceArgs {
             return servers(List.of(servers));
         }
 
-        public TagState build() {
+        public GetTagsTag build() {
+            if ($.description == null) {
+                throw new MissingRequiredPropertyException("GetTagsTag", "description");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("GetTagsTag", "name");
+            }
+            if ($.servers == null) {
+                throw new MissingRequiredPropertyException("GetTagsTag", "servers");
+            }
             return $;
         }
     }

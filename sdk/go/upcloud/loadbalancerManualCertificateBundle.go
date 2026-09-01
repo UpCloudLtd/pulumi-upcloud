@@ -69,6 +69,8 @@ type LoadbalancerManualCertificateBundle struct {
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// Intermediate certificates as base64 encoded string. Must be in PEM format.
 	Intermediates pulumi.StringOutput `pulumi:"intermediates"`
+	// User defined key-value pairs to classify the manual certificate bundle.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// The name of the certificate bundle. Must be unique within customer account.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The time after which a certificate is no longer valid.
@@ -128,6 +130,8 @@ type loadbalancerManualCertificateBundleState struct {
 	Certificate *string `pulumi:"certificate"`
 	// Intermediate certificates as base64 encoded string. Must be in PEM format.
 	Intermediates *string `pulumi:"intermediates"`
+	// User defined key-value pairs to classify the manual certificate bundle.
+	Labels map[string]string `pulumi:"labels"`
 	// The name of the certificate bundle. Must be unique within customer account.
 	Name *string `pulumi:"name"`
 	// The time after which a certificate is no longer valid.
@@ -145,6 +149,8 @@ type LoadbalancerManualCertificateBundleState struct {
 	Certificate pulumi.StringPtrInput
 	// Intermediate certificates as base64 encoded string. Must be in PEM format.
 	Intermediates pulumi.StringPtrInput
+	// User defined key-value pairs to classify the manual certificate bundle.
+	Labels pulumi.StringMapInput
 	// The name of the certificate bundle. Must be unique within customer account.
 	Name pulumi.StringPtrInput
 	// The time after which a certificate is no longer valid.
@@ -166,6 +172,8 @@ type loadbalancerManualCertificateBundleArgs struct {
 	Certificate string `pulumi:"certificate"`
 	// Intermediate certificates as base64 encoded string. Must be in PEM format.
 	Intermediates *string `pulumi:"intermediates"`
+	// User defined key-value pairs to classify the manual certificate bundle.
+	Labels map[string]string `pulumi:"labels"`
 	// The name of the certificate bundle. Must be unique within customer account.
 	Name *string `pulumi:"name"`
 	// Private key as base64 encoded string. Must be in PEM format.
@@ -178,6 +186,8 @@ type LoadbalancerManualCertificateBundleArgs struct {
 	Certificate pulumi.StringInput
 	// Intermediate certificates as base64 encoded string. Must be in PEM format.
 	Intermediates pulumi.StringPtrInput
+	// User defined key-value pairs to classify the manual certificate bundle.
+	Labels pulumi.StringMapInput
 	// The name of the certificate bundle. Must be unique within customer account.
 	Name pulumi.StringPtrInput
 	// Private key as base64 encoded string. Must be in PEM format.
@@ -279,6 +289,11 @@ func (o LoadbalancerManualCertificateBundleOutput) Certificate() pulumi.StringOu
 // Intermediate certificates as base64 encoded string. Must be in PEM format.
 func (o LoadbalancerManualCertificateBundleOutput) Intermediates() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerManualCertificateBundle) pulumi.StringOutput { return v.Intermediates }).(pulumi.StringOutput)
+}
+
+// User defined key-value pairs to classify the manual certificate bundle.
+func (o LoadbalancerManualCertificateBundleOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *LoadbalancerManualCertificateBundle) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
 // The name of the certificate bundle. Must be unique within customer account.

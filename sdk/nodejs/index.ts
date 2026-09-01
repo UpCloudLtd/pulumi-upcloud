@@ -110,7 +110,7 @@ export const getStorage: typeof import("./getStorage").getStorage = null as any;
 export const getStorageOutput: typeof import("./getStorage").getStorageOutput = null as any;
 utilities.lazyLoad(exports, ["getStorage","getStorageOutput"], () => require("./getStorage"));
 
-export { GetTagsResult } from "./getTags";
+export { GetTagsArgs, GetTagsResult, GetTagsOutputArgs } from "./getTags";
 export const getTags: typeof import("./getTags").getTags = null as any;
 export const getTagsOutput: typeof import("./getTags").getTagsOutput = null as any;
 utilities.lazyLoad(exports, ["getTags","getTagsOutput"], () => require("./getTags"));

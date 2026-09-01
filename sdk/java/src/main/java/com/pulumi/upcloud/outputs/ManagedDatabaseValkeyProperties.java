@@ -71,6 +71,11 @@ public final class ManagedDatabaseValkeyProperties {
      */
     private @Nullable Integer valkeyActiveExpireEffort;
     /**
+     * @return Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
+     * 
+     */
+    private @Nullable Boolean valkeyActivedefrag;
+    /**
      * @return Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
      * 
      */
@@ -205,6 +210,13 @@ public final class ManagedDatabaseValkeyProperties {
         return Optional.ofNullable(this.valkeyActiveExpireEffort);
     }
     /**
+     * @return Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
+     * 
+     */
+    public Optional<Boolean> valkeyActivedefrag() {
+        return Optional.ofNullable(this.valkeyActivedefrag);
+    }
+    /**
      * @return Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
      * 
      */
@@ -302,6 +314,7 @@ public final class ManagedDatabaseValkeyProperties {
         private @Nullable Boolean serviceLog;
         private @Nullable String valkeyAclChannelsDefault;
         private @Nullable Integer valkeyActiveExpireEffort;
+        private @Nullable Boolean valkeyActivedefrag;
         private @Nullable Integer valkeyIoThreads;
         private @Nullable Integer valkeyLfuDecayTime;
         private @Nullable Integer valkeyLfuLogFactor;
@@ -327,6 +340,7 @@ public final class ManagedDatabaseValkeyProperties {
     	      this.serviceLog = defaults.serviceLog;
     	      this.valkeyAclChannelsDefault = defaults.valkeyAclChannelsDefault;
     	      this.valkeyActiveExpireEffort = defaults.valkeyActiveExpireEffort;
+    	      this.valkeyActivedefrag = defaults.valkeyActivedefrag;
     	      this.valkeyIoThreads = defaults.valkeyIoThreads;
     	      this.valkeyLfuDecayTime = defaults.valkeyLfuDecayTime;
     	      this.valkeyLfuLogFactor = defaults.valkeyLfuLogFactor;
@@ -410,6 +424,12 @@ public final class ManagedDatabaseValkeyProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder valkeyActivedefrag(@Nullable Boolean valkeyActivedefrag) {
+
+            this.valkeyActivedefrag = valkeyActivedefrag;
+            return this;
+        }
+        @CustomType.Setter
         public Builder valkeyIoThreads(@Nullable Integer valkeyIoThreads) {
 
             this.valkeyIoThreads = valkeyIoThreads;
@@ -488,6 +508,7 @@ public final class ManagedDatabaseValkeyProperties {
             _resultValue.serviceLog = serviceLog;
             _resultValue.valkeyAclChannelsDefault = valkeyAclChannelsDefault;
             _resultValue.valkeyActiveExpireEffort = valkeyActiveExpireEffort;
+            _resultValue.valkeyActivedefrag = valkeyActivedefrag;
             _resultValue.valkeyIoThreads = valkeyIoThreads;
             _resultValue.valkeyLfuDecayTime = valkeyLfuDecayTime;
             _resultValue.valkeyLfuLogFactor = valkeyLfuLogFactor;

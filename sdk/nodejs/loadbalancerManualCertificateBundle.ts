@@ -69,6 +69,10 @@ export class LoadbalancerManualCertificateBundle extends pulumi.CustomResource {
      */
     declare public readonly intermediates: pulumi.Output<string>;
     /**
+     * User defined key-value pairs to classify the manual certificate bundle.
+     */
+    declare public readonly labels: pulumi.Output<{[key: string]: string}>;
+    /**
      * The name of the certificate bundle. Must be unique within customer account.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -104,6 +108,7 @@ export class LoadbalancerManualCertificateBundle extends pulumi.CustomResource {
             const state = argsOrState as LoadbalancerManualCertificateBundleState | undefined;
             resourceInputs["certificate"] = state?.certificate;
             resourceInputs["intermediates"] = state?.intermediates;
+            resourceInputs["labels"] = state?.labels;
             resourceInputs["name"] = state?.name;
             resourceInputs["notAfter"] = state?.notAfter;
             resourceInputs["notBefore"] = state?.notBefore;
@@ -119,6 +124,7 @@ export class LoadbalancerManualCertificateBundle extends pulumi.CustomResource {
             }
             resourceInputs["certificate"] = args?.certificate;
             resourceInputs["intermediates"] = args?.intermediates;
+            resourceInputs["labels"] = args?.labels;
             resourceInputs["name"] = args?.name;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["notAfter"] = undefined /*out*/;
@@ -144,6 +150,10 @@ export interface LoadbalancerManualCertificateBundleState {
      * Intermediate certificates as base64 encoded string. Must be in PEM format.
      */
     intermediates?: pulumi.Input<string>;
+    /**
+     * User defined key-value pairs to classify the manual certificate bundle.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The name of the certificate bundle. Must be unique within customer account.
      */
@@ -178,6 +188,10 @@ export interface LoadbalancerManualCertificateBundleArgs {
      * Intermediate certificates as base64 encoded string. Must be in PEM format.
      */
     intermediates?: pulumi.Input<string>;
+    /**
+     * User defined key-value pairs to classify the manual certificate bundle.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The name of the certificate bundle. Must be unique within customer account.
      */

@@ -13,25 +13,25 @@ namespace UpCloud.Pulumi.UpCloud
     /// <summary>
     /// &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
     /// 
-    /// This resource is deprecated, use tags schema in server resource
+    /// Resource for managing tags. When tagging multiple servers with the same tag, use this resource to create the tag and `Tags` field of the server resource to tag the server.
     /// </summary>
     [UpCloudResourceType("upcloud:index/tag:Tag")]
     public partial class Tag : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Free form text representing the meaning of the tag
+        /// Free form text representing the meaning of the tag.
         /// </summary>
         [Output("description")]
-        public Output<string?> Description { get; private set; } = null!;
+        public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The value representing the tag
+        /// The name of the tag.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// A collection of servers that have been assigned the tag
+        /// A collection of servers that have been assigned the tag.
         /// </summary>
         [Output("servers")]
         public Output<ImmutableArray<string>> Servers { get; private set; } = null!;
@@ -84,13 +84,13 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class TagArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Free form text representing the meaning of the tag
+        /// Free form text representing the meaning of the tag.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The value representing the tag
+        /// The name of the tag.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -99,7 +99,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputList<string>? _servers;
 
         /// <summary>
-        /// A collection of servers that have been assigned the tag
+        /// A collection of servers that have been assigned the tag.
         /// </summary>
         public InputList<string> Servers
         {
@@ -116,13 +116,13 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class TagState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Free form text representing the meaning of the tag
+        /// Free form text representing the meaning of the tag.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The value representing the tag
+        /// The name of the tag.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -131,7 +131,7 @@ namespace UpCloud.Pulumi.UpCloud
         private InputList<string>? _servers;
 
         /// <summary>
-        /// A collection of servers that have been assigned the tag
+        /// A collection of servers that have been assigned the tag.
         /// </summary>
         public InputList<string> Servers
         {

@@ -60,6 +60,10 @@ export class LoadbalancerDynamicCertificateBundle extends pulumi.CustomResource 
      */
     declare public readonly keyType: pulumi.Output<string>;
     /**
+     * User defined key-value pairs to classify the dynamic certificate bundle.
+     */
+    declare public readonly labels: pulumi.Output<{[key: string]: string}>;
+    /**
      * The name of the certificate bundle. Must be unique within customer account.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -91,6 +95,7 @@ export class LoadbalancerDynamicCertificateBundle extends pulumi.CustomResource 
             const state = argsOrState as LoadbalancerDynamicCertificateBundleState | undefined;
             resourceInputs["hostnames"] = state?.hostnames;
             resourceInputs["keyType"] = state?.keyType;
+            resourceInputs["labels"] = state?.labels;
             resourceInputs["name"] = state?.name;
             resourceInputs["notAfter"] = state?.notAfter;
             resourceInputs["notBefore"] = state?.notBefore;
@@ -105,6 +110,7 @@ export class LoadbalancerDynamicCertificateBundle extends pulumi.CustomResource 
             }
             resourceInputs["hostnames"] = args?.hostnames;
             resourceInputs["keyType"] = args?.keyType;
+            resourceInputs["labels"] = args?.labels;
             resourceInputs["name"] = args?.name;
             resourceInputs["notAfter"] = undefined /*out*/;
             resourceInputs["notBefore"] = undefined /*out*/;
@@ -127,6 +133,10 @@ export interface LoadbalancerDynamicCertificateBundleState {
      * Private key type (`rsa` / `ecdsa`).
      */
     keyType?: pulumi.Input<string>;
+    /**
+     * User defined key-value pairs to classify the dynamic certificate bundle.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The name of the certificate bundle. Must be unique within customer account.
      */
@@ -157,6 +167,10 @@ export interface LoadbalancerDynamicCertificateBundleArgs {
      * Private key type (`rsa` / `ecdsa`).
      */
     keyType: pulumi.Input<string>;
+    /**
+     * User defined key-value pairs to classify the dynamic certificate bundle.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The name of the certificate bundle. Must be unique within customer account.
      */

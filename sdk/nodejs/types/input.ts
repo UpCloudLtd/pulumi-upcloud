@@ -851,6 +851,36 @@ export interface GetManagedObjectStorageRegionsRegionArgs {
     zones?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface GetTagsTag {
+    /**
+     * Free form text representing the meaning of the tag.
+     */
+    description?: string;
+    /**
+     * The name of the tag.
+     */
+    name?: string;
+    /**
+     * A collection of servers that have been assigned the tag.
+     */
+    servers?: string[];
+}
+
+export interface GetTagsTagArgs {
+    /**
+     * Free form text representing the meaning of the tag.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * The name of the tag.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * A collection of servers that have been assigned the tag.
+     */
+    servers?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
 export interface KubernetesNodeGroupCloudNativePlan {
     /**
      * The size of the storage device in gigabytes.
@@ -1667,6 +1697,10 @@ export interface ManagedDatabaseMysqlProperties {
      */
     adminUsername?: pulumi.Input<string>;
     /**
+     * When enabled, the server automatically grants the EXECUTE and ALTER ROUTINE privileges to the creator of a stored routine and drops them when the routine is dropped.
+     */
+    automaticSpPrivileges?: pulumi.Input<boolean>;
+    /**
      * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
      */
     automaticUtilityNetworkIpFilter?: pulumi.Input<boolean>;
@@ -1691,6 +1725,18 @@ export interface ManagedDatabaseMysqlProperties {
      */
     defaultTimeZone?: pulumi.Input<string>;
     /**
+     * Number of digits by which to increase the scale of the result of division operations performed with the / operator. Default is 4.
+     */
+    divPrecisionIncrement?: pulumi.Input<number>;
+    /**
+     * Whether optimizer JSON output such as EXPLAIN FORMAT=JSON adds end markers that repeat a structure's key near its closing bracket, making large JSON structures easier to read.
+     */
+    endMarkersInJson?: pulumi.Input<boolean>;
+    /**
+     * The number of equality ranges in a query at or above which the optimizer switches from index dives to index statistics when estimating the number of qualifying rows. 0 means always use index dives. Default is 200.
+     */
+    eqRangeIndexDiveLimit?: pulumi.Input<number>;
+    /**
      * The maximum permitted result length in bytes for the GROUP_CONCAT() function.
      */
     groupConcatMaxLen?: pulumi.Input<number>;
@@ -1711,13 +1757,33 @@ export interface ManagedDatabaseMysqlProperties {
      */
     innodbFlushNeighbors?: pulumi.Input<number>;
     /**
+     * Whether stopword processing is applied when creating or rebuilding an InnoDB FULLTEXT index. Enabled by default.
+     */
+    innodbFtEnableStopword?: pulumi.Input<boolean>;
+    /**
+     * Maximum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+     */
+    innodbFtMaxTokenSize?: pulumi.Input<number>;
+    /**
      * Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
      */
     innodbFtMinTokenSize?: pulumi.Input<number>;
     /**
+     * Number of words processed during each OPTIMIZE TABLE operation on an InnoDB FULLTEXT index. Default is 2000.
+     */
+    innodbFtNumWordOptimize?: pulumi.Input<number>;
+    /**
+     * Maximum memory in bytes used per query for the InnoDB FULLTEXT search query result cache. Aiven sizes this automatically based on the service plan's memory; setting a value overrides the calculated default.
+     */
+    innodbFtResultCacheLimit?: pulumi.Input<number>;
+    /**
      * This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
      */
     innodbFtServerStopwordTable?: pulumi.Input<string>;
+    /**
+     * This option is used to specify your own InnoDB FULLTEXT index stopword list for specific InnoDB tables.
+     */
+    innodbFtUserStopwordTable?: pulumi.Input<string>;
     /**
      * The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
      */
@@ -1738,6 +1804,10 @@ export interface ManagedDatabaseMysqlProperties {
      * The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
      */
     innodbOnlineAlterLogMaxSize?: pulumi.Input<number>;
+    /**
+     * When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
+     */
+    innodbOptimizeFulltextOnly?: pulumi.Input<boolean>;
     /**
      * When enabled, information about all deadlocks in InnoDB user transactions is recorded in the error log. Disabled by default.
      */
@@ -1787,9 +1857,25 @@ export interface ManagedDatabaseMysqlProperties {
      */
     maxAllowedPacket?: pulumi.Input<number>;
     /**
+     * The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
+     */
+    maxConnections?: pulumi.Input<number>;
+    /**
+     * Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.
+     */
+    maxExecutionTime?: pulumi.Input<number>;
+    /**
      * Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
      */
     maxHeapTableSize?: pulumi.Input<number>;
+    /**
+     * Limit on the assumed maximum number of index seeks when looking up rows based on a key. Lowering this value causes the optimizer to prefer index lookups over table scans.
+     */
+    maxSeeksForKey?: pulumi.Input<number>;
+    /**
+     * The maximum number of simultaneous connections permitted to any single user account. 0, the default, means no per-account limit. Any other value must be at least 10 below max_connections, so that monitoring and your own admin sessions can still connect when an application saturates its own limit. Aiven's replication and management connections are unaffected however low you set this.
+     */
+    maxUserConnections?: pulumi.Input<number>;
     /**
      * Migrate data from existing server.
      */
@@ -1810,6 +1896,18 @@ export interface ManagedDatabaseMysqlProperties {
      * The number of seconds to wait for a block to be written to a connection before aborting the write.
      */
     netWriteTimeout?: pulumi.Input<number>;
+    /**
+     * Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. 0 disables heuristics (exhaustive search); 1 prunes plans based on the number of rows retrieved.
+     */
+    optimizerPruneLevel?: pulumi.Input<number>;
+    /**
+     * Maximum depth of search performed by the query optimizer when choosing a join order. Larger values produce better plans for joins over many tables but take longer to compile; 0 lets the optimizer choose the depth automatically.
+     */
+    optimizerSearchDepth?: pulumi.Input<number>;
+    /**
+     * Comma-separated list of optimizer flag assignments in the form flag=on|off|default, or the single value 'default' to reset all flags. Flags not listed keep their current values. Controls query optimizer behaviors such as index merge, hash join and semijoin strategies.
+     */
+    optimizerSwitch?: pulumi.Input<string>;
     /**
      * The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
      */
@@ -1858,6 +1956,10 @@ export interface ManagedDatabaseMysqlProperties {
      * The number of seconds the server waits for activity on a noninteractive connection before closing it.
      */
     waitTimeout?: pulumi.Input<number>;
+    /**
+     * Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
+     */
+    windowingUseHighPrecision?: pulumi.Input<boolean>;
 }
 
 export interface ManagedDatabaseMysqlPropertiesMigration {
@@ -2027,6 +2129,10 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     diskWatermarks?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks>;
     /**
+     * OpenSearch version.
+     */
+    elasticsearchVersion?: pulumi.Input<string>;
+    /**
      * Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
      */
     emailSenderName?: pulumi.Input<string>;
@@ -2155,6 +2261,10 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     knnMemoryCircuitBreakerLimit?: pulumi.Input<number>;
     /**
+     * plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
+     */
+    mlCommonsConnectorAccessControlEnabled?: pulumi.Input<boolean>;
+    /**
      * plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
      */
     mlCommonsModelAccessControlEnabled?: pulumi.Input<boolean>;
@@ -2166,6 +2276,10 @@ export interface ManagedDatabaseOpensearchProperties {
      * plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
      */
     mlCommonsOnlyRunOnMlNode?: pulumi.Input<boolean>;
+    /**
+     * plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
+     */
+    mlCommonsTrustedConnectorEndpointsRegexes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
      */
@@ -3012,7 +3126,7 @@ export interface ManagedDatabasePostgresqlProperties {
      */
     ioMethod?: pulumi.Input<string>;
     /**
-     * io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+     * EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
      */
     ioWorkers?: pulumi.Input<number>;
     /**
@@ -3139,6 +3253,14 @@ export interface ManagedDatabasePostgresqlProperties {
      * Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
      */
     pgStatMonitorPgsmMaxBuckets?: pulumi.Input<number>;
+    /**
+     * Enable pgStatPlans extension if available for the current cluster. Enable the pgStatPlans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+     */
+    pgStatPlansEnable?: pulumi.Input<boolean>;
+    /**
+     * Controls which statements' plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `top`.
+     */
+    pgStatPlansTrack?: pulumi.Input<string>;
     /**
      * Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
      */
@@ -3363,6 +3485,10 @@ export interface ManagedDatabasePostgresqlPropertiesPgbouncer {
      */
     minPoolSize?: pulumi.Input<number>;
     /**
+     * If connection and login don’t finish in this amount of time, the connection will be closed. [seconds].
+     */
+    serverConnectTimeout?: pulumi.Input<number>;
+    /**
      * If a server connection has been idle more than this many seconds it will be dropped. If 0 then timeout is disabled. [seconds].
      */
     serverIdleTimeout?: pulumi.Input<number>;
@@ -3370,6 +3496,10 @@ export interface ManagedDatabasePostgresqlPropertiesPgbouncer {
      * The pooler will close an unused server connection that has been connected longer than this. [seconds].
      */
     serverLifetime?: pulumi.Input<number>;
+    /**
+     * If login to the server failed, because of failure to connect or from authentication, the pooler waits this much before retrying to connect. During the waiting interval, new clients trying to connect to the failing server will get an error immediately without another connection attempt. [seconds].
+     */
+    serverLoginRetry?: pulumi.Input<number>;
     /**
      * Run serverResetQuery (DISCARD ALL) in all pooling modes.
      */
@@ -3536,6 +3666,10 @@ export interface ManagedDatabaseValkeyProperties {
      * Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
      */
     valkeyActiveExpireEffort?: pulumi.Input<number>;
+    /**
+     * Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
+     */
+    valkeyActivedefrag?: pulumi.Input<boolean>;
     /**
      * Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
      */

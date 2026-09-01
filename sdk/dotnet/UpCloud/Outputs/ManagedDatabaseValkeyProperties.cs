@@ -59,6 +59,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? ValkeyActiveExpireEffort;
         /// <summary>
+        /// Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
+        /// </summary>
+        public readonly bool? ValkeyActivedefrag;
+        /// <summary>
         /// Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
         /// </summary>
         public readonly int? ValkeyIoThreads;
@@ -127,6 +131,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             int? valkeyActiveExpireEffort,
 
+            bool? valkeyActivedefrag,
+
             int? valkeyIoThreads,
 
             int? valkeyLfuDecayTime,
@@ -160,6 +166,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             ServiceLog = serviceLog;
             ValkeyAclChannelsDefault = valkeyAclChannelsDefault;
             ValkeyActiveExpireEffort = valkeyActiveExpireEffort;
+            ValkeyActivedefrag = valkeyActivedefrag;
             ValkeyIoThreads = valkeyIoThreads;
             ValkeyLfuDecayTime = valkeyLfuDecayTime;
             ValkeyLfuLogFactor = valkeyLfuLogFactor;

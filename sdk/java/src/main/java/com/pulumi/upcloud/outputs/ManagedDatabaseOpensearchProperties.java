@@ -92,6 +92,11 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     private @Nullable ManagedDatabaseOpensearchPropertiesDiskWatermarks diskWatermarks;
     /**
+     * @return OpenSearch version.
+     * 
+     */
+    private @Nullable String elasticsearchVersion;
+    /**
      * @return Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
      * 
      */
@@ -252,6 +257,11 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     private @Nullable Integer knnMemoryCircuitBreakerLimit;
     /**
+     * @return plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
+     * 
+     */
+    private @Nullable Boolean mlCommonsConnectorAccessControlEnabled;
+    /**
      * @return plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
      * 
      */
@@ -266,6 +276,11 @@ public final class ManagedDatabaseOpensearchProperties {
      * 
      */
     private @Nullable Boolean mlCommonsOnlyRunOnMlNode;
+    /**
+     * @return plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
+     * 
+     */
+    private @Nullable List<String> mlCommonsTrustedConnectorEndpointsRegexes;
     /**
      * @return The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
      * 
@@ -496,6 +511,13 @@ public final class ManagedDatabaseOpensearchProperties {
         return Optional.ofNullable(this.diskWatermarks);
     }
     /**
+     * @return OpenSearch version.
+     * 
+     */
+    public Optional<String> elasticsearchVersion() {
+        return Optional.ofNullable(this.elasticsearchVersion);
+    }
+    /**
      * @return Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
      * 
      */
@@ -720,6 +742,13 @@ public final class ManagedDatabaseOpensearchProperties {
         return Optional.ofNullable(this.knnMemoryCircuitBreakerLimit);
     }
     /**
+     * @return plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
+     * 
+     */
+    public Optional<Boolean> mlCommonsConnectorAccessControlEnabled() {
+        return Optional.ofNullable(this.mlCommonsConnectorAccessControlEnabled);
+    }
+    /**
      * @return plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
      * 
      */
@@ -739,6 +768,13 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     public Optional<Boolean> mlCommonsOnlyRunOnMlNode() {
         return Optional.ofNullable(this.mlCommonsOnlyRunOnMlNode);
+    }
+    /**
+     * @return plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
+     * 
+     */
+    public List<String> mlCommonsTrustedConnectorEndpointsRegexes() {
+        return this.mlCommonsTrustedConnectorEndpointsRegexes == null ? List.of() : this.mlCommonsTrustedConnectorEndpointsRegexes;
     }
     /**
      * @return The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
@@ -959,6 +995,7 @@ public final class ManagedDatabaseOpensearchProperties {
         private @Nullable List<String> customKeystores;
         private @Nullable List<String> customRepos;
         private @Nullable ManagedDatabaseOpensearchPropertiesDiskWatermarks diskWatermarks;
+        private @Nullable String elasticsearchVersion;
         private @Nullable String emailSenderName;
         private @Nullable String emailSenderPassword;
         private @Nullable String emailSenderUsername;
@@ -991,9 +1028,11 @@ public final class ManagedDatabaseOpensearchProperties {
         private @Nullable Boolean keepIndexRefreshInterval;
         private @Nullable Boolean knnMemoryCircuitBreakerEnabled;
         private @Nullable Integer knnMemoryCircuitBreakerLimit;
+        private @Nullable Boolean mlCommonsConnectorAccessControlEnabled;
         private @Nullable Boolean mlCommonsModelAccessControlEnabled;
         private @Nullable Integer mlCommonsNativeMemoryThreshold;
         private @Nullable Boolean mlCommonsOnlyRunOnMlNode;
+        private @Nullable List<String> mlCommonsTrustedConnectorEndpointsRegexes;
         private @Nullable String nodeSearchCacheSize;
         private @Nullable ManagedDatabaseOpensearchPropertiesOpenid openid;
         private @Nullable ManagedDatabaseOpensearchPropertiesOpensearchDashboards opensearchDashboards;
@@ -1040,6 +1079,7 @@ public final class ManagedDatabaseOpensearchProperties {
     	      this.customKeystores = defaults.customKeystores;
     	      this.customRepos = defaults.customRepos;
     	      this.diskWatermarks = defaults.diskWatermarks;
+    	      this.elasticsearchVersion = defaults.elasticsearchVersion;
     	      this.emailSenderName = defaults.emailSenderName;
     	      this.emailSenderPassword = defaults.emailSenderPassword;
     	      this.emailSenderUsername = defaults.emailSenderUsername;
@@ -1072,9 +1112,11 @@ public final class ManagedDatabaseOpensearchProperties {
     	      this.keepIndexRefreshInterval = defaults.keepIndexRefreshInterval;
     	      this.knnMemoryCircuitBreakerEnabled = defaults.knnMemoryCircuitBreakerEnabled;
     	      this.knnMemoryCircuitBreakerLimit = defaults.knnMemoryCircuitBreakerLimit;
+    	      this.mlCommonsConnectorAccessControlEnabled = defaults.mlCommonsConnectorAccessControlEnabled;
     	      this.mlCommonsModelAccessControlEnabled = defaults.mlCommonsModelAccessControlEnabled;
     	      this.mlCommonsNativeMemoryThreshold = defaults.mlCommonsNativeMemoryThreshold;
     	      this.mlCommonsOnlyRunOnMlNode = defaults.mlCommonsOnlyRunOnMlNode;
+    	      this.mlCommonsTrustedConnectorEndpointsRegexes = defaults.mlCommonsTrustedConnectorEndpointsRegexes;
     	      this.nodeSearchCacheSize = defaults.nodeSearchCacheSize;
     	      this.openid = defaults.openid;
     	      this.opensearchDashboards = defaults.opensearchDashboards;
@@ -1194,6 +1236,12 @@ public final class ManagedDatabaseOpensearchProperties {
         public Builder diskWatermarks(@Nullable ManagedDatabaseOpensearchPropertiesDiskWatermarks diskWatermarks) {
 
             this.diskWatermarks = diskWatermarks;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder elasticsearchVersion(@Nullable String elasticsearchVersion) {
+
+            this.elasticsearchVersion = elasticsearchVersion;
             return this;
         }
         @CustomType.Setter
@@ -1395,6 +1443,12 @@ public final class ManagedDatabaseOpensearchProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder mlCommonsConnectorAccessControlEnabled(@Nullable Boolean mlCommonsConnectorAccessControlEnabled) {
+
+            this.mlCommonsConnectorAccessControlEnabled = mlCommonsConnectorAccessControlEnabled;
+            return this;
+        }
+        @CustomType.Setter
         public Builder mlCommonsModelAccessControlEnabled(@Nullable Boolean mlCommonsModelAccessControlEnabled) {
 
             this.mlCommonsModelAccessControlEnabled = mlCommonsModelAccessControlEnabled;
@@ -1411,6 +1465,15 @@ public final class ManagedDatabaseOpensearchProperties {
 
             this.mlCommonsOnlyRunOnMlNode = mlCommonsOnlyRunOnMlNode;
             return this;
+        }
+        @CustomType.Setter
+        public Builder mlCommonsTrustedConnectorEndpointsRegexes(@Nullable List<String> mlCommonsTrustedConnectorEndpointsRegexes) {
+
+            this.mlCommonsTrustedConnectorEndpointsRegexes = mlCommonsTrustedConnectorEndpointsRegexes;
+            return this;
+        }
+        public Builder mlCommonsTrustedConnectorEndpointsRegexes(String... mlCommonsTrustedConnectorEndpointsRegexes) {
+            return mlCommonsTrustedConnectorEndpointsRegexes(List.of(mlCommonsTrustedConnectorEndpointsRegexes));
         }
         @CustomType.Setter
         public Builder nodeSearchCacheSize(@Nullable String nodeSearchCacheSize) {
@@ -1605,6 +1668,7 @@ public final class ManagedDatabaseOpensearchProperties {
             _resultValue.customKeystores = customKeystores;
             _resultValue.customRepos = customRepos;
             _resultValue.diskWatermarks = diskWatermarks;
+            _resultValue.elasticsearchVersion = elasticsearchVersion;
             _resultValue.emailSenderName = emailSenderName;
             _resultValue.emailSenderPassword = emailSenderPassword;
             _resultValue.emailSenderUsername = emailSenderUsername;
@@ -1637,9 +1701,11 @@ public final class ManagedDatabaseOpensearchProperties {
             _resultValue.keepIndexRefreshInterval = keepIndexRefreshInterval;
             _resultValue.knnMemoryCircuitBreakerEnabled = knnMemoryCircuitBreakerEnabled;
             _resultValue.knnMemoryCircuitBreakerLimit = knnMemoryCircuitBreakerLimit;
+            _resultValue.mlCommonsConnectorAccessControlEnabled = mlCommonsConnectorAccessControlEnabled;
             _resultValue.mlCommonsModelAccessControlEnabled = mlCommonsModelAccessControlEnabled;
             _resultValue.mlCommonsNativeMemoryThreshold = mlCommonsNativeMemoryThreshold;
             _resultValue.mlCommonsOnlyRunOnMlNode = mlCommonsOnlyRunOnMlNode;
+            _resultValue.mlCommonsTrustedConnectorEndpointsRegexes = mlCommonsTrustedConnectorEndpointsRegexes;
             _resultValue.nodeSearchCacheSize = nodeSearchCacheSize;
             _resultValue.openid = openid;
             _resultValue.opensearchDashboards = opensearchDashboards;

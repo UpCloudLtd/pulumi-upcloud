@@ -13,15 +13,15 @@ import (
 
 // > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
 //
-// This resource is deprecated, use tags schema in server resource
+// Resource for managing tags. When tagging multiple servers with the same tag, use this resource to create the tag and `tags` field of the server resource to tag the server.
 type Tag struct {
 	pulumi.CustomResourceState
 
-	// Free form text representing the meaning of the tag
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The value representing the tag
+	// Free form text representing the meaning of the tag.
+	Description pulumi.StringOutput `pulumi:"description"`
+	// The name of the tag.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// A collection of servers that have been assigned the tag
+	// A collection of servers that have been assigned the tag.
 	Servers pulumi.StringArrayOutput `pulumi:"servers"`
 }
 
@@ -55,20 +55,20 @@ func GetTag(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Tag resources.
 type tagState struct {
-	// Free form text representing the meaning of the tag
+	// Free form text representing the meaning of the tag.
 	Description *string `pulumi:"description"`
-	// The value representing the tag
+	// The name of the tag.
 	Name *string `pulumi:"name"`
-	// A collection of servers that have been assigned the tag
+	// A collection of servers that have been assigned the tag.
 	Servers []string `pulumi:"servers"`
 }
 
 type TagState struct {
-	// Free form text representing the meaning of the tag
+	// Free form text representing the meaning of the tag.
 	Description pulumi.StringPtrInput
-	// The value representing the tag
+	// The name of the tag.
 	Name pulumi.StringPtrInput
-	// A collection of servers that have been assigned the tag
+	// A collection of servers that have been assigned the tag.
 	Servers pulumi.StringArrayInput
 }
 
@@ -77,21 +77,21 @@ func (TagState) ElementType() reflect.Type {
 }
 
 type tagArgs struct {
-	// Free form text representing the meaning of the tag
+	// Free form text representing the meaning of the tag.
 	Description *string `pulumi:"description"`
-	// The value representing the tag
+	// The name of the tag.
 	Name *string `pulumi:"name"`
-	// A collection of servers that have been assigned the tag
+	// A collection of servers that have been assigned the tag.
 	Servers []string `pulumi:"servers"`
 }
 
 // The set of arguments for constructing a Tag resource.
 type TagArgs struct {
-	// Free form text representing the meaning of the tag
+	// Free form text representing the meaning of the tag.
 	Description pulumi.StringPtrInput
-	// The value representing the tag
+	// The name of the tag.
 	Name pulumi.StringPtrInput
-	// A collection of servers that have been assigned the tag
+	// A collection of servers that have been assigned the tag.
 	Servers pulumi.StringArrayInput
 }
 
@@ -182,17 +182,17 @@ func (o TagOutput) ToTagOutputWithContext(ctx context.Context) TagOutput {
 	return o
 }
 
-// Free form text representing the meaning of the tag
-func (o TagOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Tag) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+// Free form text representing the meaning of the tag.
+func (o TagOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *Tag) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// The value representing the tag
+// The name of the tag.
 func (o TagOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Tag) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// A collection of servers that have been assigned the tag
+// A collection of servers that have been assigned the tag.
 func (o TagOutput) Servers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Tag) pulumi.StringArrayOutput { return v.Servers }).(pulumi.StringArrayOutput)
 }

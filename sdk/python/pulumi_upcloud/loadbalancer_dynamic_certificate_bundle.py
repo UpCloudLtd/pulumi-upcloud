@@ -21,15 +21,19 @@ class LoadbalancerDynamicCertificateBundleArgs:
     def __init__(__self__, *,
                  hostnames: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  key_type: pulumi.Input[_builtins.str],
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadbalancerDynamicCertificateBundle resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: Certificate hostnames.
         :param pulumi.Input[_builtins.str] key_type: Private key type (`rsa` / `ecdsa`).
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the dynamic certificate bundle.
         :param pulumi.Input[_builtins.str] name: The name of the certificate bundle. Must be unique within customer account.
         """
         pulumi.set(__self__, "hostnames", hostnames)
         pulumi.set(__self__, "key_type", key_type)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -59,6 +63,18 @@ class LoadbalancerDynamicCertificateBundleArgs:
 
     @_builtins.property
     @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        User defined key-value pairs to classify the dynamic certificate bundle.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "labels", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The name of the certificate bundle. Must be unique within customer account.
@@ -75,6 +91,7 @@ class _LoadbalancerDynamicCertificateBundleState:
     def __init__(__self__, *,
                  hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  key_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  not_after: Optional[pulumi.Input[_builtins.str]] = None,
                  not_before: Optional[pulumi.Input[_builtins.str]] = None,
@@ -83,6 +100,7 @@ class _LoadbalancerDynamicCertificateBundleState:
         Input properties used for looking up and filtering LoadbalancerDynamicCertificateBundle resources.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: Certificate hostnames.
         :param pulumi.Input[_builtins.str] key_type: Private key type (`rsa` / `ecdsa`).
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the dynamic certificate bundle.
         :param pulumi.Input[_builtins.str] name: The name of the certificate bundle. Must be unique within customer account.
         :param pulumi.Input[_builtins.str] not_after: The time after which a certificate is no longer valid.
         :param pulumi.Input[_builtins.str] not_before: The time on which a certificate becomes valid.
@@ -92,6 +110,8 @@ class _LoadbalancerDynamicCertificateBundleState:
             pulumi.set(__self__, "hostnames", hostnames)
         if key_type is not None:
             pulumi.set(__self__, "key_type", key_type)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if not_after is not None:
@@ -124,6 +144,18 @@ class _LoadbalancerDynamicCertificateBundleState:
     @key_type.setter
     def key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "key_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        User defined key-value pairs to classify the dynamic certificate bundle.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
@@ -182,6 +214,7 @@ class LoadbalancerDynamicCertificateBundle(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  key_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -206,6 +239,7 @@ class LoadbalancerDynamicCertificateBundle(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: Certificate hostnames.
         :param pulumi.Input[_builtins.str] key_type: Private key type (`rsa` / `ecdsa`).
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the dynamic certificate bundle.
         :param pulumi.Input[_builtins.str] name: The name of the certificate bundle. Must be unique within customer account.
         """
         ...
@@ -249,6 +283,7 @@ class LoadbalancerDynamicCertificateBundle(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  key_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -265,6 +300,7 @@ class LoadbalancerDynamicCertificateBundle(pulumi.CustomResource):
             if key_type is None and not opts.urn:
                 raise TypeError("Missing required property 'key_type'")
             __props__.__dict__["key_type"] = key_type
+            __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
             __props__.__dict__["not_after"] = None
             __props__.__dict__["not_before"] = None
@@ -281,6 +317,7 @@ class LoadbalancerDynamicCertificateBundle(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             key_type: Optional[pulumi.Input[_builtins.str]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             not_after: Optional[pulumi.Input[_builtins.str]] = None,
             not_before: Optional[pulumi.Input[_builtins.str]] = None,
@@ -294,6 +331,7 @@ class LoadbalancerDynamicCertificateBundle(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: Certificate hostnames.
         :param pulumi.Input[_builtins.str] key_type: Private key type (`rsa` / `ecdsa`).
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the dynamic certificate bundle.
         :param pulumi.Input[_builtins.str] name: The name of the certificate bundle. Must be unique within customer account.
         :param pulumi.Input[_builtins.str] not_after: The time after which a certificate is no longer valid.
         :param pulumi.Input[_builtins.str] not_before: The time on which a certificate becomes valid.
@@ -305,6 +343,7 @@ class LoadbalancerDynamicCertificateBundle(pulumi.CustomResource):
 
         __props__.__dict__["hostnames"] = hostnames
         __props__.__dict__["key_type"] = key_type
+        __props__.__dict__["labels"] = labels
         __props__.__dict__["name"] = name
         __props__.__dict__["not_after"] = not_after
         __props__.__dict__["not_before"] = not_before
@@ -326,6 +365,14 @@ class LoadbalancerDynamicCertificateBundle(pulumi.CustomResource):
         Private key type (`rsa` / `ecdsa`).
         """
         return pulumi.get(self, "key_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
+        """
+        User defined key-value pairs to classify the dynamic certificate bundle.
+        """
+        return pulumi.get(self, "labels")
 
     @_builtins.property
     @pulumi.getter
