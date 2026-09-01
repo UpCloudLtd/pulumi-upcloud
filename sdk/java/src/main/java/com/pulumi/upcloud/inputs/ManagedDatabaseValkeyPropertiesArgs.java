@@ -185,6 +185,21 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
     }
 
     /**
+     * Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
+     * 
+     */
+    @Import(name="valkeyActivedefrag")
+    private @Nullable Output<Boolean> valkeyActivedefrag;
+
+    /**
+     * @return Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
+     * 
+     */
+    public Optional<Output<Boolean>> valkeyActivedefrag() {
+        return Optional.ofNullable(this.valkeyActivedefrag);
+    }
+
+    /**
      * Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
      * 
      */
@@ -363,6 +378,7 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
         this.serviceLog = $.serviceLog;
         this.valkeyAclChannelsDefault = $.valkeyAclChannelsDefault;
         this.valkeyActiveExpireEffort = $.valkeyActiveExpireEffort;
+        this.valkeyActivedefrag = $.valkeyActivedefrag;
         this.valkeyIoThreads = $.valkeyIoThreads;
         this.valkeyLfuDecayTime = $.valkeyLfuDecayTime;
         this.valkeyLfuLogFactor = $.valkeyLfuLogFactor;
@@ -633,6 +649,27 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
          */
         public Builder valkeyActiveExpireEffort(Integer valkeyActiveExpireEffort) {
             return valkeyActiveExpireEffort(Output.of(valkeyActiveExpireEffort));
+        }
+
+        /**
+         * @param valkeyActivedefrag Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valkeyActivedefrag(@Nullable Output<Boolean> valkeyActivedefrag) {
+            $.valkeyActivedefrag = valkeyActivedefrag;
+            return this;
+        }
+
+        /**
+         * @param valkeyActivedefrag Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valkeyActivedefrag(Boolean valkeyActivedefrag) {
+            return valkeyActivedefrag(Output.of(valkeyActivedefrag));
         }
 
         /**

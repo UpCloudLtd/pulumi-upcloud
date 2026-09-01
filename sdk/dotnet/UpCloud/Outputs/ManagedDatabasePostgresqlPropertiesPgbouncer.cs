@@ -43,6 +43,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? MinPoolSize;
         /// <summary>
+        /// If connection and login don’t finish in this amount of time, the connection will be closed. [seconds].
+        /// </summary>
+        public readonly double? ServerConnectTimeout;
+        /// <summary>
         /// If a server connection has been idle more than this many seconds it will be dropped. If 0 then timeout is disabled. [seconds].
         /// </summary>
         public readonly int? ServerIdleTimeout;
@@ -50,6 +54,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// The pooler will close an unused server connection that has been connected longer than this. [seconds].
         /// </summary>
         public readonly int? ServerLifetime;
+        /// <summary>
+        /// If login to the server failed, because of failure to connect or from authentication, the pooler waits this much before retrying to connect. During the waiting interval, new clients trying to connect to the failing server will get an error immediately without another connection attempt. [seconds].
+        /// </summary>
+        public readonly double? ServerLoginRetry;
         /// <summary>
         /// Run ServerResetQuery (DISCARD ALL) in all pooling modes.
         /// </summary>
@@ -71,9 +79,13 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             int? minPoolSize,
 
+            double? serverConnectTimeout,
+
             int? serverIdleTimeout,
 
             int? serverLifetime,
+
+            double? serverLoginRetry,
 
             bool? serverResetQueryAlways)
         {
@@ -84,8 +96,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             IgnoreStartupParameters = ignoreStartupParameters;
             MaxPreparedStatements = maxPreparedStatements;
             MinPoolSize = minPoolSize;
+            ServerConnectTimeout = serverConnectTimeout;
             ServerIdleTimeout = serverIdleTimeout;
             ServerLifetime = serverLifetime;
+            ServerLoginRetry = serverLoginRetry;
             ServerResetQueryAlways = serverResetQueryAlways;
         }
     }

@@ -12,38 +12,38 @@ import java.util.Objects;
 @CustomType
 public final class GetTagsTag {
     /**
-     * @return Free form text representing the meaning of the tag
+     * @return Free form text representing the meaning of the tag.
      * 
      */
     private String description;
     /**
-     * @return The value representing the tag
+     * @return The name of the tag.
      * 
      */
     private String name;
     /**
-     * @return A collection of servers that have been assigned the tag
+     * @return A collection of servers that have been assigned the tag.
      * 
      */
     private List<String> servers;
 
     private GetTagsTag() {}
     /**
-     * @return Free form text representing the meaning of the tag
+     * @return Free form text representing the meaning of the tag.
      * 
      */
     public String description() {
         return this.description;
     }
     /**
-     * @return The value representing the tag
+     * @return The name of the tag.
      * 
      */
     public String name() {
         return this.name;
     }
     /**
-     * @return A collection of servers that have been assigned the tag
+     * @return A collection of servers that have been assigned the tag.
      * 
      */
     public List<String> servers() {

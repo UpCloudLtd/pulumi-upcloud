@@ -161,7 +161,7 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     private @Nullable String ioMethod;
     /**
-     * @return io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+     * @return EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
      * 
      */
     private @Nullable Integer ioWorkers;
@@ -320,6 +320,16 @@ public final class ManagedDatabasePostgresqlProperties {
      * 
      */
     private @Nullable Integer pgStatMonitorPgsmMaxBuckets;
+    /**
+     * @return Enable pgStatPlans extension if available for the current cluster. Enable the pgStatPlans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+     * 
+     */
+    private @Nullable Boolean pgStatPlansEnable;
+    /**
+     * @return Controls which statements&#39; plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `top`.
+     * 
+     */
+    private @Nullable String pgStatPlansTrack;
     /**
      * @return Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
      * 
@@ -629,7 +639,7 @@ public final class ManagedDatabasePostgresqlProperties {
         return Optional.ofNullable(this.ioMethod);
     }
     /**
-     * @return io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+     * @return EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
      * 
      */
     public Optional<Integer> ioWorkers() {
@@ -851,6 +861,20 @@ public final class ManagedDatabasePostgresqlProperties {
      */
     public Optional<Integer> pgStatMonitorPgsmMaxBuckets() {
         return Optional.ofNullable(this.pgStatMonitorPgsmMaxBuckets);
+    }
+    /**
+     * @return Enable pgStatPlans extension if available for the current cluster. Enable the pgStatPlans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+     * 
+     */
+    public Optional<Boolean> pgStatPlansEnable() {
+        return Optional.ofNullable(this.pgStatPlansEnable);
+    }
+    /**
+     * @return Controls which statements&#39; plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `top`.
+     * 
+     */
+    public Optional<String> pgStatPlansTrack() {
+        return Optional.ofNullable(this.pgStatPlansTrack);
     }
     /**
      * @return Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
@@ -1076,6 +1100,8 @@ public final class ManagedDatabasePostgresqlProperties {
         private @Nullable Boolean pgStatMonitorEnable;
         private @Nullable Boolean pgStatMonitorPgsmEnableQueryPlan;
         private @Nullable Integer pgStatMonitorPgsmMaxBuckets;
+        private @Nullable Boolean pgStatPlansEnable;
+        private @Nullable String pgStatPlansTrack;
         private @Nullable String pgStatStatementsTrack;
         private @Nullable ManagedDatabasePostgresqlPropertiesPgaudit pgaudit;
         private @Nullable ManagedDatabasePostgresqlPropertiesPgbouncer pgbouncer;
@@ -1161,6 +1187,8 @@ public final class ManagedDatabasePostgresqlProperties {
     	      this.pgStatMonitorEnable = defaults.pgStatMonitorEnable;
     	      this.pgStatMonitorPgsmEnableQueryPlan = defaults.pgStatMonitorPgsmEnableQueryPlan;
     	      this.pgStatMonitorPgsmMaxBuckets = defaults.pgStatMonitorPgsmMaxBuckets;
+    	      this.pgStatPlansEnable = defaults.pgStatPlansEnable;
+    	      this.pgStatPlansTrack = defaults.pgStatPlansTrack;
     	      this.pgStatStatementsTrack = defaults.pgStatStatementsTrack;
     	      this.pgaudit = defaults.pgaudit;
     	      this.pgbouncer = defaults.pgbouncer;
@@ -1549,6 +1577,18 @@ public final class ManagedDatabasePostgresqlProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder pgStatPlansEnable(@Nullable Boolean pgStatPlansEnable) {
+
+            this.pgStatPlansEnable = pgStatPlansEnable;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder pgStatPlansTrack(@Nullable String pgStatPlansTrack) {
+
+            this.pgStatPlansTrack = pgStatPlansTrack;
+            return this;
+        }
+        @CustomType.Setter
         public Builder pgStatStatementsTrack(@Nullable String pgStatStatementsTrack) {
 
             this.pgStatStatementsTrack = pgStatStatementsTrack;
@@ -1742,6 +1782,8 @@ public final class ManagedDatabasePostgresqlProperties {
             _resultValue.pgStatMonitorEnable = pgStatMonitorEnable;
             _resultValue.pgStatMonitorPgsmEnableQueryPlan = pgStatMonitorPgsmEnableQueryPlan;
             _resultValue.pgStatMonitorPgsmMaxBuckets = pgStatMonitorPgsmMaxBuckets;
+            _resultValue.pgStatPlansEnable = pgStatPlansEnable;
+            _resultValue.pgStatPlansTrack = pgStatPlansTrack;
             _resultValue.pgStatStatementsTrack = pgStatStatementsTrack;
             _resultValue.pgaudit = pgaudit;
             _resultValue.pgbouncer = pgbouncer;

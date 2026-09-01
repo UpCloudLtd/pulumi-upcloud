@@ -3668,6 +3668,8 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "admin_password"
         elif key == "adminUsername":
             suggest = "admin_username"
+        elif key == "automaticSpPrivileges":
+            suggest = "automatic_sp_privileges"
         elif key == "automaticUtilityNetworkIpFilter":
             suggest = "automatic_utility_network_ip_filter"
         elif key == "backupHour":
@@ -3680,6 +3682,12 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "connect_timeout"
         elif key == "defaultTimeZone":
             suggest = "default_time_zone"
+        elif key == "divPrecisionIncrement":
+            suggest = "div_precision_increment"
+        elif key == "endMarkersInJson":
+            suggest = "end_markers_in_json"
+        elif key == "eqRangeIndexDiveLimit":
+            suggest = "eq_range_index_dive_limit"
         elif key == "groupConcatMaxLen":
             suggest = "group_concat_max_len"
         elif key == "informationSchemaStatsExpiry":
@@ -3690,10 +3698,20 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "innodb_change_buffer_max_size"
         elif key == "innodbFlushNeighbors":
             suggest = "innodb_flush_neighbors"
+        elif key == "innodbFtEnableStopword":
+            suggest = "innodb_ft_enable_stopword"
+        elif key == "innodbFtMaxTokenSize":
+            suggest = "innodb_ft_max_token_size"
         elif key == "innodbFtMinTokenSize":
             suggest = "innodb_ft_min_token_size"
+        elif key == "innodbFtNumWordOptimize":
+            suggest = "innodb_ft_num_word_optimize"
+        elif key == "innodbFtResultCacheLimit":
+            suggest = "innodb_ft_result_cache_limit"
         elif key == "innodbFtServerStopwordTable":
             suggest = "innodb_ft_server_stopword_table"
+        elif key == "innodbFtUserStopwordTable":
+            suggest = "innodb_ft_user_stopword_table"
         elif key == "innodbIoCapacity":
             suggest = "innodb_io_capacity"
         elif key == "innodbIoCapacityMax":
@@ -3704,6 +3722,8 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "innodb_log_buffer_size"
         elif key == "innodbOnlineAlterLogMaxSize":
             suggest = "innodb_online_alter_log_max_size"
+        elif key == "innodbOptimizeFulltextOnly":
+            suggest = "innodb_optimize_fulltext_only"
         elif key == "innodbPrintAllDeadlocks":
             suggest = "innodb_print_all_deadlocks"
         elif key == "innodbReadIoThreads":
@@ -3728,8 +3748,16 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "lower_case_table_names"
         elif key == "maxAllowedPacket":
             suggest = "max_allowed_packet"
+        elif key == "maxConnections":
+            suggest = "max_connections"
+        elif key == "maxExecutionTime":
+            suggest = "max_execution_time"
         elif key == "maxHeapTableSize":
             suggest = "max_heap_table_size"
+        elif key == "maxSeeksForKey":
+            suggest = "max_seeks_for_key"
+        elif key == "maxUserConnections":
+            suggest = "max_user_connections"
         elif key == "mysqlIncrementalBackup":
             suggest = "mysql_incremental_backup"
         elif key == "netBufferLength":
@@ -3738,6 +3766,12 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "net_read_timeout"
         elif key == "netWriteTimeout":
             suggest = "net_write_timeout"
+        elif key == "optimizerPruneLevel":
+            suggest = "optimizer_prune_level"
+        elif key == "optimizerSearchDepth":
+            suggest = "optimizer_search_depth"
+        elif key == "optimizerSwitch":
+            suggest = "optimizer_switch"
         elif key == "performanceSchemaEventsStatementsHistorySize":
             suggest = "performance_schema_events_statements_history_size"
         elif key == "publicAccess":
@@ -3760,6 +3794,8 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "tmp_table_size"
         elif key == "waitTimeout":
             suggest = "wait_timeout"
+        elif key == "windowingUseHighPrecision":
+            suggest = "windowing_use_high_precision"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ManagedDatabaseMysqlProperties. Access the value via the '{suggest}' property getter instead.")
@@ -3775,24 +3811,34 @@ class ManagedDatabaseMysqlProperties(dict):
     def __init__(__self__, *,
                  admin_password: Optional[_builtins.str] = None,
                  admin_username: Optional[_builtins.str] = None,
+                 automatic_sp_privileges: Optional[_builtins.bool] = None,
                  automatic_utility_network_ip_filter: Optional[_builtins.bool] = None,
                  backup_hour: Optional[_builtins.int] = None,
                  backup_minute: Optional[_builtins.int] = None,
                  binlog_retention_period: Optional[_builtins.int] = None,
                  connect_timeout: Optional[_builtins.int] = None,
                  default_time_zone: Optional[_builtins.str] = None,
+                 div_precision_increment: Optional[_builtins.int] = None,
+                 end_markers_in_json: Optional[_builtins.bool] = None,
+                 eq_range_index_dive_limit: Optional[_builtins.int] = None,
                  group_concat_max_len: Optional[_builtins.int] = None,
                  information_schema_stats_expiry: Optional[_builtins.int] = None,
                  innodb_adaptive_hash_index: Optional[_builtins.bool] = None,
                  innodb_change_buffer_max_size: Optional[_builtins.int] = None,
                  innodb_flush_neighbors: Optional[_builtins.int] = None,
+                 innodb_ft_enable_stopword: Optional[_builtins.bool] = None,
+                 innodb_ft_max_token_size: Optional[_builtins.int] = None,
                  innodb_ft_min_token_size: Optional[_builtins.int] = None,
+                 innodb_ft_num_word_optimize: Optional[_builtins.int] = None,
+                 innodb_ft_result_cache_limit: Optional[_builtins.int] = None,
                  innodb_ft_server_stopword_table: Optional[_builtins.str] = None,
+                 innodb_ft_user_stopword_table: Optional[_builtins.str] = None,
                  innodb_io_capacity: Optional[_builtins.int] = None,
                  innodb_io_capacity_max: Optional[_builtins.int] = None,
                  innodb_lock_wait_timeout: Optional[_builtins.int] = None,
                  innodb_log_buffer_size: Optional[_builtins.int] = None,
                  innodb_online_alter_log_max_size: Optional[_builtins.int] = None,
+                 innodb_optimize_fulltext_only: Optional[_builtins.bool] = None,
                  innodb_print_all_deadlocks: Optional[_builtins.bool] = None,
                  innodb_read_io_threads: Optional[_builtins.int] = None,
                  innodb_rollback_on_timeout: Optional[_builtins.bool] = None,
@@ -3805,12 +3851,19 @@ class ManagedDatabaseMysqlProperties(dict):
                  long_query_time: Optional[_builtins.float] = None,
                  lower_case_table_names: Optional[_builtins.int] = None,
                  max_allowed_packet: Optional[_builtins.int] = None,
+                 max_connections: Optional[_builtins.int] = None,
+                 max_execution_time: Optional[_builtins.int] = None,
                  max_heap_table_size: Optional[_builtins.int] = None,
+                 max_seeks_for_key: Optional[_builtins.int] = None,
+                 max_user_connections: Optional[_builtins.int] = None,
                  migration: Optional['outputs.ManagedDatabaseMysqlPropertiesMigration'] = None,
                  mysql_incremental_backup: Optional['outputs.ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup'] = None,
                  net_buffer_length: Optional[_builtins.int] = None,
                  net_read_timeout: Optional[_builtins.int] = None,
                  net_write_timeout: Optional[_builtins.int] = None,
+                 optimizer_prune_level: Optional[_builtins.int] = None,
+                 optimizer_search_depth: Optional[_builtins.int] = None,
+                 optimizer_switch: Optional[_builtins.str] = None,
                  performance_schema_events_statements_history_size: Optional[_builtins.int] = None,
                  public_access: Optional[_builtins.bool] = None,
                  public_access_prometheus: Optional[_builtins.bool] = None,
@@ -3822,28 +3875,39 @@ class ManagedDatabaseMysqlProperties(dict):
                  sql_require_primary_key: Optional[_builtins.bool] = None,
                  tmp_table_size: Optional[_builtins.int] = None,
                  version: Optional[_builtins.str] = None,
-                 wait_timeout: Optional[_builtins.int] = None):
+                 wait_timeout: Optional[_builtins.int] = None,
+                 windowing_use_high_precision: Optional[_builtins.bool] = None):
         """
         :param _builtins.str admin_password: Custom password for admin user. Defaults to random string. This must be set only when a new service is being created.
         :param _builtins.str admin_username: Custom username for admin user. This must be set only when a new service is being created.
+        :param _builtins.bool automatic_sp_privileges: When enabled, the server automatically grants the EXECUTE and ALTER ROUTINE privileges to the creator of a stored routine and drops them when the routine is dropped.
         :param _builtins.bool automatic_utility_network_ip_filter: Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
         :param _builtins.int backup_hour: The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
         :param _builtins.int backup_minute: The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
         :param _builtins.int binlog_retention_period: The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector. Warning: reducing this value can make a large batch of binary logs eligible for purge at once. Depending on the volume, this can sometimes stall the MySQL commit path and block writes until the purge completes. To stay on the safe side, prefer lowering the value gradually in small decrements during a low-traffic window rather than dropping it drastically in one step.
         :param _builtins.int connect_timeout: The number of seconds that the mysqld server waits for a connect packet before responding with Bad handshake.
         :param _builtins.str default_time_zone: Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or 'SYSTEM' to use the MySQL server default.
+        :param _builtins.int div_precision_increment: Number of digits by which to increase the scale of the result of division operations performed with the / operator. Default is 4.
+        :param _builtins.bool end_markers_in_json: Whether optimizer JSON output such as EXPLAIN FORMAT=JSON adds end markers that repeat a structure's key near its closing bracket, making large JSON structures easier to read.
+        :param _builtins.int eq_range_index_dive_limit: The number of equality ranges in a query at or above which the optimizer switches from index dives to index statistics when estimating the number of qualifying rows. 0 means always use index dives. Default is 200.
         :param _builtins.int group_concat_max_len: The maximum permitted result length in bytes for the GROUP_CONCAT() function.
         :param _builtins.int information_schema_stats_expiry: The time, in seconds, before cached statistics expire.
         :param _builtins.bool innodb_adaptive_hash_index: Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
         :param _builtins.int innodb_change_buffer_max_size: Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
         :param _builtins.int innodb_flush_neighbors: Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
+        :param _builtins.bool innodb_ft_enable_stopword: Whether stopword processing is applied when creating or rebuilding an InnoDB FULLTEXT index. Enabled by default.
+        :param _builtins.int innodb_ft_max_token_size: Maximum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
         :param _builtins.int innodb_ft_min_token_size: Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+        :param _builtins.int innodb_ft_num_word_optimize: Number of words processed during each OPTIMIZE TABLE operation on an InnoDB FULLTEXT index. Default is 2000.
+        :param _builtins.int innodb_ft_result_cache_limit: Maximum memory in bytes used per query for the InnoDB FULLTEXT search query result cache. Aiven sizes this automatically based on the service plan's memory; setting a value overrides the calculated default.
         :param _builtins.str innodb_ft_server_stopword_table: This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
+        :param _builtins.str innodb_ft_user_stopword_table: This option is used to specify your own InnoDB FULLTEXT index stopword list for specific InnoDB tables.
         :param _builtins.int innodb_io_capacity: The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
         :param _builtins.int innodb_io_capacity_max: The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodb_io_capacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
         :param _builtins.int innodb_lock_wait_timeout: The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
         :param _builtins.int innodb_log_buffer_size: The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
         :param _builtins.int innodb_online_alter_log_max_size: The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
+        :param _builtins.bool innodb_optimize_fulltext_only: When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
         :param _builtins.bool innodb_print_all_deadlocks: When enabled, information about all deadlocks in InnoDB user transactions is recorded in the error log. Disabled by default.
         :param _builtins.int innodb_read_io_threads: The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
         :param _builtins.bool innodb_rollback_on_timeout: When enabled a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
@@ -3856,12 +3920,19 @@ class ManagedDatabaseMysqlProperties(dict):
         :param _builtins.float long_query_time: The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute.
         :param _builtins.int lower_case_table_names: Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
         :param _builtins.int max_allowed_packet: Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+        :param _builtins.int max_connections: The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
+        :param _builtins.int max_execution_time: Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.
         :param _builtins.int max_heap_table_size: Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
+        :param _builtins.int max_seeks_for_key: Limit on the assumed maximum number of index seeks when looking up rows based on a key. Lowering this value causes the optimizer to prefer index lookups over table scans.
+        :param _builtins.int max_user_connections: The maximum number of simultaneous connections permitted to any single user account. 0, the default, means no per-account limit. Any other value must be at least 10 below max_connections, so that monitoring and your own admin sessions can still connect when an application saturates its own limit. Aiven's replication and management connections are unaffected however low you set this.
         :param 'ManagedDatabaseMysqlPropertiesMigrationArgs' migration: Migrate data from existing server.
         :param 'ManagedDatabaseMysqlPropertiesMysqlIncrementalBackupArgs' mysql_incremental_backup: MySQL incremental backup configuration.
         :param _builtins.int net_buffer_length: Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
         :param _builtins.int net_read_timeout: The number of seconds to wait for more data from a connection before aborting the read.
         :param _builtins.int net_write_timeout: The number of seconds to wait for a block to be written to a connection before aborting the write.
+        :param _builtins.int optimizer_prune_level: Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. 0 disables heuristics (exhaustive search); 1 prunes plans based on the number of rows retrieved.
+        :param _builtins.int optimizer_search_depth: Maximum depth of search performed by the query optimizer when choosing a join order. Larger values produce better plans for joins over many tables but take longer to compile; 0 lets the optimizer choose the depth automatically.
+        :param _builtins.str optimizer_switch: Comma-separated list of optimizer flag assignments in the form flag=on|off|default, or the single value 'default' to reset all flags. Flags not listed keep their current values. Controls query optimizer behaviors such as index merge, hash join and semijoin strategies.
         :param _builtins.int performance_schema_events_statements_history_size: The number of rows per thread in the events_statements_history table. Changing this parameter will lead to a restart of the MySQL service.
         :param _builtins.bool public_access: Public Access. Allow access to the service from the public Internet.
         :param _builtins.bool public_access_prometheus: Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
@@ -3874,11 +3945,14 @@ class ManagedDatabaseMysqlProperties(dict):
         :param _builtins.int tmp_table_size: Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
         :param _builtins.str version: MySQL major version.
         :param _builtins.int wait_timeout: The number of seconds the server waits for activity on a noninteractive connection before closing it.
+        :param _builtins.bool windowing_use_high_precision: Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
         """
         if admin_password is not None:
             pulumi.set(__self__, "admin_password", admin_password)
         if admin_username is not None:
             pulumi.set(__self__, "admin_username", admin_username)
+        if automatic_sp_privileges is not None:
+            pulumi.set(__self__, "automatic_sp_privileges", automatic_sp_privileges)
         if automatic_utility_network_ip_filter is not None:
             pulumi.set(__self__, "automatic_utility_network_ip_filter", automatic_utility_network_ip_filter)
         if backup_hour is not None:
@@ -3891,6 +3965,12 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "connect_timeout", connect_timeout)
         if default_time_zone is not None:
             pulumi.set(__self__, "default_time_zone", default_time_zone)
+        if div_precision_increment is not None:
+            pulumi.set(__self__, "div_precision_increment", div_precision_increment)
+        if end_markers_in_json is not None:
+            pulumi.set(__self__, "end_markers_in_json", end_markers_in_json)
+        if eq_range_index_dive_limit is not None:
+            pulumi.set(__self__, "eq_range_index_dive_limit", eq_range_index_dive_limit)
         if group_concat_max_len is not None:
             pulumi.set(__self__, "group_concat_max_len", group_concat_max_len)
         if information_schema_stats_expiry is not None:
@@ -3901,10 +3981,20 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "innodb_change_buffer_max_size", innodb_change_buffer_max_size)
         if innodb_flush_neighbors is not None:
             pulumi.set(__self__, "innodb_flush_neighbors", innodb_flush_neighbors)
+        if innodb_ft_enable_stopword is not None:
+            pulumi.set(__self__, "innodb_ft_enable_stopword", innodb_ft_enable_stopword)
+        if innodb_ft_max_token_size is not None:
+            pulumi.set(__self__, "innodb_ft_max_token_size", innodb_ft_max_token_size)
         if innodb_ft_min_token_size is not None:
             pulumi.set(__self__, "innodb_ft_min_token_size", innodb_ft_min_token_size)
+        if innodb_ft_num_word_optimize is not None:
+            pulumi.set(__self__, "innodb_ft_num_word_optimize", innodb_ft_num_word_optimize)
+        if innodb_ft_result_cache_limit is not None:
+            pulumi.set(__self__, "innodb_ft_result_cache_limit", innodb_ft_result_cache_limit)
         if innodb_ft_server_stopword_table is not None:
             pulumi.set(__self__, "innodb_ft_server_stopword_table", innodb_ft_server_stopword_table)
+        if innodb_ft_user_stopword_table is not None:
+            pulumi.set(__self__, "innodb_ft_user_stopword_table", innodb_ft_user_stopword_table)
         if innodb_io_capacity is not None:
             pulumi.set(__self__, "innodb_io_capacity", innodb_io_capacity)
         if innodb_io_capacity_max is not None:
@@ -3915,6 +4005,8 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "innodb_log_buffer_size", innodb_log_buffer_size)
         if innodb_online_alter_log_max_size is not None:
             pulumi.set(__self__, "innodb_online_alter_log_max_size", innodb_online_alter_log_max_size)
+        if innodb_optimize_fulltext_only is not None:
+            pulumi.set(__self__, "innodb_optimize_fulltext_only", innodb_optimize_fulltext_only)
         if innodb_print_all_deadlocks is not None:
             pulumi.set(__self__, "innodb_print_all_deadlocks", innodb_print_all_deadlocks)
         if innodb_read_io_threads is not None:
@@ -3939,8 +4031,16 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "lower_case_table_names", lower_case_table_names)
         if max_allowed_packet is not None:
             pulumi.set(__self__, "max_allowed_packet", max_allowed_packet)
+        if max_connections is not None:
+            pulumi.set(__self__, "max_connections", max_connections)
+        if max_execution_time is not None:
+            pulumi.set(__self__, "max_execution_time", max_execution_time)
         if max_heap_table_size is not None:
             pulumi.set(__self__, "max_heap_table_size", max_heap_table_size)
+        if max_seeks_for_key is not None:
+            pulumi.set(__self__, "max_seeks_for_key", max_seeks_for_key)
+        if max_user_connections is not None:
+            pulumi.set(__self__, "max_user_connections", max_user_connections)
         if migration is not None:
             pulumi.set(__self__, "migration", migration)
         if mysql_incremental_backup is not None:
@@ -3951,6 +4051,12 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "net_read_timeout", net_read_timeout)
         if net_write_timeout is not None:
             pulumi.set(__self__, "net_write_timeout", net_write_timeout)
+        if optimizer_prune_level is not None:
+            pulumi.set(__self__, "optimizer_prune_level", optimizer_prune_level)
+        if optimizer_search_depth is not None:
+            pulumi.set(__self__, "optimizer_search_depth", optimizer_search_depth)
+        if optimizer_switch is not None:
+            pulumi.set(__self__, "optimizer_switch", optimizer_switch)
         if performance_schema_events_statements_history_size is not None:
             pulumi.set(__self__, "performance_schema_events_statements_history_size", performance_schema_events_statements_history_size)
         if public_access is not None:
@@ -3975,6 +4081,8 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "version", version)
         if wait_timeout is not None:
             pulumi.set(__self__, "wait_timeout", wait_timeout)
+        if windowing_use_high_precision is not None:
+            pulumi.set(__self__, "windowing_use_high_precision", windowing_use_high_precision)
 
     @_builtins.property
     @pulumi.getter(name="adminPassword")
@@ -3991,6 +4099,14 @@ class ManagedDatabaseMysqlProperties(dict):
         Custom username for admin user. This must be set only when a new service is being created.
         """
         return pulumi.get(self, "admin_username")
+
+    @_builtins.property
+    @pulumi.getter(name="automaticSpPrivileges")
+    def automatic_sp_privileges(self) -> Optional[_builtins.bool]:
+        """
+        When enabled, the server automatically grants the EXECUTE and ALTER ROUTINE privileges to the creator of a stored routine and drops them when the routine is dropped.
+        """
+        return pulumi.get(self, "automatic_sp_privileges")
 
     @_builtins.property
     @pulumi.getter(name="automaticUtilityNetworkIpFilter")
@@ -4041,6 +4157,30 @@ class ManagedDatabaseMysqlProperties(dict):
         return pulumi.get(self, "default_time_zone")
 
     @_builtins.property
+    @pulumi.getter(name="divPrecisionIncrement")
+    def div_precision_increment(self) -> Optional[_builtins.int]:
+        """
+        Number of digits by which to increase the scale of the result of division operations performed with the / operator. Default is 4.
+        """
+        return pulumi.get(self, "div_precision_increment")
+
+    @_builtins.property
+    @pulumi.getter(name="endMarkersInJson")
+    def end_markers_in_json(self) -> Optional[_builtins.bool]:
+        """
+        Whether optimizer JSON output such as EXPLAIN FORMAT=JSON adds end markers that repeat a structure's key near its closing bracket, making large JSON structures easier to read.
+        """
+        return pulumi.get(self, "end_markers_in_json")
+
+    @_builtins.property
+    @pulumi.getter(name="eqRangeIndexDiveLimit")
+    def eq_range_index_dive_limit(self) -> Optional[_builtins.int]:
+        """
+        The number of equality ranges in a query at or above which the optimizer switches from index dives to index statistics when estimating the number of qualifying rows. 0 means always use index dives. Default is 200.
+        """
+        return pulumi.get(self, "eq_range_index_dive_limit")
+
+    @_builtins.property
     @pulumi.getter(name="groupConcatMaxLen")
     def group_concat_max_len(self) -> Optional[_builtins.int]:
         """
@@ -4081,6 +4221,22 @@ class ManagedDatabaseMysqlProperties(dict):
         return pulumi.get(self, "innodb_flush_neighbors")
 
     @_builtins.property
+    @pulumi.getter(name="innodbFtEnableStopword")
+    def innodb_ft_enable_stopword(self) -> Optional[_builtins.bool]:
+        """
+        Whether stopword processing is applied when creating or rebuilding an InnoDB FULLTEXT index. Enabled by default.
+        """
+        return pulumi.get(self, "innodb_ft_enable_stopword")
+
+    @_builtins.property
+    @pulumi.getter(name="innodbFtMaxTokenSize")
+    def innodb_ft_max_token_size(self) -> Optional[_builtins.int]:
+        """
+        Maximum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+        """
+        return pulumi.get(self, "innodb_ft_max_token_size")
+
+    @_builtins.property
     @pulumi.getter(name="innodbFtMinTokenSize")
     def innodb_ft_min_token_size(self) -> Optional[_builtins.int]:
         """
@@ -4089,12 +4245,36 @@ class ManagedDatabaseMysqlProperties(dict):
         return pulumi.get(self, "innodb_ft_min_token_size")
 
     @_builtins.property
+    @pulumi.getter(name="innodbFtNumWordOptimize")
+    def innodb_ft_num_word_optimize(self) -> Optional[_builtins.int]:
+        """
+        Number of words processed during each OPTIMIZE TABLE operation on an InnoDB FULLTEXT index. Default is 2000.
+        """
+        return pulumi.get(self, "innodb_ft_num_word_optimize")
+
+    @_builtins.property
+    @pulumi.getter(name="innodbFtResultCacheLimit")
+    def innodb_ft_result_cache_limit(self) -> Optional[_builtins.int]:
+        """
+        Maximum memory in bytes used per query for the InnoDB FULLTEXT search query result cache. Aiven sizes this automatically based on the service plan's memory; setting a value overrides the calculated default.
+        """
+        return pulumi.get(self, "innodb_ft_result_cache_limit")
+
+    @_builtins.property
     @pulumi.getter(name="innodbFtServerStopwordTable")
     def innodb_ft_server_stopword_table(self) -> Optional[_builtins.str]:
         """
         This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
         """
         return pulumi.get(self, "innodb_ft_server_stopword_table")
+
+    @_builtins.property
+    @pulumi.getter(name="innodbFtUserStopwordTable")
+    def innodb_ft_user_stopword_table(self) -> Optional[_builtins.str]:
+        """
+        This option is used to specify your own InnoDB FULLTEXT index stopword list for specific InnoDB tables.
+        """
+        return pulumi.get(self, "innodb_ft_user_stopword_table")
 
     @_builtins.property
     @pulumi.getter(name="innodbIoCapacity")
@@ -4135,6 +4315,14 @@ class ManagedDatabaseMysqlProperties(dict):
         The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
         """
         return pulumi.get(self, "innodb_online_alter_log_max_size")
+
+    @_builtins.property
+    @pulumi.getter(name="innodbOptimizeFulltextOnly")
+    def innodb_optimize_fulltext_only(self) -> Optional[_builtins.bool]:
+        """
+        When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
+        """
+        return pulumi.get(self, "innodb_optimize_fulltext_only")
 
     @_builtins.property
     @pulumi.getter(name="innodbPrintAllDeadlocks")
@@ -4233,12 +4421,44 @@ class ManagedDatabaseMysqlProperties(dict):
         return pulumi.get(self, "max_allowed_packet")
 
     @_builtins.property
+    @pulumi.getter(name="maxConnections")
+    def max_connections(self) -> Optional[_builtins.int]:
+        """
+        The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
+        """
+        return pulumi.get(self, "max_connections")
+
+    @_builtins.property
+    @pulumi.getter(name="maxExecutionTime")
+    def max_execution_time(self) -> Optional[_builtins.int]:
+        """
+        Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.
+        """
+        return pulumi.get(self, "max_execution_time")
+
+    @_builtins.property
     @pulumi.getter(name="maxHeapTableSize")
     def max_heap_table_size(self) -> Optional[_builtins.int]:
         """
         Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
         """
         return pulumi.get(self, "max_heap_table_size")
+
+    @_builtins.property
+    @pulumi.getter(name="maxSeeksForKey")
+    def max_seeks_for_key(self) -> Optional[_builtins.int]:
+        """
+        Limit on the assumed maximum number of index seeks when looking up rows based on a key. Lowering this value causes the optimizer to prefer index lookups over table scans.
+        """
+        return pulumi.get(self, "max_seeks_for_key")
+
+    @_builtins.property
+    @pulumi.getter(name="maxUserConnections")
+    def max_user_connections(self) -> Optional[_builtins.int]:
+        """
+        The maximum number of simultaneous connections permitted to any single user account. 0, the default, means no per-account limit. Any other value must be at least 10 below max_connections, so that monitoring and your own admin sessions can still connect when an application saturates its own limit. Aiven's replication and management connections are unaffected however low you set this.
+        """
+        return pulumi.get(self, "max_user_connections")
 
     @_builtins.property
     @pulumi.getter
@@ -4279,6 +4499,30 @@ class ManagedDatabaseMysqlProperties(dict):
         The number of seconds to wait for a block to be written to a connection before aborting the write.
         """
         return pulumi.get(self, "net_write_timeout")
+
+    @_builtins.property
+    @pulumi.getter(name="optimizerPruneLevel")
+    def optimizer_prune_level(self) -> Optional[_builtins.int]:
+        """
+        Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. 0 disables heuristics (exhaustive search); 1 prunes plans based on the number of rows retrieved.
+        """
+        return pulumi.get(self, "optimizer_prune_level")
+
+    @_builtins.property
+    @pulumi.getter(name="optimizerSearchDepth")
+    def optimizer_search_depth(self) -> Optional[_builtins.int]:
+        """
+        Maximum depth of search performed by the query optimizer when choosing a join order. Larger values produce better plans for joins over many tables but take longer to compile; 0 lets the optimizer choose the depth automatically.
+        """
+        return pulumi.get(self, "optimizer_search_depth")
+
+    @_builtins.property
+    @pulumi.getter(name="optimizerSwitch")
+    def optimizer_switch(self) -> Optional[_builtins.str]:
+        """
+        Comma-separated list of optimizer flag assignments in the form flag=on|off|default, or the single value 'default' to reset all flags. Flags not listed keep their current values. Controls query optimizer behaviors such as index merge, hash join and semijoin strategies.
+        """
+        return pulumi.get(self, "optimizer_switch")
 
     @_builtins.property
     @pulumi.getter(name="performanceSchemaEventsStatementsHistorySize")
@@ -4375,6 +4619,14 @@ class ManagedDatabaseMysqlProperties(dict):
         The number of seconds the server waits for activity on a noninteractive connection before closing it.
         """
         return pulumi.get(self, "wait_timeout")
+
+    @_builtins.property
+    @pulumi.getter(name="windowingUseHighPrecision")
+    def windowing_use_high_precision(self) -> Optional[_builtins.bool]:
+        """
+        Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
+        """
+        return pulumi.get(self, "windowing_use_high_precision")
 
 
 @pulumi.output_type
@@ -4781,6 +5033,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "custom_repos"
         elif key == "diskWatermarks":
             suggest = "disk_watermarks"
+        elif key == "elasticsearchVersion":
+            suggest = "elasticsearch_version"
         elif key == "emailSenderName":
             suggest = "email_sender_name"
         elif key == "emailSenderPassword":
@@ -4843,12 +5097,16 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "knn_memory_circuit_breaker_enabled"
         elif key == "knnMemoryCircuitBreakerLimit":
             suggest = "knn_memory_circuit_breaker_limit"
+        elif key == "mlCommonsConnectorAccessControlEnabled":
+            suggest = "ml_commons_connector_access_control_enabled"
         elif key == "mlCommonsModelAccessControlEnabled":
             suggest = "ml_commons_model_access_control_enabled"
         elif key == "mlCommonsNativeMemoryThreshold":
             suggest = "ml_commons_native_memory_threshold"
         elif key == "mlCommonsOnlyRunOnMlNode":
             suggest = "ml_commons_only_run_on_ml_node"
+        elif key == "mlCommonsTrustedConnectorEndpointsRegexes":
+            suggest = "ml_commons_trusted_connector_endpoints_regexes"
         elif key == "nodeSearchCacheSize":
             suggest = "node_search_cache_size"
         elif key == "opensearchDashboards":
@@ -4926,6 +5184,7 @@ class ManagedDatabaseOpensearchProperties(dict):
                  custom_keystores: Optional[Sequence[_builtins.str]] = None,
                  custom_repos: Optional[Sequence[_builtins.str]] = None,
                  disk_watermarks: Optional['outputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks'] = None,
+                 elasticsearch_version: Optional[_builtins.str] = None,
                  email_sender_name: Optional[_builtins.str] = None,
                  email_sender_password: Optional[_builtins.str] = None,
                  email_sender_username: Optional[_builtins.str] = None,
@@ -4958,9 +5217,11 @@ class ManagedDatabaseOpensearchProperties(dict):
                  keep_index_refresh_interval: Optional[_builtins.bool] = None,
                  knn_memory_circuit_breaker_enabled: Optional[_builtins.bool] = None,
                  knn_memory_circuit_breaker_limit: Optional[_builtins.int] = None,
+                 ml_commons_connector_access_control_enabled: Optional[_builtins.bool] = None,
                  ml_commons_model_access_control_enabled: Optional[_builtins.bool] = None,
                  ml_commons_native_memory_threshold: Optional[_builtins.int] = None,
                  ml_commons_only_run_on_ml_node: Optional[_builtins.bool] = None,
+                 ml_commons_trusted_connector_endpoints_regexes: Optional[Sequence[_builtins.str]] = None,
                  node_search_cache_size: Optional[_builtins.str] = None,
                  openid: Optional['outputs.ManagedDatabaseOpensearchPropertiesOpenid'] = None,
                  opensearch_dashboards: Optional['outputs.ManagedDatabaseOpensearchPropertiesOpensearchDashboards'] = None,
@@ -5003,6 +5264,7 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param Sequence[_builtins.str] custom_keystores: OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
         :param Sequence[_builtins.str] custom_repos: OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
         :param 'ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs' disk_watermarks: Watermark settings.
+        :param _builtins.str elasticsearch_version: OpenSearch version.
         :param _builtins.str email_sender_name: Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
         :param _builtins.str email_sender_password: Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
         :param _builtins.str email_sender_username: Sender username for Opensearch alerts.
@@ -5035,9 +5297,11 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param _builtins.bool keep_index_refresh_interval: Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
         :param _builtins.bool knn_memory_circuit_breaker_enabled: Enable or disable KNN memory circuit breaker. Defaults to true.
         :param _builtins.int knn_memory_circuit_breaker_limit: Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
+        :param _builtins.bool ml_commons_connector_access_control_enabled: plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
         :param _builtins.bool ml_commons_model_access_control_enabled: plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
         :param _builtins.int ml_commons_native_memory_threshold: plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
         :param _builtins.bool ml_commons_only_run_on_ml_node: plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
+        :param Sequence[_builtins.str] ml_commons_trusted_connector_endpoints_regexes: plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
         :param _builtins.str node_search_cache_size: The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
         :param 'ManagedDatabaseOpensearchPropertiesOpenidArgs' openid: OpenSearch OpenID Connect Configuration.
         :param 'ManagedDatabaseOpensearchPropertiesOpensearchDashboardsArgs' opensearch_dashboards: OpenSearch Dashboards settings.
@@ -5094,6 +5358,8 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "custom_repos", custom_repos)
         if disk_watermarks is not None:
             pulumi.set(__self__, "disk_watermarks", disk_watermarks)
+        if elasticsearch_version is not None:
+            pulumi.set(__self__, "elasticsearch_version", elasticsearch_version)
         if email_sender_name is not None:
             pulumi.set(__self__, "email_sender_name", email_sender_name)
         if email_sender_password is not None:
@@ -5158,12 +5424,16 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "knn_memory_circuit_breaker_enabled", knn_memory_circuit_breaker_enabled)
         if knn_memory_circuit_breaker_limit is not None:
             pulumi.set(__self__, "knn_memory_circuit_breaker_limit", knn_memory_circuit_breaker_limit)
+        if ml_commons_connector_access_control_enabled is not None:
+            pulumi.set(__self__, "ml_commons_connector_access_control_enabled", ml_commons_connector_access_control_enabled)
         if ml_commons_model_access_control_enabled is not None:
             pulumi.set(__self__, "ml_commons_model_access_control_enabled", ml_commons_model_access_control_enabled)
         if ml_commons_native_memory_threshold is not None:
             pulumi.set(__self__, "ml_commons_native_memory_threshold", ml_commons_native_memory_threshold)
         if ml_commons_only_run_on_ml_node is not None:
             pulumi.set(__self__, "ml_commons_only_run_on_ml_node", ml_commons_only_run_on_ml_node)
+        if ml_commons_trusted_connector_endpoints_regexes is not None:
+            pulumi.set(__self__, "ml_commons_trusted_connector_endpoints_regexes", ml_commons_trusted_connector_endpoints_regexes)
         if node_search_cache_size is not None:
             pulumi.set(__self__, "node_search_cache_size", node_search_cache_size)
         if openid is not None:
@@ -5328,6 +5598,14 @@ class ManagedDatabaseOpensearchProperties(dict):
         Watermark settings.
         """
         return pulumi.get(self, "disk_watermarks")
+
+    @_builtins.property
+    @pulumi.getter(name="elasticsearchVersion")
+    def elasticsearch_version(self) -> Optional[_builtins.str]:
+        """
+        OpenSearch version.
+        """
+        return pulumi.get(self, "elasticsearch_version")
 
     @_builtins.property
     @pulumi.getter(name="emailSenderName")
@@ -5586,6 +5864,14 @@ class ManagedDatabaseOpensearchProperties(dict):
         return pulumi.get(self, "knn_memory_circuit_breaker_limit")
 
     @_builtins.property
+    @pulumi.getter(name="mlCommonsConnectorAccessControlEnabled")
+    def ml_commons_connector_access_control_enabled(self) -> Optional[_builtins.bool]:
+        """
+        plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
+        """
+        return pulumi.get(self, "ml_commons_connector_access_control_enabled")
+
+    @_builtins.property
     @pulumi.getter(name="mlCommonsModelAccessControlEnabled")
     def ml_commons_model_access_control_enabled(self) -> Optional[_builtins.bool]:
         """
@@ -5608,6 +5894,14 @@ class ManagedDatabaseOpensearchProperties(dict):
         plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
         """
         return pulumi.get(self, "ml_commons_only_run_on_ml_node")
+
+    @_builtins.property
+    @pulumi.getter(name="mlCommonsTrustedConnectorEndpointsRegexes")
+    def ml_commons_trusted_connector_endpoints_regexes(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
+        """
+        return pulumi.get(self, "ml_commons_trusted_connector_endpoints_regexes")
 
     @_builtins.property
     @pulumi.getter(name="nodeSearchCacheSize")
@@ -8261,6 +8555,10 @@ class ManagedDatabasePostgresqlProperties(dict):
             suggest = "pg_stat_monitor_pgsm_enable_query_plan"
         elif key == "pgStatMonitorPgsmMaxBuckets":
             suggest = "pg_stat_monitor_pgsm_max_buckets"
+        elif key == "pgStatPlansEnable":
+            suggest = "pg_stat_plans_enable"
+        elif key == "pgStatPlansTrack":
+            suggest = "pg_stat_plans_track"
         elif key == "pgStatStatementsTrack":
             suggest = "pg_stat_statements_track"
         elif key == "publicAccess":
@@ -8364,6 +8662,8 @@ class ManagedDatabasePostgresqlProperties(dict):
                  pg_stat_monitor_enable: Optional[_builtins.bool] = None,
                  pg_stat_monitor_pgsm_enable_query_plan: Optional[_builtins.bool] = None,
                  pg_stat_monitor_pgsm_max_buckets: Optional[_builtins.int] = None,
+                 pg_stat_plans_enable: Optional[_builtins.bool] = None,
+                 pg_stat_plans_track: Optional[_builtins.str] = None,
                  pg_stat_statements_track: Optional[_builtins.str] = None,
                  pgaudit: Optional['outputs.ManagedDatabasePostgresqlPropertiesPgaudit'] = None,
                  pgbouncer: Optional['outputs.ManagedDatabasePostgresqlPropertiesPgbouncer'] = None,
@@ -8415,7 +8715,7 @@ class ManagedDatabasePostgresqlProperties(dict):
         :param _builtins.int io_max_combine_limit: EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
         :param _builtins.int io_max_concurrency: EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
         :param _builtins.str io_method: EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
-        :param _builtins.int io_workers: io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+        :param _builtins.int io_workers: EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
         :param Sequence[_builtins.str] ip_filters: IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
         :param _builtins.bool jit: Controls system-wide use of Just-in-Time Compilation (JIT).
         :param _builtins.int log_autovacuum_min_duration: Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
@@ -8447,6 +8747,8 @@ class ManagedDatabasePostgresqlProperties(dict):
         :param _builtins.bool pg_stat_monitor_enable: Enable pg_stat_monitor extension if available for the current cluster. Enable the pg_stat_monitor extension. Changing this parameter causes a service restart. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
         :param _builtins.bool pg_stat_monitor_pgsm_enable_query_plan: Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
         :param _builtins.int pg_stat_monitor_pgsm_max_buckets: Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
+        :param _builtins.bool pg_stat_plans_enable: Enable pg_stat_plans extension if available for the current cluster. Enable the pg_stat_plans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+        :param _builtins.str pg_stat_plans_track: Controls which statements' plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `top`.
         :param _builtins.str pg_stat_statements_track: Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
         :param 'ManagedDatabasePostgresqlPropertiesPgauditArgs' pgaudit: PGAudit settings. System-wide settings for the pgaudit extension.
         :param 'ManagedDatabasePostgresqlPropertiesPgbouncerArgs' pgbouncer: PGBouncer connection pooling settings. System-wide settings for pgbouncer.
@@ -8590,6 +8892,10 @@ class ManagedDatabasePostgresqlProperties(dict):
             pulumi.set(__self__, "pg_stat_monitor_pgsm_enable_query_plan", pg_stat_monitor_pgsm_enable_query_plan)
         if pg_stat_monitor_pgsm_max_buckets is not None:
             pulumi.set(__self__, "pg_stat_monitor_pgsm_max_buckets", pg_stat_monitor_pgsm_max_buckets)
+        if pg_stat_plans_enable is not None:
+            pulumi.set(__self__, "pg_stat_plans_enable", pg_stat_plans_enable)
+        if pg_stat_plans_track is not None:
+            pulumi.set(__self__, "pg_stat_plans_track", pg_stat_plans_track)
         if pg_stat_statements_track is not None:
             pulumi.set(__self__, "pg_stat_statements_track", pg_stat_statements_track)
         if pgaudit is not None:
@@ -8863,7 +9169,7 @@ class ManagedDatabasePostgresqlProperties(dict):
     @pulumi.getter(name="ioWorkers")
     def io_workers(self) -> Optional[_builtins.int]:
         """
-        io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+        EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
         """
         return pulumi.get(self, "io_workers")
 
@@ -9114,6 +9420,22 @@ class ManagedDatabasePostgresqlProperties(dict):
         Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
         """
         return pulumi.get(self, "pg_stat_monitor_pgsm_max_buckets")
+
+    @_builtins.property
+    @pulumi.getter(name="pgStatPlansEnable")
+    def pg_stat_plans_enable(self) -> Optional[_builtins.bool]:
+        """
+        Enable pg_stat_plans extension if available for the current cluster. Enable the pg_stat_plans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+        """
+        return pulumi.get(self, "pg_stat_plans_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="pgStatPlansTrack")
+    def pg_stat_plans_track(self) -> Optional[_builtins.str]:
+        """
+        Controls which statements' plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `top`.
+        """
+        return pulumi.get(self, "pg_stat_plans_track")
 
     @_builtins.property
     @pulumi.getter(name="pgStatStatementsTrack")
@@ -9671,10 +9993,14 @@ class ManagedDatabasePostgresqlPropertiesPgbouncer(dict):
             suggest = "max_prepared_statements"
         elif key == "minPoolSize":
             suggest = "min_pool_size"
+        elif key == "serverConnectTimeout":
+            suggest = "server_connect_timeout"
         elif key == "serverIdleTimeout":
             suggest = "server_idle_timeout"
         elif key == "serverLifetime":
             suggest = "server_lifetime"
+        elif key == "serverLoginRetry":
+            suggest = "server_login_retry"
         elif key == "serverResetQueryAlways":
             suggest = "server_reset_query_always"
 
@@ -9697,8 +10023,10 @@ class ManagedDatabasePostgresqlPropertiesPgbouncer(dict):
                  ignore_startup_parameters: Optional[Sequence[_builtins.str]] = None,
                  max_prepared_statements: Optional[_builtins.int] = None,
                  min_pool_size: Optional[_builtins.int] = None,
+                 server_connect_timeout: Optional[_builtins.float] = None,
                  server_idle_timeout: Optional[_builtins.int] = None,
                  server_lifetime: Optional[_builtins.int] = None,
+                 server_login_retry: Optional[_builtins.float] = None,
                  server_reset_query_always: Optional[_builtins.bool] = None):
         """
         :param _builtins.int autodb_idle_timeout: If the automatically created database pools have been unused this many seconds, they are freed. If 0 then timeout is disabled. [seconds].
@@ -9708,8 +10036,10 @@ class ManagedDatabasePostgresqlPropertiesPgbouncer(dict):
         :param Sequence[_builtins.str] ignore_startup_parameters: List of parameters to ignore when given in startup packet.
         :param _builtins.int max_prepared_statements: PgBouncer tracks protocol-level named prepared statements related commands sent by the client in transaction and statement pooling modes when max_prepared_statements is set to a non-zero value. Setting it to 0 disables prepared statements. max_prepared_statements defaults to 100, and its maximum is 3000.
         :param _builtins.int min_pool_size: Add more server connections to pool if below this number. Improves behavior when usual load comes suddenly back after period of total inactivity. The value is effectively capped at the pool size.
+        :param _builtins.float server_connect_timeout: If connection and login don’t finish in this amount of time, the connection will be closed. [seconds].
         :param _builtins.int server_idle_timeout: If a server connection has been idle more than this many seconds it will be dropped. If 0 then timeout is disabled. [seconds].
         :param _builtins.int server_lifetime: The pooler will close an unused server connection that has been connected longer than this. [seconds].
+        :param _builtins.float server_login_retry: If login to the server failed, because of failure to connect or from authentication, the pooler waits this much before retrying to connect. During the waiting interval, new clients trying to connect to the failing server will get an error immediately without another connection attempt. [seconds].
         :param _builtins.bool server_reset_query_always: Run server_reset_query (DISCARD ALL) in all pooling modes.
         """
         if autodb_idle_timeout is not None:
@@ -9726,10 +10056,14 @@ class ManagedDatabasePostgresqlPropertiesPgbouncer(dict):
             pulumi.set(__self__, "max_prepared_statements", max_prepared_statements)
         if min_pool_size is not None:
             pulumi.set(__self__, "min_pool_size", min_pool_size)
+        if server_connect_timeout is not None:
+            pulumi.set(__self__, "server_connect_timeout", server_connect_timeout)
         if server_idle_timeout is not None:
             pulumi.set(__self__, "server_idle_timeout", server_idle_timeout)
         if server_lifetime is not None:
             pulumi.set(__self__, "server_lifetime", server_lifetime)
+        if server_login_retry is not None:
+            pulumi.set(__self__, "server_login_retry", server_login_retry)
         if server_reset_query_always is not None:
             pulumi.set(__self__, "server_reset_query_always", server_reset_query_always)
 
@@ -9790,6 +10124,14 @@ class ManagedDatabasePostgresqlPropertiesPgbouncer(dict):
         return pulumi.get(self, "min_pool_size")
 
     @_builtins.property
+    @pulumi.getter(name="serverConnectTimeout")
+    def server_connect_timeout(self) -> Optional[_builtins.float]:
+        """
+        If connection and login don’t finish in this amount of time, the connection will be closed. [seconds].
+        """
+        return pulumi.get(self, "server_connect_timeout")
+
+    @_builtins.property
     @pulumi.getter(name="serverIdleTimeout")
     def server_idle_timeout(self) -> Optional[_builtins.int]:
         """
@@ -9804,6 +10146,14 @@ class ManagedDatabasePostgresqlPropertiesPgbouncer(dict):
         The pooler will close an unused server connection that has been connected longer than this. [seconds].
         """
         return pulumi.get(self, "server_lifetime")
+
+    @_builtins.property
+    @pulumi.getter(name="serverLoginRetry")
+    def server_login_retry(self) -> Optional[_builtins.float]:
+        """
+        If login to the server failed, because of failure to connect or from authentication, the pooler waits this much before retrying to connect. During the waiting interval, new clients trying to connect to the failing server will get an error immediately without another connection attempt. [seconds].
+        """
+        return pulumi.get(self, "server_login_retry")
 
     @_builtins.property
     @pulumi.getter(name="serverResetQueryAlways")
@@ -10211,6 +10561,8 @@ class ManagedDatabaseValkeyProperties(dict):
             suggest = "valkey_acl_channels_default"
         elif key == "valkeyActiveExpireEffort":
             suggest = "valkey_active_expire_effort"
+        elif key == "valkeyActivedefrag":
+            suggest = "valkey_activedefrag"
         elif key == "valkeyIoThreads":
             suggest = "valkey_io_threads"
         elif key == "valkeyLfuDecayTime":
@@ -10257,6 +10609,7 @@ class ManagedDatabaseValkeyProperties(dict):
                  service_log: Optional[_builtins.bool] = None,
                  valkey_acl_channels_default: Optional[_builtins.str] = None,
                  valkey_active_expire_effort: Optional[_builtins.int] = None,
+                 valkey_activedefrag: Optional[_builtins.bool] = None,
                  valkey_io_threads: Optional[_builtins.int] = None,
                  valkey_lfu_decay_time: Optional[_builtins.int] = None,
                  valkey_lfu_log_factor: Optional[_builtins.int] = None,
@@ -10280,6 +10633,7 @@ class ManagedDatabaseValkeyProperties(dict):
         :param _builtins.bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
         :param _builtins.str valkey_acl_channels_default: Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
         :param _builtins.int valkey_active_expire_effort: Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
+        :param _builtins.bool valkey_activedefrag: Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
         :param _builtins.int valkey_io_threads: Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
         :param _builtins.int valkey_lfu_decay_time: LFU maxmemory-policy counter decay time in minutes.
         :param _builtins.int valkey_lfu_log_factor: Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
@@ -10314,6 +10668,8 @@ class ManagedDatabaseValkeyProperties(dict):
             pulumi.set(__self__, "valkey_acl_channels_default", valkey_acl_channels_default)
         if valkey_active_expire_effort is not None:
             pulumi.set(__self__, "valkey_active_expire_effort", valkey_active_expire_effort)
+        if valkey_activedefrag is not None:
+            pulumi.set(__self__, "valkey_activedefrag", valkey_activedefrag)
         if valkey_io_threads is not None:
             pulumi.set(__self__, "valkey_io_threads", valkey_io_threads)
         if valkey_lfu_decay_time is not None:
@@ -10424,6 +10780,14 @@ class ManagedDatabaseValkeyProperties(dict):
         Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
         """
         return pulumi.get(self, "valkey_active_expire_effort")
+
+    @_builtins.property
+    @pulumi.getter(name="valkeyActivedefrag")
+    def valkey_activedefrag(self) -> Optional[_builtins.bool]:
+        """
+        Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
+        """
+        return pulumi.get(self, "valkey_activedefrag")
 
     @_builtins.property
     @pulumi.getter(name="valkeyIoThreads")
@@ -13631,9 +13995,9 @@ class GetTagsTagResult(dict):
                  name: _builtins.str,
                  servers: Sequence[_builtins.str]):
         """
-        :param _builtins.str description: Free form text representing the meaning of the tag
-        :param _builtins.str name: The value representing the tag
-        :param Sequence[_builtins.str] servers: A collection of servers that have been assigned the tag
+        :param _builtins.str description: Free form text representing the meaning of the tag.
+        :param _builtins.str name: The name of the tag.
+        :param Sequence[_builtins.str] servers: A collection of servers that have been assigned the tag.
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "name", name)
@@ -13643,7 +14007,7 @@ class GetTagsTagResult(dict):
     @pulumi.getter
     def description(self) -> _builtins.str:
         """
-        Free form text representing the meaning of the tag
+        Free form text representing the meaning of the tag.
         """
         return pulumi.get(self, "description")
 
@@ -13651,7 +14015,7 @@ class GetTagsTagResult(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        The value representing the tag
+        The name of the tag.
         """
         return pulumi.get(self, "name")
 
@@ -13659,7 +14023,7 @@ class GetTagsTagResult(dict):
     @pulumi.getter
     def servers(self) -> Sequence[_builtins.str]:
         """
-        A collection of servers that have been assigned the tag
+        A collection of servers that have been assigned the tag.
         """
         return pulumi.get(self, "servers")
 

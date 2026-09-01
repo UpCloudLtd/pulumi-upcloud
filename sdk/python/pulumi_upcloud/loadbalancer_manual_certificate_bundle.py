@@ -22,18 +22,22 @@ class LoadbalancerManualCertificateBundleArgs:
                  certificate: pulumi.Input[_builtins.str],
                  private_key: pulumi.Input[_builtins.str],
                  intermediates: Optional[pulumi.Input[_builtins.str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadbalancerManualCertificateBundle resource.
         :param pulumi.Input[_builtins.str] certificate: Certificate as base64 encoded string. Must be in PEM format.
         :param pulumi.Input[_builtins.str] private_key: Private key as base64 encoded string. Must be in PEM format.
         :param pulumi.Input[_builtins.str] intermediates: Intermediate certificates as base64 encoded string. Must be in PEM format.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the manual certificate bundle.
         :param pulumi.Input[_builtins.str] name: The name of the certificate bundle. Must be unique within customer account.
         """
         pulumi.set(__self__, "certificate", certificate)
         pulumi.set(__self__, "private_key", private_key)
         if intermediates is not None:
             pulumi.set(__self__, "intermediates", intermediates)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -75,6 +79,18 @@ class LoadbalancerManualCertificateBundleArgs:
 
     @_builtins.property
     @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        User defined key-value pairs to classify the manual certificate bundle.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "labels", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The name of the certificate bundle. Must be unique within customer account.
@@ -91,6 +107,7 @@ class _LoadbalancerManualCertificateBundleState:
     def __init__(__self__, *,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  intermediates: Optional[pulumi.Input[_builtins.str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  not_after: Optional[pulumi.Input[_builtins.str]] = None,
                  not_before: Optional[pulumi.Input[_builtins.str]] = None,
@@ -100,6 +117,7 @@ class _LoadbalancerManualCertificateBundleState:
         Input properties used for looking up and filtering LoadbalancerManualCertificateBundle resources.
         :param pulumi.Input[_builtins.str] certificate: Certificate as base64 encoded string. Must be in PEM format.
         :param pulumi.Input[_builtins.str] intermediates: Intermediate certificates as base64 encoded string. Must be in PEM format.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the manual certificate bundle.
         :param pulumi.Input[_builtins.str] name: The name of the certificate bundle. Must be unique within customer account.
         :param pulumi.Input[_builtins.str] not_after: The time after which a certificate is no longer valid.
         :param pulumi.Input[_builtins.str] not_before: The time on which a certificate becomes valid.
@@ -110,6 +128,8 @@ class _LoadbalancerManualCertificateBundleState:
             pulumi.set(__self__, "certificate", certificate)
         if intermediates is not None:
             pulumi.set(__self__, "intermediates", intermediates)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if not_after is not None:
@@ -144,6 +164,18 @@ class _LoadbalancerManualCertificateBundleState:
     @intermediates.setter
     def intermediates(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "intermediates", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        User defined key-value pairs to classify the manual certificate bundle.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
@@ -214,6 +246,7 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  intermediates: Optional[pulumi.Input[_builtins.str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -240,6 +273,7 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] certificate: Certificate as base64 encoded string. Must be in PEM format.
         :param pulumi.Input[_builtins.str] intermediates: Intermediate certificates as base64 encoded string. Must be in PEM format.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the manual certificate bundle.
         :param pulumi.Input[_builtins.str] name: The name of the certificate bundle. Must be unique within customer account.
         :param pulumi.Input[_builtins.str] private_key: Private key as base64 encoded string. Must be in PEM format.
         """
@@ -285,6 +319,7 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  intermediates: Optional[pulumi.Input[_builtins.str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -300,6 +335,7 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
                 raise TypeError("Missing required property 'certificate'")
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["intermediates"] = intermediates
+            __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
             if private_key is None and not opts.urn:
                 raise TypeError("Missing required property 'private_key'")
@@ -321,6 +357,7 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             certificate: Optional[pulumi.Input[_builtins.str]] = None,
             intermediates: Optional[pulumi.Input[_builtins.str]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             not_after: Optional[pulumi.Input[_builtins.str]] = None,
             not_before: Optional[pulumi.Input[_builtins.str]] = None,
@@ -335,6 +372,7 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] certificate: Certificate as base64 encoded string. Must be in PEM format.
         :param pulumi.Input[_builtins.str] intermediates: Intermediate certificates as base64 encoded string. Must be in PEM format.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the manual certificate bundle.
         :param pulumi.Input[_builtins.str] name: The name of the certificate bundle. Must be unique within customer account.
         :param pulumi.Input[_builtins.str] not_after: The time after which a certificate is no longer valid.
         :param pulumi.Input[_builtins.str] not_before: The time on which a certificate becomes valid.
@@ -347,6 +385,7 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
 
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["intermediates"] = intermediates
+        __props__.__dict__["labels"] = labels
         __props__.__dict__["name"] = name
         __props__.__dict__["not_after"] = not_after
         __props__.__dict__["not_before"] = not_before
@@ -369,6 +408,14 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
         Intermediate certificates as base64 encoded string. Must be in PEM format.
         """
         return pulumi.get(self, "intermediates")
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
+        """
+        User defined key-value pairs to classify the manual certificate bundle.
+        """
+        return pulumi.get(self, "labels")
 
     @_builtins.property
     @pulumi.getter

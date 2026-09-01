@@ -36,6 +36,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? AdminUsername { get; set; }
 
         /// <summary>
+        /// When enabled, the server automatically grants the EXECUTE and ALTER ROUTINE privileges to the creator of a stored routine and drops them when the routine is dropped.
+        /// </summary>
+        [Input("automaticSpPrivileges")]
+        public Input<bool>? AutomaticSpPrivileges { get; set; }
+
+        /// <summary>
         /// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
         /// </summary>
         [Input("automaticUtilityNetworkIpFilter")]
@@ -72,6 +78,24 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? DefaultTimeZone { get; set; }
 
         /// <summary>
+        /// Number of digits by which to increase the scale of the result of division operations performed with the / operator. Default is 4.
+        /// </summary>
+        [Input("divPrecisionIncrement")]
+        public Input<int>? DivPrecisionIncrement { get; set; }
+
+        /// <summary>
+        /// Whether optimizer JSON output such as EXPLAIN FORMAT=JSON adds end markers that repeat a structure's key near its closing bracket, making large JSON structures easier to read.
+        /// </summary>
+        [Input("endMarkersInJson")]
+        public Input<bool>? EndMarkersInJson { get; set; }
+
+        /// <summary>
+        /// The number of equality ranges in a query at or above which the optimizer switches from index dives to index statistics when estimating the number of qualifying rows. 0 means always use index dives. Default is 200.
+        /// </summary>
+        [Input("eqRangeIndexDiveLimit")]
+        public Input<int>? EqRangeIndexDiveLimit { get; set; }
+
+        /// <summary>
         /// The maximum permitted result length in bytes for the GROUP_CONCAT() function.
         /// </summary>
         [Input("groupConcatMaxLen")]
@@ -102,16 +126,46 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? InnodbFlushNeighbors { get; set; }
 
         /// <summary>
+        /// Whether stopword processing is applied when creating or rebuilding an InnoDB FULLTEXT index. Enabled by default.
+        /// </summary>
+        [Input("innodbFtEnableStopword")]
+        public Input<bool>? InnodbFtEnableStopword { get; set; }
+
+        /// <summary>
+        /// Maximum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+        /// </summary>
+        [Input("innodbFtMaxTokenSize")]
+        public Input<int>? InnodbFtMaxTokenSize { get; set; }
+
+        /// <summary>
         /// Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
         /// </summary>
         [Input("innodbFtMinTokenSize")]
         public Input<int>? InnodbFtMinTokenSize { get; set; }
 
         /// <summary>
+        /// Number of words processed during each OPTIMIZE TABLE operation on an InnoDB FULLTEXT index. Default is 2000.
+        /// </summary>
+        [Input("innodbFtNumWordOptimize")]
+        public Input<int>? InnodbFtNumWordOptimize { get; set; }
+
+        /// <summary>
+        /// Maximum memory in bytes used per query for the InnoDB FULLTEXT search query result cache. Aiven sizes this automatically based on the service plan's memory; setting a value overrides the calculated default.
+        /// </summary>
+        [Input("innodbFtResultCacheLimit")]
+        public Input<int>? InnodbFtResultCacheLimit { get; set; }
+
+        /// <summary>
         /// This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
         /// </summary>
         [Input("innodbFtServerStopwordTable")]
         public Input<string>? InnodbFtServerStopwordTable { get; set; }
+
+        /// <summary>
+        /// This option is used to specify your own InnoDB FULLTEXT index stopword list for specific InnoDB tables.
+        /// </summary>
+        [Input("innodbFtUserStopwordTable")]
+        public Input<string>? InnodbFtUserStopwordTable { get; set; }
 
         /// <summary>
         /// The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
@@ -142,6 +196,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         /// </summary>
         [Input("innodbOnlineAlterLogMaxSize")]
         public Input<int>? InnodbOnlineAlterLogMaxSize { get; set; }
+
+        /// <summary>
+        /// When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
+        /// </summary>
+        [Input("innodbOptimizeFulltextOnly")]
+        public Input<bool>? InnodbOptimizeFulltextOnly { get; set; }
 
         /// <summary>
         /// When enabled, information about all deadlocks in InnoDB user transactions is recorded in the error log. Disabled by default.
@@ -222,10 +282,34 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? MaxAllowedPacket { get; set; }
 
         /// <summary>
+        /// The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
+        /// </summary>
+        [Input("maxConnections")]
+        public Input<int>? MaxConnections { get; set; }
+
+        /// <summary>
+        /// Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.
+        /// </summary>
+        [Input("maxExecutionTime")]
+        public Input<int>? MaxExecutionTime { get; set; }
+
+        /// <summary>
         /// Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
         /// </summary>
         [Input("maxHeapTableSize")]
         public Input<int>? MaxHeapTableSize { get; set; }
+
+        /// <summary>
+        /// Limit on the assumed maximum number of index seeks when looking up rows based on a key. Lowering this value causes the optimizer to prefer index lookups over table scans.
+        /// </summary>
+        [Input("maxSeeksForKey")]
+        public Input<int>? MaxSeeksForKey { get; set; }
+
+        /// <summary>
+        /// The maximum number of simultaneous connections permitted to any single user account. 0, the default, means no per-account limit. Any other value must be at least 10 below max_connections, so that monitoring and your own admin sessions can still connect when an application saturates its own limit. Aiven's replication and management connections are unaffected however low you set this.
+        /// </summary>
+        [Input("maxUserConnections")]
+        public Input<int>? MaxUserConnections { get; set; }
 
         /// <summary>
         /// Migrate data from existing server.
@@ -256,6 +340,24 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         /// </summary>
         [Input("netWriteTimeout")]
         public Input<int>? NetWriteTimeout { get; set; }
+
+        /// <summary>
+        /// Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. 0 disables heuristics (exhaustive search); 1 prunes plans based on the number of rows retrieved.
+        /// </summary>
+        [Input("optimizerPruneLevel")]
+        public Input<int>? OptimizerPruneLevel { get; set; }
+
+        /// <summary>
+        /// Maximum depth of search performed by the query optimizer when choosing a join order. Larger values produce better plans for joins over many tables but take longer to compile; 0 lets the optimizer choose the depth automatically.
+        /// </summary>
+        [Input("optimizerSearchDepth")]
+        public Input<int>? OptimizerSearchDepth { get; set; }
+
+        /// <summary>
+        /// Comma-separated list of optimizer flag assignments in the form flag=on|off|default, or the single value 'default' to reset all flags. Flags not listed keep their current values. Controls query optimizer behaviors such as index merge, hash join and semijoin strategies.
+        /// </summary>
+        [Input("optimizerSwitch")]
+        public Input<string>? OptimizerSwitch { get; set; }
 
         /// <summary>
         /// The number of rows per thread in the EventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
@@ -328,6 +430,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         /// </summary>
         [Input("waitTimeout")]
         public Input<int>? WaitTimeout { get; set; }
+
+        /// <summary>
+        /// Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
+        /// </summary>
+        [Input("windowingUseHighPrecision")]
+        public Input<bool>? WindowingUseHighPrecision { get; set; }
 
         public ManagedDatabaseMysqlPropertiesArgs()
         {

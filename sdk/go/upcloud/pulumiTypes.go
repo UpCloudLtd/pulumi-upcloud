@@ -7681,6 +7681,8 @@ type ManagedDatabaseMysqlProperties struct {
 	AdminPassword *string `pulumi:"adminPassword"`
 	// Custom username for admin user. This must be set only when a new service is being created.
 	AdminUsername *string `pulumi:"adminUsername"`
+	// When enabled, the server automatically grants the EXECUTE and ALTER ROUTINE privileges to the creator of a stored routine and drops them when the routine is dropped.
+	AutomaticSpPrivileges *bool `pulumi:"automaticSpPrivileges"`
 	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
 	AutomaticUtilityNetworkIpFilter *bool `pulumi:"automaticUtilityNetworkIpFilter"`
 	// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
@@ -7693,6 +7695,12 @@ type ManagedDatabaseMysqlProperties struct {
 	ConnectTimeout *int `pulumi:"connectTimeout"`
 	// Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or 'SYSTEM' to use the MySQL server default.
 	DefaultTimeZone *string `pulumi:"defaultTimeZone"`
+	// Number of digits by which to increase the scale of the result of division operations performed with the / operator. Default is 4.
+	DivPrecisionIncrement *int `pulumi:"divPrecisionIncrement"`
+	// Whether optimizer JSON output such as EXPLAIN FORMAT=JSON adds end markers that repeat a structure's key near its closing bracket, making large JSON structures easier to read.
+	EndMarkersInJson *bool `pulumi:"endMarkersInJson"`
+	// The number of equality ranges in a query at or above which the optimizer switches from index dives to index statistics when estimating the number of qualifying rows. 0 means always use index dives. Default is 200.
+	EqRangeIndexDiveLimit *int `pulumi:"eqRangeIndexDiveLimit"`
 	// The maximum permitted result length in bytes for the GROUP_CONCAT() function.
 	GroupConcatMaxLen *int `pulumi:"groupConcatMaxLen"`
 	// The time, in seconds, before cached statistics expire.
@@ -7703,10 +7711,20 @@ type ManagedDatabaseMysqlProperties struct {
 	InnodbChangeBufferMaxSize *int `pulumi:"innodbChangeBufferMaxSize"`
 	// Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
 	InnodbFlushNeighbors *int `pulumi:"innodbFlushNeighbors"`
+	// Whether stopword processing is applied when creating or rebuilding an InnoDB FULLTEXT index. Enabled by default.
+	InnodbFtEnableStopword *bool `pulumi:"innodbFtEnableStopword"`
+	// Maximum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+	InnodbFtMaxTokenSize *int `pulumi:"innodbFtMaxTokenSize"`
 	// Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
 	InnodbFtMinTokenSize *int `pulumi:"innodbFtMinTokenSize"`
+	// Number of words processed during each OPTIMIZE TABLE operation on an InnoDB FULLTEXT index. Default is 2000.
+	InnodbFtNumWordOptimize *int `pulumi:"innodbFtNumWordOptimize"`
+	// Maximum memory in bytes used per query for the InnoDB FULLTEXT search query result cache. Aiven sizes this automatically based on the service plan's memory; setting a value overrides the calculated default.
+	InnodbFtResultCacheLimit *int `pulumi:"innodbFtResultCacheLimit"`
 	// This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
 	InnodbFtServerStopwordTable *string `pulumi:"innodbFtServerStopwordTable"`
+	// This option is used to specify your own InnoDB FULLTEXT index stopword list for specific InnoDB tables.
+	InnodbFtUserStopwordTable *string `pulumi:"innodbFtUserStopwordTable"`
 	// The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
 	InnodbIoCapacity *int `pulumi:"innodbIoCapacity"`
 	// The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
@@ -7717,6 +7735,8 @@ type ManagedDatabaseMysqlProperties struct {
 	InnodbLogBufferSize *int `pulumi:"innodbLogBufferSize"`
 	// The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
 	InnodbOnlineAlterLogMaxSize *int `pulumi:"innodbOnlineAlterLogMaxSize"`
+	// When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
+	InnodbOptimizeFulltextOnly *bool `pulumi:"innodbOptimizeFulltextOnly"`
 	// When enabled, information about all deadlocks in InnoDB user transactions is recorded in the error log. Disabled by default.
 	InnodbPrintAllDeadlocks *bool `pulumi:"innodbPrintAllDeadlocks"`
 	// The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
@@ -7741,8 +7761,16 @@ type ManagedDatabaseMysqlProperties struct {
 	LowerCaseTableNames *int `pulumi:"lowerCaseTableNames"`
 	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
 	MaxAllowedPacket *int `pulumi:"maxAllowedPacket"`
+	// The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
+	MaxConnections *int `pulumi:"maxConnections"`
+	// Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.
+	MaxExecutionTime *int `pulumi:"maxExecutionTime"`
 	// Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
 	MaxHeapTableSize *int `pulumi:"maxHeapTableSize"`
+	// Limit on the assumed maximum number of index seeks when looking up rows based on a key. Lowering this value causes the optimizer to prefer index lookups over table scans.
+	MaxSeeksForKey *int `pulumi:"maxSeeksForKey"`
+	// The maximum number of simultaneous connections permitted to any single user account. 0, the default, means no per-account limit. Any other value must be at least 10 below max_connections, so that monitoring and your own admin sessions can still connect when an application saturates its own limit. Aiven's replication and management connections are unaffected however low you set this.
+	MaxUserConnections *int `pulumi:"maxUserConnections"`
 	// Migrate data from existing server.
 	Migration *ManagedDatabaseMysqlPropertiesMigration `pulumi:"migration"`
 	// MySQL incremental backup configuration.
@@ -7753,6 +7781,12 @@ type ManagedDatabaseMysqlProperties struct {
 	NetReadTimeout *int `pulumi:"netReadTimeout"`
 	// The number of seconds to wait for a block to be written to a connection before aborting the write.
 	NetWriteTimeout *int `pulumi:"netWriteTimeout"`
+	// Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. 0 disables heuristics (exhaustive search); 1 prunes plans based on the number of rows retrieved.
+	OptimizerPruneLevel *int `pulumi:"optimizerPruneLevel"`
+	// Maximum depth of search performed by the query optimizer when choosing a join order. Larger values produce better plans for joins over many tables but take longer to compile; 0 lets the optimizer choose the depth automatically.
+	OptimizerSearchDepth *int `pulumi:"optimizerSearchDepth"`
+	// Comma-separated list of optimizer flag assignments in the form flag=on|off|default, or the single value 'default' to reset all flags. Flags not listed keep their current values. Controls query optimizer behaviors such as index merge, hash join and semijoin strategies.
+	OptimizerSwitch *string `pulumi:"optimizerSwitch"`
 	// The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
 	PerformanceSchemaEventsStatementsHistorySize *int `pulumi:"performanceSchemaEventsStatementsHistorySize"`
 	// Public Access. Allow access to the service from the public Internet.
@@ -7777,6 +7811,8 @@ type ManagedDatabaseMysqlProperties struct {
 	Version *string `pulumi:"version"`
 	// The number of seconds the server waits for activity on a noninteractive connection before closing it.
 	WaitTimeout *int `pulumi:"waitTimeout"`
+	// Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
+	WindowingUseHighPrecision *bool `pulumi:"windowingUseHighPrecision"`
 }
 
 // ManagedDatabaseMysqlPropertiesInput is an input type that accepts ManagedDatabaseMysqlPropertiesArgs and ManagedDatabaseMysqlPropertiesOutput values.
@@ -7795,6 +7831,8 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	AdminPassword pulumi.StringPtrInput `pulumi:"adminPassword"`
 	// Custom username for admin user. This must be set only when a new service is being created.
 	AdminUsername pulumi.StringPtrInput `pulumi:"adminUsername"`
+	// When enabled, the server automatically grants the EXECUTE and ALTER ROUTINE privileges to the creator of a stored routine and drops them when the routine is dropped.
+	AutomaticSpPrivileges pulumi.BoolPtrInput `pulumi:"automaticSpPrivileges"`
 	// Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
 	AutomaticUtilityNetworkIpFilter pulumi.BoolPtrInput `pulumi:"automaticUtilityNetworkIpFilter"`
 	// The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
@@ -7807,6 +7845,12 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
 	// Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or 'SYSTEM' to use the MySQL server default.
 	DefaultTimeZone pulumi.StringPtrInput `pulumi:"defaultTimeZone"`
+	// Number of digits by which to increase the scale of the result of division operations performed with the / operator. Default is 4.
+	DivPrecisionIncrement pulumi.IntPtrInput `pulumi:"divPrecisionIncrement"`
+	// Whether optimizer JSON output such as EXPLAIN FORMAT=JSON adds end markers that repeat a structure's key near its closing bracket, making large JSON structures easier to read.
+	EndMarkersInJson pulumi.BoolPtrInput `pulumi:"endMarkersInJson"`
+	// The number of equality ranges in a query at or above which the optimizer switches from index dives to index statistics when estimating the number of qualifying rows. 0 means always use index dives. Default is 200.
+	EqRangeIndexDiveLimit pulumi.IntPtrInput `pulumi:"eqRangeIndexDiveLimit"`
 	// The maximum permitted result length in bytes for the GROUP_CONCAT() function.
 	GroupConcatMaxLen pulumi.IntPtrInput `pulumi:"groupConcatMaxLen"`
 	// The time, in seconds, before cached statistics expire.
@@ -7817,10 +7861,20 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	InnodbChangeBufferMaxSize pulumi.IntPtrInput `pulumi:"innodbChangeBufferMaxSize"`
 	// Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
 	InnodbFlushNeighbors pulumi.IntPtrInput `pulumi:"innodbFlushNeighbors"`
+	// Whether stopword processing is applied when creating or rebuilding an InnoDB FULLTEXT index. Enabled by default.
+	InnodbFtEnableStopword pulumi.BoolPtrInput `pulumi:"innodbFtEnableStopword"`
+	// Maximum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+	InnodbFtMaxTokenSize pulumi.IntPtrInput `pulumi:"innodbFtMaxTokenSize"`
 	// Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
 	InnodbFtMinTokenSize pulumi.IntPtrInput `pulumi:"innodbFtMinTokenSize"`
+	// Number of words processed during each OPTIMIZE TABLE operation on an InnoDB FULLTEXT index. Default is 2000.
+	InnodbFtNumWordOptimize pulumi.IntPtrInput `pulumi:"innodbFtNumWordOptimize"`
+	// Maximum memory in bytes used per query for the InnoDB FULLTEXT search query result cache. Aiven sizes this automatically based on the service plan's memory; setting a value overrides the calculated default.
+	InnodbFtResultCacheLimit pulumi.IntPtrInput `pulumi:"innodbFtResultCacheLimit"`
 	// This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
 	InnodbFtServerStopwordTable pulumi.StringPtrInput `pulumi:"innodbFtServerStopwordTable"`
+	// This option is used to specify your own InnoDB FULLTEXT index stopword list for specific InnoDB tables.
+	InnodbFtUserStopwordTable pulumi.StringPtrInput `pulumi:"innodbFtUserStopwordTable"`
 	// The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
 	InnodbIoCapacity pulumi.IntPtrInput `pulumi:"innodbIoCapacity"`
 	// The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
@@ -7831,6 +7885,8 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	InnodbLogBufferSize pulumi.IntPtrInput `pulumi:"innodbLogBufferSize"`
 	// The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
 	InnodbOnlineAlterLogMaxSize pulumi.IntPtrInput `pulumi:"innodbOnlineAlterLogMaxSize"`
+	// When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
+	InnodbOptimizeFulltextOnly pulumi.BoolPtrInput `pulumi:"innodbOptimizeFulltextOnly"`
 	// When enabled, information about all deadlocks in InnoDB user transactions is recorded in the error log. Disabled by default.
 	InnodbPrintAllDeadlocks pulumi.BoolPtrInput `pulumi:"innodbPrintAllDeadlocks"`
 	// The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
@@ -7855,8 +7911,16 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	LowerCaseTableNames pulumi.IntPtrInput `pulumi:"lowerCaseTableNames"`
 	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
 	MaxAllowedPacket pulumi.IntPtrInput `pulumi:"maxAllowedPacket"`
+	// The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
+	MaxConnections pulumi.IntPtrInput `pulumi:"maxConnections"`
+	// Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.
+	MaxExecutionTime pulumi.IntPtrInput `pulumi:"maxExecutionTime"`
 	// Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
 	MaxHeapTableSize pulumi.IntPtrInput `pulumi:"maxHeapTableSize"`
+	// Limit on the assumed maximum number of index seeks when looking up rows based on a key. Lowering this value causes the optimizer to prefer index lookups over table scans.
+	MaxSeeksForKey pulumi.IntPtrInput `pulumi:"maxSeeksForKey"`
+	// The maximum number of simultaneous connections permitted to any single user account. 0, the default, means no per-account limit. Any other value must be at least 10 below max_connections, so that monitoring and your own admin sessions can still connect when an application saturates its own limit. Aiven's replication and management connections are unaffected however low you set this.
+	MaxUserConnections pulumi.IntPtrInput `pulumi:"maxUserConnections"`
 	// Migrate data from existing server.
 	Migration ManagedDatabaseMysqlPropertiesMigrationPtrInput `pulumi:"migration"`
 	// MySQL incremental backup configuration.
@@ -7867,6 +7931,12 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	NetReadTimeout pulumi.IntPtrInput `pulumi:"netReadTimeout"`
 	// The number of seconds to wait for a block to be written to a connection before aborting the write.
 	NetWriteTimeout pulumi.IntPtrInput `pulumi:"netWriteTimeout"`
+	// Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. 0 disables heuristics (exhaustive search); 1 prunes plans based on the number of rows retrieved.
+	OptimizerPruneLevel pulumi.IntPtrInput `pulumi:"optimizerPruneLevel"`
+	// Maximum depth of search performed by the query optimizer when choosing a join order. Larger values produce better plans for joins over many tables but take longer to compile; 0 lets the optimizer choose the depth automatically.
+	OptimizerSearchDepth pulumi.IntPtrInput `pulumi:"optimizerSearchDepth"`
+	// Comma-separated list of optimizer flag assignments in the form flag=on|off|default, or the single value 'default' to reset all flags. Flags not listed keep their current values. Controls query optimizer behaviors such as index merge, hash join and semijoin strategies.
+	OptimizerSwitch pulumi.StringPtrInput `pulumi:"optimizerSwitch"`
 	// The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
 	PerformanceSchemaEventsStatementsHistorySize pulumi.IntPtrInput `pulumi:"performanceSchemaEventsStatementsHistorySize"`
 	// Public Access. Allow access to the service from the public Internet.
@@ -7891,6 +7961,8 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	Version pulumi.StringPtrInput `pulumi:"version"`
 	// The number of seconds the server waits for activity on a noninteractive connection before closing it.
 	WaitTimeout pulumi.IntPtrInput `pulumi:"waitTimeout"`
+	// Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
+	WindowingUseHighPrecision pulumi.BoolPtrInput `pulumi:"windowingUseHighPrecision"`
 }
 
 func (ManagedDatabaseMysqlPropertiesArgs) ElementType() reflect.Type {
@@ -7980,6 +8052,11 @@ func (o ManagedDatabaseMysqlPropertiesOutput) AdminUsername() pulumi.StringPtrOu
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *string { return v.AdminUsername }).(pulumi.StringPtrOutput)
 }
 
+// When enabled, the server automatically grants the EXECUTE and ALTER ROUTINE privileges to the creator of a stored routine and drops them when the routine is dropped.
+func (o ManagedDatabaseMysqlPropertiesOutput) AutomaticSpPrivileges() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *bool { return v.AutomaticSpPrivileges }).(pulumi.BoolPtrOutput)
+}
+
 // Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
 func (o ManagedDatabaseMysqlPropertiesOutput) AutomaticUtilityNetworkIpFilter() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *bool { return v.AutomaticUtilityNetworkIpFilter }).(pulumi.BoolPtrOutput)
@@ -8010,6 +8087,21 @@ func (o ManagedDatabaseMysqlPropertiesOutput) DefaultTimeZone() pulumi.StringPtr
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *string { return v.DefaultTimeZone }).(pulumi.StringPtrOutput)
 }
 
+// Number of digits by which to increase the scale of the result of division operations performed with the / operator. Default is 4.
+func (o ManagedDatabaseMysqlPropertiesOutput) DivPrecisionIncrement() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.DivPrecisionIncrement }).(pulumi.IntPtrOutput)
+}
+
+// Whether optimizer JSON output such as EXPLAIN FORMAT=JSON adds end markers that repeat a structure's key near its closing bracket, making large JSON structures easier to read.
+func (o ManagedDatabaseMysqlPropertiesOutput) EndMarkersInJson() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *bool { return v.EndMarkersInJson }).(pulumi.BoolPtrOutput)
+}
+
+// The number of equality ranges in a query at or above which the optimizer switches from index dives to index statistics when estimating the number of qualifying rows. 0 means always use index dives. Default is 200.
+func (o ManagedDatabaseMysqlPropertiesOutput) EqRangeIndexDiveLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.EqRangeIndexDiveLimit }).(pulumi.IntPtrOutput)
+}
+
 // The maximum permitted result length in bytes for the GROUP_CONCAT() function.
 func (o ManagedDatabaseMysqlPropertiesOutput) GroupConcatMaxLen() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.GroupConcatMaxLen }).(pulumi.IntPtrOutput)
@@ -8035,14 +8127,39 @@ func (o ManagedDatabaseMysqlPropertiesOutput) InnodbFlushNeighbors() pulumi.IntP
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InnodbFlushNeighbors }).(pulumi.IntPtrOutput)
 }
 
+// Whether stopword processing is applied when creating or rebuilding an InnoDB FULLTEXT index. Enabled by default.
+func (o ManagedDatabaseMysqlPropertiesOutput) InnodbFtEnableStopword() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *bool { return v.InnodbFtEnableStopword }).(pulumi.BoolPtrOutput)
+}
+
+// Maximum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+func (o ManagedDatabaseMysqlPropertiesOutput) InnodbFtMaxTokenSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InnodbFtMaxTokenSize }).(pulumi.IntPtrOutput)
+}
+
 // Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
 func (o ManagedDatabaseMysqlPropertiesOutput) InnodbFtMinTokenSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InnodbFtMinTokenSize }).(pulumi.IntPtrOutput)
 }
 
+// Number of words processed during each OPTIMIZE TABLE operation on an InnoDB FULLTEXT index. Default is 2000.
+func (o ManagedDatabaseMysqlPropertiesOutput) InnodbFtNumWordOptimize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InnodbFtNumWordOptimize }).(pulumi.IntPtrOutput)
+}
+
+// Maximum memory in bytes used per query for the InnoDB FULLTEXT search query result cache. Aiven sizes this automatically based on the service plan's memory; setting a value overrides the calculated default.
+func (o ManagedDatabaseMysqlPropertiesOutput) InnodbFtResultCacheLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InnodbFtResultCacheLimit }).(pulumi.IntPtrOutput)
+}
+
 // This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
 func (o ManagedDatabaseMysqlPropertiesOutput) InnodbFtServerStopwordTable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *string { return v.InnodbFtServerStopwordTable }).(pulumi.StringPtrOutput)
+}
+
+// This option is used to specify your own InnoDB FULLTEXT index stopword list for specific InnoDB tables.
+func (o ManagedDatabaseMysqlPropertiesOutput) InnodbFtUserStopwordTable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *string { return v.InnodbFtUserStopwordTable }).(pulumi.StringPtrOutput)
 }
 
 // The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
@@ -8068,6 +8185,11 @@ func (o ManagedDatabaseMysqlPropertiesOutput) InnodbLogBufferSize() pulumi.IntPt
 // The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
 func (o ManagedDatabaseMysqlPropertiesOutput) InnodbOnlineAlterLogMaxSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InnodbOnlineAlterLogMaxSize }).(pulumi.IntPtrOutput)
+}
+
+// When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
+func (o ManagedDatabaseMysqlPropertiesOutput) InnodbOptimizeFulltextOnly() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *bool { return v.InnodbOptimizeFulltextOnly }).(pulumi.BoolPtrOutput)
 }
 
 // When enabled, information about all deadlocks in InnoDB user transactions is recorded in the error log. Disabled by default.
@@ -8130,9 +8252,29 @@ func (o ManagedDatabaseMysqlPropertiesOutput) MaxAllowedPacket() pulumi.IntPtrOu
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.MaxAllowedPacket }).(pulumi.IntPtrOutput)
 }
 
+// The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
+func (o ManagedDatabaseMysqlPropertiesOutput) MaxConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.MaxConnections }).(pulumi.IntPtrOutput)
+}
+
+// Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.
+func (o ManagedDatabaseMysqlPropertiesOutput) MaxExecutionTime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.MaxExecutionTime }).(pulumi.IntPtrOutput)
+}
+
 // Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
 func (o ManagedDatabaseMysqlPropertiesOutput) MaxHeapTableSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.MaxHeapTableSize }).(pulumi.IntPtrOutput)
+}
+
+// Limit on the assumed maximum number of index seeks when looking up rows based on a key. Lowering this value causes the optimizer to prefer index lookups over table scans.
+func (o ManagedDatabaseMysqlPropertiesOutput) MaxSeeksForKey() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.MaxSeeksForKey }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of simultaneous connections permitted to any single user account. 0, the default, means no per-account limit. Any other value must be at least 10 below max_connections, so that monitoring and your own admin sessions can still connect when an application saturates its own limit. Aiven's replication and management connections are unaffected however low you set this.
+func (o ManagedDatabaseMysqlPropertiesOutput) MaxUserConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.MaxUserConnections }).(pulumi.IntPtrOutput)
 }
 
 // Migrate data from existing server.
@@ -8160,6 +8302,21 @@ func (o ManagedDatabaseMysqlPropertiesOutput) NetReadTimeout() pulumi.IntPtrOutp
 // The number of seconds to wait for a block to be written to a connection before aborting the write.
 func (o ManagedDatabaseMysqlPropertiesOutput) NetWriteTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.NetWriteTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. 0 disables heuristics (exhaustive search); 1 prunes plans based on the number of rows retrieved.
+func (o ManagedDatabaseMysqlPropertiesOutput) OptimizerPruneLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.OptimizerPruneLevel }).(pulumi.IntPtrOutput)
+}
+
+// Maximum depth of search performed by the query optimizer when choosing a join order. Larger values produce better plans for joins over many tables but take longer to compile; 0 lets the optimizer choose the depth automatically.
+func (o ManagedDatabaseMysqlPropertiesOutput) OptimizerSearchDepth() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.OptimizerSearchDepth }).(pulumi.IntPtrOutput)
+}
+
+// Comma-separated list of optimizer flag assignments in the form flag=on|off|default, or the single value 'default' to reset all flags. Flags not listed keep their current values. Controls query optimizer behaviors such as index merge, hash join and semijoin strategies.
+func (o ManagedDatabaseMysqlPropertiesOutput) OptimizerSwitch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *string { return v.OptimizerSwitch }).(pulumi.StringPtrOutput)
 }
 
 // The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
@@ -8222,6 +8379,11 @@ func (o ManagedDatabaseMysqlPropertiesOutput) WaitTimeout() pulumi.IntPtrOutput 
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.WaitTimeout }).(pulumi.IntPtrOutput)
 }
 
+// Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
+func (o ManagedDatabaseMysqlPropertiesOutput) WindowingUseHighPrecision() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *bool { return v.WindowingUseHighPrecision }).(pulumi.BoolPtrOutput)
+}
+
 type ManagedDatabaseMysqlPropertiesPtrOutput struct{ *pulumi.OutputState }
 
 func (ManagedDatabaseMysqlPropertiesPtrOutput) ElementType() reflect.Type {
@@ -8264,6 +8426,16 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) AdminUsername() pulumi.StringPt
 		}
 		return v.AdminUsername
 	}).(pulumi.StringPtrOutput)
+}
+
+// When enabled, the server automatically grants the EXECUTE and ALTER ROUTINE privileges to the creator of a stored routine and drops them when the routine is dropped.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) AutomaticSpPrivileges() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AutomaticSpPrivileges
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
@@ -8326,6 +8498,36 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) DefaultTimeZone() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
+// Number of digits by which to increase the scale of the result of division operations performed with the / operator. Default is 4.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) DivPrecisionIncrement() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DivPrecisionIncrement
+	}).(pulumi.IntPtrOutput)
+}
+
+// Whether optimizer JSON output such as EXPLAIN FORMAT=JSON adds end markers that repeat a structure's key near its closing bracket, making large JSON structures easier to read.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) EndMarkersInJson() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.EndMarkersInJson
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The number of equality ranges in a query at or above which the optimizer switches from index dives to index statistics when estimating the number of qualifying rows. 0 means always use index dives. Default is 200.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) EqRangeIndexDiveLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.EqRangeIndexDiveLimit
+	}).(pulumi.IntPtrOutput)
+}
+
 // The maximum permitted result length in bytes for the GROUP_CONCAT() function.
 func (o ManagedDatabaseMysqlPropertiesPtrOutput) GroupConcatMaxLen() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
@@ -8376,6 +8578,26 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbFlushNeighbors() pulumi.I
 	}).(pulumi.IntPtrOutput)
 }
 
+// Whether stopword processing is applied when creating or rebuilding an InnoDB FULLTEXT index. Enabled by default.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbFtEnableStopword() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.InnodbFtEnableStopword
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Maximum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbFtMaxTokenSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InnodbFtMaxTokenSize
+	}).(pulumi.IntPtrOutput)
+}
+
 // Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
 func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbFtMinTokenSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
@@ -8386,6 +8608,26 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbFtMinTokenSize() pulumi.I
 	}).(pulumi.IntPtrOutput)
 }
 
+// Number of words processed during each OPTIMIZE TABLE operation on an InnoDB FULLTEXT index. Default is 2000.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbFtNumWordOptimize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InnodbFtNumWordOptimize
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum memory in bytes used per query for the InnoDB FULLTEXT search query result cache. Aiven sizes this automatically based on the service plan's memory; setting a value overrides the calculated default.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbFtResultCacheLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InnodbFtResultCacheLimit
+	}).(pulumi.IntPtrOutput)
+}
+
 // This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
 func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbFtServerStopwordTable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *string {
@@ -8393,6 +8635,16 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbFtServerStopwordTable() p
 			return nil
 		}
 		return v.InnodbFtServerStopwordTable
+	}).(pulumi.StringPtrOutput)
+}
+
+// This option is used to specify your own InnoDB FULLTEXT index stopword list for specific InnoDB tables.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbFtUserStopwordTable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InnodbFtUserStopwordTable
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -8444,6 +8696,16 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbOnlineAlterLogMaxSize() p
 		}
 		return v.InnodbOnlineAlterLogMaxSize
 	}).(pulumi.IntPtrOutput)
+}
+
+// When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbOptimizeFulltextOnly() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.InnodbOptimizeFulltextOnly
+	}).(pulumi.BoolPtrOutput)
 }
 
 // When enabled, information about all deadlocks in InnoDB user transactions is recorded in the error log. Disabled by default.
@@ -8566,6 +8828,26 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) MaxAllowedPacket() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
+// The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) MaxConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxConnections
+	}).(pulumi.IntPtrOutput)
+}
+
+// Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) MaxExecutionTime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxExecutionTime
+	}).(pulumi.IntPtrOutput)
+}
+
 // Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
 func (o ManagedDatabaseMysqlPropertiesPtrOutput) MaxHeapTableSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
@@ -8573,6 +8855,26 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) MaxHeapTableSize() pulumi.IntPt
 			return nil
 		}
 		return v.MaxHeapTableSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// Limit on the assumed maximum number of index seeks when looking up rows based on a key. Lowering this value causes the optimizer to prefer index lookups over table scans.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) MaxSeeksForKey() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSeeksForKey
+	}).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of simultaneous connections permitted to any single user account. 0, the default, means no per-account limit. Any other value must be at least 10 below max_connections, so that monitoring and your own admin sessions can still connect when an application saturates its own limit. Aiven's replication and management connections are unaffected however low you set this.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) MaxUserConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxUserConnections
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -8624,6 +8926,36 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) NetWriteTimeout() pulumi.IntPtr
 		}
 		return v.NetWriteTimeout
 	}).(pulumi.IntPtrOutput)
+}
+
+// Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. 0 disables heuristics (exhaustive search); 1 prunes plans based on the number of rows retrieved.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) OptimizerPruneLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OptimizerPruneLevel
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum depth of search performed by the query optimizer when choosing a join order. Larger values produce better plans for joins over many tables but take longer to compile; 0 lets the optimizer choose the depth automatically.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) OptimizerSearchDepth() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OptimizerSearchDepth
+	}).(pulumi.IntPtrOutput)
+}
+
+// Comma-separated list of optimizer flag assignments in the form flag=on|off|default, or the single value 'default' to reset all flags. Flags not listed keep their current values. Controls query optimizer behaviors such as index merge, hash join and semijoin strategies.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) OptimizerSwitch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OptimizerSwitch
+	}).(pulumi.StringPtrOutput)
 }
 
 // The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
@@ -8744,6 +9076,16 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) WaitTimeout() pulumi.IntPtrOutp
 		}
 		return v.WaitTimeout
 	}).(pulumi.IntPtrOutput)
+}
+
+// Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) WindowingUseHighPrecision() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.WindowingUseHighPrecision
+	}).(pulumi.BoolPtrOutput)
 }
 
 type ManagedDatabaseMysqlPropertiesMigration struct {
@@ -9628,6 +9970,8 @@ type ManagedDatabaseOpensearchProperties struct {
 	CustomRepos []string `pulumi:"customRepos"`
 	// Watermark settings.
 	DiskWatermarks *ManagedDatabaseOpensearchPropertiesDiskWatermarks `pulumi:"diskWatermarks"`
+	// OpenSearch version.
+	ElasticsearchVersion *string `pulumi:"elasticsearchVersion"`
 	// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
 	EmailSenderName *string `pulumi:"emailSenderName"`
 	// Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
@@ -9692,12 +10036,16 @@ type ManagedDatabaseOpensearchProperties struct {
 	KnnMemoryCircuitBreakerEnabled *bool `pulumi:"knnMemoryCircuitBreakerEnabled"`
 	// Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
 	KnnMemoryCircuitBreakerLimit *int `pulumi:"knnMemoryCircuitBreakerLimit"`
+	// plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
+	MlCommonsConnectorAccessControlEnabled *bool `pulumi:"mlCommonsConnectorAccessControlEnabled"`
 	// plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
 	MlCommonsModelAccessControlEnabled *bool `pulumi:"mlCommonsModelAccessControlEnabled"`
 	// plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
 	MlCommonsNativeMemoryThreshold *int `pulumi:"mlCommonsNativeMemoryThreshold"`
 	// plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
 	MlCommonsOnlyRunOnMlNode *bool `pulumi:"mlCommonsOnlyRunOnMlNode"`
+	// plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
+	MlCommonsTrustedConnectorEndpointsRegexes []string `pulumi:"mlCommonsTrustedConnectorEndpointsRegexes"`
 	// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
 	NodeSearchCacheSize *string `pulumi:"nodeSearchCacheSize"`
 	// OpenSearch OpenID Connect Configuration.
@@ -9794,6 +10142,8 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	CustomRepos pulumi.StringArrayInput `pulumi:"customRepos"`
 	// Watermark settings.
 	DiskWatermarks ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrInput `pulumi:"diskWatermarks"`
+	// OpenSearch version.
+	ElasticsearchVersion pulumi.StringPtrInput `pulumi:"elasticsearchVersion"`
 	// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
 	EmailSenderName pulumi.StringPtrInput `pulumi:"emailSenderName"`
 	// Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
@@ -9858,12 +10208,16 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	KnnMemoryCircuitBreakerEnabled pulumi.BoolPtrInput `pulumi:"knnMemoryCircuitBreakerEnabled"`
 	// Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
 	KnnMemoryCircuitBreakerLimit pulumi.IntPtrInput `pulumi:"knnMemoryCircuitBreakerLimit"`
+	// plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
+	MlCommonsConnectorAccessControlEnabled pulumi.BoolPtrInput `pulumi:"mlCommonsConnectorAccessControlEnabled"`
 	// plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
 	MlCommonsModelAccessControlEnabled pulumi.BoolPtrInput `pulumi:"mlCommonsModelAccessControlEnabled"`
 	// plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
 	MlCommonsNativeMemoryThreshold pulumi.IntPtrInput `pulumi:"mlCommonsNativeMemoryThreshold"`
 	// plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
 	MlCommonsOnlyRunOnMlNode pulumi.BoolPtrInput `pulumi:"mlCommonsOnlyRunOnMlNode"`
+	// plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
+	MlCommonsTrustedConnectorEndpointsRegexes pulumi.StringArrayInput `pulumi:"mlCommonsTrustedConnectorEndpointsRegexes"`
 	// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
 	NodeSearchCacheSize pulumi.StringPtrInput `pulumi:"nodeSearchCacheSize"`
 	// OpenSearch OpenID Connect Configuration.
@@ -10079,6 +10433,11 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) DiskWatermarks() ManagedDatab
 	}).(ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput)
 }
 
+// OpenSearch version.
+func (o ManagedDatabaseOpensearchPropertiesOutput) ElasticsearchVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *string { return v.ElasticsearchVersion }).(pulumi.StringPtrOutput)
+}
+
 // Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
 func (o ManagedDatabaseOpensearchPropertiesOutput) EmailSenderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *string { return v.EmailSenderName }).(pulumi.StringPtrOutput)
@@ -10243,6 +10602,11 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) KnnMemoryCircuitBreakerLimit(
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.KnnMemoryCircuitBreakerLimit }).(pulumi.IntPtrOutput)
 }
 
+// plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
+func (o ManagedDatabaseOpensearchPropertiesOutput) MlCommonsConnectorAccessControlEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.MlCommonsConnectorAccessControlEnabled }).(pulumi.BoolPtrOutput)
+}
+
 // plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
 func (o ManagedDatabaseOpensearchPropertiesOutput) MlCommonsModelAccessControlEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.MlCommonsModelAccessControlEnabled }).(pulumi.BoolPtrOutput)
@@ -10256,6 +10620,13 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) MlCommonsNativeMemoryThreshol
 // plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
 func (o ManagedDatabaseOpensearchPropertiesOutput) MlCommonsOnlyRunOnMlNode() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.MlCommonsOnlyRunOnMlNode }).(pulumi.BoolPtrOutput)
+}
+
+// plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
+func (o ManagedDatabaseOpensearchPropertiesOutput) MlCommonsTrustedConnectorEndpointsRegexes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) []string {
+		return v.MlCommonsTrustedConnectorEndpointsRegexes
+	}).(pulumi.StringArrayOutput)
 }
 
 // The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
@@ -10575,6 +10946,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) DiskWatermarks() ManagedDa
 		}
 		return v.DiskWatermarks
 	}).(ManagedDatabaseOpensearchPropertiesDiskWatermarksPtrOutput)
+}
+
+// OpenSearch version.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) ElasticsearchVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ElasticsearchVersion
+	}).(pulumi.StringPtrOutput)
 }
 
 // Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
@@ -10897,6 +11278,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) KnnMemoryCircuitBreakerLim
 	}).(pulumi.IntPtrOutput)
 }
 
+// plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) MlCommonsConnectorAccessControlEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.MlCommonsConnectorAccessControlEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
 // plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) MlCommonsModelAccessControlEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
@@ -10925,6 +11316,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) MlCommonsOnlyRunOnMlNode()
 		}
 		return v.MlCommonsOnlyRunOnMlNode
 	}).(pulumi.BoolPtrOutput)
+}
+
+// plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) MlCommonsTrustedConnectorEndpointsRegexes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) []string {
+		if v == nil {
+			return nil
+		}
+		return v.MlCommonsTrustedConnectorEndpointsRegexes
+	}).(pulumi.StringArrayOutput)
 }
 
 // The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
@@ -17269,7 +17670,7 @@ type ManagedDatabasePostgresqlProperties struct {
 	IoMaxConcurrency *int `pulumi:"ioMaxConcurrency"`
 	// EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
 	IoMethod *string `pulumi:"ioMethod"`
-	// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+	// EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
 	IoWorkers *int `pulumi:"ioWorkers"`
 	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 	IpFilters []string `pulumi:"ipFilters"`
@@ -17333,6 +17734,10 @@ type ManagedDatabasePostgresqlProperties struct {
 	PgStatMonitorPgsmEnableQueryPlan *bool `pulumi:"pgStatMonitorPgsmEnableQueryPlan"`
 	// Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
 	PgStatMonitorPgsmMaxBuckets *int `pulumi:"pgStatMonitorPgsmMaxBuckets"`
+	// Enable pgStatPlans extension if available for the current cluster. Enable the pgStatPlans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+	PgStatPlansEnable *bool `pulumi:"pgStatPlansEnable"`
+	// Controls which statements' plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `top`.
+	PgStatPlansTrack *string `pulumi:"pgStatPlansTrack"`
 	// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
 	PgStatStatementsTrack *string `pulumi:"pgStatStatementsTrack"`
 	// PGAudit settings. System-wide settings for the pgaudit extension.
@@ -17447,7 +17852,7 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	IoMaxConcurrency pulumi.IntPtrInput `pulumi:"ioMaxConcurrency"`
 	// EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
 	IoMethod pulumi.StringPtrInput `pulumi:"ioMethod"`
-	// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+	// EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
 	IoWorkers pulumi.IntPtrInput `pulumi:"ioWorkers"`
 	// IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
 	IpFilters pulumi.StringArrayInput `pulumi:"ipFilters"`
@@ -17511,6 +17916,10 @@ type ManagedDatabasePostgresqlPropertiesArgs struct {
 	PgStatMonitorPgsmEnableQueryPlan pulumi.BoolPtrInput `pulumi:"pgStatMonitorPgsmEnableQueryPlan"`
 	// Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
 	PgStatMonitorPgsmMaxBuckets pulumi.IntPtrInput `pulumi:"pgStatMonitorPgsmMaxBuckets"`
+	// Enable pgStatPlans extension if available for the current cluster. Enable the pgStatPlans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+	PgStatPlansEnable pulumi.BoolPtrInput `pulumi:"pgStatPlansEnable"`
+	// Controls which statements' plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `top`.
+	PgStatPlansTrack pulumi.StringPtrInput `pulumi:"pgStatPlansTrack"`
 	// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
 	PgStatStatementsTrack pulumi.StringPtrInput `pulumi:"pgStatStatementsTrack"`
 	// PGAudit settings. System-wide settings for the pgaudit extension.
@@ -17774,7 +18183,7 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) IoMethod() pulumi.StringPtrOu
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.IoMethod }).(pulumi.StringPtrOutput)
 }
 
-// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+// EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
 func (o ManagedDatabasePostgresqlPropertiesOutput) IoWorkers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.IoWorkers }).(pulumi.IntPtrOutput)
 }
@@ -17934,6 +18343,16 @@ func (o ManagedDatabasePostgresqlPropertiesOutput) PgStatMonitorPgsmEnableQueryP
 // Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
 func (o ManagedDatabasePostgresqlPropertiesOutput) PgStatMonitorPgsmMaxBuckets() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *int { return v.PgStatMonitorPgsmMaxBuckets }).(pulumi.IntPtrOutput)
+}
+
+// Enable pgStatPlans extension if available for the current cluster. Enable the pgStatPlans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+func (o ManagedDatabasePostgresqlPropertiesOutput) PgStatPlansEnable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *bool { return v.PgStatPlansEnable }).(pulumi.BoolPtrOutput)
+}
+
+// Controls which statements' plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `top`.
+func (o ManagedDatabasePostgresqlPropertiesOutput) PgStatPlansTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlProperties) *string { return v.PgStatPlansTrack }).(pulumi.StringPtrOutput)
 }
 
 // Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
@@ -18358,7 +18777,7 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) IoMethod() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+// EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
 func (o ManagedDatabasePostgresqlPropertiesPtrOutput) IoWorkers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *int {
 		if v == nil {
@@ -18676,6 +19095,26 @@ func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgStatMonitorPgsmMaxBucket
 		}
 		return v.PgStatMonitorPgsmMaxBuckets
 	}).(pulumi.IntPtrOutput)
+}
+
+// Enable pgStatPlans extension if available for the current cluster. Enable the pgStatPlans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgStatPlansEnable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.PgStatPlansEnable
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Controls which statements' plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `top`.
+func (o ManagedDatabasePostgresqlPropertiesPtrOutput) PgStatPlansTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PgStatPlansTrack
+	}).(pulumi.StringPtrOutput)
 }
 
 // Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
@@ -19610,10 +20049,14 @@ type ManagedDatabasePostgresqlPropertiesPgbouncer struct {
 	MaxPreparedStatements *int `pulumi:"maxPreparedStatements"`
 	// Add more server connections to pool if below this number. Improves behavior when usual load comes suddenly back after period of total inactivity. The value is effectively capped at the pool size.
 	MinPoolSize *int `pulumi:"minPoolSize"`
+	// If connection and login don’t finish in this amount of time, the connection will be closed. [seconds].
+	ServerConnectTimeout *float64 `pulumi:"serverConnectTimeout"`
 	// If a server connection has been idle more than this many seconds it will be dropped. If 0 then timeout is disabled. [seconds].
 	ServerIdleTimeout *int `pulumi:"serverIdleTimeout"`
 	// The pooler will close an unused server connection that has been connected longer than this. [seconds].
 	ServerLifetime *int `pulumi:"serverLifetime"`
+	// If login to the server failed, because of failure to connect or from authentication, the pooler waits this much before retrying to connect. During the waiting interval, new clients trying to connect to the failing server will get an error immediately without another connection attempt. [seconds].
+	ServerLoginRetry *float64 `pulumi:"serverLoginRetry"`
 	// Run serverResetQuery (DISCARD ALL) in all pooling modes.
 	ServerResetQueryAlways *bool `pulumi:"serverResetQueryAlways"`
 }
@@ -19644,10 +20087,14 @@ type ManagedDatabasePostgresqlPropertiesPgbouncerArgs struct {
 	MaxPreparedStatements pulumi.IntPtrInput `pulumi:"maxPreparedStatements"`
 	// Add more server connections to pool if below this number. Improves behavior when usual load comes suddenly back after period of total inactivity. The value is effectively capped at the pool size.
 	MinPoolSize pulumi.IntPtrInput `pulumi:"minPoolSize"`
+	// If connection and login don’t finish in this amount of time, the connection will be closed. [seconds].
+	ServerConnectTimeout pulumi.Float64PtrInput `pulumi:"serverConnectTimeout"`
 	// If a server connection has been idle more than this many seconds it will be dropped. If 0 then timeout is disabled. [seconds].
 	ServerIdleTimeout pulumi.IntPtrInput `pulumi:"serverIdleTimeout"`
 	// The pooler will close an unused server connection that has been connected longer than this. [seconds].
 	ServerLifetime pulumi.IntPtrInput `pulumi:"serverLifetime"`
+	// If login to the server failed, because of failure to connect or from authentication, the pooler waits this much before retrying to connect. During the waiting interval, new clients trying to connect to the failing server will get an error immediately without another connection attempt. [seconds].
+	ServerLoginRetry pulumi.Float64PtrInput `pulumi:"serverLoginRetry"`
 	// Run serverResetQuery (DISCARD ALL) in all pooling modes.
 	ServerResetQueryAlways pulumi.BoolPtrInput `pulumi:"serverResetQueryAlways"`
 }
@@ -19764,6 +20211,11 @@ func (o ManagedDatabasePostgresqlPropertiesPgbouncerOutput) MinPoolSize() pulumi
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgbouncer) *int { return v.MinPoolSize }).(pulumi.IntPtrOutput)
 }
 
+// If connection and login don’t finish in this amount of time, the connection will be closed. [seconds].
+func (o ManagedDatabasePostgresqlPropertiesPgbouncerOutput) ServerConnectTimeout() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgbouncer) *float64 { return v.ServerConnectTimeout }).(pulumi.Float64PtrOutput)
+}
+
 // If a server connection has been idle more than this many seconds it will be dropped. If 0 then timeout is disabled. [seconds].
 func (o ManagedDatabasePostgresqlPropertiesPgbouncerOutput) ServerIdleTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgbouncer) *int { return v.ServerIdleTimeout }).(pulumi.IntPtrOutput)
@@ -19772,6 +20224,11 @@ func (o ManagedDatabasePostgresqlPropertiesPgbouncerOutput) ServerIdleTimeout() 
 // The pooler will close an unused server connection that has been connected longer than this. [seconds].
 func (o ManagedDatabasePostgresqlPropertiesPgbouncerOutput) ServerLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgbouncer) *int { return v.ServerLifetime }).(pulumi.IntPtrOutput)
+}
+
+// If login to the server failed, because of failure to connect or from authentication, the pooler waits this much before retrying to connect. During the waiting interval, new clients trying to connect to the failing server will get an error immediately without another connection attempt. [seconds].
+func (o ManagedDatabasePostgresqlPropertiesPgbouncerOutput) ServerLoginRetry() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabasePostgresqlPropertiesPgbouncer) *float64 { return v.ServerLoginRetry }).(pulumi.Float64PtrOutput)
 }
 
 // Run serverResetQuery (DISCARD ALL) in all pooling modes.
@@ -19873,6 +20330,16 @@ func (o ManagedDatabasePostgresqlPropertiesPgbouncerPtrOutput) MinPoolSize() pul
 	}).(pulumi.IntPtrOutput)
 }
 
+// If connection and login don’t finish in this amount of time, the connection will be closed. [seconds].
+func (o ManagedDatabasePostgresqlPropertiesPgbouncerPtrOutput) ServerConnectTimeout() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgbouncer) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.ServerConnectTimeout
+	}).(pulumi.Float64PtrOutput)
+}
+
 // If a server connection has been idle more than this many seconds it will be dropped. If 0 then timeout is disabled. [seconds].
 func (o ManagedDatabasePostgresqlPropertiesPgbouncerPtrOutput) ServerIdleTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgbouncer) *int {
@@ -19891,6 +20358,16 @@ func (o ManagedDatabasePostgresqlPropertiesPgbouncerPtrOutput) ServerLifetime() 
 		}
 		return v.ServerLifetime
 	}).(pulumi.IntPtrOutput)
+}
+
+// If login to the server failed, because of failure to connect or from authentication, the pooler waits this much before retrying to connect. During the waiting interval, new clients trying to connect to the failing server will get an error immediately without another connection attempt. [seconds].
+func (o ManagedDatabasePostgresqlPropertiesPgbouncerPtrOutput) ServerLoginRetry() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresqlPropertiesPgbouncer) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.ServerLoginRetry
+	}).(pulumi.Float64PtrOutput)
 }
 
 // Run serverResetQuery (DISCARD ALL) in all pooling modes.
@@ -21148,6 +21625,8 @@ type ManagedDatabaseValkeyProperties struct {
 	ValkeyAclChannelsDefault *string `pulumi:"valkeyAclChannelsDefault"`
 	// Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
 	ValkeyActiveExpireEffort *int `pulumi:"valkeyActiveExpireEffort"`
+	// Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
+	ValkeyActivedefrag *bool `pulumi:"valkeyActivedefrag"`
 	// Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
 	ValkeyIoThreads *int `pulumi:"valkeyIoThreads"`
 	// LFU maxmemory-policy counter decay time in minutes.
@@ -21206,6 +21685,8 @@ type ManagedDatabaseValkeyPropertiesArgs struct {
 	ValkeyAclChannelsDefault pulumi.StringPtrInput `pulumi:"valkeyAclChannelsDefault"`
 	// Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
 	ValkeyActiveExpireEffort pulumi.IntPtrInput `pulumi:"valkeyActiveExpireEffort"`
+	// Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
+	ValkeyActivedefrag pulumi.BoolPtrInput `pulumi:"valkeyActivedefrag"`
 	// Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
 	ValkeyIoThreads pulumi.IntPtrInput `pulumi:"valkeyIoThreads"`
 	// LFU maxmemory-policy counter decay time in minutes.
@@ -21360,6 +21841,11 @@ func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyAclChannelsDefault() pulumi
 // Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
 func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyActiveExpireEffort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.ValkeyActiveExpireEffort }).(pulumi.IntPtrOutput)
+}
+
+// Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyActivedefrag() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *bool { return v.ValkeyActivedefrag }).(pulumi.BoolPtrOutput)
 }
 
 // Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
@@ -21549,6 +22035,16 @@ func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyActiveExpireEffort() pul
 		}
 		return v.ValkeyActiveExpireEffort
 	}).(pulumi.IntPtrOutput)
+}
+
+// Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyActivedefrag() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyActivedefrag
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
@@ -27883,11 +28379,11 @@ func (o GetServerNetworkInterfaceAdditionalIpAddressArrayOutput) Index(i pulumi.
 }
 
 type GetTagsTag struct {
-	// Free form text representing the meaning of the tag
+	// Free form text representing the meaning of the tag.
 	Description string `pulumi:"description"`
-	// The value representing the tag
+	// The name of the tag.
 	Name string `pulumi:"name"`
-	// A collection of servers that have been assigned the tag
+	// A collection of servers that have been assigned the tag.
 	Servers []string `pulumi:"servers"`
 }
 
@@ -27903,11 +28399,11 @@ type GetTagsTagInput interface {
 }
 
 type GetTagsTagArgs struct {
-	// Free form text representing the meaning of the tag
+	// Free form text representing the meaning of the tag.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The value representing the tag
+	// The name of the tag.
 	Name pulumi.StringInput `pulumi:"name"`
-	// A collection of servers that have been assigned the tag
+	// A collection of servers that have been assigned the tag.
 	Servers pulumi.StringArrayInput `pulumi:"servers"`
 }
 
@@ -27962,17 +28458,17 @@ func (o GetTagsTagOutput) ToGetTagsTagOutputWithContext(ctx context.Context) Get
 	return o
 }
 
-// Free form text representing the meaning of the tag
+// Free form text representing the meaning of the tag.
 func (o GetTagsTagOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTagsTag) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The value representing the tag
+// The name of the tag.
 func (o GetTagsTagOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTagsTag) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// A collection of servers that have been assigned the tag
+// A collection of servers that have been assigned the tag.
 func (o GetTagsTagOutput) Servers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetTagsTag) []string { return v.Servers }).(pulumi.StringArrayOutput)
 }

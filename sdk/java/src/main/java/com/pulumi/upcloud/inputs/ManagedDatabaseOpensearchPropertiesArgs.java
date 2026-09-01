@@ -228,6 +228,21 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
     }
 
     /**
+     * OpenSearch version.
+     * 
+     */
+    @Import(name="elasticsearchVersion")
+    private @Nullable Output<String> elasticsearchVersion;
+
+    /**
+     * @return OpenSearch version.
+     * 
+     */
+    public Optional<Output<String>> elasticsearchVersion() {
+        return Optional.ofNullable(this.elasticsearchVersion);
+    }
+
+    /**
      * Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
      * 
      */
@@ -708,6 +723,21 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
     }
 
     /**
+     * plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
+     * 
+     */
+    @Import(name="mlCommonsConnectorAccessControlEnabled")
+    private @Nullable Output<Boolean> mlCommonsConnectorAccessControlEnabled;
+
+    /**
+     * @return plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
+     * 
+     */
+    public Optional<Output<Boolean>> mlCommonsConnectorAccessControlEnabled() {
+        return Optional.ofNullable(this.mlCommonsConnectorAccessControlEnabled);
+    }
+
+    /**
      * plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
      * 
      */
@@ -750,6 +780,21 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
      */
     public Optional<Output<Boolean>> mlCommonsOnlyRunOnMlNode() {
         return Optional.ofNullable(this.mlCommonsOnlyRunOnMlNode);
+    }
+
+    /**
+     * plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
+     * 
+     */
+    @Import(name="mlCommonsTrustedConnectorEndpointsRegexes")
+    private @Nullable Output<List<String>> mlCommonsTrustedConnectorEndpointsRegexes;
+
+    /**
+     * @return plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
+     * 
+     */
+    public Optional<Output<List<String>>> mlCommonsTrustedConnectorEndpointsRegexes() {
+        return Optional.ofNullable(this.mlCommonsTrustedConnectorEndpointsRegexes);
     }
 
     /**
@@ -1188,6 +1233,7 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         this.customKeystores = $.customKeystores;
         this.customRepos = $.customRepos;
         this.diskWatermarks = $.diskWatermarks;
+        this.elasticsearchVersion = $.elasticsearchVersion;
         this.emailSenderName = $.emailSenderName;
         this.emailSenderPassword = $.emailSenderPassword;
         this.emailSenderUsername = $.emailSenderUsername;
@@ -1220,9 +1266,11 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         this.keepIndexRefreshInterval = $.keepIndexRefreshInterval;
         this.knnMemoryCircuitBreakerEnabled = $.knnMemoryCircuitBreakerEnabled;
         this.knnMemoryCircuitBreakerLimit = $.knnMemoryCircuitBreakerLimit;
+        this.mlCommonsConnectorAccessControlEnabled = $.mlCommonsConnectorAccessControlEnabled;
         this.mlCommonsModelAccessControlEnabled = $.mlCommonsModelAccessControlEnabled;
         this.mlCommonsNativeMemoryThreshold = $.mlCommonsNativeMemoryThreshold;
         this.mlCommonsOnlyRunOnMlNode = $.mlCommonsOnlyRunOnMlNode;
+        this.mlCommonsTrustedConnectorEndpointsRegexes = $.mlCommonsTrustedConnectorEndpointsRegexes;
         this.nodeSearchCacheSize = $.nodeSearchCacheSize;
         this.openid = $.openid;
         this.opensearchDashboards = $.opensearchDashboards;
@@ -1560,6 +1608,27 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
          */
         public Builder diskWatermarks(ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs diskWatermarks) {
             return diskWatermarks(Output.of(diskWatermarks));
+        }
+
+        /**
+         * @param elasticsearchVersion OpenSearch version.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder elasticsearchVersion(@Nullable Output<String> elasticsearchVersion) {
+            $.elasticsearchVersion = elasticsearchVersion;
+            return this;
+        }
+
+        /**
+         * @param elasticsearchVersion OpenSearch version.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder elasticsearchVersion(String elasticsearchVersion) {
+            return elasticsearchVersion(Output.of(elasticsearchVersion));
         }
 
         /**
@@ -2255,6 +2324,27 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
+         * @param mlCommonsConnectorAccessControlEnabled plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mlCommonsConnectorAccessControlEnabled(@Nullable Output<Boolean> mlCommonsConnectorAccessControlEnabled) {
+            $.mlCommonsConnectorAccessControlEnabled = mlCommonsConnectorAccessControlEnabled;
+            return this;
+        }
+
+        /**
+         * @param mlCommonsConnectorAccessControlEnabled plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mlCommonsConnectorAccessControlEnabled(Boolean mlCommonsConnectorAccessControlEnabled) {
+            return mlCommonsConnectorAccessControlEnabled(Output.of(mlCommonsConnectorAccessControlEnabled));
+        }
+
+        /**
          * @param mlCommonsModelAccessControlEnabled plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
          * 
          * @return builder
@@ -2315,6 +2405,37 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
          */
         public Builder mlCommonsOnlyRunOnMlNode(Boolean mlCommonsOnlyRunOnMlNode) {
             return mlCommonsOnlyRunOnMlNode(Output.of(mlCommonsOnlyRunOnMlNode));
+        }
+
+        /**
+         * @param mlCommonsTrustedConnectorEndpointsRegexes plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mlCommonsTrustedConnectorEndpointsRegexes(@Nullable Output<List<String>> mlCommonsTrustedConnectorEndpointsRegexes) {
+            $.mlCommonsTrustedConnectorEndpointsRegexes = mlCommonsTrustedConnectorEndpointsRegexes;
+            return this;
+        }
+
+        /**
+         * @param mlCommonsTrustedConnectorEndpointsRegexes plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mlCommonsTrustedConnectorEndpointsRegexes(List<String> mlCommonsTrustedConnectorEndpointsRegexes) {
+            return mlCommonsTrustedConnectorEndpointsRegexes(Output.of(mlCommonsTrustedConnectorEndpointsRegexes));
+        }
+
+        /**
+         * @param mlCommonsTrustedConnectorEndpointsRegexes plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mlCommonsTrustedConnectorEndpointsRegexes(String... mlCommonsTrustedConnectorEndpointsRegexes) {
+            return mlCommonsTrustedConnectorEndpointsRegexes(List.of(mlCommonsTrustedConnectorEndpointsRegexes));
         }
 
         /**

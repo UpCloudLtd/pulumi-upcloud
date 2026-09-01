@@ -34,6 +34,8 @@ import com.pulumi.upcloud.inputs.GetServerArgs;
 import com.pulumi.upcloud.inputs.GetServerPlainArgs;
 import com.pulumi.upcloud.inputs.GetStorageArgs;
 import com.pulumi.upcloud.inputs.GetStoragePlainArgs;
+import com.pulumi.upcloud.inputs.GetTagsArgs;
+import com.pulumi.upcloud.inputs.GetTagsPlainArgs;
 import com.pulumi.upcloud.inputs.GetZoneArgs;
 import com.pulumi.upcloud.inputs.GetZonePlainArgs;
 import com.pulumi.upcloud.inputs.GetZonesArgs;
@@ -3458,64 +3460,64 @@ public final class UpcloudFunctions {
     /**
      * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      * 
-     * Data-source is deprecated.
+     * List tags configured in the current account.
      * 
      */
     public static Output<GetTagsResult> getTags() {
-        return getTags(InvokeArgs.Empty, InvokeOptions.Empty);
+        return getTags(GetTagsArgs.Empty, InvokeOptions.Empty);
     }
     /**
      * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      * 
-     * Data-source is deprecated.
+     * List tags configured in the current account.
      * 
      */
     public static CompletableFuture<GetTagsResult> getTagsPlain() {
-        return getTagsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+        return getTagsPlain(GetTagsPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
      * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      * 
-     * Data-source is deprecated.
+     * List tags configured in the current account.
      * 
      */
-    public static Output<GetTagsResult> getTags(InvokeArgs args) {
+    public static Output<GetTagsResult> getTags(GetTagsArgs args) {
         return getTags(args, InvokeOptions.Empty);
     }
     /**
      * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      * 
-     * Data-source is deprecated.
+     * List tags configured in the current account.
      * 
      */
-    public static CompletableFuture<GetTagsResult> getTagsPlain(InvokeArgs args) {
+    public static CompletableFuture<GetTagsResult> getTagsPlain(GetTagsPlainArgs args) {
         return getTagsPlain(args, InvokeOptions.Empty);
     }
     /**
      * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      * 
-     * Data-source is deprecated.
+     * List tags configured in the current account.
      * 
      */
-    public static Output<GetTagsResult> getTags(InvokeArgs args, InvokeOptions options) {
+    public static Output<GetTagsResult> getTags(GetTagsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("upcloud:index/getTags:getTags", TypeShape.of(GetTagsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      * 
-     * Data-source is deprecated.
+     * List tags configured in the current account.
      * 
      */
-    public static Output<GetTagsResult> getTags(InvokeArgs args, InvokeOutputOptions options) {
+    public static Output<GetTagsResult> getTags(GetTagsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("upcloud:index/getTags:getTags", TypeShape.of(GetTagsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      * 
-     * Data-source is deprecated.
+     * List tags configured in the current account.
      * 
      */
-    public static CompletableFuture<GetTagsResult> getTagsPlain(InvokeArgs args, InvokeOptions options) {
+    public static CompletableFuture<GetTagsResult> getTagsPlain(GetTagsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("upcloud:index/getTags:getTags", TypeShape.of(GetTagsResult.class), args, Utilities.withVersion(options));
     }
     /**

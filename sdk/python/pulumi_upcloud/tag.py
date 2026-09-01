@@ -24,9 +24,9 @@ class TagArgs:
                  servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Tag resource.
-        :param pulumi.Input[_builtins.str] description: Free form text representing the meaning of the tag
-        :param pulumi.Input[_builtins.str] name: The value representing the tag
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] servers: A collection of servers that have been assigned the tag
+        :param pulumi.Input[_builtins.str] description: Free form text representing the meaning of the tag.
+        :param pulumi.Input[_builtins.str] name: The name of the tag.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] servers: A collection of servers that have been assigned the tag.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -39,7 +39,7 @@ class TagArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Free form text representing the meaning of the tag
+        Free form text representing the meaning of the tag.
         """
         return pulumi.get(self, "description")
 
@@ -51,7 +51,7 @@ class TagArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The value representing the tag
+        The name of the tag.
         """
         return pulumi.get(self, "name")
 
@@ -63,7 +63,7 @@ class TagArgs:
     @pulumi.getter
     def servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        A collection of servers that have been assigned the tag
+        A collection of servers that have been assigned the tag.
         """
         return pulumi.get(self, "servers")
 
@@ -80,9 +80,9 @@ class _TagState:
                  servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Tag resources.
-        :param pulumi.Input[_builtins.str] description: Free form text representing the meaning of the tag
-        :param pulumi.Input[_builtins.str] name: The value representing the tag
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] servers: A collection of servers that have been assigned the tag
+        :param pulumi.Input[_builtins.str] description: Free form text representing the meaning of the tag.
+        :param pulumi.Input[_builtins.str] name: The name of the tag.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] servers: A collection of servers that have been assigned the tag.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -95,7 +95,7 @@ class _TagState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Free form text representing the meaning of the tag
+        Free form text representing the meaning of the tag.
         """
         return pulumi.get(self, "description")
 
@@ -107,7 +107,7 @@ class _TagState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The value representing the tag
+        The name of the tag.
         """
         return pulumi.get(self, "name")
 
@@ -119,7 +119,7 @@ class _TagState:
     @pulumi.getter
     def servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        A collection of servers that have been assigned the tag
+        A collection of servers that have been assigned the tag.
         """
         return pulumi.get(self, "servers")
 
@@ -141,13 +141,13 @@ class Tag(pulumi.CustomResource):
         """
         > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
 
-        This resource is deprecated, use tags schema in server resource
+        Resource for managing tags. When tagging multiple servers with the same tag, use this resource to create the tag and `tags` field of the server resource to tag the server.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] description: Free form text representing the meaning of the tag
-        :param pulumi.Input[_builtins.str] name: The value representing the tag
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] servers: A collection of servers that have been assigned the tag
+        :param pulumi.Input[_builtins.str] description: Free form text representing the meaning of the tag.
+        :param pulumi.Input[_builtins.str] name: The name of the tag.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] servers: A collection of servers that have been assigned the tag.
         """
         ...
     @overload
@@ -158,7 +158,7 @@ class Tag(pulumi.CustomResource):
         """
         > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
 
-        This resource is deprecated, use tags schema in server resource
+        Resource for managing tags. When tagging multiple servers with the same tag, use this resource to create the tag and `tags` field of the server resource to tag the server.
 
         :param str resource_name: The name of the resource.
         :param TagArgs args: The arguments to use to populate this resource's properties.
@@ -210,9 +210,9 @@ class Tag(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] description: Free form text representing the meaning of the tag
-        :param pulumi.Input[_builtins.str] name: The value representing the tag
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] servers: A collection of servers that have been assigned the tag
+        :param pulumi.Input[_builtins.str] description: Free form text representing the meaning of the tag.
+        :param pulumi.Input[_builtins.str] name: The name of the tag.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] servers: A collection of servers that have been assigned the tag.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -225,9 +225,9 @@ class Tag(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def description(self) -> pulumi.Output[_builtins.str]:
         """
-        Free form text representing the meaning of the tag
+        Free form text representing the meaning of the tag.
         """
         return pulumi.get(self, "description")
 
@@ -235,7 +235,7 @@ class Tag(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        The value representing the tag
+        The name of the tag.
         """
         return pulumi.get(self, "name")
 
@@ -243,7 +243,7 @@ class Tag(pulumi.CustomResource):
     @pulumi.getter
     def servers(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        A collection of servers that have been assigned the tag
+        A collection of servers that have been assigned the tag.
         """
         return pulumi.get(self, "servers")
 

@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
  *
- * This resource is deprecated, use tags schema in server resource
+ * Resource for managing tags. When tagging multiple servers with the same tag, use this resource to create the tag and `tags` field of the server resource to tag the server.
  */
 export class Tag extends pulumi.CustomResource {
     /**
@@ -38,15 +38,15 @@ export class Tag extends pulumi.CustomResource {
     }
 
     /**
-     * Free form text representing the meaning of the tag
+     * Free form text representing the meaning of the tag.
      */
-    declare public readonly description: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string>;
     /**
-     * The value representing the tag
+     * The name of the tag.
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * A collection of servers that have been assigned the tag
+     * A collection of servers that have been assigned the tag.
      */
     declare public readonly servers: pulumi.Output<string[] | undefined>;
 
@@ -82,15 +82,15 @@ export class Tag extends pulumi.CustomResource {
  */
 export interface TagState {
     /**
-     * Free form text representing the meaning of the tag
+     * Free form text representing the meaning of the tag.
      */
     description?: pulumi.Input<string>;
     /**
-     * The value representing the tag
+     * The name of the tag.
      */
     name?: pulumi.Input<string>;
     /**
-     * A collection of servers that have been assigned the tag
+     * A collection of servers that have been assigned the tag.
      */
     servers?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -100,15 +100,15 @@ export interface TagState {
  */
 export interface TagArgs {
     /**
-     * Free form text representing the meaning of the tag
+     * Free form text representing the meaning of the tag.
      */
     description?: pulumi.Input<string>;
     /**
-     * The value representing the tag
+     * The name of the tag.
      */
     name?: pulumi.Input<string>;
     /**
-     * A collection of servers that have been assigned the tag
+     * A collection of servers that have been assigned the tag.
      */
     servers?: pulumi.Input<pulumi.Input<string>[]>;
 }

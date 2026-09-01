@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -44,6 +45,21 @@ public final class LoadbalancerDynamicCertificateBundleState extends com.pulumi.
      */
     public Optional<Output<String>> keyType() {
         return Optional.ofNullable(this.keyType);
+    }
+
+    /**
+     * User defined key-value pairs to classify the dynamic certificate bundle.
+     * 
+     */
+    @Import(name="labels")
+    private @Nullable Output<Map<String,String>> labels;
+
+    /**
+     * @return User defined key-value pairs to classify the dynamic certificate bundle.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> labels() {
+        return Optional.ofNullable(this.labels);
     }
 
     /**
@@ -111,6 +127,7 @@ public final class LoadbalancerDynamicCertificateBundleState extends com.pulumi.
     private LoadbalancerDynamicCertificateBundleState(LoadbalancerDynamicCertificateBundleState $) {
         this.hostnames = $.hostnames;
         this.keyType = $.keyType;
+        this.labels = $.labels;
         this.name = $.name;
         this.notAfter = $.notAfter;
         this.notBefore = $.notBefore;
@@ -185,6 +202,27 @@ public final class LoadbalancerDynamicCertificateBundleState extends com.pulumi.
          */
         public Builder keyType(String keyType) {
             return keyType(Output.of(keyType));
+        }
+
+        /**
+         * @param labels User defined key-value pairs to classify the dynamic certificate bundle.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder labels(@Nullable Output<Map<String,String>> labels) {
+            $.labels = labels;
+            return this;
+        }
+
+        /**
+         * @param labels User defined key-value pairs to classify the dynamic certificate bundle.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder labels(Map<String,String> labels) {
+            return labels(Output.of(labels));
         }
 
         /**

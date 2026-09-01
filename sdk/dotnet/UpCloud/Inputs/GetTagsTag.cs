@@ -8,36 +8,38 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace UpCloud.Pulumi.UpCloud.Outputs
+namespace UpCloud.Pulumi.UpCloud.Inputs
 {
 
-    [OutputType]
-    public sealed class GetTagsTagResult
+    public sealed class GetTagsTagArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Free form text representing the meaning of the tag.
         /// </summary>
-        public readonly string Description;
+        [Input("description", required: true)]
+        public string Description { get; set; } = null!;
+
         /// <summary>
         /// The name of the tag.
         /// </summary>
-        public readonly string Name;
+        [Input("name", required: true)]
+        public string Name { get; set; } = null!;
+
+        [Input("servers", required: true)]
+        private List<string>? _servers;
+
         /// <summary>
         /// A collection of servers that have been assigned the tag.
         /// </summary>
-        public readonly ImmutableArray<string> Servers;
-
-        [OutputConstructor]
-        private GetTagsTagResult(
-            string description,
-
-            string name,
-
-            ImmutableArray<string> servers)
+        public List<string> Servers
         {
-            Description = description;
-            Name = name;
-            Servers = servers;
+            get => _servers ?? (_servers = new List<string>());
+            set => _servers = value;
         }
+
+        public GetTagsTagArgs()
+        {
+        }
+        public static new GetTagsTagArgs Empty => new GetTagsTagArgs();
     }
 }

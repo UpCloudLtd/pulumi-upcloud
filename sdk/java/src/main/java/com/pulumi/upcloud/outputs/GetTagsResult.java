@@ -9,26 +9,27 @@ import com.pulumi.upcloud.outputs.GetTagsTag;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetTagsResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource.
      * 
      */
     private String id;
-    private List<GetTagsTag> tags;
+    private @Nullable List<GetTagsTag> tags;
 
     private GetTagsResult() {}
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource.
      * 
      */
     public String id() {
         return this.id;
     }
     public List<GetTagsTag> tags() {
-        return this.tags;
+        return this.tags == null ? List.of() : this.tags;
     }
 
     public static Builder builder() {
@@ -41,7 +42,7 @@ public final class GetTagsResult {
     @CustomType.Builder
     public static final class Builder {
         private String id;
-        private List<GetTagsTag> tags;
+        private @Nullable List<GetTagsTag> tags;
         public Builder() {}
         public Builder(GetTagsResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -58,10 +59,8 @@ public final class GetTagsResult {
             return this;
         }
         @CustomType.Setter
-        public Builder tags(List<GetTagsTag> tags) {
-            if (tags == null) {
-              throw new MissingRequiredPropertyException("GetTagsResult", "tags");
-            }
+        public Builder tags(@Nullable List<GetTagsTag> tags) {
+
             this.tags = tags;
             return this;
         }

@@ -1815,6 +1815,10 @@
                     "type": "string",
                     "description": "Custom username for admin user. This must be set only when a new service is being created.\n"
                 },
+                "automaticSpPrivileges": {
+                    "type": "boolean",
+                    "description": "When enabled, the server automatically grants the EXECUTE and ALTER ROUTINE privileges to the creator of a stored routine and drops them when the routine is dropped.\n"
+                },
                 "automaticUtilityNetworkIpFilter": {
                     "type": "boolean",
                     "description": "Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.\n"
@@ -1839,6 +1843,18 @@
                     "type": "string",
                     "description": "Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or 'SYSTEM' to use the MySQL server default.\n"
                 },
+                "divPrecisionIncrement": {
+                    "type": "integer",
+                    "description": "Number of digits by which to increase the scale of the result of division operations performed with the / operator. Default is 4.\n"
+                },
+                "endMarkersInJson": {
+                    "type": "boolean",
+                    "description": "Whether optimizer JSON output such as EXPLAIN FORMAT=JSON adds end markers that repeat a structure's key near its closing bracket, making large JSON structures easier to read.\n"
+                },
+                "eqRangeIndexDiveLimit": {
+                    "type": "integer",
+                    "description": "The number of equality ranges in a query at or above which the optimizer switches from index dives to index statistics when estimating the number of qualifying rows. 0 means always use index dives. Default is 200.\n"
+                },
                 "groupConcatMaxLen": {
                     "type": "integer",
                     "description": "The maximum permitted result length in bytes for the GROUP_CONCAT() function.\n"
@@ -1859,13 +1875,33 @@
                     "type": "integer",
                     "description": "Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.\n"
                 },
+                "innodbFtEnableStopword": {
+                    "type": "boolean",
+                    "description": "Whether stopword processing is applied when creating or rebuilding an InnoDB FULLTEXT index. Enabled by default.\n"
+                },
+                "innodbFtMaxTokenSize": {
+                    "type": "integer",
+                    "description": "Maximum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.\n"
+                },
                 "innodbFtMinTokenSize": {
                     "type": "integer",
                     "description": "Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.\n"
                 },
+                "innodbFtNumWordOptimize": {
+                    "type": "integer",
+                    "description": "Number of words processed during each OPTIMIZE TABLE operation on an InnoDB FULLTEXT index. Default is 2000.\n"
+                },
+                "innodbFtResultCacheLimit": {
+                    "type": "integer",
+                    "description": "Maximum memory in bytes used per query for the InnoDB FULLTEXT search query result cache. Aiven sizes this automatically based on the service plan's memory; setting a value overrides the calculated default.\n"
+                },
                 "innodbFtServerStopwordTable": {
                     "type": "string",
                     "description": "This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.\n"
+                },
+                "innodbFtUserStopwordTable": {
+                    "type": "string",
+                    "description": "This option is used to specify your own InnoDB FULLTEXT index stopword list for specific InnoDB tables.\n"
                 },
                 "innodbIoCapacity": {
                     "type": "integer",
@@ -1886,6 +1922,10 @@
                 "innodbOnlineAlterLogMaxSize": {
                     "type": "integer",
                     "description": "The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.\n"
+                },
+                "innodbOptimizeFulltextOnly": {
+                    "type": "boolean",
+                    "description": "When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.\n"
                 },
                 "innodbPrintAllDeadlocks": {
                     "type": "boolean",
@@ -1938,9 +1978,25 @@
                     "type": "integer",
                     "description": "Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).\n"
                 },
+                "maxConnections": {
+                    "type": "integer",
+                    "description": "The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.\n"
+                },
+                "maxExecutionTime": {
+                    "type": "integer",
+                    "description": "Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.\n"
+                },
                 "maxHeapTableSize": {
                     "type": "integer",
                     "description": "Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).\n"
+                },
+                "maxSeeksForKey": {
+                    "type": "integer",
+                    "description": "Limit on the assumed maximum number of index seeks when looking up rows based on a key. Lowering this value causes the optimizer to prefer index lookups over table scans.\n"
+                },
+                "maxUserConnections": {
+                    "type": "integer",
+                    "description": "The maximum number of simultaneous connections permitted to any single user account. 0, the default, means no per-account limit. Any other value must be at least 10 below max_connections, so that monitoring and your own admin sessions can still connect when an application saturates its own limit. Aiven's replication and management connections are unaffected however low you set this.\n"
                 },
                 "migration": {
                     "$ref": "#/types/upcloud:index/ManagedDatabaseMysqlPropertiesMigration:ManagedDatabaseMysqlPropertiesMigration",
@@ -1961,6 +2017,18 @@
                 "netWriteTimeout": {
                     "type": "integer",
                     "description": "The number of seconds to wait for a block to be written to a connection before aborting the write.\n"
+                },
+                "optimizerPruneLevel": {
+                    "type": "integer",
+                    "description": "Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. 0 disables heuristics (exhaustive search); 1 prunes plans based on the number of rows retrieved.\n"
+                },
+                "optimizerSearchDepth": {
+                    "type": "integer",
+                    "description": "Maximum depth of search performed by the query optimizer when choosing a join order. Larger values produce better plans for joins over many tables but take longer to compile; 0 lets the optimizer choose the depth automatically.\n"
+                },
+                "optimizerSwitch": {
+                    "type": "string",
+                    "description": "Comma-separated list of optimizer flag assignments in the form flag=on|off|default, or the single value 'default' to reset all flags. Flags not listed keep their current values. Controls query optimizer behaviors such as index merge, hash join and semijoin strategies.\n"
                 },
                 "performanceSchemaEventsStatementsHistorySize": {
                     "type": "integer",
@@ -2009,6 +2077,10 @@
                 "waitTimeout": {
                     "type": "integer",
                     "description": "The number of seconds the server waits for activity on a noninteractive connection before closing it.\n"
+                },
+                "windowingUseHighPrecision": {
+                    "type": "boolean",
+                    "description": "Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.\n"
                 }
             },
             "type": "object",
@@ -2017,24 +2089,34 @@
                     "requiredOutputs": [
                         "adminPassword",
                         "adminUsername",
+                        "automaticSpPrivileges",
                         "automaticUtilityNetworkIpFilter",
                         "backupHour",
                         "backupMinute",
                         "binlogRetentionPeriod",
                         "connectTimeout",
                         "defaultTimeZone",
+                        "divPrecisionIncrement",
+                        "endMarkersInJson",
+                        "eqRangeIndexDiveLimit",
                         "groupConcatMaxLen",
                         "informationSchemaStatsExpiry",
                         "innodbAdaptiveHashIndex",
                         "innodbChangeBufferMaxSize",
                         "innodbFlushNeighbors",
+                        "innodbFtEnableStopword",
+                        "innodbFtMaxTokenSize",
                         "innodbFtMinTokenSize",
+                        "innodbFtNumWordOptimize",
+                        "innodbFtResultCacheLimit",
                         "innodbFtServerStopwordTable",
+                        "innodbFtUserStopwordTable",
                         "innodbIoCapacity",
                         "innodbIoCapacityMax",
                         "innodbLockWaitTimeout",
                         "innodbLogBufferSize",
                         "innodbOnlineAlterLogMaxSize",
+                        "innodbOptimizeFulltextOnly",
                         "innodbPrintAllDeadlocks",
                         "innodbReadIoThreads",
                         "innodbRollbackOnTimeout",
@@ -2047,10 +2129,17 @@
                         "longQueryTime",
                         "lowerCaseTableNames",
                         "maxAllowedPacket",
+                        "maxConnections",
+                        "maxExecutionTime",
                         "maxHeapTableSize",
+                        "maxSeeksForKey",
+                        "maxUserConnections",
                         "netBufferLength",
                         "netReadTimeout",
                         "netWriteTimeout",
+                        "optimizerPruneLevel",
+                        "optimizerSearchDepth",
+                        "optimizerSwitch",
                         "performanceSchemaEventsStatementsHistorySize",
                         "publicAccess",
                         "publicAccessPrometheus",
@@ -2062,7 +2151,8 @@
                         "sqlRequirePrimaryKey",
                         "tmpTableSize",
                         "version",
-                        "waitTimeout"
+                        "waitTimeout",
+                        "windowingUseHighPrecision"
                     ]
                 }
             }
@@ -2306,6 +2396,10 @@
                     "$ref": "#/types/upcloud:index/ManagedDatabaseOpensearchPropertiesDiskWatermarks:ManagedDatabaseOpensearchPropertiesDiskWatermarks",
                     "description": "Watermark settings.\n"
                 },
+                "elasticsearchVersion": {
+                    "type": "string",
+                    "description": "OpenSearch version.\n"
+                },
                 "emailSenderName": {
                     "type": "string",
                     "description": "Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.\n"
@@ -2441,6 +2535,10 @@
                     "type": "integer",
                     "description": "Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.\n"
                 },
+                "mlCommonsConnectorAccessControlEnabled": {
+                    "type": "boolean",
+                    "description": "plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.\n"
+                },
                 "mlCommonsModelAccessControlEnabled": {
                     "type": "boolean",
                     "description": "plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.\n"
@@ -2452,6 +2550,13 @@
                 "mlCommonsOnlyRunOnMlNode": {
                     "type": "boolean",
                     "description": "plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.\n"
+                },
+                "mlCommonsTrustedConnectorEndpointsRegexes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.\n"
                 },
                 "nodeSearchCacheSize": {
                     "type": "string",
@@ -2585,6 +2690,7 @@
                         "customDomain",
                         "customKeystores",
                         "customRepos",
+                        "elasticsearchVersion",
                         "emailSenderName",
                         "emailSenderPassword",
                         "emailSenderUsername",
@@ -2614,9 +2720,11 @@
                         "keepIndexRefreshInterval",
                         "knnMemoryCircuitBreakerEnabled",
                         "knnMemoryCircuitBreakerLimit",
+                        "mlCommonsConnectorAccessControlEnabled",
                         "mlCommonsModelAccessControlEnabled",
                         "mlCommonsNativeMemoryThreshold",
                         "mlCommonsOnlyRunOnMlNode",
+                        "mlCommonsTrustedConnectorEndpointsRegexes",
                         "nodeSearchCacheSize",
                         "overrideMainResponseVersion",
                         "pluginsAlertingFilterByBackendRoles",
@@ -3706,7 +3814,7 @@
                 },
                 "ioWorkers": {
                     "type": "integer",
-                    "description": "io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.\n"
+                    "description": "EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.\n"
                 },
                 "ipFilters": {
                     "type": "array",
@@ -3835,6 +3943,14 @@
                 "pgStatMonitorPgsmMaxBuckets": {
                     "type": "integer",
                     "description": "Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.\n"
+                },
+                "pgStatPlansEnable": {
+                    "type": "boolean",
+                    "description": "Enable\u003cspan pulumi-lang-nodejs=\" pgStatPlans \" pulumi-lang-dotnet=\" PgStatPlans \" pulumi-lang-go=\" pgStatPlans \" pulumi-lang-python=\" pg_stat_plans \" pulumi-lang-yaml=\" pgStatPlans \" pulumi-lang-java=\" pgStatPlans \"\u003e pg_stat_plans \u003c/span\u003eextension if available for the current cluster. Enable the\u003cspan pulumi-lang-nodejs=\" pgStatPlans \" pulumi-lang-dotnet=\" PgStatPlans \" pulumi-lang-go=\" pgStatPlans \" pulumi-lang-python=\" pg_stat_plans \" pulumi-lang-yaml=\" pgStatPlans \" pulumi-lang-java=\" pgStatPlans \"\u003e pg_stat_plans \u003c/span\u003eextension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.\n"
+                },
+                "pgStatPlansTrack": {
+                    "type": "string",
+                    "description": "Controls which statements' plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is \u003cspan pulumi-lang-nodejs=\"`top`\" pulumi-lang-dotnet=\"`Top`\" pulumi-lang-go=\"`top`\" pulumi-lang-python=\"`top`\" pulumi-lang-yaml=\"`top`\" pulumi-lang-java=\"`top`\"\u003e`top`\u003c/span\u003e.\n"
                 },
                 "pgStatStatementsTrack": {
                     "type": "string",
@@ -3988,6 +4104,8 @@
                         "pgStatMonitorEnable",
                         "pgStatMonitorPgsmEnableQueryPlan",
                         "pgStatMonitorPgsmMaxBuckets",
+                        "pgStatPlansEnable",
+                        "pgStatPlansTrack",
                         "pgStatStatementsTrack",
                         "publicAccess",
                         "publicAccessPrometheus",
@@ -4184,6 +4302,10 @@
                     "type": "integer",
                     "description": "Add more server connections to pool if below this number. Improves behavior when usual load comes suddenly back after period of total inactivity. The value is effectively capped at the pool size.\n"
                 },
+                "serverConnectTimeout": {
+                    "type": "number",
+                    "description": "If connection and login don’t finish in this amount of time, the connection will be closed. [seconds].\n"
+                },
                 "serverIdleTimeout": {
                     "type": "integer",
                     "description": "If a server connection has been idle more than this many seconds it will be dropped. If 0 then timeout is disabled. [seconds].\n"
@@ -4191,6 +4313,10 @@
                 "serverLifetime": {
                     "type": "integer",
                     "description": "The pooler will close an unused server connection that has been connected longer than this. [seconds].\n"
+                },
+                "serverLoginRetry": {
+                    "type": "number",
+                    "description": "If login to the server failed, because of failure to connect or from authentication, the pooler waits this much before retrying to connect. During the waiting interval, new clients trying to connect to the failing server will get an error immediately without another connection attempt. [seconds].\n"
                 },
                 "serverResetQueryAlways": {
                     "type": "boolean",
@@ -4208,8 +4334,10 @@
                         "ignoreStartupParameters",
                         "maxPreparedStatements",
                         "minPoolSize",
+                        "serverConnectTimeout",
                         "serverIdleTimeout",
                         "serverLifetime",
+                        "serverLoginRetry",
                         "serverResetQueryAlways"
                     ]
                 }
@@ -4461,6 +4589,10 @@
                     "type": "integer",
                     "description": "Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.\n"
                 },
+                "valkeyActivedefrag": {
+                    "type": "boolean",
+                    "description": "Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.\n"
+                },
                 "valkeyIoThreads": {
                     "type": "integer",
                     "description": "Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.\n"
@@ -4520,6 +4652,7 @@
                         "serviceLog",
                         "valkeyAclChannelsDefault",
                         "valkeyActiveExpireEffort",
+                        "valkeyActivedefrag",
                         "valkeyIoThreads",
                         "valkeyLfuDecayTime",
                         "valkeyLfuLogFactor",
@@ -6070,18 +6203,18 @@
             "properties": {
                 "description": {
                     "type": "string",
-                    "description": "Free form text representing the meaning of the tag\n"
+                    "description": "Free form text representing the meaning of the tag.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The value representing the tag\n"
+                    "description": "The name of the tag.\n"
                 },
                 "servers": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "A collection of servers that have been assigned the tag\n"
+                    "description": "A collection of servers that have been assigned the tag.\n"
                 }
             },
             "type": "object",
@@ -8081,6 +8214,13 @@
                     "type": "string",
                     "description": "Private key type (\u003cspan pulumi-lang-nodejs=\"`rsa`\" pulumi-lang-dotnet=\"`Rsa`\" pulumi-lang-go=\"`rsa`\" pulumi-lang-python=\"`rsa`\" pulumi-lang-yaml=\"`rsa`\" pulumi-lang-java=\"`rsa`\"\u003e`rsa`\u003c/span\u003e / \u003cspan pulumi-lang-nodejs=\"`ecdsa`\" pulumi-lang-dotnet=\"`Ecdsa`\" pulumi-lang-go=\"`ecdsa`\" pulumi-lang-python=\"`ecdsa`\" pulumi-lang-yaml=\"`ecdsa`\" pulumi-lang-java=\"`ecdsa`\"\u003e`ecdsa`\u003c/span\u003e)."
                 },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "User defined key-value pairs to classify the dynamic certificate bundle."
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the certificate bundle. Must be unique within customer account."
@@ -8101,6 +8241,7 @@
             "required": [
                 "hostnames",
                 "keyType",
+                "labels",
                 "name",
                 "notAfter",
                 "notBefore",
@@ -8117,6 +8258,13 @@
                 "keyType": {
                     "type": "string",
                     "description": "Private key type (\u003cspan pulumi-lang-nodejs=\"`rsa`\" pulumi-lang-dotnet=\"`Rsa`\" pulumi-lang-go=\"`rsa`\" pulumi-lang-python=\"`rsa`\" pulumi-lang-yaml=\"`rsa`\" pulumi-lang-java=\"`rsa`\"\u003e`rsa`\u003c/span\u003e / \u003cspan pulumi-lang-nodejs=\"`ecdsa`\" pulumi-lang-dotnet=\"`Ecdsa`\" pulumi-lang-go=\"`ecdsa`\" pulumi-lang-python=\"`ecdsa`\" pulumi-lang-yaml=\"`ecdsa`\" pulumi-lang-java=\"`ecdsa`\"\u003e`ecdsa`\u003c/span\u003e)."
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "User defined key-value pairs to classify the dynamic certificate bundle."
                 },
                 "name": {
                     "type": "string",
@@ -8140,6 +8288,13 @@
                     "keyType": {
                         "type": "string",
                         "description": "Private key type (\u003cspan pulumi-lang-nodejs=\"`rsa`\" pulumi-lang-dotnet=\"`Rsa`\" pulumi-lang-go=\"`rsa`\" pulumi-lang-python=\"`rsa`\" pulumi-lang-yaml=\"`rsa`\" pulumi-lang-java=\"`rsa`\"\u003e`rsa`\u003c/span\u003e / \u003cspan pulumi-lang-nodejs=\"`ecdsa`\" pulumi-lang-dotnet=\"`Ecdsa`\" pulumi-lang-go=\"`ecdsa`\" pulumi-lang-python=\"`ecdsa`\" pulumi-lang-yaml=\"`ecdsa`\" pulumi-lang-java=\"`ecdsa`\"\u003e`ecdsa`\u003c/span\u003e)."
+                    },
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "User defined key-value pairs to classify the dynamic certificate bundle."
                     },
                     "name": {
                         "type": "string",
@@ -8471,6 +8626,13 @@
                     "type": "string",
                     "description": "Intermediate certificates as base64 encoded string. Must be in PEM format."
                 },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "User defined key-value pairs to classify the manual certificate bundle."
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the certificate bundle. Must be unique within customer account."
@@ -8496,6 +8658,7 @@
             "required": [
                 "certificate",
                 "intermediates",
+                "labels",
                 "name",
                 "notAfter",
                 "notBefore",
@@ -8510,6 +8673,13 @@
                 "intermediates": {
                     "type": "string",
                     "description": "Intermediate certificates as base64 encoded string. Must be in PEM format."
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "User defined key-value pairs to classify the manual certificate bundle."
                 },
                 "name": {
                     "type": "string",
@@ -8535,6 +8705,13 @@
                     "intermediates": {
                         "type": "string",
                         "description": "Intermediate certificates as base64 encoded string. Must be in PEM format."
+                    },
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "User defined key-value pairs to classify the manual certificate bundle."
                     },
                     "name": {
                         "type": "string",
@@ -12349,43 +12526,43 @@
             }
         },
         "upcloud:index/tag:Tag": {
-            "description": "\u003e Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.\n\nThis resource is deprecated, use tags schema in server resource\n",
+            "description": "\u003e Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.\n\nResource for managing tags. When tagging multiple servers with the same tag, use this resource to create the tag and \u003cspan pulumi-lang-nodejs=\"`tags`\" pulumi-lang-dotnet=\"`Tags`\" pulumi-lang-go=\"`tags`\" pulumi-lang-python=\"`tags`\" pulumi-lang-yaml=\"`tags`\" pulumi-lang-java=\"`tags`\"\u003e`tags`\u003c/span\u003e field of the server resource to tag the server.\n",
             "properties": {
                 "description": {
                     "type": "string",
-                    "description": "Free form text representing the meaning of the tag"
+                    "description": "Free form text representing the meaning of the tag."
                 },
                 "name": {
                     "type": "string",
-                    "description": "The value representing the tag"
+                    "description": "The name of the tag."
                 },
                 "servers": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "A collection of servers that have been assigned the tag"
+                    "description": "A collection of servers that have been assigned the tag."
                 }
             },
             "required": [
+                "description",
                 "name"
             ],
             "inputProperties": {
                 "description": {
                     "type": "string",
-                    "description": "Free form text representing the meaning of the tag"
+                    "description": "Free form text representing the meaning of the tag."
                 },
                 "name": {
                     "type": "string",
-                    "description": "The value representing the tag",
-                    "willReplaceOnChanges": true
+                    "description": "The name of the tag."
                 },
                 "servers": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "A collection of servers that have been assigned the tag"
+                    "description": "A collection of servers that have been assigned the tag."
                 }
             },
             "stateInputs": {
@@ -12393,19 +12570,18 @@
                 "properties": {
                     "description": {
                         "type": "string",
-                        "description": "Free form text representing the meaning of the tag"
+                        "description": "Free form text representing the meaning of the tag."
                     },
                     "name": {
                         "type": "string",
-                        "description": "The value representing the tag",
-                        "willReplaceOnChanges": true
+                        "description": "The name of the tag."
                     },
                     "servers": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "A collection of servers that have been assigned the tag"
+                        "description": "A collection of servers that have been assigned the tag."
                     }
                 },
                 "type": "object"
@@ -13147,12 +13323,24 @@
             }
         },
         "upcloud:index/getTags:getTags": {
-            "description": "\u003e Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.\n\nData-source is deprecated.\n",
+            "description": "\u003e Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.\n\nList tags configured in the current account.\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getTags.\n",
+                "properties": {
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/upcloud:index/getTagsTag:getTagsTag"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "outputs": {
                 "description": "A collection of values returned by getTags.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "description": "The ID of this resource.\n",
                         "type": "string"
                     },
                     "tags": {
@@ -13163,7 +13351,6 @@
                     }
                 },
                 "required": [
-                    "tags",
                     "id"
                 ],
                 "type": "object"

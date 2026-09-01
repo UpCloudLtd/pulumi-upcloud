@@ -104,6 +104,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<Inputs.ManagedDatabaseOpensearchPropertiesDiskWatermarksArgs>? DiskWatermarks { get; set; }
 
         /// <summary>
+        /// OpenSearch version.
+        /// </summary>
+        [Input("elasticsearchVersion")]
+        public Input<string>? ElasticsearchVersion { get; set; }
+
+        /// <summary>
         /// Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
         /// </summary>
         [Input("emailSenderName")]
@@ -318,6 +324,12 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<int>? KnnMemoryCircuitBreakerLimit { get; set; }
 
         /// <summary>
+        /// plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
+        /// </summary>
+        [Input("mlCommonsConnectorAccessControlEnabled")]
+        public Input<bool>? MlCommonsConnectorAccessControlEnabled { get; set; }
+
+        /// <summary>
         /// plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
         /// </summary>
         [Input("mlCommonsModelAccessControlEnabled")]
@@ -334,6 +346,18 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         /// </summary>
         [Input("mlCommonsOnlyRunOnMlNode")]
         public Input<bool>? MlCommonsOnlyRunOnMlNode { get; set; }
+
+        [Input("mlCommonsTrustedConnectorEndpointsRegexes")]
+        private InputList<string>? _mlCommonsTrustedConnectorEndpointsRegexes;
+
+        /// <summary>
+        /// plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
+        /// </summary>
+        public InputList<string> MlCommonsTrustedConnectorEndpointsRegexes
+        {
+            get => _mlCommonsTrustedConnectorEndpointsRegexes ?? (_mlCommonsTrustedConnectorEndpointsRegexes = new InputList<string>());
+            set => _mlCommonsTrustedConnectorEndpointsRegexes = value;
+        }
 
         /// <summary>
         /// The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.

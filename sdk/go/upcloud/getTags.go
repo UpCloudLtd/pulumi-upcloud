@@ -13,29 +13,45 @@ import (
 
 // > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
 //
-// Data-source is deprecated.
-func GetTags(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetTagsResult, error) {
+// List tags configured in the current account.
+func GetTags(ctx *pulumi.Context, args *GetTagsArgs, opts ...pulumi.InvokeOption) (*GetTagsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTagsResult
-	err := ctx.Invoke("upcloud:index/getTags:getTags", nil, &rv, opts...)
+	err := ctx.Invoke("upcloud:index/getTags:getTags", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
+// A collection of arguments for invoking getTags.
+type GetTagsArgs struct {
+	Tags []GetTagsTag `pulumi:"tags"`
+}
+
 // A collection of values returned by getTags.
 type GetTagsResult struct {
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this resource.
 	Id   string       `pulumi:"id"`
 	Tags []GetTagsTag `pulumi:"tags"`
 }
 
-func GetTagsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetTagsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetTagsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("upcloud:index/getTags:getTags", nil, GetTagsResultOutput{}, options).(GetTagsResultOutput), nil
-	}).(GetTagsResultOutput)
+func GetTagsOutput(ctx *pulumi.Context, args GetTagsOutputArgs, opts ...pulumi.InvokeOption) GetTagsResultOutput {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetTagsResultOutput, error) {
+			args := v.(GetTagsArgs)
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("upcloud:index/getTags:getTags", args, GetTagsResultOutput{}, options).(GetTagsResultOutput), nil
+		}).(GetTagsResultOutput)
+}
+
+// A collection of arguments for invoking getTags.
+type GetTagsOutputArgs struct {
+	Tags GetTagsTagArrayInput `pulumi:"tags"`
+}
+
+func (GetTagsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTagsArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getTags.
@@ -53,7 +69,7 @@ func (o GetTagsResultOutput) ToGetTagsResultOutputWithContext(ctx context.Contex
 	return o
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource.
 func (o GetTagsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTagsResult) string { return v.Id }).(pulumi.StringOutput)
 }

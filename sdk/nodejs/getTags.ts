@@ -9,12 +9,21 @@ import * as utilities from "./utilities";
 /**
  * > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
  *
- * Data-source is deprecated.
+ * List tags configured in the current account.
  */
-export function getTags(opts?: pulumi.InvokeOptions): Promise<GetTagsResult> {
+export function getTags(args?: GetTagsArgs, opts?: pulumi.InvokeOptions): Promise<GetTagsResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("upcloud:index/getTags:getTags", {
+        "tags": args.tags,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getTags.
+ */
+export interface GetTagsArgs {
+    tags?: inputs.GetTagsTag[];
 }
 
 /**
@@ -22,18 +31,27 @@ export function getTags(opts?: pulumi.InvokeOptions): Promise<GetTagsResult> {
  */
 export interface GetTagsResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this resource.
      */
     readonly id: string;
-    readonly tags: outputs.GetTagsTag[];
+    readonly tags?: outputs.GetTagsTag[];
 }
 /**
  * > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
  *
- * Data-source is deprecated.
+ * List tags configured in the current account.
  */
-export function getTagsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTagsResult> {
+export function getTagsOutput(args?: GetTagsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTagsResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("upcloud:index/getTags:getTags", {
+        "tags": args.tags,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getTags.
+ */
+export interface GetTagsOutputArgs {
+    tags?: pulumi.Input<pulumi.Input<inputs.GetTagsTagArgs>[]>;
 }

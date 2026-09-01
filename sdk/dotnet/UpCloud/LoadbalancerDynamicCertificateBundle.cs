@@ -53,6 +53,12 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<string> KeyType { get; private set; } = null!;
 
         /// <summary>
+        /// User defined key-value pairs to classify the dynamic certificate bundle.
+        /// </summary>
+        [Output("labels")]
+        public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the certificate bundle. Must be unique within customer account.
         /// </summary>
         [Output("name")]
@@ -141,6 +147,18 @@ namespace UpCloud.Pulumi.UpCloud
         [Input("keyType", required: true)]
         public Input<string> KeyType { get; set; } = null!;
 
+        [Input("labels")]
+        private InputMap<string>? _labels;
+
+        /// <summary>
+        /// User defined key-value pairs to classify the dynamic certificate bundle.
+        /// </summary>
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
         /// <summary>
         /// The name of the certificate bundle. Must be unique within customer account.
         /// </summary>
@@ -172,6 +190,18 @@ namespace UpCloud.Pulumi.UpCloud
         /// </summary>
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
+
+        [Input("labels")]
+        private InputMap<string>? _labels;
+
+        /// <summary>
+        /// User defined key-value pairs to classify the dynamic certificate bundle.
+        /// </summary>
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
 
         /// <summary>
         /// The name of the certificate bundle. Must be unique within customer account.

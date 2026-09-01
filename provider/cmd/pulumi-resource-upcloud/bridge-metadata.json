@@ -433,6 +433,9 @@
                                 "jwt": {
                                     "maxItemsOne": true
                                 },
+                                "ml_commons_trusted_connector_endpoints_regex": {
+                                    "maxItemsOne": false
+                                },
                                 "openid": {
                                     "maxItemsOne": true
                                 },
@@ -1058,7 +1061,7 @@
             "upcloud:index/storage:Storage": 1,
             "upcloud:index/storageBackup:StorageBackup": 1,
             "upcloud:index/storageTemplate:StorageTemplate": 1,
-            "upcloud:index/tag:Tag": 0
+            "upcloud:index/tag:Tag": 1
         },
         "functions": {
             "upcloud:index/getHosts:getHosts": 1,
@@ -1074,7 +1077,7 @@
             "upcloud:index/getNetworks:getNetworks": 0,
             "upcloud:index/getServer:getServer": 1,
             "upcloud:index/getStorage:getStorage": 1,
-            "upcloud:index/getTags:getTags": 0,
+            "upcloud:index/getTags:getTags": 1,
             "upcloud:index/getZone:getZone": 1,
             "upcloud:index/getZones:getZones": 1
         }

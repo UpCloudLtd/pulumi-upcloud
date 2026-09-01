@@ -445,14 +445,14 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
-     * io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+     * EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
      * 
      */
     @Import(name="ioWorkers")
     private @Nullable Output<Integer> ioWorkers;
 
     /**
-     * @return io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+     * @return EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
      * 
      */
     public Optional<Output<Integer>> ioWorkers() {
@@ -925,6 +925,36 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
     }
 
     /**
+     * Enable pgStatPlans extension if available for the current cluster. Enable the pgStatPlans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+     * 
+     */
+    @Import(name="pgStatPlansEnable")
+    private @Nullable Output<Boolean> pgStatPlansEnable;
+
+    /**
+     * @return Enable pgStatPlans extension if available for the current cluster. Enable the pgStatPlans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+     * 
+     */
+    public Optional<Output<Boolean>> pgStatPlansEnable() {
+        return Optional.ofNullable(this.pgStatPlansEnable);
+    }
+
+    /**
+     * Controls which statements&#39; plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `top`.
+     * 
+     */
+    @Import(name="pgStatPlansTrack")
+    private @Nullable Output<String> pgStatPlansTrack;
+
+    /**
+     * @return Controls which statements&#39; plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `top`.
+     * 
+     */
+    public Optional<Output<String>> pgStatPlansTrack() {
+        return Optional.ofNullable(this.pgStatPlansTrack);
+    }
+
+    /**
      * Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
      * 
      */
@@ -1317,6 +1347,8 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         this.pgStatMonitorEnable = $.pgStatMonitorEnable;
         this.pgStatMonitorPgsmEnableQueryPlan = $.pgStatMonitorPgsmEnableQueryPlan;
         this.pgStatMonitorPgsmMaxBuckets = $.pgStatMonitorPgsmMaxBuckets;
+        this.pgStatPlansEnable = $.pgStatPlansEnable;
+        this.pgStatPlansTrack = $.pgStatPlansTrack;
         this.pgStatStatementsTrack = $.pgStatStatementsTrack;
         this.pgaudit = $.pgaudit;
         this.pgbouncer = $.pgbouncer;
@@ -1948,7 +1980,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param ioWorkers io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+         * @param ioWorkers EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
          * 
          * @return builder
          * 
@@ -1959,7 +1991,7 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
         }
 
         /**
-         * @param ioWorkers io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+         * @param ioWorkers EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
          * 
          * @return builder
          * 
@@ -2627,6 +2659,48 @@ public final class ManagedDatabasePostgresqlPropertiesArgs extends com.pulumi.re
          */
         public Builder pgStatMonitorPgsmMaxBuckets(Integer pgStatMonitorPgsmMaxBuckets) {
             return pgStatMonitorPgsmMaxBuckets(Output.of(pgStatMonitorPgsmMaxBuckets));
+        }
+
+        /**
+         * @param pgStatPlansEnable Enable pgStatPlans extension if available for the current cluster. Enable the pgStatPlans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pgStatPlansEnable(@Nullable Output<Boolean> pgStatPlansEnable) {
+            $.pgStatPlansEnable = pgStatPlansEnable;
+            return this;
+        }
+
+        /**
+         * @param pgStatPlansEnable Enable pgStatPlans extension if available for the current cluster. Enable the pgStatPlans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pgStatPlansEnable(Boolean pgStatPlansEnable) {
+            return pgStatPlansEnable(Output.of(pgStatPlansEnable));
+        }
+
+        /**
+         * @param pgStatPlansTrack Controls which statements&#39; plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `top`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pgStatPlansTrack(@Nullable Output<String> pgStatPlansTrack) {
+            $.pgStatPlansTrack = pgStatPlansTrack;
+            return this;
+        }
+
+        /**
+         * @param pgStatPlansTrack Controls which statements&#39; plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `top`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pgStatPlansTrack(String pgStatPlansTrack) {
+            return pgStatPlansTrack(Output.of(pgStatPlansTrack));
         }
 
         /**

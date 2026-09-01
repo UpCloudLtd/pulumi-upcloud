@@ -15,26 +15,59 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         /// 
-        /// Data-source is deprecated.
+        /// List tags configured in the current account.
         /// </summary>
-        public static Task<GetTagsResult> InvokeAsync(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetTagsResult>("upcloud:index/getTags:getTags", InvokeArgs.Empty, options.WithDefaults());
+        public static Task<GetTagsResult> InvokeAsync(GetTagsArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetTagsResult>("upcloud:index/getTags:getTags", args ?? new GetTagsArgs(), options.WithDefaults());
 
         /// <summary>
         /// &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         /// 
-        /// Data-source is deprecated.
+        /// List tags configured in the current account.
         /// </summary>
-        public static Output<GetTagsResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetTagsResult>("upcloud:index/getTags:getTags", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetTagsResult> Invoke(GetTagsInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTagsResult>("upcloud:index/getTags:getTags", args ?? new GetTagsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// &gt; Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         /// 
-        /// Data-source is deprecated.
+        /// List tags configured in the current account.
         /// </summary>
-        public static Output<GetTagsResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<GetTagsResult>("upcloud:index/getTags:getTags", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetTagsResult> Invoke(GetTagsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTagsResult>("upcloud:index/getTags:getTags", args ?? new GetTagsInvokeArgs(), options.WithDefaults());
+    }
+
+
+    public sealed class GetTagsArgs : global::Pulumi.InvokeArgs
+    {
+        [Input("tags")]
+        private List<Inputs.GetTagsTagArgs>? _tags;
+        public List<Inputs.GetTagsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetTagsTagArgs>());
+            set => _tags = value;
+        }
+
+        public GetTagsArgs()
+        {
+        }
+        public static new GetTagsArgs Empty => new GetTagsArgs();
+    }
+
+    public sealed class GetTagsInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        [Input("tags")]
+        private InputList<Inputs.GetTagsTagInputArgs>? _tags;
+        public InputList<Inputs.GetTagsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetTagsTagInputArgs>());
+            set => _tags = value;
+        }
+
+        public GetTagsInvokeArgs()
+        {
+        }
+        public static new GetTagsInvokeArgs Empty => new GetTagsInvokeArgs();
     }
 
 
@@ -42,7 +75,7 @@ namespace UpCloud.Pulumi.UpCloud
     public sealed class GetTagsResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this resource.
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetTagsTagResult> Tags;

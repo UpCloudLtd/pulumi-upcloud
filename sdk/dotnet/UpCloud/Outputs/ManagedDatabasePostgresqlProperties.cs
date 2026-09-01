@@ -127,7 +127,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly string? IoMethod;
         /// <summary>
-        /// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+        /// EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
         /// </summary>
         public readonly int? IoWorkers;
         /// <summary>
@@ -254,6 +254,14 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
         /// </summary>
         public readonly int? PgStatMonitorPgsmMaxBuckets;
+        /// <summary>
+        /// Enable PgStatPlans extension if available for the current cluster. Enable the PgStatPlans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+        /// </summary>
+        public readonly bool? PgStatPlansEnable;
+        /// <summary>
+        /// Controls which statements' plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `Top`.
+        /// </summary>
+        public readonly string? PgStatPlansTrack;
         /// <summary>
         /// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `Top`.
         /// </summary>
@@ -465,6 +473,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             int? pgStatMonitorPgsmMaxBuckets,
 
+            bool? pgStatPlansEnable,
+
+            string? pgStatPlansTrack,
+
             string? pgStatStatementsTrack,
 
             Outputs.ManagedDatabasePostgresqlPropertiesPgaudit? pgaudit,
@@ -569,6 +581,8 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             PgStatMonitorEnable = pgStatMonitorEnable;
             PgStatMonitorPgsmEnableQueryPlan = pgStatMonitorPgsmEnableQueryPlan;
             PgStatMonitorPgsmMaxBuckets = pgStatMonitorPgsmMaxBuckets;
+            PgStatPlansEnable = pgStatPlansEnable;
+            PgStatPlansTrack = pgStatPlansTrack;
             PgStatStatementsTrack = pgStatStatementsTrack;
             Pgaudit = pgaudit;
             Pgbouncer = pgbouncer;

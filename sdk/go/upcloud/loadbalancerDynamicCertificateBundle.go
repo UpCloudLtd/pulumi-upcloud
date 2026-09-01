@@ -51,6 +51,8 @@ type LoadbalancerDynamicCertificateBundle struct {
 	Hostnames pulumi.StringArrayOutput `pulumi:"hostnames"`
 	// Private key type (`rsa` / `ecdsa`).
 	KeyType pulumi.StringOutput `pulumi:"keyType"`
+	// User defined key-value pairs to classify the dynamic certificate bundle.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// The name of the certificate bundle. Must be unique within customer account.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The time after which a certificate is no longer valid.
@@ -101,6 +103,8 @@ type loadbalancerDynamicCertificateBundleState struct {
 	Hostnames []string `pulumi:"hostnames"`
 	// Private key type (`rsa` / `ecdsa`).
 	KeyType *string `pulumi:"keyType"`
+	// User defined key-value pairs to classify the dynamic certificate bundle.
+	Labels map[string]string `pulumi:"labels"`
 	// The name of the certificate bundle. Must be unique within customer account.
 	Name *string `pulumi:"name"`
 	// The time after which a certificate is no longer valid.
@@ -116,6 +120,8 @@ type LoadbalancerDynamicCertificateBundleState struct {
 	Hostnames pulumi.StringArrayInput
 	// Private key type (`rsa` / `ecdsa`).
 	KeyType pulumi.StringPtrInput
+	// User defined key-value pairs to classify the dynamic certificate bundle.
+	Labels pulumi.StringMapInput
 	// The name of the certificate bundle. Must be unique within customer account.
 	Name pulumi.StringPtrInput
 	// The time after which a certificate is no longer valid.
@@ -135,6 +141,8 @@ type loadbalancerDynamicCertificateBundleArgs struct {
 	Hostnames []string `pulumi:"hostnames"`
 	// Private key type (`rsa` / `ecdsa`).
 	KeyType string `pulumi:"keyType"`
+	// User defined key-value pairs to classify the dynamic certificate bundle.
+	Labels map[string]string `pulumi:"labels"`
 	// The name of the certificate bundle. Must be unique within customer account.
 	Name *string `pulumi:"name"`
 }
@@ -145,6 +153,8 @@ type LoadbalancerDynamicCertificateBundleArgs struct {
 	Hostnames pulumi.StringArrayInput
 	// Private key type (`rsa` / `ecdsa`).
 	KeyType pulumi.StringInput
+	// User defined key-value pairs to classify the dynamic certificate bundle.
+	Labels pulumi.StringMapInput
 	// The name of the certificate bundle. Must be unique within customer account.
 	Name pulumi.StringPtrInput
 }
@@ -244,6 +254,11 @@ func (o LoadbalancerDynamicCertificateBundleOutput) Hostnames() pulumi.StringArr
 // Private key type (`rsa` / `ecdsa`).
 func (o LoadbalancerDynamicCertificateBundleOutput) KeyType() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerDynamicCertificateBundle) pulumi.StringOutput { return v.KeyType }).(pulumi.StringOutput)
+}
+
+// User defined key-value pairs to classify the dynamic certificate bundle.
+func (o LoadbalancerDynamicCertificateBundleOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *LoadbalancerDynamicCertificateBundle) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
 // The name of the certificate bundle. Must be unique within customer account.

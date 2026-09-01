@@ -192,7 +192,7 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<string>? IoMethod { get; set; }
 
         /// <summary>
-        /// io_max_concurrency. EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
+        /// EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
         /// </summary>
         [Input("ioWorkers")]
         public Input<int>? IoWorkers { get; set; }
@@ -398,6 +398,18 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         /// </summary>
         [Input("pgStatMonitorPgsmMaxBuckets")]
         public Input<int>? PgStatMonitorPgsmMaxBuckets { get; set; }
+
+        /// <summary>
+        /// Enable PgStatPlans extension if available for the current cluster. Enable the PgStatPlans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
+        /// </summary>
+        [Input("pgStatPlansEnable")]
+        public Input<bool>? PgStatPlansEnable { get; set; }
+
+        /// <summary>
+        /// Controls which statements' plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `Top`.
+        /// </summary>
+        [Input("pgStatPlansTrack")]
+        public Input<string>? PgStatPlansTrack { get; set; }
 
         /// <summary>
         /// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `Top`.
