@@ -786,6 +786,9 @@
                     }
                 }
             },
+            "upcloud_server_private_firewall_ruleset": {
+                "current": "upcloud:index/serverPrivateFirewallRuleset:ServerPrivateFirewallRuleset"
+            },
             "upcloud_storage": {
                 "current": "upcloud:index/storage:Storage",
                 "fields": {
@@ -1058,6 +1061,7 @@
             "upcloud:index/server:Server": 1,
             "upcloud:index/serverFirewallRules:ServerFirewallRules": 1,
             "upcloud:index/serverGroup:ServerGroup": 1,
+            "upcloud:index/serverPrivateFirewallRuleset:ServerPrivateFirewallRuleset": 1,
             "upcloud:index/storage:Storage": 1,
             "upcloud:index/storageBackup:StorageBackup": 1,
             "upcloud:index/storageTemplate:StorageTemplate": 1,
