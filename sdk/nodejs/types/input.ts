@@ -1797,7 +1797,7 @@ export interface ManagedDatabaseMysqlProperties {
      */
     innodbLockWaitTimeout?: pulumi.Input<number>;
     /**
-     * The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+     * The size in bytes of the buffer that InnoDB uses to write to the log files on disk. Requests above 15% of the RAM provided by your service plan are rejected, because a larger buffer leaves less memory for the buffer pool and client connections.
      */
     innodbLogBufferSize?: pulumi.Input<number>;
     /**
@@ -1853,7 +1853,7 @@ export interface ManagedDatabaseMysqlProperties {
      */
     lowerCaseTableNames?: pulumi.Input<number>;
     /**
-     * Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+     * Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M). Statements and rows larger than this are rejected with a packet too large error.
      */
     maxAllowedPacket?: pulumi.Input<number>;
     /**
@@ -1933,7 +1933,7 @@ export interface ManagedDatabaseMysqlProperties {
      */
     slowQueryLog?: pulumi.Input<boolean>;
     /**
-     * Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+     * Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K). Requests above 2% of the RAM provided by your service plan are rejected, because the buffer is allocated per session and its cost multiplies with the connection count.
      */
     sortBufferSize?: pulumi.Input<number>;
     /**
@@ -1953,7 +1953,7 @@ export interface ManagedDatabaseMysqlProperties {
      */
     version?: pulumi.Input<string>;
     /**
-     * The number of seconds the server waits for activity on a noninteractive connection before closing it.
+     * The number of seconds the server waits for activity on a noninteractive connection before closing it. Requests to set this below 30 are rejected, because a shorter timeout closes your own idle connections between statements.
      */
     waitTimeout?: pulumi.Input<number>;
     /**
@@ -2265,9 +2265,21 @@ export interface ManagedDatabaseOpensearchProperties {
      */
     mlCommonsConnectorAccessControlEnabled?: pulumi.Input<boolean>;
     /**
+     * plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
+     */
+    mlCommonsMaxModelOnNode?: pulumi.Input<number>;
+    /**
      * plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
      */
     mlCommonsModelAccessControlEnabled?: pulumi.Input<boolean>;
+    /**
+     * plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
+     */
+    mlCommonsModelAutoDeployEnable?: pulumi.Input<boolean>;
+    /**
+     * plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
+     */
+    mlCommonsModelAutoRedeployEnable?: pulumi.Input<boolean>;
     /**
      * plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
      */
@@ -3655,13 +3667,29 @@ export interface ManagedDatabaseValkeyProperties {
      */
     publicAccessPrometheus?: pulumi.Input<boolean>;
     /**
+     * Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
+     */
+    replicas?: pulumi.Input<number>;
+    /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      */
     serviceLog?: pulumi.Input<boolean>;
     /**
+     * Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
+     */
+    shardCount?: pulumi.Input<number>;
+    /**
      * Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
      */
     valkeyAclChannelsDefault?: pulumi.Input<string>;
+    /**
+     * Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+     */
+    valkeyActiveDefragIgnoreBytes?: pulumi.Input<number>;
+    /**
+     * Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+     */
+    valkeyActiveDefragThresholdLower?: pulumi.Input<number>;
     /**
      * Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
      */
@@ -3695,7 +3723,7 @@ export interface ManagedDatabaseValkeyProperties {
      */
     valkeyNumberOfDatabases?: pulumi.Input<number>;
     /**
-     * Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+     * Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `rdb`, RDB dumps are written for backups on the backup schedule and, if `frequentSnapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `off`, no RDB dumps are written at all: backups and forking are unavailable, `frequentSnapshots` and `backupHour`/`backupMinute` have no effect, and all data is lost if the service restarts or is powered off.
      */
     valkeyPersistence?: pulumi.Input<string>;
     /**

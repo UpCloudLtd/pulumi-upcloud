@@ -7731,7 +7731,7 @@ type ManagedDatabaseMysqlProperties struct {
 	InnodbIoCapacityMax *int `pulumi:"innodbIoCapacityMax"`
 	// The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
 	InnodbLockWaitTimeout *int `pulumi:"innodbLockWaitTimeout"`
-	// The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+	// The size in bytes of the buffer that InnoDB uses to write to the log files on disk. Requests above 15% of the RAM provided by your service plan are rejected, because a larger buffer leaves less memory for the buffer pool and client connections.
 	InnodbLogBufferSize *int `pulumi:"innodbLogBufferSize"`
 	// The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
 	InnodbOnlineAlterLogMaxSize *int `pulumi:"innodbOnlineAlterLogMaxSize"`
@@ -7759,7 +7759,7 @@ type ManagedDatabaseMysqlProperties struct {
 	LongQueryTime *float64 `pulumi:"longQueryTime"`
 	// Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
 	LowerCaseTableNames *int `pulumi:"lowerCaseTableNames"`
-	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M). Statements and rows larger than this are rejected with a packet too large error.
 	MaxAllowedPacket *int `pulumi:"maxAllowedPacket"`
 	// The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
 	MaxConnections *int `pulumi:"maxConnections"`
@@ -7799,7 +7799,7 @@ type ManagedDatabaseMysqlProperties struct {
 	ServiceLog *bool `pulumi:"serviceLog"`
 	// Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table.
 	SlowQueryLog *bool `pulumi:"slowQueryLog"`
-	// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+	// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K). Requests above 2% of the RAM provided by your service plan are rejected, because the buffer is allocated per session and its cost multiplies with the connection count.
 	SortBufferSize *int `pulumi:"sortBufferSize"`
 	// Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned.
 	SqlMode *string `pulumi:"sqlMode"`
@@ -7809,7 +7809,7 @@ type ManagedDatabaseMysqlProperties struct {
 	TmpTableSize *int `pulumi:"tmpTableSize"`
 	// MySQL major version.
 	Version *string `pulumi:"version"`
-	// The number of seconds the server waits for activity on a noninteractive connection before closing it.
+	// The number of seconds the server waits for activity on a noninteractive connection before closing it. Requests to set this below 30 are rejected, because a shorter timeout closes your own idle connections between statements.
 	WaitTimeout *int `pulumi:"waitTimeout"`
 	// Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
 	WindowingUseHighPrecision *bool `pulumi:"windowingUseHighPrecision"`
@@ -7881,7 +7881,7 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	InnodbIoCapacityMax pulumi.IntPtrInput `pulumi:"innodbIoCapacityMax"`
 	// The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
 	InnodbLockWaitTimeout pulumi.IntPtrInput `pulumi:"innodbLockWaitTimeout"`
-	// The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+	// The size in bytes of the buffer that InnoDB uses to write to the log files on disk. Requests above 15% of the RAM provided by your service plan are rejected, because a larger buffer leaves less memory for the buffer pool and client connections.
 	InnodbLogBufferSize pulumi.IntPtrInput `pulumi:"innodbLogBufferSize"`
 	// The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
 	InnodbOnlineAlterLogMaxSize pulumi.IntPtrInput `pulumi:"innodbOnlineAlterLogMaxSize"`
@@ -7909,7 +7909,7 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	LongQueryTime pulumi.Float64PtrInput `pulumi:"longQueryTime"`
 	// Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
 	LowerCaseTableNames pulumi.IntPtrInput `pulumi:"lowerCaseTableNames"`
-	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M). Statements and rows larger than this are rejected with a packet too large error.
 	MaxAllowedPacket pulumi.IntPtrInput `pulumi:"maxAllowedPacket"`
 	// The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
 	MaxConnections pulumi.IntPtrInput `pulumi:"maxConnections"`
@@ -7949,7 +7949,7 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	ServiceLog pulumi.BoolPtrInput `pulumi:"serviceLog"`
 	// Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table.
 	SlowQueryLog pulumi.BoolPtrInput `pulumi:"slowQueryLog"`
-	// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+	// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K). Requests above 2% of the RAM provided by your service plan are rejected, because the buffer is allocated per session and its cost multiplies with the connection count.
 	SortBufferSize pulumi.IntPtrInput `pulumi:"sortBufferSize"`
 	// Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned.
 	SqlMode pulumi.StringPtrInput `pulumi:"sqlMode"`
@@ -7959,7 +7959,7 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	TmpTableSize pulumi.IntPtrInput `pulumi:"tmpTableSize"`
 	// MySQL major version.
 	Version pulumi.StringPtrInput `pulumi:"version"`
-	// The number of seconds the server waits for activity on a noninteractive connection before closing it.
+	// The number of seconds the server waits for activity on a noninteractive connection before closing it. Requests to set this below 30 are rejected, because a shorter timeout closes your own idle connections between statements.
 	WaitTimeout pulumi.IntPtrInput `pulumi:"waitTimeout"`
 	// Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
 	WindowingUseHighPrecision pulumi.BoolPtrInput `pulumi:"windowingUseHighPrecision"`
@@ -8177,7 +8177,7 @@ func (o ManagedDatabaseMysqlPropertiesOutput) InnodbLockWaitTimeout() pulumi.Int
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InnodbLockWaitTimeout }).(pulumi.IntPtrOutput)
 }
 
-// The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+// The size in bytes of the buffer that InnoDB uses to write to the log files on disk. Requests above 15% of the RAM provided by your service plan are rejected, because a larger buffer leaves less memory for the buffer pool and client connections.
 func (o ManagedDatabaseMysqlPropertiesOutput) InnodbLogBufferSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InnodbLogBufferSize }).(pulumi.IntPtrOutput)
 }
@@ -8247,7 +8247,7 @@ func (o ManagedDatabaseMysqlPropertiesOutput) LowerCaseTableNames() pulumi.IntPt
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.LowerCaseTableNames }).(pulumi.IntPtrOutput)
 }
 
-// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M). Statements and rows larger than this are rejected with a packet too large error.
 func (o ManagedDatabaseMysqlPropertiesOutput) MaxAllowedPacket() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.MaxAllowedPacket }).(pulumi.IntPtrOutput)
 }
@@ -8349,7 +8349,7 @@ func (o ManagedDatabaseMysqlPropertiesOutput) SlowQueryLog() pulumi.BoolPtrOutpu
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *bool { return v.SlowQueryLog }).(pulumi.BoolPtrOutput)
 }
 
-// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K). Requests above 2% of the RAM provided by your service plan are rejected, because the buffer is allocated per session and its cost multiplies with the connection count.
 func (o ManagedDatabaseMysqlPropertiesOutput) SortBufferSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.SortBufferSize }).(pulumi.IntPtrOutput)
 }
@@ -8374,7 +8374,7 @@ func (o ManagedDatabaseMysqlPropertiesOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
 
-// The number of seconds the server waits for activity on a noninteractive connection before closing it.
+// The number of seconds the server waits for activity on a noninteractive connection before closing it. Requests to set this below 30 are rejected, because a shorter timeout closes your own idle connections between statements.
 func (o ManagedDatabaseMysqlPropertiesOutput) WaitTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.WaitTimeout }).(pulumi.IntPtrOutput)
 }
@@ -8678,7 +8678,7 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbLockWaitTimeout() pulumi.
 	}).(pulumi.IntPtrOutput)
 }
 
-// The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+// The size in bytes of the buffer that InnoDB uses to write to the log files on disk. Requests above 15% of the RAM provided by your service plan are rejected, because a larger buffer leaves less memory for the buffer pool and client connections.
 func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbLogBufferSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
 		if v == nil {
@@ -8818,7 +8818,7 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) LowerCaseTableNames() pulumi.In
 	}).(pulumi.IntPtrOutput)
 }
 
-// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M). Statements and rows larger than this are rejected with a packet too large error.
 func (o ManagedDatabaseMysqlPropertiesPtrOutput) MaxAllowedPacket() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
 		if v == nil {
@@ -9018,7 +9018,7 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) SlowQueryLog() pulumi.BoolPtrOu
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K). Requests above 2% of the RAM provided by your service plan are rejected, because the buffer is allocated per session and its cost multiplies with the connection count.
 func (o ManagedDatabaseMysqlPropertiesPtrOutput) SortBufferSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
 		if v == nil {
@@ -9068,7 +9068,7 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) Version() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// The number of seconds the server waits for activity on a noninteractive connection before closing it.
+// The number of seconds the server waits for activity on a noninteractive connection before closing it. Requests to set this below 30 are rejected, because a shorter timeout closes your own idle connections between statements.
 func (o ManagedDatabaseMysqlPropertiesPtrOutput) WaitTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
 		if v == nil {
@@ -10038,8 +10038,14 @@ type ManagedDatabaseOpensearchProperties struct {
 	KnnMemoryCircuitBreakerLimit *int `pulumi:"knnMemoryCircuitBreakerLimit"`
 	// plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
 	MlCommonsConnectorAccessControlEnabled *bool `pulumi:"mlCommonsConnectorAccessControlEnabled"`
+	// plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
+	MlCommonsMaxModelOnNode *int `pulumi:"mlCommonsMaxModelOnNode"`
 	// plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
 	MlCommonsModelAccessControlEnabled *bool `pulumi:"mlCommonsModelAccessControlEnabled"`
+	// plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
+	MlCommonsModelAutoDeployEnable *bool `pulumi:"mlCommonsModelAutoDeployEnable"`
+	// plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
+	MlCommonsModelAutoRedeployEnable *bool `pulumi:"mlCommonsModelAutoRedeployEnable"`
 	// plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
 	MlCommonsNativeMemoryThreshold *int `pulumi:"mlCommonsNativeMemoryThreshold"`
 	// plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
@@ -10210,8 +10216,14 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	KnnMemoryCircuitBreakerLimit pulumi.IntPtrInput `pulumi:"knnMemoryCircuitBreakerLimit"`
 	// plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
 	MlCommonsConnectorAccessControlEnabled pulumi.BoolPtrInput `pulumi:"mlCommonsConnectorAccessControlEnabled"`
+	// plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
+	MlCommonsMaxModelOnNode pulumi.IntPtrInput `pulumi:"mlCommonsMaxModelOnNode"`
 	// plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
 	MlCommonsModelAccessControlEnabled pulumi.BoolPtrInput `pulumi:"mlCommonsModelAccessControlEnabled"`
+	// plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
+	MlCommonsModelAutoDeployEnable pulumi.BoolPtrInput `pulumi:"mlCommonsModelAutoDeployEnable"`
+	// plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
+	MlCommonsModelAutoRedeployEnable pulumi.BoolPtrInput `pulumi:"mlCommonsModelAutoRedeployEnable"`
 	// plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
 	MlCommonsNativeMemoryThreshold pulumi.IntPtrInput `pulumi:"mlCommonsNativeMemoryThreshold"`
 	// plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
@@ -10607,9 +10619,24 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) MlCommonsConnectorAccessContr
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.MlCommonsConnectorAccessControlEnabled }).(pulumi.BoolPtrOutput)
 }
 
+// plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
+func (o ManagedDatabaseOpensearchPropertiesOutput) MlCommonsMaxModelOnNode() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.MlCommonsMaxModelOnNode }).(pulumi.IntPtrOutput)
+}
+
 // plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
 func (o ManagedDatabaseOpensearchPropertiesOutput) MlCommonsModelAccessControlEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.MlCommonsModelAccessControlEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
+func (o ManagedDatabaseOpensearchPropertiesOutput) MlCommonsModelAutoDeployEnable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.MlCommonsModelAutoDeployEnable }).(pulumi.BoolPtrOutput)
+}
+
+// plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
+func (o ManagedDatabaseOpensearchPropertiesOutput) MlCommonsModelAutoRedeployEnable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.MlCommonsModelAutoRedeployEnable }).(pulumi.BoolPtrOutput)
 }
 
 // plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
@@ -11288,6 +11315,16 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) MlCommonsConnectorAccessCo
 	}).(pulumi.BoolPtrOutput)
 }
 
+// plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) MlCommonsMaxModelOnNode() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MlCommonsMaxModelOnNode
+	}).(pulumi.IntPtrOutput)
+}
+
 // plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
 func (o ManagedDatabaseOpensearchPropertiesPtrOutput) MlCommonsModelAccessControlEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
@@ -11295,6 +11332,26 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) MlCommonsModelAccessContro
 			return nil
 		}
 		return v.MlCommonsModelAccessControlEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) MlCommonsModelAutoDeployEnable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.MlCommonsModelAutoDeployEnable
+	}).(pulumi.BoolPtrOutput)
+}
+
+// plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) MlCommonsModelAutoRedeployEnable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.MlCommonsModelAutoRedeployEnable
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -21619,10 +21676,18 @@ type ManagedDatabaseValkeyProperties struct {
 	PublicAccess *bool `pulumi:"publicAccess"`
 	// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
 	PublicAccessPrometheus *bool `pulumi:"publicAccessPrometheus"`
+	// Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
+	Replicas *int `pulumi:"replicas"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog *bool `pulumi:"serviceLog"`
+	// Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
+	ShardCount *int `pulumi:"shardCount"`
 	// Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
 	ValkeyAclChannelsDefault *string `pulumi:"valkeyAclChannelsDefault"`
+	// Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+	ValkeyActiveDefragIgnoreBytes *int `pulumi:"valkeyActiveDefragIgnoreBytes"`
+	// Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+	ValkeyActiveDefragThresholdLower *int `pulumi:"valkeyActiveDefragThresholdLower"`
 	// Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
 	ValkeyActiveExpireEffort *int `pulumi:"valkeyActiveExpireEffort"`
 	// Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
@@ -21639,7 +21704,7 @@ type ManagedDatabaseValkeyProperties struct {
 	ValkeyNotifyKeyspaceEvents *string `pulumi:"valkeyNotifyKeyspaceEvents"`
 	// Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
 	ValkeyNumberOfDatabases *int `pulumi:"valkeyNumberOfDatabases"`
-	// Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+	// Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `rdb`, RDB dumps are written for backups on the backup schedule and, if `frequentSnapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `off`, no RDB dumps are written at all: backups and forking are unavailable, `frequentSnapshots` and `backupHour`/`backupMinute` have no effect, and all data is lost if the service restarts or is powered off.
 	ValkeyPersistence *string `pulumi:"valkeyPersistence"`
 	// Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
 	ValkeyPubsubClientOutputBufferLimit *int `pulumi:"valkeyPubsubClientOutputBufferLimit"`
@@ -21679,10 +21744,18 @@ type ManagedDatabaseValkeyPropertiesArgs struct {
 	PublicAccess pulumi.BoolPtrInput `pulumi:"publicAccess"`
 	// Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
 	PublicAccessPrometheus pulumi.BoolPtrInput `pulumi:"publicAccessPrometheus"`
+	// Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
+	Replicas pulumi.IntPtrInput `pulumi:"replicas"`
 	// Service logging. Store logs for the service so that they are available in the HTTP API and console.
 	ServiceLog pulumi.BoolPtrInput `pulumi:"serviceLog"`
+	// Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
+	ShardCount pulumi.IntPtrInput `pulumi:"shardCount"`
 	// Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
 	ValkeyAclChannelsDefault pulumi.StringPtrInput `pulumi:"valkeyAclChannelsDefault"`
+	// Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+	ValkeyActiveDefragIgnoreBytes pulumi.IntPtrInput `pulumi:"valkeyActiveDefragIgnoreBytes"`
+	// Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+	ValkeyActiveDefragThresholdLower pulumi.IntPtrInput `pulumi:"valkeyActiveDefragThresholdLower"`
 	// Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
 	ValkeyActiveExpireEffort pulumi.IntPtrInput `pulumi:"valkeyActiveExpireEffort"`
 	// Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
@@ -21699,7 +21772,7 @@ type ManagedDatabaseValkeyPropertiesArgs struct {
 	ValkeyNotifyKeyspaceEvents pulumi.StringPtrInput `pulumi:"valkeyNotifyKeyspaceEvents"`
 	// Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
 	ValkeyNumberOfDatabases pulumi.IntPtrInput `pulumi:"valkeyNumberOfDatabases"`
-	// Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+	// Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `rdb`, RDB dumps are written for backups on the backup schedule and, if `frequentSnapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `off`, no RDB dumps are written at all: backups and forking are unavailable, `frequentSnapshots` and `backupHour`/`backupMinute` have no effect, and all data is lost if the service restarts or is powered off.
 	ValkeyPersistence pulumi.StringPtrInput `pulumi:"valkeyPersistence"`
 	// Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
 	ValkeyPubsubClientOutputBufferLimit pulumi.IntPtrInput `pulumi:"valkeyPubsubClientOutputBufferLimit"`
@@ -21828,14 +21901,34 @@ func (o ManagedDatabaseValkeyPropertiesOutput) PublicAccessPrometheus() pulumi.B
 	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *bool { return v.PublicAccessPrometheus }).(pulumi.BoolPtrOutput)
 }
 
+// Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
+func (o ManagedDatabaseValkeyPropertiesOutput) Replicas() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.Replicas }).(pulumi.IntPtrOutput)
+}
+
 // Service logging. Store logs for the service so that they are available in the HTTP API and console.
 func (o ManagedDatabaseValkeyPropertiesOutput) ServiceLog() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *bool { return v.ServiceLog }).(pulumi.BoolPtrOutput)
 }
 
+// Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
+func (o ManagedDatabaseValkeyPropertiesOutput) ShardCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.ShardCount }).(pulumi.IntPtrOutput)
+}
+
 // Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
 func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyAclChannelsDefault() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *string { return v.ValkeyAclChannelsDefault }).(pulumi.StringPtrOutput)
+}
+
+// Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyActiveDefragIgnoreBytes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.ValkeyActiveDefragIgnoreBytes }).(pulumi.IntPtrOutput)
+}
+
+// Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyActiveDefragThresholdLower() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.ValkeyActiveDefragThresholdLower }).(pulumi.IntPtrOutput)
 }
 
 // Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
@@ -21878,7 +21971,7 @@ func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyNumberOfDatabases() pulumi.
 	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *int { return v.ValkeyNumberOfDatabases }).(pulumi.IntPtrOutput)
 }
 
-// Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+// Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `rdb`, RDB dumps are written for backups on the backup schedule and, if `frequentSnapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `off`, no RDB dumps are written at all: backups and forking are unavailable, `frequentSnapshots` and `backupHour`/`backupMinute` have no effect, and all data is lost if the service restarts or is powered off.
 func (o ManagedDatabaseValkeyPropertiesOutput) ValkeyPersistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseValkeyProperties) *string { return v.ValkeyPersistence }).(pulumi.StringPtrOutput)
 }
@@ -22007,6 +22100,16 @@ func (o ManagedDatabaseValkeyPropertiesPtrOutput) PublicAccessPrometheus() pulum
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) Replicas() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Replicas
+	}).(pulumi.IntPtrOutput)
+}
+
 // Service logging. Store logs for the service so that they are available in the HTTP API and console.
 func (o ManagedDatabaseValkeyPropertiesPtrOutput) ServiceLog() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *bool {
@@ -22017,6 +22120,16 @@ func (o ManagedDatabaseValkeyPropertiesPtrOutput) ServiceLog() pulumi.BoolPtrOut
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ShardCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ShardCount
+	}).(pulumi.IntPtrOutput)
+}
+
 // Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
 func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyAclChannelsDefault() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *string {
@@ -22025,6 +22138,26 @@ func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyAclChannelsDefault() pul
 		}
 		return v.ValkeyAclChannelsDefault
 	}).(pulumi.StringPtrOutput)
+}
+
+// Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyActiveDefragIgnoreBytes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyActiveDefragIgnoreBytes
+	}).(pulumi.IntPtrOutput)
+}
+
+// Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyActiveDefragThresholdLower() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ValkeyActiveDefragThresholdLower
+	}).(pulumi.IntPtrOutput)
 }
 
 // Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
@@ -22107,7 +22240,7 @@ func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyNumberOfDatabases() pulu
 	}).(pulumi.IntPtrOutput)
 }
 
-// Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+// Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `rdb`, RDB dumps are written for backups on the backup schedule and, if `frequentSnapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `off`, no RDB dumps are written at all: backups and forking are unavailable, `frequentSnapshots` and `backupHour`/`backupMinute` have no effect, and all data is lost if the service restarts or is powered off.
 func (o ManagedDatabaseValkeyPropertiesPtrOutput) ValkeyPersistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkeyProperties) *string {
 		if v == nil {

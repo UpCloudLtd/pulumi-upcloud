@@ -56,15 +56,35 @@ public final class ManagedDatabaseValkeyProperties {
      */
     private @Nullable Boolean publicAccessPrometheus;
     /**
+     * @return Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
+     * 
+     */
+    private @Nullable Integer replicas;
+    /**
      * @return Service logging. Store logs for the service so that they are available in the HTTP API and console.
      * 
      */
     private @Nullable Boolean serviceLog;
     /**
+     * @return Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
+     * 
+     */
+    private @Nullable Integer shardCount;
+    /**
      * @return Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels&#39; ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn&#39;t affect Valkey configuration acl-pubsub-default.
      * 
      */
     private @Nullable String valkeyAclChannelsDefault;
+    /**
+     * @return Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+     * 
+     */
+    private @Nullable Integer valkeyActiveDefragIgnoreBytes;
+    /**
+     * @return Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+     * 
+     */
+    private @Nullable Integer valkeyActiveDefragThresholdLower;
     /**
      * @return Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
      * 
@@ -106,7 +126,7 @@ public final class ManagedDatabaseValkeyProperties {
      */
     private @Nullable Integer valkeyNumberOfDatabases;
     /**
-     * @return Valkey persistence. When persistence is &#39;rdb&#39;, Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is &#39;off&#39;, no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can&#39;t be forked.
+     * @return Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `rdb`, RDB dumps are written for backups on the backup schedule and, if `frequentSnapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `off`, no RDB dumps are written at all: backups and forking are unavailable, `frequentSnapshots` and `backupHour`/`backupMinute` have no effect, and all data is lost if the service restarts or is powered off.
      * 
      */
     private @Nullable String valkeyPersistence;
@@ -189,6 +209,13 @@ public final class ManagedDatabaseValkeyProperties {
         return Optional.ofNullable(this.publicAccessPrometheus);
     }
     /**
+     * @return Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
+     * 
+     */
+    public Optional<Integer> replicas() {
+        return Optional.ofNullable(this.replicas);
+    }
+    /**
      * @return Service logging. Store logs for the service so that they are available in the HTTP API and console.
      * 
      */
@@ -196,11 +223,32 @@ public final class ManagedDatabaseValkeyProperties {
         return Optional.ofNullable(this.serviceLog);
     }
     /**
+     * @return Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
+     * 
+     */
+    public Optional<Integer> shardCount() {
+        return Optional.ofNullable(this.shardCount);
+    }
+    /**
      * @return Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels&#39; ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn&#39;t affect Valkey configuration acl-pubsub-default.
      * 
      */
     public Optional<String> valkeyAclChannelsDefault() {
         return Optional.ofNullable(this.valkeyAclChannelsDefault);
+    }
+    /**
+     * @return Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+     * 
+     */
+    public Optional<Integer> valkeyActiveDefragIgnoreBytes() {
+        return Optional.ofNullable(this.valkeyActiveDefragIgnoreBytes);
+    }
+    /**
+     * @return Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+     * 
+     */
+    public Optional<Integer> valkeyActiveDefragThresholdLower() {
+        return Optional.ofNullable(this.valkeyActiveDefragThresholdLower);
     }
     /**
      * @return Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
@@ -259,7 +307,7 @@ public final class ManagedDatabaseValkeyProperties {
         return Optional.ofNullable(this.valkeyNumberOfDatabases);
     }
     /**
-     * @return Valkey persistence. When persistence is &#39;rdb&#39;, Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is &#39;off&#39;, no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can&#39;t be forked.
+     * @return Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `rdb`, RDB dumps are written for backups on the backup schedule and, if `frequentSnapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `off`, no RDB dumps are written at all: backups and forking are unavailable, `frequentSnapshots` and `backupHour`/`backupMinute` have no effect, and all data is lost if the service restarts or is powered off.
      * 
      */
     public Optional<String> valkeyPersistence() {
@@ -311,8 +359,12 @@ public final class ManagedDatabaseValkeyProperties {
         private @Nullable ManagedDatabaseValkeyPropertiesMigration migration;
         private @Nullable Boolean publicAccess;
         private @Nullable Boolean publicAccessPrometheus;
+        private @Nullable Integer replicas;
         private @Nullable Boolean serviceLog;
+        private @Nullable Integer shardCount;
         private @Nullable String valkeyAclChannelsDefault;
+        private @Nullable Integer valkeyActiveDefragIgnoreBytes;
+        private @Nullable Integer valkeyActiveDefragThresholdLower;
         private @Nullable Integer valkeyActiveExpireEffort;
         private @Nullable Boolean valkeyActivedefrag;
         private @Nullable Integer valkeyIoThreads;
@@ -337,8 +389,12 @@ public final class ManagedDatabaseValkeyProperties {
     	      this.migration = defaults.migration;
     	      this.publicAccess = defaults.publicAccess;
     	      this.publicAccessPrometheus = defaults.publicAccessPrometheus;
+    	      this.replicas = defaults.replicas;
     	      this.serviceLog = defaults.serviceLog;
+    	      this.shardCount = defaults.shardCount;
     	      this.valkeyAclChannelsDefault = defaults.valkeyAclChannelsDefault;
+    	      this.valkeyActiveDefragIgnoreBytes = defaults.valkeyActiveDefragIgnoreBytes;
+    	      this.valkeyActiveDefragThresholdLower = defaults.valkeyActiveDefragThresholdLower;
     	      this.valkeyActiveExpireEffort = defaults.valkeyActiveExpireEffort;
     	      this.valkeyActivedefrag = defaults.valkeyActivedefrag;
     	      this.valkeyIoThreads = defaults.valkeyIoThreads;
@@ -406,15 +462,39 @@ public final class ManagedDatabaseValkeyProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder replicas(@Nullable Integer replicas) {
+
+            this.replicas = replicas;
+            return this;
+        }
+        @CustomType.Setter
         public Builder serviceLog(@Nullable Boolean serviceLog) {
 
             this.serviceLog = serviceLog;
             return this;
         }
         @CustomType.Setter
+        public Builder shardCount(@Nullable Integer shardCount) {
+
+            this.shardCount = shardCount;
+            return this;
+        }
+        @CustomType.Setter
         public Builder valkeyAclChannelsDefault(@Nullable String valkeyAclChannelsDefault) {
 
             this.valkeyAclChannelsDefault = valkeyAclChannelsDefault;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder valkeyActiveDefragIgnoreBytes(@Nullable Integer valkeyActiveDefragIgnoreBytes) {
+
+            this.valkeyActiveDefragIgnoreBytes = valkeyActiveDefragIgnoreBytes;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder valkeyActiveDefragThresholdLower(@Nullable Integer valkeyActiveDefragThresholdLower) {
+
+            this.valkeyActiveDefragThresholdLower = valkeyActiveDefragThresholdLower;
             return this;
         }
         @CustomType.Setter
@@ -505,8 +585,12 @@ public final class ManagedDatabaseValkeyProperties {
             _resultValue.migration = migration;
             _resultValue.publicAccess = publicAccess;
             _resultValue.publicAccessPrometheus = publicAccessPrometheus;
+            _resultValue.replicas = replicas;
             _resultValue.serviceLog = serviceLog;
+            _resultValue.shardCount = shardCount;
             _resultValue.valkeyAclChannelsDefault = valkeyAclChannelsDefault;
+            _resultValue.valkeyActiveDefragIgnoreBytes = valkeyActiveDefragIgnoreBytes;
+            _resultValue.valkeyActiveDefragThresholdLower = valkeyActiveDefragThresholdLower;
             _resultValue.valkeyActiveExpireEffort = valkeyActiveExpireEffort;
             _resultValue.valkeyActivedefrag = valkeyActivedefrag;
             _resultValue.valkeyIoThreads = valkeyIoThreads;

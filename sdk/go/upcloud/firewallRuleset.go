@@ -40,31 +40,6 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// Create a firewall ruleset attached to a specific server
-//			exampleServer, err := upcloud.NewServer(ctx, "example", &upcloud.ServerArgs{
-//				Hostname: pulumi.String("terraform.example.tld"),
-//				Zone:     pulumi.String("de-fra1"),
-//				Plan:     pulumi.String("1xCPU-1GB"),
-//				Template: &upcloud.ServerTemplateArgs{
-//					Storage: pulumi.String("Ubuntu Server 24.04 LTS (Noble Numbat)"),
-//				},
-//				NetworkInterfaces: upcloud.ServerNetworkInterfaceArray{
-//					&upcloud.ServerNetworkInterfaceArgs{
-//						Type: pulumi.String("utility"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = upcloud.NewFirewallRuleset(ctx, "server_ruleset", &upcloud.FirewallRulesetArgs{
-//				Name:        pulumi.String("server-ruleset"),
-//				Description: pulumi.String("Firewall rules for example server"),
-//				ServerUuid:  exampleServer.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
 //			return nil
 //		})
 //	}
@@ -87,8 +62,6 @@ type FirewallRuleset struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
 	Rules FirewallRulesetRuleArrayOutput `pulumi:"rules"`
-	// Optional server UUID to bind with this ruleset. Create-only in API.
-	ServerUuid pulumi.StringPtrOutput `pulumi:"serverUuid"`
 	// Last update timestamp.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// Ruleset version.
@@ -139,8 +112,6 @@ type firewallRulesetState struct {
 	Name *string `pulumi:"name"`
 	// Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
 	Rules []FirewallRulesetRule `pulumi:"rules"`
-	// Optional server UUID to bind with this ruleset. Create-only in API.
-	ServerUuid *string `pulumi:"serverUuid"`
 	// Last update timestamp.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// Ruleset version.
@@ -162,8 +133,6 @@ type FirewallRulesetState struct {
 	Name pulumi.StringPtrInput
 	// Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
 	Rules FirewallRulesetRuleArrayInput
-	// Optional server UUID to bind with this ruleset. Create-only in API.
-	ServerUuid pulumi.StringPtrInput
 	// Last update timestamp.
 	UpdatedAt pulumi.StringPtrInput
 	// Ruleset version.
@@ -187,8 +156,6 @@ type firewallRulesetArgs struct {
 	Name *string `pulumi:"name"`
 	// Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
 	Rules []FirewallRulesetRule `pulumi:"rules"`
-	// Optional server UUID to bind with this ruleset. Create-only in API.
-	ServerUuid *string `pulumi:"serverUuid"`
 }
 
 // The set of arguments for constructing a FirewallRuleset resource.
@@ -205,8 +172,6 @@ type FirewallRulesetArgs struct {
 	Name pulumi.StringPtrInput
 	// Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
 	Rules FirewallRulesetRuleArrayInput
-	// Optional server UUID to bind with this ruleset. Create-only in API.
-	ServerUuid pulumi.StringPtrInput
 }
 
 func (FirewallRulesetArgs) ElementType() reflect.Type {
@@ -329,11 +294,6 @@ func (o FirewallRulesetOutput) Name() pulumi.StringOutput {
 // Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
 func (o FirewallRulesetOutput) Rules() FirewallRulesetRuleArrayOutput {
 	return o.ApplyT(func(v *FirewallRuleset) FirewallRulesetRuleArrayOutput { return v.Rules }).(FirewallRulesetRuleArrayOutput)
-}
-
-// Optional server UUID to bind with this ruleset. Create-only in API.
-func (o FirewallRulesetOutput) ServerUuid() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FirewallRuleset) pulumi.StringPtrOutput { return v.ServerUuid }).(pulumi.StringPtrOutput)
 }
 
 // Last update timestamp.

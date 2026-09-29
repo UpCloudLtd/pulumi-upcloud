@@ -3905,7 +3905,7 @@ class ManagedDatabaseMysqlProperties(dict):
         :param _builtins.int innodb_io_capacity: The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
         :param _builtins.int innodb_io_capacity_max: The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodb_io_capacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
         :param _builtins.int innodb_lock_wait_timeout: The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
-        :param _builtins.int innodb_log_buffer_size: The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+        :param _builtins.int innodb_log_buffer_size: The size in bytes of the buffer that InnoDB uses to write to the log files on disk. Requests above 15% of the RAM provided by your service plan are rejected, because a larger buffer leaves less memory for the buffer pool and client connections.
         :param _builtins.int innodb_online_alter_log_max_size: The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
         :param _builtins.bool innodb_optimize_fulltext_only: When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
         :param _builtins.bool innodb_print_all_deadlocks: When enabled, information about all deadlocks in InnoDB user transactions is recorded in the error log. Disabled by default.
@@ -3919,7 +3919,7 @@ class ManagedDatabaseMysqlProperties(dict):
         :param _builtins.str log_output: The slow log output destination when slow_query_log is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
         :param _builtins.float long_query_time: The slow_query_logs work as SQL statements that take more than long_query_time seconds to execute.
         :param _builtins.int lower_case_table_names: Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
-        :param _builtins.int max_allowed_packet: Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+        :param _builtins.int max_allowed_packet: Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M). Statements and rows larger than this are rejected with a packet too large error.
         :param _builtins.int max_connections: The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
         :param _builtins.int max_execution_time: Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.
         :param _builtins.int max_heap_table_size: Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
@@ -3939,12 +3939,12 @@ class ManagedDatabaseMysqlProperties(dict):
         :param _builtins.int relay_log_space_limit: The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
         :param _builtins.bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
         :param _builtins.bool slow_query_log: Slow query log enables capturing of slow queries. Setting slow_query_log to false also truncates the mysql.slow_log table.
-        :param _builtins.int sort_buffer_size: Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+        :param _builtins.int sort_buffer_size: Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K). Requests above 2% of the RAM provided by your service plan are rejected, because the buffer is allocated per session and its cost multiplies with the connection count.
         :param _builtins.str sql_mode: Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned.
         :param _builtins.bool sql_require_primary_key: Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them.
         :param _builtins.int tmp_table_size: Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
         :param _builtins.str version: MySQL major version.
-        :param _builtins.int wait_timeout: The number of seconds the server waits for activity on a noninteractive connection before closing it.
+        :param _builtins.int wait_timeout: The number of seconds the server waits for activity on a noninteractive connection before closing it. Requests to set this below 30 are rejected, because a shorter timeout closes your own idle connections between statements.
         :param _builtins.bool windowing_use_high_precision: Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
         """
         if admin_password is not None:
@@ -4304,7 +4304,7 @@ class ManagedDatabaseMysqlProperties(dict):
     @pulumi.getter(name="innodbLogBufferSize")
     def innodb_log_buffer_size(self) -> Optional[_builtins.int]:
         """
-        The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+        The size in bytes of the buffer that InnoDB uses to write to the log files on disk. Requests above 15% of the RAM provided by your service plan are rejected, because a larger buffer leaves less memory for the buffer pool and client connections.
         """
         return pulumi.get(self, "innodb_log_buffer_size")
 
@@ -4416,7 +4416,7 @@ class ManagedDatabaseMysqlProperties(dict):
     @pulumi.getter(name="maxAllowedPacket")
     def max_allowed_packet(self) -> Optional[_builtins.int]:
         """
-        Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+        Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M). Statements and rows larger than this are rejected with a packet too large error.
         """
         return pulumi.get(self, "max_allowed_packet")
 
@@ -4576,7 +4576,7 @@ class ManagedDatabaseMysqlProperties(dict):
     @pulumi.getter(name="sortBufferSize")
     def sort_buffer_size(self) -> Optional[_builtins.int]:
         """
-        Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+        Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K). Requests above 2% of the RAM provided by your service plan are rejected, because the buffer is allocated per session and its cost multiplies with the connection count.
         """
         return pulumi.get(self, "sort_buffer_size")
 
@@ -4616,7 +4616,7 @@ class ManagedDatabaseMysqlProperties(dict):
     @pulumi.getter(name="waitTimeout")
     def wait_timeout(self) -> Optional[_builtins.int]:
         """
-        The number of seconds the server waits for activity on a noninteractive connection before closing it.
+        The number of seconds the server waits for activity on a noninteractive connection before closing it. Requests to set this below 30 are rejected, because a shorter timeout closes your own idle connections between statements.
         """
         return pulumi.get(self, "wait_timeout")
 
@@ -5099,8 +5099,14 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "knn_memory_circuit_breaker_limit"
         elif key == "mlCommonsConnectorAccessControlEnabled":
             suggest = "ml_commons_connector_access_control_enabled"
+        elif key == "mlCommonsMaxModelOnNode":
+            suggest = "ml_commons_max_model_on_node"
         elif key == "mlCommonsModelAccessControlEnabled":
             suggest = "ml_commons_model_access_control_enabled"
+        elif key == "mlCommonsModelAutoDeployEnable":
+            suggest = "ml_commons_model_auto_deploy_enable"
+        elif key == "mlCommonsModelAutoRedeployEnable":
+            suggest = "ml_commons_model_auto_redeploy_enable"
         elif key == "mlCommonsNativeMemoryThreshold":
             suggest = "ml_commons_native_memory_threshold"
         elif key == "mlCommonsOnlyRunOnMlNode":
@@ -5218,7 +5224,10 @@ class ManagedDatabaseOpensearchProperties(dict):
                  knn_memory_circuit_breaker_enabled: Optional[_builtins.bool] = None,
                  knn_memory_circuit_breaker_limit: Optional[_builtins.int] = None,
                  ml_commons_connector_access_control_enabled: Optional[_builtins.bool] = None,
+                 ml_commons_max_model_on_node: Optional[_builtins.int] = None,
                  ml_commons_model_access_control_enabled: Optional[_builtins.bool] = None,
+                 ml_commons_model_auto_deploy_enable: Optional[_builtins.bool] = None,
+                 ml_commons_model_auto_redeploy_enable: Optional[_builtins.bool] = None,
                  ml_commons_native_memory_threshold: Optional[_builtins.int] = None,
                  ml_commons_only_run_on_ml_node: Optional[_builtins.bool] = None,
                  ml_commons_trusted_connector_endpoints_regexes: Optional[Sequence[_builtins.str]] = None,
@@ -5298,7 +5307,10 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param _builtins.bool knn_memory_circuit_breaker_enabled: Enable or disable KNN memory circuit breaker. Defaults to true.
         :param _builtins.int knn_memory_circuit_breaker_limit: Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
         :param _builtins.bool ml_commons_connector_access_control_enabled: plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
+        :param _builtins.int ml_commons_max_model_on_node: plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
         :param _builtins.bool ml_commons_model_access_control_enabled: plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
+        :param _builtins.bool ml_commons_model_auto_deploy_enable: plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
+        :param _builtins.bool ml_commons_model_auto_redeploy_enable: plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
         :param _builtins.int ml_commons_native_memory_threshold: plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
         :param _builtins.bool ml_commons_only_run_on_ml_node: plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
         :param Sequence[_builtins.str] ml_commons_trusted_connector_endpoints_regexes: plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
@@ -5426,8 +5438,14 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "knn_memory_circuit_breaker_limit", knn_memory_circuit_breaker_limit)
         if ml_commons_connector_access_control_enabled is not None:
             pulumi.set(__self__, "ml_commons_connector_access_control_enabled", ml_commons_connector_access_control_enabled)
+        if ml_commons_max_model_on_node is not None:
+            pulumi.set(__self__, "ml_commons_max_model_on_node", ml_commons_max_model_on_node)
         if ml_commons_model_access_control_enabled is not None:
             pulumi.set(__self__, "ml_commons_model_access_control_enabled", ml_commons_model_access_control_enabled)
+        if ml_commons_model_auto_deploy_enable is not None:
+            pulumi.set(__self__, "ml_commons_model_auto_deploy_enable", ml_commons_model_auto_deploy_enable)
+        if ml_commons_model_auto_redeploy_enable is not None:
+            pulumi.set(__self__, "ml_commons_model_auto_redeploy_enable", ml_commons_model_auto_redeploy_enable)
         if ml_commons_native_memory_threshold is not None:
             pulumi.set(__self__, "ml_commons_native_memory_threshold", ml_commons_native_memory_threshold)
         if ml_commons_only_run_on_ml_node is not None:
@@ -5872,12 +5890,36 @@ class ManagedDatabaseOpensearchProperties(dict):
         return pulumi.get(self, "ml_commons_connector_access_control_enabled")
 
     @_builtins.property
+    @pulumi.getter(name="mlCommonsMaxModelOnNode")
+    def ml_commons_max_model_on_node(self) -> Optional[_builtins.int]:
+        """
+        plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
+        """
+        return pulumi.get(self, "ml_commons_max_model_on_node")
+
+    @_builtins.property
     @pulumi.getter(name="mlCommonsModelAccessControlEnabled")
     def ml_commons_model_access_control_enabled(self) -> Optional[_builtins.bool]:
         """
         plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
         """
         return pulumi.get(self, "ml_commons_model_access_control_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="mlCommonsModelAutoDeployEnable")
+    def ml_commons_model_auto_deploy_enable(self) -> Optional[_builtins.bool]:
+        """
+        plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
+        """
+        return pulumi.get(self, "ml_commons_model_auto_deploy_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="mlCommonsModelAutoRedeployEnable")
+    def ml_commons_model_auto_redeploy_enable(self) -> Optional[_builtins.bool]:
+        """
+        plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
+        """
+        return pulumi.get(self, "ml_commons_model_auto_redeploy_enable")
 
     @_builtins.property
     @pulumi.getter(name="mlCommonsNativeMemoryThreshold")
@@ -10557,8 +10599,14 @@ class ManagedDatabaseValkeyProperties(dict):
             suggest = "public_access_prometheus"
         elif key == "serviceLog":
             suggest = "service_log"
+        elif key == "shardCount":
+            suggest = "shard_count"
         elif key == "valkeyAclChannelsDefault":
             suggest = "valkey_acl_channels_default"
+        elif key == "valkeyActiveDefragIgnoreBytes":
+            suggest = "valkey_active_defrag_ignore_bytes"
+        elif key == "valkeyActiveDefragThresholdLower":
+            suggest = "valkey_active_defrag_threshold_lower"
         elif key == "valkeyActiveExpireEffort":
             suggest = "valkey_active_expire_effort"
         elif key == "valkeyActivedefrag":
@@ -10606,8 +10654,12 @@ class ManagedDatabaseValkeyProperties(dict):
                  migration: Optional['outputs.ManagedDatabaseValkeyPropertiesMigration'] = None,
                  public_access: Optional[_builtins.bool] = None,
                  public_access_prometheus: Optional[_builtins.bool] = None,
+                 replicas: Optional[_builtins.int] = None,
                  service_log: Optional[_builtins.bool] = None,
+                 shard_count: Optional[_builtins.int] = None,
                  valkey_acl_channels_default: Optional[_builtins.str] = None,
+                 valkey_active_defrag_ignore_bytes: Optional[_builtins.int] = None,
+                 valkey_active_defrag_threshold_lower: Optional[_builtins.int] = None,
                  valkey_active_expire_effort: Optional[_builtins.int] = None,
                  valkey_activedefrag: Optional[_builtins.bool] = None,
                  valkey_io_threads: Optional[_builtins.int] = None,
@@ -10630,8 +10682,12 @@ class ManagedDatabaseValkeyProperties(dict):
         :param 'ManagedDatabaseValkeyPropertiesMigrationArgs' migration: Migrate data from existing server.
         :param _builtins.bool public_access: Public Access. Allow access to the service from the public Internet.
         :param _builtins.bool public_access_prometheus: Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
+        :param _builtins.int replicas: Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
         :param _builtins.bool service_log: Service logging. Store logs for the service so that they are available in the HTTP API and console.
+        :param _builtins.int shard_count: Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
         :param _builtins.str valkey_acl_channels_default: Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
+        :param _builtins.int valkey_active_defrag_ignore_bytes: Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `valkey_activedefrag` is enabled.
+        :param _builtins.int valkey_active_defrag_threshold_lower: Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `valkey_activedefrag` is enabled.
         :param _builtins.int valkey_active_expire_effort: Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
         :param _builtins.bool valkey_activedefrag: Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
         :param _builtins.int valkey_io_threads: Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
@@ -10640,7 +10696,7 @@ class ManagedDatabaseValkeyProperties(dict):
         :param _builtins.str valkey_maxmemory_policy: Valkey maxmemory-policy.
         :param _builtins.str valkey_notify_keyspace_events: Set notify-keyspace-events option.
         :param _builtins.int valkey_number_of_databases: Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
-        :param _builtins.str valkey_persistence: Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+        :param _builtins.str valkey_persistence: Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `rdb`, RDB dumps are written for backups on the backup schedule and, if `frequent_snapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `off`, no RDB dumps are written at all: backups and forking are unavailable, `frequent_snapshots` and `backup_hour`/`backup_minute` have no effect, and all data is lost if the service restarts or is powered off.
         :param _builtins.int valkey_pubsub_client_output_buffer_limit: Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
         :param _builtins.bool valkey_ssl: Require SSL to access Valkey.
         :param _builtins.int valkey_timeout: Valkey idle connection timeout in seconds.
@@ -10662,10 +10718,18 @@ class ManagedDatabaseValkeyProperties(dict):
             pulumi.set(__self__, "public_access", public_access)
         if public_access_prometheus is not None:
             pulumi.set(__self__, "public_access_prometheus", public_access_prometheus)
+        if replicas is not None:
+            pulumi.set(__self__, "replicas", replicas)
         if service_log is not None:
             pulumi.set(__self__, "service_log", service_log)
+        if shard_count is not None:
+            pulumi.set(__self__, "shard_count", shard_count)
         if valkey_acl_channels_default is not None:
             pulumi.set(__self__, "valkey_acl_channels_default", valkey_acl_channels_default)
+        if valkey_active_defrag_ignore_bytes is not None:
+            pulumi.set(__self__, "valkey_active_defrag_ignore_bytes", valkey_active_defrag_ignore_bytes)
+        if valkey_active_defrag_threshold_lower is not None:
+            pulumi.set(__self__, "valkey_active_defrag_threshold_lower", valkey_active_defrag_threshold_lower)
         if valkey_active_expire_effort is not None:
             pulumi.set(__self__, "valkey_active_expire_effort", valkey_active_expire_effort)
         if valkey_activedefrag is not None:
@@ -10758,6 +10822,14 @@ class ManagedDatabaseValkeyProperties(dict):
         return pulumi.get(self, "public_access_prometheus")
 
     @_builtins.property
+    @pulumi.getter
+    def replicas(self) -> Optional[_builtins.int]:
+        """
+        Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
+        """
+        return pulumi.get(self, "replicas")
+
+    @_builtins.property
     @pulumi.getter(name="serviceLog")
     def service_log(self) -> Optional[_builtins.bool]:
         """
@@ -10766,12 +10838,36 @@ class ManagedDatabaseValkeyProperties(dict):
         return pulumi.get(self, "service_log")
 
     @_builtins.property
+    @pulumi.getter(name="shardCount")
+    def shard_count(self) -> Optional[_builtins.int]:
+        """
+        Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
+        """
+        return pulumi.get(self, "shard_count")
+
+    @_builtins.property
     @pulumi.getter(name="valkeyAclChannelsDefault")
     def valkey_acl_channels_default(self) -> Optional[_builtins.str]:
         """
         Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
         """
         return pulumi.get(self, "valkey_acl_channels_default")
+
+    @_builtins.property
+    @pulumi.getter(name="valkeyActiveDefragIgnoreBytes")
+    def valkey_active_defrag_ignore_bytes(self) -> Optional[_builtins.int]:
+        """
+        Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `valkey_activedefrag` is enabled.
+        """
+        return pulumi.get(self, "valkey_active_defrag_ignore_bytes")
+
+    @_builtins.property
+    @pulumi.getter(name="valkeyActiveDefragThresholdLower")
+    def valkey_active_defrag_threshold_lower(self) -> Optional[_builtins.int]:
+        """
+        Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `valkey_activedefrag` is enabled.
+        """
+        return pulumi.get(self, "valkey_active_defrag_threshold_lower")
 
     @_builtins.property
     @pulumi.getter(name="valkeyActiveExpireEffort")
@@ -10841,7 +10937,7 @@ class ManagedDatabaseValkeyProperties(dict):
     @pulumi.getter(name="valkeyPersistence")
     def valkey_persistence(self) -> Optional[_builtins.str]:
         """
-        Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+        Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `rdb`, RDB dumps are written for backups on the backup schedule and, if `frequent_snapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `off`, no RDB dumps are written at all: backups and forking are unavailable, `frequent_snapshots` and `backup_hour`/`backup_minute` have no effect, and all data is lost if the service restarts or is powered off.
         """
         return pulumi.get(self, "valkey_persistence")
 

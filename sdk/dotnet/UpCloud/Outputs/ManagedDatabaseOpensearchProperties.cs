@@ -201,9 +201,21 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? MlCommonsConnectorAccessControlEnabled;
         /// <summary>
+        /// plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
+        /// </summary>
+        public readonly int? MlCommonsMaxModelOnNode;
+        /// <summary>
         /// plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
         /// </summary>
         public readonly bool? MlCommonsModelAccessControlEnabled;
+        /// <summary>
+        /// plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
+        /// </summary>
+        public readonly bool? MlCommonsModelAutoDeployEnable;
+        /// <summary>
+        /// plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
+        /// </summary>
+        public readonly bool? MlCommonsModelAutoRedeployEnable;
         /// <summary>
         /// plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
         /// </summary>
@@ -425,7 +437,13 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             bool? mlCommonsConnectorAccessControlEnabled,
 
+            int? mlCommonsMaxModelOnNode,
+
             bool? mlCommonsModelAccessControlEnabled,
+
+            bool? mlCommonsModelAutoDeployEnable,
+
+            bool? mlCommonsModelAutoRedeployEnable,
 
             int? mlCommonsNativeMemoryThreshold,
 
@@ -539,7 +557,10 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             KnnMemoryCircuitBreakerEnabled = knnMemoryCircuitBreakerEnabled;
             KnnMemoryCircuitBreakerLimit = knnMemoryCircuitBreakerLimit;
             MlCommonsConnectorAccessControlEnabled = mlCommonsConnectorAccessControlEnabled;
+            MlCommonsMaxModelOnNode = mlCommonsMaxModelOnNode;
             MlCommonsModelAccessControlEnabled = mlCommonsModelAccessControlEnabled;
+            MlCommonsModelAutoDeployEnable = mlCommonsModelAutoDeployEnable;
+            MlCommonsModelAutoRedeployEnable = mlCommonsModelAutoRedeployEnable;
             MlCommonsNativeMemoryThreshold = mlCommonsNativeMemoryThreshold;
             MlCommonsOnlyRunOnMlNode = mlCommonsOnlyRunOnMlNode;
             MlCommonsTrustedConnectorEndpointsRegexes = mlCommonsTrustedConnectorEndpointsRegexes;

@@ -262,10 +262,25 @@ public final class ManagedDatabaseOpensearchProperties {
      */
     private @Nullable Boolean mlCommonsConnectorAccessControlEnabled;
     /**
+     * @return plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
+     * 
+     */
+    private @Nullable Integer mlCommonsMaxModelOnNode;
+    /**
      * @return plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
      * 
      */
     private @Nullable Boolean mlCommonsModelAccessControlEnabled;
+    /**
+     * @return plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
+     * 
+     */
+    private @Nullable Boolean mlCommonsModelAutoDeployEnable;
+    /**
+     * @return plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
+     * 
+     */
+    private @Nullable Boolean mlCommonsModelAutoRedeployEnable;
     /**
      * @return plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
      * 
@@ -749,11 +764,32 @@ public final class ManagedDatabaseOpensearchProperties {
         return Optional.ofNullable(this.mlCommonsConnectorAccessControlEnabled);
     }
     /**
+     * @return plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
+     * 
+     */
+    public Optional<Integer> mlCommonsMaxModelOnNode() {
+        return Optional.ofNullable(this.mlCommonsMaxModelOnNode);
+    }
+    /**
      * @return plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
      * 
      */
     public Optional<Boolean> mlCommonsModelAccessControlEnabled() {
         return Optional.ofNullable(this.mlCommonsModelAccessControlEnabled);
+    }
+    /**
+     * @return plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
+     * 
+     */
+    public Optional<Boolean> mlCommonsModelAutoDeployEnable() {
+        return Optional.ofNullable(this.mlCommonsModelAutoDeployEnable);
+    }
+    /**
+     * @return plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
+     * 
+     */
+    public Optional<Boolean> mlCommonsModelAutoRedeployEnable() {
+        return Optional.ofNullable(this.mlCommonsModelAutoRedeployEnable);
     }
     /**
      * @return plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
@@ -1029,7 +1065,10 @@ public final class ManagedDatabaseOpensearchProperties {
         private @Nullable Boolean knnMemoryCircuitBreakerEnabled;
         private @Nullable Integer knnMemoryCircuitBreakerLimit;
         private @Nullable Boolean mlCommonsConnectorAccessControlEnabled;
+        private @Nullable Integer mlCommonsMaxModelOnNode;
         private @Nullable Boolean mlCommonsModelAccessControlEnabled;
+        private @Nullable Boolean mlCommonsModelAutoDeployEnable;
+        private @Nullable Boolean mlCommonsModelAutoRedeployEnable;
         private @Nullable Integer mlCommonsNativeMemoryThreshold;
         private @Nullable Boolean mlCommonsOnlyRunOnMlNode;
         private @Nullable List<String> mlCommonsTrustedConnectorEndpointsRegexes;
@@ -1113,7 +1152,10 @@ public final class ManagedDatabaseOpensearchProperties {
     	      this.knnMemoryCircuitBreakerEnabled = defaults.knnMemoryCircuitBreakerEnabled;
     	      this.knnMemoryCircuitBreakerLimit = defaults.knnMemoryCircuitBreakerLimit;
     	      this.mlCommonsConnectorAccessControlEnabled = defaults.mlCommonsConnectorAccessControlEnabled;
+    	      this.mlCommonsMaxModelOnNode = defaults.mlCommonsMaxModelOnNode;
     	      this.mlCommonsModelAccessControlEnabled = defaults.mlCommonsModelAccessControlEnabled;
+    	      this.mlCommonsModelAutoDeployEnable = defaults.mlCommonsModelAutoDeployEnable;
+    	      this.mlCommonsModelAutoRedeployEnable = defaults.mlCommonsModelAutoRedeployEnable;
     	      this.mlCommonsNativeMemoryThreshold = defaults.mlCommonsNativeMemoryThreshold;
     	      this.mlCommonsOnlyRunOnMlNode = defaults.mlCommonsOnlyRunOnMlNode;
     	      this.mlCommonsTrustedConnectorEndpointsRegexes = defaults.mlCommonsTrustedConnectorEndpointsRegexes;
@@ -1449,9 +1491,27 @@ public final class ManagedDatabaseOpensearchProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder mlCommonsMaxModelOnNode(@Nullable Integer mlCommonsMaxModelOnNode) {
+
+            this.mlCommonsMaxModelOnNode = mlCommonsMaxModelOnNode;
+            return this;
+        }
+        @CustomType.Setter
         public Builder mlCommonsModelAccessControlEnabled(@Nullable Boolean mlCommonsModelAccessControlEnabled) {
 
             this.mlCommonsModelAccessControlEnabled = mlCommonsModelAccessControlEnabled;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder mlCommonsModelAutoDeployEnable(@Nullable Boolean mlCommonsModelAutoDeployEnable) {
+
+            this.mlCommonsModelAutoDeployEnable = mlCommonsModelAutoDeployEnable;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder mlCommonsModelAutoRedeployEnable(@Nullable Boolean mlCommonsModelAutoRedeployEnable) {
+
+            this.mlCommonsModelAutoRedeployEnable = mlCommonsModelAutoRedeployEnable;
             return this;
         }
         @CustomType.Setter
@@ -1702,7 +1762,10 @@ public final class ManagedDatabaseOpensearchProperties {
             _resultValue.knnMemoryCircuitBreakerEnabled = knnMemoryCircuitBreakerEnabled;
             _resultValue.knnMemoryCircuitBreakerLimit = knnMemoryCircuitBreakerLimit;
             _resultValue.mlCommonsConnectorAccessControlEnabled = mlCommonsConnectorAccessControlEnabled;
+            _resultValue.mlCommonsMaxModelOnNode = mlCommonsMaxModelOnNode;
             _resultValue.mlCommonsModelAccessControlEnabled = mlCommonsModelAccessControlEnabled;
+            _resultValue.mlCommonsModelAutoDeployEnable = mlCommonsModelAutoDeployEnable;
+            _resultValue.mlCommonsModelAutoRedeployEnable = mlCommonsModelAutoRedeployEnable;
             _resultValue.mlCommonsNativeMemoryThreshold = mlCommonsNativeMemoryThreshold;
             _resultValue.mlCommonsOnlyRunOnMlNode = mlCommonsOnlyRunOnMlNode;
             _resultValue.mlCommonsTrustedConnectorEndpointsRegexes = mlCommonsTrustedConnectorEndpointsRegexes;

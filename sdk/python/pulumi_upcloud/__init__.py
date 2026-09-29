@@ -65,6 +65,7 @@ from .router import *
 from .server import *
 from .server_firewall_rules import *
 from .server_group import *
+from .server_private_firewall_ruleset import *
 from .storage import *
 from .storage_backup import *
 from .storage_template import *
@@ -416,6 +417,14 @@ _utilities.register(
   "fqn": "pulumi_upcloud",
   "classes": {
    "upcloud:index/serverGroup:ServerGroup": "ServerGroup"
+  }
+ },
+ {
+  "pkg": "upcloud",
+  "mod": "index/serverPrivateFirewallRuleset",
+  "fqn": "pulumi_upcloud",
+  "classes": {
+   "upcloud:index/serverPrivateFirewallRuleset:ServerPrivateFirewallRuleset": "ServerPrivateFirewallRuleset"
   }
  },
  {

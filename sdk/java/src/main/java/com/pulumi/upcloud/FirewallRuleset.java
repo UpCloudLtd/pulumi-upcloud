@@ -33,10 +33,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.upcloud.FirewallRuleset;
  * import com.pulumi.upcloud.FirewallRulesetArgs;
- * import com.pulumi.upcloud.Server;
- * import com.pulumi.upcloud.ServerArgs;
- * import com.pulumi.upcloud.inputs.ServerTemplateArgs;
- * import com.pulumi.upcloud.inputs.ServerNetworkInterfaceArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -59,25 +55,6 @@ import javax.annotation.Nullable;
  *                 Map.entry("environment", "production"),
  *                 Map.entry("managed_by", "terraform")
  *             ))
- *             .build());
- * 
- *         // Create a firewall ruleset attached to a specific server
- *         var exampleServer = new Server("exampleServer", ServerArgs.builder()
- *             .hostname("terraform.example.tld")
- *             .zone("de-fra1")
- *             .plan("1xCPU-1GB")
- *             .template(ServerTemplateArgs.builder()
- *                 .storage("Ubuntu Server 24.04 LTS (Noble Numbat)")
- *                 .build())
- *             .networkInterfaces(ServerNetworkInterfaceArgs.builder()
- *                 .type("utility")
- *                 .build())
- *             .build());
- * 
- *         var serverRuleset = new FirewallRuleset("serverRuleset", FirewallRulesetArgs.builder()
- *             .name("server-ruleset")
- *             .description("Firewall rules for example server")
- *             .serverUuid(exampleServer.id())
  *             .build());
  * 
  *     }
@@ -185,20 +162,6 @@ public class FirewallRuleset extends com.pulumi.resources.CustomResource {
      */
     public Output<List<FirewallRulesetRule>> rules() {
         return this.rules;
-    }
-    /**
-     * Optional server UUID to bind with this ruleset. Create-only in API.
-     * 
-     */
-    @Export(name="serverUuid", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> serverUuid;
-
-    /**
-     * @return Optional server UUID to bind with this ruleset. Create-only in API.
-     * 
-     */
-    public Output<Optional<String>> serverUuid() {
-        return Codegen.optional(this.serverUuid);
     }
     /**
      * Last update timestamp.

@@ -109,21 +109,6 @@ public final class FirewallRulesetArgs extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.rules);
     }
 
-    /**
-     * Optional server UUID to bind with this ruleset. Create-only in API.
-     * 
-     */
-    @Import(name="serverUuid")
-    private @Nullable Output<String> serverUuid;
-
-    /**
-     * @return Optional server UUID to bind with this ruleset. Create-only in API.
-     * 
-     */
-    public Optional<Output<String>> serverUuid() {
-        return Optional.ofNullable(this.serverUuid);
-    }
-
     private FirewallRulesetArgs() {}
 
     private FirewallRulesetArgs(FirewallRulesetArgs $) {
@@ -133,7 +118,6 @@ public final class FirewallRulesetArgs extends com.pulumi.resources.ResourceArgs
         this.labels = $.labels;
         this.name = $.name;
         this.rules = $.rules;
-        this.serverUuid = $.serverUuid;
     }
 
     public static Builder builder() {
@@ -288,27 +272,6 @@ public final class FirewallRulesetArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder rules(FirewallRulesetRuleArgs... rules) {
             return rules(List.of(rules));
-        }
-
-        /**
-         * @param serverUuid Optional server UUID to bind with this ruleset. Create-only in API.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder serverUuid(@Nullable Output<String> serverUuid) {
-            $.serverUuid = serverUuid;
-            return this;
-        }
-
-        /**
-         * @param serverUuid Optional server UUID to bind with this ruleset. Create-only in API.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder serverUuid(String serverUuid) {
-            return serverUuid(Output.of(serverUuid));
         }
 
         public FirewallRulesetArgs build() {

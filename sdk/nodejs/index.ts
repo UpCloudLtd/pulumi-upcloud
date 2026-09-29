@@ -298,6 +298,11 @@ export type ServerGroup = import("./serverGroup").ServerGroup;
 export const ServerGroup: typeof import("./serverGroup").ServerGroup = null as any;
 utilities.lazyLoad(exports, ["ServerGroup"], () => require("./serverGroup"));
 
+export { ServerPrivateFirewallRulesetArgs, ServerPrivateFirewallRulesetState } from "./serverPrivateFirewallRuleset";
+export type ServerPrivateFirewallRuleset = import("./serverPrivateFirewallRuleset").ServerPrivateFirewallRuleset;
+export const ServerPrivateFirewallRuleset: typeof import("./serverPrivateFirewallRuleset").ServerPrivateFirewallRuleset = null as any;
+utilities.lazyLoad(exports, ["ServerPrivateFirewallRuleset"], () => require("./serverPrivateFirewallRuleset"));
+
 export { StorageArgs, StorageState } from "./storage";
 export type Storage = import("./storage").Storage;
 export const Storage: typeof import("./storage").Storage = null as any;
@@ -416,6 +421,8 @@ const _module = {
                 return new ServerFirewallRules(name, <any>undefined, { urn })
             case "upcloud:index/serverGroup:ServerGroup":
                 return new ServerGroup(name, <any>undefined, { urn })
+            case "upcloud:index/serverPrivateFirewallRuleset:ServerPrivateFirewallRuleset":
+                return new ServerPrivateFirewallRuleset(name, <any>undefined, { urn })
             case "upcloud:index/storage:Storage":
                 return new Storage(name, <any>undefined, { urn })
             case "upcloud:index/storageBackup:StorageBackup":
@@ -471,6 +478,7 @@ pulumi.runtime.registerResourceModule("upcloud", "index/router", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/server", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/serverFirewallRules", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/serverGroup", _module)
+pulumi.runtime.registerResourceModule("upcloud", "index/serverPrivateFirewallRuleset", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/storage", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/storageBackup", _module)
 pulumi.runtime.registerResourceModule("upcloud", "index/storageTemplate", _module)

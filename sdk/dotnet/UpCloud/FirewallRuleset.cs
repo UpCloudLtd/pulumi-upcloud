@@ -36,32 +36,6 @@ namespace UpCloud.Pulumi.UpCloud
     ///         },
     ///     });
     /// 
-    ///     // Create a firewall ruleset attached to a specific server
-    ///     var exampleServer = new UpCloud.Server("example", new()
-    ///     {
-    ///         Hostname = "terraform.example.tld",
-    ///         Zone = "de-fra1",
-    ///         Plan = "1xCPU-1GB",
-    ///         Template = new UpCloud.Inputs.ServerTemplateArgs
-    ///         {
-    ///             Storage = "Ubuntu Server 24.04 LTS (Noble Numbat)",
-    ///         },
-    ///         NetworkInterfaces = new[]
-    ///         {
-    ///             new UpCloud.Inputs.ServerNetworkInterfaceArgs
-    ///             {
-    ///                 Type = "utility",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    ///     var serverRuleset = new UpCloud.FirewallRuleset("server_ruleset", new()
-    ///     {
-    ///         Name = "server-ruleset",
-    ///         Description = "Firewall rules for example server",
-    ///         ServerUuid = exampleServer.Id,
-    ///     });
-    /// 
     /// });
     /// ```
     /// </summary>
@@ -109,12 +83,6 @@ namespace UpCloud.Pulumi.UpCloud
         /// </summary>
         [Output("rules")]
         public Output<ImmutableArray<Outputs.FirewallRulesetRule>> Rules { get; private set; } = null!;
-
-        /// <summary>
-        /// Optional server UUID to bind with this ruleset. Create-only in API.
-        /// </summary>
-        [Output("serverUuid")]
-        public Output<string?> ServerUuid { get; private set; } = null!;
 
         /// <summary>
         /// Last update timestamp.
@@ -223,12 +191,6 @@ namespace UpCloud.Pulumi.UpCloud
             set => _rules = value;
         }
 
-        /// <summary>
-        /// Optional server UUID to bind with this ruleset. Create-only in API.
-        /// </summary>
-        [Input("serverUuid")]
-        public Input<string>? ServerUuid { get; set; }
-
         public FirewallRulesetArgs()
         {
         }
@@ -290,12 +252,6 @@ namespace UpCloud.Pulumi.UpCloud
             get => _rules ?? (_rules = new InputList<Inputs.FirewallRulesetRuleGetArgs>());
             set => _rules = value;
         }
-
-        /// <summary>
-        /// Optional server UUID to bind with this ruleset. Create-only in API.
-        /// </summary>
-        [Input("serverUuid")]
-        public Input<string>? ServerUuid { get; set; }
 
         /// <summary>
         /// Last update timestamp.
