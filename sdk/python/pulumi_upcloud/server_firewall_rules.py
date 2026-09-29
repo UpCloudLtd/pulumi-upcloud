@@ -150,6 +150,7 @@ class ServerFirewallRules(pulumi.CustomResource):
 
         # The following example defines a server and then links the server to a single firewall rule. 
         # The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.
+        # Note: upcloud_firewall_rules configures public firewall rules on the server.
         example = upcloud.Server("example",
             firewall=True,
             hostname="terraform.example.tld",
@@ -219,6 +220,7 @@ class ServerFirewallRules(pulumi.CustomResource):
 
         # The following example defines a server and then links the server to a single firewall rule. 
         # The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.
+        # Note: upcloud_firewall_rules configures public firewall rules on the server.
         example = upcloud.Server("example",
             firewall=True,
             hostname="terraform.example.tld",

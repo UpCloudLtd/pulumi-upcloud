@@ -26,8 +26,7 @@ class FirewallRulesetArgs:
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]] = None,
-                 server_uuid: Optional[pulumi.Input[_builtins.str]] = None):
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]] = None):
         """
         The set of arguments for constructing a FirewallRuleset resource.
         :param pulumi.Input[_builtins.bool] default_dns_rules_enabled: Whether default DNS rules are enabled.
@@ -36,7 +35,6 @@ class FirewallRulesetArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Ruleset labels as key/value pairs.
         :param pulumi.Input[_builtins.str] name: Name of the firewall ruleset.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]] rules: Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
-        :param pulumi.Input[_builtins.str] server_uuid: Optional server UUID to bind with this ruleset. Create-only in API.
         """
         if default_dns_rules_enabled is not None:
             pulumi.set(__self__, "default_dns_rules_enabled", default_dns_rules_enabled)
@@ -50,8 +48,6 @@ class FirewallRulesetArgs:
             pulumi.set(__self__, "name", name)
         if rules is not None:
             pulumi.set(__self__, "rules", rules)
-        if server_uuid is not None:
-            pulumi.set(__self__, "server_uuid", server_uuid)
 
     @_builtins.property
     @pulumi.getter(name="defaultDnsRulesEnabled")
@@ -125,18 +121,6 @@ class FirewallRulesetArgs:
     def rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]]):
         pulumi.set(self, "rules", value)
 
-    @_builtins.property
-    @pulumi.getter(name="serverUuid")
-    def server_uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Optional server UUID to bind with this ruleset. Create-only in API.
-        """
-        return pulumi.get(self, "server_uuid")
-
-    @server_uuid.setter
-    def server_uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "server_uuid", value)
-
 
 @pulumi.input_type
 class _FirewallRulesetState:
@@ -148,7 +132,6 @@ class _FirewallRulesetState:
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]] = None,
-                 server_uuid: Optional[pulumi.Input[_builtins.str]] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.int]] = None):
         """
@@ -160,7 +143,6 @@ class _FirewallRulesetState:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Ruleset labels as key/value pairs.
         :param pulumi.Input[_builtins.str] name: Name of the firewall ruleset.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]] rules: Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
-        :param pulumi.Input[_builtins.str] server_uuid: Optional server UUID to bind with this ruleset. Create-only in API.
         :param pulumi.Input[_builtins.str] updated_at: Last update timestamp.
         :param pulumi.Input[_builtins.int] version: Ruleset version.
         """
@@ -178,8 +160,6 @@ class _FirewallRulesetState:
             pulumi.set(__self__, "name", name)
         if rules is not None:
             pulumi.set(__self__, "rules", rules)
-        if server_uuid is not None:
-            pulumi.set(__self__, "server_uuid", server_uuid)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if version is not None:
@@ -270,18 +250,6 @@ class _FirewallRulesetState:
         pulumi.set(self, "rules", value)
 
     @_builtins.property
-    @pulumi.getter(name="serverUuid")
-    def server_uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Optional server UUID to bind with this ruleset. Create-only in API.
-        """
-        return pulumi.get(self, "server_uuid")
-
-    @server_uuid.setter
-    def server_uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "server_uuid", value)
-
-    @_builtins.property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -318,7 +286,6 @@ class FirewallRuleset(pulumi.CustomResource):
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict']]]]] = None,
-                 server_uuid: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents an UpCloud SDN firewall ruleset. Rules are managed as an ordered list; their position in the API is determined by their order in the `rules` list.
@@ -338,21 +305,6 @@ class FirewallRuleset(pulumi.CustomResource):
                 "environment": "production",
                 "managed_by": "terraform",
             })
-        # Create a firewall ruleset attached to a specific server
-        example_server = upcloud.Server("example",
-            hostname="terraform.example.tld",
-            zone="de-fra1",
-            plan="1xCPU-1GB",
-            template={
-                "storage": "Ubuntu Server 24.04 LTS (Noble Numbat)",
-            },
-            network_interfaces=[{
-                "type": "utility",
-            }])
-        server_ruleset = upcloud.FirewallRuleset("server_ruleset",
-            name="server-ruleset",
-            description="Firewall rules for example server",
-            server_uuid=example_server.id)
         ```
 
         :param str resource_name: The name of the resource.
@@ -363,7 +315,6 @@ class FirewallRuleset(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Ruleset labels as key/value pairs.
         :param pulumi.Input[_builtins.str] name: Name of the firewall ruleset.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict']]]] rules: Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
-        :param pulumi.Input[_builtins.str] server_uuid: Optional server UUID to bind with this ruleset. Create-only in API.
         """
         ...
     @overload
@@ -389,21 +340,6 @@ class FirewallRuleset(pulumi.CustomResource):
                 "environment": "production",
                 "managed_by": "terraform",
             })
-        # Create a firewall ruleset attached to a specific server
-        example_server = upcloud.Server("example",
-            hostname="terraform.example.tld",
-            zone="de-fra1",
-            plan="1xCPU-1GB",
-            template={
-                "storage": "Ubuntu Server 24.04 LTS (Noble Numbat)",
-            },
-            network_interfaces=[{
-                "type": "utility",
-            }])
-        server_ruleset = upcloud.FirewallRuleset("server_ruleset",
-            name="server-ruleset",
-            description="Firewall rules for example server",
-            server_uuid=example_server.id)
         ```
 
         :param str resource_name: The name of the resource.
@@ -427,7 +363,6 @@ class FirewallRuleset(pulumi.CustomResource):
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict']]]]] = None,
-                 server_uuid: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -443,7 +378,6 @@ class FirewallRuleset(pulumi.CustomResource):
             __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
             __props__.__dict__["rules"] = rules
-            __props__.__dict__["server_uuid"] = server_uuid
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["version"] = None
@@ -464,7 +398,6 @@ class FirewallRuleset(pulumi.CustomResource):
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict']]]]] = None,
-            server_uuid: Optional[pulumi.Input[_builtins.str]] = None,
             updated_at: Optional[pulumi.Input[_builtins.str]] = None,
             version: Optional[pulumi.Input[_builtins.int]] = None) -> 'FirewallRuleset':
         """
@@ -481,7 +414,6 @@ class FirewallRuleset(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Ruleset labels as key/value pairs.
         :param pulumi.Input[_builtins.str] name: Name of the firewall ruleset.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict']]]] rules: Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
-        :param pulumi.Input[_builtins.str] server_uuid: Optional server UUID to bind with this ruleset. Create-only in API.
         :param pulumi.Input[_builtins.str] updated_at: Last update timestamp.
         :param pulumi.Input[_builtins.int] version: Ruleset version.
         """
@@ -496,7 +428,6 @@ class FirewallRuleset(pulumi.CustomResource):
         __props__.__dict__["labels"] = labels
         __props__.__dict__["name"] = name
         __props__.__dict__["rules"] = rules
-        __props__.__dict__["server_uuid"] = server_uuid
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["version"] = version
         return FirewallRuleset(resource_name, opts=opts, __props__=__props__)
@@ -556,14 +487,6 @@ class FirewallRuleset(pulumi.CustomResource):
         Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
         """
         return pulumi.get(self, "rules")
-
-    @_builtins.property
-    @pulumi.getter(name="serverUuid")
-    def server_uuid(self) -> pulumi.Output[Optional[_builtins.str]]:
-        """
-        Optional server UUID to bind with this ruleset. Create-only in API.
-        """
-        return pulumi.get(self, "server_uuid")
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")

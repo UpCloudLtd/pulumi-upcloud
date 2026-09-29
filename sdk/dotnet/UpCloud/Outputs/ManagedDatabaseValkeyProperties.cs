@@ -47,13 +47,29 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? PublicAccessPrometheus;
         /// <summary>
+        /// Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
+        /// </summary>
+        public readonly int? Replicas;
+        /// <summary>
         /// Service logging. Store logs for the service so that they are available in the HTTP API and console.
         /// </summary>
         public readonly bool? ServiceLog;
         /// <summary>
+        /// Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
+        /// </summary>
+        public readonly int? ShardCount;
+        /// <summary>
         /// Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, AllChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
         /// </summary>
         public readonly string? ValkeyAclChannelsDefault;
+        /// <summary>
+        /// Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `ValkeyActivedefrag` is enabled.
+        /// </summary>
+        public readonly int? ValkeyActiveDefragIgnoreBytes;
+        /// <summary>
+        /// Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `ValkeyActivedefrag` is enabled.
+        /// </summary>
+        public readonly int? ValkeyActiveDefragThresholdLower;
         /// <summary>
         /// Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
         /// </summary>
@@ -87,7 +103,7 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly int? ValkeyNumberOfDatabases;
         /// <summary>
-        /// Valkey persistence. When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked.
+        /// Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `Rdb`, RDB dumps are written for backups on the backup schedule and, if `FrequentSnapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `Off`, no RDB dumps are written at all: backups and forking are unavailable, `FrequentSnapshots` and `BackupHour`/`BackupMinute` have no effect, and all data is lost if the service restarts or is powered off.
         /// </summary>
         public readonly string? ValkeyPersistence;
         /// <summary>
@@ -125,9 +141,17 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             bool? publicAccessPrometheus,
 
+            int? replicas,
+
             bool? serviceLog,
 
+            int? shardCount,
+
             string? valkeyAclChannelsDefault,
+
+            int? valkeyActiveDefragIgnoreBytes,
+
+            int? valkeyActiveDefragThresholdLower,
 
             int? valkeyActiveExpireEffort,
 
@@ -163,8 +187,12 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             Migration = migration;
             PublicAccess = publicAccess;
             PublicAccessPrometheus = publicAccessPrometheus;
+            Replicas = replicas;
             ServiceLog = serviceLog;
+            ShardCount = shardCount;
             ValkeyAclChannelsDefault = valkeyAclChannelsDefault;
+            ValkeyActiveDefragIgnoreBytes = valkeyActiveDefragIgnoreBytes;
+            ValkeyActiveDefragThresholdLower = valkeyActiveDefragThresholdLower;
             ValkeyActiveExpireEffort = valkeyActiveExpireEffort;
             ValkeyActivedefrag = valkeyActivedefrag;
             ValkeyIoThreads = valkeyIoThreads;

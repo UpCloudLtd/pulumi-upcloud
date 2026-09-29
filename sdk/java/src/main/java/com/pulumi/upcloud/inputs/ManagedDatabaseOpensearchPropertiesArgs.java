@@ -738,6 +738,21 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
     }
 
     /**
+     * plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
+     * 
+     */
+    @Import(name="mlCommonsMaxModelOnNode")
+    private @Nullable Output<Integer> mlCommonsMaxModelOnNode;
+
+    /**
+     * @return plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
+     * 
+     */
+    public Optional<Output<Integer>> mlCommonsMaxModelOnNode() {
+        return Optional.ofNullable(this.mlCommonsMaxModelOnNode);
+    }
+
+    /**
      * plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
      * 
      */
@@ -750,6 +765,36 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
      */
     public Optional<Output<Boolean>> mlCommonsModelAccessControlEnabled() {
         return Optional.ofNullable(this.mlCommonsModelAccessControlEnabled);
+    }
+
+    /**
+     * plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
+     * 
+     */
+    @Import(name="mlCommonsModelAutoDeployEnable")
+    private @Nullable Output<Boolean> mlCommonsModelAutoDeployEnable;
+
+    /**
+     * @return plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
+     * 
+     */
+    public Optional<Output<Boolean>> mlCommonsModelAutoDeployEnable() {
+        return Optional.ofNullable(this.mlCommonsModelAutoDeployEnable);
+    }
+
+    /**
+     * plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
+     * 
+     */
+    @Import(name="mlCommonsModelAutoRedeployEnable")
+    private @Nullable Output<Boolean> mlCommonsModelAutoRedeployEnable;
+
+    /**
+     * @return plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
+     * 
+     */
+    public Optional<Output<Boolean>> mlCommonsModelAutoRedeployEnable() {
+        return Optional.ofNullable(this.mlCommonsModelAutoRedeployEnable);
     }
 
     /**
@@ -1267,7 +1312,10 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         this.knnMemoryCircuitBreakerEnabled = $.knnMemoryCircuitBreakerEnabled;
         this.knnMemoryCircuitBreakerLimit = $.knnMemoryCircuitBreakerLimit;
         this.mlCommonsConnectorAccessControlEnabled = $.mlCommonsConnectorAccessControlEnabled;
+        this.mlCommonsMaxModelOnNode = $.mlCommonsMaxModelOnNode;
         this.mlCommonsModelAccessControlEnabled = $.mlCommonsModelAccessControlEnabled;
+        this.mlCommonsModelAutoDeployEnable = $.mlCommonsModelAutoDeployEnable;
+        this.mlCommonsModelAutoRedeployEnable = $.mlCommonsModelAutoRedeployEnable;
         this.mlCommonsNativeMemoryThreshold = $.mlCommonsNativeMemoryThreshold;
         this.mlCommonsOnlyRunOnMlNode = $.mlCommonsOnlyRunOnMlNode;
         this.mlCommonsTrustedConnectorEndpointsRegexes = $.mlCommonsTrustedConnectorEndpointsRegexes;
@@ -2345,6 +2393,27 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         }
 
         /**
+         * @param mlCommonsMaxModelOnNode plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mlCommonsMaxModelOnNode(@Nullable Output<Integer> mlCommonsMaxModelOnNode) {
+            $.mlCommonsMaxModelOnNode = mlCommonsMaxModelOnNode;
+            return this;
+        }
+
+        /**
+         * @param mlCommonsMaxModelOnNode plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mlCommonsMaxModelOnNode(Integer mlCommonsMaxModelOnNode) {
+            return mlCommonsMaxModelOnNode(Output.of(mlCommonsMaxModelOnNode));
+        }
+
+        /**
          * @param mlCommonsModelAccessControlEnabled plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
          * 
          * @return builder
@@ -2363,6 +2432,48 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
          */
         public Builder mlCommonsModelAccessControlEnabled(Boolean mlCommonsModelAccessControlEnabled) {
             return mlCommonsModelAccessControlEnabled(Output.of(mlCommonsModelAccessControlEnabled));
+        }
+
+        /**
+         * @param mlCommonsModelAutoDeployEnable plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mlCommonsModelAutoDeployEnable(@Nullable Output<Boolean> mlCommonsModelAutoDeployEnable) {
+            $.mlCommonsModelAutoDeployEnable = mlCommonsModelAutoDeployEnable;
+            return this;
+        }
+
+        /**
+         * @param mlCommonsModelAutoDeployEnable plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mlCommonsModelAutoDeployEnable(Boolean mlCommonsModelAutoDeployEnable) {
+            return mlCommonsModelAutoDeployEnable(Output.of(mlCommonsModelAutoDeployEnable));
+        }
+
+        /**
+         * @param mlCommonsModelAutoRedeployEnable plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mlCommonsModelAutoRedeployEnable(@Nullable Output<Boolean> mlCommonsModelAutoRedeployEnable) {
+            $.mlCommonsModelAutoRedeployEnable = mlCommonsModelAutoRedeployEnable;
+            return this;
+        }
+
+        /**
+         * @param mlCommonsModelAutoRedeployEnable plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mlCommonsModelAutoRedeployEnable(Boolean mlCommonsModelAutoRedeployEnable) {
+            return mlCommonsModelAutoRedeployEnable(Output.of(mlCommonsModelAutoRedeployEnable));
         }
 
         /**

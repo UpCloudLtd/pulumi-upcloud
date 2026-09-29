@@ -140,6 +140,21 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
     }
 
     /**
+     * Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
+     * 
+     */
+    @Import(name="replicas")
+    private @Nullable Output<Integer> replicas;
+
+    /**
+     * @return Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
+     * 
+     */
+    public Optional<Output<Integer>> replicas() {
+        return Optional.ofNullable(this.replicas);
+    }
+
+    /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      * 
      */
@@ -155,6 +170,21 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
     }
 
     /**
+     * Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
+     * 
+     */
+    @Import(name="shardCount")
+    private @Nullable Output<Integer> shardCount;
+
+    /**
+     * @return Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
+     * 
+     */
+    public Optional<Output<Integer>> shardCount() {
+        return Optional.ofNullable(this.shardCount);
+    }
+
+    /**
      * Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels&#39; ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn&#39;t affect Valkey configuration acl-pubsub-default.
      * 
      */
@@ -167,6 +197,36 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
      */
     public Optional<Output<String>> valkeyAclChannelsDefault() {
         return Optional.ofNullable(this.valkeyAclChannelsDefault);
+    }
+
+    /**
+     * Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+     * 
+     */
+    @Import(name="valkeyActiveDefragIgnoreBytes")
+    private @Nullable Output<Integer> valkeyActiveDefragIgnoreBytes;
+
+    /**
+     * @return Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+     * 
+     */
+    public Optional<Output<Integer>> valkeyActiveDefragIgnoreBytes() {
+        return Optional.ofNullable(this.valkeyActiveDefragIgnoreBytes);
+    }
+
+    /**
+     * Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+     * 
+     */
+    @Import(name="valkeyActiveDefragThresholdLower")
+    private @Nullable Output<Integer> valkeyActiveDefragThresholdLower;
+
+    /**
+     * @return Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+     * 
+     */
+    public Optional<Output<Integer>> valkeyActiveDefragThresholdLower() {
+        return Optional.ofNullable(this.valkeyActiveDefragThresholdLower);
     }
 
     /**
@@ -290,14 +350,14 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
     }
 
     /**
-     * Valkey persistence. When persistence is &#39;rdb&#39;, Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is &#39;off&#39;, no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can&#39;t be forked.
+     * Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `rdb`, RDB dumps are written for backups on the backup schedule and, if `frequentSnapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `off`, no RDB dumps are written at all: backups and forking are unavailable, `frequentSnapshots` and `backupHour`/`backupMinute` have no effect, and all data is lost if the service restarts or is powered off.
      * 
      */
     @Import(name="valkeyPersistence")
     private @Nullable Output<String> valkeyPersistence;
 
     /**
-     * @return Valkey persistence. When persistence is &#39;rdb&#39;, Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is &#39;off&#39;, no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can&#39;t be forked.
+     * @return Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `rdb`, RDB dumps are written for backups on the backup schedule and, if `frequentSnapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `off`, no RDB dumps are written at all: backups and forking are unavailable, `frequentSnapshots` and `backupHour`/`backupMinute` have no effect, and all data is lost if the service restarts or is powered off.
      * 
      */
     public Optional<Output<String>> valkeyPersistence() {
@@ -375,8 +435,12 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
         this.migration = $.migration;
         this.publicAccess = $.publicAccess;
         this.publicAccessPrometheus = $.publicAccessPrometheus;
+        this.replicas = $.replicas;
         this.serviceLog = $.serviceLog;
+        this.shardCount = $.shardCount;
         this.valkeyAclChannelsDefault = $.valkeyAclChannelsDefault;
+        this.valkeyActiveDefragIgnoreBytes = $.valkeyActiveDefragIgnoreBytes;
+        this.valkeyActiveDefragThresholdLower = $.valkeyActiveDefragThresholdLower;
         this.valkeyActiveExpireEffort = $.valkeyActiveExpireEffort;
         this.valkeyActivedefrag = $.valkeyActivedefrag;
         this.valkeyIoThreads = $.valkeyIoThreads;
@@ -589,6 +653,27 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
         }
 
         /**
+         * @param replicas Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder replicas(@Nullable Output<Integer> replicas) {
+            $.replicas = replicas;
+            return this;
+        }
+
+        /**
+         * @param replicas Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder replicas(Integer replicas) {
+            return replicas(Output.of(replicas));
+        }
+
+        /**
          * @param serviceLog Service logging. Store logs for the service so that they are available in the HTTP API and console.
          * 
          * @return builder
@@ -610,6 +695,27 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
         }
 
         /**
+         * @param shardCount Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder shardCount(@Nullable Output<Integer> shardCount) {
+            $.shardCount = shardCount;
+            return this;
+        }
+
+        /**
+         * @param shardCount Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder shardCount(Integer shardCount) {
+            return shardCount(Output.of(shardCount));
+        }
+
+        /**
          * @param valkeyAclChannelsDefault Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels&#39; ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn&#39;t affect Valkey configuration acl-pubsub-default.
          * 
          * @return builder
@@ -628,6 +734,48 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
          */
         public Builder valkeyAclChannelsDefault(String valkeyAclChannelsDefault) {
             return valkeyAclChannelsDefault(Output.of(valkeyAclChannelsDefault));
+        }
+
+        /**
+         * @param valkeyActiveDefragIgnoreBytes Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valkeyActiveDefragIgnoreBytes(@Nullable Output<Integer> valkeyActiveDefragIgnoreBytes) {
+            $.valkeyActiveDefragIgnoreBytes = valkeyActiveDefragIgnoreBytes;
+            return this;
+        }
+
+        /**
+         * @param valkeyActiveDefragIgnoreBytes Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valkeyActiveDefragIgnoreBytes(Integer valkeyActiveDefragIgnoreBytes) {
+            return valkeyActiveDefragIgnoreBytes(Output.of(valkeyActiveDefragIgnoreBytes));
+        }
+
+        /**
+         * @param valkeyActiveDefragThresholdLower Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valkeyActiveDefragThresholdLower(@Nullable Output<Integer> valkeyActiveDefragThresholdLower) {
+            $.valkeyActiveDefragThresholdLower = valkeyActiveDefragThresholdLower;
+            return this;
+        }
+
+        /**
+         * @param valkeyActiveDefragThresholdLower Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valkeyActiveDefragThresholdLower(Integer valkeyActiveDefragThresholdLower) {
+            return valkeyActiveDefragThresholdLower(Output.of(valkeyActiveDefragThresholdLower));
         }
 
         /**
@@ -799,7 +947,7 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
         }
 
         /**
-         * @param valkeyPersistence Valkey persistence. When persistence is &#39;rdb&#39;, Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is &#39;off&#39;, no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can&#39;t be forked.
+         * @param valkeyPersistence Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `rdb`, RDB dumps are written for backups on the backup schedule and, if `frequentSnapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `off`, no RDB dumps are written at all: backups and forking are unavailable, `frequentSnapshots` and `backupHour`/`backupMinute` have no effect, and all data is lost if the service restarts or is powered off.
          * 
          * @return builder
          * 
@@ -810,7 +958,7 @@ public final class ManagedDatabaseValkeyPropertiesArgs extends com.pulumi.resour
         }
 
         /**
-         * @param valkeyPersistence Valkey persistence. When persistence is &#39;rdb&#39;, Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is &#39;off&#39;, no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can&#39;t be forked.
+         * @param valkeyPersistence Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `rdb`, RDB dumps are written for backups on the backup schedule and, if `frequentSnapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `off`, no RDB dumps are written at all: backups and forking are unavailable, `frequentSnapshots` and `backupHour`/`backupMinute` have no effect, and all data is lost if the service restarts or is powered off.
          * 
          * @return builder
          * 

@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // The following example defines a server and then links the server to a single firewall rule. 
  *         // The list of firewall rules applied to the server can be expanded by providing additional server_firewall_rules blocks.
+ *         // Note: upcloud_firewall_rules configures public firewall rules on the server.
  *         var example = new Server("example", ServerArgs.builder()
  *             .firewall(true)
  *             .hostname("terraform.example.tld")

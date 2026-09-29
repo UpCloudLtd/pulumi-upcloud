@@ -25,23 +25,6 @@ import * as utilities from "./utilities";
  *         managed_by: "terraform",
  *     },
  * });
- * // Create a firewall ruleset attached to a specific server
- * const exampleServer = new upcloud.Server("example", {
- *     hostname: "terraform.example.tld",
- *     zone: "de-fra1",
- *     plan: "1xCPU-1GB",
- *     template: {
- *         storage: "Ubuntu Server 24.04 LTS (Noble Numbat)",
- *     },
- *     networkInterfaces: [{
- *         type: "utility",
- *     }],
- * });
- * const serverRuleset = new upcloud.FirewallRuleset("server_ruleset", {
- *     name: "server-ruleset",
- *     description: "Firewall rules for example server",
- *     serverUuid: exampleServer.id,
- * });
  * ```
  */
 export class FirewallRuleset extends pulumi.CustomResource {
@@ -101,10 +84,6 @@ export class FirewallRuleset extends pulumi.CustomResource {
      */
     declare public readonly rules: pulumi.Output<outputs.FirewallRulesetRule[]>;
     /**
-     * Optional server UUID to bind with this ruleset. Create-only in API.
-     */
-    declare public readonly serverUuid: pulumi.Output<string | undefined>;
-    /**
      * Last update timestamp.
      */
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
@@ -133,7 +112,6 @@ export class FirewallRuleset extends pulumi.CustomResource {
             resourceInputs["labels"] = state?.labels;
             resourceInputs["name"] = state?.name;
             resourceInputs["rules"] = state?.rules;
-            resourceInputs["serverUuid"] = state?.serverUuid;
             resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["version"] = state?.version;
         } else {
@@ -144,7 +122,6 @@ export class FirewallRuleset extends pulumi.CustomResource {
             resourceInputs["labels"] = args?.labels;
             resourceInputs["name"] = args?.name;
             resourceInputs["rules"] = args?.rules;
-            resourceInputs["serverUuid"] = args?.serverUuid;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["version"] = undefined /*out*/;
@@ -187,10 +164,6 @@ export interface FirewallRulesetState {
      */
     rules?: pulumi.Input<pulumi.Input<inputs.FirewallRulesetRule>[]>;
     /**
-     * Optional server UUID to bind with this ruleset. Create-only in API.
-     */
-    serverUuid?: pulumi.Input<string>;
-    /**
      * Last update timestamp.
      */
     updatedAt?: pulumi.Input<string>;
@@ -228,8 +201,4 @@ export interface FirewallRulesetArgs {
      * Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
      */
     rules?: pulumi.Input<pulumi.Input<inputs.FirewallRulesetRule>[]>;
-    /**
-     * Optional server UUID to bind with this ruleset. Create-only in API.
-     */
-    serverUuid?: pulumi.Input<string>;
 }

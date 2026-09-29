@@ -105,6 +105,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ServerFirewallRules{}
 	case "upcloud:index/serverGroup:ServerGroup":
 		r = &ServerGroup{}
+	case "upcloud:index/serverPrivateFirewallRuleset:ServerPrivateFirewallRuleset":
+		r = &ServerPrivateFirewallRuleset{}
 	case "upcloud:index/storage:Storage":
 		r = &Storage{}
 	case "upcloud:index/storageBackup:StorageBackup":
@@ -352,6 +354,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"upcloud",
 		"index/serverGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upcloud",
+		"index/serverPrivateFirewallRuleset",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
