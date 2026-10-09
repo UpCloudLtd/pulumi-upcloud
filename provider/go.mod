@@ -5,7 +5,7 @@ go 1.25.3
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250923233607-7f1981c8674a
 
 require (
-	github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20260928080229-9a18cf8ed351
+	github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20261008093031-3e844cc7f429
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.37.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.120.0
 )
@@ -34,7 +34,7 @@ require (
 	github.com/UpCloudLtd/httplog v0.0.0-20260624214043-23b0cab8e085 // indirect
 	github.com/UpCloudLtd/upcloud-go-api/credentials v0.1.2-0.20260218111517-78b5a1eb8206 // indirect
 	github.com/UpCloudLtd/upcloud-go-api/v8 v8.40.0 // indirect
-	github.com/UpCloudLtd/upcloud-go-api/v9 v9.0.0-20260917090650-3e1a69f90c36 // indirect
+	github.com/UpCloudLtd/upcloud-go-api/v9 v9.0.0-20261001102606-7c5944e678e2 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
 	github.com/apparentlymart/go-cidr v1.1.0 // indirect
