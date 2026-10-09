@@ -30,21 +30,27 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Minimal config
 //			_, err := upcloud.NewManagedDatabaseMysql(ctx, "example_1", &upcloud.ManagedDatabaseMysqlArgs{
-//				Name:  pulumi.String("mysql-1"),
-//				Title: pulumi.String("mysql-1-example-1"),
-//				Plan:  pulumi.String("1x1xCPU-2GB-25GB"),
-//				Zone:  pulumi.String("fi-hel1"),
+//				Name:           pulumi.String("mysql-1"),
+//				Title:          pulumi.String("mysql-1-example-1"),
+//				PlanCompute:    pulumi.String("rdb.standard.2CPU-8GB"),
+//				PlanNodeCount:  pulumi.Int(2),
+//				PlanStorageGib: pulumi.Int(120),
+//				PlanBackups:    pulumi.String("regular"),
+//				Zone:           pulumi.String("fi-hel1"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Shutdown instance after creation
 //			_, err = upcloud.NewManagedDatabaseMysql(ctx, "example_2", &upcloud.ManagedDatabaseMysqlArgs{
-//				Name:    pulumi.String("mysql-2"),
-//				Title:   pulumi.String("mysql-2-example-2"),
-//				Plan:    pulumi.String("1x1xCPU-2GB-25GB"),
-//				Zone:    pulumi.String("fi-hel1"),
-//				Powered: pulumi.Bool(false),
+//				Name:           pulumi.String("mysql-2"),
+//				Title:          pulumi.String("mysql-2-example-2"),
+//				PlanCompute:    pulumi.String("rdb.standard.2CPU-8GB"),
+//				PlanNodeCount:  pulumi.Int(2),
+//				PlanStorageGib: pulumi.Int(120),
+//				PlanBackups:    pulumi.String("regular"),
+//				Zone:           pulumi.String("fi-hel1"),
+//				Powered:        pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
@@ -52,10 +58,13 @@ import (
 //			// Service with custom properties
 //			// Note that this basically sets strict mode off which is not normally recommended
 //			_, err = upcloud.NewManagedDatabaseMysql(ctx, "example_3", &upcloud.ManagedDatabaseMysqlArgs{
-//				Name:  pulumi.String("mysql-3"),
-//				Title: pulumi.String("mysql-3-example-3"),
-//				Plan:  pulumi.String("1x1xCPU-2GB-25GB"),
-//				Zone:  pulumi.String("fi-hel1"),
+//				Name:           pulumi.String("mysql-3"),
+//				Title:          pulumi.String("mysql-3-example-3"),
+//				PlanCompute:    pulumi.String("rdb.standard.2CPU-8GB"),
+//				PlanNodeCount:  pulumi.Int(2),
+//				PlanStorageGib: pulumi.Int(120),
+//				PlanBackups:    pulumi.String("regular"),
+//				Zone:           pulumi.String("fi-hel1"),
 //				Properties: &upcloud.ManagedDatabaseMysqlPropertiesArgs{
 //					SqlMode:          pulumi.String("NO_ENGINE_SUBSTITUTION"),
 //					WaitTimeout:      pulumi.Int(300),
@@ -77,6 +86,8 @@ type ManagedDatabaseMysql struct {
 	pulumi.CustomResourceState
 
 	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	//
+	// Deprecated: The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
 	AdditionalDiskSpaceGib pulumi.IntOutput `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components ManagedDatabaseMysqlComponentArrayOutput `pulumi:"components"`
@@ -93,7 +104,17 @@ type ManagedDatabaseMysql struct {
 	// Information about nodes providing the managed service
 	NodeStates ManagedDatabaseMysqlNodeStateArrayOutput `pulumi:"nodeStates"`
 	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
+	//
+	// Deprecated: The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
 	Plan pulumi.StringOutput `pulumi:"plan"`
+	// Backup tier for the database plan.
+	PlanBackups pulumi.StringOutput `pulumi:"planBackups"`
+	// Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+	PlanCompute pulumi.StringOutput `pulumi:"planCompute"`
+	// Number of nodes in the database plan.
+	PlanNodeCount pulumi.IntOutput `pulumi:"planNodeCount"`
+	// Total storage per node in GiB.
+	PlanStorageGib pulumi.IntOutput `pulumi:"planStorageGib"`
 	// The administrative power state of the service
 	Powered pulumi.BoolOutput `pulumi:"powered"`
 	// Primary database name
@@ -129,9 +150,6 @@ func NewManagedDatabaseMysql(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Plan == nil {
-		return nil, errors.New("invalid value for required argument 'Plan'")
-	}
 	if args.Title == nil {
 		return nil, errors.New("invalid value for required argument 'Title'")
 	}
@@ -167,6 +185,8 @@ func GetManagedDatabaseMysql(ctx *pulumi.Context,
 // Input properties used for looking up and filtering ManagedDatabaseMysql resources.
 type managedDatabaseMysqlState struct {
 	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	//
+	// Deprecated: The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
 	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// Service component information
 	Components []ManagedDatabaseMysqlComponent `pulumi:"components"`
@@ -183,7 +203,17 @@ type managedDatabaseMysqlState struct {
 	// Information about nodes providing the managed service
 	NodeStates []ManagedDatabaseMysqlNodeState `pulumi:"nodeStates"`
 	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
+	//
+	// Deprecated: The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
 	Plan *string `pulumi:"plan"`
+	// Backup tier for the database plan.
+	PlanBackups *string `pulumi:"planBackups"`
+	// Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+	PlanCompute *string `pulumi:"planCompute"`
+	// Number of nodes in the database plan.
+	PlanNodeCount *int `pulumi:"planNodeCount"`
+	// Total storage per node in GiB.
+	PlanStorageGib *int `pulumi:"planStorageGib"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
 	// Primary database name
@@ -214,6 +244,8 @@ type managedDatabaseMysqlState struct {
 
 type ManagedDatabaseMysqlState struct {
 	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	//
+	// Deprecated: The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
 	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// Service component information
 	Components ManagedDatabaseMysqlComponentArrayInput
@@ -230,7 +262,17 @@ type ManagedDatabaseMysqlState struct {
 	// Information about nodes providing the managed service
 	NodeStates ManagedDatabaseMysqlNodeStateArrayInput
 	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
+	//
+	// Deprecated: The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
 	Plan pulumi.StringPtrInput
+	// Backup tier for the database plan.
+	PlanBackups pulumi.StringPtrInput
+	// Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+	PlanCompute pulumi.StringPtrInput
+	// Number of nodes in the database plan.
+	PlanNodeCount pulumi.IntPtrInput
+	// Total storage per node in GiB.
+	PlanStorageGib pulumi.IntPtrInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
 	// Primary database name
@@ -265,6 +307,8 @@ func (ManagedDatabaseMysqlState) ElementType() reflect.Type {
 
 type managedDatabaseMysqlArgs struct {
 	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	//
+	// Deprecated: The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
 	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
 	// User defined key-value pairs to classify the database.
 	Labels map[string]string `pulumi:"labels"`
@@ -277,7 +321,17 @@ type managedDatabaseMysqlArgs struct {
 	// Private networks attached to the managed database
 	Networks []ManagedDatabaseMysqlNetwork `pulumi:"networks"`
 	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
-	Plan string `pulumi:"plan"`
+	//
+	// Deprecated: The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
+	Plan *string `pulumi:"plan"`
+	// Backup tier for the database plan.
+	PlanBackups *string `pulumi:"planBackups"`
+	// Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+	PlanCompute *string `pulumi:"planCompute"`
+	// Number of nodes in the database plan.
+	PlanNodeCount *int `pulumi:"planNodeCount"`
+	// Total storage per node in GiB.
+	PlanStorageGib *int `pulumi:"planStorageGib"`
 	// The administrative power state of the service
 	Powered *bool `pulumi:"powered"`
 	// Database engine properties.
@@ -293,6 +347,8 @@ type managedDatabaseMysqlArgs struct {
 // The set of arguments for constructing a ManagedDatabaseMysql resource.
 type ManagedDatabaseMysqlArgs struct {
 	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+	//
+	// Deprecated: The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
 	AdditionalDiskSpaceGib pulumi.IntPtrInput
 	// User defined key-value pairs to classify the database.
 	Labels pulumi.StringMapInput
@@ -305,7 +361,17 @@ type ManagedDatabaseMysqlArgs struct {
 	// Private networks attached to the managed database
 	Networks ManagedDatabaseMysqlNetworkArrayInput
 	// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
-	Plan pulumi.StringInput
+	//
+	// Deprecated: The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
+	Plan pulumi.StringPtrInput
+	// Backup tier for the database plan.
+	PlanBackups pulumi.StringPtrInput
+	// Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+	PlanCompute pulumi.StringPtrInput
+	// Number of nodes in the database plan.
+	PlanNodeCount pulumi.IntPtrInput
+	// Total storage per node in GiB.
+	PlanStorageGib pulumi.IntPtrInput
 	// The administrative power state of the service
 	Powered pulumi.BoolPtrInput
 	// Database engine properties.
@@ -406,6 +472,8 @@ func (o ManagedDatabaseMysqlOutput) ToManagedDatabaseMysqlOutputWithContext(ctx 
 }
 
 // Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+//
+// Deprecated: The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
 func (o ManagedDatabaseMysqlOutput) AdditionalDiskSpaceGib() pulumi.IntOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysql) pulumi.IntOutput { return v.AdditionalDiskSpaceGib }).(pulumi.IntOutput)
 }
@@ -446,8 +514,30 @@ func (o ManagedDatabaseMysqlOutput) NodeStates() ManagedDatabaseMysqlNodeStateAr
 }
 
 // Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
+//
+// Deprecated: The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
 func (o ManagedDatabaseMysqlOutput) Plan() pulumi.StringOutput {
 	return o.ApplyT(func(v *ManagedDatabaseMysql) pulumi.StringOutput { return v.Plan }).(pulumi.StringOutput)
+}
+
+// Backup tier for the database plan.
+func (o ManagedDatabaseMysqlOutput) PlanBackups() pulumi.StringOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysql) pulumi.StringOutput { return v.PlanBackups }).(pulumi.StringOutput)
+}
+
+// Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+func (o ManagedDatabaseMysqlOutput) PlanCompute() pulumi.StringOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysql) pulumi.StringOutput { return v.PlanCompute }).(pulumi.StringOutput)
+}
+
+// Number of nodes in the database plan.
+func (o ManagedDatabaseMysqlOutput) PlanNodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysql) pulumi.IntOutput { return v.PlanNodeCount }).(pulumi.IntOutput)
+}
+
+// Total storage per node in GiB.
+func (o ManagedDatabaseMysqlOutput) PlanStorageGib() pulumi.IntOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysql) pulumi.IntOutput { return v.PlanStorageGib }).(pulumi.IntOutput)
 }
 
 // The administrative power state of the service

@@ -25,14 +25,22 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
     /**
      * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
      * 
+     * @deprecated
+     * The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
+     * 
      */
+    @Deprecated /* The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node. */
     @Import(name="additionalDiskSpaceGib")
     private @Nullable Output<Integer> additionalDiskSpaceGib;
 
     /**
      * @return Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
      * 
+     * @deprecated
+     * The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
+     * 
      */
+    @Deprecated /* The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node. */
     public Optional<Output<Integer>> additionalDiskSpaceGib() {
         return Optional.ofNullable(this.additionalDiskSpaceGib);
     }
@@ -115,16 +123,84 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
     /**
      * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
      * 
+     * @deprecated
+     * The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
+     * 
      */
-    @Import(name="plan", required=true)
-    private Output<String> plan;
+    @Deprecated /* The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead. */
+    @Import(name="plan")
+    private @Nullable Output<String> plan;
 
     /**
      * @return Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
      * 
+     * @deprecated
+     * The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
+     * 
      */
-    public Output<String> plan() {
-        return this.plan;
+    @Deprecated /* The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead. */
+    public Optional<Output<String>> plan() {
+        return Optional.ofNullable(this.plan);
+    }
+
+    /**
+     * Backup tier for the database plan.
+     * 
+     */
+    @Import(name="planBackups")
+    private @Nullable Output<String> planBackups;
+
+    /**
+     * @return Backup tier for the database plan.
+     * 
+     */
+    public Optional<Output<String>> planBackups() {
+        return Optional.ofNullable(this.planBackups);
+    }
+
+    /**
+     * Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+     * 
+     */
+    @Import(name="planCompute")
+    private @Nullable Output<String> planCompute;
+
+    /**
+     * @return Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+     * 
+     */
+    public Optional<Output<String>> planCompute() {
+        return Optional.ofNullable(this.planCompute);
+    }
+
+    /**
+     * Number of nodes in the database plan.
+     * 
+     */
+    @Import(name="planNodeCount")
+    private @Nullable Output<Integer> planNodeCount;
+
+    /**
+     * @return Number of nodes in the database plan.
+     * 
+     */
+    public Optional<Output<Integer>> planNodeCount() {
+        return Optional.ofNullable(this.planNodeCount);
+    }
+
+    /**
+     * Total storage per node in GiB.
+     * 
+     */
+    @Import(name="planStorageGib")
+    private @Nullable Output<Integer> planStorageGib;
+
+    /**
+     * @return Total storage per node in GiB.
+     * 
+     */
+    public Optional<Output<Integer>> planStorageGib() {
+        return Optional.ofNullable(this.planStorageGib);
     }
 
     /**
@@ -212,6 +288,10 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
         this.name = $.name;
         this.networks = $.networks;
         this.plan = $.plan;
+        this.planBackups = $.planBackups;
+        this.planCompute = $.planCompute;
+        this.planNodeCount = $.planNodeCount;
+        this.planStorageGib = $.planStorageGib;
         this.powered = $.powered;
         this.properties = $.properties;
         this.terminationProtection = $.terminationProtection;
@@ -242,7 +322,11 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
          * 
          * @return builder
          * 
+         * @deprecated
+         * The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
+         * 
          */
+        @Deprecated /* The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node. */
         public Builder additionalDiskSpaceGib(@Nullable Output<Integer> additionalDiskSpaceGib) {
             $.additionalDiskSpaceGib = additionalDiskSpaceGib;
             return this;
@@ -253,7 +337,11 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
          * 
          * @return builder
          * 
+         * @deprecated
+         * The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
+         * 
          */
+        @Deprecated /* The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node. */
         public Builder additionalDiskSpaceGib(Integer additionalDiskSpaceGib) {
             return additionalDiskSpaceGib(Output.of(additionalDiskSpaceGib));
         }
@@ -378,8 +466,12 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
          * 
          * @return builder
          * 
+         * @deprecated
+         * The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
+         * 
          */
-        public Builder plan(Output<String> plan) {
+        @Deprecated /* The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead. */
+        public Builder plan(@Nullable Output<String> plan) {
             $.plan = plan;
             return this;
         }
@@ -389,9 +481,97 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
          * 
          * @return builder
          * 
+         * @deprecated
+         * The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
+         * 
          */
+        @Deprecated /* The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead. */
         public Builder plan(String plan) {
             return plan(Output.of(plan));
+        }
+
+        /**
+         * @param planBackups Backup tier for the database plan.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder planBackups(@Nullable Output<String> planBackups) {
+            $.planBackups = planBackups;
+            return this;
+        }
+
+        /**
+         * @param planBackups Backup tier for the database plan.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder planBackups(String planBackups) {
+            return planBackups(Output.of(planBackups));
+        }
+
+        /**
+         * @param planCompute Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder planCompute(@Nullable Output<String> planCompute) {
+            $.planCompute = planCompute;
+            return this;
+        }
+
+        /**
+         * @param planCompute Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder planCompute(String planCompute) {
+            return planCompute(Output.of(planCompute));
+        }
+
+        /**
+         * @param planNodeCount Number of nodes in the database plan.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder planNodeCount(@Nullable Output<Integer> planNodeCount) {
+            $.planNodeCount = planNodeCount;
+            return this;
+        }
+
+        /**
+         * @param planNodeCount Number of nodes in the database plan.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder planNodeCount(Integer planNodeCount) {
+            return planNodeCount(Output.of(planNodeCount));
+        }
+
+        /**
+         * @param planStorageGib Total storage per node in GiB.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder planStorageGib(@Nullable Output<Integer> planStorageGib) {
+            $.planStorageGib = planStorageGib;
+            return this;
+        }
+
+        /**
+         * @param planStorageGib Total storage per node in GiB.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder planStorageGib(Integer planStorageGib) {
+            return planStorageGib(Output.of(planStorageGib));
         }
 
         /**
@@ -500,9 +680,6 @@ public final class ManagedDatabasePostgresqlArgs extends com.pulumi.resources.Re
         }
 
         public ManagedDatabasePostgresqlArgs build() {
-            if ($.plan == null) {
-                throw new MissingRequiredPropertyException("ManagedDatabasePostgresqlArgs", "plan");
-            }
             if ($.title == null) {
                 throw new MissingRequiredPropertyException("ManagedDatabasePostgresqlArgs", "title");
             }

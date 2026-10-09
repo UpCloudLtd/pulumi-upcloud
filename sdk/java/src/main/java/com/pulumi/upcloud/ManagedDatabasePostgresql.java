@@ -53,7 +53,10 @@ import javax.annotation.Nullable;
  *         // Minimal config
  *         var example1 = new ManagedDatabasePostgresql("example1", ManagedDatabasePostgresqlArgs.builder()
  *             .name("postgres-1")
- *             .plan("1x1xCPU-2GB-25GB")
+ *             .planCompute("rdb.standard.2CPU-8GB")
+ *             .planNodeCount(2)
+ *             .planStorageGib(120)
+ *             .planBackups("regular")
  *             .title("postgres")
  *             .zone("fi-hel1")
  *             .build());
@@ -61,7 +64,10 @@ import javax.annotation.Nullable;
  *         // Service with custom properties
  *         var example2 = new ManagedDatabasePostgresql("example2", ManagedDatabasePostgresqlArgs.builder()
  *             .name("postgres-2")
- *             .plan("1x1xCPU-2GB-25GB")
+ *             .planCompute("rdb.standard.2CPU-8GB")
+ *             .planNodeCount(2)
+ *             .planStorageGib(120)
+ *             .planBackups("regular")
  *             .title("postgres")
  *             .zone("fi-hel1")
  *             .properties(ManagedDatabasePostgresqlPropertiesArgs.builder()
@@ -82,7 +88,11 @@ public class ManagedDatabasePostgresql extends com.pulumi.resources.CustomResour
     /**
      * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
      * 
+     * @deprecated
+     * The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
+     * 
      */
+    @Deprecated /* The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node. */
     @Export(name="additionalDiskSpaceGib", refs={Integer.class}, tree="[0]")
     private Output<Integer> additionalDiskSpaceGib;
 
@@ -194,7 +204,11 @@ public class ManagedDatabasePostgresql extends com.pulumi.resources.CustomResour
     /**
      * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
      * 
+     * @deprecated
+     * The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
+     * 
      */
+    @Deprecated /* The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead. */
     @Export(name="plan", refs={String.class}, tree="[0]")
     private Output<String> plan;
 
@@ -204,6 +218,62 @@ public class ManagedDatabasePostgresql extends com.pulumi.resources.CustomResour
      */
     public Output<String> plan() {
         return this.plan;
+    }
+    /**
+     * Backup tier for the database plan.
+     * 
+     */
+    @Export(name="planBackups", refs={String.class}, tree="[0]")
+    private Output<String> planBackups;
+
+    /**
+     * @return Backup tier for the database plan.
+     * 
+     */
+    public Output<String> planBackups() {
+        return this.planBackups;
+    }
+    /**
+     * Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+     * 
+     */
+    @Export(name="planCompute", refs={String.class}, tree="[0]")
+    private Output<String> planCompute;
+
+    /**
+     * @return Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+     * 
+     */
+    public Output<String> planCompute() {
+        return this.planCompute;
+    }
+    /**
+     * Number of nodes in the database plan.
+     * 
+     */
+    @Export(name="planNodeCount", refs={Integer.class}, tree="[0]")
+    private Output<Integer> planNodeCount;
+
+    /**
+     * @return Number of nodes in the database plan.
+     * 
+     */
+    public Output<Integer> planNodeCount() {
+        return this.planNodeCount;
+    }
+    /**
+     * Total storage per node in GiB.
+     * 
+     */
+    @Export(name="planStorageGib", refs={Integer.class}, tree="[0]")
+    private Output<Integer> planStorageGib;
+
+    /**
+     * @return Total storage per node in GiB.
+     * 
+     */
+    public Output<Integer> planStorageGib() {
+        return this.planStorageGib;
     }
     /**
      * The administrative power state of the service
