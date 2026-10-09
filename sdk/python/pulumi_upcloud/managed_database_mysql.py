@@ -21,7 +21,6 @@ __all__ = ['ManagedDatabaseMysqlArgs', 'ManagedDatabaseMysql']
 @pulumi.input_type
 class ManagedDatabaseMysqlArgs:
     def __init__(__self__, *,
-                 plan: pulumi.Input[_builtins.str],
                  title: pulumi.Input[_builtins.str],
                  zone: pulumi.Input[_builtins.str],
                  additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
@@ -30,12 +29,16 @@ class ManagedDatabaseMysqlArgs:
                  maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseMysqlNetworkArgs']]]] = None,
+                 plan: Optional[pulumi.Input[_builtins.str]] = None,
+                 plan_backups: Optional[pulumi.Input[_builtins.str]] = None,
+                 plan_compute: Optional[pulumi.Input[_builtins.str]] = None,
+                 plan_node_count: Optional[pulumi.Input[_builtins.int]] = None,
+                 plan_storage_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  powered: Optional[pulumi.Input[_builtins.bool]] = None,
                  properties: Optional[pulumi.Input['ManagedDatabaseMysqlPropertiesArgs']] = None,
                  termination_protection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ManagedDatabaseMysql resource.
-        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
         :param pulumi.Input[_builtins.str] title: Title of the managed database instance
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
@@ -44,13 +47,20 @@ class ManagedDatabaseMysqlArgs:
         :param pulumi.Input[_builtins.str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseMysqlNetworkArgs']]] networks: Private networks attached to the managed database
+        :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
+        :param pulumi.Input[_builtins.str] plan_backups: Backup tier for the database plan.
+        :param pulumi.Input[_builtins.str] plan_compute: Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+        :param pulumi.Input[_builtins.int] plan_node_count: Number of nodes in the database plan.
+        :param pulumi.Input[_builtins.int] plan_storage_gib: Total storage per node in GiB.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input['ManagedDatabaseMysqlPropertiesArgs'] properties: Database engine properties.
         :param pulumi.Input[_builtins.bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
         """
-        pulumi.set(__self__, "plan", plan)
         pulumi.set(__self__, "title", title)
         pulumi.set(__self__, "zone", zone)
+        if additional_disk_space_gib is not None:
+            warnings.warn("""The additional_disk_space_gib attribute is deprecated for PostgreSQL and MySQL. Use plan_storage_gib to configure total storage per node.""", DeprecationWarning)
+            pulumi.log.warn("""additional_disk_space_gib is deprecated: The additional_disk_space_gib attribute is deprecated for PostgreSQL and MySQL. Use plan_storage_gib to configure total storage per node.""")
         if additional_disk_space_gib is not None:
             pulumi.set(__self__, "additional_disk_space_gib", additional_disk_space_gib)
         if labels is not None:
@@ -63,24 +73,25 @@ class ManagedDatabaseMysqlArgs:
             pulumi.set(__self__, "name", name)
         if networks is not None:
             pulumi.set(__self__, "networks", networks)
+        if plan is not None:
+            warnings.warn("""The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and plan_backups instead.""", DeprecationWarning)
+            pulumi.log.warn("""plan is deprecated: The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and plan_backups instead.""")
+        if plan is not None:
+            pulumi.set(__self__, "plan", plan)
+        if plan_backups is not None:
+            pulumi.set(__self__, "plan_backups", plan_backups)
+        if plan_compute is not None:
+            pulumi.set(__self__, "plan_compute", plan_compute)
+        if plan_node_count is not None:
+            pulumi.set(__self__, "plan_node_count", plan_node_count)
+        if plan_storage_gib is not None:
+            pulumi.set(__self__, "plan_storage_gib", plan_storage_gib)
         if powered is not None:
             pulumi.set(__self__, "powered", powered)
         if properties is not None:
             pulumi.set(__self__, "properties", properties)
         if termination_protection is not None:
             pulumi.set(__self__, "termination_protection", termination_protection)
-
-    @_builtins.property
-    @pulumi.getter
-    def plan(self) -> pulumi.Input[_builtins.str]:
-        """
-        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
-        """
-        return pulumi.get(self, "plan")
-
-    @plan.setter
-    def plan(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter
@@ -108,6 +119,7 @@ class ManagedDatabaseMysqlArgs:
 
     @_builtins.property
     @pulumi.getter(name="additionalDiskSpaceGib")
+    @_utilities.deprecated("""The additional_disk_space_gib attribute is deprecated for PostgreSQL and MySQL. Use plan_storage_gib to configure total storage per node.""")
     def additional_disk_space_gib(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
@@ -180,6 +192,67 @@ class ManagedDatabaseMysqlArgs:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and plan_backups instead.""")
+    def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
+        """
+        return pulumi.get(self, "plan")
+
+    @plan.setter
+    def plan(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plan", value)
+
+    @_builtins.property
+    @pulumi.getter(name="planBackups")
+    def plan_backups(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Backup tier for the database plan.
+        """
+        return pulumi.get(self, "plan_backups")
+
+    @plan_backups.setter
+    def plan_backups(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plan_backups", value)
+
+    @_builtins.property
+    @pulumi.getter(name="planCompute")
+    def plan_compute(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+        """
+        return pulumi.get(self, "plan_compute")
+
+    @plan_compute.setter
+    def plan_compute(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plan_compute", value)
+
+    @_builtins.property
+    @pulumi.getter(name="planNodeCount")
+    def plan_node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Number of nodes in the database plan.
+        """
+        return pulumi.get(self, "plan_node_count")
+
+    @plan_node_count.setter
+    def plan_node_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "plan_node_count", value)
+
+    @_builtins.property
+    @pulumi.getter(name="planStorageGib")
+    def plan_storage_gib(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Total storage per node in GiB.
+        """
+        return pulumi.get(self, "plan_storage_gib")
+
+    @plan_storage_gib.setter
+    def plan_storage_gib(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "plan_storage_gib", value)
+
+    @_builtins.property
+    @pulumi.getter
     def powered(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         The administrative power state of the service
@@ -227,6 +300,10 @@ class _ManagedDatabaseMysqlState:
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseMysqlNetworkArgs']]]] = None,
                  node_states: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseMysqlNodeStateArgs']]]] = None,
                  plan: Optional[pulumi.Input[_builtins.str]] = None,
+                 plan_backups: Optional[pulumi.Input[_builtins.str]] = None,
+                 plan_compute: Optional[pulumi.Input[_builtins.str]] = None,
+                 plan_node_count: Optional[pulumi.Input[_builtins.int]] = None,
+                 plan_storage_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  powered: Optional[pulumi.Input[_builtins.bool]] = None,
                  primary_database: Optional[pulumi.Input[_builtins.str]] = None,
                  properties: Optional[pulumi.Input['ManagedDatabaseMysqlPropertiesArgs']] = None,
@@ -251,6 +328,10 @@ class _ManagedDatabaseMysqlState:
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseMysqlNetworkArgs']]] networks: Private networks attached to the managed database
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseMysqlNodeStateArgs']]] node_states: Information about nodes providing the managed service
         :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
+        :param pulumi.Input[_builtins.str] plan_backups: Backup tier for the database plan.
+        :param pulumi.Input[_builtins.str] plan_compute: Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+        :param pulumi.Input[_builtins.int] plan_node_count: Number of nodes in the database plan.
+        :param pulumi.Input[_builtins.int] plan_storage_gib: Total storage per node in GiB.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[_builtins.str] primary_database: Primary database name
         :param pulumi.Input['ManagedDatabaseMysqlPropertiesArgs'] properties: Database engine properties.
@@ -265,6 +346,9 @@ class _ManagedDatabaseMysqlState:
         :param pulumi.Input[_builtins.str] type: Type of the managed database instance
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
+        if additional_disk_space_gib is not None:
+            warnings.warn("""The additional_disk_space_gib attribute is deprecated for PostgreSQL and MySQL. Use plan_storage_gib to configure total storage per node.""", DeprecationWarning)
+            pulumi.log.warn("""additional_disk_space_gib is deprecated: The additional_disk_space_gib attribute is deprecated for PostgreSQL and MySQL. Use plan_storage_gib to configure total storage per node.""")
         if additional_disk_space_gib is not None:
             pulumi.set(__self__, "additional_disk_space_gib", additional_disk_space_gib)
         if components is not None:
@@ -282,7 +366,18 @@ class _ManagedDatabaseMysqlState:
         if node_states is not None:
             pulumi.set(__self__, "node_states", node_states)
         if plan is not None:
+            warnings.warn("""The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and plan_backups instead.""", DeprecationWarning)
+            pulumi.log.warn("""plan is deprecated: The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and plan_backups instead.""")
+        if plan is not None:
             pulumi.set(__self__, "plan", plan)
+        if plan_backups is not None:
+            pulumi.set(__self__, "plan_backups", plan_backups)
+        if plan_compute is not None:
+            pulumi.set(__self__, "plan_compute", plan_compute)
+        if plan_node_count is not None:
+            pulumi.set(__self__, "plan_node_count", plan_node_count)
+        if plan_storage_gib is not None:
+            pulumi.set(__self__, "plan_storage_gib", plan_storage_gib)
         if powered is not None:
             pulumi.set(__self__, "powered", powered)
         if primary_database is not None:
@@ -312,6 +407,7 @@ class _ManagedDatabaseMysqlState:
 
     @_builtins.property
     @pulumi.getter(name="additionalDiskSpaceGib")
+    @_utilities.deprecated("""The additional_disk_space_gib attribute is deprecated for PostgreSQL and MySQL. Use plan_storage_gib to configure total storage per node.""")
     def additional_disk_space_gib(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
@@ -408,6 +504,7 @@ class _ManagedDatabaseMysqlState:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and plan_backups instead.""")
     def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
@@ -417,6 +514,54 @@ class _ManagedDatabaseMysqlState:
     @plan.setter
     def plan(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plan", value)
+
+    @_builtins.property
+    @pulumi.getter(name="planBackups")
+    def plan_backups(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Backup tier for the database plan.
+        """
+        return pulumi.get(self, "plan_backups")
+
+    @plan_backups.setter
+    def plan_backups(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plan_backups", value)
+
+    @_builtins.property
+    @pulumi.getter(name="planCompute")
+    def plan_compute(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+        """
+        return pulumi.get(self, "plan_compute")
+
+    @plan_compute.setter
+    def plan_compute(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plan_compute", value)
+
+    @_builtins.property
+    @pulumi.getter(name="planNodeCount")
+    def plan_node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Number of nodes in the database plan.
+        """
+        return pulumi.get(self, "plan_node_count")
+
+    @plan_node_count.setter
+    def plan_node_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "plan_node_count", value)
+
+    @_builtins.property
+    @pulumi.getter(name="planStorageGib")
+    def plan_storage_gib(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Total storage per node in GiB.
+        """
+        return pulumi.get(self, "plan_storage_gib")
+
+    @plan_storage_gib.setter
+    def plan_storage_gib(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "plan_storage_gib", value)
 
     @_builtins.property
     @pulumi.getter
@@ -588,6 +733,10 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNetworkArgs', 'ManagedDatabaseMysqlNetworkArgsDict']]]]] = None,
                  plan: Optional[pulumi.Input[_builtins.str]] = None,
+                 plan_backups: Optional[pulumi.Input[_builtins.str]] = None,
+                 plan_compute: Optional[pulumi.Input[_builtins.str]] = None,
+                 plan_node_count: Optional[pulumi.Input[_builtins.int]] = None,
+                 plan_storage_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  powered: Optional[pulumi.Input[_builtins.bool]] = None,
                  properties: Optional[pulumi.Input[Union['ManagedDatabaseMysqlPropertiesArgs', 'ManagedDatabaseMysqlPropertiesArgsDict']]] = None,
                  termination_protection: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -607,13 +756,19 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         example1 = upcloud.ManagedDatabaseMysql("example_1",
             name="mysql-1",
             title="mysql-1-example-1",
-            plan="1x1xCPU-2GB-25GB",
+            plan_compute="rdb.standard.2CPU-8GB",
+            plan_node_count=2,
+            plan_storage_gib=120,
+            plan_backups="regular",
             zone="fi-hel1")
         # Shutdown instance after creation
         example2 = upcloud.ManagedDatabaseMysql("example_2",
             name="mysql-2",
             title="mysql-2-example-2",
-            plan="1x1xCPU-2GB-25GB",
+            plan_compute="rdb.standard.2CPU-8GB",
+            plan_node_count=2,
+            plan_storage_gib=120,
+            plan_backups="regular",
             zone="fi-hel1",
             powered=False)
         # Service with custom properties
@@ -621,7 +776,10 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         example3 = upcloud.ManagedDatabaseMysql("example_3",
             name="mysql-3",
             title="mysql-3-example-3",
-            plan="1x1xCPU-2GB-25GB",
+            plan_compute="rdb.standard.2CPU-8GB",
+            plan_node_count=2,
+            plan_storage_gib=120,
+            plan_backups="regular",
             zone="fi-hel1",
             properties={
                 "sql_mode": "NO_ENGINE_SUBSTITUTION",
@@ -642,6 +800,10 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNetworkArgs', 'ManagedDatabaseMysqlNetworkArgsDict']]]] networks: Private networks attached to the managed database
         :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
+        :param pulumi.Input[_builtins.str] plan_backups: Backup tier for the database plan.
+        :param pulumi.Input[_builtins.str] plan_compute: Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+        :param pulumi.Input[_builtins.int] plan_node_count: Number of nodes in the database plan.
+        :param pulumi.Input[_builtins.int] plan_storage_gib: Total storage per node in GiB.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[Union['ManagedDatabaseMysqlPropertiesArgs', 'ManagedDatabaseMysqlPropertiesArgsDict']] properties: Database engine properties.
         :param pulumi.Input[_builtins.bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
@@ -667,13 +829,19 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         example1 = upcloud.ManagedDatabaseMysql("example_1",
             name="mysql-1",
             title="mysql-1-example-1",
-            plan="1x1xCPU-2GB-25GB",
+            plan_compute="rdb.standard.2CPU-8GB",
+            plan_node_count=2,
+            plan_storage_gib=120,
+            plan_backups="regular",
             zone="fi-hel1")
         # Shutdown instance after creation
         example2 = upcloud.ManagedDatabaseMysql("example_2",
             name="mysql-2",
             title="mysql-2-example-2",
-            plan="1x1xCPU-2GB-25GB",
+            plan_compute="rdb.standard.2CPU-8GB",
+            plan_node_count=2,
+            plan_storage_gib=120,
+            plan_backups="regular",
             zone="fi-hel1",
             powered=False)
         # Service with custom properties
@@ -681,7 +849,10 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         example3 = upcloud.ManagedDatabaseMysql("example_3",
             name="mysql-3",
             title="mysql-3-example-3",
-            plan="1x1xCPU-2GB-25GB",
+            plan_compute="rdb.standard.2CPU-8GB",
+            plan_node_count=2,
+            plan_storage_gib=120,
+            plan_backups="regular",
             zone="fi-hel1",
             properties={
                 "sql_mode": "NO_ENGINE_SUBSTITUTION",
@@ -715,6 +886,10 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNetworkArgs', 'ManagedDatabaseMysqlNetworkArgsDict']]]]] = None,
                  plan: Optional[pulumi.Input[_builtins.str]] = None,
+                 plan_backups: Optional[pulumi.Input[_builtins.str]] = None,
+                 plan_compute: Optional[pulumi.Input[_builtins.str]] = None,
+                 plan_node_count: Optional[pulumi.Input[_builtins.int]] = None,
+                 plan_storage_gib: Optional[pulumi.Input[_builtins.int]] = None,
                  powered: Optional[pulumi.Input[_builtins.bool]] = None,
                  properties: Optional[pulumi.Input[Union['ManagedDatabaseMysqlPropertiesArgs', 'ManagedDatabaseMysqlPropertiesArgsDict']]] = None,
                  termination_protection: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -735,9 +910,11 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
             __props__.__dict__["maintenance_window_time"] = maintenance_window_time
             __props__.__dict__["name"] = name
             __props__.__dict__["networks"] = networks
-            if plan is None and not opts.urn:
-                raise TypeError("Missing required property 'plan'")
             __props__.__dict__["plan"] = plan
+            __props__.__dict__["plan_backups"] = plan_backups
+            __props__.__dict__["plan_compute"] = plan_compute
+            __props__.__dict__["plan_node_count"] = plan_node_count
+            __props__.__dict__["plan_storage_gib"] = plan_storage_gib
             __props__.__dict__["powered"] = powered
             __props__.__dict__["properties"] = properties
             __props__.__dict__["termination_protection"] = termination_protection
@@ -778,6 +955,10 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
             networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNetworkArgs', 'ManagedDatabaseMysqlNetworkArgsDict']]]]] = None,
             node_states: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNodeStateArgs', 'ManagedDatabaseMysqlNodeStateArgsDict']]]]] = None,
             plan: Optional[pulumi.Input[_builtins.str]] = None,
+            plan_backups: Optional[pulumi.Input[_builtins.str]] = None,
+            plan_compute: Optional[pulumi.Input[_builtins.str]] = None,
+            plan_node_count: Optional[pulumi.Input[_builtins.int]] = None,
+            plan_storage_gib: Optional[pulumi.Input[_builtins.int]] = None,
             powered: Optional[pulumi.Input[_builtins.bool]] = None,
             primary_database: Optional[pulumi.Input[_builtins.str]] = None,
             properties: Optional[pulumi.Input[Union['ManagedDatabaseMysqlPropertiesArgs', 'ManagedDatabaseMysqlPropertiesArgsDict']]] = None,
@@ -807,6 +988,10 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNetworkArgs', 'ManagedDatabaseMysqlNetworkArgsDict']]]] networks: Private networks attached to the managed database
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlNodeStateArgs', 'ManagedDatabaseMysqlNodeStateArgsDict']]]] node_states: Information about nodes providing the managed service
         :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
+        :param pulumi.Input[_builtins.str] plan_backups: Backup tier for the database plan.
+        :param pulumi.Input[_builtins.str] plan_compute: Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+        :param pulumi.Input[_builtins.int] plan_node_count: Number of nodes in the database plan.
+        :param pulumi.Input[_builtins.int] plan_storage_gib: Total storage per node in GiB.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[_builtins.str] primary_database: Primary database name
         :param pulumi.Input[Union['ManagedDatabaseMysqlPropertiesArgs', 'ManagedDatabaseMysqlPropertiesArgsDict']] properties: Database engine properties.
@@ -834,6 +1019,10 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         __props__.__dict__["networks"] = networks
         __props__.__dict__["node_states"] = node_states
         __props__.__dict__["plan"] = plan
+        __props__.__dict__["plan_backups"] = plan_backups
+        __props__.__dict__["plan_compute"] = plan_compute
+        __props__.__dict__["plan_node_count"] = plan_node_count
+        __props__.__dict__["plan_storage_gib"] = plan_storage_gib
         __props__.__dict__["powered"] = powered
         __props__.__dict__["primary_database"] = primary_database
         __props__.__dict__["properties"] = properties
@@ -851,6 +1040,7 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="additionalDiskSpaceGib")
+    @_utilities.deprecated("""The additional_disk_space_gib attribute is deprecated for PostgreSQL and MySQL. Use plan_storage_gib to configure total storage per node.""")
     def additional_disk_space_gib(self) -> pulumi.Output[_builtins.int]:
         """
         Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
@@ -915,11 +1105,44 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and plan_backups instead.""")
     def plan(self) -> pulumi.Output[_builtins.str]:
         """
         Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans mysql`.
         """
         return pulumi.get(self, "plan")
+
+    @_builtins.property
+    @pulumi.getter(name="planBackups")
+    def plan_backups(self) -> pulumi.Output[_builtins.str]:
+        """
+        Backup tier for the database plan.
+        """
+        return pulumi.get(self, "plan_backups")
+
+    @_builtins.property
+    @pulumi.getter(name="planCompute")
+    def plan_compute(self) -> pulumi.Output[_builtins.str]:
+        """
+        Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+        """
+        return pulumi.get(self, "plan_compute")
+
+    @_builtins.property
+    @pulumi.getter(name="planNodeCount")
+    def plan_node_count(self) -> pulumi.Output[_builtins.int]:
+        """
+        Number of nodes in the database plan.
+        """
+        return pulumi.get(self, "plan_node_count")
+
+    @_builtins.property
+    @pulumi.getter(name="planStorageGib")
+    def plan_storage_gib(self) -> pulumi.Output[_builtins.int]:
+        """
+        Total storage per node in GiB.
+        """
+        return pulumi.get(self, "plan_storage_gib")
 
     @_builtins.property
     @pulumi.getter

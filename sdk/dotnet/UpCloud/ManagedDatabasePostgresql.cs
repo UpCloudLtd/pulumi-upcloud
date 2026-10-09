@@ -27,7 +27,10 @@ namespace UpCloud.Pulumi.UpCloud
     ///     var example1 = new UpCloud.ManagedDatabasePostgresql("example_1", new()
     ///     {
     ///         Name = "postgres-1",
-    ///         Plan = "1x1xCPU-2GB-25GB",
+    ///         PlanCompute = "rdb.standard.2CPU-8GB",
+    ///         PlanNodeCount = 2,
+    ///         PlanStorageGib = 120,
+    ///         PlanBackups = "regular",
     ///         Title = "postgres",
     ///         Zone = "fi-hel1",
     ///     });
@@ -36,7 +39,10 @@ namespace UpCloud.Pulumi.UpCloud
     ///     var example2 = new UpCloud.ManagedDatabasePostgresql("example_2", new()
     ///     {
     ///         Name = "postgres-2",
-    ///         Plan = "1x1xCPU-2GB-25GB",
+    ///         PlanCompute = "rdb.standard.2CPU-8GB",
+    ///         PlanNodeCount = 2,
+    ///         PlanStorageGib = 120,
+    ///         PlanBackups = "regular",
     ///         Title = "postgres",
     ///         Zone = "fi-hel1",
     ///         Properties = new UpCloud.Inputs.ManagedDatabasePostgresqlPropertiesArgs
@@ -106,6 +112,30 @@ namespace UpCloud.Pulumi.UpCloud
         /// </summary>
         [Output("plan")]
         public Output<string> Plan { get; private set; } = null!;
+
+        /// <summary>
+        /// Backup tier for the database plan.
+        /// </summary>
+        [Output("planBackups")]
+        public Output<string> PlanBackups { get; private set; } = null!;
+
+        /// <summary>
+        /// Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+        /// </summary>
+        [Output("planCompute")]
+        public Output<string> PlanCompute { get; private set; } = null!;
+
+        /// <summary>
+        /// Number of nodes in the database plan.
+        /// </summary>
+        [Output("planNodeCount")]
+        public Output<int> PlanNodeCount { get; private set; } = null!;
+
+        /// <summary>
+        /// Total storage per node in GiB.
+        /// </summary>
+        [Output("planStorageGib")]
+        public Output<int> PlanStorageGib { get; private set; } = null!;
 
         /// <summary>
         /// The administrative power state of the service
@@ -294,8 +324,32 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
         /// </summary>
-        [Input("plan", required: true)]
-        public Input<string> Plan { get; set; } = null!;
+        [Input("plan")]
+        public Input<string>? Plan { get; set; }
+
+        /// <summary>
+        /// Backup tier for the database plan.
+        /// </summary>
+        [Input("planBackups")]
+        public Input<string>? PlanBackups { get; set; }
+
+        /// <summary>
+        /// Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+        /// </summary>
+        [Input("planCompute")]
+        public Input<string>? PlanCompute { get; set; }
+
+        /// <summary>
+        /// Number of nodes in the database plan.
+        /// </summary>
+        [Input("planNodeCount")]
+        public Input<int>? PlanNodeCount { get; set; }
+
+        /// <summary>
+        /// Total storage per node in GiB.
+        /// </summary>
+        [Input("planStorageGib")]
+        public Input<int>? PlanStorageGib { get; set; }
 
         /// <summary>
         /// The administrative power state of the service
@@ -412,6 +466,30 @@ namespace UpCloud.Pulumi.UpCloud
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }
+
+        /// <summary>
+        /// Backup tier for the database plan.
+        /// </summary>
+        [Input("planBackups")]
+        public Input<string>? PlanBackups { get; set; }
+
+        /// <summary>
+        /// Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+        /// </summary>
+        [Input("planCompute")]
+        public Input<string>? PlanCompute { get; set; }
+
+        /// <summary>
+        /// Number of nodes in the database plan.
+        /// </summary>
+        [Input("planNodeCount")]
+        public Input<int>? PlanNodeCount { get; set; }
+
+        /// <summary>
+        /// Total storage per node in GiB.
+        /// </summary>
+        [Input("planStorageGib")]
+        public Input<int>? PlanStorageGib { get; set; }
 
         /// <summary>
         /// The administrative power state of the service

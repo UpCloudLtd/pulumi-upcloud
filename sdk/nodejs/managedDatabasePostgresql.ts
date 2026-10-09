@@ -18,14 +18,20 @@ import * as utilities from "./utilities";
  * // Minimal config
  * const example1 = new upcloud.ManagedDatabasePostgresql("example_1", {
  *     name: "postgres-1",
- *     plan: "1x1xCPU-2GB-25GB",
+ *     planCompute: "rdb.standard.2CPU-8GB",
+ *     planNodeCount: 2,
+ *     planStorageGib: 120,
+ *     planBackups: "regular",
  *     title: "postgres",
  *     zone: "fi-hel1",
  * });
  * // Service with custom properties
  * const example2 = new upcloud.ManagedDatabasePostgresql("example_2", {
  *     name: "postgres-2",
- *     plan: "1x1xCPU-2GB-25GB",
+ *     planCompute: "rdb.standard.2CPU-8GB",
+ *     planNodeCount: 2,
+ *     planStorageGib: 120,
+ *     planBackups: "regular",
  *     title: "postgres",
  *     zone: "fi-hel1",
  *     properties: {
@@ -66,6 +72,8 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
 
     /**
      * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     *
+     * @deprecated The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
      */
     declare public readonly additionalDiskSpaceGib: pulumi.Output<number>;
     /**
@@ -98,8 +106,26 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
     declare public /*out*/ readonly nodeStates: pulumi.Output<outputs.ManagedDatabasePostgresqlNodeState[]>;
     /**
      * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
+     *
+     * @deprecated The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
      */
     declare public readonly plan: pulumi.Output<string>;
+    /**
+     * Backup tier for the database plan.
+     */
+    declare public readonly planBackups: pulumi.Output<string>;
+    /**
+     * Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+     */
+    declare public readonly planCompute: pulumi.Output<string>;
+    /**
+     * Number of nodes in the database plan.
+     */
+    declare public readonly planNodeCount: pulumi.Output<number>;
+    /**
+     * Total storage per node in GiB.
+     */
+    declare public readonly planStorageGib: pulumi.Output<number>;
     /**
      * The administrative power state of the service
      */
@@ -179,6 +205,10 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
             resourceInputs["networks"] = state?.networks;
             resourceInputs["nodeStates"] = state?.nodeStates;
             resourceInputs["plan"] = state?.plan;
+            resourceInputs["planBackups"] = state?.planBackups;
+            resourceInputs["planCompute"] = state?.planCompute;
+            resourceInputs["planNodeCount"] = state?.planNodeCount;
+            resourceInputs["planStorageGib"] = state?.planStorageGib;
             resourceInputs["powered"] = state?.powered;
             resourceInputs["primaryDatabase"] = state?.primaryDatabase;
             resourceInputs["properties"] = state?.properties;
@@ -195,9 +225,6 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
             resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as ManagedDatabasePostgresqlArgs | undefined;
-            if (args?.plan === undefined && !opts.urn) {
-                throw new Error("Missing required property 'plan'");
-            }
             if (args?.title === undefined && !opts.urn) {
                 throw new Error("Missing required property 'title'");
             }
@@ -211,6 +238,10 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["networks"] = args?.networks;
             resourceInputs["plan"] = args?.plan;
+            resourceInputs["planBackups"] = args?.planBackups;
+            resourceInputs["planCompute"] = args?.planCompute;
+            resourceInputs["planNodeCount"] = args?.planNodeCount;
+            resourceInputs["planStorageGib"] = args?.planStorageGib;
             resourceInputs["powered"] = args?.powered;
             resourceInputs["properties"] = args?.properties;
             resourceInputs["terminationProtection"] = args?.terminationProtection;
@@ -241,6 +272,8 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
 export interface ManagedDatabasePostgresqlState {
     /**
      * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     *
+     * @deprecated The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
      */
     additionalDiskSpaceGib?: pulumi.Input<number>;
     /**
@@ -273,8 +306,26 @@ export interface ManagedDatabasePostgresqlState {
     nodeStates?: pulumi.Input<pulumi.Input<inputs.ManagedDatabasePostgresqlNodeState>[]>;
     /**
      * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
+     *
+     * @deprecated The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
      */
     plan?: pulumi.Input<string>;
+    /**
+     * Backup tier for the database plan.
+     */
+    planBackups?: pulumi.Input<string>;
+    /**
+     * Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+     */
+    planCompute?: pulumi.Input<string>;
+    /**
+     * Number of nodes in the database plan.
+     */
+    planNodeCount?: pulumi.Input<number>;
+    /**
+     * Total storage per node in GiB.
+     */
+    planStorageGib?: pulumi.Input<number>;
     /**
      * The administrative power state of the service
      */
@@ -339,6 +390,8 @@ export interface ManagedDatabasePostgresqlState {
 export interface ManagedDatabasePostgresqlArgs {
     /**
      * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+     *
+     * @deprecated The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
      */
     additionalDiskSpaceGib?: pulumi.Input<number>;
     /**
@@ -363,8 +416,26 @@ export interface ManagedDatabasePostgresqlArgs {
     networks?: pulumi.Input<pulumi.Input<inputs.ManagedDatabasePostgresqlNetwork>[]>;
     /**
      * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
+     *
+     * @deprecated The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
      */
-    plan: pulumi.Input<string>;
+    plan?: pulumi.Input<string>;
+    /**
+     * Backup tier for the database plan.
+     */
+    planBackups?: pulumi.Input<string>;
+    /**
+     * Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
+     */
+    planCompute?: pulumi.Input<string>;
+    /**
+     * Number of nodes in the database plan.
+     */
+    planNodeCount?: pulumi.Input<number>;
+    /**
+     * Total storage per node in GiB.
+     */
+    planStorageGib?: pulumi.Input<number>;
     /**
      * The administrative power state of the service
      */
