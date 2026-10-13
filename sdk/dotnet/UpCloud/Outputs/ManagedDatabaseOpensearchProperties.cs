@@ -189,6 +189,18 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
         /// </summary>
         public readonly bool? KeepIndexRefreshInterval;
         /// <summary>
+        /// Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+        /// </summary>
+        public readonly bool? KnnCacheItemExpiryEnabled;
+        /// <summary>
+        /// If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+        /// </summary>
+        public readonly int? KnnCacheItemExpiryMinutes;
+        /// <summary>
+        /// The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
+        /// </summary>
+        public readonly double? KnnCircuitBreakerUnsetPercentage;
+        /// <summary>
         /// Enable or disable KNN memory circuit breaker. Defaults to true.
         /// </summary>
         public readonly bool? KnnMemoryCircuitBreakerEnabled;
@@ -431,6 +443,12 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
 
             bool? keepIndexRefreshInterval,
 
+            bool? knnCacheItemExpiryEnabled,
+
+            int? knnCacheItemExpiryMinutes,
+
+            double? knnCircuitBreakerUnsetPercentage,
+
             bool? knnMemoryCircuitBreakerEnabled,
 
             int? knnMemoryCircuitBreakerLimit,
@@ -554,6 +572,9 @@ namespace UpCloud.Pulumi.UpCloud.Outputs
             IsmHistoryRolloverRetentionPeriod = ismHistoryRolloverRetentionPeriod;
             Jwt = jwt;
             KeepIndexRefreshInterval = keepIndexRefreshInterval;
+            KnnCacheItemExpiryEnabled = knnCacheItemExpiryEnabled;
+            KnnCacheItemExpiryMinutes = knnCacheItemExpiryMinutes;
+            KnnCircuitBreakerUnsetPercentage = knnCircuitBreakerUnsetPercentage;
             KnnMemoryCircuitBreakerEnabled = knnMemoryCircuitBreakerEnabled;
             KnnMemoryCircuitBreakerLimit = knnMemoryCircuitBreakerLimit;
             MlCommonsConnectorAccessControlEnabled = mlCommonsConnectorAccessControlEnabled;

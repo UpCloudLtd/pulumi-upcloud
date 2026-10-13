@@ -34,6 +34,13 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         return this.controlPlaneIpFilters;
     }
 
+    @Import(name="fetchKubeconfig")
+    private @Nullable Output<Boolean> fetchKubeconfig;
+
+    public Optional<Output<Boolean>> fetchKubeconfig() {
+        return Optional.ofNullable(this.fetchKubeconfig);
+    }
+
     /**
      * User defined key-value pairs to classify the cluster.
      * 
@@ -177,6 +184,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
 
     private KubernetesClusterArgs(KubernetesClusterArgs $) {
         this.controlPlaneIpFilters = $.controlPlaneIpFilters;
+        this.fetchKubeconfig = $.fetchKubeconfig;
         this.labels = $.labels;
         this.name = $.name;
         this.network = $.network;
@@ -235,6 +243,15 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder controlPlaneIpFilters(String... controlPlaneIpFilters) {
             return controlPlaneIpFilters(List.of(controlPlaneIpFilters));
+        }
+
+        public Builder fetchKubeconfig(@Nullable Output<Boolean> fetchKubeconfig) {
+            $.fetchKubeconfig = fetchKubeconfig;
+            return this;
+        }
+
+        public Builder fetchKubeconfig(Boolean fetchKubeconfig) {
+            return fetchKubeconfig(Output.of(fetchKubeconfig));
         }
 
         /**

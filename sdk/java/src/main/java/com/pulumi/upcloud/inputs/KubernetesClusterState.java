@@ -5,6 +5,7 @@ package com.pulumi.upcloud.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.upcloud.inputs.KubernetesClusterKubeconfigArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -31,6 +32,28 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
      */
     public Optional<Output<List<String>>> controlPlaneIpFilters() {
         return Optional.ofNullable(this.controlPlaneIpFilters);
+    }
+
+    @Import(name="fetchKubeconfig")
+    private @Nullable Output<Boolean> fetchKubeconfig;
+
+    public Optional<Output<Boolean>> fetchKubeconfig() {
+        return Optional.ofNullable(this.fetchKubeconfig);
+    }
+
+    /**
+     * Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
+     * 
+     */
+    @Import(name="kubeconfig")
+    private @Nullable Output<KubernetesClusterKubeconfigArgs> kubeconfig;
+
+    /**
+     * @return Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
+     * 
+     */
+    public Optional<Output<KubernetesClusterKubeconfigArgs>> kubeconfig() {
+        return Optional.ofNullable(this.kubeconfig);
     }
 
     /**
@@ -221,6 +244,8 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
 
     private KubernetesClusterState(KubernetesClusterState $) {
         this.controlPlaneIpFilters = $.controlPlaneIpFilters;
+        this.fetchKubeconfig = $.fetchKubeconfig;
+        this.kubeconfig = $.kubeconfig;
         this.labels = $.labels;
         this.name = $.name;
         this.network = $.network;
@@ -282,6 +307,36 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
          */
         public Builder controlPlaneIpFilters(String... controlPlaneIpFilters) {
             return controlPlaneIpFilters(List.of(controlPlaneIpFilters));
+        }
+
+        public Builder fetchKubeconfig(@Nullable Output<Boolean> fetchKubeconfig) {
+            $.fetchKubeconfig = fetchKubeconfig;
+            return this;
+        }
+
+        public Builder fetchKubeconfig(Boolean fetchKubeconfig) {
+            return fetchKubeconfig(Output.of(fetchKubeconfig));
+        }
+
+        /**
+         * @param kubeconfig Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder kubeconfig(@Nullable Output<KubernetesClusterKubeconfigArgs> kubeconfig) {
+            $.kubeconfig = kubeconfig;
+            return this;
+        }
+
+        /**
+         * @param kubeconfig Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder kubeconfig(KubernetesClusterKubeconfigArgs kubeconfig) {
+            return kubeconfig(Output.of(kubeconfig));
         }
 
         /**

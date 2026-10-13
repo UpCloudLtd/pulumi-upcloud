@@ -21,6 +21,7 @@ import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesSearchInsigh
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesSegrepArgs;
 import com.pulumi.upcloud.inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressureArgs;
 import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -693,6 +694,51 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
     }
 
     /**
+     * Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+     * 
+     */
+    @Import(name="knnCacheItemExpiryEnabled")
+    private @Nullable Output<Boolean> knnCacheItemExpiryEnabled;
+
+    /**
+     * @return Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+     * 
+     */
+    public Optional<Output<Boolean>> knnCacheItemExpiryEnabled() {
+        return Optional.ofNullable(this.knnCacheItemExpiryEnabled);
+    }
+
+    /**
+     * If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+     * 
+     */
+    @Import(name="knnCacheItemExpiryMinutes")
+    private @Nullable Output<Integer> knnCacheItemExpiryMinutes;
+
+    /**
+     * @return If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+     * 
+     */
+    public Optional<Output<Integer>> knnCacheItemExpiryMinutes() {
+        return Optional.ofNullable(this.knnCacheItemExpiryMinutes);
+    }
+
+    /**
+     * The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
+     * 
+     */
+    @Import(name="knnCircuitBreakerUnsetPercentage")
+    private @Nullable Output<Double> knnCircuitBreakerUnsetPercentage;
+
+    /**
+     * @return The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
+     * 
+     */
+    public Optional<Output<Double>> knnCircuitBreakerUnsetPercentage() {
+        return Optional.ofNullable(this.knnCircuitBreakerUnsetPercentage);
+    }
+
+    /**
      * Enable or disable KNN memory circuit breaker. Defaults to true.
      * 
      */
@@ -1309,6 +1355,9 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
         this.ismHistoryRolloverRetentionPeriod = $.ismHistoryRolloverRetentionPeriod;
         this.jwt = $.jwt;
         this.keepIndexRefreshInterval = $.keepIndexRefreshInterval;
+        this.knnCacheItemExpiryEnabled = $.knnCacheItemExpiryEnabled;
+        this.knnCacheItemExpiryMinutes = $.knnCacheItemExpiryMinutes;
+        this.knnCircuitBreakerUnsetPercentage = $.knnCircuitBreakerUnsetPercentage;
         this.knnMemoryCircuitBreakerEnabled = $.knnMemoryCircuitBreakerEnabled;
         this.knnMemoryCircuitBreakerLimit = $.knnMemoryCircuitBreakerLimit;
         this.mlCommonsConnectorAccessControlEnabled = $.mlCommonsConnectorAccessControlEnabled;
@@ -2327,6 +2376,69 @@ public final class ManagedDatabaseOpensearchPropertiesArgs extends com.pulumi.re
          */
         public Builder keepIndexRefreshInterval(Boolean keepIndexRefreshInterval) {
             return keepIndexRefreshInterval(Output.of(keepIndexRefreshInterval));
+        }
+
+        /**
+         * @param knnCacheItemExpiryEnabled Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder knnCacheItemExpiryEnabled(@Nullable Output<Boolean> knnCacheItemExpiryEnabled) {
+            $.knnCacheItemExpiryEnabled = knnCacheItemExpiryEnabled;
+            return this;
+        }
+
+        /**
+         * @param knnCacheItemExpiryEnabled Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder knnCacheItemExpiryEnabled(Boolean knnCacheItemExpiryEnabled) {
+            return knnCacheItemExpiryEnabled(Output.of(knnCacheItemExpiryEnabled));
+        }
+
+        /**
+         * @param knnCacheItemExpiryMinutes If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder knnCacheItemExpiryMinutes(@Nullable Output<Integer> knnCacheItemExpiryMinutes) {
+            $.knnCacheItemExpiryMinutes = knnCacheItemExpiryMinutes;
+            return this;
+        }
+
+        /**
+         * @param knnCacheItemExpiryMinutes If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder knnCacheItemExpiryMinutes(Integer knnCacheItemExpiryMinutes) {
+            return knnCacheItemExpiryMinutes(Output.of(knnCacheItemExpiryMinutes));
+        }
+
+        /**
+         * @param knnCircuitBreakerUnsetPercentage The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder knnCircuitBreakerUnsetPercentage(@Nullable Output<Double> knnCircuitBreakerUnsetPercentage) {
+            $.knnCircuitBreakerUnsetPercentage = knnCircuitBreakerUnsetPercentage;
+            return this;
+        }
+
+        /**
+         * @param knnCircuitBreakerUnsetPercentage The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder knnCircuitBreakerUnsetPercentage(Double knnCircuitBreakerUnsetPercentage) {
+            return knnCircuitBreakerUnsetPercentage(Output.of(knnCircuitBreakerUnsetPercentage));
         }
 
         /**

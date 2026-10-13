@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['KubernetesClusterArgs', 'KubernetesCluster']
 
@@ -22,6 +24,7 @@ class KubernetesClusterArgs:
                  control_plane_ip_filters: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  network: pulumi.Input[_builtins.str],
                  zone: pulumi.Input[_builtins.str],
+                 fetch_kubeconfig: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  plan: Optional[pulumi.Input[_builtins.str]] = None,
@@ -47,6 +50,8 @@ class KubernetesClusterArgs:
         pulumi.set(__self__, "control_plane_ip_filters", control_plane_ip_filters)
         pulumi.set(__self__, "network", network)
         pulumi.set(__self__, "zone", zone)
+        if fetch_kubeconfig is not None:
+            pulumi.set(__self__, "fetch_kubeconfig", fetch_kubeconfig)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
@@ -97,6 +102,15 @@ class KubernetesClusterArgs:
     @zone.setter
     def zone(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "zone", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fetchKubeconfig")
+    def fetch_kubeconfig(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "fetch_kubeconfig")
+
+    @fetch_kubeconfig.setter
+    def fetch_kubeconfig(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "fetch_kubeconfig", value)
 
     @_builtins.property
     @pulumi.getter
@@ -189,6 +203,8 @@ class KubernetesClusterArgs:
 class _KubernetesClusterState:
     def __init__(__self__, *,
                  control_plane_ip_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 fetch_kubeconfig: Optional[pulumi.Input[_builtins.bool]] = None,
+                 kubeconfig: Optional[pulumi.Input['KubernetesClusterKubeconfigArgs']] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  network: Optional[pulumi.Input[_builtins.str]] = None,
@@ -204,6 +220,7 @@ class _KubernetesClusterState:
         """
         Input properties used for looking up and filtering KubernetesCluster resources.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] control_plane_ip_filters: IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
+        :param pulumi.Input['KubernetesClusterKubeconfigArgs'] kubeconfig: Cluster kubeconfig and connection details. Set only when `fetch_kubeconfig` is `true`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[_builtins.str] name: Cluster name. Needs to be unique within the account.
         :param pulumi.Input[_builtins.str] network: Network ID for the cluster to run in.
@@ -221,6 +238,10 @@ class _KubernetesClusterState:
         """
         if control_plane_ip_filters is not None:
             pulumi.set(__self__, "control_plane_ip_filters", control_plane_ip_filters)
+        if fetch_kubeconfig is not None:
+            pulumi.set(__self__, "fetch_kubeconfig", fetch_kubeconfig)
+        if kubeconfig is not None:
+            pulumi.set(__self__, "kubeconfig", kubeconfig)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
@@ -257,6 +278,27 @@ class _KubernetesClusterState:
     @control_plane_ip_filters.setter
     def control_plane_ip_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "control_plane_ip_filters", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fetchKubeconfig")
+    def fetch_kubeconfig(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "fetch_kubeconfig")
+
+    @fetch_kubeconfig.setter
+    def fetch_kubeconfig(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "fetch_kubeconfig", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kubeconfig(self) -> Optional[pulumi.Input['KubernetesClusterKubeconfigArgs']]:
+        """
+        Cluster kubeconfig and connection details. Set only when `fetch_kubeconfig` is `true`.
+        """
+        return pulumi.get(self, "kubeconfig")
+
+    @kubeconfig.setter
+    def kubeconfig(self, value: Optional[pulumi.Input['KubernetesClusterKubeconfigArgs']]):
+        pulumi.set(self, "kubeconfig", value)
 
     @_builtins.property
     @pulumi.getter
@@ -412,6 +454,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  control_plane_ip_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 fetch_kubeconfig: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  network: Optional[pulumi.Input[_builtins.str]] = None,
@@ -565,6 +608,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  control_plane_ip_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 fetch_kubeconfig: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  network: Optional[pulumi.Input[_builtins.str]] = None,
@@ -586,6 +630,7 @@ class KubernetesCluster(pulumi.CustomResource):
             if control_plane_ip_filters is None and not opts.urn:
                 raise TypeError("Missing required property 'control_plane_ip_filters'")
             __props__.__dict__["control_plane_ip_filters"] = control_plane_ip_filters
+            __props__.__dict__["fetch_kubeconfig"] = fetch_kubeconfig
             __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
             if network is None and not opts.urn:
@@ -599,6 +644,7 @@ class KubernetesCluster(pulumi.CustomResource):
             if zone is None and not opts.urn:
                 raise TypeError("Missing required property 'zone'")
             __props__.__dict__["zone"] = zone
+            __props__.__dict__["kubeconfig"] = None
             __props__.__dict__["network_cidr"] = None
             __props__.__dict__["node_groups"] = None
             __props__.__dict__["state"] = None
@@ -613,6 +659,8 @@ class KubernetesCluster(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             control_plane_ip_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            fetch_kubeconfig: Optional[pulumi.Input[_builtins.bool]] = None,
+            kubeconfig: Optional[pulumi.Input[Union['KubernetesClusterKubeconfigArgs', 'KubernetesClusterKubeconfigArgsDict']]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             network: Optional[pulumi.Input[_builtins.str]] = None,
@@ -633,6 +681,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] control_plane_ip_filters: IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
+        :param pulumi.Input[Union['KubernetesClusterKubeconfigArgs', 'KubernetesClusterKubeconfigArgsDict']] kubeconfig: Cluster kubeconfig and connection details. Set only when `fetch_kubeconfig` is `true`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[_builtins.str] name: Cluster name. Needs to be unique within the account.
         :param pulumi.Input[_builtins.str] network: Network ID for the cluster to run in.
@@ -653,6 +702,8 @@ class KubernetesCluster(pulumi.CustomResource):
         __props__ = _KubernetesClusterState.__new__(_KubernetesClusterState)
 
         __props__.__dict__["control_plane_ip_filters"] = control_plane_ip_filters
+        __props__.__dict__["fetch_kubeconfig"] = fetch_kubeconfig
+        __props__.__dict__["kubeconfig"] = kubeconfig
         __props__.__dict__["labels"] = labels
         __props__.__dict__["name"] = name
         __props__.__dict__["network"] = network
@@ -674,6 +725,19 @@ class KubernetesCluster(pulumi.CustomResource):
         IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
         """
         return pulumi.get(self, "control_plane_ip_filters")
+
+    @_builtins.property
+    @pulumi.getter(name="fetchKubeconfig")
+    def fetch_kubeconfig(self) -> pulumi.Output[_builtins.bool]:
+        return pulumi.get(self, "fetch_kubeconfig")
+
+    @_builtins.property
+    @pulumi.getter
+    def kubeconfig(self) -> pulumi.Output['outputs.KubernetesClusterKubeconfig']:
+        """
+        Cluster kubeconfig and connection details. Set only when `fetch_kubeconfig` is `true`.
+        """
+        return pulumi.get(self, "kubeconfig")
 
     @_builtins.property
     @pulumi.getter

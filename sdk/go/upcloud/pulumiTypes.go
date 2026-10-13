@@ -1419,6 +1419,219 @@ func (o GatewayRouterPtrOutput) Id() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type KubernetesClusterKubeconfig struct {
+	// TLS authentication client certificate, encoded (PEM).
+	ClientCertificate *string `pulumi:"clientCertificate"`
+	// Key to pair with `clientCertificate`, encoded (PEM).
+	ClientKey *string `pulumi:"clientKey"`
+	// TLS authentication root certificate bundle, encoded (PEM).
+	ClusterCaCertificate *string `pulumi:"clusterCaCertificate"`
+	// Hostname of the cluster API. Defined as URI.
+	Host *string `pulumi:"host"`
+	// Kubernetes config file contents for the cluster.
+	Kubeconfig *string `pulumi:"kubeconfig"`
+}
+
+// KubernetesClusterKubeconfigInput is an input type that accepts KubernetesClusterKubeconfigArgs and KubernetesClusterKubeconfigOutput values.
+// You can construct a concrete instance of `KubernetesClusterKubeconfigInput` via:
+//
+//	KubernetesClusterKubeconfigArgs{...}
+type KubernetesClusterKubeconfigInput interface {
+	pulumi.Input
+
+	ToKubernetesClusterKubeconfigOutput() KubernetesClusterKubeconfigOutput
+	ToKubernetesClusterKubeconfigOutputWithContext(context.Context) KubernetesClusterKubeconfigOutput
+}
+
+type KubernetesClusterKubeconfigArgs struct {
+	// TLS authentication client certificate, encoded (PEM).
+	ClientCertificate pulumi.StringPtrInput `pulumi:"clientCertificate"`
+	// Key to pair with `clientCertificate`, encoded (PEM).
+	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
+	// TLS authentication root certificate bundle, encoded (PEM).
+	ClusterCaCertificate pulumi.StringPtrInput `pulumi:"clusterCaCertificate"`
+	// Hostname of the cluster API. Defined as URI.
+	Host pulumi.StringPtrInput `pulumi:"host"`
+	// Kubernetes config file contents for the cluster.
+	Kubeconfig pulumi.StringPtrInput `pulumi:"kubeconfig"`
+}
+
+func (KubernetesClusterKubeconfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesClusterKubeconfig)(nil)).Elem()
+}
+
+func (i KubernetesClusterKubeconfigArgs) ToKubernetesClusterKubeconfigOutput() KubernetesClusterKubeconfigOutput {
+	return i.ToKubernetesClusterKubeconfigOutputWithContext(context.Background())
+}
+
+func (i KubernetesClusterKubeconfigArgs) ToKubernetesClusterKubeconfigOutputWithContext(ctx context.Context) KubernetesClusterKubeconfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterKubeconfigOutput)
+}
+
+func (i KubernetesClusterKubeconfigArgs) ToKubernetesClusterKubeconfigPtrOutput() KubernetesClusterKubeconfigPtrOutput {
+	return i.ToKubernetesClusterKubeconfigPtrOutputWithContext(context.Background())
+}
+
+func (i KubernetesClusterKubeconfigArgs) ToKubernetesClusterKubeconfigPtrOutputWithContext(ctx context.Context) KubernetesClusterKubeconfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterKubeconfigOutput).ToKubernetesClusterKubeconfigPtrOutputWithContext(ctx)
+}
+
+// KubernetesClusterKubeconfigPtrInput is an input type that accepts KubernetesClusterKubeconfigArgs, KubernetesClusterKubeconfigPtr and KubernetesClusterKubeconfigPtrOutput values.
+// You can construct a concrete instance of `KubernetesClusterKubeconfigPtrInput` via:
+//
+//	        KubernetesClusterKubeconfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type KubernetesClusterKubeconfigPtrInput interface {
+	pulumi.Input
+
+	ToKubernetesClusterKubeconfigPtrOutput() KubernetesClusterKubeconfigPtrOutput
+	ToKubernetesClusterKubeconfigPtrOutputWithContext(context.Context) KubernetesClusterKubeconfigPtrOutput
+}
+
+type kubernetesClusterKubeconfigPtrType KubernetesClusterKubeconfigArgs
+
+func KubernetesClusterKubeconfigPtr(v *KubernetesClusterKubeconfigArgs) KubernetesClusterKubeconfigPtrInput {
+	return (*kubernetesClusterKubeconfigPtrType)(v)
+}
+
+func (*kubernetesClusterKubeconfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**KubernetesClusterKubeconfig)(nil)).Elem()
+}
+
+func (i *kubernetesClusterKubeconfigPtrType) ToKubernetesClusterKubeconfigPtrOutput() KubernetesClusterKubeconfigPtrOutput {
+	return i.ToKubernetesClusterKubeconfigPtrOutputWithContext(context.Background())
+}
+
+func (i *kubernetesClusterKubeconfigPtrType) ToKubernetesClusterKubeconfigPtrOutputWithContext(ctx context.Context) KubernetesClusterKubeconfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterKubeconfigPtrOutput)
+}
+
+type KubernetesClusterKubeconfigOutput struct{ *pulumi.OutputState }
+
+func (KubernetesClusterKubeconfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesClusterKubeconfig)(nil)).Elem()
+}
+
+func (o KubernetesClusterKubeconfigOutput) ToKubernetesClusterKubeconfigOutput() KubernetesClusterKubeconfigOutput {
+	return o
+}
+
+func (o KubernetesClusterKubeconfigOutput) ToKubernetesClusterKubeconfigOutputWithContext(ctx context.Context) KubernetesClusterKubeconfigOutput {
+	return o
+}
+
+func (o KubernetesClusterKubeconfigOutput) ToKubernetesClusterKubeconfigPtrOutput() KubernetesClusterKubeconfigPtrOutput {
+	return o.ToKubernetesClusterKubeconfigPtrOutputWithContext(context.Background())
+}
+
+func (o KubernetesClusterKubeconfigOutput) ToKubernetesClusterKubeconfigPtrOutputWithContext(ctx context.Context) KubernetesClusterKubeconfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v KubernetesClusterKubeconfig) *KubernetesClusterKubeconfig {
+		return &v
+	}).(KubernetesClusterKubeconfigPtrOutput)
+}
+
+// TLS authentication client certificate, encoded (PEM).
+func (o KubernetesClusterKubeconfigOutput) ClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterKubeconfig) *string { return v.ClientCertificate }).(pulumi.StringPtrOutput)
+}
+
+// Key to pair with `clientCertificate`, encoded (PEM).
+func (o KubernetesClusterKubeconfigOutput) ClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterKubeconfig) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
+}
+
+// TLS authentication root certificate bundle, encoded (PEM).
+func (o KubernetesClusterKubeconfigOutput) ClusterCaCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterKubeconfig) *string { return v.ClusterCaCertificate }).(pulumi.StringPtrOutput)
+}
+
+// Hostname of the cluster API. Defined as URI.
+func (o KubernetesClusterKubeconfigOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterKubeconfig) *string { return v.Host }).(pulumi.StringPtrOutput)
+}
+
+// Kubernetes config file contents for the cluster.
+func (o KubernetesClusterKubeconfigOutput) Kubeconfig() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterKubeconfig) *string { return v.Kubeconfig }).(pulumi.StringPtrOutput)
+}
+
+type KubernetesClusterKubeconfigPtrOutput struct{ *pulumi.OutputState }
+
+func (KubernetesClusterKubeconfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KubernetesClusterKubeconfig)(nil)).Elem()
+}
+
+func (o KubernetesClusterKubeconfigPtrOutput) ToKubernetesClusterKubeconfigPtrOutput() KubernetesClusterKubeconfigPtrOutput {
+	return o
+}
+
+func (o KubernetesClusterKubeconfigPtrOutput) ToKubernetesClusterKubeconfigPtrOutputWithContext(ctx context.Context) KubernetesClusterKubeconfigPtrOutput {
+	return o
+}
+
+func (o KubernetesClusterKubeconfigPtrOutput) Elem() KubernetesClusterKubeconfigOutput {
+	return o.ApplyT(func(v *KubernetesClusterKubeconfig) KubernetesClusterKubeconfig {
+		if v != nil {
+			return *v
+		}
+		var ret KubernetesClusterKubeconfig
+		return ret
+	}).(KubernetesClusterKubeconfigOutput)
+}
+
+// TLS authentication client certificate, encoded (PEM).
+func (o KubernetesClusterKubeconfigPtrOutput) ClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterKubeconfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
+// Key to pair with `clientCertificate`, encoded (PEM).
+func (o KubernetesClusterKubeconfigPtrOutput) ClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterKubeconfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// TLS authentication root certificate bundle, encoded (PEM).
+func (o KubernetesClusterKubeconfigPtrOutput) ClusterCaCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterKubeconfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClusterCaCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hostname of the cluster API. Defined as URI.
+func (o KubernetesClusterKubeconfigPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterKubeconfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// Kubernetes config file contents for the cluster.
+func (o KubernetesClusterKubeconfigPtrOutput) Kubeconfig() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterKubeconfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Kubeconfig
+	}).(pulumi.StringPtrOutput)
+}
+
 type KubernetesNodeGroupCloudNativePlan struct {
 	// The size of the storage device in gigabytes.
 	StorageSize *int `pulumi:"storageSize"`
@@ -7733,6 +7946,14 @@ type ManagedDatabaseMysqlProperties struct {
 	InnodbLockWaitTimeout *int `pulumi:"innodbLockWaitTimeout"`
 	// The size in bytes of the buffer that InnoDB uses to write to the log files on disk. Requests above 15% of the RAM provided by your service plan are rejected, because a larger buffer leaves less memory for the buffer pool and client connections.
 	InnodbLogBufferSize *int `pulumi:"innodbLogBufferSize"`
+	// Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts flushing aggressively. Lowering it spreads write I/O more evenly and shortens crash recovery, at the cost of flushing pages that might have been modified again. Must stay at or above innodb_max_dirty_pages_pct_lwm. Default is 90.
+	InnodbMaxDirtyPagesPct *float64 `pulumi:"innodbMaxDirtyPagesPct"`
+	// Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts pre-flushing, to keep the dirty page ratio from reaching innodb_max_dirty_pages_pct. 0 turns pre-flushing off. Cannot be set above innodb_max_dirty_pages_pct. Default is 10.
+	InnodbMaxDirtyPagesPctLwm *float64 `pulumi:"innodbMaxDirtyPagesPctLwm"`
+	// Number of outstanding transactions the InnoDB purge operation may fall behind by before INSERT, UPDATE and DELETE are delayed to let it catch up. The delay applies per row and grows with the lag, and it is capped by innodb_max_purge_lag_delay, which has to be set as well for this option to have any effect. Default is 0, which never delays anything.
+	InnodbMaxPurgeLag *int `pulumi:"innodbMaxPurgeLag"`
+	// Cap in microseconds on the per-row delay innodbMaxPurgeLag applies to INSERT, UPDATE and DELETE. MySQL clamps the delay to this value unconditionally, so while this is 0 no delay is ever applied and innodbMaxPurgeLag on its own does nothing. Both options must be non-zero for either to take effect. Default is 0.
+	InnodbMaxPurgeLagDelay *int `pulumi:"innodbMaxPurgeLagDelay"`
 	// The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
 	InnodbOnlineAlterLogMaxSize *int `pulumi:"innodbOnlineAlterLogMaxSize"`
 	// When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
@@ -7883,6 +8104,14 @@ type ManagedDatabaseMysqlPropertiesArgs struct {
 	InnodbLockWaitTimeout pulumi.IntPtrInput `pulumi:"innodbLockWaitTimeout"`
 	// The size in bytes of the buffer that InnoDB uses to write to the log files on disk. Requests above 15% of the RAM provided by your service plan are rejected, because a larger buffer leaves less memory for the buffer pool and client connections.
 	InnodbLogBufferSize pulumi.IntPtrInput `pulumi:"innodbLogBufferSize"`
+	// Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts flushing aggressively. Lowering it spreads write I/O more evenly and shortens crash recovery, at the cost of flushing pages that might have been modified again. Must stay at or above innodb_max_dirty_pages_pct_lwm. Default is 90.
+	InnodbMaxDirtyPagesPct pulumi.Float64PtrInput `pulumi:"innodbMaxDirtyPagesPct"`
+	// Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts pre-flushing, to keep the dirty page ratio from reaching innodb_max_dirty_pages_pct. 0 turns pre-flushing off. Cannot be set above innodb_max_dirty_pages_pct. Default is 10.
+	InnodbMaxDirtyPagesPctLwm pulumi.Float64PtrInput `pulumi:"innodbMaxDirtyPagesPctLwm"`
+	// Number of outstanding transactions the InnoDB purge operation may fall behind by before INSERT, UPDATE and DELETE are delayed to let it catch up. The delay applies per row and grows with the lag, and it is capped by innodb_max_purge_lag_delay, which has to be set as well for this option to have any effect. Default is 0, which never delays anything.
+	InnodbMaxPurgeLag pulumi.IntPtrInput `pulumi:"innodbMaxPurgeLag"`
+	// Cap in microseconds on the per-row delay innodbMaxPurgeLag applies to INSERT, UPDATE and DELETE. MySQL clamps the delay to this value unconditionally, so while this is 0 no delay is ever applied and innodbMaxPurgeLag on its own does nothing. Both options must be non-zero for either to take effect. Default is 0.
+	InnodbMaxPurgeLagDelay pulumi.IntPtrInput `pulumi:"innodbMaxPurgeLagDelay"`
 	// The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
 	InnodbOnlineAlterLogMaxSize pulumi.IntPtrInput `pulumi:"innodbOnlineAlterLogMaxSize"`
 	// When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
@@ -8180,6 +8409,26 @@ func (o ManagedDatabaseMysqlPropertiesOutput) InnodbLockWaitTimeout() pulumi.Int
 // The size in bytes of the buffer that InnoDB uses to write to the log files on disk. Requests above 15% of the RAM provided by your service plan are rejected, because a larger buffer leaves less memory for the buffer pool and client connections.
 func (o ManagedDatabaseMysqlPropertiesOutput) InnodbLogBufferSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InnodbLogBufferSize }).(pulumi.IntPtrOutput)
+}
+
+// Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts flushing aggressively. Lowering it spreads write I/O more evenly and shortens crash recovery, at the cost of flushing pages that might have been modified again. Must stay at or above innodb_max_dirty_pages_pct_lwm. Default is 90.
+func (o ManagedDatabaseMysqlPropertiesOutput) InnodbMaxDirtyPagesPct() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *float64 { return v.InnodbMaxDirtyPagesPct }).(pulumi.Float64PtrOutput)
+}
+
+// Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts pre-flushing, to keep the dirty page ratio from reaching innodb_max_dirty_pages_pct. 0 turns pre-flushing off. Cannot be set above innodb_max_dirty_pages_pct. Default is 10.
+func (o ManagedDatabaseMysqlPropertiesOutput) InnodbMaxDirtyPagesPctLwm() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *float64 { return v.InnodbMaxDirtyPagesPctLwm }).(pulumi.Float64PtrOutput)
+}
+
+// Number of outstanding transactions the InnoDB purge operation may fall behind by before INSERT, UPDATE and DELETE are delayed to let it catch up. The delay applies per row and grows with the lag, and it is capped by innodb_max_purge_lag_delay, which has to be set as well for this option to have any effect. Default is 0, which never delays anything.
+func (o ManagedDatabaseMysqlPropertiesOutput) InnodbMaxPurgeLag() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InnodbMaxPurgeLag }).(pulumi.IntPtrOutput)
+}
+
+// Cap in microseconds on the per-row delay innodbMaxPurgeLag applies to INSERT, UPDATE and DELETE. MySQL clamps the delay to this value unconditionally, so while this is 0 no delay is ever applied and innodbMaxPurgeLag on its own does nothing. Both options must be non-zero for either to take effect. Default is 0.
+func (o ManagedDatabaseMysqlPropertiesOutput) InnodbMaxPurgeLagDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseMysqlProperties) *int { return v.InnodbMaxPurgeLagDelay }).(pulumi.IntPtrOutput)
 }
 
 // The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
@@ -8685,6 +8934,46 @@ func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbLogBufferSize() pulumi.In
 			return nil
 		}
 		return v.InnodbLogBufferSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts flushing aggressively. Lowering it spreads write I/O more evenly and shortens crash recovery, at the cost of flushing pages that might have been modified again. Must stay at or above innodb_max_dirty_pages_pct_lwm. Default is 90.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbMaxDirtyPagesPct() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.InnodbMaxDirtyPagesPct
+	}).(pulumi.Float64PtrOutput)
+}
+
+// Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts pre-flushing, to keep the dirty page ratio from reaching innodb_max_dirty_pages_pct. 0 turns pre-flushing off. Cannot be set above innodb_max_dirty_pages_pct. Default is 10.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbMaxDirtyPagesPctLwm() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.InnodbMaxDirtyPagesPctLwm
+	}).(pulumi.Float64PtrOutput)
+}
+
+// Number of outstanding transactions the InnoDB purge operation may fall behind by before INSERT, UPDATE and DELETE are delayed to let it catch up. The delay applies per row and grows with the lag, and it is capped by innodb_max_purge_lag_delay, which has to be set as well for this option to have any effect. Default is 0, which never delays anything.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbMaxPurgeLag() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InnodbMaxPurgeLag
+	}).(pulumi.IntPtrOutput)
+}
+
+// Cap in microseconds on the per-row delay innodbMaxPurgeLag applies to INSERT, UPDATE and DELETE. MySQL clamps the delay to this value unconditionally, so while this is 0 no delay is ever applied and innodbMaxPurgeLag on its own does nothing. Both options must be non-zero for either to take effect. Default is 0.
+func (o ManagedDatabaseMysqlPropertiesPtrOutput) InnodbMaxPurgeLagDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseMysqlProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InnodbMaxPurgeLagDelay
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -10032,6 +10321,12 @@ type ManagedDatabaseOpensearchProperties struct {
 	Jwt *ManagedDatabaseOpensearchPropertiesJwt `pulumi:"jwt"`
 	// Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
 	KeepIndexRefreshInterval *bool `pulumi:"keepIndexRefreshInterval"`
+	// Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+	KnnCacheItemExpiryEnabled *bool `pulumi:"knnCacheItemExpiryEnabled"`
+	// If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+	KnnCacheItemExpiryMinutes *int `pulumi:"knnCacheItemExpiryMinutes"`
+	// The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
+	KnnCircuitBreakerUnsetPercentage *float64 `pulumi:"knnCircuitBreakerUnsetPercentage"`
 	// Enable or disable KNN memory circuit breaker. Defaults to true.
 	KnnMemoryCircuitBreakerEnabled *bool `pulumi:"knnMemoryCircuitBreakerEnabled"`
 	// Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
@@ -10210,6 +10505,12 @@ type ManagedDatabaseOpensearchPropertiesArgs struct {
 	Jwt ManagedDatabaseOpensearchPropertiesJwtPtrInput `pulumi:"jwt"`
 	// Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
 	KeepIndexRefreshInterval pulumi.BoolPtrInput `pulumi:"keepIndexRefreshInterval"`
+	// Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+	KnnCacheItemExpiryEnabled pulumi.BoolPtrInput `pulumi:"knnCacheItemExpiryEnabled"`
+	// If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+	KnnCacheItemExpiryMinutes pulumi.IntPtrInput `pulumi:"knnCacheItemExpiryMinutes"`
+	// The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
+	KnnCircuitBreakerUnsetPercentage pulumi.Float64PtrInput `pulumi:"knnCircuitBreakerUnsetPercentage"`
 	// Enable or disable KNN memory circuit breaker. Defaults to true.
 	KnnMemoryCircuitBreakerEnabled pulumi.BoolPtrInput `pulumi:"knnMemoryCircuitBreakerEnabled"`
 	// Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
@@ -10602,6 +10903,21 @@ func (o ManagedDatabaseOpensearchPropertiesOutput) Jwt() ManagedDatabaseOpensear
 // Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
 func (o ManagedDatabaseOpensearchPropertiesOutput) KeepIndexRefreshInterval() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.KeepIndexRefreshInterval }).(pulumi.BoolPtrOutput)
+}
+
+// Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+func (o ManagedDatabaseOpensearchPropertiesOutput) KnnCacheItemExpiryEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *bool { return v.KnnCacheItemExpiryEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+func (o ManagedDatabaseOpensearchPropertiesOutput) KnnCacheItemExpiryMinutes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *int { return v.KnnCacheItemExpiryMinutes }).(pulumi.IntPtrOutput)
+}
+
+// The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
+func (o ManagedDatabaseOpensearchPropertiesOutput) KnnCircuitBreakerUnsetPercentage() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ManagedDatabaseOpensearchProperties) *float64 { return v.KnnCircuitBreakerUnsetPercentage }).(pulumi.Float64PtrOutput)
 }
 
 // Enable or disable KNN memory circuit breaker. Defaults to true.
@@ -11283,6 +11599,36 @@ func (o ManagedDatabaseOpensearchPropertiesPtrOutput) KeepIndexRefreshInterval()
 		}
 		return v.KeepIndexRefreshInterval
 	}).(pulumi.BoolPtrOutput)
+}
+
+// Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) KnnCacheItemExpiryEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.KnnCacheItemExpiryEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) KnnCacheItemExpiryMinutes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return v.KnnCacheItemExpiryMinutes
+	}).(pulumi.IntPtrOutput)
+}
+
+// The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
+func (o ManagedDatabaseOpensearchPropertiesPtrOutput) KnnCircuitBreakerUnsetPercentage() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearchProperties) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.KnnCircuitBreakerUnsetPercentage
+	}).(pulumi.Float64PtrOutput)
 }
 
 // Enable or disable KNN memory circuit breaker. Defaults to true.
@@ -28644,6 +28990,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayConnectionTunnelIpsecPropertiesPtrInput)(nil)).Elem(), GatewayConnectionTunnelIpsecPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayRouterInput)(nil)).Elem(), GatewayRouterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayRouterPtrInput)(nil)).Elem(), GatewayRouterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterKubeconfigInput)(nil)).Elem(), KubernetesClusterKubeconfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterKubeconfigPtrInput)(nil)).Elem(), KubernetesClusterKubeconfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodeGroupCloudNativePlanInput)(nil)).Elem(), KubernetesNodeGroupCloudNativePlanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodeGroupCloudNativePlanPtrInput)(nil)).Elem(), KubernetesNodeGroupCloudNativePlanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodeGroupCustomPlanInput)(nil)).Elem(), KubernetesNodeGroupCustomPlanArgs{})
@@ -28929,6 +29277,8 @@ func init() {
 	pulumi.RegisterOutputType(GatewayConnectionTunnelIpsecPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(GatewayRouterOutput{})
 	pulumi.RegisterOutputType(GatewayRouterPtrOutput{})
+	pulumi.RegisterOutputType(KubernetesClusterKubeconfigOutput{})
+	pulumi.RegisterOutputType(KubernetesClusterKubeconfigPtrOutput{})
 	pulumi.RegisterOutputType(KubernetesNodeGroupCloudNativePlanOutput{})
 	pulumi.RegisterOutputType(KubernetesNodeGroupCloudNativePlanPtrOutput{})
 	pulumi.RegisterOutputType(KubernetesNodeGroupCustomPlanOutput{})

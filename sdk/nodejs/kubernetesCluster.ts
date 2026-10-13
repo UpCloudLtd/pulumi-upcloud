@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -95,6 +97,11 @@ export class KubernetesCluster extends pulumi.CustomResource {
      * IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
      */
     declare public readonly controlPlaneIpFilters: pulumi.Output<string[]>;
+    declare public readonly fetchKubeconfig: pulumi.Output<boolean>;
+    /**
+     * Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
+     */
+    declare public /*out*/ readonly kubeconfig: pulumi.Output<outputs.KubernetesClusterKubeconfig>;
     /**
      * User defined key-value pairs to classify the cluster.
      */
@@ -160,6 +167,8 @@ export class KubernetesCluster extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as KubernetesClusterState | undefined;
             resourceInputs["controlPlaneIpFilters"] = state?.controlPlaneIpFilters;
+            resourceInputs["fetchKubeconfig"] = state?.fetchKubeconfig;
+            resourceInputs["kubeconfig"] = state?.kubeconfig;
             resourceInputs["labels"] = state?.labels;
             resourceInputs["name"] = state?.name;
             resourceInputs["network"] = state?.network;
@@ -184,6 +193,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
                 throw new Error("Missing required property 'zone'");
             }
             resourceInputs["controlPlaneIpFilters"] = args?.controlPlaneIpFilters;
+            resourceInputs["fetchKubeconfig"] = args?.fetchKubeconfig;
             resourceInputs["labels"] = args?.labels;
             resourceInputs["name"] = args?.name;
             resourceInputs["network"] = args?.network;
@@ -193,6 +203,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
             resourceInputs["upgradeStrategyType"] = args?.upgradeStrategyType;
             resourceInputs["version"] = args?.version;
             resourceInputs["zone"] = args?.zone;
+            resourceInputs["kubeconfig"] = undefined /*out*/;
             resourceInputs["networkCidr"] = undefined /*out*/;
             resourceInputs["nodeGroups"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
@@ -210,6 +221,11 @@ export interface KubernetesClusterState {
      * IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
      */
     controlPlaneIpFilters?: pulumi.Input<pulumi.Input<string>[]>;
+    fetchKubeconfig?: pulumi.Input<boolean>;
+    /**
+     * Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
+     */
+    kubeconfig?: pulumi.Input<inputs.KubernetesClusterKubeconfig>;
     /**
      * User defined key-value pairs to classify the cluster.
      */
@@ -270,6 +286,7 @@ export interface KubernetesClusterArgs {
      * IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
      */
     controlPlaneIpFilters: pulumi.Input<pulumi.Input<string>[]>;
+    fetchKubeconfig?: pulumi.Input<boolean>;
     /**
      * User defined key-value pairs to classify the cluster.
      */

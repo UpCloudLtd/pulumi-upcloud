@@ -20,6 +20,7 @@ import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesSearchInsig
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesSegrep;
 import com.pulumi.upcloud.outputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressure;
 import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -246,6 +247,21 @@ public final class ManagedDatabaseOpensearchProperties {
      * 
      */
     private @Nullable Boolean keepIndexRefreshInterval;
+    /**
+     * @return Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+     * 
+     */
+    private @Nullable Boolean knnCacheItemExpiryEnabled;
+    /**
+     * @return If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+     * 
+     */
+    private @Nullable Integer knnCacheItemExpiryMinutes;
+    /**
+     * @return The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
+     * 
+     */
+    private @Nullable Double knnCircuitBreakerUnsetPercentage;
     /**
      * @return Enable or disable KNN memory circuit breaker. Defaults to true.
      * 
@@ -743,6 +759,27 @@ public final class ManagedDatabaseOpensearchProperties {
         return Optional.ofNullable(this.keepIndexRefreshInterval);
     }
     /**
+     * @return Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+     * 
+     */
+    public Optional<Boolean> knnCacheItemExpiryEnabled() {
+        return Optional.ofNullable(this.knnCacheItemExpiryEnabled);
+    }
+    /**
+     * @return If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+     * 
+     */
+    public Optional<Integer> knnCacheItemExpiryMinutes() {
+        return Optional.ofNullable(this.knnCacheItemExpiryMinutes);
+    }
+    /**
+     * @return The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
+     * 
+     */
+    public Optional<Double> knnCircuitBreakerUnsetPercentage() {
+        return Optional.ofNullable(this.knnCircuitBreakerUnsetPercentage);
+    }
+    /**
      * @return Enable or disable KNN memory circuit breaker. Defaults to true.
      * 
      */
@@ -1062,6 +1099,9 @@ public final class ManagedDatabaseOpensearchProperties {
         private @Nullable Integer ismHistoryRolloverRetentionPeriod;
         private @Nullable ManagedDatabaseOpensearchPropertiesJwt jwt;
         private @Nullable Boolean keepIndexRefreshInterval;
+        private @Nullable Boolean knnCacheItemExpiryEnabled;
+        private @Nullable Integer knnCacheItemExpiryMinutes;
+        private @Nullable Double knnCircuitBreakerUnsetPercentage;
         private @Nullable Boolean knnMemoryCircuitBreakerEnabled;
         private @Nullable Integer knnMemoryCircuitBreakerLimit;
         private @Nullable Boolean mlCommonsConnectorAccessControlEnabled;
@@ -1149,6 +1189,9 @@ public final class ManagedDatabaseOpensearchProperties {
     	      this.ismHistoryRolloverRetentionPeriod = defaults.ismHistoryRolloverRetentionPeriod;
     	      this.jwt = defaults.jwt;
     	      this.keepIndexRefreshInterval = defaults.keepIndexRefreshInterval;
+    	      this.knnCacheItemExpiryEnabled = defaults.knnCacheItemExpiryEnabled;
+    	      this.knnCacheItemExpiryMinutes = defaults.knnCacheItemExpiryMinutes;
+    	      this.knnCircuitBreakerUnsetPercentage = defaults.knnCircuitBreakerUnsetPercentage;
     	      this.knnMemoryCircuitBreakerEnabled = defaults.knnMemoryCircuitBreakerEnabled;
     	      this.knnMemoryCircuitBreakerLimit = defaults.knnMemoryCircuitBreakerLimit;
     	      this.mlCommonsConnectorAccessControlEnabled = defaults.mlCommonsConnectorAccessControlEnabled;
@@ -1473,6 +1516,24 @@ public final class ManagedDatabaseOpensearchProperties {
             return this;
         }
         @CustomType.Setter
+        public Builder knnCacheItemExpiryEnabled(@Nullable Boolean knnCacheItemExpiryEnabled) {
+
+            this.knnCacheItemExpiryEnabled = knnCacheItemExpiryEnabled;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder knnCacheItemExpiryMinutes(@Nullable Integer knnCacheItemExpiryMinutes) {
+
+            this.knnCacheItemExpiryMinutes = knnCacheItemExpiryMinutes;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder knnCircuitBreakerUnsetPercentage(@Nullable Double knnCircuitBreakerUnsetPercentage) {
+
+            this.knnCircuitBreakerUnsetPercentage = knnCircuitBreakerUnsetPercentage;
+            return this;
+        }
+        @CustomType.Setter
         public Builder knnMemoryCircuitBreakerEnabled(@Nullable Boolean knnMemoryCircuitBreakerEnabled) {
 
             this.knnMemoryCircuitBreakerEnabled = knnMemoryCircuitBreakerEnabled;
@@ -1759,6 +1820,9 @@ public final class ManagedDatabaseOpensearchProperties {
             _resultValue.ismHistoryRolloverRetentionPeriod = ismHistoryRolloverRetentionPeriod;
             _resultValue.jwt = jwt;
             _resultValue.keepIndexRefreshInterval = keepIndexRefreshInterval;
+            _resultValue.knnCacheItemExpiryEnabled = knnCacheItemExpiryEnabled;
+            _resultValue.knnCacheItemExpiryMinutes = knnCacheItemExpiryMinutes;
+            _resultValue.knnCircuitBreakerUnsetPercentage = knnCircuitBreakerUnsetPercentage;
             _resultValue.knnMemoryCircuitBreakerEnabled = knnMemoryCircuitBreakerEnabled;
             _resultValue.knnMemoryCircuitBreakerLimit = knnMemoryCircuitBreakerLimit;
             _resultValue.mlCommonsConnectorAccessControlEnabled = mlCommonsConnectorAccessControlEnabled;
