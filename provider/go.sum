@@ -1429,8 +1429,8 @@ github.com/Shopify/sarama v1.19.0/go.mod h1:FVkBWblsNy7DGZRfXLU0O9RCGt5g3g3yEuWX
 github.com/Shopify/toxiproxy v2.1.4+incompatible/go.mod h1:OXgGpZ6Cli1/URJOF1DMxUHB2q5Ap20/P/eIdh4G0pI=
 github.com/UpCloudLtd/httplog v0.0.0-20260624214043-23b0cab8e085 h1:WKK9DZI0ZQikQjhHk+/X2HWKxFrENOvseaDysZE8nPs=
 github.com/UpCloudLtd/httplog v0.0.0-20260624214043-23b0cab8e085/go.mod h1:79ZjkJrYkl540hQ5Fy7XkRfR7109HGMTzHdVEkynTqw=
-github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20261008093031-3e844cc7f429 h1:sSDuRU7YliShw21cILsTtQu0GbNtG4nu7IfqXrboF58=
-github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20261008093031-3e844cc7f429/go.mod h1:m6abrM86T7CJ5cgf7hS0SrJuk7NobkaK4SEdmRFzC7A=
+github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20261012082644-55699ab09e80 h1:gIgOlDJHsW9bnCuj/dLiMwEwrc9Xdpw2FrjPkyyDkVI=
+github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20261012082644-55699ab09e80/go.mod h1:m6abrM86T7CJ5cgf7hS0SrJuk7NobkaK4SEdmRFzC7A=
 github.com/UpCloudLtd/upcloud-go-api/credentials v0.1.2-0.20260218111517-78b5a1eb8206 h1:r1Q2sxM6GkJiRrw14gFC9GHk49mh4ngpX+ihFNDZ4ro=
 github.com/UpCloudLtd/upcloud-go-api/credentials v0.1.2-0.20260218111517-78b5a1eb8206/go.mod h1:aZoVN4egBMe11BuJWJywm2aF1rZipCQ69VhacEtYm/M=
 github.com/UpCloudLtd/upcloud-go-api/v8 v8.40.0 h1:MvG4zuzKb0WXruxDebF1OgFXZ+zxPH2MBa0jHDQ9dBo=
