@@ -24,6 +24,7 @@ __all__ = [
     'GatewayConnectionTunnelIpsecAuthPsk',
     'GatewayConnectionTunnelIpsecProperties',
     'GatewayRouter',
+    'KubernetesClusterKubeconfig',
     'KubernetesNodeGroupCloudNativePlan',
     'KubernetesNodeGroupCustomPlan',
     'KubernetesNodeGroupGpuPlan',
@@ -843,6 +844,94 @@ class GatewayRouter(dict):
         ID of the router attached to the gateway.
         """
         return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class KubernetesClusterKubeconfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientCertificate":
+            suggest = "client_certificate"
+        elif key == "clientKey":
+            suggest = "client_key"
+        elif key == "clusterCaCertificate":
+            suggest = "cluster_ca_certificate"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubernetesClusterKubeconfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KubernetesClusterKubeconfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KubernetesClusterKubeconfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 client_certificate: Optional[_builtins.str] = None,
+                 client_key: Optional[_builtins.str] = None,
+                 cluster_ca_certificate: Optional[_builtins.str] = None,
+                 host: Optional[_builtins.str] = None,
+                 kubeconfig: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str client_certificate: TLS authentication client certificate, encoded (PEM).
+        :param _builtins.str client_key: Key to pair with `client_certificate`, encoded (PEM).
+        :param _builtins.str cluster_ca_certificate: TLS authentication root certificate bundle, encoded (PEM).
+        :param _builtins.str host: Hostname of the cluster API. Defined as URI.
+        :param _builtins.str kubeconfig: Kubernetes config file contents for the cluster.
+        """
+        if client_certificate is not None:
+            pulumi.set(__self__, "client_certificate", client_certificate)
+        if client_key is not None:
+            pulumi.set(__self__, "client_key", client_key)
+        if cluster_ca_certificate is not None:
+            pulumi.set(__self__, "cluster_ca_certificate", cluster_ca_certificate)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if kubeconfig is not None:
+            pulumi.set(__self__, "kubeconfig", kubeconfig)
+
+    @_builtins.property
+    @pulumi.getter(name="clientCertificate")
+    def client_certificate(self) -> Optional[_builtins.str]:
+        """
+        TLS authentication client certificate, encoded (PEM).
+        """
+        return pulumi.get(self, "client_certificate")
+
+    @_builtins.property
+    @pulumi.getter(name="clientKey")
+    def client_key(self) -> Optional[_builtins.str]:
+        """
+        Key to pair with `client_certificate`, encoded (PEM).
+        """
+        return pulumi.get(self, "client_key")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterCaCertificate")
+    def cluster_ca_certificate(self) -> Optional[_builtins.str]:
+        """
+        TLS authentication root certificate bundle, encoded (PEM).
+        """
+        return pulumi.get(self, "cluster_ca_certificate")
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> Optional[_builtins.str]:
+        """
+        Hostname of the cluster API. Defined as URI.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def kubeconfig(self) -> Optional[_builtins.str]:
+        """
+        Kubernetes config file contents for the cluster.
+        """
+        return pulumi.get(self, "kubeconfig")
 
 
 @pulumi.output_type
@@ -3720,6 +3809,14 @@ class ManagedDatabaseMysqlProperties(dict):
             suggest = "innodb_lock_wait_timeout"
         elif key == "innodbLogBufferSize":
             suggest = "innodb_log_buffer_size"
+        elif key == "innodbMaxDirtyPagesPct":
+            suggest = "innodb_max_dirty_pages_pct"
+        elif key == "innodbMaxDirtyPagesPctLwm":
+            suggest = "innodb_max_dirty_pages_pct_lwm"
+        elif key == "innodbMaxPurgeLag":
+            suggest = "innodb_max_purge_lag"
+        elif key == "innodbMaxPurgeLagDelay":
+            suggest = "innodb_max_purge_lag_delay"
         elif key == "innodbOnlineAlterLogMaxSize":
             suggest = "innodb_online_alter_log_max_size"
         elif key == "innodbOptimizeFulltextOnly":
@@ -3837,6 +3934,10 @@ class ManagedDatabaseMysqlProperties(dict):
                  innodb_io_capacity_max: Optional[_builtins.int] = None,
                  innodb_lock_wait_timeout: Optional[_builtins.int] = None,
                  innodb_log_buffer_size: Optional[_builtins.int] = None,
+                 innodb_max_dirty_pages_pct: Optional[_builtins.float] = None,
+                 innodb_max_dirty_pages_pct_lwm: Optional[_builtins.float] = None,
+                 innodb_max_purge_lag: Optional[_builtins.int] = None,
+                 innodb_max_purge_lag_delay: Optional[_builtins.int] = None,
                  innodb_online_alter_log_max_size: Optional[_builtins.int] = None,
                  innodb_optimize_fulltext_only: Optional[_builtins.bool] = None,
                  innodb_print_all_deadlocks: Optional[_builtins.bool] = None,
@@ -3906,6 +4007,10 @@ class ManagedDatabaseMysqlProperties(dict):
         :param _builtins.int innodb_io_capacity_max: The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodb_io_capacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
         :param _builtins.int innodb_lock_wait_timeout: The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
         :param _builtins.int innodb_log_buffer_size: The size in bytes of the buffer that InnoDB uses to write to the log files on disk. Requests above 15% of the RAM provided by your service plan are rejected, because a larger buffer leaves less memory for the buffer pool and client connections.
+        :param _builtins.float innodb_max_dirty_pages_pct: Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts flushing aggressively. Lowering it spreads write I/O more evenly and shortens crash recovery, at the cost of flushing pages that might have been modified again. Must stay at or above innodb_max_dirty_pages_pct_lwm. Default is 90.
+        :param _builtins.float innodb_max_dirty_pages_pct_lwm: Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts pre-flushing, to keep the dirty page ratio from reaching innodb_max_dirty_pages_pct. 0 turns pre-flushing off. Cannot be set above innodb_max_dirty_pages_pct. Default is 10.
+        :param _builtins.int innodb_max_purge_lag: Number of outstanding transactions the InnoDB purge operation may fall behind by before INSERT, UPDATE and DELETE are delayed to let it catch up. The delay applies per row and grows with the lag, and it is capped by innodb_max_purge_lag_delay, which has to be set as well for this option to have any effect. Default is 0, which never delays anything.
+        :param _builtins.int innodb_max_purge_lag_delay: Cap in microseconds on the per-row delay innodb_max_purge_lag applies to INSERT, UPDATE and DELETE. MySQL clamps the delay to this value unconditionally, so while this is 0 no delay is ever applied and innodb_max_purge_lag on its own does nothing. Both options must be non-zero for either to take effect. Default is 0.
         :param _builtins.int innodb_online_alter_log_max_size: The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
         :param _builtins.bool innodb_optimize_fulltext_only: When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
         :param _builtins.bool innodb_print_all_deadlocks: When enabled, information about all deadlocks in InnoDB user transactions is recorded in the error log. Disabled by default.
@@ -4003,6 +4108,14 @@ class ManagedDatabaseMysqlProperties(dict):
             pulumi.set(__self__, "innodb_lock_wait_timeout", innodb_lock_wait_timeout)
         if innodb_log_buffer_size is not None:
             pulumi.set(__self__, "innodb_log_buffer_size", innodb_log_buffer_size)
+        if innodb_max_dirty_pages_pct is not None:
+            pulumi.set(__self__, "innodb_max_dirty_pages_pct", innodb_max_dirty_pages_pct)
+        if innodb_max_dirty_pages_pct_lwm is not None:
+            pulumi.set(__self__, "innodb_max_dirty_pages_pct_lwm", innodb_max_dirty_pages_pct_lwm)
+        if innodb_max_purge_lag is not None:
+            pulumi.set(__self__, "innodb_max_purge_lag", innodb_max_purge_lag)
+        if innodb_max_purge_lag_delay is not None:
+            pulumi.set(__self__, "innodb_max_purge_lag_delay", innodb_max_purge_lag_delay)
         if innodb_online_alter_log_max_size is not None:
             pulumi.set(__self__, "innodb_online_alter_log_max_size", innodb_online_alter_log_max_size)
         if innodb_optimize_fulltext_only is not None:
@@ -4307,6 +4420,38 @@ class ManagedDatabaseMysqlProperties(dict):
         The size in bytes of the buffer that InnoDB uses to write to the log files on disk. Requests above 15% of the RAM provided by your service plan are rejected, because a larger buffer leaves less memory for the buffer pool and client connections.
         """
         return pulumi.get(self, "innodb_log_buffer_size")
+
+    @_builtins.property
+    @pulumi.getter(name="innodbMaxDirtyPagesPct")
+    def innodb_max_dirty_pages_pct(self) -> Optional[_builtins.float]:
+        """
+        Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts flushing aggressively. Lowering it spreads write I/O more evenly and shortens crash recovery, at the cost of flushing pages that might have been modified again. Must stay at or above innodb_max_dirty_pages_pct_lwm. Default is 90.
+        """
+        return pulumi.get(self, "innodb_max_dirty_pages_pct")
+
+    @_builtins.property
+    @pulumi.getter(name="innodbMaxDirtyPagesPctLwm")
+    def innodb_max_dirty_pages_pct_lwm(self) -> Optional[_builtins.float]:
+        """
+        Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts pre-flushing, to keep the dirty page ratio from reaching innodb_max_dirty_pages_pct. 0 turns pre-flushing off. Cannot be set above innodb_max_dirty_pages_pct. Default is 10.
+        """
+        return pulumi.get(self, "innodb_max_dirty_pages_pct_lwm")
+
+    @_builtins.property
+    @pulumi.getter(name="innodbMaxPurgeLag")
+    def innodb_max_purge_lag(self) -> Optional[_builtins.int]:
+        """
+        Number of outstanding transactions the InnoDB purge operation may fall behind by before INSERT, UPDATE and DELETE are delayed to let it catch up. The delay applies per row and grows with the lag, and it is capped by innodb_max_purge_lag_delay, which has to be set as well for this option to have any effect. Default is 0, which never delays anything.
+        """
+        return pulumi.get(self, "innodb_max_purge_lag")
+
+    @_builtins.property
+    @pulumi.getter(name="innodbMaxPurgeLagDelay")
+    def innodb_max_purge_lag_delay(self) -> Optional[_builtins.int]:
+        """
+        Cap in microseconds on the per-row delay innodb_max_purge_lag applies to INSERT, UPDATE and DELETE. MySQL clamps the delay to this value unconditionally, so while this is 0 no delay is ever applied and innodb_max_purge_lag on its own does nothing. Both options must be non-zero for either to take effect. Default is 0.
+        """
+        return pulumi.get(self, "innodb_max_purge_lag_delay")
 
     @_builtins.property
     @pulumi.getter(name="innodbOnlineAlterLogMaxSize")
@@ -5093,6 +5238,12 @@ class ManagedDatabaseOpensearchProperties(dict):
             suggest = "ism_history_rollover_retention_period"
         elif key == "keepIndexRefreshInterval":
             suggest = "keep_index_refresh_interval"
+        elif key == "knnCacheItemExpiryEnabled":
+            suggest = "knn_cache_item_expiry_enabled"
+        elif key == "knnCacheItemExpiryMinutes":
+            suggest = "knn_cache_item_expiry_minutes"
+        elif key == "knnCircuitBreakerUnsetPercentage":
+            suggest = "knn_circuit_breaker_unset_percentage"
         elif key == "knnMemoryCircuitBreakerEnabled":
             suggest = "knn_memory_circuit_breaker_enabled"
         elif key == "knnMemoryCircuitBreakerLimit":
@@ -5221,6 +5372,9 @@ class ManagedDatabaseOpensearchProperties(dict):
                  ism_history_rollover_retention_period: Optional[_builtins.int] = None,
                  jwt: Optional['outputs.ManagedDatabaseOpensearchPropertiesJwt'] = None,
                  keep_index_refresh_interval: Optional[_builtins.bool] = None,
+                 knn_cache_item_expiry_enabled: Optional[_builtins.bool] = None,
+                 knn_cache_item_expiry_minutes: Optional[_builtins.int] = None,
+                 knn_circuit_breaker_unset_percentage: Optional[_builtins.float] = None,
                  knn_memory_circuit_breaker_enabled: Optional[_builtins.bool] = None,
                  knn_memory_circuit_breaker_limit: Optional[_builtins.int] = None,
                  ml_commons_connector_access_control_enabled: Optional[_builtins.bool] = None,
@@ -5304,6 +5458,9 @@ class ManagedDatabaseOpensearchProperties(dict):
         :param _builtins.int ism_history_rollover_retention_period: How long audit history indices are kept in days.
         :param 'ManagedDatabaseOpensearchPropertiesJwtArgs' jwt: OpenSearch JWT Configuration.
         :param _builtins.bool keep_index_refresh_interval: Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
+        :param _builtins.bool knn_cache_item_expiry_enabled: Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+        :param _builtins.int knn_cache_item_expiry_minutes: If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+        :param _builtins.float knn_circuit_breaker_unset_percentage: The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
         :param _builtins.bool knn_memory_circuit_breaker_enabled: Enable or disable KNN memory circuit breaker. Defaults to true.
         :param _builtins.int knn_memory_circuit_breaker_limit: Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
         :param _builtins.bool ml_commons_connector_access_control_enabled: plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
@@ -5432,6 +5589,12 @@ class ManagedDatabaseOpensearchProperties(dict):
             pulumi.set(__self__, "jwt", jwt)
         if keep_index_refresh_interval is not None:
             pulumi.set(__self__, "keep_index_refresh_interval", keep_index_refresh_interval)
+        if knn_cache_item_expiry_enabled is not None:
+            pulumi.set(__self__, "knn_cache_item_expiry_enabled", knn_cache_item_expiry_enabled)
+        if knn_cache_item_expiry_minutes is not None:
+            pulumi.set(__self__, "knn_cache_item_expiry_minutes", knn_cache_item_expiry_minutes)
+        if knn_circuit_breaker_unset_percentage is not None:
+            pulumi.set(__self__, "knn_circuit_breaker_unset_percentage", knn_circuit_breaker_unset_percentage)
         if knn_memory_circuit_breaker_enabled is not None:
             pulumi.set(__self__, "knn_memory_circuit_breaker_enabled", knn_memory_circuit_breaker_enabled)
         if knn_memory_circuit_breaker_limit is not None:
@@ -5864,6 +6027,30 @@ class ManagedDatabaseOpensearchProperties(dict):
         Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
         """
         return pulumi.get(self, "keep_index_refresh_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="knnCacheItemExpiryEnabled")
+    def knn_cache_item_expiry_enabled(self) -> Optional[_builtins.bool]:
+        """
+        Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+        """
+        return pulumi.get(self, "knn_cache_item_expiry_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="knnCacheItemExpiryMinutes")
+    def knn_cache_item_expiry_minutes(self) -> Optional[_builtins.int]:
+        """
+        If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+        """
+        return pulumi.get(self, "knn_cache_item_expiry_minutes")
+
+    @_builtins.property
+    @pulumi.getter(name="knnCircuitBreakerUnsetPercentage")
+    def knn_circuit_breaker_unset_percentage(self) -> Optional[_builtins.float]:
+        """
+        The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
+        """
+        return pulumi.get(self, "knn_circuit_breaker_unset_percentage")
 
     @_builtins.property
     @pulumi.getter(name="knnMemoryCircuitBreakerEnabled")

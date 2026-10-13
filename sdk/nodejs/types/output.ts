@@ -711,6 +711,29 @@ export interface GetTagsTag {
     servers: string[];
 }
 
+export interface KubernetesClusterKubeconfig {
+    /**
+     * TLS authentication client certificate, encoded (PEM).
+     */
+    clientCertificate: string;
+    /**
+     * Key to pair with `clientCertificate`, encoded (PEM).
+     */
+    clientKey: string;
+    /**
+     * TLS authentication root certificate bundle, encoded (PEM).
+     */
+    clusterCaCertificate: string;
+    /**
+     * Hostname of the cluster API. Defined as URI.
+     */
+    host: string;
+    /**
+     * Kubernetes config file contents for the cluster.
+     */
+    kubeconfig: string;
+}
+
 export interface KubernetesNodeGroupCloudNativePlan {
     /**
      * The size of the storage device in gigabytes.
@@ -1631,6 +1654,22 @@ export interface ManagedDatabaseMysqlProperties {
      */
     innodbLogBufferSize: number;
     /**
+     * Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts flushing aggressively. Lowering it spreads write I/O more evenly and shortens crash recovery, at the cost of flushing pages that might have been modified again. Must stay at or above innodb_max_dirty_pages_pct_lwm. Default is 90.
+     */
+    innodbMaxDirtyPagesPct: number;
+    /**
+     * Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts pre-flushing, to keep the dirty page ratio from reaching innodb_max_dirty_pages_pct. 0 turns pre-flushing off. Cannot be set above innodb_max_dirty_pages_pct. Default is 10.
+     */
+    innodbMaxDirtyPagesPctLwm: number;
+    /**
+     * Number of outstanding transactions the InnoDB purge operation may fall behind by before INSERT, UPDATE and DELETE are delayed to let it catch up. The delay applies per row and grows with the lag, and it is capped by innodb_max_purge_lag_delay, which has to be set as well for this option to have any effect. Default is 0, which never delays anything.
+     */
+    innodbMaxPurgeLag: number;
+    /**
+     * Cap in microseconds on the per-row delay innodbMaxPurgeLag applies to INSERT, UPDATE and DELETE. MySQL clamps the delay to this value unconditionally, so while this is 0 no delay is ever applied and innodbMaxPurgeLag on its own does nothing. Both options must be non-zero for either to take effect. Default is 0.
+     */
+    innodbMaxPurgeLagDelay: number;
+    /**
      * The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
      */
     innodbOnlineAlterLogMaxSize: number;
@@ -2082,6 +2121,18 @@ export interface ManagedDatabaseOpensearchProperties {
      * Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
      */
     keepIndexRefreshInterval: boolean;
+    /**
+     * Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+     */
+    knnCacheItemExpiryEnabled: boolean;
+    /**
+     * If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+     */
+    knnCacheItemExpiryMinutes: number;
+    /**
+     * The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
+     */
+    knnCircuitBreakerUnsetPercentage: number;
     /**
      * Enable or disable KNN memory circuit breaker. Defaults to true.
      */

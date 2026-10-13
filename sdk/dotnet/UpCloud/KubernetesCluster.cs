@@ -113,6 +113,15 @@ namespace UpCloud.Pulumi.UpCloud
         [Output("controlPlaneIpFilters")]
         public Output<ImmutableArray<string>> ControlPlaneIpFilters { get; private set; } = null!;
 
+        [Output("fetchKubeconfig")]
+        public Output<bool> FetchKubeconfig { get; private set; } = null!;
+
+        /// <summary>
+        /// Cluster kubeconfig and connection details. Set only when `FetchKubeconfig` is `True`.
+        /// </summary>
+        [Output("kubeconfig")]
+        public Output<Outputs.KubernetesClusterKubeconfig> Kubeconfig { get; private set; } = null!;
+
         /// <summary>
         /// User defined key-value pairs to classify the cluster.
         /// </summary>
@@ -246,6 +255,9 @@ namespace UpCloud.Pulumi.UpCloud
             set => _controlPlaneIpFilters = value;
         }
 
+        [Input("fetchKubeconfig")]
+        public Input<bool>? FetchKubeconfig { get; set; }
+
         [Input("labels")]
         private InputMap<string>? _labels;
 
@@ -327,6 +339,15 @@ namespace UpCloud.Pulumi.UpCloud
             get => _controlPlaneIpFilters ?? (_controlPlaneIpFilters = new InputList<string>());
             set => _controlPlaneIpFilters = value;
         }
+
+        [Input("fetchKubeconfig")]
+        public Input<bool>? FetchKubeconfig { get; set; }
+
+        /// <summary>
+        /// Cluster kubeconfig and connection details. Set only when `FetchKubeconfig` is `True`.
+        /// </summary>
+        [Input("kubeconfig")]
+        public Input<Inputs.KubernetesClusterKubeconfigGetArgs>? Kubeconfig { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;

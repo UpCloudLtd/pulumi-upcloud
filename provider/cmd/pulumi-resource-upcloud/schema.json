@@ -403,6 +403,44 @@
                 "id"
             ]
         },
+        "upcloud:index/KubernetesClusterKubeconfig:KubernetesClusterKubeconfig": {
+            "properties": {
+                "clientCertificate": {
+                    "type": "string",
+                    "description": "TLS authentication client certificate, encoded (PEM).\n"
+                },
+                "clientKey": {
+                    "type": "string",
+                    "description": "Key to pair with \u003cspan pulumi-lang-nodejs=\"`clientCertificate`\" pulumi-lang-dotnet=\"`ClientCertificate`\" pulumi-lang-go=\"`clientCertificate`\" pulumi-lang-python=\"`client_certificate`\" pulumi-lang-yaml=\"`clientCertificate`\" pulumi-lang-java=\"`clientCertificate`\"\u003e`client_certificate`\u003c/span\u003e, encoded (PEM).\n",
+                    "secret": true
+                },
+                "clusterCaCertificate": {
+                    "type": "string",
+                    "description": "TLS authentication root certificate bundle, encoded (PEM).\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "Hostname of the cluster API. Defined as URI.\n"
+                },
+                "kubeconfig": {
+                    "type": "string",
+                    "description": "Kubernetes config file contents for the cluster.\n",
+                    "secret": true
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "clientCertificate",
+                        "clientKey",
+                        "clusterCaCertificate",
+                        "host",
+                        "kubeconfig"
+                    ]
+                }
+            }
+        },
         "upcloud:index/KubernetesNodeGroupCloudNativePlan:KubernetesNodeGroupCloudNativePlan": {
             "properties": {
                 "storageSize": {
@@ -1919,6 +1957,22 @@
                     "type": "integer",
                     "description": "The size in bytes of the buffer that InnoDB uses to write to the log files on disk. Requests above 15% of the RAM provided by your service plan are rejected, because a larger buffer leaves less memory for the buffer pool and client connections.\n"
                 },
+                "innodbMaxDirtyPagesPct": {
+                    "type": "number",
+                    "description": "Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts flushing aggressively. Lowering it spreads write I/O more evenly and shortens crash recovery, at the cost of flushing pages that might have been modified again. Must stay at or above innodb_max_dirty_pages_pct_lwm. Default is 90.\n"
+                },
+                "innodbMaxDirtyPagesPctLwm": {
+                    "type": "number",
+                    "description": "Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts pre-flushing, to keep the dirty page ratio from reaching innodb_max_dirty_pages_pct. 0 turns pre-flushing off. Cannot be set above innodb_max_dirty_pages_pct. Default is 10.\n"
+                },
+                "innodbMaxPurgeLag": {
+                    "type": "integer",
+                    "description": "Number of outstanding transactions the InnoDB purge operation may fall behind by before INSERT, UPDATE and DELETE are delayed to let it catch up. The delay applies per row and grows with the lag, and it is capped by innodb_max_purge_lag_delay, which has to be set as well for this option to have any effect. Default is 0, which never delays anything.\n"
+                },
+                "innodbMaxPurgeLagDelay": {
+                    "type": "integer",
+                    "description": "Cap in microseconds on the per-row delay\u003cspan pulumi-lang-nodejs=\" innodbMaxPurgeLag \" pulumi-lang-dotnet=\" InnodbMaxPurgeLag \" pulumi-lang-go=\" innodbMaxPurgeLag \" pulumi-lang-python=\" innodb_max_purge_lag \" pulumi-lang-yaml=\" innodbMaxPurgeLag \" pulumi-lang-java=\" innodbMaxPurgeLag \"\u003e innodb_max_purge_lag \u003c/span\u003eapplies to INSERT, UPDATE and DELETE. MySQL clamps the delay to this value unconditionally, so while this is 0 no delay is ever applied and\u003cspan pulumi-lang-nodejs=\" innodbMaxPurgeLag \" pulumi-lang-dotnet=\" InnodbMaxPurgeLag \" pulumi-lang-go=\" innodbMaxPurgeLag \" pulumi-lang-python=\" innodb_max_purge_lag \" pulumi-lang-yaml=\" innodbMaxPurgeLag \" pulumi-lang-java=\" innodbMaxPurgeLag \"\u003e innodb_max_purge_lag \u003c/span\u003eon its own does nothing. Both options must be non-zero for either to take effect. Default is 0.\n"
+                },
                 "innodbOnlineAlterLogMaxSize": {
                     "type": "integer",
                     "description": "The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.\n"
@@ -2115,6 +2169,10 @@
                         "innodbIoCapacityMax",
                         "innodbLockWaitTimeout",
                         "innodbLogBufferSize",
+                        "innodbMaxDirtyPagesPct",
+                        "innodbMaxDirtyPagesPctLwm",
+                        "innodbMaxPurgeLag",
+                        "innodbMaxPurgeLagDelay",
                         "innodbOnlineAlterLogMaxSize",
                         "innodbOptimizeFulltextOnly",
                         "innodbPrintAllDeadlocks",
@@ -2527,6 +2585,18 @@
                     "type": "boolean",
                     "description": "Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.\n"
                 },
+                "knnCacheItemExpiryEnabled": {
+                    "type": "boolean",
+                    "description": "Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.\n"
+                },
+                "knnCacheItemExpiryMinutes": {
+                    "type": "integer",
+                    "description": "If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.\n"
+                },
+                "knnCircuitBreakerUnsetPercentage": {
+                    "type": "number",
+                    "description": "The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.\n"
+                },
                 "knnMemoryCircuitBreakerEnabled": {
                     "type": "boolean",
                     "description": "Enable or disable KNN memory circuit breaker. Defaults to true.\n"
@@ -2730,6 +2800,9 @@
                         "ismHistoryRolloverCheckPeriod",
                         "ismHistoryRolloverRetentionPeriod",
                         "keepIndexRefreshInterval",
+                        "knnCacheItemExpiryEnabled",
+                        "knnCacheItemExpiryMinutes",
+                        "knnCircuitBreakerUnsetPercentage",
                         "knnMemoryCircuitBreakerEnabled",
                         "knnMemoryCircuitBreakerLimit",
                         "mlCommonsConnectorAccessControlEnabled",
@@ -7267,6 +7340,13 @@
                     },
                     "description": "IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `[\"0.0.0.0/0\"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services."
                 },
+                "fetchKubeconfig": {
+                    "type": "boolean"
+                },
+                "kubeconfig": {
+                    "$ref": "#/types/upcloud:index/KubernetesClusterKubeconfig:KubernetesClusterKubeconfig",
+                    "description": "Cluster kubeconfig and connection details. Set only when \u003cspan pulumi-lang-nodejs=\"`fetchKubeconfig`\" pulumi-lang-dotnet=\"`FetchKubeconfig`\" pulumi-lang-go=\"`fetchKubeconfig`\" pulumi-lang-python=\"`fetch_kubeconfig`\" pulumi-lang-yaml=\"`fetchKubeconfig`\" pulumi-lang-java=\"`fetchKubeconfig`\"\u003e`fetch_kubeconfig`\u003c/span\u003e is \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e."
+                },
                 "labels": {
                     "type": "object",
                     "additionalProperties": {
@@ -7324,6 +7404,8 @@
             },
             "required": [
                 "controlPlaneIpFilters",
+                "fetchKubeconfig",
+                "kubeconfig",
                 "labels",
                 "name",
                 "network",
@@ -7342,6 +7424,9 @@
                         "type": "string"
                     },
                     "description": "IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `[\"0.0.0.0/0\"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services."
+                },
+                "fetchKubeconfig": {
+                    "type": "boolean"
                 },
                 "labels": {
                     "type": "object",
@@ -7397,6 +7482,13 @@
                             "type": "string"
                         },
                         "description": "IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `[\"0.0.0.0/0\"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services."
+                    },
+                    "fetchKubeconfig": {
+                        "type": "boolean"
+                    },
+                    "kubeconfig": {
+                        "$ref": "#/types/upcloud:index/KubernetesClusterKubeconfig:KubernetesClusterKubeconfig",
+                        "description": "Cluster kubeconfig and connection details. Set only when \u003cspan pulumi-lang-nodejs=\"`fetchKubeconfig`\" pulumi-lang-dotnet=\"`FetchKubeconfig`\" pulumi-lang-go=\"`fetchKubeconfig`\" pulumi-lang-python=\"`fetch_kubeconfig`\" pulumi-lang-yaml=\"`fetchKubeconfig`\" pulumi-lang-java=\"`fetchKubeconfig`\"\u003e`fetch_kubeconfig`\u003c/span\u003e is \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e."
                     },
                     "labels": {
                         "type": "object",

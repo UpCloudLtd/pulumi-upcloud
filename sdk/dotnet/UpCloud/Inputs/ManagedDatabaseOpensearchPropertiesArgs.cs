@@ -312,6 +312,24 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         public Input<bool>? KeepIndexRefreshInterval { get; set; }
 
         /// <summary>
+        /// Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
+        /// </summary>
+        [Input("knnCacheItemExpiryEnabled")]
+        public Input<bool>? KnnCacheItemExpiryEnabled { get; set; }
+
+        /// <summary>
+        /// If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
+        /// </summary>
+        [Input("knnCacheItemExpiryMinutes")]
+        public Input<int>? KnnCacheItemExpiryMinutes { get; set; }
+
+        /// <summary>
+        /// The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
+        /// </summary>
+        [Input("knnCircuitBreakerUnsetPercentage")]
+        public Input<double>? KnnCircuitBreakerUnsetPercentage { get; set; }
+
+        /// <summary>
         /// Enable or disable KNN memory circuit breaker. Defaults to true.
         /// </summary>
         [Input("knnMemoryCircuitBreakerEnabled")]

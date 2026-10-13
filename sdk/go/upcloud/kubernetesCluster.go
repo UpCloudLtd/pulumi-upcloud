@@ -112,6 +112,9 @@ type KubernetesCluster struct {
 
 	// IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
 	ControlPlaneIpFilters pulumi.StringArrayOutput `pulumi:"controlPlaneIpFilters"`
+	FetchKubeconfig       pulumi.BoolOutput        `pulumi:"fetchKubeconfig"`
+	// Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
+	Kubeconfig KubernetesClusterKubeconfigOutput `pulumi:"kubeconfig"`
 	// User defined key-value pairs to classify the cluster.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Cluster name. Needs to be unique within the account.
@@ -181,6 +184,9 @@ func GetKubernetesCluster(ctx *pulumi.Context,
 type kubernetesClusterState struct {
 	// IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
 	ControlPlaneIpFilters []string `pulumi:"controlPlaneIpFilters"`
+	FetchKubeconfig       *bool    `pulumi:"fetchKubeconfig"`
+	// Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
+	Kubeconfig *KubernetesClusterKubeconfig `pulumi:"kubeconfig"`
 	// User defined key-value pairs to classify the cluster.
 	Labels map[string]string `pulumi:"labels"`
 	// Cluster name. Needs to be unique within the account.
@@ -212,6 +218,9 @@ type kubernetesClusterState struct {
 type KubernetesClusterState struct {
 	// IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
 	ControlPlaneIpFilters pulumi.StringArrayInput
+	FetchKubeconfig       pulumi.BoolPtrInput
+	// Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
+	Kubeconfig KubernetesClusterKubeconfigPtrInput
 	// User defined key-value pairs to classify the cluster.
 	Labels pulumi.StringMapInput
 	// Cluster name. Needs to be unique within the account.
@@ -247,6 +256,7 @@ func (KubernetesClusterState) ElementType() reflect.Type {
 type kubernetesClusterArgs struct {
 	// IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
 	ControlPlaneIpFilters []string `pulumi:"controlPlaneIpFilters"`
+	FetchKubeconfig       *bool    `pulumi:"fetchKubeconfig"`
 	// User defined key-value pairs to classify the cluster.
 	Labels map[string]string `pulumi:"labels"`
 	// Cluster name. Needs to be unique within the account.
@@ -273,6 +283,7 @@ type kubernetesClusterArgs struct {
 type KubernetesClusterArgs struct {
 	// IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
 	ControlPlaneIpFilters pulumi.StringArrayInput
+	FetchKubeconfig       pulumi.BoolPtrInput
 	// User defined key-value pairs to classify the cluster.
 	Labels pulumi.StringMapInput
 	// Cluster name. Needs to be unique within the account.
@@ -385,6 +396,15 @@ func (o KubernetesClusterOutput) ToKubernetesClusterOutputWithContext(ctx contex
 // IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
 func (o KubernetesClusterOutput) ControlPlaneIpFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringArrayOutput { return v.ControlPlaneIpFilters }).(pulumi.StringArrayOutput)
+}
+
+func (o KubernetesClusterOutput) FetchKubeconfig() pulumi.BoolOutput {
+	return o.ApplyT(func(v *KubernetesCluster) pulumi.BoolOutput { return v.FetchKubeconfig }).(pulumi.BoolOutput)
+}
+
+// Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
+func (o KubernetesClusterOutput) Kubeconfig() KubernetesClusterKubeconfigOutput {
+	return o.ApplyT(func(v *KubernetesCluster) KubernetesClusterKubeconfigOutput { return v.Kubeconfig }).(KubernetesClusterKubeconfigOutput)
 }
 
 // User defined key-value pairs to classify the cluster.

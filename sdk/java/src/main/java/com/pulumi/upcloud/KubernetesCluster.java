@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.upcloud.KubernetesClusterArgs;
 import com.pulumi.upcloud.Utilities;
 import com.pulumi.upcloud.inputs.KubernetesClusterState;
+import com.pulumi.upcloud.outputs.KubernetesClusterKubeconfig;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -130,6 +131,26 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      */
     public Output<List<String>> controlPlaneIpFilters() {
         return this.controlPlaneIpFilters;
+    }
+    @Export(name="fetchKubeconfig", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> fetchKubeconfig;
+
+    public Output<Boolean> fetchKubeconfig() {
+        return this.fetchKubeconfig;
+    }
+    /**
+     * Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
+     * 
+     */
+    @Export(name="kubeconfig", refs={KubernetesClusterKubeconfig.class}, tree="[0]")
+    private Output<KubernetesClusterKubeconfig> kubeconfig;
+
+    /**
+     * @return Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
+     * 
+     */
+    public Output<KubernetesClusterKubeconfig> kubeconfig() {
+        return this.kubeconfig;
     }
     /**
      * User defined key-value pairs to classify the cluster.
