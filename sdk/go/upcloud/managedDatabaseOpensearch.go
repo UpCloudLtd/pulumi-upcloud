@@ -65,6 +65,10 @@ type ManagedDatabaseOpensearch struct {
 	AccessControl pulumi.BoolOutput `pulumi:"accessControl"`
 	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
 	AdditionalDiskSpaceGib pulumi.IntOutput `pulumi:"additionalDiskSpaceGib"`
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom pulumi.StringPtrOutput `pulumi:"cloneFrom"`
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime pulumi.StringPtrOutput `pulumi:"cloneTime"`
 	// Service component information
 	Components ManagedDatabaseOpensearchComponentArrayOutput `pulumi:"components"`
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
@@ -159,6 +163,10 @@ type managedDatabaseOpensearchState struct {
 	AccessControl *bool `pulumi:"accessControl"`
 	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
 	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom *string `pulumi:"cloneFrom"`
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime *string `pulumi:"cloneTime"`
 	// Service component information
 	Components []ManagedDatabaseOpensearchComponent `pulumi:"components"`
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
@@ -210,6 +218,10 @@ type ManagedDatabaseOpensearchState struct {
 	AccessControl pulumi.BoolPtrInput
 	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
 	AdditionalDiskSpaceGib pulumi.IntPtrInput
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom pulumi.StringPtrInput
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime pulumi.StringPtrInput
 	// Service component information
 	Components ManagedDatabaseOpensearchComponentArrayInput
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
@@ -265,6 +277,10 @@ type managedDatabaseOpensearchArgs struct {
 	AccessControl *bool `pulumi:"accessControl"`
 	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
 	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom *string `pulumi:"cloneFrom"`
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime *string `pulumi:"cloneTime"`
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
 	ExtendedAccessControl *bool `pulumi:"extendedAccessControl"`
 	// User defined key-value pairs to classify the database.
@@ -297,6 +313,10 @@ type ManagedDatabaseOpensearchArgs struct {
 	AccessControl pulumi.BoolPtrInput
 	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
 	AdditionalDiskSpaceGib pulumi.IntPtrInput
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom pulumi.StringPtrInput
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime pulumi.StringPtrInput
 	// Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
 	ExtendedAccessControl pulumi.BoolPtrInput
 	// User defined key-value pairs to classify the database.
@@ -418,6 +438,16 @@ func (o ManagedDatabaseOpensearchOutput) AccessControl() pulumi.BoolOutput {
 // Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
 func (o ManagedDatabaseOpensearchOutput) AdditionalDiskSpaceGib() pulumi.IntOutput {
 	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.IntOutput { return v.AdditionalDiskSpaceGib }).(pulumi.IntOutput)
+}
+
+// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+func (o ManagedDatabaseOpensearchOutput) CloneFrom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.StringPtrOutput { return v.CloneFrom }).(pulumi.StringPtrOutput)
+}
+
+// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+func (o ManagedDatabaseOpensearchOutput) CloneTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseOpensearch) pulumi.StringPtrOutput { return v.CloneTime }).(pulumi.StringPtrOutput)
 }
 
 // Service component information

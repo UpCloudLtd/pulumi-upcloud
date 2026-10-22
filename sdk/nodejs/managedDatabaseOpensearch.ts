@@ -73,6 +73,14 @@ export class ManagedDatabaseOpensearch extends pulumi.CustomResource {
      */
     declare public readonly additionalDiskSpaceGib: pulumi.Output<number>;
     /**
+     * UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+     */
+    declare public readonly cloneFrom: pulumi.Output<string | undefined>;
+    /**
+     * Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+     */
+    declare public readonly cloneTime: pulumi.Output<string | undefined>;
+    /**
      * Service component information
      */
     declare public /*out*/ readonly components: pulumi.Output<outputs.ManagedDatabaseOpensearchComponent[]>;
@@ -176,6 +184,8 @@ export class ManagedDatabaseOpensearch extends pulumi.CustomResource {
             const state = argsOrState as ManagedDatabaseOpensearchState | undefined;
             resourceInputs["accessControl"] = state?.accessControl;
             resourceInputs["additionalDiskSpaceGib"] = state?.additionalDiskSpaceGib;
+            resourceInputs["cloneFrom"] = state?.cloneFrom;
+            resourceInputs["cloneTime"] = state?.cloneTime;
             resourceInputs["components"] = state?.components;
             resourceInputs["extendedAccessControl"] = state?.extendedAccessControl;
             resourceInputs["labels"] = state?.labels;
@@ -211,6 +221,8 @@ export class ManagedDatabaseOpensearch extends pulumi.CustomResource {
             }
             resourceInputs["accessControl"] = args?.accessControl;
             resourceInputs["additionalDiskSpaceGib"] = args?.additionalDiskSpaceGib;
+            resourceInputs["cloneFrom"] = args?.cloneFrom;
+            resourceInputs["cloneTime"] = args?.cloneTime;
             resourceInputs["extendedAccessControl"] = args?.extendedAccessControl;
             resourceInputs["labels"] = args?.labels;
             resourceInputs["maintenanceWindowDow"] = args?.maintenanceWindowDow;
@@ -253,6 +265,14 @@ export interface ManagedDatabaseOpensearchState {
      * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
      */
     additionalDiskSpaceGib?: pulumi.Input<number>;
+    /**
+     * UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+     */
+    cloneFrom?: pulumi.Input<string>;
+    /**
+     * Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+     */
+    cloneTime?: pulumi.Input<string>;
     /**
      * Service component information
      */
@@ -355,6 +375,14 @@ export interface ManagedDatabaseOpensearchArgs {
      * Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
      */
     additionalDiskSpaceGib?: pulumi.Input<number>;
+    /**
+     * UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+     */
+    cloneFrom?: pulumi.Input<string>;
+    /**
+     * Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+     */
+    cloneTime?: pulumi.Input<string>;
     /**
      * Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
      */

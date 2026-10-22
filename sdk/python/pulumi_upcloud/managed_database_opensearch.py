@@ -26,6 +26,8 @@ class ManagedDatabaseOpensearchArgs:
                  zone: pulumi.Input[_builtins.str],
                  access_control: Optional[pulumi.Input[_builtins.bool]] = None,
                  additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
+                 clone_from: Optional[pulumi.Input[_builtins.str]] = None,
+                 clone_time: Optional[pulumi.Input[_builtins.str]] = None,
                  extended_access_control: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -42,6 +44,8 @@ class ManagedDatabaseOpensearchArgs:
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         :param pulumi.Input[_builtins.bool] access_control: Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        :param pulumi.Input[_builtins.str] clone_from: UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        :param pulumi.Input[_builtins.str] clone_time: Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
         :param pulumi.Input[_builtins.bool] extended_access_control: Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -59,6 +63,10 @@ class ManagedDatabaseOpensearchArgs:
             pulumi.set(__self__, "access_control", access_control)
         if additional_disk_space_gib is not None:
             pulumi.set(__self__, "additional_disk_space_gib", additional_disk_space_gib)
+        if clone_from is not None:
+            pulumi.set(__self__, "clone_from", clone_from)
+        if clone_time is not None:
+            pulumi.set(__self__, "clone_time", clone_time)
         if extended_access_control is not None:
             pulumi.set(__self__, "extended_access_control", extended_access_control)
         if labels is not None:
@@ -137,6 +145,30 @@ class ManagedDatabaseOpensearchArgs:
     @additional_disk_space_gib.setter
     def additional_disk_space_gib(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "additional_disk_space_gib", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cloneFrom")
+    def clone_from(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        """
+        return pulumi.get(self, "clone_from")
+
+    @clone_from.setter
+    def clone_from(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "clone_from", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cloneTime")
+    def clone_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
+        """
+        return pulumi.get(self, "clone_time")
+
+    @clone_time.setter
+    def clone_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "clone_time", value)
 
     @_builtins.property
     @pulumi.getter(name="extendedAccessControl")
@@ -252,6 +284,8 @@ class _ManagedDatabaseOpensearchState:
     def __init__(__self__, *,
                  access_control: Optional[pulumi.Input[_builtins.bool]] = None,
                  additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
+                 clone_from: Optional[pulumi.Input[_builtins.str]] = None,
+                 clone_time: Optional[pulumi.Input[_builtins.str]] = None,
                  components: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseOpensearchComponentArgs']]]] = None,
                  extended_access_control: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -278,6 +312,8 @@ class _ManagedDatabaseOpensearchState:
         Input properties used for looking up and filtering ManagedDatabaseOpensearch resources.
         :param pulumi.Input[_builtins.bool] access_control: Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        :param pulumi.Input[_builtins.str] clone_from: UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        :param pulumi.Input[_builtins.str] clone_time: Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseOpensearchComponentArgs']]] components: Service component information
         :param pulumi.Input[_builtins.bool] extended_access_control: Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the database.
@@ -305,6 +341,10 @@ class _ManagedDatabaseOpensearchState:
             pulumi.set(__self__, "access_control", access_control)
         if additional_disk_space_gib is not None:
             pulumi.set(__self__, "additional_disk_space_gib", additional_disk_space_gib)
+        if clone_from is not None:
+            pulumi.set(__self__, "clone_from", clone_from)
+        if clone_time is not None:
+            pulumi.set(__self__, "clone_time", clone_time)
         if components is not None:
             pulumi.set(__self__, "components", components)
         if extended_access_control is not None:
@@ -373,6 +413,30 @@ class _ManagedDatabaseOpensearchState:
     @additional_disk_space_gib.setter
     def additional_disk_space_gib(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "additional_disk_space_gib", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cloneFrom")
+    def clone_from(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        """
+        return pulumi.get(self, "clone_from")
+
+    @clone_from.setter
+    def clone_from(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "clone_from", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cloneTime")
+    def clone_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
+        """
+        return pulumi.get(self, "clone_time")
+
+    @clone_time.setter
+    def clone_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "clone_time", value)
 
     @_builtins.property
     @pulumi.getter
@@ -647,6 +711,8 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_control: Optional[pulumi.Input[_builtins.bool]] = None,
                  additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
+                 clone_from: Optional[pulumi.Input[_builtins.str]] = None,
+                 clone_time: Optional[pulumi.Input[_builtins.str]] = None,
                  extended_access_control: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -692,6 +758,8 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] access_control: Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        :param pulumi.Input[_builtins.str] clone_from: UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        :param pulumi.Input[_builtins.str] clone_time: Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
         :param pulumi.Input[_builtins.bool] extended_access_control: Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -756,6 +824,8 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_control: Optional[pulumi.Input[_builtins.bool]] = None,
                  additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
+                 clone_from: Optional[pulumi.Input[_builtins.str]] = None,
+                 clone_time: Optional[pulumi.Input[_builtins.str]] = None,
                  extended_access_control: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -779,6 +849,8 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
 
             __props__.__dict__["access_control"] = access_control
             __props__.__dict__["additional_disk_space_gib"] = additional_disk_space_gib
+            __props__.__dict__["clone_from"] = clone_from
+            __props__.__dict__["clone_time"] = clone_time
             __props__.__dict__["extended_access_control"] = extended_access_control
             __props__.__dict__["labels"] = labels
             __props__.__dict__["maintenance_window_dow"] = maintenance_window_dow
@@ -821,6 +893,8 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             access_control: Optional[pulumi.Input[_builtins.bool]] = None,
             additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
+            clone_from: Optional[pulumi.Input[_builtins.str]] = None,
+            clone_time: Optional[pulumi.Input[_builtins.str]] = None,
             components: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchComponentArgs', 'ManagedDatabaseOpensearchComponentArgsDict']]]]] = None,
             extended_access_control: Optional[pulumi.Input[_builtins.bool]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -852,6 +926,8 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] access_control: Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        :param pulumi.Input[_builtins.str] clone_from: UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        :param pulumi.Input[_builtins.str] clone_time: Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseOpensearchComponentArgs', 'ManagedDatabaseOpensearchComponentArgsDict']]]] components: Service component information
         :param pulumi.Input[_builtins.bool] extended_access_control: Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the database.
@@ -881,6 +957,8 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
 
         __props__.__dict__["access_control"] = access_control
         __props__.__dict__["additional_disk_space_gib"] = additional_disk_space_gib
+        __props__.__dict__["clone_from"] = clone_from
+        __props__.__dict__["clone_time"] = clone_time
         __props__.__dict__["components"] = components
         __props__.__dict__["extended_access_control"] = extended_access_control
         __props__.__dict__["labels"] = labels
@@ -920,6 +998,22 @@ class ManagedDatabaseOpensearch(pulumi.CustomResource):
         Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
         """
         return pulumi.get(self, "additional_disk_space_gib")
+
+    @_builtins.property
+    @pulumi.getter(name="cloneFrom")
+    def clone_from(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        """
+        return pulumi.get(self, "clone_from")
+
+    @_builtins.property
+    @pulumi.getter(name="cloneTime")
+    def clone_time(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
+        """
+        return pulumi.get(self, "clone_time")
 
     @_builtins.property
     @pulumi.getter

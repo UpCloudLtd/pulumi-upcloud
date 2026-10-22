@@ -71,6 +71,10 @@ type ManagedDatabasePostgresql struct {
 	//
 	// Deprecated: The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
 	AdditionalDiskSpaceGib pulumi.IntOutput `pulumi:"additionalDiskSpaceGib"`
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom pulumi.StringPtrOutput `pulumi:"cloneFrom"`
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime pulumi.StringPtrOutput `pulumi:"cloneTime"`
 	// Service component information
 	Components ManagedDatabasePostgresqlComponentArrayOutput `pulumi:"components"`
 	// User defined key-value pairs to classify the database.
@@ -172,6 +176,10 @@ type managedDatabasePostgresqlState struct {
 	//
 	// Deprecated: The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
 	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom *string `pulumi:"cloneFrom"`
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime *string `pulumi:"cloneTime"`
 	// Service component information
 	Components []ManagedDatabasePostgresqlComponent `pulumi:"components"`
 	// User defined key-value pairs to classify the database.
@@ -233,6 +241,10 @@ type ManagedDatabasePostgresqlState struct {
 	//
 	// Deprecated: The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
 	AdditionalDiskSpaceGib pulumi.IntPtrInput
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom pulumi.StringPtrInput
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime pulumi.StringPtrInput
 	// Service component information
 	Components ManagedDatabasePostgresqlComponentArrayInput
 	// User defined key-value pairs to classify the database.
@@ -298,6 +310,10 @@ type managedDatabasePostgresqlArgs struct {
 	//
 	// Deprecated: The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
 	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom *string `pulumi:"cloneFrom"`
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime *string `pulumi:"cloneTime"`
 	// User defined key-value pairs to classify the database.
 	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -338,6 +354,10 @@ type ManagedDatabasePostgresqlArgs struct {
 	//
 	// Deprecated: The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
 	AdditionalDiskSpaceGib pulumi.IntPtrInput
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom pulumi.StringPtrInput
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime pulumi.StringPtrInput
 	// User defined key-value pairs to classify the database.
 	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -464,6 +484,16 @@ func (o ManagedDatabasePostgresqlOutput) ToManagedDatabasePostgresqlOutputWithCo
 // Deprecated: The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
 func (o ManagedDatabasePostgresqlOutput) AdditionalDiskSpaceGib() pulumi.IntOutput {
 	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.IntOutput { return v.AdditionalDiskSpaceGib }).(pulumi.IntOutput)
+}
+
+// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+func (o ManagedDatabasePostgresqlOutput) CloneFrom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.StringPtrOutput { return v.CloneFrom }).(pulumi.StringPtrOutput)
+}
+
+// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+func (o ManagedDatabasePostgresqlOutput) CloneTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabasePostgresql) pulumi.StringPtrOutput { return v.CloneTime }).(pulumi.StringPtrOutput)
 }
 
 // Service component information

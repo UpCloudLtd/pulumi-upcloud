@@ -83,6 +83,18 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<int> AdditionalDiskSpaceGib { get; private set; } = null!;
 
         /// <summary>
+        /// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        /// </summary>
+        [Output("cloneFrom")]
+        public Output<string?> CloneFrom { get; private set; } = null!;
+
+        /// <summary>
+        /// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `CloneFrom`. Changing this forces a new resource to be created.
+        /// </summary>
+        [Output("cloneTime")]
+        public Output<string?> CloneTime { get; private set; } = null!;
+
+        /// <summary>
         /// Service component information
         /// </summary>
         [Output("components")]
@@ -290,6 +302,18 @@ namespace UpCloud.Pulumi.UpCloud
         [Input("additionalDiskSpaceGib")]
         public Input<int>? AdditionalDiskSpaceGib { get; set; }
 
+        /// <summary>
+        /// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        /// </summary>
+        [Input("cloneFrom")]
+        public Input<string>? CloneFrom { get; set; }
+
+        /// <summary>
+        /// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `CloneFrom`. Changing this forces a new resource to be created.
+        /// </summary>
+        [Input("cloneTime")]
+        public Input<string>? CloneTime { get; set; }
+
         [Input("labels")]
         private InputMap<string>? _labels;
 
@@ -405,6 +429,18 @@ namespace UpCloud.Pulumi.UpCloud
         /// </summary>
         [Input("additionalDiskSpaceGib")]
         public Input<int>? AdditionalDiskSpaceGib { get; set; }
+
+        /// <summary>
+        /// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        /// </summary>
+        [Input("cloneFrom")]
+        public Input<string>? CloneFrom { get; set; }
+
+        /// <summary>
+        /// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `CloneFrom`. Changing this forces a new resource to be created.
+        /// </summary>
+        [Input("cloneTime")]
+        public Input<string>? CloneTime { get; set; }
 
         [Input("components")]
         private InputList<Inputs.ManagedDatabaseMysqlComponentGetArgs>? _components;

@@ -77,6 +77,14 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
      */
     declare public readonly additionalDiskSpaceGib: pulumi.Output<number>;
     /**
+     * UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+     */
+    declare public readonly cloneFrom: pulumi.Output<string | undefined>;
+    /**
+     * Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+     */
+    declare public readonly cloneTime: pulumi.Output<string | undefined>;
+    /**
      * Service component information
      */
     declare public /*out*/ readonly components: pulumi.Output<outputs.ManagedDatabasePostgresqlComponent[]>;
@@ -197,6 +205,8 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ManagedDatabasePostgresqlState | undefined;
             resourceInputs["additionalDiskSpaceGib"] = state?.additionalDiskSpaceGib;
+            resourceInputs["cloneFrom"] = state?.cloneFrom;
+            resourceInputs["cloneTime"] = state?.cloneTime;
             resourceInputs["components"] = state?.components;
             resourceInputs["labels"] = state?.labels;
             resourceInputs["maintenanceWindowDow"] = state?.maintenanceWindowDow;
@@ -232,6 +242,8 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
                 throw new Error("Missing required property 'zone'");
             }
             resourceInputs["additionalDiskSpaceGib"] = args?.additionalDiskSpaceGib;
+            resourceInputs["cloneFrom"] = args?.cloneFrom;
+            resourceInputs["cloneTime"] = args?.cloneTime;
             resourceInputs["labels"] = args?.labels;
             resourceInputs["maintenanceWindowDow"] = args?.maintenanceWindowDow;
             resourceInputs["maintenanceWindowTime"] = args?.maintenanceWindowTime;
@@ -276,6 +288,14 @@ export interface ManagedDatabasePostgresqlState {
      * @deprecated The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
      */
     additionalDiskSpaceGib?: pulumi.Input<number>;
+    /**
+     * UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+     */
+    cloneFrom?: pulumi.Input<string>;
+    /**
+     * Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+     */
+    cloneTime?: pulumi.Input<string>;
     /**
      * Service component information
      */
@@ -394,6 +414,14 @@ export interface ManagedDatabasePostgresqlArgs {
      * @deprecated The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
      */
     additionalDiskSpaceGib?: pulumi.Input<number>;
+    /**
+     * UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+     */
+    cloneFrom?: pulumi.Input<string>;
+    /**
+     * Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+     */
+    cloneTime?: pulumi.Input<string>;
     /**
      * User defined key-value pairs to classify the database.
      */
