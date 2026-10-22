@@ -9286,6 +9286,14 @@
                     "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.",
                     "deprecationMessage": "The\u003cspan pulumi-lang-nodejs=\" additionalDiskSpaceGib \" pulumi-lang-dotnet=\" AdditionalDiskSpaceGib \" pulumi-lang-go=\" additionalDiskSpaceGib \" pulumi-lang-python=\" additional_disk_space_gib \" pulumi-lang-yaml=\" additionalDiskSpaceGib \" pulumi-lang-java=\" additionalDiskSpaceGib \"\u003e additional_disk_space_gib \u003c/span\u003eattribute is deprecated for PostgreSQL and MySQL. Use\u003cspan pulumi-lang-nodejs=\" planStorageGib \" pulumi-lang-dotnet=\" PlanStorageGib \" pulumi-lang-go=\" planStorageGib \" pulumi-lang-python=\" plan_storage_gib \" pulumi-lang-yaml=\" planStorageGib \" pulumi-lang-java=\" planStorageGib \"\u003e plan_storage_gib \u003c/span\u003eto configure total storage per node."
                 },
+                "cloneFrom": {
+                    "type": "string",
+                    "description": "UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API."
+                },
+                "cloneTime": {
+                    "type": "string",
+                    "description": "Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires \u003cspan pulumi-lang-nodejs=\"`cloneFrom`\" pulumi-lang-dotnet=\"`CloneFrom`\" pulumi-lang-go=\"`cloneFrom`\" pulumi-lang-python=\"`clone_from`\" pulumi-lang-yaml=\"`cloneFrom`\" pulumi-lang-java=\"`cloneFrom`\"\u003e`clone_from`\u003c/span\u003e. Changing this forces a new resource to be created."
+                },
                 "components": {
                     "type": "array",
                     "items": {
@@ -9434,6 +9442,14 @@
                     "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.",
                     "deprecationMessage": "The\u003cspan pulumi-lang-nodejs=\" additionalDiskSpaceGib \" pulumi-lang-dotnet=\" AdditionalDiskSpaceGib \" pulumi-lang-go=\" additionalDiskSpaceGib \" pulumi-lang-python=\" additional_disk_space_gib \" pulumi-lang-yaml=\" additionalDiskSpaceGib \" pulumi-lang-java=\" additionalDiskSpaceGib \"\u003e additional_disk_space_gib \u003c/span\u003eattribute is deprecated for PostgreSQL and MySQL. Use\u003cspan pulumi-lang-nodejs=\" planStorageGib \" pulumi-lang-dotnet=\" PlanStorageGib \" pulumi-lang-go=\" planStorageGib \" pulumi-lang-python=\" plan_storage_gib \" pulumi-lang-yaml=\" planStorageGib \" pulumi-lang-java=\" planStorageGib \"\u003e plan_storage_gib \u003c/span\u003eto configure total storage per node."
                 },
+                "cloneFrom": {
+                    "type": "string",
+                    "description": "UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API."
+                },
+                "cloneTime": {
+                    "type": "string",
+                    "description": "Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires \u003cspan pulumi-lang-nodejs=\"`cloneFrom`\" pulumi-lang-dotnet=\"`CloneFrom`\" pulumi-lang-go=\"`cloneFrom`\" pulumi-lang-python=\"`clone_from`\" pulumi-lang-yaml=\"`cloneFrom`\" pulumi-lang-java=\"`cloneFrom`\"\u003e`clone_from`\u003c/span\u003e. Changing this forces a new resource to be created."
+                },
                 "labels": {
                     "type": "object",
                     "additionalProperties": {
@@ -9513,6 +9529,14 @@
                         "type": "integer",
                         "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.",
                         "deprecationMessage": "The\u003cspan pulumi-lang-nodejs=\" additionalDiskSpaceGib \" pulumi-lang-dotnet=\" AdditionalDiskSpaceGib \" pulumi-lang-go=\" additionalDiskSpaceGib \" pulumi-lang-python=\" additional_disk_space_gib \" pulumi-lang-yaml=\" additionalDiskSpaceGib \" pulumi-lang-java=\" additionalDiskSpaceGib \"\u003e additional_disk_space_gib \u003c/span\u003eattribute is deprecated for PostgreSQL and MySQL. Use\u003cspan pulumi-lang-nodejs=\" planStorageGib \" pulumi-lang-dotnet=\" PlanStorageGib \" pulumi-lang-go=\" planStorageGib \" pulumi-lang-python=\" plan_storage_gib \" pulumi-lang-yaml=\" planStorageGib \" pulumi-lang-java=\" planStorageGib \"\u003e plan_storage_gib \u003c/span\u003eto configure total storage per node."
+                    },
+                    "cloneFrom": {
+                        "type": "string",
+                        "description": "UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API."
+                    },
+                    "cloneTime": {
+                        "type": "string",
+                        "description": "Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires \u003cspan pulumi-lang-nodejs=\"`cloneFrom`\" pulumi-lang-dotnet=\"`CloneFrom`\" pulumi-lang-go=\"`cloneFrom`\" pulumi-lang-python=\"`clone_from`\" pulumi-lang-yaml=\"`cloneFrom`\" pulumi-lang-java=\"`cloneFrom`\"\u003e`clone_from`\u003c/span\u003e. Changing this forces a new resource to be created."
                     },
                     "components": {
                         "type": "array",
@@ -9643,6 +9667,14 @@
                 "additionalDiskSpaceGib": {
                     "type": "integer",
                     "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed."
+                },
+                "cloneFrom": {
+                    "type": "string",
+                    "description": "UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API."
+                },
+                "cloneTime": {
+                    "type": "string",
+                    "description": "Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires \u003cspan pulumi-lang-nodejs=\"`cloneFrom`\" pulumi-lang-dotnet=\"`CloneFrom`\" pulumi-lang-go=\"`cloneFrom`\" pulumi-lang-python=\"`clone_from`\" pulumi-lang-yaml=\"`cloneFrom`\" pulumi-lang-java=\"`cloneFrom`\"\u003e`clone_from`\u003c/span\u003e. Changing this forces a new resource to be created."
                 },
                 "components": {
                     "type": "array",
@@ -9780,6 +9812,14 @@
                     "type": "integer",
                     "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed."
                 },
+                "cloneFrom": {
+                    "type": "string",
+                    "description": "UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API."
+                },
+                "cloneTime": {
+                    "type": "string",
+                    "description": "Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires \u003cspan pulumi-lang-nodejs=\"`cloneFrom`\" pulumi-lang-dotnet=\"`CloneFrom`\" pulumi-lang-go=\"`cloneFrom`\" pulumi-lang-python=\"`clone_from`\" pulumi-lang-yaml=\"`cloneFrom`\" pulumi-lang-java=\"`cloneFrom`\"\u003e`clone_from`\u003c/span\u003e. Changing this forces a new resource to be created."
+                },
                 "extendedAccessControl": {
                     "type": "boolean",
                     "description": "Grant access to top-level `_mget`, `_msearch` and `_bulk` APIs. Users are limited to perform operations on indices based on the user-specific access control rules."
@@ -9850,6 +9890,14 @@
                     "additionalDiskSpaceGib": {
                         "type": "integer",
                         "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed."
+                    },
+                    "cloneFrom": {
+                        "type": "string",
+                        "description": "UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API."
+                    },
+                    "cloneTime": {
+                        "type": "string",
+                        "description": "Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires \u003cspan pulumi-lang-nodejs=\"`cloneFrom`\" pulumi-lang-dotnet=\"`CloneFrom`\" pulumi-lang-go=\"`cloneFrom`\" pulumi-lang-python=\"`clone_from`\" pulumi-lang-yaml=\"`cloneFrom`\" pulumi-lang-java=\"`cloneFrom`\"\u003e`clone_from`\u003c/span\u003e. Changing this forces a new resource to be created."
                     },
                     "components": {
                         "type": "array",
@@ -9964,6 +10012,14 @@
                     "type": "integer",
                     "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.",
                     "deprecationMessage": "The\u003cspan pulumi-lang-nodejs=\" additionalDiskSpaceGib \" pulumi-lang-dotnet=\" AdditionalDiskSpaceGib \" pulumi-lang-go=\" additionalDiskSpaceGib \" pulumi-lang-python=\" additional_disk_space_gib \" pulumi-lang-yaml=\" additionalDiskSpaceGib \" pulumi-lang-java=\" additionalDiskSpaceGib \"\u003e additional_disk_space_gib \u003c/span\u003eattribute is deprecated for PostgreSQL and MySQL. Use\u003cspan pulumi-lang-nodejs=\" planStorageGib \" pulumi-lang-dotnet=\" PlanStorageGib \" pulumi-lang-go=\" planStorageGib \" pulumi-lang-python=\" plan_storage_gib \" pulumi-lang-yaml=\" planStorageGib \" pulumi-lang-java=\" planStorageGib \"\u003e plan_storage_gib \u003c/span\u003eto configure total storage per node."
+                },
+                "cloneFrom": {
+                    "type": "string",
+                    "description": "UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API."
+                },
+                "cloneTime": {
+                    "type": "string",
+                    "description": "Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires \u003cspan pulumi-lang-nodejs=\"`cloneFrom`\" pulumi-lang-dotnet=\"`CloneFrom`\" pulumi-lang-go=\"`cloneFrom`\" pulumi-lang-python=\"`clone_from`\" pulumi-lang-yaml=\"`cloneFrom`\" pulumi-lang-java=\"`cloneFrom`\"\u003e`clone_from`\u003c/span\u003e. Changing this forces a new resource to be created."
                 },
                 "components": {
                     "type": "array",
@@ -10118,6 +10174,14 @@
                     "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.",
                     "deprecationMessage": "The\u003cspan pulumi-lang-nodejs=\" additionalDiskSpaceGib \" pulumi-lang-dotnet=\" AdditionalDiskSpaceGib \" pulumi-lang-go=\" additionalDiskSpaceGib \" pulumi-lang-python=\" additional_disk_space_gib \" pulumi-lang-yaml=\" additionalDiskSpaceGib \" pulumi-lang-java=\" additionalDiskSpaceGib \"\u003e additional_disk_space_gib \u003c/span\u003eattribute is deprecated for PostgreSQL and MySQL. Use\u003cspan pulumi-lang-nodejs=\" planStorageGib \" pulumi-lang-dotnet=\" PlanStorageGib \" pulumi-lang-go=\" planStorageGib \" pulumi-lang-python=\" plan_storage_gib \" pulumi-lang-yaml=\" planStorageGib \" pulumi-lang-java=\" planStorageGib \"\u003e plan_storage_gib \u003c/span\u003eto configure total storage per node."
                 },
+                "cloneFrom": {
+                    "type": "string",
+                    "description": "UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API."
+                },
+                "cloneTime": {
+                    "type": "string",
+                    "description": "Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires \u003cspan pulumi-lang-nodejs=\"`cloneFrom`\" pulumi-lang-dotnet=\"`CloneFrom`\" pulumi-lang-go=\"`cloneFrom`\" pulumi-lang-python=\"`clone_from`\" pulumi-lang-yaml=\"`cloneFrom`\" pulumi-lang-java=\"`cloneFrom`\"\u003e`clone_from`\u003c/span\u003e. Changing this forces a new resource to be created."
+                },
                 "labels": {
                     "type": "object",
                     "additionalProperties": {
@@ -10197,6 +10261,14 @@
                         "type": "integer",
                         "description": "Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.",
                         "deprecationMessage": "The\u003cspan pulumi-lang-nodejs=\" additionalDiskSpaceGib \" pulumi-lang-dotnet=\" AdditionalDiskSpaceGib \" pulumi-lang-go=\" additionalDiskSpaceGib \" pulumi-lang-python=\" additional_disk_space_gib \" pulumi-lang-yaml=\" additionalDiskSpaceGib \" pulumi-lang-java=\" additionalDiskSpaceGib \"\u003e additional_disk_space_gib \u003c/span\u003eattribute is deprecated for PostgreSQL and MySQL. Use\u003cspan pulumi-lang-nodejs=\" planStorageGib \" pulumi-lang-dotnet=\" PlanStorageGib \" pulumi-lang-go=\" planStorageGib \" pulumi-lang-python=\" plan_storage_gib \" pulumi-lang-yaml=\" planStorageGib \" pulumi-lang-java=\" planStorageGib \"\u003e plan_storage_gib \u003c/span\u003eto configure total storage per node."
+                    },
+                    "cloneFrom": {
+                        "type": "string",
+                        "description": "UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API."
+                    },
+                    "cloneTime": {
+                        "type": "string",
+                        "description": "Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires \u003cspan pulumi-lang-nodejs=\"`cloneFrom`\" pulumi-lang-dotnet=\"`CloneFrom`\" pulumi-lang-go=\"`cloneFrom`\" pulumi-lang-python=\"`clone_from`\" pulumi-lang-yaml=\"`cloneFrom`\" pulumi-lang-java=\"`cloneFrom`\"\u003e`clone_from`\u003c/span\u003e. Changing this forces a new resource to be created."
                     },
                     "components": {
                         "type": "array",
@@ -10446,6 +10518,14 @@
                     "type": "integer",
                     "description": "Not supported for \u003cspan pulumi-lang-nodejs=\"`valkey`\" pulumi-lang-dotnet=\"`Valkey`\" pulumi-lang-go=\"`valkey`\" pulumi-lang-python=\"`valkey`\" pulumi-lang-yaml=\"`valkey`\" pulumi-lang-java=\"`valkey`\"\u003e`valkey`\u003c/span\u003e databases. Should be left unconfigured."
                 },
+                "cloneFrom": {
+                    "type": "string",
+                    "description": "UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API."
+                },
+                "cloneTime": {
+                    "type": "string",
+                    "description": "Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires \u003cspan pulumi-lang-nodejs=\"`cloneFrom`\" pulumi-lang-dotnet=\"`CloneFrom`\" pulumi-lang-go=\"`cloneFrom`\" pulumi-lang-python=\"`clone_from`\" pulumi-lang-yaml=\"`cloneFrom`\" pulumi-lang-java=\"`cloneFrom`\"\u003e`clone_from`\u003c/span\u003e. Changing this forces a new resource to be created."
+                },
                 "components": {
                     "type": "array",
                     "items": {
@@ -10572,6 +10652,14 @@
                     "type": "integer",
                     "description": "Not supported for \u003cspan pulumi-lang-nodejs=\"`valkey`\" pulumi-lang-dotnet=\"`Valkey`\" pulumi-lang-go=\"`valkey`\" pulumi-lang-python=\"`valkey`\" pulumi-lang-yaml=\"`valkey`\" pulumi-lang-java=\"`valkey`\"\u003e`valkey`\u003c/span\u003e databases. Should be left unconfigured."
                 },
+                "cloneFrom": {
+                    "type": "string",
+                    "description": "UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API."
+                },
+                "cloneTime": {
+                    "type": "string",
+                    "description": "Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires \u003cspan pulumi-lang-nodejs=\"`cloneFrom`\" pulumi-lang-dotnet=\"`CloneFrom`\" pulumi-lang-go=\"`cloneFrom`\" pulumi-lang-python=\"`clone_from`\" pulumi-lang-yaml=\"`cloneFrom`\" pulumi-lang-java=\"`cloneFrom`\"\u003e`clone_from`\u003c/span\u003e. Changing this forces a new resource to be created."
+                },
                 "labels": {
                     "type": "object",
                     "additionalProperties": {
@@ -10634,6 +10722,14 @@
                     "additionalDiskSpaceGib": {
                         "type": "integer",
                         "description": "Not supported for \u003cspan pulumi-lang-nodejs=\"`valkey`\" pulumi-lang-dotnet=\"`Valkey`\" pulumi-lang-go=\"`valkey`\" pulumi-lang-python=\"`valkey`\" pulumi-lang-yaml=\"`valkey`\" pulumi-lang-java=\"`valkey`\"\u003e`valkey`\u003c/span\u003e databases. Should be left unconfigured."
+                    },
+                    "cloneFrom": {
+                        "type": "string",
+                        "description": "UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API."
+                    },
+                    "cloneTime": {
+                        "type": "string",
+                        "description": "Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires \u003cspan pulumi-lang-nodejs=\"`cloneFrom`\" pulumi-lang-dotnet=\"`CloneFrom`\" pulumi-lang-go=\"`cloneFrom`\" pulumi-lang-python=\"`clone_from`\" pulumi-lang-yaml=\"`cloneFrom`\" pulumi-lang-java=\"`cloneFrom`\"\u003e`clone_from`\u003c/span\u003e. Changing this forces a new resource to be created."
                     },
                     "components": {
                         "type": "array",
