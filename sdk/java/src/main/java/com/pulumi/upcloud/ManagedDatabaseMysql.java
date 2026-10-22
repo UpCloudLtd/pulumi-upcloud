@@ -120,6 +120,34 @@ public class ManagedDatabaseMysql extends com.pulumi.resources.CustomResource {
         return this.additionalDiskSpaceGib;
     }
     /**
+     * UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+     * 
+     */
+    @Export(name="cloneFrom", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> cloneFrom;
+
+    /**
+     * @return UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+     * 
+     */
+    public Output<Optional<String>> cloneFrom() {
+        return Codegen.optional(this.cloneFrom);
+    }
+    /**
+     * Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+     * 
+     */
+    @Export(name="cloneTime", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> cloneTime;
+
+    /**
+     * @return Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+     * 
+     */
+    public Output<Optional<String>> cloneTime() {
+        return Codegen.optional(this.cloneTime);
+    }
+    /**
      * Service component information
      * 
      */

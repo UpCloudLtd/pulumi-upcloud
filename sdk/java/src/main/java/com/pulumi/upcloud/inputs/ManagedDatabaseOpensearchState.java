@@ -54,6 +54,36 @@ public final class ManagedDatabaseOpensearchState extends com.pulumi.resources.R
     }
 
     /**
+     * UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+     * 
+     */
+    @Import(name="cloneFrom")
+    private @Nullable Output<String> cloneFrom;
+
+    /**
+     * @return UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+     * 
+     */
+    public Optional<Output<String>> cloneFrom() {
+        return Optional.ofNullable(this.cloneFrom);
+    }
+
+    /**
+     * Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+     * 
+     */
+    @Import(name="cloneTime")
+    private @Nullable Output<String> cloneTime;
+
+    /**
+     * @return Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+     * 
+     */
+    public Optional<Output<String>> cloneTime() {
+        return Optional.ofNullable(this.cloneTime);
+    }
+
+    /**
      * Service component information
      * 
      */
@@ -388,6 +418,8 @@ public final class ManagedDatabaseOpensearchState extends com.pulumi.resources.R
     private ManagedDatabaseOpensearchState(ManagedDatabaseOpensearchState $) {
         this.accessControl = $.accessControl;
         this.additionalDiskSpaceGib = $.additionalDiskSpaceGib;
+        this.cloneFrom = $.cloneFrom;
+        this.cloneTime = $.cloneTime;
         this.components = $.components;
         this.extendedAccessControl = $.extendedAccessControl;
         this.labels = $.labels;
@@ -470,6 +502,48 @@ public final class ManagedDatabaseOpensearchState extends com.pulumi.resources.R
          */
         public Builder additionalDiskSpaceGib(Integer additionalDiskSpaceGib) {
             return additionalDiskSpaceGib(Output.of(additionalDiskSpaceGib));
+        }
+
+        /**
+         * @param cloneFrom UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cloneFrom(@Nullable Output<String> cloneFrom) {
+            $.cloneFrom = cloneFrom;
+            return this;
+        }
+
+        /**
+         * @param cloneFrom UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cloneFrom(String cloneFrom) {
+            return cloneFrom(Output.of(cloneFrom));
+        }
+
+        /**
+         * @param cloneTime Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cloneTime(@Nullable Output<String> cloneTime) {
+            $.cloneTime = cloneTime;
+            return this;
+        }
+
+        /**
+         * @param cloneTime Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cloneTime(String cloneTime) {
+            return cloneTime(Output.of(cloneTime));
         }
 
         /**

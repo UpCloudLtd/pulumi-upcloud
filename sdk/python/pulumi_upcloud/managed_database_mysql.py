@@ -24,6 +24,8 @@ class ManagedDatabaseMysqlArgs:
                  title: pulumi.Input[_builtins.str],
                  zone: pulumi.Input[_builtins.str],
                  additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
+                 clone_from: Optional[pulumi.Input[_builtins.str]] = None,
+                 clone_time: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -42,6 +44,8 @@ class ManagedDatabaseMysqlArgs:
         :param pulumi.Input[_builtins.str] title: Title of the managed database instance
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        :param pulumi.Input[_builtins.str] clone_from: UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        :param pulumi.Input[_builtins.str] clone_time: Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[_builtins.str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
@@ -63,6 +67,10 @@ class ManagedDatabaseMysqlArgs:
             pulumi.log.warn("""additional_disk_space_gib is deprecated: The additional_disk_space_gib attribute is deprecated for PostgreSQL and MySQL. Use plan_storage_gib to configure total storage per node.""")
         if additional_disk_space_gib is not None:
             pulumi.set(__self__, "additional_disk_space_gib", additional_disk_space_gib)
+        if clone_from is not None:
+            pulumi.set(__self__, "clone_from", clone_from)
+        if clone_time is not None:
+            pulumi.set(__self__, "clone_time", clone_time)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if maintenance_window_dow is not None:
@@ -129,6 +137,30 @@ class ManagedDatabaseMysqlArgs:
     @additional_disk_space_gib.setter
     def additional_disk_space_gib(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "additional_disk_space_gib", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cloneFrom")
+    def clone_from(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        """
+        return pulumi.get(self, "clone_from")
+
+    @clone_from.setter
+    def clone_from(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "clone_from", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cloneTime")
+    def clone_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
+        """
+        return pulumi.get(self, "clone_time")
+
+    @clone_time.setter
+    def clone_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "clone_time", value)
 
     @_builtins.property
     @pulumi.getter
@@ -292,6 +324,8 @@ class ManagedDatabaseMysqlArgs:
 class _ManagedDatabaseMysqlState:
     def __init__(__self__, *,
                  additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
+                 clone_from: Optional[pulumi.Input[_builtins.str]] = None,
+                 clone_time: Optional[pulumi.Input[_builtins.str]] = None,
                  components: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseMysqlComponentArgs']]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -320,6 +354,8 @@ class _ManagedDatabaseMysqlState:
         """
         Input properties used for looking up and filtering ManagedDatabaseMysql resources.
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        :param pulumi.Input[_builtins.str] clone_from: UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        :param pulumi.Input[_builtins.str] clone_time: Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseMysqlComponentArgs']]] components: Service component information
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -351,6 +387,10 @@ class _ManagedDatabaseMysqlState:
             pulumi.log.warn("""additional_disk_space_gib is deprecated: The additional_disk_space_gib attribute is deprecated for PostgreSQL and MySQL. Use plan_storage_gib to configure total storage per node.""")
         if additional_disk_space_gib is not None:
             pulumi.set(__self__, "additional_disk_space_gib", additional_disk_space_gib)
+        if clone_from is not None:
+            pulumi.set(__self__, "clone_from", clone_from)
+        if clone_time is not None:
+            pulumi.set(__self__, "clone_time", clone_time)
         if components is not None:
             pulumi.set(__self__, "components", components)
         if labels is not None:
@@ -417,6 +457,30 @@ class _ManagedDatabaseMysqlState:
     @additional_disk_space_gib.setter
     def additional_disk_space_gib(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "additional_disk_space_gib", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cloneFrom")
+    def clone_from(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        """
+        return pulumi.get(self, "clone_from")
+
+    @clone_from.setter
+    def clone_from(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "clone_from", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cloneTime")
+    def clone_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
+        """
+        return pulumi.get(self, "clone_time")
+
+    @clone_time.setter
+    def clone_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "clone_time", value)
 
     @_builtins.property
     @pulumi.getter
@@ -727,6 +791,8 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
+                 clone_from: Optional[pulumi.Input[_builtins.str]] = None,
+                 clone_time: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -794,6 +860,8 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        :param pulumi.Input[_builtins.str] clone_from: UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        :param pulumi.Input[_builtins.str] clone_time: Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[_builtins.str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
@@ -880,6 +948,8 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
+                 clone_from: Optional[pulumi.Input[_builtins.str]] = None,
+                 clone_time: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -905,6 +975,8 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
             __props__ = ManagedDatabaseMysqlArgs.__new__(ManagedDatabaseMysqlArgs)
 
             __props__.__dict__["additional_disk_space_gib"] = additional_disk_space_gib
+            __props__.__dict__["clone_from"] = clone_from
+            __props__.__dict__["clone_time"] = clone_time
             __props__.__dict__["labels"] = labels
             __props__.__dict__["maintenance_window_dow"] = maintenance_window_dow
             __props__.__dict__["maintenance_window_time"] = maintenance_window_time
@@ -947,6 +1019,8 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
+            clone_from: Optional[pulumi.Input[_builtins.str]] = None,
+            clone_time: Optional[pulumi.Input[_builtins.str]] = None,
             components: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlComponentArgs', 'ManagedDatabaseMysqlComponentArgsDict']]]]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -980,6 +1054,8 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
+        :param pulumi.Input[_builtins.str] clone_from: UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        :param pulumi.Input[_builtins.str] clone_time: Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseMysqlComponentArgs', 'ManagedDatabaseMysqlComponentArgsDict']]]] components: Service component information
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -1011,6 +1087,8 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         __props__ = _ManagedDatabaseMysqlState.__new__(_ManagedDatabaseMysqlState)
 
         __props__.__dict__["additional_disk_space_gib"] = additional_disk_space_gib
+        __props__.__dict__["clone_from"] = clone_from
+        __props__.__dict__["clone_time"] = clone_time
         __props__.__dict__["components"] = components
         __props__.__dict__["labels"] = labels
         __props__.__dict__["maintenance_window_dow"] = maintenance_window_dow
@@ -1046,6 +1124,22 @@ class ManagedDatabaseMysql(pulumi.CustomResource):
         Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
         """
         return pulumi.get(self, "additional_disk_space_gib")
+
+    @_builtins.property
+    @pulumi.getter(name="cloneFrom")
+    def clone_from(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+        """
+        return pulumi.get(self, "clone_from")
+
+    @_builtins.property
+    @pulumi.getter(name="cloneTime")
+    def clone_time(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
+        """
+        return pulumi.get(self, "clone_time")
 
     @_builtins.property
     @pulumi.getter

@@ -61,6 +61,10 @@ type ManagedDatabaseValkey struct {
 
 	// Not supported for `valkey` databases. Should be left unconfigured.
 	AdditionalDiskSpaceGib pulumi.IntOutput `pulumi:"additionalDiskSpaceGib"`
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom pulumi.StringPtrOutput `pulumi:"cloneFrom"`
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime pulumi.StringPtrOutput `pulumi:"cloneTime"`
 	// Service component information
 	Components ManagedDatabaseValkeyComponentArrayOutput `pulumi:"components"`
 	// User defined key-value pairs to classify the database.
@@ -151,6 +155,10 @@ func GetManagedDatabaseValkey(ctx *pulumi.Context,
 type managedDatabaseValkeyState struct {
 	// Not supported for `valkey` databases. Should be left unconfigured.
 	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom *string `pulumi:"cloneFrom"`
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime *string `pulumi:"cloneTime"`
 	// Service component information
 	Components []ManagedDatabaseValkeyComponent `pulumi:"components"`
 	// User defined key-value pairs to classify the database.
@@ -198,6 +206,10 @@ type managedDatabaseValkeyState struct {
 type ManagedDatabaseValkeyState struct {
 	// Not supported for `valkey` databases. Should be left unconfigured.
 	AdditionalDiskSpaceGib pulumi.IntPtrInput
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom pulumi.StringPtrInput
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime pulumi.StringPtrInput
 	// Service component information
 	Components ManagedDatabaseValkeyComponentArrayInput
 	// User defined key-value pairs to classify the database.
@@ -249,6 +261,10 @@ func (ManagedDatabaseValkeyState) ElementType() reflect.Type {
 type managedDatabaseValkeyArgs struct {
 	// Not supported for `valkey` databases. Should be left unconfigured.
 	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom *string `pulumi:"cloneFrom"`
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime *string `pulumi:"cloneTime"`
 	// User defined key-value pairs to classify the database.
 	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -277,6 +293,10 @@ type managedDatabaseValkeyArgs struct {
 type ManagedDatabaseValkeyArgs struct {
 	// Not supported for `valkey` databases. Should be left unconfigured.
 	AdditionalDiskSpaceGib pulumi.IntPtrInput
+	// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+	CloneFrom pulumi.StringPtrInput
+	// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+	CloneTime pulumi.StringPtrInput
 	// User defined key-value pairs to classify the database.
 	Labels pulumi.StringMapInput
 	// Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
@@ -391,6 +411,16 @@ func (o ManagedDatabaseValkeyOutput) ToManagedDatabaseValkeyOutputWithContext(ct
 // Not supported for `valkey` databases. Should be left unconfigured.
 func (o ManagedDatabaseValkeyOutput) AdditionalDiskSpaceGib() pulumi.IntOutput {
 	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.IntOutput { return v.AdditionalDiskSpaceGib }).(pulumi.IntOutput)
+}
+
+// UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
+func (o ManagedDatabaseValkeyOutput) CloneFrom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.StringPtrOutput { return v.CloneFrom }).(pulumi.StringPtrOutput)
+}
+
+// Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
+func (o ManagedDatabaseValkeyOutput) CloneTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedDatabaseValkey) pulumi.StringPtrOutput { return v.CloneTime }).(pulumi.StringPtrOutput)
 }
 
 // Service component information
