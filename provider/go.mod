@@ -5,7 +5,7 @@ go 1.25.3
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250923233607-7f1981c8674a
 
 require (
-	github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20261022125424-4c6e11f8d46b
+	github.com/UpCloudLtd/terraform-provider-upcloud v0.0.0-20261103085518-66c9a9654888
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.37.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.120.0
 )
@@ -33,7 +33,7 @@ require (
 	github.com/ProtonMail/go-crypto v1.1.6 // indirect
 	github.com/UpCloudLtd/httplog v0.0.0-20260624214043-23b0cab8e085 // indirect
 	github.com/UpCloudLtd/upcloud-go-api/credentials v0.1.2-0.20260218111517-78b5a1eb8206 // indirect
-	github.com/UpCloudLtd/upcloud-go-api/v8 v8.40.0 // indirect
+	github.com/UpCloudLtd/upcloud-go-api/v8 v8.42.0 // indirect
 	github.com/UpCloudLtd/upcloud-go-api/v9 v9.0.0-20261001102606-7c5944e678e2 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
@@ -203,7 +203,7 @@ require (
 	go.opentelemetry.io/otel/sdk/metric v1.44.0 // indirect
 	go.opentelemetry.io/otel/trace v1.44.0 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
-	go.yaml.in/yaml/v3 v3.0.4 // indirect
+	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/crypto v0.55.0 // indirect
 	golang.org/x/exp v0.0.0-20250718183923-645b1fa84792 // indirect
 	golang.org/x/mod v0.38.0 // indirect
