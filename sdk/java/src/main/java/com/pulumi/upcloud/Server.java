@@ -127,18 +127,60 @@ public class Server extends com.pulumi.resources.CustomResource {
         return this.cpu;
     }
     /**
-     * Are firewall rules active for the server
+     * Whether the Public &amp; Utility firewall is active for public and utility interfaces. Independent of firewall_private.
      * 
      */
     @Export(name="firewall", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> firewall;
 
     /**
-     * @return Are firewall rules active for the server
+     * @return Whether the Public &amp; Utility firewall is active for public and utility interfaces. Independent of firewall_private.
      * 
      */
     public Output<Boolean> firewall() {
         return this.firewall;
+    }
+    /**
+     * Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+     * 
+     */
+    @Export(name="firewallPrivate", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> firewallPrivate;
+
+    /**
+     * @return Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+     * 
+     */
+    public Output<Boolean> firewallPrivate() {
+        return this.firewallPrivate;
+    }
+    /**
+     * Default action for unmatched incoming private SDN traffic (accept or drop).
+     * 
+     */
+    @Export(name="firewallPrivateDefaultIncomingAction", refs={String.class}, tree="[0]")
+    private Output<String> firewallPrivateDefaultIncomingAction;
+
+    /**
+     * @return Default action for unmatched incoming private SDN traffic (accept or drop).
+     * 
+     */
+    public Output<String> firewallPrivateDefaultIncomingAction() {
+        return this.firewallPrivateDefaultIncomingAction;
+    }
+    /**
+     * Default action for unmatched outgoing private SDN traffic (accept or drop).
+     * 
+     */
+    @Export(name="firewallPrivateDefaultOutgoingAction", refs={String.class}, tree="[0]")
+    private Output<String> firewallPrivateDefaultOutgoingAction;
+
+    /**
+     * @return Default action for unmatched outgoing private SDN traffic (accept or drop).
+     * 
+     */
+    public Output<String> firewallPrivateDefaultOutgoingAction() {
+        return this.firewallPrivateDefaultOutgoingAction;
     }
     /**
      * Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts

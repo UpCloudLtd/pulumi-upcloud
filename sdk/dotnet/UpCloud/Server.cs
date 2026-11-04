@@ -94,10 +94,28 @@ namespace UpCloud.Pulumi.UpCloud
         public Output<int> Cpu { get; private set; } = null!;
 
         /// <summary>
-        /// Are firewall rules active for the server
+        /// Whether the Public &amp; Utility firewall is active for public and utility interfaces. Independent of firewall_private.
         /// </summary>
         [Output("firewall")]
         public Output<bool> Firewall { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+        /// </summary>
+        [Output("firewallPrivate")]
+        public Output<bool> FirewallPrivate { get; private set; } = null!;
+
+        /// <summary>
+        /// Default action for unmatched incoming private SDN traffic (accept or drop).
+        /// </summary>
+        [Output("firewallPrivateDefaultIncomingAction")]
+        public Output<string> FirewallPrivateDefaultIncomingAction { get; private set; } = null!;
+
+        /// <summary>
+        /// Default action for unmatched outgoing private SDN traffic (accept or drop).
+        /// </summary>
+        [Output("firewallPrivateDefaultOutgoingAction")]
+        public Output<string> FirewallPrivateDefaultOutgoingAction { get; private set; } = null!;
 
         /// <summary>
         /// Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
@@ -280,10 +298,28 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<int>? Cpu { get; set; }
 
         /// <summary>
-        /// Are firewall rules active for the server
+        /// Whether the Public &amp; Utility firewall is active for public and utility interfaces. Independent of firewall_private.
         /// </summary>
         [Input("firewall")]
         public Input<bool>? Firewall { get; set; }
+
+        /// <summary>
+        /// Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+        /// </summary>
+        [Input("firewallPrivate")]
+        public Input<bool>? FirewallPrivate { get; set; }
+
+        /// <summary>
+        /// Default action for unmatched incoming private SDN traffic (accept or drop).
+        /// </summary>
+        [Input("firewallPrivateDefaultIncomingAction")]
+        public Input<string>? FirewallPrivateDefaultIncomingAction { get; set; }
+
+        /// <summary>
+        /// Default action for unmatched outgoing private SDN traffic (accept or drop).
+        /// </summary>
+        [Input("firewallPrivateDefaultOutgoingAction")]
+        public Input<string>? FirewallPrivateDefaultOutgoingAction { get; set; }
 
         /// <summary>
         /// Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
@@ -451,10 +487,28 @@ namespace UpCloud.Pulumi.UpCloud
         public Input<int>? Cpu { get; set; }
 
         /// <summary>
-        /// Are firewall rules active for the server
+        /// Whether the Public &amp; Utility firewall is active for public and utility interfaces. Independent of firewall_private.
         /// </summary>
         [Input("firewall")]
         public Input<bool>? Firewall { get; set; }
+
+        /// <summary>
+        /// Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+        /// </summary>
+        [Input("firewallPrivate")]
+        public Input<bool>? FirewallPrivate { get; set; }
+
+        /// <summary>
+        /// Default action for unmatched incoming private SDN traffic (accept or drop).
+        /// </summary>
+        [Input("firewallPrivateDefaultIncomingAction")]
+        public Input<string>? FirewallPrivateDefaultIncomingAction { get; set; }
+
+        /// <summary>
+        /// Default action for unmatched outgoing private SDN traffic (accept or drop).
+        /// </summary>
+        [Input("firewallPrivateDefaultOutgoingAction")]
+        public Input<string>? FirewallPrivateDefaultOutgoingAction { get; set; }
 
         /// <summary>
         /// Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts

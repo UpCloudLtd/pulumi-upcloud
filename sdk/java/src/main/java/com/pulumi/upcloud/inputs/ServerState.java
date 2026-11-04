@@ -55,18 +55,63 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Are firewall rules active for the server
+     * Whether the Public &amp; Utility firewall is active for public and utility interfaces. Independent of firewall_private.
      * 
      */
     @Import(name="firewall")
     private @Nullable Output<Boolean> firewall;
 
     /**
-     * @return Are firewall rules active for the server
+     * @return Whether the Public &amp; Utility firewall is active for public and utility interfaces. Independent of firewall_private.
      * 
      */
     public Optional<Output<Boolean>> firewall() {
         return Optional.ofNullable(this.firewall);
+    }
+
+    /**
+     * Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+     * 
+     */
+    @Import(name="firewallPrivate")
+    private @Nullable Output<Boolean> firewallPrivate;
+
+    /**
+     * @return Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+     * 
+     */
+    public Optional<Output<Boolean>> firewallPrivate() {
+        return Optional.ofNullable(this.firewallPrivate);
+    }
+
+    /**
+     * Default action for unmatched incoming private SDN traffic (accept or drop).
+     * 
+     */
+    @Import(name="firewallPrivateDefaultIncomingAction")
+    private @Nullable Output<String> firewallPrivateDefaultIncomingAction;
+
+    /**
+     * @return Default action for unmatched incoming private SDN traffic (accept or drop).
+     * 
+     */
+    public Optional<Output<String>> firewallPrivateDefaultIncomingAction() {
+        return Optional.ofNullable(this.firewallPrivateDefaultIncomingAction);
+    }
+
+    /**
+     * Default action for unmatched outgoing private SDN traffic (accept or drop).
+     * 
+     */
+    @Import(name="firewallPrivateDefaultOutgoingAction")
+    private @Nullable Output<String> firewallPrivateDefaultOutgoingAction;
+
+    /**
+     * @return Default action for unmatched outgoing private SDN traffic (accept or drop).
+     * 
+     */
+    public Optional<Output<String>> firewallPrivateDefaultOutgoingAction() {
+        return Optional.ofNullable(this.firewallPrivateDefaultOutgoingAction);
     }
 
     /**
@@ -375,6 +420,9 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         this.bootOrder = $.bootOrder;
         this.cpu = $.cpu;
         this.firewall = $.firewall;
+        this.firewallPrivate = $.firewallPrivate;
+        this.firewallPrivateDefaultIncomingAction = $.firewallPrivateDefaultIncomingAction;
+        this.firewallPrivateDefaultOutgoingAction = $.firewallPrivateDefaultOutgoingAction;
         this.host = $.host;
         this.hostname = $.hostname;
         this.hotResize = $.hotResize;
@@ -458,7 +506,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param firewall Are firewall rules active for the server
+         * @param firewall Whether the Public &amp; Utility firewall is active for public and utility interfaces. Independent of firewall_private.
          * 
          * @return builder
          * 
@@ -469,13 +517,76 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param firewall Are firewall rules active for the server
+         * @param firewall Whether the Public &amp; Utility firewall is active for public and utility interfaces. Independent of firewall_private.
          * 
          * @return builder
          * 
          */
         public Builder firewall(Boolean firewall) {
             return firewall(Output.of(firewall));
+        }
+
+        /**
+         * @param firewallPrivate Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder firewallPrivate(@Nullable Output<Boolean> firewallPrivate) {
+            $.firewallPrivate = firewallPrivate;
+            return this;
+        }
+
+        /**
+         * @param firewallPrivate Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder firewallPrivate(Boolean firewallPrivate) {
+            return firewallPrivate(Output.of(firewallPrivate));
+        }
+
+        /**
+         * @param firewallPrivateDefaultIncomingAction Default action for unmatched incoming private SDN traffic (accept or drop).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder firewallPrivateDefaultIncomingAction(@Nullable Output<String> firewallPrivateDefaultIncomingAction) {
+            $.firewallPrivateDefaultIncomingAction = firewallPrivateDefaultIncomingAction;
+            return this;
+        }
+
+        /**
+         * @param firewallPrivateDefaultIncomingAction Default action for unmatched incoming private SDN traffic (accept or drop).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder firewallPrivateDefaultIncomingAction(String firewallPrivateDefaultIncomingAction) {
+            return firewallPrivateDefaultIncomingAction(Output.of(firewallPrivateDefaultIncomingAction));
+        }
+
+        /**
+         * @param firewallPrivateDefaultOutgoingAction Default action for unmatched outgoing private SDN traffic (accept or drop).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder firewallPrivateDefaultOutgoingAction(@Nullable Output<String> firewallPrivateDefaultOutgoingAction) {
+            $.firewallPrivateDefaultOutgoingAction = firewallPrivateDefaultOutgoingAction;
+            return this;
+        }
+
+        /**
+         * @param firewallPrivateDefaultOutgoingAction Default action for unmatched outgoing private SDN traffic (accept or drop).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder firewallPrivateDefaultOutgoingAction(String firewallPrivateDefaultOutgoingAction) {
+            return firewallPrivateDefaultOutgoingAction(Output.of(firewallPrivateDefaultOutgoingAction));
         }
 
         /**

@@ -41,6 +41,9 @@ export interface GetServerResult {
     readonly bootOrder: string;
     readonly cpu: number;
     readonly firewall: boolean;
+    readonly firewallPrivate: boolean;
+    readonly firewallPrivateDefaultIncomingAction: string;
+    readonly firewallPrivateDefaultOutgoingAction: string;
     readonly host: number;
     readonly hostname: string;
     readonly id: string;

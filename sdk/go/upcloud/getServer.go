@@ -55,25 +55,28 @@ type LookupServerArgs struct {
 
 // A collection of values returned by getServer.
 type LookupServerResult struct {
-	BootOrder         string                      `pulumi:"bootOrder"`
-	Cpu               int                         `pulumi:"cpu"`
-	Firewall          bool                        `pulumi:"firewall"`
-	Host              int                         `pulumi:"host"`
-	Hostname          string                      `pulumi:"hostname"`
-	Id                string                      `pulumi:"id"`
-	Labels            map[string]string           `pulumi:"labels"`
-	Mem               int                         `pulumi:"mem"`
-	Metadata          bool                        `pulumi:"metadata"`
-	NetworkInterfaces []GetServerNetworkInterface `pulumi:"networkInterfaces"`
-	NicModel          string                      `pulumi:"nicModel"`
-	Plan              string                      `pulumi:"plan"`
-	ServerGroup       string                      `pulumi:"serverGroup"`
-	State             string                      `pulumi:"state"`
-	Tags              []string                    `pulumi:"tags"`
-	Timezone          string                      `pulumi:"timezone"`
-	Title             string                      `pulumi:"title"`
-	VideoModel        string                      `pulumi:"videoModel"`
-	Zone              string                      `pulumi:"zone"`
+	BootOrder                            string                      `pulumi:"bootOrder"`
+	Cpu                                  int                         `pulumi:"cpu"`
+	Firewall                             bool                        `pulumi:"firewall"`
+	FirewallPrivate                      bool                        `pulumi:"firewallPrivate"`
+	FirewallPrivateDefaultIncomingAction string                      `pulumi:"firewallPrivateDefaultIncomingAction"`
+	FirewallPrivateDefaultOutgoingAction string                      `pulumi:"firewallPrivateDefaultOutgoingAction"`
+	Host                                 int                         `pulumi:"host"`
+	Hostname                             string                      `pulumi:"hostname"`
+	Id                                   string                      `pulumi:"id"`
+	Labels                               map[string]string           `pulumi:"labels"`
+	Mem                                  int                         `pulumi:"mem"`
+	Metadata                             bool                        `pulumi:"metadata"`
+	NetworkInterfaces                    []GetServerNetworkInterface `pulumi:"networkInterfaces"`
+	NicModel                             string                      `pulumi:"nicModel"`
+	Plan                                 string                      `pulumi:"plan"`
+	ServerGroup                          string                      `pulumi:"serverGroup"`
+	State                                string                      `pulumi:"state"`
+	Tags                                 []string                    `pulumi:"tags"`
+	Timezone                             string                      `pulumi:"timezone"`
+	Title                                string                      `pulumi:"title"`
+	VideoModel                           string                      `pulumi:"videoModel"`
+	Zone                                 string                      `pulumi:"zone"`
 }
 
 func LookupServerOutput(ctx *pulumi.Context, args LookupServerOutputArgs, opts ...pulumi.InvokeOption) LookupServerResultOutput {
@@ -119,6 +122,18 @@ func (o LookupServerResultOutput) Cpu() pulumi.IntOutput {
 
 func (o LookupServerResultOutput) Firewall() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupServerResult) bool { return v.Firewall }).(pulumi.BoolOutput)
+}
+
+func (o LookupServerResultOutput) FirewallPrivate() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupServerResult) bool { return v.FirewallPrivate }).(pulumi.BoolOutput)
+}
+
+func (o LookupServerResultOutput) FirewallPrivateDefaultIncomingAction() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServerResult) string { return v.FirewallPrivateDefaultIncomingAction }).(pulumi.StringOutput)
+}
+
+func (o LookupServerResultOutput) FirewallPrivateDefaultOutgoingAction() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServerResult) string { return v.FirewallPrivateDefaultOutgoingAction }).(pulumi.StringOutput)
 }
 
 func (o LookupServerResultOutput) Host() pulumi.IntOutput {

@@ -26,6 +26,9 @@ class ServerArgs:
                  boot_order: Optional[pulumi.Input[_builtins.str]] = None,
                  cpu: Optional[pulumi.Input[_builtins.int]] = None,
                  firewall: Optional[pulumi.Input[_builtins.bool]] = None,
+                 firewall_private: Optional[pulumi.Input[_builtins.bool]] = None,
+                 firewall_private_default_incoming_action: Optional[pulumi.Input[_builtins.str]] = None,
+                 firewall_private_default_outgoing_action: Optional[pulumi.Input[_builtins.str]] = None,
                  host: Optional[pulumi.Input[_builtins.int]] = None,
                  hot_resize: Optional[pulumi.Input[_builtins.bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -50,7 +53,10 @@ class ServerArgs:
         :param pulumi.Input[_builtins.str] zone: The zone in which the server will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         :param pulumi.Input[_builtins.str] boot_order: The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
         :param pulumi.Input[_builtins.int] cpu: The number of CPU cores for the server
-        :param pulumi.Input[_builtins.bool] firewall: Are firewall rules active for the server
+        :param pulumi.Input[_builtins.bool] firewall: Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
+        :param pulumi.Input[_builtins.bool] firewall_private: Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+        :param pulumi.Input[_builtins.str] firewall_private_default_incoming_action: Default action for unmatched incoming private SDN traffic (accept or drop).
+        :param pulumi.Input[_builtins.str] firewall_private_default_outgoing_action: Default action for unmatched outgoing private SDN traffic (accept or drop).
         :param pulumi.Input[_builtins.int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
         :param pulumi.Input[_builtins.bool] hot_resize: If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the server.
@@ -81,6 +87,12 @@ class ServerArgs:
             pulumi.set(__self__, "cpu", cpu)
         if firewall is not None:
             pulumi.set(__self__, "firewall", firewall)
+        if firewall_private is not None:
+            pulumi.set(__self__, "firewall_private", firewall_private)
+        if firewall_private_default_incoming_action is not None:
+            pulumi.set(__self__, "firewall_private_default_incoming_action", firewall_private_default_incoming_action)
+        if firewall_private_default_outgoing_action is not None:
+            pulumi.set(__self__, "firewall_private_default_outgoing_action", firewall_private_default_outgoing_action)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if hot_resize is not None:
@@ -170,13 +182,49 @@ class ServerArgs:
     @pulumi.getter
     def firewall(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Are firewall rules active for the server
+        Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
         """
         return pulumi.get(self, "firewall")
 
     @firewall.setter
     def firewall(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "firewall", value)
+
+    @_builtins.property
+    @pulumi.getter(name="firewallPrivate")
+    def firewall_private(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+        """
+        return pulumi.get(self, "firewall_private")
+
+    @firewall_private.setter
+    def firewall_private(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "firewall_private", value)
+
+    @_builtins.property
+    @pulumi.getter(name="firewallPrivateDefaultIncomingAction")
+    def firewall_private_default_incoming_action(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Default action for unmatched incoming private SDN traffic (accept or drop).
+        """
+        return pulumi.get(self, "firewall_private_default_incoming_action")
+
+    @firewall_private_default_incoming_action.setter
+    def firewall_private_default_incoming_action(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "firewall_private_default_incoming_action", value)
+
+    @_builtins.property
+    @pulumi.getter(name="firewallPrivateDefaultOutgoingAction")
+    def firewall_private_default_outgoing_action(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Default action for unmatched outgoing private SDN traffic (accept or drop).
+        """
+        return pulumi.get(self, "firewall_private_default_outgoing_action")
+
+    @firewall_private_default_outgoing_action.setter
+    def firewall_private_default_outgoing_action(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "firewall_private_default_outgoing_action", value)
 
     @_builtins.property
     @pulumi.getter
@@ -402,6 +450,9 @@ class _ServerState:
                  boot_order: Optional[pulumi.Input[_builtins.str]] = None,
                  cpu: Optional[pulumi.Input[_builtins.int]] = None,
                  firewall: Optional[pulumi.Input[_builtins.bool]] = None,
+                 firewall_private: Optional[pulumi.Input[_builtins.bool]] = None,
+                 firewall_private_default_incoming_action: Optional[pulumi.Input[_builtins.str]] = None,
+                 firewall_private_default_outgoing_action: Optional[pulumi.Input[_builtins.str]] = None,
                  host: Optional[pulumi.Input[_builtins.int]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  hot_resize: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -426,7 +477,10 @@ class _ServerState:
         Input properties used for looking up and filtering Server resources.
         :param pulumi.Input[_builtins.str] boot_order: The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
         :param pulumi.Input[_builtins.int] cpu: The number of CPU cores for the server
-        :param pulumi.Input[_builtins.bool] firewall: Are firewall rules active for the server
+        :param pulumi.Input[_builtins.bool] firewall: Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
+        :param pulumi.Input[_builtins.bool] firewall_private: Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+        :param pulumi.Input[_builtins.str] firewall_private_default_incoming_action: Default action for unmatched incoming private SDN traffic (accept or drop).
+        :param pulumi.Input[_builtins.str] firewall_private_default_outgoing_action: Default action for unmatched outgoing private SDN traffic (accept or drop).
         :param pulumi.Input[_builtins.int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
         :param pulumi.Input[_builtins.str] hostname: The hostname of the server.
         :param pulumi.Input[_builtins.bool] hot_resize: If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
@@ -457,6 +511,12 @@ class _ServerState:
             pulumi.set(__self__, "cpu", cpu)
         if firewall is not None:
             pulumi.set(__self__, "firewall", firewall)
+        if firewall_private is not None:
+            pulumi.set(__self__, "firewall_private", firewall_private)
+        if firewall_private_default_incoming_action is not None:
+            pulumi.set(__self__, "firewall_private_default_incoming_action", firewall_private_default_incoming_action)
+        if firewall_private_default_outgoing_action is not None:
+            pulumi.set(__self__, "firewall_private_default_outgoing_action", firewall_private_default_outgoing_action)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if hostname is not None:
@@ -526,13 +586,49 @@ class _ServerState:
     @pulumi.getter
     def firewall(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Are firewall rules active for the server
+        Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
         """
         return pulumi.get(self, "firewall")
 
     @firewall.setter
     def firewall(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "firewall", value)
+
+    @_builtins.property
+    @pulumi.getter(name="firewallPrivate")
+    def firewall_private(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+        """
+        return pulumi.get(self, "firewall_private")
+
+    @firewall_private.setter
+    def firewall_private(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "firewall_private", value)
+
+    @_builtins.property
+    @pulumi.getter(name="firewallPrivateDefaultIncomingAction")
+    def firewall_private_default_incoming_action(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Default action for unmatched incoming private SDN traffic (accept or drop).
+        """
+        return pulumi.get(self, "firewall_private_default_incoming_action")
+
+    @firewall_private_default_incoming_action.setter
+    def firewall_private_default_incoming_action(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "firewall_private_default_incoming_action", value)
+
+    @_builtins.property
+    @pulumi.getter(name="firewallPrivateDefaultOutgoingAction")
+    def firewall_private_default_outgoing_action(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Default action for unmatched outgoing private SDN traffic (accept or drop).
+        """
+        return pulumi.get(self, "firewall_private_default_outgoing_action")
+
+    @firewall_private_default_outgoing_action.setter
+    def firewall_private_default_outgoing_action(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "firewall_private_default_outgoing_action", value)
 
     @_builtins.property
     @pulumi.getter
@@ -785,6 +881,9 @@ class Server(pulumi.CustomResource):
                  boot_order: Optional[pulumi.Input[_builtins.str]] = None,
                  cpu: Optional[pulumi.Input[_builtins.int]] = None,
                  firewall: Optional[pulumi.Input[_builtins.bool]] = None,
+                 firewall_private: Optional[pulumi.Input[_builtins.bool]] = None,
+                 firewall_private_default_incoming_action: Optional[pulumi.Input[_builtins.str]] = None,
+                 firewall_private_default_outgoing_action: Optional[pulumi.Input[_builtins.str]] = None,
                  host: Optional[pulumi.Input[_builtins.int]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  hot_resize: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -856,7 +955,10 @@ class Server(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] boot_order: The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
         :param pulumi.Input[_builtins.int] cpu: The number of CPU cores for the server
-        :param pulumi.Input[_builtins.bool] firewall: Are firewall rules active for the server
+        :param pulumi.Input[_builtins.bool] firewall: Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
+        :param pulumi.Input[_builtins.bool] firewall_private: Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+        :param pulumi.Input[_builtins.str] firewall_private_default_incoming_action: Default action for unmatched incoming private SDN traffic (accept or drop).
+        :param pulumi.Input[_builtins.str] firewall_private_default_outgoing_action: Default action for unmatched outgoing private SDN traffic (accept or drop).
         :param pulumi.Input[_builtins.int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
         :param pulumi.Input[_builtins.str] hostname: The hostname of the server.
         :param pulumi.Input[_builtins.bool] hot_resize: If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
@@ -951,6 +1053,9 @@ class Server(pulumi.CustomResource):
                  boot_order: Optional[pulumi.Input[_builtins.str]] = None,
                  cpu: Optional[pulumi.Input[_builtins.int]] = None,
                  firewall: Optional[pulumi.Input[_builtins.bool]] = None,
+                 firewall_private: Optional[pulumi.Input[_builtins.bool]] = None,
+                 firewall_private_default_incoming_action: Optional[pulumi.Input[_builtins.str]] = None,
+                 firewall_private_default_outgoing_action: Optional[pulumi.Input[_builtins.str]] = None,
                  host: Optional[pulumi.Input[_builtins.int]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  hot_resize: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -983,6 +1088,9 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["boot_order"] = boot_order
             __props__.__dict__["cpu"] = cpu
             __props__.__dict__["firewall"] = firewall
+            __props__.__dict__["firewall_private"] = firewall_private
+            __props__.__dict__["firewall_private_default_incoming_action"] = firewall_private_default_incoming_action
+            __props__.__dict__["firewall_private_default_outgoing_action"] = firewall_private_default_outgoing_action
             __props__.__dict__["host"] = host
             if hostname is None and not opts.urn:
                 raise TypeError("Missing required property 'hostname'")
@@ -1020,6 +1128,9 @@ class Server(pulumi.CustomResource):
             boot_order: Optional[pulumi.Input[_builtins.str]] = None,
             cpu: Optional[pulumi.Input[_builtins.int]] = None,
             firewall: Optional[pulumi.Input[_builtins.bool]] = None,
+            firewall_private: Optional[pulumi.Input[_builtins.bool]] = None,
+            firewall_private_default_incoming_action: Optional[pulumi.Input[_builtins.str]] = None,
+            firewall_private_default_outgoing_action: Optional[pulumi.Input[_builtins.str]] = None,
             host: Optional[pulumi.Input[_builtins.int]] = None,
             hostname: Optional[pulumi.Input[_builtins.str]] = None,
             hot_resize: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1049,7 +1160,10 @@ class Server(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] boot_order: The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
         :param pulumi.Input[_builtins.int] cpu: The number of CPU cores for the server
-        :param pulumi.Input[_builtins.bool] firewall: Are firewall rules active for the server
+        :param pulumi.Input[_builtins.bool] firewall: Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
+        :param pulumi.Input[_builtins.bool] firewall_private: Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+        :param pulumi.Input[_builtins.str] firewall_private_default_incoming_action: Default action for unmatched incoming private SDN traffic (accept or drop).
+        :param pulumi.Input[_builtins.str] firewall_private_default_outgoing_action: Default action for unmatched outgoing private SDN traffic (accept or drop).
         :param pulumi.Input[_builtins.int] host: Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
         :param pulumi.Input[_builtins.str] hostname: The hostname of the server.
         :param pulumi.Input[_builtins.bool] hot_resize: If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
@@ -1081,6 +1195,9 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["boot_order"] = boot_order
         __props__.__dict__["cpu"] = cpu
         __props__.__dict__["firewall"] = firewall
+        __props__.__dict__["firewall_private"] = firewall_private
+        __props__.__dict__["firewall_private_default_incoming_action"] = firewall_private_default_incoming_action
+        __props__.__dict__["firewall_private_default_outgoing_action"] = firewall_private_default_outgoing_action
         __props__.__dict__["host"] = host
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["hot_resize"] = hot_resize
@@ -1123,9 +1240,33 @@ class Server(pulumi.CustomResource):
     @pulumi.getter
     def firewall(self) -> pulumi.Output[_builtins.bool]:
         """
-        Are firewall rules active for the server
+        Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
         """
         return pulumi.get(self, "firewall")
+
+    @_builtins.property
+    @pulumi.getter(name="firewallPrivate")
+    def firewall_private(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+        """
+        return pulumi.get(self, "firewall_private")
+
+    @_builtins.property
+    @pulumi.getter(name="firewallPrivateDefaultIncomingAction")
+    def firewall_private_default_incoming_action(self) -> pulumi.Output[_builtins.str]:
+        """
+        Default action for unmatched incoming private SDN traffic (accept or drop).
+        """
+        return pulumi.get(self, "firewall_private_default_incoming_action")
+
+    @_builtins.property
+    @pulumi.getter(name="firewallPrivateDefaultOutgoingAction")
+    def firewall_private_default_outgoing_action(self) -> pulumi.Output[_builtins.str]:
+        """
+        Default action for unmatched outgoing private SDN traffic (accept or drop).
+        """
+        return pulumi.get(self, "firewall_private_default_outgoing_action")
 
     @_builtins.property
     @pulumi.getter
