@@ -11,7 +11,7 @@ using Pulumi;
 namespace UpCloud.Pulumi.UpCloud
 {
     /// <summary>
-    /// This resource represents an attachment of an UpCloud SDN private firewall ruleset to a server.
+    /// This resource represents an attachment of an UpCloud SDN private firewall ruleset to a server. Enable private filtering with `FirewallPrivate` on `upcloud.Server` and enable the ruleset with `Enabled`. The server defaults control unmatched private traffic. Attachment occurs after server creation, so the intended policy is not guaranteed from first boot; restrictive defaults can block traffic until the ruleset is attached.
     /// 
     /// ## Example Usage
     /// 
@@ -41,6 +41,9 @@ namespace UpCloud.Pulumi.UpCloud
     ///         Hostname = "terraform.example.tld",
     ///         Zone = "de-fra1",
     ///         Plan = "1xCPU-1GB",
+    ///         FirewallPrivate = true,
+    ///         FirewallPrivateDefaultIncomingAction = "drop",
+    ///         FirewallPrivateDefaultOutgoingAction = "accept",
     ///         Template = new UpCloud.Inputs.ServerTemplateArgs
     ///         {
     ///             Storage = "Ubuntu Server 24.04 LTS (Noble Numbat)",
@@ -59,6 +62,7 @@ namespace UpCloud.Pulumi.UpCloud
     ///     {
     ///         Name = "example-private-ruleset",
     ///         Description = "Private SDN ruleset",
+    ///         Enabled = true,
     ///         Rules = new[]
     ///         {
     ///             new UpCloud.Inputs.FirewallRulesetRuleArgs

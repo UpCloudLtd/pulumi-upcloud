@@ -104,7 +104,7 @@ class ServerPrivateFirewallRuleset(pulumi.CustomResource):
                  server_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        This resource represents an attachment of an UpCloud SDN private firewall ruleset to a server.
+        This resource represents an attachment of an UpCloud SDN private firewall ruleset to a server. Enable private filtering with `firewall_private` on `Server` and enable the ruleset with `enabled`. The server defaults control unmatched private traffic. Attachment occurs after server creation, so the intended policy is not guaranteed from first boot; restrictive defaults can block traffic until the ruleset is attached.
 
         ## Example Usage
 
@@ -125,6 +125,9 @@ class ServerPrivateFirewallRuleset(pulumi.CustomResource):
             hostname="terraform.example.tld",
             zone="de-fra1",
             plan="1xCPU-1GB",
+            firewall_private=True,
+            firewall_private_default_incoming_action="drop",
+            firewall_private_default_outgoing_action="accept",
             template={
                 "storage": "Ubuntu Server 24.04 LTS (Noble Numbat)",
             },
@@ -135,6 +138,7 @@ class ServerPrivateFirewallRuleset(pulumi.CustomResource):
         example_firewall_ruleset = upcloud.FirewallRuleset("example",
             name="example-private-ruleset",
             description="Private SDN ruleset",
+            enabled=True,
             rules=[{
                 "action": "accept",
                 "direction": "in",
@@ -171,7 +175,7 @@ class ServerPrivateFirewallRuleset(pulumi.CustomResource):
                  args: ServerPrivateFirewallRulesetArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource represents an attachment of an UpCloud SDN private firewall ruleset to a server.
+        This resource represents an attachment of an UpCloud SDN private firewall ruleset to a server. Enable private filtering with `firewall_private` on `Server` and enable the ruleset with `enabled`. The server defaults control unmatched private traffic. Attachment occurs after server creation, so the intended policy is not guaranteed from first boot; restrictive defaults can block traffic until the ruleset is attached.
 
         ## Example Usage
 
@@ -192,6 +196,9 @@ class ServerPrivateFirewallRuleset(pulumi.CustomResource):
             hostname="terraform.example.tld",
             zone="de-fra1",
             plan="1xCPU-1GB",
+            firewall_private=True,
+            firewall_private_default_incoming_action="drop",
+            firewall_private_default_outgoing_action="accept",
             template={
                 "storage": "Ubuntu Server 24.04 LTS (Noble Numbat)",
             },
@@ -202,6 +209,7 @@ class ServerPrivateFirewallRuleset(pulumi.CustomResource):
         example_firewall_ruleset = upcloud.FirewallRuleset("example",
             name="example-private-ruleset",
             description="Private SDN ruleset",
+            enabled=True,
             rules=[{
                 "action": "accept",
                 "direction": "in",

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resource represents an attachment of an UpCloud SDN private firewall ruleset to a server.
+ * This resource represents an attachment of an UpCloud SDN private firewall ruleset to a server. Enable private filtering with `firewallPrivate` on `upcloud.Server` and enable the ruleset with `enabled`. The server defaults control unmatched private traffic. Attachment occurs after server creation, so the intended policy is not guaranteed from first boot; restrictive defaults can block traffic until the ruleset is attached.
  *
  * ## Example Usage
  *
@@ -27,6 +27,9 @@ import * as utilities from "./utilities";
  *     hostname: "terraform.example.tld",
  *     zone: "de-fra1",
  *     plan: "1xCPU-1GB",
+ *     firewallPrivate: true,
+ *     firewallPrivateDefaultIncomingAction: "drop",
+ *     firewallPrivateDefaultOutgoingAction: "accept",
  *     template: {
  *         storage: "Ubuntu Server 24.04 LTS (Noble Numbat)",
  *     },
@@ -38,6 +41,7 @@ import * as utilities from "./utilities";
  * const exampleFirewallRuleset = new upcloud.FirewallRuleset("example", {
  *     name: "example-private-ruleset",
  *     description: "Private SDN ruleset",
+ *     enabled: true,
  *     rules: [{
  *         action: "accept",
  *         direction: "in",

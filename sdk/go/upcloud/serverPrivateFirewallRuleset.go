@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource represents an attachment of an UpCloud SDN private firewall ruleset to a server.
+// This resource represents an attachment of an UpCloud SDN private firewall ruleset to a server. Enable private filtering with `firewallPrivate` on `Server` and enable the ruleset with `enabled`. The server defaults control unmatched private traffic. Attachment occurs after server creation, so the intended policy is not guaranteed from first boot; restrictive defaults can block traffic until the ruleset is attached.
 //
 // ## Example Usage
 //
@@ -42,9 +42,12 @@ import (
 //				return err
 //			}
 //			exampleServer, err := upcloud.NewServer(ctx, "example", &upcloud.ServerArgs{
-//				Hostname: pulumi.String("terraform.example.tld"),
-//				Zone:     pulumi.String("de-fra1"),
-//				Plan:     pulumi.String("1xCPU-1GB"),
+//				Hostname:                             pulumi.String("terraform.example.tld"),
+//				Zone:                                 pulumi.String("de-fra1"),
+//				Plan:                                 pulumi.String("1xCPU-1GB"),
+//				FirewallPrivate:                      pulumi.Bool(true),
+//				FirewallPrivateDefaultIncomingAction: pulumi.String("drop"),
+//				FirewallPrivateDefaultOutgoingAction: pulumi.String("accept"),
 //				Template: &upcloud.ServerTemplateArgs{
 //					Storage: pulumi.String("Ubuntu Server 24.04 LTS (Noble Numbat)"),
 //				},
@@ -61,6 +64,7 @@ import (
 //			exampleFirewallRuleset, err := upcloud.NewFirewallRuleset(ctx, "example", &upcloud.FirewallRulesetArgs{
 //				Name:        pulumi.String("example-private-ruleset"),
 //				Description: pulumi.String("Private SDN ruleset"),
+//				Enabled:     pulumi.Bool(true),
 //				Rules: upcloud.FirewallRulesetRuleArray{
 //					&upcloud.FirewallRulesetRuleArgs{
 //						Action:               pulumi.String("accept"),

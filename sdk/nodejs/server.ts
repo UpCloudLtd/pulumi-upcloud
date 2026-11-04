@@ -90,9 +90,21 @@ export class Server extends pulumi.CustomResource {
      */
     declare public readonly cpu: pulumi.Output<number>;
     /**
-     * Are firewall rules active for the server
+     * Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
      */
     declare public readonly firewall: pulumi.Output<boolean>;
+    /**
+     * Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+     */
+    declare public readonly firewallPrivate: pulumi.Output<boolean>;
+    /**
+     * Default action for unmatched incoming private SDN traffic (accept or drop).
+     */
+    declare public readonly firewallPrivateDefaultIncomingAction: pulumi.Output<string>;
+    /**
+     * Default action for unmatched outgoing private SDN traffic (accept or drop).
+     */
+    declare public readonly firewallPrivateDefaultOutgoingAction: pulumi.Output<string>;
     /**
      * Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
      */
@@ -191,6 +203,9 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["bootOrder"] = state?.bootOrder;
             resourceInputs["cpu"] = state?.cpu;
             resourceInputs["firewall"] = state?.firewall;
+            resourceInputs["firewallPrivate"] = state?.firewallPrivate;
+            resourceInputs["firewallPrivateDefaultIncomingAction"] = state?.firewallPrivateDefaultIncomingAction;
+            resourceInputs["firewallPrivateDefaultOutgoingAction"] = state?.firewallPrivateDefaultOutgoingAction;
             resourceInputs["host"] = state?.host;
             resourceInputs["hostname"] = state?.hostname;
             resourceInputs["hotResize"] = state?.hotResize;
@@ -222,6 +237,9 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["bootOrder"] = args?.bootOrder;
             resourceInputs["cpu"] = args?.cpu;
             resourceInputs["firewall"] = args?.firewall;
+            resourceInputs["firewallPrivate"] = args?.firewallPrivate;
+            resourceInputs["firewallPrivateDefaultIncomingAction"] = args?.firewallPrivateDefaultIncomingAction;
+            resourceInputs["firewallPrivateDefaultOutgoingAction"] = args?.firewallPrivateDefaultOutgoingAction;
             resourceInputs["host"] = args?.host;
             resourceInputs["hostname"] = args?.hostname;
             resourceInputs["hotResize"] = args?.hotResize;
@@ -261,9 +279,21 @@ export interface ServerState {
      */
     cpu?: pulumi.Input<number>;
     /**
-     * Are firewall rules active for the server
+     * Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
      */
     firewall?: pulumi.Input<boolean>;
+    /**
+     * Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+     */
+    firewallPrivate?: pulumi.Input<boolean>;
+    /**
+     * Default action for unmatched incoming private SDN traffic (accept or drop).
+     */
+    firewallPrivateDefaultIncomingAction?: pulumi.Input<string>;
+    /**
+     * Default action for unmatched outgoing private SDN traffic (accept or drop).
+     */
+    firewallPrivateDefaultOutgoingAction?: pulumi.Input<string>;
     /**
      * Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
      */
@@ -360,9 +390,21 @@ export interface ServerArgs {
      */
     cpu?: pulumi.Input<number>;
     /**
-     * Are firewall rules active for the server
+     * Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
      */
     firewall?: pulumi.Input<boolean>;
+    /**
+     * Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
+     */
+    firewallPrivate?: pulumi.Input<boolean>;
+    /**
+     * Default action for unmatched incoming private SDN traffic (accept or drop).
+     */
+    firewallPrivateDefaultIncomingAction?: pulumi.Input<string>;
+    /**
+     * Default action for unmatched outgoing private SDN traffic (accept or drop).
+     */
+    firewallPrivateDefaultOutgoingAction?: pulumi.Input<string>;
     /**
      * Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
      */

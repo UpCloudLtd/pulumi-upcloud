@@ -18,6 +18,9 @@ public final class GetServerResult {
     private String bootOrder;
     private Integer cpu;
     private Boolean firewall;
+    private Boolean firewallPrivate;
+    private String firewallPrivateDefaultIncomingAction;
+    private String firewallPrivateDefaultOutgoingAction;
     private Integer host;
     private String hostname;
     private String id;
@@ -44,6 +47,15 @@ public final class GetServerResult {
     }
     public Boolean firewall() {
         return this.firewall;
+    }
+    public Boolean firewallPrivate() {
+        return this.firewallPrivate;
+    }
+    public String firewallPrivateDefaultIncomingAction() {
+        return this.firewallPrivateDefaultIncomingAction;
+    }
+    public String firewallPrivateDefaultOutgoingAction() {
+        return this.firewallPrivateDefaultOutgoingAction;
     }
     public Integer host() {
         return this.host;
@@ -106,6 +118,9 @@ public final class GetServerResult {
         private String bootOrder;
         private Integer cpu;
         private Boolean firewall;
+        private Boolean firewallPrivate;
+        private String firewallPrivateDefaultIncomingAction;
+        private String firewallPrivateDefaultOutgoingAction;
         private Integer host;
         private String hostname;
         private String id;
@@ -128,6 +143,9 @@ public final class GetServerResult {
     	      this.bootOrder = defaults.bootOrder;
     	      this.cpu = defaults.cpu;
     	      this.firewall = defaults.firewall;
+    	      this.firewallPrivate = defaults.firewallPrivate;
+    	      this.firewallPrivateDefaultIncomingAction = defaults.firewallPrivateDefaultIncomingAction;
+    	      this.firewallPrivateDefaultOutgoingAction = defaults.firewallPrivateDefaultOutgoingAction;
     	      this.host = defaults.host;
     	      this.hostname = defaults.hostname;
     	      this.id = defaults.id;
@@ -168,6 +186,30 @@ public final class GetServerResult {
               throw new MissingRequiredPropertyException("GetServerResult", "firewall");
             }
             this.firewall = firewall;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder firewallPrivate(Boolean firewallPrivate) {
+            if (firewallPrivate == null) {
+              throw new MissingRequiredPropertyException("GetServerResult", "firewallPrivate");
+            }
+            this.firewallPrivate = firewallPrivate;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder firewallPrivateDefaultIncomingAction(String firewallPrivateDefaultIncomingAction) {
+            if (firewallPrivateDefaultIncomingAction == null) {
+              throw new MissingRequiredPropertyException("GetServerResult", "firewallPrivateDefaultIncomingAction");
+            }
+            this.firewallPrivateDefaultIncomingAction = firewallPrivateDefaultIncomingAction;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder firewallPrivateDefaultOutgoingAction(String firewallPrivateDefaultOutgoingAction) {
+            if (firewallPrivateDefaultOutgoingAction == null) {
+              throw new MissingRequiredPropertyException("GetServerResult", "firewallPrivateDefaultOutgoingAction");
+            }
+            this.firewallPrivateDefaultOutgoingAction = firewallPrivateDefaultOutgoingAction;
             return this;
         }
         @CustomType.Setter
@@ -309,6 +351,9 @@ public final class GetServerResult {
             _resultValue.bootOrder = bootOrder;
             _resultValue.cpu = cpu;
             _resultValue.firewall = firewall;
+            _resultValue.firewallPrivate = firewallPrivate;
+            _resultValue.firewallPrivateDefaultIncomingAction = firewallPrivateDefaultIncomingAction;
+            _resultValue.firewallPrivateDefaultOutgoingAction = firewallPrivateDefaultOutgoingAction;
             _resultValue.host = host;
             _resultValue.hostname = hostname;
             _resultValue.id = id;

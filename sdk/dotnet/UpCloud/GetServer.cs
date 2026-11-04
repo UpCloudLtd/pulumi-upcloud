@@ -115,6 +115,9 @@ namespace UpCloud.Pulumi.UpCloud
         public readonly string BootOrder;
         public readonly int Cpu;
         public readonly bool Firewall;
+        public readonly bool FirewallPrivate;
+        public readonly string FirewallPrivateDefaultIncomingAction;
+        public readonly string FirewallPrivateDefaultOutgoingAction;
         public readonly int Host;
         public readonly string Hostname;
         public readonly string Id;
@@ -139,6 +142,12 @@ namespace UpCloud.Pulumi.UpCloud
             int cpu,
 
             bool firewall,
+
+            bool firewallPrivate,
+
+            string firewallPrivateDefaultIncomingAction,
+
+            string firewallPrivateDefaultOutgoingAction,
 
             int host,
 
@@ -175,6 +184,9 @@ namespace UpCloud.Pulumi.UpCloud
             BootOrder = bootOrder;
             Cpu = cpu;
             Firewall = firewall;
+            FirewallPrivate = firewallPrivate;
+            FirewallPrivateDefaultIncomingAction = firewallPrivateDefaultIncomingAction;
+            FirewallPrivateDefaultOutgoingAction = firewallPrivateDefaultOutgoingAction;
             Host = host;
             Hostname = hostname;
             Id = id;

@@ -14,7 +14,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * This resource represents an attachment of an UpCloud SDN private firewall ruleset to a server.
+ * This resource represents an attachment of an UpCloud SDN private firewall ruleset to a server. Enable private filtering with `firewallPrivate` on `upcloud.Server` and enable the ruleset with `enabled`. The server defaults control unmatched private traffic. Attachment occurs after server creation, so the intended policy is not guaranteed from first boot; restrictive defaults can block traffic until the ruleset is attached.
  * 
  * ## Example Usage
  * 
@@ -65,6 +65,9 @@ import javax.annotation.Nullable;
  *             .hostname("terraform.example.tld")
  *             .zone("de-fra1")
  *             .plan("1xCPU-1GB")
+ *             .firewallPrivate(true)
+ *             .firewallPrivateDefaultIncomingAction("drop")
+ *             .firewallPrivateDefaultOutgoingAction("accept")
  *             .template(ServerTemplateArgs.builder()
  *                 .storage("Ubuntu Server 24.04 LTS (Noble Numbat)")
  *                 .build())
@@ -77,6 +80,7 @@ import javax.annotation.Nullable;
  *         var exampleFirewallRuleset = new FirewallRuleset("exampleFirewallRuleset", FirewallRulesetArgs.builder()
  *             .name("example-private-ruleset")
  *             .description("Private SDN ruleset")
+ *             .enabled(true)
  *             .rules(FirewallRulesetRuleArgs.builder()
  *                 .action("accept")
  *                 .direction("in")

@@ -27,7 +27,7 @@ class GetServerResult:
     """
     A collection of values returned by getServer.
     """
-    def __init__(__self__, boot_order=None, cpu=None, firewall=None, host=None, hostname=None, id=None, labels=None, mem=None, metadata=None, network_interfaces=None, nic_model=None, plan=None, server_group=None, state=None, tags=None, timezone=None, title=None, video_model=None, zone=None):
+    def __init__(__self__, boot_order=None, cpu=None, firewall=None, firewall_private=None, firewall_private_default_incoming_action=None, firewall_private_default_outgoing_action=None, host=None, hostname=None, id=None, labels=None, mem=None, metadata=None, network_interfaces=None, nic_model=None, plan=None, server_group=None, state=None, tags=None, timezone=None, title=None, video_model=None, zone=None):
         if boot_order and not isinstance(boot_order, str):
             raise TypeError("Expected argument 'boot_order' to be a str")
         pulumi.set(__self__, "boot_order", boot_order)
@@ -37,6 +37,15 @@ class GetServerResult:
         if firewall and not isinstance(firewall, bool):
             raise TypeError("Expected argument 'firewall' to be a bool")
         pulumi.set(__self__, "firewall", firewall)
+        if firewall_private and not isinstance(firewall_private, bool):
+            raise TypeError("Expected argument 'firewall_private' to be a bool")
+        pulumi.set(__self__, "firewall_private", firewall_private)
+        if firewall_private_default_incoming_action and not isinstance(firewall_private_default_incoming_action, str):
+            raise TypeError("Expected argument 'firewall_private_default_incoming_action' to be a str")
+        pulumi.set(__self__, "firewall_private_default_incoming_action", firewall_private_default_incoming_action)
+        if firewall_private_default_outgoing_action and not isinstance(firewall_private_default_outgoing_action, str):
+            raise TypeError("Expected argument 'firewall_private_default_outgoing_action' to be a str")
+        pulumi.set(__self__, "firewall_private_default_outgoing_action", firewall_private_default_outgoing_action)
         if host and not isinstance(host, int):
             raise TypeError("Expected argument 'host' to be a int")
         pulumi.set(__self__, "host", host)
@@ -100,6 +109,21 @@ class GetServerResult:
     @pulumi.getter
     def firewall(self) -> _builtins.bool:
         return pulumi.get(self, "firewall")
+
+    @_builtins.property
+    @pulumi.getter(name="firewallPrivate")
+    def firewall_private(self) -> _builtins.bool:
+        return pulumi.get(self, "firewall_private")
+
+    @_builtins.property
+    @pulumi.getter(name="firewallPrivateDefaultIncomingAction")
+    def firewall_private_default_incoming_action(self) -> _builtins.str:
+        return pulumi.get(self, "firewall_private_default_incoming_action")
+
+    @_builtins.property
+    @pulumi.getter(name="firewallPrivateDefaultOutgoingAction")
+    def firewall_private_default_outgoing_action(self) -> _builtins.str:
+        return pulumi.get(self, "firewall_private_default_outgoing_action")
 
     @_builtins.property
     @pulumi.getter
@@ -191,6 +215,9 @@ class AwaitableGetServerResult(GetServerResult):
             boot_order=self.boot_order,
             cpu=self.cpu,
             firewall=self.firewall,
+            firewall_private=self.firewall_private,
+            firewall_private_default_incoming_action=self.firewall_private_default_incoming_action,
+            firewall_private_default_outgoing_action=self.firewall_private_default_outgoing_action,
             host=self.host,
             hostname=self.hostname,
             id=self.id,
@@ -232,6 +259,9 @@ def get_server(id: Optional[_builtins.str] = None,
         boot_order=pulumi.get(__ret__, 'boot_order'),
         cpu=pulumi.get(__ret__, 'cpu'),
         firewall=pulumi.get(__ret__, 'firewall'),
+        firewall_private=pulumi.get(__ret__, 'firewall_private'),
+        firewall_private_default_incoming_action=pulumi.get(__ret__, 'firewall_private_default_incoming_action'),
+        firewall_private_default_outgoing_action=pulumi.get(__ret__, 'firewall_private_default_outgoing_action'),
         host=pulumi.get(__ret__, 'host'),
         hostname=pulumi.get(__ret__, 'hostname'),
         id=pulumi.get(__ret__, 'id'),
@@ -270,6 +300,9 @@ def get_server_output(id: Optional[pulumi.Input[_builtins.str]] = None,
         boot_order=pulumi.get(__response__, 'boot_order'),
         cpu=pulumi.get(__response__, 'cpu'),
         firewall=pulumi.get(__response__, 'firewall'),
+        firewall_private=pulumi.get(__response__, 'firewall_private'),
+        firewall_private_default_incoming_action=pulumi.get(__response__, 'firewall_private_default_incoming_action'),
+        firewall_private_default_outgoing_action=pulumi.get(__response__, 'firewall_private_default_outgoing_action'),
         host=pulumi.get(__response__, 'host'),
         hostname=pulumi.get(__response__, 'hostname'),
         id=pulumi.get(__response__, 'id'),
