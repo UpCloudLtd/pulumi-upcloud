@@ -99,5 +99,4 @@ jobs:
         - python
         - dotnet
         - go
-        - java
         testTarget: [local]

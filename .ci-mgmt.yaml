@@ -1,5 +1,10 @@
 # See default values from https://github.com/pulumi/ci-mgmt/blob/master/provider-ci/internal/pkg/templates/defaults.config.yaml
 template: external-bridged-provider
+languages:
+    - nodejs
+    - python
+    - dotnet
+    - go
 lint: true
 major-version: 0
 organization: UpCloudLtd
