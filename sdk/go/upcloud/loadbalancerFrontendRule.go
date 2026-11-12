@@ -204,6 +204,12 @@ func (LoadbalancerFrontendRuleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerFrontendRuleState)(nil)).Elem()
 }
 
+// LoadbalancerFrontendRuleExists checks whether an existing LoadbalancerFrontendRule resource with the given ID exists.
+func LoadbalancerFrontendRuleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerFrontendRuleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/loadbalancerFrontendRule:LoadbalancerFrontendRule", id, state, "", opts...)
+}
+
 type loadbalancerFrontendRuleArgs struct {
 	// Rule actions.
 	Actions *LoadbalancerFrontendRuleActions `pulumi:"actions"`

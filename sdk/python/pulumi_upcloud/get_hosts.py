@@ -60,7 +60,7 @@ class AwaitableGetHostsResult(GetHostsResult):
             id=self.id)
 
 
-def get_hosts(hosts: Optional[Sequence[Union['GetHostsHostArgs', 'GetHostsHostArgsDict']]] = None,
+def get_hosts(hosts: Optional[Sequence[Union['GetHostsHostArgs', 'GetHostsHostArgsDict', 'outputs.GetHostsHostResult']]] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHostsResult:
     """
     Returns a list of available UpCloud hosts.
@@ -84,7 +84,7 @@ def get_hosts(hosts: Optional[Sequence[Union['GetHostsHostArgs', 'GetHostsHostAr
     return AwaitableGetHostsResult(
         hosts=pulumi.get(__ret__, 'hosts'),
         id=pulumi.get(__ret__, 'id'))
-def get_hosts_output(hosts: Optional[pulumi.Input[Optional[Sequence[Union['GetHostsHostArgs', 'GetHostsHostArgsDict']]]]] = None,
+def get_hosts_output(hosts: pulumi.Input[Optional[Optional[Sequence[Union['GetHostsHostArgs', 'GetHostsHostArgsDict', 'outputs.GetHostsHostResult']]]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetHostsResult]:
     """
     Returns a list of available UpCloud hosts.

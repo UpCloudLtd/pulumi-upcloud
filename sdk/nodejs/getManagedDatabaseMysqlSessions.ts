@@ -103,9 +103,9 @@ export function getManagedDatabaseMysqlSessionsOutput(args: GetManagedDatabaseMy
  * A collection of arguments for invoking getManagedDatabaseMysqlSessions.
  */
 export interface GetManagedDatabaseMysqlSessionsOutputArgs {
-    limit?: pulumi.Input<number>;
-    offset?: pulumi.Input<number>;
-    order?: pulumi.Input<string>;
+    limit?: pulumi.Input<number | undefined>;
+    offset?: pulumi.Input<number | undefined>;
+    order?: pulumi.Input<string | undefined>;
     service: pulumi.Input<string>;
-    sessions?: pulumi.Input<pulumi.Input<inputs.GetManagedDatabaseMysqlSessionsSessionArgs>[]>;
+    sessions?: pulumi.Input<pulumi.Input<inputs.GetManagedDatabaseMysqlSessionsSessionArgs>[] | undefined>;
 }

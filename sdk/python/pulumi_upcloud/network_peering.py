@@ -23,11 +23,12 @@ class NetworkPeeringArgs:
     def __init__(__self__, *,
                  network: pulumi.Input['NetworkPeeringNetworkArgs'],
                  peer_network: pulumi.Input['NetworkPeeringPeerNetworkArgs'],
-                 configured_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a NetworkPeering resource.
+
         :param pulumi.Input['NetworkPeeringNetworkArgs'] network: Local network of the network peering.
         :param pulumi.Input['NetworkPeeringPeerNetworkArgs'] peer_network: Peer network of the network peering.
         :param pulumi.Input[_builtins.str] configured_status: Configured status of the network peering.
@@ -69,51 +70,52 @@ class NetworkPeeringArgs:
 
     @_builtins.property
     @pulumi.getter(name="configuredStatus")
-    def configured_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def configured_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Configured status of the network peering.
         """
         return pulumi.get(self, "configured_status")
 
     @configured_status.setter
-    def configured_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def configured_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "configured_status", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the network peering.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the network peering.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _NetworkPeeringState:
     def __init__(__self__, *,
-                 configured_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 network: Optional[pulumi.Input['NetworkPeeringNetworkArgs']] = None,
-                 peer_network: Optional[pulumi.Input['NetworkPeeringPeerNetworkArgs']] = None):
+                 configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 network: pulumi.Input[Optional['NetworkPeeringNetworkArgs']] = None,
+                 peer_network: pulumi.Input[Optional['NetworkPeeringPeerNetworkArgs']] = None):
         """
         Input properties used for looking up and filtering NetworkPeering resources.
+
         :param pulumi.Input[_builtins.str] configured_status: Configured status of the network peering.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the network peering.
         :param pulumi.Input[_builtins.str] name: Name of the network peering.
@@ -133,62 +135,62 @@ class _NetworkPeeringState:
 
     @_builtins.property
     @pulumi.getter(name="configuredStatus")
-    def configured_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def configured_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Configured status of the network peering.
         """
         return pulumi.get(self, "configured_status")
 
     @configured_status.setter
-    def configured_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def configured_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "configured_status", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the network peering.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the network peering.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def network(self) -> Optional[pulumi.Input['NetworkPeeringNetworkArgs']]:
+    def network(self) -> pulumi.Input[Optional['NetworkPeeringNetworkArgs']]:
         """
         Local network of the network peering.
         """
         return pulumi.get(self, "network")
 
     @network.setter
-    def network(self, value: Optional[pulumi.Input['NetworkPeeringNetworkArgs']]):
+    def network(self, value: pulumi.Input[Optional['NetworkPeeringNetworkArgs']]):
         pulumi.set(self, "network", value)
 
     @_builtins.property
     @pulumi.getter(name="peerNetwork")
-    def peer_network(self) -> Optional[pulumi.Input['NetworkPeeringPeerNetworkArgs']]:
+    def peer_network(self) -> pulumi.Input[Optional['NetworkPeeringPeerNetworkArgs']]:
         """
         Peer network of the network peering.
         """
         return pulumi.get(self, "peer_network")
 
     @peer_network.setter
-    def peer_network(self, value: Optional[pulumi.Input['NetworkPeeringPeerNetworkArgs']]):
+    def peer_network(self, value: pulumi.Input[Optional['NetworkPeeringPeerNetworkArgs']]):
         pulumi.set(self, "peer_network", value)
 
 
@@ -198,11 +200,11 @@ class NetworkPeering(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configured_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 network: Optional[pulumi.Input[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict']]] = None,
-                 peer_network: Optional[pulumi.Input[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict']]] = None,
+                 configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 network: pulumi.Input[Optional[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict', 'outputs.NetworkPeeringNetwork']]] = None,
+                 peer_network: pulumi.Input[Optional[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict', 'outputs.NetworkPeeringPeerNetwork']]] = None,
                  __props__=None):
         """
         Network peerings can be used to connect networks across accounts. For the network peering to become active, the peering must be made from both directions.
@@ -236,13 +238,14 @@ class NetworkPeering(pulumi.CustomResource):
                 }))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] configured_status: Configured status of the network peering.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the network peering.
         :param pulumi.Input[_builtins.str] name: Name of the network peering.
-        :param pulumi.Input[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict']] network: Local network of the network peering.
-        :param pulumi.Input[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict']] peer_network: Peer network of the network peering.
+        :param pulumi.Input[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict', 'outputs.NetworkPeeringNetwork']] network: Local network of the network peering.
+        :param pulumi.Input[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict', 'outputs.NetworkPeeringPeerNetwork']] peer_network: Peer network of the network peering.
         """
         ...
     @overload
@@ -282,6 +285,7 @@ class NetworkPeering(pulumi.CustomResource):
                 }))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param NetworkPeeringArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -297,11 +301,11 @@ class NetworkPeering(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configured_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 network: Optional[pulumi.Input[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict']]] = None,
-                 peer_network: Optional[pulumi.Input[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict']]] = None,
+                 configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 network: pulumi.Input[Optional[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict', 'outputs.NetworkPeeringNetwork']]] = None,
+                 peer_network: pulumi.Input[Optional[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict', 'outputs.NetworkPeeringPeerNetwork']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -330,11 +334,11 @@ class NetworkPeering(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            configured_status: Optional[pulumi.Input[_builtins.str]] = None,
-            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            network: Optional[pulumi.Input[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict']]] = None,
-            peer_network: Optional[pulumi.Input[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict']]] = None) -> 'NetworkPeering':
+            configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            network: pulumi.Input[Optional[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict', 'outputs.NetworkPeeringNetwork']]] = None,
+            peer_network: pulumi.Input[Optional[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict', 'outputs.NetworkPeeringPeerNetwork']]] = None) -> 'NetworkPeering':
         """
         Get an existing NetworkPeering resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -345,8 +349,8 @@ class NetworkPeering(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] configured_status: Configured status of the network peering.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the network peering.
         :param pulumi.Input[_builtins.str] name: Name of the network peering.
-        :param pulumi.Input[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict']] network: Local network of the network peering.
-        :param pulumi.Input[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict']] peer_network: Peer network of the network peering.
+        :param pulumi.Input[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict', 'outputs.NetworkPeeringNetwork']] network: Local network of the network peering.
+        :param pulumi.Input[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict', 'outputs.NetworkPeeringPeerNetwork']] peer_network: Peer network of the network peering.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -358,6 +362,22 @@ class NetworkPeering(pulumi.CustomResource):
         __props__.__dict__["network"] = network
         __props__.__dict__["peer_network"] = peer_network
         return NetworkPeering(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            network: pulumi.Input[Optional[Union['NetworkPeeringNetworkArgs', 'NetworkPeeringNetworkArgsDict', 'outputs.NetworkPeeringNetwork']]] = None,
+            peer_network: pulumi.Input[Optional[Union['NetworkPeeringPeerNetworkArgs', 'NetworkPeeringPeerNetworkArgsDict', 'outputs.NetworkPeeringPeerNetwork']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["configuredStatus"] = configured_status
+        __props__["labels"] = labels
+        __props__["name"] = name
+        __props__["network"] = network
+        __props__["peerNetwork"] = peer_network
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/networkPeering:NetworkPeering', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="configuredStatus")

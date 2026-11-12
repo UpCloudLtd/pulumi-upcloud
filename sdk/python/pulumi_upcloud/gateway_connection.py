@@ -22,12 +22,13 @@ __all__ = ['GatewayConnectionArgs', 'GatewayConnection']
 class GatewayConnectionArgs:
     def __init__(__self__, *,
                  gateway: pulumi.Input[_builtins.str],
-                 local_routes: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayConnectionLocalRouteArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_routes: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayConnectionRemoteRouteArgs']]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 local_routes: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayConnectionLocalRouteArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_routes: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayConnectionRemoteRouteArgs']]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GatewayConnection resource.
+
         :param pulumi.Input[_builtins.str] gateway: The ID of the Gateway resource to which the connection belongs.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayConnectionLocalRouteArgs']]] local_routes: Route for the UpCloud side of the network.
         :param pulumi.Input[_builtins.str] name: The name of the connection, should be unique within the gateway.
@@ -58,65 +59,66 @@ class GatewayConnectionArgs:
 
     @_builtins.property
     @pulumi.getter(name="localRoutes")
-    def local_routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GatewayConnectionLocalRouteArgs']]]]:
+    def local_routes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GatewayConnectionLocalRouteArgs']]]]:
         """
         Route for the UpCloud side of the network.
         """
         return pulumi.get(self, "local_routes")
 
     @local_routes.setter
-    def local_routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayConnectionLocalRouteArgs']]]]):
+    def local_routes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayConnectionLocalRouteArgs']]]]):
         pulumi.set(self, "local_routes", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the connection, should be unique within the gateway.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="remoteRoutes")
-    def remote_routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GatewayConnectionRemoteRouteArgs']]]]:
+    def remote_routes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GatewayConnectionRemoteRouteArgs']]]]:
         """
         Route for the remote side of the network.
         """
         return pulumi.get(self, "remote_routes")
 
     @remote_routes.setter
-    def remote_routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayConnectionRemoteRouteArgs']]]]):
+    def remote_routes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayConnectionRemoteRouteArgs']]]]):
         pulumi.set(self, "remote_routes", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of the connection; currently the only supported type is 'ipsec'.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
 class _GatewayConnectionState:
     def __init__(__self__, *,
-                 gateway: Optional[pulumi.Input[_builtins.str]] = None,
-                 local_routes: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayConnectionLocalRouteArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_routes: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayConnectionRemoteRouteArgs']]]] = None,
-                 tunnels: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 uuid: Optional[pulumi.Input[_builtins.str]] = None):
+                 gateway: pulumi.Input[Optional[_builtins.str]] = None,
+                 local_routes: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayConnectionLocalRouteArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_routes: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayConnectionRemoteRouteArgs']]]] = None,
+                 tunnels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 uuid: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GatewayConnection resources.
+
         :param pulumi.Input[_builtins.str] gateway: The ID of the Gateway resource to which the connection belongs.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayConnectionLocalRouteArgs']]] local_routes: Route for the UpCloud side of the network.
         :param pulumi.Input[_builtins.str] name: The name of the connection, should be unique within the gateway.
@@ -142,86 +144,86 @@ class _GatewayConnectionState:
 
     @_builtins.property
     @pulumi.getter
-    def gateway(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gateway(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Gateway resource to which the connection belongs.
         """
         return pulumi.get(self, "gateway")
 
     @gateway.setter
-    def gateway(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gateway(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gateway", value)
 
     @_builtins.property
     @pulumi.getter(name="localRoutes")
-    def local_routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GatewayConnectionLocalRouteArgs']]]]:
+    def local_routes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GatewayConnectionLocalRouteArgs']]]]:
         """
         Route for the UpCloud side of the network.
         """
         return pulumi.get(self, "local_routes")
 
     @local_routes.setter
-    def local_routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayConnectionLocalRouteArgs']]]]):
+    def local_routes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayConnectionLocalRouteArgs']]]]):
         pulumi.set(self, "local_routes", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the connection, should be unique within the gateway.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="remoteRoutes")
-    def remote_routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GatewayConnectionRemoteRouteArgs']]]]:
+    def remote_routes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GatewayConnectionRemoteRouteArgs']]]]:
         """
         Route for the remote side of the network.
         """
         return pulumi.get(self, "remote_routes")
 
     @remote_routes.setter
-    def remote_routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayConnectionRemoteRouteArgs']]]]):
+    def remote_routes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayConnectionRemoteRouteArgs']]]]):
         pulumi.set(self, "remote_routes", value)
 
     @_builtins.property
     @pulumi.getter
-    def tunnels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tunnels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of connection's tunnels names. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
         """
         return pulumi.get(self, "tunnels")
 
     @tunnels.setter
-    def tunnels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tunnels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tunnels", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of the connection; currently the only supported type is 'ipsec'.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter
-    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def uuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The UUID of the connection
         """
         return pulumi.get(self, "uuid")
 
     @uuid.setter
-    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def uuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "uuid", value)
 
 
@@ -231,11 +233,11 @@ class GatewayConnection(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 gateway: Optional[pulumi.Input[_builtins.str]] = None,
-                 local_routes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayConnectionLocalRouteArgs', 'GatewayConnectionLocalRouteArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_routes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayConnectionRemoteRouteArgs', 'GatewayConnectionRemoteRouteArgsDict']]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 gateway: pulumi.Input[Optional[_builtins.str]] = None,
+                 local_routes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayConnectionLocalRouteArgs', 'GatewayConnectionLocalRouteArgsDict', 'outputs.GatewayConnectionLocalRoute']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_routes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayConnectionRemoteRouteArgs', 'GatewayConnectionRemoteRouteArgsDict', 'outputs.GatewayConnectionRemoteRoute']]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -279,12 +281,13 @@ class GatewayConnection(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] gateway: The ID of the Gateway resource to which the connection belongs.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayConnectionLocalRouteArgs', 'GatewayConnectionLocalRouteArgsDict']]]] local_routes: Route for the UpCloud side of the network.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayConnectionLocalRouteArgs', 'GatewayConnectionLocalRouteArgsDict', 'outputs.GatewayConnectionLocalRoute']]]] local_routes: Route for the UpCloud side of the network.
         :param pulumi.Input[_builtins.str] name: The name of the connection, should be unique within the gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayConnectionRemoteRouteArgs', 'GatewayConnectionRemoteRouteArgsDict']]]] remote_routes: Route for the remote side of the network.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayConnectionRemoteRouteArgs', 'GatewayConnectionRemoteRouteArgsDict', 'outputs.GatewayConnectionRemoteRoute']]]] remote_routes: Route for the remote side of the network.
         :param pulumi.Input[_builtins.str] type: The type of the connection; currently the only supported type is 'ipsec'.
         """
         ...
@@ -335,6 +338,7 @@ class GatewayConnection(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param GatewayConnectionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -350,11 +354,11 @@ class GatewayConnection(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 gateway: Optional[pulumi.Input[_builtins.str]] = None,
-                 local_routes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayConnectionLocalRouteArgs', 'GatewayConnectionLocalRouteArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_routes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayConnectionRemoteRouteArgs', 'GatewayConnectionRemoteRouteArgsDict']]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 gateway: pulumi.Input[Optional[_builtins.str]] = None,
+                 local_routes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayConnectionLocalRouteArgs', 'GatewayConnectionLocalRouteArgsDict', 'outputs.GatewayConnectionLocalRoute']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_routes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayConnectionRemoteRouteArgs', 'GatewayConnectionRemoteRouteArgsDict', 'outputs.GatewayConnectionRemoteRoute']]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -383,13 +387,13 @@ class GatewayConnection(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            gateway: Optional[pulumi.Input[_builtins.str]] = None,
-            local_routes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayConnectionLocalRouteArgs', 'GatewayConnectionLocalRouteArgsDict']]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            remote_routes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayConnectionRemoteRouteArgs', 'GatewayConnectionRemoteRouteArgsDict']]]]] = None,
-            tunnels: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            uuid: Optional[pulumi.Input[_builtins.str]] = None) -> 'GatewayConnection':
+            gateway: pulumi.Input[Optional[_builtins.str]] = None,
+            local_routes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayConnectionLocalRouteArgs', 'GatewayConnectionLocalRouteArgsDict', 'outputs.GatewayConnectionLocalRoute']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            remote_routes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayConnectionRemoteRouteArgs', 'GatewayConnectionRemoteRouteArgsDict', 'outputs.GatewayConnectionRemoteRoute']]]]] = None,
+            tunnels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            uuid: pulumi.Input[Optional[_builtins.str]] = None) -> 'GatewayConnection':
         """
         Get an existing GatewayConnection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -398,9 +402,9 @@ class GatewayConnection(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] gateway: The ID of the Gateway resource to which the connection belongs.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayConnectionLocalRouteArgs', 'GatewayConnectionLocalRouteArgsDict']]]] local_routes: Route for the UpCloud side of the network.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayConnectionLocalRouteArgs', 'GatewayConnectionLocalRouteArgsDict', 'outputs.GatewayConnectionLocalRoute']]]] local_routes: Route for the UpCloud side of the network.
         :param pulumi.Input[_builtins.str] name: The name of the connection, should be unique within the gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayConnectionRemoteRouteArgs', 'GatewayConnectionRemoteRouteArgsDict']]]] remote_routes: Route for the remote side of the network.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayConnectionRemoteRouteArgs', 'GatewayConnectionRemoteRouteArgsDict', 'outputs.GatewayConnectionRemoteRoute']]]] remote_routes: Route for the remote side of the network.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tunnels: List of connection's tunnels names. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
         :param pulumi.Input[_builtins.str] type: The type of the connection; currently the only supported type is 'ipsec'.
         :param pulumi.Input[_builtins.str] uuid: The UUID of the connection
@@ -417,6 +421,26 @@ class GatewayConnection(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["uuid"] = uuid
         return GatewayConnection(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            gateway: pulumi.Input[Optional[_builtins.str]] = None,
+            local_routes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayConnectionLocalRouteArgs', 'GatewayConnectionLocalRouteArgsDict', 'outputs.GatewayConnectionLocalRoute']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            remote_routes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayConnectionRemoteRouteArgs', 'GatewayConnectionRemoteRouteArgsDict', 'outputs.GatewayConnectionRemoteRoute']]]]] = None,
+            tunnels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            uuid: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["gateway"] = gateway
+        __props__["localRoutes"] = local_routes
+        __props__["name"] = name
+        __props__["remoteRoutes"] = remote_routes
+        __props__["tunnels"] = tunnels
+        __props__["type"] = type
+        __props__["uuid"] = uuid
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/gatewayConnection:GatewayConnection', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

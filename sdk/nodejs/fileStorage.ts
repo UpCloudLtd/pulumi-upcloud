@@ -70,6 +70,17 @@ export class FileStorage extends pulumi.CustomResource {
         return new FileStorage(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing FileStorage resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: FileStorageState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/fileStorage:FileStorage", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/fileStorage:FileStorage';
 
@@ -164,31 +175,31 @@ export interface FileStorageState {
     /**
      * The service configured status indicates the service's current intended status. Managed by the customer.
      */
-    configuredStatus?: pulumi.Input<string>;
+    configuredStatus?: pulumi.Input<string | undefined>;
     /**
      * Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
      */
-    encrypt?: pulumi.Input<boolean>;
+    encrypt?: pulumi.Input<boolean | undefined>;
     /**
      * User defined key-value pairs to classify the file storage.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the file storage service.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Network attached to this file storage (currently supports at most one of these blocks).
      */
-    networks?: pulumi.Input<pulumi.Input<inputs.FileStorageNetwork>[]>;
+    networks?: pulumi.Input<pulumi.Input<inputs.FileStorageNetwork>[] | undefined>;
     /**
      * Size of the file storage in GB.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
     /**
      * Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -202,19 +213,19 @@ export interface FileStorageArgs {
     /**
      * Sets if the file storage is encrypted at rest. Encryption can only be enabled at creation time and cannot be changed later. Defaults to `false`.
      */
-    encrypt?: pulumi.Input<boolean>;
+    encrypt?: pulumi.Input<boolean | undefined>;
     /**
      * User defined key-value pairs to classify the file storage.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the file storage service.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Network attached to this file storage (currently supports at most one of these blocks).
      */
-    networks?: pulumi.Input<pulumi.Input<inputs.FileStorageNetwork>[]>;
+    networks?: pulumi.Input<pulumi.Input<inputs.FileStorageNetwork>[] | undefined>;
     /**
      * Size of the file storage in GB.
      */

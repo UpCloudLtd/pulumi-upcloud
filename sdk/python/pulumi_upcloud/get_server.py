@@ -278,7 +278,7 @@ def get_server(id: Optional[_builtins.str] = None,
         title=pulumi.get(__ret__, 'title'),
         video_model=pulumi.get(__ret__, 'video_model'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_server_output(id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_server_output(id: pulumi.Input[Optional[_builtins.str]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServerResult]:
     """
     Provides details about an existing [UpCloud cloud server](https://upcloud.com/products/cloud-servers) by UUID.

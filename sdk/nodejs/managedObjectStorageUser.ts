@@ -38,6 +38,17 @@ export class ManagedObjectStorageUser extends pulumi.CustomResource {
         return new ManagedObjectStorageUser(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ManagedObjectStorageUser resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ManagedObjectStorageUserState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/managedObjectStorageUser:ManagedObjectStorageUser", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/managedObjectStorageUser:ManagedObjectStorageUser';
 
@@ -111,19 +122,19 @@ export interface ManagedObjectStorageUserState {
     /**
      * User ARN.
      */
-    arn?: pulumi.Input<string>;
+    arn?: pulumi.Input<string | undefined>;
     /**
      * Creation time.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Managed Object Storage service UUID.
      */
-    serviceUuid?: pulumi.Input<string>;
+    serviceUuid?: pulumi.Input<string | undefined>;
     /**
      * Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See `upcloud.ManagedObjectStorageUserAccessKey` for managing access keys and `upcloud.ManagedObjectStorageUserPolicy` for managing policies.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**

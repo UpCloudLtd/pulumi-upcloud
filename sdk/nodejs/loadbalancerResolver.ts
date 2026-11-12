@@ -57,6 +57,17 @@ export class LoadbalancerResolver extends pulumi.CustomResource {
         return new LoadbalancerResolver(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing LoadbalancerResolver resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: LoadbalancerResolverState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/loadbalancerResolver:LoadbalancerResolver", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/loadbalancerResolver:LoadbalancerResolver';
 
@@ -169,35 +180,35 @@ export interface LoadbalancerResolverState {
     /**
      * Time in seconds to cache invalid results.
      */
-    cacheInvalid?: pulumi.Input<number>;
+    cacheInvalid?: pulumi.Input<number | undefined>;
     /**
      * Time in seconds to cache valid results.
      */
-    cacheValid?: pulumi.Input<number>;
+    cacheValid?: pulumi.Input<number | undefined>;
     /**
      * ID of the load balancer to which the resolver is connected.
      */
-    loadbalancer?: pulumi.Input<string>;
+    loadbalancer?: pulumi.Input<string | undefined>;
     /**
      * The name of the resolver. Must be unique within the service.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is optional, if missing then default 53 will be used.
      */
-    nameservers?: pulumi.Input<pulumi.Input<string>[]>;
+    nameservers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Number of retries on failure.
      */
-    retries?: pulumi.Input<number>;
+    retries?: pulumi.Input<number | undefined>;
     /**
      * Timeout for the query in seconds.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * Timeout for the query retries in seconds.
      */
-    timeoutRetry?: pulumi.Input<number>;
+    timeoutRetry?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -219,7 +230,7 @@ export interface LoadbalancerResolverArgs {
     /**
      * The name of the resolver. Must be unique within the service.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is optional, if missing then default 53 will be used.
      */

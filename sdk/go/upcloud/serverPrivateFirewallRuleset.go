@@ -164,6 +164,12 @@ func (ServerPrivateFirewallRulesetState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serverPrivateFirewallRulesetState)(nil)).Elem()
 }
 
+// ServerPrivateFirewallRulesetExists checks whether an existing ServerPrivateFirewallRuleset resource with the given ID exists.
+func ServerPrivateFirewallRulesetExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServerPrivateFirewallRulesetState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/serverPrivateFirewallRuleset:ServerPrivateFirewallRuleset", id, state, "", opts...)
+}
+
 type serverPrivateFirewallRulesetArgs struct {
 	// The UUID of the firewall ruleset to attach.
 	RulesetId string `pulumi:"rulesetId"`

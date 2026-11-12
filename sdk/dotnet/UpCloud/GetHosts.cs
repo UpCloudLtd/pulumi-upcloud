@@ -13,8 +13,8 @@ namespace UpCloud.Pulumi.UpCloud
     public static class GetHosts
     {
         /// <summary>
-        /// Returns a list of available UpCloud hosts. 
-        /// 		A host identifies the host server that virtual machines are run on. 
+        /// Returns a list of available UpCloud hosts.
+        /// 		A host identifies the host server that virtual machines are run on.
         /// 		Only hosts on private cloud to which the calling account has access to are available through this resource.
         /// 
         /// ## Example Usage
@@ -36,8 +36,8 @@ namespace UpCloud.Pulumi.UpCloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetHostsResult>("upcloud:index/getHosts:getHosts", args ?? new GetHostsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Returns a list of available UpCloud hosts. 
-        /// 		A host identifies the host server that virtual machines are run on. 
+        /// Returns a list of available UpCloud hosts.
+        /// 		A host identifies the host server that virtual machines are run on.
         /// 		Only hosts on private cloud to which the calling account has access to are available through this resource.
         /// 
         /// ## Example Usage
@@ -59,8 +59,8 @@ namespace UpCloud.Pulumi.UpCloud
             => global::Pulumi.Deployment.Instance.Invoke<GetHostsResult>("upcloud:index/getHosts:getHosts", args ?? new GetHostsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Returns a list of available UpCloud hosts. 
-        /// 		A host identifies the host server that virtual machines are run on. 
+        /// Returns a list of available UpCloud hosts.
+        /// 		A host identifies the host server that virtual machines are run on.
         /// 		Only hosts on private cloud to which the calling account has access to are available through this resource.
         /// 
         /// ## Example Usage

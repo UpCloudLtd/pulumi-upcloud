@@ -293,6 +293,12 @@ func (ServerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serverState)(nil)).Elem()
 }
 
+// ServerExists checks whether an existing Server resource with the given ID exists.
+func ServerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/server:Server", id, state, "", opts...)
+}
+
 type serverArgs struct {
 	// The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
 	BootOrder *string `pulumi:"bootOrder"`

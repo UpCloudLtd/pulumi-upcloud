@@ -23,6 +23,17 @@ export class Tag extends pulumi.CustomResource {
         return new Tag(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing Tag resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: TagState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/tag:Tag", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/tag:Tag';
 
@@ -84,15 +95,15 @@ export interface TagState {
     /**
      * Free form text representing the meaning of the tag.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the tag.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * A collection of servers that have been assigned the tag.
      */
-    servers?: pulumi.Input<pulumi.Input<string>[]>;
+    servers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -102,13 +113,13 @@ export interface TagArgs {
     /**
      * Free form text representing the meaning of the tag.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the tag.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * A collection of servers that have been assigned the tag.
      */
-    servers?: pulumi.Input<pulumi.Input<string>[]>;
+    servers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

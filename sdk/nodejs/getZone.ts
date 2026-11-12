@@ -56,9 +56,9 @@ export function getZoneOutput(args?: GetZoneOutputArgs, opts?: pulumi.InvokeOutp
  * A collection of arguments for invoking getZone.
  */
 export interface GetZoneOutputArgs {
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * @deprecated Contains the same value as `id`. Use `id` instead.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

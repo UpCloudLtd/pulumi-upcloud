@@ -231,6 +231,12 @@ func (LoadbalancerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerState)(nil)).Elem()
 }
 
+// LoadbalancerExists checks whether an existing Loadbalancer resource with the given ID exists.
+func LoadbalancerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/loadbalancer:Loadbalancer", id, state, "", opts...)
+}
+
 type loadbalancerArgs struct {
 	// The service configured status indicates the service's current intended status. Managed by the customer.
 	ConfiguredStatus *string `pulumi:"configuredStatus"`

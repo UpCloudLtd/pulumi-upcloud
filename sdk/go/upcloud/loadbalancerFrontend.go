@@ -208,6 +208,12 @@ func (LoadbalancerFrontendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerFrontendState)(nil)).Elem()
 }
 
+// LoadbalancerFrontendExists checks whether an existing LoadbalancerFrontend resource with the given ID exists.
+func LoadbalancerFrontendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerFrontendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/loadbalancerFrontend:LoadbalancerFrontend", id, state, "", opts...)
+}
+
 type loadbalancerFrontendArgs struct {
 	// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
 	//

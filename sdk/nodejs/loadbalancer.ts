@@ -61,6 +61,17 @@ export class Loadbalancer extends pulumi.CustomResource {
         return new Loadbalancer(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing Loadbalancer resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: LoadbalancerState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/loadbalancer:Loadbalancer", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/loadbalancer:Loadbalancer';
 
@@ -210,71 +221,71 @@ export interface LoadbalancerState {
     /**
      * Backends are groups of customer servers whose traffic should be balanced.
      */
-    backends?: pulumi.Input<pulumi.Input<string>[]>;
+    backends?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The service configured status indicates the service's current intended status. Managed by the customer.
      */
-    configuredStatus?: pulumi.Input<string>;
+    configuredStatus?: pulumi.Input<string | undefined>;
     /**
      * DNS name of the load balancer
      *
      * @deprecated Use 'networks' to get network DNS name
      */
-    dnsName?: pulumi.Input<string>;
+    dnsName?: pulumi.Input<string | undefined>;
     /**
      * Frontends receive the traffic before dispatching it to the backends.
      */
-    frontends?: pulumi.Input<pulumi.Input<string>[]>;
+    frontends?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Floating IP addresses connected to the load balancer.
      */
-    ipAddresses?: pulumi.Input<pulumi.Input<inputs.LoadbalancerIpAddress>[]>;
+    ipAddresses?: pulumi.Input<pulumi.Input<inputs.LoadbalancerIpAddress>[] | undefined>;
     /**
      * User defined key-value pairs to classify the load balancer.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day. Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
      */
-    maintenanceDow?: pulumi.Input<string>;
+    maintenanceDow?: pulumi.Input<string | undefined>;
     /**
      * The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC HH:MM:SSZ, for example `20:01:01Z`.
      */
-    maintenanceTime?: pulumi.Input<string>;
+    maintenanceTime?: pulumi.Input<string | undefined>;
     /**
      * The name of the service. Must be unique within customer account.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Private network UUID where traffic will be routed. Must reside in load balancer zone.
      *
      * @deprecated Use 'networks' to define networks attached to load balancer
      */
-    network?: pulumi.Input<string>;
+    network?: pulumi.Input<string | undefined>;
     /**
      * Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
      */
-    networks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerNetwork>[]>;
+    networks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerNetwork>[] | undefined>;
     /**
      * Nodes are instances running load balancer service
      */
-    nodes?: pulumi.Input<pulumi.Input<inputs.LoadbalancerNode>[]>;
+    nodes?: pulumi.Input<pulumi.Input<inputs.LoadbalancerNode>[] | undefined>;
     /**
      * The service operational state indicates the service's current operational, effective state. Managed by the system.
      */
-    operationalState?: pulumi.Input<string>;
+    operationalState?: pulumi.Input<string | undefined>;
     /**
      * Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
      */
-    plan?: pulumi.Input<string>;
+    plan?: pulumi.Input<string | undefined>;
     /**
      * Domain Name Resolvers.
      */
-    resolvers?: pulumi.Input<pulumi.Input<string>[]>;
+    resolvers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -284,37 +295,37 @@ export interface LoadbalancerArgs {
     /**
      * The service configured status indicates the service's current intended status. Managed by the customer.
      */
-    configuredStatus?: pulumi.Input<string>;
+    configuredStatus?: pulumi.Input<string | undefined>;
     /**
      * Floating IP addresses connected to the load balancer.
      */
-    ipAddresses?: pulumi.Input<pulumi.Input<inputs.LoadbalancerIpAddress>[]>;
+    ipAddresses?: pulumi.Input<pulumi.Input<inputs.LoadbalancerIpAddress>[] | undefined>;
     /**
      * User defined key-value pairs to classify the load balancer.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day. Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
      */
-    maintenanceDow?: pulumi.Input<string>;
+    maintenanceDow?: pulumi.Input<string | undefined>;
     /**
      * The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC HH:MM:SSZ, for example `20:01:01Z`.
      */
-    maintenanceTime?: pulumi.Input<string>;
+    maintenanceTime?: pulumi.Input<string | undefined>;
     /**
      * The name of the service. Must be unique within customer account.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Private network UUID where traffic will be routed. Must reside in load balancer zone.
      *
      * @deprecated Use 'networks' to define networks attached to load balancer
      */
-    network?: pulumi.Input<string>;
+    network?: pulumi.Input<string | undefined>;
     /**
      * Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
      */
-    networks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerNetwork>[]>;
+    networks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerNetwork>[] | undefined>;
     /**
      * Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
      */

@@ -26,9 +26,10 @@ class LoadbalancerResolverArgs:
                  retries: pulumi.Input[_builtins.int],
                  timeout: pulumi.Input[_builtins.int],
                  timeout_retry: pulumi.Input[_builtins.int],
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadbalancerResolver resource.
+
         :param pulumi.Input[_builtins.int] cache_invalid: Time in seconds to cache invalid results.
         :param pulumi.Input[_builtins.int] cache_valid: Time in seconds to cache valid results.
         :param pulumi.Input[_builtins.str] loadbalancer: ID of the load balancer to which the resolver is connected.
@@ -134,30 +135,31 @@ class LoadbalancerResolverArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the resolver. Must be unique within the service.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _LoadbalancerResolverState:
     def __init__(__self__, *,
-                 cache_invalid: Optional[pulumi.Input[_builtins.int]] = None,
-                 cache_valid: Optional[pulumi.Input[_builtins.int]] = None,
-                 loadbalancer: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout_retry: Optional[pulumi.Input[_builtins.int]] = None):
+                 cache_invalid: pulumi.Input[Optional[_builtins.int]] = None,
+                 cache_valid: pulumi.Input[Optional[_builtins.int]] = None,
+                 loadbalancer: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout_retry: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerResolver resources.
+
         :param pulumi.Input[_builtins.int] cache_invalid: Time in seconds to cache invalid results.
         :param pulumi.Input[_builtins.int] cache_valid: Time in seconds to cache valid results.
         :param pulumi.Input[_builtins.str] loadbalancer: ID of the load balancer to which the resolver is connected.
@@ -186,98 +188,98 @@ class _LoadbalancerResolverState:
 
     @_builtins.property
     @pulumi.getter(name="cacheInvalid")
-    def cache_invalid(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cache_invalid(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Time in seconds to cache invalid results.
         """
         return pulumi.get(self, "cache_invalid")
 
     @cache_invalid.setter
-    def cache_invalid(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cache_invalid(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cache_invalid", value)
 
     @_builtins.property
     @pulumi.getter(name="cacheValid")
-    def cache_valid(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cache_valid(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Time in seconds to cache valid results.
         """
         return pulumi.get(self, "cache_valid")
 
     @cache_valid.setter
-    def cache_valid(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cache_valid(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cache_valid", value)
 
     @_builtins.property
     @pulumi.getter
-    def loadbalancer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def loadbalancer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the load balancer to which the resolver is connected.
         """
         return pulumi.get(self, "loadbalancer")
 
     @loadbalancer.setter
-    def loadbalancer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def loadbalancer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "loadbalancer", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the resolver. Must be unique within the service.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def nameservers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def nameservers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of nameserver IP addresses. Nameserver can reside in public internet or in customer private network. Port is optional, if missing then default 53 will be used.
         """
         return pulumi.get(self, "nameservers")
 
     @nameservers.setter
-    def nameservers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def nameservers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "nameservers", value)
 
     @_builtins.property
     @pulumi.getter
-    def retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of retries on failure.
         """
         return pulumi.get(self, "retries")
 
     @retries.setter
-    def retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retries", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Timeout for the query in seconds.
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutRetry")
-    def timeout_retry(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout_retry(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Timeout for the query retries in seconds.
         """
         return pulumi.get(self, "timeout_retry")
 
     @timeout_retry.setter
-    def timeout_retry(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout_retry(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout_retry", value)
 
 
@@ -287,14 +289,14 @@ class LoadbalancerResolver(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cache_invalid: Optional[pulumi.Input[_builtins.int]] = None,
-                 cache_valid: Optional[pulumi.Input[_builtins.int]] = None,
-                 loadbalancer: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout_retry: Optional[pulumi.Input[_builtins.int]] = None,
+                 cache_invalid: pulumi.Input[Optional[_builtins.int]] = None,
+                 cache_valid: pulumi.Input[Optional[_builtins.int]] = None,
+                 loadbalancer: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout_retry: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         This resource represents load balancer resolver.
@@ -333,6 +335,7 @@ class LoadbalancerResolver(pulumi.CustomResource):
             timeout_retry=10,
             nameservers=["10.0.0.10:53"])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -389,6 +392,7 @@ class LoadbalancerResolver(pulumi.CustomResource):
             nameservers=["10.0.0.10:53"])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param LoadbalancerResolverArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -404,14 +408,14 @@ class LoadbalancerResolver(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cache_invalid: Optional[pulumi.Input[_builtins.int]] = None,
-                 cache_valid: Optional[pulumi.Input[_builtins.int]] = None,
-                 loadbalancer: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout_retry: Optional[pulumi.Input[_builtins.int]] = None,
+                 cache_invalid: pulumi.Input[Optional[_builtins.int]] = None,
+                 cache_valid: pulumi.Input[Optional[_builtins.int]] = None,
+                 loadbalancer: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout_retry: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -453,14 +457,14 @@ class LoadbalancerResolver(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cache_invalid: Optional[pulumi.Input[_builtins.int]] = None,
-            cache_valid: Optional[pulumi.Input[_builtins.int]] = None,
-            loadbalancer: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            retries: Optional[pulumi.Input[_builtins.int]] = None,
-            timeout: Optional[pulumi.Input[_builtins.int]] = None,
-            timeout_retry: Optional[pulumi.Input[_builtins.int]] = None) -> 'LoadbalancerResolver':
+            cache_invalid: pulumi.Input[Optional[_builtins.int]] = None,
+            cache_valid: pulumi.Input[Optional[_builtins.int]] = None,
+            loadbalancer: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            retries: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout_retry: pulumi.Input[Optional[_builtins.int]] = None) -> 'LoadbalancerResolver':
         """
         Get an existing LoadbalancerResolver resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -490,6 +494,28 @@ class LoadbalancerResolver(pulumi.CustomResource):
         __props__.__dict__["timeout"] = timeout
         __props__.__dict__["timeout_retry"] = timeout_retry
         return LoadbalancerResolver(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cache_invalid: pulumi.Input[Optional[_builtins.int]] = None,
+            cache_valid: pulumi.Input[Optional[_builtins.int]] = None,
+            loadbalancer: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            retries: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout_retry: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cacheInvalid"] = cache_invalid
+        __props__["cacheValid"] = cache_valid
+        __props__["loadbalancer"] = loadbalancer
+        __props__["name"] = name
+        __props__["nameservers"] = nameservers
+        __props__["retries"] = retries
+        __props__["timeout"] = timeout
+        __props__["timeoutRetry"] = timeout_retry
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/loadbalancerResolver:LoadbalancerResolver', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="cacheInvalid")

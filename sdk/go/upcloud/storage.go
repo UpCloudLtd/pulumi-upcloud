@@ -152,6 +152,12 @@ func (StorageState) ElementType() reflect.Type {
 	return reflect.TypeOf((*storageState)(nil)).Elem()
 }
 
+// StorageExists checks whether an existing Storage resource with the given ID exists.
+func StorageExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *StorageState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/storage:Storage", id, state, "", opts...)
+}
+
 type storageArgs struct {
 	BackupRule *StorageBackupRule `pulumi:"backupRule"`
 	// Block defining another storage/template to clone to storage.

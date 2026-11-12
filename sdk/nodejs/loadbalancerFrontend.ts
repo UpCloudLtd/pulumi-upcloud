@@ -75,6 +75,17 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
         return new LoadbalancerFrontend(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing LoadbalancerFrontend resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: LoadbalancerFrontendState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/loadbalancerFrontend:LoadbalancerFrontend", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/loadbalancerFrontend:LoadbalancerFrontend';
 
@@ -92,7 +103,7 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
     /**
      * The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
      *
-     * 	Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `dependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
+     *     Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `dependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
      */
     declare public readonly defaultBackendName: pulumi.Output<string>;
     /**
@@ -183,38 +194,38 @@ export interface LoadbalancerFrontendState {
     /**
      * The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
      *
-     * 	Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `dependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
+     *     Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `dependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
      */
-    defaultBackendName?: pulumi.Input<string>;
+    defaultBackendName?: pulumi.Input<string | undefined>;
     /**
      * UUID of the load balancer to which the frontend is connected.
      */
-    loadbalancer?: pulumi.Input<string>;
+    loadbalancer?: pulumi.Input<string | undefined>;
     /**
      * When load balancer operating in `tcp` mode it acts as a layer 4 proxy. In `http` mode it acts as a layer 7 proxy.
      */
-    mode?: pulumi.Input<string>;
+    mode?: pulumi.Input<string | undefined>;
     /**
      * The name of the frontend. Must be unique within the load balancer service.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
      */
-    networks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendNetwork>[]>;
+    networks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendNetwork>[] | undefined>;
     /**
      * Port to listen for incoming requests.
      */
-    port?: pulumi.Input<number>;
-    properties?: pulumi.Input<inputs.LoadbalancerFrontendProperties>;
+    port?: pulumi.Input<number | undefined>;
+    properties?: pulumi.Input<inputs.LoadbalancerFrontendProperties | undefined>;
     /**
      * Set of frontend rule names.
      */
-    rules?: pulumi.Input<pulumi.Input<string>[]>;
+    rules?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of TLS config names.
      */
-    tlsConfigs?: pulumi.Input<pulumi.Input<string>[]>;
+    tlsConfigs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -224,7 +235,7 @@ export interface LoadbalancerFrontendArgs {
     /**
      * The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
      *
-     * 	Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `dependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
+     *     Note that the frontend resource depends on the default backend resource. Use the `name` field of a backend resource as the value for this field (like in the example above) or the `dependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
      */
     defaultBackendName: pulumi.Input<string>;
     /**
@@ -238,14 +249,14 @@ export interface LoadbalancerFrontendArgs {
     /**
      * The name of the frontend. Must be unique within the load balancer service.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
      */
-    networks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendNetwork>[]>;
+    networks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendNetwork>[] | undefined>;
     /**
      * Port to listen for incoming requests.
      */
     port: pulumi.Input<number>;
-    properties?: pulumi.Input<inputs.LoadbalancerFrontendProperties>;
+    properties?: pulumi.Input<inputs.LoadbalancerFrontendProperties | undefined>;
 }

@@ -81,6 +81,12 @@ func (LoadbalancerBackendTlsConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerBackendTlsConfigState)(nil)).Elem()
 }
 
+// LoadbalancerBackendTlsConfigExists checks whether an existing LoadbalancerBackendTlsConfig resource with the given ID exists.
+func LoadbalancerBackendTlsConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerBackendTlsConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/loadbalancerBackendTlsConfig:LoadbalancerBackendTlsConfig", id, state, "", opts...)
+}
+
 type loadbalancerBackendTlsConfigArgs struct {
 	// ID of the load balancer backend to which the TLS config is connected.
 	Backend string `pulumi:"backend"`

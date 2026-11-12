@@ -55,6 +55,17 @@ export class NetworkPeering extends pulumi.CustomResource {
         return new NetworkPeering(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing NetworkPeering resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: NetworkPeeringState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/networkPeering:NetworkPeering", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/networkPeering:NetworkPeering';
 
@@ -134,23 +145,23 @@ export interface NetworkPeeringState {
     /**
      * Configured status of the network peering.
      */
-    configuredStatus?: pulumi.Input<string>;
+    configuredStatus?: pulumi.Input<string | undefined>;
     /**
      * User defined key-value pairs to classify the network peering.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the network peering.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Local network of the network peering.
      */
-    network?: pulumi.Input<inputs.NetworkPeeringNetwork>;
+    network?: pulumi.Input<inputs.NetworkPeeringNetwork | undefined>;
     /**
      * Peer network of the network peering.
      */
-    peerNetwork?: pulumi.Input<inputs.NetworkPeeringPeerNetwork>;
+    peerNetwork?: pulumi.Input<inputs.NetworkPeeringPeerNetwork | undefined>;
 }
 
 /**
@@ -160,15 +171,15 @@ export interface NetworkPeeringArgs {
     /**
      * Configured status of the network peering.
      */
-    configuredStatus?: pulumi.Input<string>;
+    configuredStatus?: pulumi.Input<string | undefined>;
     /**
      * User defined key-value pairs to classify the network peering.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the network peering.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Local network of the network peering.
      */

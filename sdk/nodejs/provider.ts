@@ -78,31 +78,31 @@ export interface ProviderArgs {
     /**
      * Password for UpCloud API user. Can also be configured using the `UPCLOUD_PASSWORD` environment variable.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * The duration (in seconds) that the provider waits for an HTTP request towards UpCloud API to complete. Defaults to 120 seconds
      */
-    requestTimeoutSec?: pulumi.Input<number>;
+    requestTimeoutSec?: pulumi.Input<number | undefined>;
     /**
      * Maximum number of retries
      */
-    retryMax?: pulumi.Input<number>;
+    retryMax?: pulumi.Input<number | undefined>;
     /**
      * Maximum time to wait between retries
      */
-    retryWaitMaxSec?: pulumi.Input<number>;
+    retryWaitMaxSec?: pulumi.Input<number | undefined>;
     /**
      * Minimum time to wait between retries
      */
-    retryWaitMinSec?: pulumi.Input<number>;
+    retryWaitMinSec?: pulumi.Input<number | undefined>;
     /**
      * Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export namespace Provider {

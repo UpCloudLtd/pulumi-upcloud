@@ -73,6 +73,17 @@ export class ServerFirewallRules extends pulumi.CustomResource {
         return new ServerFirewallRules(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ServerFirewallRules resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ServerFirewallRulesState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/serverFirewallRules:ServerFirewallRules", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/serverFirewallRules:ServerFirewallRules';
 
@@ -90,13 +101,13 @@ export class ServerFirewallRules extends pulumi.CustomResource {
     /**
      * A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
      *
-     * 	Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one destination/source-address/port range.
-     *
-     * 	A default rule can be created by providing only `action` and `direction` attributes. Default rule should be defined last.
-     *
-     * 	If used, IP address and port ranges must have both start and end values specified. These can be the same value if only one IP address or port number is specified.
-     * 	Source and destination port numbers can only be set if the protocol is TCP or UDP.
-     * 	The ICMP type may only be set if the protocol is ICMP.
+     *     Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one destination/source-address/port range.
+     *     
+     *     A default rule can be created by providing only `action` and `direction` attributes. Default rule should be defined last.
+     *     
+     *     If used, IP address and port ranges must have both start and end values specified. These can be the same value if only one IP address or port number is specified.
+     *     Source and destination port numbers can only be set if the protocol is TCP or UDP.
+     *     The ICMP type may only be set if the protocol is ICMP.
      */
     declare public readonly firewallRules: pulumi.Output<outputs.ServerFirewallRulesFirewallRule[] | undefined>;
     /**
@@ -139,19 +150,19 @@ export interface ServerFirewallRulesState {
     /**
      * A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
      *
-     * 	Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one destination/source-address/port range.
-     *
-     * 	A default rule can be created by providing only `action` and `direction` attributes. Default rule should be defined last.
-     *
-     * 	If used, IP address and port ranges must have both start and end values specified. These can be the same value if only one IP address or port number is specified.
-     * 	Source and destination port numbers can only be set if the protocol is TCP or UDP.
-     * 	The ICMP type may only be set if the protocol is ICMP.
+     *     Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one destination/source-address/port range.
+     *     
+     *     A default rule can be created by providing only `action` and `direction` attributes. Default rule should be defined last.
+     *     
+     *     If used, IP address and port ranges must have both start and end values specified. These can be the same value if only one IP address or port number is specified.
+     *     Source and destination port numbers can only be set if the protocol is TCP or UDP.
+     *     The ICMP type may only be set if the protocol is ICMP.
      */
-    firewallRules?: pulumi.Input<pulumi.Input<inputs.ServerFirewallRulesFirewallRule>[]>;
+    firewallRules?: pulumi.Input<pulumi.Input<inputs.ServerFirewallRulesFirewallRule>[] | undefined>;
     /**
      * The UUID of the server to be protected with the firewall rules.
      */
-    serverId?: pulumi.Input<string>;
+    serverId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -161,15 +172,15 @@ export interface ServerFirewallRulesArgs {
     /**
      * A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
      *
-     * 	Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one destination/source-address/port range.
-     *
-     * 	A default rule can be created by providing only `action` and `direction` attributes. Default rule should be defined last.
-     *
-     * 	If used, IP address and port ranges must have both start and end values specified. These can be the same value if only one IP address or port number is specified.
-     * 	Source and destination port numbers can only be set if the protocol is TCP or UDP.
-     * 	The ICMP type may only be set if the protocol is ICMP.
+     *     Typical firewall rule should have `action`, `direction`, `protocol`, `family` and at least one destination/source-address/port range.
+     *     
+     *     A default rule can be created by providing only `action` and `direction` attributes. Default rule should be defined last.
+     *     
+     *     If used, IP address and port ranges must have both start and end values specified. These can be the same value if only one IP address or port number is specified.
+     *     Source and destination port numbers can only be set if the protocol is TCP or UDP.
+     *     The ICMP type may only be set if the protocol is ICMP.
      */
-    firewallRules?: pulumi.Input<pulumi.Input<inputs.ServerFirewallRulesFirewallRule>[]>;
+    firewallRules?: pulumi.Input<pulumi.Input<inputs.ServerFirewallRulesFirewallRule>[] | undefined>;
     /**
      * The UUID of the server to be protected with the firewall rules.
      */

@@ -21,11 +21,12 @@ __all__ = ['RouterArgs', 'Router']
 @pulumi.input_type
 class RouterArgs:
     def __init__(__self__, *,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 static_route: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticRouteArgs']]]] = None):
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 static_route: pulumi.Input[Optional[Sequence[pulumi.Input['RouterStaticRouteArgs']]]] = None):
         """
         The set of arguments for constructing a Router resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the router.
         :param pulumi.Input[_builtins.str] name: Name of the router.
         :param pulumi.Input[Sequence[pulumi.Input['RouterStaticRouteArgs']]] static_route: A collection of user managed static routes for this router.
@@ -39,52 +40,53 @@ class RouterArgs:
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the router.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the router.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="staticRoute")
-    def static_route(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticRouteArgs']]]]:
+    def static_route(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RouterStaticRouteArgs']]]]:
         """
         A collection of user managed static routes for this router.
         """
         return pulumi.get(self, "static_route")
 
     @static_route.setter
-    def static_route(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticRouteArgs']]]]):
+    def static_route(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RouterStaticRouteArgs']]]]):
         pulumi.set(self, "static_route", value)
 
 
 @pulumi.input_type
 class _RouterState:
     def __init__(__self__, *,
-                 attached_networks: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 static_route: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticRouteArgs']]]] = None,
-                 static_routes: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticRouteArgs']]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 attached_networks: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 static_route: pulumi.Input[Optional[Sequence[pulumi.Input['RouterStaticRouteArgs']]]] = None,
+                 static_routes: pulumi.Input[Optional[Sequence[pulumi.Input['RouterStaticRouteArgs']]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Router resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] attached_networks: List of UUIDs representing networks attached to this router.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the router.
         :param pulumi.Input[_builtins.str] name: Name of the router.
@@ -107,74 +109,74 @@ class _RouterState:
 
     @_builtins.property
     @pulumi.getter(name="attachedNetworks")
-    def attached_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def attached_networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of UUIDs representing networks attached to this router.
         """
         return pulumi.get(self, "attached_networks")
 
     @attached_networks.setter
-    def attached_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def attached_networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "attached_networks", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the router.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the router.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="staticRoute")
-    def static_route(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticRouteArgs']]]]:
+    def static_route(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RouterStaticRouteArgs']]]]:
         """
         A collection of user managed static routes for this router.
         """
         return pulumi.get(self, "static_route")
 
     @static_route.setter
-    def static_route(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticRouteArgs']]]]):
+    def static_route(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RouterStaticRouteArgs']]]]):
         pulumi.set(self, "static_route", value)
 
     @_builtins.property
     @pulumi.getter(name="staticRoutes")
-    def static_routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticRouteArgs']]]]:
+    def static_routes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RouterStaticRouteArgs']]]]:
         """
         A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `static_route` blocks.
         """
         return pulumi.get(self, "static_routes")
 
     @static_routes.setter
-    def static_routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticRouteArgs']]]]):
+    def static_routes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RouterStaticRouteArgs']]]]):
         pulumi.set(self, "static_routes", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of the router
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -184,9 +186,9 @@ class Router(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 static_route: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict']]]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 static_route: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict', 'outputs.RouterStaticRoute']]]]] = None,
                  __props__=None):
         """
         Routers can be used to connect multiple Private Networks. UpCloud Servers on any attached network can communicate directly with each other.
@@ -208,11 +210,12 @@ class Router(pulumi.CustomResource):
         $ pulumi import upcloud:index/router:Router my_example_router 049d7ca2-757e-4fb1-a833-f87ee056547a
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the router.
         :param pulumi.Input[_builtins.str] name: Name of the router.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict']]]] static_route: A collection of user managed static routes for this router.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict', 'outputs.RouterStaticRoute']]]] static_route: A collection of user managed static routes for this router.
         """
         ...
     @overload
@@ -240,6 +243,7 @@ class Router(pulumi.CustomResource):
         $ pulumi import upcloud:index/router:Router my_example_router 049d7ca2-757e-4fb1-a833-f87ee056547a
         ```
 
+
         :param str resource_name: The name of the resource.
         :param RouterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -255,9 +259,9 @@ class Router(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 static_route: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict']]]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 static_route: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict', 'outputs.RouterStaticRoute']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -283,12 +287,12 @@ class Router(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            attached_networks: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            static_route: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict']]]]] = None,
-            static_routes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict']]]]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'Router':
+            attached_networks: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            static_route: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict', 'outputs.RouterStaticRoute']]]]] = None,
+            static_routes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict', 'outputs.RouterStaticRoute']]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'Router':
         """
         Get an existing Router resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -299,8 +303,8 @@ class Router(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] attached_networks: List of UUIDs representing networks attached to this router.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the router.
         :param pulumi.Input[_builtins.str] name: Name of the router.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict']]]] static_route: A collection of user managed static routes for this router.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict']]]] static_routes: A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `static_route` blocks.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict', 'outputs.RouterStaticRoute']]]] static_route: A collection of user managed static routes for this router.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict', 'outputs.RouterStaticRoute']]]] static_routes: A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `static_route` blocks.
         :param pulumi.Input[_builtins.str] type: Type of the router
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -314,6 +318,24 @@ class Router(pulumi.CustomResource):
         __props__.__dict__["static_routes"] = static_routes
         __props__.__dict__["type"] = type
         return Router(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            attached_networks: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            static_route: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict', 'outputs.RouterStaticRoute']]]]] = None,
+            static_routes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RouterStaticRouteArgs', 'RouterStaticRouteArgsDict', 'outputs.RouterStaticRoute']]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["attachedNetworks"] = attached_networks
+        __props__["labels"] = labels
+        __props__["name"] = name
+        __props__["staticRoute"] = static_route
+        __props__["staticRoutes"] = static_routes
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/router:Router', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="attachedNetworks")

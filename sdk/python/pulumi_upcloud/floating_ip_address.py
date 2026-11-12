@@ -19,13 +19,14 @@ __all__ = ['FloatingIpAddressArgs', 'FloatingIpAddress']
 @pulumi.input_type
 class FloatingIpAddressArgs:
     def __init__(__self__, *,
-                 access: Optional[pulumi.Input[_builtins.str]] = None,
-                 family: Optional[pulumi.Input[_builtins.str]] = None,
-                 mac_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 release_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 access: pulumi.Input[Optional[_builtins.str]] = None,
+                 family: pulumi.Input[Optional[_builtins.str]] = None,
+                 mac_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 release_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a FloatingIpAddress resource.
+
         :param pulumi.Input[_builtins.str] access: Network access for the floating IP address. Supported value: `public`.
         :param pulumi.Input[_builtins.str] family: The address family of the floating IP address.
         :param pulumi.Input[_builtins.str] mac_address: MAC address of a server interface to assign address to.
@@ -45,76 +46,77 @@ class FloatingIpAddressArgs:
 
     @_builtins.property
     @pulumi.getter
-    def access(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Network access for the floating IP address. Supported value: `public`.
         """
         return pulumi.get(self, "access")
 
     @access.setter
-    def access(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access", value)
 
     @_builtins.property
     @pulumi.getter
-    def family(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def family(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The address family of the floating IP address.
         """
         return pulumi.get(self, "family")
 
     @family.setter
-    def family(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def family(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "family", value)
 
     @_builtins.property
     @pulumi.getter(name="macAddress")
-    def mac_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mac_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         MAC address of a server interface to assign address to.
         """
         return pulumi.get(self, "mac_address")
 
     @mac_address.setter
-    def mac_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mac_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mac_address", value)
 
     @_builtins.property
     @pulumi.getter(name="releasePolicy")
-    def release_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def release_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The release policy of the floating IP address.
         """
         return pulumi.get(self, "release_policy")
 
     @release_policy.setter
-    def release_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def release_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "release_policy", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _FloatingIpAddressState:
     def __init__(__self__, *,
-                 access: Optional[pulumi.Input[_builtins.str]] = None,
-                 family: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 mac_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 release_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 access: pulumi.Input[Optional[_builtins.str]] = None,
+                 family: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 mac_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 release_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FloatingIpAddress resources.
+
         :param pulumi.Input[_builtins.str] access: Network access for the floating IP address. Supported value: `public`.
         :param pulumi.Input[_builtins.str] family: The address family of the floating IP address.
         :param pulumi.Input[_builtins.str] ip_address: An UpCloud assigned IP Address.
@@ -137,74 +139,74 @@ class _FloatingIpAddressState:
 
     @_builtins.property
     @pulumi.getter
-    def access(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Network access for the floating IP address. Supported value: `public`.
         """
         return pulumi.get(self, "access")
 
     @access.setter
-    def access(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access", value)
 
     @_builtins.property
     @pulumi.getter
-    def family(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def family(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The address family of the floating IP address.
         """
         return pulumi.get(self, "family")
 
     @family.setter
-    def family(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def family(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "family", value)
 
     @_builtins.property
     @pulumi.getter(name="ipAddress")
-    def ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An UpCloud assigned IP Address.
         """
         return pulumi.get(self, "ip_address")
 
     @ip_address.setter
-    def ip_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_address", value)
 
     @_builtins.property
     @pulumi.getter(name="macAddress")
-    def mac_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mac_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         MAC address of a server interface to assign address to.
         """
         return pulumi.get(self, "mac_address")
 
     @mac_address.setter
-    def mac_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mac_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mac_address", value)
 
     @_builtins.property
     @pulumi.getter(name="releasePolicy")
-    def release_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def release_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The release policy of the floating IP address.
         """
         return pulumi.get(self, "release_policy")
 
     @release_policy.setter
-    def release_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def release_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "release_policy", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Zone of the address, e.g. `de-fra1`. Required when assigning a detached floating IP address. You can list available zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -214,11 +216,11 @@ class FloatingIpAddress(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access: Optional[pulumi.Input[_builtins.str]] = None,
-                 family: Optional[pulumi.Input[_builtins.str]] = None,
-                 mac_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 release_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 access: pulumi.Input[Optional[_builtins.str]] = None,
+                 family: pulumi.Input[Optional[_builtins.str]] = None,
+                 mac_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 release_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents a UpCloud floating IP address resource.
@@ -256,6 +258,7 @@ class FloatingIpAddress(pulumi.CustomResource):
         ```sh
         $ pulumi import upcloud:index/floatingIpAddress:FloatingIpAddress my_new_floating_address 94.237.114.205
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -308,6 +311,7 @@ class FloatingIpAddress(pulumi.CustomResource):
         $ pulumi import upcloud:index/floatingIpAddress:FloatingIpAddress my_new_floating_address 94.237.114.205
         ```
 
+
         :param str resource_name: The name of the resource.
         :param FloatingIpAddressArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -323,11 +327,11 @@ class FloatingIpAddress(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access: Optional[pulumi.Input[_builtins.str]] = None,
-                 family: Optional[pulumi.Input[_builtins.str]] = None,
-                 mac_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 release_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 access: pulumi.Input[Optional[_builtins.str]] = None,
+                 family: pulumi.Input[Optional[_builtins.str]] = None,
+                 mac_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 release_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -353,12 +357,12 @@ class FloatingIpAddress(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access: Optional[pulumi.Input[_builtins.str]] = None,
-            family: Optional[pulumi.Input[_builtins.str]] = None,
-            ip_address: Optional[pulumi.Input[_builtins.str]] = None,
-            mac_address: Optional[pulumi.Input[_builtins.str]] = None,
-            release_policy: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'FloatingIpAddress':
+            access: pulumi.Input[Optional[_builtins.str]] = None,
+            family: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+            mac_address: pulumi.Input[Optional[_builtins.str]] = None,
+            release_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'FloatingIpAddress':
         """
         Get an existing FloatingIpAddress resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -384,6 +388,24 @@ class FloatingIpAddress(pulumi.CustomResource):
         __props__.__dict__["release_policy"] = release_policy
         __props__.__dict__["zone"] = zone
         return FloatingIpAddress(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access: pulumi.Input[Optional[_builtins.str]] = None,
+            family: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+            mac_address: pulumi.Input[Optional[_builtins.str]] = None,
+            release_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["access"] = access
+        __props__["family"] = family
+        __props__["ipAddress"] = ip_address
+        __props__["macAddress"] = mac_address
+        __props__["releasePolicy"] = release_policy
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/floatingIpAddress:FloatingIpAddress', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

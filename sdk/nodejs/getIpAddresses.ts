@@ -67,5 +67,5 @@ export function getIpAddressesOutput(args?: GetIpAddressesOutputArgs, opts?: pul
  * A collection of arguments for invoking getIpAddresses.
  */
 export interface GetIpAddressesOutputArgs {
-    addresses?: pulumi.Input<pulumi.Input<inputs.GetIpAddressesAddressArgs>[]>;
+    addresses?: pulumi.Input<pulumi.Input<inputs.GetIpAddressesAddressArgs>[] | undefined>;
 }

@@ -175,6 +175,12 @@ func (LoadbalancerStaticBackendMemberState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerStaticBackendMemberState)(nil)).Elem()
 }
 
+// LoadbalancerStaticBackendMemberExists checks whether an existing LoadbalancerStaticBackendMember resource with the given ID exists.
+func LoadbalancerStaticBackendMemberExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerStaticBackendMemberState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/loadbalancerStaticBackendMember:LoadbalancerStaticBackendMember", id, state, "", opts...)
+}
+
 type loadbalancerStaticBackendMemberArgs struct {
 	// ID of the load balancer backend to which the member is connected.
 	Backend string `pulumi:"backend"`

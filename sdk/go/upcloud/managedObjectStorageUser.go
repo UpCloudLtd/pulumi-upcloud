@@ -122,6 +122,12 @@ func (ManagedObjectStorageUserState) ElementType() reflect.Type {
 	return reflect.TypeOf((*managedObjectStorageUserState)(nil)).Elem()
 }
 
+// ManagedObjectStorageUserExists checks whether an existing ManagedObjectStorageUser resource with the given ID exists.
+func ManagedObjectStorageUserExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ManagedObjectStorageUserState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/managedObjectStorageUser:ManagedObjectStorageUser", id, state, "", opts...)
+}
+
 type managedObjectStorageUserArgs struct {
 	// Managed Object Storage service UUID.
 	ServiceUuid string `pulumi:"serviceUuid"`

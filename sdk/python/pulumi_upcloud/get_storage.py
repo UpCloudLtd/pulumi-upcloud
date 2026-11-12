@@ -245,14 +245,14 @@ def get_storage(access_type: Optional[_builtins.str] = None,
         title=pulumi.get(__ret__, 'title'),
         type=pulumi.get(__ret__, 'type'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_storage_output(access_type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       most_recent: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                       name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       name_regex: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       title: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_storage_output(access_type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       most_recent: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                       name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       name_regex: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       title: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStorageResult]:
     """
     Provides information on UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.

@@ -167,6 +167,12 @@ func (LoadbalancerManualCertificateBundleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerManualCertificateBundleState)(nil)).Elem()
 }
 
+// LoadbalancerManualCertificateBundleExists checks whether an existing LoadbalancerManualCertificateBundle resource with the given ID exists.
+func LoadbalancerManualCertificateBundleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerManualCertificateBundleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/loadbalancerManualCertificateBundle:LoadbalancerManualCertificateBundle", id, state, "", opts...)
+}
+
 type loadbalancerManualCertificateBundleArgs struct {
 	// Certificate as base64 encoded string. Must be in PEM format.
 	Certificate string `pulumi:"certificate"`

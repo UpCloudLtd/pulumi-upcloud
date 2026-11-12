@@ -151,6 +151,12 @@ func (NetworkPeeringState) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkPeeringState)(nil)).Elem()
 }
 
+// NetworkPeeringExists checks whether an existing NetworkPeering resource with the given ID exists.
+func NetworkPeeringExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NetworkPeeringState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/networkPeering:NetworkPeering", id, state, "", opts...)
+}
+
 type networkPeeringArgs struct {
 	// Configured status of the network peering.
 	ConfiguredStatus *string `pulumi:"configuredStatus"`

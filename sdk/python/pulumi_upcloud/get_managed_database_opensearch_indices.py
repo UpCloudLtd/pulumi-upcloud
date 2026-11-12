@@ -69,7 +69,7 @@ class AwaitableGetManagedDatabaseOpensearchIndicesResult(GetManagedDatabaseOpens
             service=self.service)
 
 
-def get_managed_database_opensearch_indices(indices: Optional[Sequence[Union['GetManagedDatabaseOpensearchIndicesIndexArgs', 'GetManagedDatabaseOpensearchIndicesIndexArgsDict']]] = None,
+def get_managed_database_opensearch_indices(indices: Optional[Sequence[Union['GetManagedDatabaseOpensearchIndicesIndexArgs', 'GetManagedDatabaseOpensearchIndicesIndexArgsDict', 'outputs.GetManagedDatabaseOpensearchIndicesIndexResult']]] = None,
                                             service: Optional[_builtins.str] = None,
                                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetManagedDatabaseOpensearchIndicesResult:
     """
@@ -106,8 +106,8 @@ def get_managed_database_opensearch_indices(indices: Optional[Sequence[Union['Ge
         id=pulumi.get(__ret__, 'id'),
         indices=pulumi.get(__ret__, 'indices'),
         service=pulumi.get(__ret__, 'service'))
-def get_managed_database_opensearch_indices_output(indices: Optional[pulumi.Input[Optional[Sequence[Union['GetManagedDatabaseOpensearchIndicesIndexArgs', 'GetManagedDatabaseOpensearchIndicesIndexArgsDict']]]]] = None,
-                                                   service: Optional[pulumi.Input[_builtins.str]] = None,
+def get_managed_database_opensearch_indices_output(indices: pulumi.Input[Optional[Optional[Sequence[Union['GetManagedDatabaseOpensearchIndicesIndexArgs', 'GetManagedDatabaseOpensearchIndicesIndexArgsDict', 'outputs.GetManagedDatabaseOpensearchIndicesIndexResult']]]]] = None,
+                                                   service: pulumi.Input[Optional[_builtins.str]] = None,
                                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetManagedDatabaseOpensearchIndicesResult]:
     """
     OpenSearch indices

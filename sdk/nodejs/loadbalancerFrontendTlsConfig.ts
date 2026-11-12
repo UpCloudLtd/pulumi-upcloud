@@ -68,6 +68,17 @@ export class LoadbalancerFrontendTlsConfig extends pulumi.CustomResource {
         return new LoadbalancerFrontendTlsConfig(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing LoadbalancerFrontendTlsConfig resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: LoadbalancerFrontendTlsConfigState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/loadbalancerFrontendTlsConfig:LoadbalancerFrontendTlsConfig", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/loadbalancerFrontendTlsConfig:LoadbalancerFrontendTlsConfig';
 
@@ -135,15 +146,15 @@ export interface LoadbalancerFrontendTlsConfigState {
     /**
      * Reference to certificate bundle ID.
      */
-    certificateBundle?: pulumi.Input<string>;
+    certificateBundle?: pulumi.Input<string | undefined>;
     /**
      * ID of the load balancer frontend to which the TLS config is connected.
      */
-    frontend?: pulumi.Input<string>;
+    frontend?: pulumi.Input<string | undefined>;
     /**
      * The name of the TLS config. Must be unique within customer account.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -161,5 +172,5 @@ export interface LoadbalancerFrontendTlsConfigArgs {
     /**
      * The name of the TLS config. Must be unique within customer account.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

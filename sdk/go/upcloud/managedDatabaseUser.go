@@ -155,6 +155,12 @@ func (ManagedDatabaseUserState) ElementType() reflect.Type {
 	return reflect.TypeOf((*managedDatabaseUserState)(nil)).Elem()
 }
 
+// ManagedDatabaseUserExists checks whether an existing ManagedDatabaseUser resource with the given ID exists.
+func ManagedDatabaseUserExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ManagedDatabaseUserState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/managedDatabaseUser:ManagedDatabaseUser", id, state, "", opts...)
+}
+
 type managedDatabaseUserArgs struct {
 	// MySQL only, authentication type.
 	Authentication *string `pulumi:"authentication"`

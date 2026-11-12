@@ -22,11 +22,12 @@ __all__ = ['LoadbalancerBackendArgs', 'LoadbalancerBackend']
 class LoadbalancerBackendArgs:
     def __init__(__self__, *,
                  loadbalancer: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 properties: Optional[pulumi.Input['LoadbalancerBackendPropertiesArgs']] = None,
-                 resolver_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 properties: pulumi.Input[Optional['LoadbalancerBackendPropertiesArgs']] = None,
+                 resolver_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadbalancerBackend resource.
+
         :param pulumi.Input[_builtins.str] loadbalancer: UUID of the load balancer to which the backend is connected.
         :param pulumi.Input[_builtins.str] name: The name of the backend. Must be unique within the load balancer service.
         :param pulumi.Input[_builtins.str] resolver_name: Domain name resolver used with dynamic type members.
@@ -53,49 +54,50 @@ class LoadbalancerBackendArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the backend. Must be unique within the load balancer service.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def properties(self) -> Optional[pulumi.Input['LoadbalancerBackendPropertiesArgs']]:
+    def properties(self) -> pulumi.Input[Optional['LoadbalancerBackendPropertiesArgs']]:
         return pulumi.get(self, "properties")
 
     @properties.setter
-    def properties(self, value: Optional[pulumi.Input['LoadbalancerBackendPropertiesArgs']]):
+    def properties(self, value: pulumi.Input[Optional['LoadbalancerBackendPropertiesArgs']]):
         pulumi.set(self, "properties", value)
 
     @_builtins.property
     @pulumi.getter(name="resolverName")
-    def resolver_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resolver_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Domain name resolver used with dynamic type members.
         """
         return pulumi.get(self, "resolver_name")
 
     @resolver_name.setter
-    def resolver_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resolver_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resolver_name", value)
 
 
 @pulumi.input_type
 class _LoadbalancerBackendState:
     def __init__(__self__, *,
-                 loadbalancer: Optional[pulumi.Input[_builtins.str]] = None,
-                 members: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 properties: Optional[pulumi.Input['LoadbalancerBackendPropertiesArgs']] = None,
-                 resolver_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_configs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 loadbalancer: pulumi.Input[Optional[_builtins.str]] = None,
+                 members: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 properties: pulumi.Input[Optional['LoadbalancerBackendPropertiesArgs']] = None,
+                 resolver_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_configs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerBackend resources.
+
         :param pulumi.Input[_builtins.str] loadbalancer: UUID of the load balancer to which the backend is connected.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: Backend member server UUIDs. Members receive traffic dispatched from the frontends.
         :param pulumi.Input[_builtins.str] name: The name of the backend. Must be unique within the load balancer service.
@@ -117,71 +119,71 @@ class _LoadbalancerBackendState:
 
     @_builtins.property
     @pulumi.getter
-    def loadbalancer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def loadbalancer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UUID of the load balancer to which the backend is connected.
         """
         return pulumi.get(self, "loadbalancer")
 
     @loadbalancer.setter
-    def loadbalancer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def loadbalancer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "loadbalancer", value)
 
     @_builtins.property
     @pulumi.getter
-    def members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def members(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Backend member server UUIDs. Members receive traffic dispatched from the frontends.
         """
         return pulumi.get(self, "members")
 
     @members.setter
-    def members(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def members(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "members", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the backend. Must be unique within the load balancer service.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def properties(self) -> Optional[pulumi.Input['LoadbalancerBackendPropertiesArgs']]:
+    def properties(self) -> pulumi.Input[Optional['LoadbalancerBackendPropertiesArgs']]:
         return pulumi.get(self, "properties")
 
     @properties.setter
-    def properties(self, value: Optional[pulumi.Input['LoadbalancerBackendPropertiesArgs']]):
+    def properties(self, value: pulumi.Input[Optional['LoadbalancerBackendPropertiesArgs']]):
         pulumi.set(self, "properties", value)
 
     @_builtins.property
     @pulumi.getter(name="resolverName")
-    def resolver_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resolver_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Domain name resolver used with dynamic type members.
         """
         return pulumi.get(self, "resolver_name")
 
     @resolver_name.setter
-    def resolver_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resolver_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resolver_name", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsConfigs")
-    def tls_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tls_configs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set of TLS config names.
         """
         return pulumi.get(self, "tls_configs")
 
     @tls_configs.setter
-    def tls_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tls_configs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tls_configs", value)
 
 
@@ -191,10 +193,10 @@ class LoadbalancerBackend(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 loadbalancer: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 properties: Optional[pulumi.Input[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict']]] = None,
-                 resolver_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 loadbalancer: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 properties: pulumi.Input[Optional[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict', 'outputs.LoadbalancerBackendProperties']]] = None,
+                 resolver_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents load balancer backend service.
@@ -227,6 +229,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
             loadbalancer=upcloud_loadbalancer["lb"]["id"],
             name="lb-be-1-test")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -272,6 +275,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
             name="lb-be-1-test")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param LoadbalancerBackendArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -287,10 +291,10 @@ class LoadbalancerBackend(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 loadbalancer: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 properties: Optional[pulumi.Input[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict']]] = None,
-                 resolver_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 loadbalancer: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 properties: pulumi.Input[Optional[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict', 'outputs.LoadbalancerBackendProperties']]] = None,
+                 resolver_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -318,12 +322,12 @@ class LoadbalancerBackend(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            loadbalancer: Optional[pulumi.Input[_builtins.str]] = None,
-            members: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            properties: Optional[pulumi.Input[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict']]] = None,
-            resolver_name: Optional[pulumi.Input[_builtins.str]] = None,
-            tls_configs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'LoadbalancerBackend':
+            loadbalancer: pulumi.Input[Optional[_builtins.str]] = None,
+            members: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            properties: pulumi.Input[Optional[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict', 'outputs.LoadbalancerBackendProperties']]] = None,
+            resolver_name: pulumi.Input[Optional[_builtins.str]] = None,
+            tls_configs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'LoadbalancerBackend':
         """
         Get an existing LoadbalancerBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -348,6 +352,24 @@ class LoadbalancerBackend(pulumi.CustomResource):
         __props__.__dict__["resolver_name"] = resolver_name
         __props__.__dict__["tls_configs"] = tls_configs
         return LoadbalancerBackend(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            loadbalancer: pulumi.Input[Optional[_builtins.str]] = None,
+            members: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            properties: pulumi.Input[Optional[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict', 'outputs.LoadbalancerBackendProperties']]] = None,
+            resolver_name: pulumi.Input[Optional[_builtins.str]] = None,
+            tls_configs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["loadbalancer"] = loadbalancer
+        __props__["members"] = members
+        __props__["name"] = name
+        __props__["properties"] = properties
+        __props__["resolverName"] = resolver_name
+        __props__["tlsConfigs"] = tls_configs
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/loadbalancerBackend:LoadbalancerBackend', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

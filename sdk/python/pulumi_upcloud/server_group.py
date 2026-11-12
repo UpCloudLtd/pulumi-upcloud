@@ -20,26 +20,27 @@ __all__ = ['ServerGroupArgs', 'ServerGroup']
 class ServerGroupArgs:
     def __init__(__self__, *,
                  title: pulumi.Input[_builtins.str],
-                 anti_affinity_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 members: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 track_members: Optional[pulumi.Input[_builtins.bool]] = None):
+                 anti_affinity_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 members: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 track_members: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ServerGroup resource.
+
         :param pulumi.Input[_builtins.str] title: Title of your server group
         :param pulumi.Input[_builtins.str] anti_affinity_policy: Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
                	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
                
-               	* `strict` policy doesn't allow servers in the same server group to be on the same host
-               	* `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-               	* `no` refers to having no policy and thus no effect on server host affinity
-               
-               	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-               	please see UpCloud API documentation on server groups.
-               
-               	Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
-               	policies in server group are not met, you need to manually restart the servers in said group,
-               	for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+                   * `strict` policy doesn't allow servers in the same server group to be on the same host
+                   * `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+                   * `no` refers to having no policy and thus no effect on server host affinity
+                   
+                   To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+                   please see UpCloud API documentation on server groups.
+                   
+                   Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+                   policies in server group are not met, you need to manually restart the servers in said group,
+                   for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the server group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group` property of `Server`. See also `track_members` property.
         :param pulumi.Input[_builtins.bool] track_members: Controls if members of the server group are being tracked in this resource. Set to `false` when using `server_group` property of `Server` to attach servers to the server group to avoid delayed state updates.
@@ -68,88 +69,89 @@ class ServerGroupArgs:
 
     @_builtins.property
     @pulumi.getter(name="antiAffinityPolicy")
-    def anti_affinity_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def anti_affinity_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
         	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
 
-        	* `strict` policy doesn't allow servers in the same server group to be on the same host
-        	* `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-        	* `no` refers to having no policy and thus no effect on server host affinity
-
-        	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-        	please see UpCloud API documentation on server groups.
-
-        	Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
-        	policies in server group are not met, you need to manually restart the servers in said group,
-        	for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+            * `strict` policy doesn't allow servers in the same server group to be on the same host
+            * `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+            * `no` refers to having no policy and thus no effect on server host affinity
+            
+            To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+            please see UpCloud API documentation on server groups.
+            
+            Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+            policies in server group are not met, you need to manually restart the servers in said group,
+            for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
         """
         return pulumi.get(self, "anti_affinity_policy")
 
     @anti_affinity_policy.setter
-    def anti_affinity_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def anti_affinity_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "anti_affinity_policy", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the server group.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def members(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group` property of `Server`. See also `track_members` property.
         """
         return pulumi.get(self, "members")
 
     @members.setter
-    def members(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def members(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "members", value)
 
     @_builtins.property
     @pulumi.getter(name="trackMembers")
-    def track_members(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def track_members(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Controls if members of the server group are being tracked in this resource. Set to `false` when using `server_group` property of `Server` to attach servers to the server group to avoid delayed state updates.
         """
         return pulumi.get(self, "track_members")
 
     @track_members.setter
-    def track_members(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def track_members(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "track_members", value)
 
 
 @pulumi.input_type
 class _ServerGroupState:
     def __init__(__self__, *,
-                 anti_affinity_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 members: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 title: Optional[pulumi.Input[_builtins.str]] = None,
-                 track_members: Optional[pulumi.Input[_builtins.bool]] = None):
+                 anti_affinity_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 members: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 title: pulumi.Input[Optional[_builtins.str]] = None,
+                 track_members: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ServerGroup resources.
+
         :param pulumi.Input[_builtins.str] anti_affinity_policy: Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
                	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
                
-               	* `strict` policy doesn't allow servers in the same server group to be on the same host
-               	* `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-               	* `no` refers to having no policy and thus no effect on server host affinity
-               
-               	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-               	please see UpCloud API documentation on server groups.
-               
-               	Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
-               	policies in server group are not met, you need to manually restart the servers in said group,
-               	for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+                   * `strict` policy doesn't allow servers in the same server group to be on the same host
+                   * `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+                   * `no` refers to having no policy and thus no effect on server host affinity
+                   
+                   To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+                   please see UpCloud API documentation on server groups.
+                   
+                   Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+                   policies in server group are not met, you need to manually restart the servers in said group,
+                   for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the server group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group` property of `Server`. See also `track_members` property.
         :param pulumi.Input[_builtins.str] title: Title of your server group
@@ -168,74 +170,74 @@ class _ServerGroupState:
 
     @_builtins.property
     @pulumi.getter(name="antiAffinityPolicy")
-    def anti_affinity_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def anti_affinity_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
         	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
 
-        	* `strict` policy doesn't allow servers in the same server group to be on the same host
-        	* `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-        	* `no` refers to having no policy and thus no effect on server host affinity
-
-        	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-        	please see UpCloud API documentation on server groups.
-
-        	Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
-        	policies in server group are not met, you need to manually restart the servers in said group,
-        	for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+            * `strict` policy doesn't allow servers in the same server group to be on the same host
+            * `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+            * `no` refers to having no policy and thus no effect on server host affinity
+            
+            To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+            please see UpCloud API documentation on server groups.
+            
+            Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+            policies in server group are not met, you need to manually restart the servers in said group,
+            for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
         """
         return pulumi.get(self, "anti_affinity_policy")
 
     @anti_affinity_policy.setter
-    def anti_affinity_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def anti_affinity_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "anti_affinity_policy", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the server group.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def members(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group` property of `Server`. See also `track_members` property.
         """
         return pulumi.get(self, "members")
 
     @members.setter
-    def members(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def members(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "members", value)
 
     @_builtins.property
     @pulumi.getter
-    def title(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def title(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Title of your server group
         """
         return pulumi.get(self, "title")
 
     @title.setter
-    def title(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def title(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "title", value)
 
     @_builtins.property
     @pulumi.getter(name="trackMembers")
-    def track_members(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def track_members(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Controls if members of the server group are being tracked in this resource. Set to `false` when using `server_group` property of `Server` to attach servers to the server group to avoid delayed state updates.
         """
         return pulumi.get(self, "track_members")
 
     @track_members.setter
-    def track_members(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def track_members(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "track_members", value)
 
 
@@ -245,11 +247,11 @@ class ServerGroup(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 anti_affinity_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 members: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 title: Optional[pulumi.Input[_builtins.str]] = None,
-                 track_members: Optional[pulumi.Input[_builtins.bool]] = None,
+                 anti_affinity_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 members: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 title: pulumi.Input[Optional[_builtins.str]] = None,
+                 track_members: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Server groups allow grouping servers and defining anti-affinity for the servers.
@@ -283,21 +285,22 @@ class ServerGroup(pulumi.CustomResource):
         $ pulumi import upcloud:index/serverGroup:ServerGroup main ead4544f-10bf-42a3-b98a-a0fea2e2ad14
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] anti_affinity_policy: Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
                	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
                
-               	* `strict` policy doesn't allow servers in the same server group to be on the same host
-               	* `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-               	* `no` refers to having no policy and thus no effect on server host affinity
-               
-               	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-               	please see UpCloud API documentation on server groups.
-               
-               	Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
-               	policies in server group are not met, you need to manually restart the servers in said group,
-               	for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+                   * `strict` policy doesn't allow servers in the same server group to be on the same host
+                   * `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+                   * `no` refers to having no policy and thus no effect on server host affinity
+                   
+                   To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+                   please see UpCloud API documentation on server groups.
+                   
+                   Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+                   policies in server group are not met, you need to manually restart the servers in said group,
+                   for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the server group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group` property of `Server`. See also `track_members` property.
         :param pulumi.Input[_builtins.str] title: Title of your server group
@@ -341,6 +344,7 @@ class ServerGroup(pulumi.CustomResource):
         $ pulumi import upcloud:index/serverGroup:ServerGroup main ead4544f-10bf-42a3-b98a-a0fea2e2ad14
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ServerGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -356,11 +360,11 @@ class ServerGroup(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 anti_affinity_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 members: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 title: Optional[pulumi.Input[_builtins.str]] = None,
-                 track_members: Optional[pulumi.Input[_builtins.bool]] = None,
+                 anti_affinity_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 members: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 title: pulumi.Input[Optional[_builtins.str]] = None,
+                 track_members: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -387,11 +391,11 @@ class ServerGroup(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            anti_affinity_policy: Optional[pulumi.Input[_builtins.str]] = None,
-            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            members: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            title: Optional[pulumi.Input[_builtins.str]] = None,
-            track_members: Optional[pulumi.Input[_builtins.bool]] = None) -> 'ServerGroup':
+            anti_affinity_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            members: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            title: pulumi.Input[Optional[_builtins.str]] = None,
+            track_members: pulumi.Input[Optional[_builtins.bool]] = None) -> 'ServerGroup':
         """
         Get an existing ServerGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -402,16 +406,16 @@ class ServerGroup(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] anti_affinity_policy: Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
                	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
                
-               	* `strict` policy doesn't allow servers in the same server group to be on the same host
-               	* `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-               	* `no` refers to having no policy and thus no effect on server host affinity
-               
-               	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-               	please see UpCloud API documentation on server groups.
-               
-               	Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
-               	policies in server group are not met, you need to manually restart the servers in said group,
-               	for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+                   * `strict` policy doesn't allow servers in the same server group to be on the same host
+                   * `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+                   * `no` refers to having no policy and thus no effect on server host affinity
+                   
+                   To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+                   please see UpCloud API documentation on server groups.
+                   
+                   Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+                   policies in server group are not met, you need to manually restart the servers in said group,
+                   for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the server group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `server_group` property of `Server`. See also `track_members` property.
         :param pulumi.Input[_builtins.str] title: Title of your server group
@@ -428,6 +432,22 @@ class ServerGroup(pulumi.CustomResource):
         __props__.__dict__["track_members"] = track_members
         return ServerGroup(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            anti_affinity_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            members: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            title: pulumi.Input[Optional[_builtins.str]] = None,
+            track_members: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["antiAffinityPolicy"] = anti_affinity_policy
+        __props__["labels"] = labels
+        __props__["members"] = members
+        __props__["title"] = title
+        __props__["trackMembers"] = track_members
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/serverGroup:ServerGroup', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="antiAffinityPolicy")
     def anti_affinity_policy(self) -> pulumi.Output[_builtins.str]:
@@ -435,16 +455,16 @@ class ServerGroup(pulumi.CustomResource):
         Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
         	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
 
-        	* `strict` policy doesn't allow servers in the same server group to be on the same host
-        	* `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-        	* `no` refers to having no policy and thus no effect on server host affinity
-
-        	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-        	please see UpCloud API documentation on server groups.
-
-        	Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
-        	policies in server group are not met, you need to manually restart the servers in said group,
-        	for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+            * `strict` policy doesn't allow servers in the same server group to be on the same host
+            * `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+            * `no` refers to having no policy and thus no effect on server host affinity
+            
+            To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+            please see UpCloud API documentation on server groups.
+            
+            Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+            policies in server group are not met, you need to manually restart the servers in said group,
+            for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
         """
         return pulumi.get(self, "anti_affinity_policy")
 

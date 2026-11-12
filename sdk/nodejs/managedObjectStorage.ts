@@ -58,6 +58,17 @@ export class ManagedObjectStorage extends pulumi.CustomResource {
         return new ManagedObjectStorage(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ManagedObjectStorage resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ManagedObjectStorageState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/managedObjectStorage:ManagedObjectStorage", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/managedObjectStorage:ManagedObjectStorage';
 
@@ -161,39 +172,39 @@ export interface ManagedObjectStorageState {
     /**
      * Service status managed by the end user.
      */
-    configuredStatus?: pulumi.Input<string>;
+    configuredStatus?: pulumi.Input<string | undefined>;
     /**
      * Creation time.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Endpoints for accessing the Managed Object Storage service.
      */
-    endpoints?: pulumi.Input<pulumi.Input<inputs.ManagedObjectStorageEndpoint>[]>;
+    endpoints?: pulumi.Input<pulumi.Input<inputs.ManagedObjectStorageEndpoint>[] | undefined>;
     /**
      * User defined key-value pairs to classify the managed object storage.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the Managed Object Storage service. Must be unique within account.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
      */
-    networks?: pulumi.Input<pulumi.Input<inputs.ManagedObjectStorageNetwork>[]>;
+    networks?: pulumi.Input<pulumi.Input<inputs.ManagedObjectStorageNetwork>[] | undefined>;
     /**
      * Operational state of the Managed Object Storage service.
      */
-    operationalState?: pulumi.Input<string>;
+    operationalState?: pulumi.Input<string | undefined>;
     /**
      * Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Update time.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -207,15 +218,15 @@ export interface ManagedObjectStorageArgs {
     /**
      * User defined key-value pairs to classify the managed object storage.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the Managed Object Storage service. Must be unique within account.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
      */
-    networks?: pulumi.Input<pulumi.Input<inputs.ManagedObjectStorageNetwork>[]>;
+    networks?: pulumi.Input<pulumi.Input<inputs.ManagedObjectStorageNetwork>[] | undefined>;
     /**
      * Region in which the service will be hosted, see `upcloud.getManagedObjectStorageRegions` data source or use `upctl object-storage regions` to list available regions.
      */

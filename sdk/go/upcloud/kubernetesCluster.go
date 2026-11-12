@@ -253,6 +253,12 @@ func (KubernetesClusterState) ElementType() reflect.Type {
 	return reflect.TypeOf((*kubernetesClusterState)(nil)).Elem()
 }
 
+// KubernetesClusterExists checks whether an existing KubernetesCluster resource with the given ID exists.
+func KubernetesClusterExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KubernetesClusterState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/kubernetesCluster:KubernetesCluster", id, state, "", opts...)
+}
+
 type kubernetesClusterArgs struct {
 	// IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
 	ControlPlaneIpFilters []string `pulumi:"controlPlaneIpFilters"`

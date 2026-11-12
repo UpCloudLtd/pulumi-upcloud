@@ -153,6 +153,12 @@ func (ManagedObjectStorageStaticSiteState) ElementType() reflect.Type {
 	return reflect.TypeOf((*managedObjectStorageStaticSiteState)(nil)).Elem()
 }
 
+// ManagedObjectStorageStaticSiteExists checks whether an existing ManagedObjectStorageStaticSite resource with the given ID exists.
+func ManagedObjectStorageStaticSiteExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ManagedObjectStorageStaticSiteState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/managedObjectStorageStaticSite:ManagedObjectStorageStaticSite", id, state, "", opts...)
+}
+
 type managedObjectStorageStaticSiteArgs struct {
 	// S3 bucket from which static content is served. Must have a public read policy.
 	BucketName string `pulumi:"bucketName"`

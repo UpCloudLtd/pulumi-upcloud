@@ -259,6 +259,12 @@ func (KubernetesNodeGroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*kubernetesNodeGroupState)(nil)).Elem()
 }
 
+// KubernetesNodeGroupExists checks whether an existing KubernetesNodeGroup resource with the given ID exists.
+func KubernetesNodeGroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KubernetesNodeGroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/kubernetesNodeGroup:KubernetesNodeGroup", id, state, "", opts...)
+}
+
 type kubernetesNodeGroupArgs struct {
 	// If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
 	AntiAffinity *bool `pulumi:"antiAffinity"`

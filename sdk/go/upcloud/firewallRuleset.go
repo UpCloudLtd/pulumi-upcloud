@@ -143,6 +143,12 @@ func (FirewallRulesetState) ElementType() reflect.Type {
 	return reflect.TypeOf((*firewallRulesetState)(nil)).Elem()
 }
 
+// FirewallRulesetExists checks whether an existing FirewallRuleset resource with the given ID exists.
+func FirewallRulesetExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FirewallRulesetState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/firewallRuleset:FirewallRuleset", id, state, "", opts...)
+}
+
 type firewallRulesetArgs struct {
 	// Whether default DNS rules are enabled.
 	DefaultDnsRulesEnabled *bool `pulumi:"defaultDnsRulesEnabled"`

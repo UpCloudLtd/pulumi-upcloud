@@ -80,7 +80,7 @@ def get_managed_object_storage_policies(service_uuid: Optional[_builtins.str] = 
         id=pulumi.get(__ret__, 'id'),
         policies=pulumi.get(__ret__, 'policies'),
         service_uuid=pulumi.get(__ret__, 'service_uuid'))
-def get_managed_object_storage_policies_output(service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
+def get_managed_object_storage_policies_output(service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
                                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetManagedObjectStoragePoliciesResult]:
     """
     Policies available for a Managed Object Storage resource. See `managed_object_storage_user_policy` for attaching to a user.

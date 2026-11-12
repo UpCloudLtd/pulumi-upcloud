@@ -21,9 +21,10 @@ class FileStorageShareArgs:
     def __init__(__self__, *,
                  file_storage: pulumi.Input[_builtins.str],
                  path: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a FileStorageShare resource.
+
         :param pulumi.Input[_builtins.str] file_storage: UUID of the file storage service.
         :param pulumi.Input[_builtins.str] path: Absolute path exported by the share (e.g. `/public`).
         :param pulumi.Input[_builtins.str] name: Unique name of the share (1–64 chars).
@@ -59,25 +60,26 @@ class FileStorageShareArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique name of the share (1–64 chars).
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _FileStorageShareState:
     def __init__(__self__, *,
-                 file_storage: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None):
+                 file_storage: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FileStorageShare resources.
+
         :param pulumi.Input[_builtins.str] file_storage: UUID of the file storage service.
         :param pulumi.Input[_builtins.str] name: Unique name of the share (1–64 chars).
         :param pulumi.Input[_builtins.str] path: Absolute path exported by the share (e.g. `/public`).
@@ -91,38 +93,38 @@ class _FileStorageShareState:
 
     @_builtins.property
     @pulumi.getter(name="fileStorage")
-    def file_storage(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def file_storage(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UUID of the file storage service.
         """
         return pulumi.get(self, "file_storage")
 
     @file_storage.setter
-    def file_storage(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def file_storage(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "file_storage", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique name of the share (1–64 chars).
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Absolute path exported by the share (e.g. `/public`).
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
 
@@ -132,12 +134,13 @@ class FileStorageShare(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 file_storage: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
+                 file_storage: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents a File Storage service.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -154,6 +157,7 @@ class FileStorageShare(pulumi.CustomResource):
         """
         This resource represents a File Storage service.
 
+
         :param str resource_name: The name of the resource.
         :param FileStorageShareArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -169,9 +173,9 @@ class FileStorageShare(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 file_storage: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
+                 file_storage: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -198,9 +202,9 @@ class FileStorageShare(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            file_storage: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            path: Optional[pulumi.Input[_builtins.str]] = None) -> 'FileStorageShare':
+            file_storage: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None) -> 'FileStorageShare':
         """
         Get an existing FileStorageShare resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -220,6 +224,18 @@ class FileStorageShare(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["path"] = path
         return FileStorageShare(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            file_storage: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["fileStorage"] = file_storage
+        __props__["name"] = name
+        __props__["path"] = path
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/fileStorageShare:FileStorageShare', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="fileStorage")

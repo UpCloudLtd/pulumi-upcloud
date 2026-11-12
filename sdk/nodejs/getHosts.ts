@@ -71,5 +71,5 @@ export function getHostsOutput(args?: GetHostsOutputArgs, opts?: pulumi.InvokeOu
  * A collection of arguments for invoking getHosts.
  */
 export interface GetHostsOutputArgs {
-    hosts?: pulumi.Input<pulumi.Input<inputs.GetHostsHostArgs>[]>;
+    hosts?: pulumi.Input<pulumi.Input<inputs.GetHostsHostArgs>[] | undefined>;
 }

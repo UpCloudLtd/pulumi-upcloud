@@ -23,16 +23,17 @@ class LoadbalancerArgs:
     def __init__(__self__, *,
                  plan: pulumi.Input[_builtins.str],
                  zone: pulumi.Input[_builtins.str],
-                 configured_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 maintenance_dow: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 network: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNetworkArgs']]]] = None):
+                 configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_addresses: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 maintenance_dow: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 network: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerNetworkArgs']]]] = None):
         """
         The set of arguments for constructing a Loadbalancer resource.
+
         :param pulumi.Input[_builtins.str] plan: Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
         :param pulumi.Input[_builtins.str] zone: Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
@@ -92,123 +93,124 @@ class LoadbalancerArgs:
 
     @_builtins.property
     @pulumi.getter(name="configuredStatus")
-    def configured_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def configured_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The service configured status indicates the service's current intended status. Managed by the customer.
         """
         return pulumi.get(self, "configured_status")
 
     @configured_status.setter
-    def configured_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def configured_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "configured_status", value)
 
     @_builtins.property
     @pulumi.getter(name="ipAddresses")
-    def ip_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]]:
+    def ip_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]]:
         """
         Floating IP addresses connected to the load balancer.
         """
         return pulumi.get(self, "ip_addresses")
 
     @ip_addresses.setter
-    def ip_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]]):
+    def ip_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]]):
         pulumi.set(self, "ip_addresses", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the load balancer.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceDow")
-    def maintenance_dow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def maintenance_dow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day. Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
         """
         return pulumi.get(self, "maintenance_dow")
 
     @maintenance_dow.setter
-    def maintenance_dow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def maintenance_dow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "maintenance_dow", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceTime")
-    def maintenance_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def maintenance_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC HH:MM:SSZ, for example `20:01:01Z`.
         """
         return pulumi.get(self, "maintenance_time")
 
     @maintenance_time.setter
-    def maintenance_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def maintenance_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "maintenance_time", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the service. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""Use 'networks' to define networks attached to load balancer""")
-    def network(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def network(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private network UUID where traffic will be routed. Must reside in load balancer zone.
         """
         return pulumi.get(self, "network")
 
     @network.setter
-    def network(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def network(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "network", value)
 
     @_builtins.property
     @pulumi.getter
-    def networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNetworkArgs']]]]:
+    def networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerNetworkArgs']]]]:
         """
         Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
         """
         return pulumi.get(self, "networks")
 
     @networks.setter
-    def networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNetworkArgs']]]]):
+    def networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerNetworkArgs']]]]):
         pulumi.set(self, "networks", value)
 
 
 @pulumi.input_type
 class _LoadbalancerState:
     def __init__(__self__, *,
-                 backends: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 configured_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 frontends: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 maintenance_dow: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 network: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNetworkArgs']]]] = None,
-                 nodes: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNodeArgs']]]] = None,
-                 operational_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 resolvers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 backends: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 frontends: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ip_addresses: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 maintenance_dow: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 network: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerNetworkArgs']]]] = None,
+                 nodes: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerNodeArgs']]]] = None,
+                 operational_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 resolvers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Loadbalancer resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] backends: Backends are groups of customer servers whose traffic should be balanced.
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
         :param pulumi.Input[_builtins.str] dns_name: DNS name of the load balancer
@@ -267,196 +269,196 @@ class _LoadbalancerState:
 
     @_builtins.property
     @pulumi.getter
-    def backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def backends(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Backends are groups of customer servers whose traffic should be balanced.
         """
         return pulumi.get(self, "backends")
 
     @backends.setter
-    def backends(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def backends(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "backends", value)
 
     @_builtins.property
     @pulumi.getter(name="configuredStatus")
-    def configured_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def configured_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The service configured status indicates the service's current intended status. Managed by the customer.
         """
         return pulumi.get(self, "configured_status")
 
     @configured_status.setter
-    def configured_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def configured_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "configured_status", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsName")
     @_utilities.deprecated("""Use 'networks' to get network DNS name""")
-    def dns_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dns_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         DNS name of the load balancer
         """
         return pulumi.get(self, "dns_name")
 
     @dns_name.setter
-    def dns_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dns_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dns_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def frontends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def frontends(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Frontends receive the traffic before dispatching it to the backends.
         """
         return pulumi.get(self, "frontends")
 
     @frontends.setter
-    def frontends(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def frontends(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "frontends", value)
 
     @_builtins.property
     @pulumi.getter(name="ipAddresses")
-    def ip_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]]:
+    def ip_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]]:
         """
         Floating IP addresses connected to the load balancer.
         """
         return pulumi.get(self, "ip_addresses")
 
     @ip_addresses.setter
-    def ip_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]]):
+    def ip_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerIpAddressArgs']]]]):
         pulumi.set(self, "ip_addresses", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the load balancer.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceDow")
-    def maintenance_dow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def maintenance_dow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day. Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
         """
         return pulumi.get(self, "maintenance_dow")
 
     @maintenance_dow.setter
-    def maintenance_dow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def maintenance_dow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "maintenance_dow", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceTime")
-    def maintenance_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def maintenance_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC HH:MM:SSZ, for example `20:01:01Z`.
         """
         return pulumi.get(self, "maintenance_time")
 
     @maintenance_time.setter
-    def maintenance_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def maintenance_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "maintenance_time", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the service. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""Use 'networks' to define networks attached to load balancer""")
-    def network(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def network(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private network UUID where traffic will be routed. Must reside in load balancer zone.
         """
         return pulumi.get(self, "network")
 
     @network.setter
-    def network(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def network(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "network", value)
 
     @_builtins.property
     @pulumi.getter
-    def networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNetworkArgs']]]]:
+    def networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerNetworkArgs']]]]:
         """
         Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
         """
         return pulumi.get(self, "networks")
 
     @networks.setter
-    def networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNetworkArgs']]]]):
+    def networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerNetworkArgs']]]]):
         pulumi.set(self, "networks", value)
 
     @_builtins.property
     @pulumi.getter
-    def nodes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNodeArgs']]]]:
+    def nodes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerNodeArgs']]]]:
         """
         Nodes are instances running load balancer service
         """
         return pulumi.get(self, "nodes")
 
     @nodes.setter
-    def nodes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerNodeArgs']]]]):
+    def nodes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerNodeArgs']]]]):
         pulumi.set(self, "nodes", value)
 
     @_builtins.property
     @pulumi.getter(name="operationalState")
-    def operational_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def operational_state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The service operational state indicates the service's current operational, effective state. Managed by the system.
         """
         return pulumi.get(self, "operational_state")
 
     @operational_state.setter
-    def operational_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def operational_state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "operational_state", value)
 
     @_builtins.property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
         """
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter
-    def resolvers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def resolvers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Domain Name Resolvers.
         """
         return pulumi.get(self, "resolvers")
 
     @resolvers.setter
-    def resolvers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def resolvers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "resolvers", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -466,16 +468,16 @@ class Loadbalancer(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configured_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict']]]]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 maintenance_dow: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 network: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict']]]]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict', 'outputs.LoadbalancerIpAddress']]]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 maintenance_dow: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 network: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict', 'outputs.LoadbalancerNetwork']]]]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents [Managed Load Balancer](https://upcloud.com/products/managed-load-balancer) service.
@@ -518,16 +520,17 @@ class Loadbalancer(pulumi.CustomResource):
             ])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict']]]] ip_addresses: Floating IP addresses connected to the load balancer.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict', 'outputs.LoadbalancerIpAddress']]]] ip_addresses: Floating IP addresses connected to the load balancer.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the load balancer.
         :param pulumi.Input[_builtins.str] maintenance_dow: The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day. Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
         :param pulumi.Input[_builtins.str] maintenance_time: The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC HH:MM:SSZ, for example `20:01:01Z`.
         :param pulumi.Input[_builtins.str] name: The name of the service. Must be unique within customer account.
         :param pulumi.Input[_builtins.str] network: Private network UUID where traffic will be routed. Must reside in load balancer zone.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict']]]] networks: Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict', 'outputs.LoadbalancerNetwork']]]] networks: Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
         :param pulumi.Input[_builtins.str] plan: Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
         :param pulumi.Input[_builtins.str] zone: Zone in which the service will be hosted, e.g. `fi-hel1`. You can list available zones with `upctl zone list`.
         """
@@ -578,6 +581,7 @@ class Loadbalancer(pulumi.CustomResource):
             ])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param LoadbalancerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -593,16 +597,16 @@ class Loadbalancer(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configured_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict']]]]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 maintenance_dow: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 network: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict']]]]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict', 'outputs.LoadbalancerIpAddress']]]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 maintenance_dow: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 network: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict', 'outputs.LoadbalancerNetwork']]]]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -642,22 +646,22 @@ class Loadbalancer(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backends: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            configured_status: Optional[pulumi.Input[_builtins.str]] = None,
-            dns_name: Optional[pulumi.Input[_builtins.str]] = None,
-            frontends: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict']]]]] = None,
-            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            maintenance_dow: Optional[pulumi.Input[_builtins.str]] = None,
-            maintenance_time: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            network: Optional[pulumi.Input[_builtins.str]] = None,
-            networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict']]]]] = None,
-            nodes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNodeArgs', 'LoadbalancerNodeArgsDict']]]]] = None,
-            operational_state: Optional[pulumi.Input[_builtins.str]] = None,
-            plan: Optional[pulumi.Input[_builtins.str]] = None,
-            resolvers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'Loadbalancer':
+            backends: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_name: pulumi.Input[Optional[_builtins.str]] = None,
+            frontends: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ip_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict', 'outputs.LoadbalancerIpAddress']]]]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            maintenance_dow: pulumi.Input[Optional[_builtins.str]] = None,
+            maintenance_time: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            network: pulumi.Input[Optional[_builtins.str]] = None,
+            networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict', 'outputs.LoadbalancerNetwork']]]]] = None,
+            nodes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerNodeArgs', 'LoadbalancerNodeArgsDict', 'outputs.LoadbalancerNode']]]]] = None,
+            operational_state: pulumi.Input[Optional[_builtins.str]] = None,
+            plan: pulumi.Input[Optional[_builtins.str]] = None,
+            resolvers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'Loadbalancer':
         """
         Get an existing Loadbalancer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -669,14 +673,14 @@ class Loadbalancer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
         :param pulumi.Input[_builtins.str] dns_name: DNS name of the load balancer
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] frontends: Frontends receive the traffic before dispatching it to the backends.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict']]]] ip_addresses: Floating IP addresses connected to the load balancer.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict', 'outputs.LoadbalancerIpAddress']]]] ip_addresses: Floating IP addresses connected to the load balancer.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the load balancer.
         :param pulumi.Input[_builtins.str] maintenance_dow: The day of the week on which maintenance will be performed. If not provided, we will randomly select a weekend day. Valid values `monday|tuesday|wednesday|thursday|friday|saturday|sunday`.
         :param pulumi.Input[_builtins.str] maintenance_time: The time at which the maintenance will begin in UTC. A 2-hour timeframe has been allocated for maintenance. During this period, the multi-node production plans will not experience any downtime, while the one-node plans will have a downtime of 1-2 minutes. If not provided, we will randomly select an off-peak time. Needs to be a valid time format in UTC HH:MM:SSZ, for example `20:01:01Z`.
         :param pulumi.Input[_builtins.str] name: The name of the service. Must be unique within customer account.
         :param pulumi.Input[_builtins.str] network: Private network UUID where traffic will be routed. Must reside in load balancer zone.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict']]]] networks: Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNodeArgs', 'LoadbalancerNodeArgsDict']]]] nodes: Nodes are instances running load balancer service
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict', 'outputs.LoadbalancerNetwork']]]] networks: Attached Networks from where traffic consumed and routed. Private networks must reside in loadbalancer zone.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerNodeArgs', 'LoadbalancerNodeArgsDict', 'outputs.LoadbalancerNode']]]] nodes: Nodes are instances running load balancer service
         :param pulumi.Input[_builtins.str] operational_state: The service operational state indicates the service's current operational, effective state. Managed by the system.
         :param pulumi.Input[_builtins.str] plan: Plan which the service will have. You can list available load balancer plans with `upctl loadbalancer plans`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resolvers: Domain Name Resolvers.
@@ -703,6 +707,44 @@ class Loadbalancer(pulumi.CustomResource):
         __props__.__dict__["resolvers"] = resolvers
         __props__.__dict__["zone"] = zone
         return Loadbalancer(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backends: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_name: pulumi.Input[Optional[_builtins.str]] = None,
+            frontends: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ip_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerIpAddressArgs', 'LoadbalancerIpAddressArgsDict', 'outputs.LoadbalancerIpAddress']]]]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            maintenance_dow: pulumi.Input[Optional[_builtins.str]] = None,
+            maintenance_time: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            network: pulumi.Input[Optional[_builtins.str]] = None,
+            networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerNetworkArgs', 'LoadbalancerNetworkArgsDict', 'outputs.LoadbalancerNetwork']]]]] = None,
+            nodes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerNodeArgs', 'LoadbalancerNodeArgsDict', 'outputs.LoadbalancerNode']]]]] = None,
+            operational_state: pulumi.Input[Optional[_builtins.str]] = None,
+            plan: pulumi.Input[Optional[_builtins.str]] = None,
+            resolvers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backends"] = backends
+        __props__["configuredStatus"] = configured_status
+        __props__["dnsName"] = dns_name
+        __props__["frontends"] = frontends
+        __props__["ipAddresses"] = ip_addresses
+        __props__["labels"] = labels
+        __props__["maintenanceDow"] = maintenance_dow
+        __props__["maintenanceTime"] = maintenance_time
+        __props__["name"] = name
+        __props__["network"] = network
+        __props__["networks"] = networks
+        __props__["nodes"] = nodes
+        __props__["operationalState"] = operational_state
+        __props__["plan"] = plan
+        __props__["resolvers"] = resolvers
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/loadbalancer:Loadbalancer', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

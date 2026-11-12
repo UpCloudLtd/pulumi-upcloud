@@ -54,6 +54,6 @@ export function getNetworksOutput(args?: GetNetworksOutputArgs, opts?: pulumi.In
  * A collection of arguments for invoking getNetworks.
  */
 export interface GetNetworksOutputArgs {
-    filterName?: pulumi.Input<string>;
-    zone?: pulumi.Input<string>;
+    filterName?: pulumi.Input<string | undefined>;
+    zone?: pulumi.Input<string | undefined>;
 }

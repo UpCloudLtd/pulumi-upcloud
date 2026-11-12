@@ -204,6 +204,12 @@ func (GatewayConnectionTunnelState) ElementType() reflect.Type {
 	return reflect.TypeOf((*gatewayConnectionTunnelState)(nil)).Elem()
 }
 
+// GatewayConnectionTunnelExists checks whether an existing GatewayConnectionTunnel resource with the given ID exists.
+func GatewayConnectionTunnelExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GatewayConnectionTunnelState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/gatewayConnectionTunnel:GatewayConnectionTunnel", id, state, "", opts...)
+}
+
 type gatewayConnectionTunnelArgs struct {
 	// ID of the GatewayConnection resource to which the tunnel belongs
 	ConnectionId string `pulumi:"connectionId"`

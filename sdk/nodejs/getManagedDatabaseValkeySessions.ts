@@ -103,9 +103,9 @@ export function getManagedDatabaseValkeySessionsOutput(args: GetManagedDatabaseV
  * A collection of arguments for invoking getManagedDatabaseValkeySessions.
  */
 export interface GetManagedDatabaseValkeySessionsOutputArgs {
-    limit?: pulumi.Input<number>;
-    offset?: pulumi.Input<number>;
-    order?: pulumi.Input<string>;
+    limit?: pulumi.Input<number | undefined>;
+    offset?: pulumi.Input<number | undefined>;
+    order?: pulumi.Input<string | undefined>;
     service: pulumi.Input<string>;
-    sessions?: pulumi.Input<pulumi.Input<inputs.GetManagedDatabaseValkeySessionsSessionArgs>[]>;
+    sessions?: pulumi.Input<pulumi.Input<inputs.GetManagedDatabaseValkeySessionsSessionArgs>[] | undefined>;
 }

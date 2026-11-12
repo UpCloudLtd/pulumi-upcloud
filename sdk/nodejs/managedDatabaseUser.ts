@@ -42,6 +42,17 @@ export class ManagedDatabaseUser extends pulumi.CustomResource {
         return new ManagedDatabaseUser(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ManagedDatabaseUser resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ManagedDatabaseUserState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/managedDatabaseUser:ManagedDatabaseUser", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/managedDatabaseUser:ManagedDatabaseUser';
 
@@ -141,35 +152,35 @@ export interface ManagedDatabaseUserState {
     /**
      * MySQL only, authentication type.
      */
-    authentication?: pulumi.Input<string>;
+    authentication?: pulumi.Input<string | undefined>;
     /**
      * OpenSearch access control object.
      */
-    opensearchAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserOpensearchAccessControl>;
+    opensearchAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserOpensearchAccessControl | undefined>;
     /**
      * Password for the database user. Defaults to a random value
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * PostgreSQL access control object.
      */
-    pgAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserPgAccessControl>;
+    pgAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserPgAccessControl | undefined>;
     /**
      * Service's UUID for which this user belongs to
      */
-    service?: pulumi.Input<string>;
+    service?: pulumi.Input<string | undefined>;
     /**
      * Type of the user. Only normal type users can be created
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Name of the database user
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
     /**
      * Valkey access control object.
      */
-    valkeyAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserValkeyAccessControl>;
+    valkeyAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserValkeyAccessControl | undefined>;
 }
 
 /**
@@ -179,19 +190,19 @@ export interface ManagedDatabaseUserArgs {
     /**
      * MySQL only, authentication type.
      */
-    authentication?: pulumi.Input<string>;
+    authentication?: pulumi.Input<string | undefined>;
     /**
      * OpenSearch access control object.
      */
-    opensearchAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserOpensearchAccessControl>;
+    opensearchAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserOpensearchAccessControl | undefined>;
     /**
      * Password for the database user. Defaults to a random value
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * PostgreSQL access control object.
      */
-    pgAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserPgAccessControl>;
+    pgAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserPgAccessControl | undefined>;
     /**
      * Service's UUID for which this user belongs to
      */
@@ -203,5 +214,5 @@ export interface ManagedDatabaseUserArgs {
     /**
      * Valkey access control object.
      */
-    valkeyAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserValkeyAccessControl>;
+    valkeyAccessControl?: pulumi.Input<inputs.ManagedDatabaseUserValkeyAccessControl | undefined>;
 }

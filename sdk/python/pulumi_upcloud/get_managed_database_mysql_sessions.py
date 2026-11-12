@@ -100,7 +100,7 @@ def get_managed_database_mysql_sessions(limit: Optional[_builtins.int] = None,
                                         offset: Optional[_builtins.int] = None,
                                         order: Optional[_builtins.str] = None,
                                         service: Optional[_builtins.str] = None,
-                                        sessions: Optional[Sequence[Union['GetManagedDatabaseMysqlSessionsSessionArgs', 'GetManagedDatabaseMysqlSessionsSessionArgsDict']]] = None,
+                                        sessions: Optional[Sequence[Union['GetManagedDatabaseMysqlSessionsSessionArgs', 'GetManagedDatabaseMysqlSessionsSessionArgsDict', 'outputs.GetManagedDatabaseMysqlSessionsSessionResult']]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetManagedDatabaseMysqlSessionsResult:
     """
     Current sessions of a MySQL managed database
@@ -138,11 +138,11 @@ def get_managed_database_mysql_sessions(limit: Optional[_builtins.int] = None,
         order=pulumi.get(__ret__, 'order'),
         service=pulumi.get(__ret__, 'service'),
         sessions=pulumi.get(__ret__, 'sessions'))
-def get_managed_database_mysql_sessions_output(limit: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                                               offset: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                                               order: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                               service: Optional[pulumi.Input[_builtins.str]] = None,
-                                               sessions: Optional[pulumi.Input[Optional[Sequence[Union['GetManagedDatabaseMysqlSessionsSessionArgs', 'GetManagedDatabaseMysqlSessionsSessionArgsDict']]]]] = None,
+def get_managed_database_mysql_sessions_output(limit: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                                               offset: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                                               order: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                               service: pulumi.Input[Optional[_builtins.str]] = None,
+                                               sessions: pulumi.Input[Optional[Optional[Sequence[Union['GetManagedDatabaseMysqlSessionsSessionArgs', 'GetManagedDatabaseMysqlSessionsSessionArgsDict', 'outputs.GetManagedDatabaseMysqlSessionsSessionResult']]]]] = None,
                                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetManagedDatabaseMysqlSessionsResult]:
     """
     Current sessions of a MySQL managed database

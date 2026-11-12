@@ -317,6 +317,12 @@ func (ManagedDatabaseMysqlState) ElementType() reflect.Type {
 	return reflect.TypeOf((*managedDatabaseMysqlState)(nil)).Elem()
 }
 
+// ManagedDatabaseMysqlExists checks whether an existing ManagedDatabaseMysql resource with the given ID exists.
+func ManagedDatabaseMysqlExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ManagedDatabaseMysqlState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/managedDatabaseMysql:ManagedDatabaseMysql", id, state, "", opts...)
+}
+
 type managedDatabaseMysqlArgs struct {
 	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
 	//

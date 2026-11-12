@@ -129,12 +129,8 @@ type LookupStorageResult struct {
 }
 
 func LookupStorageOutput(ctx *pulumi.Context, args LookupStorageOutputArgs, opts ...pulumi.InvokeOption) LookupStorageResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupStorageResultOutput, error) {
-			args := v.(LookupStorageArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("upcloud:index/getStorage:getStorage", args, LookupStorageResultOutput{}, options).(LookupStorageResultOutput), nil
-		}).(LookupStorageResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("upcloud:index/getStorage:getStorage", args, LookupStorageResultOutput{}, options).(LookupStorageResultOutput)
 }
 
 // A collection of arguments for invoking getStorage.

@@ -48,6 +48,17 @@ export class ManagedObjectStorageCustomDomain extends pulumi.CustomResource {
         return new ManagedObjectStorageCustomDomain(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ManagedObjectStorageCustomDomain resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ManagedObjectStorageCustomDomainState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/managedObjectStorageCustomDomain:ManagedObjectStorageCustomDomain", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/managedObjectStorageCustomDomain:ManagedObjectStorageCustomDomain';
 
@@ -121,19 +132,19 @@ export interface ManagedObjectStorageCustomDomainState {
     /**
      * Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
      */
-    domainName?: pulumi.Input<string>;
+    domainName?: pulumi.Input<string | undefined>;
     /**
      * Routing mode for the domain. Defaults to `api`.
      */
-    mode?: pulumi.Input<string>;
+    mode?: pulumi.Input<string | undefined>;
     /**
      * Managed Object Storage service UUID.
      */
-    serviceUuid?: pulumi.Input<string>;
+    serviceUuid?: pulumi.Input<string | undefined>;
     /**
      * At the moment only `public` is accepted.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -147,7 +158,7 @@ export interface ManagedObjectStorageCustomDomainArgs {
     /**
      * Routing mode for the domain. Defaults to `api`.
      */
-    mode?: pulumi.Input<string>;
+    mode?: pulumi.Input<string | undefined>;
     /**
      * Managed Object Storage service UUID.
      */
@@ -155,5 +166,5 @@ export interface ManagedObjectStorageCustomDomainArgs {
     /**
      * At the moment only `public` is accepted.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

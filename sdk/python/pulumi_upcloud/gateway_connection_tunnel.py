@@ -25,10 +25,11 @@ class GatewayConnectionTunnelArgs:
                  ipsec_auth_psk: pulumi.Input['GatewayConnectionTunnelIpsecAuthPskArgs'],
                  local_address_name: pulumi.Input[_builtins.str],
                  remote_address: pulumi.Input[_builtins.str],
-                 ipsec_properties: Optional[pulumi.Input['GatewayConnectionTunnelIpsecPropertiesArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 ipsec_properties: pulumi.Input[Optional['GatewayConnectionTunnelIpsecPropertiesArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GatewayConnectionTunnel resource.
+
         :param pulumi.Input[_builtins.str] connection_id: ID of the GatewayConnection resource to which the tunnel belongs
         :param pulumi.Input['GatewayConnectionTunnelIpsecAuthPskArgs'] ipsec_auth_psk: Configuration for authenticating with pre-shared key
         :param pulumi.Input[_builtins.str] local_address_name: Public (UpCloud) endpoint address of this tunnel
@@ -95,42 +96,43 @@ class GatewayConnectionTunnelArgs:
 
     @_builtins.property
     @pulumi.getter(name="ipsecProperties")
-    def ipsec_properties(self) -> Optional[pulumi.Input['GatewayConnectionTunnelIpsecPropertiesArgs']]:
+    def ipsec_properties(self) -> pulumi.Input[Optional['GatewayConnectionTunnelIpsecPropertiesArgs']]:
         """
         IPsec configuration for the tunnel
         """
         return pulumi.get(self, "ipsec_properties")
 
     @ipsec_properties.setter
-    def ipsec_properties(self, value: Optional[pulumi.Input['GatewayConnectionTunnelIpsecPropertiesArgs']]):
+    def ipsec_properties(self, value: pulumi.Input[Optional['GatewayConnectionTunnelIpsecPropertiesArgs']]):
         pulumi.set(self, "ipsec_properties", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the tunnel, should be unique within the connection
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _GatewayConnectionTunnelState:
     def __init__(__self__, *,
-                 connection_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipsec_auth_psk: Optional[pulumi.Input['GatewayConnectionTunnelIpsecAuthPskArgs']] = None,
-                 ipsec_properties: Optional[pulumi.Input['GatewayConnectionTunnelIpsecPropertiesArgs']] = None,
-                 local_address_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 operational_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 uuid: Optional[pulumi.Input[_builtins.str]] = None):
+                 connection_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipsec_auth_psk: pulumi.Input[Optional['GatewayConnectionTunnelIpsecAuthPskArgs']] = None,
+                 ipsec_properties: pulumi.Input[Optional['GatewayConnectionTunnelIpsecPropertiesArgs']] = None,
+                 local_address_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 operational_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 uuid: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GatewayConnectionTunnel resources.
+
         :param pulumi.Input[_builtins.str] connection_id: ID of the GatewayConnection resource to which the tunnel belongs
         :param pulumi.Input['GatewayConnectionTunnelIpsecAuthPskArgs'] ipsec_auth_psk: Configuration for authenticating with pre-shared key
         :param pulumi.Input['GatewayConnectionTunnelIpsecPropertiesArgs'] ipsec_properties: IPsec configuration for the tunnel
@@ -159,98 +161,98 @@ class _GatewayConnectionTunnelState:
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the GatewayConnection resource to which the tunnel belongs
         """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
-    def connection_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="ipsecAuthPsk")
-    def ipsec_auth_psk(self) -> Optional[pulumi.Input['GatewayConnectionTunnelIpsecAuthPskArgs']]:
+    def ipsec_auth_psk(self) -> pulumi.Input[Optional['GatewayConnectionTunnelIpsecAuthPskArgs']]:
         """
         Configuration for authenticating with pre-shared key
         """
         return pulumi.get(self, "ipsec_auth_psk")
 
     @ipsec_auth_psk.setter
-    def ipsec_auth_psk(self, value: Optional[pulumi.Input['GatewayConnectionTunnelIpsecAuthPskArgs']]):
+    def ipsec_auth_psk(self, value: pulumi.Input[Optional['GatewayConnectionTunnelIpsecAuthPskArgs']]):
         pulumi.set(self, "ipsec_auth_psk", value)
 
     @_builtins.property
     @pulumi.getter(name="ipsecProperties")
-    def ipsec_properties(self) -> Optional[pulumi.Input['GatewayConnectionTunnelIpsecPropertiesArgs']]:
+    def ipsec_properties(self) -> pulumi.Input[Optional['GatewayConnectionTunnelIpsecPropertiesArgs']]:
         """
         IPsec configuration for the tunnel
         """
         return pulumi.get(self, "ipsec_properties")
 
     @ipsec_properties.setter
-    def ipsec_properties(self, value: Optional[pulumi.Input['GatewayConnectionTunnelIpsecPropertiesArgs']]):
+    def ipsec_properties(self, value: pulumi.Input[Optional['GatewayConnectionTunnelIpsecPropertiesArgs']]):
         pulumi.set(self, "ipsec_properties", value)
 
     @_builtins.property
     @pulumi.getter(name="localAddressName")
-    def local_address_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def local_address_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Public (UpCloud) endpoint address of this tunnel
         """
         return pulumi.get(self, "local_address_name")
 
     @local_address_name.setter
-    def local_address_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def local_address_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "local_address_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the tunnel, should be unique within the connection
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="operationalState")
-    def operational_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def operational_state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Tunnel's current operational, effective state
         """
         return pulumi.get(self, "operational_state")
 
     @operational_state.setter
-    def operational_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def operational_state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "operational_state", value)
 
     @_builtins.property
     @pulumi.getter(name="remoteAddress")
-    def remote_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def remote_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Remote public IP address of the tunnel
         """
         return pulumi.get(self, "remote_address")
 
     @remote_address.setter
-    def remote_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def remote_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "remote_address", value)
 
     @_builtins.property
     @pulumi.getter
-    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def uuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The UUID of the tunnel
         """
         return pulumi.get(self, "uuid")
 
     @uuid.setter
-    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def uuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "uuid", value)
 
 
@@ -260,12 +262,12 @@ class GatewayConnectionTunnel(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipsec_auth_psk: Optional[pulumi.Input[Union['GatewayConnectionTunnelIpsecAuthPskArgs', 'GatewayConnectionTunnelIpsecAuthPskArgsDict']]] = None,
-                 ipsec_properties: Optional[pulumi.Input[Union['GatewayConnectionTunnelIpsecPropertiesArgs', 'GatewayConnectionTunnelIpsecPropertiesArgsDict']]] = None,
-                 local_address_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_address: Optional[pulumi.Input[_builtins.str]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipsec_auth_psk: pulumi.Input[Optional[Union['GatewayConnectionTunnelIpsecAuthPskArgs', 'GatewayConnectionTunnelIpsecAuthPskArgsDict', 'outputs.GatewayConnectionTunnelIpsecAuthPsk']]] = None,
+                 ipsec_properties: pulumi.Input[Optional[Union['GatewayConnectionTunnelIpsecPropertiesArgs', 'GatewayConnectionTunnelIpsecPropertiesArgsDict', 'outputs.GatewayConnectionTunnelIpsecProperties']]] = None,
+                 local_address_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_address: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -317,11 +319,12 @@ class GatewayConnectionTunnel(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] connection_id: ID of the GatewayConnection resource to which the tunnel belongs
-        :param pulumi.Input[Union['GatewayConnectionTunnelIpsecAuthPskArgs', 'GatewayConnectionTunnelIpsecAuthPskArgsDict']] ipsec_auth_psk: Configuration for authenticating with pre-shared key
-        :param pulumi.Input[Union['GatewayConnectionTunnelIpsecPropertiesArgs', 'GatewayConnectionTunnelIpsecPropertiesArgsDict']] ipsec_properties: IPsec configuration for the tunnel
+        :param pulumi.Input[Union['GatewayConnectionTunnelIpsecAuthPskArgs', 'GatewayConnectionTunnelIpsecAuthPskArgsDict', 'outputs.GatewayConnectionTunnelIpsecAuthPsk']] ipsec_auth_psk: Configuration for authenticating with pre-shared key
+        :param pulumi.Input[Union['GatewayConnectionTunnelIpsecPropertiesArgs', 'GatewayConnectionTunnelIpsecPropertiesArgsDict', 'outputs.GatewayConnectionTunnelIpsecProperties']] ipsec_properties: IPsec configuration for the tunnel
         :param pulumi.Input[_builtins.str] local_address_name: Public (UpCloud) endpoint address of this tunnel
         :param pulumi.Input[_builtins.str] name: The name of the tunnel, should be unique within the connection
         :param pulumi.Input[_builtins.str] remote_address: Remote public IP address of the tunnel
@@ -382,6 +385,7 @@ class GatewayConnectionTunnel(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param GatewayConnectionTunnelArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -397,12 +401,12 @@ class GatewayConnectionTunnel(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipsec_auth_psk: Optional[pulumi.Input[Union['GatewayConnectionTunnelIpsecAuthPskArgs', 'GatewayConnectionTunnelIpsecAuthPskArgsDict']]] = None,
-                 ipsec_properties: Optional[pulumi.Input[Union['GatewayConnectionTunnelIpsecPropertiesArgs', 'GatewayConnectionTunnelIpsecPropertiesArgsDict']]] = None,
-                 local_address_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_address: Optional[pulumi.Input[_builtins.str]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipsec_auth_psk: pulumi.Input[Optional[Union['GatewayConnectionTunnelIpsecAuthPskArgs', 'GatewayConnectionTunnelIpsecAuthPskArgsDict', 'outputs.GatewayConnectionTunnelIpsecAuthPsk']]] = None,
+                 ipsec_properties: pulumi.Input[Optional[Union['GatewayConnectionTunnelIpsecPropertiesArgs', 'GatewayConnectionTunnelIpsecPropertiesArgsDict', 'outputs.GatewayConnectionTunnelIpsecProperties']]] = None,
+                 local_address_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_address: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -438,14 +442,14 @@ class GatewayConnectionTunnel(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connection_id: Optional[pulumi.Input[_builtins.str]] = None,
-            ipsec_auth_psk: Optional[pulumi.Input[Union['GatewayConnectionTunnelIpsecAuthPskArgs', 'GatewayConnectionTunnelIpsecAuthPskArgsDict']]] = None,
-            ipsec_properties: Optional[pulumi.Input[Union['GatewayConnectionTunnelIpsecPropertiesArgs', 'GatewayConnectionTunnelIpsecPropertiesArgsDict']]] = None,
-            local_address_name: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            operational_state: Optional[pulumi.Input[_builtins.str]] = None,
-            remote_address: Optional[pulumi.Input[_builtins.str]] = None,
-            uuid: Optional[pulumi.Input[_builtins.str]] = None) -> 'GatewayConnectionTunnel':
+            connection_id: pulumi.Input[Optional[_builtins.str]] = None,
+            ipsec_auth_psk: pulumi.Input[Optional[Union['GatewayConnectionTunnelIpsecAuthPskArgs', 'GatewayConnectionTunnelIpsecAuthPskArgsDict', 'outputs.GatewayConnectionTunnelIpsecAuthPsk']]] = None,
+            ipsec_properties: pulumi.Input[Optional[Union['GatewayConnectionTunnelIpsecPropertiesArgs', 'GatewayConnectionTunnelIpsecPropertiesArgsDict', 'outputs.GatewayConnectionTunnelIpsecProperties']]] = None,
+            local_address_name: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            operational_state: pulumi.Input[Optional[_builtins.str]] = None,
+            remote_address: pulumi.Input[Optional[_builtins.str]] = None,
+            uuid: pulumi.Input[Optional[_builtins.str]] = None) -> 'GatewayConnectionTunnel':
         """
         Get an existing GatewayConnectionTunnel resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -454,8 +458,8 @@ class GatewayConnectionTunnel(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] connection_id: ID of the GatewayConnection resource to which the tunnel belongs
-        :param pulumi.Input[Union['GatewayConnectionTunnelIpsecAuthPskArgs', 'GatewayConnectionTunnelIpsecAuthPskArgsDict']] ipsec_auth_psk: Configuration for authenticating with pre-shared key
-        :param pulumi.Input[Union['GatewayConnectionTunnelIpsecPropertiesArgs', 'GatewayConnectionTunnelIpsecPropertiesArgsDict']] ipsec_properties: IPsec configuration for the tunnel
+        :param pulumi.Input[Union['GatewayConnectionTunnelIpsecAuthPskArgs', 'GatewayConnectionTunnelIpsecAuthPskArgsDict', 'outputs.GatewayConnectionTunnelIpsecAuthPsk']] ipsec_auth_psk: Configuration for authenticating with pre-shared key
+        :param pulumi.Input[Union['GatewayConnectionTunnelIpsecPropertiesArgs', 'GatewayConnectionTunnelIpsecPropertiesArgsDict', 'outputs.GatewayConnectionTunnelIpsecProperties']] ipsec_properties: IPsec configuration for the tunnel
         :param pulumi.Input[_builtins.str] local_address_name: Public (UpCloud) endpoint address of this tunnel
         :param pulumi.Input[_builtins.str] name: The name of the tunnel, should be unique within the connection
         :param pulumi.Input[_builtins.str] operational_state: Tunnel's current operational, effective state
@@ -475,6 +479,28 @@ class GatewayConnectionTunnel(pulumi.CustomResource):
         __props__.__dict__["remote_address"] = remote_address
         __props__.__dict__["uuid"] = uuid
         return GatewayConnectionTunnel(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            connection_id: pulumi.Input[Optional[_builtins.str]] = None,
+            ipsec_auth_psk: pulumi.Input[Optional[Union['GatewayConnectionTunnelIpsecAuthPskArgs', 'GatewayConnectionTunnelIpsecAuthPskArgsDict', 'outputs.GatewayConnectionTunnelIpsecAuthPsk']]] = None,
+            ipsec_properties: pulumi.Input[Optional[Union['GatewayConnectionTunnelIpsecPropertiesArgs', 'GatewayConnectionTunnelIpsecPropertiesArgsDict', 'outputs.GatewayConnectionTunnelIpsecProperties']]] = None,
+            local_address_name: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            operational_state: pulumi.Input[Optional[_builtins.str]] = None,
+            remote_address: pulumi.Input[Optional[_builtins.str]] = None,
+            uuid: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["connectionId"] = connection_id
+        __props__["ipsecAuthPsk"] = ipsec_auth_psk
+        __props__["ipsecProperties"] = ipsec_properties
+        __props__["localAddressName"] = local_address_name
+        __props__["name"] = name
+        __props__["operationalState"] = operational_state
+        __props__["remoteAddress"] = remote_address
+        __props__["uuid"] = uuid
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/gatewayConnectionTunnel:GatewayConnectionTunnel', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="connectionId")

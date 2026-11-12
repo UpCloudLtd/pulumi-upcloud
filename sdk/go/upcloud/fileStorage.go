@@ -181,6 +181,12 @@ func (FileStorageState) ElementType() reflect.Type {
 	return reflect.TypeOf((*fileStorageState)(nil)).Elem()
 }
 
+// FileStorageExists checks whether an existing FileStorage resource with the given ID exists.
+func FileStorageExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FileStorageState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/fileStorage:FileStorage", id, state, "", opts...)
+}
+
 type fileStorageArgs struct {
 	// The service configured status indicates the service's current intended status. Managed by the customer.
 	ConfiguredStatus string `pulumi:"configuredStatus"`

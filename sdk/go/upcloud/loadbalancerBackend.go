@@ -148,6 +148,12 @@ func (LoadbalancerBackendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerBackendState)(nil)).Elem()
 }
 
+// LoadbalancerBackendExists checks whether an existing LoadbalancerBackend resource with the given ID exists.
+func LoadbalancerBackendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerBackendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/loadbalancerBackend:LoadbalancerBackend", id, state, "", opts...)
+}
+
 type loadbalancerBackendArgs struct {
 	// UUID of the load balancer to which the backend is connected.
 	Loadbalancer string `pulumi:"loadbalancer"`

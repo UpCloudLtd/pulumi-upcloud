@@ -171,6 +171,12 @@ func (ServerGroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serverGroupState)(nil)).Elem()
 }
 
+// ServerGroupExists checks whether an existing ServerGroup resource with the given ID exists.
+func ServerGroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServerGroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/serverGroup:ServerGroup", id, state, "", opts...)
+}
+
 type serverGroupArgs struct {
 	// Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
 	// 	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.

@@ -24,20 +24,21 @@ class KubernetesNodeGroupArgs:
                  cluster: pulumi.Input[_builtins.str],
                  node_count: pulumi.Input[_builtins.int],
                  plan: pulumi.Input[_builtins.str],
-                 anti_affinity: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cloud_native_plan: Optional[pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs']] = None,
-                 custom_plan: Optional[pulumi.Input['KubernetesNodeGroupCustomPlanArgs']] = None,
-                 gpu_plan: Optional[pulumi.Input['KubernetesNodeGroupGpuPlanArgs']] = None,
-                 kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 storage_encryption: Optional[pulumi.Input[_builtins.str]] = None,
-                 taints: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]]] = None,
-                 utility_network_access: Optional[pulumi.Input[_builtins.bool]] = None):
+                 anti_affinity: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cloud_native_plan: pulumi.Input[Optional['KubernetesNodeGroupCloudNativePlanArgs']] = None,
+                 custom_plan: pulumi.Input[Optional['KubernetesNodeGroupCustomPlanArgs']] = None,
+                 gpu_plan: pulumi.Input[Optional['KubernetesNodeGroupGpuPlanArgs']] = None,
+                 kubelet_args: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 storage_encryption: pulumi.Input[Optional[_builtins.str]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]]] = None,
+                 utility_network_access: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a KubernetesNodeGroup resource.
+
         :param pulumi.Input[_builtins.str] cluster: UUID of the cluster.
         :param pulumi.Input[_builtins.int] node_count: Amount of nodes to provision in the node group.
         :param pulumi.Input[_builtins.str] plan: The server plan used for the node group. You can list available plans with `upctl server plans`
@@ -122,55 +123,55 @@ class KubernetesNodeGroupArgs:
 
     @_builtins.property
     @pulumi.getter(name="antiAffinity")
-    def anti_affinity(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def anti_affinity(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
         """
         return pulumi.get(self, "anti_affinity")
 
     @anti_affinity.setter
-    def anti_affinity(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def anti_affinity(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "anti_affinity", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudNativePlan")
-    def cloud_native_plan(self) -> Optional[pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs']]:
+    def cloud_native_plan(self) -> pulumi.Input[Optional['KubernetesNodeGroupCloudNativePlanArgs']]:
         """
         Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
         """
         return pulumi.get(self, "cloud_native_plan")
 
     @cloud_native_plan.setter
-    def cloud_native_plan(self, value: Optional[pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs']]):
+    def cloud_native_plan(self, value: pulumi.Input[Optional['KubernetesNodeGroupCloudNativePlanArgs']]):
         pulumi.set(self, "cloud_native_plan", value)
 
     @_builtins.property
     @pulumi.getter(name="customPlan")
-    def custom_plan(self) -> Optional[pulumi.Input['KubernetesNodeGroupCustomPlanArgs']]:
+    def custom_plan(self) -> pulumi.Input[Optional['KubernetesNodeGroupCustomPlanArgs']]:
         """
         Resource properties for custom plan. This block is required for `custom` plans only.
         """
         return pulumi.get(self, "custom_plan")
 
     @custom_plan.setter
-    def custom_plan(self, value: Optional[pulumi.Input['KubernetesNodeGroupCustomPlanArgs']]):
+    def custom_plan(self, value: pulumi.Input[Optional['KubernetesNodeGroupCustomPlanArgs']]):
         pulumi.set(self, "custom_plan", value)
 
     @_builtins.property
     @pulumi.getter(name="gpuPlan")
-    def gpu_plan(self) -> Optional[pulumi.Input['KubernetesNodeGroupGpuPlanArgs']]:
+    def gpu_plan(self) -> pulumi.Input[Optional['KubernetesNodeGroupGpuPlanArgs']]:
         """
         Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
         """
         return pulumi.get(self, "gpu_plan")
 
     @gpu_plan.setter
-    def gpu_plan(self, value: Optional[pulumi.Input['KubernetesNodeGroupGpuPlanArgs']]):
+    def gpu_plan(self, value: pulumi.Input[Optional['KubernetesNodeGroupGpuPlanArgs']]):
         pulumi.set(self, "gpu_plan", value)
 
     @_builtins.property
     @pulumi.getter(name="kubeletArgs")
-    def kubelet_args(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]]:
+    def kubelet_args(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]]:
         """
         Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
 
@@ -179,114 +180,115 @@ class KubernetesNodeGroupArgs:
         return pulumi.get(self, "kubelet_args")
 
     @kubelet_args.setter
-    def kubelet_args(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]]):
+    def kubelet_args(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]]):
         pulumi.set(self, "kubelet_args", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the node_group.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the node group. Needs to be unique within a cluster. Either `name` or `name_prefix` must be specified.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="namePrefix")
-    def name_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `create_before_destroy` lifecycle setting. Conflicts with `name`.
         """
         return pulumi.get(self, "name_prefix")
 
     @name_prefix.setter
-    def name_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="sshKeys")
-    def ssh_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ssh_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
         """
         return pulumi.get(self, "ssh_keys")
 
     @ssh_keys.setter
-    def ssh_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ssh_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ssh_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="storageEncryption")
-    def storage_encryption(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def storage_encryption(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
         """
         return pulumi.get(self, "storage_encryption")
 
     @storage_encryption.setter
-    def storage_encryption(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def storage_encryption(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "storage_encryption", value)
 
     @_builtins.property
     @pulumi.getter
-    def taints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]]]:
+    def taints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]]]:
         """
         Taints for the nodes in this group.
         """
         return pulumi.get(self, "taints")
 
     @taints.setter
-    def taints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]]]):
+    def taints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]]]):
         pulumi.set(self, "taints", value)
 
     @_builtins.property
     @pulumi.getter(name="utilityNetworkAccess")
-    def utility_network_access(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def utility_network_access(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to false, nodes in this group will not have access to utility network.
         """
         return pulumi.get(self, "utility_network_access")
 
     @utility_network_access.setter
-    def utility_network_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def utility_network_access(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "utility_network_access", value)
 
 
 @pulumi.input_type
 class _KubernetesNodeGroupState:
     def __init__(__self__, *,
-                 anti_affinity: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cloud_native_plan: Optional[pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs']] = None,
-                 cluster: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_plan: Optional[pulumi.Input['KubernetesNodeGroupCustomPlanArgs']] = None,
-                 gpu_plan: Optional[pulumi.Input['KubernetesNodeGroupGpuPlanArgs']] = None,
-                 kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 storage_encryption: Optional[pulumi.Input[_builtins.str]] = None,
-                 taints: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]]] = None,
-                 utility_network_access: Optional[pulumi.Input[_builtins.bool]] = None):
+                 anti_affinity: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cloud_native_plan: pulumi.Input[Optional['KubernetesNodeGroupCloudNativePlanArgs']] = None,
+                 cluster: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_plan: pulumi.Input[Optional['KubernetesNodeGroupCustomPlanArgs']] = None,
+                 gpu_plan: pulumi.Input[Optional['KubernetesNodeGroupGpuPlanArgs']] = None,
+                 kubelet_args: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 storage_encryption: pulumi.Input[Optional[_builtins.str]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]]] = None,
+                 utility_network_access: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering KubernetesNodeGroup resources.
+
         :param pulumi.Input[_builtins.bool] anti_affinity: If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
         :param pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs'] cloud_native_plan: Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
         :param pulumi.Input[_builtins.str] cluster: UUID of the cluster.
@@ -338,67 +340,67 @@ class _KubernetesNodeGroupState:
 
     @_builtins.property
     @pulumi.getter(name="antiAffinity")
-    def anti_affinity(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def anti_affinity(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
         """
         return pulumi.get(self, "anti_affinity")
 
     @anti_affinity.setter
-    def anti_affinity(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def anti_affinity(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "anti_affinity", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudNativePlan")
-    def cloud_native_plan(self) -> Optional[pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs']]:
+    def cloud_native_plan(self) -> pulumi.Input[Optional['KubernetesNodeGroupCloudNativePlanArgs']]:
         """
         Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
         """
         return pulumi.get(self, "cloud_native_plan")
 
     @cloud_native_plan.setter
-    def cloud_native_plan(self, value: Optional[pulumi.Input['KubernetesNodeGroupCloudNativePlanArgs']]):
+    def cloud_native_plan(self, value: pulumi.Input[Optional['KubernetesNodeGroupCloudNativePlanArgs']]):
         pulumi.set(self, "cloud_native_plan", value)
 
     @_builtins.property
     @pulumi.getter
-    def cluster(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UUID of the cluster.
         """
         return pulumi.get(self, "cluster")
 
     @cluster.setter
-    def cluster(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster", value)
 
     @_builtins.property
     @pulumi.getter(name="customPlan")
-    def custom_plan(self) -> Optional[pulumi.Input['KubernetesNodeGroupCustomPlanArgs']]:
+    def custom_plan(self) -> pulumi.Input[Optional['KubernetesNodeGroupCustomPlanArgs']]:
         """
         Resource properties for custom plan. This block is required for `custom` plans only.
         """
         return pulumi.get(self, "custom_plan")
 
     @custom_plan.setter
-    def custom_plan(self, value: Optional[pulumi.Input['KubernetesNodeGroupCustomPlanArgs']]):
+    def custom_plan(self, value: pulumi.Input[Optional['KubernetesNodeGroupCustomPlanArgs']]):
         pulumi.set(self, "custom_plan", value)
 
     @_builtins.property
     @pulumi.getter(name="gpuPlan")
-    def gpu_plan(self) -> Optional[pulumi.Input['KubernetesNodeGroupGpuPlanArgs']]:
+    def gpu_plan(self) -> pulumi.Input[Optional['KubernetesNodeGroupGpuPlanArgs']]:
         """
         Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
         """
         return pulumi.get(self, "gpu_plan")
 
     @gpu_plan.setter
-    def gpu_plan(self, value: Optional[pulumi.Input['KubernetesNodeGroupGpuPlanArgs']]):
+    def gpu_plan(self, value: pulumi.Input[Optional['KubernetesNodeGroupGpuPlanArgs']]):
         pulumi.set(self, "gpu_plan", value)
 
     @_builtins.property
     @pulumi.getter(name="kubeletArgs")
-    def kubelet_args(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]]:
+    def kubelet_args(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]]:
         """
         Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
 
@@ -407,115 +409,115 @@ class _KubernetesNodeGroupState:
         return pulumi.get(self, "kubelet_args")
 
     @kubelet_args.setter
-    def kubelet_args(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]]):
+    def kubelet_args(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodeGroupKubeletArgArgs']]]]):
         pulumi.set(self, "kubelet_args", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the node_group.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the node group. Needs to be unique within a cluster. Either `name` or `name_prefix` must be specified.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="namePrefix")
-    def name_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `create_before_destroy` lifecycle setting. Conflicts with `name`.
         """
         return pulumi.get(self, "name_prefix")
 
     @name_prefix.setter
-    def name_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def node_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Amount of nodes to provision in the node group.
         """
         return pulumi.get(self, "node_count")
 
     @node_count.setter
-    def node_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def node_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "node_count", value)
 
     @_builtins.property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The server plan used for the node group. You can list available plans with `upctl server plans`
         """
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter(name="sshKeys")
-    def ssh_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ssh_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
         """
         return pulumi.get(self, "ssh_keys")
 
     @ssh_keys.setter
-    def ssh_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ssh_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ssh_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="storageEncryption")
-    def storage_encryption(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def storage_encryption(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
         """
         return pulumi.get(self, "storage_encryption")
 
     @storage_encryption.setter
-    def storage_encryption(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def storage_encryption(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "storage_encryption", value)
 
     @_builtins.property
     @pulumi.getter
-    def taints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]]]:
+    def taints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]]]:
         """
         Taints for the nodes in this group.
         """
         return pulumi.get(self, "taints")
 
     @taints.setter
-    def taints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]]]):
+    def taints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodeGroupTaintArgs']]]]):
         pulumi.set(self, "taints", value)
 
     @_builtins.property
     @pulumi.getter(name="utilityNetworkAccess")
-    def utility_network_access(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def utility_network_access(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to false, nodes in this group will not have access to utility network.
         """
         return pulumi.get(self, "utility_network_access")
 
     @utility_network_access.setter
-    def utility_network_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def utility_network_access(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "utility_network_access", value)
 
 
@@ -525,21 +527,21 @@ class KubernetesNodeGroup(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 anti_affinity: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cloud_native_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict']]] = None,
-                 cluster: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']]] = None,
-                 gpu_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict']]] = None,
-                 kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 storage_encryption: Optional[pulumi.Input[_builtins.str]] = None,
-                 taints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict']]]]] = None,
-                 utility_network_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 anti_affinity: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cloud_native_plan: pulumi.Input[Optional[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict', 'outputs.KubernetesNodeGroupCloudNativePlan']]] = None,
+                 cluster: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_plan: pulumi.Input[Optional[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict', 'outputs.KubernetesNodeGroupCustomPlan']]] = None,
+                 gpu_plan: pulumi.Input[Optional[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict', 'outputs.KubernetesNodeGroupGpuPlan']]] = None,
+                 kubelet_args: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict', 'outputs.KubernetesNodeGroupKubeletArg']]]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 storage_encryption: pulumi.Input[Optional[_builtins.str]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict', 'outputs.KubernetesNodeGroupTaint']]]]] = None,
+                 utility_network_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         This resource represents a node group in a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster. The node groups are used to define the worker nodes of the cluster.
@@ -604,14 +606,15 @@ class KubernetesNodeGroup(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] anti_affinity: If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
-        :param pulumi.Input[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict']] cloud_native_plan: Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+        :param pulumi.Input[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict', 'outputs.KubernetesNodeGroupCloudNativePlan']] cloud_native_plan: Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
         :param pulumi.Input[_builtins.str] cluster: UUID of the cluster.
-        :param pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']] custom_plan: Resource properties for custom plan. This block is required for `custom` plans only.
-        :param pulumi.Input[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict']] gpu_plan: Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]] kubelet_args: Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
+        :param pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict', 'outputs.KubernetesNodeGroupCustomPlan']] custom_plan: Resource properties for custom plan. This block is required for `custom` plans only.
+        :param pulumi.Input[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict', 'outputs.KubernetesNodeGroupGpuPlan']] gpu_plan: Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict', 'outputs.KubernetesNodeGroupKubeletArg']]]] kubelet_args: Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
                
                    Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the node_group.
@@ -621,7 +624,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] plan: The server plan used for the node group. You can list available plans with `upctl server plans`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
         :param pulumi.Input[_builtins.str] storage_encryption: The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict']]]] taints: Taints for the nodes in this group.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict', 'outputs.KubernetesNodeGroupTaint']]]] taints: Taints for the nodes in this group.
         :param pulumi.Input[_builtins.bool] utility_network_access: If set to false, nodes in this group will not have access to utility network.
         """
         ...
@@ -693,6 +696,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param KubernetesNodeGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -708,21 +712,21 @@ class KubernetesNodeGroup(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 anti_affinity: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cloud_native_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict']]] = None,
-                 cluster: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']]] = None,
-                 gpu_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict']]] = None,
-                 kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 storage_encryption: Optional[pulumi.Input[_builtins.str]] = None,
-                 taints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict']]]]] = None,
-                 utility_network_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 anti_affinity: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cloud_native_plan: pulumi.Input[Optional[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict', 'outputs.KubernetesNodeGroupCloudNativePlan']]] = None,
+                 cluster: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_plan: pulumi.Input[Optional[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict', 'outputs.KubernetesNodeGroupCustomPlan']]] = None,
+                 gpu_plan: pulumi.Input[Optional[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict', 'outputs.KubernetesNodeGroupGpuPlan']]] = None,
+                 kubelet_args: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict', 'outputs.KubernetesNodeGroupKubeletArg']]]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 storage_encryption: pulumi.Input[Optional[_builtins.str]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict', 'outputs.KubernetesNodeGroupTaint']]]]] = None,
+                 utility_network_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -763,21 +767,21 @@ class KubernetesNodeGroup(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            anti_affinity: Optional[pulumi.Input[_builtins.bool]] = None,
-            cloud_native_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict']]] = None,
-            cluster: Optional[pulumi.Input[_builtins.str]] = None,
-            custom_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']]] = None,
-            gpu_plan: Optional[pulumi.Input[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict']]] = None,
-            kubelet_args: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]]] = None,
-            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-            node_count: Optional[pulumi.Input[_builtins.int]] = None,
-            plan: Optional[pulumi.Input[_builtins.str]] = None,
-            ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            storage_encryption: Optional[pulumi.Input[_builtins.str]] = None,
-            taints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict']]]]] = None,
-            utility_network_access: Optional[pulumi.Input[_builtins.bool]] = None) -> 'KubernetesNodeGroup':
+            anti_affinity: pulumi.Input[Optional[_builtins.bool]] = None,
+            cloud_native_plan: pulumi.Input[Optional[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict', 'outputs.KubernetesNodeGroupCloudNativePlan']]] = None,
+            cluster: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_plan: pulumi.Input[Optional[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict', 'outputs.KubernetesNodeGroupCustomPlan']]] = None,
+            gpu_plan: pulumi.Input[Optional[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict', 'outputs.KubernetesNodeGroupGpuPlan']]] = None,
+            kubelet_args: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict', 'outputs.KubernetesNodeGroupKubeletArg']]]]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            node_count: pulumi.Input[Optional[_builtins.int]] = None,
+            plan: pulumi.Input[Optional[_builtins.str]] = None,
+            ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            storage_encryption: pulumi.Input[Optional[_builtins.str]] = None,
+            taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict', 'outputs.KubernetesNodeGroupTaint']]]]] = None,
+            utility_network_access: pulumi.Input[Optional[_builtins.bool]] = None) -> 'KubernetesNodeGroup':
         """
         Get an existing KubernetesNodeGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -786,11 +790,11 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] anti_affinity: If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
-        :param pulumi.Input[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict']] cloud_native_plan: Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
+        :param pulumi.Input[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict', 'outputs.KubernetesNodeGroupCloudNativePlan']] cloud_native_plan: Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
         :param pulumi.Input[_builtins.str] cluster: UUID of the cluster.
-        :param pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict']] custom_plan: Resource properties for custom plan. This block is required for `custom` plans only.
-        :param pulumi.Input[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict']] gpu_plan: Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict']]]] kubelet_args: Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
+        :param pulumi.Input[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict', 'outputs.KubernetesNodeGroupCustomPlan']] custom_plan: Resource properties for custom plan. This block is required for `custom` plans only.
+        :param pulumi.Input[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict', 'outputs.KubernetesNodeGroupGpuPlan']] gpu_plan: Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict', 'outputs.KubernetesNodeGroupKubeletArg']]]] kubelet_args: Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
                
                    Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the node_group.
@@ -800,7 +804,7 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] plan: The server plan used for the node group. You can list available plans with `upctl server plans`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
         :param pulumi.Input[_builtins.str] storage_encryption: The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict']]]] taints: Taints for the nodes in this group.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict', 'outputs.KubernetesNodeGroupTaint']]]] taints: Taints for the nodes in this group.
         :param pulumi.Input[_builtins.bool] utility_network_access: If set to false, nodes in this group will not have access to utility network.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -823,6 +827,42 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         __props__.__dict__["taints"] = taints
         __props__.__dict__["utility_network_access"] = utility_network_access
         return KubernetesNodeGroup(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            anti_affinity: pulumi.Input[Optional[_builtins.bool]] = None,
+            cloud_native_plan: pulumi.Input[Optional[Union['KubernetesNodeGroupCloudNativePlanArgs', 'KubernetesNodeGroupCloudNativePlanArgsDict', 'outputs.KubernetesNodeGroupCloudNativePlan']]] = None,
+            cluster: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_plan: pulumi.Input[Optional[Union['KubernetesNodeGroupCustomPlanArgs', 'KubernetesNodeGroupCustomPlanArgsDict', 'outputs.KubernetesNodeGroupCustomPlan']]] = None,
+            gpu_plan: pulumi.Input[Optional[Union['KubernetesNodeGroupGpuPlanArgs', 'KubernetesNodeGroupGpuPlanArgsDict', 'outputs.KubernetesNodeGroupGpuPlan']]] = None,
+            kubelet_args: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodeGroupKubeletArgArgs', 'KubernetesNodeGroupKubeletArgArgsDict', 'outputs.KubernetesNodeGroupKubeletArg']]]]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            node_count: pulumi.Input[Optional[_builtins.int]] = None,
+            plan: pulumi.Input[Optional[_builtins.str]] = None,
+            ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            storage_encryption: pulumi.Input[Optional[_builtins.str]] = None,
+            taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodeGroupTaintArgs', 'KubernetesNodeGroupTaintArgsDict', 'outputs.KubernetesNodeGroupTaint']]]]] = None,
+            utility_network_access: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["antiAffinity"] = anti_affinity
+        __props__["cloudNativePlan"] = cloud_native_plan
+        __props__["cluster"] = cluster
+        __props__["customPlan"] = custom_plan
+        __props__["gpuPlan"] = gpu_plan
+        __props__["kubeletArgs"] = kubelet_args
+        __props__["labels"] = labels
+        __props__["name"] = name
+        __props__["namePrefix"] = name_prefix
+        __props__["nodeCount"] = node_count
+        __props__["plan"] = plan
+        __props__["sshKeys"] = ssh_keys
+        __props__["storageEncryption"] = storage_encryption
+        __props__["taints"] = taints
+        __props__["utilityNetworkAccess"] = utility_network_access
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/kubernetesNodeGroup:KubernetesNodeGroup', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="antiAffinity")

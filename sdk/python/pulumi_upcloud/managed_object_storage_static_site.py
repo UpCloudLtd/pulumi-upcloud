@@ -23,14 +23,15 @@ class ManagedObjectStorageStaticSiteArgs:
     def __init__(__self__, *,
                  bucket_name: pulumi.Input[_builtins.str],
                  service_uuid: pulumi.Input[_builtins.str],
-                 bucket_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 error_pages: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageStaticSiteErrorPageArgs']]]] = None,
-                 index_document: Optional[pulumi.Input[_builtins.str]] = None,
-                 spa_mode: Optional[pulumi.Input[_builtins.bool]] = None):
+                 bucket_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 error_pages: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageStaticSiteErrorPageArgs']]]] = None,
+                 index_document: pulumi.Input[Optional[_builtins.str]] = None,
+                 spa_mode: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ManagedObjectStorageStaticSite resource.
+
         :param pulumi.Input[_builtins.str] bucket_name: S3 bucket from which static content is served. Must have a public read policy.
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
         :param pulumi.Input[_builtins.str] bucket_prefix: Path prefix within the bucket. For example, `dist/` serves content from the `dist/` folder. Defaults to empty string (bucket root).
@@ -81,90 +82,91 @@ class ManagedObjectStorageStaticSiteArgs:
 
     @_builtins.property
     @pulumi.getter(name="bucketPrefix")
-    def bucket_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path prefix within the bucket. For example, `dist/` serves content from the `dist/` folder. Defaults to empty string (bucket root).
         """
         return pulumi.get(self, "bucket_prefix")
 
     @bucket_prefix.setter
-    def bucket_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="domainName")
-    def domain_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A custom domain in `static-website` mode attached to the service.
         """
         return pulumi.get(self, "domain_name")
 
     @domain_name.setter
-    def domain_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable or disable serving content on this domain. Defaults to true.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="errorPages")
-    def error_pages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageStaticSiteErrorPageArgs']]]]:
+    def error_pages(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageStaticSiteErrorPageArgs']]]]:
         """
         Custom error pages served when the storage backend returns an error status.
         """
         return pulumi.get(self, "error_pages")
 
     @error_pages.setter
-    def error_pages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageStaticSiteErrorPageArgs']]]]):
+    def error_pages(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageStaticSiteErrorPageArgs']]]]):
         pulumi.set(self, "error_pages", value)
 
     @_builtins.property
     @pulumi.getter(name="indexDocument")
-    def index_document(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def index_document(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the index document. Defaults to `index.html`.
         """
         return pulumi.get(self, "index_document")
 
     @index_document.setter
-    def index_document(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def index_document(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "index_document", value)
 
     @_builtins.property
     @pulumi.getter(name="spaMode")
-    def spa_mode(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def spa_mode(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to enable single-page application mode. In SPA mode, the index document is served for all paths, which is useful for client-side routing.
         """
         return pulumi.get(self, "spa_mode")
 
     @spa_mode.setter
-    def spa_mode(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def spa_mode(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "spa_mode", value)
 
 
 @pulumi.input_type
 class _ManagedObjectStorageStaticSiteState:
     def __init__(__self__, *,
-                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 bucket_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 error_pages: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageStaticSiteErrorPageArgs']]]] = None,
-                 index_document: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 spa_mode: Optional[pulumi.Input[_builtins.bool]] = None):
+                 bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 bucket_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 error_pages: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageStaticSiteErrorPageArgs']]]] = None,
+                 index_document: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 spa_mode: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ManagedObjectStorageStaticSite resources.
+
         :param pulumi.Input[_builtins.str] bucket_name: S3 bucket from which static content is served. Must have a public read policy.
         :param pulumi.Input[_builtins.str] bucket_prefix: Path prefix within the bucket. For example, `dist/` serves content from the `dist/` folder. Defaults to empty string (bucket root).
         :param pulumi.Input[_builtins.str] domain_name: A custom domain in `static-website` mode attached to the service.
@@ -193,98 +195,98 @@ class _ManagedObjectStorageStaticSiteState:
 
     @_builtins.property
     @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         S3 bucket from which static content is served. Must have a public read policy.
         """
         return pulumi.get(self, "bucket_name")
 
     @bucket_name.setter
-    def bucket_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket_name", value)
 
     @_builtins.property
     @pulumi.getter(name="bucketPrefix")
-    def bucket_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path prefix within the bucket. For example, `dist/` serves content from the `dist/` folder. Defaults to empty string (bucket root).
         """
         return pulumi.get(self, "bucket_prefix")
 
     @bucket_prefix.setter
-    def bucket_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="domainName")
-    def domain_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A custom domain in `static-website` mode attached to the service.
         """
         return pulumi.get(self, "domain_name")
 
     @domain_name.setter
-    def domain_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable or disable serving content on this domain. Defaults to true.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="errorPages")
-    def error_pages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageStaticSiteErrorPageArgs']]]]:
+    def error_pages(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageStaticSiteErrorPageArgs']]]]:
         """
         Custom error pages served when the storage backend returns an error status.
         """
         return pulumi.get(self, "error_pages")
 
     @error_pages.setter
-    def error_pages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageStaticSiteErrorPageArgs']]]]):
+    def error_pages(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageStaticSiteErrorPageArgs']]]]):
         pulumi.set(self, "error_pages", value)
 
     @_builtins.property
     @pulumi.getter(name="indexDocument")
-    def index_document(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def index_document(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the index document. Defaults to `index.html`.
         """
         return pulumi.get(self, "index_document")
 
     @index_document.setter
-    def index_document(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def index_document(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "index_document", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceUuid")
-    def service_uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_uuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Managed Object Storage service UUID.
         """
         return pulumi.get(self, "service_uuid")
 
     @service_uuid.setter
-    def service_uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_uuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_uuid", value)
 
     @_builtins.property
     @pulumi.getter(name="spaMode")
-    def spa_mode(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def spa_mode(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to enable single-page application mode. In SPA mode, the index document is served for all paths, which is useful for client-side routing.
         """
         return pulumi.get(self, "spa_mode")
 
     @spa_mode.setter
-    def spa_mode(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def spa_mode(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "spa_mode", value)
 
 
@@ -294,14 +296,14 @@ class ManagedObjectStorageStaticSite(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 bucket_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 error_pages: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageStaticSiteErrorPageArgs', 'ManagedObjectStorageStaticSiteErrorPageArgsDict']]]]] = None,
-                 index_document: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 spa_mode: Optional[pulumi.Input[_builtins.bool]] = None,
+                 bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 bucket_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 error_pages: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedObjectStorageStaticSiteErrorPageArgs', 'ManagedObjectStorageStaticSiteErrorPageArgsDict', 'outputs.ManagedObjectStorageStaticSiteErrorPage']]]]] = None,
+                 index_document: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 spa_mode: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         This resource represents an UpCloud Managed Object Storage static site.
@@ -326,13 +328,14 @@ class ManagedObjectStorageStaticSite(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket_name: S3 bucket from which static content is served. Must have a public read policy.
         :param pulumi.Input[_builtins.str] bucket_prefix: Path prefix within the bucket. For example, `dist/` serves content from the `dist/` folder. Defaults to empty string (bucket root).
         :param pulumi.Input[_builtins.str] domain_name: A custom domain in `static-website` mode attached to the service.
         :param pulumi.Input[_builtins.bool] enabled: Enable or disable serving content on this domain. Defaults to true.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageStaticSiteErrorPageArgs', 'ManagedObjectStorageStaticSiteErrorPageArgsDict']]]] error_pages: Custom error pages served when the storage backend returns an error status.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageStaticSiteErrorPageArgs', 'ManagedObjectStorageStaticSiteErrorPageArgsDict', 'outputs.ManagedObjectStorageStaticSiteErrorPage']]]] error_pages: Custom error pages served when the storage backend returns an error status.
         :param pulumi.Input[_builtins.str] index_document: Name of the index document. Defaults to `index.html`.
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
         :param pulumi.Input[_builtins.bool] spa_mode: Whether to enable single-page application mode. In SPA mode, the index document is served for all paths, which is useful for client-side routing.
@@ -366,6 +369,7 @@ class ManagedObjectStorageStaticSite(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ManagedObjectStorageStaticSiteArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -381,14 +385,14 @@ class ManagedObjectStorageStaticSite(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 bucket_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 error_pages: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageStaticSiteErrorPageArgs', 'ManagedObjectStorageStaticSiteErrorPageArgsDict']]]]] = None,
-                 index_document: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 spa_mode: Optional[pulumi.Input[_builtins.bool]] = None,
+                 bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 bucket_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 error_pages: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedObjectStorageStaticSiteErrorPageArgs', 'ManagedObjectStorageStaticSiteErrorPageArgsDict', 'outputs.ManagedObjectStorageStaticSiteErrorPage']]]]] = None,
+                 index_document: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 spa_mode: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -420,14 +424,14 @@ class ManagedObjectStorageStaticSite(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-            bucket_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-            domain_name: Optional[pulumi.Input[_builtins.str]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            error_pages: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageStaticSiteErrorPageArgs', 'ManagedObjectStorageStaticSiteErrorPageArgsDict']]]]] = None,
-            index_document: Optional[pulumi.Input[_builtins.str]] = None,
-            service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-            spa_mode: Optional[pulumi.Input[_builtins.bool]] = None) -> 'ManagedObjectStorageStaticSite':
+            bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+            bucket_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            error_pages: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedObjectStorageStaticSiteErrorPageArgs', 'ManagedObjectStorageStaticSiteErrorPageArgsDict', 'outputs.ManagedObjectStorageStaticSiteErrorPage']]]]] = None,
+            index_document: pulumi.Input[Optional[_builtins.str]] = None,
+            service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+            spa_mode: pulumi.Input[Optional[_builtins.bool]] = None) -> 'ManagedObjectStorageStaticSite':
         """
         Get an existing ManagedObjectStorageStaticSite resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -439,7 +443,7 @@ class ManagedObjectStorageStaticSite(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] bucket_prefix: Path prefix within the bucket. For example, `dist/` serves content from the `dist/` folder. Defaults to empty string (bucket root).
         :param pulumi.Input[_builtins.str] domain_name: A custom domain in `static-website` mode attached to the service.
         :param pulumi.Input[_builtins.bool] enabled: Enable or disable serving content on this domain. Defaults to true.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageStaticSiteErrorPageArgs', 'ManagedObjectStorageStaticSiteErrorPageArgsDict']]]] error_pages: Custom error pages served when the storage backend returns an error status.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageStaticSiteErrorPageArgs', 'ManagedObjectStorageStaticSiteErrorPageArgsDict', 'outputs.ManagedObjectStorageStaticSiteErrorPage']]]] error_pages: Custom error pages served when the storage backend returns an error status.
         :param pulumi.Input[_builtins.str] index_document: Name of the index document. Defaults to `index.html`.
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
         :param pulumi.Input[_builtins.bool] spa_mode: Whether to enable single-page application mode. In SPA mode, the index document is served for all paths, which is useful for client-side routing.
@@ -457,6 +461,28 @@ class ManagedObjectStorageStaticSite(pulumi.CustomResource):
         __props__.__dict__["service_uuid"] = service_uuid
         __props__.__dict__["spa_mode"] = spa_mode
         return ManagedObjectStorageStaticSite(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+            bucket_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            error_pages: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedObjectStorageStaticSiteErrorPageArgs', 'ManagedObjectStorageStaticSiteErrorPageArgsDict', 'outputs.ManagedObjectStorageStaticSiteErrorPage']]]]] = None,
+            index_document: pulumi.Input[Optional[_builtins.str]] = None,
+            service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+            spa_mode: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["bucketName"] = bucket_name
+        __props__["bucketPrefix"] = bucket_prefix
+        __props__["domainName"] = domain_name
+        __props__["enabled"] = enabled
+        __props__["errorPages"] = error_pages
+        __props__["indexDocument"] = index_document
+        __props__["serviceUuid"] = service_uuid
+        __props__["spaMode"] = spa_mode
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/managedObjectStorageStaticSite:ManagedObjectStorageStaticSite', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="bucketName")

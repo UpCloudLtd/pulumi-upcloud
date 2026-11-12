@@ -31,6 +31,17 @@ export class Storage extends pulumi.CustomResource {
         return new Storage(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing Storage resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: StorageState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/storage:Storage", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/storage:Storage';
 
@@ -156,88 +167,88 @@ export class Storage extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Storage resources.
  */
 export interface StorageState {
-    backupRule?: pulumi.Input<inputs.StorageBackupRule>;
+    backupRule?: pulumi.Input<inputs.StorageBackupRule | undefined>;
     /**
      * Block defining another storage/template to clone to storage.
      */
-    clone?: pulumi.Input<inputs.StorageClone>;
+    clone?: pulumi.Input<inputs.StorageClone | undefined>;
     /**
      * If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
      */
-    deleteAutoresizeBackup?: pulumi.Input<boolean>;
+    deleteAutoresizeBackup?: pulumi.Input<boolean | undefined>;
     /**
      * Sets if the storage is encrypted at rest.
      */
-    encrypt?: pulumi.Input<boolean>;
+    encrypt?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `deleteAutoresizeBackup` option is set to true).
      * 				Taking and keeping backups incure costs.
      */
-    filesystemAutoresize?: pulumi.Input<boolean>;
+    filesystemAutoresize?: pulumi.Input<boolean | undefined>;
     /**
      * Block defining external data to import to storage
      */
-    import?: pulumi.Input<inputs.StorageImport>;
+    import?: pulumi.Input<inputs.StorageImport | undefined>;
     /**
      * User defined key-value pairs to classify the storage.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The size of the storage in gigabytes.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
     /**
      * System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
      */
-    systemLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    systemLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The tier of the storage.
      */
-    tier?: pulumi.Input<string>;
+    tier?: pulumi.Input<string | undefined>;
     /**
      * The title of the storage.
      */
-    title?: pulumi.Input<string>;
+    title?: pulumi.Input<string | undefined>;
     /**
      * The type of the storage.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a Storage resource.
  */
 export interface StorageArgs {
-    backupRule?: pulumi.Input<inputs.StorageBackupRule>;
+    backupRule?: pulumi.Input<inputs.StorageBackupRule | undefined>;
     /**
      * Block defining another storage/template to clone to storage.
      */
-    clone?: pulumi.Input<inputs.StorageClone>;
+    clone?: pulumi.Input<inputs.StorageClone | undefined>;
     /**
      * If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
      */
-    deleteAutoresizeBackup?: pulumi.Input<boolean>;
+    deleteAutoresizeBackup?: pulumi.Input<boolean | undefined>;
     /**
      * Sets if the storage is encrypted at rest.
      */
-    encrypt?: pulumi.Input<boolean>;
+    encrypt?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `deleteAutoresizeBackup` option is set to true).
      * 				Taking and keeping backups incure costs.
      */
-    filesystemAutoresize?: pulumi.Input<boolean>;
+    filesystemAutoresize?: pulumi.Input<boolean | undefined>;
     /**
      * Block defining external data to import to storage
      */
-    import?: pulumi.Input<inputs.StorageImport>;
+    import?: pulumi.Input<inputs.StorageImport | undefined>;
     /**
      * User defined key-value pairs to classify the storage.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The size of the storage in gigabytes.
      */
@@ -245,7 +256,7 @@ export interface StorageArgs {
     /**
      * The tier of the storage.
      */
-    tier?: pulumi.Input<string>;
+    tier?: pulumi.Input<string | undefined>;
     /**
      * The title of the storage.
      */

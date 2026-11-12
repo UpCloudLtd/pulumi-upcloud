@@ -49,6 +49,17 @@ export class ManagedObjectStorageUserPolicy extends pulumi.CustomResource {
         return new ManagedObjectStorageUserPolicy(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ManagedObjectStorageUserPolicy resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ManagedObjectStorageUserPolicyState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/managedObjectStorageUserPolicy:ManagedObjectStorageUserPolicy", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/managedObjectStorageUserPolicy:ManagedObjectStorageUserPolicy';
 
@@ -116,15 +127,15 @@ export interface ManagedObjectStorageUserPolicyState {
     /**
      * Policy name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Managed Object Storage service UUID.
      */
-    serviceUuid?: pulumi.Input<string>;
+    serviceUuid?: pulumi.Input<string | undefined>;
     /**
      * Username.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -134,7 +145,7 @@ export interface ManagedObjectStorageUserPolicyArgs {
     /**
      * Policy name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Managed Object Storage service UUID.
      */

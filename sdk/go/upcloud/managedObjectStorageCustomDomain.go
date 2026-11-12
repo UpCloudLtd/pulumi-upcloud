@@ -137,6 +137,12 @@ func (ManagedObjectStorageCustomDomainState) ElementType() reflect.Type {
 	return reflect.TypeOf((*managedObjectStorageCustomDomainState)(nil)).Elem()
 }
 
+// ManagedObjectStorageCustomDomainExists checks whether an existing ManagedObjectStorageCustomDomain resource with the given ID exists.
+func ManagedObjectStorageCustomDomainExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ManagedObjectStorageCustomDomainState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/managedObjectStorageCustomDomain:ManagedObjectStorageCustomDomain", id, state, "", opts...)
+}
+
 type managedObjectStorageCustomDomainArgs struct {
 	// Must be a subdomain and consist of 3 to 5 parts such as objects.example.com. Cannot be root-level domain e.g. example.com.
 	DomainName string `pulumi:"domainName"`

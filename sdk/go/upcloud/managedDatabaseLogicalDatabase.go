@@ -138,6 +138,12 @@ func (ManagedDatabaseLogicalDatabaseState) ElementType() reflect.Type {
 	return reflect.TypeOf((*managedDatabaseLogicalDatabaseState)(nil)).Elem()
 }
 
+// ManagedDatabaseLogicalDatabaseExists checks whether an existing ManagedDatabaseLogicalDatabase resource with the given ID exists.
+func ManagedDatabaseLogicalDatabaseExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ManagedDatabaseLogicalDatabaseState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase", id, state, "", opts...)
+}
+
 type managedDatabaseLogicalDatabaseArgs struct {
 	// Default character set for the database (LC_CTYPE), PostgreSQL only.
 	CharacterSet *string `pulumi:"characterSet"`

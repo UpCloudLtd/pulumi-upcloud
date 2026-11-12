@@ -78,12 +78,8 @@ type GetManagedDatabaseMysqlSessionsResult struct {
 }
 
 func GetManagedDatabaseMysqlSessionsOutput(ctx *pulumi.Context, args GetManagedDatabaseMysqlSessionsOutputArgs, opts ...pulumi.InvokeOption) GetManagedDatabaseMysqlSessionsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetManagedDatabaseMysqlSessionsResultOutput, error) {
-			args := v.(GetManagedDatabaseMysqlSessionsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("upcloud:index/getManagedDatabaseMysqlSessions:getManagedDatabaseMysqlSessions", args, GetManagedDatabaseMysqlSessionsResultOutput{}, options).(GetManagedDatabaseMysqlSessionsResultOutput), nil
-		}).(GetManagedDatabaseMysqlSessionsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("upcloud:index/getManagedDatabaseMysqlSessions:getManagedDatabaseMysqlSessions", args, GetManagedDatabaseMysqlSessionsResultOutput{}, options).(GetManagedDatabaseMysqlSessionsResultOutput)
 }
 
 // A collection of arguments for invoking getManagedDatabaseMysqlSessions.

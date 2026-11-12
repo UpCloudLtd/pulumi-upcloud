@@ -99,6 +99,6 @@ export function getManagedDatabaseOpensearchIndicesOutput(args: GetManagedDataba
  * A collection of arguments for invoking getManagedDatabaseOpensearchIndices.
  */
 export interface GetManagedDatabaseOpensearchIndicesOutputArgs {
-    indices?: pulumi.Input<pulumi.Input<inputs.GetManagedDatabaseOpensearchIndicesIndexArgs>[]>;
+    indices?: pulumi.Input<pulumi.Input<inputs.GetManagedDatabaseOpensearchIndicesIndexArgs>[] | undefined>;
     service: pulumi.Input<string>;
 }

@@ -66,6 +66,17 @@ export class GatewayConnection extends pulumi.CustomResource {
         return new GatewayConnection(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing GatewayConnection resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: GatewayConnectionState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/gatewayConnection:GatewayConnection", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/gatewayConnection:GatewayConnection';
 
@@ -154,31 +165,31 @@ export interface GatewayConnectionState {
     /**
      * The ID of the upcloud.Gateway resource to which the connection belongs.
      */
-    gateway?: pulumi.Input<string>;
+    gateway?: pulumi.Input<string | undefined>;
     /**
      * Route for the UpCloud side of the network.
      */
-    localRoutes?: pulumi.Input<pulumi.Input<inputs.GatewayConnectionLocalRoute>[]>;
+    localRoutes?: pulumi.Input<pulumi.Input<inputs.GatewayConnectionLocalRoute>[] | undefined>;
     /**
      * The name of the connection, should be unique within the gateway.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Route for the remote side of the network.
      */
-    remoteRoutes?: pulumi.Input<pulumi.Input<inputs.GatewayConnectionRemoteRoute>[]>;
+    remoteRoutes?: pulumi.Input<pulumi.Input<inputs.GatewayConnectionRemoteRoute>[] | undefined>;
     /**
      * List of connection's tunnels names. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terrafrom refresh'.
      */
-    tunnels?: pulumi.Input<pulumi.Input<string>[]>;
+    tunnels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The type of the connection; currently the only supported type is 'ipsec'.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The UUID of the connection
      */
-    uuid?: pulumi.Input<string>;
+    uuid?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -192,17 +203,17 @@ export interface GatewayConnectionArgs {
     /**
      * Route for the UpCloud side of the network.
      */
-    localRoutes?: pulumi.Input<pulumi.Input<inputs.GatewayConnectionLocalRoute>[]>;
+    localRoutes?: pulumi.Input<pulumi.Input<inputs.GatewayConnectionLocalRoute>[] | undefined>;
     /**
      * The name of the connection, should be unique within the gateway.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Route for the remote side of the network.
      */
-    remoteRoutes?: pulumi.Input<pulumi.Input<inputs.GatewayConnectionRemoteRoute>[]>;
+    remoteRoutes?: pulumi.Input<pulumi.Input<inputs.GatewayConnectionRemoteRoute>[] | undefined>;
     /**
      * The type of the connection; currently the only supported type is 'ipsec'.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

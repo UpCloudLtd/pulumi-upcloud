@@ -37,6 +37,17 @@ export class LoadbalancerDynamicCertificateBundle extends pulumi.CustomResource 
         return new LoadbalancerDynamicCertificateBundle(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing LoadbalancerDynamicCertificateBundle resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: LoadbalancerDynamicCertificateBundleState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/loadbalancerDynamicCertificateBundle:LoadbalancerDynamicCertificateBundle", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/loadbalancerDynamicCertificateBundle:LoadbalancerDynamicCertificateBundle';
 
@@ -128,31 +139,31 @@ export interface LoadbalancerDynamicCertificateBundleState {
     /**
      * Certificate hostnames.
      */
-    hostnames?: pulumi.Input<pulumi.Input<string>[]>;
+    hostnames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Private key type (`rsa` / `ecdsa`).
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * User defined key-value pairs to classify the dynamic certificate bundle.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name of the certificate bundle. Must be unique within customer account.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The time after which a certificate is no longer valid.
      */
-    notAfter?: pulumi.Input<string>;
+    notAfter?: pulumi.Input<string | undefined>;
     /**
      * The time on which a certificate becomes valid.
      */
-    notBefore?: pulumi.Input<string>;
+    notBefore?: pulumi.Input<string | undefined>;
     /**
      * The service operational state indicates the service's current operational, effective state. Managed by the system.
      */
-    operationalState?: pulumi.Input<string>;
+    operationalState?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -170,9 +181,9 @@ export interface LoadbalancerDynamicCertificateBundleArgs {
     /**
      * User defined key-value pairs to classify the dynamic certificate bundle.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name of the certificate bundle. Must be unique within customer account.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

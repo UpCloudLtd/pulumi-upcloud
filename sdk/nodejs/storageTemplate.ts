@@ -37,6 +37,17 @@ export class StorageTemplate extends pulumi.CustomResource {
         return new StorageTemplate(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing StorageTemplate resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: StorageTemplateState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/storageTemplate:StorageTemplate", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/storageTemplate:StorageTemplate';
 
@@ -140,39 +151,39 @@ export interface StorageTemplateState {
     /**
      * Sets if the storage is encrypted at rest.
      */
-    encrypt?: pulumi.Input<boolean>;
+    encrypt?: pulumi.Input<boolean | undefined>;
     /**
      * User defined key-value pairs to classify the storage.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The size of the storage in gigabytes.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
     /**
      * The source storage that is used as a base for this storage template.
      */
-    sourceStorage?: pulumi.Input<string>;
+    sourceStorage?: pulumi.Input<string | undefined>;
     /**
      * System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
      */
-    systemLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    systemLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The tier of the storage.
      */
-    tier?: pulumi.Input<string>;
+    tier?: pulumi.Input<string | undefined>;
     /**
      * The title of the storage.
      */
-    title?: pulumi.Input<string>;
+    title?: pulumi.Input<string | undefined>;
     /**
      * The type of the storage.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The zone the storage is in, e.g. `de-fra1`.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -182,7 +193,7 @@ export interface StorageTemplateArgs {
     /**
      * User defined key-value pairs to classify the storage.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The source storage that is used as a base for this storage template.
      */

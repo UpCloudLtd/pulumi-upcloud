@@ -163,7 +163,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// One or more blocks describing the network interfaces of the server.
         /// 
         ///     In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `Index` and `IpAddress` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
-        /// 
+        ///     
         ///     We recommend explicitly setting the value for `Index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
         /// </summary>
         [Output("networkInterfaces")]
@@ -376,7 +376,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// One or more blocks describing the network interfaces of the server.
         /// 
         ///     In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `Index` and `IpAddress` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
-        /// 
+        ///     
         ///     We recommend explicitly setting the value for `Index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
         /// </summary>
         public InputList<Inputs.ServerNetworkInterfaceArgs> NetworkInterfaces
@@ -565,7 +565,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// One or more blocks describing the network interfaces of the server.
         /// 
         ///     In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `Index` and `IpAddress` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
-        /// 
+        ///     
         ///     We recommend explicitly setting the value for `Index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
         /// </summary>
         public InputList<Inputs.ServerNetworkInterfaceGetArgs> NetworkInterfaces

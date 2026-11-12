@@ -156,6 +156,12 @@ func (FloatingIpAddressState) ElementType() reflect.Type {
 	return reflect.TypeOf((*floatingIpAddressState)(nil)).Elem()
 }
 
+// FloatingIpAddressExists checks whether an existing FloatingIpAddress resource with the given ID exists.
+func FloatingIpAddressExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FloatingIpAddressState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/floatingIpAddress:FloatingIpAddress", id, state, "", opts...)
+}
+
 type floatingIpAddressArgs struct {
 	// Network access for the floating IP address. Supported value: `public`.
 	Access *string `pulumi:"access"`

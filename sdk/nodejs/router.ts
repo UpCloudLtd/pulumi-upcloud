@@ -40,6 +40,17 @@ export class Router extends pulumi.CustomResource {
         return new Router(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing Router resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: RouterState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/router:Router", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/router:Router';
 
@@ -119,27 +130,27 @@ export interface RouterState {
     /**
      * List of UUIDs representing networks attached to this router.
      */
-    attachedNetworks?: pulumi.Input<pulumi.Input<string>[]>;
+    attachedNetworks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * User defined key-value pairs to classify the router.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the router.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * A collection of user managed static routes for this router.
      */
-    staticRoute?: pulumi.Input<pulumi.Input<inputs.RouterStaticRoute>[]>;
+    staticRoute?: pulumi.Input<pulumi.Input<inputs.RouterStaticRoute>[] | undefined>;
     /**
      * A collection of static routes for this router. This set includes both user and service defined static routes. The objects in this set use the same schema as `staticRoute` blocks.
      */
-    staticRoutes?: pulumi.Input<pulumi.Input<inputs.RouterStaticRoute>[]>;
+    staticRoutes?: pulumi.Input<pulumi.Input<inputs.RouterStaticRoute>[] | undefined>;
     /**
      * Type of the router
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -149,13 +160,13 @@ export interface RouterArgs {
     /**
      * User defined key-value pairs to classify the router.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the router.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * A collection of user managed static routes for this router.
      */
-    staticRoute?: pulumi.Input<pulumi.Input<inputs.RouterStaticRoute>[]>;
+    staticRoute?: pulumi.Input<pulumi.Input<inputs.RouterStaticRoute>[] | undefined>;
 }

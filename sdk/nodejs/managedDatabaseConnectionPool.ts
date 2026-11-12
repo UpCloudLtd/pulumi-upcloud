@@ -45,6 +45,17 @@ export class ManagedDatabaseConnectionPool extends pulumi.CustomResource {
         return new ManagedDatabaseConnectionPool(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ManagedDatabaseConnectionPool resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ManagedDatabaseConnectionPoolState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/managedDatabaseConnectionPool:ManagedDatabaseConnectionPool", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/managedDatabaseConnectionPool:ManagedDatabaseConnectionPool';
 
@@ -142,31 +153,31 @@ export interface ManagedDatabaseConnectionPoolState {
     /**
      * Connection URI for the connection pool.
      */
-    connectionUri?: pulumi.Input<string>;
+    connectionUri?: pulumi.Input<string | undefined>;
     /**
      * Name of the database.
      */
-    database?: pulumi.Input<string>;
+    database?: pulumi.Input<string | undefined>;
     /**
      * Connection pool mode.
      */
-    mode?: pulumi.Input<string>;
+    mode?: pulumi.Input<string | undefined>;
     /**
      * Connection pool name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * UUID of the service to which this connection pool belongs.
      */
-    service?: pulumi.Input<string>;
+    service?: pulumi.Input<string | undefined>;
     /**
      * Connection pool size.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
     /**
      * Service username. If not set, all users are allowed to access this connection pool.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -184,7 +195,7 @@ export interface ManagedDatabaseConnectionPoolArgs {
     /**
      * Connection pool name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * UUID of the service to which this connection pool belongs.
      */
@@ -196,5 +207,5 @@ export interface ManagedDatabaseConnectionPoolArgs {
     /**
      * Service username. If not set, all users are allowed to access this connection pool.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }

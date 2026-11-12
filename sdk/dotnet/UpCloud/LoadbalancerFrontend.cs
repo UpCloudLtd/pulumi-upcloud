@@ -92,7 +92,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
         /// 
-        /// 	Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
+        ///     Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
         /// </summary>
         [Output("defaultBackendName")]
         public Output<string> DefaultBackendName { get; private set; } = null!;
@@ -192,7 +192,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
         /// 
-        /// 	Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
+        ///     Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
         /// </summary>
         [Input("defaultBackendName", required: true)]
         public Input<string> DefaultBackendName { get; set; } = null!;
@@ -247,7 +247,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
         /// 
-        /// 	Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
+        ///     Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
         /// </summary>
         [Input("defaultBackendName")]
         public Input<string>? DefaultBackendName { get; set; }

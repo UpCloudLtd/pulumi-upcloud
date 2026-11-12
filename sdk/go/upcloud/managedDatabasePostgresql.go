@@ -305,6 +305,12 @@ func (ManagedDatabasePostgresqlState) ElementType() reflect.Type {
 	return reflect.TypeOf((*managedDatabasePostgresqlState)(nil)).Elem()
 }
 
+// ManagedDatabasePostgresqlExists checks whether an existing ManagedDatabasePostgresql resource with the given ID exists.
+func ManagedDatabasePostgresqlExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ManagedDatabasePostgresqlState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/managedDatabasePostgresql:ManagedDatabasePostgresql", id, state, "", opts...)
+}
+
 type managedDatabasePostgresqlArgs struct {
 	// Additional disk space in GiB. Note that changes in additional disk space might require disk maintenance. This pending maintenance blocks some operations, such as version upgrades, until the maintenance is completed.
 	//

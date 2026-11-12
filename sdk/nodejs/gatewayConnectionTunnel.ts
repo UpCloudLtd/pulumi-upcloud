@@ -75,6 +75,17 @@ export class GatewayConnectionTunnel extends pulumi.CustomResource {
         return new GatewayConnectionTunnel(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing GatewayConnectionTunnel resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: GatewayConnectionTunnelState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/gatewayConnectionTunnel:GatewayConnectionTunnel", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/gatewayConnectionTunnel:GatewayConnectionTunnel';
 
@@ -178,35 +189,35 @@ export interface GatewayConnectionTunnelState {
     /**
      * ID of the upcloud.GatewayConnection resource to which the tunnel belongs
      */
-    connectionId?: pulumi.Input<string>;
+    connectionId?: pulumi.Input<string | undefined>;
     /**
      * Configuration for authenticating with pre-shared key
      */
-    ipsecAuthPsk?: pulumi.Input<inputs.GatewayConnectionTunnelIpsecAuthPsk>;
+    ipsecAuthPsk?: pulumi.Input<inputs.GatewayConnectionTunnelIpsecAuthPsk | undefined>;
     /**
      * IPsec configuration for the tunnel
      */
-    ipsecProperties?: pulumi.Input<inputs.GatewayConnectionTunnelIpsecProperties>;
+    ipsecProperties?: pulumi.Input<inputs.GatewayConnectionTunnelIpsecProperties | undefined>;
     /**
      * Public (UpCloud) endpoint address of this tunnel
      */
-    localAddressName?: pulumi.Input<string>;
+    localAddressName?: pulumi.Input<string | undefined>;
     /**
      * The name of the tunnel, should be unique within the connection
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Tunnel's current operational, effective state
      */
-    operationalState?: pulumi.Input<string>;
+    operationalState?: pulumi.Input<string | undefined>;
     /**
      * Remote public IP address of the tunnel
      */
-    remoteAddress?: pulumi.Input<string>;
+    remoteAddress?: pulumi.Input<string | undefined>;
     /**
      * The UUID of the tunnel
      */
-    uuid?: pulumi.Input<string>;
+    uuid?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -224,7 +235,7 @@ export interface GatewayConnectionTunnelArgs {
     /**
      * IPsec configuration for the tunnel
      */
-    ipsecProperties?: pulumi.Input<inputs.GatewayConnectionTunnelIpsecProperties>;
+    ipsecProperties?: pulumi.Input<inputs.GatewayConnectionTunnelIpsecProperties | undefined>;
     /**
      * Public (UpCloud) endpoint address of this tunnel
      */
@@ -232,7 +243,7 @@ export interface GatewayConnectionTunnelArgs {
     /**
      * The name of the tunnel, should be unique within the connection
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Remote public IP address of the tunnel
      */

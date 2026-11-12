@@ -60,7 +60,7 @@ class AwaitableGetTagsResult(GetTagsResult):
             tags=self.tags)
 
 
-def get_tags(tags: Optional[Sequence[Union['GetTagsTagArgs', 'GetTagsTagArgsDict']]] = None,
+def get_tags(tags: Optional[Sequence[Union['GetTagsTagArgs', 'GetTagsTagArgsDict', 'outputs.GetTagsTagResult']]] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTagsResult:
     """
     > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
@@ -75,7 +75,7 @@ def get_tags(tags: Optional[Sequence[Union['GetTagsTagArgs', 'GetTagsTagArgsDict
     return AwaitableGetTagsResult(
         id=pulumi.get(__ret__, 'id'),
         tags=pulumi.get(__ret__, 'tags'))
-def get_tags_output(tags: Optional[pulumi.Input[Optional[Sequence[Union['GetTagsTagArgs', 'GetTagsTagArgsDict']]]]] = None,
+def get_tags_output(tags: pulumi.Input[Optional[Optional[Sequence[Union['GetTagsTagArgs', 'GetTagsTagArgsDict', 'outputs.GetTagsTagResult']]]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTagsResult]:
     """
     > Consider using labels instead of tags. Tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.

@@ -72,6 +72,17 @@ export class LoadbalancerDynamicBackendMember extends pulumi.CustomResource {
         return new LoadbalancerDynamicBackendMember(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing LoadbalancerDynamicBackendMember resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: LoadbalancerDynamicBackendMemberState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/loadbalancerDynamicBackendMember:LoadbalancerDynamicBackendMember", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/loadbalancerDynamicBackendMember:LoadbalancerDynamicBackendMember';
 
@@ -166,31 +177,31 @@ export interface LoadbalancerDynamicBackendMemberState {
     /**
      * ID of the load balancer backend to which the member is connected.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Indicates if the member is enabled. Disabled members are excluded from load balancing.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Optional fallback IP address in case of failure on DNS resolving.
      */
-    ip?: pulumi.Input<string>;
+    ip?: pulumi.Input<string | undefined>;
     /**
      * Maximum number of sessions before queueing.
      */
-    maxSessions?: pulumi.Input<number>;
+    maxSessions?: pulumi.Input<number | undefined>;
     /**
      * The name of the member. Must be unique within within the load balancer backend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Server port. Port is optional and can be specified in DNS SRV record.
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * Weight of the member. The higher the weight, the more traffic the member receives.
      */
-    weight?: pulumi.Input<number>;
+    weight?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -204,11 +215,11 @@ export interface LoadbalancerDynamicBackendMemberArgs {
     /**
      * Indicates if the member is enabled. Disabled members are excluded from load balancing.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Optional fallback IP address in case of failure on DNS resolving.
      */
-    ip?: pulumi.Input<string>;
+    ip?: pulumi.Input<string | undefined>;
     /**
      * Maximum number of sessions before queueing.
      */
@@ -216,11 +227,11 @@ export interface LoadbalancerDynamicBackendMemberArgs {
     /**
      * The name of the member. Must be unique within within the load balancer backend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Server port. Port is optional and can be specified in DNS SRV record.
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * Weight of the member. The higher the weight, the more traffic the member receives.
      */

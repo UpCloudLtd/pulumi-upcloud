@@ -103,9 +103,9 @@ export function getManagedDatabasePostgresqlSessionsOutput(args: GetManagedDatab
  * A collection of arguments for invoking getManagedDatabasePostgresqlSessions.
  */
 export interface GetManagedDatabasePostgresqlSessionsOutputArgs {
-    limit?: pulumi.Input<number>;
-    offset?: pulumi.Input<number>;
-    order?: pulumi.Input<string>;
+    limit?: pulumi.Input<number | undefined>;
+    offset?: pulumi.Input<number | undefined>;
+    order?: pulumi.Input<string | undefined>;
     service: pulumi.Input<string>;
-    sessions?: pulumi.Input<pulumi.Input<inputs.GetManagedDatabasePostgresqlSessionsSessionArgs>[]>;
+    sessions?: pulumi.Input<pulumi.Input<inputs.GetManagedDatabasePostgresqlSessionsSessionArgs>[] | undefined>;
 }

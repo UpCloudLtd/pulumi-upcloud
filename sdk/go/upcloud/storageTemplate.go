@@ -148,6 +148,12 @@ func (StorageTemplateState) ElementType() reflect.Type {
 	return reflect.TypeOf((*storageTemplateState)(nil)).Elem()
 }
 
+// StorageTemplateExists checks whether an existing StorageTemplate resource with the given ID exists.
+func StorageTemplateExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *StorageTemplateState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/storageTemplate:StorageTemplate", id, state, "", opts...)
+}
+
 type storageTemplateArgs struct {
 	// User defined key-value pairs to classify the storage.
 	Labels map[string]string `pulumi:"labels"`
