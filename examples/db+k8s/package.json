@@ -15,5 +15,8 @@
     "allowScripts": {
         "@pulumi/kubernetes@4.34.3": true,
         "protobufjs@7.6.6": true
+    },
+    "overrides": {
+        "glob": "^14.0.2"
     }
 }
