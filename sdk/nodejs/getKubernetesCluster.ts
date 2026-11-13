@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Managed Kubernetes cluster details. Please refer to Terraform documentation on sensitive data to keep the credential data as safe as possible.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -72,6 +74,8 @@ export interface GetKubernetesClusterResult {
     readonly name: string;
 }
 /**
+ * Managed Kubernetes cluster details. Please refer to Terraform documentation on sensitive data to keep the credential data as safe as possible.
+ *
  * ## Example Usage
  *
  * ```typescript

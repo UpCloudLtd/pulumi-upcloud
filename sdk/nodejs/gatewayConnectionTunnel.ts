@@ -53,7 +53,7 @@ import * as utilities from "./utilities";
  * const thisGatewayConnectionTunnel = new upcloud.GatewayConnectionTunnel("this", {
  *     connectionId: thisGatewayConnection.id,
  *     name: "test-tunnel",
- *     localAddressName: thisGateway.address.apply(address => address?.[0]?.name),
+ *     localAddressName: thisGateway.address.apply(address => address?.[0]?.name).apply(x =>String(x)),
  *     remoteAddress: "100.123.123.10",
  *     ipsecAuthPsk: {
  *         psk: "you_probably_want_to_use_env_vars_here",

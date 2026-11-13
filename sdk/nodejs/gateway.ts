@@ -95,6 +95,9 @@ export class Gateway extends pulumi.CustomResource {
      * The service configured status indicates the service's current intended status. Managed by the customer.
      */
     declare public readonly configuredStatus: pulumi.Output<string>;
+    /**
+     * Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terraform refresh'.
+     */
     declare public /*out*/ readonly connections: pulumi.Output<string[]>;
     /**
      * Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
@@ -190,6 +193,9 @@ export interface GatewayState {
      * The service configured status indicates the service's current intended status. Managed by the customer.
      */
     configuredStatus?: pulumi.Input<string | undefined>;
+    /**
+     * Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terraform refresh'.
+     */
     connections?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.

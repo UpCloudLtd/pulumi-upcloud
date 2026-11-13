@@ -108,6 +108,9 @@ export class KubernetesCluster extends pulumi.CustomResource {
      * IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
      */
     declare public readonly controlPlaneIpFilters: pulumi.Output<string[]>;
+    /**
+     * Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `upcloud.KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+     */
     declare public readonly fetchKubeconfig: pulumi.Output<boolean>;
     /**
      * Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
@@ -232,6 +235,9 @@ export interface KubernetesClusterState {
      * IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
      */
     controlPlaneIpFilters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `upcloud.KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+     */
     fetchKubeconfig?: pulumi.Input<boolean | undefined>;
     /**
      * Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
@@ -297,6 +303,9 @@ export interface KubernetesClusterArgs {
      * IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
      */
     controlPlaneIpFilters: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `upcloud.KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+     */
     fetchKubeconfig?: pulumi.Input<boolean | undefined>;
     /**
      * User defined key-value pairs to classify the cluster.

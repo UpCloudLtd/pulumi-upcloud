@@ -90,6 +90,9 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      * The name of the backend. Must be unique within the load balancer service.
      */
     declare public readonly name: pulumi.Output<string>;
+    /**
+     * Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+     */
     declare public readonly properties: pulumi.Output<outputs.LoadbalancerBackendProperties | undefined>;
     /**
      * Domain name resolver used with dynamic type members.
@@ -152,6 +155,9 @@ export interface LoadbalancerBackendState {
      * The name of the backend. Must be unique within the load balancer service.
      */
     name?: pulumi.Input<string | undefined>;
+    /**
+     * Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+     */
     properties?: pulumi.Input<inputs.LoadbalancerBackendProperties | undefined>;
     /**
      * Domain name resolver used with dynamic type members.
@@ -175,6 +181,9 @@ export interface LoadbalancerBackendArgs {
      * The name of the backend. Must be unique within the load balancer service.
      */
     name?: pulumi.Input<string | undefined>;
+    /**
+     * Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+     */
     properties?: pulumi.Input<inputs.LoadbalancerBackendProperties | undefined>;
     /**
      * Domain name resolver used with dynamic type members.

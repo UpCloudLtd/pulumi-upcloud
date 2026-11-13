@@ -28,8 +28,8 @@ import * as utilities from "./utilities";
  *     },
  * });
  * const thisNetworkPeering: upcloud.NetworkPeering[] = [];
- * for (const range = {value: 0}; range.value < 1; range.value++) {
- *     thisNetworkPeering.push(new upcloud.NetworkPeering(`this-${range.value}`, {
+ * for (let range = 0; range < 1; range++) {
+ *     thisNetworkPeering.push(new upcloud.NetworkPeering(`this-${range}`, {
  *         name: "network-peering-example-peering",
  *         network: {
  *             uuid: example.id,

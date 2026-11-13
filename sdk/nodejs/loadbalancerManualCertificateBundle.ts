@@ -19,13 +19,13 @@ import * as utilities from "./utilities";
  * const privateKeyPath = config.require("privateKeyPath");
  * const lbCbM1 = new upcloud.LoadbalancerManualCertificateBundle("lb_cb_m1", {
  *     name: "lb-cb-m1-test",
- *     certificate: std.index.base64encode({
- *         input: std.index.file({
+ *     certificate: std.base64encode({
+ *         input: std.file({
  *             input: certificatePath,
  *         }).result,
  *     }).result,
- *     privateKey: std.index.base64encode({
- *         input: std.index.file({
+ *     privateKey: std.base64encode({
+ *         input: std.file({
  *             input: privateKeyPath,
  *         }).result,
  *     }).result,

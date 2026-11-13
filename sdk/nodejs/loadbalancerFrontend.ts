@@ -126,6 +126,9 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
      * Port to listen for incoming requests.
      */
     declare public readonly port: pulumi.Output<number>;
+    /**
+     * Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+     */
     declare public readonly properties: pulumi.Output<outputs.LoadbalancerFrontendProperties | undefined>;
     /**
      * Set of frontend rule names.
@@ -217,6 +220,9 @@ export interface LoadbalancerFrontendState {
      * Port to listen for incoming requests.
      */
     port?: pulumi.Input<number | undefined>;
+    /**
+     * Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+     */
     properties?: pulumi.Input<inputs.LoadbalancerFrontendProperties | undefined>;
     /**
      * Set of frontend rule names.
@@ -258,5 +264,8 @@ export interface LoadbalancerFrontendArgs {
      * Port to listen for incoming requests.
      */
     port: pulumi.Input<number>;
+    /**
+     * Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+     */
     properties?: pulumi.Input<inputs.LoadbalancerFrontendProperties | undefined>;
 }

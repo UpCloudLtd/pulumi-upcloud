@@ -4194,6 +4194,13 @@ export interface ServerTemplate {
      * The device position in the given bus (defined via field `address`). For example `0:0`, or `0`. Leave empty to auto-select next available address in the given bus.
      */
     addressPosition?: pulumi.Input<string | undefined>;
+    /**
+     * The criteria to backup the storage.
+     *
+     *     Please keep in mind that it's not possible to have a storage with `backupRule` attached to a server with `simpleBackup` specified. Such configurations will throw errors during execution.
+     *     
+     *     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simpleBackup` on the server and individual storages `backupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simpleBackup` block from a server, run `terraform apply`, then add `backupRule` to desired storages and run `terraform apply` again.
+     */
     backupRule?: pulumi.Input<inputs.ServerTemplateBackupRule | undefined>;
     /**
      * If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.

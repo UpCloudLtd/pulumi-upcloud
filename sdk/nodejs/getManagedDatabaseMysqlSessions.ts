@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * // Use data source to gather a list of the active sessions for a Managed MySQL Database
+ * // Use function to gather a list of the active sessions for a Managed MySQL Database
  * // Create a Managed MySQL resource
  * const exampleManagedDatabaseMysql = new upcloud.ManagedDatabaseMysql("example", {
  *     name: "mysql-example1",
@@ -74,7 +74,7 @@ export interface GetManagedDatabaseMysqlSessionsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * // Use data source to gather a list of the active sessions for a Managed MySQL Database
+ * // Use function to gather a list of the active sessions for a Managed MySQL Database
  * // Create a Managed MySQL resource
  * const exampleManagedDatabaseMysql = new upcloud.ManagedDatabaseMysql("example", {
  *     name: "mysql-example1",

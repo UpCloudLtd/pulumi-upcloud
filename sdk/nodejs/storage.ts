@@ -56,6 +56,13 @@ export class Storage extends pulumi.CustomResource {
         return obj['__pulumiType'] === Storage.__pulumiType;
     }
 
+    /**
+     * The criteria to backup the storage.
+     *
+     *     Please keep in mind that it's not possible to have a storage with `backupRule` attached to a server with `simpleBackup` specified. Such configurations will throw errors during execution.
+     *     
+     *     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simpleBackup` on the server and individual storages `backupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simpleBackup` block from a server, run `terraform apply`, then add `backupRule` to desired storages and run `terraform apply` again.
+     */
     declare public readonly backupRule: pulumi.Output<outputs.StorageBackupRule | undefined>;
     /**
      * Block defining another storage/template to clone to storage.
@@ -167,6 +174,13 @@ export class Storage extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Storage resources.
  */
 export interface StorageState {
+    /**
+     * The criteria to backup the storage.
+     *
+     *     Please keep in mind that it's not possible to have a storage with `backupRule` attached to a server with `simpleBackup` specified. Such configurations will throw errors during execution.
+     *     
+     *     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simpleBackup` on the server and individual storages `backupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simpleBackup` block from a server, run `terraform apply`, then add `backupRule` to desired storages and run `terraform apply` again.
+     */
     backupRule?: pulumi.Input<inputs.StorageBackupRule | undefined>;
     /**
      * Block defining another storage/template to clone to storage.
@@ -223,6 +237,13 @@ export interface StorageState {
  * The set of arguments for constructing a Storage resource.
  */
 export interface StorageArgs {
+    /**
+     * The criteria to backup the storage.
+     *
+     *     Please keep in mind that it's not possible to have a storage with `backupRule` attached to a server with `simpleBackup` specified. Such configurations will throw errors during execution.
+     *     
+     *     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simpleBackup` on the server and individual storages `backupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simpleBackup` block from a server, run `terraform apply`, then add `backupRule` to desired storages and run `terraform apply` again.
+     */
     backupRule?: pulumi.Input<inputs.StorageBackupRule | undefined>;
     /**
      * Block defining another storage/template to clone to storage.
