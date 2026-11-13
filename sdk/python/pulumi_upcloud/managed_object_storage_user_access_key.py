@@ -24,6 +24,7 @@ class ManagedObjectStorageUserAccessKeyArgs:
                  username: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a ManagedObjectStorageUserAccessKey resource.
+
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
         :param pulumi.Input[_builtins.str] status: Status of the key. Valid values: `Active`|`Inactive`
         :param pulumi.Input[_builtins.str] username: Username.
@@ -72,15 +73,16 @@ class ManagedObjectStorageUserAccessKeyArgs:
 @pulumi.input_type
 class _ManagedObjectStorageUserAccessKeyState:
     def __init__(__self__, *,
-                 access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_used_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ManagedObjectStorageUserAccessKey resources.
+
         :param pulumi.Input[_builtins.str] access_key_id: Access key ID.
         :param pulumi.Input[_builtins.str] created_at: Creation time.
         :param pulumi.Input[_builtins.str] last_used_at: Last used.
@@ -106,86 +108,86 @@ class _ManagedObjectStorageUserAccessKeyState:
 
     @_builtins.property
     @pulumi.getter(name="accessKeyId")
-    def access_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Access key ID.
         """
         return pulumi.get(self, "access_key_id")
 
     @access_key_id.setter
-    def access_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Creation time.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="lastUsedAt")
-    def last_used_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_used_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Last used.
         """
         return pulumi.get(self, "last_used_at")
 
     @last_used_at.setter
-    def last_used_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_used_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_used_at", value)
 
     @_builtins.property
     @pulumi.getter(name="secretAccessKey")
-    def secret_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Secret access key.
         """
         return pulumi.get(self, "secret_access_key")
 
     @secret_access_key.setter
-    def secret_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_access_key", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceUuid")
-    def service_uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_uuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Managed Object Storage service UUID.
         """
         return pulumi.get(self, "service_uuid")
 
     @service_uuid.setter
-    def service_uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_uuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_uuid", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Status of the key. Valid values: `Active`|`Inactive`
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -195,9 +197,9 @@ class ManagedObjectStorageUserAccessKey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents an UpCloud Managed Object Storage user access key.
@@ -220,6 +222,7 @@ class ManagedObjectStorageUserAccessKey(pulumi.CustomResource):
             service_uuid=this.id,
             status="Active")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -255,6 +258,7 @@ class ManagedObjectStorageUserAccessKey(pulumi.CustomResource):
             status="Active")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ManagedObjectStorageUserAccessKeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -270,9 +274,9 @@ class ManagedObjectStorageUserAccessKey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -307,13 +311,13 @@ class ManagedObjectStorageUserAccessKey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            last_used_at: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-            service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            username: Optional[pulumi.Input[_builtins.str]] = None) -> 'ManagedObjectStorageUserAccessKey':
+            access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> 'ManagedObjectStorageUserAccessKey':
         """
         Get an existing ManagedObjectStorageUserAccessKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -341,6 +345,26 @@ class ManagedObjectStorageUserAccessKey(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         __props__.__dict__["username"] = username
         return ManagedObjectStorageUserAccessKey(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessKeyId"] = access_key_id
+        __props__["createdAt"] = created_at
+        __props__["lastUsedAt"] = last_used_at
+        __props__["secretAccessKey"] = secret_access_key
+        __props__["serviceUuid"] = service_uuid
+        __props__["status"] = status
+        __props__["username"] = username
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/managedObjectStorageUserAccessKey:ManagedObjectStorageUserAccessKey', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="accessKeyId")

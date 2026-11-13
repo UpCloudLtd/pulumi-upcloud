@@ -24,19 +24,25 @@ class StorageArgs:
                  size: pulumi.Input[_builtins.int],
                  title: pulumi.Input[_builtins.str],
                  zone: pulumi.Input[_builtins.str],
-                 backup_rule: Optional[pulumi.Input['StorageBackupRuleArgs']] = None,
-                 clone: Optional[pulumi.Input['StorageCloneArgs']] = None,
-                 delete_autoresize_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 filesystem_autoresize: Optional[pulumi.Input[_builtins.bool]] = None,
-                 import_: Optional[pulumi.Input['StorageImportArgs']] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 tier: Optional[pulumi.Input[_builtins.str]] = None):
+                 backup_rule: pulumi.Input[Optional['StorageBackupRuleArgs']] = None,
+                 clone: pulumi.Input[Optional['StorageCloneArgs']] = None,
+                 delete_autoresize_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 filesystem_autoresize: pulumi.Input[Optional[_builtins.bool]] = None,
+                 import_: pulumi.Input[Optional['StorageImportArgs']] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Storage resource.
+
         :param pulumi.Input[_builtins.int] size: The size of the storage in gigabytes.
         :param pulumi.Input[_builtins.str] title: The title of the storage.
         :param pulumi.Input[_builtins.str] zone: The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        :param pulumi.Input['StorageBackupRuleArgs'] backup_rule: The criteria to backup the storage.
+               
+                   Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
         :param pulumi.Input['StorageCloneArgs'] clone: Block defining another storage/template to clone to storage.
         :param pulumi.Input[_builtins.bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
         :param pulumi.Input[_builtins.bool] encrypt: Sets if the storage is encrypted at rest.
@@ -104,52 +110,59 @@ class StorageArgs:
 
     @_builtins.property
     @pulumi.getter(name="backupRule")
-    def backup_rule(self) -> Optional[pulumi.Input['StorageBackupRuleArgs']]:
+    def backup_rule(self) -> pulumi.Input[Optional['StorageBackupRuleArgs']]:
+        """
+        The criteria to backup the storage.
+
+            Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+            
+            Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        """
         return pulumi.get(self, "backup_rule")
 
     @backup_rule.setter
-    def backup_rule(self, value: Optional[pulumi.Input['StorageBackupRuleArgs']]):
+    def backup_rule(self, value: pulumi.Input[Optional['StorageBackupRuleArgs']]):
         pulumi.set(self, "backup_rule", value)
 
     @_builtins.property
     @pulumi.getter
-    def clone(self) -> Optional[pulumi.Input['StorageCloneArgs']]:
+    def clone(self) -> pulumi.Input[Optional['StorageCloneArgs']]:
         """
         Block defining another storage/template to clone to storage.
         """
         return pulumi.get(self, "clone")
 
     @clone.setter
-    def clone(self, value: Optional[pulumi.Input['StorageCloneArgs']]):
+    def clone(self, value: pulumi.Input[Optional['StorageCloneArgs']]):
         pulumi.set(self, "clone", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteAutoresizeBackup")
-    def delete_autoresize_backup(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_autoresize_backup(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
         """
         return pulumi.get(self, "delete_autoresize_backup")
 
     @delete_autoresize_backup.setter
-    def delete_autoresize_backup(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_autoresize_backup(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_autoresize_backup", value)
 
     @_builtins.property
     @pulumi.getter
-    def encrypt(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def encrypt(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Sets if the storage is encrypted at rest.
         """
         return pulumi.get(self, "encrypt")
 
     @encrypt.setter
-    def encrypt(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def encrypt(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "encrypt", value)
 
     @_builtins.property
     @pulumi.getter(name="filesystemAutoresize")
-    def filesystem_autoresize(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def filesystem_autoresize(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `delete_autoresize_backup` option is set to true).
         				Taking and keeping backups incure costs.
@@ -157,64 +170,70 @@ class StorageArgs:
         return pulumi.get(self, "filesystem_autoresize")
 
     @filesystem_autoresize.setter
-    def filesystem_autoresize(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def filesystem_autoresize(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "filesystem_autoresize", value)
 
     @_builtins.property
     @pulumi.getter(name="import")
-    def import_(self) -> Optional[pulumi.Input['StorageImportArgs']]:
+    def import_(self) -> pulumi.Input[Optional['StorageImportArgs']]:
         """
         Block defining external data to import to storage
         """
         return pulumi.get(self, "import_")
 
     @import_.setter
-    def import_(self, value: Optional[pulumi.Input['StorageImportArgs']]):
+    def import_(self, value: pulumi.Input[Optional['StorageImportArgs']]):
         pulumi.set(self, "import_", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the storage.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tier(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The tier of the storage.
         """
         return pulumi.get(self, "tier")
 
     @tier.setter
-    def tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tier(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tier", value)
 
 
 @pulumi.input_type
 class _StorageState:
     def __init__(__self__, *,
-                 backup_rule: Optional[pulumi.Input['StorageBackupRuleArgs']] = None,
-                 clone: Optional[pulumi.Input['StorageCloneArgs']] = None,
-                 delete_autoresize_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 filesystem_autoresize: Optional[pulumi.Input[_builtins.bool]] = None,
-                 import_: Optional[pulumi.Input['StorageImportArgs']] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
-                 system_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 tier: Optional[pulumi.Input[_builtins.str]] = None,
-                 title: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 backup_rule: pulumi.Input[Optional['StorageBackupRuleArgs']] = None,
+                 clone: pulumi.Input[Optional['StorageCloneArgs']] = None,
+                 delete_autoresize_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 filesystem_autoresize: pulumi.Input[Optional[_builtins.bool]] = None,
+                 import_: pulumi.Input[Optional['StorageImportArgs']] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 system_labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None,
+                 title: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Storage resources.
+
+        :param pulumi.Input['StorageBackupRuleArgs'] backup_rule: The criteria to backup the storage.
+               
+                   Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
         :param pulumi.Input['StorageCloneArgs'] clone: Block defining another storage/template to clone to storage.
         :param pulumi.Input[_builtins.bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
         :param pulumi.Input[_builtins.bool] encrypt: Sets if the storage is encrypted at rest.
@@ -258,52 +277,59 @@ class _StorageState:
 
     @_builtins.property
     @pulumi.getter(name="backupRule")
-    def backup_rule(self) -> Optional[pulumi.Input['StorageBackupRuleArgs']]:
+    def backup_rule(self) -> pulumi.Input[Optional['StorageBackupRuleArgs']]:
+        """
+        The criteria to backup the storage.
+
+            Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+            
+            Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        """
         return pulumi.get(self, "backup_rule")
 
     @backup_rule.setter
-    def backup_rule(self, value: Optional[pulumi.Input['StorageBackupRuleArgs']]):
+    def backup_rule(self, value: pulumi.Input[Optional['StorageBackupRuleArgs']]):
         pulumi.set(self, "backup_rule", value)
 
     @_builtins.property
     @pulumi.getter
-    def clone(self) -> Optional[pulumi.Input['StorageCloneArgs']]:
+    def clone(self) -> pulumi.Input[Optional['StorageCloneArgs']]:
         """
         Block defining another storage/template to clone to storage.
         """
         return pulumi.get(self, "clone")
 
     @clone.setter
-    def clone(self, value: Optional[pulumi.Input['StorageCloneArgs']]):
+    def clone(self, value: pulumi.Input[Optional['StorageCloneArgs']]):
         pulumi.set(self, "clone", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteAutoresizeBackup")
-    def delete_autoresize_backup(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_autoresize_backup(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
         """
         return pulumi.get(self, "delete_autoresize_backup")
 
     @delete_autoresize_backup.setter
-    def delete_autoresize_backup(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_autoresize_backup(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_autoresize_backup", value)
 
     @_builtins.property
     @pulumi.getter
-    def encrypt(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def encrypt(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Sets if the storage is encrypted at rest.
         """
         return pulumi.get(self, "encrypt")
 
     @encrypt.setter
-    def encrypt(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def encrypt(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "encrypt", value)
 
     @_builtins.property
     @pulumi.getter(name="filesystemAutoresize")
-    def filesystem_autoresize(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def filesystem_autoresize(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `delete_autoresize_backup` option is set to true).
         				Taking and keeping backups incure costs.
@@ -311,103 +337,103 @@ class _StorageState:
         return pulumi.get(self, "filesystem_autoresize")
 
     @filesystem_autoresize.setter
-    def filesystem_autoresize(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def filesystem_autoresize(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "filesystem_autoresize", value)
 
     @_builtins.property
     @pulumi.getter(name="import")
-    def import_(self) -> Optional[pulumi.Input['StorageImportArgs']]:
+    def import_(self) -> pulumi.Input[Optional['StorageImportArgs']]:
         """
         Block defining external data to import to storage
         """
         return pulumi.get(self, "import_")
 
     @import_.setter
-    def import_(self, value: Optional[pulumi.Input['StorageImportArgs']]):
+    def import_(self, value: pulumi.Input[Optional['StorageImportArgs']]):
         pulumi.set(self, "import_", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the storage.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The size of the storage in gigabytes.
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="systemLabels")
-    def system_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def system_labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
         """
         return pulumi.get(self, "system_labels")
 
     @system_labels.setter
-    def system_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def system_labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "system_labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tier(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The tier of the storage.
         """
         return pulumi.get(self, "tier")
 
     @tier.setter
-    def tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tier(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tier", value)
 
     @_builtins.property
     @pulumi.getter
-    def title(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def title(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The title of the storage.
         """
         return pulumi.get(self, "title")
 
     @title.setter
-    def title(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def title(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "title", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of the storage.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -417,17 +443,17 @@ class Storage(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup_rule: Optional[pulumi.Input[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict']]] = None,
-                 clone: Optional[pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']]] = None,
-                 delete_autoresize_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 filesystem_autoresize: Optional[pulumi.Input[_builtins.bool]] = None,
-                 import_: Optional[pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
-                 tier: Optional[pulumi.Input[_builtins.str]] = None,
-                 title: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 backup_rule: pulumi.Input[Optional[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict', 'outputs.StorageBackupRule']]] = None,
+                 clone: pulumi.Input[Optional[Union['StorageCloneArgs', 'StorageCloneArgsDict', 'outputs.StorageClone']]] = None,
+                 delete_autoresize_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 filesystem_autoresize: pulumi.Input[Optional[_builtins.bool]] = None,
+                 import_: pulumi.Input[Optional[Union['StorageImportArgs', 'StorageImportArgsDict', 'outputs.StorageImport']]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None,
+                 title: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages UpCloud [Block Storage](https://upcloud.com/products/block-storage) devices.
@@ -440,14 +466,20 @@ class Storage(pulumi.CustomResource):
         $ pulumi import upcloud:index/storage:Storage example_storage 0128ae5a-91dd-4ebf-bd1e-304c47f2c652
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']] clone: Block defining another storage/template to clone to storage.
+        :param pulumi.Input[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict', 'outputs.StorageBackupRule']] backup_rule: The criteria to backup the storage.
+               
+                   Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        :param pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict', 'outputs.StorageClone']] clone: Block defining another storage/template to clone to storage.
         :param pulumi.Input[_builtins.bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
         :param pulumi.Input[_builtins.bool] encrypt: Sets if the storage is encrypted at rest.
         :param pulumi.Input[_builtins.bool] filesystem_autoresize: If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `delete_autoresize_backup` option is set to true).
                				Taking and keeping backups incure costs.
-        :param pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']] import_: Block defining external data to import to storage
+        :param pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict', 'outputs.StorageImport']] import_: Block defining external data to import to storage
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the storage.
         :param pulumi.Input[_builtins.int] size: The size of the storage in gigabytes.
         :param pulumi.Input[_builtins.str] tier: The tier of the storage.
@@ -471,6 +503,7 @@ class Storage(pulumi.CustomResource):
         $ pulumi import upcloud:index/storage:Storage example_storage 0128ae5a-91dd-4ebf-bd1e-304c47f2c652
         ```
 
+
         :param str resource_name: The name of the resource.
         :param StorageArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -486,17 +519,17 @@ class Storage(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup_rule: Optional[pulumi.Input[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict']]] = None,
-                 clone: Optional[pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']]] = None,
-                 delete_autoresize_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 filesystem_autoresize: Optional[pulumi.Input[_builtins.bool]] = None,
-                 import_: Optional[pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
-                 tier: Optional[pulumi.Input[_builtins.str]] = None,
-                 title: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 backup_rule: pulumi.Input[Optional[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict', 'outputs.StorageBackupRule']]] = None,
+                 clone: pulumi.Input[Optional[Union['StorageCloneArgs', 'StorageCloneArgsDict', 'outputs.StorageClone']]] = None,
+                 delete_autoresize_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 filesystem_autoresize: pulumi.Input[Optional[_builtins.bool]] = None,
+                 import_: pulumi.Input[Optional[Union['StorageImportArgs', 'StorageImportArgsDict', 'outputs.StorageImport']]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None,
+                 title: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -535,19 +568,19 @@ class Storage(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backup_rule: Optional[pulumi.Input[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict']]] = None,
-            clone: Optional[pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']]] = None,
-            delete_autoresize_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-            encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-            filesystem_autoresize: Optional[pulumi.Input[_builtins.bool]] = None,
-            import_: Optional[pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']]] = None,
-            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            size: Optional[pulumi.Input[_builtins.int]] = None,
-            system_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            tier: Optional[pulumi.Input[_builtins.str]] = None,
-            title: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'Storage':
+            backup_rule: pulumi.Input[Optional[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict', 'outputs.StorageBackupRule']]] = None,
+            clone: pulumi.Input[Optional[Union['StorageCloneArgs', 'StorageCloneArgsDict', 'outputs.StorageClone']]] = None,
+            delete_autoresize_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+            encrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+            filesystem_autoresize: pulumi.Input[Optional[_builtins.bool]] = None,
+            import_: pulumi.Input[Optional[Union['StorageImportArgs', 'StorageImportArgsDict', 'outputs.StorageImport']]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            size: pulumi.Input[Optional[_builtins.int]] = None,
+            system_labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            tier: pulumi.Input[Optional[_builtins.str]] = None,
+            title: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'Storage':
         """
         Get an existing Storage resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -555,12 +588,17 @@ class Storage(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict']] clone: Block defining another storage/template to clone to storage.
+        :param pulumi.Input[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict', 'outputs.StorageBackupRule']] backup_rule: The criteria to backup the storage.
+               
+                   Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        :param pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict', 'outputs.StorageClone']] clone: Block defining another storage/template to clone to storage.
         :param pulumi.Input[_builtins.bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
         :param pulumi.Input[_builtins.bool] encrypt: Sets if the storage is encrypted at rest.
         :param pulumi.Input[_builtins.bool] filesystem_autoresize: If set to true, provider will attempt to resize partition and filesystem when the size of the storage changes. Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless `delete_autoresize_backup` option is set to true).
                				Taking and keeping backups incure costs.
-        :param pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict']] import_: Block defining external data to import to storage
+        :param pulumi.Input[Union['StorageImportArgs', 'StorageImportArgsDict', 'outputs.StorageImport']] import_: Block defining external data to import to storage
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the storage.
         :param pulumi.Input[_builtins.int] size: The size of the storage in gigabytes.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] system_labels: System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
@@ -588,9 +626,48 @@ class Storage(pulumi.CustomResource):
         __props__.__dict__["zone"] = zone
         return Storage(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backup_rule: pulumi.Input[Optional[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict', 'outputs.StorageBackupRule']]] = None,
+            clone: pulumi.Input[Optional[Union['StorageCloneArgs', 'StorageCloneArgsDict', 'outputs.StorageClone']]] = None,
+            delete_autoresize_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+            encrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+            filesystem_autoresize: pulumi.Input[Optional[_builtins.bool]] = None,
+            import_: pulumi.Input[Optional[Union['StorageImportArgs', 'StorageImportArgsDict', 'outputs.StorageImport']]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            size: pulumi.Input[Optional[_builtins.int]] = None,
+            system_labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            tier: pulumi.Input[Optional[_builtins.str]] = None,
+            title: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backupRule"] = backup_rule
+        __props__["clone"] = clone
+        __props__["deleteAutoresizeBackup"] = delete_autoresize_backup
+        __props__["encrypt"] = encrypt
+        __props__["filesystemAutoresize"] = filesystem_autoresize
+        __props__["import"] = import_
+        __props__["labels"] = labels
+        __props__["size"] = size
+        __props__["systemLabels"] = system_labels
+        __props__["tier"] = tier
+        __props__["title"] = title
+        __props__["type"] = type
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/storage:Storage', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="backupRule")
     def backup_rule(self) -> pulumi.Output[Optional['outputs.StorageBackupRule']]:
+        """
+        The criteria to backup the storage.
+
+            Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+            
+            Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        """
         return pulumi.get(self, "backup_rule")
 
     @_builtins.property

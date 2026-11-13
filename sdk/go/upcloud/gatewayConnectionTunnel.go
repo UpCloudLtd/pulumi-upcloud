@@ -85,7 +85,7 @@ import (
 // _, err = upcloud.NewGatewayConnectionTunnel(ctx, "this", &upcloud.GatewayConnectionTunnelArgs{
 // ConnectionId: thisGatewayConnection.ID(),
 // Name: pulumi.String("test-tunnel"),
-// LocalAddressName: pulumi.String(thisGateway.Address.ApplyT(func(address upcloud.GatewayAddress) (*interface{}, error) {
+// LocalAddressName: pulumi.String(thisGateway.Address.ApplyT(func(address *upcloud.GatewayAddress) (*interface{}, error) {
 // return &address[0].Name, nil
 // }).(pulumi.Interface{}PtrOutput)),
 // RemoteAddress: pulumi.String("100.123.123.10"),
@@ -202,6 +202,12 @@ type GatewayConnectionTunnelState struct {
 
 func (GatewayConnectionTunnelState) ElementType() reflect.Type {
 	return reflect.TypeOf((*gatewayConnectionTunnelState)(nil)).Elem()
+}
+
+// GatewayConnectionTunnelExists checks whether an existing GatewayConnectionTunnel resource with the given ID exists.
+func GatewayConnectionTunnelExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GatewayConnectionTunnelState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/gatewayConnectionTunnel:GatewayConnectionTunnel", id, state, "", opts...)
 }
 
 type gatewayConnectionTunnelArgs struct {

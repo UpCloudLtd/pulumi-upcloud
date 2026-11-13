@@ -185,21 +185,21 @@ export function getStorageOutput(args?: GetStorageOutputArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getStorage.
  */
 export interface GetStorageOutputArgs {
-    accessType?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
+    accessType?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * @deprecated Use exact title or UUID to limit the number of matching storages. Note that if you have multiple storages with the same title, you should use UUID to select the storage.
      */
-    mostRecent?: pulumi.Input<boolean>;
+    mostRecent?: pulumi.Input<boolean | undefined>;
     /**
      * @deprecated Contains the same value as `title`. Use `title` instead.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * @deprecated Use exact title or UUID instead.
      */
-    nameRegex?: pulumi.Input<string>;
-    title?: pulumi.Input<string>;
-    type?: pulumi.Input<string>;
-    zone?: pulumi.Input<string>;
+    nameRegex?: pulumi.Input<string | undefined>;
+    title?: pulumi.Input<string | undefined>;
+    type?: pulumi.Input<string | undefined>;
+    zone?: pulumi.Input<string | undefined>;
 }

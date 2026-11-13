@@ -24,19 +24,21 @@ class KubernetesClusterArgs:
                  control_plane_ip_filters: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  network: pulumi.Input[_builtins.str],
                  zone: pulumi.Input[_builtins.str],
-                 fetch_kubeconfig: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_node_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 storage_encryption: Optional[pulumi.Input[_builtins.str]] = None,
-                 upgrade_strategy_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None):
+                 fetch_kubeconfig: pulumi.Input[Optional[_builtins.bool]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_node_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 storage_encryption: pulumi.Input[Optional[_builtins.str]] = None,
+                 upgrade_strategy_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a KubernetesCluster resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] control_plane_ip_filters: IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
         :param pulumi.Input[_builtins.str] network: Network ID for the cluster to run in.
         :param pulumi.Input[_builtins.str] zone: Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        :param pulumi.Input[_builtins.bool] fetch_kubeconfig: Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[_builtins.str] name: Cluster name. Needs to be unique within the account.
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
@@ -105,88 +107,91 @@ class KubernetesClusterArgs:
 
     @_builtins.property
     @pulumi.getter(name="fetchKubeconfig")
-    def fetch_kubeconfig(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def fetch_kubeconfig(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+        """
         return pulumi.get(self, "fetch_kubeconfig")
 
     @fetch_kubeconfig.setter
-    def fetch_kubeconfig(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def fetch_kubeconfig(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "fetch_kubeconfig", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the cluster.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster name. Needs to be unique within the account.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         """
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNodeGroups")
-    def private_node_groups(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def private_node_groups(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         """
         return pulumi.get(self, "private_node_groups")
 
     @private_node_groups.setter
-    def private_node_groups(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def private_node_groups(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "private_node_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="storageEncryption")
-    def storage_encryption(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def storage_encryption(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
         """
         return pulumi.get(self, "storage_encryption")
 
     @storage_encryption.setter
-    def storage_encryption(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def storage_encryption(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "storage_encryption", value)
 
     @_builtins.property
     @pulumi.getter(name="upgradeStrategyType")
-    def upgrade_strategy_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def upgrade_strategy_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
         """
         return pulumi.get(self, "upgrade_strategy_type")
 
     @upgrade_strategy_type.setter
-    def upgrade_strategy_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def upgrade_strategy_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "upgrade_strategy_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
 
@@ -195,31 +200,33 @@ class KubernetesClusterArgs:
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version", value)
 
 
 @pulumi.input_type
 class _KubernetesClusterState:
     def __init__(__self__, *,
-                 control_plane_ip_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 fetch_kubeconfig: Optional[pulumi.Input[_builtins.bool]] = None,
-                 kubeconfig: Optional[pulumi.Input['KubernetesClusterKubeconfigArgs']] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 network: Optional[pulumi.Input[_builtins.str]] = None,
-                 network_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_node_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_encryption: Optional[pulumi.Input[_builtins.str]] = None,
-                 upgrade_strategy_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 control_plane_ip_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 fetch_kubeconfig: pulumi.Input[Optional[_builtins.bool]] = None,
+                 kubeconfig: pulumi.Input[Optional['KubernetesClusterKubeconfigArgs']] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 network: pulumi.Input[Optional[_builtins.str]] = None,
+                 network_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_node_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_encryption: pulumi.Input[Optional[_builtins.str]] = None,
+                 upgrade_strategy_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KubernetesCluster resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] control_plane_ip_filters: IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
+        :param pulumi.Input[_builtins.bool] fetch_kubeconfig: Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
         :param pulumi.Input['KubernetesClusterKubeconfigArgs'] kubeconfig: Cluster kubeconfig and connection details. Set only when `fetch_kubeconfig` is `true`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[_builtins.str] name: Cluster name. Needs to be unique within the account.
@@ -269,160 +276,163 @@ class _KubernetesClusterState:
 
     @_builtins.property
     @pulumi.getter(name="controlPlaneIpFilters")
-    def control_plane_ip_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def control_plane_ip_filters(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
         """
         return pulumi.get(self, "control_plane_ip_filters")
 
     @control_plane_ip_filters.setter
-    def control_plane_ip_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def control_plane_ip_filters(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "control_plane_ip_filters", value)
 
     @_builtins.property
     @pulumi.getter(name="fetchKubeconfig")
-    def fetch_kubeconfig(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def fetch_kubeconfig(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+        """
         return pulumi.get(self, "fetch_kubeconfig")
 
     @fetch_kubeconfig.setter
-    def fetch_kubeconfig(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def fetch_kubeconfig(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "fetch_kubeconfig", value)
 
     @_builtins.property
     @pulumi.getter
-    def kubeconfig(self) -> Optional[pulumi.Input['KubernetesClusterKubeconfigArgs']]:
+    def kubeconfig(self) -> pulumi.Input[Optional['KubernetesClusterKubeconfigArgs']]:
         """
         Cluster kubeconfig and connection details. Set only when `fetch_kubeconfig` is `true`.
         """
         return pulumi.get(self, "kubeconfig")
 
     @kubeconfig.setter
-    def kubeconfig(self, value: Optional[pulumi.Input['KubernetesClusterKubeconfigArgs']]):
+    def kubeconfig(self, value: pulumi.Input[Optional['KubernetesClusterKubeconfigArgs']]):
         pulumi.set(self, "kubeconfig", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the cluster.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cluster name. Needs to be unique within the account.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def network(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def network(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Network ID for the cluster to run in.
         """
         return pulumi.get(self, "network")
 
     @network.setter
-    def network(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def network(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "network", value)
 
     @_builtins.property
     @pulumi.getter(name="networkCidr")
-    def network_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def network_cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Network CIDR for the given network. Computed automatically.
         """
         return pulumi.get(self, "network_cidr")
 
     @network_cidr.setter
-    def network_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def network_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "network_cidr", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeGroups")
-    def node_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def node_groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Names of the node groups configured to cluster
         """
         return pulumi.get(self, "node_groups")
 
     @node_groups.setter
-    def node_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def node_groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "node_groups", value)
 
     @_builtins.property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
         """
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNodeGroups")
-    def private_node_groups(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def private_node_groups(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
         """
         return pulumi.get(self, "private_node_groups")
 
     @private_node_groups.setter
-    def private_node_groups(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def private_node_groups(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "private_node_groups", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Operational state of the cluster.
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter(name="storageEncryption")
-    def storage_encryption(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def storage_encryption(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
         """
         return pulumi.get(self, "storage_encryption")
 
     @storage_encryption.setter
-    def storage_encryption(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def storage_encryption(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "storage_encryption", value)
 
     @_builtins.property
     @pulumi.getter(name="upgradeStrategyType")
-    def upgrade_strategy_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def upgrade_strategy_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
         """
         return pulumi.get(self, "upgrade_strategy_type")
 
     @upgrade_strategy_type.setter
-    def upgrade_strategy_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def upgrade_strategy_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "upgrade_strategy_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
 
@@ -431,19 +441,19 @@ class _KubernetesClusterState:
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -453,17 +463,17 @@ class KubernetesCluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 control_plane_ip_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 fetch_kubeconfig: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 network: Optional[pulumi.Input[_builtins.str]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_node_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 storage_encryption: Optional[pulumi.Input[_builtins.str]] = None,
-                 upgrade_strategy_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 control_plane_ip_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 fetch_kubeconfig: pulumi.Input[Optional[_builtins.bool]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 network: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_node_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 storage_encryption: pulumi.Input[Optional[_builtins.str]] = None,
+                 upgrade_strategy_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents a [Managed Kubernetes](https://upcloud.com/products/managed-kubernetes) cluster.
@@ -518,9 +528,11 @@ class KubernetesCluster(pulumi.CustomResource):
             private_node_groups=True)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] control_plane_ip_filters: IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
+        :param pulumi.Input[_builtins.bool] fetch_kubeconfig: Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[_builtins.str] name: Cluster name. Needs to be unique within the account.
         :param pulumi.Input[_builtins.str] network: Network ID for the cluster to run in.
@@ -592,6 +604,7 @@ class KubernetesCluster(pulumi.CustomResource):
             private_node_groups=True)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param KubernetesClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -607,17 +620,17 @@ class KubernetesCluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 control_plane_ip_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 fetch_kubeconfig: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 network: Optional[pulumi.Input[_builtins.str]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_node_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 storage_encryption: Optional[pulumi.Input[_builtins.str]] = None,
-                 upgrade_strategy_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 control_plane_ip_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 fetch_kubeconfig: pulumi.Input[Optional[_builtins.bool]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 network: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_node_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 storage_encryption: pulumi.Input[Optional[_builtins.str]] = None,
+                 upgrade_strategy_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -658,21 +671,21 @@ class KubernetesCluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            control_plane_ip_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            fetch_kubeconfig: Optional[pulumi.Input[_builtins.bool]] = None,
-            kubeconfig: Optional[pulumi.Input[Union['KubernetesClusterKubeconfigArgs', 'KubernetesClusterKubeconfigArgsDict']]] = None,
-            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            network: Optional[pulumi.Input[_builtins.str]] = None,
-            network_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-            node_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            plan: Optional[pulumi.Input[_builtins.str]] = None,
-            private_node_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-            state: Optional[pulumi.Input[_builtins.str]] = None,
-            storage_encryption: Optional[pulumi.Input[_builtins.str]] = None,
-            upgrade_strategy_type: Optional[pulumi.Input[_builtins.str]] = None,
-            version: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'KubernetesCluster':
+            control_plane_ip_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            fetch_kubeconfig: pulumi.Input[Optional[_builtins.bool]] = None,
+            kubeconfig: pulumi.Input[Optional[Union['KubernetesClusterKubeconfigArgs', 'KubernetesClusterKubeconfigArgsDict', 'outputs.KubernetesClusterKubeconfig']]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            network: pulumi.Input[Optional[_builtins.str]] = None,
+            network_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+            node_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            plan: pulumi.Input[Optional[_builtins.str]] = None,
+            private_node_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            storage_encryption: pulumi.Input[Optional[_builtins.str]] = None,
+            upgrade_strategy_type: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'KubernetesCluster':
         """
         Get an existing KubernetesCluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -681,7 +694,8 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] control_plane_ip_filters: IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
-        :param pulumi.Input[Union['KubernetesClusterKubeconfigArgs', 'KubernetesClusterKubeconfigArgsDict']] kubeconfig: Cluster kubeconfig and connection details. Set only when `fetch_kubeconfig` is `true`.
+        :param pulumi.Input[_builtins.bool] fetch_kubeconfig: Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+        :param pulumi.Input[Union['KubernetesClusterKubeconfigArgs', 'KubernetesClusterKubeconfigArgsDict', 'outputs.KubernetesClusterKubeconfig']] kubeconfig: Cluster kubeconfig and connection details. Set only when `fetch_kubeconfig` is `true`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[_builtins.str] name: Cluster name. Needs to be unique within the account.
         :param pulumi.Input[_builtins.str] network: Network ID for the cluster to run in.
@@ -718,6 +732,42 @@ class KubernetesCluster(pulumi.CustomResource):
         __props__.__dict__["zone"] = zone
         return KubernetesCluster(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            control_plane_ip_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            fetch_kubeconfig: pulumi.Input[Optional[_builtins.bool]] = None,
+            kubeconfig: pulumi.Input[Optional[Union['KubernetesClusterKubeconfigArgs', 'KubernetesClusterKubeconfigArgsDict', 'outputs.KubernetesClusterKubeconfig']]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            network: pulumi.Input[Optional[_builtins.str]] = None,
+            network_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+            node_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            plan: pulumi.Input[Optional[_builtins.str]] = None,
+            private_node_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            storage_encryption: pulumi.Input[Optional[_builtins.str]] = None,
+            upgrade_strategy_type: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["controlPlaneIpFilters"] = control_plane_ip_filters
+        __props__["fetchKubeconfig"] = fetch_kubeconfig
+        __props__["kubeconfig"] = kubeconfig
+        __props__["labels"] = labels
+        __props__["name"] = name
+        __props__["network"] = network
+        __props__["networkCidr"] = network_cidr
+        __props__["nodeGroups"] = node_groups
+        __props__["plan"] = plan
+        __props__["privateNodeGroups"] = private_node_groups
+        __props__["state"] = state
+        __props__["storageEncryption"] = storage_encryption
+        __props__["upgradeStrategyType"] = upgrade_strategy_type
+        __props__["version"] = version
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/kubernetesCluster:KubernetesCluster', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="controlPlaneIpFilters")
     def control_plane_ip_filters(self) -> pulumi.Output[Sequence[_builtins.str]]:
@@ -729,6 +779,9 @@ class KubernetesCluster(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="fetchKubeconfig")
     def fetch_kubeconfig(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+        """
         return pulumi.get(self, "fetch_kubeconfig")
 
     @_builtins.property

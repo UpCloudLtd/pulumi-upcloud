@@ -20,11 +20,12 @@ __all__ = ['ManagedDatabaseLogicalDatabaseArgs', 'ManagedDatabaseLogicalDatabase
 class ManagedDatabaseLogicalDatabaseArgs:
     def __init__(__self__, *,
                  service: pulumi.Input[_builtins.str],
-                 character_set: Optional[pulumi.Input[_builtins.str]] = None,
-                 collation: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 character_set: pulumi.Input[Optional[_builtins.str]] = None,
+                 collation: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ManagedDatabaseLogicalDatabase resource.
+
         :param pulumi.Input[_builtins.str] service: UUID of the service to which this logical database belongs.
         :param pulumi.Input[_builtins.str] character_set: Default character set for the database (LC_CTYPE), PostgreSQL only.
         :param pulumi.Input[_builtins.str] collation: Default collation for the database (LC_COLLATE), PostgreSQL only.
@@ -52,50 +53,51 @@ class ManagedDatabaseLogicalDatabaseArgs:
 
     @_builtins.property
     @pulumi.getter(name="characterSet")
-    def character_set(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def character_set(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default character set for the database (LC_CTYPE), PostgreSQL only.
         """
         return pulumi.get(self, "character_set")
 
     @character_set.setter
-    def character_set(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def character_set(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "character_set", value)
 
     @_builtins.property
     @pulumi.getter
-    def collation(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def collation(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default collation for the database (LC_COLLATE), PostgreSQL only.
         """
         return pulumi.get(self, "collation")
 
     @collation.setter
-    def collation(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def collation(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "collation", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the logical database.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _ManagedDatabaseLogicalDatabaseState:
     def __init__(__self__, *,
-                 character_set: Optional[pulumi.Input[_builtins.str]] = None,
-                 collation: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 service: Optional[pulumi.Input[_builtins.str]] = None):
+                 character_set: pulumi.Input[Optional[_builtins.str]] = None,
+                 collation: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 service: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ManagedDatabaseLogicalDatabase resources.
+
         :param pulumi.Input[_builtins.str] character_set: Default character set for the database (LC_CTYPE), PostgreSQL only.
         :param pulumi.Input[_builtins.str] collation: Default collation for the database (LC_COLLATE), PostgreSQL only.
         :param pulumi.Input[_builtins.str] name: Name of the logical database.
@@ -112,50 +114,50 @@ class _ManagedDatabaseLogicalDatabaseState:
 
     @_builtins.property
     @pulumi.getter(name="characterSet")
-    def character_set(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def character_set(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default character set for the database (LC_CTYPE), PostgreSQL only.
         """
         return pulumi.get(self, "character_set")
 
     @character_set.setter
-    def character_set(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def character_set(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "character_set", value)
 
     @_builtins.property
     @pulumi.getter
-    def collation(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def collation(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default collation for the database (LC_COLLATE), PostgreSQL only.
         """
         return pulumi.get(self, "collation")
 
     @collation.setter
-    def collation(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def collation(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "collation", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the logical database.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def service(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UUID of the service to which this logical database belongs.
         """
         return pulumi.get(self, "service")
 
     @service.setter
-    def service(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service", value)
 
 
@@ -165,10 +167,10 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 character_set: Optional[pulumi.Input[_builtins.str]] = None,
-                 collation: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 service: Optional[pulumi.Input[_builtins.str]] = None,
+                 character_set: pulumi.Input[Optional[_builtins.str]] = None,
+                 collation: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 service: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents a logical database in managed database.
@@ -198,6 +200,7 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
             service=example_managed_database_mysql.id,
             name="example2_db")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -241,6 +244,7 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
             name="example2_db")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ManagedDatabaseLogicalDatabaseArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -256,10 +260,10 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 character_set: Optional[pulumi.Input[_builtins.str]] = None,
-                 collation: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 service: Optional[pulumi.Input[_builtins.str]] = None,
+                 character_set: pulumi.Input[Optional[_builtins.str]] = None,
+                 collation: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 service: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -285,10 +289,10 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            character_set: Optional[pulumi.Input[_builtins.str]] = None,
-            collation: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            service: Optional[pulumi.Input[_builtins.str]] = None) -> 'ManagedDatabaseLogicalDatabase':
+            character_set: pulumi.Input[Optional[_builtins.str]] = None,
+            collation: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            service: pulumi.Input[Optional[_builtins.str]] = None) -> 'ManagedDatabaseLogicalDatabase':
         """
         Get an existing ManagedDatabaseLogicalDatabase resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -310,6 +314,20 @@ class ManagedDatabaseLogicalDatabase(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["service"] = service
         return ManagedDatabaseLogicalDatabase(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            character_set: pulumi.Input[Optional[_builtins.str]] = None,
+            collation: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            service: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["characterSet"] = character_set
+        __props__["collation"] = collation
+        __props__["name"] = name
+        __props__["service"] = service
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="characterSet")

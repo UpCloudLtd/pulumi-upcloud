@@ -92,6 +92,9 @@ namespace UpCloud.Pulumi.UpCloud
         [Output("configuredStatus")]
         public Output<string> ConfiguredStatus { get; private set; } = null!;
 
+        /// <summary>
+        /// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terraform refresh'.
+        /// </summary>
         [Output("connections")]
         public Output<ImmutableArray<string>> Connections { get; private set; } = null!;
 
@@ -278,6 +281,10 @@ namespace UpCloud.Pulumi.UpCloud
 
         [Input("connections")]
         private InputList<string>? _connections;
+
+        /// <summary>
+        /// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terraform refresh'.
+        /// </summary>
         public InputList<string> Connections
         {
             get => _connections ?? (_connections = new InputList<string>());

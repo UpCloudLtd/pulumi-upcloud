@@ -155,6 +155,12 @@ func (ManagedObjectStorageUserAccessKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*managedObjectStorageUserAccessKeyState)(nil)).Elem()
 }
 
+// ManagedObjectStorageUserAccessKeyExists checks whether an existing ManagedObjectStorageUserAccessKey resource with the given ID exists.
+func ManagedObjectStorageUserAccessKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ManagedObjectStorageUserAccessKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/managedObjectStorageUserAccessKey:ManagedObjectStorageUserAccessKey", id, state, "", opts...)
+}
+
 type managedObjectStorageUserAccessKeyArgs struct {
 	// Managed Object Storage service UUID.
 	ServiceUuid string `pulumi:"serviceUuid"`

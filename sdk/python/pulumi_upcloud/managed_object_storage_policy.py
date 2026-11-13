@@ -21,10 +21,11 @@ class ManagedObjectStoragePolicyArgs:
     def __init__(__self__, *,
                  document: pulumi.Input[_builtins.str],
                  service_uuid: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ManagedObjectStoragePolicy resource.
+
         :param pulumi.Input[_builtins.str] document: Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
         :param pulumi.Input[_builtins.str] description: Description of the policy. This property is immutable after creation.
@@ -63,44 +64,45 @@ class ManagedObjectStoragePolicyArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description of the policy. This property is immutable after creation.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Policy name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _ManagedObjectStoragePolicyState:
     def __init__(__self__, *,
-                 arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 attachment_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_version_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 document: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 system: Optional[pulumi.Input[_builtins.bool]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 attachment_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_version_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 document: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 system: pulumi.Input[Optional[_builtins.bool]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ManagedObjectStoragePolicy resources.
+
         :param pulumi.Input[_builtins.str] arn: Policy ARN.
         :param pulumi.Input[_builtins.int] attachment_count: Attachment count.
         :param pulumi.Input[_builtins.str] created_at: Creation time.
@@ -135,122 +137,122 @@ class _ManagedObjectStoragePolicyState:
 
     @_builtins.property
     @pulumi.getter
-    def arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Policy ARN.
         """
         return pulumi.get(self, "arn")
 
     @arn.setter
-    def arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "arn", value)
 
     @_builtins.property
     @pulumi.getter(name="attachmentCount")
-    def attachment_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def attachment_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Attachment count.
         """
         return pulumi.get(self, "attachment_count")
 
     @attachment_count.setter
-    def attachment_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def attachment_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "attachment_count", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Creation time.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultVersionId")
-    def default_version_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_version_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default version id.
         """
         return pulumi.get(self, "default_version_id")
 
     @default_version_id.setter
-    def default_version_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_version_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_version_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description of the policy. This property is immutable after creation.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def document(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def document(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
         """
         return pulumi.get(self, "document")
 
     @document.setter
-    def document(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def document(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "document", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Policy name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceUuid")
-    def service_uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_uuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Managed Object Storage service UUID.
         """
         return pulumi.get(self, "service_uuid")
 
     @service_uuid.setter
-    def service_uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_uuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_uuid", value)
 
     @_builtins.property
     @pulumi.getter
-    def system(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def system(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether the policy was set up by the system.
         """
         return pulumi.get(self, "system")
 
     @system.setter
-    def system(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def system(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "system", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Update time.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -260,10 +262,10 @@ class ManagedObjectStoragePolicy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 document: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 document: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents an UpCloud Managed Object Storage policy.
@@ -284,6 +286,7 @@ class ManagedObjectStoragePolicy(pulumi.CustomResource):
             document="%7B%22Version%22%3A%20%222012-10-17%22%2C%20%20%22Statement%22%3A%20%5B%7B%22Action%22%3A%20%5B%22iam%3AGetUser%22%5D%2C%20%22Resource%22%3A%20%22%2A%22%2C%20%22Effect%22%3A%20%22Allow%22%2C%20%22Sid%22%3A%20%22editor%22%7D%5D%7D",
             service_uuid=this.id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -318,6 +321,7 @@ class ManagedObjectStoragePolicy(pulumi.CustomResource):
             service_uuid=this.id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ManagedObjectStoragePolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -333,10 +337,10 @@ class ManagedObjectStoragePolicy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 document: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 document: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -370,16 +374,16 @@ class ManagedObjectStoragePolicy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            arn: Optional[pulumi.Input[_builtins.str]] = None,
-            attachment_count: Optional[pulumi.Input[_builtins.int]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            default_version_id: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            document: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-            system: Optional[pulumi.Input[_builtins.bool]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'ManagedObjectStoragePolicy':
+            arn: pulumi.Input[Optional[_builtins.str]] = None,
+            attachment_count: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            default_version_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            document: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+            system: pulumi.Input[Optional[_builtins.bool]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'ManagedObjectStoragePolicy':
         """
         Get an existing ManagedObjectStoragePolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -413,6 +417,32 @@ class ManagedObjectStoragePolicy(pulumi.CustomResource):
         __props__.__dict__["system"] = system
         __props__.__dict__["updated_at"] = updated_at
         return ManagedObjectStoragePolicy(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: pulumi.Input[Optional[_builtins.str]] = None,
+            attachment_count: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            default_version_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            document: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+            system: pulumi.Input[Optional[_builtins.bool]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["arn"] = arn
+        __props__["attachmentCount"] = attachment_count
+        __props__["createdAt"] = created_at
+        __props__["defaultVersionId"] = default_version_id
+        __props__["description"] = description
+        __props__["document"] = document
+        __props__["name"] = name
+        __props__["serviceUuid"] = service_uuid
+        __props__["system"] = system
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

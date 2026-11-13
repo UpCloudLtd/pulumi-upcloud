@@ -272,6 +272,12 @@ func (ManagedDatabaseOpensearchState) ElementType() reflect.Type {
 	return reflect.TypeOf((*managedDatabaseOpensearchState)(nil)).Elem()
 }
 
+// ManagedDatabaseOpensearchExists checks whether an existing ManagedDatabaseOpensearch resource with the given ID exists.
+func ManagedDatabaseOpensearchExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ManagedDatabaseOpensearchState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/managedDatabaseOpensearch:ManagedDatabaseOpensearch", id, state, "", opts...)
+}
+
 type managedDatabaseOpensearchArgs struct {
 	// Enables users access control for OpenSearch service. User access control rules will only be enforced if this attribute is enabled.
 	AccessControl *bool `pulumi:"accessControl"`

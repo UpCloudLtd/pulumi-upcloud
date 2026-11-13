@@ -60,7 +60,7 @@ class AwaitableGetIpAddressesResult(GetIpAddressesResult):
             id=self.id)
 
 
-def get_ip_addresses(addresses: Optional[Sequence[Union['GetIpAddressesAddressArgs', 'GetIpAddressesAddressArgsDict']]] = None,
+def get_ip_addresses(addresses: Optional[Sequence[Union['GetIpAddressesAddressArgs', 'GetIpAddressesAddressArgsDict', 'outputs.GetIpAddressesAddressResult']]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpAddressesResult:
     """
     Returns a set of IP Addresses that are associated with the UpCloud account.
@@ -82,7 +82,7 @@ def get_ip_addresses(addresses: Optional[Sequence[Union['GetIpAddressesAddressAr
     return AwaitableGetIpAddressesResult(
         addresses=pulumi.get(__ret__, 'addresses'),
         id=pulumi.get(__ret__, 'id'))
-def get_ip_addresses_output(addresses: Optional[pulumi.Input[Optional[Sequence[Union['GetIpAddressesAddressArgs', 'GetIpAddressesAddressArgsDict']]]]] = None,
+def get_ip_addresses_output(addresses: pulumi.Input[Optional[Optional[Sequence[Union['GetIpAddressesAddressArgs', 'GetIpAddressesAddressArgsDict', 'outputs.GetIpAddressesAddressResult']]]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpAddressesResult]:
     """
     Returns a set of IP Addresses that are associated with the UpCloud account.

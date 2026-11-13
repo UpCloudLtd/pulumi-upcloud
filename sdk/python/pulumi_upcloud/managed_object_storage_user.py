@@ -23,6 +23,7 @@ class ManagedObjectStorageUserArgs:
                  username: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a ManagedObjectStorageUser resource.
+
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
         :param pulumi.Input[_builtins.str] username: Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See `ManagedObjectStorageUserAccessKey` for managing access keys and `ManagedObjectStorageUserPolicy` for managing policies.
         """
@@ -57,12 +58,13 @@ class ManagedObjectStorageUserArgs:
 @pulumi.input_type
 class _ManagedObjectStorageUserState:
     def __init__(__self__, *,
-                 arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ManagedObjectStorageUser resources.
+
         :param pulumi.Input[_builtins.str] arn: User ARN.
         :param pulumi.Input[_builtins.str] created_at: Creation time.
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
@@ -79,50 +81,50 @@ class _ManagedObjectStorageUserState:
 
     @_builtins.property
     @pulumi.getter
-    def arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         User ARN.
         """
         return pulumi.get(self, "arn")
 
     @arn.setter
-    def arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "arn", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Creation time.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceUuid")
-    def service_uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_uuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Managed Object Storage service UUID.
         """
         return pulumi.get(self, "service_uuid")
 
     @service_uuid.setter
-    def service_uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_uuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_uuid", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Custom usernames for accessing the object storage. No relation to UpCloud API accounts. See `ManagedObjectStorageUserAccessKey` for managing access keys and `ManagedObjectStorageUserPolicy` for managing policies.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -132,8 +134,8 @@ class ManagedObjectStorageUser(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents an UpCloud Managed Object Storage user. No relation to UpCloud API accounts.
@@ -152,6 +154,7 @@ class ManagedObjectStorageUser(pulumi.CustomResource):
             username="example",
             service_uuid=this.id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -182,6 +185,7 @@ class ManagedObjectStorageUser(pulumi.CustomResource):
             service_uuid=this.id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ManagedObjectStorageUserArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -197,8 +201,8 @@ class ManagedObjectStorageUser(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -226,10 +230,10 @@ class ManagedObjectStorageUser(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            arn: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-            username: Optional[pulumi.Input[_builtins.str]] = None) -> 'ManagedObjectStorageUser':
+            arn: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> 'ManagedObjectStorageUser':
         """
         Get an existing ManagedObjectStorageUser resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -251,6 +255,20 @@ class ManagedObjectStorageUser(pulumi.CustomResource):
         __props__.__dict__["service_uuid"] = service_uuid
         __props__.__dict__["username"] = username
         return ManagedObjectStorageUser(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["arn"] = arn
+        __props__["createdAt"] = created_at
+        __props__["serviceUuid"] = service_uuid
+        __props__["username"] = username
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/managedObjectStorageUser:ManagedObjectStorageUser', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

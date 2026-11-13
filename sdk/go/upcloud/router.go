@@ -126,6 +126,12 @@ func (RouterState) ElementType() reflect.Type {
 	return reflect.TypeOf((*routerState)(nil)).Elem()
 }
 
+// RouterExists checks whether an existing Router resource with the given ID exists.
+func RouterExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RouterState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/router:Router", id, state, "", opts...)
+}
+
 type routerArgs struct {
 	// User defined key-value pairs to classify the router.
 	Labels map[string]string `pulumi:"labels"`

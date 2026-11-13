@@ -45,6 +45,17 @@ export class ManagedObjectStorageStaticSite extends pulumi.CustomResource {
         return new ManagedObjectStorageStaticSite(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ManagedObjectStorageStaticSite resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ManagedObjectStorageStaticSiteState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/managedObjectStorageStaticSite:ManagedObjectStorageStaticSite", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/managedObjectStorageStaticSite:ManagedObjectStorageStaticSite';
 
@@ -142,35 +153,35 @@ export interface ManagedObjectStorageStaticSiteState {
     /**
      * S3 bucket from which static content is served. Must have a public read policy.
      */
-    bucketName?: pulumi.Input<string>;
+    bucketName?: pulumi.Input<string | undefined>;
     /**
      * Path prefix within the bucket. For example, `dist/` serves content from the `dist/` folder. Defaults to empty string (bucket root).
      */
-    bucketPrefix?: pulumi.Input<string>;
+    bucketPrefix?: pulumi.Input<string | undefined>;
     /**
      * A custom domain in `static-website` mode attached to the service.
      */
-    domainName?: pulumi.Input<string>;
+    domainName?: pulumi.Input<string | undefined>;
     /**
      * Enable or disable serving content on this domain. Defaults to true.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Custom error pages served when the storage backend returns an error status.
      */
-    errorPages?: pulumi.Input<pulumi.Input<inputs.ManagedObjectStorageStaticSiteErrorPage>[]>;
+    errorPages?: pulumi.Input<pulumi.Input<inputs.ManagedObjectStorageStaticSiteErrorPage>[] | undefined>;
     /**
      * Name of the index document. Defaults to `index.html`.
      */
-    indexDocument?: pulumi.Input<string>;
+    indexDocument?: pulumi.Input<string | undefined>;
     /**
      * Managed Object Storage service UUID.
      */
-    serviceUuid?: pulumi.Input<string>;
+    serviceUuid?: pulumi.Input<string | undefined>;
     /**
      * Whether to enable single-page application mode. In SPA mode, the index document is served for all paths, which is useful for client-side routing.
      */
-    spaMode?: pulumi.Input<boolean>;
+    spaMode?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -184,23 +195,23 @@ export interface ManagedObjectStorageStaticSiteArgs {
     /**
      * Path prefix within the bucket. For example, `dist/` serves content from the `dist/` folder. Defaults to empty string (bucket root).
      */
-    bucketPrefix?: pulumi.Input<string>;
+    bucketPrefix?: pulumi.Input<string | undefined>;
     /**
      * A custom domain in `static-website` mode attached to the service.
      */
-    domainName?: pulumi.Input<string>;
+    domainName?: pulumi.Input<string | undefined>;
     /**
      * Enable or disable serving content on this domain. Defaults to true.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Custom error pages served when the storage backend returns an error status.
      */
-    errorPages?: pulumi.Input<pulumi.Input<inputs.ManagedObjectStorageStaticSiteErrorPage>[]>;
+    errorPages?: pulumi.Input<pulumi.Input<inputs.ManagedObjectStorageStaticSiteErrorPage>[] | undefined>;
     /**
      * Name of the index document. Defaults to `index.html`.
      */
-    indexDocument?: pulumi.Input<string>;
+    indexDocument?: pulumi.Input<string | undefined>;
     /**
      * Managed Object Storage service UUID.
      */
@@ -208,5 +219,5 @@ export interface ManagedObjectStorageStaticSiteArgs {
     /**
      * Whether to enable single-page application mode. In SPA mode, the index document is served for all paths, which is useful for client-side routing.
      */
-    spaMode?: pulumi.Input<boolean>;
+    spaMode?: pulumi.Input<boolean | undefined>;
 }

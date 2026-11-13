@@ -21,9 +21,10 @@ class LoadbalancerFrontendTlsConfigArgs:
     def __init__(__self__, *,
                  certificate_bundle: pulumi.Input[_builtins.str],
                  frontend: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadbalancerFrontendTlsConfig resource.
+
         :param pulumi.Input[_builtins.str] certificate_bundle: Reference to certificate bundle ID.
         :param pulumi.Input[_builtins.str] frontend: ID of the load balancer frontend to which the TLS config is connected.
         :param pulumi.Input[_builtins.str] name: The name of the TLS config. Must be unique within customer account.
@@ -59,25 +60,26 @@ class LoadbalancerFrontendTlsConfigArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the TLS config. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _LoadbalancerFrontendTlsConfigState:
     def __init__(__self__, *,
-                 certificate_bundle: Optional[pulumi.Input[_builtins.str]] = None,
-                 frontend: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 certificate_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+                 frontend: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerFrontendTlsConfig resources.
+
         :param pulumi.Input[_builtins.str] certificate_bundle: Reference to certificate bundle ID.
         :param pulumi.Input[_builtins.str] frontend: ID of the load balancer frontend to which the TLS config is connected.
         :param pulumi.Input[_builtins.str] name: The name of the TLS config. Must be unique within customer account.
@@ -91,38 +93,38 @@ class _LoadbalancerFrontendTlsConfigState:
 
     @_builtins.property
     @pulumi.getter(name="certificateBundle")
-    def certificate_bundle(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def certificate_bundle(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Reference to certificate bundle ID.
         """
         return pulumi.get(self, "certificate_bundle")
 
     @certificate_bundle.setter
-    def certificate_bundle(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def certificate_bundle(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "certificate_bundle", value)
 
     @_builtins.property
     @pulumi.getter
-    def frontend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frontend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the load balancer frontend to which the TLS config is connected.
         """
         return pulumi.get(self, "frontend")
 
     @frontend.setter
-    def frontend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frontend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frontend", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the TLS config. Must be unique within customer account.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
@@ -132,9 +134,9 @@ class LoadbalancerFrontendTlsConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 certificate_bundle: Optional[pulumi.Input[_builtins.str]] = None,
-                 frontend: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 certificate_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+                 frontend: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents frontend TLS config
@@ -181,6 +183,7 @@ class LoadbalancerFrontendTlsConfig(pulumi.CustomResource):
             loadbalancer=upcloud_loadbalancer["lb"]["id"],
             name="lb-be-1-test")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -240,6 +243,7 @@ class LoadbalancerFrontendTlsConfig(pulumi.CustomResource):
             name="lb-be-1-test")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param LoadbalancerFrontendTlsConfigArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -255,9 +259,9 @@ class LoadbalancerFrontendTlsConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 certificate_bundle: Optional[pulumi.Input[_builtins.str]] = None,
-                 frontend: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 certificate_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+                 frontend: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -284,9 +288,9 @@ class LoadbalancerFrontendTlsConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            certificate_bundle: Optional[pulumi.Input[_builtins.str]] = None,
-            frontend: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None) -> 'LoadbalancerFrontendTlsConfig':
+            certificate_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+            frontend: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None) -> 'LoadbalancerFrontendTlsConfig':
         """
         Get an existing LoadbalancerFrontendTlsConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -306,6 +310,18 @@ class LoadbalancerFrontendTlsConfig(pulumi.CustomResource):
         __props__.__dict__["frontend"] = frontend
         __props__.__dict__["name"] = name
         return LoadbalancerFrontendTlsConfig(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            certificate_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+            frontend: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["certificateBundle"] = certificate_bundle
+        __props__["frontend"] = frontend
+        __props__["name"] = name
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/loadbalancerFrontendTlsConfig:LoadbalancerFrontendTlsConfig', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="certificateBundle")

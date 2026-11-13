@@ -33,6 +33,17 @@ export class StorageBackup extends pulumi.CustomResource {
         return new StorageBackup(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing StorageBackup resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: StorageBackupState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/storageBackup:StorageBackup", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/storageBackup:StorageBackup';
 
@@ -142,43 +153,43 @@ export interface StorageBackupState {
     /**
      * Timestamp of the backup creation.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Sets if the storage is encrypted at rest.
      */
-    encrypt?: pulumi.Input<boolean>;
+    encrypt?: pulumi.Input<boolean | undefined>;
     /**
      * User defined key-value pairs to classify the storage.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The size of the storage in gigabytes.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
     /**
      * The UUID of the storage to back up.
      */
-    sourceStorage?: pulumi.Input<string>;
+    sourceStorage?: pulumi.Input<string | undefined>;
     /**
      * System defined key-value pairs to classify the storage. The keys of system defined labels are prefixed with underscore and can not be modified by the user.
      */
-    systemLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    systemLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The tier of the storage.
      */
-    tier?: pulumi.Input<string>;
+    tier?: pulumi.Input<string | undefined>;
     /**
      * Title of the backup.
      */
-    title?: pulumi.Input<string>;
+    title?: pulumi.Input<string | undefined>;
     /**
      * The type of the storage.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The zone the storage is in, e.g. `de-fra1`.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -188,7 +199,7 @@ export interface StorageBackupArgs {
     /**
      * User defined key-value pairs to classify the storage.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The UUID of the storage to back up.
      */

@@ -34,7 +34,7 @@ import (
 //			certificatePath := cfg.Require("certificatePath")
 //			privateKeyPath := cfg.Require("privateKeyPath")
 //			invokeBase64encode, err := std.Base64encode(ctx, map[string]interface{}{
-//				"input": std.File(ctx, map[string]interface{}{
+//				"input": std.File(ctx, map[string]string{
 //					"input": certificatePath,
 //				}, nil).Result,
 //			}, nil)
@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			invokeBase64encode1, err := std.Base64encode(ctx, map[string]interface{}{
-//				"input": std.File(ctx, map[string]interface{}{
+//				"input": std.File(ctx, map[string]string{
 //					"input": privateKeyPath,
 //				}, nil).Result,
 //			}, nil)
@@ -51,8 +51,8 @@ import (
 //			}
 //			_, err = upcloud.NewLoadbalancerManualCertificateBundle(ctx, "lb_cb_m1", &upcloud.LoadbalancerManualCertificateBundleArgs{
 //				Name:        pulumi.String("lb-cb-m1-test"),
-//				Certificate: invokeBase64encode.Result,
-//				PrivateKey:  invokeBase64encode1.Result,
+//				Certificate: invokeBase64encode.Result.(pulumi.String),
+//				PrivateKey:  invokeBase64encode1.Result.(pulumi.String),
 //			})
 //			if err != nil {
 //				return err
@@ -165,6 +165,12 @@ type LoadbalancerManualCertificateBundleState struct {
 
 func (LoadbalancerManualCertificateBundleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerManualCertificateBundleState)(nil)).Elem()
+}
+
+// LoadbalancerManualCertificateBundleExists checks whether an existing LoadbalancerManualCertificateBundle resource with the given ID exists.
+func LoadbalancerManualCertificateBundleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerManualCertificateBundleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/loadbalancerManualCertificateBundle:LoadbalancerManualCertificateBundle", id, state, "", opts...)
 }
 
 type loadbalancerManualCertificateBundleArgs struct {

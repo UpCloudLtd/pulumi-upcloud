@@ -56,6 +56,17 @@ export class ManagedDatabasePostgresql extends pulumi.CustomResource {
         return new ManagedDatabasePostgresql(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ManagedDatabasePostgresql resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ManagedDatabasePostgresqlState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/managedDatabasePostgresql:ManagedDatabasePostgresql", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/managedDatabasePostgresql:ManagedDatabasePostgresql';
 
@@ -287,121 +298,121 @@ export interface ManagedDatabasePostgresqlState {
      *
      * @deprecated The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
      */
-    additionalDiskSpaceGib?: pulumi.Input<number>;
+    additionalDiskSpaceGib?: pulumi.Input<number | undefined>;
     /**
      * UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
      */
-    cloneFrom?: pulumi.Input<string>;
+    cloneFrom?: pulumi.Input<string | undefined>;
     /**
      * Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
      */
-    cloneTime?: pulumi.Input<string>;
+    cloneTime?: pulumi.Input<string | undefined>;
     /**
      * Service component information
      */
-    components?: pulumi.Input<pulumi.Input<inputs.ManagedDatabasePostgresqlComponent>[]>;
+    components?: pulumi.Input<pulumi.Input<inputs.ManagedDatabasePostgresqlComponent>[] | undefined>;
     /**
      * User defined key-value pairs to classify the database.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
      */
-    maintenanceWindowDow?: pulumi.Input<string>;
+    maintenanceWindowDow?: pulumi.Input<string | undefined>;
     /**
      * Maintenance window UTC time in hh:mm:ss format
      */
-    maintenanceWindowTime?: pulumi.Input<string>;
+    maintenanceWindowTime?: pulumi.Input<string | undefined>;
     /**
      * Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Private networks attached to the managed database
      */
-    networks?: pulumi.Input<pulumi.Input<inputs.ManagedDatabasePostgresqlNetwork>[]>;
+    networks?: pulumi.Input<pulumi.Input<inputs.ManagedDatabasePostgresqlNetwork>[] | undefined>;
     /**
      * Information about nodes providing the managed service
      */
-    nodeStates?: pulumi.Input<pulumi.Input<inputs.ManagedDatabasePostgresqlNodeState>[]>;
+    nodeStates?: pulumi.Input<pulumi.Input<inputs.ManagedDatabasePostgresqlNodeState>[] | undefined>;
     /**
      * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
      *
      * @deprecated The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
      */
-    plan?: pulumi.Input<string>;
+    plan?: pulumi.Input<string | undefined>;
     /**
      * Backup tier for the database plan.
      */
-    planBackups?: pulumi.Input<string>;
+    planBackups?: pulumi.Input<string | undefined>;
     /**
      * Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
      */
-    planCompute?: pulumi.Input<string>;
+    planCompute?: pulumi.Input<string | undefined>;
     /**
      * Number of nodes in the database plan.
      */
-    planNodeCount?: pulumi.Input<number>;
+    planNodeCount?: pulumi.Input<number | undefined>;
     /**
      * Total storage per node in GiB.
      */
-    planStorageGib?: pulumi.Input<number>;
+    planStorageGib?: pulumi.Input<number | undefined>;
     /**
      * The administrative power state of the service
      */
-    powered?: pulumi.Input<boolean>;
+    powered?: pulumi.Input<boolean | undefined>;
     /**
      * Primary database name
      */
-    primaryDatabase?: pulumi.Input<string>;
+    primaryDatabase?: pulumi.Input<string | undefined>;
     /**
      * Database engine properties.
      */
-    properties?: pulumi.Input<inputs.ManagedDatabasePostgresqlProperties>;
+    properties?: pulumi.Input<inputs.ManagedDatabasePostgresqlProperties | undefined>;
     /**
      * Hostname to the service instance
      */
-    serviceHost?: pulumi.Input<string>;
+    serviceHost?: pulumi.Input<string | undefined>;
     /**
      * Primary password to the service instance
      */
-    servicePassword?: pulumi.Input<string>;
+    servicePassword?: pulumi.Input<string | undefined>;
     /**
      * Port to the service instance
      */
-    servicePort?: pulumi.Input<string>;
+    servicePort?: pulumi.Input<string | undefined>;
     /**
      * URI to the service instance
      */
-    serviceUri?: pulumi.Input<string>;
+    serviceUri?: pulumi.Input<string | undefined>;
     /**
      * Primary username to the service instance
      */
-    serviceUsername?: pulumi.Input<string>;
+    serviceUsername?: pulumi.Input<string | undefined>;
     /**
      * SSL Connection Mode for PostgreSQL
      */
-    sslmode?: pulumi.Input<string>;
+    sslmode?: pulumi.Input<string | undefined>;
     /**
      * The current state of the service
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * If set to true, prevents the managed service from being powered off, or deleted.
      */
-    terminationProtection?: pulumi.Input<boolean>;
+    terminationProtection?: pulumi.Input<boolean | undefined>;
     /**
      * Title of the managed database instance
      */
-    title?: pulumi.Input<string>;
+    title?: pulumi.Input<string | undefined>;
     /**
      * Type of the managed database instance
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -413,69 +424,69 @@ export interface ManagedDatabasePostgresqlArgs {
      *
      * @deprecated The additionalDiskSpaceGib attribute is deprecated for PostgreSQL and MySQL. Use planStorageGib to configure total storage per node.
      */
-    additionalDiskSpaceGib?: pulumi.Input<number>;
+    additionalDiskSpaceGib?: pulumi.Input<number | undefined>;
     /**
      * UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
      */
-    cloneFrom?: pulumi.Input<string>;
+    cloneFrom?: pulumi.Input<string | undefined>;
     /**
      * Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `cloneFrom`. Changing this forces a new resource to be created.
      */
-    cloneTime?: pulumi.Input<string>;
+    cloneTime?: pulumi.Input<string | undefined>;
     /**
      * User defined key-value pairs to classify the database.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
      */
-    maintenanceWindowDow?: pulumi.Input<string>;
+    maintenanceWindowDow?: pulumi.Input<string | undefined>;
     /**
      * Maintenance window UTC time in hh:mm:ss format
      */
-    maintenanceWindowTime?: pulumi.Input<string>;
+    maintenanceWindowTime?: pulumi.Input<string | undefined>;
     /**
      * Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Private networks attached to the managed database
      */
-    networks?: pulumi.Input<pulumi.Input<inputs.ManagedDatabasePostgresqlNetwork>[]>;
+    networks?: pulumi.Input<pulumi.Input<inputs.ManagedDatabasePostgresqlNetwork>[] | undefined>;
     /**
      * Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans pg`.
      *
      * @deprecated The plan attribute is deprecated for PostgreSQL and MySQL. Use plan_compute, plan_node_count, plan_storage_gib, and planBackups instead.
      */
-    plan?: pulumi.Input<string>;
+    plan?: pulumi.Input<string | undefined>;
     /**
      * Backup tier for the database plan.
      */
-    planBackups?: pulumi.Input<string>;
+    planBackups?: pulumi.Input<string | undefined>;
     /**
      * Compute shape combining family, CPU, and memory, as listed in the database plan catalog.
      */
-    planCompute?: pulumi.Input<string>;
+    planCompute?: pulumi.Input<string | undefined>;
     /**
      * Number of nodes in the database plan.
      */
-    planNodeCount?: pulumi.Input<number>;
+    planNodeCount?: pulumi.Input<number | undefined>;
     /**
      * Total storage per node in GiB.
      */
-    planStorageGib?: pulumi.Input<number>;
+    planStorageGib?: pulumi.Input<number | undefined>;
     /**
      * The administrative power state of the service
      */
-    powered?: pulumi.Input<boolean>;
+    powered?: pulumi.Input<boolean | undefined>;
     /**
      * Database engine properties.
      */
-    properties?: pulumi.Input<inputs.ManagedDatabasePostgresqlProperties>;
+    properties?: pulumi.Input<inputs.ManagedDatabasePostgresqlProperties | undefined>;
     /**
      * If set to true, prevents the managed service from being powered off, or deleted.
      */
-    terminationProtection?: pulumi.Input<boolean>;
+    terminationProtection?: pulumi.Input<boolean | undefined>;
     /**
      * Title of the managed database instance
      */

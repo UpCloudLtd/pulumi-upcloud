@@ -51,6 +51,17 @@ export class ServerGroup extends pulumi.CustomResource {
         return new ServerGroup(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ServerGroup resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ServerGroupState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/serverGroup:ServerGroup", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/serverGroup:ServerGroup';
 
@@ -69,16 +80,16 @@ export class ServerGroup extends pulumi.CustomResource {
      * Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
      * 	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
      *
-     * 	* `strict` policy doesn't allow servers in the same server group to be on the same host
-     * 	* `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-     * 	* `no` refers to having no policy and thus no effect on server host affinity
-     *
-     * 	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-     * 	please see UpCloud API documentation on server groups.
-     *
-     * 	Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
-     * 	policies in server group are not met, you need to manually restart the servers in said group,
-     * 	for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+     *     * `strict` policy doesn't allow servers in the same server group to be on the same host
+     *     * `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+     *     * `no` refers to having no policy and thus no effect on server host affinity
+     *     
+     *     To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+     *     please see UpCloud API documentation on server groups.
+     *     
+     *     Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+     *     policies in server group are not met, you need to manually restart the servers in said group,
+     *     for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
      */
     declare public readonly antiAffinityPolicy: pulumi.Output<string>;
     /**
@@ -140,34 +151,34 @@ export interface ServerGroupState {
      * Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
      * 	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
      *
-     * 	* `strict` policy doesn't allow servers in the same server group to be on the same host
-     * 	* `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-     * 	* `no` refers to having no policy and thus no effect on server host affinity
-     *
-     * 	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-     * 	please see UpCloud API documentation on server groups.
-     *
-     * 	Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
-     * 	policies in server group are not met, you need to manually restart the servers in said group,
-     * 	for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+     *     * `strict` policy doesn't allow servers in the same server group to be on the same host
+     *     * `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+     *     * `no` refers to having no policy and thus no effect on server host affinity
+     *     
+     *     To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+     *     please see UpCloud API documentation on server groups.
+     *     
+     *     Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+     *     policies in server group are not met, you need to manually restart the servers in said group,
+     *     for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
      */
-    antiAffinityPolicy?: pulumi.Input<string>;
+    antiAffinityPolicy?: pulumi.Input<string | undefined>;
     /**
      * User defined key-value pairs to classify the server group.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `serverGroup` property of `upcloud.Server`. See also `trackMembers` property.
      */
-    members?: pulumi.Input<pulumi.Input<string>[]>;
+    members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Title of your server group
      */
-    title?: pulumi.Input<string>;
+    title?: pulumi.Input<string | undefined>;
     /**
      * Controls if members of the server group are being tracked in this resource. Set to `false` when using `serverGroup` property of `upcloud.Server` to attach servers to the server group to avoid delayed state updates.
      */
-    trackMembers?: pulumi.Input<boolean>;
+    trackMembers?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -178,26 +189,26 @@ export interface ServerGroupArgs {
      * Defines if a server group is an anti-affinity group. Setting this to `strict` or `yes` will
      * 	result in all servers in the group being placed on separate compute hosts. The value can be `strict`, `yes`, or `no`.
      *
-     * 	* `strict` policy doesn't allow servers in the same server group to be on the same host
-     * 	* `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-     * 	* `no` refers to having no policy and thus no effect on server host affinity
-     *
-     * 	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-     * 	please see UpCloud API documentation on server groups.
-     *
-     * 	Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
-     * 	policies in server group are not met, you need to manually restart the servers in said group,
-     * 	for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+     *     * `strict` policy doesn't allow servers in the same server group to be on the same host
+     *     * `yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+     *     * `no` refers to having no policy and thus no effect on server host affinity
+     *     
+     *     To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+     *     please see UpCloud API documentation on server groups.
+     *     
+     *     Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+     *     policies in server group are not met, you need to manually restart the servers in said group,
+     *     for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
      */
-    antiAffinityPolicy?: pulumi.Input<string>;
+    antiAffinityPolicy?: pulumi.Input<string | undefined>;
     /**
      * User defined key-value pairs to classify the server group.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * UUIDs of the servers that are members of this group. Servers can also be attached to the server group via `serverGroup` property of `upcloud.Server`. See also `trackMembers` property.
      */
-    members?: pulumi.Input<pulumi.Input<string>[]>;
+    members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Title of your server group
      */
@@ -205,5 +216,5 @@ export interface ServerGroupArgs {
     /**
      * Controls if members of the server group are being tracked in this resource. Set to `false` when using `serverGroup` property of `upcloud.Server` to attach servers to the server group to avoid delayed state updates.
      */
-    trackMembers?: pulumi.Input<boolean>;
+    trackMembers?: pulumi.Input<boolean | undefined>;
 }

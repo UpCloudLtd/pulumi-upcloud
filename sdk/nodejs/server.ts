@@ -67,6 +67,17 @@ export class Server extends pulumi.CustomResource {
         return new Server(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing Server resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ServerState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/server:Server", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/server:Server';
 
@@ -137,7 +148,7 @@ export class Server extends pulumi.CustomResource {
      * One or more blocks describing the network interfaces of the server.
      *
      *     In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
-     *
+     *     
      *     We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
      */
     declare public readonly networkInterfaces: pulumi.Output<outputs.ServerNetworkInterface[] | undefined>;
@@ -153,6 +164,13 @@ export class Server extends pulumi.CustomResource {
      * The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
      */
     declare public readonly serverGroup: pulumi.Output<string | undefined>;
+    /**
+     * Simple backup schedule configuration
+     *
+     *     The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backupRules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backupRules` defined for server templates.
+     *     
+     *     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simpleBackup` on the server and individual storages `backupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simpleBackup` block from a server, run `terraform apply`, then add `backupRule` to desired storages and run `terraform apply` again.
+     */
     declare public readonly simpleBackup: pulumi.Output<outputs.ServerSimpleBackup | undefined>;
     /**
      * A set of storage devices associated with the server
@@ -273,108 +291,115 @@ export interface ServerState {
     /**
      * The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
      */
-    bootOrder?: pulumi.Input<string>;
+    bootOrder?: pulumi.Input<string | undefined>;
     /**
      * The number of CPU cores for the server
      */
-    cpu?: pulumi.Input<number>;
+    cpu?: pulumi.Input<number | undefined>;
     /**
      * Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
      */
-    firewall?: pulumi.Input<boolean>;
+    firewall?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
      */
-    firewallPrivate?: pulumi.Input<boolean>;
+    firewallPrivate?: pulumi.Input<boolean | undefined>;
     /**
      * Default action for unmatched incoming private SDN traffic (accept or drop).
      */
-    firewallPrivateDefaultIncomingAction?: pulumi.Input<string>;
+    firewallPrivateDefaultIncomingAction?: pulumi.Input<string | undefined>;
     /**
      * Default action for unmatched outgoing private SDN traffic (accept or drop).
      */
-    firewallPrivateDefaultOutgoingAction?: pulumi.Input<string>;
+    firewallPrivateDefaultOutgoingAction?: pulumi.Input<string | undefined>;
     /**
      * Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
      */
-    host?: pulumi.Input<number>;
+    host?: pulumi.Input<number | undefined>;
     /**
      * The hostname of the server.
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
      */
-    hotResize?: pulumi.Input<boolean>;
+    hotResize?: pulumi.Input<boolean | undefined>;
     /**
      * User defined key-value pairs to classify the server.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Configure access credentials to the server
      */
-    login?: pulumi.Input<inputs.ServerLogin>;
+    login?: pulumi.Input<inputs.ServerLogin | undefined>;
     /**
      * The amount of memory for the server (in megabytes)
      */
-    mem?: pulumi.Input<number>;
+    mem?: pulumi.Input<number | undefined>;
     /**
      * Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based templates.
      */
-    metadata?: pulumi.Input<boolean>;
+    metadata?: pulumi.Input<boolean | undefined>;
     /**
      * One or more blocks describing the network interfaces of the server.
      *
      *     In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
-     *
+     *     
      *     We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
      */
-    networkInterfaces?: pulumi.Input<pulumi.Input<inputs.ServerNetworkInterface>[]>;
+    networkInterfaces?: pulumi.Input<pulumi.Input<inputs.ServerNetworkInterface>[] | undefined>;
     /**
      * The model of the server's network interfaces
      */
-    nicModel?: pulumi.Input<string>;
+    nicModel?: pulumi.Input<string | undefined>;
     /**
      * The pricing plan used for the server. You can list available server plans with `upctl server plans`
      */
-    plan?: pulumi.Input<string>;
+    plan?: pulumi.Input<string | undefined>;
     /**
      * The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
      */
-    serverGroup?: pulumi.Input<string>;
-    simpleBackup?: pulumi.Input<inputs.ServerSimpleBackup>;
+    serverGroup?: pulumi.Input<string | undefined>;
+    /**
+     * Simple backup schedule configuration
+     *
+     *     The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backupRules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backupRules` defined for server templates.
+     *     
+     *     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simpleBackup` on the server and individual storages `backupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simpleBackup` block from a server, run `terraform apply`, then add `backupRule` to desired storages and run `terraform apply` again.
+     */
+    simpleBackup?: pulumi.Input<inputs.ServerSimpleBackup | undefined>;
     /**
      * A set of storage devices associated with the server
      */
-    storageDevices?: pulumi.Input<pulumi.Input<inputs.ServerStorageDevice>[]>;
+    storageDevices?: pulumi.Input<pulumi.Input<inputs.ServerStorageDevice>[] | undefined>;
     /**
      * Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Block describing the preconfigured operating system
      */
-    template?: pulumi.Input<inputs.ServerTemplate>;
+    template?: pulumi.Input<inputs.ServerTemplate | undefined>;
     /**
      * The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
      */
-    timezone?: pulumi.Input<string>;
+    timezone?: pulumi.Input<string | undefined>;
     /**
      * A short, informational description of the server.
      */
-    title?: pulumi.Input<string>;
+    title?: pulumi.Input<string | undefined>;
     /**
      * Defines URL for a server setup script, or the script body itself
      */
-    userData?: pulumi.Input<string>;
+    userData?: pulumi.Input<string | undefined>;
     /**
      * The model of the server's video interface
      */
-    videoModel?: pulumi.Input<string>;
+    videoModel?: pulumi.Input<string | undefined>;
     /**
      * The zone in which the server will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -384,31 +409,31 @@ export interface ServerArgs {
     /**
      * The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
      */
-    bootOrder?: pulumi.Input<string>;
+    bootOrder?: pulumi.Input<string | undefined>;
     /**
      * The number of CPU cores for the server
      */
-    cpu?: pulumi.Input<number>;
+    cpu?: pulumi.Input<number | undefined>;
     /**
      * Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
      */
-    firewall?: pulumi.Input<boolean>;
+    firewall?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
      */
-    firewallPrivate?: pulumi.Input<boolean>;
+    firewallPrivate?: pulumi.Input<boolean | undefined>;
     /**
      * Default action for unmatched incoming private SDN traffic (accept or drop).
      */
-    firewallPrivateDefaultIncomingAction?: pulumi.Input<string>;
+    firewallPrivateDefaultIncomingAction?: pulumi.Input<string | undefined>;
     /**
      * Default action for unmatched outgoing private SDN traffic (accept or drop).
      */
-    firewallPrivateDefaultOutgoingAction?: pulumi.Input<string>;
+    firewallPrivateDefaultOutgoingAction?: pulumi.Input<string | undefined>;
     /**
      * Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
      */
-    host?: pulumi.Input<number>;
+    host?: pulumi.Input<number | undefined>;
     /**
      * The hostname of the server.
      */
@@ -416,72 +441,79 @@ export interface ServerArgs {
     /**
      * If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
      */
-    hotResize?: pulumi.Input<boolean>;
+    hotResize?: pulumi.Input<boolean | undefined>;
     /**
      * User defined key-value pairs to classify the server.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Configure access credentials to the server
      */
-    login?: pulumi.Input<inputs.ServerLogin>;
+    login?: pulumi.Input<inputs.ServerLogin | undefined>;
     /**
      * The amount of memory for the server (in megabytes)
      */
-    mem?: pulumi.Input<number>;
+    mem?: pulumi.Input<number | undefined>;
     /**
      * Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based templates.
      */
-    metadata?: pulumi.Input<boolean>;
+    metadata?: pulumi.Input<boolean | undefined>;
     /**
      * One or more blocks describing the network interfaces of the server.
      *
      *     In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `index` and `ipAddress` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
-     *
+     *     
      *     We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
      */
-    networkInterfaces?: pulumi.Input<pulumi.Input<inputs.ServerNetworkInterface>[]>;
+    networkInterfaces?: pulumi.Input<pulumi.Input<inputs.ServerNetworkInterface>[] | undefined>;
     /**
      * The model of the server's network interfaces
      */
-    nicModel?: pulumi.Input<string>;
+    nicModel?: pulumi.Input<string | undefined>;
     /**
      * The pricing plan used for the server. You can list available server plans with `upctl server plans`
      */
-    plan?: pulumi.Input<string>;
+    plan?: pulumi.Input<string | undefined>;
     /**
      * The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `upcloud.ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
      */
-    serverGroup?: pulumi.Input<string>;
-    simpleBackup?: pulumi.Input<inputs.ServerSimpleBackup>;
+    serverGroup?: pulumi.Input<string | undefined>;
+    /**
+     * Simple backup schedule configuration
+     *
+     *     The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backupRules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backupRules` defined for server templates.
+     *     
+     *     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simpleBackup` on the server and individual storages `backupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simpleBackup` block from a server, run `terraform apply`, then add `backupRule` to desired storages and run `terraform apply` again.
+     */
+    simpleBackup?: pulumi.Input<inputs.ServerSimpleBackup | undefined>;
     /**
      * A set of storage devices associated with the server
      */
-    storageDevices?: pulumi.Input<pulumi.Input<inputs.ServerStorageDevice>[]>;
+    storageDevices?: pulumi.Input<pulumi.Input<inputs.ServerStorageDevice>[] | undefined>;
     /**
      * Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Block describing the preconfigured operating system
      */
-    template?: pulumi.Input<inputs.ServerTemplate>;
+    template?: pulumi.Input<inputs.ServerTemplate | undefined>;
     /**
      * The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
      */
-    timezone?: pulumi.Input<string>;
+    timezone?: pulumi.Input<string | undefined>;
     /**
      * A short, informational description of the server.
      */
-    title?: pulumi.Input<string>;
+    title?: pulumi.Input<string | undefined>;
     /**
      * Defines URL for a server setup script, or the script body itself
      */
-    userData?: pulumi.Input<string>;
+    userData?: pulumi.Input<string | undefined>;
     /**
      * The model of the server's video interface
      */
-    videoModel?: pulumi.Input<string>;
+    videoModel?: pulumi.Input<string | undefined>;
     /**
      * The zone in which the server will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      */

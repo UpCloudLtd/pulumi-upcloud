@@ -23,13 +23,14 @@ class ManagedDatabaseUserArgs:
     def __init__(__self__, *,
                  service: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str],
-                 authentication: Optional[pulumi.Input[_builtins.str]] = None,
-                 opensearch_access_control: Optional[pulumi.Input['ManagedDatabaseUserOpensearchAccessControlArgs']] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 pg_access_control: Optional[pulumi.Input['ManagedDatabaseUserPgAccessControlArgs']] = None,
-                 valkey_access_control: Optional[pulumi.Input['ManagedDatabaseUserValkeyAccessControlArgs']] = None):
+                 authentication: pulumi.Input[Optional[_builtins.str]] = None,
+                 opensearch_access_control: pulumi.Input[Optional['ManagedDatabaseUserOpensearchAccessControlArgs']] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 pg_access_control: pulumi.Input[Optional['ManagedDatabaseUserPgAccessControlArgs']] = None,
+                 valkey_access_control: pulumi.Input[Optional['ManagedDatabaseUserValkeyAccessControlArgs']] = None):
         """
         The set of arguments for constructing a ManagedDatabaseUser resource.
+
         :param pulumi.Input[_builtins.str] service: Service's UUID for which this user belongs to
         :param pulumi.Input[_builtins.str] username: Name of the database user
         :param pulumi.Input[_builtins.str] authentication: MySQL only, authentication type.
@@ -77,78 +78,79 @@ class ManagedDatabaseUserArgs:
 
     @_builtins.property
     @pulumi.getter
-    def authentication(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authentication(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         MySQL only, authentication type.
         """
         return pulumi.get(self, "authentication")
 
     @authentication.setter
-    def authentication(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authentication(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authentication", value)
 
     @_builtins.property
     @pulumi.getter(name="opensearchAccessControl")
-    def opensearch_access_control(self) -> Optional[pulumi.Input['ManagedDatabaseUserOpensearchAccessControlArgs']]:
+    def opensearch_access_control(self) -> pulumi.Input[Optional['ManagedDatabaseUserOpensearchAccessControlArgs']]:
         """
         OpenSearch access control object.
         """
         return pulumi.get(self, "opensearch_access_control")
 
     @opensearch_access_control.setter
-    def opensearch_access_control(self, value: Optional[pulumi.Input['ManagedDatabaseUserOpensearchAccessControlArgs']]):
+    def opensearch_access_control(self, value: pulumi.Input[Optional['ManagedDatabaseUserOpensearchAccessControlArgs']]):
         pulumi.set(self, "opensearch_access_control", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for the database user. Defaults to a random value
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="pgAccessControl")
-    def pg_access_control(self) -> Optional[pulumi.Input['ManagedDatabaseUserPgAccessControlArgs']]:
+    def pg_access_control(self) -> pulumi.Input[Optional['ManagedDatabaseUserPgAccessControlArgs']]:
         """
         PostgreSQL access control object.
         """
         return pulumi.get(self, "pg_access_control")
 
     @pg_access_control.setter
-    def pg_access_control(self, value: Optional[pulumi.Input['ManagedDatabaseUserPgAccessControlArgs']]):
+    def pg_access_control(self, value: pulumi.Input[Optional['ManagedDatabaseUserPgAccessControlArgs']]):
         pulumi.set(self, "pg_access_control", value)
 
     @_builtins.property
     @pulumi.getter(name="valkeyAccessControl")
-    def valkey_access_control(self) -> Optional[pulumi.Input['ManagedDatabaseUserValkeyAccessControlArgs']]:
+    def valkey_access_control(self) -> pulumi.Input[Optional['ManagedDatabaseUserValkeyAccessControlArgs']]:
         """
         Valkey access control object.
         """
         return pulumi.get(self, "valkey_access_control")
 
     @valkey_access_control.setter
-    def valkey_access_control(self, value: Optional[pulumi.Input['ManagedDatabaseUserValkeyAccessControlArgs']]):
+    def valkey_access_control(self, value: pulumi.Input[Optional['ManagedDatabaseUserValkeyAccessControlArgs']]):
         pulumi.set(self, "valkey_access_control", value)
 
 
 @pulumi.input_type
 class _ManagedDatabaseUserState:
     def __init__(__self__, *,
-                 authentication: Optional[pulumi.Input[_builtins.str]] = None,
-                 opensearch_access_control: Optional[pulumi.Input['ManagedDatabaseUserOpensearchAccessControlArgs']] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 pg_access_control: Optional[pulumi.Input['ManagedDatabaseUserPgAccessControlArgs']] = None,
-                 service: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 valkey_access_control: Optional[pulumi.Input['ManagedDatabaseUserValkeyAccessControlArgs']] = None):
+                 authentication: pulumi.Input[Optional[_builtins.str]] = None,
+                 opensearch_access_control: pulumi.Input[Optional['ManagedDatabaseUserOpensearchAccessControlArgs']] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 pg_access_control: pulumi.Input[Optional['ManagedDatabaseUserPgAccessControlArgs']] = None,
+                 service: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 valkey_access_control: pulumi.Input[Optional['ManagedDatabaseUserValkeyAccessControlArgs']] = None):
         """
         Input properties used for looking up and filtering ManagedDatabaseUser resources.
+
         :param pulumi.Input[_builtins.str] authentication: MySQL only, authentication type.
         :param pulumi.Input['ManagedDatabaseUserOpensearchAccessControlArgs'] opensearch_access_control: OpenSearch access control object.
         :param pulumi.Input[_builtins.str] password: Password for the database user. Defaults to a random value
@@ -177,98 +179,98 @@ class _ManagedDatabaseUserState:
 
     @_builtins.property
     @pulumi.getter
-    def authentication(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authentication(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         MySQL only, authentication type.
         """
         return pulumi.get(self, "authentication")
 
     @authentication.setter
-    def authentication(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authentication(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authentication", value)
 
     @_builtins.property
     @pulumi.getter(name="opensearchAccessControl")
-    def opensearch_access_control(self) -> Optional[pulumi.Input['ManagedDatabaseUserOpensearchAccessControlArgs']]:
+    def opensearch_access_control(self) -> pulumi.Input[Optional['ManagedDatabaseUserOpensearchAccessControlArgs']]:
         """
         OpenSearch access control object.
         """
         return pulumi.get(self, "opensearch_access_control")
 
     @opensearch_access_control.setter
-    def opensearch_access_control(self, value: Optional[pulumi.Input['ManagedDatabaseUserOpensearchAccessControlArgs']]):
+    def opensearch_access_control(self, value: pulumi.Input[Optional['ManagedDatabaseUserOpensearchAccessControlArgs']]):
         pulumi.set(self, "opensearch_access_control", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for the database user. Defaults to a random value
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="pgAccessControl")
-    def pg_access_control(self) -> Optional[pulumi.Input['ManagedDatabaseUserPgAccessControlArgs']]:
+    def pg_access_control(self) -> pulumi.Input[Optional['ManagedDatabaseUserPgAccessControlArgs']]:
         """
         PostgreSQL access control object.
         """
         return pulumi.get(self, "pg_access_control")
 
     @pg_access_control.setter
-    def pg_access_control(self, value: Optional[pulumi.Input['ManagedDatabaseUserPgAccessControlArgs']]):
+    def pg_access_control(self, value: pulumi.Input[Optional['ManagedDatabaseUserPgAccessControlArgs']]):
         pulumi.set(self, "pg_access_control", value)
 
     @_builtins.property
     @pulumi.getter
-    def service(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service's UUID for which this user belongs to
         """
         return pulumi.get(self, "service")
 
     @service.setter
-    def service(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of the user. Only normal type users can be created
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the database user
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="valkeyAccessControl")
-    def valkey_access_control(self) -> Optional[pulumi.Input['ManagedDatabaseUserValkeyAccessControlArgs']]:
+    def valkey_access_control(self) -> pulumi.Input[Optional['ManagedDatabaseUserValkeyAccessControlArgs']]:
         """
         Valkey access control object.
         """
         return pulumi.get(self, "valkey_access_control")
 
     @valkey_access_control.setter
-    def valkey_access_control(self, value: Optional[pulumi.Input['ManagedDatabaseUserValkeyAccessControlArgs']]):
+    def valkey_access_control(self, value: pulumi.Input[Optional['ManagedDatabaseUserValkeyAccessControlArgs']]):
         pulumi.set(self, "valkey_access_control", value)
 
 
@@ -278,13 +280,13 @@ class ManagedDatabaseUser(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authentication: Optional[pulumi.Input[_builtins.str]] = None,
-                 opensearch_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict']]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 pg_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict']]] = None,
-                 service: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 valkey_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict']]] = None,
+                 authentication: pulumi.Input[Optional[_builtins.str]] = None,
+                 opensearch_access_control: pulumi.Input[Optional[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict', 'outputs.ManagedDatabaseUserOpensearchAccessControl']]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 pg_access_control: pulumi.Input[Optional[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict', 'outputs.ManagedDatabaseUserPgAccessControl']]] = None,
+                 service: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 valkey_access_control: pulumi.Input[Optional[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict', 'outputs.ManagedDatabaseUserValkeyAccessControl']]] = None,
                  __props__=None):
         """
         This resource represents a user in managed database.
@@ -306,15 +308,16 @@ class ManagedDatabaseUser(pulumi.CustomResource):
             password="<USER_PASSWORD>")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] authentication: MySQL only, authentication type.
-        :param pulumi.Input[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict']] opensearch_access_control: OpenSearch access control object.
+        :param pulumi.Input[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict', 'outputs.ManagedDatabaseUserOpensearchAccessControl']] opensearch_access_control: OpenSearch access control object.
         :param pulumi.Input[_builtins.str] password: Password for the database user. Defaults to a random value
-        :param pulumi.Input[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict']] pg_access_control: PostgreSQL access control object.
+        :param pulumi.Input[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict', 'outputs.ManagedDatabaseUserPgAccessControl']] pg_access_control: PostgreSQL access control object.
         :param pulumi.Input[_builtins.str] service: Service's UUID for which this user belongs to
         :param pulumi.Input[_builtins.str] username: Name of the database user
-        :param pulumi.Input[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict']] valkey_access_control: Valkey access control object.
+        :param pulumi.Input[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict', 'outputs.ManagedDatabaseUserValkeyAccessControl']] valkey_access_control: Valkey access control object.
         """
         ...
     @overload
@@ -342,6 +345,7 @@ class ManagedDatabaseUser(pulumi.CustomResource):
             password="<USER_PASSWORD>")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ManagedDatabaseUserArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -357,13 +361,13 @@ class ManagedDatabaseUser(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authentication: Optional[pulumi.Input[_builtins.str]] = None,
-                 opensearch_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict']]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 pg_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict']]] = None,
-                 service: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 valkey_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict']]] = None,
+                 authentication: pulumi.Input[Optional[_builtins.str]] = None,
+                 opensearch_access_control: pulumi.Input[Optional[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict', 'outputs.ManagedDatabaseUserOpensearchAccessControl']]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 pg_access_control: pulumi.Input[Optional[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict', 'outputs.ManagedDatabaseUserPgAccessControl']]] = None,
+                 service: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 valkey_access_control: pulumi.Input[Optional[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict', 'outputs.ManagedDatabaseUserValkeyAccessControl']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -397,14 +401,14 @@ class ManagedDatabaseUser(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            authentication: Optional[pulumi.Input[_builtins.str]] = None,
-            opensearch_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict']]] = None,
-            password: Optional[pulumi.Input[_builtins.str]] = None,
-            pg_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict']]] = None,
-            service: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            username: Optional[pulumi.Input[_builtins.str]] = None,
-            valkey_access_control: Optional[pulumi.Input[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict']]] = None) -> 'ManagedDatabaseUser':
+            authentication: pulumi.Input[Optional[_builtins.str]] = None,
+            opensearch_access_control: pulumi.Input[Optional[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict', 'outputs.ManagedDatabaseUserOpensearchAccessControl']]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            pg_access_control: pulumi.Input[Optional[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict', 'outputs.ManagedDatabaseUserPgAccessControl']]] = None,
+            service: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None,
+            valkey_access_control: pulumi.Input[Optional[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict', 'outputs.ManagedDatabaseUserValkeyAccessControl']]] = None) -> 'ManagedDatabaseUser':
         """
         Get an existing ManagedDatabaseUser resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -413,13 +417,13 @@ class ManagedDatabaseUser(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] authentication: MySQL only, authentication type.
-        :param pulumi.Input[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict']] opensearch_access_control: OpenSearch access control object.
+        :param pulumi.Input[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict', 'outputs.ManagedDatabaseUserOpensearchAccessControl']] opensearch_access_control: OpenSearch access control object.
         :param pulumi.Input[_builtins.str] password: Password for the database user. Defaults to a random value
-        :param pulumi.Input[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict']] pg_access_control: PostgreSQL access control object.
+        :param pulumi.Input[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict', 'outputs.ManagedDatabaseUserPgAccessControl']] pg_access_control: PostgreSQL access control object.
         :param pulumi.Input[_builtins.str] service: Service's UUID for which this user belongs to
         :param pulumi.Input[_builtins.str] type: Type of the user. Only normal type users can be created
         :param pulumi.Input[_builtins.str] username: Name of the database user
-        :param pulumi.Input[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict']] valkey_access_control: Valkey access control object.
+        :param pulumi.Input[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict', 'outputs.ManagedDatabaseUserValkeyAccessControl']] valkey_access_control: Valkey access control object.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -434,6 +438,28 @@ class ManagedDatabaseUser(pulumi.CustomResource):
         __props__.__dict__["username"] = username
         __props__.__dict__["valkey_access_control"] = valkey_access_control
         return ManagedDatabaseUser(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authentication: pulumi.Input[Optional[_builtins.str]] = None,
+            opensearch_access_control: pulumi.Input[Optional[Union['ManagedDatabaseUserOpensearchAccessControlArgs', 'ManagedDatabaseUserOpensearchAccessControlArgsDict', 'outputs.ManagedDatabaseUserOpensearchAccessControl']]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            pg_access_control: pulumi.Input[Optional[Union['ManagedDatabaseUserPgAccessControlArgs', 'ManagedDatabaseUserPgAccessControlArgsDict', 'outputs.ManagedDatabaseUserPgAccessControl']]] = None,
+            service: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None,
+            valkey_access_control: pulumi.Input[Optional[Union['ManagedDatabaseUserValkeyAccessControlArgs', 'ManagedDatabaseUserValkeyAccessControlArgsDict', 'outputs.ManagedDatabaseUserValkeyAccessControl']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authentication"] = authentication
+        __props__["opensearchAccessControl"] = opensearch_access_control
+        __props__["password"] = password
+        __props__["pgAccessControl"] = pg_access_control
+        __props__["service"] = service
+        __props__["type"] = type
+        __props__["username"] = username
+        __props__["valkeyAccessControl"] = valkey_access_control
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/managedDatabaseUser:ManagedDatabaseUser', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

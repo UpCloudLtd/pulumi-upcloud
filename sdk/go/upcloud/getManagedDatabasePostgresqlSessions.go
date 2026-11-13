@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
+//			// Use function to gather a list of the active sessions for a Managed PostgreSQL Database
 //			// Create a Managed PostgreSQL resource
 //			exampleManagedDatabasePostgresql, err := upcloud.NewManagedDatabasePostgresql(ctx, "example", &upcloud.ManagedDatabasePostgresqlArgs{
 //				Name:  pulumi.String("mysql-example1"),
@@ -78,12 +78,8 @@ type GetManagedDatabasePostgresqlSessionsResult struct {
 }
 
 func GetManagedDatabasePostgresqlSessionsOutput(ctx *pulumi.Context, args GetManagedDatabasePostgresqlSessionsOutputArgs, opts ...pulumi.InvokeOption) GetManagedDatabasePostgresqlSessionsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetManagedDatabasePostgresqlSessionsResultOutput, error) {
-			args := v.(GetManagedDatabasePostgresqlSessionsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions", args, GetManagedDatabasePostgresqlSessionsResultOutput{}, options).(GetManagedDatabasePostgresqlSessionsResultOutput), nil
-		}).(GetManagedDatabasePostgresqlSessionsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("upcloud:index/getManagedDatabasePostgresqlSessions:getManagedDatabasePostgresqlSessions", args, GetManagedDatabasePostgresqlSessionsResultOutput{}, options).(GetManagedDatabasePostgresqlSessionsResultOutput)
 }
 
 // A collection of arguments for invoking getManagedDatabasePostgresqlSessions.

@@ -82,6 +82,17 @@ export class ServerPrivateFirewallRuleset extends pulumi.CustomResource {
         return new ServerPrivateFirewallRuleset(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ServerPrivateFirewallRuleset resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ServerPrivateFirewallRulesetState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/serverPrivateFirewallRuleset:ServerPrivateFirewallRuleset", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/serverPrivateFirewallRuleset:ServerPrivateFirewallRuleset';
 
@@ -143,11 +154,11 @@ export interface ServerPrivateFirewallRulesetState {
     /**
      * The UUID of the firewall ruleset to attach.
      */
-    rulesetId?: pulumi.Input<string>;
+    rulesetId?: pulumi.Input<string | undefined>;
     /**
      * The UUID of the server to attach the firewall ruleset to.
      */
-    serverId?: pulumi.Input<string>;
+    serverId?: pulumi.Input<string | undefined>;
 }
 
 /**

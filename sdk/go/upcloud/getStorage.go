@@ -34,7 +34,7 @@ import (
 //			// Note that when applied new updated image will cause replacement of the old server (debian.example.tld)
 //			// with the new server created based on the updated image.This can cause posible data loss
 //			// if it hasn't been taken into account when planning the service.
-//			appImage, err := upcloud.LookupStorage(ctx, &upcloud.LookupStorageArgs{
+//			appImage, err := upcloud.GetStorage(ctx, &upcloud.LookupStorageArgs{
 //				Type:       pulumi.StringRef("template"),
 //				NameRegex:  pulumi.StringRef("^app_image.*"),
 //				MostRecent: pulumi.BoolRef(true),
@@ -129,12 +129,8 @@ type LookupStorageResult struct {
 }
 
 func LookupStorageOutput(ctx *pulumi.Context, args LookupStorageOutputArgs, opts ...pulumi.InvokeOption) LookupStorageResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupStorageResultOutput, error) {
-			args := v.(LookupStorageArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("upcloud:index/getStorage:getStorage", args, LookupStorageResultOutput{}, options).(LookupStorageResultOutput), nil
-		}).(LookupStorageResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("upcloud:index/getStorage:getStorage", args, LookupStorageResultOutput{}, options).(LookupStorageResultOutput)
 }
 
 // A collection of arguments for invoking getStorage.

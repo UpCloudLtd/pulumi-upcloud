@@ -89,6 +89,17 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
         return new KubernetesNodeGroup(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing KubernetesNodeGroup resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: KubernetesNodeGroupState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/kubernetesNodeGroup:KubernetesNodeGroup", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/kubernetesNodeGroup:KubernetesNodeGroup';
 
@@ -233,65 +244,65 @@ export interface KubernetesNodeGroupState {
     /**
      * If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
      */
-    antiAffinity?: pulumi.Input<boolean>;
+    antiAffinity?: pulumi.Input<boolean | undefined>;
     /**
      * Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
      */
-    cloudNativePlan?: pulumi.Input<inputs.KubernetesNodeGroupCloudNativePlan>;
+    cloudNativePlan?: pulumi.Input<inputs.KubernetesNodeGroupCloudNativePlan | undefined>;
     /**
      * UUID of the cluster.
      */
-    cluster?: pulumi.Input<string>;
+    cluster?: pulumi.Input<string | undefined>;
     /**
      * Resource properties for custom plan. This block is required for `custom` plans only.
      */
-    customPlan?: pulumi.Input<inputs.KubernetesNodeGroupCustomPlan>;
+    customPlan?: pulumi.Input<inputs.KubernetesNodeGroupCustomPlan | undefined>;
     /**
      * Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
      */
-    gpuPlan?: pulumi.Input<inputs.KubernetesNodeGroupGpuPlan>;
+    gpuPlan?: pulumi.Input<inputs.KubernetesNodeGroupGpuPlan | undefined>;
     /**
      * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
      *
      *     Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
      */
-    kubeletArgs?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupKubeletArg>[]>;
+    kubeletArgs?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupKubeletArg>[] | undefined>;
     /**
      * User defined key-value pairs to classify the node_group.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
      */
-    namePrefix?: pulumi.Input<string>;
+    namePrefix?: pulumi.Input<string | undefined>;
     /**
      * Amount of nodes to provision in the node group.
      */
-    nodeCount?: pulumi.Input<number>;
+    nodeCount?: pulumi.Input<number | undefined>;
     /**
      * The server plan used for the node group. You can list available plans with `upctl server plans`
      */
-    plan?: pulumi.Input<string>;
+    plan?: pulumi.Input<string | undefined>;
     /**
      * You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
      */
-    sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    sshKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
      */
-    storageEncryption?: pulumi.Input<string>;
+    storageEncryption?: pulumi.Input<string | undefined>;
     /**
      * Taints for the nodes in this group.
      */
-    taints?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupTaint>[]>;
+    taints?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupTaint>[] | undefined>;
     /**
      * If set to false, nodes in this group will not have access to utility network.
      */
-    utilityNetworkAccess?: pulumi.Input<boolean>;
+    utilityNetworkAccess?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -301,11 +312,11 @@ export interface KubernetesNodeGroupArgs {
     /**
      * If set to true, nodes in this group will be placed on separate compute hosts. Please note that anti-affinity policy is considered 'best effort' and enabling it does not fully guarantee that the nodes will end up on different hardware.
      */
-    antiAffinity?: pulumi.Input<boolean>;
+    antiAffinity?: pulumi.Input<boolean | undefined>;
     /**
      * Resource properties for Cloud Native plan storage configuration. This block is optional for Cloud Native plans.
      */
-    cloudNativePlan?: pulumi.Input<inputs.KubernetesNodeGroupCloudNativePlan>;
+    cloudNativePlan?: pulumi.Input<inputs.KubernetesNodeGroupCloudNativePlan | undefined>;
     /**
      * UUID of the cluster.
      */
@@ -313,29 +324,29 @@ export interface KubernetesNodeGroupArgs {
     /**
      * Resource properties for custom plan. This block is required for `custom` plans only.
      */
-    customPlan?: pulumi.Input<inputs.KubernetesNodeGroupCustomPlan>;
+    customPlan?: pulumi.Input<inputs.KubernetesNodeGroupCustomPlan | undefined>;
     /**
      * Resource properties for GPU plan storage configuration. This block is optional for GPU plans.
      */
-    gpuPlan?: pulumi.Input<inputs.KubernetesNodeGroupGpuPlan>;
+    gpuPlan?: pulumi.Input<inputs.KubernetesNodeGroupGpuPlan | undefined>;
     /**
      * Additional arguments for kubelet for the nodes in this group. Configure the arguments without leading `--`. The API will prefix the arguments with `--` when preparing kubelet call.
      *
      *     Note that these arguments will be passed directly to kubelet CLI on each worker node without any validation. Passing invalid arguments can break your whole cluster. Be extra careful when adding kubelet args.
      */
-    kubeletArgs?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupKubeletArg>[]>;
+    kubeletArgs?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupKubeletArg>[] | undefined>;
     /**
      * User defined key-value pairs to classify the node_group.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name of the node group. Needs to be unique within a cluster. Either `name` or `namePrefix` must be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Like name, but appends a random string to the end to create a unique name beginning with the specified prefix. This enables using `createBeforeDestroy` lifecycle setting. Conflicts with `name`.
      */
-    namePrefix?: pulumi.Input<string>;
+    namePrefix?: pulumi.Input<string | undefined>;
     /**
      * Amount of nodes to provision in the node group.
      */
@@ -347,17 +358,17 @@ export interface KubernetesNodeGroupArgs {
     /**
      * You can optionally select SSH keys to be added as authorized keys to the nodes in this node group. This allows you to connect to the nodes via SSH once they are running.
      */
-    sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    sshKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The storage encryption strategy to use for the nodes in this group. If not set, the cluster's storage encryption strategy will be used, if applicable. Valid values are `data-at-rest` and `none`.
      */
-    storageEncryption?: pulumi.Input<string>;
+    storageEncryption?: pulumi.Input<string | undefined>;
     /**
      * Taints for the nodes in this group.
      */
-    taints?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupTaint>[]>;
+    taints?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupTaint>[] | undefined>;
     /**
      * If set to false, nodes in this group will not have access to utility network.
      */
-    utilityNetworkAccess?: pulumi.Input<boolean>;
+    utilityNetworkAccess?: pulumi.Input<boolean | undefined>;
 }

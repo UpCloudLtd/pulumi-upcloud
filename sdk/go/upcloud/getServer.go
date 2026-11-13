@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := upcloud.LookupServer(ctx, &upcloud.LookupServerArgs{
+//			_, err := upcloud.GetServer(ctx, &upcloud.LookupServerArgs{
 //				Id: "00f60089-7bb0-4e19-9481-fbb1cb4378ab",
 //			}, nil)
 //			if err != nil {
@@ -80,12 +80,8 @@ type LookupServerResult struct {
 }
 
 func LookupServerOutput(ctx *pulumi.Context, args LookupServerOutputArgs, opts ...pulumi.InvokeOption) LookupServerResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupServerResultOutput, error) {
-			args := v.(LookupServerArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("upcloud:index/getServer:getServer", args, LookupServerResultOutput{}, options).(LookupServerResultOutput), nil
-		}).(LookupServerResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("upcloud:index/getServer:getServer", args, LookupServerResultOutput{}, options).(LookupServerResultOutput)
 }
 
 // A collection of arguments for invoking getServer.

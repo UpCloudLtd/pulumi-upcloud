@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Managed Kubernetes cluster details. Please refer to Terraform documentation on sensitive data to keep the credential data as safe as possible.
+//
 // ## Example Usage
 //
 // ```go
@@ -53,13 +55,13 @@ import (
 //				return err
 //			}
 //			// Read the details of the newly created cluster
-//			example := upcloud.LookupKubernetesClusterOutput(ctx, upcloud.GetKubernetesClusterOutputArgs{
+//			example := upcloud.GetKubernetesClusterOutput(ctx, upcloud.GetKubernetesClusterOutputArgs{
 //				Id: exampleKubernetesCluster.ID(),
 //			}, nil)
 //			// Use the Kubernetes provider resources to interact with the cluster
 //			_, err = kubernetes.NewNamespace(ctx, "example", &kubernetes.NamespaceArgs{
-//				Metadata: []map[string]interface{}{
-//					map[string]interface{}{
+//				Metadata: []map[string]string{
+//					{
 //						"name": "example-namespace",
 //					},
 //				},
@@ -107,12 +109,8 @@ type LookupKubernetesClusterResult struct {
 }
 
 func LookupKubernetesClusterOutput(ctx *pulumi.Context, args LookupKubernetesClusterOutputArgs, opts ...pulumi.InvokeOption) LookupKubernetesClusterResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupKubernetesClusterResultOutput, error) {
-			args := v.(LookupKubernetesClusterArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("upcloud:index/getKubernetesCluster:getKubernetesCluster", args, LookupKubernetesClusterResultOutput{}, options).(LookupKubernetesClusterResultOutput), nil
-		}).(LookupKubernetesClusterResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("upcloud:index/getKubernetesCluster:getKubernetesCluster", args, LookupKubernetesClusterResultOutput{}, options).(LookupKubernetesClusterResultOutput)
 }
 
 // A collection of arguments for invoking getKubernetesCluster.

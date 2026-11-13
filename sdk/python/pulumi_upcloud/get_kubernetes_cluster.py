@@ -103,6 +103,8 @@ class AwaitableGetKubernetesClusterResult(GetKubernetesClusterResult):
 def get_kubernetes_cluster(id: Optional[_builtins.str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubernetesClusterResult:
     """
+    Managed Kubernetes cluster details. Please refer to Terraform documentation on sensitive data to keep the credential data as safe as possible.
+
     ## Example Usage
 
     ```python
@@ -129,11 +131,11 @@ def get_kubernetes_cluster(id: Optional[_builtins.str] = None,
     # Read the details of the newly created cluster
     example = upcloud.get_kubernetes_cluster_output(id=example_kubernetes_cluster.id)
     # Use the Kubernetes provider resources to interact with the cluster
-    example_namespace = kubernetes.index.Namespace("example", metadata=[{
+    example_namespace = kubernetes.Namespace("example", metadata=[{
         name: example-namespace,
     }])
     # In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients
-    example_file = local.index.File("example",
+    example_file = local.File("example",
         content=example.kubeconfig,
         filename=example.conf)
     ```
@@ -151,9 +153,11 @@ def get_kubernetes_cluster(id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         kubeconfig=pulumi.get(__ret__, 'kubeconfig'),
         name=pulumi.get(__ret__, 'name'))
-def get_kubernetes_cluster_output(id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_kubernetes_cluster_output(id: pulumi.Input[Optional[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKubernetesClusterResult]:
     """
+    Managed Kubernetes cluster details. Please refer to Terraform documentation on sensitive data to keep the credential data as safe as possible.
+
     ## Example Usage
 
     ```python
@@ -180,11 +184,11 @@ def get_kubernetes_cluster_output(id: Optional[pulumi.Input[_builtins.str]] = No
     # Read the details of the newly created cluster
     example = upcloud.get_kubernetes_cluster_output(id=example_kubernetes_cluster.id)
     # Use the Kubernetes provider resources to interact with the cluster
-    example_namespace = kubernetes.index.Namespace("example", metadata=[{
+    example_namespace = kubernetes.Namespace("example", metadata=[{
         name: example-namespace,
     }])
     # In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients
-    example_file = local.index.File("example",
+    example_file = local.File("example",
         content=example.kubeconfig,
         filename=example.conf)
     ```

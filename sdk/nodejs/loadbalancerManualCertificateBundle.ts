@@ -19,13 +19,13 @@ import * as utilities from "./utilities";
  * const privateKeyPath = config.require("privateKeyPath");
  * const lbCbM1 = new upcloud.LoadbalancerManualCertificateBundle("lb_cb_m1", {
  *     name: "lb-cb-m1-test",
- *     certificate: std.index.base64encode({
- *         input: std.index.file({
+ *     certificate: std.base64encode({
+ *         input: std.file({
  *             input: certificatePath,
  *         }).result,
  *     }).result,
- *     privateKey: std.index.base64encode({
- *         input: std.index.file({
+ *     privateKey: std.base64encode({
+ *         input: std.file({
  *             input: privateKeyPath,
  *         }).result,
  *     }).result,
@@ -44,6 +44,17 @@ export class LoadbalancerManualCertificateBundle extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LoadbalancerManualCertificateBundleState, opts?: pulumi.CustomResourceOptions): LoadbalancerManualCertificateBundle {
         return new LoadbalancerManualCertificateBundle(name, <any>state, { ...opts, id: id });
+    }
+
+    /**
+     * Check whether an existing LoadbalancerManualCertificateBundle resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: LoadbalancerManualCertificateBundleState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/loadbalancerManualCertificateBundle:LoadbalancerManualCertificateBundle", id, <any>state || {}, { ...opts }, undefined);
     }
 
     /** @internal */
@@ -145,35 +156,35 @@ export interface LoadbalancerManualCertificateBundleState {
     /**
      * Certificate as base64 encoded string. Must be in PEM format.
      */
-    certificate?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string | undefined>;
     /**
      * Intermediate certificates as base64 encoded string. Must be in PEM format.
      */
-    intermediates?: pulumi.Input<string>;
+    intermediates?: pulumi.Input<string | undefined>;
     /**
      * User defined key-value pairs to classify the manual certificate bundle.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name of the certificate bundle. Must be unique within customer account.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The time after which a certificate is no longer valid.
      */
-    notAfter?: pulumi.Input<string>;
+    notAfter?: pulumi.Input<string | undefined>;
     /**
      * The time on which a certificate becomes valid.
      */
-    notBefore?: pulumi.Input<string>;
+    notBefore?: pulumi.Input<string | undefined>;
     /**
      * The service operational state indicates the service's current operational, effective state. Managed by the system.
      */
-    operationalState?: pulumi.Input<string>;
+    operationalState?: pulumi.Input<string | undefined>;
     /**
      * Private key as base64 encoded string. Must be in PEM format.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -187,15 +198,15 @@ export interface LoadbalancerManualCertificateBundleArgs {
     /**
      * Intermediate certificates as base64 encoded string. Must be in PEM format.
      */
-    intermediates?: pulumi.Input<string>;
+    intermediates?: pulumi.Input<string | undefined>;
     /**
      * User defined key-value pairs to classify the manual certificate bundle.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name of the certificate bundle. Must be unique within customer account.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Private key as base64 encoded string. Must be in PEM format.
      */

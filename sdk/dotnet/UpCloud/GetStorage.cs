@@ -78,7 +78,7 @@ namespace UpCloud.Pulumi.UpCloud
         ///     {
         ///         IgnoreChanges =
         ///         {
-        ///             "template.Storage",
+        ///             "template.storage",
         ///         },
         ///     });
         /// 
@@ -154,7 +154,7 @@ namespace UpCloud.Pulumi.UpCloud
         ///     {
         ///         IgnoreChanges =
         ///         {
-        ///             "template.Storage",
+        ///             "template.storage",
         ///         },
         ///     });
         /// 
@@ -230,7 +230,7 @@ namespace UpCloud.Pulumi.UpCloud
         ///     {
         ///         IgnoreChanges =
         ///         {
-        ///             "template.Storage",
+        ///             "template.storage",
         ///         },
         ///     });
         /// 

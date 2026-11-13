@@ -40,6 +40,17 @@ export class ManagedObjectStoragePolicy extends pulumi.CustomResource {
         return new ManagedObjectStoragePolicy(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ManagedObjectStoragePolicy resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ManagedObjectStoragePolicyState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/managedObjectStoragePolicy:ManagedObjectStoragePolicy';
 
@@ -149,43 +160,43 @@ export interface ManagedObjectStoragePolicyState {
     /**
      * Policy ARN.
      */
-    arn?: pulumi.Input<string>;
+    arn?: pulumi.Input<string | undefined>;
     /**
      * Attachment count.
      */
-    attachmentCount?: pulumi.Input<number>;
+    attachmentCount?: pulumi.Input<number | undefined>;
     /**
      * Creation time.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Default version id.
      */
-    defaultVersionId?: pulumi.Input<string>;
+    defaultVersionId?: pulumi.Input<string | undefined>;
     /**
      * Description of the policy. This property is immutable after creation.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
      */
-    document?: pulumi.Input<string>;
+    document?: pulumi.Input<string | undefined>;
     /**
      * Policy name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Managed Object Storage service UUID.
      */
-    serviceUuid?: pulumi.Input<string>;
+    serviceUuid?: pulumi.Input<string | undefined>;
     /**
      * Defines whether the policy was set up by the system.
      */
-    system?: pulumi.Input<boolean>;
+    system?: pulumi.Input<boolean | undefined>;
     /**
      * Update time.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -195,7 +206,7 @@ export interface ManagedObjectStoragePolicyArgs {
     /**
      * Description of the policy. This property is immutable after creation.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Policy document, URL-encoded compliant with RFC 3986. Extra whitespace and escapes are ignored when determining if the document has changed.
      */
@@ -203,7 +214,7 @@ export interface ManagedObjectStoragePolicyArgs {
     /**
      * Policy name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Managed Object Storage service UUID.
      */

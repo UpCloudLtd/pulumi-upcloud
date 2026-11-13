@@ -55,10 +55,8 @@ type GetLoadBalancerDnsChallengeDomainResult struct {
 }
 
 func GetLoadBalancerDnsChallengeDomainOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetLoadBalancerDnsChallengeDomainResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetLoadBalancerDnsChallengeDomainResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("upcloud:index/getLoadBalancerDnsChallengeDomain:getLoadBalancerDnsChallengeDomain", nil, GetLoadBalancerDnsChallengeDomainResultOutput{}, options).(GetLoadBalancerDnsChallengeDomainResultOutput), nil
-	}).(GetLoadBalancerDnsChallengeDomainResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("upcloud:index/getLoadBalancerDnsChallengeDomain:getLoadBalancerDnsChallengeDomain", nil, GetLoadBalancerDnsChallengeDomainResultOutput{}, options).(GetLoadBalancerDnsChallengeDomainResultOutput)
 }
 
 // A collection of values returned by getLoadBalancerDnsChallengeDomain.

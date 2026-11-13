@@ -56,9 +56,9 @@ import (
 //				return err
 //			}
 //			_, err = upcloud.NewFloatingIpAddress(ctx, "my_new_floating_address", &upcloud.FloatingIpAddressArgs{
-//				MacAddress: pulumi.String(example.NetworkInterfaces.ApplyT(func(networkInterfaces []upcloud.ServerNetworkInterface) (*string, error) {
-//					return &networkInterfaces[0].MacAddress, nil
-//				}).(pulumi.StringPtrOutput)),
+//				MacAddress: example.NetworkInterfaces.ApplyT(func(networkInterfaces []upcloud.ServerNetworkInterface) (*string, error) {
+//					return networkInterfaces[0].MacAddress, nil
+//				}).(pulumi.StringPtrOutput),
 //			})
 //			if err != nil {
 //				return err
@@ -154,6 +154,12 @@ type FloatingIpAddressState struct {
 
 func (FloatingIpAddressState) ElementType() reflect.Type {
 	return reflect.TypeOf((*floatingIpAddressState)(nil)).Elem()
+}
+
+// FloatingIpAddressExists checks whether an existing FloatingIpAddress resource with the given ID exists.
+func FloatingIpAddressExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FloatingIpAddressState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/floatingIpAddress:FloatingIpAddress", id, state, "", opts...)
 }
 
 type floatingIpAddressArgs struct {

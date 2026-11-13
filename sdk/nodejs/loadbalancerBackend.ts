@@ -53,6 +53,17 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
         return new LoadbalancerBackend(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing LoadbalancerBackend resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: LoadbalancerBackendState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/loadbalancerBackend:LoadbalancerBackend", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/loadbalancerBackend:LoadbalancerBackend';
 
@@ -79,6 +90,9 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      * The name of the backend. Must be unique within the load balancer service.
      */
     declare public readonly name: pulumi.Output<string>;
+    /**
+     * Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+     */
     declare public readonly properties: pulumi.Output<outputs.LoadbalancerBackendProperties | undefined>;
     /**
      * Domain name resolver used with dynamic type members.
@@ -132,24 +146,27 @@ export interface LoadbalancerBackendState {
     /**
      * UUID of the load balancer to which the backend is connected.
      */
-    loadbalancer?: pulumi.Input<string>;
+    loadbalancer?: pulumi.Input<string | undefined>;
     /**
      * Backend member server UUIDs. Members receive traffic dispatched from the frontends.
      */
-    members?: pulumi.Input<pulumi.Input<string>[]>;
+    members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the backend. Must be unique within the load balancer service.
      */
-    name?: pulumi.Input<string>;
-    properties?: pulumi.Input<inputs.LoadbalancerBackendProperties>;
+    name?: pulumi.Input<string | undefined>;
+    /**
+     * Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+     */
+    properties?: pulumi.Input<inputs.LoadbalancerBackendProperties | undefined>;
     /**
      * Domain name resolver used with dynamic type members.
      */
-    resolverName?: pulumi.Input<string>;
+    resolverName?: pulumi.Input<string | undefined>;
     /**
      * Set of TLS config names.
      */
-    tlsConfigs?: pulumi.Input<pulumi.Input<string>[]>;
+    tlsConfigs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -163,10 +180,13 @@ export interface LoadbalancerBackendArgs {
     /**
      * The name of the backend. Must be unique within the load balancer service.
      */
-    name?: pulumi.Input<string>;
-    properties?: pulumi.Input<inputs.LoadbalancerBackendProperties>;
+    name?: pulumi.Input<string | undefined>;
+    /**
+     * Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+     */
+    properties?: pulumi.Input<inputs.LoadbalancerBackendProperties | undefined>;
     /**
      * Domain name resolver used with dynamic type members.
      */
-    resolverName?: pulumi.Input<string>;
+    resolverName?: pulumi.Input<string | undefined>;
 }

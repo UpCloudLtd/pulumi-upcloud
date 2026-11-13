@@ -23,9 +23,10 @@ class FileStorageShareAclArgs:
                  permission: pulumi.Input[_builtins.str],
                  share_name: pulumi.Input[_builtins.str],
                  target: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a FileStorageShareAcl resource.
+
         :param pulumi.Input[_builtins.str] file_storage: UUID of the file storage service.
         :param pulumi.Input[_builtins.str] permission: Access level: 'ro' or 'rw'.
         :param pulumi.Input[_builtins.str] share_name: Name of the share.
@@ -89,27 +90,28 @@ class FileStorageShareAclArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique name of the ACL entry (1–64 chars).
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _FileStorageShareAclState:
     def __init__(__self__, *,
-                 file_storage: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 permission: Optional[pulumi.Input[_builtins.str]] = None,
-                 share_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 target: Optional[pulumi.Input[_builtins.str]] = None):
+                 file_storage: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 permission: pulumi.Input[Optional[_builtins.str]] = None,
+                 share_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 target: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FileStorageShareAcl resources.
+
         :param pulumi.Input[_builtins.str] file_storage: UUID of the file storage service.
         :param pulumi.Input[_builtins.str] name: Unique name of the ACL entry (1–64 chars).
         :param pulumi.Input[_builtins.str] permission: Access level: 'ro' or 'rw'.
@@ -129,62 +131,62 @@ class _FileStorageShareAclState:
 
     @_builtins.property
     @pulumi.getter(name="fileStorage")
-    def file_storage(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def file_storage(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UUID of the file storage service.
         """
         return pulumi.get(self, "file_storage")
 
     @file_storage.setter
-    def file_storage(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def file_storage(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "file_storage", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique name of the ACL entry (1–64 chars).
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def permission(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def permission(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Access level: 'ro' or 'rw'.
         """
         return pulumi.get(self, "permission")
 
     @permission.setter
-    def permission(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def permission(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "permission", value)
 
     @_builtins.property
     @pulumi.getter(name="shareName")
-    def share_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def share_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the share.
         """
         return pulumi.get(self, "share_name")
 
     @share_name.setter
-    def share_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def share_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "share_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def target(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Target IP/CIDR or '*'.
         """
         return pulumi.get(self, "target")
 
     @target.setter
-    def target(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target", value)
 
 
@@ -194,14 +196,15 @@ class FileStorageShareAcl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 file_storage: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 permission: Optional[pulumi.Input[_builtins.str]] = None,
-                 share_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 target: Optional[pulumi.Input[_builtins.str]] = None,
+                 file_storage: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 permission: pulumi.Input[Optional[_builtins.str]] = None,
+                 share_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 target: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents a File Storage Share ACL entry.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -220,6 +223,7 @@ class FileStorageShareAcl(pulumi.CustomResource):
         """
         This resource represents a File Storage Share ACL entry.
 
+
         :param str resource_name: The name of the resource.
         :param FileStorageShareAclArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -235,11 +239,11 @@ class FileStorageShareAcl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 file_storage: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 permission: Optional[pulumi.Input[_builtins.str]] = None,
-                 share_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 target: Optional[pulumi.Input[_builtins.str]] = None,
+                 file_storage: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 permission: pulumi.Input[Optional[_builtins.str]] = None,
+                 share_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 target: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -272,11 +276,11 @@ class FileStorageShareAcl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            file_storage: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            permission: Optional[pulumi.Input[_builtins.str]] = None,
-            share_name: Optional[pulumi.Input[_builtins.str]] = None,
-            target: Optional[pulumi.Input[_builtins.str]] = None) -> 'FileStorageShareAcl':
+            file_storage: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            permission: pulumi.Input[Optional[_builtins.str]] = None,
+            share_name: pulumi.Input[Optional[_builtins.str]] = None,
+            target: pulumi.Input[Optional[_builtins.str]] = None) -> 'FileStorageShareAcl':
         """
         Get an existing FileStorageShareAcl resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -300,6 +304,22 @@ class FileStorageShareAcl(pulumi.CustomResource):
         __props__.__dict__["share_name"] = share_name
         __props__.__dict__["target"] = target
         return FileStorageShareAcl(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            file_storage: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            permission: pulumi.Input[Optional[_builtins.str]] = None,
+            share_name: pulumi.Input[Optional[_builtins.str]] = None,
+            target: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["fileStorage"] = file_storage
+        __props__["name"] = name
+        __props__["permission"] = permission
+        __props__["shareName"] = share_name
+        __props__["target"] = target
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/fileStorageShareAcl:FileStorageShareAcl', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="fileStorage")

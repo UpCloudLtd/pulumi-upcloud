@@ -12614,6 +12614,11 @@ class ServerTemplate(dict):
         """
         :param _builtins.str address: The device address the storage will be attached to (`scsi`|`virtio`|`ide`). Leave `address_position` field empty to auto-select next available address from that bus.
         :param _builtins.str address_position: The device position in the given bus (defined via field `address`). For example `0:0`, or `0`. Leave empty to auto-select next available address in the given bus.
+        :param 'ServerTemplateBackupRuleArgs' backup_rule: The criteria to backup the storage.
+               
+                   Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
         :param _builtins.bool delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
         :param _builtins.bool encrypt: Sets if the storage is encrypted at rest
         :param _builtins.bool filesystem_autoresize: If set to true, provider will attempt to resize partition and filesystem when the size of template storage changes.
@@ -12668,6 +12673,13 @@ class ServerTemplate(dict):
     @_builtins.property
     @pulumi.getter(name="backupRule")
     def backup_rule(self) -> Optional['outputs.ServerTemplateBackupRule']:
+        """
+        The criteria to backup the storage.
+
+            Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+            
+            Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        """
         return pulumi.get(self, "backup_rule")
 
     @_builtins.property

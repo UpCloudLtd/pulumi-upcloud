@@ -13,7 +13,7 @@ export interface FileStorageNetwork {
     /**
      * IP address to assign (optional, auto-assign otherwise).
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * Attachment name (unique per this service).
      */
@@ -32,27 +32,27 @@ export interface FirewallRulesetRule {
     /**
      * Rule comment.
      */
-    comment?: pulumi.Input<string>;
+    comment?: pulumi.Input<string | undefined>;
     /**
      * Destination CIDR block.
      */
-    destinationAddressCidr?: pulumi.Input<string>;
+    destinationAddressCidr?: pulumi.Input<string | undefined>;
     /**
      * End of destination IP address range.
      */
-    destinationAddressEnd?: pulumi.Input<string>;
+    destinationAddressEnd?: pulumi.Input<string | undefined>;
     /**
      * Start of destination IP address range.
      */
-    destinationAddressStart?: pulumi.Input<string>;
+    destinationAddressStart?: pulumi.Input<string | undefined>;
     /**
      * End of destination port range.
      */
-    destinationPortEnd?: pulumi.Input<number>;
+    destinationPortEnd?: pulumi.Input<number | undefined>;
     /**
      * Start of destination port range.
      */
-    destinationPortStart?: pulumi.Input<number>;
+    destinationPortStart?: pulumi.Input<number | undefined>;
     /**
      * Traffic direction the rule applies to.
      */
@@ -60,7 +60,7 @@ export interface FirewallRulesetRule {
     /**
      * Whether the rule is enabled.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Address family.
      */
@@ -68,46 +68,46 @@ export interface FirewallRulesetRule {
     /**
      * ICMP type number.
      */
-    icmpType?: pulumi.Input<number>;
+    icmpType?: pulumi.Input<number | undefined>;
     /**
      * Rule position (1-based). Computed from the rule's index in the list.
      */
-    position?: pulumi.Input<number>;
+    position?: pulumi.Input<number | undefined>;
     /**
      * IP protocol.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * Source CIDR block.
      */
-    sourceAddressCidr?: pulumi.Input<string>;
+    sourceAddressCidr?: pulumi.Input<string | undefined>;
     /**
      * End of source IP address range.
      */
-    sourceAddressEnd?: pulumi.Input<string>;
+    sourceAddressEnd?: pulumi.Input<string | undefined>;
     /**
      * Start of source IP address range.
      */
-    sourceAddressStart?: pulumi.Input<string>;
+    sourceAddressStart?: pulumi.Input<string | undefined>;
     /**
      * End of source port range.
      */
-    sourcePortEnd?: pulumi.Input<number>;
+    sourcePortEnd?: pulumi.Input<number | undefined>;
     /**
      * Start of source port range.
      */
-    sourcePortStart?: pulumi.Input<number>;
+    sourcePortStart?: pulumi.Input<number | undefined>;
 }
 
 export interface GatewayAddress {
     /**
      * IP address.
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * Name of the address.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 export interface GatewayConnectionLocalRoute {
@@ -122,7 +122,7 @@ export interface GatewayConnectionLocalRoute {
     /**
      * Type of route; currently the only supported type is 'static'
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface GatewayConnectionRemoteRoute {
@@ -137,7 +137,7 @@ export interface GatewayConnectionRemoteRoute {
     /**
      * Type of route; currently the only supported type is 'static'
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface GatewayConnectionTunnelIpsecAuthPsk {
@@ -151,47 +151,47 @@ export interface GatewayConnectionTunnelIpsecProperties {
     /**
      * IKE child SA rekey time in seconds.
      */
-    childRekeyTime?: pulumi.Input<number>;
+    childRekeyTime?: pulumi.Input<number | undefined>;
     /**
      * Delay before sending Dead Peer Detection packets if no traffic is detected, in seconds.
      */
-    dpdDelay?: pulumi.Input<number>;
+    dpdDelay?: pulumi.Input<number | undefined>;
     /**
      * Timeout period for DPD reply before considering the peer to be dead, in seconds.
      */
-    dpdTimeout?: pulumi.Input<number>;
+    dpdTimeout?: pulumi.Input<number | undefined>;
     /**
      * Maximum IKE SA lifetime in seconds.
      */
-    ikeLifetime?: pulumi.Input<number>;
+    ikeLifetime?: pulumi.Input<number | undefined>;
     /**
      * List of Phase 1: Proposal algorithms.
      */
-    phase1Algorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    phase1Algorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of Phase 1 Diffie-Hellman group numbers.
      */
-    phase1DhGroupNumbers?: pulumi.Input<pulumi.Input<number>[]>;
+    phase1DhGroupNumbers?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * List of Phase 1 integrity algorithms.
      */
-    phase1IntegrityAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    phase1IntegrityAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of Phase 2: Security Association algorithms.
      */
-    phase2Algorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    phase2Algorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of Phase 2 Diffie-Hellman group numbers.
      */
-    phase2DhGroupNumbers?: pulumi.Input<pulumi.Input<number>[]>;
+    phase2DhGroupNumbers?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * List of Phase 2 integrity algorithms.
      */
-    phase2IntegrityAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    phase2IntegrityAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * IKE SA rekey time in seconds.
      */
-    rekeyTime?: pulumi.Input<number>;
+    rekeyTime?: pulumi.Input<number | undefined>;
 }
 
 export interface GatewayRouter {
@@ -225,20 +225,20 @@ export interface GetHostsHostArgs {
     /**
      * Free form text describing the host
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The unique id of the host
      */
-    hostId?: pulumi.Input<number>;
-    statistics?: pulumi.Input<pulumi.Input<inputs.GetHostsHostStatisticArgs>[]>;
+    hostId?: pulumi.Input<number | undefined>;
+    statistics?: pulumi.Input<pulumi.Input<inputs.GetHostsHostStatisticArgs>[] | undefined>;
     /**
      * If true, this node can be used as a host for Windows servers.
      */
-    windowsEnabled?: pulumi.Input<boolean>;
+    windowsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The zone the host is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 export interface GetHostsHostStatistic {
@@ -260,15 +260,15 @@ export interface GetHostsHostStatisticArgs {
     /**
      * The name of the statistic
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The timestamp of the statistic
      */
-    timestamp?: pulumi.Input<string>;
+    timestamp?: pulumi.Input<string | undefined>;
     /**
      * The value of the statistic
      */
-    value?: pulumi.Input<number>;
+    value?: pulumi.Input<number | undefined>;
 }
 
 export interface GetIpAddressesAddress {
@@ -318,43 +318,43 @@ export interface GetIpAddressesAddressArgs {
     /**
      * Is address for utility or public network
      */
-    access?: pulumi.Input<string>;
+    access?: pulumi.Input<string | undefined>;
     /**
      * An UpCloud assigned IP Address
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * IP address family
      */
-    family?: pulumi.Input<string>;
+    family?: pulumi.Input<string | undefined>;
     /**
      * Does the IP Address represents a floating IP Address
      */
-    floating?: pulumi.Input<boolean>;
+    floating?: pulumi.Input<boolean | undefined>;
     /**
      * MAC address of server interface to assign address to
      */
-    mac?: pulumi.Input<string>;
+    mac?: pulumi.Input<string | undefined>;
     /**
      * Is the address a part of a plan
      */
-    partOfPlan?: pulumi.Input<boolean>;
+    partOfPlan?: pulumi.Input<boolean | undefined>;
     /**
      * A reverse DNS record entry
      */
-    ptrRecord?: pulumi.Input<string>;
+    ptrRecord?: pulumi.Input<string | undefined>;
     /**
      * Release policy for the address
      */
-    releasePolicy?: pulumi.Input<string>;
+    releasePolicy?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier for a server
      */
-    server?: pulumi.Input<string>;
+    server?: pulumi.Input<string | undefined>;
     /**
      * Zone of address, required when assigning a detached floating IP address, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 export interface GetManagedDatabaseMysqlSessionsSession {
@@ -396,35 +396,35 @@ export interface GetManagedDatabaseMysqlSessionsSessionArgs {
     /**
      * Name of the application that is connected to this service.
      */
-    applicationName?: pulumi.Input<string>;
+    applicationName?: pulumi.Input<string | undefined>;
     /**
      * IP address of the client connected to this service.
      */
-    clientAddr?: pulumi.Input<string>;
+    clientAddr?: pulumi.Input<string | undefined>;
     /**
      * Name of the database this service is connected to.
      */
-    datname?: pulumi.Input<string>;
+    datname?: pulumi.Input<string | undefined>;
     /**
      * Process ID of this service.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Text of this service's most recent query. If state is active this field shows the currently executing query. In all other states, it shows an empty string.
      */
-    query?: pulumi.Input<string>;
+    query?: pulumi.Input<string | undefined>;
     /**
      * The active query current duration.
      */
-    queryDuration?: pulumi.Input<string>;
+    queryDuration?: pulumi.Input<string | undefined>;
     /**
      * Current overall state of this service: active: The service is executing a query, idle: The service is waiting for a new client command.
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * Name of the user logged into this service.
      */
-    usename?: pulumi.Input<string>;
+    usename?: pulumi.Input<string | undefined>;
 }
 
 export interface GetManagedDatabaseOpensearchIndicesIndex {
@@ -470,39 +470,39 @@ export interface GetManagedDatabaseOpensearchIndicesIndexArgs {
     /**
      * Timestamp indicating the creation time of the index.
      */
-    createTime?: pulumi.Input<string>;
+    createTime?: pulumi.Input<string | undefined>;
     /**
      * Number of documents stored in the index.
      */
-    docs?: pulumi.Input<number>;
+    docs?: pulumi.Input<number | undefined>;
     /**
      * Health status of the index e.g. `green`, `yellow`, or `red`.
      */
-    health?: pulumi.Input<string>;
+    health?: pulumi.Input<string | undefined>;
     /**
      * Name of the index.
      */
-    indexName?: pulumi.Input<string>;
+    indexName?: pulumi.Input<string | undefined>;
     /**
      * Number of replicas configured for the index.
      */
-    numberOfReplicas?: pulumi.Input<number>;
+    numberOfReplicas?: pulumi.Input<number | undefined>;
     /**
      * Number of shards configured & used by the index.
      */
-    numberOfShards?: pulumi.Input<number>;
+    numberOfShards?: pulumi.Input<number | undefined>;
     /**
      * Indicates whether the index is in a read-only state that permits deletion of the entire index. This attribute can be automatically set to true in certain scenarios where the node disk space exceeds the flood stage.
      */
-    readOnlyAllowDelete?: pulumi.Input<boolean>;
+    readOnlyAllowDelete?: pulumi.Input<boolean | undefined>;
     /**
      * Size of the index in bytes.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
     /**
      * Status of the index e.g. `open` or `closed`.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
 }
 
 export interface GetManagedDatabasePostgresqlSessionsSession {
@@ -596,87 +596,87 @@ export interface GetManagedDatabasePostgresqlSessionsSessionArgs {
     /**
      * Name of the application that is connected to this service.
      */
-    applicationName?: pulumi.Input<string>;
+    applicationName?: pulumi.Input<string | undefined>;
     /**
      * Time when this process was started, i.e., when the client connected to the server.
      */
-    backendStart?: pulumi.Input<string>;
+    backendStart?: pulumi.Input<string | undefined>;
     /**
      * Type of current service.
      */
-    backendType?: pulumi.Input<string>;
+    backendType?: pulumi.Input<string | undefined>;
     /**
      * Top-level transaction identifier of this service, if any.
      */
-    backendXid?: pulumi.Input<number>;
+    backendXid?: pulumi.Input<number | undefined>;
     /**
      * The current service's xmin horizon.
      */
-    backendXmin?: pulumi.Input<number>;
+    backendXmin?: pulumi.Input<number | undefined>;
     /**
      * IP address of the client connected to this service. If this field is null, it indicates either that the client is connected via a Unix socket on the server machine or that this is an internal process such as autovacuum.
      */
-    clientAddr?: pulumi.Input<string>;
+    clientAddr?: pulumi.Input<string | undefined>;
     /**
      * Host name of the connected client, as reported by a reverse DNS lookup of `clientAddr`.
      */
-    clientHostname?: pulumi.Input<string>;
+    clientHostname?: pulumi.Input<string | undefined>;
     /**
      * TCP port number that the client is using for communication with this service, or -1 if a Unix socket is used.
      */
-    clientPort?: pulumi.Input<number>;
+    clientPort?: pulumi.Input<number | undefined>;
     /**
      * OID of the database this service is connected to.
      */
-    datid?: pulumi.Input<number>;
+    datid?: pulumi.Input<number | undefined>;
     /**
      * Name of the database this service is connected to.
      */
-    datname?: pulumi.Input<string>;
+    datname?: pulumi.Input<string | undefined>;
     /**
      * Process ID of this service.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Text of this service's most recent query. If state is active this field shows the currently executing query. In all other states, it shows the last query that was executed.
      */
-    query?: pulumi.Input<string>;
+    query?: pulumi.Input<string | undefined>;
     /**
      * The active query current duration.
      */
-    queryDuration?: pulumi.Input<string>;
+    queryDuration?: pulumi.Input<string | undefined>;
     /**
      * Time when the currently active query was started, or if state is not active, when the last query was started.
      */
-    queryStart?: pulumi.Input<string>;
+    queryStart?: pulumi.Input<string | undefined>;
     /**
      * Current overall state of this service: active: The service is executing a query, idle: The service is waiting for a new client command.
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * Time when the state was last changed.
      */
-    stateChange?: pulumi.Input<string>;
+    stateChange?: pulumi.Input<string | undefined>;
     /**
      * Name of the user logged into this service.
      */
-    usename?: pulumi.Input<string>;
+    usename?: pulumi.Input<string | undefined>;
     /**
      * OID of the user logged into this service.
      */
-    usesysid?: pulumi.Input<number>;
+    usesysid?: pulumi.Input<number | undefined>;
     /**
      * Wait event name if service is currently waiting.
      */
-    waitEvent?: pulumi.Input<string>;
+    waitEvent?: pulumi.Input<string | undefined>;
     /**
      * The type of event for which the service is waiting, if any; otherwise NULL.
      */
-    waitEventType?: pulumi.Input<string>;
+    waitEventType?: pulumi.Input<string | undefined>;
     /**
      * Time when this process' current transaction was started, or null if no transaction is active.
      */
-    xactStart?: pulumi.Input<string>;
+    xactStart?: pulumi.Input<string | undefined>;
 }
 
 export interface GetManagedDatabaseValkeySessionsSession {
@@ -754,71 +754,71 @@ export interface GetManagedDatabaseValkeySessionsSessionArgs {
     /**
      * Number of active channel subscriptions
      */
-    activeChannelSubscriptions?: pulumi.Input<number>;
+    activeChannelSubscriptions?: pulumi.Input<number | undefined>;
     /**
      * Current database ID
      */
-    activeDatabase?: pulumi.Input<string>;
+    activeDatabase?: pulumi.Input<string | undefined>;
     /**
      * Number of pattern matching subscriptions.
      */
-    activePatternMatchingChannelSubscriptions?: pulumi.Input<number>;
+    activePatternMatchingChannelSubscriptions?: pulumi.Input<number | undefined>;
     /**
      * Name of the application that is connected to this service.
      */
-    applicationName?: pulumi.Input<string>;
+    applicationName?: pulumi.Input<string | undefined>;
     /**
      * Number of pattern matching subscriptions.
      */
-    clientAddr?: pulumi.Input<string>;
+    clientAddr?: pulumi.Input<string | undefined>;
     /**
      * Total duration of the connection in nanoseconds.
      */
-    connectionAge?: pulumi.Input<number>;
+    connectionAge?: pulumi.Input<number | undefined>;
     /**
      * Idle time of the connection in nanoseconds.
      */
-    connectionIdle?: pulumi.Input<number>;
+    connectionIdle?: pulumi.Input<number | undefined>;
     /**
      * A set containing flags' descriptions.
      */
-    flags?: pulumi.Input<pulumi.Input<string>[]>;
+    flags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Client connection flags in raw string format.
      */
-    flagsRaw?: pulumi.Input<string>;
+    flagsRaw?: pulumi.Input<string | undefined>;
     /**
      * Process ID of this session.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Number of commands in a MULTI/EXEC context.
      */
-    multiExecCommands?: pulumi.Input<number>;
+    multiExecCommands?: pulumi.Input<number | undefined>;
     /**
      * Output buffer length.
      */
-    outputBuffer?: pulumi.Input<number>;
+    outputBuffer?: pulumi.Input<number | undefined>;
     /**
      * Output buffer memory usage.
      */
-    outputBufferMemory?: pulumi.Input<number>;
+    outputBufferMemory?: pulumi.Input<number | undefined>;
     /**
      * Output list length (replies are queued in this list when the buffer is full).
      */
-    outputListLength?: pulumi.Input<number>;
+    outputListLength?: pulumi.Input<number | undefined>;
     /**
      * The last executed command.
      */
-    query?: pulumi.Input<string>;
+    query?: pulumi.Input<string | undefined>;
     /**
      * Query buffer length (0 means no query pending).
      */
-    queryBuffer?: pulumi.Input<number>;
+    queryBuffer?: pulumi.Input<number | undefined>;
     /**
      * Free space of the query buffer (0 means the buffer is full).
      */
-    queryBufferFree?: pulumi.Input<number>;
+    queryBufferFree?: pulumi.Input<number | undefined>;
 }
 
 export interface GetManagedObjectStorageRegionsRegion {
@@ -840,15 +840,15 @@ export interface GetManagedObjectStorageRegionsRegionArgs {
     /**
      * Name of the region.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Primary zone of the region.
      */
-    primaryZone?: pulumi.Input<string>;
+    primaryZone?: pulumi.Input<string | undefined>;
     /**
      * List of zones in the region.
      */
-    zones?: pulumi.Input<pulumi.Input<string>[]>;
+    zones?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface GetTagsTag {
@@ -870,49 +870,49 @@ export interface GetTagsTagArgs {
     /**
      * Free form text representing the meaning of the tag.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the tag.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * A collection of servers that have been assigned the tag.
      */
-    servers?: pulumi.Input<pulumi.Input<string>[]>;
+    servers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface KubernetesClusterKubeconfig {
     /**
      * TLS authentication client certificate, encoded (PEM).
      */
-    clientCertificate?: pulumi.Input<string>;
+    clientCertificate?: pulumi.Input<string | undefined>;
     /**
      * Key to pair with `clientCertificate`, encoded (PEM).
      */
-    clientKey?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string | undefined>;
     /**
      * TLS authentication root certificate bundle, encoded (PEM).
      */
-    clusterCaCertificate?: pulumi.Input<string>;
+    clusterCaCertificate?: pulumi.Input<string | undefined>;
     /**
      * Hostname of the cluster API. Defined as URI.
      */
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * Kubernetes config file contents for the cluster.
      */
-    kubeconfig?: pulumi.Input<string>;
+    kubeconfig?: pulumi.Input<string | undefined>;
 }
 
 export interface KubernetesNodeGroupCloudNativePlan {
     /**
      * The size of the storage device in gigabytes.
      */
-    storageSize?: pulumi.Input<number>;
+    storageSize?: pulumi.Input<number | undefined>;
     /**
      * The storage tier to use.
      */
-    storageTier?: pulumi.Input<string>;
+    storageTier?: pulumi.Input<string | undefined>;
 }
 
 export interface KubernetesNodeGroupCustomPlan {
@@ -931,18 +931,18 @@ export interface KubernetesNodeGroupCustomPlan {
     /**
      * The storage tier to use.
      */
-    storageTier?: pulumi.Input<string>;
+    storageTier?: pulumi.Input<string | undefined>;
 }
 
 export interface KubernetesNodeGroupGpuPlan {
     /**
      * The size of the storage device in gigabytes.
      */
-    storageSize?: pulumi.Input<number>;
+    storageSize?: pulumi.Input<number | undefined>;
     /**
      * The storage tier to use.
      */
-    storageTier?: pulumi.Input<string>;
+    storageTier?: pulumi.Input<string | undefined>;
 }
 
 export interface KubernetesNodeGroupKubeletArg {
@@ -975,63 +975,63 @@ export interface LoadbalancerBackendProperties {
     /**
      * Expected HTTP status code returned by the customer application to mark server as healthy. Ignored for `tcp` `healthCheckType`.
      */
-    healthCheckExpectedStatus?: pulumi.Input<number>;
+    healthCheckExpectedStatus?: pulumi.Input<number | undefined>;
     /**
      * Sets how many failed health checks are allowed until the backend member is taken off from the rotation.
      */
-    healthCheckFall?: pulumi.Input<number>;
+    healthCheckFall?: pulumi.Input<number | undefined>;
     /**
      * Interval between health checks in seconds.
      */
-    healthCheckInterval?: pulumi.Input<number>;
+    healthCheckInterval?: pulumi.Input<number | undefined>;
     /**
      * Sets how many successful health checks are required to put the backend member back into rotation.
      */
-    healthCheckRise?: pulumi.Input<number>;
+    healthCheckRise?: pulumi.Input<number | undefined>;
     /**
      * Enables certificate verification with the system CA certificate bundle. Works with https scheme in health_check_url, otherwise ignored.
      */
-    healthCheckTlsVerify?: pulumi.Input<boolean>;
+    healthCheckTlsVerify?: pulumi.Input<boolean | undefined>;
     /**
      * Health check type.
      */
-    healthCheckType?: pulumi.Input<string>;
+    healthCheckType?: pulumi.Input<string | undefined>;
     /**
      * Target path for health check HTTP GET requests. Ignored for `tcp` `healthCheckType`.
      */
-    healthCheckUrl?: pulumi.Input<string>;
+    healthCheckUrl?: pulumi.Input<string | undefined>;
     /**
      * Allow HTTP/2 connections to backend members by utilizing ALPN extension of TLS protocol, therefore it can only be enabled when tlsEnabled is set to true. Note: members should support HTTP/2 for this setting to work.
      */
-    http2Enabled?: pulumi.Input<boolean>;
+    http2Enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Enable outbound proxy protocol by setting the desired version. Defaults to empty string. Empty string disables proxy protocol.
      */
-    outboundProxyProtocol?: pulumi.Input<string>;
+    outboundProxyProtocol?: pulumi.Input<string | undefined>;
     /**
      * Sets sticky session cookie name. Empty string disables sticky session.
      */
-    stickySessionCookieName?: pulumi.Input<string>;
+    stickySessionCookieName?: pulumi.Input<string | undefined>;
     /**
      * Backend server timeout in seconds.
      */
-    timeoutServer?: pulumi.Input<number>;
+    timeoutServer?: pulumi.Input<number | undefined>;
     /**
      * Maximum inactivity time on the client and server side for tunnels in seconds.
      */
-    timeoutTunnel?: pulumi.Input<number>;
+    timeoutTunnel?: pulumi.Input<number | undefined>;
     /**
      * Enables TLS connection from the load balancer to backend servers.
      */
-    tlsEnabled?: pulumi.Input<boolean>;
+    tlsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * If enabled, then the system CA certificate bundle will be used for the certificate verification.
      */
-    tlsUseSystemCa?: pulumi.Input<boolean>;
+    tlsUseSystemCa?: pulumi.Input<boolean | undefined>;
     /**
      * Enables backend servers certificate verification. Please make sure that TLS config with the certificate bundle of type authority attached to the backend or `tlsUseSystemCa` enabled. Note: `tlsVerify` has preference over `healthCheckTlsVerify` when `tlsEnabled` in true.
      */
-    tlsVerify?: pulumi.Input<boolean>;
+    tlsVerify?: pulumi.Input<boolean | undefined>;
 }
 
 export interface LoadbalancerFrontendNetwork {
@@ -1045,69 +1045,69 @@ export interface LoadbalancerFrontendProperties {
     /**
      * Enable or disable HTTP/2 support.
      */
-    http2Enabled?: pulumi.Input<boolean>;
+    http2Enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Enable or disable inbound proxy protocol support.
      */
-    inboundProxyProtocol?: pulumi.Input<boolean>;
+    inboundProxyProtocol?: pulumi.Input<boolean | undefined>;
     /**
      * Client request timeout in seconds.
      */
-    timeoutClient?: pulumi.Input<number>;
+    timeoutClient?: pulumi.Input<number | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleActions {
     /**
      * Redirects HTTP requests to specified location or URL scheme. Only either location or scheme can be defined at a time.
      */
-    httpRedirects?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsHttpRedirect>[]>;
+    httpRedirects?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsHttpRedirect>[] | undefined>;
     /**
      * Returns HTTP response with specified HTTP status.
      */
-    httpReturns?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsHttpReturn>[]>;
+    httpReturns?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsHttpReturn>[] | undefined>;
     /**
      * Rewrites the HTTP request path using regex pattern matching.
      */
-    httpRewritePaths?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsHttpRewritePath>[]>;
+    httpRewritePaths?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsHttpRewritePath>[] | undefined>;
     /**
      * Rewrites the entire HTTP request URI using regex pattern matching.
      */
-    httpRewriteUris?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsHttpRewriteUri>[]>;
+    httpRewriteUris?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsHttpRewriteUri>[] | undefined>;
     /**
      * Adds 'X-Forwarded-For / -Proto / -Port' headers in your forwarded requests
      */
-    setForwardedHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsSetForwardedHeader>[]>;
+    setForwardedHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsSetForwardedHeader>[] | undefined>;
     /**
      * Set request header
      */
-    setRequestHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsSetRequestHeader>[]>;
+    setRequestHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsSetRequestHeader>[] | undefined>;
     /**
      * Set response header
      */
-    setResponseHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsSetResponseHeader>[]>;
+    setResponseHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsSetResponseHeader>[] | undefined>;
     /**
      * Terminates a connection.
      */
-    tcpRejects?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsTcpReject>[]>;
+    tcpRejects?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsTcpReject>[] | undefined>;
     /**
      * Routes traffic to specified `backend`.
      */
-    useBackends?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsUseBackend>[]>;
+    useBackends?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleActionsUseBackend>[] | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleActionsHttpRedirect {
     /**
      * Target location.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Target scheme.
      */
-    scheme?: pulumi.Input<string>;
+    scheme?: pulumi.Input<string | undefined>;
     /**
      * HTTP status code.
      */
-    status?: pulumi.Input<number>;
+    status?: pulumi.Input<number | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleActionsHttpReturn {
@@ -1148,7 +1148,7 @@ export interface LoadbalancerFrontendRuleActionsHttpRewriteUri {
 }
 
 export interface LoadbalancerFrontendRuleActionsSetForwardedHeader {
-    active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleActionsSetRequestHeader {
@@ -1159,7 +1159,7 @@ export interface LoadbalancerFrontendRuleActionsSetRequestHeader {
     /**
      * Header value.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleActionsSetResponseHeader {
@@ -1170,14 +1170,14 @@ export interface LoadbalancerFrontendRuleActionsSetResponseHeader {
     /**
      * Header value.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleActionsTcpReject {
     /**
      * Indicates if the rule is active.
      */
-    active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleActionsUseBackend {
@@ -1191,84 +1191,84 @@ export interface LoadbalancerFrontendRuleMatchers {
     /**
      * Matches by range of HTTP request body sizes.
      */
-    bodySizeRanges?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersBodySizeRange>[]>;
+    bodySizeRanges?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersBodySizeRange>[] | undefined>;
     /**
      * Matches by HTTP request body size.
      */
-    bodySizes?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersBodySize>[]>;
+    bodySizes?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersBodySize>[] | undefined>;
     /**
      * Matches by HTTP cookie value. Cookie name must be provided.
      */
-    cookies?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersCookie>[]>;
+    cookies?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersCookie>[] | undefined>;
     /**
      * Matches by HTTP header value. Header name must be provided.
      *
      * @deprecated Use `requestHeader` instead.
      */
-    headers?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersHeader>[]>;
+    headers?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersHeader>[] | undefined>;
     /**
      * Matches by hostname. Header extracted from HTTP Headers or from TLS certificate in case of secured connection.
      */
-    hosts?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersHost>[]>;
+    hosts?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersHost>[] | undefined>;
     /**
      * Matches by HTTP method.
      */
-    httpMethods?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersHttpMethod>[]>;
+    httpMethods?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersHttpMethod>[] | undefined>;
     /**
      * Matches by range of HTTP statuses.
      */
-    httpStatusRanges?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersHttpStatusRange>[]>;
+    httpStatusRanges?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersHttpStatusRange>[] | undefined>;
     /**
      * Matches by HTTP status.
      */
-    httpStatuses?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersHttpStatus>[]>;
+    httpStatuses?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersHttpStatus>[] | undefined>;
     /**
      * Matches by number of healthy backend members.
      */
-    numMembersUps?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersNumMembersUp>[]>;
+    numMembersUps?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersNumMembersUp>[] | undefined>;
     /**
      * Matches by URL path.
      */
-    paths?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersPath>[]>;
+    paths?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersPath>[] | undefined>;
     /**
      * Matches by HTTP request header value. Header name must be provided.
      */
-    requestHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersRequestHeader>[]>;
+    requestHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersRequestHeader>[] | undefined>;
     /**
      * Matches by HTTP response header value. Header name must be provided.
      */
-    responseHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersResponseHeader>[]>;
+    responseHeaders?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersResponseHeader>[] | undefined>;
     /**
      * Matches by source IP address.
      */
-    srcIps?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersSrcIp>[]>;
+    srcIps?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersSrcIp>[] | undefined>;
     /**
      * Matches by range of source port numbers.
      */
-    srcPortRanges?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersSrcPortRange>[]>;
+    srcPortRanges?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersSrcPortRange>[] | undefined>;
     /**
      * Matches by source port number.
      */
-    srcPorts?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersSrcPort>[]>;
+    srcPorts?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersSrcPort>[] | undefined>;
     /**
      * Matches by URL query parameter value. Query parameter name must be provided
      */
-    urlParams?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersUrlParam>[]>;
+    urlParams?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersUrlParam>[] | undefined>;
     /**
      * Matches by URL query string.
      */
-    urlQueries?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersUrlQuery>[]>;
+    urlQueries?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersUrlQuery>[] | undefined>;
     /**
      * Matches by URL without schema, e.g. `example.com/dashboard`.
      */
-    urls?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersUrl>[]>;
+    urls?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendRuleMatchersUrl>[] | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleMatchersBodySize {
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
      */
@@ -1283,7 +1283,7 @@ export interface LoadbalancerFrontendRuleMatchersBodySizeRange {
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Integer value.
      */
@@ -1298,11 +1298,11 @@ export interface LoadbalancerFrontendRuleMatchersCookie {
     /**
      * Defines if case should be ignored. Defaults to `false`.
      */
-    ignoreCase?: pulumi.Input<boolean>;
+    ignoreCase?: pulumi.Input<boolean | undefined>;
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
@@ -1314,18 +1314,18 @@ export interface LoadbalancerFrontendRuleMatchersCookie {
     /**
      * String value.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleMatchersHeader {
     /**
      * Defines if case should be ignored. Defaults to `false`.
      */
-    ignoreCase?: pulumi.Input<boolean>;
+    ignoreCase?: pulumi.Input<boolean | undefined>;
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
@@ -1337,14 +1337,14 @@ export interface LoadbalancerFrontendRuleMatchersHeader {
     /**
      * String value.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleMatchersHost {
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * String value.
      */
@@ -1355,7 +1355,7 @@ export interface LoadbalancerFrontendRuleMatchersHttpMethod {
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * String value (`GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`).
      */
@@ -1366,7 +1366,7 @@ export interface LoadbalancerFrontendRuleMatchersHttpStatus {
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
      */
@@ -1381,7 +1381,7 @@ export interface LoadbalancerFrontendRuleMatchersHttpStatusRange {
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Integer value.
      */
@@ -1400,7 +1400,7 @@ export interface LoadbalancerFrontendRuleMatchersNumMembersUp {
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
      */
@@ -1415,11 +1415,11 @@ export interface LoadbalancerFrontendRuleMatchersPath {
     /**
      * Defines if case should be ignored. Defaults to `false`.
      */
-    ignoreCase?: pulumi.Input<boolean>;
+    ignoreCase?: pulumi.Input<boolean | undefined>;
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
@@ -1427,18 +1427,18 @@ export interface LoadbalancerFrontendRuleMatchersPath {
     /**
      * String value.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleMatchersRequestHeader {
     /**
      * Defines if case should be ignored. Defaults to `false`.
      */
-    ignoreCase?: pulumi.Input<boolean>;
+    ignoreCase?: pulumi.Input<boolean | undefined>;
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
@@ -1450,18 +1450,18 @@ export interface LoadbalancerFrontendRuleMatchersRequestHeader {
     /**
      * String value.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleMatchersResponseHeader {
     /**
      * Defines if case should be ignored. Defaults to `false`.
      */
-    ignoreCase?: pulumi.Input<boolean>;
+    ignoreCase?: pulumi.Input<boolean | undefined>;
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
@@ -1473,14 +1473,14 @@ export interface LoadbalancerFrontendRuleMatchersResponseHeader {
     /**
      * String value.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleMatchersSrcIp {
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * IP address. CIDR masks are supported, e.g. `192.168.0.0/24`.
      */
@@ -1491,7 +1491,7 @@ export interface LoadbalancerFrontendRuleMatchersSrcPort {
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Match method (`equal`, `greater`, `greaterOrEqual`, `less`, `lessOrEqual`).
      */
@@ -1506,7 +1506,7 @@ export interface LoadbalancerFrontendRuleMatchersSrcPortRange {
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Integer value.
      */
@@ -1521,11 +1521,11 @@ export interface LoadbalancerFrontendRuleMatchersUrl {
     /**
      * Defines if case should be ignored. Defaults to `false`.
      */
-    ignoreCase?: pulumi.Input<boolean>;
+    ignoreCase?: pulumi.Input<boolean | undefined>;
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
@@ -1533,18 +1533,18 @@ export interface LoadbalancerFrontendRuleMatchersUrl {
     /**
      * String value.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleMatchersUrlParam {
     /**
      * Defines if case should be ignored. Defaults to `false`.
      */
-    ignoreCase?: pulumi.Input<boolean>;
+    ignoreCase?: pulumi.Input<boolean | undefined>;
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
@@ -1556,18 +1556,18 @@ export interface LoadbalancerFrontendRuleMatchersUrlParam {
     /**
      * String value.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface LoadbalancerFrontendRuleMatchersUrlQuery {
     /**
      * Defines if case should be ignored. Defaults to `false`.
      */
-    ignoreCase?: pulumi.Input<boolean>;
+    ignoreCase?: pulumi.Input<boolean | undefined>;
     /**
      * Defines if the condition should be inverted. Works similarly to logical NOT operator.
      */
-    inverse?: pulumi.Input<boolean>;
+    inverse?: pulumi.Input<boolean | undefined>;
     /**
      * Match method (`exact`, `substring`, `regexp`, `starts`, `ends`, `domain`, `ip`, `exists`). Matcher with `exists` and `ip` methods must be used without `value` and `ignoreCase` fields.
      */
@@ -1575,7 +1575,7 @@ export interface LoadbalancerFrontendRuleMatchersUrlQuery {
     /**
      * String value.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface LoadbalancerIpAddress {
@@ -1593,7 +1593,7 @@ export interface LoadbalancerNetwork {
     /**
      * DNS name of the load balancer network
      */
-    dnsName?: pulumi.Input<string>;
+    dnsName?: pulumi.Input<string | undefined>;
     /**
      * Network family. Currently only `IPv4` is supported.
      */
@@ -1601,7 +1601,7 @@ export interface LoadbalancerNetwork {
     /**
      * The unique identifier of the network.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The name of the network. Must be unique within the service.
      */
@@ -1609,7 +1609,7 @@ export interface LoadbalancerNetwork {
     /**
      * Private network UUID. Required for private networks and must reside in loadbalancer zone. For public network the field should be omitted.
      */
-    network?: pulumi.Input<string>;
+    network?: pulumi.Input<string | undefined>;
     /**
      * The type of the network. Only one public network can be attached and at least one private network must be attached.
      */
@@ -1620,60 +1620,60 @@ export interface LoadbalancerNode {
     /**
      * Networks attached to the node
      */
-    networks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerNodeNetwork>[]>;
+    networks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerNodeNetwork>[] | undefined>;
     /**
      * Node's operational state. Managed by the system.
      */
-    operationalState?: pulumi.Input<string>;
+    operationalState?: pulumi.Input<string | undefined>;
 }
 
 export interface LoadbalancerNodeNetwork {
     /**
      * IP addresses attached to the network
      */
-    ipAddresses?: pulumi.Input<pulumi.Input<inputs.LoadbalancerNodeNetworkIpAddress>[]>;
+    ipAddresses?: pulumi.Input<pulumi.Input<inputs.LoadbalancerNodeNetworkIpAddress>[] | undefined>;
     /**
      * The name of the network
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The type of the network
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface LoadbalancerNodeNetworkIpAddress {
     /**
      * Node's IP address
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * Whether the node listens to the traffic
      */
-    listen?: pulumi.Input<boolean>;
+    listen?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ManagedDatabaseMysqlComponent {
     /**
      * Component name.
      */
-    component?: pulumi.Input<string>;
+    component?: pulumi.Input<string | undefined>;
     /**
      * Hostname of the component
      */
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * Port number of the component
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * Component network route type
      */
-    route?: pulumi.Input<string>;
+    route?: pulumi.Input<string | undefined>;
     /**
      * Usage of the component
      */
-    usage?: pulumi.Input<string>;
+    usage?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseMysqlNetwork {
@@ -1699,387 +1699,387 @@ export interface ManagedDatabaseMysqlNodeState {
     /**
      * Name plus a node iteration
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Role of the node
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * Current state of the node
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseMysqlProperties {
     /**
      * Custom password for admin user. Defaults to random string. This must be set only when a new service is being created.
      */
-    adminPassword?: pulumi.Input<string>;
+    adminPassword?: pulumi.Input<string | undefined>;
     /**
      * Custom username for admin user. This must be set only when a new service is being created.
      */
-    adminUsername?: pulumi.Input<string>;
+    adminUsername?: pulumi.Input<string | undefined>;
     /**
      * When enabled, the server automatically grants the EXECUTE and ALTER ROUTINE privileges to the creator of a stored routine and drops them when the routine is dropped.
      */
-    automaticSpPrivileges?: pulumi.Input<boolean>;
+    automaticSpPrivileges?: pulumi.Input<boolean | undefined>;
     /**
      * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
      */
-    automaticUtilityNetworkIpFilter?: pulumi.Input<boolean>;
+    automaticUtilityNetworkIpFilter?: pulumi.Input<boolean | undefined>;
     /**
      * The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
      */
-    backupHour?: pulumi.Input<number>;
+    backupHour?: pulumi.Input<number | undefined>;
     /**
      * The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
      */
-    backupMinute?: pulumi.Input<number>;
+    backupMinute?: pulumi.Input<number | undefined>;
     /**
      * The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector. Warning: reducing this value can make a large batch of binary logs eligible for purge at once. Depending on the volume, this can sometimes stall the MySQL commit path and block writes until the purge completes. To stay on the safe side, prefer lowering the value gradually in small decrements during a low-traffic window rather than dropping it drastically in one step.
      */
-    binlogRetentionPeriod?: pulumi.Input<number>;
+    binlogRetentionPeriod?: pulumi.Input<number | undefined>;
     /**
      * The number of seconds that the mysqld server waits for a connect packet before responding with Bad handshake.
      */
-    connectTimeout?: pulumi.Input<number>;
+    connectTimeout?: pulumi.Input<number | undefined>;
     /**
      * Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or 'SYSTEM' to use the MySQL server default.
      */
-    defaultTimeZone?: pulumi.Input<string>;
+    defaultTimeZone?: pulumi.Input<string | undefined>;
     /**
      * Number of digits by which to increase the scale of the result of division operations performed with the / operator. Default is 4.
      */
-    divPrecisionIncrement?: pulumi.Input<number>;
+    divPrecisionIncrement?: pulumi.Input<number | undefined>;
     /**
      * Whether optimizer JSON output such as EXPLAIN FORMAT=JSON adds end markers that repeat a structure's key near its closing bracket, making large JSON structures easier to read.
      */
-    endMarkersInJson?: pulumi.Input<boolean>;
+    endMarkersInJson?: pulumi.Input<boolean | undefined>;
     /**
      * The number of equality ranges in a query at or above which the optimizer switches from index dives to index statistics when estimating the number of qualifying rows. 0 means always use index dives. Default is 200.
      */
-    eqRangeIndexDiveLimit?: pulumi.Input<number>;
+    eqRangeIndexDiveLimit?: pulumi.Input<number | undefined>;
     /**
      * The maximum permitted result length in bytes for the GROUP_CONCAT() function.
      */
-    groupConcatMaxLen?: pulumi.Input<number>;
+    groupConcatMaxLen?: pulumi.Input<number | undefined>;
     /**
      * The time, in seconds, before cached statistics expire.
      */
-    informationSchemaStatsExpiry?: pulumi.Input<number>;
+    informationSchemaStatsExpiry?: pulumi.Input<number | undefined>;
     /**
      * Whether InnoDB adaptive hash indexing is enabled. The optimal setting is workload-dependent: it speeds up lookups for some workloads but its internal latch can become a contention point under high concurrency, in which case disabling it can improve throughput.
      */
-    innodbAdaptiveHashIndex?: pulumi.Input<boolean>;
+    innodbAdaptiveHashIndex?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
      */
-    innodbChangeBufferMaxSize?: pulumi.Input<number>;
+    innodbChangeBufferMaxSize?: pulumi.Input<number | undefined>;
     /**
      * Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
      */
-    innodbFlushNeighbors?: pulumi.Input<number>;
+    innodbFlushNeighbors?: pulumi.Input<number | undefined>;
     /**
      * Whether stopword processing is applied when creating or rebuilding an InnoDB FULLTEXT index. Enabled by default.
      */
-    innodbFtEnableStopword?: pulumi.Input<boolean>;
+    innodbFtEnableStopword?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
      */
-    innodbFtMaxTokenSize?: pulumi.Input<number>;
+    innodbFtMaxTokenSize?: pulumi.Input<number | undefined>;
     /**
      * Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
      */
-    innodbFtMinTokenSize?: pulumi.Input<number>;
+    innodbFtMinTokenSize?: pulumi.Input<number | undefined>;
     /**
      * Number of words processed during each OPTIMIZE TABLE operation on an InnoDB FULLTEXT index. Default is 2000.
      */
-    innodbFtNumWordOptimize?: pulumi.Input<number>;
+    innodbFtNumWordOptimize?: pulumi.Input<number | undefined>;
     /**
      * Maximum memory in bytes used per query for the InnoDB FULLTEXT search query result cache. Aiven sizes this automatically based on the service plan's memory; setting a value overrides the calculated default.
      */
-    innodbFtResultCacheLimit?: pulumi.Input<number>;
+    innodbFtResultCacheLimit?: pulumi.Input<number | undefined>;
     /**
      * This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
      */
-    innodbFtServerStopwordTable?: pulumi.Input<string>;
+    innodbFtServerStopwordTable?: pulumi.Input<string | undefined>;
     /**
      * This option is used to specify your own InnoDB FULLTEXT index stopword list for specific InnoDB tables.
      */
-    innodbFtUserStopwordTable?: pulumi.Input<string>;
+    innodbFtUserStopwordTable?: pulumi.Input<string | undefined>;
     /**
      * The number of I/O operations per second (IOPS) available to InnoDB background tasks, such as flushing pages from the buffer pool and merging data from the change buffer. Set this to a value appropriate for the underlying storage; it must not exceed innodb_io_capacity_max.
      */
-    innodbIoCapacity?: pulumi.Input<number>;
+    innodbIoCapacity?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of I/O operations per second (IOPS) that InnoDB background tasks may perform when flushing falls behind. Defaults to twice innodbIoCapacity (minimum 2000). This must be greater than or equal to innodb_io_capacity.
      */
-    innodbIoCapacityMax?: pulumi.Input<number>;
+    innodbIoCapacityMax?: pulumi.Input<number | undefined>;
     /**
      * The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
      */
-    innodbLockWaitTimeout?: pulumi.Input<number>;
+    innodbLockWaitTimeout?: pulumi.Input<number | undefined>;
     /**
      * The size in bytes of the buffer that InnoDB uses to write to the log files on disk. Requests above 15% of the RAM provided by your service plan are rejected, because a larger buffer leaves less memory for the buffer pool and client connections.
      */
-    innodbLogBufferSize?: pulumi.Input<number>;
+    innodbLogBufferSize?: pulumi.Input<number | undefined>;
     /**
      * Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts flushing aggressively. Lowering it spreads write I/O more evenly and shortens crash recovery, at the cost of flushing pages that might have been modified again. Must stay at or above innodb_max_dirty_pages_pct_lwm. Default is 90.
      */
-    innodbMaxDirtyPagesPct?: pulumi.Input<number>;
+    innodbMaxDirtyPagesPct?: pulumi.Input<number | undefined>;
     /**
      * Percentage of dirty pages in the InnoDB buffer pool at which InnoDB starts pre-flushing, to keep the dirty page ratio from reaching innodb_max_dirty_pages_pct. 0 turns pre-flushing off. Cannot be set above innodb_max_dirty_pages_pct. Default is 10.
      */
-    innodbMaxDirtyPagesPctLwm?: pulumi.Input<number>;
+    innodbMaxDirtyPagesPctLwm?: pulumi.Input<number | undefined>;
     /**
      * Number of outstanding transactions the InnoDB purge operation may fall behind by before INSERT, UPDATE and DELETE are delayed to let it catch up. The delay applies per row and grows with the lag, and it is capped by innodb_max_purge_lag_delay, which has to be set as well for this option to have any effect. Default is 0, which never delays anything.
      */
-    innodbMaxPurgeLag?: pulumi.Input<number>;
+    innodbMaxPurgeLag?: pulumi.Input<number | undefined>;
     /**
      * Cap in microseconds on the per-row delay innodbMaxPurgeLag applies to INSERT, UPDATE and DELETE. MySQL clamps the delay to this value unconditionally, so while this is 0 no delay is ever applied and innodbMaxPurgeLag on its own does nothing. Both options must be non-zero for either to take effect. Default is 0.
      */
-    innodbMaxPurgeLagDelay?: pulumi.Input<number>;
+    innodbMaxPurgeLagDelay?: pulumi.Input<number | undefined>;
     /**
      * The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
      */
-    innodbOnlineAlterLogMaxSize?: pulumi.Input<number>;
+    innodbOnlineAlterLogMaxSize?: pulumi.Input<number | undefined>;
     /**
      * When enabled, OPTIMIZE TABLE on InnoDB tables only updates the FULLTEXT index instead of rebuilding the table. Intended to be enabled temporarily during FULLTEXT index maintenance and disabled afterwards; while enabled, OPTIMIZE TABLE does not reclaim table space.
      */
-    innodbOptimizeFulltextOnly?: pulumi.Input<boolean>;
+    innodbOptimizeFulltextOnly?: pulumi.Input<boolean | undefined>;
     /**
      * When enabled, information about all deadlocks in InnoDB user transactions is recorded in the error log. Disabled by default.
      */
-    innodbPrintAllDeadlocks?: pulumi.Input<boolean>;
+    innodbPrintAllDeadlocks?: pulumi.Input<boolean | undefined>;
     /**
      * The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
      */
-    innodbReadIoThreads?: pulumi.Input<number>;
+    innodbReadIoThreads?: pulumi.Input<number | undefined>;
     /**
      * When enabled a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
      */
-    innodbRollbackOnTimeout?: pulumi.Input<boolean>;
+    innodbRollbackOnTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).
      */
-    innodbThreadConcurrency?: pulumi.Input<number>;
+    innodbThreadConcurrency?: pulumi.Input<number | undefined>;
     /**
      * The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
      */
-    innodbWriteIoThreads?: pulumi.Input<number>;
+    innodbWriteIoThreads?: pulumi.Input<number | undefined>;
     /**
      * The number of seconds the server waits for activity on an interactive connection before closing it.
      */
-    interactiveTimeout?: pulumi.Input<number>;
+    interactiveTimeout?: pulumi.Input<number | undefined>;
     /**
      * The storage engine for in-memory internal temporary tables.
      */
-    internalTmpMemStorageEngine?: pulumi.Input<string>;
+    internalTmpMemStorageEngine?: pulumi.Input<string | undefined>;
     /**
      * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
      */
-    ipFilters?: pulumi.Input<pulumi.Input<string>[]>;
+    ipFilters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The slow log output destination when slowQueryLog is ON. To enable MySQL AI Insights, choose INSIGHTS. To use MySQL AI Insights and the mysql.slow_log table at the same time, choose INSIGHTS,TABLE. To only use the mysql.slow_log table, choose TABLE. To silence slow logs, choose NONE.
      */
-    logOutput?: pulumi.Input<string>;
+    logOutput?: pulumi.Input<string | undefined>;
     /**
      * The slowQueryLogs work as SQL statements that take more than longQueryTime seconds to execute.
      */
-    longQueryTime?: pulumi.Input<number>;
+    longQueryTime?: pulumi.Input<number | undefined>;
     /**
      * Sets how table and database names are stored and compared. 0 = case-sensitive (default), 1 = names stored lowercase, comparisons are case-insensitive. This option can only be set when creating the service and cannot be changed later. See https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html for details.
      */
-    lowerCaseTableNames?: pulumi.Input<number>;
+    lowerCaseTableNames?: pulumi.Input<number | undefined>;
     /**
      * Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M). Statements and rows larger than this are rejected with a packet too large error.
      */
-    maxAllowedPacket?: pulumi.Input<number>;
+    maxAllowedPacket?: pulumi.Input<number | undefined>;
     /**
      * The maximum permitted number of simultaneous client connections. Lower this to reserve memory for other work. The value cannot exceed the limit provided by your service plan. Upgrading the plan does not raise a value you have set explicitly, so increase it yourself after an upgrade.
      */
-    maxConnections?: pulumi.Input<number>;
+    maxConnections?: pulumi.Input<number | undefined>;
     /**
      * Execution timeout in milliseconds for read-only top-level SELECT statements. 0 (the default) means no timeout.
      */
-    maxExecutionTime?: pulumi.Input<number>;
+    maxExecutionTime?: pulumi.Input<number | undefined>;
     /**
      * Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
      */
-    maxHeapTableSize?: pulumi.Input<number>;
+    maxHeapTableSize?: pulumi.Input<number | undefined>;
     /**
      * Limit on the assumed maximum number of index seeks when looking up rows based on a key. Lowering this value causes the optimizer to prefer index lookups over table scans.
      */
-    maxSeeksForKey?: pulumi.Input<number>;
+    maxSeeksForKey?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of simultaneous connections permitted to any single user account. 0, the default, means no per-account limit. Any other value must be at least 10 below max_connections, so that monitoring and your own admin sessions can still connect when an application saturates its own limit. Aiven's replication and management connections are unaffected however low you set this.
      */
-    maxUserConnections?: pulumi.Input<number>;
+    maxUserConnections?: pulumi.Input<number | undefined>;
     /**
      * Migrate data from existing server.
      */
-    migration?: pulumi.Input<inputs.ManagedDatabaseMysqlPropertiesMigration>;
+    migration?: pulumi.Input<inputs.ManagedDatabaseMysqlPropertiesMigration | undefined>;
     /**
      * MySQL incremental backup configuration.
      */
-    mysqlIncrementalBackup?: pulumi.Input<inputs.ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup>;
+    mysqlIncrementalBackup?: pulumi.Input<inputs.ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup | undefined>;
     /**
      * Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
      */
-    netBufferLength?: pulumi.Input<number>;
+    netBufferLength?: pulumi.Input<number | undefined>;
     /**
      * The number of seconds to wait for more data from a connection before aborting the read.
      */
-    netReadTimeout?: pulumi.Input<number>;
+    netReadTimeout?: pulumi.Input<number | undefined>;
     /**
      * The number of seconds to wait for a block to be written to a connection before aborting the write.
      */
-    netWriteTimeout?: pulumi.Input<number>;
+    netWriteTimeout?: pulumi.Input<number | undefined>;
     /**
      * Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. 0 disables heuristics (exhaustive search); 1 prunes plans based on the number of rows retrieved.
      */
-    optimizerPruneLevel?: pulumi.Input<number>;
+    optimizerPruneLevel?: pulumi.Input<number | undefined>;
     /**
      * Maximum depth of search performed by the query optimizer when choosing a join order. Larger values produce better plans for joins over many tables but take longer to compile; 0 lets the optimizer choose the depth automatically.
      */
-    optimizerSearchDepth?: pulumi.Input<number>;
+    optimizerSearchDepth?: pulumi.Input<number | undefined>;
     /**
      * Comma-separated list of optimizer flag assignments in the form flag=on|off|default, or the single value 'default' to reset all flags. Flags not listed keep their current values. Controls query optimizer behaviors such as index merge, hash join and semijoin strategies.
      */
-    optimizerSwitch?: pulumi.Input<string>;
+    optimizerSwitch?: pulumi.Input<string | undefined>;
     /**
      * The number of rows per thread in the eventsStatementsHistory table. Changing this parameter will lead to a restart of the MySQL service.
      */
-    performanceSchemaEventsStatementsHistorySize?: pulumi.Input<number>;
+    performanceSchemaEventsStatementsHistorySize?: pulumi.Input<number | undefined>;
     /**
      * Public Access. Allow access to the service from the public Internet.
      */
-    publicAccess?: pulumi.Input<boolean>;
+    publicAccess?: pulumi.Input<boolean | undefined>;
     /**
      * Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
      */
-    publicAccessPrometheus?: pulumi.Input<boolean>;
+    publicAccessPrometheus?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum amount of space in bytes to use for all relay logs while replicating from an external migration source. When the limit is reached, the replication I/O thread stops fetching relay log events until the SQL thread has caught up. Raise this to give a large migration a bigger relay-log budget; ensure the service disk is sized accordingly. The setting applies only on the node replicating from the external source; standby nodes always use the Aiven-managed default (the smaller of 5 GiB and 30% of the service disk), which is also used when this option is left unset. Changing this parameter will lead to a restart of the MySQL service.
      */
-    relayLogSpaceLimit?: pulumi.Input<number>;
+    relayLogSpaceLimit?: pulumi.Input<number | undefined>;
     /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      */
-    serviceLog?: pulumi.Input<boolean>;
+    serviceLog?: pulumi.Input<boolean | undefined>;
     /**
      * Slow query log enables capturing of slow queries. Setting slowQueryLog to false also truncates the mysql.slow_log table.
      */
-    slowQueryLog?: pulumi.Input<boolean>;
+    slowQueryLog?: pulumi.Input<boolean | undefined>;
     /**
      * Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K). Requests above 2% of the RAM provided by your service plan are rejected, because the buffer is allocated per session and its cost multiplies with the connection count.
      */
-    sortBufferSize?: pulumi.Input<number>;
+    sortBufferSize?: pulumi.Input<number | undefined>;
     /**
      * Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned.
      */
-    sqlMode?: pulumi.Input<string>;
+    sqlMode?: pulumi.Input<string | undefined>;
     /**
      * Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them.
      */
-    sqlRequirePrimaryKey?: pulumi.Input<boolean>;
+    sqlRequirePrimaryKey?: pulumi.Input<boolean | undefined>;
     /**
      * Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
      */
-    tmpTableSize?: pulumi.Input<number>;
+    tmpTableSize?: pulumi.Input<number | undefined>;
     /**
      * MySQL major version.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
     /**
      * The number of seconds the server waits for activity on a noninteractive connection before closing it. Requests to set this below 30 are rejected, because a shorter timeout closes your own idle connections between statements.
      */
-    waitTimeout?: pulumi.Input<number>;
+    waitTimeout?: pulumi.Input<number | undefined>;
     /**
      * Whether window functions are computed to high precision. Disabling this trades exactness for speed in window function evaluation.
      */
-    windowingUseHighPrecision?: pulumi.Input<boolean>;
+    windowingUseHighPrecision?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ManagedDatabaseMysqlPropertiesMigration {
     /**
      * Database name for bootstrapping the initial connection.
      */
-    dbname?: pulumi.Input<string>;
+    dbname?: pulumi.Input<string | undefined>;
     /**
      * MySQL migration dump tool. Experimental! Tool to use for database dump and restore during migration. Default: mysqldump.
      */
-    dumpTool?: pulumi.Input<string>;
+    dumpTool?: pulumi.Input<string | undefined>;
     /**
      * Hostname or IP address of the server where to migrate data from.
      */
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
      */
-    ignoreDbs?: pulumi.Input<string>;
+    ignoreDbs?: pulumi.Input<string | undefined>;
     /**
      * Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
      */
-    ignoreRoles?: pulumi.Input<string>;
+    ignoreRoles?: pulumi.Input<string | undefined>;
     /**
      * The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
      */
-    method?: pulumi.Input<string>;
+    method?: pulumi.Input<string | undefined>;
     /**
      * Password for authentication with the server where to migrate data from.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Port number of the server where to migrate data from.
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * Skip dump-restore part and start replication.
      */
-    reestablishReplication?: pulumi.Input<boolean>;
+    reestablishReplication?: pulumi.Input<boolean | undefined>;
     /**
      * The server where to migrate data from is secured with SSL.
      */
-    ssl?: pulumi.Input<boolean>;
+    ssl?: pulumi.Input<boolean | undefined>;
     /**
      * User name for authentication with the server where to migrate data from.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseMysqlPropertiesMysqlIncrementalBackup {
     /**
      * Enable incremental backups. Enable periodic incremental backups. When enabled, fullBackupWeekSchedule must be set. Incremental backups only store changes since the last backup, making them faster and more storage-efficient than full backups. This is particularly useful for large databases where daily full backups would be too time-consuming or expensive.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Full backup week schedule. Comma-separated list of days of the week when full backups should be created. Valid values: mon, tue, wed, thu, fri, sat, sun.
      */
-    fullBackupWeekSchedule?: pulumi.Input<string>;
+    fullBackupWeekSchedule?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchComponent {
     /**
      * Component name.
      */
-    component?: pulumi.Input<string>;
+    component?: pulumi.Input<string | undefined>;
     /**
      * Hostname of the component
      */
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * Port number of the component
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * Component network route type
      */
-    route?: pulumi.Input<string>;
+    route?: pulumi.Input<string | undefined>;
     /**
      * Usage of the component
      */
-    usage?: pulumi.Input<string>;
+    usage?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchNetwork {
@@ -2105,853 +2105,853 @@ export interface ManagedDatabaseOpensearchNodeState {
     /**
      * Name plus a node iteration
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Role of the node
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * Current state of the node
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchProperties {
     /**
      * action.auto_create_index. Explicitly allow or block automatic creation of indices. Defaults to true.
      */
-    actionAutoCreateIndexEnabled?: pulumi.Input<boolean>;
+    actionAutoCreateIndexEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Require explicit index names when deleting.
      */
-    actionDestructiveRequiresName?: pulumi.Input<boolean>;
+    actionDestructiveRequiresName?: pulumi.Input<boolean | undefined>;
     /**
      * Opensearch Security Plugin Settings.
      */
-    authFailureListeners?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesAuthFailureListeners>;
+    authFailureListeners?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesAuthFailureListeners | undefined>;
     /**
      * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
      */
-    automaticUtilityNetworkIpFilter?: pulumi.Input<boolean>;
+    automaticUtilityNetworkIpFilter?: pulumi.Input<boolean | undefined>;
     /**
      * The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 0.
      */
-    clusterFilecacheRemoteDataRatio?: pulumi.Input<number>;
+    clusterFilecacheRemoteDataRatio?: pulumi.Input<number | undefined>;
     /**
      * Controls the number of shards allowed in the cluster per data node.
      */
-    clusterMaxShardsPerNode?: pulumi.Input<number>;
-    clusterRemoteStore?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesClusterRemoteStore>;
+    clusterMaxShardsPerNode?: pulumi.Input<number | undefined>;
+    clusterRemoteStore?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesClusterRemoteStore | undefined>;
     /**
      * When set to true, OpenSearch attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to false after it was set to true does not invoke redistribution of primary shards. Default is false.
      */
-    clusterRoutingAllocationBalancePreferPrimary?: pulumi.Input<boolean>;
+    clusterRoutingAllocationBalancePreferPrimary?: pulumi.Input<boolean | undefined>;
     /**
      * Concurrent incoming/outgoing shard recoveries per node. How many concurrent incoming/outgoing shard recoveries (normally replicas) are allowed to happen on a node. Defaults to node cpu count * 2.
      */
-    clusterRoutingAllocationNodeConcurrentRecoveries?: pulumi.Input<number>;
-    clusterSearchRequestSlowlog?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog>;
+    clusterRoutingAllocationNodeConcurrentRecoveries?: pulumi.Input<number | undefined>;
+    clusterSearchRequestSlowlog?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog | undefined>;
     /**
      * Custom domain. Serve the web frontend using a custom CNAME pointing to the Aiven DNS name. When you set a custom domain for a service deployed in a VPC, the service certificate is only created for the public-* hostname and the custom domain.
      */
-    customDomain?: pulumi.Input<string>;
+    customDomain?: pulumi.Input<string | undefined>;
     /**
      * OpenSearch custom keystores. Allow to register custom keystores in OpenSearch.
      */
-    customKeystores?: pulumi.Input<pulumi.Input<string>[]>;
+    customKeystores?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * OpenSearch custom repositories. Allow to register object storage repositories in OpenSearch.
      */
-    customRepos?: pulumi.Input<pulumi.Input<string>[]>;
+    customRepos?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Watermark settings.
      */
-    diskWatermarks?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks>;
+    diskWatermarks?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesDiskWatermarks | undefined>;
     /**
      * OpenSearch version.
      */
-    elasticsearchVersion?: pulumi.Input<string>;
+    elasticsearchVersion?: pulumi.Input<string | undefined>;
     /**
      * Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore. This should be identical to the Sender name defined in Opensearch dashboards.
      */
-    emailSenderName?: pulumi.Input<string>;
+    emailSenderName?: pulumi.Input<string | undefined>;
     /**
      * Sender password for Opensearch alerts to authenticate with SMTP server. Sender password for Opensearch alerts to authenticate with SMTP server.
      */
-    emailSenderPassword?: pulumi.Input<string>;
+    emailSenderPassword?: pulumi.Input<string | undefined>;
     /**
      * Sender username for Opensearch alerts.
      */
-    emailSenderUsername?: pulumi.Input<string>;
+    emailSenderUsername?: pulumi.Input<string | undefined>;
     /**
      * Enable remote-backed storage.
      */
-    enableRemoteBackedStorage?: pulumi.Input<boolean>;
+    enableRemoteBackedStorage?: pulumi.Input<boolean | undefined>;
     /**
      * Enable searchable snapshots.
      */
-    enableSearchableSnapshots?: pulumi.Input<boolean>;
+    enableSearchableSnapshots?: pulumi.Input<boolean | undefined>;
     /**
      * Enable/Disable security audit.
      */
-    enableSecurityAudit?: pulumi.Input<boolean>;
+    enableSecurityAudit?: pulumi.Input<boolean | undefined>;
     /**
      * Enable/Disable snapshot API. Enable/Disable snapshot API for custom repositories, this requires security management to be enabled.
      */
-    enableSnapshotApi?: pulumi.Input<boolean>;
+    enableSnapshotApi?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum content length for HTTP requests to the OpenSearch HTTP API, in bytes.
      */
-    httpMaxContentLength?: pulumi.Input<number>;
+    httpMaxContentLength?: pulumi.Input<number | undefined>;
     /**
      * The max size of allowed headers, in bytes.
      */
-    httpMaxHeaderSize?: pulumi.Input<number>;
+    httpMaxHeaderSize?: pulumi.Input<number | undefined>;
     /**
      * The max length of an HTTP URL, in bytes.
      */
-    httpMaxInitialLineLength?: pulumi.Input<number>;
+    httpMaxInitialLineLength?: pulumi.Input<number | undefined>;
     /**
      * Index patterns.
      */
-    indexPatterns?: pulumi.Input<pulumi.Input<string>[]>;
+    indexPatterns?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Index rollup settings.
      */
-    indexRollup?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesIndexRollup>;
+    indexRollup?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesIndexRollup | undefined>;
     /**
      * Template settings for all new indexes.
      */
-    indexTemplate?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesIndexTemplate>;
+    indexTemplate?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesIndexTemplate | undefined>;
     /**
      * Relative amount. Maximum amount of heap memory used for field data cache. This is an expert setting; decreasing the value too much will increase overhead of loading field data; too much memory used for field data cache will decrease amount of heap available for other operations.
      */
-    indicesFielddataCacheSize?: pulumi.Input<number>;
+    indicesFielddataCacheSize?: pulumi.Input<number | undefined>;
     /**
      * Percentage value. Default is 10%. Total amount of heap used for indexing buffer, before writing segments to disk. This is an expert setting. Too low value will slow down indexing; too high value will increase indexing performance but causes performance issues for query performance.
      */
-    indicesMemoryIndexBufferSize?: pulumi.Input<number>;
+    indicesMemoryIndexBufferSize?: pulumi.Input<number | undefined>;
     /**
      * Absolute value. Default is unbound. Doesn't work without indices.memory.index_buffer_size. Maximum amount of heap used for query cache, an absolute indices.memory.index_buffer_size maximum hard limit.
      */
-    indicesMemoryMaxIndexBufferSize?: pulumi.Input<number>;
+    indicesMemoryMaxIndexBufferSize?: pulumi.Input<number | undefined>;
     /**
      * Absolute value. Default is 48mb. Doesn't work without indices.memory.index_buffer_size. Minimum amount of heap used for query cache, an absolute indices.memory.index_buffer_size minimal hard limit.
      */
-    indicesMemoryMinIndexBufferSize?: pulumi.Input<number>;
+    indicesMemoryMinIndexBufferSize?: pulumi.Input<number | undefined>;
     /**
      * Percentage value. Default is 10%. Maximum amount of heap used for query cache. This is an expert setting. Too low value will decrease query performance and increase performance for other operations; too high value will cause issues with other OpenSearch functionality.
      */
-    indicesQueriesCacheSize?: pulumi.Input<number>;
+    indicesQueriesCacheSize?: pulumi.Input<number | undefined>;
     /**
      * Maximum number of clauses Lucene BooleanQuery can have. The default value (1024) is relatively high, and increasing it may cause performance issues. Investigate other approaches first before increasing this value.
      */
-    indicesQueryBoolMaxClauseCount?: pulumi.Input<number>;
+    indicesQueryBoolMaxClauseCount?: pulumi.Input<number | undefined>;
     /**
      * Limits total inbound and outbound recovery traffic for each node. Applies to both peer recoveries as well as snapshot recoveries (i.e., restores from a snapshot). Defaults to 40mb.
      */
-    indicesRecoveryMaxBytesPerSec?: pulumi.Input<number>;
+    indicesRecoveryMaxBytesPerSec?: pulumi.Input<number | undefined>;
     /**
      * Number of file chunks sent in parallel for each recovery. Defaults to 2.
      */
-    indicesRecoveryMaxConcurrentFileChunks?: pulumi.Input<number>;
+    indicesRecoveryMaxConcurrentFileChunks?: pulumi.Input<number | undefined>;
     /**
      * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
      */
-    ipFilters?: pulumi.Input<pulumi.Input<string>[]>;
+    ipFilters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies whether ISM is enabled or not.
      */
-    ismEnabled?: pulumi.Input<boolean>;
+    ismEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies whether audit history is enabled or not. The logs from ISM are automatically indexed to a logs document.
      */
-    ismHistoryEnabled?: pulumi.Input<boolean>;
+    ismHistoryEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum age before rolling over the audit history index in hours.
      */
-    ismHistoryMaxAge?: pulumi.Input<number>;
+    ismHistoryMaxAge?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of documents before rolling over the audit history index.
      */
-    ismHistoryMaxDocs?: pulumi.Input<number>;
+    ismHistoryMaxDocs?: pulumi.Input<number | undefined>;
     /**
      * The time between rollover checks for the audit history index in hours.
      */
-    ismHistoryRolloverCheckPeriod?: pulumi.Input<number>;
+    ismHistoryRolloverCheckPeriod?: pulumi.Input<number | undefined>;
     /**
      * How long audit history indices are kept in days.
      */
-    ismHistoryRolloverRetentionPeriod?: pulumi.Input<number>;
+    ismHistoryRolloverRetentionPeriod?: pulumi.Input<number | undefined>;
     /**
      * OpenSearch JWT Configuration.
      */
-    jwt?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesJwt>;
+    jwt?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesJwt | undefined>;
     /**
      * Don't reset index.refresh_interval to the default value. Aiven automation resets index.refresh_interval to default value for every index to be sure that indices are always visible to search. If it doesn't fit your case, you can disable this by setting up this flag to true.
      */
-    keepIndexRefreshInterval?: pulumi.Input<boolean>;
+    keepIndexRefreshInterval?: pulumi.Input<boolean | undefined>;
     /**
      * Enable or disable removing KNN graphs from the cache when they are idle. Disabled by default.
      */
-    knnCacheItemExpiryEnabled?: pulumi.Input<boolean>;
+    knnCacheItemExpiryEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * If enabled, the amount of time in minutes a KNN graph can be idle in the cache before being evicted.
      */
-    knnCacheItemExpiryMinutes?: pulumi.Input<number>;
+    knnCacheItemExpiryMinutes?: pulumi.Input<number | undefined>;
     /**
      * The native memory usage, as a percentage below the KNN memory circuit breaker limit, at which a tripped circuit breaker resets. Defaults to 5%.
      */
-    knnCircuitBreakerUnsetPercentage?: pulumi.Input<number>;
+    knnCircuitBreakerUnsetPercentage?: pulumi.Input<number | undefined>;
     /**
      * Enable or disable KNN memory circuit breaker. Defaults to true.
      */
-    knnMemoryCircuitBreakerEnabled?: pulumi.Input<boolean>;
+    knnMemoryCircuitBreakerEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum amount of memory in percentage that can be used for the KNN index. Defaults to 50% of the JVM heap size. 0 is used to set it to null which can be used to invalidate caches.
      */
-    knnMemoryCircuitBreakerLimit?: pulumi.Input<number>;
+    knnMemoryCircuitBreakerLimit?: pulumi.Input<number | undefined>;
     /**
      * plugins.ml_commons.connector_access_control_enabled. When set to true, the setting allows admins to control access and permissions to the connector API using backend_roles. Defaults to false.
      */
-    mlCommonsConnectorAccessControlEnabled?: pulumi.Input<boolean>;
+    mlCommonsConnectorAccessControlEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * plugins.ml_commons.max_model_on_node. Maximum number of ML models that can be deployed on a single ML node. Defaults to 10.
      */
-    mlCommonsMaxModelOnNode?: pulumi.Input<number>;
+    mlCommonsMaxModelOnNode?: pulumi.Input<number | undefined>;
     /**
      * plugins.ml_commons.model_access_control.enabled. Enable or disable model access control for ML Commons. When enabled, access to ML models is controlled by security permissions. Defaults to false.
      */
-    mlCommonsModelAccessControlEnabled?: pulumi.Input<boolean>;
+    mlCommonsModelAccessControlEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * plugins.ml_commons.model_auto_deploy.enable. For externally hosted models only: automatically deploy a model on its first predict request instead of requiring an explicit deploy call first. Defaults to true.
      */
-    mlCommonsModelAutoDeployEnable?: pulumi.Input<boolean>;
+    mlCommonsModelAutoDeployEnable?: pulumi.Input<boolean | undefined>;
     /**
      * plugins.ml_commons.model_auto_redeploy.enable. Automatically redeploy deployed or partially deployed models after ML nodes rejoin the cluster, e.g. after a node replacement. Defaults to true.
      */
-    mlCommonsModelAutoRedeployEnable?: pulumi.Input<boolean>;
+    mlCommonsModelAutoRedeployEnable?: pulumi.Input<boolean | undefined>;
     /**
      * plugins.ml_commons.native_memory_threshold. Native memory threshold percentage for ML Commons. Controls the maximum percentage of native memory that can be used by ML Commons operations. Defaults to 90%.
      */
-    mlCommonsNativeMemoryThreshold?: pulumi.Input<number>;
+    mlCommonsNativeMemoryThreshold?: pulumi.Input<number | undefined>;
     /**
      * plugins.ml_commons.only_run_on_ml_node. Enable or disable running ML Commons tasks only on ML nodes. When enabled, ML tasks will only execute on nodes designated as ML nodes. Defaults to true.
      */
-    mlCommonsOnlyRunOnMlNode?: pulumi.Input<boolean>;
+    mlCommonsOnlyRunOnMlNode?: pulumi.Input<boolean | undefined>;
     /**
      * plugins.ml_commons.trusted_connector_endpoints_regex. Adds the trusted endpoints to the cluster settings. Supports Java regex expressions.
      */
-    mlCommonsTrustedConnectorEndpointsRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+    mlCommonsTrustedConnectorEndpointsRegexes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The limit of how much total remote data can be referenced. Defines a limit of how much total remote data can be referenced as a ratio of the size of the disk reserved for the file cache. This is designed to be a safeguard to prevent oversubscribing a cluster. Defaults to 5gb. Requires restarting all OpenSearch nodes.
      */
-    nodeSearchCacheSize?: pulumi.Input<string>;
+    nodeSearchCacheSize?: pulumi.Input<string | undefined>;
     /**
      * OpenSearch OpenID Connect Configuration.
      */
-    openid?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesOpenid>;
+    openid?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesOpenid | undefined>;
     /**
      * OpenSearch Dashboards settings.
      */
-    opensearchDashboards?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesOpensearchDashboards>;
+    opensearchDashboards?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesOpensearchDashboards | undefined>;
     /**
      * Compatibility mode sets OpenSearch to report its version as 7.10 so clients continue to work. Default is false. Deprecated and ignored for service version 3.3 and higher.
      */
-    overrideMainResponseVersion?: pulumi.Input<boolean>;
+    overrideMainResponseVersion?: pulumi.Input<boolean | undefined>;
     /**
      * Enable or disable filtering of alerting by backend roles. Requires Security plugin. Defaults to false.
      */
-    pluginsAlertingFilterByBackendRoles?: pulumi.Input<boolean>;
+    pluginsAlertingFilterByBackendRoles?: pulumi.Input<boolean | undefined>;
     /**
      * Public Access. Allow access to the service from the public Internet.
      */
-    publicAccess?: pulumi.Input<boolean>;
+    publicAccess?: pulumi.Input<boolean | undefined>;
     /**
      * Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
      */
-    publicAccessPrometheus?: pulumi.Input<boolean>;
+    publicAccessPrometheus?: pulumi.Input<boolean | undefined>;
     /**
      * reindex_remote_allowlist. Whitelisted addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.
      */
-    reindexRemoteWhitelists?: pulumi.Input<pulumi.Input<string>[]>;
-    remoteStore?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesRemoteStore>;
+    reindexRemoteWhitelists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    remoteStore?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesRemoteStore | undefined>;
     /**
      * OpenSearch SAML configuration.
      */
-    saml?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSaml>;
+    saml?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSaml | undefined>;
     /**
      * Script max compilation rate - circuit breaker to prevent/minimize OOMs. Script compilation circuit breaker limits the number of inline script compilations within a period of time. Default is use-context.
      */
-    scriptMaxCompilationsRate?: pulumi.Input<string>;
+    scriptMaxCompilationsRate?: pulumi.Input<string | undefined>;
     /**
      * Search Backpressure Settings.
      */
-    searchBackpressure?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchBackpressure>;
-    searchInsightsTopQueries?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries>;
+    searchBackpressure?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchBackpressure | undefined>;
+    searchInsightsTopQueries?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries | undefined>;
     /**
      * Maximum number of aggregation buckets allowed in a single response. OpenSearch default value is used when this is not defined.
      */
-    searchMaxBuckets?: pulumi.Input<number>;
+    searchMaxBuckets?: pulumi.Input<number | undefined>;
     /**
      * Segment Replication Backpressure Settings.
      */
-    segrep?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSegrep>;
+    segrep?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSegrep | undefined>;
     /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      */
-    serviceLog?: pulumi.Input<boolean>;
+    serviceLog?: pulumi.Input<boolean | undefined>;
     /**
      * Shard indexing back pressure settings.
      */
-    shardIndexingPressure?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressure>;
+    shardIndexingPressure?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressure | undefined>;
     /**
      * analyze thread pool queue size. Size for the thread pool queue. See documentation for exact details.
      */
-    threadPoolAnalyzeQueueSize?: pulumi.Input<number>;
+    threadPoolAnalyzeQueueSize?: pulumi.Input<number | undefined>;
     /**
      * analyze thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
      */
-    threadPoolAnalyzeSize?: pulumi.Input<number>;
+    threadPoolAnalyzeSize?: pulumi.Input<number | undefined>;
     /**
      * force_merge thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
      */
-    threadPoolForceMergeSize?: pulumi.Input<number>;
+    threadPoolForceMergeSize?: pulumi.Input<number | undefined>;
     /**
      * get thread pool queue size. Size for the thread pool queue. See documentation for exact details.
      */
-    threadPoolGetQueueSize?: pulumi.Input<number>;
+    threadPoolGetQueueSize?: pulumi.Input<number | undefined>;
     /**
      * get thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
      */
-    threadPoolGetSize?: pulumi.Input<number>;
+    threadPoolGetSize?: pulumi.Input<number | undefined>;
     /**
      * search thread pool queue size. Size for the thread pool queue. See documentation for exact details.
      */
-    threadPoolSearchQueueSize?: pulumi.Input<number>;
+    threadPoolSearchQueueSize?: pulumi.Input<number | undefined>;
     /**
      * search thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
      */
-    threadPoolSearchSize?: pulumi.Input<number>;
+    threadPoolSearchSize?: pulumi.Input<number | undefined>;
     /**
      * search_throttled thread pool queue size. Size for the thread pool queue. See documentation for exact details.
      */
-    threadPoolSearchThrottledQueueSize?: pulumi.Input<number>;
+    threadPoolSearchThrottledQueueSize?: pulumi.Input<number | undefined>;
     /**
      * search_throttled thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
      */
-    threadPoolSearchThrottledSize?: pulumi.Input<number>;
+    threadPoolSearchThrottledSize?: pulumi.Input<number | undefined>;
     /**
      * write thread pool queue size. Size for the thread pool queue. See documentation for exact details.
      */
-    threadPoolWriteQueueSize?: pulumi.Input<number>;
+    threadPoolWriteQueueSize?: pulumi.Input<number | undefined>;
     /**
      * write thread pool size. Size for the thread pool. See documentation for exact details. Do note this may have maximum value depending on CPU count - value is automatically lowered if set to higher than maximum value.
      */
-    threadPoolWriteSize?: pulumi.Input<number>;
+    threadPoolWriteSize?: pulumi.Input<number | undefined>;
     /**
      * OpenSearch version.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesAuthFailureListeners {
-    internalAuthenticationBackendLimiting?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting>;
+    internalAuthenticationBackendLimiting?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesAuthFailureListenersInternalAuthenticationBackendLimiting {
     /**
      * The number of login attempts allowed before login is blocked.
      */
-    allowedTries?: pulumi.Input<number>;
+    allowedTries?: pulumi.Input<number | undefined>;
     /**
      * The internal backend. Enter `internal`.
      */
-    authenticationBackend?: pulumi.Input<string>;
+    authenticationBackend?: pulumi.Input<string | undefined>;
     /**
      * The duration of time that login remains blocked after a failed login.
      */
-    blockExpirySeconds?: pulumi.Input<number>;
+    blockExpirySeconds?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of blocked IP addresses.
      */
-    maxBlockedClients?: pulumi.Input<number>;
+    maxBlockedClients?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of tracked IP addresses that have failed login.
      */
-    maxTrackedClients?: pulumi.Input<number>;
+    maxTrackedClients?: pulumi.Input<number | undefined>;
     /**
      * The window of time in which the value for `allowedTries` is enforced.
      */
-    timeWindowSeconds?: pulumi.Input<number>;
+    timeWindowSeconds?: pulumi.Input<number | undefined>;
     /**
      * The type of rate limiting.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesClusterRemoteStore {
     /**
      * The amount of time to wait for the cluster state upload to complete. The amount of time to wait for the cluster state upload to complete. Defaults to 20s.
      */
-    stateGlobalMetadataUploadTimeout?: pulumi.Input<string>;
+    stateGlobalMetadataUploadTimeout?: pulumi.Input<string | undefined>;
     /**
      * The amount of time to wait for the manifest file upload to complete. The amount of time to wait for the manifest file upload to complete. The manifest file contains the details of each of the files uploaded for a single cluster state, both index metadata files and global metadata files. Defaults to 20s.
      */
-    stateMetadataManifestUploadTimeout?: pulumi.Input<string>;
+    stateMetadataManifestUploadTimeout?: pulumi.Input<string | undefined>;
     /**
      * The default value of the translog buffer interval. The default value of the translog buffer interval used when performing periodic translog updates. This setting is only effective when the index setting `index.remote_store.translog.buffer_interval` is not present. Defaults to 650ms.
      */
-    translogBufferInterval?: pulumi.Input<string>;
+    translogBufferInterval?: pulumi.Input<string | undefined>;
     /**
      * The maximum number of open translog files for remote-backed indexes. Sets the maximum number of open translog files for remote-backed indexes. This limits the total number of translog files per shard. After reaching this limit, the remote store flushes the translog files. Default is 1000. The minimum required is 100.
      */
-    translogMaxReaders?: pulumi.Input<number>;
+    translogMaxReaders?: pulumi.Input<number | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlog {
     /**
      * Log level.
      */
-    level?: pulumi.Input<string>;
-    threshold?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold>;
+    level?: pulumi.Input<string | undefined>;
+    threshold?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesClusterSearchRequestSlowlogThreshold {
     /**
      * Debug threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    debug?: pulumi.Input<string>;
+    debug?: pulumi.Input<string | undefined>;
     /**
      * Info threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    info?: pulumi.Input<string>;
+    info?: pulumi.Input<string | undefined>;
     /**
      * Trace threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    trace?: pulumi.Input<string>;
+    trace?: pulumi.Input<string | undefined>;
     /**
      * Warning threshold for total request took time. The value should be in the form count and unit, where unit one of (s,m,h,d,nanos,ms,micros) or -1. Default is -1.
      */
-    warn?: pulumi.Input<string>;
+    warn?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesDiskWatermarks {
     /**
      * Flood stage watermark (percentage). The flood stage watermark for disk usage.
      */
-    floodStage?: pulumi.Input<number>;
+    floodStage?: pulumi.Input<number | undefined>;
     /**
      * High watermark (percentage). The high watermark for disk usage.
      */
-    high?: pulumi.Input<number>;
+    high?: pulumi.Input<number | undefined>;
     /**
      * Low watermark (percentage). The low watermark for disk usage.
      */
-    low?: pulumi.Input<number>;
+    low?: pulumi.Input<number | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesIndexRollup {
     /**
      * plugins.rollup.dashboards.enabled. Whether rollups are enabled in OpenSearch Dashboards. Defaults to true.
      */
-    rollupDashboardsEnabled?: pulumi.Input<boolean>;
+    rollupDashboardsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * plugins.rollup.enabled. Whether the rollup plugin is enabled. Defaults to true.
      */
-    rollupEnabled?: pulumi.Input<boolean>;
+    rollupEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * plugins.rollup.search.backoff_count. How many retries the plugin should attempt for failed rollup jobs. Defaults to 5.
      */
-    rollupSearchBackoffCount?: pulumi.Input<number>;
+    rollupSearchBackoffCount?: pulumi.Input<number | undefined>;
     /**
      * plugins.rollup.search.backoff_millis. The backoff time between retries for failed rollup jobs. Defaults to 1000ms.
      */
-    rollupSearchBackoffMillis?: pulumi.Input<number>;
+    rollupSearchBackoffMillis?: pulumi.Input<number | undefined>;
     /**
      * plugins.rollup.search.all_jobs. Whether OpenSearch should return all jobs that match all specified search terms. If disabled, OpenSearch returns just one, as opposed to all, of the jobs that matches the search terms. Defaults to false.
      */
-    rollupSearchSearchAllJobs?: pulumi.Input<boolean>;
+    rollupSearchSearchAllJobs?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesIndexTemplate {
     /**
      * (DEPRECATED) index.mapping.nested_objects.limit. The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps to prevent out of memory errors when a document contains too many nested objects. Default is 10000. Deprecated, use an index template instead.
      */
-    mappingNestedObjectsLimit?: pulumi.Input<number>;
+    mappingNestedObjectsLimit?: pulumi.Input<number | undefined>;
     /**
      * The number of replicas each primary shard has. Deprecated, use an index template instead.
      */
-    numberOfReplicas?: pulumi.Input<number>;
+    numberOfReplicas?: pulumi.Input<number | undefined>;
     /**
      * The number of primary shards that an index should have. Deprecated, use an index template instead.
      */
-    numberOfShards?: pulumi.Input<number>;
+    numberOfShards?: pulumi.Input<number | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesJwt {
     /**
      * Enable or disable OpenSearch JWT authentication. Enables or disables JWT-based authentication for OpenSearch. When enabled, users can authenticate using JWT tokens.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * JWT clock skew tolerance in seconds. The maximum allowed time difference in seconds between the JWT issuer's clock and the OpenSearch server's clock. This helps prevent token validation failures due to minor time synchronization issues.
      */
-    jwtClockSkewToleranceSeconds?: pulumi.Input<number>;
+    jwtClockSkewToleranceSeconds?: pulumi.Input<number | undefined>;
     /**
      * HTTP header name for JWT token. The HTTP header name where the JWT token is transmitted. Typically 'Authorization' for Bearer tokens.
      */
-    jwtHeader?: pulumi.Input<string>;
+    jwtHeader?: pulumi.Input<string | undefined>;
     /**
      * URL parameter name for JWT token. If the JWT token is transmitted as a URL parameter instead of an HTTP header, specify the parameter name here.
      */
-    jwtUrlParameter?: pulumi.Input<string>;
+    jwtUrlParameter?: pulumi.Input<string | undefined>;
     /**
      * Required JWT audience. If specified, the JWT must contain an 'aud' claim that matches this value. This provides additional security by ensuring the JWT was issued for the expected audience.
      */
-    requiredAudience?: pulumi.Input<string>;
+    requiredAudience?: pulumi.Input<string | undefined>;
     /**
      * Required JWT issuer. If specified, the JWT must contain an 'iss' claim that matches this value. This provides additional security by ensuring the JWT was issued by the expected issuer.
      */
-    requiredIssuer?: pulumi.Input<string>;
+    requiredIssuer?: pulumi.Input<string | undefined>;
     /**
      * JWT claim key for roles. The key in the JWT payload that contains the user's roles. If specified, roles will be extracted from the JWT for authorization.
      */
-    rolesKey?: pulumi.Input<string>;
+    rolesKey?: pulumi.Input<string | undefined>;
     /**
      * JWT signing key. The secret key used to sign and verify JWT tokens. This should be a secure, randomly generated key HMAC key or public RSA/ECDSA key.
      */
-    signingKey?: pulumi.Input<string>;
+    signingKey?: pulumi.Input<string | undefined>;
     /**
      * JWT claim key for subject. The key in the JWT payload that contains the user's subject identifier. If not specified, the 'sub' claim is used by default.
      */
-    subjectKey?: pulumi.Input<string>;
+    subjectKey?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesOpenid {
     /**
      * The ID of the OpenID Connect client. The ID of the OpenID Connect client configured in your IdP. Required.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The client secret of the OpenID Connect. The client secret of the OpenID Connect client configured in your IdP. Required.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * OpenID Connect metadata/configuration URL. The URL of your IdP where the Security plugin can find the OpenID Connect metadata/configuration settings.
      */
-    connectUrl?: pulumi.Input<string>;
+    connectUrl?: pulumi.Input<string | undefined>;
     /**
      * Enable or disable OpenSearch OpenID Connect authentication. Enables or disables OpenID Connect authentication for OpenSearch. When enabled, users can authenticate using OpenID Connect with an Identity Provider.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * HTTP header name of the JWT token. HTTP header name of the JWT token. Optional. Default is Authorization.
      */
-    header?: pulumi.Input<string>;
+    header?: pulumi.Input<string | undefined>;
     /**
      * The HTTP header that stores the token. The HTTP header that stores the token. Typically the Authorization header with the Bearer schema: Authorization: Bearer <token>. Optional. Default is Authorization.
      */
-    jwtHeader?: pulumi.Input<string>;
+    jwtHeader?: pulumi.Input<string | undefined>;
     /**
      * URL JWT token. If the token is not transmitted in the HTTP header, but as an URL parameter, define the name of the parameter here. Optional.
      */
-    jwtUrlParameter?: pulumi.Input<string>;
+    jwtUrlParameter?: pulumi.Input<string | undefined>;
     /**
      * The maximum number of unknown key IDs in the time frame. The maximum number of unknown key IDs in the time frame. Default is 10. Optional.
      */
-    refreshRateLimitCount?: pulumi.Input<number>;
+    refreshRateLimitCount?: pulumi.Input<number | undefined>;
     /**
      * The time frame to use when checking the maximum number of unknown key IDs, in milliseconds. The time frame to use when checking the maximum number of unknown key IDs, in milliseconds. Optional.Default is 10000 (10 seconds).
      */
-    refreshRateLimitTimeWindowMs?: pulumi.Input<number>;
+    refreshRateLimitTimeWindowMs?: pulumi.Input<number | undefined>;
     /**
      * The key in the JSON payload that stores the user’s roles. The key in the JSON payload that stores the user’s roles. The value of this key must be a comma-separated list of roles. Required only if you want to use roles in the JWT.
      */
-    rolesKey?: pulumi.Input<string>;
+    rolesKey?: pulumi.Input<string | undefined>;
     /**
      * The scope of the identity token issued by the IdP. The scope of the identity token issued by the IdP. Optional. Default is openid profile email address phone.
      */
-    scope?: pulumi.Input<string>;
+    scope?: pulumi.Input<string | undefined>;
     /**
      * The key in the JSON payload that stores the user’s name. The key in the JSON payload that stores the user’s name. If not defined, the subject registered claim is used. Most IdP providers use the preferredUsername claim. Optional.
      */
-    subjectKey?: pulumi.Input<string>;
+    subjectKey?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesOpensearchDashboards {
     /**
      * Enable or disable OpenSearch Dashboards.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Limits the maximum amount of memory (in MiB) the OpenSearch Dashboards process can use. This sets the maxOldSpaceSize option of the nodejs running the OpenSearch Dashboards. Note: the memory reserved by OpenSearch Dashboards is not available for OpenSearch.
      */
-    maxOldSpaceSize?: pulumi.Input<number>;
+    maxOldSpaceSize?: pulumi.Input<number | undefined>;
     /**
      * Enable or disable multiple data sources in OpenSearch Dashboards.
      */
-    multipleDataSourceEnabled?: pulumi.Input<boolean>;
+    multipleDataSourceEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Timeout in milliseconds for requests made by OpenSearch Dashboards towards OpenSearch.
      */
-    opensearchRequestTimeout?: pulumi.Input<number>;
+    opensearchRequestTimeout?: pulumi.Input<number | undefined>;
     /**
      * Determines whether the session TTL resets (is “kept alive”) on each user activity. Optional. Default is true.
      */
-    sessionKeepalive?: pulumi.Input<boolean>;
+    sessionKeepalive?: pulumi.Input<boolean | undefined>;
     /**
      * Defines the time-to-live (TTL) for user sessions. The value should be a time value with unit, e.g. 1m, 5s, 1h, 3d, 100ms. Default is 1 hour.
      */
-    sessionTtl?: pulumi.Input<string>;
+    sessionTtl?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesRemoteStore {
     /**
      * The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic bytes lag threshold for activating remote segment backpressure. Defaults to 10.
      */
-    segmentPressureBytesLagVarianceFactor?: pulumi.Input<number>;
+    segmentPressureBytesLagVarianceFactor?: pulumi.Input<number | undefined>;
     /**
      * The minimum consecutive failure count for activating remote segment backpressure. The minimum consecutive failure count for activating remote segment backpressure. Defaults to 5.
      */
-    segmentPressureConsecutiveFailuresLimit?: pulumi.Input<number>;
+    segmentPressureConsecutiveFailuresLimit?: pulumi.Input<number | undefined>;
     /**
      * Enables remote segment backpressure. Enables remote segment backpressure. Default is `true`.
      */
-    segmentPressureEnabled?: pulumi.Input<boolean>;
+    segmentPressureEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The variance factor that is used to calculate the dynamic bytes lag threshold. The variance factor that is used together with the moving average to calculate the dynamic time lag threshold for activating remote segment backpressure. Defaults to 10.
      */
-    segmentPressureTimeLagVarianceFactor?: pulumi.Input<number>;
+    segmentPressureTimeLagVarianceFactor?: pulumi.Input<number | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSaml {
     /**
      * Enable or disable OpenSearch SAML authentication. Enables or disables SAML-based authentication for OpenSearch. When enabled, users can authenticate using SAML with an Identity Provider.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Identity Provider Entity ID. The unique identifier for the Identity Provider (IdP) entity that is used for SAML authentication. This value is typically provided by the IdP.
      */
-    idpEntityId?: pulumi.Input<string>;
+    idpEntityId?: pulumi.Input<string | undefined>;
     /**
      * Identity Provider (IdP) SAML metadata URL. The URL of the SAML metadata for the Identity Provider (IdP). This is used to configure SAML-based authentication with the IdP.
      */
-    idpMetadataUrl?: pulumi.Input<string>;
+    idpMetadataUrl?: pulumi.Input<string | undefined>;
     /**
      * PEM-encoded root CA Content for SAML IdP server verification. This parameter specifies the PEM-encoded root certificate authority (CA) content for the SAML identity provider (IdP) server verification. The root CA content is used to verify the SSL/TLS certificate presented by the server.
      */
-    idpPemtrustedcasContent?: pulumi.Input<string>;
+    idpPemtrustedcasContent?: pulumi.Input<string | undefined>;
     /**
      * SAML response role attribute. Optional. Specifies the attribute in the SAML response where role information is stored, if available. Role attributes are not required for SAML authentication, but can be included in SAML assertions by most Identity Providers (IdPs) to determine user access levels or permissions.
      */
-    rolesKey?: pulumi.Input<string>;
+    rolesKey?: pulumi.Input<string | undefined>;
     /**
      * Service Provider Entity ID. The unique identifier for the Service Provider (SP) entity that is used for SAML authentication. This value is typically provided by the SP.
      */
-    spEntityId?: pulumi.Input<string>;
+    spEntityId?: pulumi.Input<string | undefined>;
     /**
      * SAML response subject attribute. Optional. Specifies the attribute in the SAML response where the subject identifier is stored. If not configured, the NameID attribute is used by default.
      */
-    subjectKey?: pulumi.Input<string>;
+    subjectKey?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSearchBackpressure {
     /**
      * The search backpressure mode. The search backpressure mode. Valid values are monitor_only, enforced, or disabled. Default is monitor_only.
      */
-    mode?: pulumi.Input<string>;
+    mode?: pulumi.Input<string | undefined>;
     /**
      * Node duress settings.
      */
-    nodeDuress?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress>;
+    nodeDuress?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress | undefined>;
     /**
      * Search shard settings.
      */
-    searchShardTask?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask>;
+    searchShardTask?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask | undefined>;
     /**
      * Search task settings.
      */
-    searchTask?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask>;
+    searchTask?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSearchBackpressureNodeDuress {
     /**
      * The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. The CPU usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.9.
      */
-    cpuThreshold?: pulumi.Input<number>;
+    cpuThreshold?: pulumi.Input<number | undefined>;
     /**
      * The heap usage threshold (as a percentage) required for a node to be considered to be under duress. The heap usage threshold (as a percentage) required for a node to be considered to be under duress. Default is 0.7.
      */
-    heapThreshold?: pulumi.Input<number>;
+    heapThreshold?: pulumi.Input<number | undefined>;
     /**
      * The number of successive limit breaches after which the node is considered to be under duress. The number of successive limit breaches after which the node is considered to be under duress. Default is 3.
      */
-    numSuccessiveBreaches?: pulumi.Input<number>;
+    numSuccessiveBreaches?: pulumi.Input<number | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchShardTask {
     /**
      * The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 10.0.
      */
-    cancellationBurst?: pulumi.Input<number>;
+    cancellationBurst?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of tasks to cancel per millisecond of elapsed time. The maximum number of tasks to cancel per millisecond of elapsed time. Default is 0.003.
      */
-    cancellationRate?: pulumi.Input<number>;
+    cancellationRate?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of tasks to cancel. The maximum number of tasks to cancel, as a percentage of successful task completions. Default is 0.1.
      */
-    cancellationRatio?: pulumi.Input<number>;
+    cancellationRatio?: pulumi.Input<number | undefined>;
     /**
      * The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 15000.
      */
-    cpuTimeMillisThreshold?: pulumi.Input<number>;
+    cpuTimeMillisThreshold?: pulumi.Input<number | undefined>;
     /**
      * The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for a single search shard task before it is considered for cancellation. Default is 30000.
      */
-    elapsedTimeMillisThreshold?: pulumi.Input<number>;
+    elapsedTimeMillisThreshold?: pulumi.Input<number | undefined>;
     /**
      * The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. The number of previously completed search shard tasks to consider when calculating the rolling average of heap usage. Default is 100.
      */
-    heapMovingAverageWindowSize?: pulumi.Input<number>;
+    heapMovingAverageWindowSize?: pulumi.Input<number | undefined>;
     /**
      * The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. The heap usage threshold (as a percentage) required for a single search shard task before it is considered for cancellation. Default is 0.5.
      */
-    heapPercentThreshold?: pulumi.Input<number>;
+    heapPercentThreshold?: pulumi.Input<number | undefined>;
     /**
      * The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. The minimum variance required for a single search shard task’s heap usage compared to the rolling average of previously completed tasks before it is considered for cancellation. Default is 2.0.
      */
-    heapVariance?: pulumi.Input<number>;
+    heapVariance?: pulumi.Input<number | undefined>;
     /**
      * The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search shard tasks before cancellation is applied. Default is 0.5.
      */
-    totalHeapPercentThreshold?: pulumi.Input<number>;
+    totalHeapPercentThreshold?: pulumi.Input<number | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSearchBackpressureSearchTask {
     /**
      * The maximum number of search tasks to cancel in a single iteration of the observer thread. The maximum number of search tasks to cancel in a single iteration of the observer thread. Default is 5.0.
      */
-    cancellationBurst?: pulumi.Input<number>;
+    cancellationBurst?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of search tasks to cancel per millisecond of elapsed time. The maximum number of search tasks to cancel per millisecond of elapsed time. Default is 0.003.
      */
-    cancellationRate?: pulumi.Input<number>;
+    cancellationRate?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of search tasks to cancel, as a percentage of successful search task completions. The maximum number of search tasks to cancel, as a percentage of successful search task completions. Default is 0.1.
      */
-    cancellationRatio?: pulumi.Input<number>;
+    cancellationRatio?: pulumi.Input<number | undefined>;
     /**
      * The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The CPU usage threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 30000.
      */
-    cpuTimeMillisThreshold?: pulumi.Input<number>;
+    cpuTimeMillisThreshold?: pulumi.Input<number | undefined>;
     /**
      * The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. The elapsed time threshold (in milliseconds) required for an individual parent task before it is considered for cancellation. Default is 45000.
      */
-    elapsedTimeMillisThreshold?: pulumi.Input<number>;
+    elapsedTimeMillisThreshold?: pulumi.Input<number | undefined>;
     /**
      * The window size used to calculate the rolling average of the heap usage for the completed parent tasks. The window size used to calculate the rolling average of the heap usage for the completed parent tasks. Default is 10.
      */
-    heapMovingAverageWindowSize?: pulumi.Input<number>;
+    heapMovingAverageWindowSize?: pulumi.Input<number | undefined>;
     /**
      * The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. The heap usage threshold (as a percentage) required for an individual parent task before it is considered for cancellation. Default is 0.2.
      */
-    heapPercentThreshold?: pulumi.Input<number>;
+    heapPercentThreshold?: pulumi.Input<number | undefined>;
     /**
      * The heap usage variance required for an individual parent task before it is considered for cancellation. The heap usage variance required for an individual parent task before it is considered for cancellation. A task is considered for cancellation when taskHeapUsage is greater than or equal to heapUsageMovingAverage * variance. Default is 2.0.
      */
-    heapVariance?: pulumi.Input<number>;
+    heapVariance?: pulumi.Input<number | undefined>;
     /**
      * The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. The heap usage threshold (as a percentage) required for the sum of heap usages of all search tasks before cancellation is applied. Default is 0.5.
      */
-    totalHeapPercentThreshold?: pulumi.Input<number>;
+    totalHeapPercentThreshold?: pulumi.Input<number | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueries {
     /**
      * Top N queries monitoring by CPU.
      */
-    cpu?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu>;
+    cpu?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu | undefined>;
     /**
      * Top N queries monitoring by latency.
      */
-    latency?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency>;
+    latency?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency | undefined>;
     /**
      * Top N queries monitoring by memory.
      */
-    memory?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory>;
+    memory?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesCpu {
     /**
      * Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Specify the value of N for the top N queries by the metric.
      */
-    topNSize?: pulumi.Input<number>;
+    topNSize?: pulumi.Input<number | undefined>;
     /**
      * The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
      */
-    windowSize?: pulumi.Input<string>;
+    windowSize?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesLatency {
     /**
      * Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Specify the value of N for the top N queries by the metric.
      */
-    topNSize?: pulumi.Input<number>;
+    topNSize?: pulumi.Input<number | undefined>;
     /**
      * The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
      */
-    windowSize?: pulumi.Input<string>;
+    windowSize?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSearchInsightsTopQueriesMemory {
     /**
      * Enable or disable top N query monitoring by the metric. Enable or disable top N query monitoring by the metric.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Specify the value of N for the top N queries by the metric.
      */
-    topNSize?: pulumi.Input<number>;
+    topNSize?: pulumi.Input<number | undefined>;
     /**
      * The window size of the top N queries by the metric. Configure the window size of the top N queries. The value should be a time value with unit, e.g. 1m, 5s, 1h.
      */
-    windowSize?: pulumi.Input<string>;
+    windowSize?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesSegrep {
     /**
      * The maximum number of indexing checkpoints that a replica shard can fall behind when copying from primary. Once `segrep.pressure.checkpoint.limit` is breached along with `segrep.pressure.time.limit`, the segment replication backpressure mechanism is initiated. Default is 4 checkpoints.
      */
-    pressureCheckpointLimit?: pulumi.Input<number>;
+    pressureCheckpointLimit?: pulumi.Input<number | undefined>;
     /**
      * Enables the segment replication backpressure mechanism. Default is false.
      */
-    pressureEnabled?: pulumi.Input<boolean>;
+    pressureEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of stale replica shards that can exist in a replication group. Once `segrep.pressure.replica.stale.limit` is breached, the segment replication backpressure mechanism is initiated. Default is .5, which is 50% of a replication group.
      */
-    pressureReplicaStaleLimit?: pulumi.Input<number>;
+    pressureReplicaStaleLimit?: pulumi.Input<number | undefined>;
     /**
      * The maximum amount of time that a replica shard can take to copy from the primary shard. Once segrep.pressure.time.limit is breached along with segrep.pressure.checkpoint.limit, the segment replication backpressure mechanism is initiated. Default is 5 minutes.
      */
-    pressureTimeLimit?: pulumi.Input<string>;
+    pressureTimeLimit?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressure {
     /**
      * Enable or disable shard indexing backpressure. Enable or disable shard indexing backpressure. Default is false.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Run shard indexing backpressure in shadow mode or enforced mode. Run shard indexing backpressure in shadow mode or enforced mode.
      *             In shadow mode (value set as false), shard indexing backpressure tracks all granular-level metrics,
@@ -2960,15 +2960,15 @@ export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressure {
      *             shard indexing backpressure rejects any requests to the cluster that might cause a dip in its performance.
      *             Default is false.
      */
-    enforced?: pulumi.Input<boolean>;
+    enforced?: pulumi.Input<boolean | undefined>;
     /**
      * Operating factor.
      */
-    operatingFactor?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor>;
+    operatingFactor?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor | undefined>;
     /**
      * Primary parameter.
      */
-    primaryParameter?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter>;
+    primaryParameter?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperatingFactor {
@@ -2978,26 +2978,26 @@ export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressureOperati
      *                     shard indexing backpressure decreases the current allocated memory for that shard.
      *                     Default is 0.75.
      */
-    lower?: pulumi.Input<number>;
+    lower?: pulumi.Input<number | undefined>;
     /**
      * Optimal occupancy of the allocated quota of memory for the shard. Specify the optimal occupancy of the allocated quota of memory for the shard.
      *                     If the total memory usage of a shard is at this level,
      *                     shard indexing backpressure doesn’t change the current allocated memory for that shard.
      *                     Default is 0.85.
      */
-    optimal?: pulumi.Input<number>;
+    optimal?: pulumi.Input<number | undefined>;
     /**
      * Upper occupancy limit of the allocated quota of memory for the shard. Specify the upper occupancy limit of the allocated quota of memory for the shard.
      *                     If the total memory usage of a shard is above this limit,
      *                     shard indexing backpressure increases the current allocated memory for that shard.
      *                     Default is 0.95.
      */
-    upper?: pulumi.Input<number>;
+    upper?: pulumi.Input<number | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameter {
-    node?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode>;
-    shard?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard>;
+    node?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode | undefined>;
+    shard?: pulumi.Input<inputs.ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterNode {
@@ -3006,7 +3006,7 @@ export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimary
      *                             threshold that acts as a soft indicator for strain on a node.
      *                             Default is 0.7.
      */
-    softLimit?: pulumi.Input<number>;
+    softLimit?: pulumi.Input<number | undefined>;
 }
 
 export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimaryParameterShard {
@@ -3015,30 +3015,30 @@ export interface ManagedDatabaseOpensearchPropertiesShardIndexingPressurePrimary
      *                             Shard indexing backpressure increases or decreases this allocated quota based on the inflow of traffic for the shard.
      *                             Default is 0.001.
      */
-    minLimit?: pulumi.Input<number>;
+    minLimit?: pulumi.Input<number | undefined>;
 }
 
 export interface ManagedDatabasePostgresqlComponent {
     /**
      * Component name.
      */
-    component?: pulumi.Input<string>;
+    component?: pulumi.Input<string | undefined>;
     /**
      * Hostname of the component
      */
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * Port number of the component
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * Component network route type
      */
-    route?: pulumi.Input<string>;
+    route?: pulumi.Input<string | undefined>;
     /**
      * Usage of the component
      */
-    usage?: pulumi.Input<string>;
+    usage?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabasePostgresqlNetwork {
@@ -3064,530 +3064,530 @@ export interface ManagedDatabasePostgresqlNodeState {
     /**
      * Name plus a node iteration
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Role of the node
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * Current state of the node
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabasePostgresqlProperties {
     /**
      * Custom password for admin user. Defaults to random string. This must be set only when a new service is being created.
      */
-    adminPassword?: pulumi.Input<string>;
+    adminPassword?: pulumi.Input<string | undefined>;
     /**
      * Custom username for admin user. This must be set only when a new service is being created.
      */
-    adminUsername?: pulumi.Input<string>;
+    adminUsername?: pulumi.Input<string | undefined>;
     /**
      * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
      */
-    automaticUtilityNetworkIpFilter?: pulumi.Input<boolean>;
+    automaticUtilityNetworkIpFilter?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies a fraction of the table size to add to autovacuumAnalyzeThreshold when deciding whether to trigger an ANALYZE (e.g. `0.2` for 20% of the table size). The default is `0.2`.
      */
-    autovacuumAnalyzeScaleFactor?: pulumi.Input<number>;
+    autovacuumAnalyzeScaleFactor?: pulumi.Input<number | undefined>;
     /**
      * Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is `50`.
      */
-    autovacuumAnalyzeThreshold?: pulumi.Input<number>;
+    autovacuumAnalyzeThreshold?: pulumi.Input<number | undefined>;
     /**
      * Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. The system launches autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. Changing this parameter causes a service restart.
      */
-    autovacuumFreezeMaxAge?: pulumi.Input<number>;
+    autovacuumFreezeMaxAge?: pulumi.Input<number | undefined>;
     /**
      * Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is `3`. Changing this parameter causes a service restart.
      */
-    autovacuumMaxWorkers?: pulumi.Input<number>;
+    autovacuumMaxWorkers?: pulumi.Input<number | undefined>;
     /**
      * Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds. The default is `60`.
      */
-    autovacuumNaptime?: pulumi.Input<number>;
+    autovacuumNaptime?: pulumi.Input<number | undefined>;
     /**
      * Specifies the cost delay value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuumCostDelay value will be used. The default is `2` (upstream default).
      */
-    autovacuumVacuumCostDelay?: pulumi.Input<number>;
+    autovacuumVacuumCostDelay?: pulumi.Input<number | undefined>;
     /**
      * Specifies the cost limit value that will be used in automatic VACUUM operations. If `-1` is specified, the regular vacuumCostLimit value will be used. The default is `-1` (upstream default).
      */
-    autovacuumVacuumCostLimit?: pulumi.Input<number>;
+    autovacuumVacuumCostLimit?: pulumi.Input<number | undefined>;
     /**
      * Specifies a fraction of the table size to add to autovacuumVacuumThreshold when deciding whether to trigger a VACUUM (e.g. `0.2` for 20% of the table size). The default is `0.2`.
      */
-    autovacuumVacuumScaleFactor?: pulumi.Input<number>;
+    autovacuumVacuumScaleFactor?: pulumi.Input<number | undefined>;
     /**
      * Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is `50`.
      */
-    autovacuumVacuumThreshold?: pulumi.Input<number>;
+    autovacuumVacuumThreshold?: pulumi.Input<number | undefined>;
     /**
      * The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
      */
-    backupHour?: pulumi.Input<number>;
+    backupHour?: pulumi.Input<number | undefined>;
     /**
      * Backup interval in hours. Interval in hours between automatic backups. Minimum value is 3 hours. Must be a divisor of 24 (3, 4, 6, 8, 12, 24).  (Applicable to ACU plans only).
      */
-    backupIntervalHours?: pulumi.Input<number>;
+    backupIntervalHours?: pulumi.Input<number | undefined>;
     /**
      * The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
      */
-    backupMinute?: pulumi.Input<number>;
+    backupMinute?: pulumi.Input<number | undefined>;
     /**
      * Backup retention in days. Number of days to retain automatic backups. Backups older than this value will be automatically deleted. (Applicable to ACU plans only).
      */
-    backupRetentionDays?: pulumi.Input<number>;
+    backupRetentionDays?: pulumi.Input<number | undefined>;
     /**
      * Specifies the delay between activity rounds for the background writer in milliseconds. The default is `200`.
      */
-    bgwriterDelay?: pulumi.Input<number>;
+    bgwriterDelay?: pulumi.Input<number | undefined>;
     /**
      * Whenever more than bgwriterFlushAfter bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. Setting of 0 disables forced writeback. The default is `512`.
      */
-    bgwriterFlushAfter?: pulumi.Input<number>;
+    bgwriterFlushAfter?: pulumi.Input<number | undefined>;
     /**
      * In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. The default is `100`.
      */
-    bgwriterLruMaxpages?: pulumi.Input<number>;
+    bgwriterLruMaxpages?: pulumi.Input<number | undefined>;
     /**
      * The average recent need for new buffers is multiplied by bgwriterLruMultiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is `2.0`.
      */
-    bgwriterLruMultiplier?: pulumi.Input<number>;
+    bgwriterLruMultiplier?: pulumi.Input<number | undefined>;
     /**
      * This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition. The default is `1000` (upstream default).
      */
-    deadlockTimeout?: pulumi.Input<number>;
+    deadlockTimeout?: pulumi.Input<number | undefined>;
     /**
      * Specifies the default TOAST compression method for values of compressible columns. The default is `lz4`. Only available for PostgreSQL 14+.
      */
-    defaultToastCompression?: pulumi.Input<string>;
+    defaultToastCompression?: pulumi.Input<string | undefined>;
     /**
      * Enable HA replica DNS. Creates a dedicated read-only DNS that automatically falls back to the primary if standby nodes are unavailable. It switches back when a standby recovers.
      */
-    enableHaReplicaDns?: pulumi.Input<boolean>;
+    enableHaReplicaDns?: pulumi.Input<boolean | undefined>;
     /**
      * Time out sessions with open transactions after this number of milliseconds.
      */
-    idleInTransactionSessionTimeout?: pulumi.Input<number>;
+    idleInTransactionSessionTimeout?: pulumi.Input<number | undefined>;
     /**
      * EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units. Version 17 and up only.
      */
-    ioCombineLimit?: pulumi.Input<number>;
+    ioCombineLimit?: pulumi.Input<number | undefined>;
     /**
      * EXPERIMENTAL: Controls the largest I/O size in operations that combine I/O in 8kB units, and silently limits the user-settable parameter io_combine_limit. Version 18 and up only. Changing this parameter causes a service restart.
      */
-    ioMaxCombineLimit?: pulumi.Input<number>;
+    ioMaxCombineLimit?: pulumi.Input<number | undefined>;
     /**
      * EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
      */
-    ioMaxConcurrency?: pulumi.Input<number>;
+    ioMaxConcurrency?: pulumi.Input<number | undefined>;
     /**
      * EXPERIMENTAL: Controls the maximum number of I/O operations that one process can execute simultaneously. Version 18 and up only. Changing this parameter causes a service restart.
      */
-    ioMethod?: pulumi.Input<string>;
+    ioMethod?: pulumi.Input<string | undefined>;
     /**
      * EXPERIMENTAL: Number of IO worker processes, for io_method=worker. Version 18 and up only.
      */
-    ioWorkers?: pulumi.Input<number>;
+    ioWorkers?: pulumi.Input<number | undefined>;
     /**
      * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
      */
-    ipFilters?: pulumi.Input<pulumi.Input<string>[]>;
+    ipFilters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Controls system-wide use of Just-in-Time Compilation (JIT).
      */
-    jit?: pulumi.Input<boolean>;
+    jit?: pulumi.Input<boolean | undefined>;
     /**
      * Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one disables logging autovacuum actions. The default is `1000`.
      */
-    logAutovacuumMinDuration?: pulumi.Input<number>;
+    logAutovacuumMinDuration?: pulumi.Input<number | undefined>;
     /**
      * Controls the amount of detail written in the server log for each message that is logged.
      */
-    logErrorVerbosity?: pulumi.Input<string>;
+    logErrorVerbosity?: pulumi.Input<string | undefined>;
     /**
      * Choose from one of the available log formats.
      */
-    logLinePrefix?: pulumi.Input<string>;
+    logLinePrefix?: pulumi.Input<string | undefined>;
     /**
      * Log statements that take more than this number of milliseconds to run, -1 disables.
      */
-    logMinDurationStatement?: pulumi.Input<number>;
+    logMinDurationStatement?: pulumi.Input<number | undefined>;
     /**
      * Log statements for each temporary file created larger than this number of kilobytes, -1 disables.
      */
-    logTempFiles?: pulumi.Input<number>;
+    logTempFiles?: pulumi.Input<number | undefined>;
     /**
      * Sets the PostgreSQL maximum number of concurrent connections to the database server. For services with a read replica, first increase the read replica's value. After the change is applied to the replica, you can increase the primary service's value. Changing this parameter causes a service restart.
      */
-    maxConnections?: pulumi.Input<number>;
+    maxConnections?: pulumi.Input<number | undefined>;
     /**
      * PostgreSQL maximum number of files that can be open per process. The default is `1000` (upstream default). Changing this parameter causes a service restart.
      */
-    maxFilesPerProcess?: pulumi.Input<number>;
+    maxFilesPerProcess?: pulumi.Input<number | undefined>;
     /**
      * PostgreSQL maximum locks per transaction. Changing this parameter causes a service restart.
      */
-    maxLocksPerTransaction?: pulumi.Input<number>;
+    maxLocksPerTransaction?: pulumi.Input<number | undefined>;
     /**
      * PostgreSQL maximum logical replication workers (taken from the pool defined by max_worker_processes). The default is `4` (upstream default). Changing this parameter causes a service restart.
      */
-    maxLogicalReplicationWorkers?: pulumi.Input<number>;
+    maxLogicalReplicationWorkers?: pulumi.Input<number | undefined>;
     /**
      * Sets the maximum number of workers that the system can support for parallel queries. The default is `8` (upstream default).
      */
-    maxParallelWorkers?: pulumi.Input<number>;
+    maxParallelWorkers?: pulumi.Input<number | undefined>;
     /**
      * Sets the maximum number of workers that can be started by a single Gather or Gather Merge node. The default is `2` (upstream default).
      */
-    maxParallelWorkersPerGather?: pulumi.Input<number>;
+    maxParallelWorkersPerGather?: pulumi.Input<number | undefined>;
     /**
      * PostgreSQL maximum predicate locks per transaction. The default is `64` (upstream default). Changing this parameter causes a service restart.
      */
-    maxPredLocksPerTransaction?: pulumi.Input<number>;
+    maxPredLocksPerTransaction?: pulumi.Input<number | undefined>;
     /**
      * PostgreSQL maximum prepared transactions. The default is `0`. Changing this parameter causes a service restart.
      */
-    maxPreparedTransactions?: pulumi.Input<number>;
+    maxPreparedTransactions?: pulumi.Input<number | undefined>;
     /**
      * PostgreSQL maximum replication slots. The default is `20`. Changing this parameter causes a service restart.
      */
-    maxReplicationSlots?: pulumi.Input<number>;
+    maxReplicationSlots?: pulumi.Input<number | undefined>;
     /**
      * PostgreSQL maximum WAL size (MB) reserved for replication slots. If `-1` is specified, replication slots may retain an unlimited amount of WAL files. The default is `-1` (upstream default). walKeepSize minimum WAL size setting takes precedence over this.
      */
-    maxSlotWalKeepSize?: pulumi.Input<number>;
+    maxSlotWalKeepSize?: pulumi.Input<number | undefined>;
     /**
      * Maximum depth of the stack in bytes. The default is `2097152` (upstream default).
      */
-    maxStackDepth?: pulumi.Input<number>;
+    maxStackDepth?: pulumi.Input<number | undefined>;
     /**
      * Max standby archive delay in milliseconds. The default is `30000` (upstream default).
      */
-    maxStandbyArchiveDelay?: pulumi.Input<number>;
+    maxStandbyArchiveDelay?: pulumi.Input<number | undefined>;
     /**
      * Max standby streaming delay in milliseconds. The default is `30000` (upstream default).
      */
-    maxStandbyStreamingDelay?: pulumi.Input<number>;
+    maxStandbyStreamingDelay?: pulumi.Input<number | undefined>;
     /**
      * Maximum number of synchronization workers per subscription. The default is `2`.
      */
-    maxSyncWorkersPerSubscription?: pulumi.Input<number>;
+    maxSyncWorkersPerSubscription?: pulumi.Input<number | undefined>;
     /**
      * PostgreSQL maximum WAL senders. The default is `20`. Changing this parameter causes a service restart.
      */
-    maxWalSenders?: pulumi.Input<number>;
+    maxWalSenders?: pulumi.Input<number | undefined>;
     /**
      * Sets the maximum number of background processes that the system can support. The default is `8`. Changing this parameter causes a service restart.
      */
-    maxWorkerProcesses?: pulumi.Input<number>;
+    maxWorkerProcesses?: pulumi.Input<number | undefined>;
     /**
      * Migrate data from existing server.
      */
-    migration?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesMigration>;
+    migration?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesMigration | undefined>;
     /**
      * Number of nodes for the service.
      */
-    nodeCount?: pulumi.Input<number>;
+    nodeCount?: pulumi.Input<number | undefined>;
     /**
      * Chooses the algorithm for encrypting passwords.
      */
-    passwordEncryption?: pulumi.Input<string>;
+    passwordEncryption?: pulumi.Input<string | undefined>;
     /**
      * Sets the time interval in seconds to run pg_partman's scheduled tasks. The default is `3600`.
      */
-    pgPartmanBgwInterval?: pulumi.Input<number>;
+    pgPartmanBgwInterval?: pulumi.Input<number | undefined>;
     /**
      * Controls which role to use for pg_partman's scheduled background tasks.
      */
-    pgPartmanBgwRole?: pulumi.Input<string>;
+    pgPartmanBgwRole?: pulumi.Input<string | undefined>;
     /**
      * Enable pgStatMonitor extension if available for the current cluster. Enable the pgStatMonitor extension. Changing this parameter causes a service restart. When this extension is enabled, pgStatStatements results for utility commands are unreliable.
      */
-    pgStatMonitorEnable?: pulumi.Input<boolean>;
+    pgStatMonitorEnable?: pulumi.Input<boolean | undefined>;
     /**
      * Enables or disables query plan monitoring. Only available for PostgreSQL 13+.
      */
-    pgStatMonitorPgsmEnableQueryPlan?: pulumi.Input<boolean>;
+    pgStatMonitorPgsmEnableQueryPlan?: pulumi.Input<boolean | undefined>;
     /**
      * Sets the maximum number of buckets. Changing this parameter causes a service restart. Only available for PostgreSQL 13+.
      */
-    pgStatMonitorPgsmMaxBuckets?: pulumi.Input<number>;
+    pgStatMonitorPgsmMaxBuckets?: pulumi.Input<number | undefined>;
     /**
      * Enable pgStatPlans extension if available for the current cluster. Enable the pgStatPlans extension. Changing this parameter causes a service restart. Tracks execution plans for SQL queries.
      */
-    pgStatPlansEnable?: pulumi.Input<boolean>;
+    pgStatPlansEnable?: pulumi.Input<boolean | undefined>;
     /**
      * Controls which statements' plans are tracked. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable plan tracking. The default is `top`.
      */
-    pgStatPlansTrack?: pulumi.Input<string>;
+    pgStatPlansTrack?: pulumi.Input<string | undefined>;
     /**
      * Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default is `top`.
      */
-    pgStatStatementsTrack?: pulumi.Input<string>;
+    pgStatStatementsTrack?: pulumi.Input<string | undefined>;
     /**
      * PGAudit settings. System-wide settings for the pgaudit extension.
      */
-    pgaudit?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesPgaudit>;
+    pgaudit?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesPgaudit | undefined>;
     /**
      * PGBouncer connection pooling settings. System-wide settings for pgbouncer.
      */
-    pgbouncer?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesPgbouncer>;
+    pgbouncer?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesPgbouncer | undefined>;
     /**
      * PGLookout settings. System-wide settings for pglookout.
      */
-    pglookout?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesPglookout>;
+    pglookout?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesPglookout | undefined>;
     /**
      * Public Access. Allow access to the service from the public Internet.
      */
-    publicAccess?: pulumi.Input<boolean>;
+    publicAccess?: pulumi.Input<boolean | undefined>;
     /**
      * Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
      */
-    publicAccessPrometheus?: pulumi.Input<boolean>;
+    publicAccessPrometheus?: pulumi.Input<boolean | undefined>;
     /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      */
-    serviceLog?: pulumi.Input<boolean>;
+    serviceLog?: pulumi.Input<boolean | undefined>;
     /**
      * Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the sharedBuffers configuration value. Changing this parameter causes a service restart.
      */
-    sharedBuffersPercentage?: pulumi.Input<number>;
+    sharedBuffersPercentage?: pulumi.Input<number | undefined>;
     /**
      * Sets the current transaction's synchronization level. The default is `off`. This setting takes precedence over `synchronousReplication`.
      */
-    synchronousCommit?: pulumi.Input<string>;
+    synchronousCommit?: pulumi.Input<string | undefined>;
     /**
      * Synchronous replication type. (deprecated, use synchronousCommit instead). Note that the service plan also needs to support synchronous replication. This setting is deprecated. Use synchronousCommit instead. Any change to this setting will automatically update synchronous_commit. Setting the value to quorum changes synchronousCommit to remote_write, while setting it to off changes synchronousCommit to off.
      */
-    synchronousReplication?: pulumi.Input<string>;
+    synchronousReplication?: pulumi.Input<string | undefined>;
     /**
      * PostgreSQL temporary file limit in KiB, -1 for unlimited.
      */
-    tempFileLimit?: pulumi.Input<number>;
+    tempFileLimit?: pulumi.Input<number | undefined>;
     /**
      * TimescaleDB extension configuration values. System-wide settings for the timescaledb extension.
      */
-    timescaledb?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesTimescaledb>;
+    timescaledb?: pulumi.Input<inputs.ManagedDatabasePostgresqlPropertiesTimescaledb | undefined>;
     /**
      * PostgreSQL service timezone.
      */
-    timezone?: pulumi.Input<string>;
+    timezone?: pulumi.Input<string | undefined>;
     /**
      * Specifies the number of bytes reserved to track the currently executing command for each active session. Changing this parameter causes a service restart.
      */
-    trackActivityQuerySize?: pulumi.Input<number>;
+    trackActivityQuerySize?: pulumi.Input<number | undefined>;
     /**
      * Record commit time of transactions. Changing this parameter causes a service restart.
      */
-    trackCommitTimestamp?: pulumi.Input<string>;
+    trackCommitTimestamp?: pulumi.Input<string | undefined>;
     /**
      * Enables tracking of function call counts and time used.
      */
-    trackFunctions?: pulumi.Input<string>;
+    trackFunctions?: pulumi.Input<string | undefined>;
     /**
      * Enables timing of database I/O calls. The default is `off`. When on, it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
      */
-    trackIoTiming?: pulumi.Input<string>;
+    trackIoTiming?: pulumi.Input<string | undefined>;
     /**
      * Variant of the PostgreSQL service, may affect the features that are exposed by default.
      */
-    variant?: pulumi.Input<string>;
+    variant?: pulumi.Input<string | undefined>;
     /**
      * PostgreSQL major version.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
     /**
      * Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to zero disables the timeout.
      */
-    walSenderTimeout?: pulumi.Input<number>;
+    walSenderTimeout?: pulumi.Input<number | undefined>;
     /**
      * WAL flush interval in milliseconds. The default is `200`. Setting this parameter to a lower value may negatively impact performance.
      */
-    walWriterDelay?: pulumi.Input<number>;
+    walWriterDelay?: pulumi.Input<number | undefined>;
     /**
      * Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. The default is 1MB + 0.075% of total RAM (up to 32MB).
      */
-    workMem?: pulumi.Input<number>;
+    workMem?: pulumi.Input<number | undefined>;
 }
 
 export interface ManagedDatabasePostgresqlPropertiesMigration {
     /**
      * Database name for bootstrapping the initial connection.
      */
-    dbname?: pulumi.Input<string>;
+    dbname?: pulumi.Input<string | undefined>;
     /**
      * Hostname or IP address of the server where to migrate data from.
      */
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
      */
-    ignoreDbs?: pulumi.Input<string>;
+    ignoreDbs?: pulumi.Input<string | undefined>;
     /**
      * Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
      */
-    ignoreRoles?: pulumi.Input<string>;
+    ignoreRoles?: pulumi.Input<string | undefined>;
     /**
      * The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
      */
-    method?: pulumi.Input<string>;
+    method?: pulumi.Input<string | undefined>;
     /**
      * Password for authentication with the server where to migrate data from.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Port number of the server where to migrate data from.
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * The server where to migrate data from is secured with SSL.
      */
-    ssl?: pulumi.Input<boolean>;
+    ssl?: pulumi.Input<boolean | undefined>;
     /**
      * User name for authentication with the server where to migrate data from.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabasePostgresqlPropertiesPgaudit {
     /**
      * Enable pgaudit extension. Enable pgaudit extension. When enabled, pgaudit extension will be automatically installed.Otherwise, extension will be uninstalled but auditing configurations will be preserved.
      */
-    featureEnabled?: pulumi.Input<boolean>;
+    featureEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Log Catalog. Specifies that session logging should be enabled in the case where all relations
      * in a statement are in pg_catalog.
      */
-    logCatalog?: pulumi.Input<boolean>;
+    logCatalog?: pulumi.Input<boolean | undefined>;
     /**
      * Log Client. Specifies whether log messages will be visible to a client process such as psql.
      */
-    logClient?: pulumi.Input<boolean>;
+    logClient?: pulumi.Input<boolean | undefined>;
     /**
      * Log level. Specifies the log level that will be used for log entries.
      */
-    logLevel?: pulumi.Input<string>;
+    logLevel?: pulumi.Input<string | undefined>;
     /**
      * Log Max String Length. Crop parameters representation and whole statements if they exceed this threshold.
      * A (default) value of -1 disable the truncation.
      */
-    logMaxStringLength?: pulumi.Input<number>;
+    logMaxStringLength?: pulumi.Input<number | undefined>;
     /**
      * Log Nested Statements. This GUC allows to turn off logging nested statements, that is, statements that are
      * executed as part of another ExecutorRun.
      */
-    logNestedStatements?: pulumi.Input<boolean>;
+    logNestedStatements?: pulumi.Input<boolean | undefined>;
     /**
      * Log Parameter. Specifies that audit logging should include the parameters that were passed with the statement.
      */
-    logParameter?: pulumi.Input<boolean>;
+    logParameter?: pulumi.Input<boolean | undefined>;
     /**
      * Log Parameter Max Size. Specifies that parameter values longer than this setting (in bytes) should not be logged,
      * but replaced with <long param suppressed>.
      */
-    logParameterMaxSize?: pulumi.Input<number>;
+    logParameterMaxSize?: pulumi.Input<number | undefined>;
     /**
      * Log Relation. Specifies whether session audit logging should create a separate log entry
      * for each relation (TABLE, VIEW, etc.) referenced in a SELECT or DML statement.
      */
-    logRelation?: pulumi.Input<boolean>;
+    logRelation?: pulumi.Input<boolean | undefined>;
     /**
      * Log Rows.
      */
-    logRows?: pulumi.Input<boolean>;
+    logRows?: pulumi.Input<boolean | undefined>;
     /**
      * Log Statement. Specifies whether logging will include the statement text and parameters (if enabled).
      */
-    logStatement?: pulumi.Input<boolean>;
+    logStatement?: pulumi.Input<boolean | undefined>;
     /**
      * Log Statement Once. Specifies whether logging will include the statement text and parameters with
      * the first log entry for a statement/substatement combination or with every entry.
      */
-    logStatementOnce?: pulumi.Input<boolean>;
+    logStatementOnce?: pulumi.Input<boolean | undefined>;
     /**
      * Log. Specifies which classes of statements will be logged by session audit logging.
      */
-    logs?: pulumi.Input<pulumi.Input<string>[]>;
+    logs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Role. Specifies the master role to use for object audit logging.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabasePostgresqlPropertiesPgbouncer {
     /**
      * If the automatically created database pools have been unused this many seconds, they are freed. If 0 then timeout is disabled. [seconds].
      */
-    autodbIdleTimeout?: pulumi.Input<number>;
+    autodbIdleTimeout?: pulumi.Input<number | undefined>;
     /**
      * Do not allow more than this many server connections per database (regardless of user). Setting it to 0 means unlimited.
      */
-    autodbMaxDbConnections?: pulumi.Input<number>;
+    autodbMaxDbConnections?: pulumi.Input<number | undefined>;
     /**
      * PGBouncer pool mode.
      */
-    autodbPoolMode?: pulumi.Input<string>;
+    autodbPoolMode?: pulumi.Input<string | undefined>;
     /**
      * If non-zero then create automatically a pool of that size per user when a pool doesn't exist.
      */
-    autodbPoolSize?: pulumi.Input<number>;
+    autodbPoolSize?: pulumi.Input<number | undefined>;
     /**
      * List of parameters to ignore when given in startup packet.
      */
-    ignoreStartupParameters?: pulumi.Input<pulumi.Input<string>[]>;
+    ignoreStartupParameters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * PgBouncer tracks protocol-level named prepared statements related commands sent by the client in transaction and statement pooling modes when maxPreparedStatements is set to a non-zero value. Setting it to 0 disables prepared statements. maxPreparedStatements defaults to 100, and its maximum is 3000.
      */
-    maxPreparedStatements?: pulumi.Input<number>;
+    maxPreparedStatements?: pulumi.Input<number | undefined>;
     /**
      * Add more server connections to pool if below this number. Improves behavior when usual load comes suddenly back after period of total inactivity. The value is effectively capped at the pool size.
      */
-    minPoolSize?: pulumi.Input<number>;
+    minPoolSize?: pulumi.Input<number | undefined>;
     /**
      * If connection and login don’t finish in this amount of time, the connection will be closed. [seconds].
      */
-    serverConnectTimeout?: pulumi.Input<number>;
+    serverConnectTimeout?: pulumi.Input<number | undefined>;
     /**
      * If a server connection has been idle more than this many seconds it will be dropped. If 0 then timeout is disabled. [seconds].
      */
-    serverIdleTimeout?: pulumi.Input<number>;
+    serverIdleTimeout?: pulumi.Input<number | undefined>;
     /**
      * The pooler will close an unused server connection that has been connected longer than this. [seconds].
      */
-    serverLifetime?: pulumi.Input<number>;
+    serverLifetime?: pulumi.Input<number | undefined>;
     /**
      * If login to the server failed, because of failure to connect or from authentication, the pooler waits this much before retrying to connect. During the waiting interval, new clients trying to connect to the failing server will get an error immediately without another connection attempt. [seconds].
      */
-    serverLoginRetry?: pulumi.Input<number>;
+    serverLoginRetry?: pulumi.Input<number | undefined>;
     /**
      * Run serverResetQuery (DISCARD ALL) in all pooling modes.
      */
-    serverResetQueryAlways?: pulumi.Input<boolean>;
+    serverResetQueryAlways?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ManagedDatabasePostgresqlPropertiesPglookout {
     /**
      * Max Failover Replication Time Lag. Number of seconds of master unavailability before triggering database failover to standby.
      */
-    maxFailoverReplicationTimeLag?: pulumi.Input<number>;
+    maxFailoverReplicationTimeLag?: pulumi.Input<number | undefined>;
 }
 
 export interface ManagedDatabasePostgresqlPropertiesTimescaledb {
     /**
      * The number of background workers for timescaledb operations. You should configure this setting to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time. Changing this parameter causes a service restart.
      */
-    maxBackgroundWorkers?: pulumi.Input<number>;
+    maxBackgroundWorkers?: pulumi.Input<number | undefined>;
 }
 
 export interface ManagedDatabaseUserOpensearchAccessControl {
     /**
      * Set user access control rules.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseUserOpensearchAccessControlRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.ManagedDatabaseUserOpensearchAccessControlRule>[] | undefined>;
 }
 
 export interface ManagedDatabaseUserOpensearchAccessControlRule {
@@ -3605,49 +3605,49 @@ export interface ManagedDatabaseUserPgAccessControl {
     /**
      * Grant replication privilege
      */
-    allowReplication?: pulumi.Input<boolean>;
+    allowReplication?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ManagedDatabaseUserValkeyAccessControl {
     /**
      * Set access control to all commands in specified categories.
      */
-    categories?: pulumi.Input<string>;
+    categories?: pulumi.Input<string | undefined>;
     /**
      * Set access control to Pub/Sub channels.
      */
-    channels?: pulumi.Input<string>;
+    channels?: pulumi.Input<string | undefined>;
     /**
      * Set access control to commands.
      */
-    commands?: pulumi.Input<string>;
+    commands?: pulumi.Input<string | undefined>;
     /**
      * Set access control to keys.
      */
-    keys?: pulumi.Input<string>;
+    keys?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseValkeyComponent {
     /**
      * Component name.
      */
-    component?: pulumi.Input<string>;
+    component?: pulumi.Input<string | undefined>;
     /**
      * Hostname of the component
      */
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * Port number of the component
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * Component network route type
      */
-    route?: pulumi.Input<string>;
+    route?: pulumi.Input<string | undefined>;
     /**
      * Usage of the component
      */
-    usage?: pulumi.Input<string>;
+    usage?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseValkeyNetwork {
@@ -3673,184 +3673,184 @@ export interface ManagedDatabaseValkeyNodeState {
     /**
      * Name plus a node iteration
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Role of the node
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * Current state of the node
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseValkeyProperties {
     /**
      * Automatic utility network IP Filter. Automatically allow connections from servers in the utility network within the same zone.
      */
-    automaticUtilityNetworkIpFilter?: pulumi.Input<boolean>;
+    automaticUtilityNetworkIpFilter?: pulumi.Input<boolean | undefined>;
     /**
      * The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.
      */
-    backupHour?: pulumi.Input<number>;
+    backupHour?: pulumi.Input<number | undefined>;
     /**
      * The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.
      */
-    backupMinute?: pulumi.Input<number>;
+    backupMinute?: pulumi.Input<number | undefined>;
     /**
      * Frequent RDB snapshots. When enabled, Valkey will create frequent local RDB snapshots. When disabled, Valkey will only take RDB snapshots when a backup is created, based on the backup schedule. This setting is ignored when `valkeyPersistence` is set to `off`.
      */
-    frequentSnapshots?: pulumi.Input<boolean>;
+    frequentSnapshots?: pulumi.Input<boolean | undefined>;
     /**
      * IP filter. Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'.
      */
-    ipFilters?: pulumi.Input<pulumi.Input<string>[]>;
+    ipFilters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Migrate data from existing server.
      */
-    migration?: pulumi.Input<inputs.ManagedDatabaseValkeyPropertiesMigration>;
+    migration?: pulumi.Input<inputs.ManagedDatabaseValkeyPropertiesMigration | undefined>;
     /**
      * Public Access. Allow access to the service from the public Internet.
      */
-    publicAccess?: pulumi.Input<boolean>;
+    publicAccess?: pulumi.Input<boolean | undefined>;
     /**
      * Prometheus Public Access. Allow access to Prometheus metrics from the public Internet.
      */
-    publicAccessPrometheus?: pulumi.Input<boolean>;
+    publicAccessPrometheus?: pulumi.Input<boolean | undefined>;
     /**
      * Number of replicas per shard. Number of replicas per shard in the Valkey cluster. Only applies to cluster plans.
      */
-    replicas?: pulumi.Input<number>;
+    replicas?: pulumi.Input<number | undefined>;
     /**
      * Service logging. Store logs for the service so that they are available in the HTTP API and console.
      */
-    serviceLog?: pulumi.Input<boolean>;
+    serviceLog?: pulumi.Input<boolean | undefined>;
     /**
      * Number of shards. Number of shards (primaries) in the Valkey cluster. Required for cluster plans.
      */
-    shardCount?: pulumi.Input<number>;
+    shardCount?: pulumi.Input<number | undefined>;
     /**
      * Default ACL for pub/sub channels used when a Valkey user is created. Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, allChannels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default.
      */
-    valkeyAclChannelsDefault?: pulumi.Input<string>;
+    valkeyAclChannelsDefault?: pulumi.Input<string | undefined>;
     /**
      * Active defrag minimum fragmentation waste. Minimum amount of fragmentation waste, in bytes, before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
      */
-    valkeyActiveDefragIgnoreBytes?: pulumi.Input<number>;
+    valkeyActiveDefragIgnoreBytes?: pulumi.Input<number | undefined>;
     /**
      * Active defrag minimum fragmentation percentage. Minimum percentage of fragmentation before active defragmentation starts. Only takes effect when `valkeyActivedefrag` is enabled.
      */
-    valkeyActiveDefragThresholdLower?: pulumi.Input<number>;
+    valkeyActiveDefragThresholdLower?: pulumi.Input<number | undefined>;
     /**
      * Active expire effort. Valkey reclaims expired keys both when accessed and in the background. The background process scans for expired keys to free memory. Increasing the active-expire-effort setting (default 1, max 10) uses more CPU to reclaim expired keys faster, reducing memory usage but potentially increasing latency.
      */
-    valkeyActiveExpireEffort?: pulumi.Input<number>;
+    valkeyActiveExpireEffort?: pulumi.Input<number | undefined>;
     /**
      * Active memory defragmentation. Enable active memory defragmentation. When enabled, Valkey relocates objects off sparsely-used memory pages to reduce fragmentation and return memory to the operating system. Defragmentation runs on the main thread and consumes CPU, so it may increase latency under load.
      */
-    valkeyActivedefrag?: pulumi.Input<boolean>;
+    valkeyActivedefrag?: pulumi.Input<boolean | undefined>;
     /**
      * Valkey IO thread count. Set Valkey IO thread count. Changing this will cause a restart of the Valkey service.
      */
-    valkeyIoThreads?: pulumi.Input<number>;
+    valkeyIoThreads?: pulumi.Input<number | undefined>;
     /**
      * LFU maxmemory-policy counter decay time in minutes.
      */
-    valkeyLfuDecayTime?: pulumi.Input<number>;
+    valkeyLfuDecayTime?: pulumi.Input<number | undefined>;
     /**
      * Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies.
      */
-    valkeyLfuLogFactor?: pulumi.Input<number>;
+    valkeyLfuLogFactor?: pulumi.Input<number | undefined>;
     /**
      * Valkey maxmemory-policy.
      */
-    valkeyMaxmemoryPolicy?: pulumi.Input<string>;
+    valkeyMaxmemoryPolicy?: pulumi.Input<string | undefined>;
     /**
      * Set notify-keyspace-events option.
      */
-    valkeyNotifyKeyspaceEvents?: pulumi.Input<string>;
+    valkeyNotifyKeyspaceEvents?: pulumi.Input<string | undefined>;
     /**
      * Number of Valkey databases. Set number of Valkey databases. Changing this will cause a restart of the Valkey service.
      */
-    valkeyNumberOfDatabases?: pulumi.Input<number>;
+    valkeyNumberOfDatabases?: pulumi.Input<number | undefined>;
     /**
      * Valkey persistence. Controls whether Valkey writes RDB dumps to disk. With `rdb`, RDB dumps are written for backups on the backup schedule and, if `frequentSnapshots` is enabled, every 10 minutes so the service can recover recent data after a restart. With `off`, no RDB dumps are written at all: backups and forking are unavailable, `frequentSnapshots` and `backupHour`/`backupMinute` have no effect, and all data is lost if the service restarts or is powered off.
      */
-    valkeyPersistence?: pulumi.Input<string>;
+    valkeyPersistence?: pulumi.Input<string | undefined>;
     /**
      * Pub/sub client output buffer hard limit in MB. Set output buffer limit for pub / sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.
      */
-    valkeyPubsubClientOutputBufferLimit?: pulumi.Input<number>;
+    valkeyPubsubClientOutputBufferLimit?: pulumi.Input<number | undefined>;
     /**
      * Require SSL to access Valkey.
      */
-    valkeySsl?: pulumi.Input<boolean>;
+    valkeySsl?: pulumi.Input<boolean | undefined>;
     /**
      * Valkey idle connection timeout in seconds.
      */
-    valkeyTimeout?: pulumi.Input<number>;
+    valkeyTimeout?: pulumi.Input<number | undefined>;
     /**
      * Valkey major version.
      */
-    valkeyVersion?: pulumi.Input<string>;
+    valkeyVersion?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedDatabaseValkeyPropertiesMigration {
     /**
      * Database name for bootstrapping the initial connection.
      */
-    dbname?: pulumi.Input<string>;
+    dbname?: pulumi.Input<string | undefined>;
     /**
      * Hostname or IP address of the server where to migrate data from.
      */
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * Comma-separated list of databases, which should be ignored during migration (supported by MySQL and PostgreSQL only at the moment).
      */
-    ignoreDbs?: pulumi.Input<string>;
+    ignoreDbs?: pulumi.Input<string | undefined>;
     /**
      * Comma-separated list of database roles, which should be ignored during migration (supported by PostgreSQL only at the moment).
      */
-    ignoreRoles?: pulumi.Input<string>;
+    ignoreRoles?: pulumi.Input<string | undefined>;
     /**
      * The migration method to be used (currently supported only by Redis, Dragonfly, MySQL and PostgreSQL service types).
      */
-    method?: pulumi.Input<string>;
+    method?: pulumi.Input<string | undefined>;
     /**
      * Password for authentication with the server where to migrate data from.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Port number of the server where to migrate data from.
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * The server where to migrate data from is secured with SSL.
      */
-    ssl?: pulumi.Input<boolean>;
+    ssl?: pulumi.Input<boolean | undefined>;
     /**
      * User name for authentication with the server where to migrate data from.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedObjectStorageEndpoint {
     /**
      * Domain name of the endpoint.
      */
-    domainName?: pulumi.Input<string>;
+    domainName?: pulumi.Input<string | undefined>;
     /**
      * URL for IAM.
      */
-    iamUrl?: pulumi.Input<string>;
+    iamUrl?: pulumi.Input<string | undefined>;
     /**
      * URL for STS.
      */
-    stsUrl?: pulumi.Input<string>;
+    stsUrl?: pulumi.Input<string | undefined>;
     /**
      * Type of the endpoint (`private` / `public`).
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedObjectStorageNetwork {
@@ -3869,7 +3869,7 @@ export interface ManagedObjectStorageNetwork {
     /**
      * Private network uuid. For public networks the field should be omitted.
      */
-    uuid?: pulumi.Input<string>;
+    uuid?: pulumi.Input<string | undefined>;
 }
 
 export interface ManagedObjectStorageStaticSiteErrorPage {
@@ -3880,38 +3880,38 @@ export interface ManagedObjectStorageStaticSiteErrorPage {
     /**
      * Exact HTTP status code to match. Mutually exclusive with status range.
      */
-    statusCode?: pulumi.Input<number>;
+    statusCode?: pulumi.Input<number | undefined>;
     /**
      * End of the status code range (inclusive). Must be greater than start.
      */
-    statusRangeEnd?: pulumi.Input<number>;
+    statusRangeEnd?: pulumi.Input<number | undefined>;
     /**
      * Start of the status code range (inclusive).
      */
-    statusRangeStart?: pulumi.Input<number>;
+    statusRangeStart?: pulumi.Input<number | undefined>;
 }
 
 export interface NetworkEffectiveRoute {
     /**
      * Next hop address for this route.
      */
-    nexthop?: pulumi.Input<string>;
+    nexthop?: pulumi.Input<string | undefined>;
     /**
      * Destination CIDR of the route.
      */
-    route?: pulumi.Input<string>;
+    route?: pulumi.Input<string | undefined>;
     /**
      * Origin of the route (e.g., static-route, router-connected-networks).
      */
-    source?: pulumi.Input<string>;
+    source?: pulumi.Input<string | undefined>;
     /**
      * UUID of the source resource that provided this route, if applicable.
      */
-    sourceResourceId?: pulumi.Input<string>;
+    sourceResourceId?: pulumi.Input<string | undefined>;
     /**
      * Route type (service or user).
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface NetworkIpNetwork {
@@ -3926,23 +3926,23 @@ export interface NetworkIpNetwork {
     /**
      * Is the gateway the DHCP default route?
      */
-    dhcpDefaultRoute?: pulumi.Input<boolean>;
+    dhcpDefaultRoute?: pulumi.Input<boolean | undefined>;
     /**
      * The DNS servers given by DHCP
      */
-    dhcpDns?: pulumi.Input<pulumi.Input<string>[]>;
+    dhcpDns?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Routes provided to DHCP clients in this subnet (read-only).
      */
-    dhcpEffectiveRoutes?: pulumi.Input<pulumi.Input<inputs.NetworkIpNetworkDhcpEffectiveRoute>[]>;
+    dhcpEffectiveRoutes?: pulumi.Input<pulumi.Input<inputs.NetworkIpNetworkDhcpEffectiveRoute>[] | undefined>;
     /**
      * The additional DHCP classless static routes given by DHCP
      */
-    dhcpRoutes?: pulumi.Input<pulumi.Input<string>[]>;
+    dhcpRoutes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * DHCP routes auto-population configuration.
      */
-    dhcpRoutesConfiguration?: pulumi.Input<inputs.NetworkIpNetworkDhcpRoutesConfiguration>;
+    dhcpRoutesConfiguration?: pulumi.Input<inputs.NetworkIpNetworkDhcpRoutesConfiguration | undefined>;
     /**
      * IP address family
      */
@@ -3950,48 +3950,48 @@ export interface NetworkIpNetwork {
     /**
      * Gateway address given by DHCP
      */
-    gateway?: pulumi.Input<string>;
+    gateway?: pulumi.Input<string | undefined>;
 }
 
 export interface NetworkIpNetworkDhcpEffectiveRoute {
     /**
      * Whether the route was auto-populated by DHCP.
      */
-    autoPopulated?: pulumi.Input<boolean>;
+    autoPopulated?: pulumi.Input<boolean | undefined>;
     /**
      * Next hop address for this DHCP route.
      */
-    nexthop?: pulumi.Input<string>;
+    nexthop?: pulumi.Input<string | undefined>;
     /**
      * Destination prefix (CIDR) of the DHCP route.
      */
-    route?: pulumi.Input<string>;
+    route?: pulumi.Input<string | undefined>;
 }
 
 export interface NetworkIpNetworkDhcpRoutesConfiguration {
     /**
      * Automatically populate effective routes.
      */
-    effectiveRoutesAutoPopulation?: pulumi.Input<inputs.NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation>;
+    effectiveRoutesAutoPopulation?: pulumi.Input<inputs.NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation | undefined>;
 }
 
 export interface NetworkIpNetworkDhcpRoutesConfigurationEffectiveRoutesAutoPopulation {
     /**
      * Enable or disable route auto-population.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Exclude routes coming from specific sources (router-connected-networks, static-route).
      */
-    excludeBySources?: pulumi.Input<pulumi.Input<string>[]>;
+    excludeBySources?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * CIDR destinations to include when auto-populating routes.
      */
-    filterByDestinations?: pulumi.Input<pulumi.Input<string>[]>;
+    filterByDestinations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Include only routes of given types (service, user).
      */
-    filterByRouteTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    filterByRouteTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface NetworkPeeringNetwork {
@@ -4023,23 +4023,23 @@ export interface ServerFirewallRulesFirewallRule {
     /**
      * A comment for the rule.
      */
-    comment?: pulumi.Input<string>;
+    comment?: pulumi.Input<string | undefined>;
     /**
      * The destination address range ends from this address
      */
-    destinationAddressEnd?: pulumi.Input<string>;
+    destinationAddressEnd?: pulumi.Input<string | undefined>;
     /**
      * The destination address range starts from this address
      */
-    destinationAddressStart?: pulumi.Input<string>;
+    destinationAddressStart?: pulumi.Input<string | undefined>;
     /**
      * The destination port range ends from this port number
      */
-    destinationPortEnd?: pulumi.Input<string>;
+    destinationPortEnd?: pulumi.Input<string | undefined>;
     /**
      * The destination port range starts from this port number
      */
-    destinationPortStart?: pulumi.Input<string>;
+    destinationPortStart?: pulumi.Input<string | undefined>;
     /**
      * The direction of network traffic this rule will be applied to. Valid values are `in` and `out`.
      */
@@ -4047,93 +4047,93 @@ export interface ServerFirewallRulesFirewallRule {
     /**
      * The address family of new firewall rule
      */
-    family?: pulumi.Input<string>;
+    family?: pulumi.Input<string | undefined>;
     /**
      * The ICMP type of the rule. Only valid if protocol is ICMP.
      */
-    icmpType?: pulumi.Input<string>;
+    icmpType?: pulumi.Input<string | undefined>;
     /**
      * The protocol of the rule. Possible values are `` (empty), `tcp`, `udp`, `icmp`.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * The source address range ends from this address
      */
-    sourceAddressEnd?: pulumi.Input<string>;
+    sourceAddressEnd?: pulumi.Input<string | undefined>;
     /**
      * The source address range starts from this address
      */
-    sourceAddressStart?: pulumi.Input<string>;
+    sourceAddressStart?: pulumi.Input<string | undefined>;
     /**
      * The source port range ends from this port number
      */
-    sourcePortEnd?: pulumi.Input<string>;
+    sourcePortEnd?: pulumi.Input<string | undefined>;
     /**
      * The source port range starts from this port number
      */
-    sourcePortStart?: pulumi.Input<string>;
+    sourcePortStart?: pulumi.Input<string | undefined>;
 }
 
 export interface ServerLogin {
     /**
      * Indicates a password should be create to allow access
      */
-    createPassword?: pulumi.Input<boolean>;
+    createPassword?: pulumi.Input<boolean | undefined>;
     /**
      * A list of ssh keys to access the server
      */
-    keys?: pulumi.Input<pulumi.Input<string>[]>;
+    keys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The generated one-time password for the server
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * The delivery method for the server's root password (one of `none`, `email` or `sms`)
      */
-    passwordDelivery?: pulumi.Input<string>;
+    passwordDelivery?: pulumi.Input<string | undefined>;
     /**
      * Username to be create to access the server
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
 }
 
 export interface ServerNetworkInterface {
     /**
      * 0-31 blocks of additional IP addresses to assign to this interface. Allowed only with network interfaces of type `private`
      */
-    additionalIpAddresses?: pulumi.Input<pulumi.Input<inputs.ServerNetworkInterfaceAdditionalIpAddress>[]>;
+    additionalIpAddresses?: pulumi.Input<pulumi.Input<inputs.ServerNetworkInterfaceAdditionalIpAddress>[] | undefined>;
     /**
      * `true` if this interface should be used for network booting.
      */
-    bootable?: pulumi.Input<boolean>;
+    bootable?: pulumi.Input<boolean | undefined>;
     /**
      * The interface index.
      */
-    index?: pulumi.Input<number>;
+    index?: pulumi.Input<number | undefined>;
     /**
      * The primary IP address of this interface.
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * The type of the primary IP address of this interface (one of `IPv4` or `IPv6`).
      */
-    ipAddressFamily?: pulumi.Input<string>;
+    ipAddressFamily?: pulumi.Input<string | undefined>;
     /**
      * `true` indicates that the primary IP address is a floating IP address.
      */
-    ipAddressFloating?: pulumi.Input<boolean>;
+    ipAddressFloating?: pulumi.Input<boolean | undefined>;
     /**
      * The MAC address of the interface.
      */
-    macAddress?: pulumi.Input<string>;
+    macAddress?: pulumi.Input<string | undefined>;
     /**
      * The UUID of the network to attach this interface to. Required for private network interfaces.
      */
-    network?: pulumi.Input<string>;
+    network?: pulumi.Input<string | undefined>;
     /**
      * `true` if source IP should be filtered.
      */
-    sourceIpFiltering?: pulumi.Input<boolean>;
+    sourceIpFiltering?: pulumi.Input<boolean | undefined>;
     /**
      * Network interface type. For private network interfaces, a network must be specified with an existing network id.
      */
@@ -4144,92 +4144,99 @@ export interface ServerNetworkInterfaceAdditionalIpAddress {
     /**
      * An additional IP address for this interface.
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * The type of the additional IP address of this interface (one of `IPv4` or `IPv6`).
      */
-    ipAddressFamily?: pulumi.Input<string>;
+    ipAddressFamily?: pulumi.Input<string | undefined>;
     /**
      * `true` indicates that the additional IP address is a floating IP address.
      */
-    ipAddressFloating?: pulumi.Input<boolean>;
+    ipAddressFloating?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ServerSimpleBackup {
     /**
      * Simple backup plan. Accepted values: daily, dailies, weeklies, monthlies.
      */
-    plan?: pulumi.Input<string>;
+    plan?: pulumi.Input<string | undefined>;
     /**
      * Time of the day at which backup will be taken. Should be provided in a hhmm format (e.g. 2230).
      */
-    time?: pulumi.Input<string>;
+    time?: pulumi.Input<string | undefined>;
 }
 
 export interface ServerStorageDevice {
     /**
      * The device address the storage will be attached to (`scsi`|`virtio`|`ide`). Leave `addressPosition` field empty to auto-select next available address from that bus.
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * The device position in the given bus (defined via field `address`). Valid values for address `virtio` are `0-15` (`0`, for example). Valid values for `scsi` or `ide` are `0-1:0-1` (`0:0`, for example). Leave empty to auto-select next available address in the given bus.
      */
-    addressPosition?: pulumi.Input<string>;
+    addressPosition?: pulumi.Input<string | undefined>;
     /**
      * The UUID of the storage to attach to the server.
      */
-    storage?: pulumi.Input<string>;
+    storage?: pulumi.Input<string | undefined>;
     /**
      * The device type the storage will be attached as
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface ServerTemplate {
     /**
      * The device address the storage will be attached to (`scsi`|`virtio`|`ide`). Leave `addressPosition` field empty to auto-select next available address from that bus.
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * The device position in the given bus (defined via field `address`). For example `0:0`, or `0`. Leave empty to auto-select next available address in the given bus.
      */
-    addressPosition?: pulumi.Input<string>;
-    backupRule?: pulumi.Input<inputs.ServerTemplateBackupRule>;
+    addressPosition?: pulumi.Input<string | undefined>;
+    /**
+     * The criteria to backup the storage.
+     *
+     *     Please keep in mind that it's not possible to have a storage with `backupRule` attached to a server with `simpleBackup` specified. Such configurations will throw errors during execution.
+     *     
+     *     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simpleBackup` on the server and individual storages `backupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simpleBackup` block from a server, run `terraform apply`, then add `backupRule` to desired storages and run `terraform apply` again.
+     */
+    backupRule?: pulumi.Input<inputs.ServerTemplateBackupRule | undefined>;
     /**
      * If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
      */
-    deleteAutoresizeBackup?: pulumi.Input<boolean>;
+    deleteAutoresizeBackup?: pulumi.Input<boolean | undefined>;
     /**
      * Sets if the storage is encrypted at rest
      */
-    encrypt?: pulumi.Input<boolean>;
+    encrypt?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, provider will attempt to resize partition and filesystem when the size of template storage changes.
      * 							Please note that before the resize attempt is made, backup of the storage will be taken. If the resize attempt fails, the backup will be used
      * 							to restore the storage and then deleted. If the resize attempt succeeds, backup will be kept (unless deleteAutoresizeBackup option is set to true).
      * 							Taking and keeping backups incure costs.
      */
-    filesystemAutoresize?: pulumi.Input<boolean>;
+    filesystemAutoresize?: pulumi.Input<boolean | undefined>;
     /**
      * The unique identifier for the storage
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The size of the storage in gigabytes
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
     /**
      * A valid storage UUID or template name. You can list available public templates with `upctl storage list --public --template` and available private templates with `upctl storage list --template`.
      */
-    storage?: pulumi.Input<string>;
+    storage?: pulumi.Input<string | undefined>;
     /**
      * The storage tier to use.
      */
-    tier?: pulumi.Input<string>;
+    tier?: pulumi.Input<string | undefined>;
     /**
      * A short, informative description
      */
-    title?: pulumi.Input<string>;
+    title?: pulumi.Input<string | undefined>;
 }
 
 export interface ServerTemplateBackupRule {
@@ -4273,7 +4280,7 @@ export interface StorageImport {
     /**
      * sha256 sum of the imported data
      */
-    sha256sum?: pulumi.Input<string>;
+    sha256sum?: pulumi.Input<string | undefined>;
     /**
      * The mode of the import task. One of `httpImport` or `directUpload`.
      */
@@ -4281,7 +4288,7 @@ export interface StorageImport {
     /**
      * SHA256 hash of the source content. This hash is used to verify the integrity of the imported data by comparing it to `sha256sum` after the import has completed. Possible filename is automatically removed from the hash before comparison.
      */
-    sourceHash?: pulumi.Input<string>;
+    sourceHash?: pulumi.Input<string | undefined>;
     /**
      * The location of the file to import. For `httpImport` an accessible URL. For `directUpload` a local file. When direct uploading a compressed image, `Content-Type` header of the PUT request is set automatically based on the file extension (`.gz` or `.xz`, case-insensitive).
      */
@@ -4289,5 +4296,5 @@ export interface StorageImport {
     /**
      * Number of bytes imported
      */
-    writtenBytes?: pulumi.Input<number>;
+    writtenBytes?: pulumi.Input<number | undefined>;
 }

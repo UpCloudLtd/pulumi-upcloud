@@ -150,6 +150,12 @@ func (StorageBackupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*storageBackupState)(nil)).Elem()
 }
 
+// StorageBackupExists checks whether an existing StorageBackup resource with the given ID exists.
+func StorageBackupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *StorageBackupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/storageBackup:StorageBackup", id, state, "", opts...)
+}
+
 type storageBackupArgs struct {
 	// User defined key-value pairs to classify the storage.
 	Labels map[string]string `pulumi:"labels"`

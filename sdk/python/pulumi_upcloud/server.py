@@ -23,32 +23,33 @@ class ServerArgs:
     def __init__(__self__, *,
                  hostname: pulumi.Input[_builtins.str],
                  zone: pulumi.Input[_builtins.str],
-                 boot_order: Optional[pulumi.Input[_builtins.str]] = None,
-                 cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 firewall: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_private: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_private_default_incoming_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 firewall_private_default_outgoing_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 host: Optional[pulumi.Input[_builtins.int]] = None,
-                 hot_resize: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 login: Optional[pulumi.Input['ServerLoginArgs']] = None,
-                 mem: Optional[pulumi.Input[_builtins.int]] = None,
-                 metadata: Optional[pulumi.Input[_builtins.bool]] = None,
-                 network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]] = None,
-                 nic_model: Optional[pulumi.Input[_builtins.str]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_group: Optional[pulumi.Input[_builtins.str]] = None,
-                 simple_backup: Optional[pulumi.Input['ServerSimpleBackupArgs']] = None,
-                 storage_devices: Optional[pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 template: Optional[pulumi.Input['ServerTemplateArgs']] = None,
-                 timezone: Optional[pulumi.Input[_builtins.str]] = None,
-                 title: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_data: Optional[pulumi.Input[_builtins.str]] = None,
-                 video_model: Optional[pulumi.Input[_builtins.str]] = None):
+                 boot_order: pulumi.Input[Optional[_builtins.str]] = None,
+                 cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 firewall: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_private: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_private_default_incoming_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 firewall_private_default_outgoing_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.int]] = None,
+                 hot_resize: pulumi.Input[Optional[_builtins.bool]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 login: pulumi.Input[Optional['ServerLoginArgs']] = None,
+                 mem: pulumi.Input[Optional[_builtins.int]] = None,
+                 metadata: pulumi.Input[Optional[_builtins.bool]] = None,
+                 network_interfaces: pulumi.Input[Optional[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]] = None,
+                 nic_model: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_group: pulumi.Input[Optional[_builtins.str]] = None,
+                 simple_backup: pulumi.Input[Optional['ServerSimpleBackupArgs']] = None,
+                 storage_devices: pulumi.Input[Optional[Sequence[pulumi.Input['ServerStorageDeviceArgs']]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 template: pulumi.Input[Optional['ServerTemplateArgs']] = None,
+                 timezone: pulumi.Input[Optional[_builtins.str]] = None,
+                 title: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_data: pulumi.Input[Optional[_builtins.str]] = None,
+                 video_model: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Server resource.
+
         :param pulumi.Input[_builtins.str] hostname: The hostname of the server.
         :param pulumi.Input[_builtins.str] zone: The zone in which the server will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         :param pulumi.Input[_builtins.str] boot_order: The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
@@ -66,11 +67,16 @@ class ServerArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]] network_interfaces: One or more blocks describing the network interfaces of the server.
                
                    In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
-               
+                   
                    We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
         :param pulumi.Input[_builtins.str] nic_model: The model of the server's network interfaces
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[_builtins.str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
+        :param pulumi.Input['ServerSimpleBackupArgs'] simple_backup: Simple backup schedule configuration
+               
+                   The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backup_rules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backup_rules` defined for server templates.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
         :param pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]] storage_devices: A set of storage devices associated with the server
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         :param pulumi.Input['ServerTemplateArgs'] template: Block describing the preconfigured operating system
@@ -156,325 +162,333 @@ class ServerArgs:
 
     @_builtins.property
     @pulumi.getter(name="bootOrder")
-    def boot_order(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def boot_order(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
         """
         return pulumi.get(self, "boot_order")
 
     @boot_order.setter
-    def boot_order(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def boot_order(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "boot_order", value)
 
     @_builtins.property
     @pulumi.getter
-    def cpu(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cpu(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of CPU cores for the server
         """
         return pulumi.get(self, "cpu")
 
     @cpu.setter
-    def cpu(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cpu(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cpu", value)
 
     @_builtins.property
     @pulumi.getter
-    def firewall(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def firewall(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
         """
         return pulumi.get(self, "firewall")
 
     @firewall.setter
-    def firewall(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def firewall(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "firewall", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallPrivate")
-    def firewall_private(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def firewall_private(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
         """
         return pulumi.get(self, "firewall_private")
 
     @firewall_private.setter
-    def firewall_private(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def firewall_private(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "firewall_private", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallPrivateDefaultIncomingAction")
-    def firewall_private_default_incoming_action(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def firewall_private_default_incoming_action(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default action for unmatched incoming private SDN traffic (accept or drop).
         """
         return pulumi.get(self, "firewall_private_default_incoming_action")
 
     @firewall_private_default_incoming_action.setter
-    def firewall_private_default_incoming_action(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def firewall_private_default_incoming_action(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "firewall_private_default_incoming_action", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallPrivateDefaultOutgoingAction")
-    def firewall_private_default_outgoing_action(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def firewall_private_default_outgoing_action(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default action for unmatched outgoing private SDN traffic (accept or drop).
         """
         return pulumi.get(self, "firewall_private_default_outgoing_action")
 
     @firewall_private_default_outgoing_action.setter
-    def firewall_private_default_outgoing_action(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def firewall_private_default_outgoing_action(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "firewall_private_default_outgoing_action", value)
 
     @_builtins.property
     @pulumi.getter
-    def host(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def host(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
         """
         return pulumi.get(self, "host")
 
     @host.setter
-    def host(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def host(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "host", value)
 
     @_builtins.property
     @pulumi.getter(name="hotResize")
-    def hot_resize(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def hot_resize(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
         """
         return pulumi.get(self, "hot_resize")
 
     @hot_resize.setter
-    def hot_resize(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def hot_resize(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "hot_resize", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the server.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def login(self) -> Optional[pulumi.Input['ServerLoginArgs']]:
+    def login(self) -> pulumi.Input[Optional['ServerLoginArgs']]:
         """
         Configure access credentials to the server
         """
         return pulumi.get(self, "login")
 
     @login.setter
-    def login(self, value: Optional[pulumi.Input['ServerLoginArgs']]):
+    def login(self, value: pulumi.Input[Optional['ServerLoginArgs']]):
         pulumi.set(self, "login", value)
 
     @_builtins.property
     @pulumi.getter
-    def mem(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def mem(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of memory for the server (in megabytes)
         """
         return pulumi.get(self, "mem")
 
     @mem.setter
-    def mem(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def mem(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "mem", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def metadata(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based templates.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def metadata(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="networkInterfaces")
-    def network_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]]:
+    def network_interfaces(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]]:
         """
         One or more blocks describing the network interfaces of the server.
 
             In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
-
+            
             We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
         """
         return pulumi.get(self, "network_interfaces")
 
     @network_interfaces.setter
-    def network_interfaces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]]):
+    def network_interfaces(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]]):
         pulumi.set(self, "network_interfaces", value)
 
     @_builtins.property
     @pulumi.getter(name="nicModel")
-    def nic_model(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def nic_model(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The model of the server's network interfaces
         """
         return pulumi.get(self, "nic_model")
 
     @nic_model.setter
-    def nic_model(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def nic_model(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "nic_model", value)
 
     @_builtins.property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pricing plan used for the server. You can list available server plans with `upctl server plans`
         """
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter(name="serverGroup")
-    def server_group(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_group(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
         """
         return pulumi.get(self, "server_group")
 
     @server_group.setter
-    def server_group(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_group(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_group", value)
 
     @_builtins.property
     @pulumi.getter(name="simpleBackup")
-    def simple_backup(self) -> Optional[pulumi.Input['ServerSimpleBackupArgs']]:
+    def simple_backup(self) -> pulumi.Input[Optional['ServerSimpleBackupArgs']]:
+        """
+        Simple backup schedule configuration
+
+            The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backup_rules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backup_rules` defined for server templates.
+            
+            Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        """
         return pulumi.get(self, "simple_backup")
 
     @simple_backup.setter
-    def simple_backup(self, value: Optional[pulumi.Input['ServerSimpleBackupArgs']]):
+    def simple_backup(self, value: pulumi.Input[Optional['ServerSimpleBackupArgs']]):
         pulumi.set(self, "simple_backup", value)
 
     @_builtins.property
     @pulumi.getter(name="storageDevices")
-    def storage_devices(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]]]:
+    def storage_devices(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerStorageDeviceArgs']]]]:
         """
         A set of storage devices associated with the server
         """
         return pulumi.get(self, "storage_devices")
 
     @storage_devices.setter
-    def storage_devices(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]]]):
+    def storage_devices(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerStorageDeviceArgs']]]]):
         pulumi.set(self, "storage_devices", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def template(self) -> Optional[pulumi.Input['ServerTemplateArgs']]:
+    def template(self) -> pulumi.Input[Optional['ServerTemplateArgs']]:
         """
         Block describing the preconfigured operating system
         """
         return pulumi.get(self, "template")
 
     @template.setter
-    def template(self, value: Optional[pulumi.Input['ServerTemplateArgs']]):
+    def template(self, value: pulumi.Input[Optional['ServerTemplateArgs']]):
         pulumi.set(self, "template", value)
 
     @_builtins.property
     @pulumi.getter
-    def timezone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timezone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
         """
         return pulumi.get(self, "timezone")
 
     @timezone.setter
-    def timezone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timezone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timezone", value)
 
     @_builtins.property
     @pulumi.getter
-    def title(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def title(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A short, informational description of the server.
         """
         return pulumi.get(self, "title")
 
     @title.setter
-    def title(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def title(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "title", value)
 
     @_builtins.property
     @pulumi.getter(name="userData")
-    def user_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_data(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defines URL for a server setup script, or the script body itself
         """
         return pulumi.get(self, "user_data")
 
     @user_data.setter
-    def user_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_data(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_data", value)
 
     @_builtins.property
     @pulumi.getter(name="videoModel")
-    def video_model(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def video_model(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The model of the server's video interface
         """
         return pulumi.get(self, "video_model")
 
     @video_model.setter
-    def video_model(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def video_model(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "video_model", value)
 
 
 @pulumi.input_type
 class _ServerState:
     def __init__(__self__, *,
-                 boot_order: Optional[pulumi.Input[_builtins.str]] = None,
-                 cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 firewall: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_private: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_private_default_incoming_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 firewall_private_default_outgoing_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 host: Optional[pulumi.Input[_builtins.int]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 hot_resize: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 login: Optional[pulumi.Input['ServerLoginArgs']] = None,
-                 mem: Optional[pulumi.Input[_builtins.int]] = None,
-                 metadata: Optional[pulumi.Input[_builtins.bool]] = None,
-                 network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]] = None,
-                 nic_model: Optional[pulumi.Input[_builtins.str]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_group: Optional[pulumi.Input[_builtins.str]] = None,
-                 simple_backup: Optional[pulumi.Input['ServerSimpleBackupArgs']] = None,
-                 storage_devices: Optional[pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 template: Optional[pulumi.Input['ServerTemplateArgs']] = None,
-                 timezone: Optional[pulumi.Input[_builtins.str]] = None,
-                 title: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_data: Optional[pulumi.Input[_builtins.str]] = None,
-                 video_model: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 boot_order: pulumi.Input[Optional[_builtins.str]] = None,
+                 cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 firewall: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_private: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_private_default_incoming_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 firewall_private_default_outgoing_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.int]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 hot_resize: pulumi.Input[Optional[_builtins.bool]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 login: pulumi.Input[Optional['ServerLoginArgs']] = None,
+                 mem: pulumi.Input[Optional[_builtins.int]] = None,
+                 metadata: pulumi.Input[Optional[_builtins.bool]] = None,
+                 network_interfaces: pulumi.Input[Optional[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]] = None,
+                 nic_model: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_group: pulumi.Input[Optional[_builtins.str]] = None,
+                 simple_backup: pulumi.Input[Optional['ServerSimpleBackupArgs']] = None,
+                 storage_devices: pulumi.Input[Optional[Sequence[pulumi.Input['ServerStorageDeviceArgs']]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 template: pulumi.Input[Optional['ServerTemplateArgs']] = None,
+                 timezone: pulumi.Input[Optional[_builtins.str]] = None,
+                 title: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_data: pulumi.Input[Optional[_builtins.str]] = None,
+                 video_model: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Server resources.
+
         :param pulumi.Input[_builtins.str] boot_order: The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
         :param pulumi.Input[_builtins.int] cpu: The number of CPU cores for the server
         :param pulumi.Input[_builtins.bool] firewall: Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
@@ -491,11 +505,16 @@ class _ServerState:
         :param pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]] network_interfaces: One or more blocks describing the network interfaces of the server.
                
                    In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
-               
+                   
                    We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
         :param pulumi.Input[_builtins.str] nic_model: The model of the server's network interfaces
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[_builtins.str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
+        :param pulumi.Input['ServerSimpleBackupArgs'] simple_backup: Simple backup schedule configuration
+               
+                   The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backup_rules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backup_rules` defined for server templates.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
         :param pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]] storage_devices: A set of storage devices associated with the server
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         :param pulumi.Input['ServerTemplateArgs'] template: Block describing the preconfigured operating system
@@ -560,315 +579,322 @@ class _ServerState:
 
     @_builtins.property
     @pulumi.getter(name="bootOrder")
-    def boot_order(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def boot_order(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
         """
         return pulumi.get(self, "boot_order")
 
     @boot_order.setter
-    def boot_order(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def boot_order(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "boot_order", value)
 
     @_builtins.property
     @pulumi.getter
-    def cpu(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cpu(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of CPU cores for the server
         """
         return pulumi.get(self, "cpu")
 
     @cpu.setter
-    def cpu(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cpu(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cpu", value)
 
     @_builtins.property
     @pulumi.getter
-    def firewall(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def firewall(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the Public & Utility firewall is active for public and utility interfaces. Independent of firewall_private.
         """
         return pulumi.get(self, "firewall")
 
     @firewall.setter
-    def firewall(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def firewall(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "firewall", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallPrivate")
-    def firewall_private(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def firewall_private(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the private SDN firewall is active for private interfaces. Independent of firewall. Private firewall settings are applied after the server starts; attached rulesets are managed with upcloud_server_private_firewall_ruleset. Protection from the first boot is not guaranteed.
         """
         return pulumi.get(self, "firewall_private")
 
     @firewall_private.setter
-    def firewall_private(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def firewall_private(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "firewall_private", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallPrivateDefaultIncomingAction")
-    def firewall_private_default_incoming_action(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def firewall_private_default_incoming_action(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default action for unmatched incoming private SDN traffic (accept or drop).
         """
         return pulumi.get(self, "firewall_private_default_incoming_action")
 
     @firewall_private_default_incoming_action.setter
-    def firewall_private_default_incoming_action(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def firewall_private_default_incoming_action(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "firewall_private_default_incoming_action", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallPrivateDefaultOutgoingAction")
-    def firewall_private_default_outgoing_action(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def firewall_private_default_outgoing_action(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default action for unmatched outgoing private SDN traffic (accept or drop).
         """
         return pulumi.get(self, "firewall_private_default_outgoing_action")
 
     @firewall_private_default_outgoing_action.setter
-    def firewall_private_default_outgoing_action(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def firewall_private_default_outgoing_action(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "firewall_private_default_outgoing_action", value)
 
     @_builtins.property
     @pulumi.getter
-    def host(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def host(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Use this to start the VM on a specific host. Refers to value from host -attribute. Only available for private cloud hosts
         """
         return pulumi.get(self, "host")
 
     @host.setter
-    def host(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def host(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "host", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hostname of the server.
         """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="hotResize")
-    def hot_resize(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def hot_resize(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
         """
         return pulumi.get(self, "hot_resize")
 
     @hot_resize.setter
-    def hot_resize(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def hot_resize(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "hot_resize", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the server.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def login(self) -> Optional[pulumi.Input['ServerLoginArgs']]:
+    def login(self) -> pulumi.Input[Optional['ServerLoginArgs']]:
         """
         Configure access credentials to the server
         """
         return pulumi.get(self, "login")
 
     @login.setter
-    def login(self, value: Optional[pulumi.Input['ServerLoginArgs']]):
+    def login(self, value: pulumi.Input[Optional['ServerLoginArgs']]):
         pulumi.set(self, "login", value)
 
     @_builtins.property
     @pulumi.getter
-    def mem(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def mem(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of memory for the server (in megabytes)
         """
         return pulumi.get(self, "mem")
 
     @mem.setter
-    def mem(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def mem(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "mem", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def metadata(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based templates.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def metadata(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="networkInterfaces")
-    def network_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]]:
+    def network_interfaces(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]]:
         """
         One or more blocks describing the network interfaces of the server.
 
             In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
-
+            
             We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
         """
         return pulumi.get(self, "network_interfaces")
 
     @network_interfaces.setter
-    def network_interfaces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]]):
+    def network_interfaces(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerNetworkInterfaceArgs']]]]):
         pulumi.set(self, "network_interfaces", value)
 
     @_builtins.property
     @pulumi.getter(name="nicModel")
-    def nic_model(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def nic_model(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The model of the server's network interfaces
         """
         return pulumi.get(self, "nic_model")
 
     @nic_model.setter
-    def nic_model(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def nic_model(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "nic_model", value)
 
     @_builtins.property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pricing plan used for the server. You can list available server plans with `upctl server plans`
         """
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter(name="serverGroup")
-    def server_group(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_group(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
         """
         return pulumi.get(self, "server_group")
 
     @server_group.setter
-    def server_group(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_group(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_group", value)
 
     @_builtins.property
     @pulumi.getter(name="simpleBackup")
-    def simple_backup(self) -> Optional[pulumi.Input['ServerSimpleBackupArgs']]:
+    def simple_backup(self) -> pulumi.Input[Optional['ServerSimpleBackupArgs']]:
+        """
+        Simple backup schedule configuration
+
+            The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backup_rules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backup_rules` defined for server templates.
+            
+            Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        """
         return pulumi.get(self, "simple_backup")
 
     @simple_backup.setter
-    def simple_backup(self, value: Optional[pulumi.Input['ServerSimpleBackupArgs']]):
+    def simple_backup(self, value: pulumi.Input[Optional['ServerSimpleBackupArgs']]):
         pulumi.set(self, "simple_backup", value)
 
     @_builtins.property
     @pulumi.getter(name="storageDevices")
-    def storage_devices(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]]]:
+    def storage_devices(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerStorageDeviceArgs']]]]:
         """
         A set of storage devices associated with the server
         """
         return pulumi.get(self, "storage_devices")
 
     @storage_devices.setter
-    def storage_devices(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]]]):
+    def storage_devices(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerStorageDeviceArgs']]]]):
         pulumi.set(self, "storage_devices", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def template(self) -> Optional[pulumi.Input['ServerTemplateArgs']]:
+    def template(self) -> pulumi.Input[Optional['ServerTemplateArgs']]:
         """
         Block describing the preconfigured operating system
         """
         return pulumi.get(self, "template")
 
     @template.setter
-    def template(self, value: Optional[pulumi.Input['ServerTemplateArgs']]):
+    def template(self, value: pulumi.Input[Optional['ServerTemplateArgs']]):
         pulumi.set(self, "template", value)
 
     @_builtins.property
     @pulumi.getter
-    def timezone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timezone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
         """
         return pulumi.get(self, "timezone")
 
     @timezone.setter
-    def timezone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timezone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timezone", value)
 
     @_builtins.property
     @pulumi.getter
-    def title(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def title(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A short, informational description of the server.
         """
         return pulumi.get(self, "title")
 
     @title.setter
-    def title(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def title(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "title", value)
 
     @_builtins.property
     @pulumi.getter(name="userData")
-    def user_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_data(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defines URL for a server setup script, or the script body itself
         """
         return pulumi.get(self, "user_data")
 
     @user_data.setter
-    def user_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_data(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_data", value)
 
     @_builtins.property
     @pulumi.getter(name="videoModel")
-    def video_model(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def video_model(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The model of the server's video interface
         """
         return pulumi.get(self, "video_model")
 
     @video_model.setter
-    def video_model(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def video_model(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "video_model", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The zone in which the server will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -878,32 +904,32 @@ class Server(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 boot_order: Optional[pulumi.Input[_builtins.str]] = None,
-                 cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 firewall: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_private: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_private_default_incoming_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 firewall_private_default_outgoing_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 host: Optional[pulumi.Input[_builtins.int]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 hot_resize: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 login: Optional[pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']]] = None,
-                 mem: Optional[pulumi.Input[_builtins.int]] = None,
-                 metadata: Optional[pulumi.Input[_builtins.bool]] = None,
-                 network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]]] = None,
-                 nic_model: Optional[pulumi.Input[_builtins.str]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_group: Optional[pulumi.Input[_builtins.str]] = None,
-                 simple_backup: Optional[pulumi.Input[Union['ServerSimpleBackupArgs', 'ServerSimpleBackupArgsDict']]] = None,
-                 storage_devices: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 template: Optional[pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict']]] = None,
-                 timezone: Optional[pulumi.Input[_builtins.str]] = None,
-                 title: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_data: Optional[pulumi.Input[_builtins.str]] = None,
-                 video_model: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 boot_order: pulumi.Input[Optional[_builtins.str]] = None,
+                 cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 firewall: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_private: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_private_default_incoming_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 firewall_private_default_outgoing_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.int]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 hot_resize: pulumi.Input[Optional[_builtins.bool]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 login: pulumi.Input[Optional[Union['ServerLoginArgs', 'ServerLoginArgsDict', 'outputs.ServerLogin']]] = None,
+                 mem: pulumi.Input[Optional[_builtins.int]] = None,
+                 metadata: pulumi.Input[Optional[_builtins.bool]] = None,
+                 network_interfaces: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict', 'outputs.ServerNetworkInterface']]]]] = None,
+                 nic_model: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_group: pulumi.Input[Optional[_builtins.str]] = None,
+                 simple_backup: pulumi.Input[Optional[Union['ServerSimpleBackupArgs', 'ServerSimpleBackupArgsDict', 'outputs.ServerSimpleBackup']]] = None,
+                 storage_devices: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict', 'outputs.ServerStorageDevice']]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 template: pulumi.Input[Optional[Union['ServerTemplateArgs', 'ServerTemplateArgsDict', 'outputs.ServerTemplate']]] = None,
+                 timezone: pulumi.Input[Optional[_builtins.str]] = None,
+                 title: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_data: pulumi.Input[Optional[_builtins.str]] = None,
+                 video_model: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The UpCloud server resource allows the creation, update and deletion of [cloud servers](https://upcloud.com/products/cloud-servers).
@@ -951,6 +977,7 @@ class Server(pulumi.CustomResource):
         $ pulumi import upcloud:index/server:Server example_server ead4544f-10bf-42a3-b98a-a0fea2e2ad14
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] boot_order: The boot device order, `cdrom`|`disk`|`network` or comma separated combination of those values. Defaults to `disk`
@@ -963,20 +990,25 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] hostname: The hostname of the server.
         :param pulumi.Input[_builtins.bool] hot_resize: If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the server.
-        :param pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']] login: Configure access credentials to the server
+        :param pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict', 'outputs.ServerLogin']] login: Configure access credentials to the server
         :param pulumi.Input[_builtins.int] mem: The amount of memory for the server (in megabytes)
         :param pulumi.Input[_builtins.bool] metadata: Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based templates.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]] network_interfaces: One or more blocks describing the network interfaces of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict', 'outputs.ServerNetworkInterface']]]] network_interfaces: One or more blocks describing the network interfaces of the server.
                
                    In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
-               
+                   
                    We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
         :param pulumi.Input[_builtins.str] nic_model: The model of the server's network interfaces
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[_builtins.str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]] storage_devices: A set of storage devices associated with the server
+        :param pulumi.Input[Union['ServerSimpleBackupArgs', 'ServerSimpleBackupArgsDict', 'outputs.ServerSimpleBackup']] simple_backup: Simple backup schedule configuration
+               
+                   The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backup_rules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backup_rules` defined for server templates.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict', 'outputs.ServerStorageDevice']]]] storage_devices: A set of storage devices associated with the server
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
-        :param pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict']] template: Block describing the preconfigured operating system
+        :param pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict', 'outputs.ServerTemplate']] template: Block describing the preconfigured operating system
         :param pulumi.Input[_builtins.str] timezone: The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
         :param pulumi.Input[_builtins.str] title: A short, informational description of the server.
         :param pulumi.Input[_builtins.str] user_data: Defines URL for a server setup script, or the script body itself
@@ -1035,6 +1067,7 @@ class Server(pulumi.CustomResource):
         $ pulumi import upcloud:index/server:Server example_server ead4544f-10bf-42a3-b98a-a0fea2e2ad14
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ServerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1050,32 +1083,32 @@ class Server(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 boot_order: Optional[pulumi.Input[_builtins.str]] = None,
-                 cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 firewall: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_private: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_private_default_incoming_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 firewall_private_default_outgoing_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 host: Optional[pulumi.Input[_builtins.int]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 hot_resize: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 login: Optional[pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']]] = None,
-                 mem: Optional[pulumi.Input[_builtins.int]] = None,
-                 metadata: Optional[pulumi.Input[_builtins.bool]] = None,
-                 network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]]] = None,
-                 nic_model: Optional[pulumi.Input[_builtins.str]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_group: Optional[pulumi.Input[_builtins.str]] = None,
-                 simple_backup: Optional[pulumi.Input[Union['ServerSimpleBackupArgs', 'ServerSimpleBackupArgsDict']]] = None,
-                 storage_devices: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 template: Optional[pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict']]] = None,
-                 timezone: Optional[pulumi.Input[_builtins.str]] = None,
-                 title: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_data: Optional[pulumi.Input[_builtins.str]] = None,
-                 video_model: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 boot_order: pulumi.Input[Optional[_builtins.str]] = None,
+                 cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 firewall: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_private: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_private_default_incoming_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 firewall_private_default_outgoing_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.int]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 hot_resize: pulumi.Input[Optional[_builtins.bool]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 login: pulumi.Input[Optional[Union['ServerLoginArgs', 'ServerLoginArgsDict', 'outputs.ServerLogin']]] = None,
+                 mem: pulumi.Input[Optional[_builtins.int]] = None,
+                 metadata: pulumi.Input[Optional[_builtins.bool]] = None,
+                 network_interfaces: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict', 'outputs.ServerNetworkInterface']]]]] = None,
+                 nic_model: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_group: pulumi.Input[Optional[_builtins.str]] = None,
+                 simple_backup: pulumi.Input[Optional[Union['ServerSimpleBackupArgs', 'ServerSimpleBackupArgsDict', 'outputs.ServerSimpleBackup']]] = None,
+                 storage_devices: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict', 'outputs.ServerStorageDevice']]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 template: pulumi.Input[Optional[Union['ServerTemplateArgs', 'ServerTemplateArgsDict', 'outputs.ServerTemplate']]] = None,
+                 timezone: pulumi.Input[Optional[_builtins.str]] = None,
+                 title: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_data: pulumi.Input[Optional[_builtins.str]] = None,
+                 video_model: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1125,32 +1158,32 @@ class Server(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            boot_order: Optional[pulumi.Input[_builtins.str]] = None,
-            cpu: Optional[pulumi.Input[_builtins.int]] = None,
-            firewall: Optional[pulumi.Input[_builtins.bool]] = None,
-            firewall_private: Optional[pulumi.Input[_builtins.bool]] = None,
-            firewall_private_default_incoming_action: Optional[pulumi.Input[_builtins.str]] = None,
-            firewall_private_default_outgoing_action: Optional[pulumi.Input[_builtins.str]] = None,
-            host: Optional[pulumi.Input[_builtins.int]] = None,
-            hostname: Optional[pulumi.Input[_builtins.str]] = None,
-            hot_resize: Optional[pulumi.Input[_builtins.bool]] = None,
-            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            login: Optional[pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']]] = None,
-            mem: Optional[pulumi.Input[_builtins.int]] = None,
-            metadata: Optional[pulumi.Input[_builtins.bool]] = None,
-            network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]]] = None,
-            nic_model: Optional[pulumi.Input[_builtins.str]] = None,
-            plan: Optional[pulumi.Input[_builtins.str]] = None,
-            server_group: Optional[pulumi.Input[_builtins.str]] = None,
-            simple_backup: Optional[pulumi.Input[Union['ServerSimpleBackupArgs', 'ServerSimpleBackupArgsDict']]] = None,
-            storage_devices: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            template: Optional[pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict']]] = None,
-            timezone: Optional[pulumi.Input[_builtins.str]] = None,
-            title: Optional[pulumi.Input[_builtins.str]] = None,
-            user_data: Optional[pulumi.Input[_builtins.str]] = None,
-            video_model: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'Server':
+            boot_order: pulumi.Input[Optional[_builtins.str]] = None,
+            cpu: pulumi.Input[Optional[_builtins.int]] = None,
+            firewall: pulumi.Input[Optional[_builtins.bool]] = None,
+            firewall_private: pulumi.Input[Optional[_builtins.bool]] = None,
+            firewall_private_default_incoming_action: pulumi.Input[Optional[_builtins.str]] = None,
+            firewall_private_default_outgoing_action: pulumi.Input[Optional[_builtins.str]] = None,
+            host: pulumi.Input[Optional[_builtins.int]] = None,
+            hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            hot_resize: pulumi.Input[Optional[_builtins.bool]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            login: pulumi.Input[Optional[Union['ServerLoginArgs', 'ServerLoginArgsDict', 'outputs.ServerLogin']]] = None,
+            mem: pulumi.Input[Optional[_builtins.int]] = None,
+            metadata: pulumi.Input[Optional[_builtins.bool]] = None,
+            network_interfaces: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict', 'outputs.ServerNetworkInterface']]]]] = None,
+            nic_model: pulumi.Input[Optional[_builtins.str]] = None,
+            plan: pulumi.Input[Optional[_builtins.str]] = None,
+            server_group: pulumi.Input[Optional[_builtins.str]] = None,
+            simple_backup: pulumi.Input[Optional[Union['ServerSimpleBackupArgs', 'ServerSimpleBackupArgsDict', 'outputs.ServerSimpleBackup']]] = None,
+            storage_devices: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict', 'outputs.ServerStorageDevice']]]]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            template: pulumi.Input[Optional[Union['ServerTemplateArgs', 'ServerTemplateArgsDict', 'outputs.ServerTemplate']]] = None,
+            timezone: pulumi.Input[Optional[_builtins.str]] = None,
+            title: pulumi.Input[Optional[_builtins.str]] = None,
+            user_data: pulumi.Input[Optional[_builtins.str]] = None,
+            video_model: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'Server':
         """
         Get an existing Server resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1168,20 +1201,25 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] hostname: The hostname of the server.
         :param pulumi.Input[_builtins.bool] hot_resize: If set to true, allows changing the server plan without requiring a reboot. This enables hot resizing of the server. If hot resizing fails, the apply operation will fail.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the server.
-        :param pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict']] login: Configure access credentials to the server
+        :param pulumi.Input[Union['ServerLoginArgs', 'ServerLoginArgsDict', 'outputs.ServerLogin']] login: Configure access credentials to the server
         :param pulumi.Input[_builtins.int] mem: The amount of memory for the server (in megabytes)
         :param pulumi.Input[_builtins.bool] metadata: Is metadata service active for the server. The metadata service must be enabled when using recent cloud-init based templates.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict']]]] network_interfaces: One or more blocks describing the network interfaces of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict', 'outputs.ServerNetworkInterface']]]] network_interfaces: One or more blocks describing the network interfaces of the server.
                
                    In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
-               
+                   
                    We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
         :param pulumi.Input[_builtins.str] nic_model: The model of the server's network interfaces
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[_builtins.str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict']]]] storage_devices: A set of storage devices associated with the server
+        :param pulumi.Input[Union['ServerSimpleBackupArgs', 'ServerSimpleBackupArgsDict', 'outputs.ServerSimpleBackup']] simple_backup: Simple backup schedule configuration
+               
+                   The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backup_rules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backup_rules` defined for server templates.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict', 'outputs.ServerStorageDevice']]]] storage_devices: A set of storage devices associated with the server
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
-        :param pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict']] template: Block describing the preconfigured operating system
+        :param pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict', 'outputs.ServerTemplate']] template: Block describing the preconfigured operating system
         :param pulumi.Input[_builtins.str] timezone: The timezone of the server. The timezone must be a valid timezone string, e.g. `Europe/Helsinki`.
         :param pulumi.Input[_builtins.str] title: A short, informational description of the server.
         :param pulumi.Input[_builtins.str] user_data: Defines URL for a server setup script, or the script body itself
@@ -1219,6 +1257,64 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["video_model"] = video_model
         __props__.__dict__["zone"] = zone
         return Server(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            boot_order: pulumi.Input[Optional[_builtins.str]] = None,
+            cpu: pulumi.Input[Optional[_builtins.int]] = None,
+            firewall: pulumi.Input[Optional[_builtins.bool]] = None,
+            firewall_private: pulumi.Input[Optional[_builtins.bool]] = None,
+            firewall_private_default_incoming_action: pulumi.Input[Optional[_builtins.str]] = None,
+            firewall_private_default_outgoing_action: pulumi.Input[Optional[_builtins.str]] = None,
+            host: pulumi.Input[Optional[_builtins.int]] = None,
+            hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            hot_resize: pulumi.Input[Optional[_builtins.bool]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            login: pulumi.Input[Optional[Union['ServerLoginArgs', 'ServerLoginArgsDict', 'outputs.ServerLogin']]] = None,
+            mem: pulumi.Input[Optional[_builtins.int]] = None,
+            metadata: pulumi.Input[Optional[_builtins.bool]] = None,
+            network_interfaces: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerNetworkInterfaceArgs', 'ServerNetworkInterfaceArgsDict', 'outputs.ServerNetworkInterface']]]]] = None,
+            nic_model: pulumi.Input[Optional[_builtins.str]] = None,
+            plan: pulumi.Input[Optional[_builtins.str]] = None,
+            server_group: pulumi.Input[Optional[_builtins.str]] = None,
+            simple_backup: pulumi.Input[Optional[Union['ServerSimpleBackupArgs', 'ServerSimpleBackupArgsDict', 'outputs.ServerSimpleBackup']]] = None,
+            storage_devices: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict', 'outputs.ServerStorageDevice']]]]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            template: pulumi.Input[Optional[Union['ServerTemplateArgs', 'ServerTemplateArgsDict', 'outputs.ServerTemplate']]] = None,
+            timezone: pulumi.Input[Optional[_builtins.str]] = None,
+            title: pulumi.Input[Optional[_builtins.str]] = None,
+            user_data: pulumi.Input[Optional[_builtins.str]] = None,
+            video_model: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["bootOrder"] = boot_order
+        __props__["cpu"] = cpu
+        __props__["firewall"] = firewall
+        __props__["firewallPrivate"] = firewall_private
+        __props__["firewallPrivateDefaultIncomingAction"] = firewall_private_default_incoming_action
+        __props__["firewallPrivateDefaultOutgoingAction"] = firewall_private_default_outgoing_action
+        __props__["host"] = host
+        __props__["hostname"] = hostname
+        __props__["hotResize"] = hot_resize
+        __props__["labels"] = labels
+        __props__["login"] = login
+        __props__["mem"] = mem
+        __props__["metadata"] = metadata
+        __props__["networkInterfaces"] = network_interfaces
+        __props__["nicModel"] = nic_model
+        __props__["plan"] = plan
+        __props__["serverGroup"] = server_group
+        __props__["simpleBackup"] = simple_backup
+        __props__["storageDevices"] = storage_devices
+        __props__["tags"] = tags
+        __props__["template"] = template
+        __props__["timezone"] = timezone
+        __props__["title"] = title
+        __props__["userData"] = user_data
+        __props__["videoModel"] = video_model
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/server:Server', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="bootOrder")
@@ -1331,7 +1427,7 @@ class Server(pulumi.CustomResource):
         One or more blocks describing the network interfaces of the server.
 
             In addition to list order, the configured network interfaces are matched to the server's actual network interfaces by `index` and `ip_address` fields. This is to avoid public and utility network interfaces being re-assigned when the server is updated. This might result to inaccurate diffs in the plan, when interfaces are re-ordered or when interface is removed from the middle of the list.
-
+            
             We recommend explicitly setting the value for `index` in configuration, when re-ordering interfaces or when removing interface from middle of the list.
         """
         return pulumi.get(self, "network_interfaces")
@@ -1363,6 +1459,13 @@ class Server(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="simpleBackup")
     def simple_backup(self) -> pulumi.Output[Optional['outputs.ServerSimpleBackup']]:
+        """
+        Simple backup schedule configuration
+
+            The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backup_rules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backup_rules` defined for server templates.
+            
+            Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        """
         return pulumi.get(self, "simple_backup")
 
     @_builtins.property

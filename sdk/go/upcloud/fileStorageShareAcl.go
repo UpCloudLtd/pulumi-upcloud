@@ -99,6 +99,12 @@ func (FileStorageShareAclState) ElementType() reflect.Type {
 	return reflect.TypeOf((*fileStorageShareAclState)(nil)).Elem()
 }
 
+// FileStorageShareAclExists checks whether an existing FileStorageShareAcl resource with the given ID exists.
+func FileStorageShareAclExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FileStorageShareAclState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/fileStorageShareAcl:FileStorageShareAcl", id, state, "", opts...)
+}
+
 type fileStorageShareAclArgs struct {
 	// UUID of the file storage service.
 	FileStorage string `pulumi:"fileStorage"`

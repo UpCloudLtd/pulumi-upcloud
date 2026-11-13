@@ -91,6 +91,17 @@ export class LoadbalancerFrontendRule extends pulumi.CustomResource {
         return new LoadbalancerFrontendRule(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing LoadbalancerFrontendRule resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: LoadbalancerFrontendRuleState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/loadbalancerFrontendRule:LoadbalancerFrontendRule", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/loadbalancerFrontendRule:LoadbalancerFrontendRule';
 
@@ -176,27 +187,27 @@ export interface LoadbalancerFrontendRuleState {
     /**
      * Rule actions.
      */
-    actions?: pulumi.Input<inputs.LoadbalancerFrontendRuleActions>;
+    actions?: pulumi.Input<inputs.LoadbalancerFrontendRuleActions | undefined>;
     /**
      * ID of the load balancer frontend to which the frontend rule is connected.
      */
-    frontend?: pulumi.Input<string>;
+    frontend?: pulumi.Input<string | undefined>;
     /**
      * Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
      */
-    matchers?: pulumi.Input<inputs.LoadbalancerFrontendRuleMatchers>;
+    matchers?: pulumi.Input<inputs.LoadbalancerFrontendRuleMatchers | undefined>;
     /**
      * Defines boolean operator used to combine multiple matchers. Defaults to `and`.
      */
-    matchingCondition?: pulumi.Input<string>;
+    matchingCondition?: pulumi.Input<string | undefined>;
     /**
      * The name of the frontend rule. Must be unique within the frontend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Rule with the higher priority goes first. Rules with the same priority processed in alphabetical order.
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -206,7 +217,7 @@ export interface LoadbalancerFrontendRuleArgs {
     /**
      * Rule actions.
      */
-    actions?: pulumi.Input<inputs.LoadbalancerFrontendRuleActions>;
+    actions?: pulumi.Input<inputs.LoadbalancerFrontendRuleActions | undefined>;
     /**
      * ID of the load balancer frontend to which the frontend rule is connected.
      */
@@ -214,15 +225,15 @@ export interface LoadbalancerFrontendRuleArgs {
     /**
      * Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
      */
-    matchers?: pulumi.Input<inputs.LoadbalancerFrontendRuleMatchers>;
+    matchers?: pulumi.Input<inputs.LoadbalancerFrontendRuleMatchers | undefined>;
     /**
      * Defines boolean operator used to combine multiple matchers. Defaults to `and`.
      */
-    matchingCondition?: pulumi.Input<string>;
+    matchingCondition?: pulumi.Input<string | undefined>;
     /**
      * The name of the frontend rule. Must be unique within the frontend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Rule with the higher priority goes first. Rules with the same priority processed in alphabetical order.
      */

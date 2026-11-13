@@ -25,6 +25,13 @@ namespace UpCloud.Pulumi.UpCloud.Inputs
         [Input("addressPosition")]
         public Input<string>? AddressPosition { get; set; }
 
+        /// <summary>
+        /// The criteria to backup the storage.
+        /// 
+        ///     Please keep in mind that it's not possible to have a storage with `BackupRule` attached to a server with `SimpleBackup` specified. Such configurations will throw errors during execution.
+        ///     
+        ///     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `SimpleBackup` on the server and individual storages `BackupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `SimpleBackup` block from a server, run `terraform apply`, then add `BackupRule` to desired storages and run `terraform apply` again.
+        /// </summary>
         [Input("backupRule")]
         public Input<Inputs.ServerTemplateBackupRuleArgs>? BackupRule { get; set; }
 

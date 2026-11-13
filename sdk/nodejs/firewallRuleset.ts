@@ -41,6 +41,17 @@ export class FirewallRuleset extends pulumi.CustomResource {
         return new FirewallRuleset(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing FirewallRuleset resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: FirewallRulesetState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/firewallRuleset:FirewallRuleset", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/firewallRuleset:FirewallRuleset';
 
@@ -138,39 +149,39 @@ export interface FirewallRulesetState {
     /**
      * Creation timestamp.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Whether default DNS rules are enabled.
      */
-    defaultDnsRulesEnabled?: pulumi.Input<boolean>;
+    defaultDnsRulesEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Description of the firewall ruleset.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Whether the ruleset is enabled.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Ruleset labels as key/value pairs.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the firewall ruleset.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.FirewallRulesetRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.FirewallRulesetRule>[] | undefined>;
     /**
      * Last update timestamp.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Ruleset version.
      */
-    version?: pulumi.Input<number>;
+    version?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -180,25 +191,25 @@ export interface FirewallRulesetArgs {
     /**
      * Whether default DNS rules are enabled.
      */
-    defaultDnsRulesEnabled?: pulumi.Input<boolean>;
+    defaultDnsRulesEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Description of the firewall ruleset.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Whether the ruleset is enabled.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Ruleset labels as key/value pairs.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the firewall ruleset.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.FirewallRulesetRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.FirewallRulesetRule>[] | undefined>;
 }

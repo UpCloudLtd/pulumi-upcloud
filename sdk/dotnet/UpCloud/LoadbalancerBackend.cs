@@ -76,6 +76,9 @@ namespace UpCloud.Pulumi.UpCloud
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        /// </summary>
         [Output("properties")]
         public Output<Outputs.LoadbalancerBackendProperties?> Properties { get; private set; } = null!;
 
@@ -150,6 +153,9 @@ namespace UpCloud.Pulumi.UpCloud
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        /// </summary>
         [Input("properties")]
         public Input<Inputs.LoadbalancerBackendPropertiesArgs>? Properties { get; set; }
 
@@ -191,6 +197,9 @@ namespace UpCloud.Pulumi.UpCloud
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        /// </summary>
         [Input("properties")]
         public Input<Inputs.LoadbalancerBackendPropertiesGetArgs>? Properties { get; set; }
 

@@ -25,7 +25,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Use data source to gather a list of the active sessions for a Managed Valkey Database
+        ///     // Use function to gather a list of the active sessions for a Managed Valkey Database
         ///     // Create a Managed Valkey resource
         ///     var exampleManagedDatabaseValkey = new UpCloud.ManagedDatabaseValkey("example", new()
         ///     {
@@ -60,7 +60,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Use data source to gather a list of the active sessions for a Managed Valkey Database
+        ///     // Use function to gather a list of the active sessions for a Managed Valkey Database
         ///     // Create a Managed Valkey resource
         ///     var exampleManagedDatabaseValkey = new UpCloud.ManagedDatabaseValkey("example", new()
         ///     {
@@ -95,7 +95,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Use data source to gather a list of the active sessions for a Managed Valkey Database
+        ///     // Use function to gather a list of the active sessions for a Managed Valkey Database
         ///     // Create a Managed Valkey resource
         ///     var exampleManagedDatabaseValkey = new UpCloud.ManagedDatabaseValkey("example", new()
         ///     {

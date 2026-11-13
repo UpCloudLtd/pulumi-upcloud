@@ -21,6 +21,17 @@ export class FileStorageShareAcl extends pulumi.CustomResource {
         return new FileStorageShareAcl(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing FileStorageShareAcl resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: FileStorageShareAclState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/fileStorageShareAcl:FileStorageShareAcl", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/fileStorageShareAcl:FileStorageShareAcl';
 
@@ -106,23 +117,23 @@ export interface FileStorageShareAclState {
     /**
      * UUID of the file storage service.
      */
-    fileStorage?: pulumi.Input<string>;
+    fileStorage?: pulumi.Input<string | undefined>;
     /**
      * Unique name of the ACL entry (1–64 chars).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Access level: 'ro' or 'rw'.
      */
-    permission?: pulumi.Input<string>;
+    permission?: pulumi.Input<string | undefined>;
     /**
      * Name of the share.
      */
-    shareName?: pulumi.Input<string>;
+    shareName?: pulumi.Input<string | undefined>;
     /**
      * Target IP/CIDR or '*'.
      */
-    target?: pulumi.Input<string>;
+    target?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -136,7 +147,7 @@ export interface FileStorageShareAclArgs {
     /**
      * Unique name of the ACL entry (1–64 chars).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Access level: 'ro' or 'rw'.
      */

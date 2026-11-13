@@ -79,6 +79,17 @@ export class KubernetesCluster extends pulumi.CustomResource {
         return new KubernetesCluster(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing KubernetesCluster resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: KubernetesClusterState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/kubernetesCluster:KubernetesCluster", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/kubernetesCluster:KubernetesCluster';
 
@@ -97,6 +108,9 @@ export class KubernetesCluster extends pulumi.CustomResource {
      * IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
      */
     declare public readonly controlPlaneIpFilters: pulumi.Output<string[]>;
+    /**
+     * Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `upcloud.KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+     */
     declare public readonly fetchKubeconfig: pulumi.Output<boolean>;
     /**
      * Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
@@ -220,62 +234,65 @@ export interface KubernetesClusterState {
     /**
      * IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
      */
-    controlPlaneIpFilters?: pulumi.Input<pulumi.Input<string>[]>;
-    fetchKubeconfig?: pulumi.Input<boolean>;
+    controlPlaneIpFilters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `upcloud.KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+     */
+    fetchKubeconfig?: pulumi.Input<boolean | undefined>;
     /**
      * Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
      */
-    kubeconfig?: pulumi.Input<inputs.KubernetesClusterKubeconfig>;
+    kubeconfig?: pulumi.Input<inputs.KubernetesClusterKubeconfig | undefined>;
     /**
      * User defined key-value pairs to classify the cluster.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Cluster name. Needs to be unique within the account.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Network ID for the cluster to run in.
      */
-    network?: pulumi.Input<string>;
+    network?: pulumi.Input<string | undefined>;
     /**
      * Network CIDR for the given network. Computed automatically.
      */
-    networkCidr?: pulumi.Input<string>;
+    networkCidr?: pulumi.Input<string | undefined>;
     /**
      * Names of the node groups configured to cluster
      */
-    nodeGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
      */
-    plan?: pulumi.Input<string>;
+    plan?: pulumi.Input<string | undefined>;
     /**
      * Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
      */
-    privateNodeGroups?: pulumi.Input<boolean>;
+    privateNodeGroups?: pulumi.Input<boolean | undefined>;
     /**
      * Operational state of the cluster.
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
      */
-    storageEncryption?: pulumi.Input<string>;
+    storageEncryption?: pulumi.Input<string | undefined>;
     /**
      * The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
      */
-    upgradeStrategyType?: pulumi.Input<string>;
+    upgradeStrategyType?: pulumi.Input<string | undefined>;
     /**
      * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
      *
      *     Note that when changing the cluster version, `upgradeStrategy` will be taken into account.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
     /**
      * Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -286,15 +303,18 @@ export interface KubernetesClusterArgs {
      * IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
      */
     controlPlaneIpFilters: pulumi.Input<pulumi.Input<string>[]>;
-    fetchKubeconfig?: pulumi.Input<boolean>;
+    /**
+     * Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `upcloud.KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+     */
+    fetchKubeconfig?: pulumi.Input<boolean | undefined>;
     /**
      * User defined key-value pairs to classify the cluster.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Cluster name. Needs to be unique within the account.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Network ID for the cluster to run in.
      */
@@ -302,25 +322,25 @@ export interface KubernetesClusterArgs {
     /**
      * The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
      */
-    plan?: pulumi.Input<string>;
+    plan?: pulumi.Input<string | undefined>;
     /**
      * Enable private node groups. Private node groups requires a network that is routed through NAT gateway.
      */
-    privateNodeGroups?: pulumi.Input<boolean>;
+    privateNodeGroups?: pulumi.Input<boolean | undefined>;
     /**
      * Set default storage encryption strategy for all nodes in the cluster. Valid values are `data-at-rest` and `none`.
      */
-    storageEncryption?: pulumi.Input<string>;
+    storageEncryption?: pulumi.Input<string | undefined>;
     /**
      * The upgrade strategy to use when changing the cluster `version`. If not set, `manual` strategy will be used by default. When using `manual` strategy, you must replace the existing node-groups to update them.
      */
-    upgradeStrategyType?: pulumi.Input<string>;
+    upgradeStrategyType?: pulumi.Input<string | undefined>;
     /**
      * Kubernetes version ID, e.g. `1.31`. You can list available version IDs with `upctl kubernetes versions`.
      *
      *     Note that when changing the cluster version, `upgradeStrategy` will be taken into account.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
     /**
      * Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      */

@@ -258,6 +258,12 @@ func (ManagedDatabaseValkeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*managedDatabaseValkeyState)(nil)).Elem()
 }
 
+// ManagedDatabaseValkeyExists checks whether an existing ManagedDatabaseValkey resource with the given ID exists.
+func ManagedDatabaseValkeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ManagedDatabaseValkeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/managedDatabaseValkey:ManagedDatabaseValkey", id, state, "", opts...)
+}
+
 type managedDatabaseValkeyArgs struct {
 	// Not supported for `valkey` databases. Should be left unconfigured.
 	AdditionalDiskSpaceGib *int `pulumi:"additionalDiskSpaceGib"`

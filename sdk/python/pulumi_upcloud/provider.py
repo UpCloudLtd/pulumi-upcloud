@@ -19,15 +19,16 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_timeout_sec: Optional[pulumi.Input[_builtins.int]] = None,
-                 retry_max: Optional[pulumi.Input[_builtins.int]] = None,
-                 retry_wait_max_sec: Optional[pulumi.Input[_builtins.int]] = None,
-                 retry_wait_min_sec: Optional[pulumi.Input[_builtins.int]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_timeout_sec: pulumi.Input[Optional[_builtins.int]] = None,
+                 retry_max: pulumi.Input[Optional[_builtins.int]] = None,
+                 retry_wait_max_sec: pulumi.Input[Optional[_builtins.int]] = None,
+                 retry_wait_min_sec: pulumi.Input[Optional[_builtins.int]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
+
         :param pulumi.Input[_builtins.str] password: Password for UpCloud API user. Can also be configured using the `UPCLOUD_PASSWORD` environment variable.
         :param pulumi.Input[_builtins.int] request_timeout_sec: The duration (in seconds) that the provider waits for an HTTP request towards UpCloud API to complete. Defaults to 120 seconds
         :param pulumi.Input[_builtins.int] retry_max: Maximum number of retries
@@ -53,86 +54,86 @@ class ProviderArgs:
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for UpCloud API user. Can also be configured using the `UPCLOUD_PASSWORD` environment variable.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="requestTimeoutSec")
-    def request_timeout_sec(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def request_timeout_sec(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The duration (in seconds) that the provider waits for an HTTP request towards UpCloud API to complete. Defaults to 120 seconds
         """
         return pulumi.get(self, "request_timeout_sec")
 
     @request_timeout_sec.setter
-    def request_timeout_sec(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def request_timeout_sec(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "request_timeout_sec", value)
 
     @_builtins.property
     @pulumi.getter(name="retryMax")
-    def retry_max(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retry_max(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of retries
         """
         return pulumi.get(self, "retry_max")
 
     @retry_max.setter
-    def retry_max(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retry_max(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retry_max", value)
 
     @_builtins.property
     @pulumi.getter(name="retryWaitMaxSec")
-    def retry_wait_max_sec(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retry_wait_max_sec(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum time to wait between retries
         """
         return pulumi.get(self, "retry_wait_max_sec")
 
     @retry_wait_max_sec.setter
-    def retry_wait_max_sec(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retry_wait_max_sec(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retry_wait_max_sec", value)
 
     @_builtins.property
     @pulumi.getter(name="retryWaitMinSec")
-    def retry_wait_min_sec(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retry_wait_min_sec(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum time to wait between retries
         """
         return pulumi.get(self, "retry_wait_min_sec")
 
     @retry_wait_min_sec.setter
-    def retry_wait_min_sec(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retry_wait_min_sec(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retry_wait_min_sec", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Token for authenticating to UpCloud API. Can also be configured using the `UPCLOUD_TOKEN` environment variable or using the system keyring. Use `upctl account login` command to save a token to the system keyring. (EXPERIMENTAL)
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UpCloud username with API access. Can also be configured using the `UPCLOUD_USERNAME` environment variable.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -142,19 +143,20 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_timeout_sec: Optional[pulumi.Input[_builtins.int]] = None,
-                 retry_max: Optional[pulumi.Input[_builtins.int]] = None,
-                 retry_wait_max_sec: Optional[pulumi.Input[_builtins.int]] = None,
-                 retry_wait_min_sec: Optional[pulumi.Input[_builtins.int]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_timeout_sec: pulumi.Input[Optional[_builtins.int]] = None,
+                 retry_max: pulumi.Input[Optional[_builtins.int]] = None,
+                 retry_wait_max_sec: pulumi.Input[Optional[_builtins.int]] = None,
+                 retry_wait_min_sec: pulumi.Input[Optional[_builtins.int]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The provider type for the upcloud package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
         construction to achieve fine-grained programmatic control over provider settings. See the
         [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -178,6 +180,7 @@ class Provider(pulumi.ProviderResource):
         construction to achieve fine-grained programmatic control over provider settings. See the
         [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
 
+
         :param str resource_name: The name of the resource.
         :param ProviderArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -193,13 +196,13 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_timeout_sec: Optional[pulumi.Input[_builtins.int]] = None,
-                 retry_max: Optional[pulumi.Input[_builtins.int]] = None,
-                 retry_wait_max_sec: Optional[pulumi.Input[_builtins.int]] = None,
-                 retry_wait_min_sec: Optional[pulumi.Input[_builtins.int]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_timeout_sec: pulumi.Input[Optional[_builtins.int]] = None,
+                 retry_max: pulumi.Input[Optional[_builtins.int]] = None,
+                 retry_wait_max_sec: pulumi.Input[Optional[_builtins.int]] = None,
+                 retry_wait_min_sec: pulumi.Input[Optional[_builtins.int]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

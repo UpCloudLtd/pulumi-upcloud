@@ -189,6 +189,12 @@ func (LoadbalancerResolverState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerResolverState)(nil)).Elem()
 }
 
+// LoadbalancerResolverExists checks whether an existing LoadbalancerResolver resource with the given ID exists.
+func LoadbalancerResolverExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerResolverState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/loadbalancerResolver:LoadbalancerResolver", id, state, "", opts...)
+}
+
 type loadbalancerResolverArgs struct {
 	// Time in seconds to cache invalid results.
 	CacheInvalid int `pulumi:"cacheInvalid"`

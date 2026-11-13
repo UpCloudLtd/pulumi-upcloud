@@ -66,7 +66,7 @@ func Provider() tfbridge.ProviderInfo {
 		//nolint:lll
 		P: p,
 
-		Name:        "upcloud",
+		Name:        mainPkg,
 		Version:     version.Version,
 		DisplayName: "UpCloud",
 		Publisher:   "UpCloudLtd",
@@ -122,7 +122,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			Namespaces: map[string]string{
-				"upcloud": "UpCloud",
+				mainPkg: "UpCloud",
 			},
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",

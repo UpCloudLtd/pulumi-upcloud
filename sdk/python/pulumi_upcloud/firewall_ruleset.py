@@ -21,14 +21,15 @@ __all__ = ['FirewallRulesetArgs', 'FirewallRuleset']
 @pulumi.input_type
 class FirewallRulesetArgs:
     def __init__(__self__, *,
-                 default_dns_rules_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]] = None):
+                 default_dns_rules_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]] = None):
         """
         The set of arguments for constructing a FirewallRuleset resource.
+
         :param pulumi.Input[_builtins.bool] default_dns_rules_enabled: Whether default DNS rules are enabled.
         :param pulumi.Input[_builtins.str] description: Description of the firewall ruleset.
         :param pulumi.Input[_builtins.bool] enabled: Whether the ruleset is enabled.
@@ -51,91 +52,92 @@ class FirewallRulesetArgs:
 
     @_builtins.property
     @pulumi.getter(name="defaultDnsRulesEnabled")
-    def default_dns_rules_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def default_dns_rules_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether default DNS rules are enabled.
         """
         return pulumi.get(self, "default_dns_rules_enabled")
 
     @default_dns_rules_enabled.setter
-    def default_dns_rules_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def default_dns_rules_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "default_dns_rules_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description of the firewall ruleset.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the ruleset is enabled.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Ruleset labels as key/value pairs.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the firewall ruleset.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]]:
+    def rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]]:
         """
         Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
         """
         return pulumi.get(self, "rules")
 
     @rules.setter
-    def rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]]):
+    def rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]]):
         pulumi.set(self, "rules", value)
 
 
 @pulumi.input_type
 class _FirewallRulesetState:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_dns_rules_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.int]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_dns_rules_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering FirewallRuleset resources.
+
         :param pulumi.Input[_builtins.str] created_at: Creation timestamp.
         :param pulumi.Input[_builtins.bool] default_dns_rules_enabled: Whether default DNS rules are enabled.
         :param pulumi.Input[_builtins.str] description: Description of the firewall ruleset.
@@ -167,110 +169,110 @@ class _FirewallRulesetState:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Creation timestamp.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultDnsRulesEnabled")
-    def default_dns_rules_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def default_dns_rules_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether default DNS rules are enabled.
         """
         return pulumi.get(self, "default_dns_rules_enabled")
 
     @default_dns_rules_enabled.setter
-    def default_dns_rules_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def default_dns_rules_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "default_dns_rules_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description of the firewall ruleset.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the ruleset is enabled.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Ruleset labels as key/value pairs.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the firewall ruleset.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]]:
+    def rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]]:
         """
         Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
         """
         return pulumi.get(self, "rules")
 
     @rules.setter
-    def rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]]):
+    def rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FirewallRulesetRuleArgs']]]]):
         pulumi.set(self, "rules", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Last update timestamp.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Ruleset version.
         """
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "version", value)
 
 
@@ -280,12 +282,12 @@ class FirewallRuleset(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 default_dns_rules_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict']]]]] = None,
+                 default_dns_rules_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict', 'outputs.FirewallRulesetRule']]]]] = None,
                  __props__=None):
         """
         This resource represents an UpCloud SDN firewall ruleset. Rules are managed as an ordered list; their position in the API is determined by their order in the `rules` list.
@@ -307,6 +309,7 @@ class FirewallRuleset(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] default_dns_rules_enabled: Whether default DNS rules are enabled.
@@ -314,7 +317,7 @@ class FirewallRuleset(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Whether the ruleset is enabled.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Ruleset labels as key/value pairs.
         :param pulumi.Input[_builtins.str] name: Name of the firewall ruleset.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict']]]] rules: Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict', 'outputs.FirewallRulesetRule']]]] rules: Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
         """
         ...
     @overload
@@ -342,6 +345,7 @@ class FirewallRuleset(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param FirewallRulesetArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -357,12 +361,12 @@ class FirewallRuleset(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 default_dns_rules_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict']]]]] = None,
+                 default_dns_rules_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict', 'outputs.FirewallRulesetRule']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -391,15 +395,15 @@ class FirewallRuleset(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            default_dns_rules_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict']]]]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            version: Optional[pulumi.Input[_builtins.int]] = None) -> 'FirewallRuleset':
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            default_dns_rules_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict', 'outputs.FirewallRulesetRule']]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.int]] = None) -> 'FirewallRuleset':
         """
         Get an existing FirewallRuleset resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -413,7 +417,7 @@ class FirewallRuleset(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Whether the ruleset is enabled.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Ruleset labels as key/value pairs.
         :param pulumi.Input[_builtins.str] name: Name of the firewall ruleset.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict']]]] rules: Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict', 'outputs.FirewallRulesetRule']]]] rules: Ordered list of firewall rules. Rules are applied in list order; the position attribute reflects the 1-based index assigned by the API and cannot be configured.
         :param pulumi.Input[_builtins.str] updated_at: Last update timestamp.
         :param pulumi.Input[_builtins.int] version: Ruleset version.
         """
@@ -431,6 +435,30 @@ class FirewallRuleset(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["version"] = version
         return FirewallRuleset(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            default_dns_rules_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FirewallRulesetRuleArgs', 'FirewallRulesetRuleArgsDict', 'outputs.FirewallRulesetRule']]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["defaultDnsRulesEnabled"] = default_dns_rules_enabled
+        __props__["description"] = description
+        __props__["enabled"] = enabled
+        __props__["labels"] = labels
+        __props__["name"] = name
+        __props__["rules"] = rules
+        __props__["updatedAt"] = updated_at
+        __props__["version"] = version
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/firewallRuleset:FirewallRuleset', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

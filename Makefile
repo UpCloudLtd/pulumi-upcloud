@@ -52,9 +52,9 @@ prepare_local_workspace: .make/mise_install upstream
 prepare_local_workspace: | mise_env
 # Creates all generated files which need to be committed
 generate: generate_sdks schema
-generate_sdks: generate_nodejs generate_python generate_dotnet generate_go generate_java
-build_sdks: build_nodejs build_python build_dotnet build_go build_java
-install_sdks: install_nodejs_sdk install_python_sdk install_dotnet_sdk install_go_sdk install_java_sdk
+generate_sdks: generate_nodejs generate_python generate_dotnet generate_go
+build_sdks: build_nodejs build_python build_dotnet build_go
+install_sdks: install_nodejs_sdk install_python_sdk install_dotnet_sdk install_go_sdk
 .PHONY: development only_build build generate generate_sdks build_sdks install_sdks mise_install mise_env
 
 # Installs all necessary tools with mise and records completion in a sentinel
@@ -104,7 +104,7 @@ help:
 	@echo "  build_[language]       Build the SDK to check correctness"
 	@echo "  install_[language]_sdk Install the SDK ready for testing"
 	@echo ""
-	@echo "  [language] = nodejs python dotnet go java"
+	@echo "  [language] = nodejs python dotnet go"
 	@echo ""
 .PHONY: help
 

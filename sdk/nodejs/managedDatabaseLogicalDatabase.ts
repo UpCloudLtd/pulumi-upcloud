@@ -51,6 +51,17 @@ export class ManagedDatabaseLogicalDatabase extends pulumi.CustomResource {
         return new ManagedDatabaseLogicalDatabase(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ManagedDatabaseLogicalDatabase resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ManagedDatabaseLogicalDatabaseState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/managedDatabaseLogicalDatabase:ManagedDatabaseLogicalDatabase';
 
@@ -121,19 +132,19 @@ export interface ManagedDatabaseLogicalDatabaseState {
     /**
      * Default character set for the database (LC_CTYPE), PostgreSQL only.
      */
-    characterSet?: pulumi.Input<string>;
+    characterSet?: pulumi.Input<string | undefined>;
     /**
      * Default collation for the database (LC_COLLATE), PostgreSQL only.
      */
-    collation?: pulumi.Input<string>;
+    collation?: pulumi.Input<string | undefined>;
     /**
      * Name of the logical database.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * UUID of the service to which this logical database belongs.
      */
-    service?: pulumi.Input<string>;
+    service?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -143,15 +154,15 @@ export interface ManagedDatabaseLogicalDatabaseArgs {
     /**
      * Default character set for the database (LC_CTYPE), PostgreSQL only.
      */
-    characterSet?: pulumi.Input<string>;
+    characterSet?: pulumi.Input<string | undefined>;
     /**
      * Default collation for the database (LC_COLLATE), PostgreSQL only.
      */
-    collation?: pulumi.Input<string>;
+    collation?: pulumi.Input<string | undefined>;
     /**
      * Name of the logical database.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * UUID of the service to which this logical database belongs.
      */

@@ -153,6 +153,12 @@ func (ManagedDatabaseConnectionPoolState) ElementType() reflect.Type {
 	return reflect.TypeOf((*managedDatabaseConnectionPoolState)(nil)).Elem()
 }
 
+// ManagedDatabaseConnectionPoolExists checks whether an existing ManagedDatabaseConnectionPool resource with the given ID exists.
+func ManagedDatabaseConnectionPoolExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ManagedDatabaseConnectionPoolState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/managedDatabaseConnectionPool:ManagedDatabaseConnectionPool", id, state, "", opts...)
+}
+
 type managedDatabaseConnectionPoolArgs struct {
 	// Name of the database.
 	Database string `pulumi:"database"`

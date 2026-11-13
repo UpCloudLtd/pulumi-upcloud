@@ -136,6 +136,12 @@ func (LoadbalancerDynamicCertificateBundleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerDynamicCertificateBundleState)(nil)).Elem()
 }
 
+// LoadbalancerDynamicCertificateBundleExists checks whether an existing LoadbalancerDynamicCertificateBundle resource with the given ID exists.
+func LoadbalancerDynamicCertificateBundleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerDynamicCertificateBundleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/loadbalancerDynamicCertificateBundle:LoadbalancerDynamicCertificateBundle", id, state, "", opts...)
+}
+
 type loadbalancerDynamicCertificateBundleArgs struct {
 	// Certificate hostnames.
 	Hostnames []string `pulumi:"hostnames"`

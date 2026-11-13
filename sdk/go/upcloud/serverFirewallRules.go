@@ -168,6 +168,12 @@ func (ServerFirewallRulesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serverFirewallRulesState)(nil)).Elem()
 }
 
+// ServerFirewallRulesExists checks whether an existing ServerFirewallRules resource with the given ID exists.
+func ServerFirewallRulesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServerFirewallRulesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/serverFirewallRules:ServerFirewallRules", id, state, "", opts...)
+}
+
 type serverFirewallRulesArgs struct {
 	// A single firewall rule. The rules are evaluated in order. The maximum number of firewall rules per server is 1000.
 	//

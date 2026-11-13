@@ -25,7 +25,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Use data source to gather a list of the active sessions for a Managed MySQL Database
+        ///     // Use function to gather a list of the active sessions for a Managed MySQL Database
         ///     // Create a Managed MySQL resource
         ///     var exampleManagedDatabaseMysql = new UpCloud.ManagedDatabaseMysql("example", new()
         ///     {
@@ -60,7 +60,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Use data source to gather a list of the active sessions for a Managed MySQL Database
+        ///     // Use function to gather a list of the active sessions for a Managed MySQL Database
         ///     // Create a Managed MySQL resource
         ///     var exampleManagedDatabaseMysql = new UpCloud.ManagedDatabaseMysql("example", new()
         ///     {
@@ -95,7 +95,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Use data source to gather a list of the active sessions for a Managed MySQL Database
+        ///     // Use function to gather a list of the active sessions for a Managed MySQL Database
         ///     // Create a Managed MySQL resource
         ///     var exampleManagedDatabaseMysql = new UpCloud.ManagedDatabaseMysql("example", new()
         ///     {

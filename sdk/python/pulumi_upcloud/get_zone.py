@@ -101,8 +101,8 @@ def get_zone(id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         parent_zone=pulumi.get(__ret__, 'parent_zone'),
         public=pulumi.get(__ret__, 'public'))
-def get_zone_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_zone_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetZoneResult]:
     """
     Provides details on given zone.

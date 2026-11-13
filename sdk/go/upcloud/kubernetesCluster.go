@@ -112,7 +112,8 @@ type KubernetesCluster struct {
 
 	// IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
 	ControlPlaneIpFilters pulumi.StringArrayOutput `pulumi:"controlPlaneIpFilters"`
-	FetchKubeconfig       pulumi.BoolOutput        `pulumi:"fetchKubeconfig"`
+	// Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+	FetchKubeconfig pulumi.BoolOutput `pulumi:"fetchKubeconfig"`
 	// Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
 	Kubeconfig KubernetesClusterKubeconfigOutput `pulumi:"kubeconfig"`
 	// User defined key-value pairs to classify the cluster.
@@ -184,7 +185,8 @@ func GetKubernetesCluster(ctx *pulumi.Context,
 type kubernetesClusterState struct {
 	// IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
 	ControlPlaneIpFilters []string `pulumi:"controlPlaneIpFilters"`
-	FetchKubeconfig       *bool    `pulumi:"fetchKubeconfig"`
+	// Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+	FetchKubeconfig *bool `pulumi:"fetchKubeconfig"`
 	// Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
 	Kubeconfig *KubernetesClusterKubeconfig `pulumi:"kubeconfig"`
 	// User defined key-value pairs to classify the cluster.
@@ -218,7 +220,8 @@ type kubernetesClusterState struct {
 type KubernetesClusterState struct {
 	// IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
 	ControlPlaneIpFilters pulumi.StringArrayInput
-	FetchKubeconfig       pulumi.BoolPtrInput
+	// Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+	FetchKubeconfig pulumi.BoolPtrInput
 	// Cluster kubeconfig and connection details. Set only when `fetchKubeconfig` is `true`.
 	Kubeconfig KubernetesClusterKubeconfigPtrInput
 	// User defined key-value pairs to classify the cluster.
@@ -253,10 +256,17 @@ func (KubernetesClusterState) ElementType() reflect.Type {
 	return reflect.TypeOf((*kubernetesClusterState)(nil)).Elem()
 }
 
+// KubernetesClusterExists checks whether an existing KubernetesCluster resource with the given ID exists.
+func KubernetesClusterExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KubernetesClusterState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/kubernetesCluster:KubernetesCluster", id, state, "", opts...)
+}
+
 type kubernetesClusterArgs struct {
 	// IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
 	ControlPlaneIpFilters []string `pulumi:"controlPlaneIpFilters"`
-	FetchKubeconfig       *bool    `pulumi:"fetchKubeconfig"`
+	// Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+	FetchKubeconfig *bool `pulumi:"fetchKubeconfig"`
 	// User defined key-value pairs to classify the cluster.
 	Labels map[string]string `pulumi:"labels"`
 	// Cluster name. Needs to be unique within the account.
@@ -283,7 +293,8 @@ type kubernetesClusterArgs struct {
 type KubernetesClusterArgs struct {
 	// IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
 	ControlPlaneIpFilters pulumi.StringArrayInput
-	FetchKubeconfig       pulumi.BoolPtrInput
+	// Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+	FetchKubeconfig pulumi.BoolPtrInput
 	// User defined key-value pairs to classify the cluster.
 	Labels pulumi.StringMapInput
 	// Cluster name. Needs to be unique within the account.
@@ -398,6 +409,7 @@ func (o KubernetesClusterOutput) ControlPlaneIpFilters() pulumi.StringArrayOutpu
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringArrayOutput { return v.ControlPlaneIpFilters }).(pulumi.StringArrayOutput)
 }
 
+// Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
 func (o KubernetesClusterOutput) FetchKubeconfig() pulumi.BoolOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.BoolOutput { return v.FetchKubeconfig }).(pulumi.BoolOutput)
 }

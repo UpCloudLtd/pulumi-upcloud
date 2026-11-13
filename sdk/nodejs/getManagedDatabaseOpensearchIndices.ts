@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * // Use data source to gather a list of the indices for a Managed OpenSearch Database
+ * // Use function to gather a list of the indices for a Managed OpenSearch Database
  * // Create a Managed OpenSearch resource
  * const exampleManagedDatabaseOpensearch = new upcloud.ManagedDatabaseOpensearch("example", {
  *     name: "opensearch-example",
@@ -69,7 +69,7 @@ export interface GetManagedDatabaseOpensearchIndicesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * // Use data source to gather a list of the indices for a Managed OpenSearch Database
+ * // Use function to gather a list of the indices for a Managed OpenSearch Database
  * // Create a Managed OpenSearch resource
  * const exampleManagedDatabaseOpensearch = new upcloud.ManagedDatabaseOpensearch("example", {
  *     name: "opensearch-example",
@@ -99,6 +99,6 @@ export function getManagedDatabaseOpensearchIndicesOutput(args: GetManagedDataba
  * A collection of arguments for invoking getManagedDatabaseOpensearchIndices.
  */
 export interface GetManagedDatabaseOpensearchIndicesOutputArgs {
-    indices?: pulumi.Input<pulumi.Input<inputs.GetManagedDatabaseOpensearchIndicesIndexArgs>[]>;
+    indices?: pulumi.Input<pulumi.Input<inputs.GetManagedDatabaseOpensearchIndicesIndexArgs>[] | undefined>;
     service: pulumi.Input<string>;
 }

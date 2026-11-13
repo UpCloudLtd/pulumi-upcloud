@@ -23,11 +23,12 @@ class ManagedObjectStorageArgs:
     def __init__(__self__, *,
                  configured_status: pulumi.Input[_builtins.str],
                  region: pulumi.Input[_builtins.str],
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]]] = None):
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]]] = None):
         """
         The set of arguments for constructing a ManagedObjectStorage resource.
+
         :param pulumi.Input[_builtins.str] configured_status: Service status managed by the end user.
         :param pulumi.Input[_builtins.str] region: Region in which the service will be hosted, see `get_managed_object_storage_regions` data source or use `upctl object-storage regions` to list available regions.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed object storage.
@@ -69,55 +70,56 @@ class ManagedObjectStorageArgs:
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the managed object storage.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Managed Object Storage service. Must be unique within account.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]]]:
+    def networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]]]:
         """
         Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
         """
         return pulumi.get(self, "networks")
 
     @networks.setter
-    def networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]]]):
+    def networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]]]):
         pulumi.set(self, "networks", value)
 
 
 @pulumi.input_type
 class _ManagedObjectStorageState:
     def __init__(__self__, *,
-                 configured_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageEndpointArgs']]]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]]] = None,
-                 operational_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageEndpointArgs']]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]]] = None,
+                 operational_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ManagedObjectStorage resources.
+
         :param pulumi.Input[_builtins.str] configured_status: Service status managed by the end user.
         :param pulumi.Input[_builtins.str] created_at: Creation time.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageEndpointArgs']]] endpoints: Endpoints for accessing the Managed Object Storage service.
@@ -149,110 +151,110 @@ class _ManagedObjectStorageState:
 
     @_builtins.property
     @pulumi.getter(name="configuredStatus")
-    def configured_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def configured_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service status managed by the end user.
         """
         return pulumi.get(self, "configured_status")
 
     @configured_status.setter
-    def configured_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def configured_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "configured_status", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Creation time.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageEndpointArgs']]]]:
+    def endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageEndpointArgs']]]]:
         """
         Endpoints for accessing the Managed Object Storage service.
         """
         return pulumi.get(self, "endpoints")
 
     @endpoints.setter
-    def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageEndpointArgs']]]]):
+    def endpoints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageEndpointArgs']]]]):
         pulumi.set(self, "endpoints", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the managed object storage.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Managed Object Storage service. Must be unique within account.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]]]:
+    def networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]]]:
         """
         Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
         """
         return pulumi.get(self, "networks")
 
     @networks.setter
-    def networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]]]):
+    def networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedObjectStorageNetworkArgs']]]]):
         pulumi.set(self, "networks", value)
 
     @_builtins.property
     @pulumi.getter(name="operationalState")
-    def operational_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def operational_state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Operational state of the Managed Object Storage service.
         """
         return pulumi.get(self, "operational_state")
 
     @operational_state.setter
-    def operational_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def operational_state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "operational_state", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region in which the service will be hosted, see `get_managed_object_storage_regions` data source or use `upctl object-storage regions` to list available regions.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Update time.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -262,11 +264,11 @@ class ManagedObjectStorage(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configured_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict']]]]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict', 'outputs.ManagedObjectStorageNetwork']]]]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents an UpCloud Managed Object Storage instance, which provides S3 compatible storage.
@@ -304,12 +306,13 @@ class ManagedObjectStorage(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] configured_status: Service status managed by the end user.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed object storage.
         :param pulumi.Input[_builtins.str] name: Name of the Managed Object Storage service. Must be unique within account.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict']]]] networks: Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict', 'outputs.ManagedObjectStorageNetwork']]]] networks: Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
         :param pulumi.Input[_builtins.str] region: Region in which the service will be hosted, see `get_managed_object_storage_regions` data source or use `upctl object-storage regions` to list available regions.
         """
         ...
@@ -354,6 +357,7 @@ class ManagedObjectStorage(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ManagedObjectStorageArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -369,11 +373,11 @@ class ManagedObjectStorage(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configured_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict']]]]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict', 'outputs.ManagedObjectStorageNetwork']]]]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -406,15 +410,15 @@ class ManagedObjectStorage(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            configured_status: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageEndpointArgs', 'ManagedObjectStorageEndpointArgsDict']]]]] = None,
-            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict']]]]] = None,
-            operational_state: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'ManagedObjectStorage':
+            configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedObjectStorageEndpointArgs', 'ManagedObjectStorageEndpointArgsDict', 'outputs.ManagedObjectStorageEndpoint']]]]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict', 'outputs.ManagedObjectStorageNetwork']]]]] = None,
+            operational_state: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'ManagedObjectStorage':
         """
         Get an existing ManagedObjectStorage resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -424,10 +428,10 @@ class ManagedObjectStorage(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] configured_status: Service status managed by the end user.
         :param pulumi.Input[_builtins.str] created_at: Creation time.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageEndpointArgs', 'ManagedObjectStorageEndpointArgsDict']]]] endpoints: Endpoints for accessing the Managed Object Storage service.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageEndpointArgs', 'ManagedObjectStorageEndpointArgsDict', 'outputs.ManagedObjectStorageEndpoint']]]] endpoints: Endpoints for accessing the Managed Object Storage service.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the managed object storage.
         :param pulumi.Input[_builtins.str] name: Name of the Managed Object Storage service. Must be unique within account.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict']]]] networks: Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict', 'outputs.ManagedObjectStorageNetwork']]]] networks: Attached networks from where object storage can be used. Private networks must reside in object storage region. To gain access from multiple private networks that might reside in different zones, create the networks and a corresponding router for each network.
         :param pulumi.Input[_builtins.str] operational_state: Operational state of the Managed Object Storage service.
         :param pulumi.Input[_builtins.str] region: Region in which the service will be hosted, see `get_managed_object_storage_regions` data source or use `upctl object-storage regions` to list available regions.
         :param pulumi.Input[_builtins.str] updated_at: Update time.
@@ -446,6 +450,30 @@ class ManagedObjectStorage(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["updated_at"] = updated_at
         return ManagedObjectStorage(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            configured_status: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedObjectStorageEndpointArgs', 'ManagedObjectStorageEndpointArgsDict', 'outputs.ManagedObjectStorageEndpoint']]]]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedObjectStorageNetworkArgs', 'ManagedObjectStorageNetworkArgsDict', 'outputs.ManagedObjectStorageNetwork']]]]] = None,
+            operational_state: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["configuredStatus"] = configured_status
+        __props__["createdAt"] = created_at
+        __props__["endpoints"] = endpoints
+        __props__["labels"] = labels
+        __props__["name"] = name
+        __props__["networks"] = networks
+        __props__["operationalState"] = operational_state
+        __props__["region"] = region
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/managedObjectStorage:ManagedObjectStorage', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="configuredStatus")

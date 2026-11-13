@@ -13,6 +13,8 @@ namespace UpCloud.Pulumi.UpCloud
     public static class GetKubernetesCluster
     {
         /// <summary>
+        /// Managed Kubernetes cluster details. Please refer to Terraform documentation on sensitive data to keep the credential data as safe as possible.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -57,7 +59,7 @@ namespace UpCloud.Pulumi.UpCloud
         ///     });
         /// 
         ///     // Use the Kubernetes provider resources to interact with the cluster
-        ///     var exampleNamespace = new Kubernetes.Index.Namespace("example", new()
+        ///     var exampleNamespace = new Kubernetes.Namespace("example", new()
         ///     {
         ///         Metadata = new[]
         ///         {
@@ -69,7 +71,7 @@ namespace UpCloud.Pulumi.UpCloud
         ///     });
         /// 
         ///     // In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients
-        ///     var exampleFile = new Local.Index.File("example", new()
+        ///     var exampleFile = new Local.File("example", new()
         ///     {
         ///         Content = example.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.Kubeconfig),
         ///         Filename = "example.conf",
@@ -82,6 +84,8 @@ namespace UpCloud.Pulumi.UpCloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetKubernetesClusterResult>("upcloud:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Managed Kubernetes cluster details. Please refer to Terraform documentation on sensitive data to keep the credential data as safe as possible.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -126,7 +130,7 @@ namespace UpCloud.Pulumi.UpCloud
         ///     });
         /// 
         ///     // Use the Kubernetes provider resources to interact with the cluster
-        ///     var exampleNamespace = new Kubernetes.Index.Namespace("example", new()
+        ///     var exampleNamespace = new Kubernetes.Namespace("example", new()
         ///     {
         ///         Metadata = new[]
         ///         {
@@ -138,7 +142,7 @@ namespace UpCloud.Pulumi.UpCloud
         ///     });
         /// 
         ///     // In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients
-        ///     var exampleFile = new Local.Index.File("example", new()
+        ///     var exampleFile = new Local.File("example", new()
         ///     {
         ///         Content = example.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.Kubeconfig),
         ///         Filename = "example.conf",
@@ -151,6 +155,8 @@ namespace UpCloud.Pulumi.UpCloud
             => global::Pulumi.Deployment.Instance.Invoke<GetKubernetesClusterResult>("upcloud:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Managed Kubernetes cluster details. Please refer to Terraform documentation on sensitive data to keep the credential data as safe as possible.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -195,7 +201,7 @@ namespace UpCloud.Pulumi.UpCloud
         ///     });
         /// 
         ///     // Use the Kubernetes provider resources to interact with the cluster
-        ///     var exampleNamespace = new Kubernetes.Index.Namespace("example", new()
+        ///     var exampleNamespace = new Kubernetes.Namespace("example", new()
         ///     {
         ///         Metadata = new[]
         ///         {
@@ -207,7 +213,7 @@ namespace UpCloud.Pulumi.UpCloud
         ///     });
         /// 
         ///     // In addition, write the kubeconfig to a file to interact with the cluster with `kubectl` or other clients
-        ///     var exampleFile = new Local.Index.File("example", new()
+        ///     var exampleFile = new Local.File("example", new()
         ///     {
         ///         Content = example.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.Kubeconfig),
         ///         Filename = "example.conf",

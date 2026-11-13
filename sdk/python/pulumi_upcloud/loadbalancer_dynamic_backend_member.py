@@ -22,12 +22,13 @@ class LoadbalancerDynamicBackendMemberArgs:
                  backend: pulumi.Input[_builtins.str],
                  max_sessions: pulumi.Input[_builtins.int],
                  weight: pulumi.Input[_builtins.int],
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None):
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a LoadbalancerDynamicBackendMember resource.
+
         :param pulumi.Input[_builtins.str] backend: ID of the load balancer backend to which the member is connected.
         :param pulumi.Input[_builtins.int] max_sessions: Maximum number of sessions before queueing.
         :param pulumi.Input[_builtins.int] weight: Weight of the member. The higher the weight, the more traffic the member receives.
@@ -86,65 +87,66 @@ class LoadbalancerDynamicBackendMemberArgs:
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the member is enabled. Disabled members are excluded from load balancing.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional fallback IP address in case of failure on DNS resolving.
         """
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the member. Must be unique within within the load balancer backend.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Server port. Port is optional and can be specified in DNS SRV record.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
 
 @pulumi.input_type
 class _LoadbalancerDynamicBackendMemberState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_sessions: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 weight: Optional[pulumi.Input[_builtins.int]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_sessions: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 weight: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerDynamicBackendMember resources.
+
         :param pulumi.Input[_builtins.str] backend: ID of the load balancer backend to which the member is connected.
         :param pulumi.Input[_builtins.bool] enabled: Indicates if the member is enabled. Disabled members are excluded from load balancing.
         :param pulumi.Input[_builtins.str] ip: Optional fallback IP address in case of failure on DNS resolving.
@@ -170,86 +172,86 @@ class _LoadbalancerDynamicBackendMemberState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the load balancer backend to which the member is connected.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the member is enabled. Disabled members are excluded from load balancing.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional fallback IP address in case of failure on DNS resolving.
         """
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSessions")
-    def max_sessions(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_sessions(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of sessions before queueing.
         """
         return pulumi.get(self, "max_sessions")
 
     @max_sessions.setter
-    def max_sessions(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_sessions(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_sessions", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the member. Must be unique within within the load balancer backend.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Server port. Port is optional and can be specified in DNS SRV record.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter
-    def weight(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def weight(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Weight of the member. The higher the weight, the more traffic the member receives.
         """
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def weight(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "weight", value)
 
 
@@ -259,13 +261,13 @@ class LoadbalancerDynamicBackendMember(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_sessions: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 weight: Optional[pulumi.Input[_builtins.int]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_sessions: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 weight: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         This resource represents load balancer dynamic backend member
@@ -317,6 +319,7 @@ class LoadbalancerDynamicBackendMember(pulumi.CustomResource):
             max_sessions=10,
             enabled=False)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -385,6 +388,7 @@ class LoadbalancerDynamicBackendMember(pulumi.CustomResource):
             enabled=False)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param LoadbalancerDynamicBackendMemberArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -400,13 +404,13 @@ class LoadbalancerDynamicBackendMember(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_sessions: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 weight: Optional[pulumi.Input[_builtins.int]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_sessions: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 weight: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -439,13 +443,13 @@ class LoadbalancerDynamicBackendMember(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            ip: Optional[pulumi.Input[_builtins.str]] = None,
-            max_sessions: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            port: Optional[pulumi.Input[_builtins.int]] = None,
-            weight: Optional[pulumi.Input[_builtins.int]] = None) -> 'LoadbalancerDynamicBackendMember':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            ip: pulumi.Input[Optional[_builtins.str]] = None,
+            max_sessions: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            port: pulumi.Input[Optional[_builtins.int]] = None,
+            weight: pulumi.Input[Optional[_builtins.int]] = None) -> 'LoadbalancerDynamicBackendMember':
         """
         Get an existing LoadbalancerDynamicBackendMember resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -473,6 +477,26 @@ class LoadbalancerDynamicBackendMember(pulumi.CustomResource):
         __props__.__dict__["port"] = port
         __props__.__dict__["weight"] = weight
         return LoadbalancerDynamicBackendMember(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            ip: pulumi.Input[Optional[_builtins.str]] = None,
+            max_sessions: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            port: pulumi.Input[Optional[_builtins.int]] = None,
+            weight: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["enabled"] = enabled
+        __props__["ip"] = ip
+        __props__["maxSessions"] = max_sessions
+        __props__["name"] = name
+        __props__["port"] = port
+        __props__["weight"] = weight
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/loadbalancerDynamicBackendMember:LoadbalancerDynamicBackendMember', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

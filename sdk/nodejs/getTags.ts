@@ -53,5 +53,5 @@ export function getTagsOutput(args?: GetTagsOutputArgs, opts?: pulumi.InvokeOutp
  * A collection of arguments for invoking getTags.
  */
 export interface GetTagsOutputArgs {
-    tags?: pulumi.Input<pulumi.Input<inputs.GetTagsTagArgs>[]>;
+    tags?: pulumi.Input<pulumi.Input<inputs.GetTagsTagArgs>[] | undefined>;
 }

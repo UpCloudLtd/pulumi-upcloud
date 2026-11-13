@@ -45,5 +45,5 @@ export function getZonesOutput(args?: GetZonesOutputArgs, opts?: pulumi.InvokeOu
  * A collection of arguments for invoking getZones.
  */
 export interface GetZonesOutputArgs {
-    filterType?: pulumi.Input<string>;
+    filterType?: pulumi.Input<string | undefined>;
 }

@@ -92,7 +92,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
         /// 
-        /// 	Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
+        ///     Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
         /// </summary>
         [Output("defaultBackendName")]
         public Output<string> DefaultBackendName { get; private set; } = null!;
@@ -127,6 +127,9 @@ namespace UpCloud.Pulumi.UpCloud
         [Output("port")]
         public Output<int> Port { get; private set; } = null!;
 
+        /// <summary>
+        /// Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        /// </summary>
         [Output("properties")]
         public Output<Outputs.LoadbalancerFrontendProperties?> Properties { get; private set; } = null!;
 
@@ -192,7 +195,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
         /// 
-        /// 	Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
+        ///     Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
         /// </summary>
         [Input("defaultBackendName", required: true)]
         public Input<string> DefaultBackendName { get; set; } = null!;
@@ -233,6 +236,9 @@ namespace UpCloud.Pulumi.UpCloud
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 
+        /// <summary>
+        /// Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        /// </summary>
         [Input("properties")]
         public Input<Inputs.LoadbalancerFrontendPropertiesArgs>? Properties { get; set; }
 
@@ -247,7 +253,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// <summary>
         /// The name of the backend where traffic will be routed by default. The default backend can be overridden in frontend rules.
         /// 
-        /// 	Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
+        ///     Note that the frontend resource depends on the default backend resource. Use the `Name` field of a backend resource as the value for this field (like in the example above) or the `DependsOn` meta argument to ensure the resources are created and destroyed in the correct order.
         /// </summary>
         [Input("defaultBackendName")]
         public Input<string>? DefaultBackendName { get; set; }
@@ -288,6 +294,9 @@ namespace UpCloud.Pulumi.UpCloud
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        /// </summary>
         [Input("properties")]
         public Input<Inputs.LoadbalancerFrontendPropertiesGetArgs>? Properties { get; set; }
 

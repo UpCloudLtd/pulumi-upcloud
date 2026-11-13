@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Use data source to gather a list of the indices for a Managed OpenSearch Database
+//			// Use function to gather a list of the indices for a Managed OpenSearch Database
 //			// Create a Managed OpenSearch resource
 //			exampleManagedDatabaseOpensearch, err := upcloud.NewManagedDatabaseOpensearch(ctx, "example", &upcloud.ManagedDatabaseOpensearchArgs{
 //				Name:  pulumi.String("opensearch-example"),
@@ -76,12 +76,8 @@ type GetManagedDatabaseOpensearchIndicesResult struct {
 }
 
 func GetManagedDatabaseOpensearchIndicesOutput(ctx *pulumi.Context, args GetManagedDatabaseOpensearchIndicesOutputArgs, opts ...pulumi.InvokeOption) GetManagedDatabaseOpensearchIndicesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetManagedDatabaseOpensearchIndicesResultOutput, error) {
-			args := v.(GetManagedDatabaseOpensearchIndicesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("upcloud:index/getManagedDatabaseOpensearchIndices:getManagedDatabaseOpensearchIndices", args, GetManagedDatabaseOpensearchIndicesResultOutput{}, options).(GetManagedDatabaseOpensearchIndicesResultOutput), nil
-		}).(GetManagedDatabaseOpensearchIndicesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("upcloud:index/getManagedDatabaseOpensearchIndices:getManagedDatabaseOpensearchIndices", args, GetManagedDatabaseOpensearchIndicesResultOutput{}, options).(GetManagedDatabaseOpensearchIndicesResultOutput)
 }
 
 // A collection of arguments for invoking getManagedDatabaseOpensearchIndices.

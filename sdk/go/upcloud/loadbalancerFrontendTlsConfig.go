@@ -162,6 +162,12 @@ func (LoadbalancerFrontendTlsConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerFrontendTlsConfigState)(nil)).Elem()
 }
 
+// LoadbalancerFrontendTlsConfigExists checks whether an existing LoadbalancerFrontendTlsConfig resource with the given ID exists.
+func LoadbalancerFrontendTlsConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerFrontendTlsConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("upcloud:index/loadbalancerFrontendTlsConfig:LoadbalancerFrontendTlsConfig", id, state, "", opts...)
+}
+
 type loadbalancerFrontendTlsConfigArgs struct {
 	// Reference to certificate bundle ID.
 	CertificateBundle string `pulumi:"certificateBundle"`

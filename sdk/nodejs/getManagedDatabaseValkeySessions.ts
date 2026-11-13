@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * // Use data source to gather a list of the active sessions for a Managed Valkey Database
+ * // Use function to gather a list of the active sessions for a Managed Valkey Database
  * // Create a Managed Valkey resource
  * const exampleManagedDatabaseValkey = new upcloud.ManagedDatabaseValkey("example", {
  *     name: "example",
@@ -74,7 +74,7 @@ export interface GetManagedDatabaseValkeySessionsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as upcloud from "@upcloud/pulumi-upcloud";
  *
- * // Use data source to gather a list of the active sessions for a Managed Valkey Database
+ * // Use function to gather a list of the active sessions for a Managed Valkey Database
  * // Create a Managed Valkey resource
  * const exampleManagedDatabaseValkey = new upcloud.ManagedDatabaseValkey("example", {
  *     name: "example",
@@ -103,9 +103,9 @@ export function getManagedDatabaseValkeySessionsOutput(args: GetManagedDatabaseV
  * A collection of arguments for invoking getManagedDatabaseValkeySessions.
  */
 export interface GetManagedDatabaseValkeySessionsOutputArgs {
-    limit?: pulumi.Input<number>;
-    offset?: pulumi.Input<number>;
-    order?: pulumi.Input<string>;
+    limit?: pulumi.Input<number | undefined>;
+    offset?: pulumi.Input<number | undefined>;
+    order?: pulumi.Input<string | undefined>;
     service: pulumi.Input<string>;
-    sessions?: pulumi.Input<pulumi.Input<inputs.GetManagedDatabaseValkeySessionsSessionArgs>[]>;
+    sessions?: pulumi.Input<pulumi.Input<inputs.GetManagedDatabaseValkeySessionsSessionArgs>[] | undefined>;
 }

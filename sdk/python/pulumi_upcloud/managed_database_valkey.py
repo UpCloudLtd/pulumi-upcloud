@@ -24,19 +24,20 @@ class ManagedDatabaseValkeyArgs:
                  plan: pulumi.Input[_builtins.str],
                  title: pulumi.Input[_builtins.str],
                  zone: pulumi.Input[_builtins.str],
-                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
-                 clone_from: Optional[pulumi.Input[_builtins.str]] = None,
-                 clone_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseValkeyNetworkArgs']]]] = None,
-                 powered: Optional[pulumi.Input[_builtins.bool]] = None,
-                 properties: Optional[pulumi.Input['ManagedDatabaseValkeyPropertiesArgs']] = None,
-                 termination_protection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 additional_disk_space_gib: pulumi.Input[Optional[_builtins.int]] = None,
+                 clone_from: pulumi.Input[Optional[_builtins.str]] = None,
+                 clone_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 maintenance_window_dow: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedDatabaseValkeyNetworkArgs']]]] = None,
+                 powered: pulumi.Input[Optional[_builtins.bool]] = None,
+                 properties: pulumi.Input[Optional['ManagedDatabaseValkeyPropertiesArgs']] = None,
+                 termination_protection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ManagedDatabaseValkey resource.
+
         :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
         :param pulumi.Input[_builtins.str] title: Title of the managed database instance
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
@@ -116,166 +117,167 @@ class ManagedDatabaseValkeyArgs:
 
     @_builtins.property
     @pulumi.getter(name="additionalDiskSpaceGib")
-    def additional_disk_space_gib(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def additional_disk_space_gib(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Not supported for `valkey` databases. Should be left unconfigured.
         """
         return pulumi.get(self, "additional_disk_space_gib")
 
     @additional_disk_space_gib.setter
-    def additional_disk_space_gib(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def additional_disk_space_gib(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "additional_disk_space_gib", value)
 
     @_builtins.property
     @pulumi.getter(name="cloneFrom")
-    def clone_from(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def clone_from(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
         """
         return pulumi.get(self, "clone_from")
 
     @clone_from.setter
-    def clone_from(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def clone_from(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "clone_from", value)
 
     @_builtins.property
     @pulumi.getter(name="cloneTime")
-    def clone_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def clone_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
         """
         return pulumi.get(self, "clone_time")
 
     @clone_time.setter
-    def clone_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def clone_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "clone_time", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the database.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindowDow")
-    def maintenance_window_dow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def maintenance_window_dow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         """
         return pulumi.get(self, "maintenance_window_dow")
 
     @maintenance_window_dow.setter
-    def maintenance_window_dow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def maintenance_window_dow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "maintenance_window_dow", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindowTime")
-    def maintenance_window_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def maintenance_window_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maintenance window UTC time in hh:mm:ss format
         """
         return pulumi.get(self, "maintenance_window_time")
 
     @maintenance_window_time.setter
-    def maintenance_window_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def maintenance_window_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "maintenance_window_time", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseValkeyNetworkArgs']]]]:
+    def networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ManagedDatabaseValkeyNetworkArgs']]]]:
         """
         Private networks attached to the managed database
         """
         return pulumi.get(self, "networks")
 
     @networks.setter
-    def networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseValkeyNetworkArgs']]]]):
+    def networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedDatabaseValkeyNetworkArgs']]]]):
         pulumi.set(self, "networks", value)
 
     @_builtins.property
     @pulumi.getter
-    def powered(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def powered(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         The administrative power state of the service
         """
         return pulumi.get(self, "powered")
 
     @powered.setter
-    def powered(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def powered(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "powered", value)
 
     @_builtins.property
     @pulumi.getter
-    def properties(self) -> Optional[pulumi.Input['ManagedDatabaseValkeyPropertiesArgs']]:
+    def properties(self) -> pulumi.Input[Optional['ManagedDatabaseValkeyPropertiesArgs']]:
         """
         Database engine properties.
         """
         return pulumi.get(self, "properties")
 
     @properties.setter
-    def properties(self, value: Optional[pulumi.Input['ManagedDatabaseValkeyPropertiesArgs']]):
+    def properties(self, value: pulumi.Input[Optional['ManagedDatabaseValkeyPropertiesArgs']]):
         pulumi.set(self, "properties", value)
 
     @_builtins.property
     @pulumi.getter(name="terminationProtection")
-    def termination_protection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def termination_protection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, prevents the managed service from being powered off, or deleted.
         """
         return pulumi.get(self, "termination_protection")
 
     @termination_protection.setter
-    def termination_protection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def termination_protection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "termination_protection", value)
 
 
 @pulumi.input_type
 class _ManagedDatabaseValkeyState:
     def __init__(__self__, *,
-                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
-                 clone_from: Optional[pulumi.Input[_builtins.str]] = None,
-                 clone_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 components: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseValkeyComponentArgs']]]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseValkeyNetworkArgs']]]] = None,
-                 node_states: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseValkeyNodeStateArgs']]]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 powered: Optional[pulumi.Input[_builtins.bool]] = None,
-                 primary_database: Optional[pulumi.Input[_builtins.str]] = None,
-                 properties: Optional[pulumi.Input['ManagedDatabaseValkeyPropertiesArgs']] = None,
-                 service_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_port: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_username: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 termination_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 title: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 additional_disk_space_gib: pulumi.Input[Optional[_builtins.int]] = None,
+                 clone_from: pulumi.Input[Optional[_builtins.str]] = None,
+                 clone_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 components: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedDatabaseValkeyComponentArgs']]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 maintenance_window_dow: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedDatabaseValkeyNetworkArgs']]]] = None,
+                 node_states: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedDatabaseValkeyNodeStateArgs']]]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 powered: pulumi.Input[Optional[_builtins.bool]] = None,
+                 primary_database: pulumi.Input[Optional[_builtins.str]] = None,
+                 properties: pulumi.Input[Optional['ManagedDatabaseValkeyPropertiesArgs']] = None,
+                 service_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_port: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_username: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 termination_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 title: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ManagedDatabaseValkey resources.
+
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Not supported for `valkey` databases. Should be left unconfigured.
         :param pulumi.Input[_builtins.str] clone_from: UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
         :param pulumi.Input[_builtins.str] clone_time: Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
@@ -352,290 +354,290 @@ class _ManagedDatabaseValkeyState:
 
     @_builtins.property
     @pulumi.getter(name="additionalDiskSpaceGib")
-    def additional_disk_space_gib(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def additional_disk_space_gib(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Not supported for `valkey` databases. Should be left unconfigured.
         """
         return pulumi.get(self, "additional_disk_space_gib")
 
     @additional_disk_space_gib.setter
-    def additional_disk_space_gib(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def additional_disk_space_gib(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "additional_disk_space_gib", value)
 
     @_builtins.property
     @pulumi.getter(name="cloneFrom")
-    def clone_from(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def clone_from(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
         """
         return pulumi.get(self, "clone_from")
 
     @clone_from.setter
-    def clone_from(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def clone_from(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "clone_from", value)
 
     @_builtins.property
     @pulumi.getter(name="cloneTime")
-    def clone_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def clone_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
         """
         return pulumi.get(self, "clone_time")
 
     @clone_time.setter
-    def clone_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def clone_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "clone_time", value)
 
     @_builtins.property
     @pulumi.getter
-    def components(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseValkeyComponentArgs']]]]:
+    def components(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ManagedDatabaseValkeyComponentArgs']]]]:
         """
         Service component information
         """
         return pulumi.get(self, "components")
 
     @components.setter
-    def components(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseValkeyComponentArgs']]]]):
+    def components(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedDatabaseValkeyComponentArgs']]]]):
         pulumi.set(self, "components", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the database.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindowDow")
-    def maintenance_window_dow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def maintenance_window_dow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         """
         return pulumi.get(self, "maintenance_window_dow")
 
     @maintenance_window_dow.setter
-    def maintenance_window_dow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def maintenance_window_dow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "maintenance_window_dow", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindowTime")
-    def maintenance_window_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def maintenance_window_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maintenance window UTC time in hh:mm:ss format
         """
         return pulumi.get(self, "maintenance_window_time")
 
     @maintenance_window_time.setter
-    def maintenance_window_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def maintenance_window_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "maintenance_window_time", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseValkeyNetworkArgs']]]]:
+    def networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ManagedDatabaseValkeyNetworkArgs']]]]:
         """
         Private networks attached to the managed database
         """
         return pulumi.get(self, "networks")
 
     @networks.setter
-    def networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseValkeyNetworkArgs']]]]):
+    def networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedDatabaseValkeyNetworkArgs']]]]):
         pulumi.set(self, "networks", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeStates")
-    def node_states(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseValkeyNodeStateArgs']]]]:
+    def node_states(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ManagedDatabaseValkeyNodeStateArgs']]]]:
         """
         Information about nodes providing the managed service
         """
         return pulumi.get(self, "node_states")
 
     @node_states.setter
-    def node_states(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedDatabaseValkeyNodeStateArgs']]]]):
+    def node_states(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ManagedDatabaseValkeyNodeStateArgs']]]]):
         pulumi.set(self, "node_states", value)
 
     @_builtins.property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
         """
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter
-    def powered(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def powered(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         The administrative power state of the service
         """
         return pulumi.get(self, "powered")
 
     @powered.setter
-    def powered(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def powered(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "powered", value)
 
     @_builtins.property
     @pulumi.getter(name="primaryDatabase")
-    def primary_database(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def primary_database(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Primary database name
         """
         return pulumi.get(self, "primary_database")
 
     @primary_database.setter
-    def primary_database(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def primary_database(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "primary_database", value)
 
     @_builtins.property
     @pulumi.getter
-    def properties(self) -> Optional[pulumi.Input['ManagedDatabaseValkeyPropertiesArgs']]:
+    def properties(self) -> pulumi.Input[Optional['ManagedDatabaseValkeyPropertiesArgs']]:
         """
         Database engine properties.
         """
         return pulumi.get(self, "properties")
 
     @properties.setter
-    def properties(self, value: Optional[pulumi.Input['ManagedDatabaseValkeyPropertiesArgs']]):
+    def properties(self, value: pulumi.Input[Optional['ManagedDatabaseValkeyPropertiesArgs']]):
         pulumi.set(self, "properties", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceHost")
-    def service_host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Hostname to the service instance
         """
         return pulumi.get(self, "service_host")
 
     @service_host.setter
-    def service_host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_host", value)
 
     @_builtins.property
     @pulumi.getter(name="servicePassword")
-    def service_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Primary password to the service instance
         """
         return pulumi.get(self, "service_password")
 
     @service_password.setter
-    def service_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_password", value)
 
     @_builtins.property
     @pulumi.getter(name="servicePort")
-    def service_port(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_port(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Port to the service instance
         """
         return pulumi.get(self, "service_port")
 
     @service_port.setter
-    def service_port(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_port(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_port", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceUri")
-    def service_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_uri(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         URI to the service instance
         """
         return pulumi.get(self, "service_uri")
 
     @service_uri.setter
-    def service_uri(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_uri(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_uri", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceUsername")
-    def service_username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Primary username to the service instance
         """
         return pulumi.get(self, "service_username")
 
     @service_username.setter
-    def service_username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_username", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The current state of the service
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter(name="terminationProtection")
-    def termination_protection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def termination_protection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, prevents the managed service from being powered off, or deleted.
         """
         return pulumi.get(self, "termination_protection")
 
     @termination_protection.setter
-    def termination_protection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def termination_protection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "termination_protection", value)
 
     @_builtins.property
     @pulumi.getter
-    def title(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def title(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Title of the managed database instance
         """
         return pulumi.get(self, "title")
 
     @title.setter
-    def title(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def title(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "title", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of the managed database instance
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -645,20 +647,20 @@ class ManagedDatabaseValkey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
-                 clone_from: Optional[pulumi.Input[_builtins.str]] = None,
-                 clone_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNetworkArgs', 'ManagedDatabaseValkeyNetworkArgsDict']]]]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 powered: Optional[pulumi.Input[_builtins.bool]] = None,
-                 properties: Optional[pulumi.Input[Union['ManagedDatabaseValkeyPropertiesArgs', 'ManagedDatabaseValkeyPropertiesArgsDict']]] = None,
-                 termination_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 title: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 additional_disk_space_gib: pulumi.Input[Optional[_builtins.int]] = None,
+                 clone_from: pulumi.Input[Optional[_builtins.str]] = None,
+                 clone_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 maintenance_window_dow: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNetworkArgs', 'ManagedDatabaseValkeyNetworkArgsDict', 'outputs.ManagedDatabaseValkeyNetwork']]]]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 powered: pulumi.Input[Optional[_builtins.bool]] = None,
+                 properties: pulumi.Input[Optional[Union['ManagedDatabaseValkeyPropertiesArgs', 'ManagedDatabaseValkeyPropertiesArgsDict', 'outputs.ManagedDatabaseValkeyProperties']]] = None,
+                 termination_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 title: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents Valkey managed database. See UpCloud [Managed Databases](https://upcloud.com/products/managed-databases) product page for more details about the service.
@@ -686,6 +688,7 @@ class ManagedDatabaseValkey(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Not supported for `valkey` databases. Should be left unconfigured.
@@ -695,10 +698,10 @@ class ManagedDatabaseValkey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[_builtins.str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNetworkArgs', 'ManagedDatabaseValkeyNetworkArgsDict']]]] networks: Private networks attached to the managed database
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNetworkArgs', 'ManagedDatabaseValkeyNetworkArgsDict', 'outputs.ManagedDatabaseValkeyNetwork']]]] networks: Private networks attached to the managed database
         :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
-        :param pulumi.Input[Union['ManagedDatabaseValkeyPropertiesArgs', 'ManagedDatabaseValkeyPropertiesArgsDict']] properties: Database engine properties.
+        :param pulumi.Input[Union['ManagedDatabaseValkeyPropertiesArgs', 'ManagedDatabaseValkeyPropertiesArgsDict', 'outputs.ManagedDatabaseValkeyProperties']] properties: Database engine properties.
         :param pulumi.Input[_builtins.bool] termination_protection: If set to true, prevents the managed service from being powered off, or deleted.
         :param pulumi.Input[_builtins.str] title: Title of the managed database instance
         :param pulumi.Input[_builtins.str] zone: Zone where the instance resides, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
@@ -735,6 +738,7 @@ class ManagedDatabaseValkey(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ManagedDatabaseValkeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -750,20 +754,20 @@ class ManagedDatabaseValkey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
-                 clone_from: Optional[pulumi.Input[_builtins.str]] = None,
-                 clone_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNetworkArgs', 'ManagedDatabaseValkeyNetworkArgsDict']]]]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 powered: Optional[pulumi.Input[_builtins.bool]] = None,
-                 properties: Optional[pulumi.Input[Union['ManagedDatabaseValkeyPropertiesArgs', 'ManagedDatabaseValkeyPropertiesArgsDict']]] = None,
-                 termination_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 title: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 additional_disk_space_gib: pulumi.Input[Optional[_builtins.int]] = None,
+                 clone_from: pulumi.Input[Optional[_builtins.str]] = None,
+                 clone_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 maintenance_window_dow: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNetworkArgs', 'ManagedDatabaseValkeyNetworkArgsDict', 'outputs.ManagedDatabaseValkeyNetwork']]]]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 powered: pulumi.Input[Optional[_builtins.bool]] = None,
+                 properties: pulumi.Input[Optional[Union['ManagedDatabaseValkeyPropertiesArgs', 'ManagedDatabaseValkeyPropertiesArgsDict', 'outputs.ManagedDatabaseValkeyProperties']]] = None,
+                 termination_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 title: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -815,30 +819,30 @@ class ManagedDatabaseValkey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            additional_disk_space_gib: Optional[pulumi.Input[_builtins.int]] = None,
-            clone_from: Optional[pulumi.Input[_builtins.str]] = None,
-            clone_time: Optional[pulumi.Input[_builtins.str]] = None,
-            components: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyComponentArgs', 'ManagedDatabaseValkeyComponentArgsDict']]]]] = None,
-            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            maintenance_window_dow: Optional[pulumi.Input[_builtins.str]] = None,
-            maintenance_window_time: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNetworkArgs', 'ManagedDatabaseValkeyNetworkArgsDict']]]]] = None,
-            node_states: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNodeStateArgs', 'ManagedDatabaseValkeyNodeStateArgsDict']]]]] = None,
-            plan: Optional[pulumi.Input[_builtins.str]] = None,
-            powered: Optional[pulumi.Input[_builtins.bool]] = None,
-            primary_database: Optional[pulumi.Input[_builtins.str]] = None,
-            properties: Optional[pulumi.Input[Union['ManagedDatabaseValkeyPropertiesArgs', 'ManagedDatabaseValkeyPropertiesArgsDict']]] = None,
-            service_host: Optional[pulumi.Input[_builtins.str]] = None,
-            service_password: Optional[pulumi.Input[_builtins.str]] = None,
-            service_port: Optional[pulumi.Input[_builtins.str]] = None,
-            service_uri: Optional[pulumi.Input[_builtins.str]] = None,
-            service_username: Optional[pulumi.Input[_builtins.str]] = None,
-            state: Optional[pulumi.Input[_builtins.str]] = None,
-            termination_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-            title: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'ManagedDatabaseValkey':
+            additional_disk_space_gib: pulumi.Input[Optional[_builtins.int]] = None,
+            clone_from: pulumi.Input[Optional[_builtins.str]] = None,
+            clone_time: pulumi.Input[Optional[_builtins.str]] = None,
+            components: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyComponentArgs', 'ManagedDatabaseValkeyComponentArgsDict', 'outputs.ManagedDatabaseValkeyComponent']]]]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            maintenance_window_dow: pulumi.Input[Optional[_builtins.str]] = None,
+            maintenance_window_time: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNetworkArgs', 'ManagedDatabaseValkeyNetworkArgsDict', 'outputs.ManagedDatabaseValkeyNetwork']]]]] = None,
+            node_states: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNodeStateArgs', 'ManagedDatabaseValkeyNodeStateArgsDict', 'outputs.ManagedDatabaseValkeyNodeState']]]]] = None,
+            plan: pulumi.Input[Optional[_builtins.str]] = None,
+            powered: pulumi.Input[Optional[_builtins.bool]] = None,
+            primary_database: pulumi.Input[Optional[_builtins.str]] = None,
+            properties: pulumi.Input[Optional[Union['ManagedDatabaseValkeyPropertiesArgs', 'ManagedDatabaseValkeyPropertiesArgsDict', 'outputs.ManagedDatabaseValkeyProperties']]] = None,
+            service_host: pulumi.Input[Optional[_builtins.str]] = None,
+            service_password: pulumi.Input[Optional[_builtins.str]] = None,
+            service_port: pulumi.Input[Optional[_builtins.str]] = None,
+            service_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            service_username: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            termination_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+            title: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'ManagedDatabaseValkey':
         """
         Get an existing ManagedDatabaseValkey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -849,17 +853,17 @@ class ManagedDatabaseValkey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] additional_disk_space_gib: Not supported for `valkey` databases. Should be left unconfigured.
         :param pulumi.Input[_builtins.str] clone_from: UUID of an existing managed database to clone the new database from. Changing this forces a new resource to be created. This value is only used on creation and is not read back from the API.
         :param pulumi.Input[_builtins.str] clone_time: Point in time, in RFC 3339 format (e.g. `2026-01-02T15:04:05Z`), from which to clone the data. If not set, the most recent available data is used. Requires `clone_from`. Changing this forces a new resource to be created.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyComponentArgs', 'ManagedDatabaseValkeyComponentArgsDict']]]] components: Service component information
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyComponentArgs', 'ManagedDatabaseValkeyComponentArgsDict', 'outputs.ManagedDatabaseValkeyComponent']]]] components: Service component information
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the database.
         :param pulumi.Input[_builtins.str] maintenance_window_dow: Maintenance window day of week. Lower case weekday name (monday, tuesday, ...)
         :param pulumi.Input[_builtins.str] maintenance_window_time: Maintenance window UTC time in hh:mm:ss format
         :param pulumi.Input[_builtins.str] name: Name of the service. The name is used as a prefix for the logical hostname. Must be unique within an account
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNetworkArgs', 'ManagedDatabaseValkeyNetworkArgsDict']]]] networks: Private networks attached to the managed database
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNodeStateArgs', 'ManagedDatabaseValkeyNodeStateArgsDict']]]] node_states: Information about nodes providing the managed service
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNetworkArgs', 'ManagedDatabaseValkeyNetworkArgsDict', 'outputs.ManagedDatabaseValkeyNetwork']]]] networks: Private networks attached to the managed database
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNodeStateArgs', 'ManagedDatabaseValkeyNodeStateArgsDict', 'outputs.ManagedDatabaseValkeyNodeState']]]] node_states: Information about nodes providing the managed service
         :param pulumi.Input[_builtins.str] plan: Service plan to use. This determines how much resources the instance will have. You can list available plans with `upctl database plans valkey`.
         :param pulumi.Input[_builtins.bool] powered: The administrative power state of the service
         :param pulumi.Input[_builtins.str] primary_database: Primary database name
-        :param pulumi.Input[Union['ManagedDatabaseValkeyPropertiesArgs', 'ManagedDatabaseValkeyPropertiesArgsDict']] properties: Database engine properties.
+        :param pulumi.Input[Union['ManagedDatabaseValkeyPropertiesArgs', 'ManagedDatabaseValkeyPropertiesArgsDict', 'outputs.ManagedDatabaseValkeyProperties']] properties: Database engine properties.
         :param pulumi.Input[_builtins.str] service_host: Hostname to the service instance
         :param pulumi.Input[_builtins.str] service_password: Primary password to the service instance
         :param pulumi.Input[_builtins.str] service_port: Port to the service instance
@@ -900,6 +904,60 @@ class ManagedDatabaseValkey(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["zone"] = zone
         return ManagedDatabaseValkey(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            additional_disk_space_gib: pulumi.Input[Optional[_builtins.int]] = None,
+            clone_from: pulumi.Input[Optional[_builtins.str]] = None,
+            clone_time: pulumi.Input[Optional[_builtins.str]] = None,
+            components: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyComponentArgs', 'ManagedDatabaseValkeyComponentArgsDict', 'outputs.ManagedDatabaseValkeyComponent']]]]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            maintenance_window_dow: pulumi.Input[Optional[_builtins.str]] = None,
+            maintenance_window_time: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNetworkArgs', 'ManagedDatabaseValkeyNetworkArgsDict', 'outputs.ManagedDatabaseValkeyNetwork']]]]] = None,
+            node_states: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ManagedDatabaseValkeyNodeStateArgs', 'ManagedDatabaseValkeyNodeStateArgsDict', 'outputs.ManagedDatabaseValkeyNodeState']]]]] = None,
+            plan: pulumi.Input[Optional[_builtins.str]] = None,
+            powered: pulumi.Input[Optional[_builtins.bool]] = None,
+            primary_database: pulumi.Input[Optional[_builtins.str]] = None,
+            properties: pulumi.Input[Optional[Union['ManagedDatabaseValkeyPropertiesArgs', 'ManagedDatabaseValkeyPropertiesArgsDict', 'outputs.ManagedDatabaseValkeyProperties']]] = None,
+            service_host: pulumi.Input[Optional[_builtins.str]] = None,
+            service_password: pulumi.Input[Optional[_builtins.str]] = None,
+            service_port: pulumi.Input[Optional[_builtins.str]] = None,
+            service_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            service_username: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            termination_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+            title: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["additionalDiskSpaceGib"] = additional_disk_space_gib
+        __props__["cloneFrom"] = clone_from
+        __props__["cloneTime"] = clone_time
+        __props__["components"] = components
+        __props__["labels"] = labels
+        __props__["maintenanceWindowDow"] = maintenance_window_dow
+        __props__["maintenanceWindowTime"] = maintenance_window_time
+        __props__["name"] = name
+        __props__["networks"] = networks
+        __props__["nodeStates"] = node_states
+        __props__["plan"] = plan
+        __props__["powered"] = powered
+        __props__["primaryDatabase"] = primary_database
+        __props__["properties"] = properties
+        __props__["serviceHost"] = service_host
+        __props__["servicePassword"] = service_password
+        __props__["servicePort"] = service_port
+        __props__["serviceUri"] = service_uri
+        __props__["serviceUsername"] = service_username
+        __props__["state"] = state
+        __props__["terminationProtection"] = termination_protection
+        __props__["title"] = title
+        __props__["type"] = type
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/managedDatabaseValkey:ManagedDatabaseValkey', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="additionalDiskSpaceGib")

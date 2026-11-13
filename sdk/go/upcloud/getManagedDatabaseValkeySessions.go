@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Use data source to gather a list of the active sessions for a Managed Valkey Database
+//			// Use function to gather a list of the active sessions for a Managed Valkey Database
 //			// Create a Managed Valkey resource
 //			exampleManagedDatabaseValkey, err := upcloud.NewManagedDatabaseValkey(ctx, "example", &upcloud.ManagedDatabaseValkeyArgs{
 //				Name:  pulumi.String("example"),
@@ -78,12 +78,8 @@ type GetManagedDatabaseValkeySessionsResult struct {
 }
 
 func GetManagedDatabaseValkeySessionsOutput(ctx *pulumi.Context, args GetManagedDatabaseValkeySessionsOutputArgs, opts ...pulumi.InvokeOption) GetManagedDatabaseValkeySessionsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetManagedDatabaseValkeySessionsResultOutput, error) {
-			args := v.(GetManagedDatabaseValkeySessionsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("upcloud:index/getManagedDatabaseValkeySessions:getManagedDatabaseValkeySessions", args, GetManagedDatabaseValkeySessionsResultOutput{}, options).(GetManagedDatabaseValkeySessionsResultOutput), nil
-		}).(GetManagedDatabaseValkeySessionsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("upcloud:index/getManagedDatabaseValkeySessions:getManagedDatabaseValkeySessions", args, GetManagedDatabaseValkeySessionsResultOutput{}, options).(GetManagedDatabaseValkeySessionsResultOutput)
 }
 
 // A collection of arguments for invoking getManagedDatabaseValkeySessions.

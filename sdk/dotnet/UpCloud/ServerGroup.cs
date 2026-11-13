@@ -59,16 +59,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// Defines if a server group is an anti-affinity group. Setting this to `Strict` or `Yes` will
         /// 	result in all servers in the group being placed on separate compute hosts. The value can be `Strict`, `Yes`, or `No`.
         /// 
-        /// 	* `Strict` policy doesn't allow servers in the same server group to be on the same host
-        /// 	* `Yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-        /// 	* `No` refers to having no policy and thus no effect on server host affinity
-        /// 
-        /// 	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-        /// 	please see UpCloud API documentation on server groups.
-        /// 
-        /// 	Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
-        /// 	policies in server group are not met, you need to manually restart the servers in said group,
-        /// 	for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+        ///     * `Strict` policy doesn't allow servers in the same server group to be on the same host
+        ///     * `Yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+        ///     * `No` refers to having no policy and thus no effect on server host affinity
+        ///     
+        ///     To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+        ///     please see UpCloud API documentation on server groups.
+        ///     
+        ///     Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+        ///     policies in server group are not met, you need to manually restart the servers in said group,
+        ///     for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
         /// </summary>
         [Output("antiAffinityPolicy")]
         public Output<string> AntiAffinityPolicy { get; private set; } = null!;
@@ -148,16 +148,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// Defines if a server group is an anti-affinity group. Setting this to `Strict` or `Yes` will
         /// 	result in all servers in the group being placed on separate compute hosts. The value can be `Strict`, `Yes`, or `No`.
         /// 
-        /// 	* `Strict` policy doesn't allow servers in the same server group to be on the same host
-        /// 	* `Yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-        /// 	* `No` refers to having no policy and thus no effect on server host affinity
-        /// 
-        /// 	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-        /// 	please see UpCloud API documentation on server groups.
-        /// 
-        /// 	Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
-        /// 	policies in server group are not met, you need to manually restart the servers in said group,
-        /// 	for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+        ///     * `Strict` policy doesn't allow servers in the same server group to be on the same host
+        ///     * `Yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+        ///     * `No` refers to having no policy and thus no effect on server host affinity
+        ///     
+        ///     To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+        ///     please see UpCloud API documentation on server groups.
+        ///     
+        ///     Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+        ///     policies in server group are not met, you need to manually restart the servers in said group,
+        ///     for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
         /// </summary>
         [Input("antiAffinityPolicy")]
         public Input<string>? AntiAffinityPolicy { get; set; }
@@ -210,16 +210,16 @@ namespace UpCloud.Pulumi.UpCloud
         /// Defines if a server group is an anti-affinity group. Setting this to `Strict` or `Yes` will
         /// 	result in all servers in the group being placed on separate compute hosts. The value can be `Strict`, `Yes`, or `No`.
         /// 
-        /// 	* `Strict` policy doesn't allow servers in the same server group to be on the same host
-        /// 	* `Yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
-        /// 	* `No` refers to having no policy and thus no effect on server host affinity
-        /// 
-        /// 	To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
-        /// 	please see UpCloud API documentation on server groups.
-        /// 
-        /// 	Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
-        /// 	policies in server group are not met, you need to manually restart the servers in said group,
-        /// 	for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
+        ///     * `Strict` policy doesn't allow servers in the same server group to be on the same host
+        ///     * `Yes` refers to best-effort policy and tries to put servers on different hosts, but this is not guaranteed
+        ///     * `No` refers to having no policy and thus no effect on server host affinity
+        ///     
+        ///     To verify if the anti-affinity policies are met by requesting a server group details from API. For more information
+        ///     please see UpCloud API documentation on server groups.
+        ///     
+        ///     Plese also note that anti-affinity policies are only applied on server start. This means that if anti-affinity
+        ///     policies in server group are not met, you need to manually restart the servers in said group,
+        ///     for example via API, UpCloud Control Panel or upctl (UpCloud CLI)
         /// </summary>
         [Input("antiAffinityPolicy")]
         public Input<string>? AntiAffinityPolicy { get; set; }

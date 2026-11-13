@@ -78,7 +78,7 @@ def get_zones(filter_type: Optional[_builtins.str] = None,
         filter_type=pulumi.get(__ret__, 'filter_type'),
         id=pulumi.get(__ret__, 'id'),
         zone_ids=pulumi.get(__ret__, 'zone_ids'))
-def get_zones_output(filter_type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_zones_output(filter_type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetZonesResult]:
     """
     Returns a list of available UpCloud zones.

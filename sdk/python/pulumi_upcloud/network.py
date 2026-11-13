@@ -23,11 +23,12 @@ class NetworkArgs:
     def __init__(__self__, *,
                  ip_network: pulumi.Input['NetworkIpNetworkArgs'],
                  zone: pulumi.Input[_builtins.str],
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 router: Optional[pulumi.Input[_builtins.str]] = None):
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 router: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Network resource.
+
         :param pulumi.Input['NetworkIpNetworkArgs'] ip_network: IP subnet within the network. Network must have exactly one IP subnet.
         :param pulumi.Input[_builtins.str] zone: The zone the network is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the network.
@@ -69,53 +70,54 @@ class NetworkArgs:
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the network.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the network.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def router(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def router(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UUID of a router to attach to this network.
         """
         return pulumi.get(self, "router")
 
     @router.setter
-    def router(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def router(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "router", value)
 
 
 @pulumi.input_type
 class _NetworkState:
     def __init__(__self__, *,
-                 effective_routes: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkEffectiveRouteArgs']]]] = None,
-                 ip_network: Optional[pulumi.Input['NetworkIpNetworkArgs']] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 router: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 effective_routes: pulumi.Input[Optional[Sequence[pulumi.Input['NetworkEffectiveRouteArgs']]]] = None,
+                 ip_network: pulumi.Input[Optional['NetworkIpNetworkArgs']] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 router: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Network resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['NetworkEffectiveRouteArgs']]] effective_routes: Effective routes applied to this network (read-only).
         :param pulumi.Input['NetworkIpNetworkArgs'] ip_network: IP subnet within the network. Network must have exactly one IP subnet.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the network.
@@ -141,86 +143,86 @@ class _NetworkState:
 
     @_builtins.property
     @pulumi.getter(name="effectiveRoutes")
-    def effective_routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NetworkEffectiveRouteArgs']]]]:
+    def effective_routes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NetworkEffectiveRouteArgs']]]]:
         """
         Effective routes applied to this network (read-only).
         """
         return pulumi.get(self, "effective_routes")
 
     @effective_routes.setter
-    def effective_routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkEffectiveRouteArgs']]]]):
+    def effective_routes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NetworkEffectiveRouteArgs']]]]):
         pulumi.set(self, "effective_routes", value)
 
     @_builtins.property
     @pulumi.getter(name="ipNetwork")
-    def ip_network(self) -> Optional[pulumi.Input['NetworkIpNetworkArgs']]:
+    def ip_network(self) -> pulumi.Input[Optional['NetworkIpNetworkArgs']]:
         """
         IP subnet within the network. Network must have exactly one IP subnet.
         """
         return pulumi.get(self, "ip_network")
 
     @ip_network.setter
-    def ip_network(self, value: Optional[pulumi.Input['NetworkIpNetworkArgs']]):
+    def ip_network(self, value: pulumi.Input[Optional['NetworkIpNetworkArgs']]):
         pulumi.set(self, "ip_network", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         User defined key-value pairs to classify the network.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the network.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def router(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def router(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UUID of a router to attach to this network.
         """
         return pulumi.get(self, "router")
 
     @router.setter
-    def router(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def router(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "router", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The network type
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The zone the network is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -230,11 +232,11 @@ class Network(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ip_network: Optional[pulumi.Input[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict']]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 router: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 ip_network: pulumi.Input[Optional[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict', 'outputs.NetworkIpNetwork']]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 router: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents an SDN private network that cloud servers and other resources from the same zone can be attached to.
@@ -268,9 +270,10 @@ class Network(pulumi.CustomResource):
         $ pulumi import upcloud:index/network:Network my_example_network 03e44422-07b8-4798-a597-c8eab1fa64df
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict']] ip_network: IP subnet within the network. Network must have exactly one IP subnet.
+        :param pulumi.Input[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict', 'outputs.NetworkIpNetwork']] ip_network: IP subnet within the network. Network must have exactly one IP subnet.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the network.
         :param pulumi.Input[_builtins.str] name: Name of the network.
         :param pulumi.Input[_builtins.str] router: UUID of a router to attach to this network.
@@ -314,6 +317,7 @@ class Network(pulumi.CustomResource):
         $ pulumi import upcloud:index/network:Network my_example_network 03e44422-07b8-4798-a597-c8eab1fa64df
         ```
 
+
         :param str resource_name: The name of the resource.
         :param NetworkArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -329,11 +333,11 @@ class Network(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ip_network: Optional[pulumi.Input[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict']]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 router: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 ip_network: pulumi.Input[Optional[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict', 'outputs.NetworkIpNetwork']]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 router: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -364,13 +368,13 @@ class Network(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            effective_routes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NetworkEffectiveRouteArgs', 'NetworkEffectiveRouteArgsDict']]]]] = None,
-            ip_network: Optional[pulumi.Input[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict']]] = None,
-            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            router: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'Network':
+            effective_routes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NetworkEffectiveRouteArgs', 'NetworkEffectiveRouteArgsDict', 'outputs.NetworkEffectiveRoute']]]]] = None,
+            ip_network: pulumi.Input[Optional[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict', 'outputs.NetworkIpNetwork']]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            router: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'Network':
         """
         Get an existing Network resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -378,8 +382,8 @@ class Network(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NetworkEffectiveRouteArgs', 'NetworkEffectiveRouteArgsDict']]]] effective_routes: Effective routes applied to this network (read-only).
-        :param pulumi.Input[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict']] ip_network: IP subnet within the network. Network must have exactly one IP subnet.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NetworkEffectiveRouteArgs', 'NetworkEffectiveRouteArgsDict', 'outputs.NetworkEffectiveRoute']]]] effective_routes: Effective routes applied to this network (read-only).
+        :param pulumi.Input[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict', 'outputs.NetworkIpNetwork']] ip_network: IP subnet within the network. Network must have exactly one IP subnet.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the network.
         :param pulumi.Input[_builtins.str] name: Name of the network.
         :param pulumi.Input[_builtins.str] router: UUID of a router to attach to this network.
@@ -398,6 +402,26 @@ class Network(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["zone"] = zone
         return Network(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            effective_routes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NetworkEffectiveRouteArgs', 'NetworkEffectiveRouteArgsDict', 'outputs.NetworkEffectiveRoute']]]]] = None,
+            ip_network: pulumi.Input[Optional[Union['NetworkIpNetworkArgs', 'NetworkIpNetworkArgsDict', 'outputs.NetworkIpNetwork']]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            router: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["effectiveRoutes"] = effective_routes
+        __props__["ipNetwork"] = ip_network
+        __props__["labels"] = labels
+        __props__["name"] = name
+        __props__["router"] = router
+        __props__["type"] = type
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/network:Network', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="effectiveRoutes")

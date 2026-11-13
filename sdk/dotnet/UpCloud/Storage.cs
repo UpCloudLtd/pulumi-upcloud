@@ -24,6 +24,13 @@ namespace UpCloud.Pulumi.UpCloud
     [UpCloudResourceType("upcloud:index/storage:Storage")]
     public partial class Storage : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The criteria to backup the storage.
+        /// 
+        ///     Please keep in mind that it's not possible to have a storage with `BackupRule` attached to a server with `SimpleBackup` specified. Such configurations will throw errors during execution.
+        ///     
+        ///     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `SimpleBackup` on the server and individual storages `BackupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `SimpleBackup` block from a server, run `terraform apply`, then add `BackupRule` to desired storages and run `terraform apply` again.
+        /// </summary>
         [Output("backupRule")]
         public Output<Outputs.StorageBackupRule?> BackupRule { get; private set; } = null!;
 
@@ -147,6 +154,13 @@ namespace UpCloud.Pulumi.UpCloud
 
     public sealed class StorageArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The criteria to backup the storage.
+        /// 
+        ///     Please keep in mind that it's not possible to have a storage with `BackupRule` attached to a server with `SimpleBackup` specified. Such configurations will throw errors during execution.
+        ///     
+        ///     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `SimpleBackup` on the server and individual storages `BackupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `SimpleBackup` block from a server, run `terraform apply`, then add `BackupRule` to desired storages and run `terraform apply` again.
+        /// </summary>
         [Input("backupRule")]
         public Input<Inputs.StorageBackupRuleArgs>? BackupRule { get; set; }
 
@@ -225,6 +239,13 @@ namespace UpCloud.Pulumi.UpCloud
 
     public sealed class StorageState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The criteria to backup the storage.
+        /// 
+        ///     Please keep in mind that it's not possible to have a storage with `BackupRule` attached to a server with `SimpleBackup` specified. Such configurations will throw errors during execution.
+        ///     
+        ///     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `SimpleBackup` on the server and individual storages `BackupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `SimpleBackup` block from a server, run `terraform apply`, then add `BackupRule` to desired storages and run `terraform apply` again.
+        /// </summary>
         [Input("backupRule")]
         public Input<Inputs.StorageBackupRuleGetArgs>? BackupRule { get; set; }
 

@@ -67,5 +67,5 @@ export function getManagedObjectStorageRegionsOutput(args?: GetManagedObjectStor
  * A collection of arguments for invoking getManagedObjectStorageRegions.
  */
 export interface GetManagedObjectStorageRegionsOutputArgs {
-    regions?: pulumi.Input<pulumi.Input<inputs.GetManagedObjectStorageRegionsRegionArgs>[]>;
+    regions?: pulumi.Input<pulumi.Input<inputs.GetManagedObjectStorageRegionsRegionArgs>[] | undefined>;
 }

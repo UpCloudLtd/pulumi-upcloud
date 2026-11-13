@@ -40,6 +40,17 @@ export class ManagedObjectStorageBucket extends pulumi.CustomResource {
         return new ManagedObjectStorageBucket(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ManagedObjectStorageBucket resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ManagedObjectStorageBucketState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/managedObjectStorageBucket:ManagedObjectStorageBucket", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/managedObjectStorageBucket:ManagedObjectStorageBucket';
 
@@ -110,19 +121,19 @@ export interface ManagedObjectStorageBucketState {
     /**
      * Name of the bucket.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Managed Object Storage service UUID.
      */
-    serviceUuid?: pulumi.Input<string>;
+    serviceUuid?: pulumi.Input<string | undefined>;
     /**
      * Number of objects stored in the bucket.
      */
-    totalObjects?: pulumi.Input<number>;
+    totalObjects?: pulumi.Input<number | undefined>;
     /**
      * Total size of objects stored in the bucket.
      */
-    totalSizeBytes?: pulumi.Input<number>;
+    totalSizeBytes?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -132,7 +143,7 @@ export interface ManagedObjectStorageBucketArgs {
     /**
      * Name of the bucket.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Managed Object Storage service UUID.
      */

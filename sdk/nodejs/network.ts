@@ -53,6 +53,17 @@ export class Network extends pulumi.CustomResource {
         return new Network(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing Network resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: NetworkState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("upcloud:index/network:Network", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'upcloud:index/network:Network';
 
@@ -144,31 +155,31 @@ export interface NetworkState {
     /**
      * Effective routes applied to this network (read-only).
      */
-    effectiveRoutes?: pulumi.Input<pulumi.Input<inputs.NetworkEffectiveRoute>[]>;
+    effectiveRoutes?: pulumi.Input<pulumi.Input<inputs.NetworkEffectiveRoute>[] | undefined>;
     /**
      * IP subnet within the network. Network must have exactly one IP subnet.
      */
-    ipNetwork?: pulumi.Input<inputs.NetworkIpNetwork>;
+    ipNetwork?: pulumi.Input<inputs.NetworkIpNetwork | undefined>;
     /**
      * User defined key-value pairs to classify the network.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the network.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * UUID of a router to attach to this network.
      */
-    router?: pulumi.Input<string>;
+    router?: pulumi.Input<string | undefined>;
     /**
      * The network type
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The zone the network is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -182,15 +193,15 @@ export interface NetworkArgs {
     /**
      * User defined key-value pairs to classify the network.
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the network.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * UUID of a router to attach to this network.
      */
-    router?: pulumi.Input<string>;
+    router?: pulumi.Input<string | undefined>;
     /**
      * The zone the network is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
      */

@@ -32,7 +32,6 @@ jobs:
         - python
         - dotnet
         - go
-        - java
     permissions:
       contents: write # For Renovate SDKs.
     steps:

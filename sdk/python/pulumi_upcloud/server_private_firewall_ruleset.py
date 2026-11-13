@@ -23,6 +23,7 @@ class ServerPrivateFirewallRulesetArgs:
                  server_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a ServerPrivateFirewallRuleset resource.
+
         :param pulumi.Input[_builtins.str] ruleset_id: The UUID of the firewall ruleset to attach.
         :param pulumi.Input[_builtins.str] server_id: The UUID of the server to attach the firewall ruleset to.
         """
@@ -57,10 +58,11 @@ class ServerPrivateFirewallRulesetArgs:
 @pulumi.input_type
 class _ServerPrivateFirewallRulesetState:
     def __init__(__self__, *,
-                 ruleset_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 ruleset_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServerPrivateFirewallRuleset resources.
+
         :param pulumi.Input[_builtins.str] ruleset_id: The UUID of the firewall ruleset to attach.
         :param pulumi.Input[_builtins.str] server_id: The UUID of the server to attach the firewall ruleset to.
         """
@@ -71,26 +73,26 @@ class _ServerPrivateFirewallRulesetState:
 
     @_builtins.property
     @pulumi.getter(name="rulesetId")
-    def ruleset_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ruleset_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The UUID of the firewall ruleset to attach.
         """
         return pulumi.get(self, "ruleset_id")
 
     @ruleset_id.setter
-    def ruleset_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ruleset_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ruleset_id", value)
 
     @_builtins.property
     @pulumi.getter(name="serverId")
-    def server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The UUID of the server to attach the firewall ruleset to.
         """
         return pulumi.get(self, "server_id")
 
     @server_id.setter
-    def server_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_id", value)
 
 
@@ -100,8 +102,8 @@ class ServerPrivateFirewallRuleset(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ruleset_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ruleset_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents an attachment of an UpCloud SDN private firewall ruleset to a server. Enable private filtering with `firewall_private` on `Server` and enable the ruleset with `enabled`. The server defaults control unmatched private traffic. Attachment occurs after server creation, so the intended policy is not guaranteed from first boot; restrictive defaults can block traffic until the ruleset is attached.
@@ -162,6 +164,7 @@ class ServerPrivateFirewallRuleset(pulumi.CustomResource):
         ```sh
         $ pulumi import upcloud:index/serverPrivateFirewallRuleset:ServerPrivateFirewallRuleset example 00b52f84-24e8-4bd0-a5da-11404b99c4f8/19b2ebad-cf02-48af-88d2-9f1bde7fde41
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -234,6 +237,7 @@ class ServerPrivateFirewallRuleset(pulumi.CustomResource):
         $ pulumi import upcloud:index/serverPrivateFirewallRuleset:ServerPrivateFirewallRuleset example 00b52f84-24e8-4bd0-a5da-11404b99c4f8/19b2ebad-cf02-48af-88d2-9f1bde7fde41
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ServerPrivateFirewallRulesetArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -249,8 +253,8 @@ class ServerPrivateFirewallRuleset(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ruleset_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ruleset_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -276,8 +280,8 @@ class ServerPrivateFirewallRuleset(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            ruleset_id: Optional[pulumi.Input[_builtins.str]] = None,
-            server_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'ServerPrivateFirewallRuleset':
+            ruleset_id: pulumi.Input[Optional[_builtins.str]] = None,
+            server_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ServerPrivateFirewallRuleset':
         """
         Get an existing ServerPrivateFirewallRuleset resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -295,6 +299,16 @@ class ServerPrivateFirewallRuleset(pulumi.CustomResource):
         __props__.__dict__["ruleset_id"] = ruleset_id
         __props__.__dict__["server_id"] = server_id
         return ServerPrivateFirewallRuleset(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ruleset_id: pulumi.Input[Optional[_builtins.str]] = None,
+            server_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["rulesetId"] = ruleset_id
+        __props__["serverId"] = server_id
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/serverPrivateFirewallRuleset:ServerPrivateFirewallRuleset', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="rulesetId")

@@ -20,9 +20,10 @@ __all__ = ['ManagedObjectStorageBucketArgs', 'ManagedObjectStorageBucket']
 class ManagedObjectStorageBucketArgs:
     def __init__(__self__, *,
                  service_uuid: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ManagedObjectStorageBucket resource.
+
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
         :param pulumi.Input[_builtins.str] name: Name of the bucket.
         """
@@ -44,26 +45,27 @@ class ManagedObjectStorageBucketArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the bucket.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _ManagedObjectStorageBucketState:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 total_objects: Optional[pulumi.Input[_builtins.int]] = None,
-                 total_size_bytes: Optional[pulumi.Input[_builtins.int]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 total_objects: pulumi.Input[Optional[_builtins.int]] = None,
+                 total_size_bytes: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ManagedObjectStorageBucket resources.
+
         :param pulumi.Input[_builtins.str] name: Name of the bucket.
         :param pulumi.Input[_builtins.str] service_uuid: Managed Object Storage service UUID.
         :param pulumi.Input[_builtins.int] total_objects: Number of objects stored in the bucket.
@@ -80,50 +82,50 @@ class _ManagedObjectStorageBucketState:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the bucket.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceUuid")
-    def service_uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_uuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Managed Object Storage service UUID.
         """
         return pulumi.get(self, "service_uuid")
 
     @service_uuid.setter
-    def service_uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_uuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_uuid", value)
 
     @_builtins.property
     @pulumi.getter(name="totalObjects")
-    def total_objects(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def total_objects(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of objects stored in the bucket.
         """
         return pulumi.get(self, "total_objects")
 
     @total_objects.setter
-    def total_objects(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def total_objects(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "total_objects", value)
 
     @_builtins.property
     @pulumi.getter(name="totalSizeBytes")
-    def total_size_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def total_size_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Total size of objects stored in the bucket.
         """
         return pulumi.get(self, "total_size_bytes")
 
     @total_size_bytes.setter
-    def total_size_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def total_size_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "total_size_bytes", value)
 
 
@@ -133,8 +135,8 @@ class ManagedObjectStorageBucket(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents an UpCloud Managed Object Storage bucket.
@@ -155,6 +157,7 @@ class ManagedObjectStorageBucket(pulumi.CustomResource):
             service_uuid=example.id,
             name="bucket")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -187,6 +190,7 @@ class ManagedObjectStorageBucket(pulumi.CustomResource):
             name="bucket")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ManagedObjectStorageBucketArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,8 +206,8 @@ class ManagedObjectStorageBucket(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -229,10 +233,10 @@ class ManagedObjectStorageBucket(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            service_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-            total_objects: Optional[pulumi.Input[_builtins.int]] = None,
-            total_size_bytes: Optional[pulumi.Input[_builtins.int]] = None) -> 'ManagedObjectStorageBucket':
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+            total_objects: pulumi.Input[Optional[_builtins.int]] = None,
+            total_size_bytes: pulumi.Input[Optional[_builtins.int]] = None) -> 'ManagedObjectStorageBucket':
         """
         Get an existing ManagedObjectStorageBucket resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -254,6 +258,20 @@ class ManagedObjectStorageBucket(pulumi.CustomResource):
         __props__.__dict__["total_objects"] = total_objects
         __props__.__dict__["total_size_bytes"] = total_size_bytes
         return ManagedObjectStorageBucket(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            service_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+            total_objects: pulumi.Input[Optional[_builtins.int]] = None,
+            total_size_bytes: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["name"] = name
+        __props__["serviceUuid"] = service_uuid
+        __props__["totalObjects"] = total_objects
+        __props__["totalSizeBytes"] = total_size_bytes
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/managedObjectStorageBucket:ManagedObjectStorageBucket', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

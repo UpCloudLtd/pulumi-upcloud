@@ -10,3 +10,15 @@ ignore:
           not functional code. This is a transitive dependency of @pulumi/pulumi
           and poses no licensing risk.
         expires: 2027-02-13T00:00:00.000Z
+  SNYK-GOLANG-GITHUBCOMVMIHAILENCOMSGPACK-15702236:
+    - '*':
+        reason: >-
+          Transitive dependency of terraform-plugin-sdk used only for local
+          plugin gRPC IPC. Upstream vmihailenco/msgpack has no fixed version.
+        expires: 2027-02-13T00:00:00.000Z
+  SNYK-GOLANG-GITHUBCOMVMIHAILENCOMSGPACKV5-15702238:
+    - '*':
+        reason: >-
+          Transitive dependency of terraform-plugin-go used only for local
+          plugin gRPC IPC. Upstream vmihailenco/msgpack/v5 has no fixed version.
+        expires: 2027-02-13T00:00:00.000Z

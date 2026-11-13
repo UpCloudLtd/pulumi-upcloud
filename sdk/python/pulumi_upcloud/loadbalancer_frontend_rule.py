@@ -23,12 +23,13 @@ class LoadbalancerFrontendRuleArgs:
     def __init__(__self__, *,
                  frontend: pulumi.Input[_builtins.str],
                  priority: pulumi.Input[_builtins.int],
-                 actions: Optional[pulumi.Input['LoadbalancerFrontendRuleActionsArgs']] = None,
-                 matchers: Optional[pulumi.Input['LoadbalancerFrontendRuleMatchersArgs']] = None,
-                 matching_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 actions: pulumi.Input[Optional['LoadbalancerFrontendRuleActionsArgs']] = None,
+                 matchers: pulumi.Input[Optional['LoadbalancerFrontendRuleMatchersArgs']] = None,
+                 matching_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadbalancerFrontendRule resource.
+
         :param pulumi.Input[_builtins.str] frontend: ID of the load balancer frontend to which the frontend rule is connected.
         :param pulumi.Input[_builtins.int] priority: Rule with the higher priority goes first. Rules with the same priority processed in alphabetical order.
         :param pulumi.Input['LoadbalancerFrontendRuleActionsArgs'] actions: Rule actions.
@@ -73,64 +74,65 @@ class LoadbalancerFrontendRuleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def actions(self) -> Optional[pulumi.Input['LoadbalancerFrontendRuleActionsArgs']]:
+    def actions(self) -> pulumi.Input[Optional['LoadbalancerFrontendRuleActionsArgs']]:
         """
         Rule actions.
         """
         return pulumi.get(self, "actions")
 
     @actions.setter
-    def actions(self, value: Optional[pulumi.Input['LoadbalancerFrontendRuleActionsArgs']]):
+    def actions(self, value: pulumi.Input[Optional['LoadbalancerFrontendRuleActionsArgs']]):
         pulumi.set(self, "actions", value)
 
     @_builtins.property
     @pulumi.getter
-    def matchers(self) -> Optional[pulumi.Input['LoadbalancerFrontendRuleMatchersArgs']]:
+    def matchers(self) -> pulumi.Input[Optional['LoadbalancerFrontendRuleMatchersArgs']]:
         """
         Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
         """
         return pulumi.get(self, "matchers")
 
     @matchers.setter
-    def matchers(self, value: Optional[pulumi.Input['LoadbalancerFrontendRuleMatchersArgs']]):
+    def matchers(self, value: pulumi.Input[Optional['LoadbalancerFrontendRuleMatchersArgs']]):
         pulumi.set(self, "matchers", value)
 
     @_builtins.property
     @pulumi.getter(name="matchingCondition")
-    def matching_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def matching_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defines boolean operator used to combine multiple matchers. Defaults to `and`.
         """
         return pulumi.get(self, "matching_condition")
 
     @matching_condition.setter
-    def matching_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def matching_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "matching_condition", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the frontend rule. Must be unique within the frontend.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _LoadbalancerFrontendRuleState:
     def __init__(__self__, *,
-                 actions: Optional[pulumi.Input['LoadbalancerFrontendRuleActionsArgs']] = None,
-                 frontend: Optional[pulumi.Input[_builtins.str]] = None,
-                 matchers: Optional[pulumi.Input['LoadbalancerFrontendRuleMatchersArgs']] = None,
-                 matching_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None):
+                 actions: pulumi.Input[Optional['LoadbalancerFrontendRuleActionsArgs']] = None,
+                 frontend: pulumi.Input[Optional[_builtins.str]] = None,
+                 matchers: pulumi.Input[Optional['LoadbalancerFrontendRuleMatchersArgs']] = None,
+                 matching_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerFrontendRule resources.
+
         :param pulumi.Input['LoadbalancerFrontendRuleActionsArgs'] actions: Rule actions.
         :param pulumi.Input[_builtins.str] frontend: ID of the load balancer frontend to which the frontend rule is connected.
         :param pulumi.Input['LoadbalancerFrontendRuleMatchersArgs'] matchers: Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
@@ -153,74 +155,74 @@ class _LoadbalancerFrontendRuleState:
 
     @_builtins.property
     @pulumi.getter
-    def actions(self) -> Optional[pulumi.Input['LoadbalancerFrontendRuleActionsArgs']]:
+    def actions(self) -> pulumi.Input[Optional['LoadbalancerFrontendRuleActionsArgs']]:
         """
         Rule actions.
         """
         return pulumi.get(self, "actions")
 
     @actions.setter
-    def actions(self, value: Optional[pulumi.Input['LoadbalancerFrontendRuleActionsArgs']]):
+    def actions(self, value: pulumi.Input[Optional['LoadbalancerFrontendRuleActionsArgs']]):
         pulumi.set(self, "actions", value)
 
     @_builtins.property
     @pulumi.getter
-    def frontend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frontend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the load balancer frontend to which the frontend rule is connected.
         """
         return pulumi.get(self, "frontend")
 
     @frontend.setter
-    def frontend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frontend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frontend", value)
 
     @_builtins.property
     @pulumi.getter
-    def matchers(self) -> Optional[pulumi.Input['LoadbalancerFrontendRuleMatchersArgs']]:
+    def matchers(self) -> pulumi.Input[Optional['LoadbalancerFrontendRuleMatchersArgs']]:
         """
         Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
         """
         return pulumi.get(self, "matchers")
 
     @matchers.setter
-    def matchers(self, value: Optional[pulumi.Input['LoadbalancerFrontendRuleMatchersArgs']]):
+    def matchers(self, value: pulumi.Input[Optional['LoadbalancerFrontendRuleMatchersArgs']]):
         pulumi.set(self, "matchers", value)
 
     @_builtins.property
     @pulumi.getter(name="matchingCondition")
-    def matching_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def matching_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defines boolean operator used to combine multiple matchers. Defaults to `and`.
         """
         return pulumi.get(self, "matching_condition")
 
     @matching_condition.setter
-    def matching_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def matching_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "matching_condition", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the frontend rule. Must be unique within the frontend.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Rule with the higher priority goes first. Rules with the same priority processed in alphabetical order.
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
 
@@ -230,12 +232,12 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 actions: Optional[pulumi.Input[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict']]] = None,
-                 frontend: Optional[pulumi.Input[_builtins.str]] = None,
-                 matchers: Optional[pulumi.Input[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict']]] = None,
-                 matching_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
+                 actions: pulumi.Input[Optional[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict', 'outputs.LoadbalancerFrontendRuleActions']]] = None,
+                 frontend: pulumi.Input[Optional[_builtins.str]] = None,
+                 matchers: pulumi.Input[Optional[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict', 'outputs.LoadbalancerFrontendRuleMatchers']]] = None,
+                 matching_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         This resource represents load balancer frontend rule.
@@ -305,11 +307,12 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
             name="lb-be-1-test")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict']] actions: Rule actions.
+        :param pulumi.Input[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict', 'outputs.LoadbalancerFrontendRuleActions']] actions: Rule actions.
         :param pulumi.Input[_builtins.str] frontend: ID of the load balancer frontend to which the frontend rule is connected.
-        :param pulumi.Input[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict']] matchers: Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
+        :param pulumi.Input[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict', 'outputs.LoadbalancerFrontendRuleMatchers']] matchers: Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
         :param pulumi.Input[_builtins.str] matching_condition: Defines boolean operator used to combine multiple matchers. Defaults to `and`.
         :param pulumi.Input[_builtins.str] name: The name of the frontend rule. Must be unique within the frontend.
         :param pulumi.Input[_builtins.int] priority: Rule with the higher priority goes first. Rules with the same priority processed in alphabetical order.
@@ -388,6 +391,7 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
             name="lb-be-1-test")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param LoadbalancerFrontendRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -403,12 +407,12 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 actions: Optional[pulumi.Input[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict']]] = None,
-                 frontend: Optional[pulumi.Input[_builtins.str]] = None,
-                 matchers: Optional[pulumi.Input[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict']]] = None,
-                 matching_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
+                 actions: pulumi.Input[Optional[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict', 'outputs.LoadbalancerFrontendRuleActions']]] = None,
+                 frontend: pulumi.Input[Optional[_builtins.str]] = None,
+                 matchers: pulumi.Input[Optional[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict', 'outputs.LoadbalancerFrontendRuleMatchers']]] = None,
+                 matching_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -438,12 +442,12 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            actions: Optional[pulumi.Input[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict']]] = None,
-            frontend: Optional[pulumi.Input[_builtins.str]] = None,
-            matchers: Optional[pulumi.Input[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict']]] = None,
-            matching_condition: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            priority: Optional[pulumi.Input[_builtins.int]] = None) -> 'LoadbalancerFrontendRule':
+            actions: pulumi.Input[Optional[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict', 'outputs.LoadbalancerFrontendRuleActions']]] = None,
+            frontend: pulumi.Input[Optional[_builtins.str]] = None,
+            matchers: pulumi.Input[Optional[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict', 'outputs.LoadbalancerFrontendRuleMatchers']]] = None,
+            matching_condition: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None) -> 'LoadbalancerFrontendRule':
         """
         Get an existing LoadbalancerFrontendRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -451,9 +455,9 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict']] actions: Rule actions.
+        :param pulumi.Input[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict', 'outputs.LoadbalancerFrontendRuleActions']] actions: Rule actions.
         :param pulumi.Input[_builtins.str] frontend: ID of the load balancer frontend to which the frontend rule is connected.
-        :param pulumi.Input[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict']] matchers: Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
+        :param pulumi.Input[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict', 'outputs.LoadbalancerFrontendRuleMatchers']] matchers: Set of rule matchers. If rule doesn't have matchers, then action applies to all incoming requests.
         :param pulumi.Input[_builtins.str] matching_condition: Defines boolean operator used to combine multiple matchers. Defaults to `and`.
         :param pulumi.Input[_builtins.str] name: The name of the frontend rule. Must be unique within the frontend.
         :param pulumi.Input[_builtins.int] priority: Rule with the higher priority goes first. Rules with the same priority processed in alphabetical order.
@@ -469,6 +473,24 @@ class LoadbalancerFrontendRule(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["priority"] = priority
         return LoadbalancerFrontendRule(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            actions: pulumi.Input[Optional[Union['LoadbalancerFrontendRuleActionsArgs', 'LoadbalancerFrontendRuleActionsArgsDict', 'outputs.LoadbalancerFrontendRuleActions']]] = None,
+            frontend: pulumi.Input[Optional[_builtins.str]] = None,
+            matchers: pulumi.Input[Optional[Union['LoadbalancerFrontendRuleMatchersArgs', 'LoadbalancerFrontendRuleMatchersArgsDict', 'outputs.LoadbalancerFrontendRuleMatchers']]] = None,
+            matching_condition: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["actions"] = actions
+        __props__["frontend"] = frontend
+        __props__["matchers"] = matchers
+        __props__["matchingCondition"] = matching_condition
+        __props__["name"] = name
+        __props__["priority"] = priority
+        return pulumi.runtime.exists_resource(None, 'upcloud:index/loadbalancerFrontendRule:LoadbalancerFrontendRule', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter
