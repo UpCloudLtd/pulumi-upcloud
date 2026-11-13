@@ -89,7 +89,7 @@ namespace UpCloud.Pulumi.UpCloud
     ///     {
     ///         ConnectionId = thisGatewayConnection.Id,
     ///         Name = "test-tunnel",
-    ///         LocalAddressName = thisGateway.Address.Apply(address =&gt; address[0]?.Name),
+    ///         LocalAddressName = thisGateway.Address.Apply(address =&gt; address[0]?.Name).Apply(x =&gt; x.ToString(System.Globalization.CultureInfo.InvariantCulture)),
     ///         RemoteAddress = "100.123.123.10",
     ///         IpsecAuthPsk = new UpCloud.Inputs.GatewayConnectionTunnelIpsecAuthPskArgs
     ///         {

@@ -25,7 +25,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Use data source to gather a list of the indices for a Managed OpenSearch Database
+        ///     // Use function to gather a list of the indices for a Managed OpenSearch Database
         ///     // Create a Managed OpenSearch resource
         ///     var exampleManagedDatabaseOpensearch = new UpCloud.ManagedDatabaseOpensearch("example", new()
         ///     {
@@ -65,7 +65,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Use data source to gather a list of the indices for a Managed OpenSearch Database
+        ///     // Use function to gather a list of the indices for a Managed OpenSearch Database
         ///     // Create a Managed OpenSearch resource
         ///     var exampleManagedDatabaseOpensearch = new UpCloud.ManagedDatabaseOpensearch("example", new()
         ///     {
@@ -105,7 +105,7 @@ namespace UpCloud.Pulumi.UpCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Use data source to gather a list of the indices for a Managed OpenSearch Database
+        ///     // Use function to gather a list of the indices for a Managed OpenSearch Database
         ///     // Create a Managed OpenSearch resource
         ///     var exampleManagedDatabaseOpensearch = new UpCloud.ManagedDatabaseOpensearch("example", new()
         ///     {

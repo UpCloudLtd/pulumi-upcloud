@@ -113,6 +113,9 @@ namespace UpCloud.Pulumi.UpCloud
         [Output("controlPlaneIpFilters")]
         public Output<ImmutableArray<string>> ControlPlaneIpFilters { get; private set; } = null!;
 
+        /// <summary>
+        /// Fetch the cluster kubeconfig and connection details into the `Kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `upcloud.KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `False`.
+        /// </summary>
         [Output("fetchKubeconfig")]
         public Output<bool> FetchKubeconfig { get; private set; } = null!;
 
@@ -255,6 +258,9 @@ namespace UpCloud.Pulumi.UpCloud
             set => _controlPlaneIpFilters = value;
         }
 
+        /// <summary>
+        /// Fetch the cluster kubeconfig and connection details into the `Kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `upcloud.KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `False`.
+        /// </summary>
         [Input("fetchKubeconfig")]
         public Input<bool>? FetchKubeconfig { get; set; }
 
@@ -340,6 +346,9 @@ namespace UpCloud.Pulumi.UpCloud
             set => _controlPlaneIpFilters = value;
         }
 
+        /// <summary>
+        /// Fetch the cluster kubeconfig and connection details into the `Kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `upcloud.KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `False`.
+        /// </summary>
         [Input("fetchKubeconfig")]
         public Input<bool>? FetchKubeconfig { get; set; }
 

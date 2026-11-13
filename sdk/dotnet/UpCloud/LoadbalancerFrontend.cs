@@ -127,6 +127,9 @@ namespace UpCloud.Pulumi.UpCloud
         [Output("port")]
         public Output<int> Port { get; private set; } = null!;
 
+        /// <summary>
+        /// Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        /// </summary>
         [Output("properties")]
         public Output<Outputs.LoadbalancerFrontendProperties?> Properties { get; private set; } = null!;
 
@@ -233,6 +236,9 @@ namespace UpCloud.Pulumi.UpCloud
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 
+        /// <summary>
+        /// Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        /// </summary>
         [Input("properties")]
         public Input<Inputs.LoadbalancerFrontendPropertiesArgs>? Properties { get; set; }
 
@@ -288,6 +294,9 @@ namespace UpCloud.Pulumi.UpCloud
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        /// </summary>
         [Input("properties")]
         public Input<Inputs.LoadbalancerFrontendPropertiesGetArgs>? Properties { get; set; }
 

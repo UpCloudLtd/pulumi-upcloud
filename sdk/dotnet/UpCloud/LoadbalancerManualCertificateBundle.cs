@@ -30,16 +30,16 @@ namespace UpCloud.Pulumi.UpCloud
     ///     var lbCbM1 = new UpCloud.LoadbalancerManualCertificateBundle("lb_cb_m1", new()
     ///     {
     ///         Name = "lb-cb-m1-test",
-    ///         Certificate = Std.Index.Base64encode.Invoke(new()
+    ///         Certificate = Std.Base64encode.Invoke(new()
     ///         {
-    ///             Input = Std.Index.File.Invoke(new()
+    ///             Input = Std.File.Invoke(new()
     ///             {
     ///                 Input = certificatePath,
     ///             }).Result,
     ///         }).Result,
-    ///         PrivateKey = Std.Index.Base64encode.Invoke(new()
+    ///         PrivateKey = Std.Base64encode.Invoke(new()
     ///         {
-    ///             Input = Std.Index.File.Invoke(new()
+    ///             Input = Std.File.Invoke(new()
     ///             {
     ///                 Input = privateKeyPath,
     ///             }).Result,

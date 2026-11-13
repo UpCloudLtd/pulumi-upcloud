@@ -187,6 +187,13 @@ namespace UpCloud.Pulumi.UpCloud
         [Output("serverGroup")]
         public Output<string?> ServerGroup { get; private set; } = null!;
 
+        /// <summary>
+        /// Simple backup schedule configuration
+        /// 
+        ///     The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `BackupRules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `BackupRules` defined for server templates.
+        ///     
+        ///     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `SimpleBackup` on the server and individual storages `BackupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `SimpleBackup` block from a server, run `terraform apply`, then add `BackupRule` to desired storages and run `terraform apply` again.
+        /// </summary>
         [Output("simpleBackup")]
         public Output<Outputs.ServerSimpleBackup?> SimpleBackup { get; private set; } = null!;
 
@@ -403,6 +410,13 @@ namespace UpCloud.Pulumi.UpCloud
         [Input("serverGroup")]
         public Input<string>? ServerGroup { get; set; }
 
+        /// <summary>
+        /// Simple backup schedule configuration
+        /// 
+        ///     The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `BackupRules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `BackupRules` defined for server templates.
+        ///     
+        ///     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `SimpleBackup` on the server and individual storages `BackupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `SimpleBackup` block from a server, run `terraform apply`, then add `BackupRule` to desired storages and run `terraform apply` again.
+        /// </summary>
         [Input("simpleBackup")]
         public Input<Inputs.ServerSimpleBackupArgs>? SimpleBackup { get; set; }
 
@@ -592,6 +606,13 @@ namespace UpCloud.Pulumi.UpCloud
         [Input("serverGroup")]
         public Input<string>? ServerGroup { get; set; }
 
+        /// <summary>
+        /// Simple backup schedule configuration
+        /// 
+        ///     The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `BackupRules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `BackupRules` defined for server templates.
+        ///     
+        ///     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `SimpleBackup` on the server and individual storages `BackupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `SimpleBackup` block from a server, run `terraform apply`, then add `BackupRule` to desired storages and run `terraform apply` again.
+        /// </summary>
         [Input("simpleBackup")]
         public Input<Inputs.ServerSimpleBackupGetArgs>? SimpleBackup { get; set; }
 
