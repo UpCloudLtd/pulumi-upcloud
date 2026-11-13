@@ -81,7 +81,7 @@ def get_managed_database_opensearch_indices(indices: Optional[Sequence[Union['Ge
     import pulumi
     import pulumi_upcloud as upcloud
 
-    # Use data source to gather a list of the indices for a Managed OpenSearch Database
+    # Use function to gather a list of the indices for a Managed OpenSearch Database
     # Create a Managed OpenSearch resource
     example_managed_database_opensearch = upcloud.ManagedDatabaseOpensearch("example",
         name="opensearch-example",
@@ -118,7 +118,7 @@ def get_managed_database_opensearch_indices_output(indices: pulumi.Input[Optiona
     import pulumi
     import pulumi_upcloud as upcloud
 
-    # Use data source to gather a list of the indices for a Managed OpenSearch Database
+    # Use function to gather a list of the indices for a Managed OpenSearch Database
     # Create a Managed OpenSearch resource
     example_managed_database_opensearch = upcloud.ManagedDatabaseOpensearch("example",
         name="opensearch-example",

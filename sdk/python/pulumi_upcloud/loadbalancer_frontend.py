@@ -39,6 +39,7 @@ class LoadbalancerFrontendArgs:
         :param pulumi.Input[_builtins.int] port: Port to listen for incoming requests.
         :param pulumi.Input[_builtins.str] name: The name of the frontend. Must be unique within the load balancer service.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendNetworkArgs']]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
+        :param pulumi.Input['LoadbalancerFrontendPropertiesArgs'] properties: Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
         """
         pulumi.set(__self__, "default_backend_name", default_backend_name)
         pulumi.set(__self__, "loadbalancer", loadbalancer)
@@ -128,6 +129,9 @@ class LoadbalancerFrontendArgs:
     @_builtins.property
     @pulumi.getter
     def properties(self) -> pulumi.Input[Optional['LoadbalancerFrontendPropertiesArgs']]:
+        """
+        Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        """
         return pulumi.get(self, "properties")
 
     @properties.setter
@@ -158,6 +162,7 @@ class _LoadbalancerFrontendState:
         :param pulumi.Input[_builtins.str] name: The name of the frontend. Must be unique within the load balancer service.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendNetworkArgs']]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
         :param pulumi.Input[_builtins.int] port: Port to listen for incoming requests.
+        :param pulumi.Input['LoadbalancerFrontendPropertiesArgs'] properties: Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] rules: Set of frontend rule names.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tls_configs: Set of TLS config names.
         """
@@ -257,6 +262,9 @@ class _LoadbalancerFrontendState:
     @_builtins.property
     @pulumi.getter
     def properties(self) -> pulumi.Input[Optional['LoadbalancerFrontendPropertiesArgs']]:
+        """
+        Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        """
         return pulumi.get(self, "properties")
 
     @properties.setter
@@ -366,6 +374,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the frontend. Must be unique within the load balancer service.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendNetworkArgs', 'LoadbalancerFrontendNetworkArgsDict', 'outputs.LoadbalancerFrontendNetwork']]]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
         :param pulumi.Input[_builtins.int] port: Port to listen for incoming requests.
+        :param pulumi.Input[Union['LoadbalancerFrontendPropertiesArgs', 'LoadbalancerFrontendPropertiesArgsDict', 'outputs.LoadbalancerFrontendProperties']] properties: Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
         """
         ...
     @overload
@@ -509,6 +518,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the frontend. Must be unique within the load balancer service.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendNetworkArgs', 'LoadbalancerFrontendNetworkArgsDict', 'outputs.LoadbalancerFrontendNetwork']]]] networks: Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
         :param pulumi.Input[_builtins.int] port: Port to listen for incoming requests.
+        :param pulumi.Input[Union['LoadbalancerFrontendPropertiesArgs', 'LoadbalancerFrontendPropertiesArgsDict', 'outputs.LoadbalancerFrontendProperties']] properties: Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] rules: Set of frontend rule names.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tls_configs: Set of TLS config names.
         """
@@ -604,6 +614,9 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def properties(self) -> pulumi.Output[Optional['outputs.LoadbalancerFrontendProperties']]:
+        """
+        Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        """
         return pulumi.get(self, "properties")
 
     @_builtins.property

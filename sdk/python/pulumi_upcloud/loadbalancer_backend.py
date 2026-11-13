@@ -30,6 +30,7 @@ class LoadbalancerBackendArgs:
 
         :param pulumi.Input[_builtins.str] loadbalancer: UUID of the load balancer to which the backend is connected.
         :param pulumi.Input[_builtins.str] name: The name of the backend. Must be unique within the load balancer service.
+        :param pulumi.Input['LoadbalancerBackendPropertiesArgs'] properties: Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
         :param pulumi.Input[_builtins.str] resolver_name: Domain name resolver used with dynamic type members.
         """
         pulumi.set(__self__, "loadbalancer", loadbalancer)
@@ -67,6 +68,9 @@ class LoadbalancerBackendArgs:
     @_builtins.property
     @pulumi.getter
     def properties(self) -> pulumi.Input[Optional['LoadbalancerBackendPropertiesArgs']]:
+        """
+        Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        """
         return pulumi.get(self, "properties")
 
     @properties.setter
@@ -101,6 +105,7 @@ class _LoadbalancerBackendState:
         :param pulumi.Input[_builtins.str] loadbalancer: UUID of the load balancer to which the backend is connected.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: Backend member server UUIDs. Members receive traffic dispatched from the frontends.
         :param pulumi.Input[_builtins.str] name: The name of the backend. Must be unique within the load balancer service.
+        :param pulumi.Input['LoadbalancerBackendPropertiesArgs'] properties: Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
         :param pulumi.Input[_builtins.str] resolver_name: Domain name resolver used with dynamic type members.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tls_configs: Set of TLS config names.
         """
@@ -156,6 +161,9 @@ class _LoadbalancerBackendState:
     @_builtins.property
     @pulumi.getter
     def properties(self) -> pulumi.Input[Optional['LoadbalancerBackendPropertiesArgs']]:
+        """
+        Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        """
         return pulumi.get(self, "properties")
 
     @properties.setter
@@ -235,6 +243,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] loadbalancer: UUID of the load balancer to which the backend is connected.
         :param pulumi.Input[_builtins.str] name: The name of the backend. Must be unique within the load balancer service.
+        :param pulumi.Input[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict', 'outputs.LoadbalancerBackendProperties']] properties: Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
         :param pulumi.Input[_builtins.str] resolver_name: Domain name resolver used with dynamic type members.
         """
         ...
@@ -338,6 +347,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] loadbalancer: UUID of the load balancer to which the backend is connected.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: Backend member server UUIDs. Members receive traffic dispatched from the frontends.
         :param pulumi.Input[_builtins.str] name: The name of the backend. Must be unique within the load balancer service.
+        :param pulumi.Input[Union['LoadbalancerBackendPropertiesArgs', 'LoadbalancerBackendPropertiesArgsDict', 'outputs.LoadbalancerBackendProperties']] properties: Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
         :param pulumi.Input[_builtins.str] resolver_name: Domain name resolver used with dynamic type members.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tls_configs: Set of TLS config names.
         """
@@ -398,6 +408,9 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def properties(self) -> pulumi.Output[Optional['outputs.LoadbalancerBackendProperties']]:
+        """
+        Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
+        """
         return pulumi.get(self, "properties")
 
     @_builtins.property

@@ -111,7 +111,7 @@ def get_managed_database_valkey_sessions(limit: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_upcloud as upcloud
 
-    # Use data source to gather a list of the active sessions for a Managed Valkey Database
+    # Use function to gather a list of the active sessions for a Managed Valkey Database
     # Create a Managed Valkey resource
     example_managed_database_valkey = upcloud.ManagedDatabaseValkey("example",
         name="example",
@@ -153,7 +153,7 @@ def get_managed_database_valkey_sessions_output(limit: pulumi.Input[Optional[Opt
     import pulumi
     import pulumi_upcloud as upcloud
 
-    # Use data source to gather a list of the active sessions for a Managed Valkey Database
+    # Use function to gather a list of the active sessions for a Managed Valkey Database
     # Create a Managed Valkey resource
     example_managed_database_valkey = upcloud.ManagedDatabaseValkey("example",
         name="example",

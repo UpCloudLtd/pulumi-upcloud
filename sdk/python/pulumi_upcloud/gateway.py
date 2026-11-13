@@ -173,6 +173,7 @@ class _GatewayState:
         :param pulumi.Input['GatewayAddressArgs'] address: IP addresses assigned to the gateway.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayAddressArgs']]] addresses: Use 'address' attribute instead. This attribute will be removed in the next major version of the provider.
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] connections: Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terraform refresh'.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the gateway.
         :param pulumi.Input[_builtins.str] name: Gateway name. Needs to be unique within the account.
@@ -243,6 +244,9 @@ class _GatewayState:
     @_builtins.property
     @pulumi.getter
     def connections(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terraform refresh'.
+        """
         return pulumi.get(self, "connections")
 
     @connections.setter
@@ -516,6 +520,7 @@ class Gateway(pulumi.CustomResource):
         :param pulumi.Input[Union['GatewayAddressArgs', 'GatewayAddressArgsDict', 'outputs.GatewayAddress']] address: IP addresses assigned to the gateway.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayAddressArgs', 'GatewayAddressArgsDict', 'outputs.GatewayAddress']]]] addresses: Use 'address' attribute instead. This attribute will be removed in the next major version of the provider.
         :param pulumi.Input[_builtins.str] configured_status: The service configured status indicates the service's current intended status. Managed by the customer.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] connections: Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terraform refresh'.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the gateway.
         :param pulumi.Input[_builtins.str] name: Gateway name. Needs to be unique within the account.
@@ -596,6 +601,9 @@ class Gateway(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def connections(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terraform refresh'.
+        """
         return pulumi.get(self, "connections")
 
     @_builtins.property

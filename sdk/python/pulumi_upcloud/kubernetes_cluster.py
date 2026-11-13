@@ -38,6 +38,7 @@ class KubernetesClusterArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] control_plane_ip_filters: IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
         :param pulumi.Input[_builtins.str] network: Network ID for the cluster to run in.
         :param pulumi.Input[_builtins.str] zone: Zone in which the Kubernetes cluster will be hosted, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        :param pulumi.Input[_builtins.bool] fetch_kubeconfig: Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[_builtins.str] name: Cluster name. Needs to be unique within the account.
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the cluster. You can list available plans with `upctl kubernetes plans`.
@@ -107,6 +108,9 @@ class KubernetesClusterArgs:
     @_builtins.property
     @pulumi.getter(name="fetchKubeconfig")
     def fetch_kubeconfig(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+        """
         return pulumi.get(self, "fetch_kubeconfig")
 
     @fetch_kubeconfig.setter
@@ -222,6 +226,7 @@ class _KubernetesClusterState:
         Input properties used for looking up and filtering KubernetesCluster resources.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] control_plane_ip_filters: IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
+        :param pulumi.Input[_builtins.bool] fetch_kubeconfig: Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
         :param pulumi.Input['KubernetesClusterKubeconfigArgs'] kubeconfig: Cluster kubeconfig and connection details. Set only when `fetch_kubeconfig` is `true`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[_builtins.str] name: Cluster name. Needs to be unique within the account.
@@ -284,6 +289,9 @@ class _KubernetesClusterState:
     @_builtins.property
     @pulumi.getter(name="fetchKubeconfig")
     def fetch_kubeconfig(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+        """
         return pulumi.get(self, "fetch_kubeconfig")
 
     @fetch_kubeconfig.setter
@@ -524,6 +532,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] control_plane_ip_filters: IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
+        :param pulumi.Input[_builtins.bool] fetch_kubeconfig: Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[_builtins.str] name: Cluster name. Needs to be unique within the account.
         :param pulumi.Input[_builtins.str] network: Network ID for the cluster to run in.
@@ -685,6 +694,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] control_plane_ip_filters: IP addresses or IP ranges in CIDR format which are allowed to access the cluster control plane. To allow access from any source, use `["0.0.0.0/0"]`. To deny access from all sources, use `[]`. Values set here do not restrict access to node groups or exposed Kubernetes services.
+        :param pulumi.Input[_builtins.bool] fetch_kubeconfig: Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
         :param pulumi.Input[Union['KubernetesClusterKubeconfigArgs', 'KubernetesClusterKubeconfigArgsDict', 'outputs.KubernetesClusterKubeconfig']] kubeconfig: Cluster kubeconfig and connection details. Set only when `fetch_kubeconfig` is `true`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: User defined key-value pairs to classify the cluster.
         :param pulumi.Input[_builtins.str] name: Cluster name. Needs to be unique within the account.
@@ -769,6 +779,9 @@ class KubernetesCluster(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="fetchKubeconfig")
     def fetch_kubeconfig(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Fetch the cluster kubeconfig and connection details into the `kubeconfig` attribute. Note that this stores the cluster credentials in the Terraform state. Consider using the `KubernetesCluster` ephemeral resource instead to keep the credentials out of the state. Defaults to `false`.
+        """
         return pulumi.get(self, "fetch_kubeconfig")
 
     @_builtins.property

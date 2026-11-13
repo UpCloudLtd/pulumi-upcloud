@@ -38,6 +38,11 @@ class StorageArgs:
         :param pulumi.Input[_builtins.int] size: The size of the storage in gigabytes.
         :param pulumi.Input[_builtins.str] title: The title of the storage.
         :param pulumi.Input[_builtins.str] zone: The zone the storage is in, e.g. `de-fra1`. You can list available zones with `upctl zone list`.
+        :param pulumi.Input['StorageBackupRuleArgs'] backup_rule: The criteria to backup the storage.
+               
+                   Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
         :param pulumi.Input['StorageCloneArgs'] clone: Block defining another storage/template to clone to storage.
         :param pulumi.Input[_builtins.bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
         :param pulumi.Input[_builtins.bool] encrypt: Sets if the storage is encrypted at rest.
@@ -106,6 +111,13 @@ class StorageArgs:
     @_builtins.property
     @pulumi.getter(name="backupRule")
     def backup_rule(self) -> pulumi.Input[Optional['StorageBackupRuleArgs']]:
+        """
+        The criteria to backup the storage.
+
+            Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+            
+            Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        """
         return pulumi.get(self, "backup_rule")
 
     @backup_rule.setter
@@ -217,6 +229,11 @@ class _StorageState:
         """
         Input properties used for looking up and filtering Storage resources.
 
+        :param pulumi.Input['StorageBackupRuleArgs'] backup_rule: The criteria to backup the storage.
+               
+                   Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
         :param pulumi.Input['StorageCloneArgs'] clone: Block defining another storage/template to clone to storage.
         :param pulumi.Input[_builtins.bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
         :param pulumi.Input[_builtins.bool] encrypt: Sets if the storage is encrypted at rest.
@@ -261,6 +278,13 @@ class _StorageState:
     @_builtins.property
     @pulumi.getter(name="backupRule")
     def backup_rule(self) -> pulumi.Input[Optional['StorageBackupRuleArgs']]:
+        """
+        The criteria to backup the storage.
+
+            Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+            
+            Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        """
         return pulumi.get(self, "backup_rule")
 
     @backup_rule.setter
@@ -445,6 +469,11 @@ class Storage(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict', 'outputs.StorageBackupRule']] backup_rule: The criteria to backup the storage.
+               
+                   Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
         :param pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict', 'outputs.StorageClone']] clone: Block defining another storage/template to clone to storage.
         :param pulumi.Input[_builtins.bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
         :param pulumi.Input[_builtins.bool] encrypt: Sets if the storage is encrypted at rest.
@@ -559,6 +588,11 @@ class Storage(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['StorageBackupRuleArgs', 'StorageBackupRuleArgsDict', 'outputs.StorageBackupRule']] backup_rule: The criteria to backup the storage.
+               
+                   Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
         :param pulumi.Input[Union['StorageCloneArgs', 'StorageCloneArgsDict', 'outputs.StorageClone']] clone: Block defining another storage/template to clone to storage.
         :param pulumi.Input[_builtins.bool] delete_autoresize_backup: If set to true, the backup taken before the partition and filesystem resize attempt will be deleted immediately after success.
         :param pulumi.Input[_builtins.bool] encrypt: Sets if the storage is encrypted at rest.
@@ -627,6 +661,13 @@ class Storage(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="backupRule")
     def backup_rule(self) -> pulumi.Output[Optional['outputs.StorageBackupRule']]:
+        """
+        The criteria to backup the storage.
+
+            Please keep in mind that it's not possible to have a storage with `backup_rule` attached to a server with `simple_backup` specified. Such configurations will throw errors during execution.
+            
+            Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        """
         return pulumi.get(self, "backup_rule")
 
     @_builtins.property

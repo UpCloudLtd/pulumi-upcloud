@@ -111,7 +111,7 @@ def get_managed_database_mysql_sessions(limit: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_upcloud as upcloud
 
-    # Use data source to gather a list of the active sessions for a Managed MySQL Database
+    # Use function to gather a list of the active sessions for a Managed MySQL Database
     # Create a Managed MySQL resource
     example_managed_database_mysql = upcloud.ManagedDatabaseMysql("example",
         name="mysql-example1",
@@ -153,7 +153,7 @@ def get_managed_database_mysql_sessions_output(limit: pulumi.Input[Optional[Opti
     import pulumi
     import pulumi_upcloud as upcloud
 
-    # Use data source to gather a list of the active sessions for a Managed MySQL Database
+    # Use function to gather a list of the active sessions for a Managed MySQL Database
     # Create a Managed MySQL resource
     example_managed_database_mysql = upcloud.ManagedDatabaseMysql("example",
         name="mysql-example1",

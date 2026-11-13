@@ -72,6 +72,11 @@ class ServerArgs:
         :param pulumi.Input[_builtins.str] nic_model: The model of the server's network interfaces
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[_builtins.str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
+        :param pulumi.Input['ServerSimpleBackupArgs'] simple_backup: Simple backup schedule configuration
+               
+                   The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backup_rules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backup_rules` defined for server templates.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
         :param pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]] storage_devices: A set of storage devices associated with the server
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         :param pulumi.Input['ServerTemplateArgs'] template: Block describing the preconfigured operating system
@@ -354,6 +359,13 @@ class ServerArgs:
     @_builtins.property
     @pulumi.getter(name="simpleBackup")
     def simple_backup(self) -> pulumi.Input[Optional['ServerSimpleBackupArgs']]:
+        """
+        Simple backup schedule configuration
+
+            The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backup_rules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backup_rules` defined for server templates.
+            
+            Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        """
         return pulumi.get(self, "simple_backup")
 
     @simple_backup.setter
@@ -498,6 +510,11 @@ class _ServerState:
         :param pulumi.Input[_builtins.str] nic_model: The model of the server's network interfaces
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[_builtins.str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
+        :param pulumi.Input['ServerSimpleBackupArgs'] simple_backup: Simple backup schedule configuration
+               
+                   The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backup_rules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backup_rules` defined for server templates.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
         :param pulumi.Input[Sequence[pulumi.Input['ServerStorageDeviceArgs']]] storage_devices: A set of storage devices associated with the server
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         :param pulumi.Input['ServerTemplateArgs'] template: Block describing the preconfigured operating system
@@ -771,6 +788,13 @@ class _ServerState:
     @_builtins.property
     @pulumi.getter(name="simpleBackup")
     def simple_backup(self) -> pulumi.Input[Optional['ServerSimpleBackupArgs']]:
+        """
+        Simple backup schedule configuration
+
+            The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backup_rules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backup_rules` defined for server templates.
+            
+            Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        """
         return pulumi.get(self, "simple_backup")
 
     @simple_backup.setter
@@ -977,6 +1001,11 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] nic_model: The model of the server's network interfaces
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[_builtins.str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
+        :param pulumi.Input[Union['ServerSimpleBackupArgs', 'ServerSimpleBackupArgsDict', 'outputs.ServerSimpleBackup']] simple_backup: Simple backup schedule configuration
+               
+                   The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backup_rules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backup_rules` defined for server templates.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict', 'outputs.ServerStorageDevice']]]] storage_devices: A set of storage devices associated with the server
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         :param pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict', 'outputs.ServerTemplate']] template: Block describing the preconfigured operating system
@@ -1183,6 +1212,11 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] nic_model: The model of the server's network interfaces
         :param pulumi.Input[_builtins.str] plan: The pricing plan used for the server. You can list available server plans with `upctl server plans`
         :param pulumi.Input[_builtins.str] server_group: The UUID of a server group to attach this server to. Note that the server can also be attached to a server group via the `members` property of `ServerGroup`. Only one of the these should be defined at a time. This value is only updated if it has been set to non-zero value.
+        :param pulumi.Input[Union['ServerSimpleBackupArgs', 'ServerSimpleBackupArgsDict', 'outputs.ServerSimpleBackup']] simple_backup: Simple backup schedule configuration
+               
+                   The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backup_rules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backup_rules` defined for server templates.
+                   
+                   Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerStorageDeviceArgs', 'ServerStorageDeviceArgsDict', 'outputs.ServerStorageDevice']]]] storage_devices: A set of storage devices associated with the server
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags to attach to the server. Note that tags are an access control feature and only available for a limited set of resources. Use labels to describe and filter your resources.
         :param pulumi.Input[Union['ServerTemplateArgs', 'ServerTemplateArgsDict', 'outputs.ServerTemplate']] template: Block describing the preconfigured operating system
@@ -1425,6 +1459,13 @@ class Server(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="simpleBackup")
     def simple_backup(self) -> pulumi.Output[Optional['outputs.ServerSimpleBackup']]:
+        """
+        Simple backup schedule configuration
+
+            The simple backups provide a simplified way to back up *all* of the storages attached to a given server. This means you cannot have simple backup set for a server, and individual `backup_rules` on the storages attached to the server. Such configuration will throw an error during execution. This also applies to `backup_rules` defined for server templates.
+            
+            Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simple_backup` on the server and individual storages `backup_rules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simple_backup` block from a server, run `terraform apply`, then add `backup_rule` to desired storages and run `terraform apply` again.
+        """
         return pulumi.get(self, "simple_backup")
 
     @_builtins.property

@@ -312,7 +312,7 @@ class GatewayConnectionTunnel(pulumi.CustomResource):
         this_gateway_connection_tunnel = upcloud.GatewayConnectionTunnel("this",
             connection_id=this_gateway_connection.id,
             name="test-tunnel",
-            local_address_name=this_gateway.address[0]["name"],
+            local_address_name=this_gateway.address[0]["name"].apply(lambda x: str(x)),
             remote_address="100.123.123.10",
             ipsec_auth_psk={
                 "psk": "you_probably_want_to_use_env_vars_here",
@@ -378,7 +378,7 @@ class GatewayConnectionTunnel(pulumi.CustomResource):
         this_gateway_connection_tunnel = upcloud.GatewayConnectionTunnel("this",
             connection_id=this_gateway_connection.id,
             name="test-tunnel",
-            local_address_name=this_gateway.address[0]["name"],
+            local_address_name=this_gateway.address[0]["name"].apply(lambda x: str(x)),
             remote_address="100.123.123.10",
             ipsec_auth_psk={
                 "psk": "you_probably_want_to_use_env_vars_here",

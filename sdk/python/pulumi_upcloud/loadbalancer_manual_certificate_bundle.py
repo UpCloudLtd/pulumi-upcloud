@@ -267,8 +267,8 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
         private_key_path = config.require("privateKeyPath")
         lb_cb_m1 = upcloud.LoadbalancerManualCertificateBundle("lb_cb_m1",
             name="lb-cb-m1-test",
-            certificate=std.index.base64encode(input=std.index.file(input=certificate_path)["result"])["result"],
-            private_key=std.index.base64encode(input=std.index.file(input=private_key_path)["result"])["result"])
+            certificate=std.base64encode(input=std.file(input=certificate_path)["result"])["result"],
+            private_key=std.base64encode(input=std.file(input=private_key_path)["result"])["result"])
         ```
 
 
@@ -301,8 +301,8 @@ class LoadbalancerManualCertificateBundle(pulumi.CustomResource):
         private_key_path = config.require("privateKeyPath")
         lb_cb_m1 = upcloud.LoadbalancerManualCertificateBundle("lb_cb_m1",
             name="lb-cb-m1-test",
-            certificate=std.index.base64encode(input=std.index.file(input=certificate_path)["result"])["result"],
-            private_key=std.index.base64encode(input=std.index.file(input=private_key_path)["result"])["result"])
+            certificate=std.base64encode(input=std.file(input=certificate_path)["result"])["result"],
+            private_key=std.base64encode(input=std.file(input=private_key_path)["result"])["result"])
         ```
 
 

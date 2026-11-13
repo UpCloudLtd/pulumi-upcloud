@@ -213,6 +213,7 @@ class NetworkPeering(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_upcloud as upcloud
 
         # Network peering requires the networks to have routers attached to them.
@@ -226,9 +227,9 @@ class NetworkPeering(pulumi.CustomResource):
                 "dhcp": True,
                 "family": "IPv4",
             })
-        this_network_peering = []
-        for range in [{"value": i} for i in range(0, 1)]:
-            this_network_peering.append(upcloud.NetworkPeering(f"this-{range['value']}",
+        this_network_peering: list[upcloud.NetworkPeering] = []
+        for this_network_peering_range in [{"value": i} for i in range(0, 1)]:
+            this_network_peering.append(upcloud.NetworkPeering(f"this-{this_network_peering_range['value']}",
                 name="network-peering-example-peering",
                 network={
                     "uuid": example.id,
@@ -260,6 +261,7 @@ class NetworkPeering(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_upcloud as upcloud
 
         # Network peering requires the networks to have routers attached to them.
@@ -273,9 +275,9 @@ class NetworkPeering(pulumi.CustomResource):
                 "dhcp": True,
                 "family": "IPv4",
             })
-        this_network_peering = []
-        for range in [{"value": i} for i in range(0, 1)]:
-            this_network_peering.append(upcloud.NetworkPeering(f"this-{range['value']}",
+        this_network_peering: list[upcloud.NetworkPeering] = []
+        for this_network_peering_range in [{"value": i} for i in range(0, 1)]:
+            this_network_peering.append(upcloud.NetworkPeering(f"this-{this_network_peering_range['value']}",
                 name="network-peering-example-peering",
                 network={
                     "uuid": example.id,

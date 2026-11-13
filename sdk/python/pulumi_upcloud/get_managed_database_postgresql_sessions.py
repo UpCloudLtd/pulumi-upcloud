@@ -111,7 +111,7 @@ def get_managed_database_postgresql_sessions(limit: Optional[_builtins.int] = No
     import pulumi
     import pulumi_upcloud as upcloud
 
-    # Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
+    # Use function to gather a list of the active sessions for a Managed PostgreSQL Database
     # Create a Managed PostgreSQL resource
     example_managed_database_postgresql = upcloud.ManagedDatabasePostgresql("example",
         name="mysql-example1",
@@ -153,7 +153,7 @@ def get_managed_database_postgresql_sessions_output(limit: pulumi.Input[Optional
     import pulumi
     import pulumi_upcloud as upcloud
 
-    # Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
+    # Use function to gather a list of the active sessions for a Managed PostgreSQL Database
     # Create a Managed PostgreSQL resource
     example_managed_database_postgresql = upcloud.ManagedDatabasePostgresql("example",
         name="mysql-example1",
