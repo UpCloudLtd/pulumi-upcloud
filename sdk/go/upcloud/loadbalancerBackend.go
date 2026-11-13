@@ -76,7 +76,8 @@ type LoadbalancerBackend struct {
 	// Backend member server UUIDs. Members receive traffic dispatched from the frontends.
 	Members pulumi.StringArrayOutput `pulumi:"members"`
 	// The name of the backend. Must be unique within the load balancer service.
-	Name       pulumi.StringOutput                    `pulumi:"name"`
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
 	Properties LoadbalancerBackendPropertiesPtrOutput `pulumi:"properties"`
 	// Domain name resolver used with dynamic type members.
 	ResolverName pulumi.StringOutput `pulumi:"resolverName"`
@@ -122,7 +123,8 @@ type loadbalancerBackendState struct {
 	// Backend member server UUIDs. Members receive traffic dispatched from the frontends.
 	Members []string `pulumi:"members"`
 	// The name of the backend. Must be unique within the load balancer service.
-	Name       *string                        `pulumi:"name"`
+	Name *string `pulumi:"name"`
+	// Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
 	Properties *LoadbalancerBackendProperties `pulumi:"properties"`
 	// Domain name resolver used with dynamic type members.
 	ResolverName *string `pulumi:"resolverName"`
@@ -136,7 +138,8 @@ type LoadbalancerBackendState struct {
 	// Backend member server UUIDs. Members receive traffic dispatched from the frontends.
 	Members pulumi.StringArrayInput
 	// The name of the backend. Must be unique within the load balancer service.
-	Name       pulumi.StringPtrInput
+	Name pulumi.StringPtrInput
+	// Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
 	Properties LoadbalancerBackendPropertiesPtrInput
 	// Domain name resolver used with dynamic type members.
 	ResolverName pulumi.StringPtrInput
@@ -158,7 +161,8 @@ type loadbalancerBackendArgs struct {
 	// UUID of the load balancer to which the backend is connected.
 	Loadbalancer string `pulumi:"loadbalancer"`
 	// The name of the backend. Must be unique within the load balancer service.
-	Name       *string                        `pulumi:"name"`
+	Name *string `pulumi:"name"`
+	// Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
 	Properties *LoadbalancerBackendProperties `pulumi:"properties"`
 	// Domain name resolver used with dynamic type members.
 	ResolverName *string `pulumi:"resolverName"`
@@ -169,7 +173,8 @@ type LoadbalancerBackendArgs struct {
 	// UUID of the load balancer to which the backend is connected.
 	Loadbalancer pulumi.StringInput
 	// The name of the backend. Must be unique within the load balancer service.
-	Name       pulumi.StringPtrInput
+	Name pulumi.StringPtrInput
+	// Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
 	Properties LoadbalancerBackendPropertiesPtrInput
 	// Domain name resolver used with dynamic type members.
 	ResolverName pulumi.StringPtrInput
@@ -277,6 +282,7 @@ func (o LoadbalancerBackendOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Backend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
 func (o LoadbalancerBackendOutput) Properties() LoadbalancerBackendPropertiesPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) LoadbalancerBackendPropertiesPtrOutput { return v.Properties }).(LoadbalancerBackendPropertiesPtrOutput)
 }

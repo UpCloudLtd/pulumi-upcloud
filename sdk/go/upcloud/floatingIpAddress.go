@@ -56,9 +56,9 @@ import (
 //				return err
 //			}
 //			_, err = upcloud.NewFloatingIpAddress(ctx, "my_new_floating_address", &upcloud.FloatingIpAddressArgs{
-//				MacAddress: pulumi.String(example.NetworkInterfaces.ApplyT(func(networkInterfaces []upcloud.ServerNetworkInterface) (*string, error) {
-//					return &networkInterfaces[0].MacAddress, nil
-//				}).(pulumi.StringPtrOutput)),
+//				MacAddress: example.NetworkInterfaces.ApplyT(func(networkInterfaces []upcloud.ServerNetworkInterface) (*string, error) {
+//					return networkInterfaces[0].MacAddress, nil
+//				}).(pulumi.StringPtrOutput),
 //			})
 //			if err != nil {
 //				return err

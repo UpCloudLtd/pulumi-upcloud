@@ -21,6 +21,8 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/UpCloudLtd/pulumi-upcloud/sdk/go/upcloud"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -51,7 +53,6 @@ import (
 //			var thisNetworkPeering []*upcloud.NetworkPeering
 //			for index := 0; index < 1; index++ {
 //				key0 := index
-//				_ := index
 //				__res, err := upcloud.NewNetworkPeering(ctx, fmt.Sprintf("this-%v", key0), &upcloud.NetworkPeeringArgs{
 //					Name: pulumi.String("network-peering-example-peering"),
 //					Network: &upcloud.NetworkPeeringNetworkArgs{

@@ -24,6 +24,11 @@ import (
 type Storage struct {
 	pulumi.CustomResourceState
 
+	// The criteria to backup the storage.
+	//
+	//     Please keep in mind that it's not possible to have a storage with `backupRule` attached to a server with `simpleBackup` specified. Such configurations will throw errors during execution.
+	//
+	//     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simpleBackup` on the server and individual storages `backupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simpleBackup` block from a server, run `terraform apply`, then add `backupRule` to desired storages and run `terraform apply` again.
 	BackupRule StorageBackupRulePtrOutput `pulumi:"backupRule"`
 	// Block defining another storage/template to clone to storage.
 	Clone StorageClonePtrOutput `pulumi:"clone"`
@@ -91,6 +96,11 @@ func GetStorage(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Storage resources.
 type storageState struct {
+	// The criteria to backup the storage.
+	//
+	//     Please keep in mind that it's not possible to have a storage with `backupRule` attached to a server with `simpleBackup` specified. Such configurations will throw errors during execution.
+	//
+	//     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simpleBackup` on the server and individual storages `backupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simpleBackup` block from a server, run `terraform apply`, then add `backupRule` to desired storages and run `terraform apply` again.
 	BackupRule *StorageBackupRule `pulumi:"backupRule"`
 	// Block defining another storage/template to clone to storage.
 	Clone *StorageClone `pulumi:"clone"`
@@ -120,6 +130,11 @@ type storageState struct {
 }
 
 type StorageState struct {
+	// The criteria to backup the storage.
+	//
+	//     Please keep in mind that it's not possible to have a storage with `backupRule` attached to a server with `simpleBackup` specified. Such configurations will throw errors during execution.
+	//
+	//     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simpleBackup` on the server and individual storages `backupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simpleBackup` block from a server, run `terraform apply`, then add `backupRule` to desired storages and run `terraform apply` again.
 	BackupRule StorageBackupRulePtrInput
 	// Block defining another storage/template to clone to storage.
 	Clone StorageClonePtrInput
@@ -159,6 +174,11 @@ func StorageExists(ctx *pulumi.Context,
 }
 
 type storageArgs struct {
+	// The criteria to backup the storage.
+	//
+	//     Please keep in mind that it's not possible to have a storage with `backupRule` attached to a server with `simpleBackup` specified. Such configurations will throw errors during execution.
+	//
+	//     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simpleBackup` on the server and individual storages `backupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simpleBackup` block from a server, run `terraform apply`, then add `backupRule` to desired storages and run `terraform apply` again.
 	BackupRule *StorageBackupRule `pulumi:"backupRule"`
 	// Block defining another storage/template to clone to storage.
 	Clone *StorageClone `pulumi:"clone"`
@@ -185,6 +205,11 @@ type storageArgs struct {
 
 // The set of arguments for constructing a Storage resource.
 type StorageArgs struct {
+	// The criteria to backup the storage.
+	//
+	//     Please keep in mind that it's not possible to have a storage with `backupRule` attached to a server with `simpleBackup` specified. Such configurations will throw errors during execution.
+	//
+	//     Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simpleBackup` on the server and individual storages `backupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simpleBackup` block from a server, run `terraform apply`, then add `backupRule` to desired storages and run `terraform apply` again.
 	BackupRule StorageBackupRulePtrInput
 	// Block defining another storage/template to clone to storage.
 	Clone StorageClonePtrInput
@@ -296,6 +321,11 @@ func (o StorageOutput) ToStorageOutputWithContext(ctx context.Context) StorageOu
 	return o
 }
 
+// The criteria to backup the storage.
+//
+//	Please keep in mind that it's not possible to have a storage with `backupRule` attached to a server with `simpleBackup` specified. Such configurations will throw errors during execution.
+//
+//	Also, due to how UpCloud API works with simple backups and how Terraform orders the update operations, it is advised to never switch between `simpleBackup` on the server and individual storages `backupRules` in one apply. If you want to switch from using server simple backup to per-storage defined backup rules,  please first remove `simpleBackup` block from a server, run `terraform apply`, then add `backupRule` to desired storages and run `terraform apply` again.
 func (o StorageOutput) BackupRule() StorageBackupRulePtrOutput {
 	return o.ApplyT(func(v *Storage) StorageBackupRulePtrOutput { return v.BackupRule }).(StorageBackupRulePtrOutput)
 }

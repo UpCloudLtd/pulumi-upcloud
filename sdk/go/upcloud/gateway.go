@@ -81,8 +81,9 @@ type Gateway struct {
 	// Use 'address' attribute instead. This attribute will be removed in the next major version of the provider.
 	Addresses GatewayAddressArrayOutput `pulumi:"addresses"`
 	// The service configured status indicates the service's current intended status. Managed by the customer.
-	ConfiguredStatus pulumi.StringOutput      `pulumi:"configuredStatus"`
-	Connections      pulumi.StringArrayOutput `pulumi:"connections"`
+	ConfiguredStatus pulumi.StringOutput `pulumi:"configuredStatus"`
+	// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terraform refresh'.
+	Connections pulumi.StringArrayOutput `pulumi:"connections"`
 	// Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
 	Features pulumi.StringArrayOutput `pulumi:"features"`
 	// User defined key-value pairs to classify the gateway.
@@ -140,8 +141,9 @@ type gatewayState struct {
 	// Use 'address' attribute instead. This attribute will be removed in the next major version of the provider.
 	Addresses []GatewayAddress `pulumi:"addresses"`
 	// The service configured status indicates the service's current intended status. Managed by the customer.
-	ConfiguredStatus *string  `pulumi:"configuredStatus"`
-	Connections      []string `pulumi:"connections"`
+	ConfiguredStatus *string `pulumi:"configuredStatus"`
+	// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terraform refresh'.
+	Connections []string `pulumi:"connections"`
 	// Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
 	Features []string `pulumi:"features"`
 	// User defined key-value pairs to classify the gateway.
@@ -165,7 +167,8 @@ type GatewayState struct {
 	Addresses GatewayAddressArrayInput
 	// The service configured status indicates the service's current intended status. Managed by the customer.
 	ConfiguredStatus pulumi.StringPtrInput
-	Connections      pulumi.StringArrayInput
+	// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terraform refresh'.
+	Connections pulumi.StringArrayInput
 	// Features enabled for the gateway. Valid item values are `nat` and `vpn`. For more details, see documentation on [NAT](https://upcloud.com/docs/products/nat-gateway/) and [VPN](https://upcloud.com/docs/products/vpn-gateway/) gateways.
 	Features pulumi.StringArrayInput
 	// User defined key-value pairs to classify the gateway.
@@ -333,6 +336,7 @@ func (o GatewayOutput) ConfiguredStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.ConfiguredStatus }).(pulumi.StringOutput)
 }
 
+// Names of connections attached to the gateway. Note that this field can have outdated information as connections are created by a separate resource. To make sure that you have the most recent data run 'terraform refresh'.
 func (o GatewayOutput) Connections() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringArrayOutput { return v.Connections }).(pulumi.StringArrayOutput)
 }

@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := upcloud.LookupServer(ctx, &upcloud.LookupServerArgs{
+//			_, err := upcloud.GetServer(ctx, &upcloud.LookupServerArgs{
 //				Id: "00f60089-7bb0-4e19-9481-fbb1cb4378ab",
 //			}, nil)
 //			if err != nil {

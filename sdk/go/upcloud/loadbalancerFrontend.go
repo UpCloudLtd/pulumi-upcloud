@@ -111,7 +111,8 @@ type LoadbalancerFrontend struct {
 	// Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
 	Networks LoadbalancerFrontendNetworkArrayOutput `pulumi:"networks"`
 	// Port to listen for incoming requests.
-	Port       pulumi.IntOutput                        `pulumi:"port"`
+	Port pulumi.IntOutput `pulumi:"port"`
+	// Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
 	Properties LoadbalancerFrontendPropertiesPtrOutput `pulumi:"properties"`
 	// Set of frontend rule names.
 	Rules pulumi.StringArrayOutput `pulumi:"rules"`
@@ -174,7 +175,8 @@ type loadbalancerFrontendState struct {
 	// Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
 	Networks []LoadbalancerFrontendNetwork `pulumi:"networks"`
 	// Port to listen for incoming requests.
-	Port       *int                            `pulumi:"port"`
+	Port *int `pulumi:"port"`
+	// Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
 	Properties *LoadbalancerFrontendProperties `pulumi:"properties"`
 	// Set of frontend rule names.
 	Rules []string `pulumi:"rules"`
@@ -196,7 +198,8 @@ type LoadbalancerFrontendState struct {
 	// Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
 	Networks LoadbalancerFrontendNetworkArrayInput
 	// Port to listen for incoming requests.
-	Port       pulumi.IntPtrInput
+	Port pulumi.IntPtrInput
+	// Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
 	Properties LoadbalancerFrontendPropertiesPtrInput
 	// Set of frontend rule names.
 	Rules pulumi.StringArrayInput
@@ -228,7 +231,8 @@ type loadbalancerFrontendArgs struct {
 	// Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
 	Networks []LoadbalancerFrontendNetwork `pulumi:"networks"`
 	// Port to listen for incoming requests.
-	Port       int                             `pulumi:"port"`
+	Port int `pulumi:"port"`
+	// Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
 	Properties *LoadbalancerFrontendProperties `pulumi:"properties"`
 }
 
@@ -247,7 +251,8 @@ type LoadbalancerFrontendArgs struct {
 	// Networks that frontend will be listening. Networks are required if load balancer has `networks` defined. This field will be required when deprecated field `network` is removed from load balancer resource.
 	Networks LoadbalancerFrontendNetworkArrayInput
 	// Port to listen for incoming requests.
-	Port       pulumi.IntInput
+	Port pulumi.IntInput
+	// Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
 	Properties LoadbalancerFrontendPropertiesPtrInput
 }
 
@@ -370,6 +375,7 @@ func (o LoadbalancerFrontendOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
 
+// Frontend properties. Properties can be set back to defaults by defining an empty `properties {}` block. For `terraform import`, an empty or non-empty block is also required.
 func (o LoadbalancerFrontendOutput) Properties() LoadbalancerFrontendPropertiesPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) LoadbalancerFrontendPropertiesPtrOutput { return v.Properties }).(LoadbalancerFrontendPropertiesPtrOutput)
 }

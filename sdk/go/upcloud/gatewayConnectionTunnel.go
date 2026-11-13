@@ -85,7 +85,7 @@ import (
 // _, err = upcloud.NewGatewayConnectionTunnel(ctx, "this", &upcloud.GatewayConnectionTunnelArgs{
 // ConnectionId: thisGatewayConnection.ID(),
 // Name: pulumi.String("test-tunnel"),
-// LocalAddressName: pulumi.String(thisGateway.Address.ApplyT(func(address upcloud.GatewayAddress) (*interface{}, error) {
+// LocalAddressName: pulumi.String(thisGateway.Address.ApplyT(func(address *upcloud.GatewayAddress) (*interface{}, error) {
 // return &address[0].Name, nil
 // }).(pulumi.Interface{}PtrOutput)),
 // RemoteAddress: pulumi.String("100.123.123.10"),

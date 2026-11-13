@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Use data source to gather a list of the active sessions for a Managed Valkey Database
+//			// Use function to gather a list of the active sessions for a Managed Valkey Database
 //			// Create a Managed Valkey resource
 //			exampleManagedDatabaseValkey, err := upcloud.NewManagedDatabaseValkey(ctx, "example", &upcloud.ManagedDatabaseValkeyArgs{
 //				Name:  pulumi.String("example"),

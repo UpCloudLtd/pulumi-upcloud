@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Use data source to gather a list of the indices for a Managed OpenSearch Database
+//			// Use function to gather a list of the indices for a Managed OpenSearch Database
 //			// Create a Managed OpenSearch resource
 //			exampleManagedDatabaseOpensearch, err := upcloud.NewManagedDatabaseOpensearch(ctx, "example", &upcloud.ManagedDatabaseOpensearchArgs{
 //				Name:  pulumi.String("opensearch-example"),

@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Use data source to gather a list of the active sessions for a Managed MySQL Database
+//			// Use function to gather a list of the active sessions for a Managed MySQL Database
 //			// Create a Managed MySQL resource
 //			exampleManagedDatabaseMysql, err := upcloud.NewManagedDatabaseMysql(ctx, "example", &upcloud.ManagedDatabaseMysqlArgs{
 //				Name:  pulumi.String("mysql-example1"),

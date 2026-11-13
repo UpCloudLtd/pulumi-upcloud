@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Use data source to gather a list of the active sessions for a Managed PostgreSQL Database
+//			// Use function to gather a list of the active sessions for a Managed PostgreSQL Database
 //			// Create a Managed PostgreSQL resource
 //			exampleManagedDatabasePostgresql, err := upcloud.NewManagedDatabasePostgresql(ctx, "example", &upcloud.ManagedDatabasePostgresqlArgs{
 //				Name:  pulumi.String("mysql-example1"),
